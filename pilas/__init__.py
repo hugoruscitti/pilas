@@ -6,6 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import os
 import sys
 import time
 
@@ -17,13 +18,13 @@ app = 1
 event = 1
 clock = 1
 
+def float_child_window():
+    "Hace flotante la ventana para i3"
+    try:
+        os.system("i3-msg t >/dev/null")
+    except:
+        pass
 
-
-
-
-def exit():
-    "Termina la ejecución de la biblioteca."
-    sys.exit(0)
 
 
 def loop():
@@ -32,6 +33,7 @@ def loop():
 
     if app == 1:
         app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
+        float_child_window()
 
     event = sf.Event()
     clock = sf.Clock()
@@ -46,7 +48,8 @@ def loop():
         while app.GetEvent(event):
             if event.Type == sf.Event.KeyPressed:
                 if event.Key.Code == sf.Key.Escape:
-                    exit()
+                    app.Close()
+                    sys.exit(0)
 
         for actor in actors.all:
             app.Draw(actor)
@@ -83,4 +86,4 @@ try:
     loop_bg()
 except AttributeError:
     app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
-
+    float_child_window()
