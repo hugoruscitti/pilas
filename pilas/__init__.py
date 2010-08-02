@@ -48,6 +48,9 @@ def loop():
                 if event.Key.Code == sf.Key.Escape:
                     exit()
 
+        for actor in actors.all:
+            app.Draw(actor)
+
         app.Display()
 
 

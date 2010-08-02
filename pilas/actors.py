@@ -6,8 +6,19 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-class Actor:
+from PySFML import sf
 
-    def __init__(self, image):
-        pass
+all = []
 
+def insert_as_new_actor(actor):
+    all.append(actor)
+
+class Actor(sf.Sprite):
+
+    def __init__(self, image_path):
+        image = sf.Image()
+        image.LoadFromFile(image_path)
+
+        sf.Sprite.__init__(self, image)
+
+        insert_as_new_actor(self)
