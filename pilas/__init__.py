@@ -31,7 +31,7 @@ def loop():
     global app
 
     if app == 1:
-        app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas", sf.Style.Resize)
+        app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
 
     event = sf.Event()
     clock = sf.Clock()
@@ -62,6 +62,13 @@ def loop_bg():
     bg.start()
 
 
+def load_autocompletation_modules():
+    "Carga los modulos de python para autocompletar desde la consola interactiva."
+    import rlcompleter
+    import readline
+
+    readline.parse_and_bind("tab: complete")
+
 
 # Detecta si la biblioteca se esta ejecutando
 # desde el modo interactivo o desde un script.
@@ -72,7 +79,8 @@ def loop_bg():
 
 try:
     cursor = sys.ps1
+    load_autocompletation_modules()
     loop_bg()
 except AttributeError:
-    app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas", sf.Style.Resize)
+    app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
 
