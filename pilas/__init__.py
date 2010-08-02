@@ -4,6 +4,7 @@ import time
 
 from PySFML import sf
 
+
 app = 1
 event = 1
 clock = 1
@@ -22,7 +23,7 @@ def loop():
     global app
 
     if app == 1:
-        app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
+        app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas", sf.Style.Resize)
 
     event = sf.Event()
     clock = sf.Clock()
@@ -62,4 +63,5 @@ try:
     cursor = sys.ps1
     loop_bg()
 except AttributeError:
-    app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
+    app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas", sf.Style.Resize)
+
