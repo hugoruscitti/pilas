@@ -5,6 +5,7 @@ syntax: glob
 *.elc
 *.pyc
 *~
+open_doc.sh
 
 # switch to regexp syntax.
 syntax: regexp
