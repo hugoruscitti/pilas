@@ -1,0 +1,47 @@
+Instalación
+===========
+
+Existen 3 formas de instalar la biblioteca, así
+que veremos cada una por separado.
+
+
+Instalación para distribuir con un juego
+----------------------------------------
+
+Si quieres que la biblioteca esté en un juego pero
+no quieres instalarla en cada equipo, puedes
+simplemente copiar todo el contenido del directorio
+``pilas`` dentro del directorio del juego.
+
+Entonces, cuando ejecutes una sentencia como ``import pilas``, la
+biblioteca se leerá desde el directorio.
+
+
+Instalación para desarrolladores
+--------------------------------
+
+Si realizas videojuegos, pero no quieres tener la biblioteca
+como directorio físico en todos y cada uno de los juegos
+que realices, una buena idea es instalar la biblioteca en
+tu sistema.
+
+Para ello tienes que ejecutar::
+
+    sudo python setup.py install
+
+o bien::
+
+    sudo python setup.py develop
+
+
+En el primer caso la biblioteca se instala y pasa
+a estar completamente instalada en tu sistema. No importa
+que borres el directorio que has descargador, la biblioteca
+ya se instala en el equipo.
+
+El segundo caso es el favorito por los desarrolladores, porque
+te permite actualizar mas fácilmente la biblioteca. Ya que
+no está complemente instalada en el equipo, si no que hace
+referencia al directorio de instalación. Si actualizas
+el directorio origen, los cambios se reflejarán en
+tu sistema.
