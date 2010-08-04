@@ -17,7 +17,7 @@ def insert_as_new_actor(actor):
     all.append(actor)
 
 
-class Actor(sf.Sprite):
+class Actor(sf.Sprite, object):
     """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
     Un objeto Actor se tiene que crear siempre indicando la imagen
@@ -32,6 +32,7 @@ class Actor(sf.Sprite):
         protagonista.scale = 2
         protagonista.rotation = 30
     """
+
 
     def __init__(self, image_path):
         image = pilas.image.load(image_path)
@@ -48,7 +49,12 @@ class Actor(sf.Sprite):
         size = self.GetSize()
         self.SetCenter(size[0]/2, size[1]/2)
 
+    def GetX(self, x):
+        x, y = self.GetPosition()
+        return x
 
+    x = property(GetX, sf.Sprite.SetX)
+    rotation = property(sf.Sprite.GetRotation, sf.Sprite.SetRotation)
 
 class Monkey(Actor):
 
