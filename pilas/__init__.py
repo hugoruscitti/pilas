@@ -19,6 +19,8 @@ app = 1
 event = 1
 clock = 1
 
+path = os.path.dirname(os.path.abspath(__file__))
+
 def float_child_window():
     "Hace flotante la ventana para i3"
     try:
