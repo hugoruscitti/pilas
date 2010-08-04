@@ -13,6 +13,7 @@ import time
 from PySFML import sf
 
 import actors
+import image
 
 app = 1
 event = 1
