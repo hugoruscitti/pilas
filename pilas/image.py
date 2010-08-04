@@ -50,10 +50,11 @@ def get_file_path(path):
     función intentará dar con el archivo en cuestión.
     """
 
-    dirs = ['./', 'data', pilas.path]
+    dirs = ['./', 'data', pilas.path, pilas.path + '/data']
 
-    for x in path:
+    for x in dirs:
         full_path = os.path.join(x, path)
+        print "buscando en: '%s'" %(full_path)
 
         if os.path.exists(full_path):
             return full_path
