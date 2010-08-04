@@ -54,7 +54,7 @@ def get_file_path(path):
 
     for x in dirs:
         full_path = os.path.join(x, path)
-        print "buscando en: '%s'" %(full_path)
+        #DEBUG: print "buscando en: '%s'" %(full_path)
 
         if os.path.exists(full_path):
             return full_path

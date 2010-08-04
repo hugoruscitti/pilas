@@ -38,6 +38,16 @@ class Actor(sf.Sprite):
 
         sf.Sprite.__init__(self, image)
         insert_as_new_actor(self)
+        self._set_central_axis()
+
+        # define la posicion inicial.
+        self.SetPosition(320, 240)
+
+    def _set_central_axis(self):
+        "Hace que el eje de posición del actor sea el centro de la imagen."
+        size = self.GetSize()
+        self.SetCenter(size[0]/2, size[1]/2)
+
 
 
 class Monkey(Actor):
