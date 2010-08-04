@@ -8,3 +8,4 @@ Contenido:
     :maxdepth: 2
     
     install.rst
+    imagen.rst
