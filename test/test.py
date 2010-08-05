@@ -33,6 +33,15 @@ class TestSequenceFunctions(unittest.TestCase):
         # Analiza que el personaje se ha agregado a la lista de actores.
         self.assertTrue(mono in pilas.actors.all)
 
+        # Utiliza los atributos de escala.
+        self.assertEqual(mono.scale, 1)
+
+        mono.scale = 4
+        self.assertEqual(mono.scale, 4)
+
+        # Verifica que el personaje se pueda matar.
+        mono.kill()
+        self.assertFalse(mono in pilas.actors.all)
 
 
 
