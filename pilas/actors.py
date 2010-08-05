@@ -49,12 +49,18 @@ class Actor(sf.Sprite, object):
         size = self.GetSize()
         self.SetCenter(size[0]/2, size[1]/2)
 
-    def GetX(self, x):
+    def GetX(self):
         x, y = self.GetPosition()
         return x
 
+    def GetY(self):
+        x, y = self.GetPosition()
+        return y
+
     x = property(GetX, sf.Sprite.SetX)
+    y = property(GetY, sf.Sprite.SetY)
     rotation = property(sf.Sprite.GetRotation, sf.Sprite.SetRotation)
+
 
 class Monkey(Actor):
 
