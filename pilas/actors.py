@@ -57,9 +57,17 @@ class Actor(sf.Sprite, object):
         x, y = self.GetPosition()
         return y
 
-    x = property(GetX, sf.Sprite.SetX)
-    y = property(GetY, sf.Sprite.SetY)
-    rotation = property(sf.Sprite.GetRotation, sf.Sprite.SetRotation)
+    def _set_scale(self, s):
+        self.SetScale(s, s)
+
+    def _get_scale(self):
+        # se asume que la escala del personaje es la horizontal.
+        return self.GetScale()[0]
+
+    x = property(GetX, sf.Sprite.SetX, doc="Define la posición horizontal.")
+    y = property(GetY, sf.Sprite.SetY, doc="Define la posición vertical.")
+    rotation = property(sf.Sprite.GetRotation, sf.Sprite.SetRotation, doc="Angulo de rotación (en grados, de 0 a 360)")
+    scale = property(_get_scale, _set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
 
 
 class Monkey(Actor):
