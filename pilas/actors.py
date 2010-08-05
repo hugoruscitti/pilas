@@ -16,6 +16,8 @@ def insert_as_new_actor(actor):
     "Coloca a un actor en la lista de actores a imprimir en pantalla."
     all.append(actor)
 
+def remove_an_actor(actor):
+    all.remove(actor)
 
 class Actor(sf.Sprite, object):
     """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
@@ -69,6 +71,9 @@ class Actor(sf.Sprite, object):
     rotation = property(sf.Sprite.GetRotation, sf.Sprite.SetRotation, doc="Angulo de rotación (en grados, de 0 a 360)")
     scale = property(_get_scale, _set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
 
+    def kill(self):
+        "Elimina el actor de la lista de actores que se imprimen en pantalla."
+        remove_an_actor(self)
 
 class Monkey(Actor):
 
