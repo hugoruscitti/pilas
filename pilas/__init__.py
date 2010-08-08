@@ -15,6 +15,9 @@ from PySFML import sf
 import actors
 import image
 import task_scheduler
+import pytweener
+
+tweener = pytweener.Tweener()
 
 app = 1
 event = 1
@@ -52,6 +55,7 @@ def loop():
     while True:
         time.sleep(0.01)
 
+        tweener.update(16)
         tasks.update(app.GetFrameTime())
         app.Clear(bg_color)
 
