@@ -93,6 +93,7 @@ class Actor(sf.Sprite, object):
         "Actualiza el estado del actor. Este metodo se llama una vez por frame."
         pass
 
+
 class Monkey(Actor):
     """Representa la cara de un mono de color marrón.
 
