@@ -35,14 +35,16 @@ class TestSequenceFunctions(unittest.TestCase):
 
         # Utiliza los atributos de escala.
         self.assertEqual(mono.scale, 1)
-
         mono.scale = 5
         self.assertEqual(mono.scale, 5)
+
+        # Ejecuta mas metodos del mono.
+        mono.smile()
+        mono.shout()
 
         # Verifica que el personaje se pueda matar.
         mono.kill()
         self.assertFalse(mono in pilas.actors.all)
-
 
 
 if __name__ == '__main__':

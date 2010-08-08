@@ -12,3 +12,18 @@ nuestro juego así::
     import pilas
 
     hola = pilas.image.load('hola.png')
+
+
+Las imágenes no se imprimen directamente en pantalla, en
+su lugar tienes que crear un Actor y asignarle la
+imagen.
+
+Por ejemplo, el siguiente código muestra la imagen
+en pantalla:
+
+.. code-block:: python
+
+    import pilas
+
+    imagen = pilas.image.load("mi_personaje.png")
+    actor = pilas.actors.Actor(imagen)

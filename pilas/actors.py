@@ -83,3 +83,13 @@ class Monkey(Actor):
 
     def __init__(self):
         Actor.__init__(self, 'monkey_normal.png')
+
+        # carga las imagenes adicionales.
+        self.image_smile = pilas.image.load('monkey_smile.png')
+        self.image_shout = pilas.image.load('monkey_shout.png')
+
+    def smile(self):
+        self.SetImage(self.image_smile)
+
+    def shout(self):
+        self.SetImage(self.image_shout)
