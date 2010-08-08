@@ -88,16 +88,35 @@ class Actor(sf.Sprite, object):
         pass
 
 class Monkey(Actor):
+    """Representa la cara de un mono de color marrón.
+
+    Este personaje se usa como ejemplo básico de un actor. Sus
+    métodos mas usados son:
+
+    - smile
+    - shout
+
+    El primero hace que el mono se ría y el segundo que grite.
+    """
 
     def __init__(self):
-        Actor.__init__(self, 'monkey_normal.png')
-
         # carga las imagenes adicionales.
+        self.image_normal = pilas.image.load('monkey_normal.png')
         self.image_smile = pilas.image.load('monkey_smile.png')
         self.image_shout = pilas.image.load('monkey_shout.png')
 
+        # Inicializa el actor.
+        Actor.__init__(self, self.image_normal)
+
     def smile(self):
         self.SetImage(self.image_smile)
+        # Luego de un segundo regresa a la normalidad
+        pilas.add_task(1, self.normal)
 
     def shout(self):
         self.SetImage(self.image_shout)
+        # Luego de un segundo regresa a la normalidad
+        pilas.add_task(1, self.normal)
+
+    def normal(self):
+        self.SetImage(self.image_normal)

@@ -54,5 +54,16 @@ class TestSequenceFunctions(unittest.TestCase):
 
         self.assertEqual(original_image, actors_image)
 
+    def testScheduler(self):
+
+        def none():
+            pass
+
+        def none_3(a, b, c):
+            pass
+
+        pilas.add_task(2, none)
+        pilas.add_task(2, none_3, (1, 2, 3))
+
 if __name__ == '__main__':
     unittest.main()

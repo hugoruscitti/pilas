@@ -14,6 +14,7 @@ from PySFML import sf
 
 import actors
 import image
+import task_scheduler
 
 app = 1
 event = 1
@@ -28,6 +29,11 @@ def float_child_window():
     except:
         pass
 
+
+tasks = task_scheduler.TaskScheduler() 
+ 
+def add_task(time_out, function, *params): 
+    tasks.add(time_out, function, params)
 
 
 def loop():
@@ -45,6 +51,7 @@ def loop():
     while True:
         time.sleep(0.1)
 
+        tasks.update(app.GetFrameTime())
         app.Clear(bg_color)
 
         # Procesa todos los eventos.

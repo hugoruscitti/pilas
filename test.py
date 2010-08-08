@@ -5,4 +5,8 @@ mono = pilas.actors.Monkey()
 mono.x = 100
 mono.scale = 2
 mono.rotation = 0
+
+mono.smile()
+
+
 pilas.loop()
