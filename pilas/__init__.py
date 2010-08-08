@@ -29,6 +29,7 @@ def float_child_window():
     except:
         pass
 
+    
 
 tasks = task_scheduler.TaskScheduler() 
  
@@ -98,3 +99,4 @@ try:
 except AttributeError:
     app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
     float_child_window()
+    app.SetPosition(300, 100)
