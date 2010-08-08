@@ -117,3 +117,38 @@ o bien:
     mono.rotation = 80
 
 .. image:: images/mono/rotation80.png
+
+
+Pidiendo ayuda
+--------------
+
+Recuerda que cada componente de ``pilas`` está documentado
+como un módulo de python. Por lo tanto puedes
+ejecutar una sentencia cómo:
+
+.. code-block:: python
+
+    help(mono)
+
+y aparecerán en pantalla todos los instructivos de
+la funcionalidad del actor.
+
+
+Eliminando a un actor
+---------------------
+
+Para eliminar un actor de la escena tienes que llamar
+al método ``kill``:
+
+
+.. code-block:: python
+
+    mono.kill()
+
+Conclusión
+----------
+
+Hemos visto los pasos principales para gestionar
+actores. Ten en cuenta que el módulo ``pilas.actors`` es
+donde se guardarán todos los actores. Un buen ejercicio
+es mirar ahí, buscar nuevos actores y comenzar a utilizarlos.
