@@ -8,5 +8,12 @@ mono.rotation = 0
 
 mono.smile()
 
+def girar():
+    x = mono.rotation
+    x += 1
+    mono.rotation = x
+    return True
+
+pilas.add_task(0, girar)
 
 pilas.loop()

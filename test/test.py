@@ -28,7 +28,7 @@ class TestSequenceFunctions(unittest.TestCase):
 
         # Verifica que las rotaciones alteren el estado del personaje.
         mono.rotation = 180
-        self.assertEqual(mono.rotation, 180)
+        self.assertEqual(mono.rotation, -180)
 
         # Analiza que el personaje se ha agregado a la lista de actores.
         self.assertTrue(mono in pilas.actors.all)

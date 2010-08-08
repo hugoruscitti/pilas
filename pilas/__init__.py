@@ -49,7 +49,7 @@ def loop():
     bg_color = sf.Color(200, 200, 200)
 
     while True:
-        time.sleep(0.1)
+        time.sleep(0.01)
 
         tasks.update(app.GetFrameTime())
         app.Clear(bg_color)
