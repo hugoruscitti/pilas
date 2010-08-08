@@ -46,6 +46,13 @@ class TestSequenceFunctions(unittest.TestCase):
         mono.kill()
         self.assertFalse(mono in pilas.actors.all)
 
+    def testImage(self):
+        original_image = pilas.image.load('ceferino.png')
+
+        actor = pilas.actors.Actor(original_image)
+        actors_image = actor.GetImage()
+
+        self.assertEqual(original_image, actors_image)
 
 if __name__ == '__main__':
     unittest.main()
