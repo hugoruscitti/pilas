@@ -35,7 +35,6 @@ class Actor(sf.Sprite, object):
         protagonista.rotation = 30
     """
 
-
     def __init__(self, image_path):
         image = pilas.image.load(image_path)
 
@@ -74,6 +73,11 @@ class Actor(sf.Sprite, object):
     def kill(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
         remove_an_actor(self)
+
+
+    def update(self):
+        "Actualiza el estado del actor. Este metodo se llama una vez por frame."
+        pass
 
 class Monkey(Actor):
 

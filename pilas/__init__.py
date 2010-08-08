@@ -55,6 +55,7 @@ def loop():
                     sys.exit(0)
 
         for actor in actors.all:
+            actor.update()
             app.Draw(actor)
 
         app.Display()
