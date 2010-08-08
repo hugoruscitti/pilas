@@ -6,6 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import os
+
 def float_child_window():
     "Hace flotante la ventana para i3"
     try:
