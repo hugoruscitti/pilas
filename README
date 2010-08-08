@@ -3,3 +3,10 @@ Pilas
 
 Un motor de videojuegos que presenta una manera sencilla (y algo experimental)
 de hacer videojuegos.
+
+PyTweener
+---------
+
+Las interpolaciones dentro del motor se realizan
+mediante la biblioteca pyTweener, distribuida
+bajo la licencia M.I.T. por Ben Harling.
