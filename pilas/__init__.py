@@ -16,6 +16,7 @@ import actors
 import image
 import task_scheduler
 import pytweener
+import utils
 
 tweener = pytweener.Tweener()
 
@@ -25,12 +26,6 @@ clock = 1
 
 path = os.path.dirname(os.path.abspath(__file__))
 
-def float_child_window():
-    "Hace flotante la ventana para i3"
-    try:
-        os.system("i3-msg t >/dev/null")
-    except:
-        pass
 
     
 
@@ -46,7 +41,7 @@ def loop():
 
     if app == 1:
         app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
-        float_child_window()
+        utils.float_child_window()
 
     event = sf.Event()
     clock = sf.Clock()
@@ -102,5 +97,5 @@ try:
     loop_bg()
 except AttributeError:
     app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
-    float_child_window()
-    app.SetPosition(300, 100)
+    utils.float_child_window()
+    utils.center_window(app)
