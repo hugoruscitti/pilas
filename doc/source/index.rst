@@ -1,14 +1,13 @@
 Pilas engine - Documentación
 ============================
 
-Contenido:
-
-
 .. toctree::
     :maxdepth: 2
     
-    install.rst
+    presentacion.rst
+    empezando.rst
     image.rst
 
+    install.rst
     developers.rst
 

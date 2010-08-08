@@ -13,8 +13,9 @@ no quieres instalarla en cada equipo, puedes
 simplemente copiar todo el contenido del directorio
 ``pilas`` dentro del directorio del juego.
 
-Entonces, cuando ejecutes una sentencia como ``import pilas``, la
-biblioteca se leerá desde el directorio.
+Entonces, cuando ejecutes una sentencia 
+como ``import pilas``, la biblioteca se 
+leerá desde el directorio.
 
 
 Instalación para desarrolladores
