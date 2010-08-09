@@ -17,6 +17,7 @@ import image
 import task_scheduler
 import pytweener
 import utils
+import interpolations
 
 tweener = pytweener.Tweener()
 
@@ -75,6 +76,8 @@ def loop_bg():
     bg = threading.Thread(target=loop)
     bg.start()
 
+def interpolate(from_value, to_value, duration=5):
+    return interpolations.Linear(from_value, to_value, duration)
 
 def load_autocompletation_modules():
     "Carga los modulos de python para autocompletar desde la consola interactiva."

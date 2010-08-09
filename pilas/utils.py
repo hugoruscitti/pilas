@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 import os
+import interpolations
 
 def float_child_window():
     "Hace flotante la ventana para i3"
@@ -17,3 +18,7 @@ def float_child_window():
 
 def center_window(app):
     app.SetPosition(300, 100)
+
+
+def is_interpolation(an_object):
+    return isinstance(an_object, interpolations.Interpolation)

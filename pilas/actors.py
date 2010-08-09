@@ -39,6 +39,13 @@ class Actor(sf.Sprite, object):
         protagonista.x = 100
         protagonista.scale = 2
         protagonista.rotation = 30
+
+
+    Estas propiedades tambien se pueden manipular mediante
+    interpolaciones. Por ejemplo, para aumentar el tamaño del
+    personaje de 1 a 5 en 7 segundos::
+
+        protagonista.scale = pilas.interpolate(1, 5, 7)
     """
 
     def __init__(self, image):
@@ -58,36 +65,58 @@ class Actor(sf.Sprite, object):
         size = self.GetSize()
         self.SetCenter(size[0]/2, size[1]/2)
 
-    def GetX(self):
+    def get_x(self):
         x, y = self.GetPosition()
         return x
 
-    def GetY(self):
+    def set_x(self, x):
+        if pilas.utils.is_interpolation(x):
+            self.set_x(x.from_value)
+            pilas.tweener.addTween(self, set_x=x.to_value, tweenTime=x.duration * 1000)
+        else:
+            self.SetX(x)
+
+    def set_y(self, y):
+        if pilas.utils.is_interpolation(y):
+            self.set_y(y.from_value)
+            pilas.tweener.addTween(self, set_y=y.to_value, tweenTime=y.duration * 1000)
+        else:
+            self.SetY(y)
+
+    def get_y(self):
         x, y = self.GetPosition()
         return y
 
-    def _set_scale(self, s):
-        self.SetScale(s, s)
+    def set_scale(self, s):
+        if pilas.utils.is_interpolation(s):
+            self.set_scale(s.from_value)
+            pilas.tweener.addTween(self, set_scale=s.to_value, tweenTime=s.duration * 1000)
+        else:
+            self.SetScale(s, s)
 
-    def _get_scale(self):
+    def get_scale(self):
         # se asume que la escala del personaje es la horizontal.
         return self.GetScale()[0]
 
-    def _get_rotation(self):
+    def get_rotation(self):
         return -self.GetRotation()
 
-    def _set_rotation(self, x):
-        self.SetRotation(-x)
+    def set_rotation(self, x):
 
-    x = property(GetX, sf.Sprite.SetX, doc="Define la posición horizontal.")
-    y = property(GetY, sf.Sprite.SetY, doc="Define la posición vertical.")
-    rotation = property(_get_rotation, _set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
-    scale = property(_get_scale, _set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
+        if pilas.utils.is_interpolation(x):
+            self.set_rotation(x.from_value)
+            pilas.tweener.addTween(self, set_rotation=x.to_value, tweenTime=x.duration * 1000)
+        else:
+            self.SetRotation(-x)
+
+    x = property(get_x, set_x, doc="Define la posición horizontal.")
+    y = property(get_y, set_y, doc="Define la posición vertical.")
+    rotation = property(get_rotation, set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
+    scale = property(get_scale, set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
 
     def kill(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
         remove_an_actor(self)
-
 
     def update(self):
         "Actualiza el estado del actor. Este metodo se llama una vez por frame."
