@@ -1,8 +1,20 @@
 Pilas
------
+=====
 
 Un motor de videojuegos que presenta una manera sencilla (y algo experimental)
 de hacer videojuegos.
+
+
+Webs
+====
+
+Usuarios: http://www.pilas-engine.com.ar
+Desarrolladores http://bitbucket.org/hugoruscitti/pilas
+
+
+
+Créditos
+========
 
 PyTweener
 ---------
@@ -10,3 +22,12 @@ PyTweener
 Las interpolaciones dentro del motor se realizan
 mediante la biblioteca pyTweener, distribuida
 bajo la licencia M.I.T. por Ben Harling.
+
+
+PySFML
+------
+
+Todo el manejo multimedia se realiza gracias a la biblioteca
+pySFML:
+
+    http://www.sfml-dev.org/index.php

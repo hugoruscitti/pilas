@@ -28,7 +28,7 @@ class TestSequenceFunctions(unittest.TestCase):
 
         # Verifica que las rotaciones alteren el estado del personaje.
         mono.rotation = 180
-        self.assertEqual(mono.rotation, -180)
+        self.assertEqual(mono.rotation, 180)
 
         # Analiza que el personaje se ha agregado a la lista de actores.
         self.assertTrue(mono in pilas.actors.all)
@@ -65,6 +65,16 @@ class TestSequenceFunctions(unittest.TestCase):
         pilas.add_task(2, none)
         pilas.add_task(2, none_3, (1, 2, 3))
 
+
+    def testInterpolation(self):
+        a = pilas.interpolate(0, 100)
+        from_value = a.from_value
+        to_value = a.to_value
+
+        # Invierte la interpolacion.
+        a = -a
+        self.assertEqual(a.from_value, to_value)
+        self.assertEqual(a.to_value, from_value)
 
 if __name__ == '__main__':
     unittest.main()

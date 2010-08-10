@@ -24,7 +24,7 @@ class Interpolation:
 
         actor.rotation = pilas.interpolate(0, 360)
     """
-    pass
+
 
 
 class Linear(Interpolation):
@@ -33,3 +33,7 @@ class Linear(Interpolation):
         self.from_value = from_value
         self.to_value = to_value
         self.duration = duration
+
+    def __neg__(self):
+        return Linear(self.to_value, self.from_value, self.duration)
+
