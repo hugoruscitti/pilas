@@ -99,7 +99,7 @@ class Actor(sf.Sprite, object):
         return self.GetScale()[0]
 
     def get_rotation(self):
-        return -self.GetRotation()
+        return self.GetRotation()
 
     def set_rotation(self, x):
 
