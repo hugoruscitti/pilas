@@ -2,7 +2,13 @@ README
 setup.py
 pilas/__init__.py
 pilas/actors.py
+pilas/image.py
+pilas/interpolations.py
+pilas/pytweener.py
+pilas/task_scheduler.py
+pilas/utils.py
 pilas.egg-info/PKG-INFO
 pilas.egg-info/SOURCES.txt
 pilas.egg-info/dependency_links.txt
 pilas.egg-info/top_level.txt
+test/test.py
