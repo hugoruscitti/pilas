@@ -71,15 +71,13 @@ class Actor(sf.Sprite, object):
 
     def set_x(self, x):
         if pilas.utils.is_interpolation(x):
-            self.set_x(x.from_value)
-            pilas.tweener.addTween(self, set_x=x.to_value, tweenTime=x.duration * 1000)
+            x.apply(self, function='set_x')
         else:
             self.SetX(x)
 
     def set_y(self, y):
         if pilas.utils.is_interpolation(y):
-            self.set_y(y.from_value)
-            pilas.tweener.addTween(self, set_y=y.to_value, tweenTime=y.duration * 1000)
+            y.apply(self, function='set_y')
         else:
             self.SetY(y)
 
@@ -89,8 +87,7 @@ class Actor(sf.Sprite, object):
 
     def set_scale(self, s):
         if pilas.utils.is_interpolation(s):
-            self.set_scale(s.from_value)
-            pilas.tweener.addTween(self, set_scale=s.to_value, tweenTime=s.duration * 1000)
+            s.apply(self, function='set_scale')
         else:
             self.SetScale(s, s)
 
@@ -104,8 +101,7 @@ class Actor(sf.Sprite, object):
     def set_rotation(self, x):
 
         if pilas.utils.is_interpolation(x):
-            self.set_rotation(x.from_value)
-            pilas.tweener.addTween(self, set_rotation=x.to_value, tweenTime=x.duration * 1000)
+            x.apply(self, function='set_rotation')
         else:
             self.SetRotation(-x)
 

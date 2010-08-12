@@ -20,7 +20,38 @@ class Tweener:
     def hasTweens(self):
         return len(self.currentTweens) > 0
  
+    def addTweenNoArgs(self, obj, function, value, **kwargs):
+        "Similar a addTween, solo que se especifica la funcion y el valor de forma explicita."
+        args = {function: value}
+
+        if "tweenTime" in kwargs:
+            t_time = kwargs.pop("tweenTime")
+        else: t_time = self.defaultDuration
  
+        if "tweenType" in kwargs:
+            t_type = kwargs.pop("tweenType")
+        else: t_type = self.defaultTweenType
+ 
+        if "onCompleteFunction" in kwargs:
+            t_completeFunc = kwargs.pop("onCompleteFunction")
+        else: t_completeFunc = None
+ 
+        if "onUpdateFunction" in kwargs:
+            t_updateFunc = kwargs.pop("onUpdateFunction")
+        else: t_updateFunc = None
+ 
+        if "tweenDelay" in kwargs:
+            t_delay = kwargs.pop("tweenDelay")
+        else: t_delay = 0
+
+        if kwargs:
+            raise ValueError("No puede llamar a esta funcion con argumentos nombrados, use addTween en su lugar.")
+
+        tw = Tween(obj, t_time, t_type, t_completeFunc, t_updateFunc, t_delay, **args)
+        if tw:    
+            self.currentTweens.append( tw )
+        return tw
+
     def addTween(self, obj, **kwargs):
         """ addTween( object, **kwargs) -> tweenObject or False
  

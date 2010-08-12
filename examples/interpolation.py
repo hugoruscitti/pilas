@@ -1,6 +1,8 @@
 import pilas
 
 mono = pilas.actors.Monkey()
+mono.x = 0
+mono.y = 0
 mono.rotation = pilas.interpolate(0, 360, duration=3)
 mono.scale = pilas.interpolate(0, 2, duration=3)
 mono.x = pilas.interpolate(0, 320, duration=3)

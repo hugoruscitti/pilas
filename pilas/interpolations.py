@@ -37,3 +37,8 @@ class Linear(Interpolation):
     def __neg__(self):
         return Linear(self.to_value, self.from_value, self.duration)
 
+    def apply(self, target, function):
+        import pilas
+        pilas.tweener.addTweenNoArgs(target, function=function, 
+                value=self.to_value, tweenTime=self.duration * 1000.0)
+        #tweenDelay=1000)
