@@ -20,9 +20,9 @@ class Tweener:
     def hasTweens(self):
         return len(self.currentTweens) > 0
  
-    def addTweenNoArgs(self, obj, function, value, **kwargs):
+    def addTweenNoArgs(self, obj, function, initial_value, value, **kwargs):
         "Similar a addTween, solo que se especifica la funcion y el valor de forma explicita."
-        args = {function: value}
+        args = {function: value, 'initial_value': initial_value}
 
         if "tweenTime" in kwargs:
             t_time = kwargs.pop("tweenTime")
@@ -168,7 +168,12 @@ class Tween(object):
             print "TWEEN ERROR: No Tweenable properties or functions defined"
             self.complete = True
             return
- 
+
+        assert(len(self.tweenables) == 2)
+
+        initial_value = self.tweenables.pop('initial_value')
+
+
         for k, v in self.tweenables.items():
  
         # check that its compatible
@@ -194,6 +199,53 @@ class Tween(object):
                 try:
                     getFunc = getattr(self.target, funcName.replace("set", "get") )
                     startVal = getFunc()
+                    print getfunc
+                except:
+                    # no start value, assume its 0
+                    # but make sure the start and change
+                    # dataTypes match :)
+                    startVal = newVal * 0
+
+                startVal = initial_value
+                tweenable = Tweenable( startVal, newVal - startVal)    
+                newFunc = [ k, func, tweenable]
+ 
+                #setattr(self, funcName, newFunc[2])
+                self.tFuncs.append( newFunc )
+ 
+ 
+            if prop:
+                tweenable = Tweenable( startVal, newVal - startVal)    
+                newProp = [ k, prop, tweenable]
+                self.tProps.append( newProp )  
+ 
+        """
+        for k, v in self.tweenables.items():
+ 
+        # check that its compatible
+            if not hasattr( self.target, k):
+                print "TWEEN ERROR: " + str(self.target) + " has no function " + k
+                self.complete = True
+                break
+ 
+            prop = func = False
+            startVal = 0
+            newVal = v
+ 
+            try:
+                startVal = self.target.__dict__[k]
+                prop = k
+                propName = k
+ 
+            except:
+                func = getattr( self.target, k)
+                funcName = k
+ 
+            if func:
+                try:
+                    getFunc = getattr(self.target, funcName.replace("set", "get") )
+                    startVal = getFunc()
+                    print getfunc
                 except:
                     # no start value, assume its 0
                     # but make sure the start and change
@@ -210,7 +262,8 @@ class Tween(object):
                 tweenable = Tweenable( startVal, newVal - startVal)    
                 newProp = [ k, prop, tweenable]
                 self.tProps.append( newProp )  
- 
+        """ 
+
  
     def pause( self, numSeconds=-1 ):
         """Pause this tween

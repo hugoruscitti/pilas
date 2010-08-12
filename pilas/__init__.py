@@ -76,8 +76,14 @@ def loop_bg():
     bg = threading.Thread(target=loop)
     bg.start()
 
-def interpolate(from_value, to_value, duration=5):
-    return interpolations.Linear(from_value, to_value, duration)
+def interpolate(*values, **kv):
+
+    if 'duration' in kv:
+        duration = kv.pop('duration')
+    else:
+        duration = 5
+
+    return interpolations.Linear(values, duration)
 
 def load_autocompletation_modules():
     "Carga los modulos de python para autocompletar desde la consola interactiva."
