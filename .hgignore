@@ -6,7 +6,8 @@ syntax: glob
 *.pyc
 *~
 open_doc.sh
-doc/build/*
+doc/build/doctrees
+doc/build/latex
 
 # switch to regexp syntax.
 syntax: regexp
