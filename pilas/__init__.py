@@ -6,6 +6,13 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+
+"""Pilas engine - A video game framework.
+
+.. moduleauthor:: Hugo Ruscitti
+
+"""
+
 import os
 import sys
 import time
