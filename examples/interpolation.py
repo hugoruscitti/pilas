@@ -8,14 +8,12 @@ mono.scale = pilas.interpolate(2, duration=3)
 mono.x = pilas.interpolate(320, duration=3)
 mono.y = pilas.interpolate(240, duration=3)
 
-#elastic = pilas.pytweener.Easing.Elastic.easeInOut
-#lineal = pilas.pytweener.Easing.Linear.easeNone
 
-# Rotacion
-#pilas.tweener.addTween(mono, SetRotation=360, tweenTime=5000, tweenType=elastic)
+# Formar un cuadrado
+#mono.x = 100
+#mono.y = 100
+#mono.x = pilas.interpolate(400, 400, 100, 100, duration=3)
+#mono.y = pilas.interpolate(100, 400, 400, 100, duration=4)
 
-# Escalado
-#pilas.tweener.addTween(mono, SetScaleX=3, tweenTime=5000, tweenType=elastic)
-#pilas.tweener.addTween(mono, SetScaleY=3, tweenTime=5500, tweenType=elastic)
 
 pilas.loop()
