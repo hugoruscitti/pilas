@@ -50,6 +50,7 @@ def loop():
     if app == 1:
         app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
         utils.float_child_window()
+        utils.center_window(app)
 
     event = sf.Event()
     clock = sf.Clock()
@@ -114,4 +115,3 @@ try:
 except AttributeError:
     app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
     utils.float_child_window()
-    utils.center_window(app)
