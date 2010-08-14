@@ -71,6 +71,9 @@ def loop():
                 if event.Key.Code == sf.Key.Escape:
                     app.Close()
                     sys.exit(0)
+            elif event.Type == sf.Event.MouseMoved:
+                # Notifica el movimiento del mouse con una señal
+                signals.mouse_move.send("loop", x=event.MouseMove.X, y=event.MouseMove.Y)
 
         for actor in actors.all:
             actor.update()
