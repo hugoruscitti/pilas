@@ -23,6 +23,12 @@ Las interpolaciones dentro del motor se realizan
 mediante la biblioteca pyTweener, distribuida
 bajo la licencia M.I.T. por Ben Harling.
 
+Dispatch
+--------
+
+El modulo ``pilas.dispatch`` se adoptó del
+core de Django, y estába basado en el proyecto pydispatch.
+
 
 PySFML
 ------
