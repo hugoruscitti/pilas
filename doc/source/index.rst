@@ -9,6 +9,8 @@ Pilas engine - Documentación
     interpolation.rst
     image.rst
 
+    signals.rst
+
     install.rst
     developers.rst
 
