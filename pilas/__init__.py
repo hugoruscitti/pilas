@@ -25,6 +25,8 @@ import task_scheduler
 import pytweener
 import utils
 import interpolations
+import dispatch
+import signals
 
 tweener = pytweener.Tweener()
 
