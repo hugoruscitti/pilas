@@ -74,6 +74,8 @@ def loop():
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
                 signals.mouse_move.send("loop", x=event.MouseMove.X, y=event.MouseMove.Y)
+            elif event.Type == sf.Event.MouseButtonPressed:
+                signals.mouse_click.send("loop", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
 
         for actor in actors.all:
             actor.update()

@@ -9,4 +9,5 @@
 import dispatch
 
 mouse_move = dispatch.Signal(providing_args=['x', 'y'])
+mouse_click = dispatch.Signal(providing_args=['button', 'x', 'y'])
 
