@@ -20,7 +20,16 @@ def remove_an_actor(actor):
     all.remove(actor)
 
 
-class BaseActor(object):
+
+class Mixineable:
+    "Permite a distintos objetos acoplarse mediente mixins."
+
+    def mixin(self, classname, *k, **w):
+        self.__class__.__bases__ += (classname,)
+        classname.__init__(self, *k, **w)
+
+
+class BaseActor(object, Mixineable):
     "Define la funcionalidad abstracta de un actor."
 
     def __init__(self):
@@ -200,3 +209,5 @@ class Text(sf.String, BaseActor):
     text = property(get_text, set_text, doc="El texto que se tiene que mostrar.")
     size = property(get_size, set_size, doc="El tamaño del texto.")
     color = property(get_color, set_color, doc="Color del texto.")
+
+

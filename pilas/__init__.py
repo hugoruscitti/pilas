@@ -27,6 +27,7 @@ import utils
 import interpolations
 import dispatch
 import signals
+import components
 
 tweener = pytweener.Tweener()
 
@@ -76,6 +77,8 @@ def loop():
                 signals.mouse_move.send("loop", x=event.MouseMove.X, y=event.MouseMove.Y)
             elif event.Type == sf.Event.MouseButtonPressed:
                 signals.mouse_click.send("loop", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
+            elif event.Type == sf.Event.MouseWheelMoved:
+                signals.mouse_wheel.send("loop", delta=event.MouseWheel.Delta)
 
         for actor in actors.all:
             actor.update()

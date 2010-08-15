@@ -11,6 +11,7 @@ Pilas engine - Documentación
 
     signals.rst
     text.rst
+    components.rst
 
     install.rst
     developers.rst
