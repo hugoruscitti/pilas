@@ -10,6 +10,7 @@ Pilas engine - Documentación
     image.rst
 
     signals.rst
+    text.rst
 
     install.rst
     developers.rst

@@ -19,46 +19,17 @@ def insert_as_new_actor(actor):
 def remove_an_actor(actor):
     all.remove(actor)
 
-class Actor(sf.Sprite, object):
-    """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
-    Un objeto Actor se tiene que crear siempre indicando la imagen, ya
-    sea como una ruta a un archivo como con un objeto Image. Por ejemplo::
+class BaseActor(object):
+    "Define la funcionalidad abstracta de un actor."
 
-        protagonista = Actor("protagonista_de_frente.png")
-
-    es equivalente a:
-
-        imagen = pilas.image.load("protagonista_de_frente.png")
-        protagonista = Actor(imagen)
-
-    Luego, na vez que ha sido ejecutada la sentencia aparecerá en el centro de
-    la pantalla el nuevo actor para que pueda manipularlo. Por ejemplo
-    alterando sus propiedades::
-
-        protagonista.x = 100
-        protagonista.scale = 2
-        protagonista.rotation = 30
-
-
-    Estas propiedades tambien se pueden manipular mediante
-    interpolaciones. Por ejemplo, para aumentar el tamaño del
-    personaje de 1 a 5 en 7 segundos::
-
-        protagonista.scale = pilas.interpolate(1, 5, 7)
-    """
-
-    def __init__(self, image):
-
-        if isinstance(image, str):
-            image = pilas.image.load(image)
-
-        sf.Sprite.__init__(self, image)
+    def __init__(self):
         insert_as_new_actor(self)
         self._set_central_axis()
 
         # define la posicion inicial.
         self.SetPosition(320, 240)
+
 
     def _set_central_axis(self):
         "Hace que el eje de posición del actor sea el centro de la imagen."
@@ -119,6 +90,45 @@ class Actor(sf.Sprite, object):
         pass
 
 
+
+class Actor(sf.Sprite, BaseActor):
+    """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
+
+    Un objeto Actor se tiene que crear siempre indicando la imagen, ya
+    sea como una ruta a un archivo como con un objeto Image. Por ejemplo::
+
+        protagonista = Actor("protagonista_de_frente.png")
+
+    es equivalente a:
+
+        imagen = pilas.image.load("protagonista_de_frente.png")
+        protagonista = Actor(imagen)
+
+    Luego, na vez que ha sido ejecutada la sentencia aparecerá en el centro de
+    la pantalla el nuevo actor para que pueda manipularlo. Por ejemplo
+    alterando sus propiedades::
+
+        protagonista.x = 100
+        protagonista.scale = 2
+        protagonista.rotation = 30
+
+
+    Estas propiedades tambien se pueden manipular mediante
+    interpolaciones. Por ejemplo, para aumentar el tamaño del
+    personaje de 1 a 5 en 7 segundos::
+
+        protagonista.scale = pilas.interpolate(1, 5, 7)
+    """
+
+    def __init__(self, image):
+
+        if isinstance(image, str):
+            image = pilas.image.load(image)
+
+        sf.Sprite.__init__(self, image)
+        BaseActor.__init__(self)
+
+
 class Monkey(Actor):
     """Representa la cara de un mono de color marrón.
 
@@ -152,3 +162,41 @@ class Monkey(Actor):
 
     def normal(self):
         self.SetImage(self.image_normal)
+
+
+
+class Text(sf.String, BaseActor):
+    "Representa un texto en pantalla."
+
+    def __init__(self, text="None"):
+        sf.String.__init__(self, text)
+        self.color = (0, 0, 0)
+        BaseActor.__init__(self)
+
+    def get_text(self):
+        return self.GetText()
+
+    def set_text(self, text):
+        self.SetText(text)
+
+    def get_size(self):
+        return self.GetSize()
+
+    def set_size(self, size):
+        self.SetSize(size)
+
+    def _set_central_axis(self):
+        rect = self.GetRect()
+        size = (rect.GetWidth(), rect.GetHeight())
+        self.SetCenter(size[0]/2, size[1]/2)
+
+    def get_color(self):
+        c = self.GetColor()
+        return (c.r, c.g, c.b, c.a)
+
+    def set_color(self, k):
+        self.SetColor(sf.Color(*k))
+
+    text = property(get_text, set_text, doc="El texto que se tiene que mostrar.")
+    size = property(get_size, set_size, doc="El tamaño del texto.")
+    color = property(get_color, set_color, doc="Color del texto.")

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import random
 import unittest
 import pilas
@@ -65,16 +66,22 @@ class TestSequenceFunctions(unittest.TestCase):
         pilas.add_task(2, none)
         pilas.add_task(2, none_3, (1, 2, 3))
 
-
     def testInterpolation(self):
         a = pilas.interpolate(0, 100)
-        from_value = a.from_value
-        to_value = a.to_value
+        self.assertEqual(a.values, (0, 100))
 
         # Invierte la interpolacion.
         a = -a
-        self.assertEqual(a.from_value, to_value)
-        self.assertEqual(a.to_value, from_value)
+        self.assertEqual(a.values, (100, 0))
+
+    def testText(self):
+        texto = pilas.actors.Text("Hola")
+        self.assertEqual(texto.text, "Hola")
+
+        # verificando que el tamaño inicial es de 30 y el color negro
+        self.assertEqual(texto.size, 30)
+        self.assertEqual(texto.color, (0, 0, 0, 255))
+
 
 if __name__ == '__main__':
     unittest.main()

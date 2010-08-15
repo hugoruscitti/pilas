@@ -42,8 +42,9 @@ class Linear(Interpolation):
 
     def __neg__(self):
         "Retorna la interpolación inversa a la original."
-        new_values = self.values
+        new_values = list(self.values)
         new_values.reverse()
+        new_values = tuple(new_values)
         return Linear(new_values, self.duration)
 
     def apply(self, target, function):
