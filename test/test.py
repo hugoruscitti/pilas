@@ -82,6 +82,17 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(texto.size, 30)
         self.assertEqual(texto.color, (0, 0, 0, 255))
 
+    def testComponents(self):
+        texto = pilas.actors.Text("Hola")
+
+        # Vincula la clase Text con un componente.
+        component = pilas.components.SizeByWheel 
+        texto.mixin(component)
+        
+        # Se asegura que el componente pasa a ser de la superclase.
+        superclases = texto.__class__.__bases__
+        self.assertTrue(component in superclases)
+
 
 if __name__ == '__main__':
     unittest.main()
