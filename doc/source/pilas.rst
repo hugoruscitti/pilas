@@ -25,6 +25,11 @@ Módulo pilas.interpolations
 .. automodule:: pilas.interpolations
     :members:
 
+Módulo pilas.components
+---------------------------
+
+.. automodule:: pilas.components
+    :members:
 
 Módulo pilas.task_scheduler
 ---------------------------
