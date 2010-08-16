@@ -165,18 +165,23 @@ class Monkey(Actor):
         self.image_smile = pilas.image.load('monkey_smile.png')
         self.image_shout = pilas.image.load('monkey_shout.png')
 
+        self.sound_shout = pilas.sound.load('shout.wav')
+        self.sound_smile = pilas.sound.load('smile.wav')
+
         # Inicializa el actor.
         Actor.__init__(self, self.image_normal)
 
     def smile(self):
         self.SetImage(self.image_smile)
         # Luego de un segundo regresa a la normalidad
-        pilas.add_task(1, self.normal)
+        pilas.add_task(0.5, self.normal)
+        self.sound_smile.Play()
 
     def shout(self):
         self.SetImage(self.image_shout)
         # Luego de un segundo regresa a la normalidad
         pilas.add_task(1, self.normal)
+        self.sound_shout.Play()
 
     def normal(self):
         self.SetImage(self.image_normal)

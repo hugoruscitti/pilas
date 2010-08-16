@@ -21,6 +21,7 @@ from PySFML import sf
 
 import actors
 import image
+import sound
 import task_scheduler
 import pytweener
 import utils
