@@ -70,19 +70,51 @@ Nota que pueden existir tantas funciones conectadas a una señal como
 quieras. Y que si la función deja de existir no hace falta desconectarla.
 
 
+Desconectando señales
+---------------------
+
+Las señales se desconectan solas cuando dejan de existir
+los objetos que le conectamos. Así que no suele ser un problema que
+la señal se halla conectado a objetos que dejarán de existir.
+
+Pero, de todas formas, puede que quieras conectar una señal, y por
+algún motivo desconectarla.
+
+Si ese es tú caso, simplemente asignarle un identificador único
+al manejador de la señal y luego usa la función ``disconnect`` indicando
+el identificador.
+
+Por ejemplo, las siguientes sentencias muestran eso:
+
+.. code-block:: python
+
+    pilas.signals.mouse_move.connect(imprimir_posicion, dispatch_uid='drag')
+    pilas.signals.mouse_move.disconnect(dispatch_uid='drag')
+    
+En la primer sentencia conecté la señal a una función y le di
+un valor al argumento ``dispatch_uid``. Este valor será el identificador
+de ese enlace.
+
+En la siguiente linea pude usar el identificador para desconectarla.
+
+
+
 Referencias
 -----------
 
 El concepto que hemos visto en esta sección se utiliza
 en muchos sistemas. Tal vez el mas conocido de estos es
 la biblioteca ``GTK``, que se utiliza actualmente para construir
-el escritorio GNOME.
+el escritorio GNOME y Gimp entre otras aplicaciones.
 
-Originalmente en pilas se comenzó a crear un sistema de señales
-propio, pero al poco tiempo se adoptó un sistema de señales
-ya realizado. Este sistema de señales se ha obtenido del núcleo
-del sistema ``django``, y sobre el cual tienes mucha
-información para investigar:
+El sistema de señales que se utiliza en pilas se obtuvo
+(gentilmente) del núcleo del sistema ``django``, dado que
+es brillante y se adecua muy bien a las necesidades de nuestro
+motor.
+
+Si quieres obtener mas información sobre los sistemas de señales
+y en particular sobre el que usamos aquí (el de django) puedes
+ver los siguientes documentos:
 
 - http://www.mercurytide.co.uk/news/article/django-signals/
 - http://www.boduch.ca/2009/06/sending-django-dispatch-signals.html
