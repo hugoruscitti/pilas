@@ -71,7 +71,7 @@ quieras. Y que si la función deja de existir no hace falta desconectarla.
 
 
 Referencias
-===========
+-----------
 
 El concepto que hemos visto en esta sección se utiliza
 en muchos sistemas. Tal vez el mas conocido de estos es
