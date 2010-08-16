@@ -69,6 +69,8 @@ def loop():
         # Procesa todos los eventos.
         while app.GetEvent(event):
             if event.Type == sf.Event.KeyPressed:
+                signals.key_press.send("loop", code=event.Key.Code)
+
                 if event.Key.Code == sf.Key.Escape:
                     app.Close()
                     sys.exit(0)

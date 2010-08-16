@@ -6,6 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+from PySFML import sf
+
 import pilas
 
 class MovedByMouse:
@@ -66,3 +68,24 @@ class Draggable:
     def drag_end(self, sender, signal, x, y, button):
         "Suelta al actor porque se ha soltado el botón del mouse."
         pilas.signals.mouse_move.disconnect(dispatch_uid='drag')
+
+
+class MovedByKeyboard:
+    "Hace que un actor cambie de posición con pulsar el teclado."
+
+    def __init__(self):
+        pilas.signals.key_press.connect(self.on_key_press)
+
+    def on_key_press(self, sender, code, signal):
+        speed = 10
+
+        if code == sf.Key.Left:
+            self.x -= speed
+        elif code == sf.Key.Right:
+            self.x += speed
+
+        if code == sf.Key.Up:
+            self.y -= speed
+        elif code == sf.Key.Down:
+            self.y += speed
+
