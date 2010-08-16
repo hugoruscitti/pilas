@@ -1,5 +1,5 @@
-Módulo Pilas
-============
+Referencia del módulo Pilas
+===========================
 
 .. automodule:: pilas
     :members:
@@ -42,4 +42,10 @@ Módulo pilas.utils
 ------------------
 
 .. automodule:: pilas.utils
+    :members:
+
+Módulo pilas.signals
+--------------------
+
+.. automodule:: pilas.signals
     :members:
