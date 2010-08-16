@@ -38,3 +38,31 @@ class FollowMouseClicks:
     def move_to_this_point(self, sender, signal, x, y, button):
         self.x = pilas.interpolate(x, duration=0.5)
         self.y = pilas.interpolate(y, duration=0.5)
+
+
+class Draggable:
+    "Hace que un objeto se pueda arrastrar con el puntero del mouse."
+
+    def __init__(self):
+        pilas.signals.mouse_click.connect(self.try_to_drag)
+
+    def try_to_drag(self, sender, signal, x, y, button):
+        "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
+
+        if self.collide_with_point(x, y):
+            pilas.signals.mouse_click_end.connect(self.drag_end)
+            pilas.signals.mouse_move.connect(self.drag, dispatch_uid='drag')
+            self.last_x = x
+            self.last_y = y
+
+    def drag(self, sender, signal, x, y):
+        "Arrastra el actor a la posicion indicada por el puntero del mouse."
+        self.x += x - self.last_x
+        self.y += y - self.last_y
+
+        self.last_x = x
+        self.last_y = y
+
+    def drag_end(self, sender, signal, x, y, button):
+        "Suelta al actor porque se ha soltado el botón del mouse."
+        pilas.signals.mouse_move.disconnect(dispatch_uid='drag')

@@ -33,6 +33,24 @@ así, cuando uses la rueda del mouse el tamaño del personaje aumentará
 o disminuirá.
 
 
+
+Un ejemplo mas: hacer que un actor sea arrastrable por el mouse
+---------------------------------------------------------------
+
+Algo muy común en los juegos es que puedas
+tomar piezas con el mouse y moverlas por la pantalla.
+
+El componente ``Draggable`` te permite hacer eso, puedes vincularlo
+a cualquier actor y simplemente funciona:
+
+.. code-block:: python
+
+    import pilas
+
+    mono = pilas.actors.Monkey()
+    mono.mixin(pilas.components.Draggable)
+
+
 Otro ejemplo: un actor que cambia de posición
 ---------------------------------------------
 
@@ -48,8 +66,27 @@ click, podemos usar el componente: ``FollowMouseClicks``.
     mono.mixin(pilas.components.FollowMouseClicks)
 
 
+Conflictos
+----------
+
+En pilas se ha intentado hacer que los componentes sean
+lo mas independientes posibles, porque claramente lo mas
+divertido de los componentes es poder combinarlos para
+lograr comportamientos complejos.
+
+Aún así, hay veces que dos componentes no se llevan bien... Principalmente
+en esos casos donde ambos se suscriben a la misma señal.
+
+Si encuentras alguno de estos casos comentalo a los desarrolladores
+en el foro de losersjuegos, así juntos buscamos una forma
+de solucionarlo:
+
+http://www.losersjuegos.com.ar/foro
+
+
+
 ¿Cómo funciona?
-===============
+---------------
 
 Los componentes son clases normales, solo que se han
 diseñadas para representar comportamiento en lugar de

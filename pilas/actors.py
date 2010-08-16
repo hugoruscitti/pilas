@@ -99,7 +99,6 @@ class BaseActor(object, Mixineable):
         pass
 
 
-
 class Actor(sf.Sprite, BaseActor):
     """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
@@ -136,6 +135,16 @@ class Actor(sf.Sprite, BaseActor):
 
         sf.Sprite.__init__(self, image)
         BaseActor.__init__(self)
+
+
+    def collide_with_point(self, x, y):
+        "Determina si un punto colisiona con el area del actor."
+        w, h = self.GetSize()
+        left, right = self.x - w/2 , self.x + w/2
+        top, bottom = self.y - h/2, self.y + h/2
+        return left < x < right and top < y < bottom
+
+
 
 
 class Monkey(Actor):
