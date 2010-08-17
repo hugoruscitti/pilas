@@ -10,6 +10,7 @@ Pilas engine - Documentación
     empezando.rst
     interpolation.rst
     image.rst
+    sound.rst
 
     signals.rst
     text.rst
