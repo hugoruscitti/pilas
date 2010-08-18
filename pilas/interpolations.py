@@ -26,11 +26,10 @@ class Interpolation:
     """
 
 
-
 class Linear(Interpolation):
     "Representa una interpolación lineal."
 
-    def __init__(self, values, duration):
+    def __init__(self, values, duration, delay):
         """Inicializa la interpolación.
 
         ``values`` tiene que ser una lista con todos los puntos
@@ -39,13 +38,14 @@ class Linear(Interpolation):
         """
         self.values = values
         self.duration = duration
+        self.delay = delay
 
     def __neg__(self):
         "Retorna la interpolación inversa a la original."
         new_values = list(self.values)
         new_values.reverse()
         new_values = tuple(new_values)
-        return Linear(new_values, self.duration)
+        return Linear(new_values, self.duration, self.delay)
 
     def apply(self, target, function):
         """Aplica la interpolación a un actor usando un método.
@@ -79,6 +79,8 @@ class Linear(Interpolation):
         for index, value in enumerate(self.values):
             pilas.tweener.addTweenNoArgs(target, function=function, 
                     initial_value=fist_value,
-                    value=value, tweenDelay=index * step, tweenTime=step)
+                    value=value, 
+                    tweenDelay=self.delay * 1000.0 + (index * step),
+                    tweenTime=step)
             # El siguiente valor inicial sera el que ha alcanzado.
             fist_value = value

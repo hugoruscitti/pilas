@@ -106,7 +106,12 @@ def interpolate(*values, **kv):
     else:
         duration = 5
 
-    return interpolations.Linear(values, duration)
+    if 'delay' in kv:
+        delay = kv.pop('delay')
+    else:
+        delay = 0
+
+    return interpolations.Linear(values, duration, delay)
 
 def load_autocompletation_modules():
     "Carga los modulos de python para autocompletar desde la consola interactiva."

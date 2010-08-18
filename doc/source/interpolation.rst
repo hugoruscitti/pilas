@@ -13,7 +13,7 @@ sentencias::
     actor.x = 30
     etc ...
 
-pero es mas sencillo usar una interpolación:
+pero es mas sencillo usar una interpolación::
 
     actor.x = pilas.interpolate(100)
 
@@ -37,6 +37,9 @@ podemos hacer algo como::
 
 con lo que estaríamos diciendo al personaje que dé un
 giro completo (de ``0`` a ``360`` grados) en ``5`` segundos.
+
+También existe un argumento ``delay`` para demorar el
+inicio de la interpolación.
 
 
 Escalando un actor
