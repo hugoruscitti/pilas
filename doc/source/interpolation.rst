@@ -15,12 +15,12 @@ sentencias::
 
 pero es mas sencillo usar una interpolación::
 
-    actor.x = pilas.interpolate(100)
+    actor.x = pilas.interpolar(100)
 
 donde el valor inicial será la posición x del actor y el valor
 final será ``100``.
 
-La función ``interpolate`` también admite un parámetro llamado
+La función ``interpolar`` también admite un parámetro llamado
 ``duration`` que indica
 la cantidad de segundos que
 se tienen que utilizar para lograr la animación.
@@ -33,7 +33,7 @@ Esta herramienta se puede aplicar a muchas situaciones distintas, por
 ejemplo si queremos hacer girar un personaje
 podemos hacer algo como::
 
-    actor.rotation = pilas.interpolate(360, duration=5)
+    actor.rotacion = pilas.interpolar(360, duration=5)
 
 con lo que estaríamos diciendo al personaje que dé un
 giro completo (de ``0`` a ``360`` grados) en ``5`` segundos.
@@ -46,10 +46,10 @@ Escalando un actor
 ------------------
 
 De manera similar a lo que hicimos anteriormente, podemos
-aplicarla a la propiedad ``scale`` una nueva
+aplicarla a la propiedad ``escala`` una nueva
 interpolación::
 
-    actor.scale = pilas.interpolate(2, duration=5)
+    actor.escala = pilas.interpolar(2, duration=5)
 
 esto duplicará el tamaño del actor en ``5`` segundos.
 
@@ -60,7 +60,7 @@ Interpolaciones en cadena
 Si queremos que una interpolación pase por distintos
 valores podemos hacer algo como esto::
 
-    actor.x = pilas.interpolate(300, 0, 300, duration=3)
+    actor.x = pilas.interpolar(300, 0, 300, duration=3)
 
 lo que llevará al actor de su posición ``x`` actual, a 300
 en un segundo, y luego a ``0`` en 1 segundo y por último

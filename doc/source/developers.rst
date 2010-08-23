@@ -4,8 +4,11 @@ Guía para desarrolladores
 En esta sección veremos como contribuir
 en el desarrollo de pilas.
 
-Actualmente se utiliza un control de versiones y
+Actualmente se utiliza un control de versiones 
+mercurial [#]_ y
 un sistema de tickets.
+
+.. [#] http://mercurial.selenic.com
 
 Repositorio
 -----------
@@ -22,6 +25,8 @@ es:
 Ten en cuenta que el servicio ``bitbucket`` es
 gratuito, aunque tienes que tomarte un poco de
 tiempo en crear la cuenta y comenzar a utilizarla.
+
+
 
 
 Obteniendo la última versión del repositio

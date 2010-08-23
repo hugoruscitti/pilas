@@ -36,14 +36,15 @@ una posición determinada y se puede manipular.
 Por ejemplo, una nave, un enemigo, una medalla... etc.
 
 Para agilizar el desarrollo de juegos se incluyen varios
-actores dentro del motor, un de ellos es ``Monkey``.
+actores dentro del motor, un de ellos es ``Mono``, un
+simpático chimpancé.
 
 Escriba la siguiente sentencia dentro del intérprete de
 python:
 
 .. code-block:: python
 
-    mono = pilas.actors.Monkey()
+    mono = pilas.actores.Mono()
 
 En pantalla aparecerá un simpático personaje de color marrón:
 
@@ -61,17 +62,17 @@ facil podemos usar sentencias cómo:
 
 .. code-block:: python
 
-    mono.smile()
+    mono.sonreir()
 
 o:
 
 .. code-block:: python
 
-    mono.shout()
+    mono.gritar()
 
 
 En cualquiera de los dos casos el personaje
-cambiará por algo cómo:
+cambiará su aspecto y emitirá un sonido.
 
 .. image:: images/mono/smile.png
 
@@ -79,7 +80,7 @@ cambiará por algo cómo:
 Cosas en común para los actores
 -------------------------------
 
-Internamente, ``Monkey`` es un actor, así que encontraremos
+Internamente, ``Mono`` es un actor, así que encontraremos
 mucha funcionalidad en él que la tendrán el resto de los
 actores.
 
@@ -94,19 +95,19 @@ Veamos algunas de estas características:
 
 .. image:: images/mono/normal.png
 
-- Todo actor tiene un atributo para indicar su tamaño en pantalla, el atributo ``scale`` (que originalmente vale 1):
+- Todo actor tiene un atributo para indicar su tamaño en pantalla, el atributo ``escala`` (que originalmente vale 1):
 
 .. code-block:: python
 
-    mono.scale = 2
+    mono.escala = 2
 
 
-- También contamos con un atributo que indica la rotación en ángulos que debe tener el actor en pantalla. El atributo ``rotation``:
+- También contamos con un atributo que indica la rotación en ángulos que debe tener el actor en pantalla. El atributo ``rotacion``:
 
 
 .. code-block:: python
 
-    mono.rotation = 40
+    mono.rotacion = 40
 
 .. image:: images/mono/rotation40.png
 
@@ -114,7 +115,7 @@ o bien:
 
 .. code-block:: python
 
-    mono.rotation = 80
+    mono.rotacion = 80
 
 .. image:: images/mono/rotation80.png
 
@@ -138,17 +139,29 @@ Eliminando a un actor
 ---------------------
 
 Para eliminar un actor de la escena tienes que llamar
-al método ``kill``:
+al método ``eliminar``:
 
 
 .. code-block:: python
 
-    mono.kill()
+    mono.eliminar()
 
 Conclusión
 ----------
 
 Hemos visto los pasos principales para gestionar
-actores. Ten en cuenta que el módulo ``pilas.actors`` es
-donde se guardarán todos los actores. Un buen ejercicio
-es mirar ahí, buscar nuevos actores y comenzar a utilizarlos.
+actores. Ten en cuenta que el módulo ``pilas.actores`` es
+donde se guardarán todos los actores.
+
+Un buen ejercicio es mirar ahí, buscar nuevos actores y
+comenzar a utilizarlos.
+
+Recuenda que el interprete de python te permite autocompletar
+sentencias usando la tecla ``Tab``. Además tienes
+la función ``help`` para solicitar ayuda. Por ejemplo:
+
+.. code-block::
+
+    help(pilas.actores)
+
+Es todo por ahora, suerte y a divertirse!

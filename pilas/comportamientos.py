@@ -10,7 +10,7 @@ from PySFML import sf
 
 import pilas
 
-class MovedByMouse:
+class SeguirAlMouse:
     "Hace que un actor siga la posición del mouse en todo momento."
 
     def __init__(self):

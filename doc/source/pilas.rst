@@ -6,35 +6,35 @@ Referencia del módulo Pilas
 
 
 
-Módulo pilas.actors
+Módulo pilas.actores
+--------------------
+
+.. automodule:: pilas.actores
+    :members:
+
+
+Módulo pilas.imagen
 -------------------
 
-.. automodule:: pilas.actors
+.. automodule:: pilas.imagen
     :members:
 
+Módulo pilas.interpolaciones
+----------------------------
 
-Módulo pilas.image
-------------------
-
-.. automodule:: pilas.image
+.. automodule:: pilas.interpolaciones
     :members:
 
-Módulo pilas.interpolations
----------------------------
+Módulo pilas.comportamientos
+----------------------------
 
-.. automodule:: pilas.interpolations
+.. automodule:: pilas.comportamientos
     :members:
 
-Módulo pilas.components
----------------------------
+Módulo pilas.tareas
+-------------------
 
-.. automodule:: pilas.components
-    :members:
-
-Módulo pilas.task_scheduler
----------------------------
-
-.. automodule:: pilas.task_scheduler
+.. automodule:: pilas.tareas
     :members:
 
 
@@ -44,8 +44,8 @@ Módulo pilas.utils
 .. automodule:: pilas.utils
     :members:
 
-Módulo pilas.signals
+Módulo pilas.eventos
 --------------------
 
-.. automodule:: pilas.signals
+.. automodule:: pilas.eventos
     :members:
