@@ -15,7 +15,7 @@ class TestSequenceFunctions(unittest.TestCase):
         pass
 
     def test_monkey_attributes(self):
-        mono = pilas.actors.Monkey()
+        mono = pilas.actores.Mono()
 
         # Verifica que las rotaciones alteren el estado del personaje.
         mono.x = 100
@@ -25,30 +25,30 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(mono.y, 100)
 
         # Se asegura que inicialmente no tenga rotacion asignada.
-        self.assertEqual(mono.rotation, 0)
+        self.assertEqual(mono.rotacion, 0)
 
         # Verifica que las rotaciones alteren el estado del personaje.
         mono.rotation = 180
-        self.assertEqual(mono.rotation, 180)
+        self.assertEqual(mono.rotacion, 180)
 
         # Analiza que el personaje se ha agregado a la lista de actores.
-        self.assertTrue(mono in pilas.actors.all)
+        self.assertTrue(mono in pilas.actores.todos)
 
         # Utiliza los atributos de escala.
-        self.assertEqual(mono.scale, 1)
-        mono.scale = 5
-        self.assertEqual(mono.scale, 5)
+        self.assertEqual(mono.escala, 1)
+        mono.escala = 5
+        self.assertEqual(mono.escala, 5)
 
         # Ejecuta mas metodos del mono.
-        mono.smile()
-        mono.shout()
+        mono.sonrie()
+        mono.grita()
 
         # Verifica que el personaje se pueda matar.
-        mono.kill()
-        self.assertFalse(mono in pilas.actors.all)
+        mono.borrar()
+        self.assertFalse(mono in pilas.actores.todos)
 
     def testImage(self):
-        original_image = pilas.image.load('ceferino.png')
+        original_image = pilas.imagen.cargar('ceferino.png')
 
         actor = pilas.actors.Actor(original_image)
         actors_image = actor.GetImage()
@@ -63,11 +63,11 @@ class TestSequenceFunctions(unittest.TestCase):
         def none_3(a, b, c):
             pass
 
-        pilas.add_task(2, none)
-        pilas.add_task(2, none_3, (1, 2, 3))
+        pilas.agregar_tarea(2, none)
+        pilas.agregar_tarea(2, none_3, (1, 2, 3))
 
     def testInterpolation(self):
-        a = pilas.interpolate(0, 100)
+        a = pilas.interpolar(0, 100)
         self.assertEqual(a.values, (0, 100))
 
         # Invierte la interpolacion.
@@ -75,18 +75,18 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(a.values, (100, 0))
 
     def testText(self):
-        texto = pilas.actors.Text("Hola")
-        self.assertEqual(texto.text, "Hola")
+        texto = pilas.actores.Texto("Hola")
+        self.assertEqual(texto.texto, "Hola")
 
         # verificando que el tamaño inicial es de 30 y el color negro
-        self.assertEqual(texto.size, 30)
+        self.assertEqual(texto.tamano, 30)
         self.assertEqual(texto.color, (0, 0, 0, 255))
 
     def testComponents(self):
-        texto = pilas.actors.Text("Hola")
+        texto = pilas.actores.Texto("Hola")
 
         # Vincula la clase Text con un componente.
-        component = pilas.components.SizeByWheel 
+        component = pilas.comportamientos.SizeByWheel 
         texto.mixin(component)
         
         # Se asegura que el componente pasa a ser de la superclase.

@@ -20,6 +20,7 @@ import time
 from PySFML import sf
 
 import actors
+actores = actors
 import image
 import sound
 import task_scheduler
