@@ -19,8 +19,7 @@ import time
 
 from PySFML import sf
 
-import actors
-actores = actors
+import actores
 import image
 import sound
 import task_scheduler

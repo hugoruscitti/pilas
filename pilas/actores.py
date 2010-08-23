@@ -10,14 +10,15 @@ import pilas
 
 from PySFML import sf
 
-all = []
+todos = []
 
-def insert_as_new_actor(actor):
+def insertar_como_nuevo_actor(actor):
     "Coloca a un actor en la lista de actores a imprimir en pantalla."
-    all.append(actor)
+    todos.append(actor)
+    
 
-def remove_an_actor(actor):
-    all.remove(actor)
+def eliminar_un_actor(actor):
+    todos.remove(actor)
 
 
 
@@ -33,12 +34,11 @@ class BaseActor(object, Mixineable):
     "Define la funcionalidad abstracta de un actor."
 
     def __init__(self):
-        insert_as_new_actor(self)
+        insertar_como_nuevo_actor(self)
         self._set_central_axis()
 
         # define la posicion inicial.
         self.SetPosition(320, 240)
-
 
     def _set_central_axis(self):
         "Hace que el eje de posición del actor sea el centro de la imagen."
@@ -90,9 +90,14 @@ class BaseActor(object, Mixineable):
     rotation = property(get_rotation, set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
     scale = property(get_scale, set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
 
+
+    rotacion=rotation
+    escala=scale
+
+
     def kill(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
-        remove_an_actor(self)
+        eliminar_un_actor(self)
 
     def update(self):
         "Actualiza el estado del actor. Este metodo se llama una vez por frame."
@@ -145,6 +150,11 @@ class Actor(sf.Sprite, BaseActor):
         return left < x < right and top < y < bottom
 
 
+def alias(new_name):
+    def _alias(function):
+        print function
+        return function
+    return _alias
 
 
 class Monkey(Actor):
@@ -187,6 +197,7 @@ class Monkey(Actor):
         self.SetImage(self.image_normal)
 
 
+Mono = Monkey
 
 class Text(sf.String, BaseActor):
     "Representa un texto en pantalla."
