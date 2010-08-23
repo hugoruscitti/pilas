@@ -1,13 +1,13 @@
 import pilas
 
-mono = pilas.actors.Monkey()
-mono.scale = 1
-mono.rotation = 0
+mono = pilas.actores.Mono()
+mono.escala = 1
+mono.rotacion = 0
 
 def girar():
-    mono.rotation = mono.rotation + 1
+    mono.rotacion = -mono.rotacion + 1
     return True
 
-pilas.add_task(0, girar)
+pilas.agregar_tarea(0, girar)
 
 pilas.bucle()

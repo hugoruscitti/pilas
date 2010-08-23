@@ -22,15 +22,15 @@ def eliminar_un_actor(actor):
 
 
 
-class Mixineable:
+class Estudiante:
     "Permite a distintos objetos acoplarse mediente mixins."
 
-    def mixin(self, classname, *k, **w):
+    def aprender(self, classname, *k, **w):
         self.__class__.__bases__ += (classname,)
         classname.__init__(self, *k, **w)
 
 
-class BaseActor(object, Mixineable):
+class BaseActor(object, Estudiante):
     "Define la funcionalidad abstracta de un actor."
 
     def __init__(self):

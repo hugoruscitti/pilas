@@ -1,11 +1,11 @@
 import pilas
 
-mono = pilas.actors.Monkey()
+mono = pilas.actores.Mono()
 
 def mover_al_mono(sender, x, y, signal):
     mono.x = x
     mono.y = y
 
-pilas.eventos.mouse_move.connect(mover_al_mono)
+pilas.eventos.mueve_mouse.connect(mover_al_mono)
 
 pilas.bucle()

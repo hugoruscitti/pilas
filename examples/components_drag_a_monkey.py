@@ -1,6 +1,6 @@
 import pilas
 
-mono = pilas.actors.Monkey()
-mono.mixin(pilas.comportamientos.Draggable)
+mono = pilas.actores.Mono()
+mono.aprender(pilas.comportamientos.Arrastrable)
 
 pilas.bucle()

@@ -70,22 +70,22 @@ def bucle():
         # Procesa todos los eventos.
         while app.GetEvent(event):
             if event.Type == sf.Event.KeyPressed:
-                eventos.key_press.send("bucle", code=event.Key.Code)
+                eventos.pulsa_tecla.send("bucle", code=event.Key.Code)
 
                 if event.Key.Code == sf.Key.Escape:
                     app.Close()
                     sys.exit(0)
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
-                eventos.mouse_move.send("bucle", x=event.MouseMove.X, y=event.MouseMove.Y)
+                eventos.mueve_mouse.send("bucle", x=event.MouseMove.X, y=event.MouseMove.Y)
             elif event.Type == sf.Event.MouseButtonPressed:
-                eventos.mouse_click.send("bucle", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
+                eventos.click_de_mouse.send("bucle", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
             elif event.Type == sf.Event.MouseButtonReleased:
-                eventos.mouse_click_end.send("bucle", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
+                eventos.termina_click.send("bucle", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
             elif event.Type == sf.Event.MouseWheelMoved:
-                eventos.mouse_wheel.send("bucle", delta=event.MouseWheel.Delta)
+                eventos.mueve_rueda.send("bucle", delta=event.MouseWheel.Delta)
 
-        for actor in actors.all:
+        for actor in actores.todos:
             actor.update()
             app.Draw(actor)
 

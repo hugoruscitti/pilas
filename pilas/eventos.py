@@ -8,9 +8,8 @@
 
 import dispatch
 
-
-mouse_move = dispatch.Signal(providing_args=['x', 'y'])
-mouse_click = dispatch.Signal(providing_args=['button', 'x', 'y'])
-mouse_click_end = dispatch.Signal(providing_args=['button', 'x', 'y'])
-mouse_wheel = dispatch.Signal(providing_args=['delta'])
-key_press = dispatch.Signal(providing_args=['code'])
+mueve_mouse = dispatch.Signal(providing_args=['x', 'y'])
+click_de_mouse = dispatch.Signal(providing_args=['button', 'x', 'y'])
+termina_click = dispatch.Signal(providing_args=['button', 'x', 'y'])
+mueve_rueda = dispatch.Signal(providing_args=['delta'])
+pulsa_tecla = dispatch.Signal(providing_args=['code'])

@@ -50,7 +50,7 @@ class TestSequenceFunctions(unittest.TestCase):
     def testImage(self):
         original_image = pilas.imagen.cargar('ceferino.png')
 
-        actor = pilas.actors.Actor(original_image)
+        actor = pilas.actores.Actor(original_image)
         actors_image = actor.GetImage()
 
         self.assertEqual(original_image, actors_image)
@@ -86,8 +86,8 @@ class TestSequenceFunctions(unittest.TestCase):
         texto = pilas.actores.Texto("Hola")
 
         # Vincula la clase Text con un componente.
-        component = pilas.comportamientos.SizeByWheel 
-        texto.mixin(component)
+        component = pilas.comportamientos.AumentarConRueda 
+        texto.aprender(component)
         
         # Se asegura que el componente pasa a ser de la superclase.
         superclases = texto.__class__.__bases__

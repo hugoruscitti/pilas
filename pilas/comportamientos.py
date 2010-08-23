@@ -14,46 +14,46 @@ class MovedByMouse:
     "Hace que un actor siga la posición del mouse en todo momento."
 
     def __init__(self):
-        pilas.eventos.mouse_move.connect(self.move)
+        pilas.eventos.mueve_mouse.connect(self.move)
 
     def move(self, sender, x, y, signal):
         self.x = x
         self.y = y
 
 
-class SizeByWheel:
+class AumentarConRueda:
     "Permite cambiar el tamaño de un actor usando la ruedita scroll del mouse."
 
     def __init__(self):
-        pilas.eventos.mouse_wheel.connect(self.scale_me)
+        pilas.eventos.mueve_rueda.connect(self.scale_me)
 
     def scale_me(self, sender, delta, signal):
-        self.scale += (delta / 2.0)
+        self.escala += (delta / 2.0)
 
 
-class FollowMouseClicks:
+class SeguirClicks:
     "Hace que el actor se coloque la posición del cursor cuando se hace click."
 
     def __init__(self):
-        pilas.eventos.mouse_click.connect(self.move_to_this_point)
+        pilas.eventos.click_de_mouse.connect(self.move_to_this_point)
 
     def move_to_this_point(self, sender, signal, x, y, button):
         self.x = pilas.interpolar(x, duration=0.5)
         self.y = pilas.interpolar(y, duration=0.5)
 
 
-class Draggable:
+class Arrastrable:
     "Hace que un objeto se pueda arrastrar con el puntero del mouse."
 
     def __init__(self):
-        pilas.eventos.mouse_click.connect(self.try_to_drag)
+        pilas.eventos.click_de_mouse.connect(self.try_to_drag)
 
     def try_to_drag(self, sender, signal, x, y, button):
         "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
 
-        if self.collide_with_point(x, y):
-            pilas.eventos.mouse_click_end.connect(self.drag_end)
-            pilas.eventos.mouse_move.connect(self.drag, dispatch_uid='drag')
+        if self.colisiona_con_un_punto(x, y):
+            pilas.eventos.termina_click.connect(self.drag_end)
+            pilas.eventos.mueve_mouse.connect(self.drag, dispatch_uid='drag')
             self.last_x = x
             self.last_y = y
 
@@ -67,14 +67,14 @@ class Draggable:
 
     def drag_end(self, sender, signal, x, y, button):
         "Suelta al actor porque se ha soltado el botón del mouse."
-        pilas.eventos.mouse_move.disconnect(dispatch_uid='drag')
+        pilas.eventos.mueve_mouse.disconnect(dispatch_uid='drag')
 
 
-class MovedByKeyboard:
+class MoverseConElTeclado:
     "Hace que un actor cambie de posición con pulsar el teclado."
 
     def __init__(self):
-        pilas.eventos.key_press.connect(self.on_key_press)
+        pilas.eventos.pulsa_tecla.connect(self.on_key_press)
 
     def on_key_press(self, sender, code, signal):
         speed = 10

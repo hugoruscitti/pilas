@@ -1,7 +1,7 @@
 import pilas
 
-mono = pilas.actors.Monkey()
-mono.mixin(pilas.comportamientos.FollowMouseClicks)
-mono.mixin(pilas.comportamientos.SizeByWheel)
+mono = pilas.actores.Mono()
+mono.aprender(pilas.comportamientos.SeguirClicks)
+mono.aprender(pilas.comportamientos.AumentarConRueda)
 
 pilas.bucle()
