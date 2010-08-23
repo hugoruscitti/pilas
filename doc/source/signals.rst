@@ -10,35 +10,35 @@ En pilas se usa una estrategia llamada
 desarrollo de interfaces gráficas, la web y sistemas de tiempo
 real.
 
-¿Que es una Señal?
+¿Que es un Evento?
 ------------------
 
-Una señal es un mensaje que emite algún componente
+Un evento es un mensaje que emite algún componente
 del juego, y que pueden captar o escuchar distintos
 objetos para tomar una acción.
 
 Por ejemplo, el componente ``pilas`` emite señales
-cada vez que el usuario hace algo dentro del juego. Por
+de eventos cada vez que el usuario hace algo dentro del juego. Por
 ejemplo, si el usuario mueve el mouse, ``pilas`` emite
-la señal ``mouse_move``.
+la señal de evento ``mueve_mouse``.
 
 Veamos un ejemplo de esto en la siguiente sección.
 
-Conectando señales
-------------------
+Conectando eventos a funciones
+------------------------------
 
-Las ``señales`` solo representan un aviso de que algo
+Las señales de ``eventos`` solo representan un aviso de que algo
 ha ocurrido, pero no toman ninguna acción al respecto.
 
-Entonces, para darle utilidad a las señales tenemos
+Entonces, para darle utilidad a estas señales tenemos
 que vincularlas, de forma que puedan disparar acciones
 dentro de nuestro juego.
 
 La función ``connect``
 ______________________
 
-La función ``connect`` nos permite conectar una señal
-a un método o una función.
+La función ``connect`` nos permite conectar una señal de
+evento a un método o una función.
 
 De esta forma, cada vez que se emita una determinada
 señal, se avisará a todos los objectos que hallamos
@@ -54,15 +54,16 @@ esto:
 
     import pilas
 
-    mono = pilas.actors.Monkey()
+    mono = pilas.actores.Mono()
 
     def mover_mono_a_la_posicion_del_mouse(sender, x, y):
         mono.x = x
         mono.y = y
 
-    pilas.signals.mouse_move.connect(mover_mono_a_la_posicion_del_mouse)
+    pilas.eventos.mueve_mouse.connect(mover_mono_a_la_posicion_del_mouse)
 
-Es decir, la señal que nos interesa es ``mouse_move`` (que se emite
+
+Es decir, la señal de evento que nos interesa es ``mueve_mouse`` (que se emite
 cada vez que el usuario mueve el mouse). Y a esta señal le conectamos
 la función que buscamos ejecutar cada vez que se mueva el mouse.
 
@@ -88,10 +89,10 @@ Por ejemplo, las siguientes sentencias muestran eso:
 
 .. code-block:: python
 
-    pilas.signals.mouse_move.connect(imprimir_posicion, dispatch_uid='drag')
-    pilas.signals.mouse_move.disconnect(dispatch_uid='drag')
+    pilas.eventos.mueve_mouse.connect(imprimir_posicion, dispatch_uid='drag')
+    pilas.eventos.mueve_mouse.disconnect(dispatch_uid='drag')
     
-En la primer sentencia conecté la señal a una función y le di
+En la primer sentencia conecté la señal del evento a una función y le di
 un valor al argumento ``dispatch_uid``. Este valor será el identificador
 de ese enlace.
 
@@ -109,7 +110,7 @@ el escritorio GNOME y Gimp entre otras aplicaciones.
 
 El sistema de señales que se utiliza en pilas se obtuvo
 (gentilmente) del núcleo del sistema ``django``, dado que
-es brillante y se adecua muy bien a las necesidades de nuestro
+es brillante y se adapta muy bien a las necesidades de nuestro
 motor.
 
 Si quieres obtener mas información sobre los sistemas de señales

@@ -17,7 +17,7 @@ def get_file_path(path):
     # Si no ha encontrado el archivo lo reporta.
     raise IOError("El archivo '%s' no existe." %(path))
 
-def load(path):
+def cargar(path):
     path = get_file_path(path)
 
     buff = sf.SoundBuffer()

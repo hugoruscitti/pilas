@@ -4,6 +4,7 @@ syntax: glob
 .hgignore
 *.elc
 *.pyc
+.ropeproject/*
 *~
 open_doc.sh
 doc/build/doctrees

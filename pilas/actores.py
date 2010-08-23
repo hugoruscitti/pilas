@@ -164,8 +164,8 @@ class Mono(Actor):
         self.image_smile = pilas.imagen.cargar('monkey_smile.png')
         self.image_shout = pilas.imagen.cargar('monkey_shout.png')
 
-        self.sound_shout = pilas.sonidos.load('shout.wav')
-        self.sound_smile = pilas.sonidos.load('smile.wav')
+        self.sound_shout = pilas.sonidos.cargar('shout.wav')
+        self.sound_smile = pilas.sonidos.cargar('smile.wav')
 
         # Inicializa el actor.
         Actor.__init__(self, self.image_normal)

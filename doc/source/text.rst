@@ -1,7 +1,7 @@
 Textos
 ======
 
-Los mensajes de texto se tratan de manera similar
+Los objetos que muestran texto en pantalla se tratan de manera similar
 a los actores. Por lo tanto, si ya sabes usar
 actores, no tendrás problemas en usar cadenas
 de texto.
@@ -10,14 +10,14 @@ de texto.
 Crear cadenas de texto
 ----------------------
 
-El objeto que representa texto se llama ``Text`` y
-está dentro del modulo ``actors``.
+El objeto que representa texto se llama ``Texto`` y
+está dentro del modulo ``actores``.
 
 Para crear un mensaje tienes que escribir:
 
 .. code-block:: python
 
-    texto = pilas.actors.Text("Hola, este es mi primer texto.")
+    texto = pilas.actores.Texto("Hola, este es mi primer texto.")
 
 y tu cadena de texto aparecerá en pantalla en color
 negro y con un tamaño predeterminado:
@@ -25,8 +25,15 @@ negro y con un tamaño predeterminado:
 .. image:: images/texto.png
 
 
-Si quieres en la cadena de texto puedes usar caracteres
-especiales como ``\n`` para colocar un salto de linea.
+Si quieres puedes escribir texto de varias lineas usando el caracter
+``\n`` para indicar el salto de linea.
+
+Por ejemplo, el siguiente código escribe el mismo mensaje de
+arriba pero en dos lineas:
+
+.. code-block:: python
+
+    texto = pilas.actores.Texto("Hola (en la primer linea)\n este es mi primer texto.")
 
 Los textos son actores
 ----------------------
@@ -38,13 +45,13 @@ aquí también funciona, por ejemplo:
 .. code-block:: python
 
     texto.x = 100
-    texto.scale = 2
+    texto.escala = 2
 
 incluso también funcionarán las interpolaciones:
 
 .. code-block:: python
 
-    texto.rotation = pilas.interpolate(360)
+    texto.rotacion = pilas.interpolar(360)
 
 
 Propiedades exclusivas de los textos
@@ -56,16 +63,16 @@ apariencia de los textos.
 Esta es una lista de los mas importantes.
 
 - color
-- size
-- text
+- magnitud
+- texto
 
 Por ejemplo, para alterar el texto, color y tamaño de un
 texto podría escribir algo así:
 
 .. code-block:: python
 
-    texto.size = 50
+    texto.magnitud = 50
     texto.color = (0, 0, 0)   # Color negro
     texto.color = (255, 0, 0, 128)   # Color rojo, semi transparente.
-    texto.text = "Hola, este texto \n tiene 2 lineas separadas"
+    texto.texto = "Hola, este texto \n tiene 2 lineas separadas"
 

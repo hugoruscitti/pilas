@@ -29,7 +29,7 @@ que verán los usuarios de nuestros juegos.
 Creando al primer personaje
 ---------------------------
 
-Un concepto importante en ``pilas`` es del de ``actores``. Un
+Un concepto importante en :mod:`pilas` es del de ``actores``. Un
 actor en pilas es un objeto que aparece en pantalla, tiene
 una posición determinada y se puede manipular.
 
@@ -123,7 +123,7 @@ o bien:
 Pidiendo ayuda
 --------------
 
-Recuerda que cada componente de ``pilas`` está documentado
+Recuerda que cada componente de :mod:`pilas` está documentado
 como un módulo de python. Por lo tanto puedes
 ejecutar una sentencia cómo:
 
@@ -150,7 +150,7 @@ Conclusión
 ----------
 
 Hemos visto los pasos principales para gestionar
-actores. Ten en cuenta que el módulo ``pilas.actores`` es
+actores. Ten en cuenta que el módulo :mod:``pilas.actores`` es
 donde se guardarán todos los actores.
 
 Un buen ejercicio es mirar ahí, buscar nuevos actores y
@@ -160,7 +160,7 @@ Recuenda que el interprete de python te permite autocompletar
 sentencias usando la tecla ``Tab``. Además tienes
 la función ``help`` para solicitar ayuda. Por ejemplo:
 
-.. code-block::
+.. code-block:: python
 
     help(pilas.actores)
 
