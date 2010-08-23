@@ -7,18 +7,17 @@
 # Website - http://www.pilas-engine.com.ar
 
 import os
-import interpolations
+import interpolaciones
 
-def float_child_window():
+def hacer_flotante_la_ventana():
     "Hace flotante la ventana para i3"
     try:
         os.system("i3-msg t >/dev/null")
     except:
         pass
 
-def center_window(app):
+def centrar_la_ventana(app):
     app.SetPosition(300, 100)
 
-
-def is_interpolation(an_object):
-    return isinstance(an_object, interpolations.Interpolation)
+def es_interpolacion(an_object):
+    return isinstance(an_object, interpolaciones.Interpolacion)

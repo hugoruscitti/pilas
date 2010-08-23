@@ -20,15 +20,15 @@ import time
 from PySFML import sf
 
 import actores
-import image
-import sound
-import task_scheduler
+import imagen
+import sonidos
+import tareas
 import pytweener
 import utils
-import interpolations
+import interpolaciones
 import dispatch
-import signals
-import components
+import eventos
+import comportamientos
 
 tweener = pytweener.Tweener()
 
@@ -41,20 +41,20 @@ path = os.path.dirname(os.path.abspath(__file__))
 
     
 
-tasks = task_scheduler.TaskScheduler() 
+tasks = tareas.Tareas() 
  
-def add_task(time_out, function, *params): 
-    tasks.add(time_out, function, params)
+def agregar_tarea(time_out, function, *params): 
+    tasks.agregar(time_out, function, params)
 
 
-def loop():
+def bucle():
     "Pone en funcionamiento el bucle principal."
     global app
 
     if app == 1:
         app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
-        utils.float_child_window()
-        utils.center_window(app)
+        utils.hacer_flotante_la_ventana()
+        utils.centrar_la_ventana(app)
 
     event = sf.Event()
     clock = sf.Clock()
@@ -70,20 +70,20 @@ def loop():
         # Procesa todos los eventos.
         while app.GetEvent(event):
             if event.Type == sf.Event.KeyPressed:
-                signals.key_press.send("loop", code=event.Key.Code)
+                eventos.key_press.send("bucle", code=event.Key.Code)
 
                 if event.Key.Code == sf.Key.Escape:
                     app.Close()
                     sys.exit(0)
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
-                signals.mouse_move.send("loop", x=event.MouseMove.X, y=event.MouseMove.Y)
+                eventos.mouse_move.send("bucle", x=event.MouseMove.X, y=event.MouseMove.Y)
             elif event.Type == sf.Event.MouseButtonPressed:
-                signals.mouse_click.send("loop", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
+                eventos.mouse_click.send("bucle", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
             elif event.Type == sf.Event.MouseButtonReleased:
-                signals.mouse_click_end.send("loop", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
+                eventos.mouse_click_end.send("bucle", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
             elif event.Type == sf.Event.MouseWheelMoved:
-                signals.mouse_wheel.send("loop", delta=event.MouseWheel.Delta)
+                eventos.mouse_wheel.send("bucle", delta=event.MouseWheel.Delta)
 
         for actor in actors.all:
             actor.update()
@@ -92,14 +92,14 @@ def loop():
         app.Display()
 
 
-def loop_bg():
+def bucle_en_segundo_plano():
     "Ejecuta el bucle de pilas en segundo plano."
     import threading
 
-    bg = threading.Thread(target=loop)
+    bg = threading.Thread(target=bucle)
     bg.start()
 
-def interpolate(*values, **kv):
+def interpolar(*values, **kv):
 
     if 'duration' in kv:
         duration = kv.pop('duration')
@@ -111,9 +111,9 @@ def interpolate(*values, **kv):
     else:
         delay = 0
 
-    return interpolations.Linear(values, duration, delay)
+    return interpolaciones.Lineal(values, duration, delay)
 
-def load_autocompletation_modules():
+def cargar_autocompletado():
     "Carga los modulos de python para autocompletar desde la consola interactiva."
     import rlcompleter
     import readline
@@ -130,8 +130,8 @@ def load_autocompletation_modules():
 
 try:
     cursor = sys.ps1
-    load_autocompletation_modules()
-    loop_bg()
+    cargar_autocompletado()
+    bucle_en_segundo_plano()
 except AttributeError:
     app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
-    utils.float_child_window()
+    utils.hacer_flotante_la_ventana()

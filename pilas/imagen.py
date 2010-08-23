@@ -12,14 +12,14 @@ from PySFML import sf
 
 import pilas
 
-def load(path):
-    """Intenta cargar la imagen indicada por el argumento ``path``.
+def cargar(ruta):
+    """Intenta cargar la imagen indicada por el argumento ``ruta``.
 
     Por ejemplo::
 
         import pilas
 
-        imagen = pilas.image.load("mi_archivo.png")
+        imagen = pilas.imagen.cargar("mi_archivo.png")
 
     En caso de éxito retorna el objeto Image, que se puede asignar
     a un Actor.
@@ -33,16 +33,16 @@ def load(path):
     En caso de error genera una excepción de tipo IOError.
     """
 
-    path = get_file_path(path)
+    ruta = obtener_ruta_a_la_imagen(ruta)
 
     # Genera el objeto image y lo retorna.
     image = sf.Image()
-    image.LoadFromFile(path)
+    image.LoadFromFile(ruta)
 
     return image
 
 
-def get_file_path(path):
+def obtener_ruta_a_la_imagen(ruta):
     """Busca la ruta a un archivo de recursos.
 
     Los archivos de recursos (como las imagenes) se buscan en varios
@@ -53,11 +53,11 @@ def get_file_path(path):
     dirs = ['./', 'data', pilas.path, pilas.path + '/data']
 
     for x in dirs:
-        full_path = os.path.join(x, path)
+        full_path = os.path.join(x, ruta)
         #DEBUG: print "buscando en: '%s'" %(full_path)
 
         if os.path.exists(full_path):
             return full_path
 
     # Si no ha encontrado el archivo lo reporta.
-    raise IOError("El archivo '%s' no existe." %(path))
+    raise IOError("El archivo '%s' no existe." %(ruta))

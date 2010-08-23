@@ -6,10 +6,10 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-class TaskScheduler:
+class Tareas:
     """Contenedor de tareas a ejecutar por tiempo.
 
-    El TaskScheduler es un planificador de tareas, permite que
+    El Tareas es un planificador de tareas, permite que
     podamos ejecutar funciones y métodos luego de transcurrido
     el tiempo que queramos.
 
@@ -43,14 +43,14 @@ class TaskScheduler:
                 to_remove.append((t, dt, function, params))
 
                 if must_continue:
-                    self.add(dt, function, params)
+                    self.agregar(dt, function, params)
 
         # Elimina de la lista de trabajos los que ya han sido ejecutados.
         if to_remove:
             for x in to_remove:
                 self.tasks.remove(x)
 
-    def add(self, time_out, function, params):
+    def agregar(self, time_out, function, params):
         "Agrega una nueva tarea para ejecutarse luego."
         # El formato de la tarea es:
         #          (tiempo_absoluto, tiempo

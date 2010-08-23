@@ -1,7 +1,7 @@
 import pilas
 
 mono = pilas.actors.Monkey()
-mono.mixin(pilas.components.MovedByKeyboard)
+mono.mixin(pilas.comportamientos.MovedByKeyboard)
 
 
-pilas.loop()
+pilas.bucle()

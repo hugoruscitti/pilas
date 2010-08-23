@@ -11,4 +11,4 @@ pilas.tweener.addTween(mono, SetRotation=360, tweenTime=5000, tweenType=elastic)
 pilas.tweener.addTween(mono, SetScaleX=3, tweenTime=5000, tweenType=elastic)
 pilas.tweener.addTween(mono, SetScaleY=3, tweenTime=5500, tweenType=elastic)
 
-pilas.loop()
+pilas.bucle()

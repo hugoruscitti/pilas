@@ -28,7 +28,7 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(mono.rotacion, 0)
 
         # Verifica que las rotaciones alteren el estado del personaje.
-        mono.rotation = 180
+        mono.rotacion = 180
         self.assertEqual(mono.rotacion, 180)
 
         # Analiza que el personaje se ha agregado a la lista de actores.
@@ -44,7 +44,7 @@ class TestSequenceFunctions(unittest.TestCase):
         mono.grita()
 
         # Verifica que el personaje se pueda matar.
-        mono.borrar()
+        mono.eliminar()
         self.assertFalse(mono in pilas.actores.todos)
 
     def testImage(self):
@@ -79,7 +79,7 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(texto.texto, "Hola")
 
         # verificando que el tamaño inicial es de 30 y el color negro
-        self.assertEqual(texto.tamano, 30)
+        self.assertEqual(texto.magnitud, 30)
         self.assertEqual(texto.color, (0, 0, 0, 255))
 
     def testComponents(self):

@@ -50,13 +50,13 @@ class BaseActor(object, Mixineable):
         return x
 
     def set_x(self, x):
-        if pilas.utils.is_interpolation(x):
+        if pilas.utils.es_interpolacion(x):
             x.apply(self, function='set_x')
         else:
             self.SetX(x)
 
     def set_y(self, y):
-        if pilas.utils.is_interpolation(y):
+        if pilas.utils.es_interpolacion(y):
             y.apply(self, function='set_y')
         else:
             self.SetY(y)
@@ -66,7 +66,7 @@ class BaseActor(object, Mixineable):
         return y
 
     def set_scale(self, s):
-        if pilas.utils.is_interpolation(s):
+        if pilas.utils.es_interpolacion(s):
             s.apply(self, function='set_scale')
         else:
             self.SetScale(s, s)
@@ -80,22 +80,18 @@ class BaseActor(object, Mixineable):
 
     def set_rotation(self, x):
 
-        if pilas.utils.is_interpolation(x):
+        if pilas.utils.es_interpolacion(x):
             x.apply(self, function='set_rotation')
         else:
             self.SetRotation(-x)
 
     x = property(get_x, set_x, doc="Define la posición horizontal.")
     y = property(get_y, set_y, doc="Define la posición vertical.")
-    rotation = property(get_rotation, set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
-    scale = property(get_scale, set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
+    rotacion = property(get_rotation, set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
+    escala = property(get_scale, set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
 
 
-    rotacion=rotation
-    escala=scale
-
-
-    def kill(self):
+    def eliminar(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
         eliminar_un_actor(self)
 
@@ -114,7 +110,7 @@ class Actor(sf.Sprite, BaseActor):
 
     es equivalente a:
 
-        imagen = pilas.image.load("protagonista_de_frente.png")
+        imagen = pilas.imagen.cargar("protagonista_de_frente.png")
         protagonista = Actor(imagen)
 
     Luego, na vez que ha sido ejecutada la sentencia aparecerá en el centro de
@@ -130,19 +126,19 @@ class Actor(sf.Sprite, BaseActor):
     interpolaciones. Por ejemplo, para aumentar el tamaño del
     personaje de 1 a 5 en 7 segundos::
 
-        protagonista.scale = pilas.interpolate(1, 5, 7)
+        protagonista.scale = pilas.interpolar(1, 5, 7)
     """
 
     def __init__(self, image):
 
         if isinstance(image, str):
-            image = pilas.image.load(image)
+            image = pilas.imagen.cargar(image)
 
         sf.Sprite.__init__(self, image)
         BaseActor.__init__(self)
 
 
-    def collide_with_point(self, x, y):
+    def colisiona_con_un_punto(self, x, y):
         "Determina si un punto colisiona con el area del actor."
         w, h = self.GetSize()
         left, right = self.x - w/2 , self.x + w/2
@@ -150,57 +146,52 @@ class Actor(sf.Sprite, BaseActor):
         return left < x < right and top < y < bottom
 
 
-def alias(new_name):
-    def _alias(function):
-        print function
-        return function
-    return _alias
-
-
-class Monkey(Actor):
+class Mono(Actor):
     """Representa la cara de un mono de color marrón.
 
     Este personaje se usa como ejemplo básico de un actor. Sus
     métodos mas usados son:
 
-    - smile
-    - shout
+    - sonrie
+    - grita
 
     El primero hace que el mono se ría y el segundo que grite.
     """
 
     def __init__(self):
         # carga las imagenes adicionales.
-        self.image_normal = pilas.image.load('monkey_normal.png')
-        self.image_smile = pilas.image.load('monkey_smile.png')
-        self.image_shout = pilas.image.load('monkey_shout.png')
+        self.image_normal = pilas.imagen.cargar('monkey_normal.png')
+        self.image_smile = pilas.imagen.cargar('monkey_smile.png')
+        self.image_shout = pilas.imagen.cargar('monkey_shout.png')
 
-        self.sound_shout = pilas.sound.load('shout.wav')
-        self.sound_smile = pilas.sound.load('smile.wav')
+        self.sound_shout = pilas.sonidos.load('shout.wav')
+        self.sound_smile = pilas.sonidos.load('smile.wav')
 
         # Inicializa el actor.
         Actor.__init__(self, self.image_normal)
 
-    def smile(self):
+    def sonrie(self):
         self.SetImage(self.image_smile)
         # Luego de un segundo regresa a la normalidad
-        pilas.add_task(0.5, self.normal)
+        pilas.agregar_tarea(0.5, self.normal)
         self.sound_smile.Play()
 
-    def shout(self):
+    def grita(self):
         self.SetImage(self.image_shout)
         # Luego de un segundo regresa a la normalidad
-        pilas.add_task(1, self.normal)
+        pilas.agregar_tarea(1, self.normal)
         self.sound_shout.Play()
 
     def normal(self):
         self.SetImage(self.image_normal)
 
 
-Mono = Monkey
 
-class Text(sf.String, BaseActor):
-    "Representa un texto en pantalla."
+class Texto(sf.String, BaseActor):
+    """Representa un texto en pantalla.
+
+    El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
+    """
 
     def __init__(self, text="None"):
         sf.String.__init__(self, text)
@@ -231,8 +222,8 @@ class Text(sf.String, BaseActor):
     def set_color(self, k):
         self.SetColor(sf.Color(*k))
 
-    text = property(get_text, set_text, doc="El texto que se tiene que mostrar.")
-    size = property(get_size, set_size, doc="El tamaño del texto.")
+    texto = property(get_text, set_text, doc="El texto que se tiene que mostrar.")
+    magnitud = property(get_size, set_size, doc="El tamaño del texto.")
     color = property(get_color, set_color, doc="Color del texto.")
 
 

@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-class Interpolation:
+class Interpolacion:
     """Representa una interpolacion, que pasa por varios puntos clave.
 
     Las interpolacione se utilizan para realizar movimientos de
@@ -26,7 +26,7 @@ class Interpolation:
     """
 
 
-class Linear(Interpolation):
+class Lineal(Interpolacion):
     "Representa una interpolación lineal."
 
     def __init__(self, values, duration, delay):
@@ -45,7 +45,7 @@ class Linear(Interpolation):
         new_values = list(self.values)
         new_values.reverse()
         new_values = tuple(new_values)
-        return Linear(new_values, self.duration, self.delay)
+        return Lineal(new_values, self.duration, self.delay)
 
     def apply(self, target, function):
         """Aplica la interpolación a un actor usando un método.
