@@ -1,0 +1,69 @@
+/*
+ * Default.css - This contains named tags and all related styleing
+ * Jason Cole (http://jasoncole.ca)
+ * June - September 2007
+ */
+
+#header
+{
+ clear: both;
+ margin: 0.75em;
+ padding: 0.75em;
+ text-align: center;
+}
+
+#menubar
+{
+ background-color: #def;
+ border: 1px solid;
+ border-color: #bcd #bcd #abc;
+}
+
+#header h1,#header h2,#header h3,#header h4,#header h5,#header h6
+{
+ border-bottom: 1px solid #bcd;
+}
+
+#header ul,#header ol
+{
+ color: #def;
+ font-weight: bold;
+ list-style: none;
+ margin: 0;
+ padding: 0;
+}
+#header li
+{
+ display: inline;
+ padding: 0;
+}
+#header a,#header a:link,#header a:visited
+{
+ color: #345;
+ padding: 0 0.75em;
+ text-decoration: none;
+}
+#header a:hover,#header a:active
+{
+ color: #000;
+}
+
+#footer
+{
+ border-bottom: 1px solid #bbb;
+ border-top: 1px solid #ccc;
+ clear: both;
+ margin: 0.75em;
+ padding: 0.75em;
+ text-align: center;
+}
+
+#footer p
+{
+ margin: 0;
+}
+
+a
+{
+ color: #345;
+}

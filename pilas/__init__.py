@@ -29,6 +29,7 @@ import interpolaciones
 import dispatch
 import eventos
 import comportamientos
+import ventana
 
 
 tweener = pytweener.Tweener()
@@ -38,22 +39,17 @@ event = 1
 clock = 1
 
 path = os.path.dirname(os.path.abspath(__file__))
-
-
-    
-
 tasks = tareas.Tareas() 
  
 def agregar_tarea(time_out, function, *params): 
     tasks.agregar(time_out, function, params)
-
 
 def bucle():
     "Pone en funcionamiento el bucle principal."
     global app
 
     if app == 1:
-        app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
+        app = ventana.iniciar()
         utils.hacer_flotante_la_ventana()
         utils.centrar_la_ventana(app)
 
@@ -100,7 +96,9 @@ def bucle_en_segundo_plano():
     bg = threading.Thread(target=bucle)
     bg.start()
 
+
 def interpolar(*values, **kv):
+    "Retorna un objeto de interlacion que se puede asignar a una propiedad."
 
     if 'duration' in kv:
         duration = kv.pop('duration')
@@ -134,5 +132,5 @@ try:
     cargar_autocompletado()
     bucle_en_segundo_plano()
 except AttributeError:
-    app = sf.RenderWindow(sf.VideoMode(640, 480), "Pilas")
+    app = ventana.iniciar()
     utils.hacer_flotante_la_ventana()

@@ -1,0 +1,419 @@
+/*
+ * Core.css 
+ * Jason Cole (http://jasoncole.ca)
+ * June - September 2007
+ */
+
+/*
+ *  
+ *  General
+ *  
+ */
+
+body
+{
+ background-color: #fff;
+ color: #222;
+ margin: 0;
+ text-align: center;
+}
+
+/*
+ *  
+ *  Containers
+ *  
+ */
+
+.container_100
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 100%;
+}
+.container_95
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 95%;
+}
+.container_90
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 90%;
+}
+.container_85
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 85%;
+}
+.container_80
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 80%;
+}
+.container_75
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 75%;
+}
+.container_70
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 70%;
+}
+.container_65
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 65%;
+}
+.container_60
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 60%;
+}
+.container_55
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 55%;
+}
+.container_50
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 50%;
+}
+.container_45
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 45%;
+}
+.container_40
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 40%;
+}
+.container_35
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 35%;
+}
+.container_30
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 30%;
+}
+.container_25
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 25%;
+}
+.container_20
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 20%;
+}
+.container_15
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 15%;
+}
+.container_10
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 10%;
+}
+.container_5
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 5%;
+}
+.container_760px
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 760px;
+}
+.container_600px
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 600px;
+}
+.container_980px
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 980px;
+}
+.container_5em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 5em;
+}
+.container_10em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 10em;
+}
+.container_15em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 15em;
+}
+.container_20em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 20em;
+}
+.container_25em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 25em;
+}
+.container_30em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 30em;
+}
+.container_35em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 35em;
+}
+.container_40em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 40em;
+}
+.container_45em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 45em;
+}
+.container_50em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 50em;
+}
+.container_55em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 55em;
+}
+.container_60em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 60em;
+}
+.container_65em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 65em;
+}
+.container_70em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 70em;
+}
+.container_75em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 75em;
+}
+.container_80em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 80em;
+}
+.container_85em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 85em;
+}
+.container_90em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 90em;
+}
+.container_95em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 95em;
+}
+.container_100em
+{
+ margin: 0 auto;
+ text-align: justify;
+ width: 100em;
+}
+
+/*
+ *  
+ *  Columns
+ *  
+ */
+
+.column_5
+{
+ float: left;
+ width: 5%;
+}
+.column_10
+{
+ float: left;
+ width: 10%;
+}
+.column_15
+{
+ float: left;
+ width: 15%;
+}
+.column_20
+{
+ float: left;
+ width: 20%;
+}
+.column_25
+{
+ float: left;
+ width: 25%;
+}
+.column_30
+{
+ float: left;
+ width: 30%;
+}
+.column_35
+{
+ float: left;
+ width: 35%;
+}
+.column_40
+{
+ float: left;
+ width: 40%;
+}
+.column_45
+{
+ float: left;
+ width: 45%;
+}
+.column_50
+{
+ float: left;
+ width: 50%;
+}
+.column_55
+{
+ float: left;
+ width: 55%;
+}
+.column_60
+{
+ float: left;
+ width: 60%;
+}
+.column_65
+{
+ float: left;
+ width: 65%;
+}
+.column_70
+{
+ float: left;
+ width: 70%;
+}
+.column_75
+{
+ float: left;
+ width: 75%;
+}
+.column_80
+{
+ float: left;
+ width: 80%;
+}
+.column_85
+{
+ float: left;
+ width: 85%;
+}
+.column_90
+{
+ float: left;
+ width: 90%;
+}
+.column_95
+{
+ float: left;
+ width: 95%;
+}
+.column_100
+{
+ float: left;
+ width: 100%;
+}
+
+/*
+ *  
+ *  box class
+ *  
+ */
+
+.box
+{
+ background-color: #eee;
+ border: 1px solid;
+ border-color: #ccc #ccc #bbb;
+ clear: both;
+ margin: 0.75em;
+ padding: 0.75em;
+}
+
+/*
+ *  
+ *  inner class
+ *  
+ */
+
+.inner
+{
+ clear: both;
+ margin: 0.75em;
+}
