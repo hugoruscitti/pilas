@@ -33,31 +33,10 @@ def cargar(ruta):
     En caso de error genera una excepción de tipo IOError.
     """
 
-    ruta = obtener_ruta_a_la_imagen(ruta)
+    ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
 
     # Genera el objeto image y lo retorna.
     image = sf.Image()
     image.LoadFromFile(ruta)
 
     return image
-
-
-def obtener_ruta_a_la_imagen(ruta):
-    """Busca la ruta a un archivo de recursos.
-
-    Los archivos de recursos (como las imagenes) se buscan en varios
-    directorios (ver docstring de image.load), así que esta
-    función intentará dar con el archivo en cuestión.
-    """
-
-    dirs = ['./', 'data', pilas.path, pilas.path + '/data']
-
-    for x in dirs:
-        full_path = os.path.join(x, ruta)
-        #DEBUG: print "buscando en: '%s'" %(full_path)
-
-        if os.path.exists(full_path):
-            return full_path
-
-    # Si no ha encontrado el archivo lo reporta.
-    raise IOError("El archivo '%s' no existe." %(ruta))
