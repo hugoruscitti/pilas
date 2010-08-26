@@ -26,13 +26,19 @@ como directorio físico en todos y cada uno de los juegos
 que realices, una buena idea es instalar la biblioteca en
 tu sistema.
 
-Para ello tienes que ejecutar::
+Primero tienes que instalar ``setuptools`` usando el
+siguiente comando::
+
+    sudo apt-get install python-setuptools
+
+Luego, para instalar pilas tienes dos opciones::
 
     sudo python setup.py install
 
 o bien::
 
     sudo python setup.py develop
+
 
 
 En el primer caso la biblioteca se instala y pasa
