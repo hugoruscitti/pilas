@@ -10,4 +10,4 @@ def girar():
 
 pilas.agregar_tarea(0, girar)
 
-pilas.bucle()
+pilas.ejecutar()

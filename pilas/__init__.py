@@ -44,8 +44,8 @@ tasks = tareas.Tareas()
 def agregar_tarea(time_out, function, *params): 
     tasks.agregar(time_out, function, params)
 
-def bucle():
-    "Pone en funcionamiento el bucle principal."
+def ejecutar():
+    "Pone en funcionamiento el ejecutar principal."
     global app
 
     if app == 1:
@@ -67,20 +67,20 @@ def bucle():
         # Procesa todos los eventos.
         while app.GetEvent(event):
             if event.Type == sf.Event.KeyPressed:
-                eventos.pulsa_tecla.send("bucle", code=event.Key.Code)
+                eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
 
                 if event.Key.Code == sf.Key.Escape:
                     app.Close()
                     sys.exit(0)
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
-                eventos.mueve_mouse.send("bucle", x=event.MouseMove.X, y=event.MouseMove.Y)
+                eventos.mueve_mouse.send("ejecutar", x=event.MouseMove.X, y=event.MouseMove.Y)
             elif event.Type == sf.Event.MouseButtonPressed:
-                eventos.click_de_mouse.send("bucle", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
+                eventos.click_de_mouse.send("ejecutar", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
             elif event.Type == sf.Event.MouseButtonReleased:
-                eventos.termina_click.send("bucle", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
+                eventos.termina_click.send("ejecutar", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
             elif event.Type == sf.Event.MouseWheelMoved:
-                eventos.mueve_rueda.send("bucle", delta=event.MouseWheel.Delta)
+                eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 
         for actor in actores.todos:
             actor.update()
@@ -89,11 +89,11 @@ def bucle():
         app.Display()
 
 
-def bucle_en_segundo_plano():
-    "Ejecuta el bucle de pilas en segundo plano."
+def ejecutar_en_segundo_plano():
+    "Ejecuta el ejecutar de pilas en segundo plano."
     import threading
 
-    bg = threading.Thread(target=bucle)
+    bg = threading.Thread(target=ejecutar)
     bg.start()
 
 
@@ -130,7 +130,7 @@ def cargar_autocompletado():
 try:
     cursor = sys.ps1
     cargar_autocompletado()
-    bucle_en_segundo_plano()
+    ejecutar_en_segundo_plano()
 except AttributeError:
     app = ventana.iniciar()
     utils.hacer_flotante_la_ventana()

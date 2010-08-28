@@ -8,4 +8,4 @@ mono.escala = pilas.interpolar(2, duration=3)
 mono.x = pilas.interpolar(320, duration=3)
 mono.y = pilas.interpolar(240, duration=3)
 
-pilas.bucle()
+pilas.ejecutar()
