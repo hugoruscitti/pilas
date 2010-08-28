@@ -86,7 +86,7 @@ class TestSequenceFunctions(unittest.TestCase):
         texto = pilas.actores.Texto("Hola")
 
         # Vincula la clase Text con un componente.
-        component = pilas.comportamientos.AumentarConRueda 
+        component = pilas.habilidades.AumentarConRueda 
         texto.aprender(component)
         
         # Se asegura que el componente pasa a ser de la superclase.

@@ -28,7 +28,7 @@ import utils
 import interpolaciones
 import dispatch
 import eventos
-import comportamientos
+import habilidades
 import ventana
 
 

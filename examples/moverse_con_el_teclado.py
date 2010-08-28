@@ -1,6 +1,6 @@
 import pilas
 
 mono = pilas.actores.Mono()
-mono.aprender(pilas.comportamientos.MoverseConElTeclado)
+mono.aprender(pilas.habilidades.MoverseConElTeclado)
 
 pilas.bucle()

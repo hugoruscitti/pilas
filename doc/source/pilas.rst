@@ -25,10 +25,10 @@ Módulo pilas.interpolaciones
 .. automodule:: pilas.interpolaciones
     :members:
 
-Módulo pilas.comportamientos
-----------------------------
+Módulo pilas.habilidades
+------------------------
 
-.. automodule:: pilas.comportamientos
+.. automodule:: pilas.habilidades
     :members:
 
 Módulo pilas.tareas
