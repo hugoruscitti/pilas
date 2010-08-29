@@ -10,6 +10,7 @@ import os
 import interpolaciones
 import pilas
 from PySFML import sf
+import sys
 
 def hacer_flotante_la_ventana():
     "Hace flotante la ventana para i3 (el manejador de ventanas que utiliza hugo...)"
@@ -59,3 +60,13 @@ def obtener_ruta_al_recurso(ruta):
 
     # Si no ha encontrado el archivo lo reporta.
     raise IOError("El archivo '%s' no existe." %(ruta))
+
+
+def esta_en_sesion_interactiva():
+    "Indica si pilas se ha ejecutado desde una consola interactiva de python."
+    try:
+        cursor = sys.ps1
+        return True
+    except AttributeError:
+        return False
+

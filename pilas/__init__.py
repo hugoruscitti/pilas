@@ -49,6 +49,7 @@ def ejecutar():
     global app
 
     if app == 1:
+        print "Cuidado, no has llamado a pilas.iniciar(). Asi que se ejecutara sola..."
         app = ventana.iniciar()
         utils.hacer_flotante_la_ventana()
         utils.centrar_la_ventana(app)
@@ -127,10 +128,13 @@ def cargar_autocompletado():
 # de crear la ventana dentro del mismo hilo que
 # tiene el contexto opengl.
 
-try:
-    cursor = sys.ps1
+if utils.esta_en_sesion_interactiva():
     cargar_autocompletado()
     ejecutar_en_segundo_plano()
-except AttributeError:
-    app = ventana.iniciar()
-    utils.hacer_flotante_la_ventana()
+    print "Esta en consola interactiva"
+else:
+    pass
+
+print 'ejecutando normalmente.'
+#app = ventana.iniciar()
+#utils.hacer_flotante_la_ventana()
