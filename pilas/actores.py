@@ -9,6 +9,7 @@
 import pilas
 
 from PySFML import sf
+import math
 
 todos = []
 
@@ -227,3 +228,18 @@ class Texto(sf.String, BaseActor):
     color = property(get_color, set_color, doc="Color del texto.")
 
 
+
+class Tortuga(Actor):
+    "Representa una tortuga que se mueve por la pantalla como la tortuga de Logo."
+
+    def __init__(self):
+        imagen = pilas.imagen.cargar('tortuga.png')
+        Actor.__init__(self, imagen)
+    
+    def avanzar(self, pasos):
+        d = -90
+        self.Move( math.cos((self.GetRotation() +d )*3.14159265/180)*-pasos, 
+                math.sin((self.GetRotation() + d)*3.14159265/180)*pasos)
+
+    def girar(self, angulo):
+        self.rotacion = angulo
