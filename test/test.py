@@ -31,6 +31,12 @@ class TestSequenceFunctions(unittest.TestCase):
         mono.rotacion = 180
         self.assertEqual(mono.rotacion, 180)
 
+        mono.rotacion = 20
+        self.assertEqual(mono.rotacion, 20)
+
+        mono.rotacion = 400
+        self.assertEqual(mono.rotacion, (400 % 360))
+
         # Analiza que el personaje se ha agregado a la lista de actores.
         self.assertTrue(mono in pilas.actores.todos)
 
