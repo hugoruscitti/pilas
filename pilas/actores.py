@@ -237,9 +237,11 @@ class Tortuga(Actor):
         Actor.__init__(self, imagen)
     
     def avanzar(self, pasos):
-        d = -90
-        self.Move( math.cos((self.GetRotation() +d )*3.14159265/180)*-pasos, 
-                math.sin((self.GetRotation() + d)*3.14159265/180)*pasos)
+        rotacion_en_radianes = math.radians(self.rotacion)
+        dx = math.cos(rotacion_en_radianes) * pasos
+        dy = math.sin(rotacion_en_radianes) * pasos
+
+        self.Move(dx, dy)
 
     def girar(self, angulo):
-        self.rotacion = angulo
+        self.rotacion += angulo
