@@ -234,13 +234,16 @@ class Tortuga(Actor):
 
     def __init__(self):
         imagen = pilas.imagen.cargar('tortuga.png')
+        # El frente de la tortuga en la imagen apunta hacia arriba (90°)
+        self.angulo_base = 90
         Actor.__init__(self, imagen)
     
     def avanzar(self, pasos):
-        rotacion_en_radianes = math.radians(self.rotacion)
+        rotacion_en_radianes = math.radians(self.rotacion + self.angulo_base)
         dx = math.cos(rotacion_en_radianes) * pasos
         dy = math.sin(rotacion_en_radianes) * pasos
-        self.Move(dx, dy)
+         # Invierte en el eje y para corregir a las coordenadas de ventana
+        self.Move(dx, -dy)
 
     def girar(self, angulo):
         self.rotacion += angulo
