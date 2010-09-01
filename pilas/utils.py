@@ -49,7 +49,7 @@ def obtener_ruta_al_recurso(ruta):
     función intentará dar con el archivo en cuestión.
     """
 
-    dirs = ['./', 'data', pilas.path, pilas.path + '/data']
+    dirs = ['./', os.path.dirname(sys.argv[0]), 'data', pilas.path, pilas.path + '/data']
 
     for x in dirs:
         full_path = os.path.join(x, ruta)
