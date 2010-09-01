@@ -7,9 +7,12 @@
 # Website - http://www.pilas-engine.com.ar
 
 
-"""Pilas engine - A video game framework.
+"""Pilas engine - Un motor para realizar videojuegos.
 
-.. moduleauthor:: Hugo Ruscitti
+
+Este es el módulo principal de pilas. Desde aquí
+puedes acceder a toda la funcionalidad del motor.
+
 
 """
 
