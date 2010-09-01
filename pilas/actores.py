@@ -240,7 +240,6 @@ class Tortuga(Actor):
         rotacion_en_radianes = math.radians(self.rotacion)
         dx = math.cos(rotacion_en_radianes) * pasos
         dy = math.sin(rotacion_en_radianes) * pasos
-
         self.Move(dx, dy)
 
     def girar(self, angulo):
