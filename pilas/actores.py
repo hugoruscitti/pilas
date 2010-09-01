@@ -84,7 +84,7 @@ class BaseActor(object, Estudiante):
         if pilas.utils.es_interpolacion(x):
             x.apply(self, function='set_rotation')
         else:
-            self.SetRotation(-x)
+            self.SetRotation(x)
 
     x = property(get_x, set_x, doc="Define la posición horizontal.")
     y = property(get_y, set_y, doc="Define la posición vertical.")
