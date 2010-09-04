@@ -39,7 +39,7 @@ class BaseActor(object, Estudiante):
         self._set_central_axis()
 
         # define la posicion inicial.
-        self.SetPosition(320, 240)
+        self.SetPosition(0, 0)
 
     def _set_central_axis(self):
         "Hace que el eje de posición del actor sea el centro de la imagen."
@@ -60,11 +60,11 @@ class BaseActor(object, Estudiante):
         if pilas.utils.es_interpolacion(y):
             y.apply(self, function='set_y')
         else:
-            self.SetY(y)
+            self.SetY(-y)
 
     def get_y(self):
         x, y = self.GetPosition()
-        return y
+        return -y
 
     def set_scale(self, s):
         if pilas.utils.es_interpolacion(s):
@@ -240,7 +240,10 @@ class Tortuga(Actor):
         rotacion_en_radianes = math.radians(self.rotacion)
         dx = math.cos(rotacion_en_radianes) * pasos
         dy = math.sin(rotacion_en_radianes) * pasos
-        self.Move(dx, dy)
+        
+        self.x = self.x + dx
+        self.y = self.y + dy
+        #self.Move(dx, dy)
 
     def girar(self, angulo):
         self.rotacion += angulo
