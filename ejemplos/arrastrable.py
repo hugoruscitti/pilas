@@ -1,7 +1,7 @@
 import pilas
 import sys
 
-pilas.iniciar(titulo='arrastrable')
+pilas.iniciar()
 mono = pilas.actores.Mono()
 mono.aprender(pilas.habilidades.Arrastrable)
 
