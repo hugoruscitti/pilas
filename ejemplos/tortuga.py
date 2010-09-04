@@ -1,7 +1,7 @@
 import pilas
 
 tortuga = pilas.actores.Tortuga()
-tortuga.rotacion = 20
-tortuga.avanzar(5)
+tortuga.girar(45)
+tortuga.avanzar(100)
 
 pilas.ejecutar()
