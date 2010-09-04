@@ -47,15 +47,22 @@ tasks = tareas.Tareas()
 def agregar_tarea(time_out, function, *params): 
     tasks.agregar(time_out, function, params)
 
+
+def iniciar(*k, **kv):
+    global app
+
+    app = ventana.iniciar()
+    utils.hacer_flotante_la_ventana()
+    utils.centrar_la_ventana(app)
+
+
 def ejecutar():
     "Pone en funcionamiento el ejecutar principal."
     global app
 
     if app == 1:
         print "Cuidado, no has llamado a pilas.iniciar(). Asi que se ejecutara sola..."
-        app = ventana.iniciar()
-        utils.hacer_flotante_la_ventana()
-        utils.centrar_la_ventana(app)
+        iniciar()
 
     event = sf.Event()
     clock = sf.Clock()
