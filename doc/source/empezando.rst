@@ -93,6 +93,11 @@ Veamos algunas de estas características:
     mono.x = 100
     mono.y = 100
 
+
+Ten en cuenta que ``x`` e ``y`` son las coordenadas de posición
+en el escenario. Por lo tanto el punto (0, 0) es el centro
+de la ventana. Y ``x`` aumenta hacia la derecha e ``y`` hacia arriba.
+
 .. image:: images/mono/normal.png
 
 - Todo actor tiene un atributo para indicar su tamaño en pantalla, el atributo ``escala`` (que originalmente vale 1):
