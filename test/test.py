@@ -99,6 +99,10 @@ class TestSequenceFunctions(unittest.TestCase):
         superclases = texto.__class__.__bases__
         self.assertTrue(component in superclases)
 
+    def testEjes(self):
+        ejes = pilas.actores.Ejes()
+        self.assertTrue(ejes)
+
 
 if __name__ == '__main__':
     unittest.main()
