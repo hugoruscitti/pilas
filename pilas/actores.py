@@ -247,3 +247,10 @@ class Tortuga(Actor):
 
     def girar(self, angulo):
         self.rotacion += angulo
+
+
+class Ejes(Actor):
+    "Representa el eje de coordenadas tomado como sistema de referencia."
+
+    def __init__(self):
+        Actor.__init__(self, "ejes.png")
