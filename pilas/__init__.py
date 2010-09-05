@@ -126,6 +126,10 @@ def interpolar(*values, **kv):
 
     return interpolaciones.Lineal(values, duration, delay)
 
+def ordenar_actores_por_valor_z():
+    actores.todos.sort()
+
+
 def cargar_autocompletado():
     "Carga los modulos de python para autocompletar desde la consola interactiva."
     import rlcompleter

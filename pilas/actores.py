@@ -41,6 +41,9 @@ class BaseActor(object, Estudiante):
         # define la posicion inicial.
         self.SetPosition(0, 0)
 
+        # Define el nivel de lejania respecto del observador.
+        self.z = 0
+
     def _set_central_axis(self):
         "Hace que el eje de posición del actor sea el centro de la imagen."
         size = self.GetSize()
@@ -55,6 +58,17 @@ class BaseActor(object, Estudiante):
             x.apply(self, function='set_x')
         else:
             self.SetX(x)
+
+    def get_z(self):
+        return self._z
+
+    def set_z(self, z):
+        if pilas.utils.es_interpolacion(z):
+            print "Lo siento, sobre z no puede aplicar una interpolacion..."
+        else:
+            self._z = z
+
+        pilas.ordenar_actores_por_valor_z()
 
     def set_y(self, y):
         if pilas.utils.es_interpolacion(y):
@@ -86,6 +100,7 @@ class BaseActor(object, Estudiante):
         else:
             self.SetRotation(x)
 
+    z = property(get_z, set_z, doc="Define lejania respecto del observador.")
     x = property(get_x, set_x, doc="Define la posición horizontal.")
     y = property(get_y, set_y, doc="Define la posición vertical.")
     rotacion = property(get_rotation, set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
@@ -99,6 +114,19 @@ class BaseActor(object, Estudiante):
     def update(self):
         "Actualiza el estado del actor. Este metodo se llama una vez por frame."
         pass
+
+    def __cmp__(self, otro_actor):
+        """Compara dos actores para determinar cual esta mas cerca de la camara.
+
+        Este metodo se utiliza para ordenar los actores antes de imprimirlos
+        en pantalla. De modo tal que un usuario pueda seleccionar que
+        actores se ven mas arriba de otros cambiando los valores de
+        los atributos `z`."""
+
+        if otro_actor.z > self.z:
+            return 1
+        else:
+            return -1
 
 
 class Actor(sf.Sprite, BaseActor):
