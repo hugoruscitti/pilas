@@ -179,14 +179,14 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-#latex_logo = None
+latex_logo = "images/pilas-logo-large.png"
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-#latex_use_parts = False
+# latex_use_parts = False
 
 # Additional stuff for the LaTeX preamble.
-#latex_preamble = ''
+# latex_preamble = 'Pilas es un motor para desarrollar videojuegos de manera sencilla.'
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
