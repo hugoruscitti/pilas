@@ -71,6 +71,10 @@ Nota que pueden existir tantas funciones conectadas a una señal como
 quieras. Y que si la función deja de existir no hace falta desconectarla.
 
 
+Las coordenadas que reporta el mouse son relativas al escenario y no
+de la ventana. Por lo tanto puedes asignar directamente el valor
+de las coordenadas del mouse a los actores sin efectos colaterales.
+
 Desconectando señales
 ---------------------
 

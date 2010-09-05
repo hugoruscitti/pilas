@@ -85,11 +85,14 @@ def ejecutar():
                     sys.exit(0)
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
-                eventos.mueve_mouse.send("ejecutar", x=event.MouseMove.X, y=event.MouseMove.Y)
+                x, y = app.ConvertCoords(event.MouseMove.X, event.MouseMove.Y)
+                eventos.mueve_mouse.send("ejecutar", x=x, y=-y)
             elif event.Type == sf.Event.MouseButtonPressed:
-                eventos.click_de_mouse.send("ejecutar", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
+                x, y = app.ConvertCoords(event.MouseButton.X, event.MouseButton.Y)
+                eventos.click_de_mouse.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
             elif event.Type == sf.Event.MouseButtonReleased:
-                eventos.termina_click.send("ejecutar", button=event.MouseButton.Button, x=event.MouseButton.X, y=event.MouseButton.Y)
+                x, y = app.ConvertCoords(event.MouseButton.X, event.MouseMove.Y)
+                eventos.termina_click.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
             elif event.Type == sf.Event.MouseWheelMoved:
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 

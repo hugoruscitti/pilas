@@ -5,7 +5,7 @@ mono.escala = 1
 mono.rotacion = 0
 
 def girar():
-    mono.rotacion = -mono.rotacion + 1
+    mono.rotacion = mono.rotacion + 1
     return True
 
 pilas.agregar_tarea(0, girar)
