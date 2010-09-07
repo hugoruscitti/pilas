@@ -5,7 +5,7 @@ from setuptools import find_packages
 
 setup(
         name='pilas',
-        version='0.1',
+        version='0.11',
         description='A simple to use video game framework.',
         author='Hugo Ruscitti',
         author_email='hugoruscitti@gmail.com',
@@ -14,8 +14,9 @@ setup(
         include_package_data = True,
         package_data = {
             '': ['data/*'],
-            }
+            },
 
+        data_files=[('bitmaps', ['pilas/data/ejes.png'])]
         #scripts=['pilas'],
     )
 

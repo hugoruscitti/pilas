@@ -1,3 +1,4 @@
+MANIFEST.in
 README
 setup.py
 pilas/__init__.py
@@ -15,6 +16,14 @@ pilas.egg-info/PKG-INFO
 pilas.egg-info/SOURCES.txt
 pilas.egg-info/dependency_links.txt
 pilas.egg-info/top_level.txt
+pilas/data/ejes.png
+pilas/data/ejes.svg
+pilas/data/monkey_normal.png
+pilas/data/monkey_shout.png
+pilas/data/monkey_smile.png
+pilas/data/shout.wav
+pilas/data/smile.wav
+pilas/data/tortuga.png
 pilas/dispatch/__init__.py
 pilas/dispatch/dispatcher.py
 pilas/dispatch/saferef.py

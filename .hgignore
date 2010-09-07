@@ -6,6 +6,8 @@ syntax: glob
 *.pyc
 .ropeproject/*
 *~
+dist/*
+
 open_doc.sh
 doc/build/doctrees
 doc/build/latex
