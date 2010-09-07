@@ -148,10 +148,6 @@ def cargar_autocompletado():
 if utils.esta_en_sesion_interactiva():
     cargar_autocompletado()
     ejecutar_en_segundo_plano()
-    print "Esta en consola interactiva"
 else:
     pass
 
-print 'ejecutando normalmente.'
-#app = ventana.iniciar()
-#utils.hacer_flotante_la_ventana()
