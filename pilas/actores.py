@@ -37,6 +37,7 @@ class BaseActor(object, Estudiante):
     def __init__(self):
         insertar_como_nuevo_actor(self)
         self._set_central_axis()
+        self.comportamiento = None
 
         # define la posicion inicial.
         self.SetPosition(0, 0)
@@ -113,7 +114,13 @@ class BaseActor(object, Estudiante):
 
     def update(self):
         "Actualiza el estado del actor. Este metodo se llama una vez por frame."
-        pass
+
+        if self.comportamiento:
+            termina = self.comportamiento.actualizar()
+
+            if termina:
+                self.comportamiento.terminar()
+                self.comportamiento = None
 
     def __cmp__(self, otro_actor):
         """Compara dos actores para determinar cual esta mas cerca de la camara.
@@ -283,3 +290,5 @@ class Ejes(Actor):
     def __init__(self):
         Actor.__init__(self, "ejes.png")
         self.z = 100
+
+
