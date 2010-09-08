@@ -103,6 +103,8 @@ class TestSequenceFunctions(unittest.TestCase):
         ejes = pilas.actores.Ejes()
         self.assertTrue(ejes)
 
+    def testDepuracion(self):
+        pilas.ventana.alternar_modo_depuracion()
 
 if __name__ == '__main__':
     unittest.main()

@@ -282,3 +282,4 @@ class Ejes(Actor):
 
     def __init__(self):
         Actor.__init__(self, "ejes.png")
+        self.z = 100

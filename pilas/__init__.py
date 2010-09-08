@@ -7,12 +7,12 @@
 # Website - http://www.pilas-engine.com.ar
 
 
-"""Pilas engine - Un motor para realizar videojuegos.
-
+"""
+Pilas engine - Un motor para realizar videojuegos.
+==================================================
 
 Este es el módulo principal de pilas. Desde aquí
 puedes acceder a toda la funcionalidad del motor.
-
 
 """
 
@@ -80,9 +80,12 @@ def ejecutar():
             if event.Type == sf.Event.KeyPressed:
                 eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
 
-                if event.Key.Code == sf.Key.Escape:
+                if event.Key.Code == sf.Key.Q:
                     app.Close()
                     sys.exit(0)
+                elif event.Key.Code == sf.Key.F12:
+                    ventana.alternar_modo_depuracion()
+                        
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
                 x, y = app.ConvertCoords(event.MouseMove.X, event.MouseMove.Y)
@@ -150,4 +153,3 @@ if utils.esta_en_sesion_interactiva():
     ejecutar_en_segundo_plano()
 else:
     pass
-

@@ -1,20 +1,31 @@
 Controlando la pantalla
 =======================
 
+Para posicionar actores en el escenario
+principal es importante conocer las
+propiedades de la pantalla.
 
-La ventana principal de pilas tiene varias
-propiedades interesantes y
+Estas propiedades se pueden ver y
+alternar accediendo al módulo ``pilas.ventana``.
 
 
 Modo depuración
 ---------------
 
-Pulse F12
+El modo depuración te permite ver información
+de utilidad cuando estás desarrollando un juego
+o simplemente buscando algún error.
+
+Para iniciar el modo depuración pulsa **F12**. En
+la ventana principal aparecerá un eje
+de coordenadas:
+
+.. image:: images/ventana_ejes.png
 
 
+Este eje de coordenadas te mostrará que el
+centro de la ventana será tomado como la posición (0, 0).
 
-Sistema de referencias
-----------------------
 
 
 Orden de impresión: atributo z

@@ -9,6 +9,7 @@ Pilas engine - Documentación
 
     empezando.rst
     interpolation.rst
+    controlando_la_pantalla.rst
     image.rst
     sound.rst
 
