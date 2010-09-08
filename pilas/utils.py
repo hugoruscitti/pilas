@@ -11,14 +11,11 @@ import interpolaciones
 import pilas
 from PySFML import sf
 import sys
+import subprocess
 
 def hacer_flotante_la_ventana():
     "Hace flotante la ventana para i3 (el manejador de ventanas que utiliza hugo...)"
-
-    try:
-        os.system("i3-msg t >/dev/null")
-    except:
-        pass
+    subprocess.call(['i3-msg', 't'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 def centrar_la_ventana(app):
     "Coloca la ventana principal en el centro del escritorio."
@@ -33,7 +30,7 @@ def centrar_la_ventana(app):
     to_x = desktop_mode.Width/2 - w/2
     to_y = desktop_mode.Height/2 - h/2
 
-    app.SetPosition(300, 100)
+    app.SetPosition(to_x, to_y)
 
 def es_interpolacion(an_object):
     "Indica si un objeto se comporta como una colisión."
