@@ -15,7 +15,10 @@ import subprocess
 
 def hacer_flotante_la_ventana():
     "Hace flotante la ventana para i3 (el manejador de ventanas que utiliza hugo...)"
-    subprocess.call(['i3-msg', 't'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    try:
+        subprocess.call(['i3-msg', 't'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    except OSError:
+        pass
 
 def centrar_la_ventana(app):
     "Coloca la ventana principal en el centro del escritorio."
