@@ -33,7 +33,7 @@ import dispatch
 import eventos
 import habilidades
 import ventana
-import comportamiento
+import comportamientos
 
 
 tweener = pytweener.Tweener()

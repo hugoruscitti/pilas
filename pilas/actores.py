@@ -278,7 +278,7 @@ class Tortuga(Actor):
         self.rotacion = 0
     
     def avanzar(self, pasos):
-        self.hacer(pilas.comportamiento.Avanzar(self.rotacion, pasos))
+        self.hacer(pilas.comportamientos.Avanzar(self.rotacion, pasos))
 
     def girar(self, angulo):
         self.rotacion += angulo
