@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 from pilas.actores import Actor
+import pilas
 
 class Mono(Actor):
     """Representa la cara de un mono de color marrón.
