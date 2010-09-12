@@ -68,6 +68,22 @@ def ejecutar():
     event = sf.Event()
     clock = sf.Clock()
     bg_color = sf.Color(200, 200, 200)
+#
+    shape = sf.Shape()
+    shape.SetOutlineWidth(20)
+    shape.EnableFill(False)
+    shape.EnableOutline(True)
+
+    shape.AddPoint(X=0, Y=20, Col=sf.Color.Blue)
+    shape.AddPoint(X=100, Y=20, Col=sf.Color.Blue)
+    shape.AddPoint(X=200, Y=20, Col=sf.Color.Blue)
+    shape.AddPoint(X=200, Y=200, Col=sf.Color.Blue)
+
+    #shape.AddPoint(X=0, Y=30, Col=sf.Color.Blue)
+    #for x in range(20, 200):
+    #    shape.AddPoint(X=200, Y=x, Col=sf.Color.Blue)
+
+    
 
     while True:
         time.sleep(0.01)
@@ -75,6 +91,7 @@ def ejecutar():
         tweener.update(16)
         tasks.update(app.GetFrameTime())
         app.Clear(bg_color)
+        app.Draw(shape)
 
         # Emite el aviso de actualizacion a los receptores.
         eventos.actualizar.send("bucle", input=app.GetInput())
@@ -143,6 +160,14 @@ def cargar_autocompletado():
     import readline
 
     readline.parse_and_bind("tab: complete")
+
+def cargar_fondo(ruta):
+    """Define un fondo de pantalla a partir de una imagen.
+
+    El argumento ``ruta`` indica el archivo gráfico a utilizar.
+    """
+    fondo = actores.Actor(ruta)
+    fondo.z = 100
 
 
 # Detecta si la biblioteca se esta ejecutando
