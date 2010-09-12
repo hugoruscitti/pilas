@@ -151,7 +151,7 @@ class Actor(sf.Sprite, BaseActor):
 
     es equivalente a:
 
-        imagen = pilas.imagen.cargar("protagonista_de_frente.png")
+        imagen = pilas.imagenes.cargar("protagonista_de_frente.png")
         protagonista = Actor(imagen)
 
     Luego, na vez que ha sido ejecutada la sentencia aparecerá en el centro de
@@ -173,7 +173,7 @@ class Actor(sf.Sprite, BaseActor):
     def __init__(self, image):
 
         if isinstance(image, str):
-            image = pilas.imagen.cargar(image)
+            image = pilas.imagenes.cargar(image)
 
         sf.Sprite.__init__(self, image)
         BaseActor.__init__(self)
@@ -201,9 +201,9 @@ class Mono(Actor):
 
     def __init__(self):
         # carga las imagenes adicionales.
-        self.image_normal = pilas.imagen.cargar('monkey_normal.png')
-        self.image_smile = pilas.imagen.cargar('monkey_smile.png')
-        self.image_shout = pilas.imagen.cargar('monkey_shout.png')
+        self.image_normal = pilas.imagenes.cargar('monkey_normal.png')
+        self.image_smile = pilas.imagenes.cargar('monkey_smile.png')
+        self.image_shout = pilas.imagenes.cargar('monkey_shout.png')
 
         self.sound_shout = pilas.sonidos.cargar('shout.wav')
         self.sound_smile = pilas.sonidos.cargar('smile.wav')
@@ -273,7 +273,7 @@ class Tortuga(Actor):
     "Representa una tortuga que se mueve por la pantalla como la tortuga de Logo."
 
     def __init__(self):
-        imagen = pilas.imagen.cargar('tortuga.png')
+        imagen = pilas.imagenes.cargar('tortuga.png')
         Actor.__init__(self, imagen)
         self.rotacion = 0
     

@@ -54,7 +54,7 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertFalse(mono in pilas.actores.todos)
 
     def testImage(self):
-        original_image = pilas.imagen.cargar('ceferino.png')
+        original_image = pilas.imagenes.cargar('ceferino.png')
 
         actor = pilas.actores.Actor(original_image)
         actors_image = actor.GetImage()
