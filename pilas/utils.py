@@ -12,6 +12,7 @@ import pilas
 from PySFML import sf
 import sys
 import subprocess
+import math
 
 def hacer_flotante_la_ventana():
     "Hace flotante la ventana para i3 (el manejador de ventanas que utiliza hugo...)"
@@ -70,3 +71,6 @@ def esta_en_sesion_interactiva():
     except AttributeError:
         return False
 
+def distancia(a, b):
+    "Retorna la distancia entre dos numeros."
+    return abs(b - a)

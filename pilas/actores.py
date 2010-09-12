@@ -135,6 +135,11 @@ class BaseActor(object, Estudiante):
         else:
             return -1
 
+    def hacer(self, comportamiento):
+        "Define un nuevo comportamiento para el actor."
+
+        comportamiento.iniciar(self)
+        self.comportamiento = comportamiento
 
 class Actor(sf.Sprite, BaseActor):
     """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
@@ -270,15 +275,10 @@ class Tortuga(Actor):
     def __init__(self):
         imagen = pilas.imagen.cargar('tortuga.png')
         Actor.__init__(self, imagen)
+        self.rotacion = 0
     
     def avanzar(self, pasos):
-        rotacion_en_radianes = math.radians(self.rotacion)
-        dx = math.cos(rotacion_en_radianes) * pasos
-        dy = math.sin(rotacion_en_radianes) * pasos
-        
-        self.x = self.x + dx
-        self.y = self.y + dy
-        #self.Move(dx, dy)
+        self.hacer(pilas.comportamiento.Avanzar(self.rotacion, pasos))
 
     def girar(self, angulo):
         self.rotacion += angulo
@@ -290,5 +290,3 @@ class Ejes(Actor):
     def __init__(self):
         Actor.__init__(self, "ejes.png")
         self.z = 100
-
-

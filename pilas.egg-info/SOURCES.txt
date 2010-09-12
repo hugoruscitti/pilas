@@ -3,6 +3,7 @@ README
 setup.py
 pilas/__init__.py
 pilas/actores.py
+pilas/comportamiento.py
 pilas/eventos.py
 pilas/habilidades.py
 pilas/imagen.py
