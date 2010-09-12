@@ -74,18 +74,18 @@ class MoverseConElTeclado:
     "Hace que un actor cambie de posición con pulsar el teclado."
 
     def __init__(self):
-        pilas.eventos.pulsa_tecla.connect(self.on_key_press)
+        pilas.eventos.actualizar.connect(self.on_key_press)
 
-    def on_key_press(self, sender, code, signal):
-        speed = 10
+    def on_key_press(self, sender, signal, input):
+        velocidad = 5
 
-        if code == sf.Key.Left:
-            self.x -= speed
-        elif code == sf.Key.Right:
-            self.x += speed
+        if input.IsKeyDown(sf.Key.Left):
+            self.x -= velocidad
+        elif input.IsKeyDown(sf.Key.Right):
+            self.x += velocidad
 
-        if code == sf.Key.Up:
-            self.y -= speed
-        elif code == sf.Key.Down:
-            self.y += speed
+        if input.IsKeyDown(sf.Key.Up):
+            self.y += velocidad
+        elif input.IsKeyDown(sf.Key.Down):
+            self.y -= velocidad
 

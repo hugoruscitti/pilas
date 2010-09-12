@@ -75,6 +75,7 @@ def ejecutar():
         tweener.update(16)
         tasks.update(app.GetFrameTime())
         app.Clear(bg_color)
+        eventos.actualizar.send("bucle", input=app.GetInput())
 
         # Procesa todos los eventos.
         while app.GetEvent(event):
