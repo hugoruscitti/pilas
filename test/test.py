@@ -113,6 +113,10 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertTrue(grilla)
         grilla.avanzar()
 
+    def testFondo(self):
+        grilla = pilas.cargar_fondo("volley.png")
+
+
     def testControl(self):
         control = pilas.control
 
@@ -121,6 +125,10 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertFalse(control.arriba)
         self.assertFalse(control.abajo)
         self.assertFalse(control.boton)
+
+    def testDibujo(self):
+        pizarra = pilas.actores.Pizarra()
+        pizarra.dibujar_punto(20, 10)
 
 if __name__ == '__main__':
     pilas.iniciar()

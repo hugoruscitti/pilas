@@ -156,6 +156,7 @@ def cargar_fondo(ruta):
     """
     fondo = actores.Actor(ruta)
     fondo.z = 100
+    return fondo
 
 
 # Detecta si la biblioteca se esta ejecutando
