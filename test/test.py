@@ -3,7 +3,9 @@ import random
 import unittest
 import pilas
 
+
 class TestSequenceFunctions(unittest.TestCase):
+    
 
     def setUp(self):
         pass
@@ -106,10 +108,20 @@ class TestSequenceFunctions(unittest.TestCase):
     def testDepuracion(self):
         pilas.ventana.alternar_modo_depuracion()
 
-
     def testGrilla(self):
-        pass
+        grilla = pilas.imagenes.Grilla("volley.png", 10, 10)
+        self.assertTrue(grilla)
+        grilla.avanzar()
 
+    def testControl(self):
+        control = pilas.control
+
+        self.assertFalse(control.izquierda)
+        self.assertFalse(control.derecha)
+        self.assertFalse(control.arriba)
+        self.assertFalse(control.abajo)
+        self.assertFalse(control.boton)
 
 if __name__ == '__main__':
+    pilas.iniciar()
     unittest.main()

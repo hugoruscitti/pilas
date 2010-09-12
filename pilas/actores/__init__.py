@@ -192,3 +192,4 @@ from mono import *
 from tortuga import *
 from texto import *
 from ejes import *
+from pingu import Pingu

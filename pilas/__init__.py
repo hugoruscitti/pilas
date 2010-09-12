@@ -34,6 +34,7 @@ import eventos
 import habilidades
 import ventana
 import comportamientos
+from control import Control
 
 
 tweener = pytweener.Tweener()
@@ -41,6 +42,7 @@ tweener = pytweener.Tweener()
 app = 1
 event = 1
 clock = 1
+control = 1
 
 path = os.path.dirname(os.path.abspath(__file__))
 tasks = tareas.Tareas() 
@@ -51,8 +53,10 @@ def agregar_tarea(time_out, function, *params):
 
 def iniciar(*k, **kv):
     global app
+    global control
 
     app = ventana.iniciar()
+    control = Control(app.GetInput())
     utils.hacer_flotante_la_ventana()
     utils.centrar_la_ventana(app)
 
@@ -68,22 +72,6 @@ def ejecutar():
     event = sf.Event()
     clock = sf.Clock()
     bg_color = sf.Color(200, 200, 200)
-#
-    shape = sf.Shape()
-    shape.SetOutlineWidth(20)
-    shape.EnableFill(False)
-    shape.EnableOutline(True)
-
-    shape.AddPoint(X=0, Y=20, Col=sf.Color.Blue)
-    shape.AddPoint(X=100, Y=20, Col=sf.Color.Blue)
-    shape.AddPoint(X=200, Y=20, Col=sf.Color.Blue)
-    shape.AddPoint(X=200, Y=200, Col=sf.Color.Blue)
-
-    #shape.AddPoint(X=0, Y=30, Col=sf.Color.Blue)
-    #for x in range(20, 200):
-    #    shape.AddPoint(X=200, Y=x, Col=sf.Color.Blue)
-
-    
 
     while True:
         time.sleep(0.01)
@@ -91,9 +79,9 @@ def ejecutar():
         tweener.update(16)
         tasks.update(app.GetFrameTime())
         app.Clear(bg_color)
-        app.Draw(shape)
 
         # Emite el aviso de actualizacion a los receptores.
+        control.actualizar()
         eventos.actualizar.send("bucle", input=app.GetInput())
 
         # Procesa todos los eventos.
