@@ -12,6 +12,8 @@ Pilas engine - Documentación
     controlando_la_pantalla.rst
     image.rst
     sound.rst
+    comportamientos.rst
+    controles.rst
 
     signals.rst
     text.rst
