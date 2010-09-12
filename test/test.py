@@ -106,5 +106,10 @@ class TestSequenceFunctions(unittest.TestCase):
     def testDepuracion(self):
         pilas.ventana.alternar_modo_depuracion()
 
+
+    def testGrilla(self):
+        pass
+
+
 if __name__ == '__main__':
     unittest.main()

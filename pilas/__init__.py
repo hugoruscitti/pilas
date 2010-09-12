@@ -24,6 +24,7 @@ from PySFML import sf
 
 import actores
 import imagen
+import imagenes
 import sonidos
 import tareas
 import pytweener
