@@ -22,13 +22,20 @@ class Pizarra(Actor):
         self.imagen.SetPixel(320 + x, 240 - y, color)
 
     def dibujar_cuadrado(self, x, y, ancho=8, color=sf.Color.Black):
-        inicio_x = x - ancho/2
-        fin_x = x + ancho/2
+        # Se asegura de tener todos los valores como numeros
+        # enteros.
+        x = int(x)
+        y = int(y)
+        delta = int(ancho/2)
 
-        inicio_y = y - ancho/2
-        fin_y = y + ancho/2
+        inicio_x = x - delta
+        fin_x = x + delta
 
+        inicio_y = y - delta
+        fin_y = y + delta
+
+        # Recorre toda el area del cuadrado
+        # dibujando uno a uno los puntos.
         for i in range(inicio_x, fin_x):
             for j in range(inicio_y, fin_y):
                 self.dibujar_punto(i, j, color)
-

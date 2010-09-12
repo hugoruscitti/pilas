@@ -17,9 +17,30 @@ class Tortuga(Actor):
         imagen = pilas.imagenes.cargar('tortuga.png')
         Actor.__init__(self, imagen)
         self.rotacion = 0
+        self.pizarra = pilas.actores.Pizarra()
     
     def avanzar(self, pasos):
         self.hacer(pilas.comportamientos.Avanzar(self.rotacion, pasos))
 
     def girar(self, angulo):
         self.rotacion += angulo
+
+
+    def get_y(self):
+        x, y = self.GetPosition()
+        return -y
+
+    def get_x(self):
+        x, y = self.GetPosition()
+        return x
+
+    def set_x(self, x):
+        self.pizarra.dibujar_cuadrado(x, self.y, 12)
+        pilas.actores.BaseActor.set_x(self, x)
+
+    def set_y(self, y):
+        self.pizarra.dibujar_cuadrado(self.x, y, 12)
+        pilas.actores.BaseActor.set_y(self, y)
+
+    x = property(get_x, set_x, doc="Define la posición horizontal.")
+    y = property(get_y, set_y, doc="Define la posición vertical.")
