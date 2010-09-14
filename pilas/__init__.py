@@ -35,6 +35,7 @@ import habilidades
 import ventana
 import comportamientos
 from control import Control
+from camara import Camara
 
 
 tweener = pytweener.Tweener()
@@ -43,6 +44,7 @@ app = 1
 event = 1
 clock = 1
 control = 1
+camara = 1
 
 path = os.path.dirname(os.path.abspath(__file__))
 tasks = tareas.Tareas() 
@@ -54,11 +56,13 @@ def agregar_tarea(time_out, function, *params):
 def iniciar(*k, **kv):
     global app
     global control
+    global camara
 
     app = ventana.iniciar()
     control = Control(app.GetInput())
     utils.hacer_flotante_la_ventana()
     utils.centrar_la_ventana(app)
+    camara = Camara(app)
 
 
 def ejecutar():
