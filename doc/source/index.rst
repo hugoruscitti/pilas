@@ -14,12 +14,16 @@ Pilas engine - Documentación
     sound.rst
     comportamientos.rst
     controles.rst
+    escenas.rst
+    dibujando_en_pantalla.rst
 
     signals.rst
     text.rst
     components.rst
 
     developers.rst
+    preguntas_avanzadas.rst
+
 
     pilas
 

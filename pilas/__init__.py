@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-# Pilas engine - A video game framework.
+# pilas engine - a video game framework.
 #
-# Copyright 2010 - Hugo Ruscitti
-# License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
+# copyright 2010 - hugo ruscitti
+# license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
-# Website - http://www.pilas-engine.com.ar
+# website - http://www.pilas-engine.com.ar
 
 
 """
@@ -34,6 +34,7 @@ import eventos
 import habilidades
 import ventana
 import comportamientos
+import escenas
 from control import Control
 from camara import Camara
 
@@ -45,6 +46,7 @@ event = 1
 clock = 1
 control = 1
 camara = 1
+escena = 0
 
 path = os.path.dirname(os.path.abspath(__file__))
 tasks = tareas.Tareas() 
@@ -63,6 +65,7 @@ def iniciar(*k, **kv):
     utils.hacer_flotante_la_ventana()
     utils.centrar_la_ventana(app)
     camara = Camara(app)
+    escenas.Normal()
 
 
 def ejecutar():
@@ -75,14 +78,12 @@ def ejecutar():
 
     event = sf.Event()
     clock = sf.Clock()
-    bg_color = sf.Color(200, 200, 200)
 
     while True:
         time.sleep(0.01)
 
         tweener.update(16)
         tasks.update(app.GetFrameTime())
-        app.Clear(bg_color)
 
         # Emite el aviso de actualizacion a los receptores.
         control.actualizar()
@@ -112,10 +113,14 @@ def ejecutar():
             elif event.Type == sf.Event.MouseWheelMoved:
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 
+        # Dibuja la escena actual y a los actores
+        escena.dibujar(app)
+
         for actor in actores.todos:
             actor.update()
-            app.Draw(actor)
+            actor.dibujar(app)
 
+        # Muestra los cambios en pantalla.
         app.Display()
 
 
@@ -143,6 +148,7 @@ def interpolar(*values, **kv):
     return interpolaciones.Lineal(values, duration, delay)
 
 def ordenar_actores_por_valor_z():
+    "Define el orden de impresion en pantalla."
     actores.todos.sort()
 
 
@@ -153,14 +159,23 @@ def cargar_autocompletado():
 
     readline.parse_and_bind("tab: complete")
 
-def cargar_fondo(ruta):
-    """Define un fondo de pantalla a partir de una imagen.
 
-    El argumento ``ruta`` indica el archivo gráfico a utilizar.
-    """
-    fondo = actores.Actor(ruta)
-    fondo.z = 100
-    return fondo
+def definir_escena(escena_nueva):
+    "Cambia la escena actual y elimina a todos los actores de la pantalla."
+    global escena
+    eliminar_actores = False
+
+    if escena:
+        eliminar_actores = True
+
+    escena = escena_nueva
+
+    if eliminar_actores:
+        # Borra todos los actores de la escena.
+        a_eliminar = list(actores.todos)
+
+        for x in a_eliminar:
+            x.eliminar()
 
 
 # Detecta si la biblioteca se esta ejecutando

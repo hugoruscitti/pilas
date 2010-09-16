@@ -188,6 +188,9 @@ class Actor(sf.Sprite, BaseActor):
         top, bottom = self.y - h/2, self.y + h/2
         return left < x < right and top < y < bottom
 
+    def dibujar(self, aplicacion):
+        aplicacion.Draw(self)
+
 from mono import *
 from tortuga import *
 from texto import *

@@ -56,11 +56,12 @@ class Avanzar(Comportamiento):
         distancia_x = pilas.utils.distancia(self.receptor.x, self.to_x)
         distancia_y = pilas.utils.distancia(self.receptor.y, self.to_y)
 
-        velocidad = 10
+        velocidad = 5
 
         # Avanza en la direccion al punto destino y no lo sobrepasa.
         self.receptor.x += min(self.dx * velocidad, distancia_x)
         self.receptor.y += min(self.dy * velocidad, distancia_y)
+        self.receptor.ha_cambiado_posicion()
 
         # Termina el movimiento llega al punto destino.
         if distancia_x < 1 and distancia_y < 1:

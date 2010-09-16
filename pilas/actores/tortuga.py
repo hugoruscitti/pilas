@@ -35,12 +35,14 @@ class Tortuga(Actor):
         return x
 
     def set_x(self, x):
-        self.pizarra.dibujar_cuadrado(x, self.y, 12)
         pilas.actores.BaseActor.set_x(self, x)
 
     def set_y(self, y):
-        self.pizarra.dibujar_cuadrado(self.x, y, 12)
         pilas.actores.BaseActor.set_y(self, y)
 
     x = property(get_x, set_x, doc="Define la posición horizontal.")
     y = property(get_y, set_y, doc="Define la posición vertical.")
+
+
+    def ha_cambiado_posicion(self):
+        self.pizarra.dibujar_circulo(self.x, self.y)

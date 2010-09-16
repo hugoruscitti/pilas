@@ -49,3 +49,5 @@ class Texto(sf.String, BaseActor):
     magnitud = property(get_size, set_size, doc="El tamaño del texto.")
     color = property(get_color, set_color, doc="Color del texto.")
 
+    def dibujar(self, aplicacion):
+        aplicacion.Draw(self)

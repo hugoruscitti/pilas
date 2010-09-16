@@ -11,6 +11,11 @@ from PySFML import sf
 import pilas
 
 class Pizarra(Actor):
+    """Representa una superficie de dibujo inicialmente transparente.
+
+    Puedes pintar sobre esta pizarra usando métodos cómo ``dibujar_punto`` o 
+    ``dibujar_cuadrado``.
+    """
 
     def __init__(self):
         self.imagen = sf.Image(640, 480)
@@ -18,8 +23,25 @@ class Pizarra(Actor):
 
         Actor.__init__(self, self.imagen)
 
+        self.punto = pilas.imagenes.cargar("punto.png")
+
     def dibujar_punto(self, x, y, color=sf.Color.Red):
-        self.imagen.SetPixel(320 + x, 240 - y, color)
+        self.imagen.SetPixel(320 + int(x), 240 - int(y), color)
+        self.pintar(self.punto, 200, 200)
+
+    def pintar(self, imagen, x, y):
+        ancho = imagen.GetWidth()
+        alto = imagen.GetHeight()
+
+        centro_x = ancho / 2
+        centro_y = alto / 2
+
+        for dx in range(ancho):
+            for dy in range(alto):
+                pixel = imagen.GetPixel(0 + dx, 0 + dy)
+
+                self.imagen.SetPixel(int(320 + x + dx - centro_x), 
+                                     int(240 - y + dy - centro_y), pixel)
 
     def dibujar_cuadrado(self, x, y, ancho=8, color=sf.Color.Black):
         # Se asegura de tener todos los valores como numeros
@@ -39,3 +61,7 @@ class Pizarra(Actor):
         for i in range(inicio_x, fin_x):
             for j in range(inicio_y, fin_y):
                 self.dibujar_punto(i, j, color)
+    
+    def dibujar_circulo(self, x, y, color=sf.Color.Black):
+        "Dibuja un circulo muy pequeño."
+        self.pintar(self.punto, x, y)

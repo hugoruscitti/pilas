@@ -114,7 +114,7 @@ class TestSequenceFunctions(unittest.TestCase):
         grilla.avanzar()
 
     def testFondo(self):
-        grilla = pilas.cargar_fondo("volley.png")
+        grilla = pilas.escenas.Paisaje()
 
 
     def testControl(self):
