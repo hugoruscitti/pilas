@@ -88,6 +88,7 @@ class Grilla:
 
         sprite.SetImage(self.image)
         sprite.SetSubRect(self.sub_rect)
+        sprite.SetCenter(self.cuadro_ancho / 2, self.cuadro_alto / 2)
 
     def avanzar(self):
         ha_reiniciado = False
