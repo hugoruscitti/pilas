@@ -46,6 +46,7 @@ class BaseActor(object, Estudiante):
 
         # Define el nivel de lejania respecto del observador.
         self.z = 0
+        self._espejado = False
 
     def _set_central_axis(self):
         "Hace que el eje de posición del actor sea el centro de la imagen."
@@ -103,6 +104,15 @@ class BaseActor(object, Estudiante):
         else:
             self.SetRotation(x)
 
+    def get_espejado(self):
+        return self._espejado
+
+    def set_espejado(self, nuevo_valor):
+        if self._espejado != nuevo_valor:
+            self._espejado = nuevo_valor
+            self.FlipX(self._espejado)
+
+    espejado = property(get_espejado, set_espejado, doc="Indica si se tiene que invertir horizonaltamente la imagen del actor.")
     z = property(get_z, set_z, doc="Define lejania respecto del observador.")
     x = property(get_x, set_x, doc="Define la posición horizontal.")
     y = property(get_y, set_y, doc="Define la posición vertical.")
@@ -113,6 +123,7 @@ class BaseActor(object, Estudiante):
     def eliminar(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
         eliminar_un_actor(self)
+
 
     def update(self):
         "Actualiza el estado del actor. Este metodo se llama una vez por frame."
