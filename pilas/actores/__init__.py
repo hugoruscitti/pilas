@@ -170,9 +170,12 @@ class Actor(sf.Sprite, BaseActor):
     personaje de 1 a 5 en 7 segundos::
 
         protagonista.scale = pilas.interpolar(1, 5, 7)
+
+    Si creas un sprite sin indicar la imagen se cargará
+    una por defecto.
     """
 
-    def __init__(self, image):
+    def __init__(self, image="sin_imagen.png"):
 
         if isinstance(image, str):
             image = pilas.imagenes.cargar(image)
@@ -198,3 +201,4 @@ from ejes import *
 from pingu import Pingu
 from mapa import Mapa
 from pizarra import Pizarra
+from animacion import Animacion
