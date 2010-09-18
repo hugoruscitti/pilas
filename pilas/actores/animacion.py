@@ -9,6 +9,7 @@
 import pilas
 from pilas.actores import Actor
 from pilas.comportamientos import Comportamiento
+import copy
 
 VELOCIDAD = 4
 
@@ -23,7 +24,7 @@ class Animacion(Actor):
 
     def __init__(self, grilla):
         Actor.__init__(self)
-        self.animacion = grilla
+        self.animacion = copy.copy(grilla)
         self.definir_cuadro(0)
         self.tick = 0
 
