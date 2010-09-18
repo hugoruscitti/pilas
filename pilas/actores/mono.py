@@ -37,13 +37,14 @@ class Mono(Actor):
         self.SetImage(self.image_smile)
         # Luego de un segundo regresa a la normalidad
         pilas.agregar_tarea(0.5, self.normal)
-        self.sound_smile.Play()
+        self.sound_smile.reproducir()
 
     def grita(self):
         self.SetImage(self.image_shout)
         # Luego de un segundo regresa a la normalidad
         pilas.agregar_tarea(1, self.normal)
-        self.sound_shout.Play()
+        self.sound_shout.reproducir()
+
 
     def normal(self):
         self.SetImage(self.image_normal)
