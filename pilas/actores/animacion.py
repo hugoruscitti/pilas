@@ -12,6 +12,7 @@ from pilas.comportamientos import Comportamiento
 
 VELOCIDAD = 4
 
+
 class Animacion(Actor):
     """Representa una animacion de una grilla de imagenes.
 
