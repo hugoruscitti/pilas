@@ -37,6 +37,7 @@ import comportamientos
 import escenas
 from control import Control
 from camara import Camara
+import copy
 
 
 tweener = pytweener.Tweener()
@@ -114,10 +115,15 @@ def ejecutar():
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 
         # Dibuja la escena actual y a los actores
+        escena.actualizar()
         escena.dibujar(app)
 
         for actor in actores.todos:
-            actor.update()
+            actor.actualizar()
+
+        # Separo el dibujado de los actores porque la lista puede cambiar
+        # dutante la actualizacion de actores (por ejemplo si uno se elimina).
+        for actor in actores.todos:
             actor.dibujar(app)
 
         # Muestra los cambios en pantalla.
@@ -135,17 +141,27 @@ def ejecutar_en_segundo_plano():
 def interpolar(*values, **kv):
     "Retorna un objeto de interlacion que se puede asignar a una propiedad."
 
-    if 'duration' in kv:
-        duration = kv.pop('duration')
+    if 'duracion' in kv:
+        duration = kv.pop('duracion')
     else:
         duration = 5
 
-    if 'delay' in kv:
-        delay = kv.pop('delay')
+    if 'demora' in kv:
+        delay = kv.pop('demora')
     else:
         delay = 0
 
-    return interpolaciones.Lineal(values, duration, delay)
+    if 'tipo' in kv:
+        tipo = kv.pop('tipo')
+    else:
+        tipo = 'lineal'
+
+    if tipo == 'lineal':
+        clase = interpolaciones.Lineal
+    else:
+        raise ValueError("El tipo de interpolacion %s es invalido" %(tipo))
+
+    return clase(values, duration, delay)
 
 def ordenar_actores_por_valor_z():
     "Define el orden de impresion en pantalla."

@@ -4,7 +4,7 @@ Interpolaciones
 Las interpolaciones nos pemiten lograr movimientos
 de los actores de manera sencilla.
 
-Por ejemplo, traducionalmente si quisieramos cambiar
+Por ejemplo, tradicionalmente si quisieramos cambiar
 posición de un actor en pantalla podemos usar estas
 sentencias::
 
@@ -20,11 +20,12 @@ pero es mas sencillo usar una interpolación::
 donde el valor inicial será la posición x del actor y el valor
 final será ``100``.
 
-La función ``interpolar`` también admite un parámetro llamado
-``duration`` que indica
-la cantidad de segundos que
-se tienen que utilizar para lograr la animación.
+La función ``interpolar`` también admite otros parámetros para
+ajustar la interpolacion a otras situaciones:
 
+- ``duracion``: los segundos que durara la interpolacion.
+- ``demora``: los segundos que tiene que esperar antes de iniciar la interpolacion.
+- ``tipo``: tipo de interpolaciones, que generalmente es 'lineal'.
 
 Girando un actor
 ----------------
@@ -33,7 +34,7 @@ Esta herramienta se puede aplicar a muchas situaciones distintas, por
 ejemplo si queremos hacer girar un personaje
 podemos hacer algo como::
 
-    actor.rotacion = pilas.interpolar(360, duration=5)
+    actor.rotacion = pilas.interpolar(360, duracion=5)
 
 con lo que estaríamos diciendo al personaje que dé un
 giro completo (de ``0`` a ``360`` grados) en ``5`` segundos.
@@ -49,7 +50,7 @@ De manera similar a lo que hicimos anteriormente, podemos
 aplicarla a la propiedad ``escala`` una nueva
 interpolación::
 
-    actor.escala = pilas.interpolar(2, duration=5)
+    actor.escala = pilas.interpolar(2, duracion=5)
 
 esto duplicará el tamaño del actor en ``5`` segundos.
 
@@ -60,7 +61,7 @@ Interpolaciones en cadena
 Si queremos que una interpolación pase por distintos
 valores podemos hacer algo como esto::
 
-    actor.x = pilas.interpolar(300, 0, 300, duration=3)
+    actor.x = pilas.interpolar(300, 0, 300, duracion=3)
 
 lo que llevará al actor de su posición ``x`` actual, a 300
 en un segundo, y luego a ``0`` en 1 segundo y por último

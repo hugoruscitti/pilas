@@ -19,14 +19,12 @@ class Pingu(Actor):
         imagen = pilas.imagenes.cargar('pingu.png')
         Actor.__init__(self, imagen)
         self.animacion = pilas.imagenes.Grilla("pingu.png", 10)
-        self.x = 200
         self.definir_cuadro(4)
         self.hacer(Esperando())
 
     def definir_cuadro(self, indice):
         self.animacion.definir_cuadro(indice)
         self.animacion.asignar(self)
-
 
 
 class Esperando(Comportamiento):
