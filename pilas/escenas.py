@@ -16,6 +16,9 @@ class Escena(Actor):
     def __init__(self):
         pilas.definir_escena(self)
 
+    def actualizar(self):
+        pass
+
 
 class Paisaje(Escena):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."
