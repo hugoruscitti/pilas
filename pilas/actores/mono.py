@@ -15,8 +15,8 @@ class Mono(Actor):
     Este personaje se usa como ejemplo básico de un actor. Sus
     métodos mas usados son:
 
-    - sonrie
-    - grita
+    - sonreir
+    - gritar
 
     El primero hace que el mono se ría y el segundo que grite.
     """
@@ -33,13 +33,13 @@ class Mono(Actor):
         # Inicializa el actor.
         Actor.__init__(self, self.image_normal)
 
-    def sonrie(self):
+    def sonreir(self):
         self.SetImage(self.image_smile)
         # Luego de un segundo regresa a la normalidad
         pilas.agregar_tarea(0.5, self.normal)
         self.sound_smile.reproducir()
 
-    def grita(self):
+    def gritar(self):
         self.SetImage(self.image_shout)
         # Luego de un segundo regresa a la normalidad
         pilas.agregar_tarea(1, self.normal)

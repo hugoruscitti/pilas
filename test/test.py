@@ -48,8 +48,8 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(mono.escala, 5)
 
         # Ejecuta mas metodos del mono.
-        mono.sonrie()
-        mono.grita()
+        mono.sonreir()
+        mono.gritar()
 
         # Verifica que el personaje se pueda matar.
         mono.eliminar()
