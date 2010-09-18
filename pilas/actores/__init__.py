@@ -125,7 +125,7 @@ class BaseActor(object, Estudiante):
         eliminar_un_actor(self)
 
 
-    def update(self):
+    def actualizar(self):
         "Actualiza el estado del actor. Este metodo se llama una vez por frame."
 
         if self.comportamiento:
@@ -204,6 +204,15 @@ class Actor(sf.Sprite, BaseActor):
 
     def dibujar(self, aplicacion):
         aplicacion.Draw(self)
+
+    def duplicar(self, **kv):
+        duplicado = self.__class__()
+
+        for clave in kv:
+            setattr(duplicado, clave, kv[clave])
+
+        return duplicado
+
 
 from mono import *
 from tortuga import *

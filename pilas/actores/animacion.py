@@ -33,7 +33,7 @@ class Animacion(Actor):
         self.animacion.asignar(self)
 
 
-    def update(self):
+    def actualizar(self):
         if self.tick > VELOCIDAD:
             self.tick = 0
             ha_reiniciado = self.animacion.avanzar()
