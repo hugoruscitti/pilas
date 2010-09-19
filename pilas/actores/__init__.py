@@ -11,15 +11,16 @@ import pilas
 from PySFML import sf
 import math
 
-
 todos = []
 
+def ordenar_actores_por_valor_z():
+    "Ordena todos los actores para que se impriman con 'z' como criterio de orden."
+    todos.sort()
 
 def insertar_como_nuevo_actor(actor):
     "Coloca a un actor en la lista de actores a imprimir en pantalla."
     todos.append(actor)
     
-
 def eliminar_un_actor(actor):
     todos.remove(actor)
 
@@ -77,7 +78,7 @@ class BaseActor(object, Estudiante):
         else:
             self._z = z
 
-        pilas.ordenar_actores_por_valor_z()
+        ordenar_actores_por_valor_z()
 
     def set_y(self, y):
         if pilas.utils.es_interpolacion(y):
