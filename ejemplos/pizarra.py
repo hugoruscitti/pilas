@@ -9,4 +9,5 @@ def dibujar_en_la_pizarra(sender, x, y, signal):
 
 pilas.eventos.mueve_mouse.connect(dibujar_en_la_pizarra)
 
+pilas.avisar("Usa el mouse para dibujar.")
 pilas.ejecutar()

@@ -11,4 +11,5 @@ mono2.z = 100
 
 mono1.aprender(pilas.habilidades.Arrastrable)
 
+pilas.avisar("Hay dos actores, uno se puede arrastrar con el mouse.")
 pilas.ejecutar()

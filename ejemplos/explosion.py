@@ -10,4 +10,5 @@ def crear_explosion(sender, x, y, button, signal):
 
 
 pilas.eventos.click_de_mouse.connect(crear_explosion)
+pilas.avisar("Pulse el boton de mouse para crear explosiones.")
 pilas.ejecutar()

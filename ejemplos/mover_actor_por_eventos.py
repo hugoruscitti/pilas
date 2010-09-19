@@ -8,4 +8,5 @@ def mover_al_mono(sender, x, y, signal):
 
 pilas.eventos.mueve_mouse.connect(mover_al_mono)
 
+pilas.avisar("Moviendo un actor en base a la posicion del mouse.")
 pilas.ejecutar()

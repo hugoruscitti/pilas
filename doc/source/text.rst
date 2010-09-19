@@ -96,4 +96,3 @@ de la pantalla.
 
 Esto te facilitará mucho el código en los programas
 pequeños como demostraciones o ejemplos.
-

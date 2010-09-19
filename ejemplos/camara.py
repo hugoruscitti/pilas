@@ -8,4 +8,5 @@ tortuga.avanzar(100)
 
 pilas.camara.x = pilas.interpolar(200, 0)
 
+pilas.avisar("Moviendo la camara...")
 pilas.ejecutar()

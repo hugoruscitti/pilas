@@ -10,4 +10,5 @@ def girar():
 
 pilas.agregar_tarea(0, girar)
 
+pilas.avisar("Creando una tarea interminable de girar...")
 pilas.ejecutar()
