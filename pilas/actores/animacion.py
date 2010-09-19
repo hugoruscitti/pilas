@@ -22,11 +22,12 @@ class Animacion(Actor):
     la animacion termina se elimina a si mismo.
     """
 
-    def __init__(self, grilla):
+    def __init__(self, grilla, ciclica=False):
         Actor.__init__(self)
         self.animacion = copy.copy(grilla)
         self.definir_cuadro(0)
         self.tick = 0
+        self.ciclica = ciclica     # Indica si la animacion debe seguir existiendo.
 
     def definir_cuadro(self, indice):
         self.animacion.definir_cuadro(indice)
@@ -40,7 +41,7 @@ class Animacion(Actor):
             self.animacion.asignar(self)
 
             # Si la animacion ha terminado se elimina de la pantalla.
-            if ha_reiniciado:
+            if ha_reiniciado and not self.ciclica:
                 self.eliminar()
         else:
 
