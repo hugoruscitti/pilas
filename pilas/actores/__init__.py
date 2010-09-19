@@ -53,6 +53,7 @@ class BaseActor(object, Estudiante):
         # Define el nivel de lejania respecto del observador.
         self.z = 0
         self._espejado = False
+        self.radio_de_colision = 10
 
     def _set_central_axis(self):
         "Hace que el eje de posición del actor sea el centro de la imagen."
