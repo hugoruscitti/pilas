@@ -5,7 +5,6 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-
 import os
 import interpolaciones
 import pilas
@@ -13,6 +12,14 @@ from PySFML import sf
 import sys
 import subprocess
 import math
+
+
+def cargar_autocompletado():
+    "Carga los modulos de python para autocompletar desde la consola interactiva."
+    import rlcompleter
+    import readline
+
+    readline.parse_and_bind("tab: complete")
 
 def hacer_flotante_la_ventana():
     "Hace flotante la ventana para i3 (el manejador de ventanas que utiliza hugo...)"

@@ -15,7 +15,6 @@ Este es el módulo principal de pilas. Desde aquí
 puedes acceder a toda la funcionalidad del motor.
 
 """
-
 import os
 import sys
 import time
@@ -38,6 +37,7 @@ import escenas
 from control import Control
 from camara import Camara
 import copy
+import pilas.utils
 
 
 tweener = pytweener.Tweener()
@@ -168,13 +168,6 @@ def ordenar_actores_por_valor_z():
     actores.todos.sort()
 
 
-def cargar_autocompletado():
-    "Carga los modulos de python para autocompletar desde la consola interactiva."
-    import rlcompleter
-    import readline
-
-    readline.parse_and_bind("tab: complete")
-
 def avisar(mensaje):
     texto = actores.Texto(mensaje)
     texto.magnitud = 22
@@ -207,7 +200,7 @@ def definir_escena(escena_nueva):
 # tiene el contexto opengl.
 
 if utils.esta_en_sesion_interactiva():
-    cargar_autocompletado()
+    pilas.utils.cargar_autocompletado()
     ejecutar_en_segundo_plano()
 else:
     pass
