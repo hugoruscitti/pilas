@@ -214,8 +214,8 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         color_borde = sf.Color(100, 100, 100, 100)
 
         for actor in actores.todos:
-            # Pinta el punto de control.
-            self.pintar_radio_de_colision_del_actor(actor, color_de_colision, color_borde)
+            if actor.radio_de_colision:
+                self.pintar_radio_de_colision_del_actor(actor, color_de_colision, color_borde)
             self.pintar_punto_de_control_del_actor(actor, color_de_punto_de_control, color_borde)
 
     def pintar_radio_de_colision_del_actor(self, actor, color, color_borde):
@@ -227,7 +227,8 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         self.mundo.ventana.Draw(circulo)
 
     def pintar_punto_de_control_del_actor(self, actor, color, borde):
-        circulo = sf.Shape.Circle(actor.x - 2, -actor.y - 2, 4, color, 2, borde)
+        circulo = sf.Shape.Circle(0, 0, 3, color)
+        circulo.SetPosition(actor.x, -actor.y)
         self.mundo.ventana.Draw(circulo)
 
     def procesar_evento_teclado(self, event):
