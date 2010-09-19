@@ -28,8 +28,9 @@ class Mundo:
     Mundo tiene como responsabilidad iniciar los componentes del
     motor y mantener el bucle de juego.
 
-    Este objeto tiene modos de ejecución que varían segun los objetos
-    estado que se le vinculen, por ejemplo "ModoDepuracion", "ModoNormal" etc...
+    Este objeto delega en otros el modo de ejecucion en un momento dado, 
+    por ejemplo cuando inicia se usa el "ModoEjecucionNormal" y cuando el usuario
+    pulsa F12 este modo cambia por "ModoEjecucionNormal".
     """
 
     def __init__(self):
@@ -48,6 +49,16 @@ class Mundo:
         self.tweener = pytweener.Tweener()
         self.tasks = tareas.Tareas() 
 
+        self.modo_ejecucion = None
+        self.definir_modo_ejecucion(ModoEjecucionNormal(self))
+
+    def definir_modo_ejecucion(self, nuevo_modo):
+        if self.modo_ejecucion:
+            self.modo_ejecucion.salir()
+
+        self.modo_ejecucion = nuevo_modo
+
+
     def ejecutar_bucle_principal(self):
         "Mantiene en funcionamiento el motor completo."
 
@@ -58,58 +69,24 @@ class Mundo:
 
             # Mantiene el control de tiempo y lo reporta al sistema
             # de interpolaciones y tareas.
-            time.sleep(0.01)
-            self.tweener.update(16)
-            self.tasks.update(self.ventana.GetFrameTime())
+            self.modo_ejecucion.esperar()
+            self.modo_ejecucion.actualizar_simuladores()
 
             # Emite el aviso de actualizacion a los receptores.
-            self.control.actualizar()
-            eventos.actualizar.send("bucle", input=self.ventana.GetInput())
+            self.modo_ejecucion.emitir_evento_actualizar()
 
             # Procesa todos los eventos.
-            self.procesar_y_emitir_eventos(event)
+            self.modo_ejecucion.procesar_y_emitir_eventos(event)
 
             # Dibuja la escena actual y a los actores
             self.escena_actual.actualizar()
             self.escena_actual.dibujar(self.ventana)
 
-            for actor in actores.todos:
-                actor.actualizar()
-
-            # Separo el dibujado de los actores porque la lista puede cambiar
-            # dutante la actualizacion de actores (por ejemplo si uno se elimina).
-            for actor in actores.todos:
-                actor.dibujar(self.ventana)
+            self.modo_ejecucion.actualizar_actores()
+            self.modo_ejecucion.dibujar_actores()
 
             # Muestra los cambios en pantalla.
             self.ventana.Display()
-
-    def procesar_y_emitir_eventos(self, event):
-        "Procesa todos los eventos que la biblioteca SFML pone en una cola."
-
-        while self.ventana.GetEvent(event):
-            if event.Type == sf.Event.KeyPressed:
-                eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
-
-                if event.Key.Code == sf.Key.Q:
-                    self.ventana.Close()
-                    sys.exit(0)
-                elif event.Key.Code == sf.Key.F12:
-                    ventana.alternar_modo_depuracion()
-
-            elif event.Type == sf.Event.MouseMoved:
-                # Notifica el movimiento del mouse con una señal
-                x, y = self.ventana.ConvertCoords(event.MouseMove.X, event.MouseMove.Y)
-                eventos.mueve_mouse.send("ejecutar", x=x, y=-y)
-            elif event.Type == sf.Event.MouseButtonPressed:
-                x, y = self.ventana.ConvertCoords(event.MouseButton.X, event.MouseButton.Y)
-                eventos.click_de_mouse.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
-            elif event.Type == sf.Event.MouseButtonReleased:
-                x, y = self.ventana.ConvertCoords(event.MouseButton.X, event.MouseMove.Y)
-                eventos.termina_click.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
-            elif event.Type == sf.Event.MouseWheelMoved:
-                eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
-
 
     def definir_escena(self, escena_nueva):
         "Cambia la escena que se muestra en pantalla"
@@ -126,3 +103,144 @@ class Mundo:
 
     def agregar_tarea(self, time_out, function, *params): 
         self.tasks.agregar(time_out, function, params)
+
+
+class ModoEjecucion:
+
+    def __init__(self, mundo):
+        self.mundo = mundo
+
+
+class ModoEjecucionNormal(ModoEjecucion):
+
+    def esperar(self):
+        time.sleep(0.01)
+
+    def actualizar_simuladores(self):
+        self.mundo.tweener.update(16)
+        self.mundo.tasks.update(self.mundo.ventana.GetFrameTime())
+
+    def actualizar_actores(self):
+        for actor in actores.todos:
+            actor.actualizar()
+
+    def dibujar_actores(self):
+        # Separo el dibujado de los actores porque la lista puede cambiar
+        # dutante la actualizacion de actores (por ejemplo si uno se elimina).
+        for actor in actores.todos:
+            actor.dibujar(self.mundo.ventana)
+
+    def emitir_evento_actualizar(self):
+        self.mundo.control.actualizar()
+        eventos.actualizar.send("bucle", input=self.mundo.ventana.GetInput())
+
+    def salir(self):
+        pass
+
+    def procesar_y_emitir_eventos(self, event):
+        "Procesa todos los eventos que la biblioteca SFML pone en una cola."
+
+        while self.mundo.ventana.GetEvent(event):
+            if event.Type == sf.Event.KeyPressed:
+                self.procesar_evento_teclado(event)
+
+                if event.Key.Code == sf.Key.Q:
+                    self.mundo.ventana.Close()
+                    sys.exit(0)
+
+            elif event.Type == sf.Event.MouseMoved:
+                # Notifica el movimiento del mouse con una señal
+                x, y = self.mundo.ventana.ConvertCoords(event.MouseMove.X, event.MouseMove.Y)
+                eventos.mueve_mouse.send("ejecutar", x=x, y=-y)
+            elif event.Type == sf.Event.MouseButtonPressed:
+                x, y = self.mundo.ventana.ConvertCoords(event.MouseButton.X, event.MouseButton.Y)
+                eventos.click_de_mouse.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
+            elif event.Type == sf.Event.MouseButtonReleased:
+                x, y = self.mundo.ventana.ConvertCoords(event.MouseButton.X, event.MouseMove.Y)
+                eventos.termina_click.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
+            elif event.Type == sf.Event.MouseWheelMoved:
+                eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
+
+    def procesar_evento_teclado(self, event):
+        eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
+
+        if event.Key.Code == sf.Key.P:
+            self.mundo.definir_modo_ejecucion(ModoEjecucionPausado(self.mundo))
+        elif event.Key.Code == sf.Key.F12:
+            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self.mundo))
+
+
+class ModoEjecucionPausado(ModoEjecucionNormal):
+
+    def __init__(self, m):
+        ModoEjecucionNormal.__init__(self, m)
+        self.icono = actores.Actor("icono_pausa.png")
+        self.icono.z = -100
+
+    def actualizar_simuladores(self):
+        pass
+
+    def actualizar_actores(self):
+        pass
+
+    def emitir_evento_actualizar(self):
+        pass
+
+    def procesar_evento_teclado(self, event):
+        eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
+
+        if event.Key.Code == sf.Key.P:
+            self.mundo.definir_modo_ejecucion(ModoEjecucionNormal(self.mundo))
+        elif event.Key.Code == sf.Key.F12:
+            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
+
+    def salir(self):
+        self.icono.eliminar()
+
+class ModoEjecucionDepuracion(ModoEjecucionNormal):
+
+    def __init__(self, m):
+        ModoEjecucionNormal.__init__(self, m)
+        self.eje = actores.Ejes()
+
+    def salir(self):
+        self.eje.eliminar()
+
+    def dibujar_actores(self):
+        ModoEjecucionNormal.dibujar_actores(self)
+
+        for actor in actores.todos:
+            # Pinta el punto de control.
+            circulo = sf.Shape.Circle(actor.x - 2, -actor.y - 2, 4, sf.Color.Red, 1, sf.Color.Black)
+            self.mundo.ventana.Draw(circulo)
+
+    def procesar_evento_teclado(self, event):
+        eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
+
+        if event.Key.Code == sf.Key.F12:
+            self.mundo.definir_modo_ejecucion(ModoEjecucionNormal(self.mundo))
+        if event.Key.Code == sf.Key.P:
+            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
+
+
+    def salir(self):
+        self.eje.eliminar()
+
+class ModoEjecucionDepuracionPausado(ModoEjecucionPausado, ModoEjecucionDepuracion):
+
+    def __init__(self, m):
+        ModoEjecucionPausado.__init__(self, m)
+        ModoEjecucionDepuracion.__init__(self, m)
+
+    def procesar_evento_teclado(self, event):
+        if event.Key.Code == sf.Key.F12:
+            self.mundo.definir_modo_ejecucion(ModoEjecucionPausado(self.mundo))
+        if event.Key.Code == sf.Key.P:
+            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self.mundo))
+
+    def dibujar_actores(self):
+        ModoEjecucionDepuracion.dibujar_actores(self)
+
+    def salir(self):
+        ModoEjecucionPausado.salir(self)
+        ModoEjecucionDepuracion.salir(self)

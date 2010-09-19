@@ -20,16 +20,3 @@ def iniciar(ancho=640, alto=480, titulo="Pilas"):
     view.SetCenter(0, 0)
 
     return ventana
-
-
-def alternar_modo_depuracion():
-    "Inicia o termina el modo depuracion que generalmente se invoca con la tecla F12."
-    global modo_depuracion
-    global eje_coordenadas
-
-    if modo_depuracion:
-        modo_depuracion = False
-        eje_coordenadas.eliminar()
-    else:
-        modo_depuracion = True
-        eje_coordenadas = actores.Ejes()
