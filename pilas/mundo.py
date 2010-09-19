@@ -18,6 +18,8 @@ import camara
 import escenas
 import utils
 import eventos
+import tareas
+import pytweener
 
 
 class Mundo:
@@ -47,6 +49,8 @@ class Mundo:
 
         event = sf.Event()
         clock = sf.Clock()
+        tweener = pytweener.Tweener()
+        tasks = tareas.Tareas() 
 
         while True:
 
@@ -117,3 +121,6 @@ class Mundo:
 
         if eliminar_actores:
             actores.eliminar_a_todos()
+
+    def agregar_tarea(time_out, function, *params): 
+        self.tasks.agregar(time_out, function, params)

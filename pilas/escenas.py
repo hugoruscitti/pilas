@@ -14,7 +14,7 @@ class Escena(Actor):
     "Escena abstracta."
 
     def __init__(self):
-        pilas.definir_escena(self)
+        pilas.mundo.definir_escena(self)
 
     def actualizar(self):
         pass
