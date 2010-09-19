@@ -77,7 +77,7 @@ class Lineal(Interpolacion):
         # Le indica al objeto que tiene que hacer para cumplir
         # con cada paso de la interpolacion.
         for index, value in enumerate(self.values):
-            pilas.tweener.addTweenNoArgs(target, function=function, 
+            pilas.mundo.tweener.addTweenNoArgs(target, function=function, 
                     initial_value=fist_value,
                     value=value, 
                     tweenDelay=self.delay * 1000.0 + (index * step),

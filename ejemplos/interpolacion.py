@@ -1,5 +1,6 @@
 import pilas
 
+pilas.iniciar()
 mono = pilas.actores.Mono()
 mono.x = 0
 mono.y = 0
