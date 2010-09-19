@@ -14,6 +14,9 @@ import subprocess
 import math
 
 
+PATH = os.path.dirname(os.path.abspath(__file__))
+
+
 def cargar_autocompletado():
     "Carga los modulos de python para autocompletar desde la consola interactiva."
     import rlcompleter
@@ -57,7 +60,7 @@ def obtener_ruta_al_recurso(ruta):
     función intentará dar con el archivo en cuestión.
     """
 
-    dirs = ['./', os.path.dirname(sys.argv[0]), 'data', pilas.path, pilas.path + '/data']
+    dirs = ['./', os.path.dirname(sys.argv[0]), 'data', PATH, PATH + '/data']
 
     for x in dirs:
         full_path = os.path.join(x, ruta)
