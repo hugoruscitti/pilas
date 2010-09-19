@@ -41,9 +41,13 @@ import pilas.utils
 from mundo import Mundo
 
 
+# Inicialmente comienza sin un mundo esperando a que se inicialice.
+mundo = None
+
+
+
 tweener = pytweener.Tweener()
 
-app = 1
 event = 1
 clock = 1
 control = 1
@@ -57,78 +61,20 @@ def agregar_tarea(time_out, function, *params):
     tasks.agregar(time_out, function, params)
 
 
-def iniciar(*k, **kv):
-    global app
-    global control
-    global camara
-
-    app = ventana.iniciar()
-    control = Control(app.GetInput())
-    utils.hacer_flotante_la_ventana()
-    utils.centrar_la_ventana(app)
-    camara = Camara(app)
+def iniciar():
+    global mundo
+    mundo = Mundo()
     escenas.Normal()
 
 
 def ejecutar():
     "Pone en funcionamiento el ejecutar principal."
-    global app
+    global mundo
 
-    if app == 1:
-        print "Cuidado, no has llamado a pilas.iniciar(). Asi que se ejecutara sola..."
+    if not mundo:
         iniciar()
 
-    event = sf.Event()
-    clock = sf.Clock()
-
-    while True:
-        time.sleep(0.01)
-
-        tweener.update(16)
-        tasks.update(app.GetFrameTime())
-
-        # Emite el aviso de actualizacion a los receptores.
-        control.actualizar()
-        eventos.actualizar.send("bucle", input=app.GetInput())
-
-        # Procesa todos los eventos.
-        while app.GetEvent(event):
-            if event.Type == sf.Event.KeyPressed:
-                eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
-
-                if event.Key.Code == sf.Key.Q:
-                    app.Close()
-                    sys.exit(0)
-                elif event.Key.Code == sf.Key.F12:
-                    ventana.alternar_modo_depuracion()
-                        
-            elif event.Type == sf.Event.MouseMoved:
-                # Notifica el movimiento del mouse con una señal
-                x, y = app.ConvertCoords(event.MouseMove.X, event.MouseMove.Y)
-                eventos.mueve_mouse.send("ejecutar", x=x, y=-y)
-            elif event.Type == sf.Event.MouseButtonPressed:
-                x, y = app.ConvertCoords(event.MouseButton.X, event.MouseButton.Y)
-                eventos.click_de_mouse.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
-            elif event.Type == sf.Event.MouseButtonReleased:
-                x, y = app.ConvertCoords(event.MouseButton.X, event.MouseMove.Y)
-                eventos.termina_click.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
-            elif event.Type == sf.Event.MouseWheelMoved:
-                eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
-
-        # Dibuja la escena actual y a los actores
-        escena.actualizar()
-        escena.dibujar(app)
-
-        for actor in actores.todos:
-            actor.actualizar()
-
-        # Separo el dibujado de los actores porque la lista puede cambiar
-        # dutante la actualizacion de actores (por ejemplo si uno se elimina).
-        for actor in actores.todos:
-            actor.dibujar(app)
-
-        # Muestra los cambios en pantalla.
-        app.Display()
+    mundo.ejecutar_bucle_principal()
 
 
 def ejecutar_en_segundo_plano():
@@ -177,20 +123,8 @@ def avisar(mensaje):
 
 def definir_escena(escena_nueva):
     "Cambia la escena actual y elimina a todos los actores de la pantalla."
-    global escena
-    eliminar_actores = False
-
-    if escena:
-        eliminar_actores = True
-
-    escena = escena_nueva
-
-    if eliminar_actores:
-        # Borra todos los actores de la escena.
-        a_eliminar = list(actores.todos)
-
-        for x in a_eliminar:
-            x.eliminar()
+    global mundo
+    mundo.definir_escena(escena_nueva)
 
 
 # Detecta si la biblioteca se esta ejecutando

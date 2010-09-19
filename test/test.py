@@ -10,11 +10,8 @@ class TestSequenceFunctions(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_window_creation(self):
-        self.assertFalse(pilas.app is None)
-
-    def testVersion(self):
-        pass
+    def testMundo(self):
+        self.assertTrue(pilas.mundo)
 
     def test_monkey_attributes(self):
         mono = pilas.actores.Mono()
@@ -118,7 +115,7 @@ class TestSequenceFunctions(unittest.TestCase):
 
 
     def testControl(self):
-        control = pilas.control
+        control = pilas.mundo.control
 
         self.assertFalse(control.izquierda)
         self.assertFalse(control.derecha)
