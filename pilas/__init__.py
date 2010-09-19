@@ -175,6 +175,11 @@ def cargar_autocompletado():
 
     readline.parse_and_bind("tab: complete")
 
+def avisar(mensaje):
+    texto = actores.Texto(mensaje)
+    texto.magnitud = 22
+    texto.izquierda = -320
+    texto.abajo = -240
 
 def definir_escena(escena_nueva):
     "Cambia la escena actual y elimina a todos los actores de la pantalla."

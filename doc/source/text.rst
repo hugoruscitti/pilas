@@ -76,3 +76,24 @@ texto podría escribir algo así:
     texto.color = (255, 0, 0, 128)   # Color rojo, semi transparente.
     texto.texto = "Hola, este texto \n tiene 2 lineas separadas"
 
+
+
+Mostrando mensajes en pantalla
+------------------------------
+
+
+Si bien podemos crear actores ``Texto`` y manipularlos como
+quedarmos, hay una forma aún mas sencilla de imprimir mensajes
+para los usuarios.
+
+Existe una función llamada ``avisar`` que nos permite mostrar
+en pantalla un texto pequeño en la esquina izquierda inferior
+de la pantalla.
+
+.. code-block:: python
+
+    pilas.avisar("Hola, esto es un mensaje.")
+
+Esto te facilitará mucho el código en los programas
+pequeños como demostraciones o ejemplos.
+

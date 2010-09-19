@@ -154,6 +154,30 @@ class BaseActor(object, Estudiante):
         comportamiento.iniciar(self)
         self.comportamiento = comportamiento
 
+    def get_izquierda(self):
+        rect = self.GetRect()
+        size = (rect.GetWidth(), rect.GetHeight())
+        return self.x - size[0]/2
+
+    def set_izquierda(self, x):
+        rect = self.GetRect()
+        size = (rect.GetWidth(), rect.GetHeight())
+        self.x = x + size[0]/2
+
+    izquierda = property(get_izquierda, set_izquierda)
+
+    def get_abajo(self):
+        rect = self.GetRect()
+        size = (rect.GetWidth(), rect.GetHeight())
+        return self.x - size[1]/2
+
+    def set_abajo(self, y):
+        rect = self.GetRect()
+        size = (rect.GetWidth(), rect.GetHeight())
+        self.y = y + size[1]/2
+
+    abajo = property(get_abajo, set_abajo)
+
 class Actor(sf.Sprite, BaseActor):
     """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 

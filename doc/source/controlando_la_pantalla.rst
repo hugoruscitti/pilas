@@ -50,3 +50,25 @@ de atributos ``z``:
 
 Ten en cuenta que inicialmente todos los actores
 tienen un atributo ``z=0``.
+
+
+Atributos de posición
+---------------------
+
+Todos los actores tienen atributos cómo:
+
+- ``x``
+- ``y``
+
+que sirven para cambiar la posición del actor dentro de la escena,
+incluso hay atributos que permite hacer lo mismo pero
+tomando como referencia alguno de los bordes del
+actores. Por ejemplo:
+
+- ``izquierda``
+- ``abajo``
+
+Ten en cuenta que estos valores indicarán la posición del
+actor dentro del escenario, no de la ventana. Esto significa que
+si cambias la posición de la cámara los actores seguirán estando
+en la misma posición pero se verán un poco corridos.

@@ -32,6 +32,7 @@ class Texto(sf.String, BaseActor):
 
     def set_size(self, size):
         self.SetSize(size)
+        self._set_central_axis()
 
     def _set_central_axis(self):
         rect = self.GetRect()
