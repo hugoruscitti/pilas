@@ -38,6 +38,7 @@ from control import Control
 from camara import Camara
 import copy
 import pilas.utils
+from mundo import Mundo
 
 
 tweener = pytweener.Tweener()
