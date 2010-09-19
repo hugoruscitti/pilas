@@ -36,13 +36,13 @@ class Mono(Actor):
     def sonreir(self):
         self.SetImage(self.image_smile)
         # Luego de un segundo regresa a la normalidad
-        pilas.agregar_tarea(0.5, self.normal)
+        pilas.mundo.agregar_tarea(0.5, self.normal)
         self.sound_smile.reproducir()
 
     def gritar(self):
         self.SetImage(self.image_shout)
         # Luego de un segundo regresa a la normalidad
-        pilas.agregar_tarea(1, self.normal)
+        pilas.mundo.agregar_tarea(1, self.normal)
         self.sound_shout.reproducir()
 
 

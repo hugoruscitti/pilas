@@ -68,8 +68,8 @@ class TestSequenceFunctions(unittest.TestCase):
         def none_3(a, b, c):
             pass
 
-        pilas.agregar_tarea(2, none)
-        pilas.agregar_tarea(2, none_3, (1, 2, 3))
+        pilas.mundo.agregar_tarea(2, none)
+        pilas.mundo.agregar_tarea(2, none_3, (1, 2, 3))
 
     def testInterpolation(self):
         a = pilas.interpolar(0, 100)

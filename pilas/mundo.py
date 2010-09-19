@@ -44,21 +44,23 @@ class Mundo:
 
         self.escena_actual = None
 
+        # Genera los administradores de tareas e interpolaciones.
+        self.tweener = pytweener.Tweener()
+        self.tasks = tareas.Tareas() 
+
     def ejecutar_bucle_principal(self):
         "Mantiene en funcionamiento el motor completo."
 
         event = sf.Event()
         clock = sf.Clock()
-        tweener = pytweener.Tweener()
-        tasks = tareas.Tareas() 
 
         while True:
 
             # Mantiene el control de tiempo y lo reporta al sistema
             # de interpolaciones y tareas.
             time.sleep(0.01)
-            #tweener.update(16)
-            #tasks.update(self.ventana.GetFrameTime())
+            self.tweener.update(16)
+            self.tasks.update(self.ventana.GetFrameTime())
 
             # Emite el aviso de actualizacion a los receptores.
             self.control.actualizar()
@@ -122,5 +124,5 @@ class Mundo:
         if eliminar_actores:
             actores.eliminar_a_todos()
 
-    def agregar_tarea(time_out, function, *params): 
+    def agregar_tarea(self, time_out, function, *params): 
         self.tasks.agregar(time_out, function, params)
