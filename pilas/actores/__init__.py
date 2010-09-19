@@ -253,3 +253,4 @@ from mapa import Mapa
 from pizarra import Pizarra
 from animacion import Animacion
 from explosion import Explosion
+from banana import Banana
