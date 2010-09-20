@@ -28,10 +28,12 @@ from camara import Camara
 import copy
 import pilas.utils
 from mundo import Mundo
+from colisiones import Colisiones
 
 
 # Inicialmente comienza sin un mundo esperando a que se inicialice.
 mundo = None
+colisiones = Colisiones()
 
 def iniciar():
     global mundo

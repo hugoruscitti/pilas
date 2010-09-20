@@ -20,6 +20,7 @@ import utils
 import eventos
 import tareas
 import pytweener
+import pilas
 
 
 class Mundo:
@@ -77,6 +78,9 @@ class Mundo:
 
             # Procesa todos los eventos.
             self.modo_ejecucion.procesar_y_emitir_eventos(event)
+
+            # Analiza colisiones entre los actores
+            self.modo_ejecucion.analizar_colisiones()
 
             # Dibuja la escena actual y a los actores
             self.escena_actual.actualizar()
@@ -169,6 +173,8 @@ class ModoEjecucionNormal(ModoEjecucion):
         elif event.Key.Code == sf.Key.F12:
             self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self.mundo))
 
+    def analizar_colisiones(self):
+        pilas.colisiones.verificar_colisiones()
 
 class ModoEjecucionPausado(ModoEjecucionNormal):
 
