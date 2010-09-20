@@ -16,6 +16,7 @@ Pilas engine - Documentación
     controles.rst
     escenas.rst
     dibujando_en_pantalla.rst
+    colisiones.rst
 
     signals.rst
     text.rst
