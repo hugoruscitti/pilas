@@ -13,7 +13,6 @@ class Colisiones:
     "Administra todas las colisiones entre actores."
 
     def __init__(self):
-        print "creando el sistema de colisiones"
         self.colisiones = []
 
     def verificar_colisiones(self):
