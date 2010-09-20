@@ -102,8 +102,6 @@ class TestSequenceFunctions(unittest.TestCase):
         ejes = pilas.actores.Ejes()
         self.assertTrue(ejes)
 
-    def testDepuracion(self):
-        pilas.ventana.alternar_modo_depuracion()
 
     def testGrilla(self):
         grilla = pilas.imagenes.Grilla("volley.png", 10, 10)
@@ -133,7 +131,10 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(10, pilas.utils.distancia(0, -10))
         self.assertEqual(10, pilas.utils.distancia(-10, 0))
 
+        self.assertEqual(0, pilas.utils.distancia_entre_dos_puntos((0, 0), (0, 0)))
+        self.assertEqual(10, pilas.utils.distancia_entre_dos_puntos((0, 0), (10, 0)))
         self.assertEqual(10, pilas.utils.distancia_entre_dos_puntos((0, 0), (0, 10)))
+        self.assertEqual(10, pilas.utils.distancia_entre_dos_puntos((10, 10), (0, 10)))
 
 if __name__ == '__main__':
     pilas.iniciar()

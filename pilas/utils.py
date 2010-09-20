@@ -87,4 +87,4 @@ def distancia(a, b):
 
 def distancia_entre_dos_puntos((x1, y1), (x2, y2)):
     "Retorna la distancia entre dos puntos en dos dimensiones."
-    return math.sqrt(distancia(x1, x2) ** 2 + distancia(y1, y2))
+    return math.sqrt(distancia(x1, x2) ** 2 + distancia(y1, y2) ** 2)
