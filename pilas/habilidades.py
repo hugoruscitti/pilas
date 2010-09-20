@@ -38,8 +38,8 @@ class SeguirClicks:
         pilas.eventos.click_de_mouse.connect(self.move_to_this_point)
 
     def move_to_this_point(self, sender, signal, x, y, button):
-        self.x = pilas.interpolar(x, duration=0.5)
-        self.y = pilas.interpolar(y, duration=0.5)
+        self.x = pilas.interpolar(x, duracion=0.5)
+        self.y = pilas.interpolar(y, duracion=0.5)
 
 
 class Arrastrable:
