@@ -84,3 +84,7 @@ def esta_en_sesion_interactiva():
 def distancia(a, b):
     "Retorna la distancia entre dos numeros."
     return abs(b - a)
+
+def distancia_entre_dos_puntos((x1, y1), (x2, y2)):
+    "Retorna la distancia entre dos puntos en dos dimensiones."
+    return math.sqrt(distancia(x1, x2) ** 2 + distancia(y1, y2))

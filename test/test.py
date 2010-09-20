@@ -127,6 +127,14 @@ class TestSequenceFunctions(unittest.TestCase):
         pizarra = pilas.actores.Pizarra()
         pizarra.dibujar_punto(20, 10)
 
+    def testDistancias(self):
+        self.assertEqual(0,  pilas.utils.distancia(0, 0))
+        self.assertEqual(10, pilas.utils.distancia(0, 10))
+        self.assertEqual(10, pilas.utils.distancia(0, -10))
+        self.assertEqual(10, pilas.utils.distancia(-10, 0))
+
+        self.assertEqual(10, pilas.utils.distancia_entre_dos_puntos((0, 0), (0, 10)))
+
 if __name__ == '__main__':
     pilas.iniciar()
     unittest.main()
