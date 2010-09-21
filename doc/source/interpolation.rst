@@ -61,10 +61,10 @@ Interpolaciones en cadena
 Si queremos que una interpolación pase por distintos
 valores podemos hacer algo como esto::
 
-    actor.x = pilas.interpolar(300, 0, 300, duracion=3)
+    actor.x = pilas.interpolar([300, 0, 300], duracion=3)
 
 lo que llevará al actor de su posición ``x`` actual, a 300
-en un segundo, y luego a ``0`` en 1 segundo y por último
+en un segundo, y luego a ``0`` en un segundo y por último
 de nuevo a ``300`` en un segundo.
 
 En total, ha consumido 3 segundos en pasar por todos los

@@ -21,6 +21,17 @@ pilas.egg-info/PKG-INFO
 pilas.egg-info/SOURCES.txt
 pilas.egg-info/dependency_links.txt
 pilas.egg-info/top_level.txt
+pilas/actores/__init__.py
+pilas/actores/animacion.py
+pilas/actores/banana.py
+pilas/actores/bomba.py
+pilas/actores/ejes.py
+pilas/actores/explosion.py
+pilas/actores/mono.py
+pilas/actores/pingu.py
+pilas/actores/pizarra.py
+pilas/actores/texto.py
+pilas/actores/tortuga.py
 pilas/data/banana.png
 pilas/data/bomba.png
 pilas/data/ejes.png
