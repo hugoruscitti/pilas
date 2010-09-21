@@ -3,6 +3,7 @@ README
 setup.py
 pilas/__init__.py
 pilas/camara.py
+pilas/colisiones.py
 pilas/comportamientos.py
 pilas/control.py
 pilas/escenas.py
@@ -30,8 +31,11 @@ pilas/data/explosion.wav
 pilas/data/icono_pausa.png
 pilas/data/mapa.png
 pilas/data/monkey_normal.png
+pilas/data/monkey_normal.png.orig
 pilas/data/monkey_shout.png
+pilas/data/monkey_shout.png.orig
 pilas/data/monkey_smile.png
+pilas/data/monkey_smile.png.orig
 pilas/data/pilas-logo.png
 pilas/data/pingu.png
 pilas/data/punto.png
