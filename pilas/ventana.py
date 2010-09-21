@@ -12,7 +12,7 @@ import actores
 modo_depuracion = False
 eje_coordenadas = None
 
-def iniciar(ancho=640, alto=480, titulo="Pilas"):
+def iniciar(ancho, alto, titulo):
     ventana = sf.RenderWindow(sf.VideoMode(ancho, alto), titulo)
 
     # Define que la coordenada (0, 0) sea el centro de la ventana.
@@ -20,3 +20,8 @@ def iniciar(ancho=640, alto=480, titulo="Pilas"):
     view.SetCenter(0, 0)
 
     return ventana
+
+def cambiar_escala(ventana, nueva_escala):
+    nuevo_ancho = ancho * nueva_escala
+    nuevo_alto = alto * nueva_escala
+    ventana.SetSize(int(nuevo_ancho), int(nuevo_alto))
