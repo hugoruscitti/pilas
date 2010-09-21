@@ -34,8 +34,11 @@ class Mundo:
     pulsa F12 este modo cambia por "ModoEjecucionNormal".
     """
 
-    def __init__(self):
-        self.ventana = ventana.iniciar()
+    def __init__(self, ancho=640, alto=480, titulo="Pilas"):
+        self.ventana = ventana.iniciar(ancho, alto, titulo)
+        ventana.ancho = ancho
+        ventana.alto = alto
+
         self.control = control.Control(self.ventana.GetInput())
 
         # todo: llevar a ventana.iniciar
@@ -59,6 +62,8 @@ class Mundo:
 
         self.modo_ejecucion = nuevo_modo
 
+    def definir_escala(self, escala):
+        ventana.cambiar_escala(self.ventana, escala)
 
     def ejecutar_bucle_principal(self):
         "Mantiene en funcionamiento el motor completo."
