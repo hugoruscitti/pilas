@@ -27,7 +27,7 @@ pilas.ejecutar()
 Uso básico de Actores
 ---------------------
 
-Los actores te permiten representar personajes facilmente y comenzar
+Los actores te permiten representar personajes fácilmente y comenzar
 rápidamente.
 
 Para crear un actor tienes que escribir algo cómo:
@@ -57,7 +57,7 @@ mensajes cómo:
 
     mono.sonreir()
 
-usa el comando ``help(mono)`` para concer mas de
+usa el comando ``help(mono)`` para conocer mas de
 este actor.
 
 
@@ -89,7 +89,7 @@ Para simular movimientos puedes usar la función ``interpolar``:
 
 pilas.interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal')
     busca todos los valores intermedios entre los valores que se le indican
-    como parametro y el atributo que recibirá modificaciones.
+    como parámetro y el atributo que recibirá modificaciones.
 
 Por ejemplo:
 
@@ -102,7 +102,7 @@ Habilidades
 -----------
 
 Las habilidades permite dotar a los actores de características
-que le permite interacturar con el usuario.
+que le permite interactuar con el usuario.
 
 Algunas habilidades son:
 
@@ -111,6 +111,38 @@ Algunas habilidades son:
 - SeguirClicks
 - Arrastrable
 - MoverseConElTeclado
+
+y se pueden anexar a los actores así:
+
+.. code-block:: python
+
+    mono.aprender(pilas.habilidades.Arrastrable)
+
+Colisiones
+----------
+
+Primero tienes que hacer la función de respuesta a la colisión:
+
+.. code-block:: python
+
+    def toca_bomba(mono, bomba):
+        mono.gritar()
+        bomba.explotar()
+
+y luego crear los actores en una lista y asociarlos al
+sistema de colisiones:
+
+.. code-block:: python
+
+    mono = pilas.actores.Mono()
+    bomba = pilas.actores.Bomba()
+    bomba2 = pilas.actores.Bomba()
+    bomba2.x = 200
+
+    bombas = [bomba, bomba2]
+
+    pilas.colisiones.agregar(mono, bombas, toca_bomba)
+
 
 Referencias
 -----------
