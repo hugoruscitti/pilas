@@ -32,6 +32,7 @@ class Mono(Actor):
 
         # Inicializa el actor.
         Actor.__init__(self, self.image_normal)
+        self.radio_de_colision = 50
 
     def sonreir(self):
         self.SetImage(self.image_smile)

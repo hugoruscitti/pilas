@@ -238,7 +238,7 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
             self.pintar_punto_de_control_del_actor(actor, color_de_punto_de_control, color_borde)
 
     def pintar_radio_de_colision_del_actor(self, actor, color, color_borde):
-        radio = actor.radio_de_colision + 20
+        radio = actor.radio_de_colision *2
         delta = radio / 2
         circulo = sf.Shape.Circle(0, 0, delta, color, 2, color_borde)
         circulo.SetCenter(0, 0)

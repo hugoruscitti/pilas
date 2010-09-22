@@ -13,6 +13,8 @@ import math
 
 todos = []
 
+RADIO_INICIAL = 10
+
 def ordenar_actores_por_valor_z():
     "Ordena todos los actores para que se impriman con 'z' como criterio de orden."
     todos.sort()
@@ -53,7 +55,7 @@ class BaseActor(object, Estudiante):
         # Define el nivel de lejania respecto del observador.
         self.z = 0
         self._espejado = False
-        self.radio_de_colision = 10
+        self.radio_de_colision = RADIO_INICIAL
 
     def _set_central_axis(self):
         "Hace que el eje de posición del actor sea el centro de la imagen."
@@ -96,6 +98,7 @@ class BaseActor(object, Estudiante):
             s.apply(self, function='set_scale')
         else:
             self.SetScale(s, s)
+            self.radio_de_colision = RADIO_INICIAL * s
 
     def get_scale(self):
         # se asume que la escala del personaje es la horizontal.

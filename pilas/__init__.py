@@ -29,6 +29,7 @@ import copy
 import pilas.utils
 from mundo import Mundo
 from colisiones import Colisiones
+import random
 
 
 # Inicialmente comienza sin un mundo esperando a que se inicialice.
@@ -101,6 +102,21 @@ def avisar(mensaje):
     texto.izquierda = -320
     texto.abajo = -240
 
+def fabricar(clase, cantidad=1):
+    "Genera muchas intancias de objetos asignando posiciones aleatorias."
+
+    objetos_creados = []
+
+    for x in range(cantidad):
+        x = random.randint(-300, 300)
+        y = random.randint(-200, 200)
+
+        nuevo = clase()
+        nuevo.x = x
+        nuevo.y = y
+        objetos_creados.append(nuevo)
+
+    return objetos_creados
 
 # Cuando inicia en modo interactivo se asegura
 # de crear la ventana dentro del mismo hilo que

@@ -1,7 +1,7 @@
 .. image::
     logo.png
     :align: left
-    :width: 8cm
+    :width: 7cm
 
 Guía de referencia
 ==================
@@ -23,6 +23,8 @@ pilas.terminar()
     para cerrar la ventana (su atajo es la tecla 'q')
 pilas.ejecutar()
     para poner en funcionamiento la biblioteca desde script.
+pilas.fabricar(clase, cantidad=1)
+    genera muchos objetos de una clase particular asignandolo una posicion aleatoria.
 
 Uso básico de Actores
 ---------------------
@@ -32,18 +34,14 @@ rápidamente.
 
 Para crear un actor tienes que escribir algo cómo:
 
+
 .. code-block:: python
 
     mono = pilas.actores.Mono()
 
-y cada actor tiene atributos cómo:
+y cada actor tiene atributos cómo: x, y, z, rotacion, escala.
 
-- x
-- y
-- rotacion
-- escala
-
-por ejemplo:
+Por ejemplo:
 
 .. code-block:: python
 
@@ -64,23 +62,16 @@ este actor.
 Otros actores
 -------------
 
-- Mono
-- Bomba
-- Tortuga
-- Banana
-- Pingu
+Mono, Bomba, Tortuga, Banana, Pingu, Animacion ... 
 
 Atajos de teclado
 -----------------
 
 La pantalla principal de pilas tiene algunos atajos útiles:
 
-F12
-    Habilita el modo depuración.
-P
-    Pone la simulación en pausa.
-Q
-    Cierra la ventana y termina el programa.
+    **F12**  Habilita el modo depuración.
+
+    **P**    Pone la simulación en pausa.
 
 Movimientos
 -----------
@@ -142,6 +133,7 @@ sistema de colisiones:
     bombas = [bomba, bomba2]
 
     pilas.colisiones.agregar(mono, bombas, toca_bomba)
+
 
 
 Referencias
