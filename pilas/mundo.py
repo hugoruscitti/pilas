@@ -34,7 +34,7 @@ class Mundo:
     pulsa F12 este modo cambia por "ModoEjecucionNormal".
     """
 
-    def __init__(self, ancho=640, alto=480, titulo="Pilas"):
+    def __init__(self, ancho, alto, titulo):
         self.ventana = ventana.iniciar(ancho, alto, titulo)
         ventana.ancho = ancho
         ventana.alto = alto
@@ -55,6 +55,7 @@ class Mundo:
 
         self.modo_ejecucion = None
         self.definir_modo_ejecucion(ModoEjecucionNormal(self))
+        self.salir = False
 
     def definir_modo_ejecucion(self, nuevo_modo):
         if self.modo_ejecucion:
@@ -65,13 +66,16 @@ class Mundo:
     def definir_escala(self, escala):
         ventana.cambiar_escala(self.ventana, escala)
 
+    def terminar(self):
+        self.salir = True
+
     def ejecutar_bucle_principal(self):
         "Mantiene en funcionamiento el motor completo."
 
         event = sf.Event()
         clock = sf.Clock()
 
-        while True:
+        while not self.salir:
 
             # Mantiene el control de tiempo y lo reporta al sistema
             # de interpolaciones y tareas.
@@ -96,6 +100,11 @@ class Mundo:
 
             # Muestra los cambios en pantalla.
             self.ventana.Display()
+        self._cerrar_ventana()
+
+    def _cerrar_ventana(self):
+        self.ventana.Close()
+        sys.exit(0)
 
     def definir_escena(self, escena_nueva):
         "Cambia la escena que se muestra en pantalla"
@@ -154,8 +163,7 @@ class ModoEjecucionNormal(ModoEjecucion):
                 self.procesar_evento_teclado(event)
 
                 if event.Key.Code == sf.Key.Q:
-                    self.mundo.ventana.Close()
-                    sys.exit(0)
+                    self.terminar()
 
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal

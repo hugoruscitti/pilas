@@ -35,11 +35,14 @@ from colisiones import Colisiones
 mundo = None
 colisiones = Colisiones()
 
-def iniciar():
+def iniciar(ancho=640, alto=480, titulo='Pilas'):
     global mundo
-    mundo = Mundo()
+    mundo = Mundo(ancho, alto, titulo)
     escenas.Normal()
 
+def terminar():
+    global mundo
+    mundo.terminar()
 
 def ejecutar():
     "Pone en funcionamiento el ejecutar principal."
