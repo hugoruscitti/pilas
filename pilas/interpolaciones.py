@@ -17,7 +17,7 @@ class Interpolacion:
     Todo objeto de interpolaciones se puede asignar directamente a
     una propiedad de un actor. Por ejemplo:
 
-        actor.rotation = pilas.interpolations.Linear(400)
+        actor.rotation = pilas.interpolations.Lineal(400)
 
     note que hay un atajo para usar estos objetos, es mejor
     utilizar directamente una sentencias como la que sigue::

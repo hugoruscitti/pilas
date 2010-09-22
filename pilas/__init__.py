@@ -108,5 +108,3 @@ def avisar(mensaje):
 if utils.esta_en_sesion_interactiva():
     pilas.utils.cargar_autocompletado()
     ejecutar_en_segundo_plano()
-else:
-    pass

@@ -163,7 +163,7 @@ class ModoEjecucionNormal(ModoEjecucion):
                 self.procesar_evento_teclado(event)
 
                 if event.Key.Code == sf.Key.Q:
-                    self.terminar()
+                    self.mundo.terminar()
 
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
