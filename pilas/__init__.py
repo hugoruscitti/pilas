@@ -16,7 +16,7 @@ import actores
 import imagenes
 import sonidos
 import utils
-import interpolaciones
+from interpolaciones import Lineal
 import dispatch
 import eventos
 import habilidades
@@ -79,7 +79,7 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
     """
 
     algoritmos = {
-            'lineal': interpolaciones.Lineal,
+            'lineal': Lineal,
             }
 
     if algoritmos.has_key('lineal'):
