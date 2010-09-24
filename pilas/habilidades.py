@@ -28,7 +28,7 @@ class AumentarConRueda:
         pilas.eventos.mueve_rueda.connect(self.scale_me)
 
     def scale_me(self, sender, delta, signal):
-        self.escala += (delta / 2.0)
+        self.escala += (delta / 4.0)
 
 
 class SeguirClicks:

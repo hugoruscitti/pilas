@@ -97,8 +97,18 @@ class BaseActor(object, Estudiante):
         if pilas.utils.es_interpolacion(s):
             s.apply(self, function='set_scale')
         else:
+            if s <= 0:
+                return
+
+            (ultima_escala, _) = self.GetScale()
+
+            # Se hace la siguiente regla de 3 simple:
+            #
+            #  ultima_escala          self.radio_de_colision
+            #  s                      ?
+
             self.SetScale(s, s)
-            self.radio_de_colision = RADIO_INICIAL * s
+            self.radio_de_colision = (s * self.radio_de_colision) / ultima_escala
 
     def get_scale(self):
         # se asume que la escala del personaje es la horizontal.
