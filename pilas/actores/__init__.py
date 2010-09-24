@@ -268,3 +268,4 @@ from animacion import Animacion
 from explosion import Explosion
 from banana import Banana
 from bomba import Bomba
+from moneda import Moneda
