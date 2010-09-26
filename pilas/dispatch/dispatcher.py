@@ -31,6 +31,9 @@ class Signal(object):
             providing_args = []
         self.providing_args = set(providing_args)
 
+    def conectar(self, receptor, emisor=None, weak=True, uid=None):
+        return self.connect(receptor, emisor, weak, uid)
+
     def connect(self, receiver, sender=None, weak=True, dispatch_uid=None):
         """
         Connect receiver to sender for signal.

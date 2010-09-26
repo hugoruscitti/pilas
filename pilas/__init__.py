@@ -12,6 +12,7 @@ import time
 
 from PySFML import sf
 
+import colores
 import actores
 import imagenes
 import sonidos

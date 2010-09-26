@@ -62,6 +62,7 @@ def obtener_ruta_al_recurso(ruta):
 
     dirs = ['./', os.path.dirname(sys.argv[0]), 'data', PATH, PATH + '/data']
 
+
     for x in dirs:
         full_path = os.path.join(x, ruta)
         #DEBUG: print "buscando en: '%s'" %(full_path)

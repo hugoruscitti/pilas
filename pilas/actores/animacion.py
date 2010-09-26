@@ -44,5 +44,4 @@ class Animacion(Actor):
             if ha_reiniciado and not self.ciclica:
                 self.eliminar()
         else:
-
             self.tick += 1

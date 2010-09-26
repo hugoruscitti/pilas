@@ -116,8 +116,6 @@ class Mundo:
 
         self.escena_actual = escena_nueva
 
-        if eliminar_actores:
-            actores.eliminar_a_todos()
 
     def agregar_tarea(self, time_out, function, *params): 
         self.tasks.agregar(time_out, function, params)

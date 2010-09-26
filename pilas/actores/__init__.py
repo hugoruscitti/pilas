@@ -37,7 +37,8 @@ class Estudiante:
     "Permite a distintos objetos acoplarse mediente mixins."
 
     def aprender(self, classname, *k, **w):
-        self.__class__.__bases__ += (classname,)
+        if not classname in self.__class__.__bases__:
+            self.__class__.__bases__ += (classname,)
         classname.__init__(self, *k, **w)
 
 

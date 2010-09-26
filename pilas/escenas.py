@@ -16,6 +16,9 @@ class Escena:
     def __init__(self):
         pilas.mundo.definir_escena(self)
 
+    def iniciar(self):
+        pass
+
     def actualizar(self):
         pass
 
@@ -36,7 +39,7 @@ class Normal(Escena):
 
     def __init__(self, color_de_fondo=None):
         Escena.__init__(self)
-        self.fondo = color_de_fondo or sf.Color(200, 200, 200)
+        self.fondo = color_de_fondo or pilas.colores.gris
 
     def dibujar(self, aplicacion):
         aplicacion.Clear(self.fondo)
