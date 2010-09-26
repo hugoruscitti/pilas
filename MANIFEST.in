@@ -1,1 +1,2 @@
 recursive-include pilas/data *
+recursive-include pilas/ejemplos/data *

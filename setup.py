@@ -14,7 +14,7 @@ setup(
 
         include_package_data = True,
         package_data = {
-            '': ['data/*'],
+            '': ['data/*', 'pilas/ejemplos/data/*'],
             },
 
         classifiers = [
