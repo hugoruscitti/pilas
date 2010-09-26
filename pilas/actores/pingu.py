@@ -21,6 +21,7 @@ class Pingu(Actor):
         self.animacion = pilas.imagenes.Grilla("pingu.png", 10)
         self.definir_cuadro(4)
         self.hacer(Esperando())
+        self.radio_de_colision = 30
 
     def definir_cuadro(self, indice):
         self.animacion.definir_cuadro(indice)

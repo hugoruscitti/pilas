@@ -233,7 +233,27 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         for actor in actores.todos:
             if actor.radio_de_colision:
                 self.pintar_radio_de_colision_del_actor(actor, color_de_colision, color_borde)
+
             self.pintar_punto_de_control_del_actor(actor, color_de_punto_de_control, color_borde)
+
+            # intenta dibujar el numero de cuadro que usa el actor
+            # si es que tiene una animacion asignada.
+
+            try:
+                cuadro = actor.animacion.obtener_cuadro()
+                self.pintar_numero(cuadro, actor.x, actor.y)
+            except AttributeError, e:
+                pass
+
+
+    def pintar_numero(self, numero, x, y):
+        numero = pilas.actores.Texto(str(numero))
+        numero.x = x
+        numero.y = y
+
+        self.mundo.ventana.Draw(numero)
+        numero.eliminar()
+
 
     def pintar_radio_de_colision_del_actor(self, actor, color, color_borde):
         radio = actor.radio_de_colision *2
@@ -256,9 +276,11 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         if event.Key.Code == sf.Key.P:
             self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
 
-
     def salir(self):
         self.eje.eliminar()
+
+
+        
 
 class ModoEjecucionDepuracionPausado(ModoEjecucionPausado, ModoEjecucionDepuracion):
 

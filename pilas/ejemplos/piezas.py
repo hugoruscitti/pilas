@@ -2,18 +2,19 @@ import pilas
 import random
 
 FILAS = 4
-COLUMNAS = 4
+COLUMNAS = 7
 
 class Piezas(pilas.escenas.Normal):
 
     def __init__(self):
         pilas.escenas.Normal.__init__(self, pilas.colores.gris_oscuro)
-        grilla = pilas.imagenes.Grilla("ejemplos/data/piezas.png", FILAS, COLUMNAS)
+        grilla = pilas.imagenes.Grilla("ejemplos/data/piezas.png", COLUMNAS, FILAS)
 
         for x in range(FILAS * COLUMNAS):
             pieza = Pieza(grilla, x)
             pieza.x = random.randint(-200, 200)
             pieza.y = random.randint(-200, 200)
+
 
 class Pieza(pilas.actores.Animacion):
     "Representa una pieza del rompecabezas."
@@ -22,6 +23,7 @@ class Pieza(pilas.actores.Animacion):
         pilas.actores.Animacion.__init__(self, grilla)
         self.aprender(pilas.habilidades.Arrastrable)
         self.definir_cuadro(cuadro)
+        self.radio_de_colision = 40
 
     def actualizar(self):
         pass
