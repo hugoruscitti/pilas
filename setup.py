@@ -9,7 +9,7 @@ setup(
         description='A simple to use video game framework.',
         author='Hugo Ruscitti',
         author_email='hugoruscitti@gmail.com',
-        packages=['pilas', 'pilas.actores', 'pilas.dispatch'],
+        packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos'],
         url='http://www.pilas-engine.com.ar',
 
         include_package_data = True,

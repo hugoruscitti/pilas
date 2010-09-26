@@ -10,7 +10,7 @@ from pilas.actores import Actor
 import pilas
 from PySFML import sf
 
-class Escena(Actor):
+class Escena:
     "Escena abstracta."
 
     def __init__(self):
@@ -19,8 +19,11 @@ class Escena(Actor):
     def actualizar(self):
         pass
 
+    def dibujar(self, aplicacion):
+        pass
 
-class Paisaje(Escena):
+
+class Paisaje(Actor, Escena):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."
 
     def __init__(self):

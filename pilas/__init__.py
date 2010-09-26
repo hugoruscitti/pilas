@@ -30,6 +30,7 @@ import pilas.utils
 from mundo import Mundo
 from colisiones import Colisiones
 import random
+import ejemplos
 
 
 # Inicialmente comienza sin un mundo esperando a que se inicialice.

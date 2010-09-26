@@ -5,5 +5,5 @@ pilas.iniciar()
 
 pilas.escenas.Paisaje()
 
-pilas.avisar("Un paisage de ejemplo.")
+pilas.avisar("Un paisaje de ejemplo.")
 pilas.ejecutar()
