@@ -57,6 +57,11 @@ class Mundo:
         self.definir_modo_ejecucion(ModoEjecucionNormal(self))
         self.salir = False
 
+        # FIX: tienen la posicion del mouse como memoria para
+        #      obtener los delta e posicion en el evento mueve_mouse.
+        self.mouse_x = 0
+        self.mouse_y = 0
+
     def definir_modo_ejecucion(self, nuevo_modo):
         if self.modo_ejecucion:
             self.modo_ejecucion.salir()
@@ -166,7 +171,13 @@ class ModoEjecucionNormal(ModoEjecucion):
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
                 x, y = self.mundo.ventana.ConvertCoords(event.MouseMove.X, event.MouseMove.Y)
-                eventos.mueve_mouse.send("ejecutar", x=x, y=-y)
+
+                dx = x - self.mundo.mouse_x
+                dy = self.mundo.mouse_y - y
+                self.mundo.mouse_x = x
+                self.mundo.mouse_y = y
+
+                eventos.mueve_mouse.send("ejecutar", x=x, y=-y, dx=dx, dy=dy)
             elif event.Type == sf.Event.MouseButtonPressed:
                 x, y = self.mundo.ventana.ConvertCoords(event.MouseButton.X, event.MouseButton.Y)
                 eventos.click_de_mouse.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)

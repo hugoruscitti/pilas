@@ -8,7 +8,7 @@
 
 import dispatch
 
-mueve_mouse = dispatch.Signal(providing_args=['x', 'y'])
+mueve_mouse = dispatch.Signal(providing_args=['x', 'y', 'dx', 'dy'])
 click_de_mouse = dispatch.Signal(providing_args=['button', 'x', 'y'])
 termina_click = dispatch.Signal(providing_args=['button', 'x', 'y'])
 mueve_rueda = dispatch.Signal(providing_args=['delta'])

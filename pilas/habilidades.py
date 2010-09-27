@@ -43,7 +43,15 @@ class SeguirClicks:
 
 
 class Arrastrable:
-    "Hace que un objeto se pueda arrastrar con el puntero del mouse."
+    """Hace que un objeto se pueda arrastrar con el puntero del mouse.
+
+    Cuando comienza a mover al actor se llama al metodo ''comienza_a_arrastrar''
+    y cuando termina llama a ''termina_de_arrastrar''. Estos nombres
+    de metodos se llaman para que puedas personalizar estos eventos, dado
+    que puedes usar polimorfismo para redefinir el comportamiento
+    de estos dos metodos. Observa un ejemplo de esto en
+    el ejemplo ``pilas.ejemplos.Piezas``.
+    """
 
     def __init__(self):
         pilas.eventos.click_de_mouse.connect(self.try_to_drag)
@@ -56,6 +64,7 @@ class Arrastrable:
             pilas.eventos.mueve_mouse.connect(self.drag, dispatch_uid='drag')
             self.last_x = x
             self.last_y = y
+            self.comienza_a_arrastrar()
 
     def drag(self, sender, signal, x, y):
         "Arrastra el actor a la posicion indicada por el puntero del mouse."
@@ -68,7 +77,13 @@ class Arrastrable:
     def drag_end(self, sender, signal, x, y, button):
         "Suelta al actor porque se ha soltado el botón del mouse."
         pilas.eventos.mueve_mouse.disconnect(dispatch_uid='drag')
+        self.termina_de_arrastrar()
 
+    def comienza_a_arrastrar(self):
+        pass
+
+    def termina_de_arrastrar(self):
+        pass
 
 class MoverseConElTeclado:
     "Hace que un actor cambie de posición con pulsar el teclado."
