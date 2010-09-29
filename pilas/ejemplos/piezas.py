@@ -45,48 +45,20 @@ class Pieza(pilas.actores.Animacion):
         self.radio_de_colision = 40
         self.escena_padre = escena_padre
         pilas.eventos.click_de_mouse.conectar(self.intentar_arrastrar)
-        self.otras_piezas_conectadas = set()
+        self.otras_piezas_conectadas = []
 
     def actualizar(self):
         pass
 
-        if terminar_de_arrastrar_hijas:
-        if terminar_de_arrastrar_hijas:
-            for x in self.otras_piezas_conectadas:
-                x.termina_de_arrastrar(False)
-            for x in self.otras_piezas_conectadas:
-                x.termina_de_arrastrar(False)
-        if terminar_de_arrastrar_hijas:
-        if terminar_de_arrastrar_hijas:
-        if terminar_de_arrastrar_hijas:
-            for x in self.otras_piezas_conectadas:
-                x.termina_de_arrastrar(False)
-            for x in self.otras_piezas_conectadas:
-                x.termina_de_arrastrar(False)
-            for x in self.otras_piezas_conectadas:
-                x.termina_de_arrastrar(False)
     def comienza_a_arrastrar(self):
-        print "Me estan cambiando la posicion."
-        pass
-        if terminar_de_arrastrar_hijas:
-            for x in self.otras_piezas_conectadas:
-                x.termina_de_arrastrar(False)
+        print self, "Me estan cambiando la posicion."
 
-    def termina_de_arrastrar(self, terminar_de_arrastrar_hijas=True):
-
+    def termina_de_arrastrar(self):
         # Busca todas las colisiones entre esta pieza
         # que se suelta y todas las demás.
         colisiones = pilas.colisiones.obtener_colisiones(self, self.escena_padre.piezas)
 
-        if terminar_de_arrastrar_hijas:
-            for x in self.otras_piezas_conectadas:
-                x.termina_de_arrastrar(False)
-        if colisiones:
-            for pieza in colisiones:
-                self.intentar_conectar(pieza)
-        if terminar_de_arrastrar_hijas:
-            for x in self.otras_piezas_conectadas:
-                x.termina_de_arrastrar(False)
+        print "Esta pieza colisiona con", colisiones
 
 
     def intentar_conectar(self, otra_pieza):
@@ -100,14 +72,12 @@ class Pieza(pilas.actores.Animacion):
                 if x not in self.otras_piezas_conectadas:
                     self.otras_piezas_conectadas.append(x)
 
-
-
     def intentar_arrastrar(self, sender, signal, x, y, button):
         "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
 
         if self.colisiona_con_un_punto(x, y):
-            pilas.eventos.termina_click.connect(self.drag_end)
-            pilas.eventos.mueve_mouse.connect(self.drag, dispatch_uid='drag')
+            pilas.eventos.termina_click.connect(self.drag_end, uid='drag_end')
+            pilas.eventos.mueve_mouse.connect(self.drag, uid='drag')
             self.last_x = x
             self.last_y = y
             self.comienza_a_arrastrar()
@@ -125,5 +95,9 @@ class Pieza(pilas.actores.Animacion):
 
     def drag_end(self, sender, signal, x, y, button):
         "Suelta al actor porque se ha soltado el botón del mouse."
-        pilas.eventos.mueve_mouse.disconnect(dispatch_uid='drag')
+        pilas.eventos.mueve_mouse.desconectar(uid='drag')
+        pilas.eventos.mueve_mouse.desconectar(uid='drag_end')
         self.termina_de_arrastrar()
+
+    def __repr__(self):
+        return "<<Pieza %d>>" %(self.animacion.obtener_cuadro())

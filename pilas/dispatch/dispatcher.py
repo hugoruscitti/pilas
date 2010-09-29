@@ -34,7 +34,7 @@ class Signal(object):
     def conectar(self, receptor, emisor=None, weak=True, uid=None):
         return self.connect(receptor, emisor, weak, uid)
 
-    def connect(self, receiver, sender=None, weak=True, dispatch_uid=None):
+    def connect(self, receiver, sender=None, weak=True, uid=None):
         """
         Connect receiver to sender for signal.
     
@@ -50,9 +50,9 @@ class Signal(object):
         
                 Receivers must be able to accept keyword arguments.
 
-                If receivers have a dispatch_uid attribute, the receiver will
+                If receivers have a uid attribute, the receiver will
                 not be added if another receiver already exists with that
-                dispatch_uid.
+                uid.
 
             sender
                 The sender to which the receiver should respond Must either be
@@ -64,14 +64,14 @@ class Signal(object):
                 objects. If this parameter is false, then strong references will
                 be used.
         
-            dispatch_uid
+            uid
                 An identifier used to uniquely identify a particular instance of
                 a receiver. This will usually be a string, though it may be
                 anything hashable.
         """
         
-        if dispatch_uid:
-            lookup_key = (dispatch_uid, _make_id(sender))
+        if uid:
+            lookup_key = (uid, _make_id(sender))
         else:
             lookup_key = (_make_id(receiver), _make_id(sender))
 
@@ -84,7 +84,10 @@ class Signal(object):
         else:
             self.receivers.append((lookup_key, receiver))
 
-    def disconnect(self, receiver=None, sender=None, weak=True, dispatch_uid=None):
+    def desconectar(self, receptor=None, emisor=None, weak=True, uid=None):
+        self.disconnect(receptor, emisor, weak, uid)
+
+    def disconnect(self, receiver=None, sender=None, weak=True, uid=None):
         """
         Disconnect receiver from sender for signal.
 
@@ -95,7 +98,7 @@ class Signal(object):
         
             receiver
                 The registered receiver to disconnect. May be none if
-                dispatch_uid is specified.
+                uid is specified.
             
             sender
                 The registered sender to disconnect
@@ -103,11 +106,11 @@ class Signal(object):
             weak
                 The weakref state to disconnect
             
-            dispatch_uid
+            uid
                 the unique identifier of the receiver to disconnect
         """
-        if dispatch_uid:
-            lookup_key = (dispatch_uid, _make_id(sender))
+        if uid:
+            lookup_key = (uid, _make_id(sender))
         else:
             lookup_key = (_make_id(receiver), _make_id(sender))
         

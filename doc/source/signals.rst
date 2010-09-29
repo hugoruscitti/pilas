@@ -93,11 +93,11 @@ Por ejemplo, las siguientes sentencias muestran eso:
 
 .. code-block:: python
 
-    pilas.eventos.mueve_mouse.connect(imprimir_posicion, dispatch_uid='drag')
-    pilas.eventos.mueve_mouse.disconnect(dispatch_uid='drag')
+    pilas.eventos.mueve_mouse.conectar(imprimir_posicion, uid='drag')
+    pilas.eventos.mueve_mouse.desconectar(dispatch_uid='drag')
     
 En la primer sentencia conecté la señal del evento a una función y le di
-un valor al argumento ``dispatch_uid``. Este valor será el identificador
+un valor al argumento ``uid``. Este valor será el identificador
 de ese enlace.
 
 En la siguiente linea pude usar el identificador para desconectarla.
