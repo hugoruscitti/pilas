@@ -9,8 +9,6 @@
 import pilas
 import random
 
-FILAS = 4
-COLUMNAS = 7
 
 class Piezas(pilas.escenas.Normal):
     """Representa la escena de rompecabezas.
@@ -19,17 +17,29 @@ class Piezas(pilas.escenas.Normal):
     actores Pieza.
     """
 
-    def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png"):
+    def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png", filas=4, columnas=7):
+        pilas.actores.eliminar_a_todos()
         pilas.escenas.Normal.__init__(self, pilas.colores.gris_oscuro)
-        grilla = pilas.imagenes.Grilla(ruta_a_la_imagen, COLUMNAS, FILAS)
+        grilla = pilas.imagenes.Grilla(ruta_a_la_imagen, columnas, filas)
+        self.crear_piezas(grilla, filas, columnas)
+
+        pilas.eventos.click_de_mouse.conectar(self.al_hacer_click)
+
+    def crear_piezas(self, grilla, filas, columnas):
         self.piezas = []
 
-        for x in range(FILAS * COLUMNAS):
+        for x in range(filas * columnas):
             pieza = Pieza(self, grilla, x)
             pieza.x = random.randint(-200, 200)
             pieza.y = random.randint(-200, 200)
 
             self.piezas.append(pieza)
+
+    def al_hacer_click(self, *k, **kv):
+        pieza_debajo_de_mouse = pilas.actores.obtener_actor_en(kv['x'], kv['y'])
+
+        if pieza_debajo_de_mouse:
+            pieza_debajo_de_mouse.al_recibir_un_click()
 
 
 
@@ -42,9 +52,9 @@ class Pieza(pilas.actores.Animacion):
     def __init__(self, escena_padre, grilla, cuadro):
         pilas.actores.Animacion.__init__(self, grilla)
         self.definir_cuadro(cuadro)
+
         self.radio_de_colision = 40
         self.escena_padre = escena_padre
-        pilas.eventos.click_de_mouse.conectar(self.intentar_arrastrar)
         self.otras_piezas_conectadas = []
 
     def actualizar(self):
@@ -72,15 +82,14 @@ class Pieza(pilas.actores.Animacion):
                 if x not in self.otras_piezas_conectadas:
                     self.otras_piezas_conectadas.append(x)
 
-    def intentar_arrastrar(self, sender, signal, x, y, button):
+    def al_recibir_un_click(self):
         "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
 
-        if self.colisiona_con_un_punto(x, y):
-            pilas.eventos.termina_click.connect(self.drag_end, uid='drag_end')
-            pilas.eventos.mueve_mouse.connect(self.drag, uid='drag')
-            self.last_x = x
-            self.last_y = y
-            self.comienza_a_arrastrar()
+        pilas.eventos.termina_click.connect(self.drag_end, uid='drag_end')
+        pilas.eventos.mueve_mouse.connect(self.drag, uid='drag')
+        self.last_x = self.x
+        self.last_y = self.y
+        self.comienza_a_arrastrar()
 
     def drag(self, sender, signal, x, y, dx, dy):
         "Arrastra el actor a la posicion indicada por el puntero del mouse."

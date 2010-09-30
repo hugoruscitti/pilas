@@ -32,6 +32,17 @@ def eliminar_a_todos():
     for x in a_eliminar:
         x.eliminar()
 
+def obtener_actor_en(x, y):
+    "Intenta obtener el actor mas cerca de la pantalla (z mas pequeño) en la posición (x, y)"
+
+    # Busca el objeto que colisiones ordenando en sentido inverso.
+    for sprite in todos[::-1]:
+        if sprite.colisiona_con_un_punto(x, y):
+            return sprite
+
+    return None
+
+
 
 class Estudiante:
     "Permite a distintos objetos acoplarse mediente mixins."
@@ -244,7 +255,7 @@ class Actor(sf.Sprite, BaseActor):
         "Determina si un punto colisiona con el area del actor."
         w, h = self.GetSize()
         left, right = self.x - w/2 , self.x + w/2
-        top, bottom = self.y - h/2, self.y + h/2
+        top, bottom = self.y - h/2,  self.y + h/2
         return left < x < right and top < y < bottom
 
     def dibujar(self, aplicacion):

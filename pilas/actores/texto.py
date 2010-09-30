@@ -52,3 +52,6 @@ class Texto(sf.String, BaseActor):
 
     def dibujar(self, aplicacion):
         aplicacion.Draw(self)
+
+    def colisiona_con_un_punto(self, x, y):
+        return False
