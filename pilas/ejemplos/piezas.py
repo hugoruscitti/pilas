@@ -22,10 +22,14 @@ class Piezas(pilas.escenas.Normal):
         pilas.escenas.Normal.__init__(self, pilas.colores.gris_oscuro)
         grilla = pilas.imagenes.Grilla(ruta_a_la_imagen, columnas, filas)
         self.crear_piezas(grilla, filas, columnas)
+        self.pieza_en_movimiento = None
 
         pilas.eventos.click_de_mouse.conectar(self.al_hacer_click)
+        pilas.eventos.termina_click.connect(self.al_soltar_el_click)
+        pilas.eventos.mueve_mouse.connect(self.al_mover_el_mouse)
 
     def crear_piezas(self, grilla, filas, columnas):
+        "Genera todas las piezas en base al tamaño del constructor."
         self.piezas = []
 
         for x in range(filas * columnas):
@@ -35,13 +39,22 @@ class Piezas(pilas.escenas.Normal):
 
             self.piezas.append(pieza)
 
-    def al_hacer_click(self, *k, **kv):
+    def al_hacer_click(self, **kv):
+        "Atiente cualquier click que realice el usuario en la pantalla."
         pieza_debajo_de_mouse = pilas.actores.obtener_actor_en(kv['x'], kv['y'])
 
         if pieza_debajo_de_mouse:
-            pieza_debajo_de_mouse.al_recibir_un_click()
+            self.pieza_en_movimiento = pieza_debajo_de_mouse
 
+    def al_soltar_el_click(self, **kv):
+        if self.pieza_en_movimiento:
+            self.pieza_en_movimiento.soltar()
+            self.pieza_en_movimiento = None
 
+    def al_mover_el_mouse(self, **kv):
+        if self.pieza_en_movimiento:
+            self.pieza_en_movimiento.mover(kv['dx'], kv['dy'])
+            
 
 class Pieza(pilas.actores.Animacion):
     """Representa una pieza del rompecabezas.
@@ -55,58 +68,40 @@ class Pieza(pilas.actores.Animacion):
 
         self.radio_de_colision = 40
         self.escena_padre = escena_padre
-        self.otras_piezas_conectadas = []
+        self.piezas_conectadas = []
 
     def actualizar(self):
+        "Evita que la animacion elimine el actor."
         pass
 
-    def comienza_a_arrastrar(self):
-        print self, "Me estan cambiando la posicion."
 
-    def termina_de_arrastrar(self):
+    def soltar(self):
         # Busca todas las colisiones entre esta pieza
         # que se suelta y todas las demás.
         colisiones = pilas.colisiones.obtener_colisiones(self, self.escena_padre.piezas)
 
-        print "Esta pieza colisiona con", colisiones
+        for x in colisiones:
+            self.conectar_con(x)
+            x.conectar_con(self)
 
-
-    def intentar_conectar(self, otra_pieza):
-        self.conectar_con(otra_pieza)
-        
     def conectar_con(self, otra_pieza):
-        if otra_pieza not in self.otras_piezas_conectadas:
-            self.otras_piezas_conectadas.append(otra_pieza)
+        if otra_pieza not in self.piezas_conectadas:
+            self.piezas_conectadas.append(otra_pieza)
 
-            for x in otra_pieza.otras_piezas_conectadas:
-                if x not in self.otras_piezas_conectadas:
-                    self.otras_piezas_conectadas.append(x)
+            #for x in otra_pieza.piezas_conectadas:
+            #    if x not in self.piezas_conectadas:
+            #        self.piezas_conectadas.append(x)
 
-    def al_recibir_un_click(self):
-        "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
-
-        pilas.eventos.termina_click.connect(self.drag_end, uid='drag_end')
-        pilas.eventos.mueve_mouse.connect(self.drag, uid='drag')
-        self.last_x = self.x
-        self.last_y = self.y
-        self.comienza_a_arrastrar()
-
-    def drag(self, sender, signal, x, y, dx, dy):
+    def mover(self, dx, dy):
         "Arrastra el actor a la posicion indicada por el puntero del mouse."
         self.x += dx
         self.y += dy
         self.mover_las_piezas_conectadas(dx, dy)
 
     def mover_las_piezas_conectadas(self, dx, dy):
-        for pieza in self.otras_piezas_conectadas:
+        for pieza in self.piezas_conectadas:
             pieza.x += dx
             pieza.y += dy
-
-    def drag_end(self, sender, signal, x, y, button):
-        "Suelta al actor porque se ha soltado el botón del mouse."
-        pilas.eventos.mueve_mouse.desconectar(uid='drag')
-        pilas.eventos.mueve_mouse.desconectar(uid='drag_end')
-        self.termina_de_arrastrar()
 
     def __repr__(self):
         return "<<Pieza %d>>" %(self.animacion.obtener_cuadro())
