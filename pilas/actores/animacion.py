@@ -7,14 +7,13 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
-from pilas.actores import Actor
-from pilas.comportamientos import Comportamiento
+from pilas.actores import Animado
 import copy
 
 VELOCIDAD = 4
 
 
-class Animacion(Actor):
+class Animacion(Animado):
     """Representa una animacion de una grilla de imagenes.
 
     Este actor toma una grilla de cuadros de animacion
@@ -23,16 +22,9 @@ class Animacion(Actor):
     """
 
     def __init__(self, grilla, ciclica=False):
-        Actor.__init__(self)
-        self.animacion = copy.copy(grilla)
-        self.definir_cuadro(0)
+        Animado.__init__(self, grilla)
         self.tick = 0
-        self.ciclica = ciclica     # Indica si la animacion debe seguir existiendo.
-
-    def definir_cuadro(self, indice):
-        self.animacion.definir_cuadro(indice)
-        self.animacion.asignar(self)
-
+        self.ciclica = ciclica     # Indica si la animacion debe reiniciar luego de terminar.
 
     def actualizar(self):
         if self.tick > VELOCIDAD:

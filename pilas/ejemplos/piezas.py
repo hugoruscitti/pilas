@@ -58,14 +58,14 @@ class Piezas(pilas.escenas.Normal):
             self.pieza_en_movimiento.mover(kv['dx'], kv['dy'])
             
 
-class Pieza(pilas.actores.Animacion):
+class Pieza(pilas.actores.Animado):
     """Representa una pieza del rompecabezas.
 
     Esta pieza se puede arrastrar con el mouse y cuando se suelta
     intentará conectarse con las demás."""
 
     def __init__(self, escena_padre, grilla, cuadro, filas, columnas):
-        pilas.actores.Animacion.__init__(self, grilla)
+        pilas.actores.Animado.__init__(self, grilla)
 
         self.numero = cuadro
 
@@ -91,10 +91,6 @@ class Pieza(pilas.actores.Animacion):
             self.numero_derecha = -1
         else:
             self.numero_derecha = cuadro + 1
-
-    def actualizar(self):
-        "Evita que la animacion elimine el actor."
-        pass
 
 
     def soltar(self):

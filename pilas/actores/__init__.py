@@ -289,6 +289,7 @@ from texto import *
 from ejes import *
 from pingu import Pingu
 from pizarra import Pizarra
+from animado import Animado
 from animacion import Animacion
 from explosion import Explosion
 from banana import Banana
