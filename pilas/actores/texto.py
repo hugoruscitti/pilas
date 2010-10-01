@@ -62,5 +62,5 @@ class Texto(sf.String, BaseActor):
 
     def obtener_alto(self):
         rect = self.GetRect()
-        return rect.GetWidth()
+        return rect.GetHeight()
 

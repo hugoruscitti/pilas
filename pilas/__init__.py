@@ -101,8 +101,8 @@ def avisar(mensaje):
     "Emite un mensaje en la ventana principal."
     texto = actores.Texto(mensaje)
     texto.magnitud = 22
-    texto.izquierda = -320
-    texto.abajo = -240
+    texto.izquierda = -310
+    texto.abajo = -230
 
 def fabricar(clase, cantidad=1):
     "Genera muchas intancias de objetos asignando posiciones aleatorias."
