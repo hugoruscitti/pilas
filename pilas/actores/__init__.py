@@ -187,28 +187,36 @@ class BaseActor(object, Estudiante):
         self.comportamiento = comportamiento
 
     def get_izquierda(self):
-        rect = self.GetRect()
-        size = (rect.GetWidth(), rect.GetHeight())
-        return self.x - size[0]/2
+        return self.x - self.obtener_ancho()/2
 
     def set_izquierda(self, x):
-        rect = self.GetRect()
-        size = (rect.GetWidth(), rect.GetHeight())
-        self.x = x + size[0]/2
+        self.x = x + self.obtener_ancho()/2
 
     izquierda = property(get_izquierda, set_izquierda)
 
     def get_abajo(self):
-        rect = self.GetRect()
-        size = (rect.GetWidth(), rect.GetHeight())
-        return self.x - size[1]/2
+        return self.y - self.obtener_alto()/2
 
     def set_abajo(self, y):
-        rect = self.GetRect()
-        size = (rect.GetWidth(), rect.GetHeight())
-        self.y = y + size[1]/2
+        self.y = y + self.obtener_alto()/2
 
     abajo = property(get_abajo, set_abajo)
+
+    def get_derecha(self):
+        return self.x + self.obtener_ancho()/2
+
+    def set_derecha(self, x):
+        self.x = x - self.obtener_ancho()/2
+
+    derecha = property(get_derecha, set_derecha)
+
+    def get_arriba(self):
+        return self.y + self.obtener_alto()/2
+
+    def set_arriba(self, y):
+        self.y = y - self.obtener_alto()/2
+
+    arriba = property(get_arriba, set_arriba)
 
 class Actor(sf.Sprite, BaseActor):
     """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
@@ -269,6 +277,11 @@ class Actor(sf.Sprite, BaseActor):
 
         return duplicado
 
+    def obtener_ancho(self):
+        return self.GetSize()[0]
+
+    def obtener_alto(self):
+        return self.GetSize()[1]
 
 from mono import *
 from tortuga import *

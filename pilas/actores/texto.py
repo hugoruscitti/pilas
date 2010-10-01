@@ -55,3 +55,12 @@ class Texto(sf.String, BaseActor):
 
     def colisiona_con_un_punto(self, x, y):
         return False
+
+    def obtener_ancho(self):
+        rect = self.GetRect()
+        return rect.GetWidth()
+
+    def obtener_alto(self):
+        rect = self.GetRect()
+        return rect.GetWidth()
+

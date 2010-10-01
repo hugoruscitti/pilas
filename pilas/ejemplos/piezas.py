@@ -31,11 +31,13 @@ class Piezas(pilas.escenas.Normal):
     def crear_piezas(self, grilla, filas, columnas):
         "Genera todas las piezas en base al tamaño del constructor."
         self.piezas = []
+        self.grupos = {}
 
         for x in range(filas * columnas):
-            pieza = Pieza(self, grilla, x)
+            pieza = Pieza(self, grilla, x, filas, columnas)
             pieza.x = random.randint(-200, 200)
             pieza.y = random.randint(-200, 200)
+            self.grupos[x] = [x]
 
             self.piezas.append(pieza)
 
@@ -62,13 +64,33 @@ class Pieza(pilas.actores.Animacion):
     Esta pieza se puede arrastrar con el mouse y cuando se suelta
     intentará conectarse con las demás."""
 
-    def __init__(self, escena_padre, grilla, cuadro):
+    def __init__(self, escena_padre, grilla, cuadro, filas, columnas):
         pilas.actores.Animacion.__init__(self, grilla)
+
+        self.numero = cuadro
+
+        self.asignar_numero_de_piezas_laterales(cuadro, columnas)
+
         self.definir_cuadro(cuadro)
 
         self.radio_de_colision = 40
         self.escena_padre = escena_padre
         self.piezas_conectadas = []
+
+    def asignar_numero_de_piezas_laterales(self, cuadro, columnas):
+        "Guarda el numero de las piezas que se pueden conectar en sus bordes."
+        self.numero_arriba = cuadro - columnas
+        self.numero_abajo = cuadro + columnas
+
+        if cuadro % columnas == 0:
+            self.numero_izquierda = -1
+        else:
+            self.numero_izquierda = cuadro - 1
+
+        if cuadro % columnas == columnas -1:
+            self.numero_derecha = -1
+        else:
+            self.numero_derecha = cuadro + 1
 
     def actualizar(self):
         "Evita que la animacion elimine el actor."

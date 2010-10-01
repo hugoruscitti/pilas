@@ -44,7 +44,6 @@ class Lineal(Interpolacion):
         "Retorna la interpolación inversa a la original."
         new_values = list(self.values)
         new_values.reverse()
-        new_values = tuple(new_values)
         return Lineal(new_values, self.duration, self.delay)
 
     def apply(self, target, function):
