@@ -60,12 +60,15 @@ Todos los actores tienen atributos cómo:
 - ``x``
 - ``y``
 
-que sirven para cambiar la posición del actor dentro de la escena,
-incluso hay atributos que permite hacer lo mismo pero
+que sirven para cambiar la posición del actor dentro de la escena.
+
+También encontrarás atributos que permite hacer lo mismo pero
 tomando como referencia alguno de los bordes del
-actores. Por ejemplo:
+actor. Por ejemplo:
 
 - ``izquierda``
+- ``derecha``
+- ``arriba``
 - ``abajo``
 
 Ten en cuenta que estos valores indicarán la posición del
