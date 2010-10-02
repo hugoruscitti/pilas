@@ -52,15 +52,11 @@ class Colisiones:
     def obtener_colisiones(self, actor, grupo_de_actores):
         "Retorna una lista de los actores que colisionan con uno en particular."
 
-        print "Busco colisiones usando actor:", actor
         lista_de_colisiones = []
 
         for a in grupo_de_actores:
             if id(actor) != id(a) and utils.colisionan(actor, a):
-                print "colisionan", actor," y", a
-                print "agregando", a, "a la lista de colisiones"
                 lista_de_colisiones.append(a)
 
-        print "retornando la lista:", lista_de_colisiones
         return lista_de_colisiones
 

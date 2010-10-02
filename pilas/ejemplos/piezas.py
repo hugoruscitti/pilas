@@ -39,6 +39,7 @@ class Piezas(pilas.escenas.Normal):
             pieza.y = random.randint(-200, 200)
             self.grupos[x] = [x]
 
+
             self.piezas.append(pieza)
 
     def al_hacer_click(self, **kv):
@@ -109,8 +110,8 @@ class Pieza(pilas.actores.Animado):
     def intentar_conectarse_a(self, otra):
         "Intenta vincular dos piezas, siempre y cuando coincidan en sus bordes."
 
-        # Intenta conectarse a la derecha.
-        if self.numero_derecha == otra.numero:    # es la pieza derecha, trato de conectarla.
+        # Intenta conectar los bordes laterales
+        if self.numero_derecha == otra.numero:
             if self.se_pueden_conectar_los_bordes(self.derecha, otra.izquierda):
                 otra.izquierda = self.derecha
                 otra.arriba = self.arriba
@@ -125,7 +126,22 @@ class Pieza(pilas.actores.Animado):
                 self.conectar_con(otra)
                 otra.conectar_con(self)
 
-        print "Conectando a ", otra
+        # Intenta conectar los bordes superior e inferior
+        if self.numero_abajo == otra.numero:
+            if self.se_pueden_conectar_los_bordes(self.abajo, otra.arriba):
+                otra.arriba = self.abajo
+                otra.izquierda = self.izquierda
+        
+                self.conectar_con(otra)
+                otra.conectar_con(self)
+        elif self.numero_arriba == otra.numero:
+            if self.se_pueden_conectar_los_bordes(self.arriba, otra.abajo):
+                otra.abajo = self.arriba
+                otra.izquierda = self.izquierda
+
+                self.conectar_con(otra)
+                otra.conectar_con(self)
+
 
     def conectar_con(self, otra_pieza):
         if otra_pieza not in self.piezas_conectadas:
