@@ -33,6 +33,8 @@ class Piezas(pilas.escenas.Normal):
         self.piezas = []
         self.grupos = {}
 
+        i = 0
+
         for x in range(filas * columnas):
             pieza = Pieza(self, grilla, x, filas, columnas)
             pieza.x = random.randint(-200, 200)
@@ -40,6 +42,10 @@ class Piezas(pilas.escenas.Normal):
             self.grupos[x] = [x]
 
             self.piezas.append(pieza)
+            i += 1
+
+            if i == 2:
+                break
 
     def al_hacer_click(self, **kv):
         "Atiente cualquier click que realice el usuario en la pantalla."
@@ -99,8 +105,26 @@ class Pieza(pilas.actores.Animado):
         colisiones = pilas.colisiones.obtener_colisiones(self, self.escena_padre.piezas)
 
         for x in colisiones:
-            self.conectar_con(x)
-            x.conectar_con(self)
+            self.intentar_conectarse_a(x)
+
+
+
+
+    def intentar_conectarse_a(self, otra):
+        "Intenta vincular dos piezas, siempre y cuando coincidan en sus bordes."
+
+        # Intenta conectarse a la derecha.
+        if self.numero_derecha == otra.numero:    # es la pieza derecha, trato de conectarla.
+            print "Se ha posado a izquerda de la pieza que corresponde"
+            if pilas.utils.distancia(self.derecha, otra.izquierda) < 12:
+                otra.izquierda = self.derecha
+                print "Conectando..."
+                otra.arriba = self.arriba
+                self.conectar_con(otra)
+                otra.conectar_con(self)
+
+
+        print "Conectando a ", otra
 
     def conectar_con(self, otra_pieza):
         if otra_pieza not in self.piezas_conectadas:
