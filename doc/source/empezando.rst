@@ -26,6 +26,12 @@ Esa pantalla será la que utilizaremos para interactuar
 con el motor. Y mas adelante será la única pantalla
 que verán los usuarios de nuestros juegos.
 
+A partir de ahora comenzaremos a escribir algunos
+ejemplos. Ten en cuenta que no es necesario que
+escribas todo el código de los ejemplos, el intérprete de python
+te permite autocompletar sentencias usando la tecla ``Tab``. 
+
+
 Creando al primer personaje
 ---------------------------
 
@@ -139,6 +145,15 @@ ejecutar una sentencia cómo:
 y aparecerán en pantalla todos los instructivos de
 la funcionalidad del actor.
 
+Incluso puedes usar la función ``pilas.ver`` para conocer
+el código fuente de cualquier cosa de pilas. Por ejemplo
+podemos el código completo del mono ejecutando
+la sentencia:
+
+.. code-block:: python
+
+    pilas.ver(mono)
+
 
 Eliminando a un actor
 ---------------------
@@ -158,15 +173,15 @@ Hemos visto los pasos principales para gestionar
 actores. Ten en cuenta que el módulo :mod:``pilas.actores`` es
 donde se guardarán todos los actores.
 
-Un buen ejercicio es mirar ahí, buscar nuevos actores y
-comenzar a utilizarlos.
+Un buen ejercicio es ponerse a investigar el módulo
+actores. Hay muchos actores, estos son algunos ejemplos
+de código para probar:
 
-Recuenda que el interprete de python te permite autocompletar
-sentencias usando la tecla ``Tab``. Además tienes
-la función ``help`` para solicitar ayuda. Por ejemplo:
+.. code-block::
 
-.. code-block:: python
+    b = pilas.actores.Bomba()
+    b.explotar()
 
-    help(pilas.actores)
+    p = pilas.actores.Pingu()    # se mueve con el teclado.
 
-Es todo por ahora, suerte y a divertirse!
+Es todo por ahora, a divertirse!
