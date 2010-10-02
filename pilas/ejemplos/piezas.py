@@ -8,7 +8,6 @@
 
 import pilas
 import random
-import pprint
 
 
 class Piezas(pilas.escenas.Normal):
@@ -35,12 +34,12 @@ class Piezas(pilas.escenas.Normal):
         self.grupos = {}
 
         for x in range(filas * columnas):
+            self.grupos[x] = set([x])
             pieza = Pieza(self, grilla, x, filas, columnas)
+            self.piezas.append(pieza)
             pieza.x = random.randint(-200, 200)
             pieza.y = random.randint(-200, 200)
-            self.grupos[x] = set([x])
 
-            self.piezas.append(pieza)
 
     def al_hacer_click(self, **kv):
         "Atiente cualquier click que realice el usuario en la pantalla."
@@ -56,18 +55,15 @@ class Piezas(pilas.escenas.Normal):
 
     def al_mover_el_mouse(self, **kv):
         if self.pieza_en_movimiento:
-            self.pieza_en_movimiento.mover(kv['dx'], kv['dy'])
+            self.pieza_en_movimiento.x += kv['dx']
+            self.pieza_en_movimiento.y += kv['dy']
             
     def conectar(self, pieza_a, pieza_b):
         a = pieza_a.numero
         b = pieza_b.numero
   
-        print ""
-        print "Antes:"
-        pprint.pprint(self.grupos)
-
         if a in self.grupos[b]:
-            print "Las piezas ya estan conectadas, se ignora..."
+            #Evita contectar mas de una vez a dos piezas.
             return
 
         """Inicialmente comienzo con::
@@ -101,10 +97,6 @@ class Piezas(pilas.escenas.Normal):
 
         self.grupos[b] = self.grupos[b].union(grupo_a_pertenecer)
         
-        print ""
-        print "Despues:"
-        pprint.pprint(self.grupos)
-
 class Pieza(pilas.actores.Animado):
     """Representa una pieza del rompecabezas.
 
@@ -186,16 +178,34 @@ class Pieza(pilas.actores.Animado):
     def conectar_con(self, otra_pieza):
         self.escena_padre.conectar(self, otra_pieza)
 
-    def mover(self, dx, dy):
-        "Arrastra el actor a la posicion indicada por el puntero del mouse."
-        # Mueve a todas las piezas de su grupo.
-        # Si la pieza no esta conectada a ninguna otra pieza
-        # no importa, porque en ese caso su grupo sera una lista
-        # con una sola pieza (ella misma).
-        for numero in self.escena_padre.grupos[self.numero]:
-            pieza = self.escena_padre.piezas[numero]
-            pieza.x += dx
-            pieza.y += dy
 
     def __repr__(self):
         return "<<Pieza %d>>" %(self.animacion.obtener_cuadro())
+
+
+    def set_x(self, x):
+        "A diferencia de los actores normales, las piezas tienen que mover a todo su grupo."
+        dx = x - self.x
+
+        for numero in self.escena_padre.grupos[self.numero]:
+            pieza = self.escena_padre.piezas[numero]
+            pieza.SetX(pieza.x + dx)
+
+    def set_y(self, y):
+        "A diferencia de los actores normales, las piezas tienen que mover a todo su grupo."
+        dy = y - self.y
+
+        for numero in self.escena_padre.grupos[self.numero]:
+            pieza = self.escena_padre.piezas[numero]
+            pieza.SetY(-pieza.y - dy)
+
+    def get_x(self):
+        x, y = self.GetPosition()
+        return x
+
+    def get_y(self):
+        x, y = self.GetPosition()
+        return -y
+
+    x = property(get_x, set_x, doc="Define la posición horizontal.")
+    y = property(get_y, set_y, doc="Define la posición vertical.")
