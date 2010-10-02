@@ -17,8 +17,7 @@ class Piezas(pilas.escenas.Normal):
     actores Pieza.
     """
 
-    def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png", filas=6, columnas=6):
-        #filas=4, columnas=7):
+    def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png", filas=2, columnas=2):
         pilas.actores.eliminar_a_todos()
         pilas.escenas.Normal.__init__(self, pilas.colores.gris_oscuro)
         grilla = pilas.imagenes.Grilla(ruta_a_la_imagen, columnas, filas)
@@ -34,8 +33,6 @@ class Piezas(pilas.escenas.Normal):
         self.piezas = []
         self.grupos = {}
 
-        i = 0
-
         for x in range(filas * columnas):
             pieza = Pieza(self, grilla, x, filas, columnas)
             pieza.x = random.randint(-200, 200)
@@ -43,10 +40,6 @@ class Piezas(pilas.escenas.Normal):
             self.grupos[x] = [x]
 
             self.piezas.append(pieza)
-            i += 1
-
-            if i == 2:
-                break
 
     def al_hacer_click(self, **kv):
         "Atiente cualquier click que realice el usuario en la pantalla."
