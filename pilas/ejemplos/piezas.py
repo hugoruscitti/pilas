@@ -17,7 +17,8 @@ class Piezas(pilas.escenas.Normal):
     actores Pieza.
     """
 
-    def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png", filas=4, columnas=7):
+    def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png", filas=6, columnas=6):
+        #filas=4, columnas=7):
         pilas.actores.eliminar_a_todos()
         pilas.escenas.Normal.__init__(self, pilas.colores.gris_oscuro)
         grilla = pilas.imagenes.Grilla(ruta_a_la_imagen, columnas, filas)
@@ -79,7 +80,7 @@ class Pieza(pilas.actores.Animado):
 
         self.definir_cuadro(cuadro)
 
-        self.radio_de_colision = 40
+        self.radio_de_colision = self.obtener_ancho() / 2 + 10
         self.escena_padre = escena_padre
         self.piezas_conectadas = []
 
@@ -118,11 +119,17 @@ class Pieza(pilas.actores.Animado):
             print "Se ha posado a izquerda de la pieza que corresponde"
             if pilas.utils.distancia(self.derecha, otra.izquierda) < 12:
                 otra.izquierda = self.derecha
-                print "Conectando..."
                 otra.arriba = self.arriba
+
                 self.conectar_con(otra)
                 otra.conectar_con(self)
+        elif self.numero_izquierda == otra.numero:
+            if pilas.utils.distancia(self.izquierda, otra.derecha) < 12:
+                otra.derecha = self.izquierda
+                otra.arriba = self.arriba
 
+                self.conectar_con(otra)
+                otra.conectar_con(self)
 
         print "Conectando a ", otra
 
