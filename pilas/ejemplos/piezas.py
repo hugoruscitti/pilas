@@ -8,6 +8,7 @@
 
 import pilas
 import random
+import pprint
 
 
 class Piezas(pilas.escenas.Normal):
@@ -37,8 +38,7 @@ class Piezas(pilas.escenas.Normal):
             pieza = Pieza(self, grilla, x, filas, columnas)
             pieza.x = random.randint(-200, 200)
             pieza.y = random.randint(-200, 200)
-            self.grupos[x] = [x]
-
+            self.grupos[x] = set([x])
 
             self.piezas.append(pieza)
 
@@ -58,6 +58,52 @@ class Piezas(pilas.escenas.Normal):
         if self.pieza_en_movimiento:
             self.pieza_en_movimiento.mover(kv['dx'], kv['dy'])
             
+    def conectar(self, pieza_a, pieza_b):
+        a = pieza_a.numero
+        b = pieza_b.numero
+  
+        print ""
+        print "Antes:"
+        pprint.pprint(self.grupos)
+
+        if a in self.grupos[b]:
+            print "Las piezas ya estan conectadas, se ignora..."
+            return
+
+        """Inicialmente comienzo con::
+
+
+            0: [0, 1, 2]
+            1: [0, 1, 2]
+            2: [0, 1, 2]
+            3: [3]
+
+        ¿y si conecto la pieza 3 con la 2?
+
+        - tendría que obtener todas las piezas que conoce 2.
+        
+        - iterar en ese grupo y decirle a cada pieza que sume a 3 en su grupo::
+
+            0: [0, 1, 2, 3]
+            1: [0, 1, 2, 3]
+            2: [0, 1, 2, 3]
+
+        - luego solo me falta tomar a uno de esos grupos actualizados
+          y decirle a 3 que ese será su grupo::
+
+            3: [0, 1, 2, 3]
+        """
+        
+        grupo_a_pertenecer = set(self.grupos[a])
+
+        for pieza in grupo_a_pertenecer:
+            self.grupos[pieza] = self.grupos[pieza].union(self.grupos[b])
+
+        self.grupos[b] = self.grupos[b].union(grupo_a_pertenecer)
+        
+        print ""
+        print "Despues:"
+        pprint.pprint(self.grupos)
 
 class Pieza(pilas.actores.Animado):
     """Representa una pieza del rompecabezas.
@@ -102,8 +148,6 @@ class Pieza(pilas.actores.Animado):
         for x in colisiones:
             self.intentar_conectarse_a(x)
 
-
-
     def se_pueden_conectar_los_bordes(self, borde1, borde2):
         return pilas.utils.distancia(borde1, borde2) < 12
 
@@ -117,14 +161,12 @@ class Pieza(pilas.actores.Animado):
                 otra.arriba = self.arriba
 
                 self.conectar_con(otra)
-                otra.conectar_con(self)
         elif self.numero_izquierda == otra.numero:
             if self.se_pueden_conectar_los_bordes(self.izquierda, otra.derecha):
                 otra.derecha = self.izquierda
                 otra.arriba = self.arriba
 
                 self.conectar_con(otra)
-                otra.conectar_con(self)
 
         # Intenta conectar los bordes superior e inferior
         if self.numero_abajo == otra.numero:
@@ -133,32 +175,25 @@ class Pieza(pilas.actores.Animado):
                 otra.izquierda = self.izquierda
         
                 self.conectar_con(otra)
-                otra.conectar_con(self)
         elif self.numero_arriba == otra.numero:
             if self.se_pueden_conectar_los_bordes(self.arriba, otra.abajo):
                 otra.abajo = self.arriba
                 otra.izquierda = self.izquierda
 
                 self.conectar_con(otra)
-                otra.conectar_con(self)
 
 
     def conectar_con(self, otra_pieza):
-        if otra_pieza not in self.piezas_conectadas:
-            self.piezas_conectadas.append(otra_pieza)
-
-            #for x in otra_pieza.piezas_conectadas:
-            #    if x not in self.piezas_conectadas:
-            #        self.piezas_conectadas.append(x)
+        self.escena_padre.conectar(self, otra_pieza)
 
     def mover(self, dx, dy):
         "Arrastra el actor a la posicion indicada por el puntero del mouse."
-        self.x += dx
-        self.y += dy
-        self.mover_las_piezas_conectadas(dx, dy)
-
-    def mover_las_piezas_conectadas(self, dx, dy):
-        for pieza in self.piezas_conectadas:
+        # Mueve a todas las piezas de su grupo.
+        # Si la pieza no esta conectada a ninguna otra pieza
+        # no importa, porque en ese caso su grupo sera una lista
+        # con una sola pieza (ella misma).
+        for numero in self.escena_padre.grupos[self.numero]:
+            pieza = self.escena_padre.piezas[numero]
             pieza.x += dx
             pieza.y += dy
 
