@@ -52,7 +52,7 @@ class Piezas(pilas.escenas.Normal):
         "Atiente cualquier click que realice el usuario en la pantalla."
         pieza_debajo_de_mouse = pilas.actores.obtener_actor_en(kv['x'], kv['y'])
 
-        if pieza_debajo_de_mouse:
+        if pieza_debajo_de_mouse and isinstance(pieza_debajo_de_mouse, Pieza):
             self.pieza_en_movimiento = pieza_debajo_de_mouse
 
     def al_soltar_el_click(self, **kv):
@@ -110,21 +110,22 @@ class Pieza(pilas.actores.Animado):
 
 
 
+    def se_pueden_conectar_los_bordes(self, borde1, borde2):
+        return pilas.utils.distancia(borde1, borde2) < 12
 
     def intentar_conectarse_a(self, otra):
         "Intenta vincular dos piezas, siempre y cuando coincidan en sus bordes."
 
         # Intenta conectarse a la derecha.
         if self.numero_derecha == otra.numero:    # es la pieza derecha, trato de conectarla.
-            print "Se ha posado a izquerda de la pieza que corresponde"
-            if pilas.utils.distancia(self.derecha, otra.izquierda) < 12:
+            if self.se_pueden_conectar_los_bordes(self.derecha, otra.izquierda):
                 otra.izquierda = self.derecha
                 otra.arriba = self.arriba
 
                 self.conectar_con(otra)
                 otra.conectar_con(self)
         elif self.numero_izquierda == otra.numero:
-            if pilas.utils.distancia(self.izquierda, otra.derecha) < 12:
+            if self.se_pueden_conectar_los_bordes(self.izquierda, otra.derecha):
                 otra.derecha = self.izquierda
                 otra.arriba = self.arriba
 
