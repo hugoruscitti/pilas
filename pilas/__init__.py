@@ -98,7 +98,14 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
     return clase(valor_o_valores, duracion, demora)
 
 def ver(objeto):
-    print inspect.getsource(objeto)
+    "Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."
+
+    if isinstance(objeto, object):
+        codigo = inspect.getsource(objeto.__class__)
+    else:
+        codigo = inspect.getsource(objeto)
+
+    print codigo
 
 
 def avisar(mensaje):
