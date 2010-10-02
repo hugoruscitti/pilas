@@ -170,14 +170,19 @@ class ModoEjecucionNormal(ModoEjecucion):
 
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
-                x, y = self.mundo.ventana.ConvertCoords(event.MouseMove.X, event.MouseMove.Y)
 
-                dx = x - self.mundo.mouse_x
-                dy = self.mundo.mouse_y - y
-                self.mundo.mouse_x = x
-                self.mundo.mouse_y = y
+                x, y = event.MouseMove.X, event.MouseMove.Y
 
-                eventos.mueve_mouse.send("ejecutar", x=x, y=-y, dx=dx, dy=dy)
+                if x > 0 and y > 0:
+                    x, y = self.mundo.ventana.ConvertCoords(x, y)
+
+                    dx = x - self.mundo.mouse_x
+                    dy = self.mundo.mouse_y - y
+                    self.mundo.mouse_x = x
+                    self.mundo.mouse_y = y
+
+                    eventos.mueve_mouse.send("ejecutar", x=x, y=-y, dx=dx, dy=dy)
+
             elif event.Type == sf.Event.MouseButtonPressed:
                 x, y = self.mundo.ventana.ConvertCoords(event.MouseButton.X, event.MouseButton.Y)
                 eventos.click_de_mouse.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
