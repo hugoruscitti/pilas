@@ -32,6 +32,7 @@ from mundo import Mundo
 from colisiones import Colisiones
 import random
 import ejemplos
+import inspect
 
 
 # Inicialmente comienza sin un mundo esperando a que se inicialice.
@@ -95,6 +96,9 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
         valor_o_valores = [valor_o_valores]
 
     return clase(valor_o_valores, duracion, demora)
+
+def ver(objeto):
+    print inspect.getsource(objeto)
 
 
 def avisar(mensaje):
