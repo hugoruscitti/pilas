@@ -50,7 +50,7 @@ class Piezas(pilas.escenas.Normal):
 
     def al_soltar_el_click(self, **kv):
         if self.pieza_en_movimiento:
-            self.pieza_en_movimiento.soltar()
+            self.pieza_en_movimiento.soltar_todas_las_piezas_del_grupo()
             self.pieza_en_movimiento = None
 
     def al_mover_el_mouse(self, **kv):
@@ -130,6 +130,11 @@ class Pieza(pilas.actores.Animado):
             self.numero_derecha = -1
         else:
             self.numero_derecha = cuadro + 1
+
+    def soltar_todas_las_piezas_del_grupo(self):
+        for numero in self.escena_padre.grupos[self.numero]:
+            pieza = self.escena_padre.piezas[numero]
+            pieza.soltar()
 
 
     def soltar(self):
