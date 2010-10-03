@@ -175,7 +175,7 @@ class BaseActor(object, Estudiante):
         actores se ven mas arriba de otros cambiando los valores de
         los atributos `z`."""
 
-        if otro_actor.z > self.z:
+        if otro_actor.z >= self.z:
             return 1
         else:
             return -1

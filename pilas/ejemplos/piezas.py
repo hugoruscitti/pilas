@@ -17,7 +17,7 @@ class Piezas(pilas.escenas.Normal):
     actores Pieza.
     """
 
-    def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png", filas=2, columnas=2):
+    def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png", filas=4, columnas=4):
         pilas.actores.eliminar_a_todos()
         pilas.escenas.Normal.__init__(self, pilas.colores.gris_oscuro)
         grilla = pilas.imagenes.Grilla(ruta_a_la_imagen, columnas, filas)
@@ -47,10 +47,12 @@ class Piezas(pilas.escenas.Normal):
 
         if pieza_debajo_de_mouse and isinstance(pieza_debajo_de_mouse, Pieza):
             self.pieza_en_movimiento = pieza_debajo_de_mouse
+            self.pieza_en_movimiento.mostrar_arriba_todas_las_piezas()
 
     def al_soltar_el_click(self, **kv):
         if self.pieza_en_movimiento:
             self.pieza_en_movimiento.soltar_todas_las_piezas_del_grupo()
+            self.pieza_en_movimiento.mostrar_abajo_todas_las_piezas()
             self.pieza_en_movimiento = None
 
     def al_mover_el_mouse(self, **kv):
@@ -90,12 +92,11 @@ class Piezas(pilas.escenas.Normal):
             3: [0, 1, 2, 3]
         """
         
-        grupo_a_pertenecer = set(self.grupos[a])
+        grupo_nuevo = set(self.grupos[a]).union(self.grupos[b])
 
-        for pieza in grupo_a_pertenecer:
-            self.grupos[pieza] = self.grupos[pieza].union(self.grupos[b])
+        for pieza in grupo_nuevo:
+            self.grupos[pieza] = grupo_nuevo 
 
-        self.grupos[b] = self.grupos[b].union(grupo_a_pertenecer)
         
 class Pieza(pilas.actores.Animado):
     """Representa una pieza del rompecabezas.
@@ -104,15 +105,16 @@ class Pieza(pilas.actores.Animado):
     intentará conectarse con las demás."""
 
     def __init__(self, escena_padre, grilla, cuadro, filas, columnas):
+        "Genera la pieza que representa una parte de la imagen completa."
         pilas.actores.Animado.__init__(self, grilla)
 
+        self.z_de_la_pieza_mas_alta = 0
         self.numero = cuadro
-
         self.asignar_numero_de_piezas_laterales(cuadro, columnas)
 
         self.definir_cuadro(cuadro)
 
-        self.radio_de_colision = self.obtener_ancho() / 2 + 10
+        self.radio_de_colision = self.obtener_ancho() / 2 + 12
         self.escena_padre = escena_padre
         self.piezas_conectadas = []
 
@@ -136,7 +138,6 @@ class Pieza(pilas.actores.Animado):
             pieza = self.escena_padre.piezas[numero]
             pieza.soltar()
 
-
     def soltar(self):
         # Busca todas las colisiones entre esta pieza
         # que se suelta y todas las demás.
@@ -156,13 +157,12 @@ class Pieza(pilas.actores.Animado):
             if self.se_pueden_conectar_los_bordes(self.derecha, otra.izquierda):
                 otra.izquierda = self.derecha
                 otra.arriba = self.arriba
-
                 self.conectar_con(otra)
+
         elif self.numero_izquierda == otra.numero:
             if self.se_pueden_conectar_los_bordes(self.izquierda, otra.derecha):
                 otra.derecha = self.izquierda
                 otra.arriba = self.arriba
-
                 self.conectar_con(otra)
 
         # Intenta conectar los bordes superior e inferior
@@ -170,13 +170,12 @@ class Pieza(pilas.actores.Animado):
             if self.se_pueden_conectar_los_bordes(self.abajo, otra.arriba):
                 otra.arriba = self.abajo
                 otra.izquierda = self.izquierda
-        
                 self.conectar_con(otra)
+
         elif self.numero_arriba == otra.numero:
             if self.se_pueden_conectar_los_bordes(self.arriba, otra.abajo):
                 otra.abajo = self.arriba
                 otra.izquierda = self.izquierda
-
                 self.conectar_con(otra)
 
 
@@ -214,3 +213,13 @@ class Pieza(pilas.actores.Animado):
 
     x = property(get_x, set_x, doc="Define la posición horizontal.")
     y = property(get_y, set_y, doc="Define la posición vertical.")
+
+    def mostrar_arriba_todas_las_piezas(self):
+        for numero in self.escena_padre.grupos[self.numero]:
+            pieza = self.escena_padre.piezas[numero]
+            pieza.z = -1
+
+    def mostrar_abajo_todas_las_piezas(self):
+        for numero in self.escena_padre.grupos[self.numero]:
+            pieza = self.escena_padre.piezas[numero]
+            pieza.z = 0
