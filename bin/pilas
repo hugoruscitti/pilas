@@ -1,0 +1,24 @@
+#!/sbin/env python
+import sys
+from optparse import OptionParser
+import pilas
+
+analizador = OptionParser()
+
+analizador.add_option("-s", "--servir",  dest="servir",
+        action="store_true", default=False,
+        help="Pone a pilas en modo servidor web")
+
+(opciones, argumentos) = analizador.parse_args()
+
+
+
+if opciones.servir:
+    pilas.red.iniciar_servidor()
+    sys.exit(0)
+
+
+print "Error, no has indicado un parametro para inciar pilas."
+print "Puedes ejecutar el comando 'pilas --help' para ver instrucciones."
+sys.exit(1)
+

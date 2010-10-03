@@ -33,6 +33,7 @@ from colisiones import Colisiones
 import random
 import ejemplos
 import inspect
+import red
 
 
 # Inicialmente comienza sin un mundo esperando a que se inicialice.

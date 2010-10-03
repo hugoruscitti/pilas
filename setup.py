@@ -17,6 +17,8 @@ setup(
             '': ['data/*', 'pilas/ejemplos/data/*'],
             },
 
+        scripts=['bin/pilas'],
+
         classifiers = [
             'Intended Audience :: Developers',
             'Intended Audience :: Education',

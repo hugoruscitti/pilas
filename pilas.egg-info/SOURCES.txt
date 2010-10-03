@@ -1,9 +1,11 @@
 MANIFEST.in
 README
 setup.py
+bin/pilas
 pilas/__init__.py
 pilas/camara.py
 pilas/colisiones.py
+pilas/colores.py
 pilas/comportamientos.py
 pilas/control.py
 pilas/escenas.py
@@ -23,6 +25,7 @@ pilas.egg-info/dependency_links.txt
 pilas.egg-info/top_level.txt
 pilas/actores/__init__.py
 pilas/actores/animacion.py
+pilas/actores/animado.py
 pilas/actores/banana.py
 pilas/actores/bomba.py
 pilas/actores/ejes.py
@@ -52,6 +55,7 @@ pilas/data/punto.png
 pilas/data/shout.wav
 pilas/data/sin_imagen.png
 pilas/data/smile.wav
+pilas/data/tick.wav
 pilas/data/tortuga.png
 pilas/data/volley.png
 pilas/dispatch/__init__.py
@@ -59,5 +63,5 @@ pilas/dispatch/dispatcher.py
 pilas/dispatch/saferef.py
 pilas/ejemplos/__init__.py
 pilas/ejemplos/piezas.py
+pilas/ejemplos/data/fondo_piezas.png
 pilas/ejemplos/data/piezas.png
-test/test.py
