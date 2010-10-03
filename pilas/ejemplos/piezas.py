@@ -28,6 +28,8 @@ class Piezas(pilas.escenas.Normal):
         pilas.eventos.termina_click.connect(self.al_soltar_el_click)
         pilas.eventos.mueve_mouse.connect(self.al_mover_el_mouse)
 
+        self.sonido_tick = pilas.sonidos.cargar("tick.wav")
+
     def crear_piezas(self, grilla, filas, columnas):
         "Genera todas las piezas en base al tamaño del constructor."
         self.piezas = []
@@ -63,6 +65,7 @@ class Piezas(pilas.escenas.Normal):
     def conectar(self, pieza_a, pieza_b):
         a = pieza_a.numero
         b = pieza_b.numero
+
   
         if a in self.grupos[b]:
             #Evita contectar mas de una vez a dos piezas.
@@ -97,6 +100,7 @@ class Piezas(pilas.escenas.Normal):
         for pieza in grupo_nuevo:
             self.grupos[pieza] = grupo_nuevo 
 
+        self.sonido_tick.reproducir()
         
 class Pieza(pilas.actores.Animado):
     """Representa una pieza del rompecabezas.
