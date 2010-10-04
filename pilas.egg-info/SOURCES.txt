@@ -15,6 +15,7 @@ pilas/imagenes.py
 pilas/interpolaciones.py
 pilas/mundo.py
 pilas/pytweener.py
+pilas/red.py
 pilas/sonidos.py
 pilas/tareas.py
 pilas/utils.py

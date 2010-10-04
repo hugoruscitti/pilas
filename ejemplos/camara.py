@@ -2,11 +2,17 @@ import pilas
 
 pilas.iniciar()
 
-tortuga = pilas.actores.Tortuga()
-tortuga.girar(45)
-tortuga.avanzar(100)
+mono = pilas.actores.Mono()
+mono.escala = 1
+mono.rotacion = 0
 
-pilas.mundo.camara.x = pilas.interpolar(200, 0)
+def girar():
+    mono.rotacion = mono.rotacion + 1
+    return True
+
+pilas.mundo.agregar_tarea(0, girar)
+
+pilas.mundo.camara.x = pilas.interpolar([200, 0], duracion=10)
 
 pilas.avisar("Moviendo la camara...")
 pilas.ejecutar()

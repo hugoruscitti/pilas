@@ -2,7 +2,7 @@ import pilas
 
 mono = pilas.actores.Mono()
 
-def mover_al_mono(sender, x, y, signal):
+def mover_al_mono(sender, x, y, signal, dx, dy):
     mono.x = x
     mono.y = y
 
