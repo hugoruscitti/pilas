@@ -38,12 +38,21 @@ import red
 
 # Inicialmente comienza sin un mundo esperando a que se inicialice.
 mundo = None
+bg = None
 colisiones = Colisiones()
 
 def iniciar(ancho=640, alto=480, titulo='Pilas'):
     global mundo
-    mundo = Mundo(ancho, alto, titulo)
-    escenas.Normal()
+
+    # Cuando inicia en modo interactivo se asegura
+    # de crear la ventana dentro del mismo hilo que
+    # tiene el contexto opengl.
+    if utils.esta_en_sesion_interactiva():
+        pilas.utils.cargar_autocompletado()
+        iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo)
+    else:
+        mundo = Mundo(ancho, alto, titulo)
+        escenas.Normal()
 
 def terminar():
     global mundo
@@ -53,17 +62,23 @@ def ejecutar():
     "Pone en funcionamiento el ejecutar principal."
     global mundo
 
-    if not mundo:
-        iniciar()
-
     mundo.ejecutar_bucle_principal()
 
+def iniciar_y_ejecutar(ancho, alto, titulo):
+    global mundo
 
-def ejecutar_en_segundo_plano():
+    mundo = Mundo(ancho, alto, titulo)
+    escenas.Normal()
+    ejecutar()
+
+
+
+def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo):
     "Ejecuta el ejecutar de pilas en segundo plano."
     import threading
+    global gb
 
-    bg = threading.Thread(target=ejecutar)
+    bg = threading.Thread(target=iniciar_y_ejecutar, args=(ancho, alto, titulo))
     bg.start()
 
 
@@ -132,9 +147,3 @@ def fabricar(clase, cantidad=1):
 
     return objetos_creados
 
-# Cuando inicia en modo interactivo se asegura
-# de crear la ventana dentro del mismo hilo que
-# tiene el contexto opengl.
-if utils.esta_en_sesion_interactiva():
-    pilas.utils.cargar_autocompletado()
-    ejecutar_en_segundo_plano()

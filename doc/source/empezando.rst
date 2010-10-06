@@ -15,6 +15,7 @@ el comando ``python`` y luego
 ingresa la sentencia::
 
     import pilas
+    pilas.iniciar()
 
 En tu pantalla tiene que aparecer una ventana
 de color gris:
