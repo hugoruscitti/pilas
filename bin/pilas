@@ -7,14 +7,20 @@ analizador = OptionParser()
 
 analizador.add_option("-s", "--servir",  dest="servir",
         action="store_true", default=False,
-        help="Pone a pilas en modo servidor web")
+        help="Pone a pilas en modo servidor web.")
+
+analizador.add_option("-j", "--crearjuego", dest="crearjuego",
+        action="store_true", default=False,
+        help="Genera un directorio de videojuego vacio.")
 
 (opciones, argumentos) = analizador.parse_args()
 
 
-
 if opciones.servir:
     pilas.red.iniciar_servidor()
+    sys.exit(0)
+elif opciones.crearjuego:
+    pilas.utils.crear_juego()
     sys.exit(0)
 
 

@@ -1,5 +1,4 @@
 MANIFEST.in
-README
 setup.py
 bin/pilas
 pilas/__init__.py
@@ -59,6 +58,7 @@ pilas/data/smile.wav
 pilas/data/tick.wav
 pilas/data/tortuga.png
 pilas/data/volley.png
+pilas/data/juegobase/ejecutar.py
 pilas/dispatch/__init__.py
 pilas/dispatch/dispatcher.py
 pilas/dispatch/saferef.py
