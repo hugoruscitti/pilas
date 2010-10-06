@@ -54,7 +54,7 @@ pySFML:
 
 
 GFXLib
-======
+------
 
 He utilizado los siguientes gráficos del proyecto
 gfxlib:
