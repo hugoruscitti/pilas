@@ -6,11 +6,10 @@
 #
 # website - http://www.pilas-engine.com.ar
 
+import simbolos
 import os
 import sys
 import time
-
-from PySFML import sf
 
 import colores
 import actores
@@ -34,10 +33,12 @@ import random
 import ejemplos
 import inspect
 import red
+import motores
 
 
 # Inicialmente comienza sin un mundo esperando a que se inicialice.
 mundo = None
+motor = motores.pySFML()
 bg = None
 colisiones = Colisiones()
 

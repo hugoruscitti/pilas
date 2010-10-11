@@ -39,7 +39,7 @@ class Mundo:
         ventana.ancho = ancho
         ventana.alto = alto
 
-        self.control = control.Control(self.ventana.GetInput())
+        self.control = control.Control()
 
         # todo: llevar a ventana.iniciar
         utils.hacer_flotante_la_ventana()

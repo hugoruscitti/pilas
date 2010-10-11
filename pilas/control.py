@@ -8,6 +8,7 @@
 
 import pilas
 from PySFML import sf
+from pilas.simbolos import *
 
 class Control:
     """Representa un control de teclado sencillo.
@@ -23,10 +24,7 @@ class Control:
             print 'Ha pulsado hacia la izquierda'
     """
 
-
-    def __init__(self, input):
-        self.input = input
-
+    def __init__(self):
         self.izquierda = False
         self.derecha = False
         self.arriba = False
@@ -34,8 +32,8 @@ class Control:
         self.boton = False
 
     def actualizar(self):
-        self.izquierda = self.input.IsKeyDown(sf.Key.Left) 
-        self.derecha = self.input.IsKeyDown(sf.Key.Right) 
-        self.arriba = self.input.IsKeyDown(sf.Key.Up) 
-        self.abajo = self.input.IsKeyDown(sf.Key.Down) 
-        self.boton = self.input.IsKeyDown(sf.Key.Space) or self.input.IsKeyDown(sf.Key.Return)
+        self.izquierda = pilas.motor.pulsa_tecla(IZQUIERDA)
+        self.derecha = pilas.motor.pulsa_tecla(DERECHA)
+        self.arriba = pilas.motor.pulsa_tecla(ARRIBA)
+        self.abajo = pilas.motor.pulsa_tecla(ABAJO)
+        self.boton = pilas.motor.pulsa_tecla(BOTON)
