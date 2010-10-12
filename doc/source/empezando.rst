@@ -178,7 +178,7 @@ Un buen ejercicio es ponerse a investigar el módulo
 actores. Hay muchos actores, estos son algunos ejemplos
 de código para probar:
 
-.. code-block::
+.. code-block:: python
 
     b = pilas.actores.Bomba()
     b.explotar()
