@@ -2,10 +2,8 @@
 Pilas, un motor hacer juegos
 ============================
 
-
 :autor: Hugo Ruscitti
 :resumen: Una breve reseña del proyecto, algunos ejemplos e ideas.
-
 
 
 Introducción
@@ -14,7 +12,7 @@ Introducción
 Pilas es una herramienta para hacer videojuegos de manera sencilla.
 
 ¿Por qué?
----------
+_________
 
 - Hacer juegos debería ser mas sencillo.
 - Queremos que mas gente haga juegos, incluso en la escuela.
@@ -27,7 +25,8 @@ Características
 - Orientada a principiantes y programadores casuales.
 - Viene con objetos pre-diseñados, llamados actores.
 - Completamente en español.
-- Documentación
+- Es interactiva, para aprender realizando.
+- Documentación con ejemplos y pragmática.
 
 
 Un ejemplo
@@ -40,6 +39,7 @@ Crear un personaje en la pantalla:
 
     import pilas
 
+    pilas.iniciar()
     mono = pilas.actores.Mono()
 
 Atributos
@@ -76,9 +76,11 @@ Los actores también tienen comportamiento:
     mono.sonreir()
     bomba.explotar()
 
-esto te permite crear un juego
-intercambiando mensajes entre los
-objetos de la escena.
+
+.. image:: ../pilas/data/monkey_smile.png
+    :width: 2cm
+
+esto te permite crear un juego intercambiando mensajes entre actores.
 
 
 Habilidades

@@ -29,7 +29,7 @@ Entonces, para solucionar el problema tienes que
 mantener viva la referencia al objeto ``Sonido`` cuando
 quieras reproducir algo. Por ejemplo:
 
-:Mal ejemplo: 
+:Ejemplo incompleto: 
 
     .. code-block:: python
 
