@@ -50,7 +50,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas'):
     # tiene el contexto opengl.
     if utils.esta_en_sesion_interactiva():
         pilas.utils.cargar_autocompletado()
-        iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo)
+        iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]")
     else:
         mundo = Mundo(ancho, alto, titulo)
         escenas.Normal()
@@ -76,9 +76,8 @@ def iniciar_y_ejecutar(ancho, alto, titulo):
     ejecutar()
 
 
-
 def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo):
-    "Ejecuta el ejecutar de pilas en segundo plano."
+    "Ejecuta el bucle de pilas en segundo plano."
     import threading
     global gb
 
@@ -117,6 +116,7 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
 
     return clase(valor_o_valores, duracion, demora)
 
+
 def ver(objeto):
     "Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."
 
@@ -135,6 +135,7 @@ def avisar(mensaje):
     texto.izquierda = -310
     texto.abajo = -230
 
+
 def fabricar(clase, cantidad=1):
     "Genera muchas intancias de objetos asignando posiciones aleatorias."
 
@@ -150,4 +151,3 @@ def fabricar(clase, cantidad=1):
         objetos_creados.append(nuevo)
 
     return objetos_creados
-

@@ -8,7 +8,9 @@ class Pygame:
         pygame.init()
 
     def crear_ventana(self, ancho, alto, titulo):
-        return pygame.display.set_mode((ancho, alto))
+        ventana = pygame.display.set_mode((ancho, alto))
+        pygame.display.set_caption(titulo)
+        return ventana
 
 
 

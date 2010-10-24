@@ -5,7 +5,6 @@ import pilas
 
 
 class TestSequenceFunctions(unittest.TestCase):
-    
 
     def setUp(self):
         pass

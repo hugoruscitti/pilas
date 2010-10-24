@@ -46,6 +46,6 @@ class Mono(Actor):
         pilas.mundo.agregar_tarea(1, self.normal)
         self.sound_shout.reproducir()
 
-
     def normal(self):
         self.SetImage(self.image_normal)
+
