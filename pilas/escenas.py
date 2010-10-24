@@ -6,7 +6,6 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-from pilas.actores import Actor
 import pilas
 from PySFML import sf
 
@@ -26,6 +25,7 @@ class Escena:
         pass
 
 
+'''
 class Paisaje(Actor, Escena):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."
 
@@ -33,6 +33,7 @@ class Paisaje(Actor, Escena):
         Escena.__init__(self)
         Actor.__init__(self, "volley.png")
         self.z = 100
+'''
 
 class Normal(Escena):
     "Representa la escena inicial mas simple."

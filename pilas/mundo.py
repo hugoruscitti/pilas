@@ -11,7 +11,6 @@ import sys
 
 from PySFML import sf
 
-import actores
 import ventana
 import control
 import camara

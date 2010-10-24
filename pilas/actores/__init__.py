@@ -15,6 +15,9 @@ todos = []
 
 RADIO_INICIAL = 10
 
+
+print "Cargando modulo actores, usando el motor '%s'" %(pilas.motor.__class__.__name__)
+
 def ordenar_actores_por_valor_z():
     "Ordena todos los actores para que se impriman con 'z' como criterio de orden."
     todos.sort()
@@ -218,7 +221,7 @@ class BaseActor(object, Estudiante):
 
     arriba = property(get_arriba, set_arriba)
 
-class Actor(sf.Sprite, BaseActor):
+class Actor(BaseActor):
     """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
     Un objeto Actor se tiene que crear siempre indicando la imagen, ya
@@ -252,10 +255,12 @@ class Actor(sf.Sprite, BaseActor):
 
     def __init__(self, image="sin_imagen.png"):
 
+        self.aprender(pilas.motor.SpriteActor)
+
         if isinstance(image, str):
             image = pilas.imagenes.cargar(image)
 
-        sf.Sprite.__init__(self, image)
+        #sf.Sprite.__init__(self, image)
         BaseActor.__init__(self)
 
 

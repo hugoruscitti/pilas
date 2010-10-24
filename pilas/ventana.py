@@ -8,7 +8,6 @@
 
 import pilas
 from PySFML import sf
-import actores
 
 modo_depuracion = False
 eje_coordenadas = None

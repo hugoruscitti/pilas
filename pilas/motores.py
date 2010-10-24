@@ -13,9 +13,38 @@ import eventos
 import pilas
 
 
+class Sonido:
+
+    def __init__(self, buffer):
+        self.buffer = buffer
+        self.sonido = sf.Sound(buffer)
+        pass
+
+    def reproducir(self):
+        self.sonido.Play()
+    
+    def Play(self):
+        self.reproducir()
+
+
 class Pygame:
+    """Representa la capa de interaccion con la biblioteca Pygame.
+
+    Esto permite que tus juegos realizados con pilas funcionen
+    en cualquier equipo que tenga instalada la biblioteca pygame,
+    por ejemplo equipos como OLPC o simplemente aquellos que no
+    tengan aceleradoras de graficos OpenGL."""
+
+    class Sprite:
+
+        def __init__(self, *k, **kv):
+            print "Iniciando la capa de sprite..."
+            pass
+
+    SpriteActor = Sprite
 
     def __init__(self):
+        import pilas.colores
         pygame.init()
         pilas.colores.gris = (200, 200, 200)
 
@@ -85,7 +114,16 @@ class Pygame:
 
 class pySFML:
 
+    class Sprite:
+
+        def __init__(self, *k, **kv):
+            print "Iniciando la capa de sprite..."
+            pass
+
+    SpriteActor = Sprite
+
     def __init__(self):
+        import pilas.colores
         # Se usan para calcular el dx y dy del movimiento
         # del mouse porque pySFML no lo reporta de forma relativa.
         self.mouse_x = 0
@@ -182,7 +220,12 @@ class pySFML:
 
     def pintar(self, color):
         self.ventana.Clear(color)
-        
+
+            
+    def cargar_sonido(self, ruta):
+        buff = sf.SoundBuffer()
+        buff.LoadFromFile(ruta)
+        return Sonido(buff)
 
     def cargar_imagen(self, ruta):
         image = sf.Image()

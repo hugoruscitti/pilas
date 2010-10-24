@@ -11,18 +11,6 @@ from PySFML import sf
 
 import os
 
-class Sonido:
-
-    def __init__(self, buffer):
-        self.buffer = buffer
-        self.sonido = sf.Sound(buffer)
-        pass
-
-    def reproducir(self):
-        self.sonido.Play()
-    
-    def Play(self):
-        self.reproducir()
 
 def cargar(ruta):
     """Carga un sonido para reproducir, donde el argumento ``ruta`` indica cual es el archivo.
@@ -46,8 +34,5 @@ def cargar(ruta):
 
     En caso de error genera una excepción de tipo IOError.
     """
-    path = pilas.utils.obtener_ruta_al_recurso(ruta)
-
-    buff = sf.SoundBuffer()
-    buff.LoadFromFile(path)
-    return Sonido(buff)
+    ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
+    return pilas.motor.cargar_sonido(ruta)
