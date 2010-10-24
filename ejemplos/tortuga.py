@@ -1,5 +1,6 @@
 import pilas
 
+pilas.iniciar()
 tortuga = pilas.actores.Tortuga()
 tortuga.avanzar(100)
 

@@ -131,7 +131,7 @@ class ModoEjecucionNormal(ModoEjecucion):
 
     def actualizar_simuladores(self):
         self.mundo.tweener.update(16)
-        self.mundo.tasks.update(self.mundo.ventana.GetFrameTime())
+        self.mundo.tasks.update(16)
 
     def actualizar_actores(self):
         for actor in actores.todos:
