@@ -33,21 +33,6 @@ def hacer_flotante_la_ventana():
     except OSError:
         pass
 
-def centrar_la_ventana(app):
-    "Coloca la ventana principal en el centro del escritorio."
-
-    vm = sf.VideoMode(100, 100)
-
-    # Obtiene la resolución del escritorio y la ventana.
-    desktop_mode = vm.GetDesktopMode()
-    w, h = app.GetWidth(), app.GetHeight()
-
-    # Calcula cual debería la coordenada para centrar la ventana.
-    to_x = desktop_mode.Width/2 - w/2
-    to_y = desktop_mode.Height/2 - h/2
-
-    app.SetPosition(to_x, to_y)
-
 def es_interpolacion(an_object):
     "Indica si un objeto se comporta como una colisión."
 

@@ -8,8 +8,20 @@ class AbstractTest():
 
     def test_creacion_de_ventana(self):
         self.motor.crear_ventana(320, 240, "test")
-        pausa(1)
-    
+        self.motor.centrar_ventana()
+
+        # A partir de ahora todas las llamadas internas de
+        # pilas se delegan en este motor.
+        pilas.motor = self.motor
+
+        c = pilas.control.Control()
+        c.actualizar()
+
+        self.assertFalse(c.izquierda)
+        self.assertFalse(c.derecha)
+
+
+
 
 class TestPygameMotor(unittest.TestCase, AbstractTest):
     "Verifica que todas las llamadas a pygame funcionan correctamente."

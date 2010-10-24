@@ -43,7 +43,7 @@ class Mundo:
 
         # todo: llevar a ventana.iniciar
         utils.hacer_flotante_la_ventana()
-        utils.centrar_la_ventana(self.ventana)
+        pilas.motor.centrar_la_ventana()
 
         self.camara = camara.Camara(self.ventana)
 
