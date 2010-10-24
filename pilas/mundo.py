@@ -68,9 +68,6 @@ class Mundo:
 
         self.modo_ejecucion = nuevo_modo
 
-    def definir_escala(self, escala):
-        ventana.cambiar_escala(self.ventana, escala)
-
     def terminar(self):
         self.salir = True
 

@@ -16,8 +16,3 @@ eje_coordenadas = None
 def iniciar(ancho, alto, titulo):
     ventana = pilas.motor.crear_ventana(ancho, alto, titulo)
     return ventana
-
-def cambiar_escala(ventana, nueva_escala):
-    nuevo_ancho = ancho * nueva_escala
-    nuevo_alto = alto * nueva_escala
-    ventana.SetSize(int(nuevo_ancho), int(nuevo_alto))

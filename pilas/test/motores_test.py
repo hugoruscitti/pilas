@@ -6,7 +6,7 @@ from time import sleep as pausa
 
 class AbstractTest():
 
-    def test_creacion_de_ventana(self):
+    def iniciar(self):
         self.motor.crear_ventana(320, 240, "test")
         self.motor.centrar_ventana()
 
@@ -14,13 +14,20 @@ class AbstractTest():
         # pilas se delegan en este motor.
         pilas.motor = self.motor
 
+    def test_creacion_de_ventana(self):
+        self.iniciar()
+
+    def test_control(self):
+        self.iniciar()
+
         c = pilas.control.Control()
         c.actualizar()
 
         self.assertFalse(c.izquierda)
         self.assertFalse(c.derecha)
-
-
+        
+    def test_camara(self):
+        pass
 
 
 class TestPygameMotor(unittest.TestCase, AbstractTest):
