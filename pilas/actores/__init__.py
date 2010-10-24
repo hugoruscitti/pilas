@@ -283,6 +283,9 @@ class Actor(sf.Sprite, BaseActor):
     def obtener_alto(self):
         return self.GetSize()[1]
 
+    def __str__(self):
+        return "<%s en (%d, %d)>" %(self.__class__.__name__, self.x, self.y)
+
 from mono import *
 from tortuga import *
 from texto import *
