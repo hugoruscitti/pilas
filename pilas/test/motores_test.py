@@ -40,6 +40,11 @@ class AbstractTest():
         pilas.colores.gris
         pass
 
+    def test_cargar_image(self):
+        self.iniciar()
+        imagen1 = pilas.imagenes.cargar("./ceferino.png")
+        imagen2 = pilas.motor.cargar_imagen("./ceferino.png")
+        self.assertEquals(imagen1.__class__, imagen2.__class__)
 
 class TestPygameMotor(unittest.TestCase, AbstractTest):
     "Verifica que todas las llamadas a pygame funcionan correctamente."

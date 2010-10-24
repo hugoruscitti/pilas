@@ -79,6 +79,10 @@ class Pygame:
     def pintar(self, color):
         self.ventana.fill(color)
 
+    def cargar_imagen(self, ruta):
+        # TODO: Optimizar la imagen preservando el canal alpha.
+        return pygame.image.load(ruta)
+
 class pySFML:
 
     def __init__(self):
@@ -179,3 +183,8 @@ class pySFML:
     def pintar(self, color):
         self.ventana.Clear(color)
         
+
+    def cargar_imagen(self, ruta):
+        image = sf.Image()
+        image.LoadFromFile(ruta)
+        return image

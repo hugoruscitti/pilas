@@ -32,12 +32,7 @@ def cargar(ruta):
     """
 
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
-
-    # Genera el objeto image y lo retorna.
-    image = sf.Image()
-    image.LoadFromFile(ruta)
-
-    return image
+    return pilas.motor.cargar_imagen(ruta)
 
 
 class Grilla:
