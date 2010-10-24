@@ -57,10 +57,6 @@ class Mundo:
         self.definir_modo_ejecucion(ModoEjecucionNormal(self))
         self.salir = False
 
-        # FIX: tienen la posicion del mouse como memoria para
-        #      obtener los delta e posicion en el evento mueve_mouse.
-        self.mouse_x = 0
-        self.mouse_y = 0
 
     def definir_modo_ejecucion(self, nuevo_modo):
         if self.modo_ejecucion:
@@ -74,8 +70,6 @@ class Mundo:
     def ejecutar_bucle_principal(self):
         "Mantiene en funcionamiento el motor completo."
 
-        event = sf.Event()
-        clock = sf.Clock()
 
         while not self.salir:
 
@@ -88,7 +82,7 @@ class Mundo:
             self.modo_ejecucion.emitir_evento_actualizar()
 
             # Procesa todos los eventos.
-            self.modo_ejecucion.procesar_y_emitir_eventos(event)
+            pilas.motor.procesar_y_emitir_eventos()
 
             # Analiza colisiones entre los actores
             self.modo_ejecucion.analizar_colisiones()
@@ -101,7 +95,8 @@ class Mundo:
             self.modo_ejecucion.dibujar_actores()
 
             # Muestra los cambios en pantalla.
-            self.ventana.Display()
+            pilas.motor.actualizar_pantalla()
+
         self._cerrar_ventana()
 
     def _cerrar_ventana(self):
@@ -154,40 +149,6 @@ class ModoEjecucionNormal(ModoEjecucion):
 
     def salir(self):
         pass
-
-    def procesar_y_emitir_eventos(self, event):
-        "Procesa todos los eventos que la biblioteca SFML pone en una cola."
-
-        while self.mundo.ventana.GetEvent(event):
-            if event.Type == sf.Event.KeyPressed:
-                self.procesar_evento_teclado(event)
-
-                if event.Key.Code == sf.Key.Q:
-                    self.mundo.terminar()
-
-            elif event.Type == sf.Event.MouseMoved:
-                # Notifica el movimiento del mouse con una señal
-
-                x, y = event.MouseMove.X, event.MouseMove.Y
-
-                if x > 0 and y > 0:
-                    x, y = self.mundo.ventana.ConvertCoords(x, y)
-
-                    dx = x - self.mundo.mouse_x
-                    dy = self.mundo.mouse_y - y
-                    self.mundo.mouse_x = x
-                    self.mundo.mouse_y = y
-
-                    eventos.mueve_mouse.send("ejecutar", x=x, y=-y, dx=dx, dy=dy)
-
-            elif event.Type == sf.Event.MouseButtonPressed:
-                x, y = self.mundo.ventana.ConvertCoords(event.MouseButton.X, event.MouseButton.Y)
-                eventos.click_de_mouse.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
-            elif event.Type == sf.Event.MouseButtonReleased:
-                x, y = self.mundo.ventana.ConvertCoords(event.MouseButton.X, event.MouseMove.Y)
-                eventos.termina_click.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
-            elif event.Type == sf.Event.MouseWheelMoved:
-                eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 
     def procesar_evento_teclado(self, event):
         eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)

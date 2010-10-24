@@ -29,6 +29,12 @@ class AbstractTest():
     def test_camara(self):
         pass
 
+    def test_eventos(self):
+        pilas.motor.procesar_y_emitir_eventos()
+
+    def test_pantalla(self):
+        pilas.motor.actualizar_pantalla()
+
 
 class TestPygameMotor(unittest.TestCase, AbstractTest):
     "Verifica que todas las llamadas a pygame funcionan correctamente."
