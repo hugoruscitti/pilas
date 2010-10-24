@@ -42,4 +42,4 @@ class Normal(Escena):
         self.fondo = color_de_fondo or pilas.colores.gris
 
     def dibujar(self, aplicacion):
-        aplicacion.Clear(self.fondo)
+        pilas.motor.pintar(self.fondo)

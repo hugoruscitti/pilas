@@ -27,6 +27,7 @@ class AbstractTest():
         self.assertFalse(c.derecha)
         
     def test_camara(self):
+        #pilas.motor.definir_centro_de_la_camara(0, 0)
         pass
 
     def test_eventos(self):
@@ -34,6 +35,10 @@ class AbstractTest():
 
     def test_pantalla(self):
         pilas.motor.actualizar_pantalla()
+
+    def test_colores(self):
+        pilas.colores.gris
+        pass
 
 
 class TestPygameMotor(unittest.TestCase, AbstractTest):

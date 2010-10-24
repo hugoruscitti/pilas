@@ -10,12 +10,14 @@ import pygame
 from PySFML import sf
 from pilas.simbolos import *
 import eventos
+import pilas
 
 
 class Pygame:
 
     def __init__(self):
         pygame.init()
+        pilas.colores.gris = (200, 200, 200)
 
     def crear_ventana(self, ancho, alto, titulo):
         self.ventana = pygame.display.set_mode((ancho, alto))
@@ -74,6 +76,8 @@ class Pygame:
     def actualizar_pantalla(self):
         pygame.display.flip()
 
+    def pintar(self, color):
+        self.ventana.fill(color)
 
 class pySFML:
 
@@ -82,6 +86,7 @@ class pySFML:
         # del mouse porque pySFML no lo reporta de forma relativa.
         self.mouse_x = 0
         self.mouse_y = 0
+        pilas.colores.gris = sf.Color(200, 200, 200)
 
     def crear_ventana(self, ancho, alto, titulo):
         ventana = sf.RenderWindow(sf.VideoMode(ancho, alto), titulo)
@@ -170,3 +175,7 @@ class pySFML:
     def obtener_centro_de_la_camara(self):
         view = self.ventana.GetDefaultView()
         return view.GetCenter()
+
+    def pintar(self, color):
+        self.ventana.Clear(color)
+        
