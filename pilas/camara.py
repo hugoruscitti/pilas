@@ -18,26 +18,26 @@ class Camara(object):
     valores con (0, 0)."""
 
     def __init__(self, app):
-        self.view = app.GetDefaultView()
+        pass
 
     def _set_x(self, x):
         if pilas.utils.es_interpolacion(x):
             x.apply(self, function='_set_x')
         else:
-            self.view.SetCenter(x, self.y)
+            pilas.motor.definir_centro_de_la_camara(x, self.y)
 
     def _get_x(self):
-        x, y = self.view.GetCenter()
+        x, y = pilas.motor.obtener_centro_de_la_camara()
         return x
 
     def _set_y(self, y):
         if pilas.utils.es_interpolacion(y):
             y.apply(self, function='_set_y')
         else:
-            self.view.SetCenter(self.x, -y)
+            pilas.motor.definir_centro_de_la_camara(self.x, -y)
 
     def _get_y(self):
-        x, y = self.view.GetCenter()
+        x, y = pilas.motor.obtener_centro_de_la_camara()
         return y
 
     x = property(_get_x, _set_x)

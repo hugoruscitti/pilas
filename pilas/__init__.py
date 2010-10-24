@@ -38,12 +38,21 @@ import motores
 
 # Inicialmente comienza sin un mundo esperando a que se inicialice.
 mundo = None
-motor = motores.pySFML()
+motor = None
 bg = None
 colisiones = Colisiones()
 
-def iniciar(ancho=640, alto=480, titulo='Pilas'):
+def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     global mundo
+    global motor
+
+    motores_disponibles = {
+            'pysfml': motores.pySFML,
+            'sfml': motores.pySFML,
+            'pygame': motores.Pygame,
+    }
+
+    motor = motores_disponibles[usar_motor]()
 
     # Cuando inicia en modo interactivo se asegura
     # de crear la ventana dentro del mismo hilo que

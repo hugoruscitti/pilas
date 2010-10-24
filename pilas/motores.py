@@ -90,6 +90,7 @@ class pySFML:
         view.SetCenter(0, 0)
         self.input = ventana.GetInput()
         self.event = sf.Event()
+        self.vista_de_camara = ventana.GetDefaultView()
         self.ventana = ventana
         return ventana
 
@@ -161,3 +162,11 @@ class pySFML:
 
     def actualizar_pantalla(self):
         self.ventana.Display()
+
+    def definir_centro_de_la_camara(self, x, y):
+        view = self.ventana.GetDefaultView()
+        view.SetCenter(x, y)
+
+    def obtener_centro_de_la_camara(self):
+        view = self.ventana.GetDefaultView()
+        return view.GetCenter()
