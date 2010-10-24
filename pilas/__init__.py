@@ -63,7 +63,10 @@ def ejecutar():
     "Pone en funcionamiento el ejecutar principal."
     global mundo
 
-    mundo.ejecutar_bucle_principal()
+    if mundo:
+        mundo.ejecutar_bucle_principal()
+    else:
+        raise Exception("Tienes que llamar a pilas.iniciar() antes de ejecutar el juego.")
 
 def iniciar_y_ejecutar(ancho, alto, titulo):
     global mundo
