@@ -150,7 +150,7 @@ class ModoEjecucionNormal(ModoEjecucion):
 
     def emitir_evento_actualizar(self):
         self.mundo.control.actualizar()
-        eventos.actualizar.send("bucle", input=self.mundo.ventana.GetInput())
+        eventos.actualizar.send("bucle")
 
     def salir(self):
         pass
