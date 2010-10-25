@@ -35,10 +35,9 @@ class Pygame:
     por ejemplo equipos como OLPC o simplemente aquellos que no
     tengan aceleradoras de graficos OpenGL."""
 
-    class Sprite:
+    class Sprite():
 
         def __init__(self, *k, **kv):
-            print "Iniciando la capa de sprite..."
             pass
 
     SpriteActor = Sprite
@@ -113,14 +112,67 @@ class Pygame:
         return pygame.image.load(ruta)
 
 class pySFML:
+    import pilas.actores.base
 
-    class Sprite:
+    class Actor(pilas.actores.base.BaseActor):
+        """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
-        def __init__(self, *k, **kv):
-            print "Iniciando la capa de sprite..."
-            pass
+        Un objeto Actor se tiene que crear siempre indicando la imagen, ya
+        sea como una ruta a un archivo como con un objeto Image. Por ejemplo::
 
-    SpriteActor = Sprite
+            protagonista = Actor("protagonista_de_frente.png")
+
+        es equivalente a:
+
+            imagen = pilas.imagenes.cargar("protagonista_de_frente.png")
+            protagonista = Actor(imagen)
+
+        Luego, na vez que ha sido ejecutada la sentencia aparecerá en el centro de
+        la pantalla el nuevo actor para que pueda manipularlo. Por ejemplo
+        alterando sus propiedades::
+
+            protagonista.x = 100
+            protagonista.scale = 2
+            protagonista.rotation = 30
+
+
+        Estas propiedades tambien se pueden manipular mediante
+        interpolaciones. Por ejemplo, para aumentar el tamaño del
+        personaje de 1 a 5 en 7 segundos::
+
+            protagonista.scale = pilas.interpolar(1, 5, 7)
+
+        Si creas un sprite sin indicar la imagen se cargará
+        una por defecto.
+        """
+
+        def __init__(self, image="sin_imagen.png"):
+
+            if isinstance(image, str):
+                image = pilas.imagenes.cargar(image)
+
+            #sf.Sprite.__init__(self, image)
+            BaseActor.__init__(self)
+
+        def dibujar(self, aplicacion):
+            aplicacion.Draw(self)
+
+        def duplicar(self, **kv):
+            duplicado = self.__class__()
+
+            for clave in kv:
+                setattr(duplicado, clave, kv[clave])
+
+            return duplicado
+
+        def obtener_ancho(self):
+            return self.GetSize()[0]
+
+        def obtener_alto(self):
+            return self.GetSize()[1]
+
+        def __str__(self):
+            return "<%s en (%d, %d)>" %(self.__class__.__name__, self.x, self.y)
 
     def __init__(self):
         import pilas.colores
