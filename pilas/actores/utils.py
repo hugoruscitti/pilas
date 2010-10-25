@@ -19,7 +19,7 @@ def insertar_como_nuevo_actor(actor):
 def eliminar_un_actor(actor):
     pilas.actores.todos.remove(actor)
 
-def eliminar_a_pilas.actores.todos():
+def eliminar_a_todos():
     a_eliminar = list(pilas.actores.todos)
 
     for x in a_eliminar:

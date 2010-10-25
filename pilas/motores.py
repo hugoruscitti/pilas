@@ -112,9 +112,9 @@ class Pygame:
         return pygame.image.load(ruta)
 
 class pySFML:
-    import pilas.actores.base
+    import pilas.base
 
-    class Actor(pilas.actores.base.BaseActor):
+    class Actor(pilas.base.BaseActor, sf.Sprite):
         """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
         Un objeto Actor se tiene que crear siempre indicando la imagen, ya
@@ -151,8 +151,9 @@ class pySFML:
             if isinstance(image, str):
                 image = pilas.imagenes.cargar(image)
 
-            #sf.Sprite.__init__(self, image)
-            BaseActor.__init__(self)
+            sf.Sprite.__init__(self, image)
+            pilas.base.BaseActor.__init__(self)
+            
 
         def dibujar(self, aplicacion):
             aplicacion.Draw(self)
@@ -173,6 +174,30 @@ class pySFML:
 
         def __str__(self):
             return "<%s en (%d, %d)>" %(self.__class__.__name__, self.x, self.y)
+
+        def obtener_area(self):
+            return self.obtener_ancho(), self.obtener_alto()
+
+        def definir_centro(self, x, y):
+            self.SetCenter(x, y)
+
+        def obtener_posicion(self):
+            return self.GetPosition()
+
+        def definir_posicion(self, x, y):
+            self.SetPosition(x, y)
+
+        def obtener_escala(self):
+            return self.GetScale()[0]
+
+        def definir_escala(self, s):
+            self.SetScale(s, s)
+
+        def obtener_rotacion(self):
+            return self.GetRotation()
+
+        def definir_rotacion(self, r):
+            self.SetRotation(r)
 
     def __init__(self):
         import pilas.colores
@@ -272,7 +297,6 @@ class pySFML:
 
     def pintar(self, color):
         self.ventana.Clear(color)
-
             
     def cargar_sonido(self, ruta):
         buff = sf.SoundBuffer()

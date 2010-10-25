@@ -133,13 +133,13 @@ class ModoEjecucionNormal(ModoEjecucion):
         self.mundo.tasks.update(16)
 
     def actualizar_actores(self):
-        for actor in actores.todos:
+        for actor in pilas.actores.todos:
             actor.actualizar()
 
     def dibujar_actores(self):
         # Separo el dibujado de los actores porque la lista puede cambiar
         # dutante la actualizacion de actores (por ejemplo si uno se elimina).
-        for actor in actores.todos:
+        for actor in pilas.actores.todos:
             actor.dibujar(self.mundo.ventana)
 
     def emitir_evento_actualizar(self):

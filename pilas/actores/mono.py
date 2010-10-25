@@ -9,7 +9,7 @@
 from pilas.actores import Actor
 import pilas
 
-class Mono(Actor, pilas.motor.Actor):
+class Mono(Actor):
     """Representa la cara de un mono de color marrón.
 
     Este personaje se usa como ejemplo básico de un actor. Sus
@@ -31,7 +31,7 @@ class Mono(Actor, pilas.motor.Actor):
         self.sound_smile = pilas.sonidos.cargar('smile.wav')
 
         # Inicializa el actor.
-        pilas.motor.Actor.__init__(self, self.image_normal)
+        Actor.__init__(self, self.image_normal)
         self.radio_de_colision = 50
 
     def sonreir(self):

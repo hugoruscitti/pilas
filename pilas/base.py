@@ -6,6 +6,8 @@
 #
 # website - http://www.pilas-engine.com.ar
 
+import pilas.utils
+
 class Estudiante:
     "Permite a distintos objetos acoplarse mediente mixins."
 
@@ -28,7 +30,6 @@ class BaseActor(object, Estudiante):
     """
 
     def __init__(self):
-        # TODO: insertar_como_nuevo_actor(self)
         self._definir_centro_del_actor()
         self.comportamiento = None
 
@@ -39,22 +40,22 @@ class BaseActor(object, Estudiante):
         self.z = 0
         self._espejado = False
         self.radio_de_colision = 10
+        pilas.actores.utils.insertar_como_nuevo_actor(self)
 
     def _definir_centro_del_actor(self):
         "Hace que el eje de posición del actor sea el centro de la imagen."
-        size = self.area()
-        GetSize()
-        self.SetCenter(size[0]/2, size[1]/2)
+        size = self.obtener_area()
+        self.definir_centro(size[0]/2, size[1]/2)
 
     def get_x(self):
-        x, y = self.GetPosition()
+        x, y = self.obtener_posicion()
         return x
 
     def set_x(self, x):
         if pilas.utils.es_interpolacion(x):
             x.apply(self, function='set_x')
         else:
-            self.SetX(x)
+            self.definir_posicion(x, self.y)
 
     def get_z(self):
         return self._z
@@ -65,16 +66,16 @@ class BaseActor(object, Estudiante):
         else:
             self._z = z
 
-        ordenar_actores_por_valor_z()
+        pilas.actores.utils.ordenar_actores_por_valor_z()
 
     def set_y(self, y):
         if pilas.utils.es_interpolacion(y):
             y.apply(self, function='set_y')
         else:
-            self.SetY(-y)
+            self.definir_posicion(self.x, -y)
 
     def get_y(self):
-        x, y = self.GetPosition()
+        x, y = self.obtener_posicion()
         return -y
 
     def set_scale(self, s):
@@ -84,29 +85,28 @@ class BaseActor(object, Estudiante):
             if s <= 0:
                 return
 
-            (ultima_escala, _) = self.GetScale()
+            (ultima_escala, _) = self.obtener_escala()
 
             # Se hace la siguiente regla de 3 simple:
             #
             #  ultima_escala          self.radio_de_colision
             #  s                      ?
 
-            self.SetScale(s, s)
+            self.definir_escala(s)
             self.radio_de_colision = (s * self.radio_de_colision) / ultima_escala
 
     def get_scale(self):
-        # se asume que la escala del personaje es la horizontal.
-        return self.GetScale()[0]
+        return self.obtener_escala()
 
     def get_rotation(self):
-        return self.GetRotation()
+        return self.obtener_rotacion()
 
     def set_rotation(self, x):
 
         if pilas.utils.es_interpolacion(x):
             x.apply(self, function='set_rotation')
         else:
-            self.SetRotation(x)
+            self.definir_rotacion(x)
 
     def get_espejado(self):
         return self._espejado

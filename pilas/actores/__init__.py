@@ -6,10 +6,13 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-import pilas
+
+import math
 
 from PySFML import sf
-import math
+
+import pilas
+import utils
 
 todos = []
 
@@ -21,6 +24,7 @@ print "Cargando modulo actores, usando el motor '%s'" %(pilas.motor.__class__.__
 
 
 from mono import *
+'''
 from tortuga import *
 from texto import *
 from ejes import *
@@ -32,3 +36,4 @@ from explosion import Explosion
 from banana import Banana
 from bomba import Bomba
 from moneda import Moneda
+'''

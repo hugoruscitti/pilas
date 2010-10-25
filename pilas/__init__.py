@@ -55,6 +55,8 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     import motores
 
 
+    pilas.colisiones = Colisiones()
+
 
 
     # Cuando inicia en modo interactivo se asegura
