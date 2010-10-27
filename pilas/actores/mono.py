@@ -35,17 +35,17 @@ class Mono(Actor):
         self.radio_de_colision = 50
 
     def sonreir(self):
-        self.SetImage(self.image_smile)
+        self.definir_imagen(self.image_smile)
         # Luego de un segundo regresa a la normalidad
         pilas.mundo.agregar_tarea(0.5, self.normal)
         self.sound_smile.reproducir()
 
     def gritar(self):
-        self.SetImage(self.image_shout)
+        self.definir_imagen(self.image_shout)
         # Luego de un segundo regresa a la normalidad
         pilas.mundo.agregar_tarea(1, self.normal)
         self.sound_shout.reproducir()
 
     def normal(self):
-        self.SetImage(self.image_normal)
+        self.definir_imagen(self.image_normal)
 

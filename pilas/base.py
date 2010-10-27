@@ -16,6 +16,8 @@ class Estudiante:
             self.__class__.__bases__ += (classname,)
         classname.__init__(self, *k, **w)
 
+        print "Aprendiendo habibilidad", classname
+
 
 class BaseActor(object, Estudiante):
     """Define la funciondad abstracta de un actor.

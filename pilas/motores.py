@@ -13,18 +13,6 @@ import eventos
 import pilas
 
 
-class Sonido:
-
-    def __init__(self, buffer):
-        self.buffer = buffer
-        self.sonido = sf.Sound(buffer)
-        pass
-
-    def reproducir(self):
-        self.sonido.Play()
-    
-    def Play(self):
-        self.reproducir()
 
 
 class Pygame:
@@ -35,12 +23,111 @@ class Pygame:
     por ejemplo equipos como OLPC o simplemente aquellos que no
     tengan aceleradoras de graficos OpenGL."""
 
-    class Sprite():
+    import pilas.base
 
-        def __init__(self, *k, **kv):
+    class Sonido:
+
+        def __init__(self, ruta):
+            self.sonido = pygame.mixer.Sound(ruta)
+
+        def reproducir(self):
+            self.sonido.play()
+        
+        def Play(self):
+            self.reproducir()
+
+    class Actor(pilas.base.BaseActor, pygame.sprite.Sprite):
+        """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
+
+        Un objeto Actor se tiene que crear siempre indicando la imagen, ya
+        sea como una ruta a un archivo como con un objeto Image. Por ejemplo::
+
+            protagonista = Actor("protagonista_de_frente.png")
+
+        es equivalente a:
+
+            imagen = pilas.imagenes.cargar("protagonista_de_frente.png")
+            protagonista = Actor(imagen)
+
+        Luego, na vez que ha sido ejecutada la sentencia aparecerá en el centro de
+        la pantalla el nuevo actor para que pueda manipularlo. Por ejemplo
+        alterando sus propiedades::
+
+            protagonista.x = 100
+            protagonista.scale = 2
+            protagonista.rotation = 30
+
+
+        Estas propiedades tambien se pueden manipular mediante
+        interpolaciones. Por ejemplo, para aumentar el tamaño del
+        personaje de 1 a 5 en 7 segundos::
+
+            protagonista.scale = pilas.interpolar(1, 5, 7)
+
+        Si creas un sprite sin indicar la imagen se cargará
+        una por defecto.
+        """
+
+        def __init__(self, image="sin_imagen.png"):
+
+            if isinstance(image, str):
+                image = pilas.imagenes.cargar(image)
+
+            pygame.sprite.Sprite.__init__(self)
+            self.image = image
+            self.rect = self.image.get_rect()
+            pilas.base.BaseActor.__init__(self) 
+            
+        def definir_imagen(self, imagen):
+            self.image = imagen
+
+        def dibujar(self, aplicacion):
+            aplicacion.blit(self.image, self.rect.move(320, 240))
+
+        def duplicar(self, **kv):
+            duplicado = self.__class__()
+
+            for clave in kv:
+                setattr(duplicado, clave, kv[clave])
+
+            return duplicado
+
+        def obtener_ancho(self):
+            return self.rect.width
+
+        def obtener_alto(self):
+            return self.rect.height
+
+        def __str__(self):
+            return "<%s en (%d, %d)>" %(self.__class__.__name__, self.x, self.y)
+
+        def obtener_area(self):
+            return self.obtener_ancho(), self.obtener_alto()
+
+        def definir_centro(self, x, y):
+            #self.SetCenter(x, y)
             pass
 
-    SpriteActor = Sprite
+        def obtener_posicion(self):
+            return self.rect.center
+
+        def definir_posicion(self, x, y):
+            self.rect.center = (x, y)
+
+        def obtener_escala(self):
+            return 1
+
+        def definir_escala(self, s):
+            print "Pygame no permite cambiar la escala del actor."
+            pass
+
+        def obtener_rotacion(self):
+            return 0
+
+        def definir_rotacion(self, r):
+            print "pygame no permite cambiar la rotacion"
+            pass
+
 
     def __init__(self):
         import pilas.colores
@@ -53,9 +140,11 @@ class Pygame:
         return self.ventana
 
 
+    def cargar_sonido(self, ruta):
+        return Pygame.Sonido(ruta)
+
     def centrar_ventana(self):
         pass
-
 
     def pulsa_tecla(self, tecla):
         "Indica si una tecla esta siendo pulsada en este instante."
@@ -114,6 +203,21 @@ class Pygame:
 class pySFML:
     import pilas.base
 
+
+    class Sonido:
+
+        def __init__(self, ruta):
+            buff = sf.SoundBuffer()
+            buff.LoadFromFile(ruta)
+            self.buffer = buff
+            self.sonido = sf.Sound(self.buffer)
+
+        def reproducir(self):
+            self.sonido.Play()
+        
+        def Play(self):
+            self.reproducir()
+
     class Actor(pilas.base.BaseActor, sf.Sprite):
         """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
@@ -154,6 +258,9 @@ class pySFML:
             sf.Sprite.__init__(self, image)
             pilas.base.BaseActor.__init__(self)
             
+
+        def definir_imagen(self, imagen):
+            self.SetImage(imagen)
 
         def dibujar(self, aplicacion):
             aplicacion.Draw(self)
@@ -253,7 +360,7 @@ class pySFML:
 
         while self.ventana.GetEvent(self.event):
             if event.Type == sf.Event.KeyPressed:
-                #self.procesar_evento_teclado(event)
+                self.procesar_evento_teclado(event)
 
                 if event.Key.Code == sf.Key.Q:
                     import sys
@@ -284,6 +391,14 @@ class pySFML:
             elif event.Type == sf.Event.MouseWheelMoved:
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 
+    def procesar_evento_teclado(self, event):
+        eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
+
+        if event.Key.Code == sf.Key.P:
+            pilas.mundo.cambiar_a_modo_pausa()
+        elif event.Key.Code == sf.Key.F12:
+            pilas.mundo.cambiar_a_modo_depuracion()
+
     def actualizar_pantalla(self):
         self.ventana.Display()
 
@@ -299,9 +414,7 @@ class pySFML:
         self.ventana.Clear(color)
             
     def cargar_sonido(self, ruta):
-        buff = sf.SoundBuffer()
-        buff.LoadFromFile(ruta)
-        return Sonido(buff)
+        return pySFML.Sonido(ruta)
 
     def cargar_imagen(self, ruta):
         image = sf.Image()

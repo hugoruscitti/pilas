@@ -116,6 +116,11 @@ class Mundo:
     def agregar_tarea(self, time_out, function, *params): 
         self.tasks.agregar(time_out, function, params)
 
+    def cambiar_a_modo_pausa(self):
+        self.definir_modo_ejecucion(ModoEjecucionPausado(self))
+
+    def cambiar_a_modo_depuracion(self):
+        pilas.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self))
 
 class ModoEjecucion:
 
@@ -149,13 +154,6 @@ class ModoEjecucionNormal(ModoEjecucion):
     def salir(self):
         pass
 
-    def procesar_evento_teclado(self, event):
-        eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
-
-        if event.Key.Code == sf.Key.P:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionPausado(self.mundo))
-        elif event.Key.Code == sf.Key.F12:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self.mundo))
 
     def analizar_colisiones(self):
         pilas.colisiones.verificar_colisiones()
