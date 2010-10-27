@@ -47,6 +47,23 @@ class TestSequenceFunctions(unittest.TestCase):
         mono.eliminar()
         self.assertFalse(mono in pilas.actores.todos)
 
+    def test_posicion_y_magnitud(self):
+        mono = pilas.actores.Mono()
+        self.assertEqual(mono.x, 0)
+        self.assertEqual(mono.y, 0)
+
+        mono.izquierda = mono.izquierda - 100
+        self.assertEqual(mono.x, -100)
+
+        mono.derecha = mono.derecha + 100
+        self.assertEqual(mono.x, 0)
+
+        mono.arriba = mono.arriba + 100
+        self.assertEquals(mono.y, 100)
+
+        mono.abajo = mono.abajo - 100
+        self.assertEquals(mono.y, 0)
+
 if __name__ == '__main__':
     pilas.iniciar()
     unittest.main()

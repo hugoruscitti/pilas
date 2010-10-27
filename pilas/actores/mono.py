@@ -48,4 +48,3 @@ class Mono(Actor):
 
     def normal(self):
         self.definir_imagen(self.image_normal)
-

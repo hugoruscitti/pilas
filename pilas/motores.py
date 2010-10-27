@@ -180,8 +180,10 @@ class Pygame:
                 x -= 320
                 y += 240
 
-                print "abs:", x, y
+                '''
+                #print "abs:", x, y
                 print "delta:", dx, dy
+                '''
 
                 eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=dx, dy=dy)
 

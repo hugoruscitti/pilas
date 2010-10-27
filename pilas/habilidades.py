@@ -35,9 +35,9 @@ class SeguirClicks:
     "Hace que el actor se coloque la posición del cursor cuando se hace click."
 
     def __init__(self):
-        pilas.eventos.click_de_mouse.connect(self.move_to_this_point)
+        pilas.eventos.click_de_mouse.connect(self.moverse_a_este_punto)
 
-    def move_to_this_point(self, sender, signal, x, y, button):
+    def moverse_a_este_punto(self, sender, signal, x, y, button):
         self.x = pilas.interpolar(x, duracion=0.5)
         self.y = pilas.interpolar(y, duracion=0.5)
 
