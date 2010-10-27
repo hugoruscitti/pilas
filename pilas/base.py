@@ -74,11 +74,11 @@ class BaseActor(object, Estudiante):
         if pilas.utils.es_interpolacion(y):
             y.apply(self, function='set_y')
         else:
-            self.definir_posicion(self.x, -y)
+            self.definir_posicion(self.x, y)
 
     def get_y(self):
         x, y = self.obtener_posicion()
-        return -y
+        return y
 
     def set_scale(self, s):
         if pilas.utils.es_interpolacion(s):
@@ -128,8 +128,7 @@ class BaseActor(object, Estudiante):
 
     def eliminar(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
-        #eliminar_un_actor(self)
-        print "TODO, esta funcion se borro"
+        pilas.actores.utils.eliminar_un_actor(self)
 
     def actualizar(self):
         "Actualiza el estado del actor. Este metodo se llama una vez por frame."
