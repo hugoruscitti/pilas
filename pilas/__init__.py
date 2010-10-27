@@ -85,3 +85,36 @@ def ejecutar():
         mundo.ejecutar_bucle_principal()
     else:
         raise Exception("Tienes que llamar a pilas.iniciar() antes de ejecutar el juego.")
+
+def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
+    """Retorna un objeto que representa cambios de atributos progresivos.
+    
+    El resultado de esta función se puede aplicar a varios atributos
+    de los actores, por ejemplo::
+        
+        bomba = pilas.actores.Bomba()
+        bomba.escala = pilas.interpolar(3)
+
+    Esta función también admite otros parámetros cómo:
+
+        - duracion: es la cantidad de segundos que demorará toda la interpolación.
+        - demora: cuantos segundos se deben esperar antes de iniciar.
+        - tipo: es el algoritmo de la interpolación, puede ser 'lineal'.
+    """
+
+    import interpolaciones
+
+    algoritmos = {
+            'lineal': interpolaciones.Lineal,
+            }
+
+    if algoritmos.has_key('lineal'):
+        clase = algoritmos[tipo]
+    else:
+        raise ValueError("El tipo de interpolacion %s es invalido" %(tipo))
+
+    # Permite que los valores de interpolacion sean un numero o una lista.
+    if not isinstance(valor_o_valores, list):
+        valor_o_valores = [valor_o_valores]
+
+    return clase(valor_o_valores, duracion, demora)

@@ -87,7 +87,7 @@ class BaseActor(object, Estudiante):
             if s <= 0:
                 return
 
-            (ultima_escala, _) = self.obtener_escala()
+            ultima_escala = self.obtener_escala()
 
             # Se hace la siguiente regla de 3 simple:
             #

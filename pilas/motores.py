@@ -77,6 +77,7 @@ class Pygame:
             self.image = image
             self.rect = self.image.get_rect()
             pilas.base.BaseActor.__init__(self) 
+            self._escala_actual = 1
             
         def definir_imagen(self, imagen):
             self.image = imagen
@@ -105,8 +106,7 @@ class Pygame:
             return self.obtener_ancho(), self.obtener_alto()
 
         def definir_centro(self, x, y):
-            #self.SetCenter(x, y)
-            pass
+            print "No se puede cambiar el centro en pygame."
 
         def obtener_posicion(self):
             return self.rect.center
@@ -115,18 +115,17 @@ class Pygame:
             self.rect.center = (x, y)
 
         def obtener_escala(self):
-            return 1
+            return self._escala_actual
 
         def definir_escala(self, s):
-            print "Pygame no permite cambiar la escala del actor."
-            pass
+            self.image = pygame.transform.rotozoom(self.image, 0, s)
+            self._escala_actual = s
 
         def obtener_rotacion(self):
             return 0
 
         def definir_rotacion(self, r):
             print "pygame no permite cambiar la rotacion"
-            pass
 
 
     def __init__(self):
@@ -175,13 +174,25 @@ class Pygame:
                 # Notifica el movimiento del mouse con una señal
                 x, y = event.pos
                 dx, dy = event.rel
-                eventos.mueve_mouse.send("ejecutar", x=x, y=-y, dx=dx, dy=dy)
+                y = -y
+                dy = -dy
+
+                x -= 320
+                y += 240
+
+                print "abs:", x, y
+                print "delta:", dx, dy
+
+                eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=dx, dy=dy)
+
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
 
-                if event.button == 3:
-                    eventos.mueve_rueda.send("ejecutar", delta=1)
-                    print "HAAAAA, no se de donde sacar el delta de movimiento de la rueda!!!"
+                if event.button in (4, 5):
+                    if event.button == 4:
+                        eventos.mueve_rueda.send("ejecutar", delta=1)
+                    else:
+                        eventos.mueve_rueda.send("ejecutar", delta=-1)
                 else:
                     eventos.click_de_mouse.send("ejecutar", button=event.button, x=x, y=-y)
 
@@ -374,13 +385,18 @@ class pySFML:
 
                 if x > 0 and y > 0:
                     x, y = self.ventana.ConvertCoords(x, y)
+                    y = -y
 
                     dx = x - self.mouse_x
-                    dy = self.mouse_y - y
+                    dy = y - self.mouse_y
+
                     self.mouse_x = x
                     self.mouse_y = y
 
-                    eventos.mueve_mouse.send("ejecutar", x=x, y=-y, dx=dx, dy=dy)
+                    print "abs:", x, y
+                    print "delta:", dx, dy
+
+                    eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=dx, dy=dy)
 
             elif event.Type == sf.Event.MouseButtonPressed:
                 x, y = self.ventana.ConvertCoords(event.MouseButton.X, event.MouseButton.Y)

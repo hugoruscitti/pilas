@@ -62,17 +62,12 @@ class Arrastrable:
         if self.colisiona_con_un_punto(x, y):
             pilas.eventos.termina_click.connect(self.drag_end)
             pilas.eventos.mueve_mouse.connect(self.drag, uid='drag')
-            self.last_x = x
-            self.last_y = y
             self.comienza_a_arrastrar()
 
     def drag(self, sender, signal, x, y, dx, dy):
         "Arrastra el actor a la posicion indicada por el puntero del mouse."
-        self.x += x - self.last_x
-        self.y += y - self.last_y
-
-        self.last_x = x
-        self.last_y = y
+        self.x += dx
+        self.y += dy
 
     def drag_end(self, sender, signal, x, y, button):
         "Suelta al actor porque se ha soltado el botón del mouse."
