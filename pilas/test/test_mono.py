@@ -64,6 +64,11 @@ class TestSequenceFunctions(unittest.TestCase):
         mono.abajo = mono.abajo - 100
         self.assertEquals(mono.y, 0)
 
+    def test_colisiones(self):
+        mono = pilas.actores.Mono()
+        self.assertTrue(mono.colisiona_con_un_punto(0, 0))
+        self.assertFalse(mono.colisiona_con_un_punto(200, 200))
+
 if __name__ == '__main__':
     pilas.iniciar()
     unittest.main()

@@ -302,10 +302,11 @@ class pySFML:
             self.SetCenter(x, y)
 
         def obtener_posicion(self):
-            return self.GetPosition()
+            x, y = self.GetPosition()
+            return x, -y
 
         def definir_posicion(self, x, y):
-            self.SetPosition(x, y)
+            self.SetPosition(x, -y)
 
         def obtener_escala(self):
             return self.GetScale()[0]
@@ -395,8 +396,11 @@ class pySFML:
                     self.mouse_x = x
                     self.mouse_y = y
 
+                    '''
                     print "abs:", x, y
                     print "delta:", dx, dy
+                    '''
+
 
                     eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=dx, dy=dy)
 
