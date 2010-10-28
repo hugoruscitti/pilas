@@ -83,7 +83,8 @@ class Pygame:
             self.image = imagen
 
         def dibujar(self, aplicacion):
-            aplicacion.blit(self.image, self.rect.move(320, 240))
+            x, y = self.rect.topleft
+            aplicacion.blit(self.image, (x + 320, y + 240))
 
         def duplicar(self, **kv):
             duplicado = self.__class__()
@@ -109,10 +110,11 @@ class Pygame:
             print "No se puede cambiar el centro en pygame."
 
         def obtener_posicion(self):
-            return self.rect.center
+            x, y = self.rect.center
+            return x, -y
 
         def definir_posicion(self, x, y):
-            self.rect.center = (x, y)
+            self.rect.center = (x, -y)
 
         def obtener_escala(self):
             return self._escala_actual
@@ -138,6 +140,8 @@ class Pygame:
         pygame.display.set_caption(titulo)
         return self.ventana
 
+    def dibujar_circulo(self, x, y, radio, color, color_borde):
+        pygame.draw.circle(self.ventana, (200, 0, 0), (x + 320, 240 - y), radio/2, True)
 
     def cargar_sonido(self, ruta):
         return Pygame.Sonido(ruta)
@@ -166,7 +170,8 @@ class Pygame:
                 import sys
                 sys.exit(0)
             elif event.type == pygame.KEYDOWN:
-                #self.procesar_evento_teclado(event)
+                self.procesar_evento_teclado(event)
+
                 if event.key == pygame.K_q:
                     import sys
                     sys.exit(0)
@@ -202,6 +207,13 @@ class Pygame:
                 x, y = event.pos
                 eventos.termina_click.send("ejecutar", button=event.button, x=x, y=-y)
 
+    def procesar_evento_teclado(self, event):
+        eventos.pulsa_tecla.send("ejecutar", code=event.key)
+
+        if event.key == pygame.K_p:
+            pilas.mundo.cambiar_a_modo_pausa()
+        elif event.key == pygame.K_F12:
+            pilas.mundo.cambiar_a_modo_depuracion()
 
     def actualizar_pantalla(self):
         pygame.display.flip()
@@ -278,6 +290,7 @@ class pySFML:
         def dibujar(self, aplicacion):
             aplicacion.Draw(self)
 
+        
         def duplicar(self, **kv):
             duplicado = self.__class__()
 
@@ -338,6 +351,13 @@ class pySFML:
         self.vista_de_camara = ventana.GetDefaultView()
         self.ventana = ventana
         return ventana
+
+    def dibujar_circulo(self, x, y, radio, color, color_borde):
+        delta = radio / 2
+        circulo = sf.Shape.Circle(0, 0, delta, color, 2, color_borde)
+        circulo.SetCenter(0, 0)
+        circulo.SetPosition(x, -y)
+        self.ventana.Draw(circulo)
 
     def pulsa_tecla(self, tecla):
         "Indica si una tecla esta siendo pulsada en este instante."

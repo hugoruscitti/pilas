@@ -188,34 +188,37 @@ class ModoEjecucionPausado(ModoEjecucionNormal):
 class ModoEjecucionDepuracion(ModoEjecucionNormal):
 
     def __init__(self, m):
+        import pilas.actores
         ModoEjecucionNormal.__init__(self, m)
-        self.eje = actores.Ejes()
+        self.eje = pilas.actores.Ejes()
 
     def salir(self):
         self.eje.eliminar()
 
     def dibujar_actores(self):
+
         ModoEjecucionNormal.dibujar_actores(self)
 
         color_de_colision = sf.Color(0, 255, 0, 160)
         color_de_punto_de_control = sf.Color(255, 0, 0, 160)
         color_borde = sf.Color(100, 100, 100, 100)
 
-        for actor in actores.todos:
+        for actor in pilas.actores.todos:
             if actor.radio_de_colision:
                 self.pintar_radio_de_colision_del_actor(actor, color_de_colision, color_borde)
 
-            self.pintar_punto_de_control_del_actor(actor, color_de_punto_de_control, color_borde)
+            self.pintar_punto_de_control_del_actor(actor, color_de_punto_de_control)
 
             # intenta dibujar el numero de cuadro que usa el actor
             # si es que tiene una animacion asignada.
 
+            '''
             try:
                 cuadro = actor.animacion.obtener_cuadro()
                 self.pintar_numero(cuadro, actor.x, actor.y)
             except AttributeError, e:
                 pass
-
+            '''
 
     def pintar_numero(self, numero, x, y):
         numero = pilas.actores.Texto(str(numero))
@@ -227,17 +230,13 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
 
 
     def pintar_radio_de_colision_del_actor(self, actor, color, color_borde):
-        radio = actor.radio_de_colision *2
-        delta = radio / 2
-        circulo = sf.Shape.Circle(0, 0, delta, color, 2, color_borde)
-        circulo.SetCenter(0, 0)
-        circulo.SetPosition(actor.x, -actor.y)
-        self.mundo.ventana.Draw(circulo)
+        x, y = actor.x, actor.y
+        radio = actor.radio_de_colision * 2
+        pilas.motor.dibujar_circulo(x, y, radio, color, color_borde)
 
-    def pintar_punto_de_control_del_actor(self, actor, color, borde):
-        circulo = sf.Shape.Circle(0, 0, 3, color)
-        circulo.SetPosition(actor.x, -actor.y)
-        self.mundo.ventana.Draw(circulo)
+    def pintar_punto_de_control_del_actor(self, actor, color):
+        x, y = actor.x, actor.y
+        pilas.motor.dibujar_circulo(x, y, 3, color, color)
 
     def procesar_evento_teclado(self, event):
         eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)

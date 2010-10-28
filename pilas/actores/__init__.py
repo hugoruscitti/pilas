@@ -24,10 +24,10 @@ print "Cargando modulo actores, usando el motor '%s'" %(pilas.motor.__class__.__
 
 
 from mono import *
+from ejes import *
 '''
 from tortuga import *
 from texto import *
-from ejes import *
 from pingu import Pingu
 from pizarra import Pizarra
 from animado import Animado
