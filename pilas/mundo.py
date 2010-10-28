@@ -135,7 +135,7 @@ class ModoEjecucionNormal(ModoEjecucion):
 
     def actualizar_simuladores(self):
         self.mundo.tweener.update(16)
-        self.mundo.tasks.update(16)
+        self.mundo.tasks.update(16/1000.0)
 
     def actualizar_actores(self):
         for actor in pilas.actores.todos:
