@@ -193,6 +193,7 @@ class BaseActor(object, Estudiante):
 
     def colisiona_con_un_punto(self, x, y):
         "Determina si un punto colisiona con el area del actor."
+
         w, h = self.obtener_ancho(), self.obtener_alto()
         left, right = self.x - w/2 , self.x + w/2
         top, bottom = self.y - h/2,  self.y + h/2

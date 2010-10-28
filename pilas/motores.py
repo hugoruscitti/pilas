@@ -185,15 +185,12 @@ class Pygame:
                 x -= 320
                 y += 240
 
-                '''
-                #print "abs:", x, y
-                print "delta:", dx, dy
-                '''
-
                 eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=dx, dy=dy)
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
+                x -= 320
+                y -= 240
 
                 if event.button in (4, 5):
                     if event.button == 4:
@@ -205,6 +202,9 @@ class Pygame:
 
             elif event.type == pygame.MOUSEBUTTONUP:
                 x, y = event.pos
+                x -= 320
+                y -= 240
+
                 eventos.termina_click.send("ejecutar", button=event.button, x=x, y=-y)
 
     def procesar_evento_teclado(self, event):
