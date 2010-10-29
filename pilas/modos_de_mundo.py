@@ -30,6 +30,7 @@ class ModoEjecucion:
 
 
 class ModoEjecucionNormal(ModoEjecucion):
+    """Representa al mundo cuando el usuario está jugando normalmente."""
 
     def esperar(self):
         time.sleep(0.01)
@@ -55,15 +56,21 @@ class ModoEjecucionNormal(ModoEjecucion):
     def salir(self):
         pass
 
-
     def analizar_colisiones(self):
         pilas.colisiones.verificar_colisiones()
 
+    def alternar_modo_depuracion(self):
+        self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self.mundo))
+
+    def alternar_pausa(self):
+        self.mundo.definir_modo_ejecucion(ModoEjecucionPausado(self.mundo))
+
 class ModoEjecucionPausado(ModoEjecucionNormal):
+    """Representa al mundo pero en pausa, donde se muestra la imagen sin moverse."""
 
     def __init__(self, m):
         ModoEjecucionNormal.__init__(self, m)
-        self.icono = actores.Actor("icono_pausa.png")
+        self.icono = pilas.actores.Actor("icono_pausa.png")
         self.icono.z = -100
 
     def actualizar_simuladores(self):
@@ -75,18 +82,17 @@ class ModoEjecucionPausado(ModoEjecucionNormal):
     def emitir_evento_actualizar(self):
         pass
 
-    def procesar_evento_teclado(self, event):
-        eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
+    def alternar_modo_depuracion(self):
+        self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
 
-        if event.Key.Code == sf.Key.P:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionNormal(self.mundo))
-        elif event.Key.Code == sf.Key.F12:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
+    def alternar_pausa(self):
+        self.mundo.definir_modo_ejecucion(ModoEjecucionNormal(self.mundo))
 
     def salir(self):
         self.icono.eliminar()
 
 class ModoEjecucionDepuracion(ModoEjecucionNormal):
+    """Es el modo de ejecucion normal pero mostrando informacion para desarrolladores."""
 
     def __init__(self, m):
         import pilas.actores
@@ -100,9 +106,9 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
 
         ModoEjecucionNormal.dibujar_actores(self)
 
-        color_de_colision = sf.Color(0, 255, 0, 160)
-        color_de_punto_de_control = sf.Color(255, 0, 0, 160)
-        color_borde = sf.Color(100, 100, 100, 100)
+        color_de_colision = pilas.colores.verde_transparente
+        color_de_punto_de_control = pilas.colores.rojo_transparente
+        color_borde = pilas.colores.gris_transparente
 
         for actor in pilas.actores.todos:
             if actor.radio_de_colision:
@@ -139,13 +145,11 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         x, y = actor.x, actor.y
         pilas.motor.dibujar_circulo(x, y, 3, color, color)
 
-    def procesar_evento_teclado(self, event):
-        eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
+    def alternar_modo_depuracion(self):
+        self.mundo.definir_modo_ejecucion(ModoEjecucionNormal(self.mundo))
 
-        if event.Key.Code == sf.Key.F12:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionNormal(self.mundo))
-        if event.Key.Code == sf.Key.P:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
+    def alternar_pausa(self):
+        self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
 
     def salir(self):
         self.eje.eliminar()
@@ -159,15 +163,15 @@ class ModoEjecucionDepuracionPausado(ModoEjecucionPausado, ModoEjecucionDepuraci
         ModoEjecucionPausado.__init__(self, m)
         ModoEjecucionDepuracion.__init__(self, m)
 
-    def procesar_evento_teclado(self, event):
-        if event.Key.Code == sf.Key.F12:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionPausado(self.mundo))
-        if event.Key.Code == sf.Key.P:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self.mundo))
-
     def dibujar_actores(self):
         ModoEjecucionDepuracion.dibujar_actores(self)
 
     def salir(self):
         ModoEjecucionPausado.salir(self)
         ModoEjecucionDepuracion.salir(self)
+
+    def alternar_modo_depuracion(self):
+        self.mundo.definir_modo_ejecucion(ModoEjecucionPausado(self.mundo))
+
+    def alternar_pausa(self):
+        self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self.mundo))

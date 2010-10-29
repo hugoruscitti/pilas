@@ -433,13 +433,6 @@ class pySFML:
             elif event.Type == sf.Event.MouseWheelMoved:
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 
-    def procesar_evento_teclado(self, event):
-        eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
-
-        if event.Key.Code == sf.Key.P:
-            pilas.mundo.cambiar_a_modo_pausa()
-        elif event.Key.Code == sf.Key.F12:
-            pilas.mundo.cambiar_a_modo_depuracion()
 
     def actualizar_pantalla(self):
         self.ventana.Display()
