@@ -2,6 +2,8 @@ MANIFEST.in
 setup.py
 bin/pilas
 pilas/__init__.py
+pilas/anterior__init__.py
+pilas/base.py
 pilas/camara.py
 pilas/colisiones.py
 pilas/colores.py
@@ -12,9 +14,11 @@ pilas/eventos.py
 pilas/habilidades.py
 pilas/imagenes.py
 pilas/interpolaciones.py
+pilas/motores.py
 pilas/mundo.py
 pilas/pytweener.py
 pilas/red.py
+pilas/simbolos.py
 pilas/sonidos.py
 pilas/tareas.py
 pilas/utils.py
@@ -36,6 +40,7 @@ pilas/actores/pingu.py
 pilas/actores/pizarra.py
 pilas/actores/texto.py
 pilas/actores/tortuga.py
+pilas/actores/utils.py
 pilas/data/banana.png
 pilas/data/bomba.png
 pilas/data/ejes.png
@@ -59,6 +64,7 @@ pilas/data/tick.wav
 pilas/data/tortuga.png
 pilas/data/volley.png
 pilas/data/juegobase/ejecutar.py
+pilas/data/juegobase/data/logo.png
 pilas/dispatch/__init__.py
 pilas/dispatch/dispatcher.py
 pilas/dispatch/saferef.py

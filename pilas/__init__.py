@@ -38,6 +38,13 @@ motor = None
 bg = None
 __all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar']
 
+import utils
+
+# Carga el modulo de autocompletado si esta
+# en sesion interactiva.
+if utils.esta_en_sesion_interactiva():
+    utils.cargar_autocompletado()
+
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     """Inicia el motor y abre la ventana principal del videojuego.
     
@@ -58,12 +65,12 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     global mundo
     global motor
 
-    import motores
+    import pilas.motores
 
     motores_disponibles = {
-            'pysfml': motores.pySFML,
-            'sfml': motores.pySFML,
-            'pygame': motores.Pygame,
+            'pysfml': pilas.motores.pySFML,
+            'sfml':   pilas.motores.pySFML,
+            'pygame': pilas.motores.Pygame,
     }
 
     motor = motores_disponibles[usar_motor]()
@@ -78,7 +85,6 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     import imagenes
     import sonidos
     import actores
-    import utils
     from interpolaciones import Lineal
     import dispatch
     import eventos
@@ -98,14 +104,12 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     import red
     import motores
 
-
     pilas.colisiones = Colisiones()
 
     # Cuando inicia en modo interactivo se asegura
     # de crear la ventana dentro del mismo hilo que
     # tiene el contexto opengl.
     if utils.esta_en_sesion_interactiva():
-        pilas.utils.cargar_autocompletado()
         iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]")
     else:
         mundo = pilas.mundo.Mundo(ancho, alto, titulo)
