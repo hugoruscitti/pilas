@@ -6,11 +6,55 @@
 #
 # website - http://www.pilas-engine.com.ar
 
+'''
+Pilas
+=====
+
+Pilas es un motor para crear videojuegos de manera
+simple y didáctica.
+
+Para iniciar el módulo debes llamar a la función ``iniciar``::
+
+    pilas.iniciar()
+
+y opcionalmente puedes indicarle parámetros si quieres. Te
+recomiendo ejecutar la siguiente funcion para obtener
+mas informacion::
+
+    help(pilas.iniciar)
+
+Ten en cuenta que este motor se pude ejecutar directamente
+desde la consola interactiva de python, así podrás investigar
+y divertirte de forma interactiva.
+
+Puedes obtener mas información en nuestro sitio:
+
+    - http:://www.pilas-engine.com.ar
+
+'''
+
 mundo = None
 motor = None
 bg = None
+__all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar']
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
+    """Inicia el motor y abre la ventana principal del videojuego.
+    
+    Esta funcion se ejecuta al principio de cualquier juego, porque
+    además de crear la ventana principal inicializa otros submódulos
+    de pilas que te permites hacer mas cosas.
+    
+    Un ejemplo de invocación para esta función es::
+
+        pilas.iniciar()
+
+    aunque también puedes indicarle puntualmente el valor de algún
+    argumento:
+
+        pilas.iniciar(titulo='titulo de mi juego')
+
+    """
     global mundo
     global motor
 
@@ -57,8 +101,6 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
 
     pilas.colisiones = Colisiones()
 
-
-
     # Cuando inicia en modo interactivo se asegura
     # de crear la ventana dentro del mismo hilo que
     # tiene el contexto opengl.
@@ -70,6 +112,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
         escenas.Normal()
 
 def terminar():
+    "Finaliza la ejecución de pilas y cierra la ventana principal."
     global mundo
 
     if mundo:
@@ -78,7 +121,19 @@ def terminar():
         print "No se puede terminar pilas porque no la has inicializado."
 
 def ejecutar():
-    "Pone en funcionamiento el ejecutar principal."
+    """Pone en funcionamiento el ejecutar principal.
+
+    Esta función se comporta diferente en modo interactivo y modo script:
+
+        - En modo interactivo pilas generará un hilo que te permitirá seguir
+          escribiendo comandos interactivamente y viendo los resultados en la
+          ventana.
+
+        - En modo script, la función bloqueará la ejecución lineal de tu
+          script y llevará todo el control al bucle de juego interno de
+          pilas. Por lo que es buena idea poner la linea ``pilas.ejecutar()`` al
+          final del script...
+    """
     global mundo
 
     if mundo:
@@ -101,6 +156,7 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
         - demora: cuantos segundos se deben esperar antes de iniciar.
         - tipo: es el algoritmo de la interpolación, puede ser 'lineal'.
     """
+
 
     import interpolaciones
 
