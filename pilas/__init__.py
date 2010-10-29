@@ -111,6 +111,22 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
         mundo = pilas.mundo.Mundo(ancho, alto, titulo)
         escenas.Normal()
 
+def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo):
+    "Ejecuta el bucle de pilas en segundo plano."
+    import threading
+    global gb
+
+    bg = threading.Thread(target=iniciar_y_ejecutar, args=(ancho, alto, titulo))
+    bg.start()
+
+def iniciar_y_ejecutar(ancho, alto, titulo):
+    from mundo import Mundo
+    global mundo
+
+    mundo = Mundo(ancho, alto, titulo)
+    escenas.Normal()
+    ejecutar()
+
 def terminar():
     "Finaliza la ejecución de pilas y cierra la ventana principal."
     global mundo

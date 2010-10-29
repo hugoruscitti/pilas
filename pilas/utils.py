@@ -63,11 +63,16 @@ def obtener_ruta_al_recurso(ruta):
 
 def esta_en_sesion_interactiva():
     "Indica si pilas se ha ejecutado desde una consola interactiva de python."
+    import sys
     try:
         cursor = sys.ps1
         return True
     except AttributeError:
-        return False
+        try:
+            in_ipython = sys.ipcompleter
+            return True
+        except AttributeError:
+            return False
 
 def distancia(a, b):
     "Retorna la distancia entre dos numeros."
