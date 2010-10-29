@@ -211,9 +211,9 @@ class Pygame:
         eventos.pulsa_tecla.send("ejecutar", code=event.key)
 
         if event.key == pygame.K_p:
-            pilas.mundo.cambiar_a_modo_pausa()
+            pilas.mundo.alternar_pausa()
         elif event.key == pygame.K_F12:
-            pilas.mundo.cambiar_a_modo_depuracion()
+            pilas.mundo.alternar_modo_depuracion()
 
     def actualizar_pantalla(self):
         pygame.display.flip()

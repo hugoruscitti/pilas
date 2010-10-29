@@ -20,6 +20,7 @@ import eventos
 import tareas
 import pytweener
 import pilas
+import modos_de_mundo
 
 
 class Mundo:
@@ -53,9 +54,8 @@ class Mundo:
         self.tasks = tareas.Tareas() 
 
         self.modo_ejecucion = None
-        self.definir_modo_ejecucion(ModoEjecucionNormal(self))
+        self.definir_modo_ejecucion(modos_de_mundo.ModoEjecucionNormal(self))
         self.salir = False
-
 
     def definir_modo_ejecucion(self, nuevo_modo):
         if self.modo_ejecucion:
@@ -99,6 +99,7 @@ class Mundo:
         self._cerrar_ventana()
 
     def _cerrar_ventana(self):
+        import sys
         self.ventana.Close()
         sys.exit(0)
 
@@ -116,157 +117,19 @@ class Mundo:
     def agregar_tarea(self, time_out, function, *params): 
         self.tasks.agregar(time_out, function, params)
 
+    def alternar_pausa(self):
+        self.modo_ejecucion.alternar_pausa()
+
+    def alternar_modo_depuracion(self):
+        self.modo_ejecucion.alternar_modo_depuracion()
+
+
+
+'''
+
     def cambiar_a_modo_pausa(self):
         self.definir_modo_ejecucion(ModoEjecucionPausado(self))
 
     def cambiar_a_modo_depuracion(self):
         pilas.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self))
-
-class ModoEjecucion:
-
-    def __init__(self, mundo):
-        self.mundo = mundo
-
-
-class ModoEjecucionNormal(ModoEjecucion):
-
-    def esperar(self):
-        time.sleep(0.01)
-
-    def actualizar_simuladores(self):
-        self.mundo.tweener.update(16)
-        self.mundo.tasks.update(16/1000.0)
-
-    def actualizar_actores(self):
-        for actor in pilas.actores.todos:
-            actor.actualizar()
-
-    def dibujar_actores(self):
-        # Separo el dibujado de los actores porque la lista puede cambiar
-        # dutante la actualizacion de actores (por ejemplo si uno se elimina).
-        for actor in pilas.actores.todos:
-            actor.dibujar(self.mundo.ventana)
-
-    def emitir_evento_actualizar(self):
-        self.mundo.control.actualizar()
-        eventos.actualizar.send("bucle")
-
-    def salir(self):
-        pass
-
-
-    def analizar_colisiones(self):
-        pilas.colisiones.verificar_colisiones()
-
-class ModoEjecucionPausado(ModoEjecucionNormal):
-
-    def __init__(self, m):
-        ModoEjecucionNormal.__init__(self, m)
-        self.icono = actores.Actor("icono_pausa.png")
-        self.icono.z = -100
-
-    def actualizar_simuladores(self):
-        pass
-
-    def actualizar_actores(self):
-        pass
-
-    def emitir_evento_actualizar(self):
-        pass
-
-    def procesar_evento_teclado(self, event):
-        eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
-
-        if event.Key.Code == sf.Key.P:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionNormal(self.mundo))
-        elif event.Key.Code == sf.Key.F12:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
-
-    def salir(self):
-        self.icono.eliminar()
-
-class ModoEjecucionDepuracion(ModoEjecucionNormal):
-
-    def __init__(self, m):
-        import pilas.actores
-        ModoEjecucionNormal.__init__(self, m)
-        self.eje = pilas.actores.Ejes()
-
-    def salir(self):
-        self.eje.eliminar()
-
-    def dibujar_actores(self):
-
-        ModoEjecucionNormal.dibujar_actores(self)
-
-        color_de_colision = sf.Color(0, 255, 0, 160)
-        color_de_punto_de_control = sf.Color(255, 0, 0, 160)
-        color_borde = sf.Color(100, 100, 100, 100)
-
-        for actor in pilas.actores.todos:
-            if actor.radio_de_colision:
-                self.pintar_radio_de_colision_del_actor(actor, color_de_colision, color_borde)
-
-            self.pintar_punto_de_control_del_actor(actor, color_de_punto_de_control)
-
-            # intenta dibujar el numero de cuadro que usa el actor
-            # si es que tiene una animacion asignada.
-
-            '''
-            try:
-                cuadro = actor.animacion.obtener_cuadro()
-                self.pintar_numero(cuadro, actor.x, actor.y)
-            except AttributeError, e:
-                pass
-            '''
-
-    def pintar_numero(self, numero, x, y):
-        numero = pilas.actores.Texto(str(numero))
-        numero.x = x
-        numero.y = y
-
-        self.mundo.ventana.Draw(numero)
-        numero.eliminar()
-
-
-    def pintar_radio_de_colision_del_actor(self, actor, color, color_borde):
-        x, y = actor.x, actor.y
-        radio = actor.radio_de_colision * 2
-        pilas.motor.dibujar_circulo(x, y, radio, color, color_borde)
-
-    def pintar_punto_de_control_del_actor(self, actor, color):
-        x, y = actor.x, actor.y
-        pilas.motor.dibujar_circulo(x, y, 3, color, color)
-
-    def procesar_evento_teclado(self, event):
-        eventos.pulsa_tecla.send("ejecutar", code=event.Key.Code)
-
-        if event.Key.Code == sf.Key.F12:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionNormal(self.mundo))
-        if event.Key.Code == sf.Key.P:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
-
-    def salir(self):
-        self.eje.eliminar()
-
-
-        
-
-class ModoEjecucionDepuracionPausado(ModoEjecucionPausado, ModoEjecucionDepuracion):
-
-    def __init__(self, m):
-        ModoEjecucionPausado.__init__(self, m)
-        ModoEjecucionDepuracion.__init__(self, m)
-
-    def procesar_evento_teclado(self, event):
-        if event.Key.Code == sf.Key.F12:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionPausado(self.mundo))
-        if event.Key.Code == sf.Key.P:
-            self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self.mundo))
-
-    def dibujar_actores(self):
-        ModoEjecucionDepuracion.dibujar_actores(self)
-
-    def salir(self):
-        ModoEjecucionPausado.salir(self)
-        ModoEjecucionDepuracion.salir(self)
+'''
