@@ -1,3 +1,1 @@
-'''
 from piezas import Piezas
-'''

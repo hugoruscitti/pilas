@@ -32,13 +32,13 @@ El siguiente código hace eso:
 
     mono = pilas.actores.Mono()
     mono.aprender(pilas.habilidades.AumentarConRueda)
-    mono.aprender(pilas.habilidades.AumentarConRueda)
 
 así, cuando uses la rueda del mouse el tamaño del personaje aumentará
 o disminuirá.
 
-Nota que aquí usamos la metáfora de "aprender habilidades", así
-que te resultará sencillo recordarlo.
+Nota que aquí usamos la metáfora de "aprender habilidades", porque
+las habilidades son algo que duran para toda la vida
+del actor.
 
 
 Un ejemplo mas: hacer que un actor sea arrastrable por el mouse
