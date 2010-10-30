@@ -410,17 +410,16 @@ class pySFML:
                     x, y = self.ventana.ConvertCoords(x, y)
                     y = -y
 
+                    # Se asegura de los eventos de mouse esten siempre
+                    # dentro de la ventana.
+                    x = min(320, x)
+                    y = max(y, -240)
+
                     dx = x - self.mouse_x
                     dy = y - self.mouse_y
 
                     self.mouse_x = x
                     self.mouse_y = y
-
-                    '''
-                    print "abs:", x, y
-                    print "delta:", dx, dy
-                    '''
-
 
                     eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=dx, dy=dy)
 
@@ -433,6 +432,13 @@ class pySFML:
             elif event.Type == sf.Event.MouseWheelMoved:
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 
+    def procesar_evento_teclado(self, event):
+        eventos.pulsa_tecla.send("ejecutar", code=event.Key)
+
+        if event.Key.Code == sf.Key.P:
+            pilas.mundo.alternar_pausa()
+        elif event.Key.Code == sf.Key.F12:
+            pilas.mundo.alternar_modo_depuracion()
 
     def actualizar_pantalla(self):
         self.ventana.Display()

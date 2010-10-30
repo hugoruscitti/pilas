@@ -69,8 +69,6 @@ class Arrastrable:
         self.x += dx
         self.y += dy
 
-        print self.x, self.y
-
     def drag_end(self, sender, signal, x, y, button):
         "Suelta al actor porque se ha soltado el botón del mouse."
         pilas.eventos.mueve_mouse.disconnect(uid='drag')
