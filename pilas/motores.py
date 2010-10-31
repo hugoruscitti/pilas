@@ -86,7 +86,10 @@ class Pygame:
         def asignar(self, sprite):
             "Sets the sprite's image with animation state."
 
-            sprite.definir_imagen(self.imagenes[self.cuadro])
+            cuadro_de_imagen = self.imagenes[self.cuadro]
+            sprite.definir_imagen(cuadro_de_imagen)
+            sprite.rect.width = cuadro_de_imagen.get_width()
+            sprite.rect.height = cuadro_de_imagen.get_height()
 
         def avanzar(self):
             ha_reiniciado = False
@@ -146,6 +149,8 @@ class Pygame:
         """
 
         def __init__(self, image="sin_imagen.png"):
+            self.centro_x = 0
+            self.centro_y = 0
 
             if isinstance(image, str):
                 image = pilas.imagenes.cargar(image)
@@ -161,7 +166,7 @@ class Pygame:
 
         def dibujar(self, aplicacion):
             x, y = self.rect.topleft
-            aplicacion.blit(self.image, (x + 320, y + 240))
+            aplicacion.blit(self.image, (x + 320 - self.centro_x, y + 240 - self.centro_y))
 
         def duplicar(self, **kv):
             duplicado = self.__class__()
@@ -184,14 +189,16 @@ class Pygame:
             return self.obtener_ancho(), self.obtener_alto()
 
         def definir_centro(self, x, y):
-            print "No se puede cambiar el centro en pygame."
+            print self, x, y
+            self.centro_x = x
+            self.centro_y = y
 
         def obtener_posicion(self):
-            x, y = self.rect.center
+            x, y = self.rect.topleft
             return x, -y
 
         def definir_posicion(self, x, y):
-            self.rect.center = (x, -y)
+            self.rect.topleft = (x, -y)
 
         def obtener_escala(self):
             return self._escala_actual

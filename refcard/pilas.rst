@@ -15,8 +15,8 @@ Iniciar
 Para empezar puedes escribir ``import pilas``, y luego usar alguna
 de las siguientes funciones:
 
-iniciar(ancho=640, alto=480, titulo='Pilas')
-    inicia la biblioteca y la ventana principal.
+iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='sfml')
+    inicia la biblioteca y la ventana principal. Los valores de usar_motor pueden ser 'sfml' o 'pygame'.
 pilas.pausa()
     para detener el juego (lo mismo que hace la tecla 'p').
 pilas.terminar()
