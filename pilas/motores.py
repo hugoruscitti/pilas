@@ -25,6 +25,83 @@ class Pygame:
 
     import pilas.base
 
+    class Grilla:
+        """Representa una grilla de imagenes con varios cuadros de animación.
+
+        Una grilla es un objeto que se tiene que inicializar con la ruta
+        a una imagen, la cantidad de columnas y filas.
+
+        Por ejemplo, si tenemos una grilla con 2 columnas y 3 filas
+        podemos asociarla a un actor de la siguiente manera::
+
+            grilla = pilas.imagenes.Grilla("animacion.png", 2, 3)
+            grilla.asignar(actor)
+
+        Entonces, a partir de ahora nuestro actor muestra solamente un
+        cuadro de toda la grilla.
+
+        Si quieres avanzar la animacion tienes que modificar el objeto
+        grilla y asignarlo nuevamente al actor::
+
+            grilla.avanzar()
+            grilla.asignar(actor)
+        """
+
+        def __init__(self, ruta, columnas=1, filas=1):
+            self.image = pilas.imagenes.cargar(ruta)
+            self.cantidad_de_cuadros = columnas * filas
+            self.columnas = columnas
+            self.filas = filas
+            self.cuadro_ancho = self.image.get_width() / columnas
+            self.cuadro_alto = self.image.get_height() / filas
+            self.crear_grilla_de_imagenes()
+            self.definir_cuadro(0)
+
+        def crear_grilla_de_imagenes(self):
+            "Genera una lista con los cuadros de animación en una grilla"
+                                
+            tile_w = self.cuadro_ancho
+            tile_h = self.cuadro_alto
+            self.imagenes = []
+
+            for c in range(self.columnas):
+                for r in range(self.filas):
+                    rect = pygame.Rect(c * (tile_w) , r * (tile_h), tile_w, tile_h)
+                    self.imagenes.append(self.image.subsurface(rect).copy())
+
+
+        def definir_cuadro(self, cuadro):
+            self.cuadro = cuadro
+
+            '''
+            frame_col = cuadro % self.columnas
+            frame_row = cuadro / self.columnas
+
+            dx = frame_col * self.cuadro_ancho - self.sub_rect.Left
+            dy = frame_row * self.cuadro_alto - self.sub_rect.Top
+            '''
+
+            #self.sub_rect.Offset(dx, dy)
+
+        def asignar(self, sprite):
+            "Sets the sprite's image with animation state."
+
+            sprite.definir_imagen(self.imagenes[self.cuadro])
+
+        def avanzar(self):
+            ha_reiniciado = False
+            cuadro_actual = self.cuadro + 1
+
+            if cuadro_actual >= self.cantidad_de_cuadros:
+                cuadro_actual = 0
+                ha_reiniciado = True
+
+            self.definir_cuadro(cuadro_actual)
+            return ha_reiniciado
+
+        def obtener_cuadro(self):
+            return self.cuadro
+
     class Sonido:
 
         def __init__(self, ruta):
@@ -229,6 +306,69 @@ class Pygame:
 class pySFML:
     import pilas.base
 
+    class Grilla:
+        """Representa una grilla de imagenes con varios cuadros de animación.
+
+        Una grilla es un objeto que se tiene que inicializar con la ruta
+        a una imagen, la cantidad de columnas y filas.
+
+        Por ejemplo, si tenemos una grilla con 2 columnas y 3 filas
+        podemos asociarla a un actor de la siguiente manera::
+
+            grilla = pilas.imagenes.Grilla("animacion.png", 2, 3)
+            grilla.asignar(actor)
+
+        Entonces, a partir de ahora nuestro actor muestra solamente un
+        cuadro de toda la grilla.
+
+        Si quieres avanzar la animacion tienes que modificar el objeto
+        grilla y asignarlo nuevamente al actor::
+
+            grilla.avanzar()
+            grilla.asignar(actor)
+        """
+
+        def __init__(self, ruta, columnas=1, filas=1):
+            self.image = pilas.imagenes.cargar(ruta)
+            self.cantidad_de_cuadros = columnas * filas
+            self.columnas = columnas
+            self.filas = filas
+            self.cuadro_ancho = self.image.GetWidth() / columnas
+            self.cuadro_alto = self.image.GetHeight() / filas
+            self.sub_rect = sf.IntRect(0, 0, self.cuadro_ancho, self.cuadro_alto)
+            self.definir_cuadro(0)
+
+        def definir_cuadro(self, cuadro):
+            self.cuadro = cuadro
+
+            frame_col = cuadro % self.columnas
+            frame_row = cuadro / self.columnas
+
+            dx = frame_col * self.cuadro_ancho - self.sub_rect.Left
+            dy = frame_row * self.cuadro_alto - self.sub_rect.Top
+
+            self.sub_rect.Offset(dx, dy)
+
+        def asignar(self, sprite):
+            "Sets the sprite's image with animation state."
+
+            sprite.SetImage(self.image)
+            sprite.SetSubRect(self.sub_rect)
+            sprite.SetCenter(self.cuadro_ancho / 2, self.cuadro_alto / 2)
+
+        def avanzar(self):
+            ha_reiniciado = False
+            cuadro_actual = self.cuadro + 1
+
+            if cuadro_actual >= self.cantidad_de_cuadros:
+                cuadro_actual = 0
+                ha_reiniciado = True
+
+            self.definir_cuadro(cuadro_actual)
+            return ha_reiniciado
+
+        def obtener_cuadro(self):
+            return self.cuadro
 
     class Sonido:
 
