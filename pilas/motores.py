@@ -189,7 +189,6 @@ class Pygame:
             return self.obtener_ancho(), self.obtener_alto()
 
         def definir_centro(self, x, y):
-            print self, x, y
             self.centro_x = x
             self.centro_y = y
 
@@ -217,7 +216,9 @@ class Pygame:
     def __init__(self):
         import pilas.colores
         pygame.init()
+
         pilas.colores.gris = (200, 200, 200)
+        pilas.colores.gris_oscuro = (100, 100, 100)
 
     def crear_ventana(self, ancho, alto, titulo):
         self.ventana = pygame.display.set_mode((ancho, alto))

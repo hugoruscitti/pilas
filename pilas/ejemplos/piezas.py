@@ -151,7 +151,8 @@ class Pieza(pilas.actores.Animado):
             self.intentar_conectarse_a(x)
 
     def se_pueden_conectar_los_bordes(self, borde1, borde2):
-        return pilas.utils.distancia(borde1, borde2) < 12
+        distancia = pilas.utils.distancia(borde1, borde2)
+        :eturn  distancia < 12
 
     def intentar_conectarse_a(self, otra):
         "Intenta vincular dos piezas, siempre y cuando coincidan en sus bordes."
@@ -214,12 +215,12 @@ class Pieza(pilas.actores.Animado):
                 pass
 
     def get_x(self):
-        x, y = self.GetPosition()
+        x, y = self.obtener_posicion()
         return x
 
     def get_y(self):
-        x, y = self.GetPosition()
-        return -y
+        x, y = self.obtener_posicion()
+        return y
 
     x = property(get_x, set_x, doc="Define la posición horizontal.")
     y = property(get_y, set_y, doc="Define la posición vertical.")
