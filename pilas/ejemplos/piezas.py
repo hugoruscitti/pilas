@@ -45,7 +45,7 @@ class Piezas(pilas.escenas.Normal):
 
     def al_hacer_click(self, **kv):
         "Atiente cualquier click que realice el usuario en la pantalla."
-        pieza_debajo_de_mouse = pilas.actores.obtener_actor_en(kv['x'], kv['y'])
+        pieza_debajo_de_mouse = pilas.actores.utils.obtener_actor_en(kv['x'], kv['y'])
 
         if pieza_debajo_de_mouse and isinstance(pieza_debajo_de_mouse, Pieza):
             self.pieza_en_movimiento = pieza_debajo_de_mouse
@@ -110,16 +110,16 @@ class Pieza(pilas.actores.Animado):
 
     def __init__(self, escena_padre, grilla, cuadro, filas, columnas):
         "Genera la pieza que representa una parte de la imagen completa."
+        self.escena_padre = escena_padre
+        self.numero = cuadro
         pilas.actores.Animado.__init__(self, grilla)
 
         self.z_de_la_pieza_mas_alta = 0
-        self.numero = cuadro
         self.asignar_numero_de_piezas_laterales(cuadro, columnas)
 
         self.definir_cuadro(cuadro)
 
         self.radio_de_colision = self.obtener_ancho() / 2 + 12
-        self.escena_padre = escena_padre
         self.piezas_conectadas = []
 
     def asignar_numero_de_piezas_laterales(self, cuadro, columnas):
@@ -196,16 +196,22 @@ class Pieza(pilas.actores.Animado):
         dx = x - self.x
 
         for numero in self.escena_padre.grupos[self.numero]:
-            pieza = self.escena_padre.piezas[numero]
-            pieza.SetX(pieza.x + dx)
+            try:
+                pieza = self.escena_padre.piezas[numero]
+                pieza.definir_posicion(pieza.x + dx, pieza.y)
+            except IndexError:
+                pass
 
     def set_y(self, y):
         "A diferencia de los actores normales, las piezas tienen que mover a todo su grupo."
         dy = y - self.y
 
         for numero in self.escena_padre.grupos[self.numero]:
-            pieza = self.escena_padre.piezas[numero]
-            pieza.SetY(-pieza.y - dy)
+            try:
+                pieza = self.escena_padre.piezas[numero]
+                pieza.definir_posicion(pieza.x, pieza.y + dy)
+            except IndexError:
+                pass
 
     def get_x(self):
         x, y = self.GetPosition()
