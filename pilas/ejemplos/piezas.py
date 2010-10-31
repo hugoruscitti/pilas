@@ -152,7 +152,7 @@ class Pieza(pilas.actores.Animado):
 
     def se_pueden_conectar_los_bordes(self, borde1, borde2):
         distancia = pilas.utils.distancia(borde1, borde2)
-        :eturn  distancia < 12
+        return  distancia < 12
 
     def intentar_conectarse_a(self, otra):
         "Intenta vincular dos piezas, siempre y cuando coincidan en sus bordes."
