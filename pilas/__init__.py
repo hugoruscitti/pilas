@@ -161,6 +161,7 @@ def ejecutar():
     else:
         raise Exception("Tienes que llamar a pilas.iniciar() antes de ejecutar el juego.")
 
+
 def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
     """Retorna un objeto que representa cambios de atributos progresivos.
     

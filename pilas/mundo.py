@@ -99,8 +99,7 @@ class Mundo:
         self._cerrar_ventana()
 
     def _cerrar_ventana(self):
-        import sys
-        self.ventana.Close()
+        pilas.motor.cerrar_ventana()
         sys.exit(0)
 
     def definir_escena(self, escena_nueva):

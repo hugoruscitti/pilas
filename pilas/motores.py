@@ -140,6 +140,9 @@ class Pygame:
         pygame.display.set_caption(titulo)
         return self.ventana
 
+    def cerrar_ventana(self):
+        pygame.display.quit()
+
     def dibujar_circulo(self, x, y, radio, color, color_borde):
         pygame.draw.circle(self.ventana, (200, 0, 0), (x + 320, 240 - y), radio/2, True)
 
@@ -167,14 +170,12 @@ class Pygame:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                import sys
-                sys.exit(0)
+                pilas.mundo.terminar()
             elif event.type == pygame.KEYDOWN:
                 self.procesar_evento_teclado(event)
 
                 if event.key == pygame.K_q:
-                    import sys
-                    sys.exit(0)
+                    pilas.mundo.terminar()
             elif event.type == pygame.MOUSEMOTION:
                 # Notifica el movimiento del mouse con una señal
                 x, y = event.pos
@@ -352,6 +353,9 @@ class pySFML:
         self.ventana = ventana
         return ventana
 
+    def cerrar_ventana(self):
+        self.ventana.Close()
+
     def dibujar_circulo(self, x, y, radio, color, color_borde):
         delta = radio / 2
         circulo = sf.Shape.Circle(0, 0, delta, color, 2, color_borde)
@@ -397,9 +401,7 @@ class pySFML:
                 self.procesar_evento_teclado(event)
 
                 if event.Key.Code == sf.Key.Q:
-                    import sys
-                    sys.exit(0)
-                    #self.mundo.terminar()
+                    pilas.mundo.terminar()
 
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
