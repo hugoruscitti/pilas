@@ -2,6 +2,7 @@
 import random
 import unittest
 import pilas
+import pilas.motores
 from time import sleep as pausa
 
 class AbstractTest():
@@ -19,6 +20,7 @@ class AbstractTest():
 
     def test_control(self):
         self.iniciar()
+        import pilas.control
 
         c = pilas.control.Control()
         c.actualizar()
@@ -42,6 +44,7 @@ class AbstractTest():
 
     def test_cargar_image(self):
         self.iniciar()
+        import pilas.imagenes
         imagen1 = pilas.imagenes.cargar("./ceferino.png")
         imagen2 = pilas.motor.cargar_imagen("./ceferino.png")
         self.assertEquals(imagen1.__class__, imagen2.__class__)
