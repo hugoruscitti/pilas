@@ -81,6 +81,18 @@ sencilla es ejecutar lo siguiente:
 
 .. code-block:: python
 
+    bananas += pilas.actores.utils.fabricar(pilas.actores.Bananas, 20)
+
+La pantalla se llenará de bananas, bah, habrá exactamente 20...
+
+.. image:: images/colisiones_muchas_bananas.png
+
+De hecho, si quieres tener mas control sobre las bananas
+que se crearán, puedes usar esta rutina de código
+en lugar de llamar a la función ``fabricar``:
+
+.. code-block:: python
+
     import random
     cantidad_de_bananas = 20
 
@@ -89,7 +101,3 @@ sencilla es ejecutar lo siguiente:
         banana.x = random.randrange(-200, +200)
         banana.y = random.randrange(-200, +200)
         bananas.append(banana)
-
-La pantalla se llenará de bananas, bah, habrá exactamente 20...
-
-.. image:: images/colisiones_muchas_bananas.png

@@ -23,7 +23,7 @@ pilas.terminar()
     para cerrar la ventana (su atajo es la tecla 'q')
 pilas.ejecutar()
     para poner en funcionamiento la biblioteca desde script.
-pilas.fabricar(clase, cantidad=1)
+pilas.actores.utils.fabricar(clase, cantidad=1)
     genera muchos objetos de una clase particular asignandolo una posicion aleatoria.
 
 Uso básico de Actores

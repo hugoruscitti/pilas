@@ -6,6 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import random
 import pilas
 
 def ordenar_actores_por_valor_z():
@@ -35,3 +36,23 @@ def obtener_actor_en(x, y):
 
     return None
 
+
+def fabricar(clase, cantidad=1, posiciones_al_azar=True):
+    "Genera muchas intancias de objetos asignando posiciones aleatorias."
+
+    objetos_creados = []
+
+    for x in range(cantidad):
+        if posiciones_al_azar:
+            x = random.randint(-300, 300)
+            y = random.randint(-200, 200)
+        else:
+            x = 0
+            y = 0
+
+        nuevo = clase()
+        nuevo.x = x
+        nuevo.y = y
+        objetos_creados.append(nuevo)
+
+    return objetos_creados
