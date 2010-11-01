@@ -36,7 +36,7 @@ Puedes obtener mas información en nuestro sitio:
 mundo = None
 motor = None
 bg = None
-__all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar']
+__all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar', 'avisar']
 
 import utils
 
@@ -195,3 +195,10 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
         valor_o_valores = [valor_o_valores]
 
     return clase(valor_o_valores, duracion, demora)
+
+def avisar(mensaje):
+    "Emite un mensaje en la ventana principal."
+    texto = actores.Texto(mensaje)
+    texto.magnitud = 22
+    texto.izquierda = -310
+    texto.abajo = -230

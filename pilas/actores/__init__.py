@@ -31,11 +31,11 @@ from animacion import Animacion
 from explosion import Explosion
 from bomba import Bomba
 from pingu import Pingu
+from banana import Banana
+from texto import Texto
 
 '''
 from tortuga import *
-from texto import *
 from pizarra import Pizarra
-from banana import Banana
 from moneda import Moneda
 '''

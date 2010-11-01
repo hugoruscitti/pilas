@@ -314,6 +314,73 @@ class Pygame:
 class pySFML:
     import pilas.base
 
+    class Texto(sf.String, pilas.base.BaseActor):
+        """Representa un texto en pantalla.
+
+        El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
+        """
+
+        def __init__(self, text="None"):
+            sf.String.__init__(self, text)
+            self.color = (0, 0, 0)
+            pilas.base.BaseActor.__init__(self)
+
+        def get_text(self):
+            return self.GetText()
+
+        def set_text(self, text):
+            self.SetText(text)
+
+        def get_size(self):
+            return self.GetSize()
+
+        def set_size(self, size):
+            self.SetSize(size)
+            self._set_central_axis()
+
+        def _set_central_axis(self):
+            rect = self.GetRect()
+            size = (rect.GetWidth(), rect.GetHeight())
+            self.SetCenter(size[0]/2, size[1]/2)
+
+        def obtener_posicion(self):
+            x, y = self.GetPosition()
+            return x, -y
+
+        def definir_posicion(self, x, y):
+            self.SetPosition(x, -y)
+
+        def get_color(self):
+            c = self.GetColor()
+            return (c.r, c.g, c.b, c.a)
+
+        def set_color(self, k):
+            self.SetColor(sf.Color(*k))
+
+        texto = property(get_text, set_text, doc="El texto que se tiene que mostrar.")
+        magnitud = property(get_size, set_size, doc="El tamaño del texto.")
+        color = property(get_color, set_color, doc="Color del texto.")
+
+        def dibujar(self, aplicacion):
+            aplicacion.Draw(self)
+
+        def colisiona_con_un_punto(self, x, y):
+            return False
+
+        def obtener_ancho(self):
+            rect = self.GetRect()
+            return rect.GetWidth()
+
+        def obtener_alto(self):
+            rect = self.GetRect()
+            return rect.GetHeight()
+
+        def obtener_area(self):
+            return self.obtener_ancho(), self.obtener_alto()
+
+        def definir_centro(self, x, y):
+            self.SetCenter(x, y)
+
     class Grilla:
         """Representa una grilla de imagenes con varios cuadros de animación.
 
