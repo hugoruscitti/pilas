@@ -86,15 +86,16 @@ class MoverseConElTeclado:
     def __init__(self):
         pilas.eventos.actualizar.connect(self.on_key_press)
 
-    def on_key_press(self, sender, signal, input):
+    def on_key_press(self, sender, signal):
         velocidad = 5
+        c = pilas.mundo.control
 
-        if input.IsKeyDown(sf.Key.Left):
+        if c.izquierda:
             self.x -= velocidad
-        elif input.IsKeyDown(sf.Key.Right):
+        elif c.derecha:
             self.x += velocidad
 
-        if input.IsKeyDown(sf.Key.Up):
+        if c.arriba:
             self.y += velocidad
-        elif input.IsKeyDown(sf.Key.Down):
+        elif c.abajo:
             self.y -= velocidad

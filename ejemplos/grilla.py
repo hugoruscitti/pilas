@@ -2,10 +2,11 @@
 import pilas
 
 
-actor = pilas.actores.Tortuga()
+pilas.iniciar()
+
+actor = pilas.actores.Actor()
 animacion = pilas.imagenes.Grilla("pingu.png", 10)
 animacion.asignar(actor)
-
 
 def avanzar_cuadro(*k, **kv):
     "Avanza un cuadro de animación."
