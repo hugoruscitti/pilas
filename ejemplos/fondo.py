@@ -3,7 +3,7 @@ from PySFML import sf
 
 pilas.iniciar()
 
-pilas.escenas.Paisaje()
+pilas.fondos.Volley()
 
 pilas.avisar("Un paisaje de ejemplo.")
 pilas.ejecutar()

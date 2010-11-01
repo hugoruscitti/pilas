@@ -25,16 +25,6 @@ class Escena:
         pass
 
 
-'''
-class Paisaje(Actor, Escena):
-    "Muestra una escena que tiene un fondo de pantalla de paisaje."
-
-    def __init__(self):
-        Escena.__init__(self)
-        Actor.__init__(self, "volley.png")
-        self.z = 100
-'''
-
 class Normal(Escena):
     "Representa la escena inicial mas simple."
 

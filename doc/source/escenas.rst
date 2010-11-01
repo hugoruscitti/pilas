@@ -23,19 +23,20 @@ imprime toda la pantalla de gris para que
 podamos colocar actores sobre ella.
 
 
-Otras escenas
--------------
+Fondos para las escenas
+-----------------------
 
-Para hacer un pequeña prueba sobre otra escena
-podrías ejecutar la siguiente sentencia
+Para hacer un pequeña prueba sobre una
+escena, podrías ejecutar la siguiente sentencia
 de código:
 
 .. code-block:: python
 
-    pilas.escenas.Paisaje()
+    pilas.fondos.Volley()
 
-Esto borrará a todos los actores de la escena
-y aplicará un nuevo fondo de pantalla a la 
-ventana de pilas:
+Esto le dará a tu escena una vista
+mas agradable, porque carga un fondo de
+pantalla colorido y mas divertido:
 
 .. image:: images/paisaje.png
+

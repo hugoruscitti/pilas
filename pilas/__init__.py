@@ -92,6 +92,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     import ventana
     import comportamientos
     import escenas
+    import fondos
     from control import Control
     from camara import Camara
     import copy
