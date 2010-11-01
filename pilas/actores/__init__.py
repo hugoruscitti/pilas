@@ -35,7 +35,7 @@ from banana import Banana
 from texto import Texto
 
 '''
-from tortuga import *
 from pizarra import Pizarra
+from tortuga import Tortuga
 from moneda import Moneda
 '''

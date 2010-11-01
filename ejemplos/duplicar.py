@@ -1,10 +1,10 @@
 import pilas
 from PySFML import sf
 
-pilas.iniciar()
+pilas.iniciar(usar_motor='pygame')
 
-tortuga = pilas.actores.Tortuga()
+mono = pilas.actores.Mono()
 
-otro = tortuga.duplicar(y=-200)
+otro = mono.duplicar(y=-200)
 pilas.avisar("Duplicando actores.")
 pilas.ejecutar()
