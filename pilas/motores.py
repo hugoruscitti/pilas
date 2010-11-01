@@ -167,7 +167,8 @@ class Pygame:
 
         def dibujar(self, aplicacion):
             x, y = self.rect.topleft
-            aplicacion.blit(self.image, (x + 320 - self.centro_x, y + 240 - self.centro_y))
+            aplicacion.blit(self.image, (x + 320 - self.centro_x - pilas.motor.camara_x, 
+                    y + 240 - self.centro_y - pilas.motor.camara_y))
 
         def duplicar(self, **kv):
             duplicado = self.__class__()
@@ -273,7 +274,9 @@ class Pygame:
 
         def dibujar(self, aplicacion):
             x, y = self.rect.topleft
-            aplicacion.blit(self.image, (x + 320 - self.centro_x, y + 240 - self.centro_y))
+            #aplicacion.blit(self.image, (x + 320 - self.centro_x, y + 240 - self.centro_y))
+            aplicacion.blit(self.image, (x + 320 - self.centro_x - pilas.motor.camara_x, 
+                    y + 240 - self.centro_y - pilas.motor.camara_y))
 
         def colisiona_con_un_punto(self, x, y):
             return False
@@ -295,6 +298,8 @@ class Pygame:
     def __init__(self):
         import pilas.colores
         pygame.init()
+        self.camara_x = 0
+        self.camara_y = 0
 
         pilas.colores.gris = (200, 200, 200)
         pilas.colores.gris_oscuro = (100, 100, 100)
@@ -308,7 +313,11 @@ class Pygame:
         pygame.display.quit()
 
     def dibujar_circulo(self, x, y, radio, color, color_borde):
-        pygame.draw.circle(self.ventana, (200, 0, 0), (x + 320, 240 - y), radio/2, True)
+        pygame.draw.circle(self.ventana, (200, 0, 0), (x + 320 - pilas.motor.camara_x, 
+            240 - y - pilas.motor.camara_y), radio/2, True)
+        #aplicacion.blit(self.image, (x + 320 - self.centro_x - pilas.motor.camara_x, 
+        #        y + 240 - self.centro_y - pilas.motor.camara_y))
+
 
     def cargar_sonido(self, ruta):
         return Pygame.Sonido(ruta)
@@ -389,6 +398,12 @@ class Pygame:
     def cargar_imagen(self, ruta):
         # TODO: Optimizar la imagen preservando el canal alpha.
         return pygame.image.load(ruta)
+
+    def obtener_centro_de_la_camara(self):
+        return self.camara_x, self.camara_y
+
+    def definir_centro_de_la_camara(self, x, y):
+        self.camara_x, self.camara_y = x, y
 
 class pySFML:
     import pilas.base
