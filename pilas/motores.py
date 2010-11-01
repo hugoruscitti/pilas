@@ -25,6 +25,7 @@ class Pygame:
 
     import pilas.base
 
+
     class Grilla:
         """Representa una grilla de imagenes con varios cuadros de animación.
 
@@ -212,6 +213,84 @@ class Pygame:
         def definir_rotacion(self, r):
             print "pygame no permite cambiar la rotacion"
 
+    class Texto(pilas.base.BaseActor, pygame.sprite.Sprite):
+        """Representa un texto en pantalla.
+
+        El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
+        """
+
+        def __init__(self, texto="None"):
+            self.centro_x = 0
+            self.centro_y = 0
+            pygame.font.init()
+            self.font = pygame.font.Font(None, 32)
+            self.color = (0, 0, 0)
+
+            pygame.sprite.Sprite.__init__(self)
+            self.set_text(texto)
+            self.rect = self.image.get_rect()
+            pilas.base.BaseActor.__init__(self) 
+            self._escala_actual = 1
+            self._texto = texto
+
+        def get_text(self):
+            return self._texto
+
+        def set_text(self, texto):
+            self._texto = texto
+            self.image = self.font.render(texto, 1, (0, 0, 0))
+
+        def get_size(self):
+            return 32
+
+        def set_size(self, size):
+            print "No se puede cambiar el tamanano del texto en pygame"
+
+        '''
+        def _set_central_axis(self):
+            rect = self.GetRect()
+            size = (rect.GetWidth(), rect.GetHeight())
+            self.SetCenter(size[0]/2, size[1]/2)
+        '''
+
+        def obtener_posicion(self):
+            x, y = self.rect.topleft
+            return x, y
+
+        def definir_posicion(self, x, y):
+            self.rect.topleft = (x, -y)
+
+        def get_color(self):
+            print "No se puede obtener el color en pygame."
+            return (0, 0, 0)
+
+        def set_color(self, k):
+            print "No se puede cambiar el color de pygame."
+
+        texto = property(get_text, set_text, doc="El texto que se tiene que mostrar.")
+        magnitud = property(get_size, set_size, doc="El tamaño del texto.")
+        color = property(get_color, set_color, doc="Color del texto.")
+
+        def dibujar(self, aplicacion):
+            x, y = self.rect.topleft
+            aplicacion.blit(self.image, (x + 320 - self.centro_x, y + 240 - self.centro_y))
+
+        def colisiona_con_un_punto(self, x, y):
+            return False
+
+        def obtener_ancho(self):
+            return self.rect.width
+
+        def obtener_alto(self):
+            return self.rect.height
+
+        def obtener_area(self):
+            return self.obtener_ancho(), self.obtener_alto()
+
+        def definir_centro(self, x, y):
+            self.centro_x = x
+            self.centro_y = y
+
 
     def __init__(self):
         import pilas.colores
@@ -320,8 +399,8 @@ class pySFML:
         El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
         """
 
-        def __init__(self, text="None"):
-            sf.String.__init__(self, text)
+        def __init__(self, texto="None"):
+            sf.String.__init__(self, texto)
             self.color = (0, 0, 0)
             pilas.base.BaseActor.__init__(self)
 

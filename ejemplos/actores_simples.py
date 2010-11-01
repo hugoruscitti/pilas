@@ -1,7 +1,7 @@
 import pilas
 import sys
 
-pilas.iniciar()
+pilas.iniciar(usar_motor='pygame')
 
 mono = pilas.actores.Mono()
 
