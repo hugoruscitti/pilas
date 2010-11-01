@@ -82,9 +82,6 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertFalse(control.abajo)
         self.assertFalse(control.boton)
 
-    def testDibujo(self):
-        pizarra = pilas.actores.Pizarra()
-        pizarra.dibujar_punto(20, 10)
 
     def testDistancias(self):
         self.assertEqual(0,  pilas.utils.distancia(0, 0))
@@ -97,28 +94,6 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(10, pilas.utils.distancia_entre_dos_puntos((0, 0), (0, 10)))
         self.assertEqual(10, pilas.utils.distancia_entre_dos_puntos((10, 10), (0, 10)))
 
-    def test_pieza_de_ejemplo(self):
-
-        filas = 3
-        columnas = 3
-
-        grilla = pilas.imagenes.Grilla("ejemplos/data/piezas.png", filas, columnas)
-        p = pilas.ejemplos.piezas.Pieza(None, grilla, 1, filas, columnas)
-
-        self.assertEqual(p.numero, 1)
-        self.assertEqual(p.numero_derecha, 2)
-        self.assertEqual(p.numero_izquierda, 0)
-        self.assertTrue(p.numero_arriba < 0)
-        self.assertEqual(p.numero_abajo, 4)
-        
-
-        p = pilas.ejemplos.piezas.Pieza(None, grilla, 8, filas, columnas)
-
-        self.assertEqual(p.numero, 8)
-        self.assertEqual(p.numero_derecha, -1)   # la pieza 8 no tiene borde derecho.
-        self.assertEqual(p.numero_izquierda, 7) 
-        self.assertEqual(p.numero_arriba, 5)
-        self.assertEqual(p.numero_abajo, 11) # la pieza 8 no tiene parte de abajo
 
     def test_posiciones_del_texto(self):
         m = pilas.actores.Texto("Hola")
