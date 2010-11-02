@@ -105,7 +105,9 @@ def interpolable(f):
 
         if isinstance(value, list):
             value = pilas.interpolar(value)
-
+        elif isinstance(value, xrange):
+            value = pilas.interpolar(list(value))
+            
         if es_interpolacion(value):
             value.apply(args[0], function=f.__name__)
         else:
