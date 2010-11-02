@@ -53,49 +53,40 @@ class BaseActor(object, Estudiante):
         x, y = self.obtener_posicion()
         return x
 
+    @pilas.utils.interpolable
     def set_x(self, x):
-        if pilas.utils.es_interpolacion(x):
-            x.apply(self, function='set_x')
-        else:
-            self.definir_posicion(x, self.y)
+        self.definir_posicion(x, self.y)
 
     def get_z(self):
         return self._z
 
+    @pilas.utils.interpolable
     def set_z(self, z):
-        if pilas.utils.es_interpolacion(z):
-            print "Lo siento, sobre z no puede aplicar una interpolacion..."
-        else:
-            self._z = z
-
+        self._z = z
         pilas.actores.utils.ordenar_actores_por_valor_z()
 
+    @pilas.utils.interpolable
     def set_y(self, y):
-        if pilas.utils.es_interpolacion(y):
-            y.apply(self, function='set_y')
-        else:
-            self.definir_posicion(self.x, y)
+        self.definir_posicion(self.x, y)
 
     def get_y(self):
         x, y = self.obtener_posicion()
         return y
 
+    @pilas.utils.interpolable
     def set_scale(self, s):
-        if pilas.utils.es_interpolacion(s):
-            s.apply(self, function='set_scale')
-        else:
-            if s <= 0:
-                return
+        if s <= 0:
+            return
 
-            ultima_escala = self.obtener_escala()
+        ultima_escala = self.obtener_escala()
 
-            # Se hace la siguiente regla de 3 simple:
-            #
-            #  ultima_escala          self.radio_de_colision
-            #  s                      ?
+        # Se hace la siguiente regla de 3 simple:
+        #
+        #  ultima_escala          self.radio_de_colision
+        #  s                      ?
 
-            self.definir_escala(s)
-            self.radio_de_colision = (s * self.radio_de_colision) / ultima_escala
+        self.definir_escala(s)
+        self.radio_de_colision = (s * self.radio_de_colision) / ultima_escala
 
     def get_scale(self):
         return self.obtener_escala()
@@ -103,12 +94,9 @@ class BaseActor(object, Estudiante):
     def get_rotation(self):
         return self.obtener_rotacion()
 
+    @pilas.utils.interpolable
     def set_rotation(self, x):
-
-        if pilas.utils.es_interpolacion(x):
-            x.apply(self, function='set_rotation')
-        else:
-            self.definir_rotacion(x)
+        self.definir_rotacion(x)
 
     def get_espejado(self):
         return self._espejado
@@ -162,6 +150,7 @@ class BaseActor(object, Estudiante):
     def get_izquierda(self):
         return self.x - self.obtener_ancho()/2
 
+    @pilas.utils.interpolable
     def set_izquierda(self, x):
         self.x = x + self.obtener_ancho()/2
 
@@ -170,6 +159,7 @@ class BaseActor(object, Estudiante):
     def get_abajo(self):
         return self.y - self.obtener_alto()/2
 
+    @pilas.utils.interpolable
     def set_abajo(self, y):
         self.y = y + self.obtener_alto()/2
 
@@ -178,6 +168,7 @@ class BaseActor(object, Estudiante):
     def get_derecha(self):
         return self.x + self.obtener_ancho()/2
 
+    @pilas.utils.interpolable
     def set_derecha(self, x):
         self.x = x - self.obtener_ancho()/2
 
@@ -186,6 +177,7 @@ class BaseActor(object, Estudiante):
     def get_arriba(self):
         return self.y + self.obtener_alto()/2
 
+    @pilas.utils.interpolable
     def set_arriba(self, y):
         self.y = y - self.obtener_alto()/2
 

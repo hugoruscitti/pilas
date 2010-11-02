@@ -8,7 +8,10 @@ para que puedas investigar y jugar.
 Este módulo de ejemplos es ``pilas.ejemplos`` y está
 organizado como una colección de clases.
 
-Por ejemplo, hay un pequeño rompecabezas que se puede
+Piezas
+------
+
+Hay hay un pequeño rompecabezas que se puede
 iniciar con la siguiente sentencia:
 
 .. code-block:: python

@@ -18,15 +18,14 @@ _________
 - Queremos que mas gente haga juegos, incluso en la escuela.
 - Nos encanta programar, hacer pilas es muy divertido !!
 
-
-Características
----------------
+Características, objetivos
+--------------------------
 
 - Orientada a principiantes y programadores casuales.
 - Viene con objetos pre-diseñados, llamados actores.
 - Completamente en español.
 - Es interactiva, para aprender realizando.
-- Documentación con ejemplos y pragmática.
+- Documentación con ejemplos orientada a resultados.
 
 
 Un ejemplo

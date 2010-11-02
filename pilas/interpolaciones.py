@@ -24,6 +24,7 @@ class Interpolacion:
 
         actor.rotation = pilas.interpolate(360)
     """
+    pass
 
 
 class Lineal(Interpolacion):

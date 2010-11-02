@@ -132,6 +132,14 @@ o bien:
 .. image:: images/mono/rotation80.png
 
 
+incluso puedes hacer un pequeña animación de rotación
+completa con el siguiente código:
+
+.. code-block:: python
+
+    mono.rotacion = range(0, 360)
+
+
 Pidiendo ayuda
 --------------
 

@@ -96,3 +96,19 @@ def crear_juego():
 
     print "Se ha creado el directorio '%s'" %(nombre)
     print "Ingresa en el directorio y econtrarás los archivos iniciales del juego."
+
+
+
+def interpolable(f):
+    def inner(*args, **kwargs):
+        value = args[1]
+
+        if isinstance(value, list):
+            value = pilas.interpolar(value)
+
+        if es_interpolacion(value):
+            value.apply(args[0], function=f.__name__)
+        else:
+            f(args[0], value, **kwargs)
+
+    return inner

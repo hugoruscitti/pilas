@@ -13,7 +13,19 @@ sentencias::
     actor.x = 30
     etc ...
 
-pero es mas sencillo usar una interpolación::
+una forma de lograr lo mismo con pilas
+es asignarle todos los valores en forma de lista::
+
+    actor.x = range(10, 100)
+
+o lo que es lo mismo::
+
+    actor.x = [10, 20, 30, 40, 50 ... etc.
+
+de hecho, puede que te resulte mas conveniente
+tener mas control sobre la interpolación, así
+que puedes usar esta forma::
+
 
     actor.x = pilas.interpolar(100)
 
