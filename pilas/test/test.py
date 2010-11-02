@@ -122,6 +122,8 @@ class TestSequenceFunctions(unittest.TestCase):
         m.abajo = m.abajo + 100
         self.assertEquals(m.y, 0)
 
+    def test_ver_codigo(self):
+        pilas.ver(pilas)
 
 
 if __name__ == '__main__':
