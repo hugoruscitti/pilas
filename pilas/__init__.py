@@ -33,6 +33,8 @@ Puedes obtener mas información en nuestro sitio:
 
 '''
 
+import inspect
+
 mundo = None
 motor = None
 bg = None
@@ -203,3 +205,13 @@ def avisar(mensaje):
     texto.magnitud = 22
     texto.izquierda = -310
     texto.abajo = -230
+
+def ver(objeto):
+    "Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."
+
+    if isinstance(objeto, object):
+        codigo = inspect.getsource(objeto.__class__)
+    else:
+        codigo = inspect.getsource(objeto)
+
+    print codigo
