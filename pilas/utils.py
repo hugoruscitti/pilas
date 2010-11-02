@@ -98,8 +98,9 @@ def crear_juego():
     print "Ingresa en el directorio y econtrarás los archivos iniciales del juego."
 
 
-
 def interpolable(f):
+    "Decorador que se aplica a un metodo para que permita animaciones de interpolaciones."
+
     def inner(*args, **kwargs):
         value = args[1]
 
