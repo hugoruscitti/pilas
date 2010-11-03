@@ -72,7 +72,10 @@ def esta_en_sesion_interactiva():
             in_ipython = sys.ipcompleter
             return True
         except AttributeError:
-            return False
+            if sys.stdin.__class__.__module__.startswith("idle"):
+                return True
+
+    return False
 
 def distancia(a, b):
     "Retorna la distancia entre dos numeros."
