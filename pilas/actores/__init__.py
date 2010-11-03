@@ -18,11 +18,6 @@ todos = []
 
 Actor = pilas.motor.Actor
 
-print "Cargando modulo actores, usando el motor '%s'" %(pilas.motor.__class__.__name__)
-
-
-
-
 from mono import *
 from ejes import *
 from animado import Animado
@@ -33,9 +28,9 @@ from bomba import Bomba
 from pingu import Pingu
 from banana import Banana
 from texto import Texto
+from moneda import Moneda
 
 '''
 from pizarra import Pizarra
 from tortuga import Tortuga
-from moneda import Moneda
 '''
