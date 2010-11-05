@@ -409,7 +409,10 @@ class Pygame:
 class pySFML:
     import pilas.base
 
-    Color = sf.Color
+    class Color(sf.Color):
+
+        def obtener_componentes(self):
+            return self.b, self.g, self.r
 
     class Canvas:
         "Representa una superficie sobre la que se puede dibujar usando cairo."

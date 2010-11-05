@@ -53,9 +53,6 @@ class Pizarra(Actor):
 
         self.x, self.y = x, y
         
-
-
-
-
-
-
+    def definir_color(self, color):
+        r, g, b = color.obtener_componentes()
+        self.canvas.context.set_source_rgb(r, g, b)
