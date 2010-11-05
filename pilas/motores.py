@@ -9,9 +9,12 @@
 import pygame
 from PySFML import sf
 from pilas.simbolos import *
+import cairo
 import eventos
 import pilas
 
+ANCHO = 200
+ALTO = 200
 
 
 
@@ -407,6 +410,25 @@ class Pygame:
 
 class pySFML:
     import pilas.base
+
+
+    class Canvas:
+        "Representa una superficie sobre la que se puede dibujar usando cairo."
+
+        def __init__(self):
+            self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, ANCHO, ALTO)
+            self.image = sf.Image()
+            self.context = cairo.Context(self.surface)
+            #self.context.arc(10, 20, 20.6, 0, 2 * 3.14)
+            #self.context.fill()
+            self.actualizar()
+
+        def actualizar(self):
+            self.image.LoadFromPixels(ANCHO, ALTO, self.surface.get_data())
+
+
+
+
 
     class Texto(sf.String, pilas.base.BaseActor):
         """Representa un texto en pantalla.
