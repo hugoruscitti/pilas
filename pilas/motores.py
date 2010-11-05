@@ -28,6 +28,8 @@ class Pygame:
 
     import pilas.base
 
+    def Color(r, g, b):
+        return (r, g, b)
 
     class Grilla:
         """Representa una grilla de imagenes con varios cuadros de animación.
@@ -299,13 +301,9 @@ class Pygame:
 
 
     def __init__(self):
-        import pilas.colores
         pygame.init()
         self.camara_x = 0
         self.camara_y = 0
-
-        pilas.colores.gris = (200, 200, 200)
-        pilas.colores.gris_oscuro = (100, 100, 100)
 
     def crear_ventana(self, ancho, alto, titulo):
         self.ventana = pygame.display.set_mode((ancho, alto))
@@ -411,6 +409,7 @@ class Pygame:
 class pySFML:
     import pilas.base
 
+    Color = sf.Color
 
     class Canvas:
         "Representa una superficie sobre la que se puede dibujar usando cairo."
@@ -666,12 +665,10 @@ class pySFML:
             self.SetRotation(r)
 
     def __init__(self):
-        import pilas.colores
         # Se usan para calcular el dx y dy del movimiento
         # del mouse porque pySFML no lo reporta de forma relativa.
         self.mouse_x = 0
         self.mouse_y = 0
-        pilas.colores.gris = sf.Color(200, 200, 200)
 
     def crear_ventana(self, ancho, alto, titulo):
         ventana = sf.RenderWindow(sf.VideoMode(ancho, alto), titulo)
