@@ -26,7 +26,7 @@ class Pygame:
     por ejemplo equipos como OLPC o simplemente aquellos que no
     tengan aceleradoras de graficos OpenGL."""
 
-    import pilas.base
+    import pilas.baseactor
 
     def Color(r, g, b):
         return (r, g, b)
@@ -122,7 +122,7 @@ class Pygame:
         def Play(self):
             self.reproducir()
 
-    class Actor(pilas.base.BaseActor, pygame.sprite.Sprite):
+    class Actor(pilas.baseactor.BaseActor, pygame.sprite.Sprite):
         """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
         Un objeto Actor se tiene que crear siempre indicando la imagen, ya
@@ -164,7 +164,7 @@ class Pygame:
             pygame.sprite.Sprite.__init__(self)
             self.image = image
             self.rect = self.image.get_rect()
-            pilas.base.BaseActor.__init__(self) 
+            pilas.baseactor.BaseActor.__init__(self) 
             self._escala_actual = 1
             
         def definir_imagen(self, imagen):
@@ -219,7 +219,7 @@ class Pygame:
         def definir_rotacion(self, r):
             print "pygame no permite cambiar la rotacion"
 
-    class Texto(pilas.base.BaseActor, pygame.sprite.Sprite):
+    class Texto(pilas.baseactor.BaseActor, pygame.sprite.Sprite):
         """Representa un texto en pantalla.
 
         El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
@@ -235,7 +235,7 @@ class Pygame:
             pygame.sprite.Sprite.__init__(self)
             self.set_text(texto)
             self.rect = self.image.get_rect()
-            pilas.base.BaseActor.__init__(self) 
+            pilas.baseactor.BaseActor.__init__(self) 
             self._escala_actual = 1
             self._texto = texto
 
@@ -407,7 +407,7 @@ class Pygame:
         self.camara_x, self.camara_y = x, y
 
 class pySFML:
-    import pilas.base
+    import pilas.baseactor
 
     class Color(sf.Color):
 
@@ -429,10 +429,7 @@ class pySFML:
             self.image.LoadFromPixels(ANCHO, ALTO, self.surface.get_data())
 
 
-
-
-
-    class Texto(sf.String, pilas.base.BaseActor):
+    class Texto(sf.String, pilas.baseactor.BaseActor):
         """Representa un texto en pantalla.
 
         El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
@@ -441,7 +438,7 @@ class pySFML:
         def __init__(self, texto="None"):
             sf.String.__init__(self, texto)
             self.color = (0, 0, 0)
-            pilas.base.BaseActor.__init__(self)
+            pilas.baseactor.BaseActor.__init__(self)
 
         def get_text(self):
             return self.GetText()
@@ -577,7 +574,7 @@ class pySFML:
         def Play(self):
             self.reproducir()
 
-    class Actor(pilas.base.BaseActor, sf.Sprite):
+    class Actor(pilas.baseactor.BaseActor, sf.Sprite):
         """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
         Un objeto Actor se tiene que crear siempre indicando la imagen, ya
@@ -615,7 +612,7 @@ class pySFML:
                 image = pilas.imagenes.cargar(image)
 
             sf.Sprite.__init__(self, image)
-            pilas.base.BaseActor.__init__(self)
+            pilas.baseactor.BaseActor.__init__(self)
             
 
         def definir_imagen(self, imagen):

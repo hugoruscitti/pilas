@@ -37,7 +37,7 @@ class Pizarra(Actor):
         self.definir_imagen(self.canvas.image)
 
     def pintar_punto(self, x, y):
-        self.canvas.context.arc(x, y, 20, 0, 2*3.1415)
+        self.canvas.context.arc(x, y, 30, 0, 2*3.1415)
         self.canvas.context.fill()
         self.actualizar_imagen()
 

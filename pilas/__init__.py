@@ -82,7 +82,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     import sys
     import time
 
-    import base
+    import baseactor
     import colores
     import imagenes
     import sonidos

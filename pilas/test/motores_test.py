@@ -39,8 +39,9 @@ class AbstractTest():
         pilas.motor.actualizar_pantalla()
 
     def test_colores(self):
+        self.iniciar()
+        import pilas.colores
         pilas.colores.gris
-        pass
 
     def test_cargar_image(self):
         self.iniciar()
