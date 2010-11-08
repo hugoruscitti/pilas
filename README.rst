@@ -27,6 +27,14 @@ la siguiente dirección:
     - http://groups.google.com/group/pilas-engine
 
 
+
+Licencia
+========
+
+
+- GPLv3.
+
+
 Créditos
 ========
 
