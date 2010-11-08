@@ -22,3 +22,11 @@ class Pasto(pilas.actores.Actor):
         pilas.actores.Actor.__init__(self, "fondos/pasto.png")
         self.z = 100
 
+
+class Selva(pilas.actores.Actor):
+    "Muestra una escena que tiene un fondo de pantalla de paisaje."
+
+    def __init__(self):
+        pilas.actores.Actor.__init__(self, "fondos/selva.png")
+        self.z = 100
+
