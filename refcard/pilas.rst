@@ -23,7 +23,7 @@ pilas.terminar()
     para cerrar la ventana (su atajo es la tecla 'q')
 pilas.ejecutar()
     para poner en funcionamiento la biblioteca desde script.
-pilas.actores.utils.fabricar(clase, cantidad=1)
+pilas.atajos.fabricar(clase, cantidad=1)
     genera muchos objetos de una clase particular asignandolo una posicion aleatoria.
 
 Uso básico de Actores
@@ -76,7 +76,8 @@ La pantalla principal de pilas tiene algunos atajos útiles:
 Movimientos
 -----------
 
-Para simular movimientos puedes usar la función ``interpolar``:
+Para simular movimientos puedes usar la función ``interpolar`` o simplemente
+asignar listas:
 
 pilas.interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal')
     busca todos los valores intermedios entre los valores que se le indican
@@ -88,6 +89,7 @@ Por ejemplo:
     
     mono.rotacion = pilas.interpolar(360)
     mono.x = pilas.interpolar([-200, 200, 0], duracion=2)
+    mono.y = [200, 0]
 
 Habilidades
 -----------

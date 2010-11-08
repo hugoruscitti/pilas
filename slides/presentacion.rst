@@ -61,6 +61,14 @@ lograr mediante interpolaciones:
 
 .. code-block:: python 
 
+    mono.x = range(0, 300)
+    mono.escala = [1, 4]
+    mono.x = [-100]
+
+o bien usando una forma mas sofisticada:
+
+.. code-block:: python 
+
     mono.x = pilas.interpolar(100)
     mono.rotacion = pilas.interpolar([360, 128, 0], duracion=10)
 
@@ -124,14 +132,13 @@ Colisiones, un ejemplo
         mono.sonreir()
         banana.eliminar()
 
-    bananas = pilas.fabricar(pilas.actores.Banana, 40)
+    bananas = pilas.atajos.fabricar(pilas.actores.Banana, 40)
 
     pilas.colisiones.agregar(mono, bananas, comer)
 
 
 Referencias
 -----------
-
 
 El sitio web de pilas:
     http://www.pilas-engine.com.ar
