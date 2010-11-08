@@ -66,7 +66,7 @@ class Mundo:
     def terminar(self):
         self.salir = True
 
-    def ejecutar_bucle_principal(self):
+    def ejecutar_bucle_principal(self, ignorar_errores=False):
         "Mantiene en funcionamiento el motor completo."
 
 
@@ -84,13 +84,33 @@ class Mundo:
             pilas.motor.procesar_y_emitir_eventos()
 
             # Analiza colisiones entre los actores
-            self.modo_ejecucion.analizar_colisiones()
+            try:
+                self.modo_ejecucion.analizar_colisiones()
+            except Exception, e:
+                if ignorar_errores:
+                    print e
+                else:
+                    raise e
 
             # Dibuja la escena actual y a los actores
-            self.escena_actual.actualizar()
+            try:
+                self.escena_actual.actualizar()
+            except Exception, e:
+                if ignorar_errores:
+                    print e
+                else:
+                    raise e
+
             self.escena_actual.dibujar(self.ventana)
 
-            self.modo_ejecucion.actualizar_actores()
+            try:
+                self.modo_ejecucion.actualizar_actores()
+            except Exception, e:
+                if ignorar_errores:
+                    print e
+                else:
+                    raise e
+
             self.modo_ejecucion.dibujar_actores()
 
             # Muestra los cambios en pantalla.
@@ -121,14 +141,3 @@ class Mundo:
 
     def alternar_modo_depuracion(self):
         self.modo_ejecucion.alternar_modo_depuracion()
-
-
-
-'''
-
-    def cambiar_a_modo_pausa(self):
-        self.definir_modo_ejecucion(ModoEjecucionPausado(self))
-
-    def cambiar_a_modo_depuracion(self):
-        pilas.mundo.definir_modo_ejecucion(ModoEjecucionDepuracion(self))
-'''
