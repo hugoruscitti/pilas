@@ -31,6 +31,7 @@ from texto import Texto
 from moneda import Moneda
 from pizarra import Pizarra
 from pelota import Pelota
+from estrella import Estrella
 
 '''
 from tortuga import Tortuga
