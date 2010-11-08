@@ -30,6 +30,7 @@ from banana import Banana
 from texto import Texto
 from moneda import Moneda
 from pizarra import Pizarra
+from pelota import Pelota
 
 '''
 from tortuga import Tortuga
