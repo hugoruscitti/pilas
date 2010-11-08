@@ -127,13 +127,13 @@ def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo):
     bg = threading.Thread(target=iniciar_y_ejecutar, args=(ancho, alto, titulo))
     bg.start()
 
-def iniciar_y_ejecutar(ancho, alto, titulo):
+def iniciar_y_ejecutar(ancho, alto, titulo, ignorar_errores=False):
     from mundo import Mundo
     global mundo
 
     mundo = Mundo(ancho, alto, titulo)
     escenas.Normal()
-    ejecutar()
+    ejecutar(ignorar_errores)
 
 def terminar():
     "Finaliza la ejecución de pilas y cierra la ventana principal."
@@ -144,7 +144,7 @@ def terminar():
     else:
         print "No se puede terminar pilas porque no la has inicializado."
 
-def ejecutar():
+def ejecutar(ignorar_errores=False):
     """Pone en funcionamiento el ejecutar principal.
 
     Esta función se comporta diferente en modo interactivo y modo script:
@@ -161,7 +161,7 @@ def ejecutar():
     global mundo
 
     if mundo:
-        mundo.ejecutar_bucle_principal()
+        mundo.ejecutar_bucle_principal(ignorar_errores)
     else:
         raise Exception("Tienes que llamar a pilas.iniciar() antes de ejecutar el juego.")
 
