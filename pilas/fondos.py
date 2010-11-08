@@ -15,3 +15,10 @@ class Volley(pilas.actores.Actor):
         pilas.actores.Actor.__init__(self, "volley.png")
         self.z = 100
 
+class Pasto(pilas.actores.Actor):
+    "Muestra una escena que tiene un fondo de pantalla de paisaje."
+
+    def __init__(self):
+        pilas.actores.Actor.__init__(self, "fondos/pasto.png")
+        self.z = 100
+
