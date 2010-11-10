@@ -154,7 +154,7 @@ class Pygame:
         una por defecto.
         """
 
-        def __init__(self, image="sin_imagen.png"):
+        def __init__(self, image="sin_imagen.png", x=0, y=0):
             self.centro_x = 0
             self.centro_y = 0
 
@@ -164,7 +164,7 @@ class Pygame:
             pygame.sprite.Sprite.__init__(self)
             self.image = image
             self.rect = self.image.get_rect()
-            pilas.baseactor.BaseActor.__init__(self) 
+            pilas.baseactor.BaseActor.__init__(self, x=x, y=y)
             self._escala_actual = 1
             
         def definir_imagen(self, imagen):
@@ -225,7 +225,7 @@ class Pygame:
         El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
         """
 
-        def __init__(self, texto="None"):
+        def __init__(self, texto="None", x=0, y=0):
             self.centro_x = 0
             self.centro_y = 0
             pygame.font.init()
@@ -235,7 +235,7 @@ class Pygame:
             pygame.sprite.Sprite.__init__(self)
             self.set_text(texto)
             self.rect = self.image.get_rect()
-            pilas.baseactor.BaseActor.__init__(self) 
+            pilas.baseactor.BaseActor.__init__(self, x=x, y=y) 
             self._escala_actual = 1
             self._texto = texto
 
@@ -435,10 +435,10 @@ class pySFML:
         El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
         """
 
-        def __init__(self, texto="None"):
+        def __init__(self, texto="None", x=0, y=0):
             sf.String.__init__(self, texto)
             self.color = (0, 0, 0)
-            pilas.baseactor.BaseActor.__init__(self)
+            pilas.baseactor.BaseActor.__init__(self, x=x, y=y)
 
         def get_text(self):
             return self.GetText()
@@ -606,13 +606,13 @@ class pySFML:
         una por defecto.
         """
 
-        def __init__(self, image="sin_imagen.png"):
+        def __init__(self, image="sin_imagen.png", x=0, y=0):
 
             if isinstance(image, str):
                 image = pilas.imagenes.cargar(image)
 
             sf.Sprite.__init__(self, image)
-            pilas.baseactor.BaseActor.__init__(self)
+            pilas.baseactor.BaseActor.__init__(self, x=x, y=y)
             
 
         def definir_imagen(self, imagen):

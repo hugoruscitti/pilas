@@ -28,12 +28,12 @@ class BaseActor(object, Estudiante):
     la posicion en pantalla.
     """
 
-    def __init__(self):
+    def __init__(self, x=0, y=0):
         self._definir_centro_del_actor()
         self.comportamiento = None
 
-        self.x = 0
-        self.y = 0
+        self.x = x
+        self.y = y
 
         # Define el nivel de lejania respecto del observador.
         self.z = 0

@@ -16,8 +16,9 @@ def add_ball(space, x, y):
     inertia = pymunk.moment_for_circle(mass, 0, radius, (0,0))
     body = pymunk.Body(mass, inertia)
     body.position = x, y
-    body.elasticity = 0.95
     shape = pymunk.Circle(body, radius)
+    shape.elasticity = 0.05 # rebote
+    shape.friction = 0.05
     space.add(body, shape)
     return shape
 
@@ -34,9 +35,8 @@ class Pelota(Actor):
         self.figura = self._crear_figura()
 
     def actualizar(self):
-        self.x = self.figura.body.position.x
-        self.y = self.figura.body.position.y
-        self.rotacion = self.figura.body.angle * 1000000000000000000
+        self.definir_posicion(self.figura.body.position.x, self.figura.body.position.y)
+        self.rotacion = self.figura.body.angle * 2
 
     def _crear_figura(self):
         return add_ball(pilas.fisica.fisica.espacio, self.x, self.y)
