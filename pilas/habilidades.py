@@ -16,6 +16,11 @@ class Habilidad:
     def __init__(self, receptor):
         self.receptor = receptor
 
+class ColisionableComoPelota(Habilidad):
+
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
+
 class SeguirAlMouse(Habilidad):
     "Hace que un actor siga la posición del mouse en todo momento."
 
