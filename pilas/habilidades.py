@@ -19,13 +19,31 @@ class Habilidad:
     def actualizar(self):
         pass
 
-class ColisionableComoPelota(Habilidad):
+
+class RebotaComoPelota(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-    
+        self.figura = pilas.fisica.fisica.crear_figura_circulo(receptor.x, 
+                                                               receptor.y, 
+                                                               receptor.radio_de_colision,
+                                                               masa=1,
+                                                               elasticidad=0)
+        
     def actualizar(self):
-        pass
+        self.receptor.x = self.figura.body.position.x
+        self.receptor.y = self.figura.body.position.y
+        self.receptor.rotacion = self.figura.body.angle * 1000
+
+class ColisionableComoPelota(RebotaComoPelota):
+
+    def __init__(self, receptor):
+        RebotaComoPelota.__init__(self, receptor)
+        
+    def actualizar(self):
+        self.figura.body.position.x = self.receptor.x
+        self.figura.body.position.y = self.receptor.y
+
 
 class SeguirAlMouse(Habilidad):
     "Hace que un actor siga la posición del mouse en todo momento."

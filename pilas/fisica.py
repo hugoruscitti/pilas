@@ -45,7 +45,7 @@ class Fisica:
     def agregar(self, figura):
         self.espacio.add(figura)
 
-    def crear_figura_circulo(self, x, y, radio, masa=1, elasticidad=0.05, friccion = 0.05):
+    def crear_figura_circulo(self, x, y, radio, masa=1, elasticidad=0.05, friccion=0.05):
         inertia = pymunk.moment_for_circle(masa, 0, radio, (0,0))
         body = pymunk.Body(masa, inertia)
         body.position = x, y
