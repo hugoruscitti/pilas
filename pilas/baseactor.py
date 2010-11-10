@@ -132,6 +132,10 @@ class BaseActor(object, Estudiante):
                 self.comportamiento.terminar()
                 self.comportamiento = None
 
+    def actualizar_habilidades(self):
+        for h in self.habilidades:
+            h.actualizar()
+
     def __cmp__(self, otro_actor):
         """Compara dos actores para determinar cual esta mas cerca de la camara.
 

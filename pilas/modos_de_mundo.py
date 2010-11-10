@@ -44,6 +44,7 @@ class ModoEjecucionNormal(ModoEjecucion):
     def actualizar_actores(self):
         for actor in pilas.actores.todos:
             actor.actualizar()
+            actor.actualizar_habilidades()
 
     def dibujar_actores(self):
         # Separo el dibujado de los actores porque la lista puede cambiar

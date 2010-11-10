@@ -24,4 +24,4 @@ class Pelota(Actor):
 
     def actualizar(self):
         self.definir_posicion(self.figura.body.position.x, self.figura.body.position.y)
-        self.rotacion = self.figura.body.angle * 2
+        self.rotacion = self.figura.body.angle * 500
