@@ -11,6 +11,6 @@ from pilas.actores import Actor
 class Ejes(Actor):
     "Representa el eje de coordenadas tomado como sistema de referencia."
 
-    def __init__(self):
-        Actor.__init__(self, "ejes.png")
+    def __init__(self, x=0, y=0):
+        Actor.__init__(self, "ejes.png", x=x, y=y)
         self.z = 100

@@ -53,4 +53,4 @@ def fabricar(clase, cantidad=1, posiciones_al_azar=True):
         nuevo = clase(x=x, y=y)
         objetos_creados.append(nuevo)
 
-    return objetos_creados
+    return pilas.grupo.Grupo(objetos_creados)

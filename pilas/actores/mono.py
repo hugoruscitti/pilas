@@ -21,7 +21,7 @@ class Mono(Actor):
     El primero hace que el mono se ría y el segundo que grite.
     """
 
-    def __init__(self):
+    def __init__(self, x=0, y=0):
         # carga las imagenes adicionales.
         self.image_normal = pilas.imagenes.cargar('monkey_normal.png')
         self.image_smile = pilas.imagenes.cargar('monkey_smile.png')
@@ -31,7 +31,7 @@ class Mono(Actor):
         self.sound_smile = pilas.sonidos.cargar('smile.wav')
 
         # Inicializa el actor.
-        Actor.__init__(self, self.image_normal)
+        Actor.__init__(self, self.image_normal, x=x, y=y)
         self.radio_de_colision = 50
 
     def sonreir(self):

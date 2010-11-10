@@ -12,9 +12,9 @@ from pilas.actores import Actor
 class Banana(Actor):
     "Representa una explosion para una bomba, dinamita etc..."
 
-    def __init__(self):
+    def __init__(self, x=0, y=0):
         self.animacion = pilas.imagenes.Grilla("banana.png", 2)
-        Actor.__init__(self)
+        Actor.__init__(self, x=x, y=y)
         self.definir_cuadro(0)
 
     def definir_cuadro(self, indice):

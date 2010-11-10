@@ -18,8 +18,8 @@ class Pizarra(Actor):
     un lapiz, que se puede mover sobre una superficie.
     """
 
-    def __init__(self):
-        Actor.__init__(self)
+    def __init__(self, x=0, y=0):
+        Actor.__init__(self, x=x, y=y)
         self.canvas = pilas.motor.Canvas()
         self.actualizar_imagen()
         self.levantar_lapiz()

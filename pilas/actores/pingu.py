@@ -15,9 +15,9 @@ VELOCIDAD = 4
 class Pingu(Actor):
     "Representa una tortuga que se mueve por la pantalla como la tortuga de Logo."
 
-    def __init__(self):
+    def __init__(self, x=0, y=0):
         imagen = pilas.imagenes.cargar('pingu.png')
-        Actor.__init__(self, imagen)
+        Actor.__init__(self, imagen, x=x, y=y)
         self.animacion = pilas.imagenes.Grilla("pingu.png", 10)
         self.definir_cuadro(4)
         self.hacer(Esperando())

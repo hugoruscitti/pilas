@@ -13,7 +13,7 @@ import pilas
 class Estrella(Actor):
     "Representa una estrella de color amarillo."
 
-    def __init__(self):
+    def __init__(self, x=0, y=0):
         imagen = pilas.imagenes.cargar('estrella.png')
-        Actor.__init__(self, imagen)
+        Actor.__init__(self, imagen, x=x, y=y)
         self.rotacion = 0
