@@ -54,10 +54,12 @@ class TestSequenceFunctions(unittest.TestCase):
         # Vincula la clase Text con un componente.
         component = pilas.habilidades.AumentarConRueda 
         texto.aprender(component)
-        
+
         # Se asegura que el componente pasa a ser de la superclase.
-        superclases = texto.__class__.__bases__
-        self.assertTrue(component in superclases)
+        self.assertTrue(component in texto.habilidades[0].__class__)
+
+    def testAtajos(self):
+        pilas.atajos
 
     def testEjes(self):
         ejes = pilas.actores.Ejes()
