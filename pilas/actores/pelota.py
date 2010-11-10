@@ -20,8 +20,5 @@ class Pelota(Actor):
         self.x = x
         self.y = y
         self.radio_de_colision = 25
-        self.figura = pilas.fisica.fisica.crear_figura_circulo(x, y, self.radio_de_colision)
 
-    def actualizar(self):
-        self.definir_posicion(self.figura.body.position.x, self.figura.body.position.y)
-        self.rotacion = self.figura.body.angle * 500
+        self.aprender(pilas.habilidades.RebotaComoPelota)

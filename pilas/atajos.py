@@ -9,3 +9,6 @@
 import pilas
 
 fabricar = pilas.actores.utils.fabricar
+
+def crear_grupo(*k):
+    return pilas.grupos.Grupo(k)
