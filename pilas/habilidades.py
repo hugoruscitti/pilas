@@ -10,39 +10,47 @@ from PySFML import sf
 
 import pilas
 
-class SeguirAlMouse:
+
+class Habilidad:
+
+    def __init__(self, receptor):
+        self.receptor = receptor
+
+class SeguirAlMouse(Habilidad):
     "Hace que un actor siga la posición del mouse en todo momento."
 
-    def __init__(self):
-        pilas.eventos.mueve_mouse.connect(self.move)
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
+        pilas.eventos.mueve_mouse.connect(self.mover)
 
-    def move(self, sender, x, y, signal):
-        self.x = x
-        self.y = y
+    def mover(self, sender, x, y, signal):
+        self.receptor.x = x
+        self.receptor.y = y
 
-
-class AumentarConRueda:
+class AumentarConRueda(Habilidad):
     "Permite cambiar el tamaño de un actor usando la ruedita scroll del mouse."
 
-    def __init__(self):
-        pilas.eventos.mueve_rueda.connect(self.scale_me)
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
+        pilas.eventos.mueve_rueda.connect(self.cambiar_de_escala)
 
-    def scale_me(self, sender, delta, signal):
-        self.escala += (delta / 4.0)
+    def cambiar_de_escala(self, sender, delta, signal):
+        self.receptor.escala += (delta / 4.0)
 
 
-class SeguirClicks:
+class SeguirClicks(Habilidad):
     "Hace que el actor se coloque la posición del cursor cuando se hace click."
 
-    def __init__(self):
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
         pilas.eventos.click_de_mouse.connect(self.moverse_a_este_punto)
 
     def moverse_a_este_punto(self, sender, signal, x, y, button):
-        self.x = pilas.interpolar(x, duracion=0.5)
-        self.y = pilas.interpolar(y, duracion=0.5)
+        self.receptor.x = pilas.interpolar(x, duracion=0.5)
+        self.receptor.y = pilas.interpolar(y, duracion=0.5)
 
 
-class Arrastrable:
+class Arrastrable(Habilidad):
     """Hace que un objeto se pueda arrastrar con el puntero del mouse.
 
     Cuando comienza a mover al actor se llama al metodo ''comienza_a_arrastrar''
@@ -53,21 +61,22 @@ class Arrastrable:
     el ejemplo ``pilas.ejemplos.Piezas``.
     """
 
-    def __init__(self):
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
         pilas.eventos.click_de_mouse.connect(self.try_to_drag)
 
     def try_to_drag(self, sender, signal, x, y, button):
         "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
 
-        if self.colisiona_con_un_punto(x, y):
+        if self.receptor.colisiona_con_un_punto(x, y):
             pilas.eventos.termina_click.connect(self.drag_end)
             pilas.eventos.mueve_mouse.connect(self.drag, uid='drag')
             self.comienza_a_arrastrar()
 
     def drag(self, sender, signal, x, y, dx, dy):
         "Arrastra el actor a la posicion indicada por el puntero del mouse."
-        self.x += dx
-        self.y += dy
+        self.receptor.x += dx
+        self.receptor.y += dy
 
     def drag_end(self, sender, signal, x, y, button):
         "Suelta al actor porque se ha soltado el botón del mouse."
@@ -80,10 +89,11 @@ class Arrastrable:
     def termina_de_arrastrar(self):
         pass
 
-class MoverseConElTeclado:
+class MoverseConElTeclado(Habilidad):
     "Hace que un actor cambie de posición con pulsar el teclado."
 
-    def __init__(self):
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
         pilas.eventos.actualizar.connect(self.on_key_press)
 
     def on_key_press(self, sender, signal):
@@ -91,11 +101,11 @@ class MoverseConElTeclado:
         c = pilas.mundo.control
 
         if c.izquierda:
-            self.x -= velocidad
+            self.receptor.x -= velocidad
         elif c.derecha:
-            self.x += velocidad
+            self.receptor.x += velocidad
 
         if c.arriba:
-            self.y += velocidad
+            self.receptor.y += velocidad
         elif c.abajo:
-            self.y -= velocidad
+            self.receptor.y -= velocidad

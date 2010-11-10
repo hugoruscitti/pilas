@@ -11,10 +11,16 @@ import pilas.utils
 class Estudiante:
     "Permite a distintos objetos acoplarse mediente mixins."
 
+    def __init__(self):
+        self.habilidades = []
+
     def aprender(self, classname, *k, **w):
-        if not classname in self.__class__.__bases__:
-            self.__class__.__bases__ += (classname,)
-        classname.__init__(self, *k, **w)
+        #if not classname in self.__class__.__bases__:
+        #    self.__class__.__bases__ += (classname,)
+        #.__init__(self, *k, **w)
+
+        objeto_habilidad = classname(self, *k, **w)
+        self.habilidades.append(objeto_habilidad)
 
 class BaseActor(object, Estudiante):
     """Define la funciondad abstracta de un actor.
@@ -31,6 +37,7 @@ class BaseActor(object, Estudiante):
     def __init__(self, x=0, y=0):
         self._definir_centro_del_actor()
         self.comportamiento = None
+        Estudiante.__init__(self)
 
         self.x = x
         self.y = y
