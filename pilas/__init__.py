@@ -107,6 +107,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     import red
     import motores
     import atajos
+    import fisica
 
     pilas.colisiones = Colisiones()
 

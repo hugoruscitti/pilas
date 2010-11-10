@@ -170,6 +170,9 @@ class ModoEjecucionDepuracionPausado(ModoEjecucionPausado, ModoEjecucionDepuraci
         ModoEjecucionPausado.salir(self)
         ModoEjecucionDepuracion.salir(self)
 
+    def actualizar_actores(self):
+        pass
+
     def alternar_modo_depuracion(self):
         self.mundo.definir_modo_ejecucion(ModoEjecucionPausado(self.mundo))
 
