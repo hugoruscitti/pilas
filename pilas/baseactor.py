@@ -22,6 +22,10 @@ class Estudiante:
         objeto_habilidad = classname(self, *k, **w)
         self.habilidades.append(objeto_habilidad)
 
+    def eliminar_habilidades(self):
+        for h in self.habilidades:
+            h.eliminar()
+
 class BaseActor(object, Estudiante):
     """Define la funciondad abstracta de un actor.
 
@@ -121,6 +125,7 @@ class BaseActor(object, Estudiante):
     def eliminar(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
         pilas.actores.utils.eliminar_un_actor(self)
+        self.eliminar_habilidades()
 
     def actualizar(self):
         "Actualiza el estado del actor. Este metodo se llama una vez por frame."

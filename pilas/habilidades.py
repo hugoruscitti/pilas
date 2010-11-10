@@ -19,6 +19,8 @@ class Habilidad:
     def actualizar(self):
         pass
 
+    def eliminar(self):
+        pass
 
 class RebotaComoPelota(Habilidad):
 
