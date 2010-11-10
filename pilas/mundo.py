@@ -101,9 +101,6 @@ class Mundo:
                 else:
                     raise e
 
-            # Actualiza las simulaciones fisicas.
-            pilas.fisica.fisica.actualizar()
-
             self.escena_actual.dibujar(self.ventana)
 
             try:
