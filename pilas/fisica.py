@@ -22,8 +22,15 @@ class Fisica:
 
     def _crear_suelos(self):
         static_body = pymunk.Body(pymunk.inf, pymunk.inf)
-        static_lines = [pymunk.Segment(static_body, (-100.0, -100.0), (100.0, -100.0), 0.0),
-                        pymunk.Segment(static_body, (407.0, 246.0), (407.0, 343.0), 0.0)
+        static_lines = [
+                        # Borde inferior
+                        pymunk.Segment(static_body, (-320.0, -240.0), (320.0, -240.0), 0.0),
+                        # Borde izquierdo
+                        pymunk.Segment(static_body, (-320.0, 240.0), (-320.0, -240.0), 0.0),
+                        # Borde izquierdo
+                        pymunk.Segment(static_body, (320.0, 240.0), (320.0, -240.0), 0.0),
+                        # Borde superior
+                        pymunk.Segment(static_body, (-320.0, 240.0), (320.0, 240.0), 0.0),
                         ]
 
         for line in static_lines:
