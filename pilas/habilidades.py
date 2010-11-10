@@ -37,6 +37,9 @@ class RebotaComoPelota(Habilidad):
         self.receptor.y = self.figura.body.position.y
         self.receptor.rotacion = self.figura.body.angle * 500
 
+    def eliminar(self):
+        pilas.fisica.fisica.eliminar(self.figura)
+
 class ColisionableComoPelota(RebotaComoPelota):
 
     def __init__(self, receptor):
@@ -46,6 +49,8 @@ class ColisionableComoPelota(RebotaComoPelota):
         self.figura.body.position.x = self.receptor.x
         self.figura.body.position.y = self.receptor.y
 
+    def eliminar(self):
+        pilas.fisica.fisica.eliminar(self.figura)
 
 class SeguirAlMouse(Habilidad):
     "Hace que un actor siga la posición del mouse en todo momento."

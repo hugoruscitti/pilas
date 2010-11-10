@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+    def eliminar(self):
+        pilas.fisica.fisica.eliminar(self.figura)
 # pilas engine - a video game framework.
 #
 # copyright 2010 - hugo ruscitti

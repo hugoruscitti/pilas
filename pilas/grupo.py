@@ -25,6 +25,12 @@ class Grupo(list):
         del grupo, en realidad, el grupo va a invocar a ese metodo pero
         en todos sus elementos. Algo asi como un map."""
 
+        if attr == 'desordenar':
+            return Grupo.desordenar
+        elif attr == 'limpiar':
+            return Grupo.limpiar
+
+
         def map_a_todos(*k, **kw):
             for a in self:
                 funcion = getattr(a, attr)
@@ -40,3 +46,8 @@ class Grupo(list):
         for a in self:
             a.x = random.randint(-300, 300)
             a.y = random.randint(-200, 200)
+
+    def limpiar(self):
+        eliminar = list(self)
+        for e in eliminar:
+            eliminar.eliminar()
