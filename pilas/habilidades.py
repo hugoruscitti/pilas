@@ -33,7 +33,7 @@ class RebotaComoPelota(Habilidad):
     def actualizar(self):
         self.receptor.x = self.figura.body.position.x
         self.receptor.y = self.figura.body.position.y
-        self.receptor.rotacion = self.figura.body.angle * 1000
+        self.receptor.rotacion = self.figura.body.angle * 500
 
 class ColisionableComoPelota(RebotaComoPelota):
 

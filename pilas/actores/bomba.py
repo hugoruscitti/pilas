@@ -15,6 +15,7 @@ class Bomba(Animacion):
 
     def __init__(self):
         Animacion.__init__(self, pilas.imagenes.Grilla("bomba.png", 2), ciclica=True)
+        self.radio_de_colision = 25
 
     def explotar(self):
         explosion = Explosion()

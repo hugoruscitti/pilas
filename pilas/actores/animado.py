@@ -17,8 +17,8 @@ class Animado(Actor):
     método 'definir_cuadro', que facilita la animación de personajes.
     """
 
-    def __init__(self, grilla):
-        Actor.__init__(self)
+    def __init__(self, grilla, x=0, y=0):
+        Actor.__init__(self, x=x, y=y)
         self.animacion = copy.copy(grilla)
         self.definir_cuadro(0)
 

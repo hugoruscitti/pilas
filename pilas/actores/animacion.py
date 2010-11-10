@@ -21,8 +21,8 @@ class Animacion(Animado):
     la animacion termina se elimina a si mismo.
     """
 
-    def __init__(self, grilla, ciclica=False):
-        Animado.__init__(self, grilla)
+    def __init__(self, grilla, ciclica=False, x=0, y=0):
+        Animado.__init__(self, grilla, x=x, y=y)
         self.tick = 0
         self.ciclica = ciclica     # Indica si la animacion debe reiniciar luego de terminar.
 
