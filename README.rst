@@ -73,3 +73,12 @@ Estos gráficos se distribuyen bajo la licencia "Common Public License", y
 puedes obtener mas información en: http://www.spicypixel.net
 
 ¡ Gracias Marc !
+
+
+DANC, de lostgarden.com
+-----------------------
+
+En pilas utilizamos algunos gráficos que DANC publicó
+en su sitio web:
+
+    www.lostgarden.com
