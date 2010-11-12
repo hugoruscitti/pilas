@@ -39,3 +39,11 @@ class Tarde(Fondo):
 
     def __init__(self):
         Fondo.__init__(self, "fondos/tarde.png")
+
+
+class Espacio(Fondo):
+    "Es un espacio con estrellas."
+
+    def __init__(self):
+        Fondo.__init__(self, "fondos/espacio.png")
+
