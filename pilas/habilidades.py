@@ -165,3 +165,17 @@ class MoverseConElTeclado(Habilidad):
             self.receptor.y += velocidad
         elif c.abajo:
             self.receptor.y -= velocidad
+
+class PuedeExplotar(Habilidad):
+    "Hace que un actor se pueda hacer explotar invocando al metodo eliminar."
+
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
+        receptor.eliminar = self.eliminar_y_explotar
+
+    def eliminar_y_explotar(self):
+        explosion = pilas.actores.Explosion()
+        explosion.x = self.receptor.x
+        explosion.y = self.receptor.y
+        explosion.escala = self.receptor.escala * 2
+        pilas.baseactor.BaseActor.eliminar(self.receptor)

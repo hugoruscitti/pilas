@@ -5,6 +5,7 @@
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
+import random
 
 class Grupo(list):
     """Un grupo es un contenedor que funciona como una lista normal, pero mejorada.
@@ -25,11 +26,21 @@ class Grupo(list):
         del grupo, en realidad, el grupo va a invocar a ese metodo pero
         en todos sus elementos. Algo asi como un map."""
 
-        if attr == 'desordenar':
-            return Grupo.desordenar
-        elif attr == 'limpiar':
-            return Grupo.limpiar
+        def desordenar():
+            for a in self:
+                a.x = random.randint(-300, 300)
+                a.y = random.randint(-200, 200)
 
+        def limpiar():
+            eliminar = list(self)
+            for e in eliminar:
+                e.eliminar()
+
+
+        if attr == 'desordenar':
+            return desordenar
+        elif attr == 'limpiar':
+            return limpiar
 
         def map_a_todos(*k, **kw):
             for a in self:
@@ -42,12 +53,4 @@ class Grupo(list):
         for a in self:
             setattr(a, atributo, valor)
 
-    def desordenar(self):
-        for a in self:
-            a.x = random.randint(-300, 300)
-            a.y = random.randint(-200, 200)
 
-    def limpiar(self):
-        eliminar = list(self)
-        for e in eliminar:
-            eliminar.eliminar()
