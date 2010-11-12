@@ -29,13 +29,33 @@ class RebotaComoPelota(Habilidad):
         self.figura = pilas.fisica.fisica.crear_figura_circulo(receptor.x, 
                                                                receptor.y, 
                                                                receptor.radio_de_colision,
-                                                               masa=1,
-                                                               elasticidad=0)
+                                                               masa=10,
+                                                               elasticidad=0.75)
         
     def actualizar(self):
         self.receptor.x = self.figura.body.position.x
         self.receptor.y = self.figura.body.position.y
         self.receptor.rotacion = self.figura.body.angle * 500
+
+    def eliminar(self):
+        pilas.fisica.fisica.eliminar(self.figura)
+
+
+class RebotaComoCaja(Habilidad):
+
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
+        self.figura = pilas.fisica.fisica.crear_figura_cuadrado(receptor.x, 
+                                                               receptor.y, 
+                                                               receptor.radio_de_colision,
+                                                               masa=10,
+                                                               elasticidad=0.30,
+                                                               friccion=10)
+        
+    def actualizar(self):
+        self.receptor.x = self.figura.body.position.x
+        self.receptor.y = self.figura.body.position.y
+        self.receptor.rotacion = self.figura.body.angle * 58
 
     def eliminar(self):
         pilas.fisica.fisica.eliminar(self.figura)

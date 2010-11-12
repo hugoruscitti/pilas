@@ -12,3 +12,6 @@ fabricar = pilas.actores.utils.fabricar
 
 def crear_grupo(*k):
     return pilas.grupos.Grupo(k)
+
+def definir_gravedad(x=0, y=-900):
+    pilas.fisica.fisica.definir_gravedad(x, y)

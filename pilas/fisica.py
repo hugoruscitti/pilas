@@ -17,7 +17,7 @@ class Fisica:
         pymunk.init_pymunk()
 
         self.espacio = pymunk.Space()
-        self.espacio.gravity = (0.0, -900.0)
+        self.definir_gravedad(0, -900)
         self._crear_suelos()
 
     def _crear_suelos(self):
@@ -34,7 +34,7 @@ class Fisica:
                         ]
 
         for line in static_lines:
-            line.elasticity = 20
+            line.elasticity = 0.0
 
         self.espacio.add_static(static_lines)
 
@@ -57,5 +57,19 @@ class Fisica:
         shape.friction = friccion
         self.espacio.add(body, shape)
         return shape
+
+    def crear_figura_cuadrado(self, x, y, ancho, masa=1, elasticidad=0.05, friccion=0.0):
+        inertia = pymunk.moment_for_box(masa, ancho, ancho)
+        body = pymunk.Body(masa, inertia)
+        body.position = x, y
+        r = ancho 
+        shape = pymunk.Poly(body,  [(-r, -r), (-r, r), (r, r), (r, -r)], (0, 0))
+        shape.elasticity = elasticidad
+        shape.friction = friccion
+        self.espacio.add(body, shape)
+        return shape
+
+    def definir_gravedad(self, x=0, y=-900):
+        self.espacio.gravity = (x, y)
 
 fisica = Fisica()
