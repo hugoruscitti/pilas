@@ -35,13 +35,13 @@ class Nave(Animacion):
         self.contador_frecuencia_disparo += 1
 
         if pilas.mundo.control.boton:
-            if self.contador_frecuencia_disparo > 20:
+            if self.contador_frecuencia_disparo > 10:
                 self.contador_frecuencia_disparo = 0
                 self.disparar()
 
     def disparar(self):
         "Hace que la nave dispare."
-        print "disparo!!"
+        pilas.actores.Disparo(self.x, self.y, self.rotacion, 4)
 
     def avanzar(self):
         "Hace avanzar la nave en direccion a su angulo."

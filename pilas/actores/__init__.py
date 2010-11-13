@@ -34,6 +34,7 @@ from pelota import Pelota
 from estrella import Estrella
 from caja import Caja
 from nave import Nave
+from disparo import Disparo
 
 '''
 from tortuga import Tortuga
