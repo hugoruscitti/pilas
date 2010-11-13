@@ -18,7 +18,11 @@ def insertar_como_nuevo_actor(actor):
     pilas.actores.todos.append(actor)
     
 def eliminar_un_actor(actor):
-    pilas.actores.todos.remove(actor)
+    try:
+        pilas.actores.todos.remove(actor)
+    except ValueError:
+        #TODO: quitar este silenciador de excepcion.
+        pass
 
 def eliminar_a_todos():
     a_eliminar = list(pilas.actores.todos)

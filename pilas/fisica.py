@@ -46,7 +46,12 @@ class Fisica:
         self.espacio.add(figura)
 
     def eliminar(self, figura):
-        self.espacio.remove(figura)
+        try:
+            self.espacio.remove(figura)
+        except:
+            #TODO: quitar este silenciador, porque esta para cuando
+            #      falla el manejo de grupos.
+            pass
 
     def crear_figura_circulo(self, x, y, radio, masa=1, elasticidad=0.05, friccion=0.05):
         inertia = pymunk.moment_for_circle(masa, 0, radio, (0,0))
