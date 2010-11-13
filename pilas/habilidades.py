@@ -6,8 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import random
 from PySFML import sf
-
 import pilas
 
 
@@ -26,8 +26,9 @@ class RebotaComoPelota(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        self.figura = pilas.fisica.fisica.crear_figura_circulo(receptor.x, 
-                                                               receptor.y, 
+        error = random.randint(-10, 10) / 10.0
+        self.figura = pilas.fisica.fisica.crear_figura_circulo(receptor.x + error, 
+                                                               receptor.y + error, 
                                                                receptor.radio_de_colision,
                                                                masa=10,
                                                                elasticidad=0.75)
@@ -45,8 +46,9 @@ class RebotaComoCaja(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        self.figura = pilas.fisica.fisica.crear_figura_cuadrado(receptor.x, 
-                                                               receptor.y, 
+        error = random.randint(-10, 10) / 10.0
+        self.figura = pilas.fisica.fisica.crear_figura_cuadrado(receptor.x + error,
+                                                               receptor.y + error, 
                                                                receptor.radio_de_colision,
                                                                masa=10,
                                                                elasticidad=0.30,
