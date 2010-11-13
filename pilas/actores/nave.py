@@ -20,6 +20,7 @@ class Nave(Animacion):
         self.radio_de_colision = 20
         self.aprender(pilas.habilidades.PuedeExplotar)
         self.contador_frecuencia_disparo = 0
+        self.disparos = []
 
     def actualizar(self):
         Animacion.actualizar(self)
@@ -41,7 +42,8 @@ class Nave(Animacion):
 
     def disparar(self):
         "Hace que la nave dispare."
-        pilas.actores.Disparo(self.x, self.y, self.rotacion, 4)
+        disparo_nuevo = pilas.actores.Disparo(self.x, self.y, self.rotacion, 4)
+        self.disparos.append(disparo_nuevo)
 
     def avanzar(self):
         "Hace avanzar la nave en direccion a su angulo."
@@ -50,3 +52,12 @@ class Nave(Animacion):
         dy = math.sin(rotacion_en_radianes) * self.velocidad
         self.x += dx
         self.y += dy
+
+    def definir_enemigos(self, grupo):
+        "hace que una nave tenga como enemigos a todos los actores del grupo."
+        pilas.colisiones.agregar(self.disparos, grupo, self.hacer_explotar_al_enemigo)
+
+    def hacer_explotar_al_enemigo(self, mi_disparo, el_enemigo):
+        "Es el método que se invoca cuando se produce una colisión 'tiro <-> enemigo'"
+        mi_disparo.eliminar()
+        el_enemigo.eliminar()

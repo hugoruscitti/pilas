@@ -27,14 +27,14 @@ class Colisiones:
         for a in grupo_a:
             for b in grupo_b:
                 if id(a) != id(b) and utils.colisionan(a, b):
-                    print "tengo que llamar a", funcion_a_llamar
                     funcion_a_llamar(a, b)
+
                     # verifica si alguno de los dos objetos muere en la colision.
                     if a not in pilas.actores.todos:
-                        grupo_a.eliminar(a)
+                        list.remove(grupo_a, a)
 
                     if b not in pilas.actores.todos:
-                        grupo_b.eliminar(b)
+                        list.remove(grupo_b, b)
 
 
 
