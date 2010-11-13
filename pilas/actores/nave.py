@@ -39,6 +39,15 @@ class Nave(Animacion):
             if self.contador_frecuencia_disparo > 10:
                 self.contador_frecuencia_disparo = 0
                 self.disparar()
+        
+        self.eliminar_disparos_innecesarios()
+
+    def eliminar_disparos_innecesarios(self):
+        for d in list(self.disparos):
+            if d.x < -320 or d.x > 320 or d.y < -240 or d.y > 240:
+                d.eliminar()
+                self.disparos.remove(d)
+
 
     def disparar(self):
         "Hace que la nave dispare."
