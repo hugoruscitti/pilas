@@ -33,6 +33,7 @@ from pizarra import Pizarra
 from pelota import Pelota
 from estrella import Estrella
 from caja import Caja
+from nave import Nave
 
 '''
 from tortuga import Tortuga

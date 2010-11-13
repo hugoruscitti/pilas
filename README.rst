@@ -82,3 +82,12 @@ En pilas utilizamos algunos gráficos que DANC publicó
 en su sitio web:
 
     www.lostgarden.com
+
+
+a arboris
+---------
+
+Por sus gráficos de naves que se pueden
+descargar desde la siguiente web:
+
+    http://arboris.deviantart.com/art/Spaceship-sprites-43030167

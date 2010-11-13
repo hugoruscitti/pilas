@@ -52,5 +52,3 @@ class Grupo(list):
     def __setattr__(self, atributo, valor):
         for a in self:
             setattr(a, atributo, valor)
-
-
