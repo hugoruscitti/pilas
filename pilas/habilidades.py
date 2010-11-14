@@ -81,7 +81,7 @@ class SeguirAlMouse(Habilidad):
         Habilidad.__init__(self, receptor)
         pilas.eventos.mueve_mouse.connect(self.mover)
 
-    def mover(self, sender, x, y, signal):
+    def mover(self, sender, x, y, dx, dy, signal):
         self.receptor.x = x
         self.receptor.y = y
 

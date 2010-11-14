@@ -393,6 +393,12 @@ class Pygame:
     def actualizar_pantalla(self):
         pygame.display.flip()
 
+    def ocultar_puntero_del_mouse(self):
+        pygame.mouse.set_visible(True)
+
+    def mostrar_puntero_del_mouse(self):
+        pygame.mouse.set_visible(False)
+
     def pintar(self, color):
         self.ventana.fill(color)
 
@@ -680,6 +686,12 @@ class pySFML:
         self.vista_de_camara = ventana.GetDefaultView()
         self.ventana = ventana
         return ventana
+
+    def ocultar_puntero_del_mouse(self):
+        self.ventana.ShowMouseCursor(False)
+
+    def mostrar_puntero_del_mouse(self):
+        self.ventana.ShowMouseCursor(True)
 
     def cerrar_ventana(self):
         self.ventana.Close()
