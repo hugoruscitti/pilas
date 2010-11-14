@@ -22,9 +22,9 @@ def cargar(ruta):
         risa = pilas.sonidos.cargar("risa.ogg")
 
     En caso de éxito retorna el objeto Sound, que se puede
-    reproducir usando el método ``Play()``, por ejemplo::
+    reproducir usando el método ``reproducir()``, por ejemplo::
 
-        risa.Play()
+        risa.reproducir()
 
     El directorio de búsqueda del sonido sigue el siguiente orden:
 

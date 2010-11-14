@@ -13,7 +13,6 @@ La utilidad de usar componentes es que puedes
 asociarlos y intercambiarlos libremente para
 lograr efectos útiles.
 
-
 Por ejemplo, el objeto tortuga usa comportamientos
 cada vez que le dices que avance o gire. Cuando
 le indicas a la tortuga que avance, se genera un

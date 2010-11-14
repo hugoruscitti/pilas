@@ -6,7 +6,9 @@ de los actores de manera sencilla.
 
 Por ejemplo, tradicionalmente si quisieramos cambiar
 posición de un actor en pantalla podemos usar estas
-sentencias::
+sentencias:
+
+.. code-block:: python
 
     actor.x = 10
     actor.x = 20
@@ -14,37 +16,54 @@ sentencias::
     etc ...
 
 una forma de lograr lo mismo con pilas
-es asignarle todos los valores en forma de lista::
+es asignarle todos los valores en forma de lista:
+
+.. code-block:: python
 
     actor.x = range(10, 100)
 
-o lo que es lo mismo::
+o lo que es lo mismo:
+
+.. code-block:: python
 
     actor.x = [10, 20, 30, 40, 50 ... etc.
 
 de hecho, puede que te resulte mas conveniente
 tener mas control sobre la interpolación, así
-que puedes usar esta forma::
+que puedes usar esta forma:
 
+.. code-block:: python
 
     actor.x = pilas.interpolar(100)
 
 donde el valor inicial será la posición x del actor y el valor
 final será ``100``.
 
-La función ``interpolar`` también admite otros parámetros para
-ajustar la interpolacion a otras situaciones:
+La función ``interpolar``, como mencioné antes, te da mas
+control sobre la interpolación, porque admite otros parámetros
+de ajuste como los siguientes:
 
 - ``duracion``: los segundos que durara la interpolacion.
 - ``demora``: los segundos que tiene que esperar antes de iniciar la interpolacion.
 - ``tipo``: tipo de interpolaciones, que generalmente es 'lineal'.
+
+Por ejemplo, si queremos que un personaje dé un giro
+completo de 360 grados en 10 segundos podemos
+hacer algo así:
+
+.. code-block:: python
+
+    actor.rotacion = 0
+    actor.rotacion = pilas.interpolar(360, duracion=10)
 
 Girando un actor
 ----------------
 
 Esta herramienta se puede aplicar a muchas situaciones distintas, por
 ejemplo si queremos hacer girar un personaje
-podemos hacer algo como::
+podemos hacer algo como:
+
+.. code-block:: python
 
     actor.rotacion = pilas.interpolar(360, duracion=5)
 
@@ -60,18 +79,30 @@ Escalando un actor
 
 De manera similar a lo que hicimos anteriormente, podemos
 aplicarla a la propiedad ``escala`` una nueva
-interpolación::
+interpolación:
+
+.. code-block:: python
 
     actor.escala = pilas.interpolar(2, duracion=5)
 
 esto duplicará el tamaño del actor en ``5`` segundos.
 
+¿Y mas simple?, bueno, como hicimos antes:
+
+.. code-block:: python
+
+    actor.escala = [2]
+
+pero recuerda, de esta forma no puedes controlar cuanto
+tiempo demorará la animación.
 
 Interpolaciones en cadena
 -------------------------
 
 Si queremos que una interpolación pase por distintos
-valores podemos hacer algo como esto::
+valores podemos hacer algo como esto:
+
+.. code-block:: python
 
     actor.x = pilas.interpolar([300, 0, 300], duracion=3)
 

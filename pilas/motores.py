@@ -13,8 +13,8 @@ import cairo
 import eventos
 import pilas
 
-ANCHO = 200
-ALTO = 200
+ANCHO = 640
+ALTO = 480
 
 
 

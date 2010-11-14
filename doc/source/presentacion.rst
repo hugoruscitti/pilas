@@ -15,7 +15,9 @@ y ``squeak``.
 Características
 ---------------
 
-- Es multiplataforma.
+- Es multiplataforma (Funciona sobre GNU/Linux y Windows)
 - Cuenta con objetos prediseñados para agilizar el desarrollo.
 - Tiene documentación completamente en español.
 - Se utiliza desde python, lo que permite usarla desde sesiones interactivas.
+- Es software libre.
+

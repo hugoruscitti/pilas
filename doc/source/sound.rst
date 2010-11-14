@@ -15,15 +15,15 @@ Reproducir
 ----------
 
 La función ``sound.cargar`` nos retorna un objeto de tipo
-``Sound`` que tiene un método para reproducirse llamado
-``Play()``.
+``Sonido`` que tiene un método para reproducirse llamado
+``reproducir()``.
 
 Entonces, para reproducir un sonido solamente tienes
-que llamar al método ``Play``:
+que llamar al método ``reproducir``:
 
 .. code-block:: python
 
-    sonido_de_grito.Play()
+    sonido_de_grito.reproducir()
 
 
 Referencias

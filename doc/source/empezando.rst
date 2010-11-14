@@ -7,12 +7,20 @@ comenzar a realizar nuestras primeras pruebas.
 Para empezar, pilas se puede usar directamente
 desde un intérprete iteractivo de python.
 
+Mi recomendación personal es que utilices una
+herramienta como IDLE, que te permite escribír
+código de python y autocompleta. Aunque si
+quieres puedes usar el intérprete estándar
+de python, abriendo un terminal de texto y
+ejecutando el comando ``python``.
+
 Iniciando la biblioteca
 -----------------------
 
-Ingresa en un terminal de tu sistema, inicia
-el comando ``python`` y luego
-ingresa la sentencia::
+Una vez dentro del intérprete, tienes
+que escribir estas dos lineas de código:
+
+.. code-block:: python
 
     import pilas
     pilas.iniciar()
@@ -82,6 +90,7 @@ En cualquiera de los dos casos el personaje
 cambiará su aspecto y emitirá un sonido.
 
 .. image:: images/mono/smile.png
+    :width: 5cm
 
 
 Cosas en común para los actores
@@ -106,6 +115,7 @@ en el escenario. Por lo tanto el punto (0, 0) es el centro
 de la ventana. Y ``x`` aumenta hacia la derecha e ``y`` hacia arriba.
 
 .. image:: images/mono/normal.png
+    :width: 5cm
 
 - Todo actor tiene un atributo para indicar su tamaño en pantalla, el atributo ``escala`` (que originalmente vale 1):
 
@@ -122,6 +132,7 @@ de la ventana. Y ``x`` aumenta hacia la derecha e ``y`` hacia arriba.
     mono.rotacion = 40
 
 .. image:: images/mono/rotation40.png
+    :width: 5cm
 
 o bien:
 
@@ -130,6 +141,7 @@ o bien:
     mono.rotacion = 80
 
 .. image:: images/mono/rotation80.png
+    :width: 5cm
 
 
 incluso puedes hacer un pequeña animación de rotación

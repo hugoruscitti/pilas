@@ -30,5 +30,3 @@ de la pulsación de las teclas:
 - arriba
 - abajo
 - boton
-
-

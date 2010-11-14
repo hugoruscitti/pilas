@@ -24,6 +24,7 @@ class Pizarra(Actor):
         self.actualizar_imagen()
         self.levantar_lapiz()
         self.mover_lapiz(0, 0)
+        self.definir_centro(320, 240)
 
     def levantar_lapiz(self):
         self.lapiz_bajo = False
@@ -37,7 +38,7 @@ class Pizarra(Actor):
         self.definir_imagen(self.canvas.image)
 
     def pintar_punto(self, x, y):
-        self.canvas.context.arc(x, y, 30, 0, 2*3.1415)
+        self.canvas.context.arc(x, y, 10, 0, 2*3.1415)
         self.canvas.context.fill()
         self.actualizar_imagen()
 

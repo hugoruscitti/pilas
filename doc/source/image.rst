@@ -7,7 +7,9 @@ gráficos como **png** o **jpg** ya diseñados con anterioridad.
 En ``pilas`` se pueden cargar estos recursos usando
 el módulo ``imagenes``. Por ejemplo, si tenemos una
 imagen llamada ``hola.png`` podríamos incorporarla a
-nuestro juego así::
+nuestro juego así:
+
+.. code-block:: python
 
     import pilas
 

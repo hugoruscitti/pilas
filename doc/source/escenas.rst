@@ -5,12 +5,11 @@ Las escenas te permiten dividir el juego en partes
 reconocibles y que interactúan de manera diferente
 con el usuario.
 
-
 Algunas observaciones:
 
 - La escena actual siempre está señalada por el atributo ``pilas.escena``.
 - Solo puede existir una escena a la vez.
-- Cuando se cambia de escena, se borran todos los objetos que viven en ella.
+- Cuando se cambia de escena, generalmente la misma escena eliminará a todos los actores del escenario.
 
 
 La escena Normal
@@ -23,8 +22,8 @@ imprime toda la pantalla de gris para que
 podamos colocar actores sobre ella.
 
 
-Fondos para las escenas
------------------------
+Cambiando el fondo de las escenas
+---------------------------------
 
 Para hacer un pequeña prueba sobre una
 escena, podrías ejecutar la siguiente sentencia
@@ -39,4 +38,4 @@ mas agradable, porque carga un fondo de
 pantalla colorido y mas divertido:
 
 .. image:: images/paisaje.png
-
+    :width: 15cm
