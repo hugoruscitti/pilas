@@ -13,6 +13,8 @@ Pilas engine - Documentación
     image.rst
     sound.rst
     comportamientos.rst
+    grupos.rst
+    fisica.rst
     controles.rst
     escenas.rst
     ejemplos.rst
@@ -27,7 +29,6 @@ Pilas engine - Documentación
     developers.rst
     preguntas_avanzadas.rst
 
-
-    pilas
+    pilas.rst
 
 

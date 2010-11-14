@@ -29,3 +29,17 @@ el intérprete de python::
     >>> import pymunk
     >>> pymunk.version
     '1.0.0'
+
+
+Un ejemplos
+-----------
+
+El motor de física se puede mostrar en funcionamiento
+usando un ejemplo, escribe el siguiente código:
+
+.. code-block:: python
+
+    pelotas = pilas.atajos.fabricar(pilas.actor.Pelota, 30)
+
+esto creará un grupo de circunferencias que rebotarán
+hasta la parte inferior de la pantalla.

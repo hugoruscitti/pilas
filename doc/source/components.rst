@@ -73,28 +73,40 @@ click, podemos usar la habilidad: ``SeguirClicks``.
     mono.aprender(pilas.habilidades.SeguirClicks)
 
 
-Conflictos
-----------
+Mezclar habilidades
+-------------------
 
 En pilas se ha intentado hacer que las habilidades sean
 lo mas independientes posibles, porque claramente lo mas
 divertido de este enfoque es poder combinar distintas
-habilidades para lograr comportamientos complejos.
+habilidades para lograr comportamientos complejos. 
 
-Aún así, hay veces que dos habilidades no se llevan bien...
-Principalmente en esos casos donde ambos se suscriben
-a la misma señal. Por ejemplo, cuando decimos que un objeto
-tiene que seguir al mouse y al mismo tiempo alejarse de él.
+Así que te invitamos a que pruebes y experimientes
+mezclando habilidades.
 
 
-¿ideas?
--------
+Otras habilidades para investigar
+---------------------------------
 
-Si encuentras habilidades interesantes para desarrollar
-te invitamos compartir tus ideas con las personas
-que hacemos pilas y estamos en el foro de losersjuegos [#]_.
+Pilas viene con varias habiliades incluidas, pero
+lamentablemente este manual no las menciona a todas. Así
+que te recomendamos abrir un intérprete de python
+y consultarle directamente a él que habilidades tienes
+diponibles en tu versión de pilas.
 
-.. [#] http://www.losersjuegos.com.ar/foro
+
+Para esto, abre un terminar de python y escribe lo siguiente:
+
+.. code-block:: python
+
+    import pilas
+    pilas.iniciar()
+    dir(pilas.habilidades)
+
+esto imprimirá en pantalla todas las habilidades como una
+lista de cadenas.
+
+
 
 
 
@@ -126,3 +138,14 @@ Esta idea de combinación de objetos la hemos adoptado
 de la programación orientada a componentes. Por lo
 que puedes investigar en la red para conocer mas
 acerca de ello.
+
+¿Ideas?
+-------
+
+Si encuentras habilidades interesantes para desarrollar
+te invitamos compartir tus ideas con las personas
+que hacemos pilas y estamos en el foro de losersjuegos [#]_.
+
+.. [#] http://www.losersjuegos.com.ar/foro
+
+

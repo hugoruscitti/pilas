@@ -11,6 +11,12 @@ import cairo
 import pilas
 from pilas.actores import Actor
 
+class Lapiz:
+
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+
 class Pizarra(Actor):
     """Representa una superficie de dibujo inicialmente transparente.
 
@@ -18,9 +24,11 @@ class Pizarra(Actor):
     un lapiz, que se puede mover sobre una superficie.
     """
 
+
     def __init__(self, x=0, y=0):
         Actor.__init__(self, x=x, y=y)
         self.canvas = pilas.motor.Canvas()
+        self.lapiz = Lapiz()
         self.actualizar_imagen()
         self.levantar_lapiz()
         self.mover_lapiz(0, 0)
@@ -44,7 +52,7 @@ class Pizarra(Actor):
 
     def mover_lapiz(self, x, y):
         if self.lapiz_bajo:
-            self.canvas.context.move_to(self.x, self.y)
+            self.canvas.context.move_to(self.lapiz.x, self.lapiz.y)
             self.canvas.context.set_line_width(3)
             self.canvas.context.line_to(x, y)
             self.canvas.context.stroke()
@@ -52,7 +60,7 @@ class Pizarra(Actor):
             # Actualiza la imagen si ha dibujado.
             self.actualizar_imagen()
 
-        self.x, self.y = x, y
+        self.lapiz.x, self.lapiz.y = x, y
         
     def definir_color(self, color):
         r, g, b = color.obtener_componentes()

@@ -1,9 +1,24 @@
 Colisiones
 ==========
 
-Las colisiones entre actores son muy simples, porque
-cada actor tiene un atributo llamado ``radio_de_colision``
-que le permite entrar en contacto con otros.
+En el desarrollo de videojuegos le damos el
+nombre de ``colisión`` a lo que ocurre cuando
+dos actores entran en contacto.
+
+Por ejemplo, cuando un personaje como ``Pacman`` toca
+a un ``Fantasma`` se produce una colisión.
+
+Para programar colisiones en pilas tienes seguir
+unos pocos pasos.
+
+- Tienes que pensar "qué" quieres hacer cuando se produce una colisión.
+- Escribir una función de respuesta a la colisión.
+- y por último decirle a pilas que actores son colisionables entre sí.
+
+
+Ten en cuenta que cada actor tiene un atributo llamado
+``radio_de_colision``, que se representa como un círculo de color
+verde cuando pulsas la tecla F12 sobre la ventana.
 
 
 Un ejemplo sencillo

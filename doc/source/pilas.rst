@@ -37,6 +37,13 @@ Módulo pilas.tareas
 .. automodule:: pilas.tareas
     :members:
 
+Módulo pilas.grupos
+-------------------
+
+.. automodule:: pilas.grupos
+    :members:
+
+
 
 Módulo pilas.utils
 ------------------
@@ -167,6 +174,16 @@ Módulo pilas.control
 
 
 .. automodule:: pilas.control
+    :members:
+
+
+
+Módulo pilas.atajos
+--------------------
+
+
+
+.. automodule:: pilas.atajos
     :members:
 
 
