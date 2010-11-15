@@ -36,6 +36,7 @@ from caja import Caja
 from nave import Nave
 from disparo import Disparo
 from cursordisparo import CursorDisparo
+from piedra import Piedra
 
 '''
 from tortuga import Tortuga
