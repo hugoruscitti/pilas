@@ -18,6 +18,14 @@ class Piedra(Actor):
         self.rotacion = 0
         self.x = x
         self.y = y
-        self.radio_de_colision = 25
-        #self.aprender(pilas.habilidades.RebotaComoCaja)
 
+        radios = {
+                'grande': 25,
+                'media': 20,
+                'chica': 10,
+                }
+
+        self.radio_de_colision = radios[tamano]
+
+    def actualizar(self):
+        self.rotacion += 1
