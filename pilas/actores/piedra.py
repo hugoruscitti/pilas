@@ -53,4 +53,3 @@ class Piedra(Actor):
             self.arriba = -240
         elif self.arriba < -240:
             self.abajo = 240
-

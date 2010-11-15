@@ -75,48 +75,65 @@ class Mundo:
             # Mantiene el control de tiempo y lo reporta al sistema
             # de interpolaciones y tareas.
             self.modo_ejecucion.esperar()
-            self.modo_ejecucion.actualizar_simuladores()
-
-            # Emite el aviso de actualizacion a los receptores.
-            self.modo_ejecucion.emitir_evento_actualizar()
-
-            # Procesa todos los eventos.
-            pilas.motor.procesar_y_emitir_eventos()
-
-            # Analiza colisiones entre los actores
-            try:
-                self.modo_ejecucion.analizar_colisiones()
-            except Exception, e:
-                if ignorar_errores:
-                    print e
-                else:
-                    raise e
-
-            # Dibuja la escena actual y a los actores
-            try:
-                self.escena_actual.actualizar()
-            except Exception, e:
-                if ignorar_errores:
-                    print e
-                else:
-                    raise e
-
-            self.escena_actual.dibujar(self.ventana)
-
-            try:
-                self.modo_ejecucion.actualizar_actores()
-            except Exception, e:
-                if ignorar_errores:
-                    print e
-                else:
-                    raise e
-
-            self.modo_ejecucion.dibujar_actores()
-
-            # Muestra los cambios en pantalla.
-            pilas.motor.actualizar_pantalla()
+            self._realizar_actualizacion_logica(ignorar_errores)
+            self._realizar_actualizacion_grafica()
 
         self._cerrar_ventana()
+
+    def _realizar_actualizacion_logica(self, ignorar_errores):
+
+        ## COMIENZA ACTUALIZACION LOGICA
+
+        self.modo_ejecucion.actualizar_simuladores()
+
+        # Emite el aviso de actualizacion a los receptores.
+        self.modo_ejecucion.emitir_evento_actualizar()
+
+        # Procesa todos los eventos.
+        pilas.motor.procesar_y_emitir_eventos()
+
+        # Analiza colisiones entre los actores
+        try:
+            self.modo_ejecucion.analizar_colisiones()
+        except Exception, e:
+            if ignorar_errores:
+                print e
+            else:
+                raise e
+
+
+
+        # Dibuja la escena actual y a los actores
+        try:
+            self.escena_actual.actualizar()
+        except Exception, e:
+            if ignorar_errores:
+                print e
+            else:
+                raise e
+
+
+        
+        try:
+            self.modo_ejecucion.actualizar_actores()
+        except Exception, e:
+            if ignorar_errores:
+                print e
+            else:
+                raise e
+
+        ## FIN DE ACTUALIZACION LOGICA
+
+        ## -----------
+
+    def _realizar_actualizacion_grafica(self):
+        ## COMIENZA ACTUALIZACION GRAFICA
+        self.escena_actual.dibujar(self.ventana)
+        self.modo_ejecucion.dibujar_actores()
+
+        # Muestra los cambios en pantalla.
+        pilas.motor.actualizar_pantalla()
+        ## FIN DE ACTUALIZACION GRAFICA 
 
     def _cerrar_ventana(self):
         pilas.motor.cerrar_ventana()
