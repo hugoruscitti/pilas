@@ -12,12 +12,14 @@ import pilas
 class Piedra(Actor):
     "Representa un bloque que tiene fisica como una caja."
 
-    def __init__(self, x=0, y=0, tamano="grande"):
+    def __init__(self, x=0, y=0, tamano="grande", dx=0, dy=0):
         imagen = pilas.imagenes.cargar('piedra_' + tamano + '.png')
         Actor.__init__(self, imagen)
         self.rotacion = 0
         self.x = x
         self.y = y
+        self.dx = dx
+        self.dy = dy
 
         radios = {
                 'grande': 25,
@@ -29,3 +31,5 @@ class Piedra(Actor):
 
     def actualizar(self):
         self.rotacion += 1
+        self.x += self.dx
+        self.y += self.dy
