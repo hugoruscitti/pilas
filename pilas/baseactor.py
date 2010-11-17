@@ -51,6 +51,7 @@ class BaseActor(object, Estudiante):
         self._espejado = False
         self.radio_de_colision = 10
         pilas.actores.utils.insertar_como_nuevo_actor(self)
+        self._transparencia = 0
 
     def _definir_centro_del_actor(self):
         "Hace que el eje de posición del actor sea el centro de la imagen."
@@ -114,12 +115,21 @@ class BaseActor(object, Estudiante):
             self._espejado = nuevo_valor
             self.FlipX(self._espejado)
 
+    @pilas.utils.interpolable
+    def set_transparencia(self, nuevo_valor):
+        self._transparencia = nuevo_valor
+        self.definir_transparencia(nuevo_valor)
+
+    def get_transparencia(self):
+        return self._transparencia
+
     espejado = property(get_espejado, set_espejado, doc="Indica si se tiene que invertir horizonaltamente la imagen del actor.")
     z = property(get_z, set_z, doc="Define lejania respecto del observador.")
     x = property(get_x, set_x, doc="Define la posición horizontal.")
     y = property(get_y, set_y, doc="Define la posición vertical.")
     rotacion = property(get_rotation, set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
     escala = property(get_scale, set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
+    transparencia = property(get_transparencia, set_transparencia, doc="Define el nivel de transparencia, 0 indica opaco y 100 la maxima transparencia.")
 
 
     def eliminar(self):

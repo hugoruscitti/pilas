@@ -666,6 +666,11 @@ class pySFML:
         def definir_escala(self, s):
             self.SetScale(s, s)
 
+        def definir_transparencia(self, nuevo_valor):
+            nivel = min(255, 255 - (nuevo_valor*128) / 50)
+            nivel = max(0, nivel)
+            self.SetColor(sf.Color(255, 255, 255, int(nivel)))
+
         def obtener_rotacion(self):
             return self.GetRotation()
 
