@@ -1,5 +1,4 @@
 import pilas
-from PySFML import sf
 
 pilas.iniciar()
 

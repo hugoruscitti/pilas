@@ -9,8 +9,6 @@
 import time
 import sys
 
-from PySFML import sf
-
 import ventana
 import control
 import camara
@@ -81,9 +79,6 @@ class Mundo:
         self._cerrar_ventana()
 
     def _realizar_actualizacion_logica(self, ignorar_errores):
-
-        ## COMIENZA ACTUALIZACION LOGICA
-
         self.modo_ejecucion.actualizar_simuladores()
 
         # Emite el aviso de actualizacion a los receptores.
@@ -100,8 +95,6 @@ class Mundo:
                 print e
             else:
                 raise e
-
-
 
         # Dibuja la escena actual y a los actores
         try:
@@ -122,18 +115,12 @@ class Mundo:
             else:
                 raise e
 
-        ## FIN DE ACTUALIZACION LOGICA
-
-        ## -----------
 
     def _realizar_actualizacion_grafica(self):
-        ## COMIENZA ACTUALIZACION GRAFICA
         self.escena_actual.dibujar(self.ventana)
         self.modo_ejecucion.dibujar_actores()
 
-        # Muestra los cambios en pantalla.
         pilas.motor.actualizar_pantalla()
-        ## FIN DE ACTUALIZACION GRAFICA 
 
     def _cerrar_ventana(self):
         pilas.motor.cerrar_ventana()

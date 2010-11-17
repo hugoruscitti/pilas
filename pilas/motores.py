@@ -28,8 +28,10 @@ class Pygame:
 
     import pilas.baseactor
 
-    def Color(r, g, b):
-        return (r, g, b)
+    class Color(pygame.Color):
+
+        def obtener_componentes(self):
+            return self.b, self.g, self.r
 
     class Grilla:
         """Representa una grilla de imagenes con varios cuadros de animación.

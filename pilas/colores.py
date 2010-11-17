@@ -1,5 +1,4 @@
 import pilas
-from PySFML import sf
 
 rojo = pilas.motor.Color(255, 0, 0)
 azul = pilas.motor.Color(0, 0, 255)
