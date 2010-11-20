@@ -232,7 +232,7 @@ class Pygame:
             self.centro_y = 0
             pygame.font.init()
             self.font = pygame.font.Font(None, 32)
-            self.color = (0, 0, 0)
+            self.color = pilas.colores.negro
 
             pygame.sprite.Sprite.__init__(self)
             self.set_text(texto)
@@ -445,7 +445,7 @@ class pySFML:
 
         def __init__(self, texto="None", x=0, y=0):
             sf.String.__init__(self, texto)
-            self.color = (0, 0, 0)
+            self.color = pilas.colores.negro
             pilas.baseactor.BaseActor.__init__(self, x=x, y=y)
 
         def get_text(self):
@@ -474,11 +474,10 @@ class pySFML:
             self.SetPosition(x, -y)
 
         def get_color(self):
-            c = self.GetColor()
-            return (c.r, c.g, c.b, c.a)
+            return self.GetColor()
 
         def set_color(self, k):
-            self.SetColor(sf.Color(*k))
+            self.SetColor(k)
 
         texto = property(get_text, set_text, doc="El texto que se tiene que mostrar.")
         magnitud = property(get_size, set_size, doc="El tamaño del texto.")
