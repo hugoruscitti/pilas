@@ -35,11 +35,11 @@ para iniciar el juego y otra para salir:
 
 Si escribes este texto en un programa, funciona, aunque no
 es muy útil: solamente creará una ventana con dos
-opciones, moviendo el mouse vas a poder seleccionar
-las opciones y las podrás activar usando el
-click del mouse o las teclas.
+opciones, que se pueden seleccionar usando el
+teclado.
 
-Esta es una imagen de cómo se vé el menú:
+Esta es una imagen de cómo se vé el menú del
+ejemplo de mas arriba:
 
 .. image:: images/menu.png
 

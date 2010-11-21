@@ -19,6 +19,8 @@ class Menu(Actor):
         self.opciones = opciones
         self.seleccionar_primer_opcion()
         self.opcion_actual = 0
+        # contador para evitar la repeticion de teclas
+        self.demora_al_responder = 0
 
     def crear_texto_de_las_opciones(self, opciones):
         "Genera un actor por cada opcion del menu."
@@ -42,9 +44,32 @@ class Menu(Actor):
 
     def actualizar(self):
         "Se ejecuta de manera periodica."
-        if pilas.mundo.control.boton:
-            self.seleccionar_opcion_actual()
+
+        if self.demora_al_responder < 0:
+            if pilas.mundo.control.boton:
+                self.seleccionar_opcion_actual()
+                self.demora_al_responder = 10
+
+            if pilas.mundo.control.abajo:
+                self.mover_cursor(1)
+                self.demora_al_responder = 10
+            elif pilas.mundo.control.arriba:
+                self.mover_cursor(-1)
+                self.demora_al_responder = 10
+
+        self.demora_al_responder -= 1
 
     def seleccionar_opcion_actual(self):
         opcion = self.opciones_como_actores[self.opcion_actual]
         opcion.seleccionar()
+
+    def mover_cursor(self, delta):
+        # Deja como no-seleccionada la opcion actual.
+        self.opciones_como_actores[self.opcion_actual].resaltar(False)
+
+        # Se asegura que las opciones esten entre 0 y 'cantidad de opciones'.
+        self.opcion_actual += delta
+        self.opcion_actual %= len(self.opciones_como_actores)
+
+        # Selecciona la opcion nueva.
+        self.opciones_como_actores[self.opcion_actual].resaltar()
