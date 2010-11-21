@@ -1,4 +1,3 @@
-
 # -*- encoding: utf-8 -*-
 # Pilas engine - A video game framework.
 #
@@ -19,13 +18,15 @@ class Menu(Actor):
         self.crear_texto_de_las_opciones(opciones)
         self.opciones = opciones
         self.seleccionar_primer_opcion()
+        self.opcion_actual = 0
 
     def crear_texto_de_las_opciones(self, opciones):
         "Genera un actor por cada opcion del menu."
         self.opciones_como_actores = []
 
         for indice, (texto, funcion) in enumerate(opciones):
-            opciones = pilas.actores.Opcion(texto, y=self.y - indice * 50, funcion_a_invocar=funcion)
+            y = self.y - indice * 50
+            opciones = pilas.actores.Opcion(texto, y=y, funcion_a_invocar=funcion)
             self.opciones_como_actores.append(opciones)
 
     def seleccionar_primer_opcion(self):
@@ -38,3 +39,12 @@ class Menu(Actor):
         for x in opciones:
             if not isinstance(x, tuple) or len(x) != 2:
                 raise Exception("Opciones incorrectas, cada opcion tiene que ser una tupla.")
+
+    def actualizar(self):
+        "Se ejecuta de manera periodica."
+        if pilas.mundo.control.boton:
+            self.seleccionar_opcion_actual()
+
+    def seleccionar_opcion_actual(self):
+        opcion = self.opciones_como_actores[self.opcion_actual]
+        opcion.seleccionar()

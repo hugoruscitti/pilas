@@ -340,6 +340,7 @@ class Pygame:
                 ARRIBA: pygame.K_UP,
                 ABAJO: pygame.K_DOWN,
                 BOTON: pygame.K_SPACE,
+                SELECCION: pygame.K_RETURN,
                 }
 
         return pygame.key.get_pressed()[mapa[tecla]]
@@ -724,6 +725,7 @@ class pySFML:
                 ARRIBA: sf.Key.Up,
                 ABAJO: sf.Key.Down,
                 BOTON: sf.Key.Space,
+                SELECCION: sf.Key.Return,
                 }
 
         return self.input.IsKeyDown(mapa[tecla])

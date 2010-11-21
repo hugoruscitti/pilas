@@ -36,4 +36,4 @@ class Control:
         self.derecha = pilas.motor.pulsa_tecla(DERECHA)
         self.arriba = pilas.motor.pulsa_tecla(ARRIBA)
         self.abajo = pilas.motor.pulsa_tecla(ABAJO)
-        self.boton = pilas.motor.pulsa_tecla(BOTON)
+        self.boton = pilas.motor.pulsa_tecla(BOTON) or pilas.motor.pulsa_tecla(SELECCION)
