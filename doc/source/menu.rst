@@ -92,12 +92,15 @@ será una función de repuesta para el menú. Y aunque
 parezca un recurso muy simple, funciona bastante bien
 en casi todos los casos. Por ejemplo, nuestro código
 anterior se podría poner mas interesante si mejoramos
-la función ``iniciar_juego``:
+la función ``iniciar_juego`` y la funcion ``salir_del_juego``:
 
 .. code-block:: python
 
     def iniciar_juego():
         pilas.ejemplos.Piezas()
+
+    def salir_del_juego():
+        pilas.terminar()
 
 Los menúes son actores
 ----------------------
