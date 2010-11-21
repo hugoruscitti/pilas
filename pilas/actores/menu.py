@@ -18,6 +18,7 @@ class Menu(Actor):
         self._verificar_opciones(opciones)
         self.crear_texto_de_las_opciones(opciones)
         self.opciones = opciones
+        self.seleccionar_primer_opcion()
 
     def crear_texto_de_las_opciones(self, opciones):
         "Genera un actor por cada opcion del menu."
@@ -26,6 +27,10 @@ class Menu(Actor):
         for indice, (texto, funcion) in enumerate(opciones):
             opciones = pilas.actores.Opcion(texto, y=self.y - indice * 50, funcion_a_invocar=funcion)
             self.opciones_como_actores.append(opciones)
+
+    def seleccionar_primer_opcion(self):
+        if self.opciones_como_actores:
+            self.opciones_como_actores[0].resaltar()
 
     def _verificar_opciones(self, opciones):
         "Se asegura de que la lista este bien definida."
