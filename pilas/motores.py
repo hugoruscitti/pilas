@@ -172,6 +172,9 @@ class Pygame:
         def definir_imagen(self, imagen):
             self.image = imagen
 
+        def obtener_imagen(self):
+            return self.image
+
         def dibujar(self, aplicacion):
             x, y = self.rect.topleft
             aplicacion.blit(self.image, (x + 320 - self.centro_x - pilas.motor.camara_x, 
@@ -613,17 +616,20 @@ class pySFML:
         una por defecto.
         """
 
-        def __init__(self, image="sin_imagen.png", x=0, y=0):
+        def __init__(self, imagen="sin_imagen.png", x=0, y=0):
 
-            if isinstance(image, str):
-                image = pilas.imagenes.cargar(image)
+            if isinstance(imagen, str):
+                imagen = pilas.imagenes.cargar(imagen)
 
-            sf.Sprite.__init__(self, image)
+            sf.Sprite.__init__(self, imagen)
             pilas.baseactor.BaseActor.__init__(self, x=x, y=y)
             
 
         def definir_imagen(self, imagen):
             self.SetImage(imagen)
+
+        def obtener_imagen(self):
+            return self.GetImage()
 
         def dibujar(self, aplicacion):
             aplicacion.Draw(self)

@@ -24,7 +24,7 @@ class Menu(Actor):
         self.opciones_como_actores = []
 
         for indice, (texto, funcion) in enumerate(opciones):
-            opciones = pilas.actores.Texto(texto, y=self.y - indice * 50)
+            opciones = pilas.actores.Opcion(texto, y=self.y - indice * 50, funcion_a_invocar=funcion)
             self.opciones_como_actores.append(opciones)
 
     def _verificar_opciones(self, opciones):

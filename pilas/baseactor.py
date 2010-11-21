@@ -123,6 +123,16 @@ class BaseActor(object, Estudiante):
     def get_transparencia(self):
         return self._transparencia
 
+    def get_imagen(self):
+        return self.obtener_imagen()
+
+    def set_imagen(self, imagen):
+        if isinstance(imagen, str):
+            imagen = pilas.imagenes.cargar(imagen)
+
+        self.definir_imagen(imagen)
+        
+
     espejado = property(get_espejado, set_espejado, doc="Indica si se tiene que invertir horizonaltamente la imagen del actor.")
     z = property(get_z, set_z, doc="Define lejania respecto del observador.")
     x = property(get_x, set_x, doc="Define la posición horizontal.")
@@ -130,7 +140,7 @@ class BaseActor(object, Estudiante):
     rotacion = property(get_rotation, set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
     escala = property(get_scale, set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
     transparencia = property(get_transparencia, set_transparencia, doc="Define el nivel de transparencia, 0 indica opaco y 100 la maxima transparencia.")
-
+    imagen = property(get_imagen, set_imagen, doc="Define la imagen a mostrar.")
 
     def eliminar(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
