@@ -395,6 +395,9 @@ class Pygame:
             pilas.mundo.alternar_pausa()
         elif event.key == pygame.K_F12:
             pilas.mundo.alternar_modo_depuracion()
+        elif event.key == pygame.K_ESCAPE:
+            eventos.pulsa_tecla_escape.send("ejecutar")
+
 
     def actualizar_pantalla(self):
         pygame.display.flip()
@@ -795,6 +798,8 @@ class pySFML:
             pilas.mundo.alternar_pausa()
         elif event.Key.Code == sf.Key.F12:
             pilas.mundo.alternar_modo_depuracion()
+        elif event.Key.Code == sf.Key.Escape:
+            eventos.pulsa_tecla_escape.send("ejecutar")
 
     def actualizar_pantalla(self):
         self.ventana.Display()
