@@ -9,6 +9,8 @@
 from pilas.actores import Actor
 import pilas
 
+DEMORA = 14
+
 class Menu(Actor):
     "Representa un bloque que tiene fisica como una caja."
 
@@ -48,14 +50,14 @@ class Menu(Actor):
         if self.demora_al_responder < 0:
             if pilas.mundo.control.boton:
                 self.seleccionar_opcion_actual()
-                self.demora_al_responder = 10
+                self.demora_al_responder = DEMORA
 
             if pilas.mundo.control.abajo:
                 self.mover_cursor(1)
-                self.demora_al_responder = 10
+                self.demora_al_responder = DEMORA
             elif pilas.mundo.control.arriba:
                 self.mover_cursor(-1)
-                self.demora_al_responder = 10
+                self.demora_al_responder = DEMORA
 
         self.demora_al_responder -= 1
 
