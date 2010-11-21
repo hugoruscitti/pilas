@@ -37,6 +37,7 @@ from nave import Nave
 from disparo import Disparo
 from cursordisparo import CursorDisparo
 from piedra import Piedra
+from menu import Menu
 
 '''
 from tortuga import Tortuga
