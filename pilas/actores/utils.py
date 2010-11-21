@@ -41,7 +41,7 @@ def obtener_actor_en(x, y):
     return None
 
 
-def fabricar(clase, cantidad=1, posiciones_al_azar=True):
+def fabricar(clase, cantidad=1, posiciones_al_azar=True, *k, **kv):
     "Genera muchas intancias de objetos asignando posiciones aleatorias."
 
     objetos_creados = []
@@ -54,7 +54,7 @@ def fabricar(clase, cantidad=1, posiciones_al_azar=True):
             x = 0
             y = 0
 
-        nuevo = clase(x=x, y=y)
+        nuevo = clase(*k,x=x, y=y,  **kv )
         objetos_creados.append(nuevo)
 
     return pilas.grupo.Grupo(objetos_creados)

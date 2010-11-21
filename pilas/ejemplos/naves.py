@@ -8,10 +8,12 @@ pilas.iniciar()
 nave = pilas.actores.Nave()
 
 
-pilas.fondos.Espacio()
-pelotas = pilas.atajos.fabricar(pilas.actores.Caja, 30)
-pelotas.aprender( pilas.habilidades.PuedeExplotar)
-nave.definir_enemigos(pelotas)
+piedras = pilas.atajos.fabricar(pilas.actores.Piedra, 10, tamano='media')
+piedras.aprender(pilas.habilidades.PuedeExplotar)
+piedras.aprender(pilas.habilidades.RebotaComoPelota)
+
+nave.definir_enemigos(piedras)
+
 pilas.atajos.definir_gravedad(1, 1)
 
 
