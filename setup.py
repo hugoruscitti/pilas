@@ -5,10 +5,14 @@ from setuptools import find_packages
 
 setup(
         name='pilas',
-        version='0.26',
+        version='0.30',
         description='A simple to use video game framework.',
         author='Hugo Ruscitti',
         author_email='hugoruscitti@gmail.com',
+        install_requires=[
+            'setuptools',
+            'pymunk',
+            ],
         packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos'],
         url='http://www.pilas-engine.com.ar',
 
