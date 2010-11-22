@@ -754,6 +754,8 @@ class pySFML:
         event = self.event
 
         while self.ventana.GetEvent(self.event):
+            if event.Type == sf.Event.Closed:
+                pilas.mundo.terminar()
             if event.Type == sf.Event.KeyPressed:
                 self.procesar_evento_teclado(event)
 

@@ -5,7 +5,7 @@ from setuptools import find_packages
 
 setup(
         name='pilas',
-        version='0.33',
+        version='0.34',
         description='A simple to use video game framework.',
         author='Hugo Ruscitti',
         author_email='hugoruscitti@gmail.com',
