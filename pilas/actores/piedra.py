@@ -28,28 +28,9 @@ class Piedra(Actor):
                 }
 
         self.radio_de_colision = radios[tamano]
+        self.aprender(pilas.habilidades.SeMantieneEnPantalla)
 
     def actualizar(self):
         self.rotacion += 1
         self.x += self.dx
         self.y += self.dy
-
-        self._reincorporarse_si_sale_del_escenario()
-
-    def _reincorporarse_si_sale_del_escenario(self):
-        """Se asegura de que la piedra regrese a la pantalla si sale.
-
-        Si la piedra sale por la derecha de la pantalla, entonces regresa
-        por la izquiera. Si sale por arriba regresa por abajo y asi..."""
-
-        # Se asegura de regresar por izquierda y derecha.
-        if self.derecha < -320:
-            self.izquierda = 320
-        elif self.izquierda > 320:
-            self.derecha = -320
-
-        # Se asegura de regresar por arriba y abajo.
-        if self.abajo > 240:
-            self.arriba = -240
-        elif self.arriba < -240:
-            self.abajo = 240

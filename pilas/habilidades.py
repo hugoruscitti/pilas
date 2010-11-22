@@ -181,3 +181,24 @@ class PuedeExplotar(Habilidad):
         explosion.y = self.receptor.y
         explosion.escala = self.receptor.escala * 2
         pilas.baseactor.BaseActor.eliminar(self.receptor)
+
+
+class SeMantieneEnPantalla(Habilidad):
+    """Se asegura de que el actor regrese a la pantalla si sale.
+
+    Si el actor sale por la derecha de la pantalla, entonces regresa
+    por la izquiera. Si sale por arriba regresa por abajo y asi..."""
+
+
+    def actualizar(self):
+        # Se asegura de regresar por izquierda y derecha.
+        if self.receptor.derecha < -320:
+            self.receptor.izquierda = 320
+        elif self.receptor.izquierda > 320:
+            self.receptor.derecha = -320
+
+        # Se asegura de regresar por arriba y abajo.
+        if self.receptor.abajo > 240:
+            self.receptor.arriba = -240
+        elif self.receptor.arriba < -240:
+            self.receptor.abajo = 240
