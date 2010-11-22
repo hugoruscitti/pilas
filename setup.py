@@ -5,7 +5,7 @@ from setuptools import find_packages
 
 setup(
         name='pilas',
-        version='0.30',
+        version='0.33',
         description='A simple to use video game framework.',
         author='Hugo Ruscitti',
         author_email='hugoruscitti@gmail.com',
@@ -18,7 +18,8 @@ setup(
 
         include_package_data = True,
         package_data = {
-            '': ['data/*', 'pilas/ejemplos/data/*'],
+            'images': ['pilas/data/*', 'pilas/ejemplos/data/*', 'pilas/data/fondos/*',
+                       'pilas/data/juegobase/*', 'pilas/data/juegobase/data/*'],
             },
 
         scripts=['bin/pilas'],

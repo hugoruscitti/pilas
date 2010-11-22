@@ -31,6 +31,7 @@ pilas/ventana.py
 pilas.egg-info/PKG-INFO
 pilas.egg-info/SOURCES.txt
 pilas.egg-info/dependency_links.txt
+pilas.egg-info/requires.txt
 pilas.egg-info/top_level.txt
 pilas/actores/__init__.py
 pilas/actores/animacion.py
@@ -43,9 +44,11 @@ pilas/actores/disparo.py
 pilas/actores/ejes.py
 pilas/actores/estrella.py
 pilas/actores/explosion.py
+pilas/actores/menu.py
 pilas/actores/moneda.py
 pilas/actores/mono.py
 pilas/actores/nave.py
+pilas/actores/opcion.py
 pilas/actores/pelota.py
 pilas/actores/piedra.py
 pilas/actores/pingu.py
@@ -65,6 +68,7 @@ pilas/data/estrella.png
 pilas/data/explosion.png
 pilas/data/explosion.wav
 pilas/data/icono_pausa.png
+pilas/data/invisible.png
 pilas/data/mapa.png
 pilas/data/moneda.png
 pilas/data/monkey_normal.png
@@ -88,8 +92,6 @@ pilas/data/fondos/pasto.png
 pilas/data/fondos/selva.png
 pilas/data/fondos/tarde.png
 pilas/data/fondos/volley.png
-pilas/data/juegobase/ejecutar.py
-pilas/data/juegobase/data/logo.png
 pilas/dispatch/__init__.py
 pilas/dispatch/dispatcher.py
 pilas/dispatch/saferef.py
