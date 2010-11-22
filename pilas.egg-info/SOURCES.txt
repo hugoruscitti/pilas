@@ -92,6 +92,8 @@ pilas/data/fondos/pasto.png
 pilas/data/fondos/selva.png
 pilas/data/fondos/tarde.png
 pilas/data/fondos/volley.png
+pilas/data/juegobase/ejecutar.py
+pilas/data/juegobase/data/logo.png
 pilas/dispatch/__init__.py
 pilas/dispatch/dispatcher.py
 pilas/dispatch/saferef.py
