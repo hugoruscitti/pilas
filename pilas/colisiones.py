@@ -31,10 +31,12 @@ class Colisiones:
 
                     # verifica si alguno de los dos objetos muere en la colision.
                     if a not in pilas.actores.todos:
-                        list.remove(grupo_a, a)
+                        if a in grupo_a:
+                            list.remove(grupo_a, a)
 
                     if b not in pilas.actores.todos:
-                        list.remove(grupo_b, b)
+                        if b in grupo_b:
+                            list.remove(grupo_b, b)
 
 
 

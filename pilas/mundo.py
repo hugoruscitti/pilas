@@ -88,33 +88,30 @@ class Mundo:
         pilas.motor.procesar_y_emitir_eventos()
 
         # Analiza colisiones entre los actores
-        try:
-            self.modo_ejecucion.analizar_colisiones()
-        except Exception, e:
-            if ignorar_errores:
+        if ignorar_errores:
+            try:
+                self.modo_ejecucion.analizar_colisiones()
+            except Exception, e:
                 print e
-            else:
-                raise e
+        else:
+            self.modo_ejecucion.analizar_colisiones()
 
         # Dibuja la escena actual y a los actores
-        try:
+        if ignorar_errores:
+            try:
+                self.escena_actual.actualizar()
+            except Exception, e:
+                print e
+        else:
             self.escena_actual.actualizar()
-        except Exception, e:
-            if ignorar_errores:
-                print e
-            else:
-                raise e
-
-
         
-        try:
-            self.modo_ejecucion.actualizar_actores()
-        except Exception, e:
-            if ignorar_errores:
+        if ignorar_errores:
+            try:
+                self.modo_ejecucion.actualizar_actores()
+            except Exception, e:
                 print e
-            else:
-                raise e
-
+        else:
+            self.modo_ejecucion.actualizar_actores()
 
     def _realizar_actualizacion_grafica(self):
         self.escena_actual.dibujar(self.ventana)
