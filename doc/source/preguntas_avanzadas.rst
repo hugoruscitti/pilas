@@ -1,6 +1,28 @@
 Guía de preguntas avanzadas
 ===========================
 
+Obtengo errores de AttributeError por parte de pilas
+----------------------------------------------------
+
+El funcionamiento de pilas como módulo de python
+es un poquito especial... porque sentencias
+como ``pilas.actores`` no funcionarán a menos
+que antes escribas ``pilas.iniciar()``.
+
+Por lo tanto, te recomiendo que en tus programas
+siempre comiences con un archivo que tenga
+algo como esto:
+
+.. code-block:: python
+
+    import pilas
+    pilas.iniciar()
+
+
+es decir, tu programa principal tiene que importar
+pilas y luego inicializarlo. Recién ahí podrás
+usar el resto de los módulos de pilas.
+
 
 ¿Cómo puedo personalizar el dibujado de un actor?
 -------------------------------------------------
