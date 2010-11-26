@@ -72,7 +72,7 @@ class Mundo:
 
             # Mantiene el control de tiempo y lo reporta al sistema
             # de interpolaciones y tareas.
-            self.modo_ejecucion.esperar()
+            time.sleep(0.01)
             self._realizar_actualizacion_logica(ignorar_errores)
             self._realizar_actualizacion_grafica()
 

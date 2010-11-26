@@ -6,7 +6,6 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-import time
 
 import pilas
 import pilas.actores
@@ -31,9 +30,6 @@ class ModoEjecucion:
 
 class ModoEjecucionNormal(ModoEjecucion):
     """Representa al mundo cuando el usuario está jugando normalmente."""
-
-    def esperar(self):
-        time.sleep(0.01)
 
     def actualizar_simuladores(self):
         self.mundo.tweener.update(16)
