@@ -7,6 +7,7 @@ class FPS:
         self.frecuencia = 1000.0 / fps
         self.t_fps = self.ahora
         self.rendimiento = 0
+        self.cuadros_por_segundo = "??"
 
     def actualizar(self):
         retorno = 0
@@ -20,7 +21,8 @@ class FPS:
             retorno += 1
 
             if self.ahora - self.t_fps > 1000.0:
-                print "paso un segundo: fps", self.rendimiento
+                #print self.cuadros_por_segundo
+                self.cuadros_por_segundo = str(self.rendimiento)
                 self.t_fps += 1000.0
                 self.rendimiento = 0
         else:

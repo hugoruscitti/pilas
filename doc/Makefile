@@ -14,7 +14,10 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) sou
 
 .PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest
 
-all: html pdf
+all: generar_api html pdf
+
+generar_api:
+	python generar_archivo_pilas_rst.py
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
