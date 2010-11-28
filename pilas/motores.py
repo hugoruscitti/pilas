@@ -7,11 +7,11 @@
 # website - http://www.pilas-engine.com.ar
 
 import pygame
-from PySFML import sf
 from pilas.simbolos import *
 import cairo
 import eventos
 import pilas
+from PySFML import sf
 
 ANCHO = 640
 ALTO = 480

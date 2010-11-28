@@ -87,6 +87,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     import imagenes
     import sonidos
     import actores
+    import fps
     from interpolaciones import Lineal
     import dispatch
     import eventos

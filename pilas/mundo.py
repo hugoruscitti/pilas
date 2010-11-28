@@ -67,13 +67,17 @@ class Mundo:
     def ejecutar_bucle_principal(self, ignorar_errores=False):
         "Mantiene en funcionamiento el motor completo."
 
+        fps = pilas.fps.FPS(60)
 
         while not self.salir:
 
-            # Mantiene el control de tiempo y lo reporta al sistema
-            # de interpolaciones y tareas.
-            time.sleep(0.01)
-            self._realizar_actualizacion_logica(ignorar_errores)
+            # Invoca varias veces a la actualizacion si el equipo
+            # es lento.
+            for x in range(fps.actualizar()):
+                # Mantiene el control de tiempo y lo reporta al sistema
+                # de interpolaciones y tareas.
+                self._realizar_actualizacion_logica(ignorar_errores)
+
             self._realizar_actualizacion_grafica()
 
         self._cerrar_ventana()
