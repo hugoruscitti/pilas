@@ -47,7 +47,7 @@ import utils
 if utils.esta_en_sesion_interactiva():
     utils.cargar_autocompletado()
 
-def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
+def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='detectar'):
     """Inicia el motor y abre la ventana principal del videojuego.
     
     Esta funcion se ejecuta al principio de cualquier juego, porque
@@ -116,11 +116,17 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml'):
     # Cuando inicia en modo interactivo se asegura
     # de crear la ventana dentro del mismo hilo que
     # tiene el contexto opengl.
-    if utils.esta_en_sesion_interactiva():
+    if modo == 'detectar':
+        if utils.esta_en_sesion_interactiva():
+            iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]")
+        else:
+            mundo = pilas.mundo.Mundo(ancho, alto, titulo)
+            escenas.Normal()
+    elif modo == 'interactivo':
         iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]")
     else:
-        mundo = pilas.mundo.Mundo(ancho, alto, titulo)
-        escenas.Normal()
+        raise Exception("Lo siento, el modo indicado es invalido, solo se admite 'interactivo' y 'detectar'")
+
 
 def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo):
     "Ejecuta el bucle de pilas en segundo plano."
