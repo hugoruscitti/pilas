@@ -100,3 +100,10 @@ class Pizarra(Actor):
         self.canvas.context.rectangle(x, y, x + ancho, y + alto)
         self.canvas.context.fill()
         self.actualizar_imagen()
+
+    def pintar(self, color):
+        self.canvas.context.set_source_rgb(100, 100, 100)
+        self.canvas.context.rectangle(0, 0, 200, 200)
+        self.canvas.context.fill()
+
+        self.actualizar_imagen()
