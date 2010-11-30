@@ -6,6 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import array
 import cairo
 
 import pilas
@@ -23,7 +24,6 @@ class Pizarra(Actor):
     Puedes pintar sobre esta pizarra usando métodos que simulan
     un lapiz, que se puede mover sobre una superficie.
     """
-
 
     def __init__(self, x=0, y=0):
         Actor.__init__(self, x=x, y=y)
@@ -67,3 +67,36 @@ class Pizarra(Actor):
     def definir_color(self, color):
         r, g, b = color.obtener_componentes()
         self.canvas.context.set_source_rgb(r, g, b)
+
+    def pintar_imagen(self, imagen, x=0, y=0):
+        """Dibuja una imagen sobre la pizarra pero usando coordenadas de pantalla.
+
+        Las coordenadas de pantalla tienen su origen en la esquina
+        superior izquierda, no en el centro de la ventana.
+        """
+        w = imagen.GetWidth()
+        h = imagen.GetHeight()
+        self.pintar_parte_de_imagen(imagen, 0, 0, w, h, x, y)
+
+    def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
+        """Dibuja una porcion de imagen sobre la pizarra pero usando coordenadas de pantalla.
+
+        Los argumentos ``origen_x`` y ``origen_y`` indican la parte
+        izquierda de la imagen que se descartará, ``ancho`` y ``alto``
+        el tamaño de rectángulo que se desea leer y por último ``x`` e ``y``
+        son las coordenadas destino de impresión.
+
+        Ten en cuenta que las coordenadas de pantalla tienen su origen en la esquina
+        superior izquierda, no en el centro de la ventana.
+        """
+
+        pixels = array.array("B", imagen.GetPixels())
+        w = imagen.GetWidth()
+        h = imagen.GetHeight()
+
+        imagen_cairo = cairo.ImageSurface.create_for_data(pixels, cairo.FORMAT_RGB24, w, h)
+        self.canvas.context.set_source_surface(imagen_cairo, x - origen_x, y - origen_y)
+
+        self.canvas.context.rectangle(x, y, x + ancho, y + alto)
+        self.canvas.context.fill()
+        self.actualizar_imagen()

@@ -436,8 +436,6 @@ class pySFML:
             self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, ANCHO, ALTO)
             self.image = sf.Image()
             self.context = cairo.Context(self.surface)
-            #self.context.arc(10, 20, 20.6, 0, 2 * 3.14)
-            #self.context.fill()
             self.actualizar()
 
         def actualizar(self):
