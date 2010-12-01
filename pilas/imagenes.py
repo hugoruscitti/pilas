@@ -6,7 +6,6 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from PySFML import sf
 import pilas
 import os
 

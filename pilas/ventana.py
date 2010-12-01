@@ -7,7 +7,6 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
-from PySFML import sf
 
 modo_depuracion = False
 eje_coordenadas = None

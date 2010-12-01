@@ -9,8 +9,6 @@
 
 import math
 
-from PySFML import sf
-
 import pilas
 import utils
 

@@ -1,8 +1,4 @@
 import pilas
-from PySFML import sf
-from weakref import ref
-
-
 
 pilas.iniciar()
 nave = pilas.actores.Nave()

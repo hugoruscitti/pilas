@@ -13,7 +13,6 @@ import subprocess
 import math
 
 import pilas
-from PySFML import sf
 
 
 PATH = os.path.dirname(os.path.abspath(__file__))

@@ -7,7 +7,6 @@
 # Website - http://www.pilas-engine.com.ar
 
 import random
-from PySFML import sf
 import pilas
 
 

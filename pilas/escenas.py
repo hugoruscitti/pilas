@@ -7,7 +7,6 @@
 # website - http://www.pilas-engine.com.ar
 
 import pilas
-from PySFML import sf
 
 class Escena:
     "Escena abstracta."
