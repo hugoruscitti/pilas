@@ -222,9 +222,9 @@ def avisar(mensaje):
 def ver(objeto):
     "Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."
 
-    if isinstance(objeto, object):
+    try:
         codigo = inspect.getsource(objeto.__class__)
-    else:
+    except TypeError:
         codigo = inspect.getsource(objeto)
 
     print codigo
