@@ -4,8 +4,8 @@ import sys
 pilas.iniciar()
 pizarra = pilas.actores.Pizarra()
 
-def dibujar_en_la_pizarra(sender, x, y, signal, dx, dy):
-    pizarra.pintar_punto(x, y)
+def dibujar_en_la_pizarra(evento):
+    pizarra.pintar_punto(evento.x, evento.y)
 
 pilas.eventos.mueve_mouse.connect(dibujar_en_la_pizarra)
 

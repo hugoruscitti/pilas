@@ -80,9 +80,9 @@ class SeguirAlMouse(Habilidad):
         Habilidad.__init__(self, receptor)
         pilas.eventos.mueve_mouse.connect(self.mover)
 
-    def mover(self, sender, x, y, dx, dy, signal):
-        self.receptor.x = x
-        self.receptor.y = y
+    def mover(self, evento):
+        self.receptor.x = evento.x
+        self.receptor.y = evento.y
 
 class AumentarConRueda(Habilidad):
     "Permite cambiar el tamaño de un actor usando la ruedita scroll del mouse."
@@ -91,8 +91,8 @@ class AumentarConRueda(Habilidad):
         Habilidad.__init__(self, receptor)
         pilas.eventos.mueve_rueda.connect(self.cambiar_de_escala)
 
-    def cambiar_de_escala(self, sender, delta, signal):
-        self.receptor.escala += (delta / 4.0)
+    def cambiar_de_escala(self, evento):
+        self.receptor.escala += (evento.delta / 4.0)
 
 
 class SeguirClicks(Habilidad):
@@ -102,9 +102,9 @@ class SeguirClicks(Habilidad):
         Habilidad.__init__(self, receptor)
         pilas.eventos.click_de_mouse.connect(self.moverse_a_este_punto)
 
-    def moverse_a_este_punto(self, sender, signal, x, y, button):
-        self.receptor.x = pilas.interpolar(x, duracion=0.5)
-        self.receptor.y = pilas.interpolar(y, duracion=0.5)
+    def moverse_a_este_punto(self, evento):
+        self.receptor.x = pilas.interpolar(evento.x, duracion=0.5)
+        self.receptor.y = pilas.interpolar(evento.y, duracion=0.5)
 
 
 class Arrastrable(Habilidad):
@@ -122,20 +122,20 @@ class Arrastrable(Habilidad):
         Habilidad.__init__(self, receptor)
         pilas.eventos.click_de_mouse.connect(self.try_to_drag)
 
-    def try_to_drag(self, sender, signal, x, y, button):
+    def try_to_drag(self, evento):
         "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
 
-        if self.receptor.colisiona_con_un_punto(x, y):
+        if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
             pilas.eventos.termina_click.connect(self.drag_end)
             pilas.eventos.mueve_mouse.connect(self.drag, uid='drag')
             self.comienza_a_arrastrar()
 
-    def drag(self, sender, signal, x, y, dx, dy):
+    def drag(self, evento):
         "Arrastra el actor a la posicion indicada por el puntero del mouse."
-        self.receptor.x += dx
-        self.receptor.y += dy
+        self.receptor.x += evento.dx
+        self.receptor.y += evento.dy
 
-    def drag_end(self, sender, signal, x, y, button):
+    def drag_end(self, evento):
         "Suelta al actor porque se ha soltado el botón del mouse."
         pilas.eventos.mueve_mouse.disconnect(uid='drag')
         self.termina_de_arrastrar()
@@ -153,7 +153,7 @@ class MoverseConElTeclado(Habilidad):
         Habilidad.__init__(self, receptor)
         pilas.eventos.actualizar.connect(self.on_key_press)
 
-    def on_key_press(self, sender, signal):
+    def on_key_press(self, evento):
         velocidad = 5
         c = pilas.mundo.control
 
@@ -187,7 +187,6 @@ class SeMantieneEnPantalla(Habilidad):
 
     Si el actor sale por la derecha de la pantalla, entonces regresa
     por la izquiera. Si sale por arriba regresa por abajo y asi..."""
-
 
     def actualizar(self):
         # Se asegura de regresar por izquierda y derecha.

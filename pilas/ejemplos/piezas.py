@@ -43,24 +43,25 @@ class Piezas(pilas.escenas.Normal):
             pieza.y = random.randint(-200, 200)
 
 
-    def al_hacer_click(self, **kv):
+    def al_hacer_click(self, evento):
         "Atiente cualquier click que realice el usuario en la pantalla."
-        pieza_debajo_de_mouse = pilas.actores.utils.obtener_actor_en(kv['x'], kv['y'])
+        x, y = evento.x, evento.y
+        pieza_debajo_de_mouse = pilas.actores.utils.obtener_actor_en(x, y)
 
         if pieza_debajo_de_mouse and isinstance(pieza_debajo_de_mouse, Pieza):
             self.pieza_en_movimiento = pieza_debajo_de_mouse
             self.pieza_en_movimiento.mostrar_arriba_todas_las_piezas()
 
-    def al_soltar_el_click(self, **kv):
+    def al_soltar_el_click(self, evento):
         if self.pieza_en_movimiento:
             self.pieza_en_movimiento.soltar_todas_las_piezas_del_grupo()
             self.pieza_en_movimiento.mostrar_abajo_todas_las_piezas()
             self.pieza_en_movimiento = None
 
-    def al_mover_el_mouse(self, **kv):
+    def al_mover_el_mouse(self, evento):
         if self.pieza_en_movimiento:
-            self.pieza_en_movimiento.x += kv['dx']
-            self.pieza_en_movimiento.y += kv['dy']
+            self.pieza_en_movimiento.x += evento.dx
+            self.pieza_en_movimiento.y += evento.dy
             
     def conectar(self, pieza_a, pieza_b):
         a = pieza_a.numero

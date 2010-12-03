@@ -107,9 +107,8 @@ el evento.
 
 Ten en cuenta que este argumento ``evento``, en realidad,
 es un diccionario de python como cualquier otro, solo
-que además de permitirte acceder a sus valores usando
-la sintáxis ``diccionario['clave']`` te permite usar
-una forma mas corta como ``diccionario.clave``.
+que puedes acceder a sus valores usando sentencias cómo
+``diccionario.clave`` en lugar de ``diccionario['clave']``.
 
 Desconectando señales
 ---------------------
