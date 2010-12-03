@@ -143,7 +143,7 @@ class Signal(object):
             return responses
 
         for receiver in self._live_receivers(_make_id(sender)):
-            response = receiver(signal=self, sender=sender, **named)
+            response = receiver(named)
             responses.append((receiver, response))
         return responses
 
