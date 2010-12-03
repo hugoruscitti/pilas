@@ -2,7 +2,6 @@ MANIFEST.in
 setup.py
 bin/pilas
 pilas/__init__.py
-pilas/anterior__init__.py
 pilas/atajos.py
 pilas/baseactor.py
 pilas/camara.py
@@ -14,6 +13,7 @@ pilas/escenas.py
 pilas/eventos.py
 pilas/fisica.py
 pilas/fondos.py
+pilas/fps.py
 pilas/grupo.py
 pilas/habilidades.py
 pilas/imagenes.py
