@@ -46,7 +46,6 @@ class TestSequenceFunctions(unittest.TestCase):
 
         # verificando que el tamaño inicial es de 30 y el color negro
         self.assertEqual(texto.magnitud, 30)
-        self.assertEqual(texto.color, (0, 0, 0, 255))
 
     def testComponents(self):
         texto = pilas.actores.Texto("Hola")
@@ -56,7 +55,7 @@ class TestSequenceFunctions(unittest.TestCase):
         texto.aprender(component)
 
         # Se asegura que el componente pasa a ser de la superclase.
-        self.assertTrue(component in texto.habilidades[0].__class__)
+        self.assertTrue(component == texto.habilidades[0].__class__)
 
     def testAtajos(self):
         pilas.atajos
@@ -67,12 +66,13 @@ class TestSequenceFunctions(unittest.TestCase):
 
 
     def testGrilla(self):
-        grilla = pilas.imagenes.Grilla("volley.png", 10, 10)
+        grilla = pilas.imagenes.Grilla("fondos/volley.png", 10, 10)
         self.assertTrue(grilla)
         grilla.avanzar()
 
     def testFondo(self):
-        grilla = pilas.escenas.Paisaje()
+        grilla = pilas.fondos.Tarde()
+        self.assertTrue(grilla)
 
 
     def testControl(self):
