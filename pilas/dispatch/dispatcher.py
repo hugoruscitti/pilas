@@ -4,6 +4,14 @@ from pilas.dispatch import saferef
 
 WEAKREF_TYPES = (weakref.ReferenceType, saferef.BoundMethodWeakref)
 
+
+class DictObj(object):
+    def __init__(self, d):
+        self.d = d
+
+    def __getattr__(self, m):
+        return self.d.get(m, None)
+
 def _make_id(target):
     if hasattr(target, 'im_func'):
         return (id(target.im_self), id(target.im_func))
@@ -143,7 +151,7 @@ class Signal(object):
             return responses
 
         for receiver in self._live_receivers(_make_id(sender)):
-            response = receiver(named)
+            response = receiver(DictObj(named))
             responses.append((receiver, response))
         return responses
 
