@@ -137,3 +137,49 @@ pintar un rectángulo con esquinas redondeadas o un degradé circular.
 Para operaciones de dibujo complejas, puedes usar la biblioteca
 ``cairo``, la biblioteca que usa ``pilas`` para representar a la
 pizarra y permitirte dibujar una imagen sobre otra.
+
+
+Entonces, para dibujar de manera avanzada sobre la pizarra
+tienes que incorporar la biblioteca cairo, dibujar sobre el
+contexto de la pizarra y luego invocar al método ``actualizar_imagen``.
+
+Lo que sigue es un ejemplo que dibujar sobre la pizarra
+usando cairo:
+
+.. code-block:: python
+
+    
+    # paso 1: crear la pizarra
+    pizarra = pilas.actores.Pizarra()
+
+    # paso 2: comienza el dibujo personalizado con cairo:
+    import cairo
+
+    x1, y1 = (100, 100)
+    x2, y2 = (600, 300)
+    x3, y3 = (100, 400)
+
+    pizarra.canvas.context.curve_to(x1, y1, x2, y2, x3, y3)
+    pizarra.canvas.context.set_line_width(50)
+    pizarra.canvas.context.set_dash([10])
+    pizarra.canvas.context.stroke()
+
+    # paso 3: Decirle a la pizarra que se actualice.
+    pizarra.actualizar_imagen()
+
+Es decir, el resultado será una curva que pasa por los
+puntos (x1, y1), (x2, y2) y por último (x3, y3):
+
+.. image:: images/pizarra_avanzado_cairo.png
+
+
+Si quieres obtener mas información sobre las posibilidades
+que te ofrece cairo, puedes consultar los siguientes sitios
+web:
+
+- http://cairographics.org/pycairo/
+- http://cairographics.org/samples/
+- http://www.tortall.net/mu/wiki/CairoTutorial
+
+Y si encuentras algo útil que se pueda simplificar mejorando
+la pizarra avísanos!.
