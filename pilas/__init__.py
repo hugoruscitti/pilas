@@ -33,7 +33,6 @@ Puedes obtener mas información en nuestro sitio:
 
 '''
 
-import inspect
 
 mundo = None
 motor = None
@@ -41,6 +40,7 @@ bg = None
 __all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar', 'avisar']
 
 import utils
+import motores
 
 # Carga el modulo de autocompletado si esta
 # en sesion interactiva.
@@ -67,13 +67,15 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
     global mundo
     global motor
 
-    import pilas.motores
 
-    motores_disponibles = {
-            'pysfml': pilas.motores.pySFML,
-            'sfml':   pilas.motores.pySFML,
-            'pygame': pilas.motores.Pygame,
-    }
+    (motores_disponibles, recomendado) = obtener_motores_disponibles()
+
+    if not recomendado:
+        raise Exception("No se encuentran bibliotecas multimedia, tiene que instalar SFML o pygame.")
+
+    if usar_motor not in motores_disponibles.keys():
+        #print "El sistema solicitado '%s' no esta disponible, cargado '%s' en su lugar." %(usar_motor, recomendado)
+        usar_motor = recomendado
 
     motor = motores_disponibles[usar_motor]()
 
@@ -104,7 +106,6 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
     from colisiones import Colisiones
     import random
     import ejemplos
-    import inspect
     import red
     import motores
     import atajos
@@ -221,6 +222,7 @@ def avisar(mensaje):
 
 def ver(objeto):
     "Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."
+    import inspect
 
     try:
         codigo = inspect.getsource(objeto.__class__)
@@ -228,3 +230,30 @@ def ver(objeto):
         codigo = inspect.getsource(objeto)
 
     print codigo
+
+def obtener_motores_disponibles():
+    """Retorna una tupla con dos valores: los motores disponibles y el recomendado.
+
+    Dado que pilas soporta dos motores multimadia (SFML y Pygame), esta
+    función intentará decetar cual de estos sistemas multimedia esta
+    disponible en el sistema.
+    """
+
+    motores_disponibles = {}
+    sistema_recomendado = None
+    import pilas.motores
+
+    try:
+        motores_disponibles['pygame'] = pilas.motores.Pygame
+        sistema_recomendado = "pygame"
+    except AttributeError:
+        pass
+
+    try:
+        motores_disponibles['sfml'] = pilas.motores.pySFML
+        motores_disponibles['pysfml'] = pilas.motores.pySFML
+        sistema_recomendado = "sfml"
+    except AttributeError:
+        pass
+
+    return (motores_disponibles, sistema_recomendado)
