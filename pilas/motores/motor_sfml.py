@@ -416,3 +416,18 @@ class pySFML:
         image = sf.Image()
         image.LoadFromFile(ruta)
         return image
+
+    def generar_imagen_cairo(self, imagen):
+        """Retorna una superficie de cairo representando a la imagen.
+
+        Esta funcion es util para pintar imagenes sobre una pizarra
+        o el escenario de un videojuego.
+        """
+        import array
+
+        pixels = array.array("B", imagen.GetPixels())
+
+        w = imagen.GetWidth()
+        h = imagen.GetHeight()
+
+        return cairo.ImageSurface.create_for_data(pixels, cairo.FORMAT_RGB24, w, h)

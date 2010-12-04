@@ -74,11 +74,19 @@ class Pizarra(Actor):
         Las coordenadas de pantalla tienen su origen en la esquina
         superior izquierda, no en el centro de la ventana.
         """
-        w = imagen.GetWidth()
-        h = imagen.GetHeight()
-        self.pintar_parte_de_imagen(imagen, 0, 0, w, h, x, y)
+        imagen = pilas.motor.generar_imagen_cairo(imagen)
+        w = imagen.get_width()
+        h = imagen.get_height()
+        self._pintar_parte_de_imagen(imagen, 0, 0, w, h, x, y)
 
-    def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
+    def pintar_grilla(self, grilla, x=0, y=0):
+        imagen = pilas.motor.generar_imagen_cairo(grilla.image)
+        w = grilla.cuadro_ancho
+        h = grilla.cuadro_alto
+        dx = grilla.cuadro * grilla.cuadro_ancho
+        self._pintar_parte_de_imagen(imagen, dx, 0, w, h, x, y)
+
+    def _pintar_parte_de_imagen(self, imagen_cairo, origen_x, origen_y, ancho, alto, x, y):
         """Dibuja una porcion de imagen sobre la pizarra pero usando coordenadas de pantalla.
 
         Los argumentos ``origen_x`` y ``origen_y`` indican la parte
@@ -90,14 +98,8 @@ class Pizarra(Actor):
         superior izquierda, no en el centro de la ventana.
         """
 
-        pixels = array.array("B", imagen.GetPixels())
-        w = imagen.GetWidth()
-        h = imagen.GetHeight()
-
-        imagen_cairo = cairo.ImageSurface.create_for_data(pixels, cairo.FORMAT_RGB24, w, h)
         self.canvas.context.set_source_surface(imagen_cairo, x - origen_x, y - origen_y)
-
-        self.canvas.context.rectangle(x, y, x + ancho, y + alto)
+        self.canvas.context.rectangle(x, y, ancho, alto)
         self.canvas.context.fill()
         self.actualizar_imagen()
 
@@ -105,5 +107,4 @@ class Pizarra(Actor):
         self.canvas.context.set_source_rgb(100, 100, 100)
         self.canvas.context.rectangle(0, 0, 200, 200)
         self.canvas.context.fill()
-
         self.actualizar_imagen()

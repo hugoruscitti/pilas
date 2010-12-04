@@ -30,6 +30,23 @@ class Pygame:
         def obtener_componentes(self):
             return self.b, self.g, self.r
 
+    class Canvas:
+        "Representa una superficie sobre la que se puede dibujar usando cairo."
+
+        def __init__(self):
+            import array
+            self.data = array.array('c', chr(0) * ANCHO * ALTO * 4)
+            stride = ANCHO * 4
+            self.surface = cairo.ImageSurface.create_for_data(self.data, cairo.FORMAT_ARGB32, 
+                    ANCHO, ALTO, stride)
+
+            self.context = cairo.Context(self.surface)
+            self.actualizar()
+
+        def actualizar(self):
+            #self.image.LoadFromPixels(ANCHO, ALTO, self.surface.get_data())
+            self.image = pygame.image.frombuffer(self.data.tostring(), (ANCHO, ALTO), "RGBA")
+
     class Grilla:
         """Representa una grilla de imagenes con varios cuadros de animación.
 
@@ -418,3 +435,17 @@ class Pygame:
     def definir_centro_de_la_camara(self, x, y):
         self.camara_x, self.camara_y = x, y
 
+
+    def generar_imagen_cairo(self, imagen):
+        """Retorna una superficie de cairo representando a la imagen.
+
+        Esta funcion es util para pintar imagenes sobre una pizarra
+        o el escenario de un videojuego.
+        """
+        #import array
+
+        pixels = imagen.get_buffer()
+        w = imagen.get_width()
+        h = imagen.get_height()
+
+        return cairo.ImageSurface.create_for_data(pixels, cairo.FORMAT_RGB24, w, h)
