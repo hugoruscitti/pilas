@@ -12,11 +12,27 @@ import cairo
 import pilas
 from pilas.actores import Actor
 
-class Lapiz:
+class Lapiz(object):
 
     def __init__(self):
         self.x = 0
         self.y = 0
+
+    def set_x(self, x):
+        self._x = x + 320
+
+    def get_x(self):
+        return self._x
+
+    def set_y(self, y):
+        self._y = 240 - y 
+
+    def get_y(self):
+        return self._y
+
+    x = property(get_x, set_x)
+    y = property(get_y, set_y)
+    
 
 class Pizarra(Actor):
     """Representa una superficie de dibujo inicialmente transparente.
@@ -56,7 +72,9 @@ class Pizarra(Actor):
         if self.lapiz_bajo:
             self.canvas.context.move_to(self.lapiz.x, self.lapiz.y)
             self.canvas.context.set_line_width(3)
-            self.canvas.context.line_to(x, y)
+            self.lapiz.x = x
+            self.lapiz.y = y
+            self.canvas.context.line_to(self.lapiz.x, self.lapiz.y)
             self.canvas.context.stroke()
 
             # Actualiza la imagen si ha dibujado.

@@ -129,13 +129,6 @@ Módulo pilas.baseactor
     :members:
 
 
-Módulo pilas.motores
---------------------
-
-.. automodule:: pilas.motores
-    :members:
-
-
 Módulo pilas.escenas
 --------------------
 
@@ -203,6 +196,20 @@ Módulo pilas.dispatch.saferef
 -----------------------------
 
 .. automodule:: pilas.dispatch.saferef
+    :members:
+
+
+Módulo pilas.motores.motor_pygame
+---------------------------------
+
+.. automodule:: pilas.motores.motor_pygame
+    :members:
+
+
+Módulo pilas.motores.motor_sfml
+-------------------------------
+
+.. automodule:: pilas.motores.motor_sfml
     :members:
 
 
