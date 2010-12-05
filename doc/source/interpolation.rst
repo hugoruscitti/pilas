@@ -28,6 +28,18 @@ o lo que es lo mismo:
 
     actor.x = [10, 20, 30, 40, 50 ... etc.
 
+
+Y a estas interpolaciones, también le puedes decir
+cuantos segundos puede demorar. Por ejemplo, para
+dar un giro completo de 360 grados en 10
+segundos puedes hacer algo como:
+
+.. code-block:: python
+
+    actor.rotacion = [360], 10
+
+
+
 de hecho, puede que te resulte mas conveniente
 tener mas control sobre la interpolación, así
 que puedes usar esta forma:
