@@ -8,7 +8,7 @@ Pilas engine - Documentación
     instalar.rst
 
     empezando.rst
-    interpolaciones.rst
+    interpolacion.rst
     controlando_la_pantalla.rst
     imagen.rst
     sonidos.rst
