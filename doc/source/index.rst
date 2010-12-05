@@ -5,10 +5,10 @@ Pilas engine - Documentación
     :maxdepth: 2
     
     presentacion.rst
-    install.rst
+    instalar.rst
 
     empezando.rst
-    interpolation.rst
+    interpolaciones.rst
     controlando_la_pantalla.rst
     image.rst
     sound.rst
@@ -25,9 +25,9 @@ Pilas engine - Documentación
 
     signals.rst
     text.rst
-    components.rst
+    habilidades.rst
 
-    developers.rst
+    desarrolladores.rst
     preguntas_avanzadas.rst
 
     pilas.rst
