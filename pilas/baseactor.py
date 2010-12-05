@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-# pilas engine - a video game framework.
+# Pilas engine - A video game framework.
 #
-# copyright 2010 - hugo ruscitti
-# license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
+# Copyright 2010 - Hugo Ruscitti
+# License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
-# website - http://www.pilas-engine.com.ar
+# Website - http://www.pilas-engine.com.ar
 
 import pilas.utils
 
@@ -15,15 +15,17 @@ class Estudiante:
         self.habilidades = []
         self.comportamiento_actual = None
         self.comportamientos = []
+        self.repetir_comportamientos_por_siempre = False
 
     def aprender(self, classname, *k, **w):
         "Comienza a realizar una habilidad indicada por parametros."
         objeto_habilidad = classname(self, *k, **w)
         self.habilidades.append(objeto_habilidad)
 
-    def hacer(self, comportamiento):
+    def hacer(self, comportamiento, repetir_por_siempre=False):
         "Define un nuevo comportamiento para el actor."
         self.comportamientos.append(comportamiento)
+        self.repetir_comportamientos_por_siempre = repetir_por_siempre
 
     def eliminar_habilidades(self):
         "Elimina todas las habilidades asociadas al actor."
@@ -44,7 +46,10 @@ class Estudiante:
 
         if self.comportamiento_actual:
             termina = self.comportamiento_actual.actualizar()
+
             if termina:
+                if self.repetir_comportamientos_por_siempre:
+                    self.comportamientos.append(self.comportamiento_actual)
                 self._adoptar_el_siguiente_comportamiento()
         else:
             self._adoptar_el_siguiente_comportamiento()
