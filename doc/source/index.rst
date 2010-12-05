@@ -10,8 +10,8 @@ Pilas engine - Documentación
     empezando.rst
     interpolaciones.rst
     controlando_la_pantalla.rst
-    image.rst
-    sound.rst
+    imagen.rst
+    sonidos.rst
     comportamientos.rst
     grupos.rst
     fisica.rst
@@ -23,8 +23,8 @@ Pilas engine - Documentación
     colisiones.rst
     motores.rst
 
-    signals.rst
-    text.rst
+    eventos.rst
+    texto.rst
     habilidades.rst
 
     desarrolladores.rst
