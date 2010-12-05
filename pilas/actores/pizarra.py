@@ -127,3 +127,12 @@ class Pizarra(Actor):
         self.canvas.context.rectangle(0, 0, w, h)
         self.canvas.context.fill()
         self.actualizar_imagen()
+
+    def escribir(self, texto, x=0, y=0, tamano=32, fuente="Arial"):
+        "Pinta una cadena de texto con el color actual del trazo."
+        self.canvas.context.move_to(x + 320, 240 - y)
+        self.canvas.context.set_font_size(tamano)
+        self.canvas.context.select_font_face(fuente)
+        self.canvas.context.text_path(texto)
+        self.canvas.context.fill()
+        self.actualizar_imagen()
