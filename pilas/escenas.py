@@ -29,7 +29,7 @@ class Normal(Escena):
 
     def __init__(self, color_de_fondo=None):
         Escena.__init__(self)
-        self.fondo = color_de_fondo or pilas.colores.gris
+        self.fondo = color_de_fondo or pilas.colores.grisclaro
 
     def dibujar(self, aplicacion):
         pilas.motor.pintar(self.fondo)
