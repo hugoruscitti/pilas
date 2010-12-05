@@ -107,10 +107,19 @@ def interpolable(f):
     def inner(*args, **kwargs):
         value = args[1]
 
+        # Si le indican dos argumentos, el primer sera
+        # el valor de la interpolacion y el segundo la
+        # velocidad.
+        if isinstance(value, tuple) and len(value) == 2:
+            duracion = value[1]
+            value = value[0]
+        else:
+            duracion = 1
+
         if isinstance(value, list):
-            value = pilas.interpolar(value)
+            value = pilas.interpolar(value, duracion=duracion)
         elif isinstance(value, xrange):
-            value = pilas.interpolar(list(value))
+            value = pilas.interpolar(list(value), duracion=duracion)
             
         if es_interpolacion(value):
             value.apply(args[0], function=f.__name__)
