@@ -84,7 +84,7 @@ class Pizarra(Actor):
         
     def definir_color(self, color):
         r, g, b = color.obtener_componentes()
-        self.canvas.context.set_source_rgb(r, g, b)
+        self.canvas.context.set_source_rgb(r/255.0, g/255.0, b/255.0)
 
     def pintar_imagen(self, imagen, x=0, y=0):
         """Dibuja una imagen sobre la pizarra pero usando coordenadas de pantalla.
@@ -134,5 +134,10 @@ class Pizarra(Actor):
         self.canvas.context.set_font_size(tamano)
         self.canvas.context.select_font_face(fuente)
         self.canvas.context.text_path(texto)
+        self.canvas.context.fill()
+        self.actualizar_imagen()
+
+    def dibujar_rectangulo(self, x, y, ancho, alto):
+        self.canvas.context.rectangle(x + 320, 240 - y, ancho, alto)
         self.canvas.context.fill()
         self.actualizar_imagen()
