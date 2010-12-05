@@ -11,7 +11,7 @@ import pilas
 
 class Comportamiento:
     "Representa un comportamiento (estrategia) que se puede anexar a un actor."
-
+    
     def iniciar(self, receptor):
         "Se invoca cuando se anexa el comportamiento a un actor."
         self.receptor = receptor
@@ -30,12 +30,21 @@ class Comportamiento:
 class Girar(Comportamiento):
     "Hace girar constantemente al actor respecto de su eje."
 
-    def __init__(self):
-        self.angulo = 0
+    def __init__(self, hasta):
+        self.hasta = hasta
+
+    def iniciar(self, receptor):
+        "Define el angulo inicial."
+        self.angulo = receptor.rotacion
+        self.receptor = receptor
 
     def actualizar(self):
         self.angulo += 1
         self.receptor.rotacion = self.angulo
+
+        # Indica cuando termina de hacer la rotacion.
+        if self.angulo == self.hasta:
+            return True
 
 
 class Avanzar(Comportamiento):
@@ -61,7 +70,6 @@ class Avanzar(Comportamiento):
         # Avanza en la direccion al punto destino y no lo sobrepasa.
         self.receptor.x += min(self.dx * velocidad, distancia_x)
         self.receptor.y += min(self.dy * velocidad, distancia_y)
-        self.receptor.ha_cambiado_posicion()
 
         # Termina el movimiento llega al punto destino.
         if distancia_x < 1 and distancia_y < 1:

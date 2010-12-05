@@ -9,22 +9,52 @@
 import pilas.utils
 
 class Estudiante:
-    "Permite a distintos objetos acoplarse mediente mixins."
+    """Representa la habilidad de poder realizar habiliadades y comportamientos."""
 
     def __init__(self):
         self.habilidades = []
+        self.comportamiento_actual = None
+        self.comportamientos = []
 
     def aprender(self, classname, *k, **w):
-        #if not classname in self.__class__.__bases__:
-        #    self.__class__.__bases__ += (classname,)
-        #.__init__(self, *k, **w)
-
+        "Comienza a realizar una habilidad indicada por parametros."
         objeto_habilidad = classname(self, *k, **w)
         self.habilidades.append(objeto_habilidad)
 
+    def hacer(self, comportamiento):
+        "Define un nuevo comportamiento para el actor."
+        self.comportamientos.append(comportamiento)
+
     def eliminar_habilidades(self):
+        "Elimina todas las habilidades asociadas al actor."
         for h in self.habilidades:
             h.eliminar()
+
+    def eliminar_comportamientos(self):
+        "Elimina todos los comportamientos que tiene que hacer el actor."
+        for c in self.comportamientos:
+            c.eliminar()
+
+    def actualizar_habilidades(self):
+        for h in self.habilidades:
+            h.actualizar()
+
+    def actualizar_comportamientos(self):
+        termina = None
+
+        if self.comportamiento_actual:
+            termina = self.comportamiento_actual.actualizar()
+            if termina:
+                self._adoptar_el_siguiente_comportamiento()
+        else:
+            self._adoptar_el_siguiente_comportamiento()
+
+    def _adoptar_el_siguiente_comportamiento(self):
+        if self.comportamientos:
+            self.comportamiento_actual = self.comportamientos.pop(0)
+            self.comportamiento_actual.iniciar(self)
+        else:
+            self.comportamiento_actual = None
 
 class BaseActor(object, Estudiante):
     """Define la funciondad abstracta de un actor.
@@ -40,7 +70,6 @@ class BaseActor(object, Estudiante):
 
     def __init__(self, x=0, y=0):
         self._definir_centro_del_actor()
-        self.comportamiento = None
         Estudiante.__init__(self)
 
         self.x = x
@@ -146,20 +175,14 @@ class BaseActor(object, Estudiante):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
         pilas.actores.utils.eliminar_un_actor(self)
         self.eliminar_habilidades()
+        self.eliminar_comportamientos()
 
     def actualizar(self):
-        "Actualiza el estado del actor. Este metodo se llama una vez por frame."
-
-        if self.comportamiento:
-            termina = self.comportamiento.actualizar()
-
-            if termina:
-                self.comportamiento.terminar()
-                self.comportamiento = None
-
-    def actualizar_habilidades(self):
-        for h in self.habilidades:
-            h.actualizar()
+        """Actualiza el estado del actor. 
+        
+        Este metodo se llama una vez por frame, y generalmente se redefine
+        en alguna subclase."""
+        pass
 
     def __cmp__(self, otro_actor):
         """Compara dos actores para determinar cual esta mas cerca de la camara.
@@ -174,11 +197,6 @@ class BaseActor(object, Estudiante):
         else:
             return -1
 
-    def hacer(self, comportamiento):
-        "Define un nuevo comportamiento para el actor."
-
-        comportamiento.iniciar(self)
-        self.comportamiento = comportamiento
 
     def get_izquierda(self):
         return self.x - self.obtener_ancho()/2
