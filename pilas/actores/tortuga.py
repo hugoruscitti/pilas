@@ -6,8 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from pilas.actores import Actor
 import pilas
+from pilas.actores import Actor
 
 
 class Tortuga(Actor):
@@ -20,29 +20,10 @@ class Tortuga(Actor):
         self.pizarra = pilas.actores.Pizarra()
     
     def avanzar(self, pasos):
-        self.hacer(pilas.comportamientos.Avanzar(self.rotacion, pasos))
+        self.hacer(pilas.comportamientos.Avanzar(self.rotacion +90, pasos))
 
-    def girar(self, angulo):
-        self.rotacion += angulo
+    def giraderecha(self, delta):
+        self.hacer(pilas.comportamientos.Girar(-delta, 3))
 
-
-    def get_y(self):
-        x, y = self.GetPosition()
-        return -y
-
-    def get_x(self):
-        x, y = self.GetPosition()
-        return x
-
-    def set_x(self, x):
-        pilas.actores.BaseActor.set_x(self, x)
-
-    def set_y(self, y):
-        pilas.actores.BaseActor.set_y(self, y)
-
-    x = property(get_x, set_x, doc="Define la posición horizontal.")
-    y = property(get_y, set_y, doc="Define la posición vertical.")
-
-
-    def ha_cambiado_posicion(self):
-        self.pizarra.dibujar_circulo(self.x, self.y)
+    def giraizquierda(self, delta):
+        self.hacer(pilas.comportamientos.Girar(delta, 3))

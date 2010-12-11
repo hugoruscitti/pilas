@@ -37,7 +37,4 @@ from cursordisparo import CursorDisparo
 from piedra import Piedra
 from menu import Menu
 from opcion import Opcion
-
-'''
 from tortuga import Tortuga
-'''
