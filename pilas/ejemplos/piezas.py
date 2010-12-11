@@ -19,7 +19,7 @@ class Piezas(pilas.escenas.Normal):
 
     def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png", filas=4, columnas=4):
         pilas.actores.utils.eliminar_a_todos()
-        pilas.escenas.Normal.__init__(self, pilas.colores.gris_oscuro)
+        pilas.escenas.Normal.__init__(self, pilas.colores.grisoscuro)
         grilla = pilas.imagenes.Grilla(ruta_a_la_imagen, columnas, filas)
         self.crear_piezas(grilla, filas, columnas)
         self.pieza_en_movimiento = None
