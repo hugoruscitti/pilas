@@ -28,39 +28,50 @@ class Comportamiento:
 
 
 class Girar(Comportamiento):
-    "Hace girar constantemente al actor respecto de su eje."
+    "Hace girar constantemente al actor respecto de su eje de forma relativa."
 
-    def __init__(self, hasta, velocidad):
-        self.hasta = hasta
-        self.velocidad = velocidad
+    def __init__(self, delta, velocidad):
+        self.delta = delta
+
+        if delta > 0:
+            self.velocidad = velocidad
+        else:
+            self.velocidad = -velocidad
 
     def iniciar(self, receptor):
         "Define el angulo inicial."
-        self.angulo = receptor.rotacion
         self.receptor = receptor
+        self.angulo_final = receptor.rotacion + self.delta
 
     def actualizar(self):
-        self.angulo += self.velocidad
-        self.receptor.rotacion = self.angulo
+        self.receptor.rotacion += self.velocidad
 
-        # Indica cuando termina de hacer la rotacion.
-        if self.angulo >= self.hasta:
-            self.angulo = self.hasta
-            return True
+        if self.velocidad > 0:
+            # Gira a la derecha.
+            if self.receptor.rotacion >= self.angulo_final:
+                self.receptor.rotacion = self.angulo_final
+                return True
+        else:
+            # Gira a la izquierda.
+            if self.receptor.rotacion <= self.angulo_final:
+                self.receptor.rotacion = self.angulo_final
+                return True
 
 
 class Avanzar(Comportamiento):
     "Desplaza al actor en la dirección y sentido indicado por una rotación."
 
-    def __init__(self, rotacion_en_grados, pasos, velocidad=5):
-        rotacion_en_radianes = math.radians(rotacion_en_grados)
+    def __init__(self, pasos, velocidad=5):
         self.pasos = pasos
-        self.dx = math.cos(rotacion_en_radianes)
-        self.dy = math.sin(rotacion_en_radianes)
         self.velocidad = velocidad
 
     def iniciar(self, receptor):
         self.receptor = receptor
+
+        rotacion_en_radianes = math.radians(-receptor.rotacion)
+        self.dx = math.cos(rotacion_en_radianes)
+        self.dy = math.sin(rotacion_en_radianes)
+
         self.to_x = (self.dx * self.pasos) + receptor.x
         self.to_y = (self.dy * self.pasos) + receptor.y
 
