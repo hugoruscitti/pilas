@@ -22,10 +22,20 @@ class Estudiante:
         objeto_habilidad = classname(self, *k, **w)
         self.habilidades.append(objeto_habilidad)
 
-    def hacer(self, comportamiento, repetir_por_siempre=False):
-        "Define un nuevo comportamiento para el actor."
+    def hacer_luego(self, comportamiento, repetir_por_siempre=False):
+        """Define un nuevo comportamiento para realizar al final.
+        
+        Los actores pueden tener una cadena de comportamientos, este
+        metodo agrega el comportamiento al final de la cadena.
+        """
+        
         self.comportamientos.append(comportamiento)
         self.repetir_comportamientos_por_siempre = repetir_por_siempre
+
+    def hacer(self, comportamiento):
+        "Define el comportamiento para el actor de manera inmediata."
+        self.comportamientos.append(comportamiento)
+        self._adoptar_el_siguiente_comportamiento()
 
     def eliminar_habilidades(self):
         "Elimina todas las habilidades asociadas al actor."

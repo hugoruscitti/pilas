@@ -26,7 +26,7 @@ class Disparo(Animacion):
 
     def avanzar(self):
         "Hace avanzar la nave en direccion a su angulo."
-        rotacion_en_radianes = math.radians(self.rotacion + 90)
+        rotacion_en_radianes = math.radians(-self.rotacion + 90)
         dx = math.cos(rotacion_en_radianes) * self.velocidad
         dy = math.sin(rotacion_en_radianes) * self.velocidad
         self.x += dx

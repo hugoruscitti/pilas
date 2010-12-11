@@ -45,8 +45,8 @@ sola vez:
     moverse_a_la_derecha = pilas.comportamientos.Avanzar(0, pasos)
     moverse_a_la_izquierda = pilas.comportamientos.Avanzar(180, pasos)
 
-    mono.hacer(moverse_a_la_derecha)
-    mono.hacer(moverse_a_la_izquierda)
+    mono.hacer_luego(moverse_a_la_derecha)
+    mono.hacer_luego(moverse_a_la_izquierda)
 
     pilas.ejecutar()
 
@@ -56,8 +56,7 @@ el tiempo:
 
 .. code-block:: python
 
-    mono.hacer(moverse_a_la_derecha, True)
-    mono.hacer(moverse_a_la_izquierda, True)
+    mono.hacer_luego(moverse_a_la_derecha, True)
 
 Donde el segundo argumento indica si el comportamiento
 se tiene que repetir todo el tiempo o no.
