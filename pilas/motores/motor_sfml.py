@@ -273,10 +273,10 @@ class pySFML:
             self.SetColor(sf.Color(255, 255, 255, int(nivel)))
 
         def obtener_rotacion(self):
-            return self.GetRotation()
+            return (- self.GetRotation()) % 360
 
         def definir_rotacion(self, r):
-            self.SetRotation(r)
+            self.SetRotation(-r % 360)
 
     def __init__(self):
         # Se usan para calcular el dx y dy del movimiento
