@@ -62,7 +62,7 @@ class Avanzar(Comportamiento):
     "Desplaza al actor en la dirección y sentido indicado por una rotación."
 
     def __init__(self, pasos, velocidad=5):
-        self.pasos = pasos
+        self.pasos = abs(pasos)
         self.velocidad = velocidad
 
     def iniciar(self, receptor):
@@ -78,7 +78,6 @@ class Avanzar(Comportamiento):
     def actualizar(self):
         distancia_x = pilas.utils.distancia(self.receptor.x, self.to_x)
         distancia_y = pilas.utils.distancia(self.receptor.y, self.to_y)
-
 
         # Avanza en la direccion al punto destino y no lo sobrepasa.
         self.receptor.x += min(self.dx * self.velocidad, distancia_x)
