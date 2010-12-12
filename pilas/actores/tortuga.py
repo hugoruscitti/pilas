@@ -13,12 +13,16 @@ from pilas.actores import Actor
 class Tortuga(Actor):
     "Representa una tortuga que se mueve por la pantalla como la tortuga de Logo."
 
-    def __init__(self, x=0, y=0):
+    def __init__(self, x=0, y=0, dibuja=True):
+        if dibuja:
+            self.pizarra = pilas.actores.Pizarra()
+            self.pizarra.bajar_lapiz()
+
+        self.dibuja = dibuja
         imagen = pilas.imagenes.cargar('tortuga.png')
         Actor.__init__(self, imagen, x=x, y=y)
         self.rotacion = 0
-        self.pizarra = pilas.actores.Pizarra()
-    
+
     def avanzar(self, pasos):
         self.hacer_luego(pilas.comportamientos.Avanzar(pasos))
 
@@ -27,3 +31,7 @@ class Tortuga(Actor):
 
     def giraizquierda(self, delta):
         self.hacer_luego(pilas.comportamientos.Girar(-delta, 3))
+
+    def actualizar(self):
+        if self.dibuja:
+            self.pizarra.mover_lapiz(self.x, self.y)
