@@ -14,11 +14,13 @@ class Tortuga(Actor):
     "Representa una tortuga que se mueve por la pantalla como la tortuga de Logo."
 
     def __init__(self, x=0, y=0, dibuja=True):
-        if dibuja:
-            self.pizarra = pilas.actores.Pizarra()
-            self.pizarra.bajar_lapiz()
+        self.pizarra = pilas.actores.Pizarra()
 
-        self.dibuja = dibuja
+        if dibuja:
+            self.bajalapiz()
+        else:
+            self.subelapiz()
+
         imagen = pilas.imagenes.cargar('tortuga.png')
         Actor.__init__(self, imagen, x=x, y=y)
         self.rotacion = 0
@@ -33,5 +35,17 @@ class Tortuga(Actor):
         self.hacer_luego(pilas.comportamientos.Girar(-abs(delta), 3))
 
     def actualizar(self):
-        if self.dibuja:
-            self.pizarra.mover_lapiz(self.x, self.y)
+        self.pizarra.mover_lapiz(self.x, self.y)
+
+    def bajalapiz(self):
+        self.pizarra.bajar_lapiz()
+
+    def subelapiz(self):
+        self.pizarra.levantar_lapiz()
+
+    # Alias de metodos
+    av = avanzar
+    gd = giraderecha
+    gi = giraizquierda
+    bl = bajalapiz
+    sl = subelapiz
