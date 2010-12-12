@@ -27,10 +27,10 @@ class Tortuga(Actor):
         self.hacer_luego(pilas.comportamientos.Avanzar(pasos))
 
     def giraderecha(self, delta):
-        self.hacer_luego(pilas.comportamientos.Girar(delta, 3))
+        self.hacer_luego(pilas.comportamientos.Girar(abs(delta), 3))
 
     def giraizquierda(self, delta):
-        self.hacer_luego(pilas.comportamientos.Girar(-delta, 3))
+        self.hacer_luego(pilas.comportamientos.Girar(-abs(delta), 3))
 
     def actualizar(self):
         if self.dibuja:

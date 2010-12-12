@@ -38,24 +38,20 @@ class Girar(Comportamiento):
         else:
             self.velocidad = -velocidad
 
+
     def iniciar(self, receptor):
         "Define el angulo inicial."
         self.receptor = receptor
-        self.angulo_final = receptor.rotacion + self.delta
+        self.angulo_final = (receptor.rotacion + self.delta) % 360
 
     def actualizar(self):
         self.receptor.rotacion += self.velocidad
 
-        if self.velocidad > 0:
-            # Gira a la derecha.
-            if self.receptor.rotacion >= self.angulo_final:
-                self.receptor.rotacion = self.angulo_final
-                return True
-        else:
-            # Gira a la izquierda.
-            if self.receptor.rotacion <= self.angulo_final:
-                self.receptor.rotacion = self.angulo_final
-                return True
+        delta = abs(self.receptor.rotacion - self.angulo_final)
+
+        if delta <= abs(self.velocidad):
+            self.receptor.rotacion = self.angulo_final
+            return True
 
 
 class Avanzar(Comportamiento):
