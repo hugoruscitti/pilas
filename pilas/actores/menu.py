@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 from pilas.actores import Actor
+from pilas.grupo import Grupo
 import pilas
 
 DEMORA = 14
@@ -15,6 +16,7 @@ class Menu(Actor):
     "Representa un bloque que tiene fisica como una caja."
 
     def __init__(self, opciones, x=0, y=0):
+        self.opciones_como_actores = []
         Actor.__init__(self, "invisible.png", x=x, y=y)
         self._verificar_opciones(opciones)
         self.crear_texto_de_las_opciones(opciones)
@@ -26,11 +28,11 @@ class Menu(Actor):
 
     def crear_texto_de_las_opciones(self, opciones):
         "Genera un actor por cada opcion del menu."
-        self.opciones_como_actores = []
 
         for indice, (texto, funcion) in enumerate(opciones):
             y = self.y - indice * 50
             opciones = pilas.actores.Opcion(texto, y=y, funcion_a_invocar=funcion)
+
             self.opciones_como_actores.append(opciones)
 
     def seleccionar_primer_opcion(self):
@@ -75,3 +77,13 @@ class Menu(Actor):
 
         # Selecciona la opcion nueva.
         self.opciones_como_actores[self.opcion_actual].resaltar()
+    
+    def __setattr__(self, atributo, valor):
+        # Intenta propagar la accion a los actores del grupo.
+        try:
+            for x in self.opciones_como_actores:
+                setattr(x, atributo, valor)
+        except AttributeError:
+            pass
+
+        Actor.__setattr__(self, atributo, valor)
