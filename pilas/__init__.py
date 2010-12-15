@@ -74,8 +74,11 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
         raise Exception("No se encuentran bibliotecas multimedia, tiene que instalar SFML o pygame.")
 
     if usar_motor not in motores_disponibles.keys():
-        #print "El sistema solicitado '%s' no esta disponible, cargado '%s' en su lugar." %(usar_motor, recomendado)
+        print "Advertencia: El sistema solicitado '%s' no esta disponible, cargado '%s' en su lugar." %(usar_motor, recomendado)
         usar_motor = recomendado
+
+    if usar_motor not in ['sfml', 'pysfml']:
+        print "Advertencia: Te recomendamos usar SFML, busca en la web de pilas como instalarlo..."
 
     motor = motores_disponibles[usar_motor]()
 
