@@ -188,6 +188,9 @@ class Pygame:
         def definir_imagen(self, imagen):
             self.image = imagen
 
+            if self._rotacion_actual:
+                self.rotacion = self._rotacion_actual
+
         def obtener_imagen(self):
             return self.image
 
