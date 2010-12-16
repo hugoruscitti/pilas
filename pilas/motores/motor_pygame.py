@@ -28,7 +28,7 @@ class Pygame:
     class Color(pygame.Color):
 
         def obtener_componentes(self):
-            return self.b, self.g, self.r
+            return (self.r, self.g, self.b)
 
     class Canvas:
         "Representa una superficie sobre la que se puede dibujar usando cairo."
@@ -179,9 +179,11 @@ class Pygame:
 
             pygame.sprite.Sprite.__init__(self)
             self.image = image
+            self.image_original = image.convert_alpha()
             self.rect = self.image.get_rect()
             pilas.baseactor.BaseActor.__init__(self, x=x, y=y)
             self._escala_actual = 1
+            self._rotacion_actual = 0
             
         def definir_imagen(self, imagen):
             self.image = imagen
@@ -233,10 +235,17 @@ class Pygame:
             self._escala_actual = s
 
         def obtener_rotacion(self):
-            return 0
+            return self._rotacion_actual
 
         def definir_rotacion(self, r):
-            print "pygame no permite cambiar la rotacion"
+            self.image = pygame.transform.rotozoom(self.image_original, -r, 1)
+            self._rotacion_actual = r
+
+            # Se asegura que el personaje gire desde el centro
+            # del area de colision.
+            centro = self.rect.center
+            self.rect = self.image.get_rect()
+            self.rect.center = centro
 
     class Texto(pilas.baseactor.BaseActor, pygame.sprite.Sprite):
         """Representa un texto en pantalla.
@@ -249,7 +258,7 @@ class Pygame:
             self.centro_y = 0
             pygame.font.init()
             self.font = pygame.font.Font(None, 32)
-            self.color = pilas.colores.negro
+            self._color = pilas.colores.negro
 
             pygame.sprite.Sprite.__init__(self)
             self.set_text(texto)
@@ -263,7 +272,7 @@ class Pygame:
 
         def set_text(self, texto):
             self._texto = texto
-            self.image = self.font.render(texto, 1, (0, 0, 0))
+            self.image = self.font.render(texto, 1, self.color.obtener_componentes())
 
         def get_size(self):
             return 32
@@ -286,11 +295,11 @@ class Pygame:
             self.rect.topleft = (x, -y)
 
         def get_color(self):
-            print "No se puede obtener el color en pygame."
-            return (0, 0, 0)
+            return self._color
 
         def set_color(self, k):
-            print "No se puede cambiar el color de pygame."
+            self._color = k
+            self.texto = self._texto
 
         texto = property(get_text, set_text, doc="El texto que se tiene que mostrar.")
         magnitud = property(get_size, set_size, doc="El tamaño del texto.")
