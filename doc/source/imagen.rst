@@ -138,4 +138,41 @@ una nave con motores, es probable que quieras mostrar una animación
 de motores en funcionamiento cuando la nave avanza y detener la
 animación de motores cuando finaliza el movimiento.
 
+Una forma de lograr esto de manera sencilla es crear tu propio
+actor, y que este tenga dos atributos, uno para cada animación:
+
+
+.. code-block:: python
+
+    class MiNave(pilas.actores.Actor):
+
+        def __init__(self, x=0, y=0):
+            Actor.__init__(self, x=x, y=y)
+            self.animacion_detenida = pilas.imagenes.Grilla("nave_detenida.png", 1)
+            self.animacion_movimiento = pilas.imagenes.Grilla("nave_en_movimiento.png", 3)
+
+
+Luego, en el método ``actualizar`` del propio actor podrías
+avanzar la animación actual y permitirle al programador invocar
+métodos para intercambiar animaciones:
+
+
+.. code-block:: python
+
+    class MiNave(...)
+
+        [...] # codigo anterior
+    
+        def poner_en_movimiento(self):
+            self.animacion_actual = self.animacion_movimiento
+            self.animacion_movimiento.asignar(self)
+
+        def poner_en_reposo(self):
+            self.animacion_actual = self.animacion_detenida
+            self.animacion_detenida.asignar(self)
+
+        def actualizar(self):
+            self.animacion_actual.avanzar()
+            self.animacion_detenida.asignar(self)
+
 
