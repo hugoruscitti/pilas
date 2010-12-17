@@ -127,3 +127,15 @@ ese caso el actor comenzará a mostrar la animación desde el cuadro
 1 y cuanto termine eliminará al actor de la ventana. Esto es útil
 para hacer efectos especiales, como explosiones o destellos, cosas
 que quieres tener en la ventana un instante de tiempo.
+
+
+Haciendo actores con animación
+------------------------------
+
+Puede que quieras hacer un actor que tenga múltiples animaciones, y
+que las muestre en determinados momentos. Por ejemplo, si tienes
+una nave con motores, es probable que quieras mostrar una animación
+de motores en funcionamiento cuando la nave avanza y detener la
+animación de motores cuando finaliza el movimiento.
+
+
