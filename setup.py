@@ -13,7 +13,7 @@ setup(
             'setuptools',
             'pymunk',
             ],
-        packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos'],
+        packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos', 'pilas.motores'],
         url='http://www.pilas-engine.com.ar',
 
         include_package_data = True,
