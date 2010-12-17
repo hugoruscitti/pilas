@@ -68,3 +68,62 @@ cambiar el cuadro de animación ejecutando las sentencias:
 Ten en cuenta que siempre tienes que llamar a al método
 ``asignar`` luego de hacer algo con la animación. De otra forma
 no verás reflejado el cambio en el actor...
+
+
+Mas detalles sobre grillas
+__________________________
+
+En el ejemplo anterior usamos una grilla sin dar muchos detalles
+sobre la grilla, pero resulta que en python tienes la oportunidad
+de ser mas preciso y obtener mas funcionalidad de las grillas.
+
+El objeto grilla recibe mas parámetros, por ejemplo si tu grilla
+tiene filas y columnas puedes especificar las filas
+y columnas de esta forma:
+
+.. code-block:: python
+
+    animacion = pilas.imagenes.Grilla("pingu.png", 10, 5)
+
+donde 10 es el número de columnas en la grilla y 5 es la
+cantidad de filas.
+
+
+Haciendo animaciones sencillas
+______________________________
+
+En muchas oportunidades nos interesa hacer animaciones simples
+y que se repitan todo el tiempo sin mucho esfuerzo. Pilas
+incluye un actor llamado ``Animacion`` precisamente para
+estos casos.
+
+Por ejemplo, imagina que tienes una animación de un fuego
+que te gustaría repetir todo el tiempo:
+
+.. image:: images/grilla_fuego.png
+
+Esta imagen de grilla tiene ``6`` cuadros de animación organizada
+mediante columnas.
+
+Una forma sencilla de convertir esta animación en un actor
+simple es crear la grilla, construir un actor ``Animacion`` e
+indicarle a pilas que será una animación cíclica, es decir, que
+se tendrá que repetir indefinidamente:
+
+
+.. code-block:: python
+
+    grilla = pilas.imagenes.Grilla("fuego.png", 6)
+    actor = pilas.actores.Animacion(grilla, ciclica=True)
+
+
+El resultado en la ventana será una animación de fuego que
+no terminará nunca. Cuando el actor termine de mostrar el
+cuadro 6 de la animación regresará al primero para comenzar
+nuevamente.
+
+Otra posibilidad es especificar el argumento ``ciclica=False``. En
+ese caso el actor comenzará a mostrar la animación desde el cuadro
+1 y cuanto termine eliminará al actor de la ventana. Esto es útil
+para hacer efectos especiales, como explosiones o destellos, cosas
+que quieres tener en la ventana un instante de tiempo.
