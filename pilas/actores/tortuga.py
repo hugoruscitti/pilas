@@ -43,9 +43,22 @@ class Tortuga(Actor):
     def subelapiz(self):
         self.pizarra.levantar_lapiz()
 
+    def pon_color(self, color):
+        self.hacer_luego(pilas.comportamientos.CambiarColor(color))
+
     # Alias de metodos
     av = avanzar
     gd = giraderecha
     gi = giraizquierda
     bl = bajalapiz
     sl = subelapiz
+    pc = pon_color
+
+
+    def get_color(self):
+        return self.pizarra.color
+
+    def set_color(self, color):
+        self.pizarra.definir_color(color)
+
+    color = property(get_color, set_color)
