@@ -19,13 +19,13 @@ pilas/habilidades.py
 pilas/imagenes.py
 pilas/interpolaciones.py
 pilas/modos_de_mundo.py
-pilas/motores.py
 pilas/mundo.py
 pilas/pytweener.py
 pilas/red.py
 pilas/simbolos.py
 pilas/sonidos.py
 pilas/tareas.py
+pilas/test_mono.py
 pilas/utils.py
 pilas/ventana.py
 pilas.egg-info/PKG-INFO
@@ -106,3 +106,6 @@ pilas/ejemplos/test.py
 pilas/ejemplos/data/colisiones.xcf
 pilas/ejemplos/data/fondo_piezas.png
 pilas/ejemplos/data/piezas.png
+pilas/motores/__init__.py
+pilas/motores/motor_pygame.py
+pilas/motores/motor_sfml.py

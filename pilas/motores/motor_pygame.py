@@ -333,6 +333,10 @@ class Pygame:
 
     def __init__(self):
         pygame.init()
+
+        if pygame.image.get_extended() != 1:
+            print "Cuidado, en este equipo pygame no soporta archivos PNG. Instale SDL_image para resolver este problema."
+
         self.camara_x = 0
         self.camara_y = 0
 
