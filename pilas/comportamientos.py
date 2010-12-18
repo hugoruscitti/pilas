@@ -82,3 +82,16 @@ class Avanzar(Comportamiento):
         # Termina el movimiento llega al punto destino.
         if distancia_x < self.velocidad + 1 and distancia_y < self.velocidad + 1:
             return True
+
+class CambiarColor(Comportamiento):
+    "Llama a un metodo para cambiar el color de un actor."
+
+    def __init__(self, nuevo_color):
+        self.nuevo_color = nuevo_color
+
+    def iniciar(self, receptor):
+        self.receptor = receptor
+
+    def actualizar(self):
+        self.receptor.color = self.nuevo_color
+        return True
