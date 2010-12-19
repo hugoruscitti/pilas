@@ -16,13 +16,14 @@ class Tortuga(Actor):
     def __init__(self, x=0, y=0, dibuja=True):
         self.pizarra = pilas.actores.Pizarra()
 
+        imagen = pilas.imagenes.cargar('tortuga.png')
+        Actor.__init__(self, imagen, x=x, y=y)
+
         if dibuja:
             self.bajalapiz()
         else:
             self.subelapiz()
 
-        imagen = pilas.imagenes.cargar('tortuga.png')
-        Actor.__init__(self, imagen, x=x, y=y)
         self.rotacion = 0
         self.velocidad = 6
 
@@ -39,10 +40,10 @@ class Tortuga(Actor):
         self.pizarra.mover_lapiz(self.x, self.y)
 
     def bajalapiz(self):
-        self.pizarra.bajar_lapiz()
+        self.hacer_luego(pilas.comportamientos.BajarLapiz())
 
     def subelapiz(self):
-        self.pizarra.levantar_lapiz()
+        self.hacer_luego(pilas.comportamientos.SubirLapiz())
 
     def pon_color(self, color):
         self.hacer_luego(pilas.comportamientos.CambiarColor(color))

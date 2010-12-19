@@ -71,13 +71,12 @@ class Avanzar(Comportamiento):
         salir = False
 
         if self.pasos - self.velocidad < 0:
-            avance = self.velocidad - self.pasos
+            avance = self.pasos
             salir = True
         else:
             avance = self.velocidad
 
         self.pasos -= avance
-
         self.receptor.x += self.dx * avance
         self.receptor.y += self.dy * avance
 
@@ -96,3 +95,30 @@ class CambiarColor(Comportamiento):
     def actualizar(self):
         self.receptor.color = self.nuevo_color
         return True
+
+
+
+class BajarLapiz(Comportamiento):
+
+    def __init__(self):
+        pass
+
+    def iniciar(self, receptor):
+        self.receptor = receptor
+
+    def actualizar(self):
+        self.receptor.pizarra.bajar_lapiz()
+        return True
+
+class SubirLapiz(Comportamiento):
+
+    def __init__(self):
+        pass
+
+    def iniciar(self, receptor):
+        self.receptor = receptor
+
+    def actualizar(self):
+        self.receptor.pizarra.levantar_lapiz()
+        return True
+
