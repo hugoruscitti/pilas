@@ -68,20 +68,28 @@ class Avanzar(Comportamiento):
         self.dx = math.cos(rotacion_en_radianes)
         self.dy = math.sin(rotacion_en_radianes)
 
-        self.to_x = (self.dx * self.pasos) + receptor.x
-        self.to_y = (self.dy * self.pasos) + receptor.y
+        #self.to_x = (self.dx * self.pasos) + receptor.x
+        #self.to_y = (self.dy * self.pasos) + receptor.y
 
     def actualizar(self):
-        distancia_x = pilas.utils.distancia(self.receptor.x, self.to_x)
-        distancia_y = pilas.utils.distancia(self.receptor.y, self.to_y)
+        self.pasos -= 1
+
+        if self.pasos < 0:
+            return True
+
+        self.receptor.x += self.dx
+        self.receptor.y += self.dy
+
+        #distancia_x = pilas.utils.distancia(self.receptor.x, self.to_x)
+        #distancia_y = pilas.utils.distancia(self.receptor.y, self.to_y)
 
         # Avanza en la direccion al punto destino y no lo sobrepasa.
-        self.receptor.x += min(self.dx * self.velocidad, distancia_x)
-        self.receptor.y += min(self.dy * self.velocidad, distancia_y)
+        #self.receptor.x += min(self.dx * self.velocidad, distancia_x)
+        #self.receptor.y += min(self.dy * self.velocidad, distancia_y)
 
         # Termina el movimiento llega al punto destino.
-        if distancia_x < self.velocidad + 1 and distancia_y < self.velocidad + 1:
-            return True
+        #if distancia_x < self.velocidad + 1 and distancia_y < self.velocidad + 1:
+        #    return True
 
 class CambiarColor(Comportamiento):
     "Llama a un metodo para cambiar el color de un actor."
