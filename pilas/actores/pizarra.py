@@ -121,9 +121,13 @@ class Pizarra(Actor):
         self.canvas.context.fill()
         self.actualizar_imagen()
 
-    def pintar(self):
+    def pintar(self, color=None):
         w = self.canvas.surface.get_width()
         h = self.canvas.surface.get_height()
+
+        if color:
+            self.definir_color(color)
+
         self.canvas.context.rectangle(0, 0, w, h)
         self.canvas.context.fill()
         self.actualizar_imagen()

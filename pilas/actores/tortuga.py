@@ -24,15 +24,16 @@ class Tortuga(Actor):
         imagen = pilas.imagenes.cargar('tortuga.png')
         Actor.__init__(self, imagen, x=x, y=y)
         self.rotacion = 0
+        self.velocidad = 6
 
     def avanzar(self, pasos):
-        self.hacer_luego(pilas.comportamientos.Avanzar(pasos))
+        self.hacer_luego(pilas.comportamientos.Avanzar(pasos, self.velocidad))
 
     def giraderecha(self, delta):
-        self.hacer_luego(pilas.comportamientos.Girar(abs(delta), 3))
+        self.hacer_luego(pilas.comportamientos.Girar(abs(delta), self.velocidad))
 
     def giraizquierda(self, delta):
-        self.hacer_luego(pilas.comportamientos.Girar(-abs(delta), 3))
+        self.hacer_luego(pilas.comportamientos.Girar(-abs(delta), self.velocidad))
 
     def actualizar(self):
         self.pizarra.mover_lapiz(self.x, self.y)
@@ -62,3 +63,10 @@ class Tortuga(Actor):
         self.pizarra.definir_color(color)
 
     color = property(get_color, set_color)
+
+    def limpiar(self):
+        self.pizarra.limpiar()
+
+    def pintar(self, color=None):
+        self.pizarra.pintar(color)
+
