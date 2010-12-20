@@ -1,13 +1,92 @@
 Dibujando en pantalla
 =====================
 
-Para dibujar en la pantalla se pude usar
-un actor denominado ``Pizarra``. Este
+Pilas te permite dibujar figuras en la ventana
+de muchas formas. En esta sección veremos las
+posibilidades de ofrece pilas desde lo mas
+simple a lo mas complejo.
+
+
+Usando la Tortuga
+=================
+
+El actor ``Tortuga`` está inspirado en una de
+las actividades mas divertidas y representativas
+del lenguaje de programación logo, creado
+por Seymour Papert.
+
+La ``Tortuga`` básicamente es un actor que sabe
+dibujar sobre la ventana de pilas. Para ello el
+programador tiene que indicarle a la tortuga qué
+movimiento tiene que hacer.
+
+La siguiente imagen muestra lo que podría
+dibujar la tortuga con algunas sentencias de
+movimientos:
+
+.. image:: images/tortuga_dibuja_triangulo.png
+
+Como puedes ver en la imagen, el código que he
+utilizado para crear la tortuga es el siguiente:
+
+.. code-block:: python
+
+    tortuga = pilas.actores.Tortuga()
+
+    for x in range(36):
+        tortuga.avanzar(5)
+        tortuga.giraizquierda(10)
+
+    tortuga.color = pilas.colores.verde
+    tortuga.avanzar(200)
+
+
+Inspeccionando a la tortuga
+---------------------------
+
+Para manejar a este actor tienes varios comandos
+inspirados en logo.
+
+Esta es una lista de los comandos mas utilizados:
+
+
++------------------+--------------+--------------------------------------+------------------------------------------------+
+| Método completo  | nombre corto | ejemplo                              | ¿que hace?                                     |
++==================+==============+======================================+================================================+
+| avanzar          | av           | tortuga.av(10)                       | avanza en dirección a donde mira la tortuga.   |
++------------------+--------------+--------------------------------------+------------------------------------------------+
+| giraderecha      | gd           | tortuga.gd(45)                       | gira hacia la derecha los grados indicados.    |
++------------------+--------------+--------------------------------------+------------------------------------------------+
+| giraizquierda    | gi           | tortuga.gi(45)                       | gira hacia la izquierda los grados indicados.  |
++------------------+--------------+--------------------------------------+------------------------------------------------+
+| subelapiz        | sl           | tortuga.sl()                         | deja de dibujar cuando se mueve la tortuga.    |
++------------------+--------------+--------------------------------------+------------------------------------------------+
+| bajalapiz        | bl           | tortuga.bl()                         | comienza a dibujar cuando la tortuga se mueve. |
++------------------+--------------+--------------------------------------+------------------------------------------------+
+| pon_color        | pc           | tortuga.pc(pilas.colores.rojo)       | dibuja con el color indicado.                  |
++------------------+--------------+--------------------------------------+------------------------------------------------+
+| pintar           | <<no tiene>> | tortuga.pintar(pilas.colores.blanco) | pinta toda la pantala del mismo color.         |
++------------------+--------------+--------------------------------------+------------------------------------------------+
+
+
+Usando una Pizarra
+==================
+
+
+Si quieres dibujar sobre la pantalla pero
+de forma inmediata y con mas posibilidades puedes
+usar un actor llamado ``Pizarra``. Este
 actor es cómo un lienzo invisible sobre
 el que podemos pintar imágenes, figuras
 geométricas y trazos de cualquier tipo.
 
-Por ejemplo, para crear la pizarra y
+A diferencia de la tortuga, la ``Pizarra``
+te permite hacer muchos trazos rápidamente
+y mostrarlos en pantalla todos a la vez. Además
+te permite acceder a funciones avanzadas de dibujo
+gracias a la biblioteca ``cairo``.
+
+Comencemos con algo sencillo: para crear la pizarra y
 dibujar un punto en el centro de la
 pantalla se puede usar el siguiente
 código:
