@@ -19,5 +19,5 @@ Características
 - Cuenta con objetos prediseñados para agilizar el desarrollo.
 - Tiene documentación completamente en español.
 - Se utiliza desde python, lo que permite usarla desde sesiones interactivas.
+- Incluye interacción con el motor de física Chipmunk.
 - Es software libre.
-

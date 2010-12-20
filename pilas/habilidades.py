@@ -31,11 +31,27 @@ class RebotaComoPelota(Habilidad):
                                                                receptor.radio_de_colision,
                                                                masa=10,
                                                                elasticidad=0.75)
-        
+        self.ultimo_x = receptor.x
+        self.ultimo_y = receptor.y
+
     def actualizar(self):
-        self.receptor.x = self.figura.body.position.x
-        self.receptor.y = self.figura.body.position.y
-        self.receptor.rotacion = self.figura.body.angle * 500
+        # Mueve el objeto siempre y cuando no parezca que algo
+        # no fisico (es decir de pymunk) lo ha afectado.
+        if self.ultimo_x == self.receptor.x and self.ultimo_y == self.receptor.y:
+            self.receptor.x = self.figura.body.position.x
+            self.receptor.y = self.figura.body.position.y
+            self.receptor.rotacion = self.figura.body.angle * 500
+
+            self.ultimo_x = self.receptor.x
+            self.ultimo_y = self.receptor.y
+        else:
+            # Si ha detectado que el usuario u alguna sentencia
+            # de código alteró la posicion x e y entonces le
+            # avisa a pymunk que aplique ese cambio de posicion.
+            self.ultimo_x = self.receptor.x
+            self.ultimo_y = self.receptor.y
+            self.figura.body.position.x = self.ultimo_x
+            self.figura.body.position.y = self.ultimo_y
 
     def eliminar(self):
         pilas.fisica.fisica.eliminar(self.figura)
@@ -52,11 +68,24 @@ class RebotaComoCaja(Habilidad):
                                                                masa=10,
                                                                elasticidad=0.30,
                                                                friccion=10)
+        self.ultimo_x = receptor.x
+        self.ultimo_y = receptor.y
         
     def actualizar(self):
-        self.receptor.x = self.figura.body.position.x
-        self.receptor.y = self.figura.body.position.y
-        self.receptor.rotacion = self.figura.body.angle * 58
+        # Mueve el objeto siempre y cuando no parezca que algo
+        # no fisico (es decir de pymunk) lo ha afectado.
+        if self.ultimo_x == self.receptor.x and self.ultimo_y == self.receptor.y:
+            self.receptor.x = self.figura.body.position.x
+            self.receptor.y = self.figura.body.position.y
+            self.receptor.rotacion = self.figura.body.angle * 58
+        else:
+            # Si ha detectado que el usuario u alguna sentencia
+            # de código alteró la posicion x e y entonces le
+            # avisa a pymunk que aplique ese cambio de posicion.
+            self.ultimo_x = self.receptor.x
+            self.ultimo_y = self.receptor.y
+            self.figura.body.position.x = self.ultimo_x
+            self.figura.body.position.y = self.ultimo_y
 
     def eliminar(self):
         pilas.fisica.fisica.eliminar(self.figura)
