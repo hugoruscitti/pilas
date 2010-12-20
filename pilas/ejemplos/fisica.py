@@ -11,7 +11,7 @@ import pilas
 class ColisionesFisicas(pilas.escenas.Normal):
 
     def __init__(self):
-        pilas.escenas.Normal.__init__(self, pilas.colores.gris_oscuro)
+        pilas.escenas.Normal.__init__(self, pilas.colores.grisoscuro)
         pilas.avisar("Un ejemplo de colisiones")
 
         pilas.fondos.Pasto()

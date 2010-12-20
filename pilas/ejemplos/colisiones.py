@@ -17,7 +17,7 @@ class Colisiones(pilas.escenas.Normal):
 
 
     def __init__(self):
-        pilas.escenas.Normal.__init__(self, pilas.colores.gris_oscuro)
+        pilas.escenas.Normal.__init__(self, pilas.colores.grisoscuro)
         self.crear_personajes()
 
         pilas.colisiones.agregar([self.mono], self.bananas, comer)
