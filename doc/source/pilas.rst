@@ -381,6 +381,13 @@ Módulo pilas.actores.explosion
     :members:
 
 
+Módulo pilas.actores.mapa
+-------------------------
+
+.. automodule:: pilas.actores.mapa
+    :members:
+
+
 Módulo pilas.actores.disparo
 ----------------------------
 

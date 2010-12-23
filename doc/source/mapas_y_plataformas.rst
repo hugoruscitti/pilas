@@ -1,5 +1,5 @@
-Mapas y platformas
-==================
+Mapas y plataformas
+===================
 
 En los años 80 una de los géneros de videojuegos mas
 celebrados ha sido el genero de plataformas.
@@ -37,14 +37,25 @@ Pulsa la tecla F12 y observarás una grilla con números, cada
 número te muestra la fila y columna que representa a ese
 rectángulo:
 
-.. image::
+.. image:: images/mapa_depuracion.png
 
 
 Si quieres dibujar bloques solo tienes que indicar la posición
 en el mapa y el índice que representa la imagen en la grilla.
 
-Por ejemplo, si queremos dibujar un suelo en la escena podríamos
-escribir los siguiente:
+Por ejemplo, un bloque cerca del centro de la ventana es
+la posición (8, 10):
+
+.. code-block:: python
+
+    mapa.pintar_bloque(8, 10, 1)
+
+.. image:: images/mapa_un_bloque.png
+
+
+Otro ejemplo: si queremos dibujar en la parte inferior de la
+ventana, podemos llamar muchas veces al método ``pintar_bloque``, una
+vez por cada bloque que necesitamos:
 
 .. code-block::
 
@@ -61,9 +72,7 @@ anteriormente.
 
 Este será el resultado:
 
-.. image:: 
-
-    pass
+.. image:: images/mapa_muchos_bloques.png
 
 
 Colisiones con el escenario
@@ -101,3 +110,5 @@ Por cierto, los bloques "no sólidos" son útiles para representar
 adornos del escenario, como nubes o agua. Incluso en algunos
 juegos se usan para crear pasadizos secretos entre muros o 
 plataformas...
+
+
