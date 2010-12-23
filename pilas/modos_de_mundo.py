@@ -10,6 +10,7 @@
 import pilas
 import pilas.actores
 
+
 class ModoEjecucion:
     """Representa un modo de ejecucion del mundo.
 
@@ -64,6 +65,7 @@ class ModoEjecucionNormal(ModoEjecucion):
     def alternar_pausa(self):
         self.mundo.definir_modo_ejecucion(ModoEjecucionPausado(self.mundo))
 
+ 
 class ModoEjecucionPausado(ModoEjecucionNormal):
     """Representa al mundo pero en pausa, donde se muestra la imagen sin moverse."""
 
@@ -90,6 +92,7 @@ class ModoEjecucionPausado(ModoEjecucionNormal):
     def salir(self):
         self.icono.eliminar()
 
+
 class ModoEjecucionDepuracion(ModoEjecucionNormal):
     """Es el modo de ejecucion normal pero mostrando informacion para desarrolladores."""
 
@@ -97,6 +100,7 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         import pilas.actores
         ModoEjecucionNormal.__init__(self, m)
         self.eje = pilas.actores.Ejes()
+        pilas.eventos.inicia_modo_depuracion.send("ModoEjecucionDepuracion")
 
     def salir(self):
         self.eje.eliminar()
@@ -134,7 +138,6 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         self.mundo.ventana.Draw(numero)
         numero.eliminar()
 
-
     def pintar_radio_de_colision_del_actor(self, actor, color, color_borde):
         x, y = actor.x, actor.y
         radio = actor.radio_de_colision * 2
@@ -151,10 +154,12 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
 
     def salir(self):
+        pilas.eventos.sale_modo_depuracion.send("ModoEjecucionNormal")
         self.eje.eliminar()
 
+    def actualizar_actores(self):
+        pilas.eventos.actualiza_modo_depuracion.send("ModoEjecucionDepuracion")
 
-        
 
 class ModoEjecucionDepuracionPausado(ModoEjecucionPausado, ModoEjecucionDepuracion):
 
