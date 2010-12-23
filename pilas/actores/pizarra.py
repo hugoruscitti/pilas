@@ -49,6 +49,14 @@ class Pizarra(Actor):
         self.levantar_lapiz()
         self.mover_lapiz(0, 0)
         self.definir_centro(320, 240)
+        self.habilitar_actualizacion_automatica()
+
+    def habilitar_actualizacion_automatica(self):
+        self.actualiza_automaticamente = True
+        self.actualizar_imagen()
+
+    def deshabilitar_actualizacion_automatica(self):
+        self.actualiza_automaticamente = False
 
     def levantar_lapiz(self):
         self.lapiz_bajo = False
@@ -66,7 +74,8 @@ class Pizarra(Actor):
         x += 320
         self.canvas.context.arc(x, y, 10, 0, 2*3.1415)
         self.canvas.context.fill()
-        self.actualizar_imagen()
+        if self.actualiza_automaticamente:
+            self.actualizar_imagen()
 
     def mover_lapiz(self, x, y):
         if self.lapiz_bajo:
@@ -78,7 +87,8 @@ class Pizarra(Actor):
             self.canvas.context.stroke()
 
             # Actualiza la imagen si ha dibujado.
-            self.actualizar_imagen()
+            if self.actualiza_automaticamente:
+                self.actualizar_imagen()
 
         self.lapiz.x, self.lapiz.y = x, y
         
@@ -119,7 +129,8 @@ class Pizarra(Actor):
         self.canvas.context.set_source_surface(imagen_cairo, x - origen_x, y - origen_y)
         self.canvas.context.rectangle(x, y, ancho, alto)
         self.canvas.context.fill()
-        self.actualizar_imagen()
+        if self.actualiza_automaticamente:
+            self.actualizar_imagen()
 
     def pintar(self, color=None):
         w = self.canvas.surface.get_width()
@@ -130,7 +141,8 @@ class Pizarra(Actor):
 
         self.canvas.context.rectangle(0, 0, w, h)
         self.canvas.context.fill()
-        self.actualizar_imagen()
+        if self.actualiza_automaticamente:
+            self.actualizar_imagen()
 
     def escribir(self, texto, x=0, y=0, tamano=32, fuente="Arial"):
         "Pinta una cadena de texto con el color actual del trazo."
@@ -139,7 +151,8 @@ class Pizarra(Actor):
         self.canvas.context.select_font_face(fuente)
         self.canvas.context.text_path(texto)
         self.canvas.context.fill()
-        self.actualizar_imagen()
+        if self.actualiza_automaticamente:
+            self.actualizar_imagen()
 
     def dibujar_rectangulo(self, x, y, ancho, alto, pintar=True):
         self.canvas.context.rectangle(x, y, ancho, alto)
@@ -148,4 +161,5 @@ class Pizarra(Actor):
             self.canvas.context.fill()
 
         self.canvas.context.stroke()
-        self.actualizar_imagen()
+        if self.actualiza_automaticamente:
+            self.actualizar_imagen()

@@ -262,3 +262,43 @@ web:
 
 Y si encuentras algo útil que se pueda simplificar mejorando
 la pizarra avísanos!.
+
+
+
+Dibujando mas rápido
+--------------------
+
+Si quieres hacer dibujos complejos, con muchos trazos o formas,
+seguramente notarás que la pizarra no es tan rápida como
+debería.
+
+Resulta que la pizarra, cuando se utiliza normalmente, muestra
+en cada momento el trazo que realizamos o cualquier dibujo
+que realicemos. Esto funciona así porque la mayoría de los
+usuarios quieren dibujar y observar su resultado inmediatamete, 
+de forma interactiva.
+
+Si quieres dibujar mas rápidamente puedes hacer lo siguiente: dile
+a la pizarra que deshabilite el dibujado interactivo, realiza
+todos los trazos que quieras, y luego habilita nuevamente el
+dibujado interactivo. Esto producirá resultados mas rápidos
+y directos.
+
+Aquí hay un ejemplo de dibujado rápido.
+
+.. code-block::
+
+    pizarra.deshabilitar_actualizacion_automatica()
+
+    # dibuja 64 puntos sobre la pizarra.
+    for i in range(0, 640, 10):
+        pizarra.dibujar_punto(x=i, y=i)
+
+    pizarra.habilitar_actualizacion_automatica()
+
+
+Ten en cuenta que la pizarra pasará, de un instante a otro, a
+tener los 64 puntos que dibujamos. Así que si usas este
+código desde la consola interactiva, solo verás los
+resultados cuando ejecutes la sentencia
+``pizarra.habilitar_actualizacion_automatica``.
