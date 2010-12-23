@@ -18,14 +18,21 @@ class Mapa(Pizarra):
         pilas.eventos.inicia_modo_depuracion.conectar(self._cuando_inicia_modo_depuracion)
         pilas.eventos.actualiza_modo_depuracion.conectar(self._cuando_actualiza_modo_depuracion)
         pilas.eventos.sale_modo_depuracion.conectar(self._cuando_sale_modo_depuracion)
+        self.figuras = []
 
-    def pintar_bloque(self, fila, columna, indice):
+    def pintar_bloque(self, fila, columna, indice, solido=True):
         self.grilla.definir_cuadro(indice)
 
         ancho = self.grilla.cuadro_ancho
         alto = self.grilla.cuadro_alto
+        x = columna * ancho
+        y = fila * alto
 
-        self.pintar_grilla(self.grilla, columna * ancho, fila * alto)
+        self.pintar_grilla(self.grilla, x, y)
+
+        if solido:
+            figura = pilas.fisica.fisica.crear_cuadrado_estatico(x - 320, 240 -y, ancho)
+            self.figuras.append(figura)
 
     def _cuando_inicia_modo_depuracion(self, evento):
         self.pizarra_depuracion = pilas.actores.Pizarra()
@@ -52,3 +59,11 @@ class Mapa(Pizarra):
                 self.pizarra_depuracion.escribir(texto, x=x+3, y=y+10, tamano=tamano)
 
         self.pizarra_depuracion.habilitar_actualizacion_automatica()
+
+    def eliminar(self):
+
+        # Elimina todas las figuras fisicas que ha creado.
+        for x in self.figuras:
+            pilas.fisica.fisica.eliminar(x)
+
+        Pizarra.eliminar(self)

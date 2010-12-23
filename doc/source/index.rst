@@ -20,6 +20,8 @@ Pilas engine - Documentación
     ejemplos.rst
     menu.rst
     dibujando_en_pantalla.rst
+    mapas_y_plataformas.rst
+
     colisiones.rst
     motores.rst
 

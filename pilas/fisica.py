@@ -49,9 +49,14 @@ class Fisica:
         try:
             self.espacio.remove(figura)
         except:
-            #TODO: quitar este silenciador, porque esta para cuando
-            #      falla el manejo de grupos.
-            pass
+            try:
+                # Intenta eliminar la figura como si fuera un objeto estatico.
+                self.espacio.remove_static(figura)
+            except:
+                #TODO: quitar este silenciador, porque esta para cuando
+                #      falla el manejo de grupos.
+                pass
+
 
     def crear_figura_circulo(self, x, y, radio, masa=1, elasticidad=0.05, friccion=0.05):
         inertia = pymunk.moment_for_circle(masa, 0, radio, (0,0))
@@ -76,5 +81,24 @@ class Fisica:
 
     def definir_gravedad(self, x=0, y=-900):
         self.espacio.gravity = (x, y)
+
+    def crear_cuadrado_estatico(self, x, y, ancho):
+        static_body = pymunk.Body(pymunk.inf, pymunk.inf)
+        static_lines = [
+                        # Borde inferior
+                        pymunk.Segment(static_body, (x, y-ancho), (x+ancho, y-ancho), 0.0),
+                        # Borde derecho
+                        pymunk.Segment(static_body, (x+ancho, y), (x+ancho, y-ancho), 0.0),
+                        # Borde izquierdo
+                        pymunk.Segment(static_body, (x, y), (x, y-ancho), 0.0),
+                        # Borde superior
+                        pymunk.Segment(static_body, (x, y), (x + ancho, y), 0.0),
+                        ]
+
+        for line in static_lines:
+            line.elasticity = 0.0
+
+        self.espacio.add_static(static_lines)
+        return static_lines
 
 fisica = Fisica()
