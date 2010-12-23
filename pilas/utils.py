@@ -90,7 +90,6 @@ def distancia_entre_dos_actores(a, b):
 def colisionan(a, b):
     "Retorna True si dos actores estan en contacto."
     return distancia_entre_dos_actores(a, b) < a.radio_de_colision + b.radio_de_colision
-    
 
 def crear_juego():
     nombre = raw_input("Indica el nombre del juego: ")

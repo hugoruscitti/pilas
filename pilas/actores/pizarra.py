@@ -134,14 +134,18 @@ class Pizarra(Actor):
 
     def escribir(self, texto, x=0, y=0, tamano=32, fuente="Arial"):
         "Pinta una cadena de texto con el color actual del trazo."
-        self.canvas.context.move_to(x + 320, 240 - y)
+        self.canvas.context.move_to(x, y)
         self.canvas.context.set_font_size(tamano)
         self.canvas.context.select_font_face(fuente)
         self.canvas.context.text_path(texto)
         self.canvas.context.fill()
         self.actualizar_imagen()
 
-    def dibujar_rectangulo(self, x, y, ancho, alto):
-        self.canvas.context.rectangle(x + 320, 240 - y, ancho, alto)
-        self.canvas.context.fill()
+    def dibujar_rectangulo(self, x, y, ancho, alto, pintar=True):
+        self.canvas.context.rectangle(x, y, ancho, alto)
+
+        if pintar:
+            self.canvas.context.fill()
+
+        self.canvas.context.stroke()
         self.actualizar_imagen()

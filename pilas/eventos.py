@@ -15,3 +15,8 @@ mueve_rueda = dispatch.Signal(providing_args=['delta'])
 pulsa_tecla = dispatch.Signal(providing_args=['code'])
 pulsa_tecla_escape = dispatch.Signal(providing_args=[])
 actualizar = dispatch.Signal(providing_args=[])
+
+# Se emite cuando el mundo ingresa o sale del modo depuracion (pulsando F12)
+inicia_modo_depuracion = dispatch.Signal(providing_args=[]) 
+sale_modo_depuracion = dispatch.Signal(providing_args=[])
+actualiza_modo_depuracion = dispatch.Signal(providing_args=[])
