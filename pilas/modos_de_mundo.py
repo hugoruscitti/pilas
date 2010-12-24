@@ -159,6 +159,7 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
 
     def actualizar_actores(self):
         pilas.eventos.actualiza_modo_depuracion.send("ModoEjecucionDepuracion")
+        ModoEjecucionNormal.actualizar_actores(self)
 
 
 class ModoEjecucionDepuracionPausado(ModoEjecucionPausado, ModoEjecucionDepuracion):

@@ -229,3 +229,40 @@ class SeMantieneEnPantalla(Habilidad):
             self.receptor.arriba = -240
         elif self.receptor.arriba < -240:
             self.receptor.abajo = 240
+
+
+class PisaPlataformas(Habilidad):
+
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
+        error = random.randint(-10, 10) / 10.0
+        self.figura = pilas.fisica.fisica.crear_figura_circulo(receptor.x + error, 
+                                                               receptor.y + error, 
+                                                               receptor.radio_de_colision,
+                                                               masa=10,
+                                                               elasticidad=0,
+                                                               friccion=0)
+        self.ultimo_x = receptor.x
+        self.ultimo_y = receptor.y
+
+    def actualizar(self):
+        # Mueve el objeto siempre y cuando no parezca que algo
+        # no fisico (es decir de pymunk) lo ha afectado.
+        if self.ultimo_x == self.receptor.x and self.ultimo_y == self.receptor.y:
+            self.receptor.x = self.figura.body.position.x
+            self.receptor.y = self.figura.body.position.y
+            self.receptor.rotacion = self.figura.body.angle * 500
+
+            self.ultimo_x = self.receptor.x
+            self.ultimo_y = self.receptor.y
+        else:
+            # Si ha detectado que el usuario u alguna sentencia
+            # de código alteró la posicion x e y entonces le
+            # avisa a pymunk que aplique ese cambio de posicion.
+            self.ultimo_x = self.receptor.x
+            self.ultimo_y = self.receptor.y
+            self.figura.body.position.x = self.ultimo_x
+            self.figura.body.position.y = self.ultimo_y
+
+    def eliminar(self):
+        pilas.fisica.fisica.eliminar(self.figura)

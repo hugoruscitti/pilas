@@ -34,7 +34,8 @@ class Fisica:
                         ]
 
         for line in static_lines:
-            line.elasticity = 0.0
+            line.body.mass = 0
+            line.body.moment = 0
 
         self.espacio.add_static(static_lines)
 
@@ -100,5 +101,9 @@ class Fisica:
 
         self.espacio.add_static(static_lines)
         return static_lines
+
+    def empujar_figura(self, figura, x, y):
+        "Empuja una figura fisica en la direccion que indica x e y."
+        figura.body.apply_impulse((x, y))
 
 fisica = Fisica()

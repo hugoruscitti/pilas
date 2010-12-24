@@ -10,7 +10,7 @@ import pilas
 from pilas.actores import Actor
 from pilas.comportamientos import Comportamiento
 
-VELOCIDAD = 4
+VELOCIDAD = 1000
 
 
 class Martian(Actor):
@@ -20,10 +20,14 @@ class Martian(Actor):
         self.animacion = pilas.imagenes.Grilla("marcianitos/martian.png", 12)
         self.definir_cuadro(0)
         self.hacer(Esperando())
+        self.aprender(pilas.habilidades.PisaPlataformas)
 
     def definir_cuadro(self, indice):
         self.animacion.definir_cuadro(indice)
         self.animacion.asignar(self)
+
+    def mover(self, x, y):
+        pilas.fisica.fisica.empujar_figura(self.habilidades[0].figura, x, y)
 
 class Esperando(Comportamiento):
     "Un actor en posicion normal o esperando a que el usuario pulse alguna tecla."
@@ -54,15 +58,14 @@ class Caminando(Comportamiento):
         self.avanzar_animacion()
 
         if pilas.mundo.control.izquierda:
-            self.receptor.x -= VELOCIDAD
+            self.receptor.mover(-VELOCIDAD, 0)
         elif pilas.mundo.control.derecha:
-            self.receptor.x += VELOCIDAD
+            self.receptor.mover(VELOCIDAD, 0)
         else:
             self.receptor.hacer(Esperando())
 
         if pilas.mundo.control.arriba:
             self.receptor.hacer(Saltando())
-
 
     def avanzar_animacion(self):
         self.paso += 1
@@ -74,24 +77,22 @@ class Caminando(Comportamiento):
 
 class Saltando(Comportamiento):
 
-    def __init__(self):
-        self.dy = 8
-    
     def iniciar(self, receptor):
         self.receptor = receptor
         self.receptor.definir_cuadro(3)
+        self.receptor.mover(0, 10000)
 
     def actualizar(self):
-        self.receptor.y += self.dy
-        self.dy -= 0.3
+        #self.receptor.y += self.dy
+        #self.dy -= 0.3
 
-        if self.receptor.y < 0:
-            self.receptor.y = 0
-            self.receptor.hacer(Esperando())
+        #if self.receptor.y < 0:
+        #    self.receptor.y = 0
+        #    self.receptor.hacer(Esperando())
 
         if pilas.mundo.control.izquierda:
             self.receptor.espejado = True
-            self.receptor.x -= VELOCIDAD
+            self.receptor.mover(-VELOCIDAD, 0)
         elif pilas.mundo.control.derecha:
             self.receptor.espejado = False
-            self.receptor.x += VELOCIDAD
+            self.receptor.mover(+VELOCIDAD, 0)
