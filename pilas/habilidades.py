@@ -236,7 +236,7 @@ class PisaPlataformas(Habilidad):
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
         error = random.randint(-10, 10) / 10.0
-        self.figura = pilas.fisica.fisica.crear_figura_circulo(receptor.x + error, 
+        self.figura = pilas.fisica.fisica.crear_figura_cuadrado(receptor.x + error, 
                                                                receptor.y + error, 
                                                                receptor.radio_de_colision,
                                                                masa=10,
@@ -248,21 +248,8 @@ class PisaPlataformas(Habilidad):
     def actualizar(self):
         # Mueve el objeto siempre y cuando no parezca que algo
         # no fisico (es decir de pymunk) lo ha afectado.
-        if self.ultimo_x == self.receptor.x and self.ultimo_y == self.receptor.y:
-            self.receptor.x = self.figura.body.position.x
-            self.receptor.y = self.figura.body.position.y
-            self.receptor.rotacion = self.figura.body.angle * 500
-
-            self.ultimo_x = self.receptor.x
-            self.ultimo_y = self.receptor.y
-        else:
-            # Si ha detectado que el usuario u alguna sentencia
-            # de código alteró la posicion x e y entonces le
-            # avisa a pymunk que aplique ese cambio de posicion.
-            self.ultimo_x = self.receptor.x
-            self.ultimo_y = self.receptor.y
-            self.figura.body.position.x = self.ultimo_x
-            self.figura.body.position.y = self.ultimo_y
+        self.receptor.x = self.figura.body.position.x
+        self.receptor.y = self.figura.body.position.y
 
     def eliminar(self):
         pilas.fisica.fisica.eliminar(self.figura)

@@ -25,6 +25,7 @@ class Martian(Actor):
     def definir_cuadro(self, indice):
         self.animacion.definir_cuadro(indice)
         self.animacion.asignar(self)
+        self.definir_centro(32, 115)
 
     def mover(self, x, y):
         pilas.fisica.fisica.empujar_figura(self.habilidades[0].figura, x, y)
@@ -80,7 +81,7 @@ class Saltando(Comportamiento):
     def iniciar(self, receptor):
         self.receptor = receptor
         self.receptor.definir_cuadro(3)
-        self.receptor.mover(0, 10000)
+        self.receptor.mover(0, 4000)
 
     def actualizar(self):
         #self.receptor.y += self.dy
