@@ -40,3 +40,4 @@ from opcion import Opcion
 from tortuga import Tortuga
 from mapa import Mapa
 from martian import Martian
+from boton import Boton
