@@ -216,12 +216,20 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
 
     return clase(valor_o_valores, duracion, demora)
 
+anterior_texto = None
+
 def avisar(mensaje):
     "Emite un mensaje en la ventana principal."
+    global anterior_texto
+
+    if anterior_texto:
+        anterior_texto.eliminar()
+
     texto = actores.Texto(mensaje)
     texto.magnitud = 22
     texto.izquierda = -310
     texto.abajo = -230
+    anterior_texto = texto
 
 def ver(objeto):
     "Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."
