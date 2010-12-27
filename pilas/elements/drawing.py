@@ -175,6 +175,9 @@ class draw_cairo(object):
     def set_lineWidth(self, lw): # unused
         self.lineWidth = lw 
 
+    def set_pizarra(self, pizarra):
+        self.pizarra = pizarra
+
     def set_drawing_area(self, da):
         """ Set the area for Cairo to draw to
         
@@ -192,8 +195,8 @@ class draw_cairo(object):
         #self.draw_box    = getattr(self, "draw_box_%s" % type)
 
     def start_drawing(self):
-        self.width, self.height = self.window.get_size()
-        self.imagesurface = self.cairo.ImageSurface(self.cairo.FORMAT_ARGB32, self.width, self.height);
+        #self.width, self.height = self.window.get_size()
+        self.imagesurface = self.cairo.ImageSurface(self.cairo.FORMAT_ARGB32, 640, 480)
         self.ctx = ctx = self.cairo.Context(self.imagesurface)
 
         ctx.set_source_rgb(1, 1, 1) # background color
@@ -210,7 +213,7 @@ class draw_cairo(object):
         #ctx.set_dash([20/4.0, 20/4.0], 0)
 
     def after_drawing(self):
-        dest_ctx = self.window.cairo_create()
+        dest_ctx = self.pizarra.canvas.context
         dest_ctx.set_source_surface(self.imagesurface)
         dest_ctx.paint()
 
