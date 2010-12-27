@@ -29,6 +29,7 @@ Pilas engine - Documentación
     texto.rst
     habilidades.rst
 
+    depurando.rst
     desarrolladores.rst
     preguntas_avanzadas.rst
 

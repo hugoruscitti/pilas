@@ -67,12 +67,21 @@ class ModoEjecucionNormal(ModoEjecucion):
 
  
 class ModoEjecucionPausado(ModoEjecucionNormal):
-    """Representa al mundo pero en pausa, donde se muestra la imagen sin moverse."""
+    """Representa al mundo pero en pausa, donde se muestra la imagen sin moverse.
+
+    En este modo puedes pulsar la tecla barra espaciadora para avanzar
+    un solo cuadro de animación o la tecla derecha para avanzar rápidamente
+    en la simulación.
+
+    """
 
     def __init__(self, m):
         ModoEjecucionNormal.__init__(self, m)
         self.icono = pilas.actores.Actor("icono_pausa.png")
         self.icono.z = -100
+        # Hace que no funcione la repreticion de tecla para espacio
+        # (asi se puede avanzar la simulacion paso a paso).
+        self.pulso_avanzar = False
 
     def actualizar_simuladores(self):
         pass
@@ -81,7 +90,26 @@ class ModoEjecucionPausado(ModoEjecucionNormal):
         pass
 
     def emitir_evento_actualizar(self):
-        pass
+        self.mundo.control.actualizar()
+
+        # Permite avanzar cuadros de animacion rápidamente
+        # pulsando la tecla derecha.
+        if self.mundo.control.derecha:
+            self.actualizar_un_paso()
+
+        # Permite avanzar de a un solo cuadro pulsando
+        # la barra espaciadora.
+        if self.mundo.control.boton and not self.pulso_avanzar:
+            self.actualizar_un_paso()
+            self.pulso_avanzar = True
+        else:
+            if not self.mundo.control.boton:
+                self.pulso_avanzar = False
+
+
+    def actualizar_un_paso(self):
+        ModoEjecucionNormal.actualizar_actores(self)
+        pilas.eventos.actualizar.send("bucle")
 
     def alternar_modo_depuracion(self):
         self.mundo.definir_modo_ejecucion(ModoEjecucionDepuracionPausado(self.mundo))
