@@ -25,7 +25,6 @@ pilas/red.py
 pilas/simbolos.py
 pilas/sonidos.py
 pilas/tareas.py
-pilas/test_mono.py
 pilas/utils.py
 pilas/ventana.py
 pilas.egg-info/PKG-INFO
@@ -38,6 +37,7 @@ pilas/actores/animacion.py
 pilas/actores/animado.py
 pilas/actores/banana.py
 pilas/actores/bomba.py
+pilas/actores/boton.py
 pilas/actores/caja.py
 pilas/actores/cursordisparo.py
 pilas/actores/disparo.py
@@ -89,6 +89,9 @@ pilas/data/sin_imagen.png
 pilas/data/smile.wav
 pilas/data/tick.wav
 pilas/data/tortuga.png
+pilas/data/boton/boton_normal.png
+pilas/data/boton/boton_over.png
+pilas/data/boton/boton_press.png
 pilas/data/fondos/espacio.png
 pilas/data/fondos/pasto.png
 pilas/data/fondos/selva.png
@@ -98,9 +101,7 @@ pilas/data/grillas/plataformas_10_10.png
 pilas/data/juegobase/ejecutar.py
 pilas/data/juegobase/data/logo.png
 pilas/data/marcianitos/martian.png
-pilas/data/marcianitos/martian.xcf
 pilas/data/marcianitos/martian_64_128.xcf
-pilas/data/marcianitos/martian_64_129.xcf
 pilas/dispatch/__init__.py
 pilas/dispatch/dispatcher.py
 pilas/dispatch/saferef.py
@@ -113,6 +114,16 @@ pilas/ejemplos/test.py
 pilas/ejemplos/data/colisiones.xcf
 pilas/ejemplos/data/fondo_piezas.png
 pilas/ejemplos/data/piezas.png
+pilas/elements/__init__.py
+pilas/elements/add_objects.py
+pilas/elements/callbacks.py
+pilas/elements/camera.py
+pilas/elements/drawing.py
+pilas/elements/elements.py
+pilas/elements/locals.py
+pilas/elements/menu.py
+pilas/elements/tools.py
+pilas/elements/tools_poly.py
 pilas/motores/__init__.py
 pilas/motores/motor_pygame.py
 pilas/motores/motor_sfml.py

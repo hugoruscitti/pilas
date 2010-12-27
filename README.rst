@@ -61,6 +61,23 @@ pySFML:
     http://www.sfml-dev.org/index.php
 
 
+pygame
+------
+
+Como biblioteca multimedia secundaria usamos
+pygame, que además nos permite seleccionarla
+en casos donde no hay soporte para OpenGL (como
+en los equipos OLPC por ejemplo).
+
+Elements y box2d
+----------------
+
+Para el manejo multimedia estamos usando
+la biblioteca Elements y box2d:
+
+- http://elements.linuxuser.at
+- http://code.google.com/p/pybox2d/
+
 GFXLib
 ------
 
