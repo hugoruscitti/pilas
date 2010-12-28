@@ -6,7 +6,6 @@ ejemplos/actores_simples.py
 ejemplos/arrastrable.py
 ejemplos/arrastrable_varios_z.py
 ejemplos/boton.py
-ejemplos/boton.pyc
 ejemplos/camara.py
 ejemplos/colisiones.py
 ejemplos/colores.py
@@ -71,7 +70,6 @@ pilas/red.py
 pilas/simbolos.py
 pilas/sonidos.py
 pilas/tareas.py
-pilas/test_mono.py
 pilas/utils.py
 pilas/ventana.py
 pilas.egg-info/PKG-INFO
@@ -148,9 +146,7 @@ pilas/data/grillas/plataformas_10_10.png
 pilas/data/juegobase/ejecutar.py
 pilas/data/juegobase/data/logo.png
 pilas/data/marcianitos/martian.png
-pilas/data/marcianitos/martian.xcf
 pilas/data/marcianitos/martian_64_128.xcf
-pilas/data/marcianitos/martian_64_129.xcf
 pilas/dispatch/__init__.py
 pilas/dispatch/dispatcher.py
 pilas/dispatch/saferef.py

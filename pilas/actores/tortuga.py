@@ -32,7 +32,7 @@ class Tortuga(Actor):
 
     def giraderecha(self, delta):
         self.hacer_luego(pilas.comportamientos.Girar(abs(delta), self.velocidad))
-
+    
     def giraizquierda(self, delta):
         self.hacer_luego(pilas.comportamientos.Girar(-abs(delta), self.velocidad))
 
@@ -47,6 +47,25 @@ class Tortuga(Actor):
 
     def pon_color(self, color):
         self.hacer_luego(pilas.comportamientos.CambiarColor(color))
+
+    def crear_poligono(self, lados = 4, escala = 100, sentido = -1):
+        "dibuja un poligono de n lados"
+        for i in range(lados):
+            rotacion = 360 / lados
+            self.avanzar(escala)
+            if sentido == 1:
+                self.giraderecha(rotacion)
+            else:
+                self.giraizquierda(rotacion)
+                
+    def crear_circulo(self, radio = 30, sentido = -1):
+        "dibuja un circulo"
+        for i in range(36):
+            self.avanzar(radio)
+            if sentido == 1:
+                self.giraderecha(10)
+            else:
+                self.giraizquierda(10)
 
     # Alias de metodos
     av = avanzar
