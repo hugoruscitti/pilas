@@ -163,3 +163,19 @@ class Pizarra(Actor):
         self.canvas.context.stroke()
         if self.actualiza_automaticamente:
             self.actualizar_imagen()
+
+    def dibujar_poligono(self, puntos):
+        (x, y) = puntos.pop(0)
+        (x, y) = pilas.utils.hacer_coordenada_mundo(x, y)
+        self.canvas.context.move_to(x, y)
+
+        for (x, y) in puntos:
+            (x, y) = pilas.utils.hacer_coordenada_mundo(x, y)
+            self.canvas.context.line_to(x, y)
+        
+        self.canvas.context.close_path()
+        self.canvas.context.stroke()
+
+        self.actualizar_imagen()
+
+

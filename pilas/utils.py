@@ -126,3 +126,6 @@ def interpolable(f):
             f(args[0], value, **kwargs)
 
     return inner
+
+def hacer_coordenada_mundo(x, y):
+    return (x + 320, 240 - y)

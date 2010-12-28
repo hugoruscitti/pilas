@@ -14,21 +14,23 @@ import pilas
 class Boton(Actor):
     """Representa un boton que reacciona al ser presionado."""
 	
-    def __init__(self, x=0, y=0):
+    def __init__(self, x=0, y=0, 
+                ruta_normal = 'boton/boton_normal.png',
+                ruta_press = 'boton/boton_press.png',
+                ruta_over = 'boton/boton_over.png',
+                ):
+
         self.funciones_normal = []
         self.funciones_press = []
         self.funciones_over = []
-        Actor.__init__(self, 'boton/boton_normal.png', x=x, y=y)
-        self._cargar_imagenes()
+        Actor.__init__(self, ruta_normal, x=x, y=y)
+        self._cargar_imagenes(ruta_normal, ruta_press, ruta_over)
 
         pilas.eventos.mueve_mouse.conectar(self.detection_move_mouse)
         pilas.eventos.click_de_mouse.conectar(self.detection_click_mouse)
         pilas.eventos.termina_click.conectar(self.detection_end_click_mouse)
 
-    def _cargar_imagenes(self):
-        ruta_normal = 'boton/boton_normal.png'
-        ruta_press = 'boton/boton_press.png'
-        ruta_over = 'boton/boton_over.png'
+    def _cargar_imagenes(self, ruta_normal, ruta_press, ruta_over):
         self.imagen_over = pilas.imagenes.cargar(ruta_over)
         self.imagen_normal = pilas.imagenes.cargar(ruta_normal)
         self.imagen_press = pilas.imagenes.cargar(ruta_press)
@@ -77,17 +79,13 @@ class Boton(Actor):
 
     def detection_move_mouse(self, evento):
         if self.colisiona_con_un_punto(evento.x, evento.y):
-            self.pintar_sobre()
             self.ejecutar_funciones_over()
         else:
             self.ejecutar_funciones_normal()
-            self.pintar_normal()
 
     def detection_click_mouse(self, click):
         if self.colisiona_con_un_punto(click.x, click.y):
             self.ejecutar_funciones_press()
-            self.pintar_presionado()
-            pilas.mundo.agregar_tarea(0.25, self.pintar_sobre)
 
     def detection_end_click_mouse(self, end_click):
         pass
