@@ -76,17 +76,17 @@ class Saltando(Comportamiento):
 
     def __init__(self):
         self.dy = 10
-    
+        
     def iniciar(self, receptor):
         self.receptor = receptor
         self.receptor.definir_cuadro(0)
-
+        self.origen = self.receptor.y
     def actualizar(self):
         self.receptor.y += self.dy
         self.dy -= 0.3
 
-        if self.receptor.y < 0:
-            self.receptor.y = 0
+        if self.receptor.y < self.origen:
+            self.receptor.y = self.origen
             self.receptor.hacer(Esperando())
 
         if pilas.mundo.control.izquierda:
