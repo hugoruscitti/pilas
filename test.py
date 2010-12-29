@@ -9,6 +9,11 @@ b = pilas.actores.Pizarra()
 
 b1 = mundo.add.ball((101, 101), 20)
 b1 = mundo.add.ball((120, 0), 20)
+v2 = mundo.add.triangle((120, 0), 20)
+v3 = mundo.add.rect((120, 0), 20, 30)
+v4 = mundo.add.wall((0, 200), (400, 300))
+
+
 mundo.renderer.set_pizarra(b)
 mundo.add.ground()
 
