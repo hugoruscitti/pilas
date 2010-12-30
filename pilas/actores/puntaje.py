@@ -24,3 +24,7 @@ class Puntaje(Texto):
 
     def aumentar(self, cantidad=1):
         self.definir(int(self.texto) + int(cantidad))
+        
+    def obtener(self):
+        return int(self.texto)
+
