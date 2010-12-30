@@ -29,6 +29,7 @@ from texto import Texto
 from moneda import Moneda
 from pizarra import Pizarra
 from pelota import Pelota
+from puntaje import Puntaje
 from estrella import Estrella
 from caja import Caja
 from nave import Nave
