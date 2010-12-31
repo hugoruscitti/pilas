@@ -69,7 +69,6 @@ class draw_pygame(object):
 
             Return: Class draw_pygame()
         """
-        print "* Pygame selected as renderer"        
         from pygame import draw
         from pygame import Rect
         
@@ -166,7 +165,6 @@ class draw_cairo(object):
             
             Return: Class draw_cairo()
         """
-        print "* Cairo selected as renderer"
         import cairo
         self.cairo = cairo
         self.set_drawing_method(drawMethod)
@@ -325,7 +323,6 @@ class draw_opengl_pyglet(object):
               surface .... not used with pyglet
               lineWidth .. 
         """
-        print "* OpenGL_Pyglet selected as renderer"
 
         from pyglet import gl
         self.gl = gl

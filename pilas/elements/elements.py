@@ -256,7 +256,7 @@ class Elements:
         y = pos[1] / self.camera.scale_factor
         
         x, y = self.translate_coord((round(x), round(y)))
-        return (x+dx, y+dy) 
+        return (x+dx, y+dy)
         
     def to_screen(self, pos):
         """ Transfers a coordinate from the world to the screen coordinate system (pixels)
@@ -267,6 +267,8 @@ class Elements:
         y = pos[1] - dy
         
         sx, sy = self.translate_coord((x, y))
+        sy -= 240
+        sx += 320
         return (sx * self.camera.scale_factor, sy * self.camera.scale_factor)
                          
     def meter_to_screen(self, i):

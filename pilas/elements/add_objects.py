@@ -45,9 +45,9 @@ class Add:
         
             Return: box2d.b2Body
         """
-        return self._rect((-10.0, 0.0), 50.0, 0.1, dynamic=False)
+        return self._rect((-10.0, -2.4), 50.0, 0.1, dynamic=False)
             
-    def triangle(self, pos, sidelength, dynamic=True, density=1.0, restitution=0.16, friction=0.5, screenCoord=True):
+    def triangle(self, pos, sidelength, dynamic=True, density=1.0, restitution=0.16, friction=0.5, screenCoord=False):
         """ Add a triangle | pos & a in the current input unit system (meters or pixels)
         
             Parameters:
@@ -60,7 +60,7 @@ class Add:
         vertices = [(-sidelength, 0.0), (sidelength, 0.0), (0.0, 2*sidelength)]
         return self.poly(pos, vertices, dynamic, density, restitution, friction, screenCoord)
 
-    def ball(self, pos, radius, dynamic=True, density=1.0, restitution=0.16, friction=0.5, screenCoord=True):
+    def ball(self, pos, radius, dynamic=True, density=1.0, restitution=0.16, friction=0.5, screenCoord=False):
         """ Add a dynamic ball at pos after correcting the positions and legths to the internal
             meter system if neccessary (if INPUT_PIXELS), then call self._add_ball(...)
             
@@ -114,7 +114,7 @@ class Add:
         
         return body    
 
-    def rect(self, pos, width, height, angle=0, dynamic=True, density=1.0, restitution=0.16, friction=0.5, screenCoord=True):
+    def rect(self, pos, width, height, angle=0, dynamic=True, density=1.0, restitution=0.16, friction=0.5, screenCoord=False):
         """ Add a dynamic rectangle with input unit according to self.input (INPUT_PIXELS or INPUT_METERS)
             Correcting the positions to meters and calling self._add_rect()
 
@@ -144,7 +144,7 @@ class Add:
         return self._rect((x,y), width, height, angle, dynamic, density, restitution, friction)
 
 
-    def wall(self, pos1, pos2, width=5, density=1.0, restitution=0.16, friction=0.5, screenCoord=True):
+    def wall(self, pos1, pos2, width=5, density=1.0, restitution=0.16, friction=0.5, screenCoord=False):
         """ Add a static rectangle between two arbitrary points with input unit according to self.input 
             (INPUT_PIXELS or INPUT_METERS) Correcting the positions to meters and calling self._add_rect()
 
@@ -213,7 +213,7 @@ class Add:
         
         return body
 
-    def poly(self, pos, vertices, dynamic=True, density=1.0, restitution=0.16, friction=0.5, screenCoord=True):
+    def poly(self, pos, vertices, dynamic=True, density=1.0, restitution=0.16, friction=0.5, screenCoord=False):
         """ Add a dynamic polygon, which has the vertices arranged around the poly's center at pos
             Correcting the positions to meters if INPUT_PIXELS, and calling self._add_poly()
 
@@ -274,7 +274,7 @@ class Add:
                 
         return body
    
-    def concavePoly(self, vertices, dynamic=True, density=1.0, restitution=0.16, friction=0.5, screenCoord=True):
+    def concavePoly(self, vertices, dynamic=True, density=1.0, restitution=0.16, friction=0.5, screenCoord=False):
         # 1. Step: Reduce        
         # Detect if the polygon is closed or open
         if vertices[0] != vertices[-1]:        

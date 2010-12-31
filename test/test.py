@@ -11,7 +11,8 @@ b1 = mundo.add.ball((0, 0), 20)
 b1 = mundo.add.ball((120, 0), 20)
 v2 = mundo.add.triangle((120, 0), 20)
 v3 = mundo.add.rect((120, 0), 20, 30)
-v4 = mundo.add.wall((0, 200), (400, 300))
+
+v4 = mundo.add.wall((-300, 0), (180, -100))
 
 
 class estado_boton:
@@ -55,13 +56,13 @@ def agregar_elemeto(evento):
         estado_boton.presionado = False
     else:
         if elementos.figura == 0:
-            b1 = mundo.add.ball((evento.x + (640 / 2), (evento.y * -1) + (480 / 2)), 20)
+            b1 = mundo.add.ball((evento.x, evento.y), 20)
 
         elif elementos.figura == 1:
-            v2 = mundo.add.triangle((evento.x + (640 / 2), (evento.y * -1) + (480 / 2)), 20)
+            v2 = mundo.add.triangle((evento.x, evento.y), 20)
 
         elif elementos.figura == 2:
-            v3 = mundo.add.rect((evento.x + (640 / 2), (evento.y * -1) + (480 / 2)), 20, 30)
+            v3 = mundo.add.rect((evento.x, evento.y), 20, 30)
 
 
 pilas.eventos.click_de_mouse.conectar(agregar_elemeto)
@@ -80,7 +81,6 @@ class Actor(pilas.actores.Actor):
         mundo.update()
         mundo.draw()
         b.actualizar_imagen()
-        pass
 
 
 
