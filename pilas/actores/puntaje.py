@@ -20,3 +20,6 @@ class Puntaje(Texto):
     def definir(self, puntaje_variable = '0'):
         self.puntaje_texto = str(puntaje_variable)
         self.texto = self.puntaje_texto
+
+    def aumentar(self, cantidad=1):
+        self.definir(int(self.texto) + int(cantidad))
