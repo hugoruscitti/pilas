@@ -98,6 +98,7 @@ class Juego(pilas.escenas.Escena):
         self.crear_nave()
         self.crear_contador_de_vidas()
         self.cambiar_estado(Iniciando(self, 1))
+        self.puntaje = pilas.actores.Puntaje(x=280, y=220, color=pilas.colores.blanco)
 
     def cambiar_estado(self, estado):
         self.estado = estado
@@ -105,8 +106,11 @@ class Juego(pilas.escenas.Escena):
     def crear_nave(self):
         nave = pilas.actores.Nave()
         nave.aprender(pilas.habilidades.SeMantieneEnPantalla)
-        nave.definir_enemigos(self.piedras)
+        nave.definir_enemigos(self.piedras, self.cuando_explota_asterioide)
         pilas.colisiones.agregar(nave, self.piedras, self.explotar_y_terminar)
+
+    def cuando_explota_asterioide(self):
+        self.puntaje.aumentar(1)
 
     def crear_contador_de_vidas(self):
         import contador_de_vidas

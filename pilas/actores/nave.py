@@ -62,11 +62,18 @@ class Nave(Animacion):
         self.x += dx
         self.y += dy
 
-    def definir_enemigos(self, grupo):
-        "hace que una nave tenga como enemigos a todos los actores del grupo."
+    def definir_enemigos(self, grupo, cuando_elimina_enemigo=None):
+        """hace que una nave tenga como enemigos a todos los actores del grupo.
+
+        El argumento cuando_elimina_enemigo tiene que ser una funcion que
+        se ejecutara cuando se produzca la colision."""
+        self.cuando_elimina_enemigo = cuando_elimina_enemigo
         pilas.colisiones.agregar(self.disparos, grupo, self.hacer_explotar_al_enemigo)
 
     def hacer_explotar_al_enemigo(self, mi_disparo, el_enemigo):
         "Es el método que se invoca cuando se produce una colisión 'tiro <-> enemigo'"
         mi_disparo.eliminar()
         el_enemigo.eliminar()
+
+        if self.cuando_elimina_enemigo:
+            self.cuando_elimina_enemigo()
