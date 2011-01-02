@@ -26,6 +26,7 @@ from bomba import Bomba
 from pingu import Pingu
 from banana import Banana
 from texto import Texto
+from temporizador import Temporizador
 from moneda import Moneda
 from pizarra import Pizarra
 from pelota import Pelota
