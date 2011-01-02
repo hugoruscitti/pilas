@@ -23,6 +23,9 @@ class Boton(Actor):
         self.funciones_normal = []
         self.funciones_press = []
         self.funciones_over = []
+        
+        self.estado = True
+        
         Actor.__init__(self, ruta_normal, x=x, y=y)
         self._cargar_imagenes(ruta_normal, ruta_press, ruta_over)
 
@@ -56,16 +59,26 @@ class Boton(Actor):
         self.funciones_over.remove(funcion) 
 
     def ejecutar_funciones_normal(self):
-        for i in self.funciones_normal:
-            i()
+        if self.estado == True:
+            for i in self.funciones_normal:
+                i()
     
     def ejecutar_funciones_press(self):
-        for i in self.funciones_press:
-            i()
+        if self.estado == True:
+            for i in self.funciones_press:
+                i()
     
     def ejecutar_funciones_over(self):
-        for i in self.funciones_over:
-            i()
+        if self.estado == True:
+            for i in self.funciones_over:
+                i()
+
+    # funciones para inactivar o activar las funciones conectadas
+    def activar(self):
+        self.estado = True
+    
+    def desactivar(self):
+        self.estado = False
 
     # funciones que cambian la imagen del boton
     def pintar_normal(self):
