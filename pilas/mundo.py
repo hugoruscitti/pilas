@@ -32,8 +32,10 @@ class Mundo:
     pulsa F12 este modo cambia por "ModoEjecucionNormal".
     """
 
-    def __init__(self, ancho, alto, titulo):
+    def __init__(self, ancho, alto, titulo, fps=60, economico=False):
         self.ventana = ventana.iniciar(ancho, alto, titulo)
+        self.fps = fps
+        self.economico = economico
         ventana.ancho = ancho
         ventana.alto = alto
 
@@ -67,7 +69,7 @@ class Mundo:
     def ejecutar_bucle_principal(self, ignorar_errores=False):
         "Mantiene en funcionamiento el motor completo."
 
-        fps = pilas.fps.FPS(60)
+        fps = pilas.fps.FPS(self.fps, self.economico)
 
         while not self.salir:
 

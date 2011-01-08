@@ -48,7 +48,7 @@ import elements
 if utils.esta_en_sesion_interactiva():
     utils.cargar_autocompletado()
 
-def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='detectar'):
+def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='detectar', rendimiento=60, economico=False):
     """Inicia el motor y abre la ventana principal del videojuego.
     
     Esta funcion se ejecuta al principio de cualquier juego, porque
@@ -123,32 +123,32 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
     # tiene el contexto opengl.
     if modo == 'detectar':
         if utils.esta_en_sesion_interactiva():
-            iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]")
+            iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]", rendimiento, economico)
         else:
-            mundo = pilas.mundo.Mundo(ancho, alto, titulo)
+            mundo = pilas.mundo.Mundo(ancho, alto, titulo, rendimiento, economico)
             escenas.Normal()
     elif modo == 'interactivo':
-        iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]")
+        iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]", rendimiento, economico)
     else:
         raise Exception("Lo siento, el modo indicado es invalido, solo se admite 'interactivo' y 'detectar'")
 
 
-def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo):
+def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo, fps, economico):
     "Ejecuta el bucle de pilas en segundo plano."
     import threading
     global gb
 
-    bg = threading.Thread(target=iniciar_y_ejecutar, args=(ancho, alto, titulo))
+    bg = threading.Thread(target=iniciar_y_ejecutar, args=(ancho, alto, titulo, fps, economico))
     bg.start()
 
 def reiniciar():
     actores.utils.eliminar_a_todos()
 
-def iniciar_y_ejecutar(ancho, alto, titulo, ignorar_errores=False):
+def iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, ignorar_errores=False):
     from mundo import Mundo
     global mundo
 
-    mundo = Mundo(ancho, alto, titulo)
+    mundo = Mundo(ancho, alto, titulo, fps, economico)
     escenas.Normal()
     ejecutar(ignorar_errores)
 
