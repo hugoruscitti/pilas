@@ -26,6 +26,12 @@ la siguiente dirección:
 
     - http://groups.google.com/group/pilas-engine
 
+Dependencias
+============
+
+- pygame
+- pysfml
+- python
 
 
 Licencia

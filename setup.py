@@ -16,7 +16,6 @@ setup(
             ],
         packages=['pilas', 'pilas.elements', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos', 'pilas.motores'],
         url='http://www.pilas-engine.com.ar',
-
         include_package_data = True,
         package_data = {
             'images': ['pilas/data/*', 'pilas/ejemplos/data/*', 'pilas/data/fondos/*',
