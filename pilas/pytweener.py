@@ -14,7 +14,7 @@ class Tweener:
         This class manages all active tweens, and provides a factory for
         creating and spawning tween motions."""
         self.currentTweens = []
-        self.defaultTweenType = tween or Easing.Cubic.easeInOut
+        self.defaultTweenType = tween or Easing.Linear.easeNone
         self.defaultDuration = duration or 1.0
  
     def hasTweens(self):

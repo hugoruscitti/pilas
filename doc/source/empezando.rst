@@ -7,14 +7,23 @@ comenzar a realizar nuestras primeras pruebas.
 Para empezar, pilas se puede usar directamente
 desde un intérprete iteractivo de python.
 
+Mi recomendación personal es que utilices una
+herramienta como IDLE, que te permite escribír
+código de python y autocompleta. Aunque si
+quieres puedes usar el intérprete estándar
+de python, abriendo un terminal de texto y
+ejecutando el comando ``python``.
+
 Iniciando la biblioteca
 -----------------------
 
-Ingresa en un terminal de tu sistema, inicia
-el comando ``python`` y luego
-ingresa la sentencia::
+Una vez dentro del intérprete, tienes
+que escribir estas dos lineas de código:
+
+.. code-block:: python
 
     import pilas
+    pilas.iniciar()
 
 En tu pantalla tiene que aparecer una ventana
 de color gris:
@@ -25,6 +34,12 @@ de color gris:
 Esa pantalla será la que utilizaremos para interactuar
 con el motor. Y mas adelante será la única pantalla
 que verán los usuarios de nuestros juegos.
+
+A partir de ahora comenzaremos a escribir algunos
+ejemplos. Ten en cuenta que no es necesario que
+escribas todo el código de los ejemplos, el intérprete de python
+te permite autocompletar sentencias usando la tecla ``Tab``. 
+
 
 Creando al primer personaje
 ---------------------------
@@ -75,6 +90,7 @@ En cualquiera de los dos casos el personaje
 cambiará su aspecto y emitirá un sonido.
 
 .. image:: images/mono/smile.png
+    :width: 5cm
 
 
 Cosas en común para los actores
@@ -93,7 +109,13 @@ Veamos algunas de estas características:
     mono.x = 100
     mono.y = 100
 
+
+Ten en cuenta que ``x`` e ``y`` son las coordenadas de posición
+en el escenario. Por lo tanto el punto (0, 0) es el centro
+de la ventana. Y ``x`` aumenta hacia la derecha e ``y`` hacia arriba.
+
 .. image:: images/mono/normal.png
+    :width: 5cm
 
 - Todo actor tiene un atributo para indicar su tamaño en pantalla, el atributo ``escala`` (que originalmente vale 1):
 
@@ -110,6 +132,7 @@ Veamos algunas de estas características:
     mono.rotacion = 40
 
 .. image:: images/mono/rotation40.png
+    :width: 5cm
 
 o bien:
 
@@ -118,6 +141,15 @@ o bien:
     mono.rotacion = 80
 
 .. image:: images/mono/rotation80.png
+    :width: 5cm
+
+
+incluso puedes hacer un pequeña animación de rotación
+completa con el siguiente código:
+
+.. code-block:: python
+
+    mono.rotacion = range(0, 360)
 
 
 Pidiendo ayuda
@@ -133,6 +165,15 @@ ejecutar una sentencia cómo:
 
 y aparecerán en pantalla todos los instructivos de
 la funcionalidad del actor.
+
+Incluso puedes usar la función ``pilas.ver`` para conocer
+el código fuente de cualquier cosa de pilas. Por ejemplo
+podemos el código completo del mono ejecutando
+la sentencia:
+
+.. code-block:: python
+
+    pilas.ver(mono)
 
 
 Eliminando a un actor
@@ -153,15 +194,15 @@ Hemos visto los pasos principales para gestionar
 actores. Ten en cuenta que el módulo :mod:``pilas.actores`` es
 donde se guardarán todos los actores.
 
-Un buen ejercicio es mirar ahí, buscar nuevos actores y
-comenzar a utilizarlos.
-
-Recuenda que el interprete de python te permite autocompletar
-sentencias usando la tecla ``Tab``. Además tienes
-la función ``help`` para solicitar ayuda. Por ejemplo:
+Un buen ejercicio es ponerse a investigar el módulo
+actores. Hay muchos actores, estos son algunos ejemplos
+de código para probar:
 
 .. code-block:: python
 
-    help(pilas.actores)
+    b = pilas.actores.Bomba()
+    b.explotar()
 
-Es todo por ahora, suerte y a divertirse!
+    p = pilas.actores.Pingu()    # se mueve con el teclado.
+
+Es todo por ahora, a divertirse!

@@ -6,8 +6,11 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from PySFML import sf
+import pilas
 
-def iniciar(ancho=640, alto=480, titulo="Pilas"):
-    return sf.RenderWindow(sf.VideoMode(ancho, alto), titulo)
+modo_depuracion = False
+eje_coordenadas = None
 
+def iniciar(ancho, alto, titulo):
+    ventana = pilas.motor.crear_ventana(ancho, alto, titulo)
+    return ventana

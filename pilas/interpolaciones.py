@@ -17,13 +17,14 @@ class Interpolacion:
     Todo objeto de interpolaciones se puede asignar directamente a
     una propiedad de un actor. Por ejemplo:
 
-        actor.rotation = pilas.interpolations.Linear(400)
+        actor.rotation = pilas.interpolations.Lineal(400)
 
     note que hay un atajo para usar estos objetos, es mejor
     utilizar directamente una sentencias como la que sigue::
 
         actor.rotation = pilas.interpolate(360)
     """
+    pass
 
 
 class Lineal(Interpolacion):
@@ -44,7 +45,6 @@ class Lineal(Interpolacion):
         "Retorna la interpolación inversa a la original."
         new_values = list(self.values)
         new_values.reverse()
-        new_values = tuple(new_values)
         return Lineal(new_values, self.duration, self.delay)
 
     def apply(self, target, function):
@@ -77,7 +77,7 @@ class Lineal(Interpolacion):
         # Le indica al objeto que tiene que hacer para cumplir
         # con cada paso de la interpolacion.
         for index, value in enumerate(self.values):
-            pilas.tweener.addTweenNoArgs(target, function=function, 
+            pilas.mundo.tweener.addTweenNoArgs(target, function=function, 
                     initial_value=fist_value,
                     value=value, 
                     tweenDelay=self.delay * 1000.0 + (index * step),

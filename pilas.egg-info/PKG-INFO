@@ -1,10 +1,19 @@
 Metadata-Version: 1.0
 Name: pilas
-Version: 0.1
+Version: 0.38
 Summary: A simple to use video game framework.
-Home-page: UNKNOWN
+Home-page: http://www.pilas-engine.com.ar
 Author: Hugo Ruscitti
 Author-email: hugoruscitti@gmail.com
 License: UNKNOWN
 Description: UNKNOWN
 Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+Classifier: Natural Language :: Spanish
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Education
+Classifier: Topic :: Software Development :: Libraries

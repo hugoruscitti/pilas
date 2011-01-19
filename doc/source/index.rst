@@ -5,19 +5,34 @@ Pilas engine - Documentación
     :maxdepth: 2
     
     presentacion.rst
-    install.rst
+    instalar.rst
 
     empezando.rst
-    interpolation.rst
-    image.rst
-    sound.rst
+    interpolacion.rst
+    controlando_la_pantalla.rst
+    imagen.rst
+    sonidos.rst
+    comportamientos.rst
+    grupos.rst
+    fisica.rst
+    controles.rst
+    escenas.rst
+    ejemplos.rst
+    menu.rst
+    dibujando_en_pantalla.rst
+    mapas_y_plataformas.rst
 
-    signals.rst
-    text.rst
-    components.rst
+    colisiones.rst
+    motores.rst
 
-    developers.rst
+    eventos.rst
+    texto.rst
+    habilidades.rst
 
-    pilas
+    depurando.rst
+    desarrolladores.rst
+    preguntas_avanzadas.rst
+
+    pilas.rst
 
 

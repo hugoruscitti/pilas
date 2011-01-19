@@ -7,9 +7,8 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
-from PySFML import sf
-
 import os
+
 
 def cargar(ruta):
     """Carga un sonido para reproducir, donde el argumento ``ruta`` indica cual es el archivo.
@@ -21,9 +20,9 @@ def cargar(ruta):
         risa = pilas.sonidos.cargar("risa.ogg")
 
     En caso de éxito retorna el objeto Sound, que se puede
-    reproducir usando el método ``Play()``, por ejemplo::
+    reproducir usando el método ``reproducir()``, por ejemplo::
 
-        risa.Play()
+        risa.reproducir()
 
     El directorio de búsqueda del sonido sigue el siguiente orden:
 
@@ -33,8 +32,5 @@ def cargar(ruta):
 
     En caso de error genera una excepción de tipo IOError.
     """
-    path = pilas.utils.obtener_ruta_al_recurso(ruta)
-
-    buff = sf.SoundBuffer()
-    buff.LoadFromFile(path)
-    return sf.Sound(buff)
+    ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
+    return pilas.motor.cargar_sonido(ruta)

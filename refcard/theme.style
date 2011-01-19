@@ -1,0 +1,66 @@
+{
+    "pageSetup" : {
+        "size": null,
+        "width": "29.70cm",
+        "height": "21.00cm",
+
+        "margin-top": "1cm", 
+        "margin-bottom": "1cm", 
+        "margin-left": "1cm", 
+        "margin-right": "1cm", 
+        "spacing-header": "5mm", 
+        "spacing-footer": "5mm", 
+        "margin-gutter": "0cm",
+
+        "firstTemplate": "Columns"
+    },
+    "fontsAlias" : {
+        "stdFont": "Courrier",
+        "stdBold": "Helvetica-Bold",
+        "stdItalic": "Helvetica-Oblique",
+        "stdBoldItalic": "Helvetica-BoldOblique",
+        "stdMono": "Courier-Bold",
+        "stdMonoItalic": "Courier-Oblique",
+        "stdMonoBold": "Courier-Bold",
+        "stdMonoBoldItalic": "Courier-BoldOblique",
+        "stdSerif": "Times-Roman"
+    },
+
+  "pageTemplates" : {
+    "Columns": {
+        "frames": [
+            ["0cm", "0cm",  "9cm", "100%"],
+            ["9cm", "0cm",  "9cm", "100%"],
+            ["18cm", "0cm", "9cm", "100%"]
+        ]
+    }
+  }
+,
+
+
+
+    "styles" : [
+        ["normal" , {
+        "fontSize": 8
+        }],
+
+
+        ["code" , {
+      "parent": "literal",
+      "fontSize": 8,
+      "leftIndent": 0,
+      "spaceBefore": 8,
+      "spaceAfter": 8,
+      "backColor": "beige",
+      "borderColor": "gray",
+      "backColor": "white",
+      "borderWidth": 0.5,
+      "borderRadius": 4,
+      "borderPadding": 6
+        }]
+    ]
+
+
+
+}
+

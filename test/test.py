@@ -1,104 +1,89 @@
-# -*- encoding: utf-8 -*-
-import random
-import unittest
 import pilas
+import pilas.elements as elements
 
-class TestSequenceFunctions(unittest.TestCase):
+pilas.iniciar()
+size = (640, 480)
+mundo = elements.Elements(screen_size=size, renderer="cairo")
 
-    def setUp(self):
-        pass
+b = pilas.actores.Pizarra()
 
-    def test_window_creation(self):
-        self.assertFalse(pilas.app is None)
+b1 = mundo.add.ball((0, 0), 20)
+b1 = mundo.add.ball((120, 0), 20)
+v2 = mundo.add.triangle((120, 0), 20)
+v3 = mundo.add.rect((120, 0), 20, 30)
 
-    def testVersion(self):
-        pass
-
-    def test_monkey_attributes(self):
-        mono = pilas.actores.Mono()
-
-        # Verifica que las rotaciones alteren el estado del personaje.
-        mono.x = 100
-        mono.y = 100
-
-        self.assertEqual(mono.x, 100)
-        self.assertEqual(mono.y, 100)
-
-        # Se asegura que inicialmente no tenga rotacion asignada.
-        self.assertEqual(mono.rotacion, 0)
-
-        # Verifica que las rotaciones alteren el estado del personaje.
-        mono.rotacion = 180
-        self.assertEqual(mono.rotacion, 180)
-
-        mono.rotacion = 20
-        self.assertEqual(mono.rotacion, 20)
-
-        mono.rotacion = 400
-        self.assertEqual(mono.rotacion, (400 % 360))
-
-        # Analiza que el personaje se ha agregado a la lista de actores.
-        self.assertTrue(mono in pilas.actores.todos)
-
-        # Utiliza los atributos de escala.
-        self.assertEqual(mono.escala, 1)
-        mono.escala = 5
-        self.assertEqual(mono.escala, 5)
-
-        # Ejecuta mas metodos del mono.
-        mono.sonrie()
-        mono.grita()
-
-        # Verifica que el personaje se pueda matar.
-        mono.eliminar()
-        self.assertFalse(mono in pilas.actores.todos)
-
-    def testImage(self):
-        original_image = pilas.imagen.cargar('ceferino.png')
-
-        actor = pilas.actores.Actor(original_image)
-        actors_image = actor.GetImage()
-
-        self.assertEqual(original_image, actors_image)
-
-    def testScheduler(self):
-
-        def none():
-            pass
-
-        def none_3(a, b, c):
-            pass
-
-        pilas.agregar_tarea(2, none)
-        pilas.agregar_tarea(2, none_3, (1, 2, 3))
-
-    def testInterpolation(self):
-        a = pilas.interpolar(0, 100)
-        self.assertEqual(a.values, (0, 100))
-
-        # Invierte la interpolacion.
-        a = -a
-        self.assertEqual(a.values, (100, 0))
-
-    def testText(self):
-        texto = pilas.actores.Texto("Hola")
-        self.assertEqual(texto.texto, "Hola")
-
-        # verificando que el tamaño inicial es de 30 y el color negro
-        self.assertEqual(texto.magnitud, 30)
-        self.assertEqual(texto.color, (0, 0, 0, 255))
-
-    def testComponents(self):
-        texto = pilas.actores.Texto("Hola")
-
-        # Vincula la clase Text con un componente.
-        component = pilas.habilidades.AumentarConRueda 
-        texto.aprender(component)
-        
-        # Se asegura que el componente pasa a ser de la superclase.
-        superclases = texto.__class__.__bases__
-        self.assertTrue(component in superclases)
+v4 = mundo.add.wall((-300, 0), (180, -100))
 
 
-if __name__ == '__main__':
-    unittest.main()
+class estado_boton:
+    presionado = False
+
+class elementos:
+    figura = 0
+
+boton = pilas.actores.Boton(250, 220, 'data/circulo_normal.png', 'data/circulo_press.png')
+boton1 = pilas.actores.Boton(250, 190, 'data/triangulo_normal.png', 'data/triangulo_press.png')
+boton2 = pilas.actores.Boton(250, 160, 'data/rectangulo_normal.png', 'data/rectangulo_press.png')
+
+def press_boton():
+    estado_boton.presionado = True
+    boton.pintar_presionado()
+    elementos.figura = 0
+
+def press_boton1():
+    estado_boton.presionado = True
+    boton1.pintar_presionado()
+    elementos.figura = 1
+
+def press_boton2():
+    estado_boton.presionado = True
+    boton2.pintar_presionado()
+    elementos.figura = 2
+
+
+#conectamos funciones boton 
+boton.conectar_presionado(press_boton)
+boton1.conectar_presionado(press_boton1)
+boton2.conectar_presionado(press_boton2)
+
+boton.conectar_normal(boton.pintar_normal)
+boton1.conectar_normal(boton1.pintar_normal)
+boton2.conectar_normal(boton2.pintar_normal)
+
+
+def agregar_elemeto(evento):    
+    if estado_boton.presionado:
+        estado_boton.presionado = False
+    else:
+        if elementos.figura == 0:
+            b1 = mundo.add.ball((evento.x, evento.y), 20)
+
+        elif elementos.figura == 1:
+            v2 = mundo.add.triangle((evento.x, evento.y), 20)
+
+        elif elementos.figura == 2:
+            v3 = mundo.add.rect((evento.x, evento.y), 20, 30)
+
+
+pilas.eventos.click_de_mouse.conectar(agregar_elemeto)
+
+
+
+mundo.renderer.set_pizarra(b)
+mundo.add.ground()
+
+class Actor(pilas.actores.Actor):
+
+    def __init__(self):
+        pilas.actores.Actor.__init__(self, 'invisible.png')
+
+    def actualizar(self):
+        mundo.update()
+        mundo.draw()
+        b.actualizar_imagen()
+
+
+
+a = Actor()
+
+pilas.ejecutar()
