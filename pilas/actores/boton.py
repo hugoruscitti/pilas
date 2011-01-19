@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
-# Pilas engine - A video game framework.
+# For Pilas engine - A video game framework.
 #
-# Copyright 2010 - Hugo Ruscitti 
+# Copyright 2011 - Pablo Garrido
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
 #
-# Boton Programmed by Pablo Garrido
+
 
 from pilas.actores import Actor
 import pilas
@@ -20,6 +20,10 @@ class Boton(Actor):
                 ruta_over = 'boton/boton_over.png',
                 ):
 
+        self.ruta_normal = ruta_normal
+        self.ruta_press = ruta_press
+        self.ruta_over = ruta_over
+        
         self.funciones_normal = []
         self.funciones_press = []
         self.funciones_over = []
@@ -27,51 +31,71 @@ class Boton(Actor):
         self.estado = True
         
         Actor.__init__(self, ruta_normal, x=x, y=y)
-        self._cargar_imagenes(ruta_normal, ruta_press, ruta_over)
+        self._cargar_imagenes(self.ruta_normal, self.ruta_press, self.ruta_over)
 
         pilas.eventos.mueve_mouse.conectar(self.detection_move_mouse)
         pilas.eventos.click_de_mouse.conectar(self.detection_click_mouse)
         pilas.eventos.termina_click.conectar(self.detection_end_click_mouse)
 
     def _cargar_imagenes(self, ruta_normal, ruta_press, ruta_over):
+        self.ruta_normal = ruta_normal
+        self.ruta_press = ruta_press
+        self.ruta_over = ruta_over
+
         self.imagen_over = pilas.imagenes.cargar(ruta_over)
         self.imagen_normal = pilas.imagenes.cargar(ruta_normal)
         self.imagen_press = pilas.imagenes.cargar(ruta_press)
     
 
     #funciones que conectan evento(press, over, normal) a funciones 
-    def conectar_normal(self, funcion):
-        self.funciones_normal.append(funcion)
+    def conectar_normal(self, funcion, arg = "null"):
+        t = (funcion, arg)
+        self.funciones_normal.append(t)
     
-    def conectar_presionado(self, funcion):
-        self.funciones_press.append(funcion)
+    def conectar_presionado(self, funcion, arg = "null"):
+        t = (funcion, arg)
+        self.funciones_press.append(t)
     
-    def conectar_sobre(self, funcion):
-        self.funciones_over.append(funcion)    
+    def conectar_sobre(self, funcion, arg = "null"):
+        t = (funcion, arg)
+        self.funciones_over.append(t)    
     
-    def desconectar_normal(self, funcion):
-        self.funciones_normal.remove(funcion)
+    def desconectar_normal(self, funcion, arg = "null"):
+        t = (funcion, arg)
+        self.funciones_normal.remove(t)
     
-    def desconectar_presionado(self, funcion):
-        self.funciones_press.remove(funcion)
+    def desconectar_presionado(self, funcion, arg = "null"):
+        t = (funcion, arg)
+        self.funciones_press.remove(t)
     
-    def desconectar_sobre(self, funcion):
-        self.funciones_over.remove(funcion) 
+    def desconectar_sobre(self, funcion, arg = "null"):
+        t = (funcion, arg)
+        self.funciones_over.remove(t) 
 
     def ejecutar_funciones_normal(self):
         if self.estado == True:
             for i in self.funciones_normal:
-                i()
+                if i[1] == "null":
+                    i[0]()
+                else:
+                    i[0](i[1])
     
     def ejecutar_funciones_press(self):
         if self.estado == True:
             for i in self.funciones_press:
-                i()
+                if i[1] == "null":
+                    i[0]()
+                else:
+                    i[0](i[1])
+					
     
     def ejecutar_funciones_over(self):
         if self.estado == True:
             for i in self.funciones_over:
-                i()
+                if i[1] == "null":
+                    i[0]()
+                else:
+                    i[0](i[1])
 
     # funciones para inactivar o activar las funciones conectadas
     def activar(self):
@@ -84,7 +108,12 @@ class Boton(Actor):
     def pintar_normal(self):
         self.definir_imagen(self.imagen_normal)
 
-    def pintar_presionado(self):
+    def pintar_presionado(self, ruta_press = "null"):
+        if ruta_press == "null":
+            self.imagen_press = pilas.imagenes.cargar(self.ruta_press)
+        else:
+		    self.imagen_press = pilas.imagenes.cargar(ruta_press)
+
         self.definir_imagen(self.imagen_press)
 
     def pintar_sobre(self):
