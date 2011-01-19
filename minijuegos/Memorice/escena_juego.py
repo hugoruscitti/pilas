@@ -1,405 +1,326 @@
 # -*- encoding: utf-8 -*-
 # For pilas engine - a video game framework.
 #
-# copyright 2010 - Pablo Garrido
+# copyright 2011 - Pablo Garrido
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
 
 import pilas
-from fichas import clase_fichas
+from random import random
 
+class puntuacion:
+    p = 0
 
 class Juego(pilas.escenas.Escena):
     "Escena que Controla el juego"
 
-    def __init__(self):        
-        self.iniciar_juego()
+    def __init__(self, nivel):
+        puntuacion.p = 0 
+        self.iniciar_juego(nivel)
         
-    def iniciar_juego(self):
+        
+    
+    def iniciar_juego(self, nivel):
+
         pilas.escenas.Escena.__init__(self) 
         pilas.actores.utils.eliminar_a_todos()
         pilas.fondos.Fondo('data/fondo.png')
-        pilas.eventos.pulsa_tecla_escape.conectar(self.cuando_se_presione_escape)
 
-        self.fichas = clase_fichas()
+        if nivel == 1:
+            self.pos_iniciar = [-35, -35]
+            self.filas = 2
+            self.columnas = 2
+            self.espaciado = 30
+            self.pares = 2
+            self.agregar_puntaje = 5
+            self.restar_puntaje = 1
+
+        elif nivel == 2:
+            self.pos_iniciar = [-50, -35]
+            self.filas = 3
+            self.columnas = 2
+            self.espaciado = 15
+            self.pares = 3
+            self.agregar_puntaje = 10
+            self.restar_puntaje = 2
+
+        elif nivel == 3:
+            self.pos_iniciar = [-78, -65]
+            self.filas = 4
+            self.columnas = 3
+            self.espaciado = 15
+            self.pares = 6
+            self.agregar_puntaje = 15
+            self.restar_puntaje = 3
+
+        elif nivel == 4:
+            self.pos_iniciar = [-70, -85]
+            self.filas = 4
+            self.columnas = 4
+            self.espaciado = 10
+            self.pares = 8
+            self.agregar_puntaje = 20
+            self.restar_puntaje = 4
+
+        elif nivel == 5:
+            self.pos_iniciar = [-93, -85]
+            self.filas = 5
+            self.columnas = 4
+            self.espaciado = 10
+            self.pares = 10
+            self.agregar_puntaje = 25
+            self.restar_puntaje = 5
+
+        elif nivel == 6:
+            self.pos_iniciar = [-118, -85]
+            self.filas = 6
+            self.columnas = 4
+            self.espaciado = 10
+            self.pares = 12
+            self.agregar_puntaje = 30
+            self.restar_puntaje = 5
+            
+        elif nivel == 7:
+            self.pos_iniciar = [-105, -155]
+            self.filas = 6
+            self.columnas = 6
+            self.espaciado = 5
+            self.pares = 18
+            self.agregar_puntaje = 35
+            self.restar_puntaje = 6
+  
+        elif nivel == 8:
+            self.pos_iniciar = [-130, -150]
+            self.filas = 7
+            self.columnas = 6
+            self.espaciado = 5
+            self.pares = 21
+            self.agregar_puntaje = 100
+            self.restar_puntaje = 7
+         
+        pilas.eventos.pulsa_tecla_escape.conectar(self.cuando_se_presione_escape)
         
-        self.crear_temporizador()
         
-        self.fichas.crear_fichas()
-        self.fichas.ordenar_fichas()
-        
-        self.crear_boton_reiniciar()
         self.crear_puntaje()
-        
-        self.fichas.posicionar_botones_fichas()
-        
-        self.conectar_funciones_fichas()
-        self.conectar_funciones_para_analizar_pares()
-        
-        self.crear_variables_para_presionar_una_vez_ficha()
-        
-        self.intentos = []
+        self.crear_nivel(nivel)
+        self.crear_parejas()
+
+        self.nivel = nivel
         self.estado = True
+
+        self.tiempo = 0.5
+        
+        self.area = self.columnas * self.filas
+
+        self.intentos = []
+        self.cantidad_de_pares = 0
+
+        self.array_caracteres = self.generar_array_caracteres()
+        
+        self.fabricar_botones_personalizados()
+        self.configurar_botones()
+
+
+    def cambiar_nivel(self, nivel):
+        self.nivel = nivel
+        self.iniciar_juego(self.nivel)
+            
+    def fabricar_botones_personalizados(self):
+        self.botones = pilas.atajos.fabricar(boton_personalizado, self.area, False)
 
     def cuando_se_presione_escape(self, *k, **kv):
         "Regresa al menu principal"
         import escena_menu
         escena_menu.EscenaMenu()
 
+
     def crear_puntaje(self):
         self.puntaje = pilas.actores.Puntaje()
-        self.puntaje.x = -215
-        self.puntaje.y = -143
+        self.puntaje.definir(puntuacion.p)
+        self.puntaje.x = -200
+        self.puntaje.y = 55
+        self.puntaje.magnitud = 18
         
-    def crear_boton_reiniciar(self):
-        self.boton_reiniciar = pilas.actores.Boton(240, -140, 'data/reiniciar.png', 
-                                                              'data/reiniciar2.png', 
-                                                              'data/reiniciar2.png')
-        def al_presionar_boton_reiniciar():
-            self.iniciar_juego()
+    def crear_parejas(self):
+        self.parejas = pilas.actores.Puntaje()
+        self.parejas.definir(0)
+        self.parejas.x = -200
+        self.parejas.y = 17
+        self.parejas.magnitud = 18
+       
+    def crear_nivel(self, nivel):
+        self.nivel_texto = pilas.actores.Puntaje()
+        self.nivel_texto.x = -200
+        self.nivel_texto.y = 93
+        self.nivel_texto.magnitud = 18
+        self.nivel_texto.definir(nivel)
 
-        self.boton_reiniciar.conectar_presionado(al_presionar_boton_reiniciar)
-        self.boton_reiniciar.conectar_normal(self.boton_reiniciar.pintar_normal) 
-        self.boton_reiniciar.conectar_sobre(self.boton_reiniciar.pintar_sobre)
-
-    def crear_temporizador(self):
-        def termina_juego():
-            self.estado = False
-            pilas.avisar("Termino el tiempo, Reincia Partida y Supera tu puntaje !")
-            
-
-        t = pilas.actores.Temporizador(0, -185)
-
-        t.ajustar(50,termina_juego)
         
-        t.iniciar()
+
+
+    def generar_array_caracteres(self):
+        # lista con caracteres
+
+        # lista con caracteres aleatorios
+        caracteres_aleatorios = []
+        for c_a in range(self.area):
+            caracteres_aleatorios.append("null")
+
+        # lista con letras 
+        l = []
+        for c in "abcdefghijklmnopqrstu":
+            l.append(c)
+        
+        
+
+        # creamos una lista 'caracteres_aleatorios' con letras
+        # desordenadas
     
-    def crear_variables_para_presionar_una_vez_ficha(self):
-        
-        self.primera_vez_presionado_ficha_a1 = False
-        self.primera_vez_presionado_ficha_b1 = False
-        self.primera_vez_presionado_ficha_c1 = False
-        self.primera_vez_presionado_ficha_d1 = False
-        self.primera_vez_presionado_ficha_e1 = False
-        self.primera_vez_presionado_ficha_f1 = False
-        self.primera_vez_presionado_ficha_g1 = False
-        self.primera_vez_presionado_ficha_h1 = False
-        
-        self.primera_vez_presionado_ficha_a2 = False
-        self.primera_vez_presionado_ficha_b2 = False
-        self.primera_vez_presionado_ficha_c2 = False
-        self.primera_vez_presionado_ficha_d2 = False
-        self.primera_vez_presionado_ficha_e2 = False
-        self.primera_vez_presionado_ficha_f2 = False
-        self.primera_vez_presionado_ficha_g2 = False
-        self.primera_vez_presionado_ficha_h2 = False
-        
-        
-        
-    def conectar_funciones_fichas(self):
-        
-        # primer grupo de funciones 
-
-        def press_ficha_a_1():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_a1 == False:
-                    self.fichas.ficha_a.pintar_presionado()
-                    self.primera_vez_presionado_ficha_a1 = True
-                    self.intentos.append(['a', 1])
-
-        def press_ficha_b_1():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_b1 == False:
-                    self.fichas.ficha_b.pintar_presionado()
-                    self.primera_vez_presionado_ficha_b1 = True
-                    self.intentos.append(['b', 1])
-        
-        def press_ficha_c_1():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_c1 == False:
-                    self.fichas.ficha_c.pintar_presionado()
-                    self.primera_vez_presionado_ficha_c1 = True
-                    self.intentos.append(['c', 1])
-        
-        def press_ficha_d_1():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_d1 == False:
-                    self.fichas.ficha_d.pintar_presionado()
-                    self.primera_vez_presionado_ficha_d1 = True
-                    self.intentos.append(['d', 1])
-        
-        def press_ficha_e_1():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_e1 == False:
-                    self.fichas.ficha_e.pintar_presionado()
-                    self.primera_vez_presionado_ficha_e1 = True
-                    self.intentos.append(['e', 1])
-        
-        def press_ficha_f_1():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_f1 == False:
-                    self.fichas.ficha_f.pintar_presionado()
-                    self.primera_vez_presionado_ficha_f1 = True
-                    self.intentos.append(['f', 1])
-        
-        def press_ficha_g_1():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_g1 == False:
-                    self.fichas.ficha_g.pintar_presionado()
-                    self.primera_vez_presionado_ficha_g1 = True
-                    self.intentos.append(['g', 1])
-        
-        def press_ficha_h_1():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_h1 == False:
-                    self.fichas.ficha_h.pintar_presionado()
-                    self.primera_vez_presionado_ficha_h1 = True
-                    self.intentos.append(['h', 1])
-        
-        
-        
-        # segudo grupo de funciones
-        def press_ficha_a_2():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_a2 == False:
-                    self.fichas.ficha_a2.pintar_presionado()
-                    self.primera_vez_presionado_ficha_a2 = True
-                    self.intentos.append(['a', 2])
-
-        def press_ficha_b_2():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_b2 == False:
-                    self.fichas.ficha_b2.pintar_presionado()
-                    self.primera_vez_presionado_ficha_b2 = True
-                    self.intentos.append(['b', 2])
-        
-        def press_ficha_c_2():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_c2 == False:
-                    self.fichas.ficha_c2.pintar_presionado()
-                    self.primera_vez_presionado_ficha_c2 = True
-                    self.intentos.append(['c', 2])
-        
-        def press_ficha_d_2():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_d2 == False:
-                    self.fichas.ficha_d2.pintar_presionado()
-                    self.primera_vez_presionado_ficha_d2 = True
-                    self.intentos.append(['d', 2])
-        
-        def press_ficha_e_2():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_e2 == False:
-                    self.fichas.ficha_e2.pintar_presionado()
-                    self.primera_vez_presionado_ficha_e2 = True
-                    self.intentos.append(['e', 2])
-        
-        def press_ficha_f_2():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_f2 == False:
-                    self.fichas.ficha_f2.pintar_presionado()
-                    self.primera_vez_presionado_ficha_f2 = True
-                    self.intentos.append(['f', 2])
-        
-        def press_ficha_g_2():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_g2 == False:
-                    self.fichas.ficha_g2.pintar_presionado()
-                    self.primera_vez_presionado_ficha_g2 = True
-                    self.intentos.append(['g', 2])
-        
-        def press_ficha_h_2():
-            if self.estado == True:
-                if self.primera_vez_presionado_ficha_h2 == False:
-                    self.fichas.ficha_h2.pintar_presionado()
-                    self.primera_vez_presionado_ficha_h2 = True
-                    self.intentos.append(['h', 2])
-        
-        
-        
-        
-        
-        
-        
-        
-        self.fichas.ficha_a.conectar_presionado(press_ficha_a_1)
-        self.fichas.ficha_b.conectar_presionado(press_ficha_b_1)
-        self.fichas.ficha_c.conectar_presionado(press_ficha_c_1)
-        self.fichas.ficha_d.conectar_presionado(press_ficha_d_1)
-        self.fichas.ficha_e.conectar_presionado(press_ficha_e_1)
-        self.fichas.ficha_f.conectar_presionado(press_ficha_f_1)
-        self.fichas.ficha_g.conectar_presionado(press_ficha_g_1)
-        self.fichas.ficha_h.conectar_presionado(press_ficha_h_1)
-        
-        
-        
-        self.fichas.ficha_a2.conectar_presionado(press_ficha_a_2)
-        self.fichas.ficha_b2.conectar_presionado(press_ficha_b_2)
-        self.fichas.ficha_c2.conectar_presionado(press_ficha_c_2)
-        self.fichas.ficha_d2.conectar_presionado(press_ficha_d_2)
-        self.fichas.ficha_e2.conectar_presionado(press_ficha_e_2)
-        self.fichas.ficha_f2.conectar_presionado(press_ficha_f_2)
-        self.fichas.ficha_g2.conectar_presionado(press_ficha_g_2)
-        self.fichas.ficha_h2.conectar_presionado(press_ficha_h_2)
+        caracteres = []
+        limite = 0
+        limite = self.pares
 
 
+        for i in range(limite):
+            caracteres.append(l[i])
+            caracteres.append(l[i] + '2')
 
 
-    def conectar_funciones_para_analizar_pares(self):
-        # borramos la ficha y agregamos 10 a puntaje
-        def borrar_ficha_x(ficha_x):
-            ficha_x.eliminar()
-            ficha_x.desactivar()
-            self.crear_variables_para_presionar_una_vez_ficha()
+        for i in range(self.area):
+            ocupado = True
+            while ocupado:
+                rand_i = int(random() * self.area)
+                if caracteres_aleatorios[rand_i] == "null":
+                    caracteres_aleatorios[rand_i] = caracteres[i]
+                    ocupado = False
+
+        return caracteres_aleatorios
+
+        
+        
+
+    def pintar_boton_x(self, n):
+        if self.estado == True:
+            if n.primera_vez_presionado == False:
             
-            # aumentamos 5 dos veces al ser dos pares o sea 10
-            self.puntaje.aumentar(5)
-            self.estado = True
-            
+                for c in 'abcdefghijklmnopqrstu':
+                    if n.apariencia == c:
+                        self.intentos.append([c, 1])                    
+                        n.boton.pintar_presionado(c + '.png')  
+
+                    if n.apariencia == c + '2':
+                        self.intentos.append([c, 2])
+                        n.boton.pintar_presionado(c + '.png')               
+                
         
-        # pintamos fichas impares y restamos 2 a puntaje
-        def pintar_normal_ficha_x(n, tipo):
-            
-            self.puntaje.aumentar(-1)
+            n.primera_vez_presionado = True
+
+    def termino_juego(self):
+        self.termino = pilas.actores.Actor("termino.png")
+        self.termino.y = 300
+        self.termino.y = pilas.interpolar(0, 2)
+
+        self.p = pilas.actores.Puntaje()
+        self.p.definir(puntuacion.p)
+        
+        self.p.y = 280
+        self.p.x = -10
+        self.p.y = pilas.interpolar(-20, 2)
+        
+        self.estado = False
+
     
-            if n == 1 and tipo == 1:
-                self.fichas.ficha_a.pintar_normal()
-            if n == 1 and tipo == 2:
-                self.fichas.ficha_a2.pintar_normal()
-            
-            if n == 2 and tipo == 1:
-                self.fichas.ficha_b.pintar_normal()
-            if n == 2 and tipo == 2:
-                self.fichas.ficha_b2.pintar_normal()
-            
-            if n == 3 and tipo == 1:
-                self.fichas.ficha_c.pintar_normal()
-            if n == 3 and tipo == 2:
-                self.fichas.ficha_c2.pintar_normal()
-            
-            if n == 4 and tipo == 1:
-                self.fichas.ficha_d.pintar_normal()
-            if n == 4 and tipo == 2:
-                self.fichas.ficha_d2.pintar_normal()
-            
-            if n == 5 and tipo == 1:
-                self.fichas.ficha_e.pintar_normal()
-            if n == 5 and tipo == 2:
-                self.fichas.ficha_e2.pintar_normal()
-            
-            if n == 6 and tipo == 1:
-                self.fichas.ficha_f.pintar_normal()
-            if n == 6 and tipo == 2:
-                self.fichas.ficha_f2.pintar_normal()
-            
-            if n == 7 and tipo == 1:
-                self.fichas.ficha_g.pintar_normal()
-            if n == 7 and tipo == 2:
-                self.fichas.ficha_g2.pintar_normal()
-            
-            if n == 8 and tipo == 1:
-                self.fichas.ficha_h.pintar_normal()
-            if n == 8 and tipo == 2:
-                self.fichas.ficha_h2.pintar_normal()
-            
-            
-            self.estado = True
-            
-            
-        
-        def analizar_pares():
+    def analizar_pares(self):
 
-            if len(self.intentos) == 2:
-                if self.intentos[0][0] == self.intentos[1][0]:
-                    if self.intentos[0][0] == 'a':
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_a)   
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_a2)  
-                    
-                    if self.intentos[0][0] == 'b':
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_b)  
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_b2)  
-                    
-                    if self.intentos[0][0] == 'c':
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_c)  
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_c2)  
-                    
-                    if self.intentos[0][0] == 'd':
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_d)  
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_d2)  
-                    
-                    if self.intentos[0][0] == 'e':
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_e)  
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_e2) 
-                    
-                    if self.intentos[0][0] == 'f':
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_f)  
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_f2) 
-                    
-                    if self.intentos[0][0] == 'g':
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_g)  
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_g2) 
-                    
-                    if self.intentos[0][0] == 'h':
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_h)  
-                        pilas.mundo.agregar_tarea(1, borrar_ficha_x,self.fichas.ficha_h2) 
-                    
-                    self.estado = False
-                    
-                    
-                    self.intentos.pop()
-                    self.intentos.pop()
+        def aumentar_pares():
+            self.cantidad_de_pares += 1
+            self.parejas.definir(self.cantidad_de_pares)
+            puntuacion.p += self.agregar_puntaje
+            self.puntaje.definir(puntuacion.p)
 
+        def borrar_ficha_x(ficha_x, ficha_x2):
+            ficha_x.boton.eliminar()
+            ficha_x.boton.desactivar()
+
+            ficha_x2.boton.eliminar()
+            ficha_x2.boton.desactivar()
+            aumentar_pares()
+
+            if self.cantidad_de_pares == self.pares:
+
+                self.nivel += 1
+                if self.nivel > 8:
+                    self.termino_juego()
                 else:
-                    contador = 0
-                    contador_2 = 0
+                    self.cambiar_nivel(self.nivel)                
+            self.estado = True
 
-                    for i in 'abcdefgh':
-                        contador = contador + 1
-                        contador_2 = contador_2 + 1
-                        if self.intentos[0][0] == i:
-                            if self.intentos[0][1] == 1:
-                                pilas.mundo.agregar_tarea(1, pintar_normal_ficha_x,contador, 1)
-
-                            if self.intentos[0][1] == 2:
-                                pilas.mundo.agregar_tarea(1, pintar_normal_ficha_x,contador, 2)
-
-                        if self.intentos[1][0] == i:
-                            if self.intentos[1][1] == 1:
-                                pilas.mundo.agregar_tarea(1, pintar_normal_ficha_x,contador_2, 1)
-                            
-                            if self.intentos[1][1] == 2:
-                                pilas.mundo.agregar_tarea(1, pintar_normal_ficha_x,contador_2, 2)
-                        
-                        self.estado = False
-                            
-                            
-                    self.crear_variables_para_presionar_una_vez_ficha()
-                    self.intentos.pop()
-                    self.intentos.pop()
-
-
-        self.fichas.ficha_a.conectar_presionado(analizar_pares)
-        self.fichas.ficha_b.conectar_presionado(analizar_pares)
-        self.fichas.ficha_c.conectar_presionado(analizar_pares)
-        self.fichas.ficha_d.conectar_presionado(analizar_pares)
-        self.fichas.ficha_e.conectar_presionado(analizar_pares)
-        self.fichas.ficha_f.conectar_presionado(analizar_pares)
-        self.fichas.ficha_g.conectar_presionado(analizar_pares)
-        self.fichas.ficha_h.conectar_presionado(analizar_pares)
+        def encontrar_boton_x(c):
+            x = 0
+            for i in self.array_caracteres:
+                if self.botones[x].apariencia == c:
+                   return self.botones[x]
+                x += 1
+            
         
-        
-        
-        self.fichas.ficha_a2.conectar_presionado(analizar_pares)
-        self.fichas.ficha_b2.conectar_presionado(analizar_pares)
-        self.fichas.ficha_c2.conectar_presionado(analizar_pares)
-        self.fichas.ficha_d2.conectar_presionado(analizar_pares)
-        self.fichas.ficha_e2.conectar_presionado(analizar_pares)
-        self.fichas.ficha_f2.conectar_presionado(analizar_pares)
-        self.fichas.ficha_g2.conectar_presionado(analizar_pares)
-        self.fichas.ficha_h2.conectar_presionado(analizar_pares)
+        if (len(self.intentos))  == 2:
+            # si son pares
+            if self.intentos[0][0] == self.intentos[1][0]:
+                if self.estado == True:
+                    for c in 'abcdefghijklmnopqrstu': 
+                        if self.intentos[0][0] == c: 
+                            boton_x = encontrar_boton_x(c)
+                            boton_x2 = encontrar_boton_x(c + '2')
+                            pilas.mundo.agregar_tarea(self.tiempo, borrar_ficha_x, boton_x, boton_x2)
+
+                self.estado = False
+            else:
+            # si no son pares
+
+                puntuacion.p -= self.restar_puntaje
+                self.puntaje.definir(puntuacion.p)
+
+                def pintar_normal_ficha_x(n):
+                    n.boton.pintar_normal()
+                    self.estado = True
+
+                for i in range(self.area):
+                    self.botones[i].primera_vez_presionado = False
+                    self.estado = False
+                    pilas.mundo.agregar_tarea(self.tiempo, pintar_normal_ficha_x, self.botones[i])
+                
+            self.intentos.pop()
+            self.intentos.pop()
+
+    def configurar_botones(self):
+        x = 0
+
+        for i in range(self.columnas):
+            for j in range(self.filas):        
+                
+                self.botones[x].boton.x = self.pos_iniciar[0] 
+                self.botones[x].boton.y = self.pos_iniciar[1]
+
+                # posicionamos botones en filas y columnas
+                self.botones[x].boton.x += (self.botones[x].boton.obtener_ancho() + self.espaciado) * j     
+                self.botones[x].boton.y += (self.botones[x].boton.obtener_alto() + self.espaciado) * i 
+
+                # agregamos identidad al boton
+                self.botones[x].apariencia = self.array_caracteres[x] 
+       
+                # conectamos funcion
+                self.botones[x].boton.conectar_presionado(self.pintar_boton_x, self.botones[x])
+                self.botones[x].boton.conectar_presionado(self.analizar_pares)
+
+                x += 1    
 
 
+class boton_personalizado:
+    def __init__(self, x = 0, y = 0):
 
+        ruta_normal = "casilla.png"        
 
-
+        self.boton = pilas.actores.Boton(x, y, ruta_normal)
+        self.apariencia = 'null'
+        self.primera_vez_presionado = False

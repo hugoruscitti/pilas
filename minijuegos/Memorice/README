@@ -1,13 +1,13 @@
 Memorice es un juego en donde tienes que encontrar
-las cartas iguales de un grupo de 4 x 4.
+las cartas iguales.
 
 Si las cartas que eliges son iguales, se borran las
-cartas y se aumenta tu puntaje, de lo contrario si 
-las cartas que elegiste son distintas pierdes puntaje
+cartas y se aumenta tu puntuación, de lo contrario si 
+las cartas que elegiste son distintas pierdes puntuación
 y las cartas se voltean. 
 
-El objetivo del juego es tratar de conseguir el 
-mas alto puntaje y poder entrenar la capacidad de 
+El objetivo del juego es tratar de conseguir la
+máxima puntuación y poder entrenar la capacidad de 
 memorizar.
 
 
@@ -16,5 +16,5 @@ el motor pilas-engine:
 
     www.pilas-engine.com.ar
 	
-Programacion y graficos(Memorice) : Pablo Garrido
-Recursos: Imagenes Motor Pilas
+Programación y graficos(Memorice) : Pablo Garrido
+Recursos Adicionales para Cartas: Walter Velázquez

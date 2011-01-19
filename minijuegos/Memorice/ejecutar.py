@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 # For pilas engine - a video game framework.
 #
-# copyright 2010 - Pablo Garrido
+# copyright 2011 - Pablo Garrido
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
