@@ -30,8 +30,37 @@ def cargar(ruta):
     En caso de error genera una excepción de tipo IOError.
     """
 
+    if not pilas.motor:
+        mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` para comenzar."
+        print mensaje
+        raise Exception(mensaje)
+    
+
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
     return pilas.motor.cargar_imagen(ruta)
 
+def cargar_grilla(ruta, columnas=1, filas=1):
+    """Representa una grilla de imagenes con varios cuadros de animación.
 
-Grilla = pilas.motor.Grilla
+    Una grilla es un objeto que se tiene que inicializar con la ruta
+    a una imagen, la cantidad de columnas y filas.
+
+    Por ejemplo, si tenemos una grilla con 2 columnas y 3 filas
+    podemos asociarla a un actor de la siguiente manera::
+
+        grilla = pilas.imagenes.cargar_grilla("animacion.png", 2, 3)
+        grilla.asignar(actor)
+
+    Entonces, a partir de ahora nuestro actor muestra solamente un
+    cuadro de toda la grilla.
+
+    Si quieres avanzar la animacion tienes que modificar el objeto
+    grilla y asignarlo nuevamente al actor::
+
+        grilla.avanzar()
+        grilla.asignar(actor)
+    """
+    return pilas.motor.obtener_grilla(ruta, columnas, filas)
+
+# Pronto en desuso
+# Grilla = pilas.motor.Grilla

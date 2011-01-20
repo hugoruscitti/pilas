@@ -54,7 +54,7 @@ y genera un actor para mostrar el cuadro 1:
 .. code-block:: python
 
     actor = pilas.actores.Actor()
-    animacion = pilas.imagenes.Grilla("pingu.png", 10)
+    animacion = pilas.imagenes.cargar_grilla("pingu.png", 10)
     animacion.asignar(actor)
 
 Luego, una vez que tienes asociado la grilla al actor, puedes
@@ -83,7 +83,7 @@ y columnas de esta forma:
 
 .. code-block:: python
 
-    animacion = pilas.imagenes.Grilla("pingu.png", 10, 5)
+    animacion = pilas.imagenes.cargar_grilla("pingu.png", 10, 5)
 
 donde 10 es el número de columnas en la grilla y 5 es la
 cantidad de filas.
@@ -113,7 +113,7 @@ se tendrá que repetir indefinidamente:
 
 .. code-block:: python
 
-    grilla = pilas.imagenes.Grilla("fuego.png", 6)
+    grilla = pilas.imagenes.cargar_grilla("fuego.png", 6)
     actor = pilas.actores.Animacion(grilla, ciclica=True)
 
 
@@ -148,8 +148,8 @@ actor, y que este tenga dos atributos, uno para cada animación:
 
         def __init__(self, x=0, y=0):
             Actor.__init__(self, x=x, y=y)
-            self.animacion_detenida = pilas.imagenes.Grilla("nave_detenida.png", 1)
-            self.animacion_movimiento = pilas.imagenes.Grilla("nave_en_movimiento.png", 3)
+            self.animacion_detenida = pilas.imagenes.cargar_grilla("nave_detenida.png", 1)
+            self.animacion_movimiento = pilas.imagenes.cargar_grilla("nave_en_movimiento.png", 3)
 
 
 Luego, en el método ``actualizar`` del propio actor podrías
