@@ -1,0 +1,3 @@
+setuptools
+pymunk
+Box2D
