@@ -1,5 +1,8 @@
 # -*- encoding: utf-8 -*-
 import pilas
+# Permite que este ejemplo funcion incluso si no has instalado pilas.
+import sys
+sys.path.insert(0, "..")
 
 pilas.iniciar()
 mono = pilas.actores.Mono()

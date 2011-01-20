@@ -1,9 +1,12 @@
 import pilas
+# Permite que este ejemplo funcion incluso si no has instalado pilas.
+import sys
+sys.path.insert(0, "..")
 
 
 pilas.iniciar()
 
-imagen_explosion = pilas.imagenes.Grilla("explosion.png", 7)
+imagen_explosion = pilas.imagenes.cargar_grilla("explosion.png", 7)
 sonido_explosion = pilas.sonidos.cargar("explosion.wav")
 
 def crear_explosion(evento):

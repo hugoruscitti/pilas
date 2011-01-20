@@ -1,5 +1,9 @@
 import pilas
 pilas.iniciar()
+# Permite que este ejemplo funcion incluso si no has instalado pilas.
+import sys
+sys.path.insert(0, "..")
+
 
 # ejemplo de uso boton personalizado
 # al iniciar no se visualiza nada pero al cliquear al centro

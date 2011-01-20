@@ -1,7 +1,8 @@
 import pilas
-from PySFML import sf
-from weakref import ref
 
+# Permite que este ejemplo funcion incluso si no has instalado pilas.
+import sys
+sys.path.insert(0, "..")
 
 pilas.iniciar()
 pilas.avisar("Usa el mouse para mover al mono y ayudarlo a comer.")
