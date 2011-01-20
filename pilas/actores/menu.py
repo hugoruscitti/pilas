@@ -25,13 +25,15 @@ class Menu(Actor):
         self.opcion_actual = 0
         # contador para evitar la repeticion de teclas
         self.demora_al_responder = 0
+        pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
+        pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click_con_el_mouse)
 
     def crear_texto_de_las_opciones(self, opciones):
         "Genera un actor por cada opcion del menu."
 
         for indice, (texto, funcion) in enumerate(opciones):
             y = self.y - indice * 50
-            opciones = pilas.actores.Opcion(texto, y=y, funcion_a_invocar=funcion)
+            opciones = pilas.actores.Opcion(texto, x=0, y=y, funcion_a_invocar=funcion)
 
             self.opciones_como_actores.append(opciones)
 
@@ -69,8 +71,8 @@ class Menu(Actor):
 
     def mover_cursor(self, delta):
         # Deja como no-seleccionada la opcion actual.
-        self.opciones_como_actores[self.opcion_actual].resaltar(False)
-
+        self._deshabilitar_opcion_actual()
+        
         # Se asegura que las opciones esten entre 0 y 'cantidad de opciones'.
         self.opcion_actual += delta
         self.opcion_actual %= len(self.opciones_como_actores)
@@ -87,3 +89,20 @@ class Menu(Actor):
             pass
 
         Actor.__setattr__(self, atributo, valor)
+
+    def cuando_mueve_el_mouse(self, evento):
+        "Permite cambiar la opcion actual moviendo el mouse. Retorna True si el mouse esta sobre alguna opcion."
+        for indice, opcion in enumerate(self.opciones_como_actores):
+            if opcion.colisiona_con_un_punto(evento.x, evento.y):
+                if indice != self.opcion_actual:
+                    self._deshabilitar_opcion_actual()
+                    self.opcion_actual = indice
+                    self.opciones_como_actores[indice].resaltar()
+                return True
+                    
+    def _deshabilitar_opcion_actual(self):
+        self.opciones_como_actores[self.opcion_actual].resaltar(False)
+
+    def cuando_hace_click_con_el_mouse(self, evento):
+        if self.cuando_mueve_el_mouse(evento):
+            self.seleccionar_opcion_actual()
