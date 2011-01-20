@@ -34,7 +34,10 @@ class pySFML:
 
         def actualizar(self):
             self.image.LoadFromPixels(ANCHO, ALTO, self.surface.get_data())
-
+        
+        def limpiar(self):
+            self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, ANCHO, ALTO)
+            self.context = cairo.Context(self.surface) 
 
     class Texto(sf.String, pilas.baseactor.BaseActor):
         """Representa un texto en pantalla.
@@ -352,8 +355,10 @@ class pySFML:
                 self.procesar_evento_teclado(event)
 
                 if event.Key.Code == sf.Key.Q:
-                    pilas.mundo.terminar()
+                    pilas.mundo.terminar()      
+            elif event.Type == sf.Event.TextEntered:
 
+                eventos.pulsa_tecla.send("ejecutar", codigo=unichr(event.Text.Unicode)) 
             elif event.Type == sf.Event.MouseMoved:
                 # Notifica el movimiento del mouse con una señal
 
@@ -386,8 +391,6 @@ class pySFML:
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 
     def procesar_evento_teclado(self, event):
-        eventos.pulsa_tecla.send("ejecutar", code=event.Key)
-
         if event.Key.Code == sf.Key.P:
             pilas.mundo.alternar_pausa()
         elif event.Key.Code == sf.Key.F12:

@@ -46,7 +46,16 @@ class Pygame:
         def actualizar(self):
             #self.image.LoadFromPixels(ANCHO, ALTO, self.surface.get_data())
             self.image = pygame.image.frombuffer(self.data.tostring(), (ANCHO, ALTO), "RGBA")
+            
+        def limpiar(self):
+            import array
+            self.data = array.array('c', chr(0) * ANCHO * ALTO * 4)
+            stride = ANCHO * 4
+            self.surface = cairo.ImageSurface.create_for_data(self.data, cairo.FORMAT_ARGB32, 
+                    ANCHO, ALTO, stride)
 
+            self.context = cairo.Context(self.surface)
+            
     class Grilla:
         """Representa una grilla de imagenes con varios cuadros de animación.
 
@@ -419,7 +428,7 @@ class Pygame:
                 eventos.termina_click.send("ejecutar", button=event.button, x=x, y=-y)
 
     def procesar_evento_teclado(self, event):
-        eventos.pulsa_tecla.send("ejecutar", code=event.key)
+        eventos.pulsa_tecla.send("ejecutar", codigo=event.unicode)
 
         if event.key == pygame.K_p:
             pilas.mundo.alternar_pausa()

@@ -178,4 +178,23 @@ class Pizarra(Actor):
 
         self.actualizar_imagen()
 
-
+    def limpiar(self):
+        self.canvas.limpiar()
+        
+        if self.actualiza_automaticamente:
+            self.actualizar_imagen()
+            
+            
+    def dibujar_circulo(self, x, y, radio, pintar=True):
+        (x, y) = pilas.utils.hacer_coordenada_mundo(x, y)
+        
+        self.canvas.context.arc(x, y, radio, 0, 2*3.1415)
+        
+        if pintar:
+            self.canvas.context.fill()
+        else:
+            self.canvas.context.stroke()
+            
+            
+        if self.actualiza_automaticamente:
+            self.actualizar_imagen()

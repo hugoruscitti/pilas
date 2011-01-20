@@ -32,7 +32,7 @@ class Mundo:
     pulsa F12 este modo cambia por "ModoEjecucionNormal".
     """
 
-    def __init__(self, ancho, alto, titulo, fps=60, economico=False):
+    def __init__(self, ancho, alto, titulo, fps=60, economico=True):
         self.ventana = ventana.iniciar(ancho, alto, titulo)
         self.fps = fps
         self.economico = economico
