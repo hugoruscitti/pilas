@@ -342,8 +342,7 @@ class Elements:
                                 
                 if type == box2d.e_circleShape:
                     position = box2d.b2Mul(xform, shape.GetLocalPosition())
-                    
-                    pos = self.to_screen((position.x*self.ppm, position.y*self.ppm))                    
+                    pos = self.to_screen((position.x*self.ppm, position.y*self.ppm))    
                     self.renderer.draw_circle(clr, pos, self.meter_to_screen(shape.radius), angle)
 
                 elif type == box2d.e_polygonShape:

@@ -18,7 +18,7 @@ class TestPiezas(unittest.TestCase):
 
         mock_escena = MockEscena()
 
-        grilla = pilas.imagenes.Grilla("ejemplos/data/piezas.png", filas, columnas)
+        grilla = pilas.imagenes.carga_grilla("ejemplos/data/piezas.png", filas, columnas)
         p = pilas.ejemplos.piezas.Pieza(mock_escena, grilla, 1, filas, columnas)
 
         self.assertEqual(p.numero, 1)

@@ -208,7 +208,7 @@ class PuedeExplotar(Habilidad):
         explosion.x = self.receptor.x
         explosion.y = self.receptor.y
         explosion.escala = self.receptor.escala * 2
-        pilas.baseactor.BaseActor.eliminar(self.receptor)
+        pilas.actores.Actor.eliminar(self.receptor)
 
 
 class SeMantieneEnPantalla(Habilidad):

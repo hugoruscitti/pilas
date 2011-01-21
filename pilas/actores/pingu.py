@@ -17,7 +17,7 @@ class Pingu(Actor):
 
     def __init__(self, x=0, y=0):
         Actor.__init__(self, x=x, y=y)
-        self.animacion = pilas.imagenes.Grilla("pingu.png", 10)
+        self.animacion = pilas.imagenes.cargar_grilla("pingu.png", 10)
         self.definir_cuadro(4)
         self.hacer(Esperando())
         self.radio_de_colision = 30

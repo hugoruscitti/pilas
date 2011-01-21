@@ -43,6 +43,41 @@ import utils
 import motores
 import elements
 
+
+import simbolos
+import os
+import sys
+import time
+
+import estudiante
+import baseactor
+import colores
+import imagenes
+import sonidos
+import actores
+import fps
+from interpolaciones import Lineal
+import dispatch
+import eventos
+import habilidades
+import ventana
+import comportamientos
+import escenas
+import fondos
+from control import Control
+from camara import Camara
+import copy
+import pilas.utils
+from mundo import Mundo
+from colisiones import Colisiones
+import random
+import ejemplos
+import red
+import motores
+import atajos
+import fisica
+import grupo
+
 # Carga el modulo de autocompletado si esta
 # en sesion interactiva.
 if utils.esta_en_sesion_interactiva():
@@ -60,7 +95,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
         pilas.iniciar()
 
     aunque también puedes indicarle puntualmente el valor de algún
-    argumento:
+    argumento::
 
         pilas.iniciar(titulo='titulo de mi juego')
 
@@ -138,13 +173,13 @@ def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo, fps, economico):
     import threading
     global gb
 
-    bg = threading.Thread(target=iniciar_y_ejecutar, args=(ancho, alto, titulo, fps, economico))
+    bg = threading.Thread(target=__iniciar_y_ejecutar, args=(ancho, alto, titulo, fps, economico))
     bg.start()
 
 def reiniciar():
     actores.utils.eliminar_a_todos()
 
-def iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, ignorar_errores=False):
+def __iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, ignorar_errores=False):
     from mundo import Mundo
     global mundo
 

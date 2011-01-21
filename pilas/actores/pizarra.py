@@ -43,12 +43,12 @@ class Pizarra(Actor):
 
     def __init__(self, x=0, y=0):
         Actor.__init__(self, x=x, y=y)
-        self.canvas = pilas.motor.Canvas()
+        self.canvas = pilas.motor.obtener_canvas()
         self.lapiz = Lapiz()
         self.actualizar_imagen()
         self.levantar_lapiz()
         self.mover_lapiz(0, 0)
-        self.definir_centro(320, 240)
+        self.centro = ("medio", "medio")
         self.habilitar_actualizacion_automatica()
 
     def habilitar_actualizacion_automatica(self):
@@ -93,7 +93,8 @@ class Pizarra(Actor):
         self.lapiz.x, self.lapiz.y = x, y
         
     def definir_color(self, color):
-        r, g, b = color.obtener_componentes()
+        b, g, r, a = color.obtener_componentes()
+        
         self.canvas.context.set_source_rgb(r/255.0, g/255.0, b/255.0)
 
     def pintar_imagen(self, imagen, x=0, y=0):
@@ -102,13 +103,13 @@ class Pizarra(Actor):
         Las coordenadas de pantalla tienen su origen en la esquina
         superior izquierda, no en el centro de la ventana.
         """
-        imagen = pilas.motor.generar_imagen_cairo(imagen)
+        imagen = pilas.motor.obtener_imagen_cairo(imagen)
         w = imagen.get_width()
         h = imagen.get_height()
         self._pintar_parte_de_imagen(imagen, 0, 0, w, h, x, y)
 
     def pintar_grilla(self, grilla, x=0, y=0):
-        imagen = pilas.motor.generar_imagen_cairo(grilla.image)
+        imagen = pilas.motor.obtener_imagen_cairo(grilla.image)
         w = grilla.cuadro_ancho
         h = grilla.cuadro_alto
         dx = grilla.cuadro * grilla.cuadro_ancho
@@ -151,6 +152,7 @@ class Pizarra(Actor):
         self.canvas.context.select_font_face(fuente)
         self.canvas.context.text_path(texto)
         self.canvas.context.fill()
+
         if self.actualiza_automaticamente:
             self.actualizar_imagen()
 

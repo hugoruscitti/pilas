@@ -25,7 +25,8 @@ class Bomba(Animacion):
 
 
     def __init__(self, x=0, y=0):
-        Animacion.__init__(self, pilas.imagenes.Grilla("bomba.png", 2), ciclica=True, x=x, y=y)
+        grilla = pilas.imagenes.cargar_grilla("bomba.png", 2)
+        Animacion.__init__(self, grilla, ciclica=True, x=x, y=y)
         self.radio_de_colision = 25
         self.aprender(pilas.habilidades.PuedeExplotar)
 

@@ -12,4 +12,4 @@ from pilas.actores import Animacion
 class Moneda(Animacion):
 
     def __init__(self, x=0, y=0):
-        Animacion.__init__(self, pilas.imagenes.Grilla("moneda.png", 8), ciclica=True, x=x, y=y)
+        Animacion.__init__(self, pilas.imagenes.cargar_grilla("moneda.png", 8), ciclica=True, x=x, y=y)

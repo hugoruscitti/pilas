@@ -11,6 +11,9 @@ class DictObj(object):
 
     def __getattr__(self, m):
         return self.d.get(m, None)
+    
+    def __str__(self):
+        return "<Evento %s>" %(str(self.d))
 
 def _make_id(target):
     if hasattr(target, 'im_func'):

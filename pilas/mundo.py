@@ -122,7 +122,6 @@ class Mundo:
     def _realizar_actualizacion_grafica(self):
         self.escena_actual.dibujar(self.ventana)
         self.modo_ejecucion.dibujar_actores()
-
         pilas.motor.actualizar_pantalla()
 
     def _cerrar_ventana(self):
@@ -138,7 +137,6 @@ class Mundo:
             eliminar_actores = False
 
         self.escena_actual = escena_nueva
-
 
     def agregar_tarea(self, time_out, function, *params): 
         self.tasks.agregar(time_out, function, params)

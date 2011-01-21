@@ -17,7 +17,7 @@ class Martian(Actor):
 
     def __init__(self, x=0, y=0):
         Actor.__init__(self, x=x, y=y)
-        self.animacion = pilas.imagenes.Grilla("marcianitos/martian.png", 12)
+        self.animacion = pilas.imagenes.cargar_grilla("marcianitos/martian.png", 12)
         self.definir_cuadro(0)
         self.hacer(Esperando())
         self.aprender(pilas.habilidades.PisaPlataformas)

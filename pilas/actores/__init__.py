@@ -11,16 +11,14 @@ import math
 
 import pilas
 import utils
+from actor import Actor
 
 todos = []
-
-Actor = pilas.motor.Actor
 
 from mono import *
 from ejes import *
 from animado import Animado
 from animacion import Animacion
-
 from explosion import Explosion
 from bomba import Bomba
 from pingu import Pingu

@@ -15,7 +15,7 @@ class Disparo(Animacion):
 
     def __init__(self, x=0, y=0, rotacion=0, velocidad=2):
         self.velocidad = velocidad
-        grilla = pilas.imagenes.Grilla("disparo.png", 2)
+        grilla = pilas.imagenes.cargar_grilla("disparo.png", 2)
         Animacion.__init__(self, grilla, ciclica=True, x=x, y=y)
         self.radio_de_colision = 10
         self.rotacion = rotacion

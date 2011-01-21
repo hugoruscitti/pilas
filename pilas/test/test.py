@@ -17,7 +17,7 @@ class TestSequenceFunctions(unittest.TestCase):
         original_image = pilas.imagenes.cargar('ceferino.png')
 
         actor = pilas.actores.Actor(original_image)
-        actors_image = actor.GetImage()
+        actors_image = actor.imagen
 
         self.assertEqual(original_image, actors_image)
 
@@ -66,7 +66,7 @@ class TestSequenceFunctions(unittest.TestCase):
 
 
     def testGrilla(self):
-        grilla = pilas.imagenes.Grilla("fondos/volley.png", 10, 10)
+        grilla = pilas.imagenes.cargar_grilla("fondos/volley.png", 10, 10)
         self.assertTrue(grilla)
         grilla.avanzar()
 

@@ -15,6 +15,118 @@ from pilas import eventos
 ANCHO = 640
 ALTO = 480
 
+"""pilas.baseactor.BaseActor,""" 
+class PygameActor(pygame.sprite.Sprite):
+    """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
+
+    Un objeto Actor se tiene que crear siempre indicando la imagen, ya
+    sea como una ruta a un archivo como con un objeto Image. Por ejemplo::
+
+        protagonista = Actor("protagonista_de_frente.png")
+
+    es equivalente a:
+
+        imagen = pilas.imagenes.cargar("protagonista_de_frente.png")
+        protagonista = Actor(imagen)
+
+    Luego, na vez que ha sido ejecutada la sentencia aparecerá en el centro de
+    la pantalla el nuevo actor para que pueda manipularlo. Por ejemplo
+    alterando sus propiedades::
+
+        protagonista.x = 100
+        protagonista.scale = 2
+        protagonista.rotation = 30
+
+
+    Estas propiedades tambien se pueden manipular mediante
+    interpolaciones. Por ejemplo, para aumentar el tamaño del
+    personaje de 1 a 5 en 7 segundos::
+
+        protagonista.scale = pilas.interpolar(1, 5, 7)
+
+    Si creas un sprite sin indicar la imagen se cargará
+    una por defecto.
+    """
+
+    def __init__(self, image="sin_imagen.png", x=0, y=0):
+        self.centro_x = 0
+        self.centro_y = 0
+
+        if isinstance(image, str):
+            image = pilas.imagenes.cargar(image)
+
+        pygame.sprite.Sprite.__init__(self)
+        self.image = image
+        self.image_original = image.convert_alpha()
+        self.rect = self.image.get_rect()
+        self._escala_actual = 1
+        self._rotacion_actual = 0
+        
+    def definir_imagen(self, imagen):
+        self.image = imagen
+
+        if self._rotacion_actual:
+            self.rotacion = self._rotacion_actual
+
+    def obtener_imagen(self):
+        return self.image
+
+    def dibujar(self, aplicacion):
+        x, y = self.rect.topleft
+        aplicacion.blit(self.image, (x + 320 - self.centro_x - pilas.motor.camara_x, 
+                y + 240 - self.centro_y - pilas.motor.camara_y))
+
+    def duplicar(self, **kv):
+        duplicado = self.__class__()
+
+        for clave in kv:
+            setattr(duplicado, clave, kv[clave])
+
+        return duplicado
+
+    def obtener_ancho(self):
+        return self.rect.width
+
+    def obtener_alto(self):
+        return self.rect.height
+
+    def __str__(self):
+        return "<%s en (%d, %d)>" %(self.__class__.__name__, self.x, self.y)
+
+    def obtener_area(self):
+        return self.obtener_ancho(), self.obtener_alto()
+
+    def definir_centro(self, x, y):
+        self.centro_x = x
+        self.centro_y = y
+
+    def obtener_posicion(self):
+        x, y = self.rect.topleft
+        return x, -y
+
+    def definir_posicion(self, x, y):
+        self.rect.topleft = (x, -y)
+
+    def obtener_escala(self):
+        return self._escala_actual
+
+    def definir_escala(self, s):
+        self.image = pygame.transform.rotozoom(self.image, 0, s)
+        self._escala_actual = s
+
+    def obtener_rotacion(self):
+        return self._rotacion_actual
+
+    def definir_rotacion(self, r):
+        self.image = pygame.transform.rotozoom(self.image_original, -r, 1)
+        self._rotacion_actual = r
+
+        # Se asegura que el personaje gire desde el centro
+        # del area de colision.
+        centro = self.rect.center
+        self.rect = self.image.get_rect()
+        self.rect.center = centro
+
 class Pygame:
     """Representa la capa de interaccion con la biblioteca Pygame.
 
@@ -147,119 +259,10 @@ class Pygame:
         def Play(self):
             self.reproducir()
 
-    class Actor(pilas.baseactor.BaseActor, pygame.sprite.Sprite):
-        """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
-        Un objeto Actor se tiene que crear siempre indicando la imagen, ya
-        sea como una ruta a un archivo como con un objeto Image. Por ejemplo::
+    """pilas.baseactor.BaseActor,""" 
 
-            protagonista = Actor("protagonista_de_frente.png")
-
-        es equivalente a:
-
-            imagen = pilas.imagenes.cargar("protagonista_de_frente.png")
-            protagonista = Actor(imagen)
-
-        Luego, na vez que ha sido ejecutada la sentencia aparecerá en el centro de
-        la pantalla el nuevo actor para que pueda manipularlo. Por ejemplo
-        alterando sus propiedades::
-
-            protagonista.x = 100
-            protagonista.scale = 2
-            protagonista.rotation = 30
-
-
-        Estas propiedades tambien se pueden manipular mediante
-        interpolaciones. Por ejemplo, para aumentar el tamaño del
-        personaje de 1 a 5 en 7 segundos::
-
-            protagonista.scale = pilas.interpolar(1, 5, 7)
-
-        Si creas un sprite sin indicar la imagen se cargará
-        una por defecto.
-        """
-
-        def __init__(self, image="sin_imagen.png", x=0, y=0):
-            self.centro_x = 0
-            self.centro_y = 0
-
-            if isinstance(image, str):
-                image = pilas.imagenes.cargar(image)
-
-            pygame.sprite.Sprite.__init__(self)
-            self.image = image
-            self.image_original = image.convert_alpha()
-            self.rect = self.image.get_rect()
-            pilas.baseactor.BaseActor.__init__(self, x=x, y=y)
-            self._escala_actual = 1
-            self._rotacion_actual = 0
-            
-        def definir_imagen(self, imagen):
-            self.image = imagen
-
-            if self._rotacion_actual:
-                self.rotacion = self._rotacion_actual
-
-        def obtener_imagen(self):
-            return self.image
-
-        def dibujar(self, aplicacion):
-            x, y = self.rect.topleft
-            aplicacion.blit(self.image, (x + 320 - self.centro_x - pilas.motor.camara_x, 
-                    y + 240 - self.centro_y - pilas.motor.camara_y))
-
-        def duplicar(self, **kv):
-            duplicado = self.__class__()
-
-            for clave in kv:
-                setattr(duplicado, clave, kv[clave])
-
-            return duplicado
-
-        def obtener_ancho(self):
-            return self.rect.width
-
-        def obtener_alto(self):
-            return self.rect.height
-
-        def __str__(self):
-            return "<%s en (%d, %d)>" %(self.__class__.__name__, self.x, self.y)
-
-        def obtener_area(self):
-            return self.obtener_ancho(), self.obtener_alto()
-
-        def definir_centro(self, x, y):
-            self.centro_x = x
-            self.centro_y = y
-
-        def obtener_posicion(self):
-            x, y = self.rect.topleft
-            return x, -y
-
-        def definir_posicion(self, x, y):
-            self.rect.topleft = (x, -y)
-
-        def obtener_escala(self):
-            return self._escala_actual
-
-        def definir_escala(self, s):
-            self.image = pygame.transform.rotozoom(self.image, 0, s)
-            self._escala_actual = s
-
-        def obtener_rotacion(self):
-            return self._rotacion_actual
-
-        def definir_rotacion(self, r):
-            self.image = pygame.transform.rotozoom(self.image_original, -r, 1)
-            self._rotacion_actual = r
-
-            # Se asegura que el personaje gire desde el centro
-            # del area de colision.
-            centro = self.rect.center
-            self.rect = self.image.get_rect()
-            self.rect.center = centro
-
-    class Texto(pilas.baseactor.BaseActor, pygame.sprite.Sprite):
+    class Texto(pygame.sprite.Sprite):
         """Representa un texto en pantalla.
 
         El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
@@ -448,7 +451,7 @@ class Pygame:
         pygame.mouse.set_visible(False)
 
     def pintar(self, color):
-        self.ventana.fill(color)
+        self.ventana.fill((color.r, color.g, color.b))
 
     def cargar_imagen(self, ruta):
         # TODO: Optimizar la imagen preservando el canal alpha.
@@ -474,3 +477,6 @@ class Pygame:
         h = imagen.get_height()
 
         return cairo.ImageSurface.create_for_data(pixels, cairo.FORMAT_RGB24, w, h)
+
+    def obtener_actor(self, imagen, x, y):
+        return PygameActor(imagen, x, y)

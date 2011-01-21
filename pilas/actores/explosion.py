@@ -13,6 +13,6 @@ class Explosion(Animacion):
     "Representa una explosion para una bomba, dinamita etc..."
 
     def __init__(self, x=0, y=0):
-        Animacion.__init__(self, pilas.imagenes.Grilla("explosion.png", 7), x=x, y=y)
+        Animacion.__init__(self, pilas.imagenes.cargar_grilla("explosion.png", 7), x=x, y=y)
         self.sonido_explosion = pilas.sonidos.cargar("explosion.wav")
         self.sonido_explosion.reproducir()
