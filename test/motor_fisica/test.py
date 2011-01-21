@@ -1,7 +1,7 @@
 import pilas
 import Box2D as box2d
 import math
-pilas.iniciar()
+
 
 
 
@@ -290,7 +290,8 @@ class Jugador(pilas.actores.Actor):
 
 
 
-  
+pilas.iniciar() 
+
 # INICIO: Luego tiene que estar dentro del modulo pilas.
 f = Fisica()
 f.crear_suelo()
@@ -383,7 +384,6 @@ def juego_de_plataformas():
 
 
     Jugador()
-
 
 juego_de_plataformas()
 crear_objetos_con_clicks()
