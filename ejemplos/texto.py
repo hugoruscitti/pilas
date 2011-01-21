@@ -16,5 +16,7 @@ saludo.escala = 0.1
 saludo.escala = [1]
 saludo.rotacion = [360]
 
+saludo.aprender(pilas.habilidades.MoverseConElTeclado)
+
 pilas.avisar("Ejemplo de texto, pulse las teclas para desplazar el texto.")
 pilas.ejecutar()
