@@ -9,12 +9,15 @@ b = pilas.actores.Boton()
 
 
 def cuando_pulsan_el_boton():
+    b.pintar_presionado()
     pilas.avisar("Han pulsado el boton")
 
 def cuando_pasa_sobre_el_boton():
+    b.pintar_sobre()
     pilas.avisar("Pasa el mouse sobre el boton")
 
 def cuando_deja_de_pulsar():
+    b.pintar_normal()
     pilas.avisar("")
 
 
