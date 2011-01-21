@@ -17,6 +17,7 @@ class EscenaMenu(pilas.escenas.Escena):
         self.menu = pilas.actores.Menu(opciones_menu, y = -50)
 
     def iniciar_juego(self):
+        self.menu.desactivar()
         import escena_juego
         escena_juego.Juego()
 
@@ -24,5 +25,6 @@ class EscenaMenu(pilas.escenas.Escena):
         pilas.terminar()
 
     def mostrar_ayuda(self):
+        self.menu.desactivar()
         import escena_ayuda
         escena_ayuda.Ayuda()

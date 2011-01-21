@@ -25,8 +25,15 @@ class Menu(Actor):
         self.opcion_actual = 0
         # contador para evitar la repeticion de teclas
         self.demora_al_responder = 0
+        self.activar()
+
+    def activar(self):
         pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
         pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click_con_el_mouse)
+
+    def desactivar(self):
+        pilas.eventos.mueve_mouse.desconectar(self.cuando_mueve_el_mouse)
+        pilas.eventos.click_de_mouse.desconectar(self.cuando_hace_click_con_el_mouse)
 
     def crear_texto_de_las_opciones(self, opciones):
         "Genera un actor por cada opcion del menu."
