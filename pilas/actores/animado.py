@@ -25,3 +25,5 @@ class Animado(Actor):
     def definir_cuadro(self, indice):
         self.animacion.definir_cuadro(indice)
         self.animacion.asignar(self)
+        # FIX: Esta sentencia es muy ambigua, porque no todos actores se deben centrar en ese punto.
+        self.centro = ('centro', 'centro')

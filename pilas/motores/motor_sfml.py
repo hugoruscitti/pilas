@@ -33,21 +33,13 @@ class BaseActor:
     def definir_centro(self, x, y):
         self.SetCenter(x, y)
 
-<<<<<<< local
     def obtener_posicion(self):
         x, y = self.GetPosition()
         return x, -y
 
     def definir_posicion(self, x, y):
         self.SetPosition(x, -y)
-=======
-        def actualizar(self):
-            self.image.LoadFromPixels(ANCHO, ALTO, self.surface.get_data())
-        
-        def limpiar(self):
-            self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, ANCHO, ALTO)
-            self.context = cairo.Context(self.surface) 
->>>>>>> other
+
 
     def obtener_escala(self):
         return self.GetScale()[0]

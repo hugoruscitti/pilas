@@ -13,5 +13,5 @@ pingu2 = pilas.actores.Pingu(x=+100)
 # El pinguino de la derecha tendra el punto de control en los pies.
 pingu2.centro = ('centro', 'abajo')
 
-pilas.avisar("Dos actores con distintos centros (o puntos de control).")
+pilas.avisar("Dos actores con distintos centros (puntos de control), pulsa F12.")
 pilas.ejecutar()
