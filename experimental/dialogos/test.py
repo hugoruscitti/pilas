@@ -1,12 +1,12 @@
+# -*- encoding: utf-8 -*-
 import pilas
 
 class Globo(pilas.actores.Actor):
     
     def __init__(self, texto, x=0, y=0):
-        pilas.actores.Actor.__init__(self)
+        pilas.actores.Actor.__init__(self, x=x, y=y)
         ancho, alto = self._crear_lienzo(texto, pilas) 
         imagen = pilas.imagenes.cargar_imagen_cairo("globo.png")
-
 
         self._pintar_globo(x, y, ancho, alto, imagen)
         
@@ -54,8 +54,69 @@ class Globo(pilas.actores.Actor):
         self.lienzo.pintar_parte_de_imagen(imagen, 67, 35, 33, 25, int(ancho) - 12, 0 + int(alto) + 12 + 12)
 
 
+class Dialogo:
+    
+    def __init__(self):
+        self.dialogo = []
+        self.dialogo_actual = None
 
+    
+    def decir(self, actor, texto):
+        self.dialogo.append((actor, texto))
+        
+    def ejecutar(self, funcion):
+        self.dialogo.append(funcion)
+
+    def iniciar(self):
+        self.avanzar_al_siguiente_dialogo()
+
+    def obtener_siguiente_dialogo_o_funcion(self):
+        if self.dialogo:
+            return self.dialogo.pop(0)
+        
+    def avanzar_al_siguiente_dialogo(self, evento=None):
+     
+        if self.dialogo_actual:
+            self.dialogo_actual.eliminar()
+            self.dialogo_actual = None
+            
+        siguiente = self.obtener_siguiente_dialogo_o_funcion()
+        
+        if siguiente:
+            if isinstance(siguiente, tuple):
+                actor, texto = siguiente
+                print actor
+                self.dialogo_actual = Globo(texto, x=actor.x + 30, y=actor.y + 30)
+            else:
+                siguiente()
+        else:
+            # TODO: desconectar la senal.
+            print "Termino el dialogo."
+            
+        return True
 
 pilas.iniciar()
-a = Globo("Hola mundo!!!")
+
+# La secuencia es sencilla, el mono dice 'hola', 
+mono = pilas.actores.Mono(x=-100)
+mono_chiquito = pilas.actores.Mono(x=200)
+mono_chiquito.escala = 0.75
+
+d = Dialogo()
+d.decir(mono, "Hola, como estas?")
+d.decir(mono_chiquito, "Bien, ¿y vos?...")
+d.decir(mono, "Bien... ¡Mirá cómo salto !")
+
+def hacer_que_el_mono_salte():
+    mono.sonreir()
+    mono.y = [300], 0.25
+
+d.ejecutar(hacer_que_el_mono_salte)
+d.decir(mono_chiquito, "wow...")
+
+
+d.iniciar()
+pilas.eventos.click_de_mouse.conectar(d.avanzar_al_siguiente_dialogo)
+
+pilas.avisar("Tienes que hacer click para que la animacion avance.")
 pilas.ejecutar()
