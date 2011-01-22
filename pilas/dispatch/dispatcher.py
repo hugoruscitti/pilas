@@ -230,3 +230,14 @@ class Signal(object):
             for idx, (r_key, _) in enumerate(self.receivers):
                 if r_key == key:
                     del self.receivers[idx]
+
+    def esta_conectado(self):
+        "Indica si tiene alguna funcion conectada."
+        return self.receivers
+    
+    def imprimir_funciones_conectadas(self):
+        "Imprime todas las funciones que tiene conectado el evento."
+        for clave, referencia in self.receivers:
+            nombre = referencia.__str__()
+            nombre = nombre[nombre.index('(')+1:nombre.index(")")]
+            print "\t", nombre

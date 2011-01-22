@@ -46,3 +46,16 @@ Mi recomendación es que ante la menor duda, pulses ``p`` para
 ir al modo pausa, luego ``F12`` para ver las figuras geométricas
 del los objetos, y luego pulses la barra espaciadora para ir
 paso a paso inspeccionando la simulación del juego.
+
+
+Eventos
+-------
+
+Para observar los eventos conectados a funciones
+puedes usar la tecla F10. Eso imprimirá sobre
+la consola de pilas todos los eventos que se
+conectaron a funciones.
+
+Esta lista es útil para esos casos donde no
+tienes mucha seguridad de si se han desconectado
+correctamentes las señales.

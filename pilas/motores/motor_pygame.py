@@ -435,6 +435,8 @@ class Pygame:
 
         if event.key == pygame.K_p:
             pilas.mundo.alternar_pausa()
+        elif event.key == pygame.K_F10:
+            eventos.imprimir_todos()
         elif event.key == pygame.K_F12:
             pilas.mundo.alternar_modo_depuracion()
         elif event.key == pygame.K_ESCAPE:

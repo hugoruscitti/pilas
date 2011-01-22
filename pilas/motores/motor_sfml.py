@@ -336,6 +336,8 @@ class pySFML(motor.Motor):
     def procesar_evento_teclado(self, event):
         if event.Key.Code == sf.Key.P:
             pilas.mundo.alternar_pausa()
+        elif event.Key.Code == sf.Key.F10:
+            eventos.imprimir_todos()
         elif event.Key.Code == sf.Key.F12:
             pilas.mundo.alternar_modo_depuracion()
         elif event.Key.Code == sf.Key.Escape:

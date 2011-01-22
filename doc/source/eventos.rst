@@ -138,6 +138,16 @@ un valor al argumento ``uid``. Este valor será el identificador
 de ese enlace. Y en la siguiente linea se utilizó el identificador
 para desconectarla.
 
+Consultado señales conectadas
+-----------------------------
+
+Durante el desarrollo es útil poder observar qué
+eventos se han conectado a funciones.
+
+Una forma de observar la conexión de los eventos
+es pulsar la tecla F10. Eso imprimirá sobre
+consola los nombres de las señales conectadas
+junto a las funciones.
 
 
 Referencias
