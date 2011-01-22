@@ -99,7 +99,10 @@ class PizarraAbstracta():
         Las coordenadas de pantalla tienen su origen en la esquina
         superior izquierda, no en el centro de la ventana.
         """
-        imagen = pilas.motor.obtener_imagen_cairo(imagen)
+        
+        if not isinstance(imagen, cairo.ImageSurface):
+            imagen = pilas.motor.obtener_imagen_cairo(imagen)
+            
         w = imagen.get_width()
         h = imagen.get_height()
         self._pintar_parte_de_imagen(imagen, 0, 0, w, h, x, y)
@@ -109,9 +112,9 @@ class PizarraAbstracta():
         w = grilla.cuadro_ancho
         h = grilla.cuadro_alto
         dx = grilla.cuadro * grilla.cuadro_ancho
-        self._pintar_parte_de_imagen(imagen, dx, 0, w, h, x, y)
+        self.pintar_parte_de_imagen(imagen, dx, 0, w, h, x, y)
 
-    def _pintar_parte_de_imagen(self, imagen_cairo, origen_x, origen_y, ancho, alto, x, y):
+    def pintar_parte_de_imagen(self, imagen_cairo, origen_x, origen_y, ancho, alto, x, y):
         """Dibuja una porcion de imagen sobre la pizarra pero usando coordenadas de pantalla.
 
         Los argumentos ``origen_x`` y ``origen_y`` indican la parte
@@ -142,16 +145,25 @@ class PizarraAbstracta():
         if self.actualiza_automaticamente:
             self.actualizar_imagen()
 
-    def escribir(self, texto, x=0, y=0, tamano=32, fuente="Arial"):
+    def escribir(self, texto, x=0, y=0, tamano=32, fuente="sans"):
         "Pinta una cadena de texto con el color actual del trazo."
         self.canvas.context.move_to(x, y)
         self.canvas.context.set_font_size(tamano)
         self.canvas.context.select_font_face(fuente)
-        self.canvas.context.text_path(texto)
+        self.canvas.context.show_text(texto)
         self.canvas.context.fill()
 
         if self.actualiza_automaticamente:
             self.actualizar_imagen()
+
+    def obtener_area_de_texto(self, texto, tamano=32, fuente="sans"):
+        """Retorna el tamano que tendra el texto una vez dibujado.
+        
+        El resultado es una tupla de tipo (ancho, alto)."""
+        self.canvas.context.set_font_size(tamano)
+        self.canvas.context.select_font_face(fuente)
+        (_, _, ancho, alto, _, _) = self.canvas.context.text_extents(texto)
+        return (ancho, alto)
 
     def dibujar_rectangulo(self, x, y, ancho, alto, pintar=True):
         self.canvas.context.rectangle(x, y, ancho, alto)

@@ -8,6 +8,7 @@
 
 import pilas
 import os
+import cairo
 
 def cargar(ruta):
     """Intenta cargar la imagen indicada por el argumento ``ruta``.
@@ -37,6 +38,10 @@ def cargar(ruta):
     
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
     return pilas.motor.cargar_imagen(ruta)
+
+def cargar_imagen_cairo(ruta):
+    ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
+    return cairo.ImageSurface.create_from_png(ruta)
 
 def cargar_grilla(ruta, columnas=1, filas=1):
     """Representa una grilla de imagenes con varios cuadros de animación.
