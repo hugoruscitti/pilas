@@ -251,8 +251,11 @@ class Actor(object, pilas.estudiante.Estudiante):
         "Determina si un punto colisiona con el area del actor."
 
         w, h = self.obtener_ancho(), self.obtener_alto()
-        left, right = self.x - w/2 , self.x + w/2
-        top, bottom = self.y - h/2,  self.y + h/2
+        dx, dy = self.centro
+        
+        left, right = self.x - dx, self.x + w - dx
+        top, bottom = self.y -dy,  self.y + h - dy
+        
         return left < x < right and top < y < bottom
 
     def obtener_rotacion(self):

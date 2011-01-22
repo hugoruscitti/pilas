@@ -146,17 +146,19 @@ class SFMLSonido:
 class SFMLCanvas:
     "Representa una superficie sobre la que se puede dibujar usando cairo."
 
-    def __init__(self):
-        self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, ANCHO, ALTO)
+    def __init__(self, ancho, alto):
+        self.ancho = ancho
+        self.alto = alto
+        self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, ancho, alto)
         self.image = sf.Image()
         self.context = cairo.Context(self.surface)
         self.actualizar()
 
     def actualizar(self):
-        self.image.LoadFromPixels(ANCHO, ALTO, self.surface.get_data())
+        self.image.LoadFromPixels(self.ancho, self.alto, self.surface.get_data())
 
     def limpiar(self):
-        self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, ANCHO, ALTO)
+        self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, self.ancho, self.alto)
         self.context = cairo.Context(self.surface)       
 
 class SFMLGrilla:
@@ -220,8 +222,8 @@ class pySFML(motor.Motor):
     def obtener_texto(self, texto, x, y):
         return SFMLTexto(texto, x, y)
     
-    def obtener_canvas(self):
-        return SFMLCanvas()
+    def obtener_canvas(self, ancho, alto):
+        return SFMLCanvas(ancho, alto)
     
     def obtener_grilla(self, ruta, columnas, filas):
         return SFMLGrilla(ruta, columnas, filas)

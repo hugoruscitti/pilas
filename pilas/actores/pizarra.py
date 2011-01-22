@@ -32,25 +32,22 @@ class Lapiz(object):
 
     x = property(get_x, set_x)
     y = property(get_y, set_y)
+
+class PizarraAbstracta():
     
-
-class Pizarra(Actor):
-    """Representa una superficie de dibujo inicialmente transparente.
-
-    Puedes pintar sobre esta pizarra usando métodos que simulan
-    un lapiz, que se puede mover sobre una superficie.
-    """
-
-    def __init__(self, x=0, y=0):
-        Actor.__init__(self, x=x, y=y)
-        self.canvas = pilas.motor.obtener_canvas()
+    def __init__(self, ancho=640, alto=480):
+        self.canvas = pilas.motor.obtener_canvas(ancho, alto)
         self.lapiz = Lapiz()
-        self.actualizar_imagen()
+
         self.levantar_lapiz()
         self.mover_lapiz(0, 0)
         self.centro = ("medio", "medio")
-        self.habilitar_actualizacion_automatica()
-
+        self.actualizar_imagen()
+        self.habilitar_actualizacion_automatica()        
+        
+    def asignar(self, actor):
+        actor.imagen = self.canvas.image
+        
     def habilitar_actualizacion_automatica(self):
         self.actualiza_automaticamente = True
         self.actualizar_imagen()
@@ -58,16 +55,15 @@ class Pizarra(Actor):
     def deshabilitar_actualizacion_automatica(self):
         self.actualiza_automaticamente = False
 
+    def actualizar_imagen(self):
+        "Se encarga de actualizar la vista de la pizarra."
+        self.canvas.actualizar()
+        
     def levantar_lapiz(self):
         self.lapiz_bajo = False
 
     def bajar_lapiz(self):
         self.lapiz_bajo = True
-
-    def actualizar_imagen(self):
-        "Se encarga de actualizar la vista de la pizarra."
-        self.canvas.actualizar()
-        self.definir_imagen(self.canvas.image)
 
     def pintar_punto(self, x, y):
         y = 240 - y
@@ -142,6 +138,7 @@ class Pizarra(Actor):
 
         self.canvas.context.rectangle(0, 0, w, h)
         self.canvas.context.fill()
+        
         if self.actualiza_automaticamente:
             self.actualizar_imagen()
 
@@ -200,3 +197,21 @@ class Pizarra(Actor):
             
         if self.actualiza_automaticamente:
             self.actualizar_imagen()
+            
+            
+class Pizarra(Actor, PizarraAbstracta):
+    """Representa una superficie de dibujo inicialmente transparente.
+
+    Puedes pintar sobre esta pizarra usando métodos que simulan
+    un lapiz, que se puede mover sobre una superficie.
+    """
+
+    def __init__(self, x=0, y=0):
+        Actor.__init__(self, x=x, y=y)
+        PizarraAbstracta.__init__(self)
+        
+        
+    def actualizar_imagen(self):
+        "Se encarga de actualizar la vista de la pizarra."
+        self.canvas.actualizar()
+        self.definir_imagen(self.canvas.image)

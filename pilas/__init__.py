@@ -77,6 +77,7 @@ import motores
 import atajos
 import fisica
 import grupo
+import lienzo
 
 # Carga el modulo de autocompletado si esta
 # en sesion interactiva.

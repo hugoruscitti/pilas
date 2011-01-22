@@ -14,7 +14,6 @@ class Fondo(pilas.actores.Actor):
         pilas.actores.Actor.__init__(self, imagen)
         self.z = 100
 
-
 class Volley(Fondo):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."
 
@@ -47,3 +46,9 @@ class Espacio(Fondo):
     def __init__(self):
         Fondo.__init__(self, "fondos/espacio.png")
 
+
+class Blanco(Fondo):
+    "Un fondo de color blanco."
+
+    def __init__(self):
+        Fondo.__init__(self, "fondos/blanco.png")

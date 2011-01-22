@@ -35,7 +35,6 @@ def cargar(ruta):
         print mensaje
         raise Exception(mensaje)
     
-
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
     return pilas.motor.cargar_imagen(ruta)
 
@@ -61,6 +60,16 @@ def cargar_grilla(ruta, columnas=1, filas=1):
         grilla.asignar(actor)
     """
     return pilas.motor.obtener_grilla(ruta, columnas, filas)
+
+def cargar_lienzo(ancho=640, alto=480):
+    """Representa un rectangulo (inicialmente transparente) para dibujar.
+    
+    Internamente el lienzo tiene un contexto cairo, lo que permite
+    realizar dibujos vectoriales avanzados.
+    
+    Generalmente este objeto se utiliza usando al actor Pizarra.
+    """
+    return pilas.lienzo.Lienzo(ancho, alto)
 
 # Pronto en desuso
 # Grilla = pilas.motor.Grilla

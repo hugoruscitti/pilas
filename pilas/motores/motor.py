@@ -20,7 +20,7 @@ class Motor(object):
     def obtener_texto(self, texto, x, y):
         abstract()
     
-    def obtener_canvas(self):
+    def obtener_canvas(self, ancho, alto):
         abstract()
     
     def obtener_grilla(self, ruta, columnas, filas):
