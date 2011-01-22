@@ -26,13 +26,13 @@ class Globo(pilas.actores.Actor):
     def _pintar_globo(self, x, y, ancho, alto, imagen):
         # esquina sup-izq
         self.lienzo.pintar_parte_de_imagen(imagen, 0, 0, 12, 12, 0, 0)
-    # borde superior
+        # borde superior
         for x in range(0, int(ancho) + 12, 12):
             self.lienzo.pintar_parte_de_imagen(imagen, 12, 0, 12, 12, 12 + x, 0)
         
-    # esquina sup-der
+         # esquina sup-der
         self.lienzo.pintar_parte_de_imagen(imagen, 100, 0, 12, 12, 12 + int(ancho) + 12, 0)
-    # centro del dialogo
+        # centro del dialogo
         for y in range(0, int(alto) + 12, 12):
             # borde izquierdo
             self.lienzo.pintar_parte_de_imagen(imagen, 0, 12, 12, 12, 0, 12 + y)
@@ -43,14 +43,14 @@ class Globo(pilas.actores.Actor):
             # borde derecho
             self.lienzo.pintar_parte_de_imagen(imagen, 100, 12, 12, 12, 12 + int(ancho) + 12, 12 + y)
         
-    # parte inferior
+         # parte inferior
         self.lienzo.pintar_parte_de_imagen(imagen, 0, 35, 12, 12, 0, 0 + int(alto) + 12 + 12)
-    # linea horizontal de la parte inferior
+        # linea horizontal de la parte inferior
         for x in range(0, int(ancho) + 12, 12):
             self.lienzo.pintar_parte_de_imagen(imagen, 12, 35, 12, 12, 12 + x, 0 + int(alto) + 12 + 12)
         
         self.lienzo.pintar_parte_de_imagen(imagen, 100, 35, 12, 12, 12 + int(ancho) + 12, 0 + int(alto) + 12 + 12)
-    # Pico de la parte de abajo
+        # Pico de la parte de abajo
         self.lienzo.pintar_parte_de_imagen(imagen, 67, 35, 33, 25, int(ancho) - 12, 0 + int(alto) + 12 + 12)
 
 
@@ -59,7 +59,6 @@ class Dialogo:
     def __init__(self):
         self.dialogo = []
         self.dialogo_actual = None
-
     
     def decir(self, actor, texto):
         self.dialogo.append((actor, texto))
@@ -74,24 +73,29 @@ class Dialogo:
         if self.dialogo:
             return self.dialogo.pop(0)
         
-    def avanzar_al_siguiente_dialogo(self, evento=None):
-     
+
+    def _eliminar_dialogo_actual(self):
         if self.dialogo_actual:
             self.dialogo_actual.eliminar()
             self.dialogo_actual = None
-            
+
+
+    def _mostrar_o_ejecutar_siguiente(self, siguiente):
+        if isinstance(siguiente, tuple):
+            actor, texto = siguiente
+            self.dialogo_actual = Globo(texto, x=actor.x + 30, y=actor.y + 30)
+        else:
+            siguiente()
+
+    def avanzar_al_siguiente_dialogo(self, evento=None):
+        self._eliminar_dialogo_actual()
         siguiente = self.obtener_siguiente_dialogo_o_funcion()
         
         if siguiente:
-            if isinstance(siguiente, tuple):
-                actor, texto = siguiente
-                print actor
-                self.dialogo_actual = Globo(texto, x=actor.x + 30, y=actor.y + 30)
-            else:
-                siguiente()
+            self._mostrar_o_ejecutar_siguiente(siguiente)
         else:
-            # TODO: desconectar la senal.
             print "Termino el dialogo."
+            return False
             
         return True
 
@@ -109,7 +113,7 @@ d.decir(mono, "Bien... ¡Mirá cómo salto !")
 
 def hacer_que_el_mono_salte():
     mono.sonreir()
-    mono.y = [300], 0.25
+    mono.y = [300], 1
 
 d.ejecutar(hacer_que_el_mono_salte)
 d.decir(mono_chiquito, "wow...")
