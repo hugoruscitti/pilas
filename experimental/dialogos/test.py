@@ -4,11 +4,18 @@ class Globo(pilas.actores.Actor):
     
     def __init__(self, texto, x=0, y=0):
         pilas.actores.Actor.__init__(self)
-        self.lienzo = pilas.lienzo.Lienzo()
+        self.lienzo = pilas.lienzo.Lienzo(10, 10)
+        ancho, alto = self.lienzo.obtener_area_de_texto(texto, tamano=14)
+        ancho = int((ancho + 12) - (ancho % 12))
+        alto = int((alto + 12) - alto % 12)
+        
+
+        self.lienzo = pilas.lienzo.Lienzo(ancho + 36, alto + 24 + 35) 
+        
         imagen = pilas.imagenes.cargar_imagen_cairo("globo.png")
 
-        ancho, alto = self.lienzo.obtener_area_de_texto(texto, tamano=14)
-        
+
+
         # esquina sup-izq
         self.lienzo.pintar_parte_de_imagen(imagen, 0, 0, 12, 12, 0, 0)
         
@@ -43,17 +50,14 @@ class Globo(pilas.actores.Actor):
         # Pico de la parte de abajo
         self.lienzo.pintar_parte_de_imagen(imagen, 67, 35, 33, 25, int(ancho) - 12, 0 + int(alto) + 12 + 12)
         
-
-
-
         self.lienzo.definir_color(pilas.colores.negro)
         self.lienzo.escribir(texto, 12, 25, tamano=14)
         self.lienzo.asignar(self)
-        
+        self.centro = ("derecha", "abajo")
 
 
 
 
 pilas.iniciar()
-a = Globo("Hola mundo, este.")
+a = Globo("Hola mundo!!!")
 pilas.ejecutar()
