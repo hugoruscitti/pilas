@@ -105,7 +105,7 @@ class PizarraAbstracta():
             
         w = imagen.get_width()
         h = imagen.get_height()
-        self._pintar_parte_de_imagen(imagen, 0, 0, w, h, x, y)
+        self.pintar_parte_de_imagen(imagen, 0, 0, w, h, x, y)
 
     def pintar_grilla(self, grilla, x=0, y=0):
         imagen = pilas.motor.obtener_imagen_cairo(grilla.image)
