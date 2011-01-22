@@ -4,7 +4,7 @@ class Globo(pilas.actores.Actor):
     
     def __init__(self, texto, x=0, y=0):
         pilas.actores.Actor.__init__(self)
-        ancho, alto, tamano = self._crear_lienzo(texto, pilas) 
+        ancho, alto = self._crear_lienzo(texto, pilas) 
         imagen = pilas.imagenes.cargar_imagen_cairo("globo.png")
 
 
@@ -21,7 +21,7 @@ class Globo(pilas.actores.Actor):
         ancho = int((ancho + 12) - (ancho % 12))
         alto = int((alto + 12) - alto % 12)
         self.lienzo = pilas.lienzo.Lienzo(ancho + 36, alto + 24 + 35)
-        return ancho, alto, tamano
+        return ancho, alto
 
     def _pintar_globo(self, x, y, ancho, alto, imagen):
         # esquina sup-izq
