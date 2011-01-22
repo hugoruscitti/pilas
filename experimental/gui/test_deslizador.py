@@ -52,6 +52,9 @@ class Deslizador(Actor):
     def conectar(self, f):
         self.funciones.append(f)        
 
+    def desconectar(self, f):
+        self.funciones.remove(f)
+
     def ejecutar_funciones(self, valor):
         for i in self.funciones:
             i(valor)
