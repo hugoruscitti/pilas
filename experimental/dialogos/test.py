@@ -3,7 +3,8 @@ import pilas
 
 class Globo(pilas.actores.Actor):
 
-    def __init__(self, texto, x=0, y=0):
+    def __init__(self, dialogo, texto, x=0, y=0):
+        self.dialogo = dialogo
         pilas.actores.Actor.__init__(self, x=x, y=y)
         ancho, alto = self._crear_lienzo(texto, pilas) 
         imagen = pilas.imagenes.cargar_imagen_cairo("globo.png")
@@ -13,7 +14,12 @@ class Globo(pilas.actores.Actor):
         self._escribir_texto(texto)
         self.lienzo.asignar(self)
         self.centro = ("derecha", "abajo")
+        pilas.eventos.click_de_mouse.conectar(self.cuando_quieren_avanzar)
 
+    def cuando_quieren_avanzar(self, *k):
+        if self.dialogo:
+            self.dialogo.avanzar_al_siguiente_dialogo()
+            
     def _escribir_texto(self, texto):
         return self.lienzo.escribir(texto, 12, 25, tamano=14)
     
@@ -27,7 +33,6 @@ class Globo(pilas.actores.Actor):
 
     def _obtener_area_para_el_texto(self, texto):
         return self.lienzo.obtener_area_de_texto(texto, tamano=14)
-
 
     def _pintar_globo(self, x, y, ancho, alto, imagen):
         # esquina sup-izq
@@ -62,10 +67,11 @@ class Globo(pilas.actores.Actor):
 
 class GloboElegir(Globo):
     
-    def __init__(self, texto, opciones, funcion_a_invocar, x=0, y=0):
+    def __init__(self, dialogo, texto, opciones, funcion_a_invocar, x=0, y=0):
+        self.dialogo = dialogo
         self.opciones = opciones
         self.funcion_a_invocar = funcion_a_invocar
-        Globo.__init__(self, texto, x, y)
+        Globo.__init__(self, dialogo, texto, x, y)
 
     def _obtener_area_para_el_texto(self, texto):
         ancho, alto = self.lienzo.obtener_area_de_texto(texto, tamano=14)
@@ -75,7 +81,6 @@ class GloboElegir(Globo):
             ancho_opcion, alto_opcion = self.lienzo.obtener_area_de_texto(opcion, tamano=14)
             ancho = max(ancho, ancho_opcion)
             alto += alto_opcion + 10
-            print alto_opcion
 
         return ancho, alto
         
@@ -85,7 +90,11 @@ class GloboElegir(Globo):
         for (indice, respuesta) in enumerate(self.opciones):
             self.lienzo.escribir(respuesta, 12, 25 + 30 + indice * 20, tamano=14)    
     
+    def cuando_quieren_avanzar(self, *k):
+        print "No se puede avanzar..."
+        
 class Dialogo:
+    "Representa una secuencia de mensajes entre varios actores."
     
     def __init__(self):
         self.dialogo = []
@@ -107,24 +116,21 @@ class Dialogo:
         if self.dialogo:
             return self.dialogo.pop(0)
         
-
     def _eliminar_dialogo_actual(self):
         if self.dialogo_actual:
             self.dialogo_actual.eliminar()
             self.dialogo_actual = None
-
 
     def _mostrar_o_ejecutar_siguiente(self, siguiente):
         if isinstance(siguiente, tuple):
             # Es un mensaje de dialogo simple
             if len(siguiente) == 2:
                 actor, texto = siguiente
-                self.dialogo_actual = Globo(texto, x=actor.x + 30, y=actor.y + 30)
+                self.dialogo_actual = Globo(self, texto, x=actor.x + 30, y=actor.y + 30)
             else:
                 # Es un mensaje con seleccion.
                 actor, texto, opciones, funcion_a_invocar = siguiente
-                print texto, opciones
-                self.dialogo_actual = GloboElegir(texto, opciones, funcion_a_invocar, x=actor.x + 30, y=actor.y + 30)
+                self.dialogo_actual = GloboElegir(self, texto, opciones, funcion_a_invocar, x=actor.x + 30, y=actor.y + 30)
         else:
             siguiente()
 
@@ -172,7 +178,5 @@ d.elegir(mono_chiquito, "Mi color favorito es el...", ["rojo", "verde", "azul"],
 
 
 d.iniciar()
-pilas.eventos.click_de_mouse.conectar(d.avanzar_al_siguiente_dialogo)
-
 pilas.avisar("Tienes que hacer click para que la animacion avance.")
 pilas.ejecutar()
