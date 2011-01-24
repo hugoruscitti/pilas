@@ -162,7 +162,6 @@ class PizarraAbstracta():
         El resultado es una tupla de tipo (ancho, alto)."""
         self.canvas.context.set_font_size(tamano)
         self.canvas.context.select_font_face(fuente)
-        print texto
         (_, _, ancho, alto, _, _) = self.canvas.context.text_extents(texto)
         return (ancho, alto)
     
