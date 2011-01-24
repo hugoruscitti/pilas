@@ -128,10 +128,12 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         import pilas.actores
         ModoEjecucionNormal.__init__(self, m)
         self.eje = pilas.actores.Ejes()
+        self.pizarra = pilas.actores.Pizarra()
         pilas.eventos.inicia_modo_depuracion.send("ModoEjecucionDepuracion")
 
     def salir(self):
         self.eje.eliminar()
+        self.pizarra.eliminar()
 
     def dibujar_actores(self):
 
@@ -140,7 +142,7 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         color_de_colision = pilas.colores.verde_transparente
         color_de_punto_de_control = pilas.colores.rojo_transparente
         color_borde = pilas.colores.gris_transparente
-
+        self.pizarra.limpiar()
         for actor in pilas.actores.todos:
             if actor.radio_de_colision:
                 self.pintar_radio_de_colision_del_actor(actor, color_de_colision, color_borde)
@@ -149,14 +151,9 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
 
             # intenta dibujar el numero de cuadro que usa el actor
             # si es que tiene una animacion asignada.
+            ancho, alto = actor.obtener_area()
+            self.pizarra.dibujar_rectangulo(actor.izquierda + 320, 240 - actor.arriba, ancho, alto, False)
 
-            '''
-            try:
-                cuadro = actor.animacion.obtener_cuadro()
-                self.pintar_numero(cuadro, actor.x, actor.y)
-            except AttributeError, e:
-                pass
-            '''
 
     def pintar_numero(self, numero, x, y):
         numero = pilas.actores.Texto(str(numero))
