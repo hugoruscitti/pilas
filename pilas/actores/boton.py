@@ -59,7 +59,16 @@ class Boton(Actor):
     def conectar_sobre(self, funcion, arg = "null"):
         t = (funcion, arg)
         self.funciones_over.append(t)    
+
+    def desconectar_normal_todo(self):
+        self.funciones_normal = []
     
+    def desconectar_presionado_todo(self):
+        self.funciones_press = []
+    
+    def desconectar_sobre_todo(self):
+        self.funciones_over = []
+        
     def desconectar_normal(self, funcion, arg = "null"):
         t = (funcion, arg)
         self.funciones_normal.remove(t)
