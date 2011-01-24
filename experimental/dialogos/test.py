@@ -53,8 +53,6 @@ class ListaSeleccion(Componente):
         opcion = int((self.arriba - evento.y ) / 20)
         if opcion in range(0, len(self.opciones)):
             return opcion
-
-
 "-----------------------"
 
 class Globo(pilas.actores.Actor):
@@ -69,8 +67,16 @@ class Globo(pilas.actores.Actor):
         self.lienzo.definir_color(pilas.colores.negro)
         self._escribir_texto(texto)
         self.lienzo.asignar(self)
-        self.centro = ("derecha", "abajo")
+        self.centro = ("centro", "centro")
+
+
         pilas.eventos.click_de_mouse.conectar(self.cuando_quieren_avanzar)
+
+    def colocar_origen_del_globo(self, x, y):
+        "Cambia la posicion del globo para que el punto de donde se emite el globo sea (x, y)."
+        self.x = x - self.obtener_ancho() / 2 + 30
+        self.y = y + self.obtener_alto() / 2
+    
 
     def cuando_quieren_avanzar(self, *k):
         if self.dialogo:
@@ -128,22 +134,34 @@ class GloboElegir(Globo):
         self.opciones = opciones
         self.funcion_a_invocar = funcion_a_invocar
         Globo.__init__(self, dialogo, texto, x, y)
-        self.lista_seleccion = ListaSeleccion(opciones, funcion_a_invocar)
+    
+        self.lista_seleccion = ListaSeleccion(opciones, self._cuando_selecciona_opcion, x, y)
+        self._actualizar_posicion_de_la_lista_de_seleccion()
+        
+    def colocar_origen_del_globo(self, x, y):
+        Globo.colocar_origen_del_globo(self, x, y)
+        self._actualizar_posicion_de_la_lista_de_seleccion()
+
+    def _actualizar_posicion_de_la_lista_de_seleccion(self):
+        self.lista_seleccion.izquierda = self.izquierda + 10
+        self.lista_seleccion.abajo = self.abajo + 33
+        self.lista_seleccion.centro = ("centro", "centro")
 
     def _obtener_area_para_el_texto(self, texto):
         ancho, alto = self.lienzo.obtener_area_de_texto(texto, tamano=14)
-        opciones_ancho, opciones_alto = self.lienzo.obtener_area_para_lista_de_texto(self.opciones, tamano=14)
-        
+        opciones_ancho, opciones_alto = self.lienzo.obtener_area_para_lista_de_texto(self.opciones, tamano=14)     
         return ancho + opciones_ancho, alto + opciones_alto 
         
     def _escribir_texto(self, texto):
         self.lienzo.escribir(texto, 12, 25, tamano=14)
-        
-        for (indice, opcion) in enumerate(self.opciones):
-            self.lienzo.escribir(opcion, 12, 25 + 30 + indice * 20, tamano=14)    
-    
+
     def cuando_quieren_avanzar(self, *k):
-        print "No se puede avanzar..."
+        pass
+
+    def _cuando_selecciona_opcion(self, opcion):
+        self.funcion_a_invocar(opcion)
+        Globo.cuando_quieren_avanzar(self)
+        self.lista_seleccion.eliminar()
         
 class Dialogo:
     "Representa una secuencia de mensajes entre varios actores."
@@ -178,11 +196,13 @@ class Dialogo:
             # Es un mensaje de dialogo simple
             if len(siguiente) == 2:
                 actor, texto = siguiente
-                self.dialogo_actual = Globo(self, texto, x=actor.x + 30, y=actor.y + 30)
+                self.dialogo_actual = Globo(self, texto)
             else:
                 # Es un mensaje con seleccion.
                 actor, texto, opciones, funcion_a_invocar = siguiente
-                self.dialogo_actual = GloboElegir(self, texto, opciones, funcion_a_invocar, x=actor.x + 30, y=actor.y + 30)
+                self.dialogo_actual = GloboElegir(self, texto, opciones, funcion_a_invocar)
+                
+            self.dialogo_actual.colocar_origen_del_globo(actor.x, actor.arriba)
         else:
             siguiente()
 
@@ -219,11 +239,22 @@ d.ejecutar(hacer_que_el_mono_salte)
 d.decir(mono_chiquito, "wow...")
 """
 
+
+mono.aprender(pilas.habilidades.MoverseConElTeclado)
+
 d = Dialogo()
 d.decir(mono, "¿Cual es tu color favorito?")
 
 def cuando_responde_color_favorito(respuesta):
-    d.decir(mono, "Ya esta, ahora tenemos fondo '%s" %(respuesta))
+    colores = {
+               'rojo': pilas.colores.rojo,
+               'verde': pilas.colores.verde,
+               'azul': pilas.colores.azul,
+              }
+    
+    pilas.fondos.Color(colores[respuesta])
+    mono.sonreir()
+    d.decir(mono, "¡mira!")
     d.decir(mono_chiquito, "fua...")
     
 d.elegir(mono_chiquito, "Mi color favorito es el...", ["rojo", "verde", "azul"], cuando_responde_color_favorito)
