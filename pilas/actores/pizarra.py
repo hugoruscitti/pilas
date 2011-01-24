@@ -41,12 +41,14 @@ class PizarraAbstracta():
 
         self.levantar_lapiz()
         self.mover_lapiz(0, 0)
-        self.centro = ("medio", "medio")
+
         self.actualizar_imagen()
         self.habilitar_actualizacion_automatica()        
-        
+        self.centro = ("medio", "medio")
+                
     def asignar(self, actor):
         actor.imagen = self.canvas.image
+        print self.canvas.image.GetWidth()
         
     def habilitar_actualizacion_automatica(self):
         self.actualiza_automaticamente = True
