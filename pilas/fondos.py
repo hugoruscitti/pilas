@@ -52,3 +52,13 @@ class Blanco(Fondo):
 
     def __init__(self):
         Fondo.__init__(self, "fondos/blanco.png")
+        
+        
+class Color(Fondo):
+    
+    def __init__(self, color):
+        self.lienzo = pilas.lienzo.Lienzo()
+        self.lienzo.pintar(color)
+        Fondo.__init__(self, "invisible.png")
+        self.lienzo.asignar(self)
+        self.centro = ("centro", "centro")
