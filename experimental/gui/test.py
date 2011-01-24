@@ -33,19 +33,23 @@ class Selector(Componente):
         
     def deseleccionar(self):
         self.seleccionado = False
+        self.lienzo.deshabilitar_actualizacion_automatica()
         self.lienzo.limpiar()
         self.lienzo.pintar_imagen(self.imagen_selector)
         self.pintar_texto()
         self.lienzo.asignar(self)
         self.centro = ("centro", "centro")
+        self.lienzo.habilitar_actualizacion_automatica()
         
     def seleccionar(self):
         self.seleccionado = True
+        self.lienzo.deshabilitar_actualizacion_automatica()
         self.lienzo.limpiar()
         self.lienzo.pintar_imagen(self.imagen_selector_seleccionado)
         self.pintar_texto()
         self.lienzo.asignar(self)
         self.centro = ("centro", "centro")
+        self.lienzo.habilitar_actualizacion_automatica()
                 
     def detection_click_mouse(self, click):
         if self.colisiona_con_un_punto(click.x, click.y):
