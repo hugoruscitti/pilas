@@ -338,6 +338,17 @@ class pySFML(motor.Motor):
             pilas.mundo.alternar_pausa()
         elif event.Key.Code == sf.Key.F10:
             eventos.imprimir_todos()
+        elif event.Key.Code == sf.Key.F9:
+            todos = pilas.actores.todos
+            
+            print "Hay %d actores en la escena:" %(len(todos))
+            print ""
+    
+            for s in todos:
+                print "\t", s
+            
+            print ""
+            
         elif event.Key.Code == sf.Key.F12:
             pilas.mundo.alternar_modo_depuracion()
         elif event.Key.Code == sf.Key.Escape:

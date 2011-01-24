@@ -131,9 +131,6 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
         self.pizarra = pilas.actores.Pizarra()
         pilas.eventos.inicia_modo_depuracion.send("ModoEjecucionDepuracion")
 
-    def salir(self):
-        self.eje.eliminar()
-        self.pizarra.eliminar()
 
     def dibujar_actores(self):
 
@@ -181,6 +178,7 @@ class ModoEjecucionDepuracion(ModoEjecucionNormal):
     def salir(self):
         pilas.eventos.sale_modo_depuracion.send("ModoEjecucionNormal")
         self.eje.eliminar()
+        self.pizarra.eliminar()
 
     def actualizar_actores(self):
         pilas.eventos.actualiza_modo_depuracion.send("ModoEjecucionDepuracion")
