@@ -13,33 +13,39 @@ class Selector(Componente):
     def __init__(self, texto, x=0, y=0, ancho=200):
         Componente.__init__(self, x=x, y=y)
         
-        self._cargar_lienzo(texto, ancho)
+        self.texto = texto
+        self._cargar_lienzo(ancho)
         self._cargar_imagenes(pilas)
 
         self.deseleccionar()
         pilas.eventos.click_de_mouse.conectar(self.detection_click_mouse)
 
     def _cargar_imagenes(self, pilas):
-        self.imagen_selector = pilas.imagenes.cargar("gui/selector.png")
-        self.imagen_selector_rojo = pilas.imagenes.cargar("gui/selector_rojo.png")
+        self.imagen_selector = pilas.imagenes.cargar_imagen_cairo("gui/selector.png")
+        self.imagen_selector_seleccionado = pilas.imagenes.cargar_imagen_cairo("gui/selector_seleccionado.png")
 
-    def _cargar_lienzo(self, texto, ancho):
+    def _cargar_lienzo(self, ancho):
         self.lienzo = pilas.imagenes.cargar_lienzo(ancho, 29)
-        self.lienzo.pintar(pilas.colores.blanco)
+        
+    def pintar_texto(self):
         self.lienzo.definir_color(pilas.colores.negro)
-        self.lienzo.escribir(texto, 35, 20, tamano=14, fuente='sans')
+        self.lienzo.escribir(self.texto, 35, 20, tamano=14, fuente='sans')
         
     def deseleccionar(self):
         self.seleccionado = False
+        self.lienzo.limpiar()
         self.lienzo.pintar_imagen(self.imagen_selector)
+        self.pintar_texto()
         self.lienzo.asignar(self)
-        self.centro = ("izquierda", "centro")
+        self.centro = ("centro", "centro")
         
     def seleccionar(self):
         self.seleccionado = True
-        self.lienzo.pintar_imagen(self.imagen_selector_rojo)
+        self.lienzo.limpiar()
+        self.lienzo.pintar_imagen(self.imagen_selector_seleccionado)
+        self.pintar_texto()
         self.lienzo.asignar(self)
-        self.centro = ("izquierda", "centro")
+        self.centro = ("centro", "centro")
                 
     def detection_click_mouse(self, click):
         if self.colisiona_con_un_punto(click.x, click.y):
@@ -74,7 +80,7 @@ class IngresoDeTexto(Componente):
         return True
         
     def _cargar_imagenes(self, pilas):
-        self.imagen_caja = pilas.imagenes.cargar("gui/caja.png")
+        self.imagen_caja = pilas.imagenes.cargar_imagen_cairo("gui/caja.png")
         
     def cuando_pulsa_una_tecla(self, evento):
         if evento.codigo == '\x08':
@@ -94,12 +100,13 @@ class IngresoDeTexto(Componente):
         self.lienzo.definir_color(pilas.colores.negro)
         self.lienzo.escribir(self.texto + self.cursor, 35, 20, tamano=14, fuente='sans')
         self.lienzo.asignar(self)
+        self.centro = ("centro", "centro")
 
 
-s1 = Selector("Me gusta este selector !", x=-300, y=200)        
+s1 = Selector("Me gusta este selector !", x=0, y=200)        
 entrada = IngresoDeTexto()
 
 
-pilas.fondos.Blanco()
+#pilas.fondos.Blanco()
 
 pilas.ejecutar()

@@ -48,7 +48,6 @@ class PizarraAbstracta():
                 
     def asignar(self, actor):
         actor.imagen = self.canvas.image
-        print self.canvas.image.GetWidth()
         
     def habilitar_actualizacion_automatica(self):
         self.actualiza_automaticamente = True
