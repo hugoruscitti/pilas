@@ -105,7 +105,7 @@ class PizarraAbstracta():
             
         w = imagen.get_width()
         h = imagen.get_height()
-        self._pintar_parte_de_imagen(imagen, 0, 0, w, h, x, y)
+        self.pintar_parte_de_imagen(imagen, 0, 0, w, h, x, y)
 
     def pintar_grilla(self, grilla, x=0, y=0):
         imagen = pilas.motor.obtener_imagen_cairo(grilla.image)
@@ -162,8 +162,21 @@ class PizarraAbstracta():
         El resultado es una tupla de tipo (ancho, alto)."""
         self.canvas.context.set_font_size(tamano)
         self.canvas.context.select_font_face(fuente)
+        print texto
         (_, _, ancho, alto, _, _) = self.canvas.context.text_extents(texto)
         return (ancho, alto)
+    
+    def obtener_area_para_lista_de_texto(self, lista, tamano=32, fuente="sans"):
+        "Retorna el tamano que tendra una lista de cadenas de texto una vez dibujadas"
+        ancho = 0
+        alto = 0
+        
+        for opcion in lista:
+            ancho_opcion, alto_opcion = self.obtener_area_de_texto(opcion, tamano=14, fuente=fuente)
+            ancho = max(ancho, ancho_opcion)
+            alto += alto_opcion + 10
+    
+        return ancho, alto
 
     def dibujar_rectangulo(self, x, y, ancho, alto, pintar=True):
         self.canvas.context.rectangle(x, y, ancho, alto)
