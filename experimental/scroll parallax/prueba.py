@@ -91,13 +91,16 @@ pingu.y = -140
 def presionamos_tecla(eventos):
 
     if pilas.mundo.control.izquierda:
+        pingu.espejado = True
         if pingu.x < -210:
             pingu.x = -210
+            
             capas.mover_izquierda()
 
     elif pilas.mundo.control.derecha:
+        pingu.espejado = False
         if pingu.x > 210:
-            pingu.x = 210
+            pingu.x = 210            
             capas.mover_derecha()
 
 
