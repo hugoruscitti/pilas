@@ -167,12 +167,10 @@ class Inventory(Boton):
             
             self.click_on_elements()
 
-    def cambiar_pivot(self, i):
-        self.inventory[i].centro = (0, 16.5)
         
     def click_on_elements(self):
         for i in range(self.n_inventory):
-           self.inventory[i].y = pilas.interpolar([self.y + 5], duracion = 0.5)
+           self.inventory[i].y = pilas.interpolar([self.y], duracion = 0.5)
            self.inventory[i].escala = [0.5]
            self.inventory[i].x = pilas.interpolar([self.x], duracion = 0.5)
            self.inventory[i].transparencia = pilas.interpolar([100], duracion = 0.5)
@@ -181,8 +179,6 @@ class Inventory(Boton):
            self.inventory[i].desconectar_normal_todo()
            self.inventory[i].desconectar_sobre_todo()
            self.inventory[i].conectar_presionado(self.al_presionar_elements_in_inventory, i)
-           
-           pilas.mundo.agregar_tarea(0.5, self.cambiar_pivot, i)
            variables.estado = False
 
     
