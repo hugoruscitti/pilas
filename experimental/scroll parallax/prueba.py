@@ -9,9 +9,14 @@ import pilas
 pilas.iniciar()
 
 class layers:
-    def __init__(self):
+    def __init__(self, modo = 'automatico'):
         self.capas = []
-        pilas.mundo.agregar_tarea(0, self.actualizar_pantalla)
+        if modo == 'automatico':
+            pilas.mundo.agregar_tarea(0, self.actualizar_pantalla)
+        elif modo == 'manual':
+            pass
+
+        self.estado = modo
 
 
     
@@ -29,7 +34,26 @@ class layers:
             else:
                 capa.x -= capa.obtener_ancho() 
                 copia_capa.x = 0
+
+    def mover_derecha(self):
+        if self.estado == 'manual':
+            for i in self.capas:
+                if i[0].x <= -i[0].obtener_ancho():
+                    i[0].x = 0
+
+                i[0].x -= i[2]
+                i[1].x = i[0].x + i[1].obtener_ancho()
+
+    def mover_izquierda(self):
         
+        if self.estado == 'manual':
+            for i in self.capas:
+                if i[0].x >= 0:
+                    i[0].x = -i[0].obtener_ancho()
+
+                i[0].x += i[2]
+                i[1].x = i[0].x + i[1].obtener_ancho()
+
     def actualizar_pantalla(self):
 
         for i in self.capas:
@@ -53,12 +77,23 @@ class layers:
 
 
 
-capas = layers()
+capas = layers(modo = 'manual')
 
 capas.agregar('cielo.png')
 capas.agregar('montes.png', 1, sentido = -1)
 capas.agregar('pasto.png', 3, sentido = -1, y = -120)
 capas.agregar('arboles.png', 5, sentido = -1, y = -90)
 
+def presionamos_tecla(eventos):
+
+    if pilas.mundo.control.izquierda:
+	    capas.mover_izquierda()
+
+    elif pilas.mundo.control.derecha:
+        capas.mover_derecha()
+
+
+
+pilas.eventos.actualizar.connect(presionamos_tecla)
 
 pilas.ejecutar()
