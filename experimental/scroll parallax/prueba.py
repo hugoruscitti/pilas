@@ -82,15 +82,23 @@ capas = layers(modo = 'manual')
 capas.agregar('cielo.png')
 capas.agregar('montes.png', 1, sentido = -1)
 capas.agregar('pasto.png', 3, sentido = -1, y = -120)
-capas.agregar('arboles.png', 5, sentido = -1, y = -90)
+capas.agregar('arboles.png', 4, sentido = -1, y = -90)
+
+pingu = pilas.actores.Pingu()
+pingu.escala = 0.8
+pingu.y = -140
 
 def presionamos_tecla(eventos):
 
     if pilas.mundo.control.izquierda:
-	    capas.mover_izquierda()
+        if pingu.x < -210:
+            pingu.x = -210
+            capas.mover_izquierda()
 
     elif pilas.mundo.control.derecha:
-        capas.mover_derecha()
+        if pingu.x > 210:
+            pingu.x = 210
+            capas.mover_derecha()
 
 
 
