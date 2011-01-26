@@ -235,6 +235,8 @@ class Pizarra(Actor, PizarraAbstracta):
         Actor.__init__(self, x=x, y=y)
         PizarraAbstracta.__init__(self)
         
+    def definir_color(self, color):
+        PizarraAbstracta.definir_color(self, color)
         
     def actualizar_imagen(self):
         "Se encarga de actualizar la vista de la pizarra."
