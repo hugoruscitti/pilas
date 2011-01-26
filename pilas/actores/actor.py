@@ -8,6 +8,11 @@
 
 import pilas
 
+IZQUIERDA = ["izquierda"]
+DERECHA = ["derecha"]
+ARRIBA = ["arriba", "superior"]
+CENTRO = ["centro", "centrado", "medio", "arriba"]
+ABAJO = ["abajo", "inferior", "debajo"]
 
 
 class Actor(object, pilas.estudiante.Estudiante):
@@ -67,19 +72,24 @@ class Actor(object, pilas.estudiante.Estudiante):
 
     def definir_centro(self, (x, y)):
         if type(x) == str:
+            if x not in IZQUIERDA + CENTRO + DERECHA:
+                raise Exception("No puedes definir '%s' como eje horizontal." %(x))
             x = self._interpretar_y_convertir_posicion(x, self.obtener_ancho())
         if type(y) == str:
+            if y not in ARRIBA + CENTRO + ABAJO:
+                raise Exception("No puedes definir '%s' como eje vertical." %(y))
             y = self._interpretar_y_convertir_posicion(y, self.obtener_alto())            
-                   
+
+        
         self._centro = (x, y)
         self._actor.definir_centro(x, y)
     
     def _interpretar_y_convertir_posicion(self, posicion, maximo_valor):
-        if posicion in ['izquierda', 'arriba', 'superior']:
+        if posicion in IZQUIERDA + ARRIBA:
             return 0
-        elif posicion in ['centro', 'centrado', 'mitad', 'medio']:
-            return int(maximo_valor / 2)
-        elif posicion in ['derecha', 'abajo', 'inferior']:
+        elif posicion in CENTRO:
+            return int(maximo_valor / 2.0)
+        elif posicion in DERECHA + ABAJO:
             return maximo_valor
         else:
             raise Exception("El valor '%s' no corresponde a una posicion, use numeros o valores como 'izquierda', 'arriba' etc." %(posicion))
@@ -100,6 +110,9 @@ class Actor(object, pilas.estudiante.Estudiante):
 
     def obtener_area(self):
         return self._actor.obtener_area()
+
+    
+    area = property(obtener_area)
 
     def get_x(self):
         x, y = self.obtener_posicion()
@@ -211,52 +224,50 @@ class Actor(object, pilas.estudiante.Estudiante):
         else:
             return -1
 
+############
+
     def get_izquierda(self):
-        return self.x - self.obtener_ancho()/2
+        return self.x - (self.centro[0] * self.escala)
 
     @pilas.utils.interpolable
     def set_izquierda(self, x):
-        self.x = x + self.obtener_ancho()/2
+        self.x = x + (self.centro[0] * self.escala)
 
     izquierda = property(get_izquierda, set_izquierda)
-
-    def get_abajo(self):
-        return self.y - self.obtener_alto()/2
-
-    @pilas.utils.interpolable
-    def set_abajo(self, y):
-        self.y = y + self.obtener_alto()/2
-
-    abajo = property(get_abajo, set_abajo)
-
+    
     def get_derecha(self):
-        return self.x + self.obtener_ancho()/2
+        return self.izquierda + self.obtener_ancho()
 
     @pilas.utils.interpolable
     def set_derecha(self, x):
-        self.x = x - self.obtener_ancho()/2
+        self.x = x - (self.centro[0] * self.escala)
 
     derecha = property(get_derecha, set_derecha)
 
+
+    def get_abajo(self):
+        return self.y - self.alto + (self.centro[1] * self.escala)
+
+    @pilas.utils.interpolable
+    def set_abajo(self, y):
+        self.y = y + (self.centro[1] * self.escala)
+        
+    abajo = property(get_abajo, set_abajo)
+
     def get_arriba(self):
-        return self.y + self.obtener_alto()/2
+        return self.abajo + self.obtener_alto()
 
     @pilas.utils.interpolable
     def set_arriba(self, y):
-        self.y = y - self.obtener_alto()/2
+        self.y = y - (self.centro[1] * self.escala)
 
     arriba = property(get_arriba, set_arriba)
 
+######
+
     def colisiona_con_un_punto(self, x, y):
         "Determina si un punto colisiona con el area del actor."
-
-        w, h = self.obtener_ancho(), self.obtener_alto()
-        dx, dy = self.centro
-        
-        left, right = self.x - dx, self.x + w - dx
-        top, bottom = self.y -dy,  self.y + h - dy
-        
-        return left < x < right and top < y < bottom
+        return self.izquierda <= x <= self.derecha and self.abajo <= y <= self.arriba
 
     def obtener_rotacion(self):
         return self._actor.obtener_rotacion()
@@ -282,10 +293,13 @@ class Actor(object, pilas.estudiante.Estudiante):
         return duplicado
 
     def obtener_ancho(self):
-        return self._actor.obtener_ancho()
+        return self.obtener_area()[0]
 
     def obtener_alto(self):
-        return self._actor.obtener_alto()
+        return self.obtener_area()[1]
+
+    ancho = property(obtener_ancho)
+    alto = property(obtener_alto)
 
     def __str__(self):
         return "<%s en (%d, %d)>" %(self.__class__.__name__, self.x, self.y)
