@@ -6,7 +6,14 @@ class TestSequenceFunctions(unittest.TestCase):
     def testArea(self):
         caja = pilas.actores.Actor("caja.png")
 
-        # En escala normal    
+        #  +------------+
+        #  |            |
+        #  |            |
+        #  |      x     |
+        #  |            |
+        #  |            |
+        #  +------------+
+
         self.assertEqual(caja.alto, 48)
         self.assertEqual(caja.ancho, 48)
 
@@ -18,7 +25,16 @@ class TestSequenceFunctions(unittest.TestCase):
     def testEscalaReducida(self):
         caja = pilas.actores.Actor("caja.png")
         caja.escala = 0.5
-         
+        
+        #  +------------+   # La caja resultado
+        #  |            |   # es la interior.
+        #  |   +----+   |
+        #  |   |    |   |
+        #  |   +----+   |
+        #  |            |
+        #  +------------+
+
+    
         self.assertEqual(caja.alto, 24)
         self.assertEqual(caja.ancho, 24)
 
@@ -49,6 +65,13 @@ class TestSequenceFunctions(unittest.TestCase):
         caja = pilas.actores.Actor("caja.png")
         caja.escala = 1
         caja.centro = ("izquierda", "centro")
+        #  +------------+
+        #  |            |
+        #  |            |
+        #  |x           |
+        #  |            |
+        #  |            |
+        #  +------------+
         
         self.assertEqual(caja.alto, 48)
         self.assertEqual(caja.ancho, 48)
@@ -59,10 +82,99 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(caja.derecha, 48)
 
         caja.centro = ("derecha", "centro")
+        #  +------------+
+        #  |            |
+        #  |            |
+        #  |           x|
+        #  |            |
+        #  |            |
+        #  +------------+
+        
         self.assertEqual(caja.arriba, 24)
         self.assertEqual(caja.abajo, -24)
         self.assertEqual(caja.izquierda, -48)
         self.assertEqual(caja.derecha, 0)
+
+    def testCambioCentroVertical(self):
+        caja = pilas.actores.Actor("caja.png")
+        caja.escala = 1
+        caja.centro = ("centro", "arriba")
+        #  +------------+
+        #  |      x     |
+        #  |            |
+        #  |            |
+        #  |            |
+        #  |            |
+        #  +------------+
+              
+        self.assertEqual(caja.alto, 48)
+        self.assertEqual(caja.ancho, 48)
+        
+        self.assertEqual(caja.abajo, -48)
+        self.assertEqual(caja.arriba, 0)
+
+        self.assertEqual(caja.izquierda, -24)
+        self.assertEqual(caja.derecha, 24)
+
+        caja.centro = ("centro", "abajo")
+        #  +------------+
+        #  |            |
+        #  |            |
+        #  |            |
+        #  |            |
+        #  |      x     |
+        #  +------------+
+        
+        self.assertEqual(caja.arriba, 48)
+        self.assertEqual(caja.abajo, 0)
+        self.assertEqual(caja.izquierda, -24)
+        self.assertEqual(caja.derecha, 24)
+        
+    def testCambioCentroVerticalYHorizontalNoCentrado(self):
+        caja = pilas.actores.Actor("caja.png")
+        caja.escala = 1
+        
+        caja.centro = (10, 10)
+        
+        #  +------------+
+        #  |            |
+        #  |   x        |
+        #  |            |
+        #  |            |
+        #  |            |
+        #  +------------+
+
+        self.assertEqual(caja.alto, 48)
+        self.assertEqual(caja.ancho, 48)
+        
+        self.assertEqual(caja.abajo, -38)
+        self.assertEqual(caja.arriba, 10)
+
+        self.assertEqual(caja.izquierda, -10)
+        self.assertEqual(caja.derecha, 38)
+
+    def testCambioCentroVerticalYHorizontalNoCentradoConReduccionDeEscala(self):
+        caja = pilas.actores.Actor("caja.png")
+        caja.escala = 0.5
+        
+        caja.centro = (10, 10)
+        
+        #  +------------+
+        #  |            |
+        #  |   x        |
+        #  |            |
+        #  |            |
+        #  |            |
+        #  +------------+
+
+        self.assertEqual(caja.alto, 24)
+        self.assertEqual(caja.ancho, 24)
+        
+        self.assertEqual(caja.abajo, -38/2)
+        self.assertEqual(caja.arriba, 5)
+
+        self.assertEqual(caja.izquierda, -5)
+        self.assertEqual(caja.derecha, 38/2)
 
 pilas.iniciar()
 unittest.main()
