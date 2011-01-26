@@ -240,22 +240,22 @@ class Actor(object, pilas.estudiante.Estudiante):
 
     @pilas.utils.interpolable
     def set_derecha(self, x):
-        self.x = x - (self.centro[0] * self.escala)
+        self.set_izquierda(x - self.ancho)
 
     derecha = property(get_derecha, set_derecha)
 
 
     def get_abajo(self):
-        return self.y - self.alto + (self.centro[1] * self.escala)
+        return self.get_arriba() - self.alto
 
     @pilas.utils.interpolable
     def set_abajo(self, y):
-        self.y = y + (self.centro[1] * self.escala)
+        self.set_arriba(y + self.alto)
         
     abajo = property(get_abajo, set_abajo)
 
     def get_arriba(self):
-        return self.abajo + self.obtener_alto()
+        return self.y + (self.centro[1] * self.escala)
 
     @pilas.utils.interpolable
     def set_arriba(self, y):

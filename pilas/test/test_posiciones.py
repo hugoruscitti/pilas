@@ -175,7 +175,72 @@ class TestSequenceFunctions(unittest.TestCase):
 
         self.assertEqual(caja.izquierda, -5)
         self.assertEqual(caja.derecha, 38/2)
+        
+    def testCambioDePosicionHorizontalConEscala(self):
+        caja = pilas.actores.Actor("caja.png")
+        caja.escala = 1
+        
+        self.assertEqual(caja.izquierda, -24)
+        self.assertEqual(caja.derecha, 24)
 
+        # Prueba dos cambios que no tendrian que afectar
+        caja.izquierda = -24
+        self.assertEqual(caja.izquierda, -24)
+        self.assertEqual(caja.derecha, 24)
+        
+        caja.derecha = 24
+        self.assertEqual(caja.izquierda, -24)
+        self.assertEqual(caja.derecha, 24)
+        
+        caja.escala = 0.5
+        
+        self.assertEqual(caja.izquierda, -12)
+        self.assertEqual(caja.derecha, 12)
+
+        # Prueba dos cambios que no tendrian que afectar
+        caja.izquierda = -20
+        self.assertEqual(caja.izquierda, -20)
+        self.assertEqual(caja.derecha, -20 + 24)
+        
+        caja.derecha = 0
+        self.assertEqual(caja.izquierda, -24)
+        self.assertEqual(caja.derecha, 0)        
+
+    def testCambioDePosicionVerticalConEscala(self):
+        caja = pilas.actores.Actor("caja.png")
+        caja.centro = ("centro", "centro")
+        caja.escala = 1
+        
+        self.assertEqual(caja.area, (48, 48))
+        self.assertEqual(caja.arriba, 24)
+        self.assertEqual(caja.abajo, -24)
+
+        caja.arriba = 0
+        self.assertEqual(caja.arriba, 0)
+        self.assertEqual(caja.abajo, -48)
+        
+        caja.abajo = 0
+        self.assertEqual(caja.arriba, 48)
+        self.assertEqual(caja.abajo, 0)
+        
+
+        caja.escala = 0.5
+        self.assertEqual(caja.area, (24, 24))
+        caja.x, caja.y = (0, 0)
+
+        self.assertEqual(caja.arriba, 12)
+        self.assertEqual(caja.abajo, -12)
+
+        # Prueba dos cambios que no tendrian que afectar
+        caja.izquierda = -20
+        self.assertEqual(caja.izquierda, -20)
+        self.assertEqual(caja.derecha, -20 + 24)
+        
+        caja.derecha = 0
+        self.assertEqual(caja.izquierda, -24)
+        self.assertEqual(caja.derecha, 0)
+        
+        
 pilas.iniciar()
 unittest.main()
 
