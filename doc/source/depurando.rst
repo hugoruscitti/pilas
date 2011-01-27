@@ -9,7 +9,7 @@ el funcionamiento de tu juego.
 Modo pausa y manejo de tiempo
 -----------------------------
 
-Si pulsas la tecla ``P`` durante la ejecución de
+Si pulsas las teclas ``ALT + P`` durante la ejecución de
 pilas, el juego completo se detiene. En ese 
 momento puedes pulsar la tecla ``barra espaciadora``
 para avanzar un instante de la simulación o 
