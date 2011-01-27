@@ -297,8 +297,8 @@ class pySFML(motor.Motor):
             if event.Type == sf.Event.KeyPressed:
                 self.procesar_evento_teclado(event)
 
-                if event.Key.Code == sf.Key.Q:
-                    pilas.mundo.terminar()      
+                if event.Key.Code == sf.Key.Q and event.Key.Alt:
+                    pilas.mundo.terminar()
             elif event.Type == sf.Event.TextEntered:
 
                 eventos.pulsa_tecla.send("ejecutar", codigo=unichr(event.Text.Unicode)) 
@@ -334,7 +334,7 @@ class pySFML(motor.Motor):
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 
     def procesar_evento_teclado(self, event):
-        if event.Key.Code == sf.Key.P:
+        if event.Key.Code == sf.Key.P and event.Key.Alt:
             pilas.mundo.alternar_pausa()
         elif event.Key.Code == sf.Key.F10:
             eventos.imprimir_todos()

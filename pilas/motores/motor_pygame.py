@@ -396,7 +396,8 @@ class Pygame:
             elif event.type == pygame.KEYDOWN:
                 self.procesar_evento_teclado(event)
 
-                if event.key == pygame.K_q:
+                if event.key == pygame.K_q and event.mod &(pygame.K_LALT):
+                    print event.mod
                     pilas.mundo.terminar()
             elif event.type == pygame.MOUSEMOTION:
                 # Notifica el movimiento del mouse con una señal
@@ -433,7 +434,7 @@ class Pygame:
     def procesar_evento_teclado(self, event):
         eventos.pulsa_tecla.send("ejecutar", codigo=event.unicode)
 
-        if event.key == pygame.K_p:
+        if event.key == pygame.K_p and event.mod &(pygame.K_LALT):
             pilas.mundo.alternar_pausa()
         elif event.key == pygame.K_F10:
             eventos.imprimir_todos()
