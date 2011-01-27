@@ -279,29 +279,54 @@ class Caja(Actor):
 class Jugador(pilas.actores.Actor):
     
     def __init__(self):
-        pilas.actores.Actor.__init__(self, "caja.png")
+        pilas.actores.Actor.__init__(self, "protagonista.png")
         self.dy = 0
+        self.y = 100
+        self.centro = ("centro", 110)
+        self.en_el_aire = True
         
     def actualizar(self):
         c = pilas.mundo.control
         
         if c.izquierda:
-            self.x -= 10
+            self.x -= 5
+            self.espejado = True
         if c.derecha:
-            self.x += 10
+            self.x += 5
+            self.espejado = False
         
-        if c.arriba:
-            self.dy = -5
+        if self.en_el_aire:
+            self.dy += 0.5
         
-        self.dy += 0.1
-        
-        if self.dy > 0:
-            delta = f.obtener_distancia_al_suelo(self.x, self.y, self.dy)
-            self.y -= delta
+            if self.dy > 0:
+                delta = f.obtener_distancia_al_suelo(self.x, self.y, self.dy)
+                
+                
+                if delta < self.dy:
+                    self.y -= delta
+                    self.en_el_aire = False
+                    self.dy = 0
+                    
+                #if delta > 2:
+                #    self.dy = 0
+                #    self.en_el_aire = False
+                #    print "Toca el suelo a la distancia:", delta
         else:
-            self.y -= self.dy
-
-
+            if c.arriba:
+                self.dy = -10           
+                self.en_el_aire = True
+                
+            distancia_al_suelo = f.obtener_distancia_al_suelo(self.x, self.y - 5, 10)
+            
+            if distancia_al_suelo == 10:
+                self.en_el_aire = True
+            else:
+                self.y -= distancia_al_suelo - 1
+            
+            
+        self.y -= self.dy
+        
+        
 
 pilas.iniciar() 
 
@@ -394,7 +419,12 @@ def juego_de_plataformas():
     
     c = Rectangulo(f, -100, 0, dinamica=False, ancho=25, alto=25)
     actor = Caja(c)
+    
+    c = Rectangulo(f, -190, -100, dinamica=False, ancho=25, alto=25)
+    actor = Caja(c)
 
+    c = Rectangulo(f, -100, -200, dinamica=False, ancho=25, alto=25)
+    actor = Caja(c)
 
     Jugador()
 
