@@ -334,24 +334,27 @@ class pySFML(motor.Motor):
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
 
     def procesar_evento_teclado(self, event):
-        if event.Key.Code == sf.Key.P and event.Key.Alt:
+        code = event.Key.Code
+        
+        if code == sf.Key.P and event.Key.Alt:
             pilas.mundo.alternar_pausa()
-        elif event.Key.Code == sf.Key.F10:
+            
+        elif code == sf.Key.F6:
+            pilas.utils.listar_actores_en_consola()                
+        elif code == sf.Key.F7:
             eventos.imprimir_todos()
-        elif event.Key.Code == sf.Key.F9:
-            todos = pilas.actores.todos
-            
-            print "Hay %d actores en la escena:" %(len(todos))
-            print ""
-    
-            for s in todos:
-                print "\t", s
-            
-            print ""
-            
-        elif event.Key.Code == sf.Key.F12:
-            pilas.mundo.alternar_modo_depuracion()
-        elif event.Key.Code == sf.Key.Escape:
+        elif code == sf.Key.F8:
+            pilas.mundo.alternar_puntos_de_control()
+        elif code == sf.Key.F9:
+            pilas.mundo.alternar_radios_de_colision()
+        elif code == sf.Key.F10:
+            pilas.mundo.alternar_areas()
+        elif code == sf.Key.F11:
+            # Reservado para ver simulacion fisica
+            pass
+        elif code == sf.Key.F12:
+            pilas.mundo.alternar_ver_eje_coordenadas()
+        elif code == sf.Key.Escape:
             eventos.pulsa_tecla_escape.send("ejecutar")
 
     def actualizar_pantalla(self):

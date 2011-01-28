@@ -66,14 +66,16 @@ class PizarraAbstracta():
     def bajar_lapiz(self):
         self.lapiz_bajo = True
 
-    def pintar_punto(self, x, y):
+    def pintar_punto(self, x, y, radio, color):
         y = 240 - y
         x += 320
-        self.canvas.context.arc(x, y, 10, 0, 2*3.1415)
+        self.definir_color(color)
+        self.canvas.context.arc(x, y, radio, 0, 2*3.1415)
         self.canvas.context.fill()
         if self.actualiza_automaticamente:
             self.actualizar_imagen()
 
+        
     def mover_lapiz(self, x, y):
         if self.lapiz_bajo:
             self.canvas.context.move_to(self.lapiz.x, self.lapiz.y)
@@ -199,9 +201,16 @@ class PizarraAbstracta():
         
         self.canvas.context.close_path()
         self.canvas.context.stroke()
+        
+        if self.actualiza_automaticamente:
+            self.actualizar_imagen()
 
-        self.actualizar_imagen()
-
+    def pintar_cruz(self, x, y, ancho, color):
+        self.definir_color(color)
+        r = ancho
+        self.dibujar_poligono([(x-r, y+r), (x+r,y-r)])
+        self.dibujar_poligono([(x-r, y-r), (x+r,y+r)])
+        
     def limpiar(self):
         self.canvas.limpiar()
         

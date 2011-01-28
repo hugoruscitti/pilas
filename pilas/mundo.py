@@ -18,7 +18,6 @@ import eventos
 import tareas
 import pytweener
 import pilas
-import modos_de_mundo
 
 
 class Mundo:
@@ -52,16 +51,10 @@ class Mundo:
         # Genera los administradores de tareas e interpolaciones.
         self.tweener = pytweener.Tweener()
         self.tasks = tareas.Tareas() 
-
-        self.modo_ejecucion = None
-        self.definir_modo_ejecucion(modos_de_mundo.ModoEjecucionNormal(self))
+        self.pausa_habilitada = False
+        self.pizarra_depuracion = None
+        self.funciones_depuracion = []
         self.salir = False
-
-    def definir_modo_ejecucion(self, nuevo_modo):
-        if self.modo_ejecucion:
-            self.modo_ejecucion.salir()
-
-        self.modo_ejecucion = nuevo_modo
 
     def terminar(self):
         self.salir = True
@@ -78,29 +71,29 @@ class Mundo:
             for x in range(fps.actualizar()):
                 # Mantiene el control de tiempo y lo reporta al sistema
                 # de interpolaciones y tareas.
-                self._realizar_actualizacion_logica(ignorar_errores)
+
+                pilas.motor.procesar_y_emitir_eventos()
+                if not self.pausa_habilitada:
+                    self._realizar_actualizacion_logica(ignorar_errores)
 
             self._realizar_actualizacion_grafica()
 
         self._cerrar_ventana()
 
     def _realizar_actualizacion_logica(self, ignorar_errores):
-        self.modo_ejecucion.actualizar_simuladores()
+        self.actualizar_simuladores()
 
         # Emite el aviso de actualizacion a los receptores.
-        self.modo_ejecucion.emitir_evento_actualizar()
-
-        # Procesa todos los eventos.
-        pilas.motor.procesar_y_emitir_eventos()
+        self.emitir_evento_actualizar()
 
         # Analiza colisiones entre los actores
         if ignorar_errores:
             try:
-                self.modo_ejecucion.analizar_colisiones()
+                self.analizar_colisiones()
             except Exception, e:
                 print e
         else:
-            self.modo_ejecucion.analizar_colisiones()
+            self.analizar_colisiones()
 
         # Dibuja la escena actual y a los actores
         if ignorar_errores:
@@ -113,15 +106,15 @@ class Mundo:
         
         if ignorar_errores:
             try:
-                self.modo_ejecucion.actualizar_actores()
+                self.actualizar_actores()
             except Exception, e:
                 print e
         else:
-            self.modo_ejecucion.actualizar_actores()
+            self.actualizar_actores()
 
     def _realizar_actualizacion_grafica(self):
         self.escena_actual.dibujar(self.ventana)
-        self.modo_ejecucion.dibujar_actores()
+        self.dibujar_actores()
         pilas.motor.actualizar_pantalla()
 
     def _cerrar_ventana(self):
@@ -142,7 +135,103 @@ class Mundo:
         self.tasks.agregar(time_out, function, params)
 
     def alternar_pausa(self):
-        self.modo_ejecucion.alternar_pausa()
+        if self.pausa_habilitada:
+            self.pausa_habilitada = False
+        else:
+            self.pausa_habilitada = True
 
-    def alternar_modo_depuracion(self):
-        self.modo_ejecucion.alternar_modo_depuracion()
+    def actualizar_simuladores(self):
+        self.tweener.update(16)
+        self.tasks.update(16/1000.0)
+        pilas.fisica.fisica.actualizar()
+
+    def actualizar_actores(self):
+        for actor in pilas.actores.todos:
+            actor.actualizar_comportamientos()
+            actor.actualizar_habilidades()
+            actor.actualizar()
+
+    def dibujar_actores(self):
+        # Separo el dibujado de los actores porque la lista puede cambiar
+        # dutante la actualizacion de actores (por ejemplo si uno se elimina).
+        if self.pizarra_depuracion:
+            self.pizarra_depuracion.limpiar()
+            
+        for actor in pilas.actores.todos:
+            actor.dibujar(self.ventana)
+            
+            for f in self.funciones_depuracion:
+                f(actor)
+
+        if self.pizarra_depuracion:
+            self.pizarra_depuracion.actualizar()
+
+    def emitir_evento_actualizar(self):
+        self.control.actualizar()
+        pilas.eventos.actualizar.send("bucle")
+
+    def salir(self):
+        pass
+
+    def analizar_colisiones(self):
+        pilas.colisiones.verificar_colisiones()
+        
+        
+        
+
+    def alternar_ver_eje_coordenadas(self):
+        habilita = self.alternar_funcion_depuracion(self.imprimir_posicion)
+        
+        if habilita:
+            self.eje_de_coordenadas = pilas.actores.Ejes()
+        else:
+            self.eje_de_coordenadas.eliminar()
+            del(self.eje_de_coordenadas)
+        
+        
+    def alternar_puntos_de_control(self):
+        self.alternar_funcion_depuracion(self.imprimir_puntos_de_control)
+            
+    def alternar_areas(self):
+        self.alternar_funcion_depuracion(self.imprimir_area)
+            
+    def alternar_radios_de_colision(self):
+        self.alternar_funcion_depuracion(self.imprimir_radio_de_colision)
+        
+    def alternar_funcion_depuracion(self, funcion):
+        if funcion in self.funciones_depuracion:
+            self.desconectar_funcion_depuracion(funcion)
+            return False
+        else:
+            self.conectar_funcion_depuracion(funcion)
+            return True
+
+    def imprimir_puntos_de_control(self, actor):
+        self.pizarra_depuracion.pintar_cruz(actor.x, actor.y, 6, pilas.colores.rojo)
+
+    def imprimir_area(self, actor):
+        (x, y) = pilas.utils.hacer_coordenada_mundo(actor.izquierda, actor.arriba)
+        self.pizarra_depuracion.definir_color(pilas.colores.azul)
+        self.pizarra_depuracion.dibujar_rectangulo(x, y, actor.ancho, actor.alto, False)
+
+    def imprimir_radio_de_colision(self, actor):
+        self.pizarra_depuracion.definir_color(pilas.colores.verde)
+        self.pizarra_depuracion.dibujar_circulo(actor.x, actor.y, actor.radio_de_colision, False)
+
+    def imprimir_posicion(self, actor):
+        posicion = "(%d, %d)" %(actor.x, actor.y)
+        self.pizarra_depuracion.definir_color(pilas.colores.violeta)
+        (x, y) = pilas.utils.hacer_coordenada_mundo(actor.x, actor.y)
+        self.pizarra_depuracion.escribir(posicion, x + 20, y + 20, tamano=14)
+
+    def desconectar_funcion_depuracion(self, funcion):
+        self.funciones_depuracion.remove(funcion)
+        if not self.funciones_depuracion:
+            self.pizarra_depuracion.eliminar()
+            self.pizarra_depuracion = None
+
+    def conectar_funcion_depuracion(self, funcion):            
+        self.funciones_depuracion.append(funcion)
+    
+        if not self.pizarra_depuracion:
+            self.pizarra_depuracion = pilas.actores.Pizarra()
