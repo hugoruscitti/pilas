@@ -1,4 +1,4 @@
-#Tue Jan 25 21:54:30 ART 2011
+#Thu Jan 27 23:18:46 ART 2011
 eclipse.preferences.version=1
 encoding//experimental/dialogos/test.py=utf-8
 encoding//minijuegos/Memorice/ejecutar.py=utf-8
@@ -20,7 +20,7 @@ encoding//pilas/eventos.py=utf-8
 encoding//pilas/fondos.py=utf-8
 encoding//pilas/habilidades.py=utf-8
 encoding//pilas/imagenes.py=utf-8
-encoding//pilas/modos_de_mundo.py=utf-8
+encoding//pilas/motores/__init__.py=utf-8
 encoding//pilas/motores/motor_pygame.py=utf-8
 encoding//pilas/motores/motor_sfml.py=utf-8
 encoding//pilas/mundo.py=utf-8
