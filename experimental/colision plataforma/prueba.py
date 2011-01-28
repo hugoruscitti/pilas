@@ -1,4 +1,6 @@
 import pilas
+from scroll_parallax import layers
+
 pilas.iniciar()
 
 velocidad = 5
@@ -25,16 +27,24 @@ class tiles:
 
         self.tiles.append(tile)
 
-pilas.fondos.Tarde()
+
+capas = layers(modo = 'manual')
+
+capas.agregar('cielo.png')
+capas.agregar('montes.png', 1, sentido = -1)
+capas.agregar('pasto.png', 3, sentido = -1, y = -120)
+capas.agregar('arboles.png', 4, sentido = -1, y = -90)
+
+
 tilset = tiles()
 
 # suelo
-for i in range(30):
+for i in range(40):
     tilset.agregar_tile(14, i, 'b.png')
 
 # esquinas
 tilset.agregar_tile(14, -1, 'a.png')
-tilset.agregar_tile(14, 30, 'c.png')
+tilset.agregar_tile(14, 40, 'c.png')
 
 # plataforma 1
 tilset.agregar_tile(7, 11, 'a.png')
@@ -60,16 +70,24 @@ tilset.agregar_tile(5, 29, 'c.png')
 
 
 
+
+
 imagen = pilas.imagenes.cargar("cuadrado.png")
 caja = pilas.actores.Actor(imagen)
 
 caja.centro = ("centro", "abajo")
 
 
+
+
+
+
+
+
+
 def press(evento):
     caja.y -= var.dy
     var.dy += GRAVEDAD
-    var.gravedad = False
 
     if var.dy >= 0:
         if var.colision == False:
@@ -90,6 +108,7 @@ def press(evento):
         
     if pilas.mundo.control.izquierda:
         if caja.x < -210:
+            capas.mover_izquierda()
             for i in tilset.tiles:
                 i.x += variables.velocidad
         else:
@@ -98,18 +117,19 @@ def press(evento):
 
     if pilas.mundo.control.derecha:
         if caja.x > 210:
+            capas.mover_derecha()
             for i in tilset.tiles:
-                i.x -= variables.velocidad
+                i.x -= variables.velocidad                
         else:
             caja.x += velocidad
 
     if var.dy == 0:
+        var.colision = False
         if pilas.mundo.control.arriba:
+            var.gravedad = False
             var.dy = -25
         
     
-
-
 
 
 pilas.eventos.actualizar.conectar(press)
