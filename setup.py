@@ -11,10 +11,9 @@ setup(
         author_email='hugoruscitti@gmail.com',
         install_requires=[
             'setuptools',
-            'pymunk',
             'Box2D',
             ],
-        packages=['pilas', 'pilas.elements', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos', 'pilas.motores'],
+        packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos', 'pilas.motores'],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
         package_data = {

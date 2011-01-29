@@ -101,6 +101,13 @@ Módulo pilas.estudiante
     :members:
 
 
+Módulo pilas.depurador
+----------------------
+
+.. automodule:: pilas.depurador
+    :members:
+
+
 Módulo pilas.habilidades
 ------------------------
 
@@ -210,69 +217,6 @@ Módulo pilas.dispatch.saferef
 -----------------------------
 
 .. automodule:: pilas.dispatch.saferef
-    :members:
-
-
-Módulo pilas.elements.tools_poly
---------------------------------
-
-.. automodule:: pilas.elements.tools_poly
-    :members:
-
-
-Módulo pilas.elements.locals
-----------------------------
-
-.. automodule:: pilas.elements.locals
-    :members:
-
-
-Módulo pilas.elements.menu
---------------------------
-
-.. automodule:: pilas.elements.menu
-    :members:
-
-
-Módulo pilas.elements.tools
----------------------------
-
-.. automodule:: pilas.elements.tools
-    :members:
-
-
-Módulo pilas.elements.drawing
------------------------------
-
-.. automodule:: pilas.elements.drawing
-    :members:
-
-
-Módulo pilas.elements.callbacks
--------------------------------
-
-.. automodule:: pilas.elements.callbacks
-    :members:
-
-
-Módulo pilas.elements.add_objects
----------------------------------
-
-.. automodule:: pilas.elements.add_objects
-    :members:
-
-
-Módulo pilas.elements.camera
-----------------------------
-
-.. automodule:: pilas.elements.camera
-    :members:
-
-
-Módulo pilas.elements.elements
-------------------------------
-
-.. automodule:: pilas.elements.elements
     :members:
 
 

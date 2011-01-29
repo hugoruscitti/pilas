@@ -234,3 +234,29 @@ cuando el bucle de juego del mundo llame al método
 60 veces por segundo. Y el otro método es ``dibujar``, que
 se también se invoca desde el objeto mundo, pero esta
 vez en el método ``_realizar_actualizacion_grafica``.
+
+
+
+Modo depuración
+---------------
+
+Cuando pulsas teclas como F8, F9, F10, F11 o F12 durante
+la ejecución de pilas, vas a ver que la pantalla comienza
+a mostrar información valiosa para los desarrolladores.
+
+Esta modalidad de dibujo la llamamos **modo depuración**, y
+ayuda mucho a la hora de encontrar errores o ajustar detalles.
+
+Estos modos están codificados en el archivo ``depurador.py``, ahí
+encontrarás varias clases:
+
+.. image:: images/comofunciona/depurador.png
+
+
+El Depurador tiene dos atributos, tiene una pizarra para dibujar y
+una lista de modos. Los modos pueden ser cualquiera de los que están
+en la jerarquía de ModoDepuracion, por ejemplo, podría tener
+instancias de ModoArea y ModoPuntoDeControl.
+
+El Depurador se encarga de recibir órdenes desde el objeto Mundo, y
+crear o eliminar la pizarra según sea necesaria o no...

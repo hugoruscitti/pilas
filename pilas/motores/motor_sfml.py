@@ -343,17 +343,8 @@ class pySFML(motor.Motor):
             pilas.utils.listar_actores_en_consola()                
         elif code == sf.Key.F7:
             eventos.imprimir_todos()
-        elif code == sf.Key.F8:
-            pilas.mundo.alternar_puntos_de_control()
-        elif code == sf.Key.F9:
-            pilas.mundo.alternar_radios_de_colision()
-        elif code == sf.Key.F10:
-            pilas.mundo.alternar_areas()
-        elif code == sf.Key.F11:
-            # Reservado para ver simulacion fisica
-            pass
-        elif code == sf.Key.F12:
-            pilas.mundo.alternar_ver_eje_coordenadas()
+        elif code in [sf.Key.F8, sf.Key.F9, sf.Key.F10, sf.Key.F11, sf.Key.F12]:
+            pilas.mundo.depurador.pulsa_tecla(code)
         elif code == sf.Key.Escape:
             eventos.pulsa_tecla_escape.send("ejecutar")
 
