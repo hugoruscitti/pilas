@@ -46,6 +46,11 @@ class Espacio(Fondo):
     def __init__(self):
         Fondo.__init__(self, "fondos/espacio.png")
 
+class Noche(Fondo):
+    "Muestra una escena que tiene un fondo de pantalla de paisaje."
+
+    def __init__(self):
+        Fondo.__init__(self, "fondos/noche.png")
 
 class Blanco(Fondo):
     "Un fondo de color blanco."
