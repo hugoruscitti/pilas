@@ -41,9 +41,6 @@ __all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar', 'avisar']
 
 import utils
 import motores
-import elements
-
-
 import simbolos
 import os
 import sys
