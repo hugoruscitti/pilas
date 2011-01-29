@@ -32,6 +32,7 @@ Pilas engine - Documentación
     depurando.rst
     desarrolladores.rst
     preguntas_avanzadas.rst
+    como_funciona_pilas_por_dentro.rst
 
     pilas.rst
 

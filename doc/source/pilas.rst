@@ -59,6 +59,20 @@ Módulo pilas.fondos
     :members:
 
 
+Módulo pilas.actores
+--------------------
+
+.. automodule:: pilas.actores
+    :members:
+
+
+Módulo pilas.lienzo
+-------------------
+
+.. automodule:: pilas.lienzo
+    :members:
+
+
 Módulo pilas.tareas
 -------------------
 
@@ -73,17 +87,17 @@ Módulo pilas.atajos
     :members:
 
 
-Módulo pilas.modos_de_mundo
----------------------------
-
-.. automodule:: pilas.modos_de_mundo
-    :members:
-
-
 Módulo pilas.ventana
 --------------------
 
 .. automodule:: pilas.ventana
+    :members:
+
+
+Módulo pilas.estudiante
+-----------------------
+
+.. automodule:: pilas.estudiante
     :members:
 
 
@@ -199,6 +213,69 @@ Módulo pilas.dispatch.saferef
     :members:
 
 
+Módulo pilas.elements.tools_poly
+--------------------------------
+
+.. automodule:: pilas.elements.tools_poly
+    :members:
+
+
+Módulo pilas.elements.locals
+----------------------------
+
+.. automodule:: pilas.elements.locals
+    :members:
+
+
+Módulo pilas.elements.menu
+--------------------------
+
+.. automodule:: pilas.elements.menu
+    :members:
+
+
+Módulo pilas.elements.tools
+---------------------------
+
+.. automodule:: pilas.elements.tools
+    :members:
+
+
+Módulo pilas.elements.drawing
+-----------------------------
+
+.. automodule:: pilas.elements.drawing
+    :members:
+
+
+Módulo pilas.elements.callbacks
+-------------------------------
+
+.. automodule:: pilas.elements.callbacks
+    :members:
+
+
+Módulo pilas.elements.add_objects
+---------------------------------
+
+.. automodule:: pilas.elements.add_objects
+    :members:
+
+
+Módulo pilas.elements.camera
+----------------------------
+
+.. automodule:: pilas.elements.camera
+    :members:
+
+
+Módulo pilas.elements.elements
+------------------------------
+
+.. automodule:: pilas.elements.elements
+    :members:
+
+
 Módulo pilas.motores.motor_pygame
 ---------------------------------
 
@@ -210,6 +287,13 @@ Módulo pilas.motores.motor_sfml
 -------------------------------
 
 .. automodule:: pilas.motores.motor_sfml
+    :members:
+
+
+Módulo pilas.motores.motor
+--------------------------
+
+.. automodule:: pilas.motores.motor
     :members:
 
 
@@ -269,10 +353,38 @@ Módulo pilas.actores.banana
     :members:
 
 
+Módulo pilas.actores.puntaje
+----------------------------
+
+.. automodule:: pilas.actores.puntaje
+    :members:
+
+
+Módulo pilas.actores.entradadetexto
+-----------------------------------
+
+.. automodule:: pilas.actores.entradadetexto
+    :members:
+
+
+Módulo pilas.actores.temporizador
+---------------------------------
+
+.. automodule:: pilas.actores.temporizador
+    :members:
+
+
 Módulo pilas.actores.estrella
 -----------------------------
 
 .. automodule:: pilas.actores.estrella
+    :members:
+
+
+Módulo pilas.actores.boton
+--------------------------
+
+.. automodule:: pilas.actores.boton
     :members:
 
 
@@ -290,6 +402,13 @@ Módulo pilas.actores.cursordisparo
     :members:
 
 
+Módulo pilas.actores.actor
+--------------------------
+
+.. automodule:: pilas.actores.actor
+    :members:
+
+
 Módulo pilas.actores.menu
 -------------------------
 
@@ -301,6 +420,13 @@ Módulo pilas.actores.moneda
 ---------------------------
 
 .. automodule:: pilas.actores.moneda
+    :members:
+
+
+Módulo pilas.actores.martian
+----------------------------
+
+.. automodule:: pilas.actores.martian
     :members:
 
 

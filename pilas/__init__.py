@@ -78,13 +78,46 @@ import atajos
 import fisica
 import grupo
 import lienzo
+import simbolos
+import os
+import sys
+import time
 
+import baseactor
+import colores
+import imagenes
+import sonidos
+import actores
+import fps
+from interpolaciones import Lineal
+import dispatch
+import eventos
+import habilidades
+import ventana
+import comportamientos
+import escenas
+import fondos
+from control import Control
+from camara import Camara
+import copy
+import pilas.utils
+from mundo import Mundo
+from colisiones import Colisiones
+import random
+import ejemplos
+import red
+import motores
+import atajos
+import fisica
+import grupo
+    
+    
 # Carga el modulo de autocompletado si esta
 # en sesion interactiva.
 if utils.esta_en_sesion_interactiva():
     utils.cargar_autocompletado()
 
-def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='detectar', rendimiento=60, economico=False):
+def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='detectar', rendimiento=60, economico=True):
     """Inicia el motor y abre la ventana principal del videojuego.
     
     Esta funcion se ejecuta al principio de cualquier juego, porque
@@ -118,39 +151,6 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
         print "Advertencia: Te recomendamos usar SFML, busca en la web de pilas como instalarlo..."
 
     motor = motores_disponibles[usar_motor]()
-
-    import simbolos
-    import os
-    import sys
-    import time
-
-    import baseactor
-    import colores
-    import imagenes
-    import sonidos
-    import actores
-    import fps
-    from interpolaciones import Lineal
-    import dispatch
-    import eventos
-    import habilidades
-    import ventana
-    import comportamientos
-    import escenas
-    import fondos
-    from control import Control
-    from camara import Camara
-    import copy
-    import pilas.utils
-    from mundo import Mundo
-    from colisiones import Colisiones
-    import random
-    import ejemplos
-    import red
-    import motores
-    import atajos
-    import fisica
-    import grupo
 
     pilas.colisiones = Colisiones()
 
