@@ -93,7 +93,6 @@ class Fisica(object):
 
         # Add a shape to the Body
         boxDef = box2d.b2PolygonDef()
-        
         width = 640
         height= 1
         boxDef.SetAsBox(width, height, (0,0), 0)

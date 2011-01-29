@@ -25,10 +25,6 @@ class Mundo:
 
     Mundo tiene como responsabilidad iniciar los componentes del
     motor y mantener el bucle de juego.
-
-    Este objeto delega en otros el modo de ejecucion en un momento dado, 
-    por ejemplo cuando inicia se usa el "ModoEjecucionNormal" y cuando el usuario
-    pulsa F12 este modo cambia por "ModoEjecucionNormal".
     """
 
     def __init__(self, ancho, alto, titulo, fps=60, economico=True):
@@ -137,9 +133,12 @@ class Mundo:
     def alternar_pausa(self):
         if self.pausa_habilitada:
             self.pausa_habilitada = False
+            self.pausa.eliminar()
         else:
             self.pausa_habilitada = True
-
+            self.pausa = pilas.actores.Actor("icono_pausa.png")
+            self.pausa.z = -100
+            
     def actualizar_simuladores(self):
         self.tweener.update(16)
         self.tasks.update(16/1000.0)
@@ -156,6 +155,7 @@ class Mundo:
         # dutante la actualizacion de actores (por ejemplo si uno se elimina).
         if self.pizarra_depuracion:
             self.pizarra_depuracion.limpiar()
+            self._imprimir_nombres_de_funciones_depuracion()
             
         for actor in pilas.actores.todos:
             actor.dibujar(self.ventana)
@@ -235,3 +235,9 @@ class Mundo:
     
         if not self.pizarra_depuracion:
             self.pizarra_depuracion = pilas.actores.Pizarra()
+
+    def _imprimir_nombres_de_funciones_depuracion(self):
+        dy = 20
+        for funcion in self.funciones_depuracion:
+            self.pizarra_depuracion.escribir(funcion.__name__.replace('_', ' '), 10, dy, tamano=14)
+            dy += 20
