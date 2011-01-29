@@ -20,13 +20,15 @@ class Depurador:
     que dibujan figuras geometricas.
     """
     
-    def __init__(self):
+    def __init__(self, fps):
         self.modos = []
         self.pizarra = None
+        self.fps = fps
     
     def inicia_actualizacion_grafica(self):
         if self.pizarra:
             self.pizarra.limpiar()
+            self._mostrar_cuadros_por_segundo()
             self._mostrar_nombres_de_modos()
         
         for m in self.modos:
@@ -83,7 +85,12 @@ class Depurador:
         for modo in self.modos:
             self.pizarra.escribir(modo.__class__.__name__ + " habilitado.", 10, dy, tamano=14)
             dy += 20
-
+            
+    def _mostrar_cuadros_por_segundo(self):
+        rendimiento = self.fps.obtener_cuadros_por_segundo()
+        self.pizarra.definir_color(pilas.colores.violeta)
+        self.pizarra.escribir("Cuadros por segundo: %s" %(rendimiento), 10, 460, tamano=14)
+        
 class ModoDepurador:
 
     def __init__(self, depurador):

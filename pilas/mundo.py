@@ -41,8 +41,10 @@ class Mundo:
         utils.hacer_flotante_la_ventana()
         pilas.motor.centrar_ventana()
 
+        self.fps = pilas.fps.FPS(self.fps, self.economico)
         self.camara = camara.Camara(self.ventana)
-        self.depurador = depurador.Depurador()
+        
+        self.depurador = depurador.Depurador(self.fps)
 
         self.escena_actual = None
 
@@ -56,7 +58,6 @@ class Mundo:
         
         self.pausa_habilitada = False
         self.depuracion_fisica_habilitada = False
-        self.pizarra_depuracion = None
         self.funciones_depuracion = []
         self.salir = False
 
@@ -66,13 +67,12 @@ class Mundo:
     def ejecutar_bucle_principal(self, ignorar_errores=False):
         "Mantiene en funcionamiento el motor completo."
 
-        fps = pilas.fps.FPS(self.fps, self.economico)
 
         while not self.salir:
 
             # Invoca varias veces a la actualizacion si el equipo
             # es lento.
-            for x in range(fps.actualizar()):
+            for x in range(self.fps.actualizar()):
                 # Mantiene el control de tiempo y lo reporta al sistema
                 # de interpolaciones y tareas.
 

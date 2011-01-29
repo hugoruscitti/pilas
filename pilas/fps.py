@@ -38,3 +38,6 @@ class FPS:
         self.rendimiento += 1
         return retorno
 
+
+    def obtener_cuadros_por_segundo(self):
+        return self.cuadros_por_segundo
