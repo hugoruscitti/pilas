@@ -446,3 +446,190 @@ La parte de pilas que se encarga de llamar a los métodos ``emitir``
 es el método ``procesar_y_emitir_eventos`` del
 motor, por ejemplo en el archivo ``motores/motor_sfml.py``.
 
+
+
+Habilidades
+-----------
+
+Los actores de pilas tienen la cualidad de poder
+ir obteniendo comportamiento desde otras clases. 
+
+Esto te permite lograr resultados de forma rápida, y
+a la vez, es un modelo tan flexible que podrías
+hacer muchos juegos distintos combinando los mismos
+actores pero con distintas habilidades.
+
+Veamos un ejemplo, un actor sencillo como ``Mono`` no
+hace muchas cosas. Pero si escribimos lo siguiente, podremos
+controlarlo con el mouse:
+
+.. code-block:: python
+
+    mono = pilas.actores.Mono()
+    mono.aprender(pilas.habilidades.Arrastrable)
+
+Lo que en realidad estamos haciendo, es vincular dos objetos
+en tiempo de ejecución. ``mono`` es un objeto ``Actor``, y tiene una
+lista de habilidades que puede aumentar usando el método ``aprender``.
+
+El método ``aprender`` toma la clase que le enviamos como
+argumento, construye un objeto y lo guarda en su lista de habilidades.
+
+Este es un modelo de cómo se conocen las clases entre
+sí:
+
+.. image:: images/comofunciona/habilidades.png
+
+Entonces, una vez que invocamos a la sentencia, nuestro actor
+tendrá un nuevo objeto en su lista de habilidades, listo para
+ejecutarse en cada cuadro de animación.
+
+¿Cómo se ejecutan las habilidades?
+__________________________________
+
+Retomando un poco lo que vimos al principio de este capítulo, lo
+que mantiene con *vida* al juego es el bucle principal, la clase
+``Mundo`` tiene un bucle que recorre la lista de actores en pantalla
+y por cada uno llama al método actualizar.
+
+Bien, las habilidades se mantienen en ejecución desde ahí también. Esta
+es una versión muy simplificada del bucle que encontrarás en el
+archivo ``mundo.py```:
+
+
+.. code-block:: python
+
+    def ejecutar_bucle_principal(self, ignorar_errores=False):
+
+        while not self.salir:
+            self.actualizar_actores()
+
+            [ etc ...]
+
+    def actualizar_actores(self):
+        for actor in pilas.actores.todos:
+            actor.actualizar()
+            actor.actualizar_habilidades()
+
+
+Aquí puedes ver dos llamadas a métodos del actor, el método
+``actualizar`` se creó para que cada programar escriba
+ahí lo que quiera que el personaje haga (leer el teclado, 
+hacer validaciones, moverse etc). Y el método ``actualizar_habilidades``
+es el encargado de *dar vida* a las habilidades.
+
+Técnicamente hablando, el método ``actualizar_habilidades`` es
+muy simple, solamente toma la lista de objetos habilidades y
+los actualiza, al ``Actor`` no le preocupa en lo mas mínimo
+"qué" hace cada habilidad, solamente les permite ejecutar código
+(ver código ``estudiante.py``, una superclase de ``Actor``):
+
+.. code-block:: python
+
+    def actualizar_habilidades(self):
+        for h in self.habilidades:
+            h.actualizar()
+
+
+Entonces, si queremos que un actor haga muchas cosas, podemos
+crear un objeto habilidad y vincularlo con el actor. Esto
+permite generar "comportamientos" re-utilizables, la habilidad
+se codifica una vez, y se puede usar muchas veces.
+
+Objetos habilidad
+_________________
+
+Las habilidades interactúan con los actores, y por ese motivo
+tienen que tener una interfaz en común, de modo tal que
+desde cualquier parte de pilas puedas tratar a una habilidad
+como a cualquier otra.
+
+La interfaz que toda habilidad debe tener es la que define
+la clase ``Habilidad`` del archivo ``habilidades.py``:
+
+.. code-block:: python
+
+    class Habilidad:
+
+    def __init__(self, receptor):
+        self.receptor = receptor
+
+    def actualizar(self):
+        pass
+
+    def eliminar(self):
+        pass
+
+Tiene que tener tres métodos, uno que se ejecuta al producirle
+la relación con un actor, un método que se ejecutará en
+cada iteración del bucle de juego (``actualizar``) y un
+último método para ejecutar cuando la habilidad se desconecta
+del actor. Este método ``eliminar`` suele ser el que desconecta
+eventos o cualquier otra cosa creada temporalmente.
+
+
+Ten en cuenta que el método ``__init__``, que construye
+al objeto, lo invoca el propio actor desde su método ``aprender``. Y
+el argumento ``receptor`` será una referencia al actor que
+*aprende* la habilidad.
+
+
+Veamos un ejemplo muy básico, imagina que quieres hacer
+una habilidad muy simple, que gire al personaje todo el
+tiempo, cómo una aguja de reloj. Podrías hacer
+algo así:
+
+.. code-block:: python
+
+    class GirarPorSiempre(pilas.habilidades.Habilidad):
+    
+    def __init__(self, receptor):
+        self.receptor = receptor
+    
+    def actualizar(self):
+        self.receptor.rotacion += 1
+
+    mono = pilas.actores.Mono()
+    mono.aprender(GirarPorSiempre)
+
+La sentencia ``aprender`` construirá un objeto de la
+clase que le indiquemos, y el bucle de pilas (en ``mundo.py``)
+dará la orden para ejecutar los métodos actualizar de
+cada habilidad conocida por los actores.
+
+Argumentos de las habilidades
+_____________________________
+
+En el ejemplo anterior podríamos encontrar una
+limitación. El actor siempre girará a la misma velocidad.
+
+Si queremos que los personajes puedan girar a diferentes
+velocidades tendríamos que agregarle argumentos
+a la habilidad, esto es simple: solo tienes que llamar
+al método ``aprender`` con los argumentos que quieras
+y asegurarte de que la habilidad los tenga definidos en
+su método ``__init__``.
+
+Este es un ejemplo de la habilidad pero que permite
+definir la velocidad de giro:
+
+
+.. code-block:: python
+
+    class GirarPorSiempre(pilas.habilidades.Habilidad):
+        
+        def __init__(self, receptor, velocidad=1):
+            self.receptor = receptor
+            self.velocidad = velocidad
+        
+        def actualizar(self):
+            self.receptor.rotacion += self.velocidad
+
+    a = pilas.actores.Mono()
+    a.aprender(GirarPorSiempre, 20)
+
+
+Listo, es casi idéntico al anterior, si llamas a ``aprender`` con un
+argumento como ``20``, el actor girará mucho mas rápido que
+antes. Y si no especificas la velocidad, se asumirá que la
+velocidad es ``1``, porque así lo indica el método ``__init__``.
