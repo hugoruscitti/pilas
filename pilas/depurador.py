@@ -50,8 +50,7 @@ class Depurador:
         elif code == sf.Key.F10:
             self._alternar_modo(ModoArea)
         elif code == sf.Key.F11:
-            # pilas.mundo.alternar_fisica()
-            pass
+            self._alternar_modo(ModoFisica)
         elif code == sf.Key.F12:
             self._alternar_modo(ModoPosicion)
 
@@ -129,6 +128,12 @@ class ModoPosicion(ModoDepurador):
     
     def dibuja_actor(self, actor):
         posicion = "(%d, %d)" %(actor.x, actor.y)
-        self.depurador.pizarra.definir_color(pilas.colores.violeta)
+
         (x, y) = pilas.utils.hacer_coordenada_mundo(actor.x, actor.y)
+        self.depurador.pizarra.definir_color(pilas.colores.violeta) 
         self.depurador.pizarra.escribir(posicion, x + 20, y + 20, tamano=14)
+        
+class ModoFisica(ModoDepurador):
+    
+    def inicia_actualizacion_grafica(self):
+        pilas.mundo.fisica.dibujar_figuras_sobre_pizarra(self.depurador.pizarra)

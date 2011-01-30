@@ -33,6 +33,9 @@ class Fisica(object):
         
         pizarra.definir_color(pilas.colores.amarillo)
         
+        print len(cuerpos)
+        
+        
         for cuerpo in cuerpos:
             xform = cuerpo.GetXForm()
             
