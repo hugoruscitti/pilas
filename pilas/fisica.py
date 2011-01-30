@@ -33,9 +33,6 @@ class Fisica(object):
         
         pizarra.definir_color(pilas.colores.amarillo)
         
-        print len(cuerpos)
-        
-        
         for cuerpo in cuerpos:
             xform = cuerpo.GetXForm()
             
@@ -56,7 +53,7 @@ class Fisica(object):
                 elif tipo_de_figura == box2d.e_circleShape:
                     pizarra.dibujar_circulo(cuerpo.position.x, cuerpo.position.y, figura.radius, False)
                 else:
-                    print "no se que este esta figura..."
+                    print "no puedo identificar el tipo de figura."
         
     def crear_cuerpo(self, definicion_de_cuerpo):
         return self.mundo.CreateBody(definicion_de_cuerpo)

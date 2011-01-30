@@ -24,17 +24,25 @@ class Depurador:
         self.modos = []
         self.pizarra = None
         self.fps = fps
-    
-    def inicia_actualizacion_grafica(self):
-        if self.pizarra:
-            self.pizarra.limpiar()
-            self._mostrar_cuadros_por_segundo()
-            self._mostrar_nombres_de_modos()
+        self.posicion_del_mouse = (400, 400)
+        self.posicion_del_mouse = (0, 0)
+        pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
         
+    def cuando_mueve_el_mouse(self, evento):
+        self.posicion_del_mouse = (evento.x, evento.y)
+        return True
+        
+    def inicia_actualizacion_grafica(self):
         for m in self.modos:
             m.inicia_actualizacion_grafica()
 
     def finaliza_actualizacion_grafica(self):
+        if self.pizarra:
+            self.pizarra.limpiar()
+            self._mostrar_cuadros_por_segundo()
+            self._mostrar_posicion_del_mouse()
+            self._mostrar_nombres_de_modos()
+        
         for m in self.modos:
             m.finaliza_actualizacion_grafica()
             
@@ -85,6 +93,11 @@ class Depurador:
             self.pizarra.escribir(modo.__class__.__name__ + " habilitado.", 10, dy, tamano=14)
             dy += 20
             
+    def _mostrar_posicion_del_mouse(self):
+        x, y = self.posicion_del_mouse    
+        texto = "Posición del mouse: x=%d y=%d " %(x, y)
+        self.pizarra.escribir(texto, 380, 460, tamano=14)
+        
     def _mostrar_cuadros_por_segundo(self):
         rendimiento = self.fps.obtener_cuadros_por_segundo()
         self.pizarra.definir_color(pilas.colores.violeta)
@@ -126,12 +139,16 @@ class ModoArea(ModoDepurador):
 
 class ModoPosicion(ModoDepurador):
     
+    def __init__(self, depurador):
+        ModoDepurador.__init__(self, depurador)
+
     def dibuja_actor(self, actor):
         posicion = "(%d, %d)" %(actor.x, actor.y)
 
-        (x, y) = pilas.utils.hacer_coordenada_mundo(actor.x, actor.y)
+        (x, y) = pilas.utils.hacer_coordenada_mundo(actor.x, actor.abajo)
         self.depurador.pizarra.definir_color(pilas.colores.violeta) 
         self.depurador.pizarra.escribir(posicion, x + 20, y + 20, tamano=14)
+
         
 class ModoFisica(ModoDepurador):
     
