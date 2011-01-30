@@ -8,7 +8,6 @@
 
 from pilas.actores import Actor
 import pilas
-import pymunk
 
 class Pelota(Actor):
     "Representa una pelota de Volley."

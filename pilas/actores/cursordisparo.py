@@ -8,7 +8,6 @@
 
 from pilas.actores import Actor
 import pilas
-import pymunk
 
 class CursorDisparo(Actor):
     "Representa un bloque que tiene fisica como una caja."
