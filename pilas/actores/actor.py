@@ -200,6 +200,10 @@ class Actor(object, pilas.estudiante.Estudiante):
 
     def eliminar(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
+        self.destruir()
+    
+    def destruir(self):
+        "Elimina a un actor pero de manera inmediata."
         pilas.actores.utils.eliminar_un_actor(self)
         self.eliminar_habilidades()
         self.eliminar_comportamientos()

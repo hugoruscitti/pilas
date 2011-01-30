@@ -130,12 +130,6 @@ class Mundo:
 
     def definir_escena(self, escena_nueva):
         "Cambia la escena que se muestra en pantalla"
-
-        if self.escena_actual:
-            eliminar_actores = True
-        else:
-            eliminar_actores = False
-
         self.escena_actual = escena_nueva
 
     def agregar_tarea(self, time_out, function, *params): 
