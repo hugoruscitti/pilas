@@ -1,4 +1,4 @@
-#Sat Jan 29 16:32:08 ART 2011
+#Sun Jan 30 16:13:10 ART 2011
 eclipse.preferences.version=1
 encoding//experimental/dialogos/test.py=utf-8
 encoding//minijuegos/Memorice/ejecutar.py=utf-8
@@ -19,6 +19,7 @@ encoding//pilas/actores/pizarra.py=utf-8
 encoding//pilas/actores/tortuga.py=utf-8
 encoding//pilas/depurador.py=utf-8
 encoding//pilas/ejemplos/colisiones.py=utf-8
+encoding//pilas/estudiante.py=utf-8
 encoding//pilas/eventos.py=utf-8
 encoding//pilas/fisica.py=utf-8
 encoding//pilas/fondos.py=utf-8
