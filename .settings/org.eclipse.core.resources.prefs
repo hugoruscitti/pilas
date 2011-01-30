@@ -1,8 +1,11 @@
-#Sun Jan 30 17:54:16 ART 2011
+#Sun Jan 30 18:01:51 ART 2011
 eclipse.preferences.version=1
 encoding//ejemplos/grilla.py=utf-8
 encoding//experimental/dialogos/test.py=utf-8
 encoding//minijuegos/Memorice/ejecutar.py=utf-8
+encoding//minijuegos/Memorice/escena_ayuda.py=utf-8
+encoding//minijuegos/Memorice/escena_juego.py=utf-8
+encoding//minijuegos/Memorice/escena_menu.py=utf-8
 encoding//pilas/__init__.py=utf-8
 encoding//pilas/actores/__init__.py=utf-8
 encoding//pilas/actores/actor.py=utf-8
@@ -19,6 +22,8 @@ encoding//pilas/actores/piedra.py=utf-8
 encoding//pilas/actores/pingu.py=utf-8
 encoding//pilas/actores/pizarra.py=utf-8
 encoding//pilas/actores/tortuga.py=utf-8
+encoding//pilas/actores/utils.py=utf-8
+encoding//pilas/atajos.py=utf-8
 encoding//pilas/depurador.py=utf-8
 encoding//pilas/ejemplos/colisiones.py=utf-8
 encoding//pilas/escenas.py=utf-8

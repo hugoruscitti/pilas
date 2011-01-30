@@ -30,6 +30,13 @@ def eliminar_a_todos():
     for x in a_eliminar:
         x.eliminar()
 
+def destruir_a_todos():
+    "Elimina a los actores inmediatamente (evita que exploten o hagan algo)."
+    a_eliminar = list(pilas.actores.todos)
+
+    for x in a_eliminar:
+        x.destruir()
+
 def obtener_actor_en(x, y):
     "Intenta obtener el actor mas cerca de la pantalla (z mas pequeño) en la posición (x, y)"
 

@@ -90,7 +90,6 @@ class Juego(pilas.escenas.Escena):
     "Es la escena que permite controlar la nave y jugar"
 
     def __init__(self):
-        pilas.actores.utils.eliminar_a_todos()
         pilas.escenas.Escena.__init__(self)
         pilas.fondos.Espacio()
         pilas.eventos.pulsa_tecla_escape.conectar(self.cuando_pulsa_tecla_escape)

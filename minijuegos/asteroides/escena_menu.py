@@ -6,7 +6,6 @@ class EscenaMenu(pilas.escenas.Escena):
 
     def __init__(self):
         pilas.escenas.Escena.__init__(self)
-        pilas.actores.utils.eliminar_a_todos()
         pilas.fondos.Fondo("data/menu.png")
         self.crear_titulo_del_juego()
         pilas.avisar("Use el teclado para controlar el menu.")

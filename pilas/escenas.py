@@ -12,6 +12,7 @@ class Escena:
     "Escena abstracta."
 
     def __init__(self):
+        pilas.actores.utils.destruir_a_todos()
         pilas.mundo.definir_escena(self)
 
     def iniciar(self):

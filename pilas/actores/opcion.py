@@ -14,6 +14,9 @@ class Opcion(Texto):
     def __init__(self, texto, x=0, y=0, funcion_a_invocar=None):
         Texto.__init__(self, texto, x=x, y=y)
         self.funcion_a_invocar = funcion_a_invocar
+        self.color = pilas.colores.negro
+        self.z = -300
+        self.centro = ("centro", "centro")
 
     def resaltar(self, estado=True):
         "Pinta la opcion actual de un color mas claro."
