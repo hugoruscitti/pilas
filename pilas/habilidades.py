@@ -26,70 +26,26 @@ class RebotaComoPelota(Habilidad):
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
         error = random.randint(-10, 10) / 10.0
-        self.figura = pilas.fisica.fisica.crear_figura_circulo(receptor.x + error, 
-                                                               receptor.y + error, 
-                                                               receptor.radio_de_colision,
-                                                               masa=10,
-                                                               elasticidad=0.75)
-        self.ultimo_x = receptor.x
-        self.ultimo_y = receptor.y
-
-    def actualizar(self):
-        # Mueve el objeto siempre y cuando no parezca que algo
-        # no fisico (es decir de pymunk) lo ha afectado.
-        if self.ultimo_x == self.receptor.x and self.ultimo_y == self.receptor.y:
-            self.receptor.x = self.figura.body.position.x
-            self.receptor.y = self.figura.body.position.y
-            self.receptor.rotacion = self.figura.body.angle * 500
-
-            self.ultimo_x = self.receptor.x
-            self.ultimo_y = self.receptor.y
-        else:
-            # Si ha detectado que el usuario u alguna sentencia
-            # de código alteró la posicion x e y entonces le
-            # avisa a pymunk que aplique ese cambio de posicion.
-            self.ultimo_x = self.receptor.x
-            self.ultimo_y = self.receptor.y
-            self.figura.body.position.x = self.ultimo_x
-            self.figura.body.position.y = self.ultimo_y
-
-    def eliminar(self):
-        pilas.fisica.fisica.eliminar(self.figura)
-
+        
+        circulo = pilas.fisica.Circulo(receptor.x + error, 
+                                       receptor.y + error, 
+                                       receptor.radio_de_colision)
+        receptor.aprender(pilas.habilidades.Imitar, circulo)
+        
 
 class RebotaComoCaja(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
         error = random.randint(-10, 10) / 10.0
-        self.figura = pilas.fisica.fisica.crear_figura_cuadrado(receptor.x + error,
-                                                               receptor.y + error, 
-                                                               receptor.radio_de_colision,
-                                                               masa=10,
-                                                               elasticidad=0.30,
-                                                               friccion=10)
-        self.ultimo_x = receptor.x
-        self.ultimo_y = receptor.y
+        rectangulo = pilas.fisica.Rectangulo(receptor.x + error, 
+                                             receptor.y + error, 
+                                             receptor.radio_de_colision,
+                                             receptor.radio_de_colision,
+                                             )
+        receptor.aprender(pilas.habilidades.Imitar, rectangulo)
         
-    def actualizar(self):
-        # Mueve el objeto siempre y cuando no parezca que algo
-        # no fisico (es decir de pymunk) lo ha afectado.
-        if self.ultimo_x == self.receptor.x and self.ultimo_y == self.receptor.y:
-            self.receptor.x = self.figura.body.position.x
-            self.receptor.y = self.figura.body.position.y
-            self.receptor.rotacion = self.figura.body.angle * 58
-        else:
-            # Si ha detectado que el usuario u alguna sentencia
-            # de código alteró la posicion x e y entonces le
-            # avisa a pymunk que aplique ese cambio de posicion.
-            self.ultimo_x = self.receptor.x
-            self.ultimo_y = self.receptor.y
-            self.figura.body.position.x = self.ultimo_x
-            self.figura.body.position.y = self.ultimo_y
-
-    def eliminar(self):
-        pilas.fisica.fisica.eliminar(self.figura)
-
+        
 class ColisionableComoPelota(RebotaComoPelota):
 
     def __init__(self, receptor):
@@ -259,10 +215,8 @@ class Imitar(Habilidad):
     def __init__(self, receptor, objeto_a_imitar):
         Habilidad.__init__(self, receptor)
         self.objeto_a_imitar = objeto_a_imitar
-        print "iniciando"
 
     def actualizar(self):
         self.receptor.x = self.objeto_a_imitar.x
         self.receptor.y = self.objeto_a_imitar.y
         self.receptor.rotacion = self.objeto_a_imitar.rotacion
-        print "actualizando"

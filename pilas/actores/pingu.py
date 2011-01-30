@@ -81,6 +81,7 @@ class Saltando(Comportamiento):
         self.receptor = receptor
         self.receptor.definir_cuadro(0)
         self.origen = self.receptor.y
+        
     def actualizar(self):
         self.receptor.y += self.dy
         self.dy -= 0.3
