@@ -20,8 +20,8 @@ Filosofía de desarrollo
 
 Pilas es un proyecto de software libre, orientado a facilitar
 el desarrollo de videojuegos a personas que generalmente no
-hacen juegos... así que gran parte de las decisiones de
-desarrollo comenzaron reflexionando sobre cómo
+hacen juegos... Por ese motivo que gran parte de las decisiones de
+desarrollo se tomaron reflexionando sobre cómo
 diseñar una interfaz de programación simple y fácil
 de utilizar.
 
@@ -247,8 +247,12 @@ a mostrar información valiosa para los desarrolladores.
 Esta modalidad de dibujo la llamamos **modo depuración**, y
 ayuda mucho a la hora de encontrar errores o ajustar detalles.
 
-Estos modos están codificados en el archivo ``depurador.py``, ahí
-encontrarás varias clases:
+El objeto ``Mundo``, que mantiene en ejecución al juego, tiene
+una instancia de objeto ``Depurador`` que se encarga de
+hacer estos dibujos.
+
+Las clases mas importantes a la hora de investigar el depurador
+están en el archivo ``depurador.py``:
 
 .. image:: images/comofunciona/depurador.png
 
@@ -258,5 +262,187 @@ una lista de modos. Los modos pueden ser cualquiera de los que están
 en la jerarquía de ModoDepuracion, por ejemplo, podría tener
 instancias de ModoArea y ModoPuntoDeControl.
 
-El Depurador se encarga de recibir órdenes desde el objeto Mundo, y
-crear o eliminar la pizarra según sea necesaria o no...
+
+
+Sistema de eventos
+------------------
+
+Hay varios enfoques para resolver el manejo de eventos
+en los videojuegos.
+
+Pilas usa un modelo conocido y elaborado
+llamado ``Observator``, un patrón de diseño. Pero que
+lamentablemente no es muy intuitivo a primera vista.
+
+En esta sección intentaré mostrar por qué usamos
+esa solución y qué problemas nos ayuda a resolver.
+
+Comenzaré explicando sobre el problema de gestionar eventos
+y luego cómo el modelo ``Observator`` se volvió
+una buena solución para el manejo de eventos.
+
+El problema: pooling de eventos
+_______________________________
+
+Originalmente, en un modelo muy simple de aplicación multimedia,
+manejar eventos de usuario es algo sencillo, pero con el
+tiempo comienza a crecer y se hace cada vez mas difícil de
+mantener.
+
+Resulta que las bibliotecas multimedia suelen entregar un
+objeto ``evento`` cada vez que ocurre algo y tu responsabilidad
+es consultar sobre ese objeto en búsqueda de datos.
+
+Imagina que quieres crear un actor ``Bomba`` cada
+vez que el usuario hace click en la pantalla. El
+código podría ser algo así:
+
+.. code-block:: python
+
+    evento = obtener_evento_actual()
+
+    if evento.tipo == 'click_de_mouse':
+        crear_bomba(evento.x)
+        crear_bomba(evento.x)
+    else:
+        # el evento de otro tipo (teclado, ventana ...)
+        # lo descartamos.
+
+
+A esta solución podríamos llamarla **preguntar** y **responder**, 
+porque efectivamente así funciona el código, primero
+nos aseguramos de que el evento nos importa y luego
+hacemos algo. En algunos sitios suelen llamar a esta
+estrategia *pooling*.
+
+Pero este enfoque tiene varios problemas, y cuando hacemos
+juegos o bibliotecas se hace mas evidente. El código, a medida
+que crece, comienza a mezclar manejo de eventos y lógica
+del juego.
+
+Para ver el problema de cerca, imagina que en determinadas
+ocasiones quieres deshabilitar la creación de bombas, ¿cómo
+harías?. ¿Y si quieres que las bombas creadas se puedan
+mover con el teclado?.
+
+
+Otro enfoque, en pilas usamos 'Observator'
+__________________________________________
+
+Hay otro enfoque para el manejo de eventos que me parece
+mas interesante, y lo he seleccionado para el motor
+``pilas``:
+
+En lugar de administrar los eventos uno a uno por
+**consultas**, delegamos esa tarea a un sistema que nos
+permite **suscribir** y **ser notificado**.
+
+Aquí no mezclamos nuestro código con el sistema de eventos, si
+queremos hacer algo relacionado con un evento, escribimos
+una función y le pedimos al evento que llame a nuestra
+función cuando sea necesario.
+
+Veamos el ejemplo anterior pero usando este enfoque, se
+creará una ``Bomba`` cada vez que el usuario 
+hace ``click`` en la pantalla:
+
+.. code-block:: python
+
+    def crear_bomba(evento):
+        pilas.actores.Bomba(x=evento.x, y=evento.y)
+        return true
+
+    pilas.eventos.click_de_mouse.conectar(crear_bomba)
+
+Si queremos que el mouse deje de crear bombas podemos
+ejecutar la función ``desconectar``:
+
+.. code-block:: python
+
+    pilas.eventos.click_de_mouse.conectar(crear_bomba)
+
+o simplemente retornar ``False`` en la función ``crear_bomba``.
+
+Nuestro código tendrá *bajo acoplamiento* con los eventos
+del motor, y no se nos mezclarán.
+
+De hecho, cada vez que tengas dudas sobre las funciones
+suscritas a eventos pulsa F7 y se imprimirán en pantalla.
+
+¿Cómo funciona?
+_______________
+
+Ahora bien, ¿cómo funciona el sistema de eventos por dentro?:
+
+El sistema de eventos que usamos es una ligera adaptación
+del sistema de señales de django (un framework para desarrollo
+de sitios web) dónde cada evento es un objeto que puede
+hacer dos cosas:
+
+- suscribir funciones.
+- invocar a las funciones que se han suscrito.
+
+1 Suscribir
+___________
+
+Por ejemplo, el evento ``mueve_mouse`` es un objeto, y cuando
+invocamos la sentencia ``pilas.eventos.mueve_mouse.conectar(mi_funcion)``, 
+le estamos diciendo al objeto "quiero que guardes una referencia
+a ``mi_funcion``".
+
+Puedes imaginar al evento como un objeto contenedor (similar
+a una lista), que guarda cada una de las funciones que le enviamos
+con el método ``conectar``.
+
+2 Notificar
+___________
+
+La segunda tarea del evento es notificar a todas
+las funciones que se suscribieron.
+
+Esto se hace, retomando el ejemplo anterior, cuando el usuario
+hace click con el mouse.
+
+Los eventos son objetos ``Signal`` y se inicializan en el
+archivo ``eventos.py``, cada uno con sus respectivos
+argumentos o detalles:
+
+
+.. code-block:: python
+
+    click_de_mouse = dispatch.Signal(providing_args=['button', 'x', 'y'])
+    pulsa_tecla = dispatch.Signal(providing_args=['codigo'])
+    [ etc...]
+
+Los argumentos indican información adicional del evento, en
+el caso del click observarás que los argumentos con el botón pulsado
+y la coordenada del puntero.
+
+Cuanto se quiere notificar a las funciones conectadas a
+un eventos simplemente se tiene que invocar al método ``emitir``
+del evento y proveer los argumentos que necesita:
+
+.. code-block:: python
+
+    click_de_mouse.emitir(button=1, x=30, y=50)
+
+Eso hará que todas las funciones suscritas al evento ``click_de_mouse``
+se invoquen con el argumento ``evento`` representando esos detalles:
+
+.. code-block:: python
+
+    def crear_bomba(evento):
+
+        print evento.x
+        # imprimirá 30
+
+        print evento.y
+        # imprimirá 50
+
+        [ etc...]
+
+
+La parte de pilas que se encarga de llamar a los métodos ``emitir``
+es el método ``procesar_y_emitir_eventos`` del
+motor, por ejemplo en el archivo ``motores/motor_sfml.py``.
+
