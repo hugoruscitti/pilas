@@ -31,7 +31,9 @@ class Mapa(Pizarra):
         self.pintar_grilla(self.grilla, x, y)
 
         if solido:
-            figura = pilas.fisica.fisica.crear_cuadrado_estatico(x - 320, 240 -y, ancho)
+            dx = ancho / 2
+            dy = alto / 2
+            figura = pilas.fisica.Rectangulo(x - 320 + dx, 240 -y - dy, ancho/2, alto/2, dinamica=False)
             self.figuras.append(figura)
 
     def _cuando_inicia_modo_depuracion(self, evento):

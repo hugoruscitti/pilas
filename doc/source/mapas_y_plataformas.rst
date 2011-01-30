@@ -26,7 +26,7 @@ que se usarán en el escenario. Luego puedes crear el ``Mapa``:
 
 .. code-block:: python
 
-    grilla = pilas.imagenes.Grilla("grillas/plataformas_10_10.png", 10, 10)
+    grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
     mapa = pilas.actores.Mapa(grilla)
 
 
