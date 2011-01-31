@@ -33,18 +33,21 @@ class Depurador:
         return True
         
     def inicia_actualizacion_grafica(self):
-        for m in self.modos:
-            m.inicia_actualizacion_grafica()
+        if self.pizarra:
+            self.pizarra.limpiar()
+            for m in self.modos:
+                m.inicia_actualizacion_grafica()
 
     def finaliza_actualizacion_grafica(self):
         if self.pizarra:
-            self.pizarra.limpiar()
             self._mostrar_cuadros_por_segundo()
             self._mostrar_posicion_del_mouse()
             self._mostrar_nombres_de_modos()
         
-        for m in self.modos:
-            m.finaliza_actualizacion_grafica()
+            for m in self.modos:
+                m.finaliza_actualizacion_grafica()
+        
+            self.pizarra.actualizar_imagen()
             
     def dibuja_actor(self, actor):
         for m in self.modos:
@@ -73,6 +76,7 @@ class Depurador:
     def _activar_modo(self, clase_del_modo):
         if not self.pizarra:
             self.pizarra = pilas.actores.Pizarra()
+            self.pizarra.deshabilitar_actualizacion_automatica()
             
         instancia_del_modo = clase_del_modo(self)
         self.modos.append(instancia_del_modo)
