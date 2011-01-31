@@ -23,8 +23,8 @@ class Selector(pilas.actores.Actor):
         pilas.eventos.click_de_mouse.conectar(self.detection_click_mouse)
 
     def _cargar_imagenes(self, pilas):
-        self.imagen_selector = pilas.imagenes.cargar_imagen_cairo("gui/selector.png")
-        self.imagen_selector_seleccionado = pilas.imagenes.cargar_imagen_cairo("gui/selector_seleccionado.png")
+        self.imagen_selector = pilas.imagenes.cargar_imagen_cairo("interfaz/selector.png")
+        self.imagen_selector_seleccionado = pilas.imagenes.cargar_imagen_cairo("interfaz/selector_seleccionado.png")
 
     def _cargar_lienzo(self, ancho):
         self.lienzo = pilas.imagenes.cargar_lienzo(ancho, 29)

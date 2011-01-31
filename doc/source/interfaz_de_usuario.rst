@@ -83,3 +83,23 @@ atributo ``seleccionado``:
         print "El selector esta seleccionado."
     else:
         print "El selector no esta seleccionado."
+
+
+Ingreso de texto
+----------------
+
+Si quieres solicitar datos, como el nombre del usuario, puedes
+usar el objeto ``IngresoDeTexto``. Ya que muestra una caja
+y un pequeño cursor para ingresar texto:
+
+.. image:: images/ingreso_de_texto.png
+
+
+Para usar este componente tienes que crearlo y luego
+leer o escribir el atributo ``texto``, que contiene la
+cadena de texto de la caja:
+
+.. code-block:: python
+
+    entrada = pilas.interfaz.IngresoDeTexto()
+    entrada.texto = "Texto inicial"

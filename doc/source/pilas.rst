@@ -276,6 +276,20 @@ Módulo pilas.interfaz.deslizador
     :members:
 
 
+Módulo pilas.interfaz.selector
+------------------------------
+
+.. automodule:: pilas.interfaz.selector
+    :members:
+
+
+Módulo pilas.interfaz.ingreso_de_texto
+--------------------------------------
+
+.. automodule:: pilas.interfaz.ingreso_de_texto
+    :members:
+
+
 Módulo pilas.actores.pelota
 ---------------------------
 
