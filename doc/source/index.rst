@@ -18,6 +18,7 @@ Pilas engine - Documentación
     controles.rst
     escenas.rst
     ejemplos.rst
+    interfaz_de_usuario.rst
     menu.rst
     dibujando_en_pantalla.rst
     mapas_y_plataformas.rst

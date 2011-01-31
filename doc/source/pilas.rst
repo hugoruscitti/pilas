@@ -59,13 +59,6 @@ Módulo pilas.fondos
     :members:
 
 
-Módulo pilas.actores
---------------------
-
-.. automodule:: pilas.actores
-    :members:
-
-
 Módulo pilas.lienzo
 -------------------
 
@@ -273,6 +266,13 @@ Módulo pilas.data.juegobase.ejecutar
 ------------------------------------
 
 .. automodule:: pilas.data.juegobase.ejecutar
+    :members:
+
+
+Módulo pilas.interfaz.deslizador
+--------------------------------
+
+.. automodule:: pilas.interfaz.deslizador
     :members:
 
 
