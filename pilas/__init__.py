@@ -45,7 +45,6 @@ import simbolos
 import os
 import sys
 import time
-
 import estudiante
 import baseactor
 import colores
@@ -107,6 +106,7 @@ import motores
 import atajos
 import fisica
 import grupo
+import interfaz
     
     
 # Carga el modulo de autocompletado si esta

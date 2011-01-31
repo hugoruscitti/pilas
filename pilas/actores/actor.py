@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
+from pilas.estudiante import Estudiante
 
 IZQUIERDA = ["izquierda"]
 DERECHA = ["derecha"]
@@ -15,7 +16,7 @@ CENTRO = ["centro", "centrado", "medio", "arriba"]
 ABAJO = ["abajo", "inferior", "debajo"]
 
 
-class Actor(object, pilas.estudiante.Estudiante):
+class Actor(object, Estudiante):
     """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
     Un objeto Actor se tiene que crear siempre indicando la imagen, ya
@@ -56,7 +57,7 @@ class Actor(object, pilas.estudiante.Estudiante):
             print mensaje
             raise Exception(mensaje)
 
-        pilas.estudiante.Estudiante.__init__(self)
+        Estudiante.__init__(self)
         self._actor = pilas.motor.obtener_actor(imagen, x=x, y=y)
         self.centro = ('centro', 'centro')
 

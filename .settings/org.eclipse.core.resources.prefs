@@ -1,6 +1,7 @@
-#Sun Jan 30 18:01:51 ART 2011
+#Sun Jan 30 23:44:03 ART 2011
 eclipse.preferences.version=1
 encoding//ejemplos/grilla.py=utf-8
+encoding//ejemplos/texto.py=utf-8
 encoding//experimental/dialogos/test.py=utf-8
 encoding//minijuegos/Memorice/ejecutar.py=utf-8
 encoding//minijuegos/Memorice/escena_ayuda.py=utf-8
@@ -24,6 +25,7 @@ encoding//pilas/actores/pizarra.py=utf-8
 encoding//pilas/actores/tortuga.py=utf-8
 encoding//pilas/actores/utils.py=utf-8
 encoding//pilas/atajos.py=utf-8
+encoding//pilas/colisiones.py=utf-8
 encoding//pilas/depurador.py=utf-8
 encoding//pilas/ejemplos/colisiones.py=utf-8
 encoding//pilas/escenas.py=utf-8
@@ -33,6 +35,8 @@ encoding//pilas/fisica.py=utf-8
 encoding//pilas/fondos.py=utf-8
 encoding//pilas/habilidades.py=utf-8
 encoding//pilas/imagenes.py=utf-8
+encoding//pilas/interfaz/__init__.py=utf-8
+encoding//pilas/interfaz/deslizador.py=utf-8
 encoding//pilas/motores/__init__.py=utf-8
 encoding//pilas/motores/motor_pygame.py=utf-8
 encoding//pilas/motores/motor_sfml.py=utf-8
