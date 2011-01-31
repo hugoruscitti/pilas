@@ -127,6 +127,9 @@ class Fisica(object):
                 lista_de_cuerpos.append(cuerpo)
 
         return lista_de_cuerpos
+    
+    def definir_gravedad(self, x, y):
+        print "No implementado:", x, y
 
 class Figura(object):
     "Representa un figura que simula un cuerpo fisico."

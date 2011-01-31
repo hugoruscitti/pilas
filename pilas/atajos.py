@@ -14,4 +14,4 @@ def crear_grupo(*k):
     return pilas.grupos.Grupo(k)
 
 def definir_gravedad(x=0, y=-900):
-    pilas.fisica.fisica.definir_gravedad(x, y)
+    pilas.mundo.fisica.definir_gravedad(x, y)
