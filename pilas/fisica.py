@@ -19,9 +19,10 @@ class Fisica(object):
         self.escenario.lowerBound = (-1000.0, -1000.0)
         self.escenario.upperBound = (1000.0, 1000.0)
         self.mundo = box2d.b2World(self.escenario, (0.0, -90.0), True)
-        
         self.i = 0
-
+        self.crear_suelo()
+        self.crear_paredes()
+        
     def actualizar(self):
         self.mundo.Step(1.0 / 20.0, 10, 8)
         self.i += 1
@@ -59,33 +60,26 @@ class Fisica(object):
         return self.mundo.CreateBody(definicion_de_cuerpo)
     
     def crear_suelo(self):
-        bodyDef = box2d.b2BodyDef()
-        bodyDef.position=(0.0, -240)
-
-        dynamic = False
-
-        if not dynamic:
-            density = 0
-
-        body = self.mundo.CreateBody(bodyDef)
-                    
-        boxDef = box2d.b2PolygonDef()
-        width = 640
-        height= 1
-        boxDef.SetAsBox(width, height, (0,0), 0)
+        self.suelo = Rectangulo(0, -240, 640, 1, dinamica=False, fisica=self)
         
-
-        restitution=0.16
-        friction=0.5
+    def crear_paredes(self):
+        self.pared_izquierda = Rectangulo(-320, 0, 1, 480, dinamica=False, fisica=self)
+        self.pared_derecha = Rectangulo(320, 0, 1, 480, dinamica=False, fisica=self)
         
-        boxDef.density = density
-        boxDef.restitution = restitution
-        boxDef.friction = friction
-        body.CreateShape(boxDef)
-        
-        body.SetMassFromShapes()
+    def eliminar_suelo(self):
+        if self.suelo:
+            self.suelo.eliminar()
+            self.suelo = None
+            
+    def eliminar_paredes(self):
+        if self.pared_izquierda:
+            self.pared_derecha.eliminar()
+            self.pared_izquierda.eliminar()
+            self.pared_derecha = None
+            self.pared_izquierda = None
     
-        self.suelo = body
+    def eliminar_figura(self, figura):
+        self.mundo.DestroyBody(figura)
         
     def obtener_distancia_al_suelo(self, x, y, dy):
         """Obtiene la distancia hacia abajo desde el punto (x,y). 
@@ -157,6 +151,9 @@ class Figura(object):
         
     def impulsar(self, dx, dy):
         self._cuerpo.ApplyImpulse((dx, dy), self._cuerpo.GetWorldCenter())
+        
+    def eliminar(self):
+        pilas.mundo.fisica.eliminar_figura(self._cuerpo)
 
     x = property(obtener_x, definir_x)
     y = property(obtener_y, definir_y)
@@ -165,8 +162,10 @@ class Figura(object):
 class Circulo(Figura):
     "Representa un cuerpo de circulo."
     
-    def __init__(self, x, y, radio, dinamica=True, densidad=1.0, restitucion=0.56, friccion=10.5):
-        fisica = pilas.mundo.fisica
+    def __init__(self, x, y, radio, dinamica=True, densidad=1.0, restitucion=0.56, friccion=10.5, fisica=None):
+        if not fisica:
+            fisica = pilas.mundo.fisica
+            
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
 
@@ -194,8 +193,9 @@ class Circulo(Figura):
 
 class Rectangulo(Figura):
     
-    def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0, restitucion=0.56, friccion=10.5):
-        fisica = pilas.mundo.fisica
+    def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0, restitucion=0.56, friccion=10.5, fisica=None):
+        if not fisica:
+            fisica = pilas.mundo.fisica
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
 
@@ -224,11 +224,14 @@ class Rectangulo(Figura):
 
 class ConstanteDeDistancia():
     
-    def __init__(self, figura_1, figura_2):
+    def __init__(self, figura_1, figura_2, fisica=None):
+        if not fisica:
+            fisica = pilas.mundo.fisica
+            
         if not isinstance(figura_1, Figura) or not isinstance(figura_2, Figura):
             raise Exception("Las dos figuras tienen que ser objetos de la clase Figura.")
         
         constante = box2d.b2DistanceJointDef()
         constante.Initialize(c._cuerpo, c1._cuerpo, (0,0), (0,0))
         constante.collideConnected = True
-        f.mundo.CreateJoint(constante)
+        fisica.mundo.CreateJoint(constante)

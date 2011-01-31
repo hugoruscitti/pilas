@@ -54,7 +54,6 @@ class Mundo:
         
         # Genera el motor de fisica.
         self.fisica = pilas.fisica.Fisica()
-        self.fisica.crear_suelo()
         
         self.pausa_habilitada = False
         self.depuracion_fisica_habilitada = False
