@@ -8,3 +8,4 @@
 
 
 from deslizador import Deslizador
+from selector import Selector

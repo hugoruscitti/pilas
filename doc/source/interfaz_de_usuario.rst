@@ -19,11 +19,11 @@ un valor intermedio entre dos números, por ejemplo entre 0 y 1, 0 y
 
 Un ejemplo típico de este componente puedes encontrarlo
 en las preferencias de audio de algún programa de sonido, los
-deslizadores te permiten regular el grado de volúmen.
+deslizadores te permiten regular el grado de volumen.
 
 
 Esta es una imagen del ejemplo ``deslizador.py`` que está
-en el directoio ``ejemplos``. Tiene tres deslizadores, y
+en el directorio ``ejemplos``. Tiene tres deslizadores, y
 el usuario puede regular cualquiera de los tres para ver
 los cambios en el actor:
 
@@ -56,3 +56,30 @@ escala de valores, lo mas sencillo es multiplicar el argumento
     def cuando_cambia(valor):
         valor_entre_cero_y_cien = valor * 100
         
+
+Selector
+--------
+
+El selector te permite seleccionar una opción con
+dos valores: habilitado, deshabilitado.
+
+Se puede usar para opciones cómo habilitar o deshabilitar
+el modo pantalla completa o algo así.
+
+Para usarlo, se tiene que crear un objeto de la
+clase ``Selector`` y un texto a mostrar:
+
+.. code-block:: python
+
+    selector = pilas.interfaz.Selector("Habilitar pantalla completa.", x=0, y=200)
+
+Y luego, puedes consultar el valor del selector mediante el
+atributo ``seleccionado``:
+
+
+.. code-block:: python
+
+    if selector.seleccionado:
+        print "El selector esta seleccionado."
+    else:
+        print "El selector no esta seleccionado."
