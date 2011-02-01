@@ -154,6 +154,9 @@ class Figura(object):
         
     def impulsar(self, dx, dy):
         self._cuerpo.ApplyImpulse((dx, dy), self._cuerpo.GetWorldCenter())
+
+    def empujar(self, dx, dy):
+        self._cuerpo.SetLinearVelocity((dx, dy))
         
     def eliminar(self):
         pilas.mundo.fisica.eliminar_figura(self._cuerpo)
