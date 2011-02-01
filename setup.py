@@ -13,7 +13,7 @@ setup(
             'setuptools',
             'Box2D',
             ],
-        packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos', 'pilas.motores'],
+        packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos', 'pilas.motores', 'pilas.interfaz'],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
         package_data = {
