@@ -15,11 +15,16 @@ class Personaje(pilas.actores.Actor):
         self.y = self.figura.y
         control = pilas.mundo.control
 
+        # Obtiene la velocidad en x e y para luego
+        # realizar movimiento en x, sin alterar
+        x, y = self.figura._cuerpo.GetLinearVelocity()
+
+
         if control.izquierda:
-            self.figura.x -= 5
+            self.figura.empujar(-100, y)
             self.espejado = True
         elif control.derecha:
-            self.figura.x += 5
+            self.figura.empujar(+100, y)
             self.espejado = False
 
         # TODO: Evitar que salte muchas veces, por ejemplo
@@ -50,6 +55,15 @@ if __name__ == '__main__':
 
     pilas.actores.Pelota()
     pilas.actores.Pelota()
+
+
+
+    # Suelo en diagonal
+    rectangulo = pilas.fisica.Rectangulo(0, 0, 290/2, 20/2, dinamica=False)
+    rectangulo.rotacion = 40
+    suelo_inclinado= pilas.actores.Actor("data/suelo.png")
+    suelo_inclinado.aprender(pilas.habilidades.Imitar, rectangulo)
+
 
 
     pilas.ejecutar()
