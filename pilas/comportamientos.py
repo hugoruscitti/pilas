@@ -122,15 +122,3 @@ class SubirLapiz(Comportamiento):
         self.receptor.pizarra.levantar_lapiz()
         return True
 
-class Imitar(Comportamiento):
-
-    def __init__(self, objeto_a_imitar):
-        self.objeto_a_imitar = objeto_a_imitar
-        
-    def actualizar(self):
-        posicion = self.objeto_a_imitar.GetPosition()
-
-        self.receptor.x = posicion.x * 100
-        self.receptor.y = posicion.y * 100
-        import math
-        self.receptor.rotacion = -math.degrees(self.objeto_a_imitar.GetAngle())
