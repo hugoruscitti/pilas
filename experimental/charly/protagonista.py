@@ -1,6 +1,7 @@
 import pilas
 from pilas.actores import Actor
 from pilas.comportamientos import Comportamiento
+import pelota
 
 VELOCIDAD = 4
 
@@ -9,7 +10,7 @@ class Protagonista(Actor):
 
     def __init__(self, pelotas):
         self.pelotas = pelotas
-        Actor.__init__(self)
+        Actor.__init__(self, x=20)
         self.animacion = pilas.imagenes.cargar_grilla("pingu.png", 10)
         self.definir_cuadro(4)
         self.hacer(Saltando(0))
@@ -26,6 +27,7 @@ class EnEquilibrio(Comportamiento):
         self.cuadros = [5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9]
         self.paso = 0
         self.pelota_que_pisa = pelota_que_pisa
+        self.pelota_que_pisa.hacer(pelota.ControladaPorElProtagonista())
 
     def actualizar(self):
 
@@ -41,6 +43,7 @@ class EnEquilibrio(Comportamiento):
             self.receptor.definir_cuadro(4)
 
         if pilas.mundo.control.arriba:
+            self.pelota_que_pisa.hacer(pelota.Empujada())
             self.receptor.hacer(Saltando())
 
         self.pelota_que_pisa.x = self.receptor.x

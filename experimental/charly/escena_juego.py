@@ -14,7 +14,8 @@ class EscenaJuego(pilas.escenas.Escena):
         pilas.fondos.Tarde()
         self.pelotas = []
         self.protagonista = protagonista.Protagonista(self.pelotas)
-        self.pelotas.append(pelota.Pelota())
+        a = pelota.Pelota()
+        self.pelotas.append(a)
         
         self.pelotas.append(pelota.Pelota(100, escala=3))
         self.pelotas.append(pelota.Pelota(200, escala=2))
