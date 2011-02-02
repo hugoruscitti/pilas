@@ -18,7 +18,8 @@ class Fisica(object):
         self.escenario = box2d.b2AABB()
         self.escenario.lowerBound = (-1000.0, -1000.0)
         self.escenario.upperBound = (1000.0, 1000.0)
-        self.mundo = box2d.b2World(self.escenario, (0.0, -90.0), True)
+        self.gravedad = box2d.b2Vec2(0.0, -90.0)
+        self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
         self.i = 0
         self.crear_suelo()
         self.crear_paredes()
@@ -59,12 +60,12 @@ class Fisica(object):
     def crear_cuerpo(self, definicion_de_cuerpo):
         return self.mundo.CreateBody(definicion_de_cuerpo)
     
-    def crear_suelo(self):
-        self.suelo = Rectangulo(0, -240, 640, 1, dinamica=False, fisica=self)
+    def crear_suelo(self, restitucion=1):
+        self.suelo = Rectangulo(0, -240, 640, 2, dinamica=False, fisica=self, restitucion=restitucion)
         
-    def crear_paredes(self):
-        self.pared_izquierda = Rectangulo(-320, 0, 1, 480, dinamica=False, fisica=self)
-        self.pared_derecha = Rectangulo(320, 0, 1, 480, dinamica=False, fisica=self)
+    def crear_paredes(self, restitucion=1):
+        self.pared_izquierda = Rectangulo(-320, 0, 2, 480, dinamica=False, fisica=self, restitucion=restitucion)
+        self.pared_derecha = Rectangulo(320, 0, 2, 480, dinamica=False, fisica=self, restitucion=restitucion)
         
     def eliminar_suelo(self):
         if self.suelo:
@@ -129,7 +130,10 @@ class Fisica(object):
         return lista_de_cuerpos
     
     def definir_gravedad(self, x, y):
-        print "No implementado:", x, y
+        self.gravedad = box2d.b2Vec2(x, y)
+        #self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
+        print "Esta funcion esta en desuso..."
+
 
 class Figura(object):
     "Representa un figura que simula un cuerpo fisico."
@@ -155,12 +159,12 @@ class Figura(object):
     def impulsar(self, dx, dy):
         self._cuerpo.ApplyImpulse((dx, dy), self._cuerpo.GetWorldCenter())
 
-    def empujar(self, dx, dy):
+    def definir_velocidad_lineal(self, dx, dy):
         self._cuerpo.SetLinearVelocity((dx, dy))
         
     def eliminar(self):
         pilas.mundo.fisica.eliminar_figura(self._cuerpo)
-
+        
     x = property(obtener_x, definir_x)
     y = property(obtener_y, definir_y)
     rotacion = property(obtener_rotacion, definir_rotacion)
@@ -168,13 +172,13 @@ class Figura(object):
 class Circulo(Figura):
     "Representa un cuerpo de circulo."
     
-    def __init__(self, x, y, radio, dinamica=True, densidad=1.0, restitucion=0.56, friccion=10.5, fisica=None):
+    def __init__(self, x, y, radio, dinamica=True, densidad=1.0, restitucion=0.56, friccion=10.5, amortiguacion=0, fisica=None):
         if not fisica:
             fisica = pilas.mundo.fisica
             
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
-
+        bodyDef.linearDamping = amortiguacion
         #userData = { 'color' : self.parent.get_color() }
         #bodyDef.userData = userData
         #self.parent.element_count += 1
@@ -191,7 +195,9 @@ class Circulo(Figura):
         circleDef.radius = radio
         circleDef.restitution = restitucion
         circleDef.friction = friccion
-
+        
+        
+                
         body.CreateShape(circleDef)
         body.SetMassFromShapes()    
 
@@ -199,12 +205,13 @@ class Circulo(Figura):
 
 class Rectangulo(Figura):
     
-    def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0, restitucion=0.56, friccion=10.5, fisica=None):
+    def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0, restitucion=0.56, friccion=10.5, amortiguacion=0, fisica=None):
         if not fisica:
             fisica = pilas.mundo.fisica
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
-
+        bodyDef.linearDamping = amortiguacion
+        
         #userData = { 'color' : self.parent.get_color() }
         #bodyDef.userData = userData
         #self.parent.element_count += 1
@@ -218,7 +225,7 @@ class Rectangulo(Figura):
         # Add a shape to the Body
         boxDef = box2d.b2PolygonDef()
         
-        boxDef.SetAsBox(ancho, alto, (0,0), 0)
+        boxDef.SetAsBox(ancho/2, alto/2, (0,0), 0)
         boxDef.density = densidad
         boxDef.restitution = restitucion
         boxDef.friction = friccion

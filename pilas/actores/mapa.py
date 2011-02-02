@@ -12,13 +12,14 @@ from pilas.actores import Pizarra
 class Mapa(Pizarra):
     "Representa un escenario de bloques que tiene filas y columnas."
 
-    def __init__(self, grilla, x=0, y=0):
+    def __init__(self, grilla, x=0, y=0, restitucion=0.56):
         Pizarra.__init__(self, x=x, y=y)
         self.grilla = grilla
         pilas.eventos.inicia_modo_depuracion.conectar(self._cuando_inicia_modo_depuracion)
         pilas.eventos.actualiza_modo_depuracion.conectar(self._cuando_actualiza_modo_depuracion)
         pilas.eventos.sale_modo_depuracion.conectar(self._cuando_sale_modo_depuracion)
         self.figuras = []
+        self.restitucion = restitucion
 
     def pintar_bloque(self, fila, columna, indice, solido=True):
         self.grilla.definir_cuadro(indice)
@@ -33,7 +34,7 @@ class Mapa(Pizarra):
         if solido:
             dx = ancho / 2
             dy = alto / 2
-            figura = pilas.fisica.Rectangulo(x - 320 + dx, 240 -y - dy, ancho/2, alto/2, dinamica=False)
+            figura = pilas.fisica.Rectangulo(x - 320 + dx, 240 -y - dy, ancho, alto, dinamica=False, restitucion=self.restitucion)
             self.figuras.append(figura)
 
     def _cuando_inicia_modo_depuracion(self, evento):

@@ -302,3 +302,13 @@ def obtener_motores_disponibles():
         pass
 
     return (motores_disponibles, sistema_recomendado)
+
+
+def ejecutar_cada(segundos, funcion):
+    """Ejecuta una funcion con la frecuencia que indica el argumento segundos.
+    
+    La funcion ejecutada tiene que retornar True para volver a
+    ejecutarse, si retorna False se elimina el temporizador y la funcion
+    no se vuelve a ejecutar.
+    """
+    pilas.mundo.agregar_tarea(segundos, funcion)
