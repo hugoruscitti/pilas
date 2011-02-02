@@ -20,7 +20,7 @@ class Personaje(pilas.actores.Actor):
         # Obtiene la velocidad en x e y para luego
         # realizar movimiento en x, sin alterar
         
-        x, y = self.figura._cuerpo.GetLinearVelocity()
+        x, y = self.figura.obtener_velocidad_lineal()
         self.figura.definir_velocidad_lineal(x/2, y)
 
         if control.izquierda:

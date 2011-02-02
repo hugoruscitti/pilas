@@ -158,6 +158,10 @@ class Figura(object):
         
     def impulsar(self, dx, dy):
         self._cuerpo.ApplyImpulse((dx, dy), self._cuerpo.GetWorldCenter())
+        
+    def obtener_velocidad_lineal(self):
+        velocidad = self._cuerpo.GetLinearVelocity()
+        return (velocidad.x, velocidad.y)
 
     def definir_velocidad_lineal(self, dx, dy):
         self._cuerpo.SetLinearVelocity((dx, dy))
