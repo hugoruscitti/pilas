@@ -69,44 +69,26 @@ from colisiones import Colisiones
 import random
 import ejemplos
 import red
-import motores
+
 import atajos
 import fisica
 import grupo
 import lienzo
-import simbolos
-import os
-import sys
-import time
 
-import baseactor
-import colores
-import imagenes
-import sonidos
-import actores
-import fps
-from interpolaciones import Lineal
-import dispatch
-import eventos
-import habilidades
-import ventana
-import comportamientos
-import escenas
-import fondos
-from control import Control
-from camara import Camara
-import copy
-import pilas.utils
-from mundo import Mundo
-from colisiones import Colisiones
-import random
-import ejemplos
-import red
-import motores
-import atajos
-import fisica
-import grupo
-import interfaz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     
 # Carga el modulo de autocompletado si esta
@@ -178,7 +160,6 @@ def reiniciar():
     actores.utils.eliminar_a_todos()
 
 def __iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, ignorar_errores=False):
-    from mundo import Mundo
     global mundo
 
     mundo = Mundo(ancho, alto, titulo, fps, economico)
@@ -260,9 +241,10 @@ def avisar(mensaje):
         anterior_texto.eliminar()
 
     texto = actores.Texto(mensaje)
+    texto.centro = ("centro", "centro")
     texto.magnitud = 22
-    texto.izquierda = -310
-    texto.abajo = -230
+    texto.izquierda = -320
+    texto.abajo = -220
     anterior_texto = texto
 
 def ver(objeto):
