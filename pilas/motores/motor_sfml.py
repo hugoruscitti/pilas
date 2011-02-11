@@ -140,6 +140,9 @@ class SFMLSonido:
     def reproducir(self):
         self.sonido.Play()
         
+    def definir_pitch(self, pitch):
+        self.sonido.SetPitch(pitch)
+        
     def Play(self):
         self.reproducir()
 
