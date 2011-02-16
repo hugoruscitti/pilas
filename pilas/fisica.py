@@ -14,11 +14,11 @@ import math
 class Fisica(object):
     "Representa un simulador de mundo fisico, usando la biblioteca box2d."
     
-    def __init__(self):
+    def __init__(self, gravedad=(0, -90)):
         self.escenario = box2d.b2AABB()
         self.escenario.lowerBound = (-1000.0, -1000.0)
         self.escenario.upperBound = (1000.0, 1000.0)
-        self.gravedad = box2d.b2Vec2(0.0, -90.0)
+        self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
         self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
         self.i = 0
         self.crear_suelo()
@@ -62,6 +62,9 @@ class Fisica(object):
     
     def crear_suelo(self, restitucion=1):
         self.suelo = Rectangulo(0, -240, 640, 2, dinamica=False, fisica=self, restitucion=restitucion)
+
+    def crear_techo(self, restitucion=1):
+        self.suelo = Rectangulo(0, 240, 640, 2, dinamica=False, fisica=self, restitucion=restitucion)
         
     def crear_paredes(self, restitucion=1):
         self.pared_izquierda = Rectangulo(-320, 0, 2, 480, dinamica=False, fisica=self, restitucion=restitucion)

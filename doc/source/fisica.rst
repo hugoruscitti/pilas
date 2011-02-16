@@ -162,3 +162,5 @@ juegos recuerda usar el modo depuración de física para detectar
 estos detalles y corregirlos, son muy importantes para que
 tus usuarios disfruten del juego. Recuerda que ellos no
 verán los círculos amarillos...
+
+

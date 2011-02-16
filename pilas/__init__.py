@@ -96,7 +96,7 @@ import lienzo
 if utils.esta_en_sesion_interactiva():
     utils.cargar_autocompletado()
 
-def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='detectar', rendimiento=60, economico=True):
+def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='detectar', rendimiento=60, economico=True, gravedad=(0, -90)):
     """Inicia el motor y abre la ventana principal del videojuego.
     
     Esta funcion se ejecuta al principio de cualquier juego, porque
@@ -138,31 +138,31 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
     # tiene el contexto opengl.
     if modo == 'detectar':
         if utils.esta_en_sesion_interactiva():
-            iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]", rendimiento, economico)
+            iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]", rendimiento, economico, gravedad)
         else:
-            mundo = pilas.mundo.Mundo(ancho, alto, titulo, rendimiento, economico)
+            mundo = pilas.mundo.Mundo(ancho, alto, titulo, rendimiento, economico, gravedad)
             escenas.Normal()
     elif modo == 'interactivo':
-        iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]", rendimiento, economico)
+        iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]", rendimiento, economico, gravedad)
     else:
         raise Exception("Lo siento, el modo indicado es invalido, solo se admite 'interactivo' y 'detectar'")
 
 
-def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo, fps, economico):
+def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo, fps, economico, gravedad):
     "Ejecuta el bucle de pilas en segundo plano."
     import threading
     global gb
 
-    bg = threading.Thread(target=__iniciar_y_ejecutar, args=(ancho, alto, titulo, fps, economico))
+    bg = threading.Thread(target=__iniciar_y_ejecutar, args=(ancho, alto, titulo, fps, economico, gravedad))
     bg.start()
 
 def reiniciar():
     actores.utils.eliminar_a_todos()
 
-def __iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, ignorar_errores=False):
+def __iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, gravedad, ignorar_errores=False):
     global mundo
 
-    mundo = Mundo(ancho, alto, titulo, fps, economico)
+    mundo = Mundo(ancho, alto, titulo, fps, economico, gravedad)
     escenas.Normal()
     ejecutar(ignorar_errores)
 

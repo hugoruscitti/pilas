@@ -1,4 +1,4 @@
-#Fri Feb 11 16:38:59 ART 2011
+#Fri Feb 11 20:11:56 ART 2011
 eclipse.preferences.version=1
 encoding//ejemplos/grilla.py=utf-8
 encoding//ejemplos/texto.py=utf-8
@@ -44,6 +44,7 @@ encoding//pilas/motores/motor_pygame.py=utf-8
 encoding//pilas/motores/motor_sfml.py=utf-8
 encoding//pilas/mundo.py=utf-8
 encoding//pilas/sonidos.py=utf-8
+encoding//pilas/tareas.py=utf-8
 encoding//pilas/test/motores_test.py=utf-8
 encoding//pilas/test/test_mono.py=utf-8
 encoding//pilas/utils.py=utf-8

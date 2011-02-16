@@ -28,7 +28,7 @@ class Mundo:
     motor y mantener el bucle de juego.
     """
 
-    def __init__(self, ancho, alto, titulo, fps=60, economico=True):
+    def __init__(self, ancho, alto, titulo, fps=60, economico=True, gravedad=(0, -90)):
         self.ventana = ventana.iniciar(ancho, alto, titulo)
         self.fps = fps
         self.economico = economico
@@ -53,7 +53,7 @@ class Mundo:
         self.tasks = tareas.Tareas() 
         
         # Genera el motor de fisica.
-        self.fisica = pilas.fisica.Fisica()
+        self.fisica = pilas.fisica.Fisica(gravedad=gravedad)
         
         self.pausa_habilitada = False
         self.depuracion_fisica_habilitada = False
