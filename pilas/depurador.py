@@ -80,6 +80,8 @@ class Depurador:
             
         instancia_del_modo = clase_del_modo(self)
         self.modos.append(instancia_del_modo)
+        # Ordena todos los registros por numero de tecla.
+        self.modos.sort(key=lambda x: x.orden_de_tecla())
         
     def _desactivar_modo(self, clase_del_modo):
         instancia_a_eliminar = [x for x in self.modos if x.__class__ == clase_del_modo]
@@ -108,6 +110,7 @@ class Depurador:
         self.pizarra.escribir("Cuadros por segundo: %s" %(rendimiento), 10, 460, tamano=14)
         
 class ModoDepurador:
+    tecla = "F00"
 
     def __init__(self, depurador):
         self.depurador = depurador
@@ -121,6 +124,8 @@ class ModoDepurador:
     def dibuja_actor(self, actor):
         pass
     
+    def orden_de_tecla(self):
+        return int(self.tecla[1:])
     
 class ModoPuntosDeControl(ModoDepurador):
     tecla = "F8"
