@@ -94,7 +94,7 @@ class Depurador:
         dy = 20
         
         for modo in self.modos:
-            self.pizarra.escribir(modo.__class__.__name__ + " habilitado.", 10, dy, tamano=14)
+            self.pizarra.escribir(modo.tecla + " " + modo.__class__.__name__ + " habilitado.", 10, dy, tamano=14)
             dy += 20
             
     def _mostrar_posicion_del_mouse(self):
@@ -123,11 +123,13 @@ class ModoDepurador:
     
     
 class ModoPuntosDeControl(ModoDepurador):
+    tecla = "F8"
     
     def dibuja_actor(self, actor):
         self.depurador.pizarra.pintar_cruz(actor.x, actor.y, 6, pilas.colores.rojo)
         
 class ModoRadiosDeColision(ModoDepurador):
+    tecla = "F9"
     
     def dibuja_actor(self, actor):
         self.depurador.pizarra.definir_color(pilas.colores.verde)
@@ -135,6 +137,7 @@ class ModoRadiosDeColision(ModoDepurador):
  
  
 class ModoArea(ModoDepurador):
+    tecla = "F10"
     
     def dibuja_actor(self, actor):
         (x, y) = pilas.utils.hacer_coordenada_mundo(actor.izquierda, actor.arriba)
@@ -142,6 +145,7 @@ class ModoArea(ModoDepurador):
         self.depurador.pizarra.dibujar_rectangulo(x, y, actor.ancho, actor.alto, False)
 
 class ModoPosicion(ModoDepurador):
+    tecla = "F12"
     
     def __init__(self, depurador):
         ModoDepurador.__init__(self, depurador)
@@ -155,6 +159,7 @@ class ModoPosicion(ModoDepurador):
 
         
 class ModoFisica(ModoDepurador):
+    tecla = "F11"
     
     def inicia_actualizacion_grafica(self):
         pilas.mundo.fisica.dibujar_figuras_sobre_pizarra(self.depurador.pizarra)
