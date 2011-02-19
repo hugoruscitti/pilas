@@ -130,6 +130,7 @@ class Mundo:
     def definir_escena(self, escena_nueva):
         "Cambia la escena que se muestra en pantalla"
         self.escena_actual = escena_nueva
+	escena_nueva.iniciar()
 
     def agregar_tarea(self, time_out, function, *params): 
         self.tasks.agregar(time_out, function, params)
