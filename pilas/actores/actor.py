@@ -317,3 +317,6 @@ class Actor(object, Estudiante):
 
     def definir_transparencia(self, valor):
         self._actor.definir_transparencia(valor)
+
+    def imitar(self, otro_actor_o_figura):
+	self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura)
