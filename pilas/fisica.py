@@ -21,6 +21,7 @@ class Fisica(object):
         self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
         self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
         self.i = 0
+	self.crear_techo()
         self.crear_suelo()
         self.crear_paredes()
         
