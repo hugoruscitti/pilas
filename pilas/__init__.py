@@ -241,10 +241,10 @@ def avisar(mensaje):
         anterior_texto.eliminar()
 
     texto = actores.Texto(mensaje)
-    texto.centro = ("centro", "centro")
     texto.magnitud = 22
-    texto.izquierda = -320
-    texto.abajo = -220
+    texto.centro = ("centro", "centro")
+    texto.izquierda = -310
+    texto.abajo = -230
     anterior_texto = texto
 
 def ver(objeto):
