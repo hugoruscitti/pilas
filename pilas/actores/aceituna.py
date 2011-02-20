@@ -15,6 +15,7 @@ class Aceituna(Actor):
 	self.cuadro_normal = pilas.imagenes.cargar("aceituna.png")
 	self.cuadro_reir = pilas.imagenes.cargar("aceituna_risa.png")
 	self.cuadro_burla = pilas.imagenes.cargar("aceituna_burla.png")
+	self.cuadro_grita = pilas.imagenes.cargar("aceituna_grita.png")
 
 	Actor.__init__(self, x=x, y=y)
 	self.imagen = self.cuadro_normal
@@ -30,3 +31,6 @@ class Aceituna(Actor):
 	self.imagen = self.cuadro_burla
 
     burlar = burlarse
+
+    def gritar(self):
+	self.imagen = self.cuadro_grita

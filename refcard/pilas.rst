@@ -15,22 +15,25 @@ Iniciar
 Para empezar puedes escribir ``import pilas``, y luego usar alguna
 de las siguientes funciones:
 
-iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='sfml')
+iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='sfml', gravedad=(0, -90))
     inicia la biblioteca y la ventana principal. Los valores de usar_motor pueden ser 'sfml' o 'pygame'.
-pilas.pausa()
-    para detener el juego (lo mismo que hace la tecla 'p').
 pilas.terminar()
     para cerrar la ventana (su atajo es la tecla 'q')
 pilas.ejecutar()
-    para poner en funcionamiento la biblioteca desde script.
+    para poner en funcionamiento la biblioteca desde script, no hace falta llamarla en modo interactivo.
 pilas.atajos.fabricar(clase, cantidad=1)
     genera muchos objetos de una clase particular asignandolo una posicion aleatoria.
+pilas.avisar(mensaje)
+    dibuja un mensaje al pie de la ventana.
+pilas.ver(objeto)
+    muestra el codigo de un objeto o modulo.
+pilas.ejecutar_cada(segundos, funcion)
+    ejecuta una funcion cada intervalos indicandos por el argumento ``segundos``, si la funcion retorna ``False`` se dejan de ejecutar los intervalos.
 
 Uso básico de Actores
 ---------------------
 
-Los actores te permiten representar personajes fácilmente y comenzar
-rápidamente.
+Los actores te permiten representar personajes con facilidad.
 
 Para crear un actor tienes que escribir algo cómo:
 
@@ -57,6 +60,14 @@ mensajes cómo:
 
 usa el comando ``help(mono)`` para conocer mas de
 este actor.
+
+Los atributos tambien pueden recivir listas para
+realizar animaciones, por ejemplo, esta sentencia
+duplica el tamaño del actor en 5 segundos:
+
+.. code-block:: python
+
+    mono.escala = [2], 5
 
 
 Otros actores
