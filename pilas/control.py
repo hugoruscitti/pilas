@@ -31,8 +31,10 @@ class Control:
         self.boton = False
 
     def actualizar(self):
-        self.izquierda = pilas.motor.pulsa_tecla(IZQUIERDA)
-        self.derecha = pilas.motor.pulsa_tecla(DERECHA)
-        self.arriba = pilas.motor.pulsa_tecla(ARRIBA)
-        self.abajo = pilas.motor.pulsa_tecla(ABAJO)
-        self.boton = pilas.motor.pulsa_tecla(BOTON) or pilas.motor.pulsa_tecla(SELECCION)
+        pulsa = pilas.motor.pulsa_tecla
+
+        self.izquierda = pulsa(IZQUIERDA)
+        self.derecha = pulsa(DERECHA)
+        self.arriba = pulsa(ARRIBA)
+        self.abajo = pulsa(ABAJO)
+        self.boton = pulsa(BOTON) or pulsa(SELECCION)
