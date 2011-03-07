@@ -74,6 +74,7 @@ import atajos
 import fisica
 import grupo
 import lienzo
+import interfaz
 
 
 

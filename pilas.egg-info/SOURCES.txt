@@ -17,6 +17,7 @@ ejemplos/ejemplo_piezas.py
 ejemplos/ejemplo_temporizador.py
 ejemplos/ejes.py
 ejemplos/entrada_de_texto.py
+ejemplos/escenas_con_menu.py
 ejemplos/explosion.py
 ejemplos/ficha1.png
 ejemplos/ficha_vacia.png
@@ -144,6 +145,7 @@ pilas.egg-info/dependency_links.txt
 pilas.egg-info/requires.txt
 pilas.egg-info/top_level.txt
 pilas/actores/__init__.py
+pilas/actores/aceituna.py
 pilas/actores/actor.py
 pilas/actores/animacion.py
 pilas/actores/animado.py
@@ -173,6 +175,10 @@ pilas/actores/temporizador.py
 pilas/actores/texto.py
 pilas/actores/tortuga.py
 pilas/actores/utils.py
+pilas/data/aceituna.png
+pilas/data/aceituna_burla.png
+pilas/data/aceituna_grita.png
+pilas/data/aceituna_risa.png
 pilas/data/banana.png
 pilas/data/bomba.png
 pilas/data/caja.png
