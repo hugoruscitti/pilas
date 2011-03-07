@@ -10,3 +10,4 @@
 from deslizador import Deslizador
 from selector import Selector
 from ingreso_de_texto import IngresoDeTexto
+from lista_seleccion import ListaSeleccion

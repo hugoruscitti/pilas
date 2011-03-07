@@ -1,14 +1,18 @@
+# -*- encoding: utf-8 -*-
+# pilas engine - a video game framework.
+#
+# copyright 2010 - hugo ruscitti
+# license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
+#
+# website - http://www.pilas-engine.com.ar
+
 import pilas
-pilas.iniciar()
+from pilas.actores import Actor
 
-class Componente(pilas.actores.Actor):
-    def __init__(self, x=0, y=0):
-        pilas.actores.Actor.__init__(self, x=x, y=y)
-
-class ListaSeleccion(Componente):
+class ListaSeleccion(Actor):
 
     def __init__(self, opciones, funcion_a_ejecutar, x=0, y=0):
-        Componente.__init__(self, x=x, y=y)
+        Actor.__init__(self, x=x, y=y)
         self.opciones = opciones
         self.funcion_a_ejecutar = funcion_a_ejecutar
         
@@ -53,16 +57,3 @@ class ListaSeleccion(Componente):
         if opcion in range(0, len(self.opciones)):
             return opcion
 
-
-
-if __name__ == '__main__':
-        
-    def cuando_selecciona(opcion):
-        print opcion
-    
-    
-    consulta = ListaSeleccion(['Uno', 'Dos', 'Tres'], cuando_selecciona)
-    pilas.fondos.Blanco()
-    
-    pilas.ejecutar()
-        

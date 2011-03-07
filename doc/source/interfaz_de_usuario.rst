@@ -113,3 +113,26 @@ cadena de texto de la caja:
 
     entrada = pilas.interfaz.IngresoDeTexto()
     entrada.texto = "Texto inicial"
+
+
+Lista de selección
+------------------
+
+La lista de selección se utiliza para mostrar al usuario
+una lista de cadenas, y permitirle seleccionarlas
+con el mouse.
+
+Para crear un lista de selección, se tiene que crear
+una lista de cadenas y declarar una función para que
+sea llamada cuando se termina de seleccionar.
+
+Por ejemplo, el siguiente código muestra una lista
+e imprime por consola cuando el usuario selecciona
+con el click del mouse:
+
+.. code-block:: python
+
+   def cuando_selecciona(opcion):
+       print "Ha seleccionado la opcion:", opcion
+       
+    consulta = pilas.interfaz.ListaSeleccion(['Uno', 'Dos', 'Tres'], cuando_selecciona)
