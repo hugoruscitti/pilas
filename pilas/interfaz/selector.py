@@ -18,6 +18,7 @@ class Selector(pilas.actores.Actor):
         self.texto = texto
         self._cargar_lienzo(ancho)
         self._cargar_imagenes(pilas)
+        self.funcion_de_respuesta = None
 
         self.deseleccionar()
         pilas.eventos.click_de_mouse.conectar(self.detection_click_mouse)
@@ -62,3 +63,9 @@ class Selector(pilas.actores.Actor):
             self.deseleccionar()
         else:
             self.seleccionar()
+
+        if self.funcion_de_respuesta:
+            self.funcion_de_respuesta(self.seleccionado)
+
+    def definir_accion(self, funcion):
+        self.funcion_de_respuesta = funcion

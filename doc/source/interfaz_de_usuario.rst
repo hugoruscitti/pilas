@@ -85,6 +85,16 @@ atributo ``seleccionado``:
         print "El selector no esta seleccionado."
 
 
+o directamente asociarle una función para que el selector
+la llame cuando cambia de estado:
+
+.. code-block:: python
+
+    def cuando_el_selector_cambia(estado):
+        print "El selector ahora esta en estado:", estado
+
+    selector.definir_accion(cuando_el_selector_cambia)
+
 Ingreso de texto
 ----------------
 
