@@ -207,6 +207,16 @@ class SFMLGrilla:
 
     def obtener_cuadro(self):
         return self.cuadro
+
+    def obtener_dx(self):
+        frame_col = self.cuadro % self.columnas
+        dx = frame_col * self.cuadro_ancho
+        return dx
+
+    def obtener_dy(self):
+        frame_row = self.cuadro / self.columnas
+        dy = frame_row * self.cuadro_alto
+        return dy
         
         
 class pySFML(motor.Motor):

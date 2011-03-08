@@ -114,8 +114,10 @@ class PizarraAbstracta():
         imagen = pilas.motor.obtener_imagen_cairo(grilla.image)
         w = grilla.cuadro_ancho
         h = grilla.cuadro_alto
-        dx = grilla.cuadro * grilla.cuadro_ancho
-        self.pintar_parte_de_imagen(imagen, dx, 0, w, h, x, y)
+        dx = grilla.obtener_dx()
+        dy = grilla.obtener_dy()
+
+        self.pintar_parte_de_imagen(imagen, dx, dy, w, h, x, y)
 
     def pintar_parte_de_imagen(self, imagen_cairo, origen_x, origen_y, ancho, alto, x, y):
         """Dibuja una porcion de imagen sobre la pizarra pero usando coordenadas de pantalla.

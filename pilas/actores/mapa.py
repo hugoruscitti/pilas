@@ -34,7 +34,8 @@ class Mapa(Pizarra):
         if solido:
             dx = ancho / 2
             dy = alto / 2
-            figura = pilas.fisica.Rectangulo(x - 320 + dx, 240 -y - dy, ancho, alto, dinamica=False, restitucion=self.restitucion)
+            figura = pilas.fisica.Rectangulo(x - 320 + dx, 240 -y - dy, 
+                    ancho, alto, dinamica=False, restitucion=self.restitucion)
             self.figuras.append(figura)
 
     def _cuando_inicia_modo_depuracion(self, evento):
