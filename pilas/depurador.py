@@ -76,6 +76,7 @@ class Depurador:
     def _activar_modo(self, clase_del_modo):
         if not self.pizarra:
             self.pizarra = pilas.actores.Pizarra()
+            pilas.eventos.inicia_modo_depuracion.send('depurador')
             self.pizarra.deshabilitar_actualizacion_automatica()
             
         instancia_del_modo = clase_del_modo(self)
@@ -89,6 +90,7 @@ class Depurador:
         
         if not self.modos:
             self.pizarra.eliminar()
+            pilas.eventos.sale_modo_depuracion.send('depurador')
             self.pizarra = None
 
     def _mostrar_nombres_de_modos(self):
