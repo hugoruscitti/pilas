@@ -31,7 +31,10 @@ class RebotaComoPelota(Habilidad):
                                        receptor.y + error, 
                                        receptor.radio_de_colision)
         receptor.aprender(pilas.habilidades.Imitar, circulo)
+        self.circulo = circulo
         
+    def eliminar(self):
+        self.circulo.eliminar()
 
 class RebotaComoCaja(Habilidad):
 
@@ -44,6 +47,10 @@ class RebotaComoCaja(Habilidad):
                                              receptor.radio_de_colision*2,
                                              )
         receptor.aprender(pilas.habilidades.Imitar, rectangulo)
+        self.rectangulo = rectangulo
+
+    def eliminar(self):
+        self.rectangulo.eliminar()
         
         
 class ColisionableComoPelota(RebotaComoPelota):

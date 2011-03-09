@@ -53,12 +53,12 @@ class Mapa(Pizarra):
         ancho = self.grilla.cuadro_ancho
         alto = self.grilla.cuadro_alto
         tamano = 8
-        self.pizarra_depuracion.definir_color(pilas.colores.rojo)
+        self.pizarra_depuracion.definir_color(pilas.colores.marron)
         self.pizarra_depuracion.deshabilitar_actualizacion_automatica()
 
         for columna, x in enumerate(range(0, 640, ancho)):
             for fila, y in enumerate(range(0, 480, alto)):
-                self.pizarra_depuracion.dibujar_rectangulo(x, y, ancho, alto, pintar=False)
+                #self.pizarra_depuracion.dibujar_rectangulo(x, y, ancho, alto, pintar=False)
                 texto = "(%d, %d)" %(fila, columna)
                 self.pizarra_depuracion.escribir(texto, x=x+3, y=y+10, tamano=tamano)
 
