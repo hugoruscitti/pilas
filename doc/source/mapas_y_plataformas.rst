@@ -50,7 +50,7 @@ Otro ejemplo: si queremos dibujar en la parte inferior de la
 ventana, podemos llamar muchas veces al método ``pintar_bloque``, una
 vez por cada bloque que necesitamos:
 
-.. code-block::
+.. code-block:: python
 
     for columna in range(20):
         mapa.pintar_bloque(14, columna, 1)
