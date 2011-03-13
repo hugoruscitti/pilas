@@ -7,67 +7,99 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
-from pilas.actores import Pizarra
+from pilas.actores import Actor
 
-class Mapa(Pizarra):
-    "Representa un escenario de bloques que tiene filas y columnas."
 
-    def __init__(self, grilla, x=0, y=0, restitucion=0.56):
-        Pizarra.__init__(self, x=x, y=y)
-        self.grilla = grilla
-        pilas.eventos.inicia_modo_depuracion.conectar(self._cuando_inicia_modo_depuracion)
-        pilas.eventos.actualiza_modo_depuracion.conectar(self._cuando_actualiza_modo_depuracion)
-        pilas.eventos.sale_modo_depuracion.conectar(self._cuando_sale_modo_depuracion)
-        self.figuras = []
+class Mapa(Actor):
+    """Representa mapas creados a partir de imagenes mas pequeñas.
+
+    Este actor te permite crear escenarios tipo ``tiles``, una técnica
+    de contrucción de escenarios muy popular en los videojuegos.
+    
+    Puedes crear un actor a partir de una grilla, e indicando cada
+    uno los bloques o simplemente usando un programa externo llamado
+    **tiled** (ver http://www.mapeditor.org).
+
+    Por ejemplo, para crear un mapa desde un archivo del programa
+    **tiled** puedes escribir:
+
+        >>> mapa = pilas.actores.Mapa('untitled2.tmx')
+    """
+
+    def __init__(self, grilla_o_mapa, x=0, y=0, restitucion=0.56):
+        Actor.__init__(self, 'invisible.png', x, y)
         self.restitucion = restitucion
+        self.figuras = []
+        self.bloques = []
 
-    def pintar_bloque(self, fila, columna, indice, solido=True):
+        if isinstance(grilla_o_mapa, str):
+            self._cargar_mapa(grilla_o_mapa)
+        else:
+            self.grilla = grilla_o_mapa
+            self._ancho_cuadro = grilla_o_mapa.cuadro_ancho
+            self._alto_cuadro = grilla_o_mapa.cuadro_alto
+
+    def _cargar_mapa(self, archivo):
+        "Carga el escenario desde un archivo .tmz (del programa tiled)."
+
+        # Carga los nodos principales.
+        nodo = pilas.utils.xmlreader.makeRootNode(archivo)
+        nodo_mapa = nodo.getChild('map')
+        nodo_tileset = nodo_mapa.getChild('tileset')
+
+        # Cantidad de bloques en el mapa.
+        self.columnas = int(nodo_mapa.getAttributeValue('width'))
+        self.filas = int(nodo_mapa.getAttributeValue('height'))
+
+        # Atributos de la imagen asociada al mapa.
+        self._ruta = nodo_tileset.getChild('image').getAttributeValue('source')
+        self._ancho_imagen = int(nodo_tileset.getChild('image').getAttributeValue('width'))
+        self._alto_imagen = int(nodo_tileset.getChild('image').getAttributeValue('height'))
+        self._ancho_cuadro = int(nodo_tileset.getAttributeValue('tilewidth'))
+        self._alto_cuadro = int(nodo_tileset.getAttributeValue('tileheight'))
+
+        # Carga la grilla de imagenes desde el mapa.
+        self.grilla = pilas.imagenes.cargar_grilla(self._ruta, 
+                self._ancho_imagen / self._ancho_cuadro, 
+                self._alto_imagen / self._alto_cuadro)
+
+        # Carga las capas del mapa.
+        layers = nodo.getChild('map').getChildren('layer')
+
+        if len(layers) == 0:
+            raise Exception("Debe tener al menos una capa (layer).")
+
+        # La capa 0 (inferior) define los bloques no-solidos.
+        self._crear_bloques(layers[0], solidos=False)
+
+        # El resto de las capas definen bloques solidos
+        for layer in layers[1:]:
+            self._crear_bloques(layer, solidos=True)
+
+    def _crear_bloques(self, capa, solidos):
+        "Genera actores que representan los bloques del escenario."
+        datos = capa.getChild('data').getData()
+
+        # Convierte todo el mapa en una matriz de numeros.
+        bloques = [[int(x) for x in x.split(',') if x] for x in datos.split()]
+
+        for (y, fila) in enumerate(bloques[::-1]):
+            for (x, bloque) in enumerate(fila):
+                if bloque:
+                    self.pintar_bloque(y, x, bloque -1, solidos)
+
+    def pintar_bloque(self, fila, columna, indice, es_bloque_solido=False):
+        nuevo_bloque = pilas.actores.Actor('invisible.png')
         self.grilla.definir_cuadro(indice)
+        self.grilla.asignar(nuevo_bloque)
+        nuevo_bloque.izquierda = columna * self._ancho_cuadro - 320
+        nuevo_bloque.arriba = fila * self._alto_cuadro - (240 - self._alto_cuadro)
+        self.bloques.append(nuevo_bloque)
 
-        ancho = self.grilla.cuadro_ancho
-        alto = self.grilla.cuadro_alto
-        x = columna * ancho
-        y = fila * alto
-
-        self.pintar_grilla(self.grilla, x, y)
-
-        if solido:
-            dx = ancho / 2
-            dy = alto / 2
-            figura = pilas.fisica.Rectangulo(x - 320 + dx, 240 -y - dy, 
-                    ancho, alto, dinamica=False, restitucion=self.restitucion)
+        if es_bloque_solido:
+            figura = pilas.fisica.Rectangulo(nuevo_bloque.izquierda + self._ancho_cuadro / 2, 
+                    nuevo_bloque.arriba - self._alto_cuadro / 2,
+                    self._ancho_cuadro, self._alto_cuadro, dinamica=False, 
+                    restitucion=self.restitucion)
             self.figuras.append(figura)
 
-    def _cuando_inicia_modo_depuracion(self, evento):
-        self.pizarra_depuracion = pilas.actores.Pizarra()
-
-        self._dibujar_rectangulos_de_la_grilla()
-
-    def _cuando_actualiza_modo_depuracion(self, evento):
-        pass
-        
-    def _cuando_sale_modo_depuracion(self, evento):
-        self.pizarra_depuracion.eliminar()
-
-    def _dibujar_rectangulos_de_la_grilla(self):
-        ancho = self.grilla.cuadro_ancho
-        alto = self.grilla.cuadro_alto
-        tamano = 8
-        self.pizarra_depuracion.definir_color(pilas.colores.marron)
-        self.pizarra_depuracion.deshabilitar_actualizacion_automatica()
-
-        for columna, x in enumerate(range(0, 640, ancho)):
-            for fila, y in enumerate(range(0, 480, alto)):
-                #self.pizarra_depuracion.dibujar_rectangulo(x, y, ancho, alto, pintar=False)
-                texto = "(%d, %d)" %(fila, columna)
-                self.pizarra_depuracion.escribir(texto, x=x+3, y=y+10, tamano=tamano)
-
-        self.pizarra_depuracion.habilitar_actualizacion_automatica()
-
-    def eliminar(self):
-
-        # Elimina todas las figuras fisicas que ha creado.
-        for x in self.figuras:
-            pilas.fisica.fisica.eliminar(x)
-
-        Pizarra.eliminar(self)

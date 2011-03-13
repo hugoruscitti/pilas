@@ -13,6 +13,7 @@ import subprocess
 import math
 
 import pilas
+import xmlreader
 
 
 PATH = os.path.dirname(os.path.abspath(__file__))

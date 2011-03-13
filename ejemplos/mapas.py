@@ -5,19 +5,21 @@ pilas.iniciar()
 grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
 mapa = pilas.actores.Mapa(grilla)
 
-mapa.pintar_bloque(10, 10, 0)
-mapa.pintar_bloque(10, 11, 1)
-mapa.pintar_bloque(10, 12, 1)
-mapa.pintar_bloque(10, 13, 1)
-mapa.pintar_bloque(10, 14, 2)
+mapa.pintar_bloque(2, 10, 0, True)
+mapa.pintar_bloque(2, 11, 1, True)
+mapa.pintar_bloque(2, 12, 1, True)
+mapa.pintar_bloque(2, 13, 1, True)
+mapa.pintar_bloque(2, 14, 2, True)
 
 
-mapa.pintar_bloque(10, 0, 0)
-mapa.pintar_bloque(10, 1, 1)
-mapa.pintar_bloque(10, 2, 1)
-mapa.pintar_bloque(10, 3, 1)
-mapa.pintar_bloque(10, 4, 2)
+mapa.pintar_bloque(2, 0, 0, True)
+mapa.pintar_bloque(2, 1, 1, True)
+mapa.pintar_bloque(2, 2, 1, True)
+mapa.pintar_bloque(2, 3, 1, True)
+mapa.pintar_bloque(2, 4, 2, True)
 
 pelotas = pilas.atajos.fabricar(pilas.actores.Pelota, 10)
 
+pilas.avisar("Creando dos plataformas solidas...")
 pilas.ejecutar()
+
