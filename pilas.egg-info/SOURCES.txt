@@ -5,7 +5,9 @@ ejemplos/actor.py
 ejemplos/actores_simples.py
 ejemplos/arrastrable.py
 ejemplos/arrastrable_varios_z.py
+ejemplos/batalhao.png
 ejemplos/boton.py
+ejemplos/boton.pyc
 ejemplos/camara.py
 ejemplos/colisiones.py
 ejemplos/colores.py
@@ -28,10 +30,12 @@ ejemplos/habilidad_personalizada.py
 ejemplos/habilidad_personalizada_con_argumentos.py
 ejemplos/ingreso_de_texto_y_selector.py
 ejemplos/interpolacion.py
+ejemplos/mapa_desde_archivo.py
 ejemplos/mapas.py
 ejemplos/menu.py
 ejemplos/mover_actor_por_eventos.py
 ejemplos/moverse_con_el_teclado.py
+ejemplos/parque.tmx
 ejemplos/pingu_controlado_por_teclado.py
 ejemplos/pizarra.py
 ejemplos/pizarra_avanzado_cairo.py
@@ -42,6 +46,7 @@ ejemplos/pizarra_dibujando_con_el_mouse.py
 ejemplos/puntaje.py
 ejemplos/punto_de_control.py
 ejemplos/seguir_clicks.py
+ejemplos/selector.py
 ejemplos/sonidos.py
 ejemplos/tareas.py
 ejemplos/test.py
@@ -139,6 +144,7 @@ pilas/sonidos.py
 pilas/tareas.py
 pilas/utils.py
 pilas/ventana.py
+pilas/xmlreader.py
 pilas.egg-info/PKG-INFO
 pilas.egg-info/SOURCES.txt
 pilas.egg-info/dependency_links.txt
@@ -238,6 +244,7 @@ pilas/dispatch/saferef.py
 pilas/ejemplos/__init__.py
 pilas/ejemplos/colisiones.py
 pilas/ejemplos/fisica.py
+pilas/ejemplos/listaseleccion.py
 pilas/ejemplos/naves.py
 pilas/ejemplos/piezas.py
 pilas/ejemplos/test.py
@@ -248,6 +255,7 @@ pilas/ejemplos/data/piezas.png
 pilas/interfaz/__init__.py
 pilas/interfaz/deslizador.py
 pilas/interfaz/ingreso_de_texto.py
+pilas/interfaz/lista_seleccion.py
 pilas/interfaz/selector.py
 pilas/motores/__init__.py
 pilas/motores/motor.py

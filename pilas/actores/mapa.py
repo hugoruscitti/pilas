@@ -31,6 +31,7 @@ class Mapa(Actor):
         self.restitucion = restitucion
         self.figuras = []
         self.bloques = []
+        self.grilla_o_mapa = grilla_o_mapa
 
         if isinstance(grilla_o_mapa, str):
             self._cargar_mapa(grilla_o_mapa)
@@ -103,3 +104,19 @@ class Mapa(Actor):
                     restitucion=self.restitucion)
             self.figuras.append(figura)
 
+
+    def reiniciar(self):
+        self._eliminar_bloques()
+
+        if isinstance(self.grilla_o_mapa, str):
+            self._cargar_mapa(self.grilla_o_mapa)
+
+    def eliminar(self):
+        self._eliminar_bloques()
+
+    def _eliminar_bloques(self):
+        for b in self.bloques:
+            b.eliminar()
+
+        for f in self.figuras:
+            f.eliminar()
