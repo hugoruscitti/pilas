@@ -83,7 +83,7 @@ class Mapa(Actor):
         # Convierte todo el mapa en una matriz de numeros.
         bloques = [[int(x) for x in x.split(',') if x] for x in datos.split()]
 
-        for (y, fila) in enumerate(bloques[::-1]):
+        for (y, fila) in enumerate(bloques):
             for (x, bloque) in enumerate(fila):
                 if bloque:
                     self.pintar_bloque(y, x, bloque -1, solidos)
@@ -93,7 +93,7 @@ class Mapa(Actor):
         self.grilla.definir_cuadro(indice)
         self.grilla.asignar(nuevo_bloque)
         nuevo_bloque.izquierda = columna * self._ancho_cuadro - 320
-        nuevo_bloque.arriba = fila * self._alto_cuadro - (240 - self._alto_cuadro)
+        nuevo_bloque.arriba = -fila * self._alto_cuadro + 240
         self.bloques.append(nuevo_bloque)
 
         if es_bloque_solido:

@@ -10,31 +10,31 @@ o simplemente como referencia ante cualquier duda.
     :members:
 
 
-Módulo pilas.interpolaciones
-----------------------------
+Módulo pilas.tareas
+-------------------
 
-.. automodule:: pilas.interpolaciones
+.. automodule:: pilas.tareas
     :members:
 
 
-Módulo pilas.grupo
-------------------
+Módulo pilas.escenas
+--------------------
 
-.. automodule:: pilas.grupo
+.. automodule:: pilas.escenas
     :members:
 
 
-Módulo pilas.red
-----------------
+Módulo pilas.atajos
+-------------------
 
-.. automodule:: pilas.red
+.. automodule:: pilas.atajos
     :members:
 
 
-Módulo pilas.imagenes
----------------------
+Módulo pilas.colisiones
+-----------------------
 
-.. automodule:: pilas.imagenes
+.. automodule:: pilas.colisiones
     :members:
 
 
@@ -45,10 +45,136 @@ Módulo pilas.eventos
     :members:
 
 
+Módulo pilas.ventana
+--------------------
+
+.. automodule:: pilas.ventana
+    :members:
+
+
+Módulo pilas.grupo
+------------------
+
+.. automodule:: pilas.grupo
+    :members:
+
+
+Módulo pilas.colores
+--------------------
+
+.. automodule:: pilas.colores
+    :members:
+
+
+Módulo pilas.sonidos
+--------------------
+
+.. automodule:: pilas.sonidos
+    :members:
+
+
+Módulo pilas.habilidades
+------------------------
+
+.. automodule:: pilas.habilidades
+    :members:
+
+
+Módulo pilas.imagenes
+---------------------
+
+.. automodule:: pilas.imagenes
+    :members:
+
+
+Módulo pilas.mundo
+------------------
+
+.. automodule:: pilas.mundo
+    :members:
+
+
+Módulo pilas.control
+--------------------
+
+.. automodule:: pilas.control
+    :members:
+
+
+Módulo pilas.utils
+------------------
+
+.. automodule:: pilas.utils
+    :members:
+
+
+Módulo pilas.estudiante
+-----------------------
+
+.. automodule:: pilas.estudiante
+    :members:
+
+
+Módulo pilas.fps
+----------------
+
+.. automodule:: pilas.fps
+    :members:
+
+
+Módulo pilas.fisica
+-------------------
+
+.. automodule:: pilas.fisica
+    :members:
+
+
+Módulo pilas.xmlreader
+----------------------
+
+.. automodule:: pilas.xmlreader
+    :members:
+
+
+Módulo pilas.pytweener
+----------------------
+
+.. automodule:: pilas.pytweener
+    :members:
+
+
+Módulo pilas.depurador
+----------------------
+
+.. automodule:: pilas.depurador
+    :members:
+
+
+Módulo pilas.comportamientos
+----------------------------
+
+.. automodule:: pilas.comportamientos
+    :members:
+
+
+Módulo pilas.baseactor
+----------------------
+
+.. automodule:: pilas.baseactor
+    :members:
+
+
 Módulo pilas.camara
 -------------------
 
 .. automodule:: pilas.camara
+    :members:
+
+
+Módulo pilas.interpolaciones
+----------------------------
+
+.. automodule:: pilas.interpolaciones
     :members:
 
 
@@ -66,52 +192,10 @@ Módulo pilas.lienzo
     :members:
 
 
-Módulo pilas.tareas
--------------------
+Módulo pilas.red
+----------------
 
-.. automodule:: pilas.tareas
-    :members:
-
-
-Módulo pilas.atajos
--------------------
-
-.. automodule:: pilas.atajos
-    :members:
-
-
-Módulo pilas.ventana
---------------------
-
-.. automodule:: pilas.ventana
-    :members:
-
-
-Módulo pilas.estudiante
------------------------
-
-.. automodule:: pilas.estudiante
-    :members:
-
-
-Módulo pilas.depurador
-----------------------
-
-.. automodule:: pilas.depurador
-    :members:
-
-
-Módulo pilas.habilidades
-------------------------
-
-.. automodule:: pilas.habilidades
-    :members:
-
-
-Módulo pilas.pytweener
-----------------------
-
-.. automodule:: pilas.pytweener
+.. automodule:: pilas.red
     :members:
 
 
@@ -122,94 +206,10 @@ Módulo pilas.simbolos
     :members:
 
 
-Módulo pilas.fisica
--------------------
+Módulo pilas.motores.motor
+--------------------------
 
-.. automodule:: pilas.fisica
-    :members:
-
-
-Módulo pilas.utils
-------------------
-
-.. automodule:: pilas.utils
-    :members:
-
-
-Módulo pilas.baseactor
-----------------------
-
-.. automodule:: pilas.baseactor
-    :members:
-
-
-Módulo pilas.escenas
---------------------
-
-.. automodule:: pilas.escenas
-    :members:
-
-
-Módulo pilas.fps
-----------------
-
-.. automodule:: pilas.fps
-    :members:
-
-
-Módulo pilas.colisiones
------------------------
-
-.. automodule:: pilas.colisiones
-    :members:
-
-
-Módulo pilas.sonidos
---------------------
-
-.. automodule:: pilas.sonidos
-    :members:
-
-
-Módulo pilas.comportamientos
-----------------------------
-
-.. automodule:: pilas.comportamientos
-    :members:
-
-
-Módulo pilas.mundo
-------------------
-
-.. automodule:: pilas.mundo
-    :members:
-
-
-Módulo pilas.colores
---------------------
-
-.. automodule:: pilas.colores
-    :members:
-
-
-Módulo pilas.control
---------------------
-
-.. automodule:: pilas.control
-    :members:
-
-
-Módulo pilas.dispatch.dispatcher
---------------------------------
-
-.. automodule:: pilas.dispatch.dispatcher
-    :members:
-
-
-Módulo pilas.dispatch.saferef
------------------------------
-
-.. automodule:: pilas.dispatch.saferef
+.. automodule:: pilas.motores.motor
     :members:
 
 
@@ -227,87 +227,17 @@ Módulo pilas.motores.motor_sfml
     :members:
 
 
-Módulo pilas.motores.motor
+Módulo pilas.actores.actor
 --------------------------
 
-.. automodule:: pilas.motores.motor
+.. automodule:: pilas.actores.actor
     :members:
 
 
-Módulo pilas.ejemplos.fisica
+Módulo pilas.actores.disparo
 ----------------------------
 
-.. automodule:: pilas.ejemplos.fisica
-    :members:
-
-
-Módulo pilas.ejemplos.colisiones
---------------------------------
-
-.. automodule:: pilas.ejemplos.colisiones
-    :members:
-
-
-Módulo pilas.ejemplos.piezas
-----------------------------
-
-.. automodule:: pilas.ejemplos.piezas
-    :members:
-
-
-Módulo pilas.ejemplos.naves
----------------------------
-
-.. automodule:: pilas.ejemplos.naves
-    :members:
-
-
-Módulo pilas.data.juegobase.ejecutar
-------------------------------------
-
-.. automodule:: pilas.data.juegobase.ejecutar
-    :members:
-
-
-Módulo pilas.interfaz.deslizador
---------------------------------
-
-.. automodule:: pilas.interfaz.deslizador
-    :members:
-
-
-Módulo pilas.interfaz.selector
-------------------------------
-
-.. automodule:: pilas.interfaz.selector
-    :members:
-
-
-Módulo pilas.interfaz.ingreso_de_texto
---------------------------------------
-
-.. automodule:: pilas.interfaz.ingreso_de_texto
-    :members:
-
-
-Módulo pilas.actores.pelota
----------------------------
-
-.. automodule:: pilas.actores.pelota
-    :members:
-
-
-Módulo pilas.actores.ejes
--------------------------
-
-.. automodule:: pilas.actores.ejes
-    :members:
-
-
-Módulo pilas.actores.banana
----------------------------
-
-.. automodule:: pilas.actores.banana
+.. automodule:: pilas.actores.disparo
     :members:
 
 
@@ -318,80 +248,10 @@ Módulo pilas.actores.puntaje
     :members:
 
 
-Módulo pilas.actores.entradadetexto
------------------------------------
-
-.. automodule:: pilas.actores.entradadetexto
-    :members:
-
-
-Módulo pilas.actores.temporizador
----------------------------------
-
-.. automodule:: pilas.actores.temporizador
-    :members:
-
-
-Módulo pilas.actores.estrella
------------------------------
-
-.. automodule:: pilas.actores.estrella
-    :members:
-
-
-Módulo pilas.actores.boton
---------------------------
-
-.. automodule:: pilas.actores.boton
-    :members:
-
-
 Módulo pilas.actores.nave
 -------------------------
 
 .. automodule:: pilas.actores.nave
-    :members:
-
-
-Módulo pilas.actores.cursordisparo
-----------------------------------
-
-.. automodule:: pilas.actores.cursordisparo
-    :members:
-
-
-Módulo pilas.actores.actor
---------------------------
-
-.. automodule:: pilas.actores.actor
-    :members:
-
-
-Módulo pilas.actores.menu
--------------------------
-
-.. automodule:: pilas.actores.menu
-    :members:
-
-
-Módulo pilas.actores.moneda
----------------------------
-
-.. automodule:: pilas.actores.moneda
-    :members:
-
-
-Módulo pilas.actores.martian
-----------------------------
-
-.. automodule:: pilas.actores.martian
-    :members:
-
-
-Módulo pilas.actores.bomba
---------------------------
-
-.. automodule:: pilas.actores.bomba
     :members:
 
 
@@ -409,10 +269,73 @@ Módulo pilas.actores.piedra
     :members:
 
 
+Módulo pilas.actores.moneda
+---------------------------
+
+.. automodule:: pilas.actores.moneda
+    :members:
+
+
 Módulo pilas.actores.opcion
 ---------------------------
 
 .. automodule:: pilas.actores.opcion
+    :members:
+
+
+Módulo pilas.actores.pelota
+---------------------------
+
+.. automodule:: pilas.actores.pelota
+    :members:
+
+
+Módulo pilas.actores.mono
+-------------------------
+
+.. automodule:: pilas.actores.mono
+    :members:
+
+
+Módulo pilas.actores.banana
+---------------------------
+
+.. automodule:: pilas.actores.banana
+    :members:
+
+
+Módulo pilas.actores.mapa
+-------------------------
+
+.. automodule:: pilas.actores.mapa
+    :members:
+
+
+Módulo pilas.actores.menu
+-------------------------
+
+.. automodule:: pilas.actores.menu
+    :members:
+
+
+Módulo pilas.actores.cursordisparo
+----------------------------------
+
+.. automodule:: pilas.actores.cursordisparo
+    :members:
+
+
+Módulo pilas.actores.animacion
+------------------------------
+
+.. automodule:: pilas.actores.animacion
+    :members:
+
+
+Módulo pilas.actores.martian
+----------------------------
+
+.. automodule:: pilas.actores.martian
     :members:
 
 
@@ -430,31 +353,17 @@ Módulo pilas.actores.pingu
     :members:
 
 
-Módulo pilas.actores.animado
-----------------------------
+Módulo pilas.actores.entradadetexto
+-----------------------------------
 
-.. automodule:: pilas.actores.animado
+.. automodule:: pilas.actores.entradadetexto
     :members:
 
 
-Módulo pilas.actores.pizarra
-----------------------------
+Módulo pilas.actores.aceituna
+-----------------------------
 
-.. automodule:: pilas.actores.pizarra
-    :members:
-
-
-Módulo pilas.actores.animacion
-------------------------------
-
-.. automodule:: pilas.actores.animacion
-    :members:
-
-
-Módulo pilas.actores.tortuga
-----------------------------
-
-.. automodule:: pilas.actores.tortuga
+.. automodule:: pilas.actores.aceituna
     :members:
 
 
@@ -465,17 +374,45 @@ Módulo pilas.actores.explosion
     :members:
 
 
-Módulo pilas.actores.mapa
--------------------------
+Módulo pilas.actores.boton
+--------------------------
 
-.. automodule:: pilas.actores.mapa
+.. automodule:: pilas.actores.boton
     :members:
 
 
-Módulo pilas.actores.disparo
+Módulo pilas.actores.temporizador
+---------------------------------
+
+.. automodule:: pilas.actores.temporizador
+    :members:
+
+
+Módulo pilas.actores.animado
 ----------------------------
 
-.. automodule:: pilas.actores.disparo
+.. automodule:: pilas.actores.animado
+    :members:
+
+
+Módulo pilas.actores.ejes
+-------------------------
+
+.. automodule:: pilas.actores.ejes
+    :members:
+
+
+Módulo pilas.actores.bomba
+--------------------------
+
+.. automodule:: pilas.actores.bomba
+    :members:
+
+
+Módulo pilas.actores.tortuga
+----------------------------
+
+.. automodule:: pilas.actores.tortuga
     :members:
 
 
@@ -486,9 +423,100 @@ Módulo pilas.actores.texto
     :members:
 
 
-Módulo pilas.actores.mono
--------------------------
+Módulo pilas.actores.pizarra
+----------------------------
 
-.. automodule:: pilas.actores.mono
+.. automodule:: pilas.actores.pizarra
+    :members:
+
+
+Módulo pilas.actores.estrella
+-----------------------------
+
+.. automodule:: pilas.actores.estrella
+    :members:
+
+
+Módulo pilas.dispatch.saferef
+-----------------------------
+
+.. automodule:: pilas.dispatch.saferef
+    :members:
+
+
+Módulo pilas.dispatch.dispatcher
+--------------------------------
+
+.. automodule:: pilas.dispatch.dispatcher
+    :members:
+
+
+Módulo pilas.data.juegobase.ejecutar
+------------------------------------
+
+.. automodule:: pilas.data.juegobase.ejecutar
+    :members:
+
+
+Módulo pilas.ejemplos.colisiones
+--------------------------------
+
+.. automodule:: pilas.ejemplos.colisiones
+    :members:
+
+
+Módulo pilas.ejemplos.naves
+---------------------------
+
+.. automodule:: pilas.ejemplos.naves
+    :members:
+
+
+Módulo pilas.ejemplos.listaseleccion
+------------------------------------
+
+.. automodule:: pilas.ejemplos.listaseleccion
+    :members:
+
+
+Módulo pilas.ejemplos.piezas
+----------------------------
+
+.. automodule:: pilas.ejemplos.piezas
+    :members:
+
+
+Módulo pilas.ejemplos.fisica
+----------------------------
+
+.. automodule:: pilas.ejemplos.fisica
+    :members:
+
+
+Módulo pilas.interfaz.ingreso_de_texto
+--------------------------------------
+
+.. automodule:: pilas.interfaz.ingreso_de_texto
+    :members:
+
+
+Módulo pilas.interfaz.lista_seleccion
+-------------------------------------
+
+.. automodule:: pilas.interfaz.lista_seleccion
+    :members:
+
+
+Módulo pilas.interfaz.deslizador
+--------------------------------
+
+.. automodule:: pilas.interfaz.deslizador
+    :members:
+
+
+Módulo pilas.interfaz.selector
+------------------------------
+
+.. automodule:: pilas.interfaz.selector
     :members:
 

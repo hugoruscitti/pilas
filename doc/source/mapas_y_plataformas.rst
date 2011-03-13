@@ -1,7 +1,7 @@
 Mapas y plataformas
 ===================
 
-En los años 80 una de los géneros de videojuegos mas
+En los años 80 uno de los géneros de videojuegos mas
 celebrados ha sido el genero de plataformas.
 
 En los juegos de este género el protagonista de la
@@ -33,15 +33,8 @@ que se usarán en el escenario. Luego puedes crear el ``Mapa``:
 Una vez que ejecutas esas sentencias no observarás cambios
 en la ventana, el mapa está, pero no tiene bloques aún.
 
-Pulsa la tecla F12 y observarás una grilla con números, cada
-número te muestra la fila y columna que representa a ese
-rectángulo:
-
-.. image:: images/mapa_depuracion.png
-
-
-Si quieres dibujar bloques solo tienes que indicar la posición
-en el mapa y el índice que representa la imagen en la grilla.
+Si quieres dibujar bloques solo tienes que indicar un
+índice de bloque y la posición en pantalla a dibujar.
 
 Por ejemplo, un bloque cerca del centro de la ventana es
 la posición (8, 10):
@@ -78,8 +71,6 @@ Este será el resultado:
 Colisiones con el escenario
 ---------------------------
 
-
-
 En los juegos de plataformas es muy importante que los bloques
 puedan interactuar con los jugadores. Por ejemplo habrá bloques
 que sirvan como plataformas y otros impedirán que avancemos como
@@ -100,8 +91,8 @@ la posibilidad de indicar si el bloque es sólido o no:
 
 .. code-block:: python
 
-    mapa.pintar_bloque(14, 10, 1, solido=True)
-    mapa.pintar_bloque(14, 10, 1, solido=False)
+    mapa.pintar_bloque(14, 10, 1, es_bloque_solido=True)
+    mapa.pintar_bloque(14, 10, 1, es_bloque_solido=False)
 
 Y ten en cuenta que si no especificas el último parámetro, pilas
 asumirá que el bloque debe ser sólido.
@@ -112,3 +103,95 @@ juegos se usan para crear pasadizos secretos entre muros o
 plataformas...
 
 
+Creando mapas con el programa tiled
+-----------------------------------
+
+Crear los mapas directamente desde el código está bien, pero
+si tienes que hacer muchos mapas te llevará un montón de tiempo.
+
+Una buena alternativa a esto es usar un software de diseño
+de escenarios, crear un archivo con todo el escenario y
+luego cargarlo desde pilas.
+
+El software que te recomiendo para esta tarea se llama ``tiled``
+(ver http://www.mapeditor.org).
+
+Así se ve la web del programa.
+
+.. image:: images/tiled1.png
+
+Veamos como usar tiled para crear un escenario sencillo, primero
+tienes que crear un mapa desde el menú ``File``, se le solicitará
+indicar el tamaño del escenario:
+
+.. image:: images/tiled2.png
+
+Usa los valores por defecto, al menos por esta vez.
+
+Luego tienes que ir al menú ``Map`` y luego ``New tileset`` para
+indicar cual es la grilla de imágenes que usarás en los bloques. Te
+recomiendo usar la imagen ``batalhao.png`` (de Silveins Neto), que
+está en la carpeta de ejemplos de pilas:
+
+.. image:: images/tiled3.png
+
+Ahora, lo mas divertido, comienza a dibujar sobre el escenario
+seleccionando bloques. Observa que el programa tiene varias herramientas
+para hacer que esto sea mucho mas sencillo:
+
+.. image:: images/tiled4.png
+
+
+Luego, asegúrate de que el programa guarda todos los datos en formato CSV, esto
+es importante para que se pueda vincular con pilas. Para esto tienes
+que abrir el menú ``Edit`` y luego ``Preferences``, la pantalla de opciones
+te tiene que quedar así:
+
+.. image:: images/tiled5.png
+
+
+Listo, ahora solamente hay que guardar el mapa en un archivo. Ve al menú
+``File`` y luego selecciona ``Save as``, tienes que darle un nombre
+al archivo ``.tmx``.
+
+
+Luego, desde pilas, es muy simple, solamente tienes que crear
+el actor mapa indicando el nombre del archivo ``.tmx`` que has
+generado con el programa **tiled**:
+
+.. code-block:: python
+
+    import pilas
+    pilas.iniciar()
+    mapa_desde_archivo = pilas.actores.Mapa("archivo.tmx")
+
+
+Creando bloques sólidos con tiled
+---------------------------------
+
+Si quieres hacer bloques sólidos desde **tiled** solamente
+tienes que crear mas capas, la capa 0 se utilizará como
+decorado (todos los bloques son no-sólidos) y el resto de las
+capas serán siempre de bloques sólidos.
+
+Por ejemplo, en el escenario anterior, sería interesante colocar
+los bloques de pasto y la ruta en la capa que he llamado "suelo"
+y el resto de los objetos en otras capas como "obstáculos" y "paredes":
+
+.. image:: images/tiled6.png
+
+
+Un ejemplo completo
+-------------------
+
+Te recomiendo que observes el ejemplo ``mapa_desde_archivo.py`` del
+directorio de ejemplos de pilas, podrás observar un escenario
+muy simple con obstáculos y un personaje que rebota por
+las pareces y árboles:
+
+.. image:: images/tiled8.png
+
+Recuerda que en pilas puedes pulsar la tecla ``F11`` para observar
+el area de colisión de todos los actores y plataformas:
+
+.. image:: images/tiled7.png
