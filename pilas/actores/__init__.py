@@ -43,3 +43,6 @@ from martian import Martian
 from boton import Boton
 from entradadetexto import EntradaDeTexto
 from aceituna import Aceituna
+from globo import Globo
+from dialogo import Dialogo
+from globoelegir import GloboElegir
