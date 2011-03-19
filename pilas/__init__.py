@@ -51,6 +51,7 @@ import colores
 import imagenes
 import sonidos
 import actores
+import pilasversion
 import fps
 from interpolaciones import Lineal
 import dispatch
@@ -295,3 +296,7 @@ def ejecutar_cada(segundos, funcion):
     no se vuelve a ejecutar.
     """
     pilas.mundo.agregar_tarea(segundos, funcion)
+
+
+def version():
+    return pilasversion.VERSION

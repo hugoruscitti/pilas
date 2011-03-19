@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 from setuptools import setup
 from setuptools import find_packages
+from pilas import pilasversion
 
 
 setup(
         name='pilas',
-        version='0.41',
+        version=pilasversion.VERSION,
         description='A simple to use video game framework.',
         author='Hugo Ruscitti',
         author_email='hugoruscitti@gmail.com',

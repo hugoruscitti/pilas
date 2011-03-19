@@ -7,12 +7,14 @@ ejemplos/arrastrable.py
 ejemplos/arrastrable_varios_z.py
 ejemplos/batalhao.png
 ejemplos/boton.py
+ejemplos/boton.pyc
 ejemplos/camara.py
 ejemplos/colisiones.py
 ejemplos/colores.py
 ejemplos/comportamientos_movimiento_de_mono.py
 ejemplos/deslizador.py
 ejemplos/dialogo.py
+ejemplos/dialogo_con_botones.py
 ejemplos/dialogo_con_funciones.py
 ejemplos/dialogo_con_preguntas.py
 ejemplos/duplicar.py
@@ -116,8 +118,11 @@ minijuegos/asteroides/data/vida.png
 minijuegos/tres_en_raya/README
 minijuegos/tres_en_raya/ejecutar.py
 minijuegos/tres_en_raya/escena_ayuda.py
+minijuegos/tres_en_raya/escena_ayuda.pyc
 minijuegos/tres_en_raya/escena_juego.py
+minijuegos/tres_en_raya/escena_juego.pyc
 minijuegos/tres_en_raya/escena_menu.py
+minijuegos/tres_en_raya/escena_menu.pyc
 minijuegos/tres_en_raya/data/ayuda.png
 minijuegos/tres_en_raya/data/ficha1.png
 minijuegos/tres_en_raya/data/ficha2.png

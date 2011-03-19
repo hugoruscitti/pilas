@@ -27,6 +27,5 @@ def cuando_pulsa_el_boton(texto):
 b1.conectar_presionado(cuando_pulsa_el_boton, "boton de arriba")
 b2.conectar_presionado(cuando_pulsa_el_boton, "boton de abajo")
 
-
 pilas.avisar("Pulsa alguno de los botones")
 pilas.ejecutar()
