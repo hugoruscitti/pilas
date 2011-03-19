@@ -57,6 +57,10 @@ ejemplos/test.py
 ejemplos/texto.py
 ejemplos/todos.sh
 ejemplos/usando_pygame.py
+ejemplos/.Cual es tu color favorito?")/.ropeproject/config.py
+ejemplos/.Cual es tu color favorito?")/.ropeproject/globalnames
+ejemplos/.Cual es tu color favorito?")/.ropeproject/history
+ejemplos/.Cual es tu color favorito?")/.ropeproject/objectdb
 minijuegos/Memorice/README
 minijuegos/Memorice/ejecutar.py
 minijuegos/Memorice/escena_ayuda.py
