@@ -12,7 +12,7 @@ b2 = pilas.actores.Boton(x=100, y=-50)
 
 
 # Generamos el administrador de los dialogos.
-dialogo = pilas.actores.Dialogo()
+dialogo = pilas.actores.Dialogo(modo_automatico=False)
 
 
 # Ahora las acciones que vamos a ejecutar cuando

@@ -11,9 +11,10 @@ import pilas
 class Dialogo:
     "Representa una secuencia de mensajes entre varios actores."
     
-    def __init__(self):
+    def __init__(self, modo_automatico=True):
         self.dialogo = []
         self.dialogo_actual = None
+        self.modo_automatico = modo_automatico
     
     def decir(self, actor, texto):
         self.dialogo.append((actor, texto))
@@ -41,7 +42,7 @@ class Dialogo:
             # Es un mensaje de dialogo simple
             if len(siguiente) == 2:
                 actor, texto = siguiente
-                self.dialogo_actual = pilas.actores.Globo(texto, dialogo=self)
+                self.dialogo_actual = pilas.actores.Globo(texto, dialogo=self, avance_con_clicks=self.modo_automatico)
             else:
                 # Es un mensaje con seleccion.
                 actor, texto, opciones, funcion_a_invocar = siguiente
@@ -59,7 +60,6 @@ class Dialogo:
         if siguiente:
             self._mostrar_o_ejecutar_siguiente(siguiente)
         else:
-            print "Termino el dialogo."
             return False
             
         return True
