@@ -7,7 +7,6 @@ ejemplos/arrastrable.py
 ejemplos/arrastrable_varios_z.py
 ejemplos/batalhao.png
 ejemplos/boton.py
-ejemplos/boton.pyc
 ejemplos/camara.py
 ejemplos/colisiones.py
 ejemplos/colores.py
@@ -59,10 +58,6 @@ ejemplos/test.py
 ejemplos/texto.py
 ejemplos/todos.sh
 ejemplos/usando_pygame.py
-ejemplos/.Cual es tu color favorito?")/.ropeproject/config.py
-ejemplos/.Cual es tu color favorito?")/.ropeproject/globalnames
-ejemplos/.Cual es tu color favorito?")/.ropeproject/history
-ejemplos/.Cual es tu color favorito?")/.ropeproject/objectdb
 minijuegos/Memorice/README
 minijuegos/Memorice/ejecutar.py
 minijuegos/Memorice/escena_ayuda.py
@@ -118,11 +113,8 @@ minijuegos/asteroides/data/vida.png
 minijuegos/tres_en_raya/README
 minijuegos/tres_en_raya/ejecutar.py
 minijuegos/tres_en_raya/escena_ayuda.py
-minijuegos/tres_en_raya/escena_ayuda.pyc
 minijuegos/tres_en_raya/escena_juego.py
-minijuegos/tres_en_raya/escena_juego.pyc
 minijuegos/tres_en_raya/escena_menu.py
-minijuegos/tres_en_raya/escena_menu.pyc
 minijuegos/tres_en_raya/data/ayuda.png
 minijuegos/tres_en_raya/data/ficha1.png
 minijuegos/tres_en_raya/data/ficha2.png
@@ -150,6 +142,7 @@ pilas/imagenes.py
 pilas/interpolaciones.py
 pilas/lienzo.py
 pilas/mundo.py
+pilas/pilasversion.py
 pilas/pytweener.py
 pilas/red.py
 pilas/simbolos.py
