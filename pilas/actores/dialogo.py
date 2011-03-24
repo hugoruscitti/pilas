@@ -18,7 +18,14 @@ class Dialogo:
     
     def decir(self, actor, texto):
         self.dialogo.append((actor, texto))
-    
+
+    def decir_inmediatamente(self, actor, texto):
+        self.dialogo = []
+        self._eliminar_dialogo_actual()
+        self.decir(actor, texto)
+        siguiente = self.obtener_siguiente_dialogo_o_funcion()
+        self._mostrar_o_ejecutar_siguiente(siguiente)
+
     def elegir(self, actor, texto, opciones, funcion_a_invocar):
         self.dialogo.append((actor, texto, opciones, funcion_a_invocar))
         

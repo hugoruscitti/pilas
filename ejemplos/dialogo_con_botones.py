@@ -19,8 +19,7 @@ dialogo = pilas.actores.Dialogo(modo_automatico=False)
 # se pulsan los botones.
 
 def cuando_pulsa_el_boton(texto):
-    dialogo.decir(aceituna, "Has pulsado: " + texto)
-    dialogo.iniciar()
+    dialogo.decir_inmediatamente(aceituna, "Has pulsado: " + texto)
 
 
 # Y conectamos las funciones con los botones.

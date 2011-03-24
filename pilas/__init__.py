@@ -110,9 +110,23 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
         pilas.iniciar()
 
     aunque también puedes indicarle puntualmente el valor de algún
-    argumento::
+    argumento, por ejemplo para crear la ventana con un titulo
+    particular::
 
         pilas.iniciar(titulo='titulo de mi juego')
+
+    La lista completa de argumentos que puedes usar y
+    sus valores por defecto son:
+
+        - ancho=640
+        - alto=480
+        - titulo='pilas'
+        - usar_motor='pysfml' o 'pygame'
+        - modo='detectar'
+        - rendimiento=60
+        - economico=True
+        - gravedad=(0, -90)
+
 
     """
     global mundo

@@ -319,4 +319,9 @@ class Actor(object, Estudiante):
         self._actor.definir_transparencia(valor)
 
     def imitar(self, otro_actor_o_figura):
-	self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura)
+        self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura)
+
+    def esta_fuera_de_la_pantalla(self):
+        if self.derecha < -320 or self.izquierda > 320 or self.arriba < -240 or self.abajo > 240:
+                return True
+
