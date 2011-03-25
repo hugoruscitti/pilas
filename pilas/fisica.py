@@ -256,3 +256,7 @@ class ConstanteDeDistancia():
         constante.Initialize(c._cuerpo, c1._cuerpo, (0,0), (0,0))
         constante.collideConnected = True
         fisica.mundo.CreateJoint(constante)
+
+
+def definir_gravedad(x=0, y=-90):
+    pilas.mundo.fisica.mundo.gravity = (x, y)
