@@ -78,3 +78,13 @@ se reproducirá porque la referencia ``mi_sonido_que_no_suena`` se
 eliminará cuando termine de ejecutar la función ``reproducir_sonido``, mientras
 que en el segundo la referencia ``sonido`` seguirá existiendo mientras
 el sonido esté reproduciéndose.
+
+
+Tengo una consulta puntual, ¿quien me ayuda?
+-------------------------------------------
+
+Tenemos un foro de mensajes en donde puedes preguntar
+lo que quieras sobre pilas, esta es la dirección
+web:
+
+http://www.losersjuegos.com.ar/foro/viewforum.php?f=22

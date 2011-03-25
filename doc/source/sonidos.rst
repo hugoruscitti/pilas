@@ -26,14 +26,3 @@ que llamar al método ``reproducir``:
     sonido_de_grito.reproducir()
 
 
-Referencias
------------
-
-Actualmente estamos usando varias llamadas al módulo
-de sonido de la biblioteca SFML, que es la capa multimedia
-que usamos en pilas. De ahí que tenemos algunas funciones
-en inglés y otras no...
-
-Nuestro deseo en pilas es que poco a poco podamos ir
-escribiendo funciones para el manejo de recursos sea mas
-sencillo que ahora.

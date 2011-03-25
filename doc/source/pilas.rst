@@ -178,6 +178,13 @@ Módulo pilas.interpolaciones
     :members:
 
 
+Módulo pilas.pilasversion
+-------------------------
+
+.. automodule:: pilas.pilasversion
+    :members:
+
+
 Módulo pilas.fondos
 -------------------
 
@@ -269,6 +276,13 @@ Módulo pilas.actores.piedra
     :members:
 
 
+Módulo pilas.actores.dialogo
+----------------------------
+
+.. automodule:: pilas.actores.dialogo
+    :members:
+
+
 Módulo pilas.actores.moneda
 ---------------------------
 
@@ -318,6 +332,13 @@ Módulo pilas.actores.menu
     :members:
 
 
+Módulo pilas.actores.globo
+--------------------------
+
+.. automodule:: pilas.actores.globo
+    :members:
+
+
 Módulo pilas.actores.cursordisparo
 ----------------------------------
 
@@ -364,6 +385,13 @@ Módulo pilas.actores.aceituna
 -----------------------------
 
 .. automodule:: pilas.actores.aceituna
+    :members:
+
+
+Módulo pilas.actores.globoelegir
+--------------------------------
+
+.. automodule:: pilas.actores.globoelegir
     :members:
 
 

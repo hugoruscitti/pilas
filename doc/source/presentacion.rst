@@ -1,16 +1,19 @@
 Presentación
 ============
 
+.. image:: images/pilas-logo.png
+
 Pilas es un motor para construir videjuegos
 de manera sencilla y didáctica.
 
-El objetivo principal de pilas es brindar ayuda a los
+Está focalizado en ofrecer ayuda a los
 desarrolladores de juegos casuales y novatos quieran
 hacer sus primeros videojuegos.
 
 Pilas está profundamente inspirada en conceptos de
 las bibliotecas ``cocos2d``, ``pygame``, ``rabbyt``
 y ``squeak``.
+
 
 Características
 ---------------
@@ -21,3 +24,12 @@ Características
 - Se utiliza desde python, lo que permite usarla desde sesiones interactivas.
 - Incluye interacción con el motor de física Chipmunk.
 - Es software libre.
+
+
+Sitio oficial
+-------------
+
+Para mas información sobre el motor puedes visitar el
+sitio web:
+
+http://www.pilas-engine.com.ar

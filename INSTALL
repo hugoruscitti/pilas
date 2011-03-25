@@ -4,6 +4,15 @@ Instalación
 Existen 3 formas de instalar la biblioteca, así
 que veremos cada una por separado.
 
+Instalación fácil, para cada sistema operativo
+----------------------------------------------
+
+La forma mas sencilla de instalar pilas es
+siguiendo alguno de los tutoriales del sitio
+web de pilas:
+
+www.pilas-engine.com.ar/documentacion
+
 
 Instalación para distribuir con un juego
 ----------------------------------------
@@ -38,8 +47,6 @@ Luego, para instalar pilas tienes dos opciones::
 o bien::
 
     sudo python setup.py develop
-
-
 
 En el primer caso la biblioteca se instala y pasa
 a estar completamente instalada en tu sistema. No importa

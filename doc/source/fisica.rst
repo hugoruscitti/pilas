@@ -140,7 +140,7 @@ Esto es diferente a lo anterior, los objetos físicos tienen apariencia:
 
 
 Ahora podríamos desactivar el modo depuración física (pulsando
-nuevamente F11) y jugar un poco impulsando la bomba de un
+nuevamente **F11**) y jugar un poco impulsando la bomba de un
 lado a otro:
 
 .. code-block:: python
@@ -153,7 +153,6 @@ que determina el movimiento y la rotación, así que ya no
 funcionará escribir algo cómo ``bomba.y = 200``, ahora tienes
 que escribir ``circulo_dinamico.y = 200`` para mover al actor...
 
-
 Otra cosa a considerar, es que en nuestro ejemplo no ajustamos
 muy bien el tamaño del ``circulo_dinamico`` con el de la
 bomba. Esto es un detalles poco relevante aquí, porque solo
@@ -164,3 +163,36 @@ tus usuarios disfruten del juego. Recuerda que ellos no
 verán los círculos amarillos...
 
 
+
+Cambiando la gravedad interactivamente
+--------------------------------------
+
+Por defecto, la gravedad del escenario es de (0, -90), esto
+significa que los objetos "caen" hacia abajo, y lo hacen con
+una aceleración de 90 (mts por segundo).
+
+Pero no estás obligado a que esto sea siempre así, de hecho
+si quieres hacer un juego que transcurra en el espacio seguramente
+vas a querer eliminar por completo la gravedad del escenario
+para que los objetos puedan "flotar", ¿no?.
+
+Entonces, hay dos formas de cambiar la gravedad del escenario. Podrías
+cambiar la gravedad en cualquier momento invocando a la función
+``definir_gravedad`` indicando la nueva gravedad, por ejemplo:
+
+
+.. code-block:: python
+
+    pilas.fisica.definir_gravedad(200, 0)
+
+o directamente especificar la gravedad cuando inicias pilas, por
+ejemplo:
+
+.. code-block:: python
+
+    pilas.fisica.definir_gravedad(90, 90)
+
+
+Ten en cuenta que el primer argumento es la aceleración horizontal y
+la segunda componente es la aceleración vertical. Los valores originales
+de la gravedad son ``0`` y ``-90``. 

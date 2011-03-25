@@ -79,15 +79,25 @@ Dado que ``pilas`` está creciendo, es una buena idea mantener
 tu copia del motor actualizada.
 
 Para ello tienes que ingresar en el directorio ``pilas`` y
-ejecutar el siguiente comando de manera periodica::
+ejecutar el siguiente comando de manera periódica::
 
     hg pull
     hg update
 
 De hecho, si usas un lector de noticias sería recomendable
-que agregues este feed:
+que agregues este ``feed``:
 
 - http://bitbucket.org/hugoruscitti/pilas/rss
 
 Ahí se publicarán todas las actualizaciones que se realicen
 sobre el repositorio.
+
+
+Mas detalles
+------------
+
+Usamos el modelo de trabajo de bitbucket, haciendo clones
+del repositorio principal para luego elaborar los parches.
+
+Si quieres obtener mas detalles te recomiendo ver el artículo
+`programando en pilas <http://www.pilas-engine.com.ar/doc/tutoriales/pilas_desarrolladores/pilas_desarrolladores.rst>`_.

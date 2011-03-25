@@ -5,11 +5,12 @@ Si ya tienes instalada la biblioteca podemos
 comenzar a realizar nuestras primeras pruebas.
 
 Para empezar, pilas se puede usar directamente
-desde un intérprete iteractivo de python.
+desde un intérprete interactivo de python.
 
 Mi recomendación personal es que utilices una
-herramienta como IDLE, que te permite escribír
-código de python y autocompleta. Aunque si
+herramienta como IDLE, que te permite escribir
+código de python y autocompletar el nombre
+de las funciones. Aunque si
 quieres puedes usar el intérprete estándar
 de python, abriendo un terminal de texto y
 ejecutando el comando ``python``.
@@ -72,7 +73,7 @@ acciones solo tenemos que utilizar su nombre y sentencias
 simples.
 
 Por ejemplo, para que el personaje cambie su expresión
-facil podemos usar sentencias cómo:
+fácil podemos usar sentencias cómo:
 
 
 .. code-block:: python
@@ -149,7 +150,20 @@ completa con el siguiente código:
 
 .. code-block:: python
 
-    mono.rotacion = range(0, 360)
+    mono.rotacion = [360]
+
+
+¿por qué?, porque los caracteres ``[`` y ``]`` representan
+una lista de valores, y cuando pilas ve esta lista asignada
+a un atributo de pilas intenta hacer una animación.
+
+Veamos otro ejemplo, si queremos que un personaje
+como el mono se mueva horizontalmente con una animación
+podemos escribir esto:
+
+.. code-block:: python
+
+    mono.x = [-200, 200]
 
 
 Pidiendo ayuda

@@ -1,10 +1,10 @@
 Interpolaciones
 ===============
 
-Las interpolaciones nos pemiten lograr movimientos
+Las interpolaciones nos permiten lograr movimientos
 de los actores de manera sencilla.
 
-Por ejemplo, tradicionalmente si quisieramos cambiar
+Por ejemplo, tradicionalmente si quisiéramos cambiar
 posición de un actor en pantalla podemos usar estas
 sentencias:
 
@@ -105,8 +105,6 @@ esto duplicará el tamaño del actor en ``5`` segundos.
 
     actor.escala = [2]
 
-pero recuerda, de esta forma no puedes controlar cuanto
-tiempo demorará la animación.
 
 Interpolaciones en cadena
 -------------------------

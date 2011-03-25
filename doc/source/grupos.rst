@@ -56,11 +56,13 @@ con la aceleración gravitatoria:
 .. image:: images/grupos_bombas_como_pelota.png
 
 
-.. note::
+Un consejo, la gravedad del escenario se puede modificar
+usando una sentencia como la que sigue:
 
-    Un consejo, la gravedad del escenario se puede modificar
-    usando una sentencia como la que sigue:
+.. code-block:: python
 
-    .. code-block:: python
+    pilas.fisica.definir_gravedad(200, 0)
 
-        pilas.atajos.definir_gravedad(200, 0)
+donde el primer argumento es la gravedad horizontal, en este caso 200
+es hacia la derecha, y la gravedad vertical, que suele ser de -90
+en general.

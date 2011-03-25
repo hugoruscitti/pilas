@@ -15,6 +15,10 @@ al actor y escribir estas sentencias.
     elif pilas.mundo.control.derecha:
         mono.x += 1
 
+Esta no es la única forma de mover a un personaje por
+la pantalla, pero suele ser la mas conveniente porque
+es muy directa, y se pueda escribir en cualquier parte
+del código.
 
 Investigando al objeto control
 ------------------------------
@@ -30,3 +34,8 @@ de la pulsación de las teclas:
 - arriba
 - abajo
 - boton
+
+
+Esto te permite simplificar el código, porque no tienes que
+conocer específicamente las teclas que activan cada acción, y en
+todos los juegos serán las mismas teclas.
