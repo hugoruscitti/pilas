@@ -17,6 +17,7 @@ class Menu(Actor):
 
     def __init__(self, opciones, x=0, y=0):
         self.opciones_como_actores = []
+        self.demora_al_responder = 0
         Actor.__init__(self, "invisible.png", x=x, y=y)
         self._verificar_opciones(opciones)
         self.crear_texto_de_las_opciones(opciones)
@@ -24,7 +25,6 @@ class Menu(Actor):
         self.seleccionar_primer_opcion()
         self.opcion_actual = 0
         # contador para evitar la repeticion de teclas
-        self.demora_al_responder = 0
         self.activar()
 
     def activar(self):
