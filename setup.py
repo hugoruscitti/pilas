@@ -1,7 +1,23 @@
 #!/usr/bin/env python
+import sys
 from setuptools import setup
 from setuptools import find_packages
 from pilas import pilasversion
+
+def error(biblioteca, web):
+    print "Error, no ecuentra la biblioteca '%s' (de %s)" %(biblioteca, web)
+    sys.exit(1)
+
+
+try:
+    import PySFML
+except ImportError:
+    error("pySFML", "http://www.sfml-dev.org/")
+
+try:
+    import Box2D
+except ImportError:
+    error("box2d", "http://code.google.com/p/pybox2d")
 
 
 setup(
