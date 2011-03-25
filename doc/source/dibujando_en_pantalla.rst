@@ -286,7 +286,7 @@ y directos.
 
 Aquí hay un ejemplo de dibujado rápido.
 
-.. code-block::
+.. code-block:: python
 
     pizarra.deshabilitar_actualizacion_automatica()
 

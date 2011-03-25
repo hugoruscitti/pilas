@@ -43,6 +43,8 @@ class Mapa(Actor):
     def _cargar_mapa(self, archivo):
         "Carga el escenario desde un archivo .tmz (del programa tiled)."
 
+        archivo = pilas.utils.obtener_ruta_al_recurso(archivo)
+
         # Carga los nodos principales.
         nodo = pilas.utils.xmlreader.makeRootNode(archivo)
         nodo_mapa = nodo.getChild('map')
@@ -54,6 +56,8 @@ class Mapa(Actor):
 
         # Atributos de la imagen asociada al mapa.
         self._ruta = nodo_tileset.getChild('image').getAttributeValue('source')
+        self._ruta = pilas.utils.obtener_ruta_al_recurso(self._ruta)
+
         self._ancho_imagen = int(nodo_tileset.getChild('image').getAttributeValue('width'))
         self._alto_imagen = int(nodo_tileset.getChild('image').getAttributeValue('height'))
         self._ancho_cuadro = int(nodo_tileset.getAttributeValue('tilewidth'))
