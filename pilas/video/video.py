@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 import pilas
 import opencv
 from opencv import highgui
@@ -22,7 +24,7 @@ class DeCamara(pilas.actores.Actor):
         self.imagen.LoadFromPixels(640, 480, cuadro)        
         return True
 
-class video_de_archivo(object):
+class VideoDeArchivo(object):
     def __init__(self, ruta):
         if not os.path.isfile(ruta):
             raise IOError('El archiyo no existe')
@@ -30,7 +32,7 @@ class video_de_archivo(object):
         self.fps = highgui.cvGetCaptureProperty(self._camara, highgui.CV_CAP_PROP_FPS)
         self.altura = highgui.cvGetCaptureProperty(self._camara, highgui.CV_CAP_PROP_FRAME_HEIGHT)
         self.ancho =highgui.cvGetCaptureProperty(self._camara, highgui.CV_CAP_PROP_FRAME_WIDTH)
-        super(video_de_archivo, self).__init__()
+        super(VideoDeArchivo, self).__init__()
 
     def obtener_imagen(self):
         imagen_ipl = highgui.cvQueryFrame(self._camara)
@@ -44,7 +46,7 @@ class DePelicula(pilas.actores.Actor):
     Toma como parámetro la ruta del video.
     """
     def __init__(self, path, ancho=640, alto=480):
-        self._camara = video_de_archivo(path)
+        self._camara = VideoDeArchivo(path)
         pilas.actores.Actor.__init__(self)
         self._altura_cuadro = self._camara.altura
         self._ancho_cuadro = self._camara.ancho
@@ -58,5 +60,3 @@ class DePelicula(pilas.actores.Actor):
     def actualizar_video(self):
         self.imagen.LoadFromPixels(self._ancho_cuadro, self._altura_cuadro, self._camara.obtener_imagen())        
         return True
-
-    
