@@ -16,7 +16,7 @@ class DeCamara(pilas.actores.Actor):
         self.camara = webcam.CamaraWeb
         self.ultimo_numero_de_cuadro = 0
         pilas.actores.Actor.__init__(self, 'fondos/pasto.png')
-        pilas.mundo.agregar_tarea(0.15,self.actualizar_video)
+        pilas.mundo.agregar_tarea_siempre(0.15,self.actualizar_video)
 
     def actualizar_video(self):
         cuadro, numero_de_cuadro = self.camara.obtener_imagen(self.ultimo_numero_de_cuadro)

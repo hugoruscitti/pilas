@@ -13,6 +13,7 @@ ejemplos/colores.py
 ejemplos/comportamientos_movimiento_de_mono.py
 ejemplos/deslizador.py
 ejemplos/dialogo.py
+ejemplos/dialogo.py.orig
 ejemplos/dialogo_con_botones.py
 ejemplos/dialogo_con_funciones.py
 ejemplos/dialogo_con_preguntas.py
@@ -41,15 +42,19 @@ ejemplos/menu.py
 ejemplos/mover_actor_por_eventos.py
 ejemplos/moverse_con_el_teclado.py
 ejemplos/parque.tmx
+ejemplos/parque.tmx.orig
 ejemplos/pingu_controlado_por_teclado.py
 ejemplos/pizarra.py
 ejemplos/pizarra_avanzado_cairo.py
 ejemplos/pizarra_dibuja_grilla.py
 ejemplos/pizarra_dibuja_imagen.py
+ejemplos/pizarra_dibuja_imagen.py.orig
 ejemplos/pizarra_dibuja_triangulo.py
 ejemplos/pizarra_dibujando_con_el_mouse.py
 ejemplos/puntaje.py
 ejemplos/punto_de_control.py
+ejemplos/sa2lida.rst
+ejemplos/salida.rst
 ejemplos/seguir_clicks.py
 ejemplos/selector.py
 ejemplos/sonidos.py
@@ -276,3 +281,6 @@ pilas/motores/__init__.py
 pilas/motores/motor.py
 pilas/motores/motor_pygame.py
 pilas/motores/motor_sfml.py
+pilas/video/__init__.py
+pilas/video/video.py
+pilas/video/webcam.py

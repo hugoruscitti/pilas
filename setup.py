@@ -5,7 +5,7 @@ from setuptools import find_packages
 from pilas import pilasversion
 
 def error(biblioteca, web):
-    print "Error, no ecuentra la biblioteca '%s' (de %s)" %(biblioteca, web)
+    print "Error, no se encuentra la biblioteca '%s' (de %s)" %(biblioteca, web)
     sys.exit(1)
 
 
@@ -30,7 +30,7 @@ setup(
             'setuptools',
             'Box2D',
             ],
-        packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos', 'pilas.motores', 'pilas.interfaz'],
+        packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos', 'pilas.motores', 'pilas.interfaz', 'pilas.video'],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
         package_data = {

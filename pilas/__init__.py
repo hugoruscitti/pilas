@@ -37,7 +37,7 @@ Puedes obtener mas información en nuestro sitio:
 mundo = None
 motor = None
 bg = None
-__all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar', 'avisar', 'videos']
+__all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar', 'avisar', 'video']
 
 import utils
 import motores
