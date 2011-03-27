@@ -36,23 +36,37 @@ class Tareas:
         "Actualiza los contadores de tiempo y ejecuta las tareas pendientes."
         self.time_counter += dt
         to_remove = []
+         
 
-        for t, dt, function, params in self.tasks:
+        for t, dt, function, params, ejecutar_una_sola_vez in self.tasks:
             if self.time_counter > t:
-                must_continue = function(*params)
-                to_remove.append((t, dt, function, params))
+                
+                if ejecutar_una_sola_vez:
+                    function(*params)
+                    to_remove.append((t, dt, function, params, ejecutar_una_sola_vez))
+                else:
+                    w = self.time_counter - t
+                    parte_entera = int((w)/float(dt))
+                    resto = w - (parte_entera * dt)
 
-                if must_continue:
-                    self.agregar(dt, function, params)
+                    for x in range(parte_entera + 1):
+                        function(*params)
+
+                    to_remove.append((t, dt, function, params, ejecutar_una_sola_vez))
+
+                    self._agregar(self.time_counter + (1 - resto) * dt, dt, function, params)
 
         # Elimina de la lista de trabajos los que ya han sido ejecutados.
         if to_remove:
             for x in to_remove:
                 self.tasks.remove(x)
 
-    def agregar(self, time_out, function, params):
+    def _agregar(self, proxima_ejecucion, periodo, function, params, invocar_una_vez=False):
         "Agrega una nueva tarea para ejecutarse luego."
-        # El formato de la tarea es:
-        #          (tiempo_absoluto, tiempo
-        self.tasks.append((self.time_counter + time_out, time_out, function, params))
+        self.tasks.append((proxima_ejecucion, periodo, function, params, invocar_una_vez))
 
+    def una_vez(self, time_out, function, params=[]):
+        self._agregar(self.time_counter + time_out, time_out, function, params, True)
+
+    def siempre(self, time_out, function, params=[]):
+        self._agregar(self.time_counter + time_out, time_out, function, params, False)

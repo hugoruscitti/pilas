@@ -9,10 +9,10 @@ mono.escala = 1
 mono.rotacion = 0
 
 def girar():
-    mono.rotacion = mono.rotacion + 1
+    mono.rotacion = mono.rotacion + 10
     return True
 
-pilas.mundo.agregar_tarea(0, girar)
+pilas.mundo.tareas.siempre(1/60.0, girar)
 
 pilas.avisar("Creando una tarea interminable de girar...")
 pilas.ejecutar()
