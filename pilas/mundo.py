@@ -50,7 +50,7 @@ class Mundo:
 
         # Genera los administradores de tareas e interpolaciones.
         self.tweener = pytweener.Tweener()
-        self.tasks = tareas.Tareas() 
+        self.tareas = tareas.Tareas() 
         
         # Genera el motor de fisica.
         self.fisica = pilas.fisica.Fisica(gravedad=gravedad)
@@ -132,8 +132,11 @@ class Mundo:
         self.escena_actual = escena_nueva
 	escena_nueva.iniciar()
 
-    def agregar_tarea(self, time_out, function, *params): 
-        self.tasks.agregar(time_out, function, params)
+    def agregar_tarea_una_vez(self, time_out, function, *params): 
+        self.tareas.una_vez(time_out, function, params)
+
+    def agregar_tarea_siempre(self, time_out, function, *params): 
+        self.tareas.siempre(time_out, function, params)
 
     def alternar_pausa(self):
         if self.pausa_habilitada:
@@ -146,7 +149,7 @@ class Mundo:
             
     def actualizar_simuladores(self):
         self.tweener.update(16)
-        self.tasks.update(16/1000.0)
+        self.tareas.update(1/60.0)
         self.fisica.actualizar()
 
     def actualizar_actores(self):

@@ -11,7 +11,7 @@ class layers:
     def __init__(self, modo = 'automatico'):
         self.capas = []
         if modo == 'automatico':
-            pilas.mundo.agregar_tarea(0, self.actualizar_pantalla)
+            pilas.mundo.agregar_tarea_siempre(0, self.actualizar_pantalla)
         elif modo == 'manual':
             pass
 

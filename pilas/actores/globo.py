@@ -5,7 +5,8 @@ from pilas.actores import Actor
 class Globo(Actor):
     "Representa un cuadro de dialogo estilo historietas."
 
-    def __init__(self, texto, x=0, y=0, dialogo=None):
+    def __init__(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True):
+        self.dialogo = dialogo
         Actor.__init__(self, x=x, y=y)
         ancho, alto = self._crear_lienzo(texto, pilas) 
         imagen = pilas.imagenes.cargar_imagen_cairo("globo.png")
@@ -16,12 +17,19 @@ class Globo(Actor):
         self.lienzo.asignar(self)
         self.centro = ("centro", "centro")
 
+        if avance_con_clicks:
+            pilas.eventos.click_de_mouse.conectar(self.cuando_quieren_avanzar)
 
     def colocar_origen_del_globo(self, x, y):
         "Cambia la posicion del globo para que el punto de donde se emite el globo sea (x, y)."
         self.x = x - self.obtener_ancho() / 2 + 30
         self.y = y + self.obtener_alto() / 2
     
+
+    def cuando_quieren_avanzar(self, *k):
+        if self.dialogo:
+            self.dialogo.avanzar_al_siguiente_dialogo()
+            
     def _escribir_texto(self, texto):
         return self.lienzo.escribir(texto, 12, 25, tamano=14)
     

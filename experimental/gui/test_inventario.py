@@ -135,8 +135,8 @@ class Inventory(Boton):
                     pos_x = ((self.x + 40) + (self.inventory[0].obtener_ancho() + 20) * i)
                     self.inventory[i].x = pilas.interpolar([pos_x], duracion = 0.5)
                     self.inventory[i].transparencia = 0
-                    pilas.mundo.agregar_tarea(0.5, self.activar_estado)
-                    pilas.mundo.agregar_tarea(0.5, activar_estado_var)
+                    pilas.mundo.agregar_tarea_una_vez(0.5, self.activar_estado)
+                    pilas.mundo.agregar_tarea_una_vez(0.5, activar_estado_var)
                     self.estado = False                    
                 self.open_inventory = True
 
@@ -146,7 +146,7 @@ class Inventory(Boton):
                 for i in range(self.n_inventory):                    
                     variables.estado = False
                     self.inventory[i].x = pilas.interpolar([self.x], duracion = 0.5)
-                    pilas.mundo.agregar_tarea(0.5, self.activar_estado)
+                    pilas.mundo.agregar_tarea_una_vez(0.5, self.activar_estado)
                     self.inventory[i].transparencia = pilas.interpolar([100], duracion = 0.5)
                     self.estado = False
                 self.open_inventory = False
@@ -174,7 +174,7 @@ class Inventory(Boton):
            self.inventory[i].escala = [0.5]
            self.inventory[i].x = pilas.interpolar([self.x], duracion = 0.5)
            self.inventory[i].transparencia = pilas.interpolar([100], duracion = 0.5)
-           pilas.mundo.agregar_tarea(0.5, self.activar_estado)
+           pilas.mundo.agregar_tarea_una_vez(0.5, self.activar_estado)
            self.inventory[i].desconectar_presionado_todo()
            self.inventory[i].desconectar_normal_todo()
            self.inventory[i].desconectar_sobre_todo()
