@@ -1,10 +1,30 @@
 # -*- encoding: utf-8 -*-
 
 import pilas
-import opencv
+try:
+    import opencv
+except ImportError:
+    opencv = None
 from opencv import highgui
 import os
 from PySFML import sf
+
+class MissingOpencv(Exception):
+    def __init__(self):
+        self.value = "Open CV no esta instalado, obtengalo en http://opencv.willowgarage.com"
+
+    def __str__(self):
+        return repr(self.value)
+
+def error(biblioteca, web):
+    print "Error, no ecuentra la biblioteca '%s' (de %s)" %(biblioteca, web)
+
+def no_opencv():
+    from pilas.utils import esta_en_sesion_interactiva
+    if esta_en_sesion_interactiva():
+        error('opencv', 'http://opencv.willowgarage.com')
+    else:
+        raise MissingOpencv()
 
 class DeCamara(pilas.actores.Actor):
     """
@@ -12,6 +32,9 @@ class DeCamara(pilas.actores.Actor):
     
     """
     def __init__(self, ancho=640, alto=480):
+        if opencv is None:
+            no_opencv()
+            return
         import webcam
         self.camara = webcam.CamaraWeb
         self.ultimo_numero_de_cuadro = 0
@@ -26,6 +49,9 @@ class DeCamara(pilas.actores.Actor):
 
 class VideoDeArchivo(object):
     def __init__(self, ruta):
+        if opencv is None:
+            no_opencv()
+            return
         if not os.path.isfile(ruta):
             raise IOError('El archiyo no existe')
         self._camara = highgui.cvCreateFileCapture(ruta)
@@ -43,7 +69,7 @@ class VideoDeArchivo(object):
 class DePelicula(pilas.actores.Actor):
     """
     Nos permite poner en pantalla un video desde un archivo.
-    Toma como parámetro la ruta del video.
+    Toma como parametro la ruta del video.
     """
     def __init__(self, path, ancho=640, alto=480):
         self._camara = VideoDeArchivo(path)
