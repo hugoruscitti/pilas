@@ -56,6 +56,7 @@ ejemplos/sonidos.py
 ejemplos/tareas.py
 ejemplos/test.py
 ejemplos/texto.py
+ejemplos/texto_que_cambia.py
 ejemplos/todos.sh
 ejemplos/usando_pygame.py
 minijuegos/Memorice/README
@@ -195,6 +196,7 @@ pilas/data/aceituna_burla.png
 pilas/data/aceituna_grita.png
 pilas/data/aceituna_risa.png
 pilas/data/banana.png
+pilas/data/batalhao.png
 pilas/data/bomba.png
 pilas/data/caja.png
 pilas/data/cursordisparo.png
@@ -215,12 +217,14 @@ pilas/data/monkey_normal.png
 pilas/data/monkey_shout.png
 pilas/data/monkey_smile.png
 pilas/data/nave.png
+pilas/data/parque.tmx
 pilas/data/pelota.png
 pilas/data/piedra_chica.png
 pilas/data/piedra_grande.png
 pilas/data/piedra_media.png
 pilas/data/pilas-logo.png
 pilas/data/pingu.png
+pilas/data/plataformas.png
 pilas/data/punto.png
 pilas/data/shout.wav
 pilas/data/sin_imagen.png

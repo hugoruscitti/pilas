@@ -37,7 +37,7 @@ Puedes obtener mas información en nuestro sitio:
 mundo = None
 motor = None
 bg = None
-__all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar', 'avisar']
+__all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar', 'avisar', 'videos']
 
 import utils
 import motores
@@ -70,6 +70,7 @@ from colisiones import Colisiones
 import random
 import ejemplos
 import red
+import video
 
 import atajos
 import fisica
