@@ -55,7 +55,7 @@ class DePelicula(pilas.actores.Actor):
         subrect.Bottom = self._altura_cuadro
         self._actor.SetSubRect(subrect)
         self.centro = ('centro', 'centro')
-        pilas.mundo.agregar_tarea(1/self._camara.fps,self.actualizar_video)
+        pilas.mundo.agregar_tarea_siempre(1/self._camara.fps,self.actualizar_video)
 
     def actualizar_video(self):
         self.imagen.LoadFromPixels(self._ancho_cuadro, self._altura_cuadro, self._camara.obtener_imagen())        
