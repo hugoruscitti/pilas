@@ -28,7 +28,6 @@ setup(
         author_email='hugoruscitti@gmail.com',
         install_requires=[
             'setuptools',
-            'Box2D',
             ],
         packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos', 'pilas.motores', 'pilas.interfaz', 'pilas.video'],
         url='http://www.pilas-engine.com.ar',
