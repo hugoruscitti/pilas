@@ -14,7 +14,7 @@ def girar():
     mono.rotacion = mono.rotacion + 1
     return True
 
-pilas.mundo.agregar_tarea(0, girar)
+pilas.mundo.agregar_tarea_siempre(0.01, girar)
 
 pilas.mundo.camara.x = pilas.interpolar([200, 0], duracion=10)
 pilas.mundo.camara.y = pilas.interpolar([200, 0], duracion=10)

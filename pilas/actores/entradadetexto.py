@@ -25,7 +25,7 @@ class EntradaDeTexto(Actor):
         self._actualizar_imagen()
         
         if cursor_intermitente:
-            pilas.mundo.agregar_tarea(0.25, self._actualizar_cursor)
+            pilas.mundo.agregar_tarea_siempre(0.25, self._actualizar_cursor)
 
     def _actualizar_cursor(self):
         if self.cursor == "":

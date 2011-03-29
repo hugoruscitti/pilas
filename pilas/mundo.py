@@ -138,6 +138,9 @@ class Mundo:
     def agregar_tarea_siempre(self, time_out, function, *params): 
         self.tareas.siempre(time_out, function, params)
 
+    def agregar_tarea(self, time_out, funcion, *parametros):
+        self.tareas.condicional(time_out, funcion, parametros)
+
     def alternar_pausa(self):
         if self.pausa_habilitada:
             self.pausa_habilitada = False

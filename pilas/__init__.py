@@ -310,7 +310,7 @@ def ejecutar_cada(segundos, funcion):
     ejecutarse, si retorna False se elimina el temporizador y la funcion
     no se vuelve a ejecutar.
     """
-    pilas.mundo.agregar_tarea(segundos, funcion)
+    pilas.mundo.agregar_tarea_siempre(segundos, funcion)
 
 
 def version():

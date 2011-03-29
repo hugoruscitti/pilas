@@ -51,8 +51,8 @@ class Temporizador(Texto):
 
     # iniciamos temporizador con respectivas funciones y tiempo ajustado
     def iniciar(self):
-        pilas.mundo.agregar_tarea(self.tiempo, self.funcion)
-        pilas.mundo.agregar_tarea(1, self.restar_a_contador)
+        pilas.mundo.agregar_tarea_una_vez(self.tiempo, self.funcion)
+        pilas.mundo.agregar_tarea_siempre(1, self.restar_a_contador)
         
         
         

@@ -17,7 +17,7 @@ class Jugando(Estado):
         self.juego.crear_naves(cantidad=nivel * 3)
 
         # Cada un segundo le avisa al estado que cuente.
-        pilas.mundo.agregar_tarea(1, self.actualizar)
+        pilas.mundo.agregar_tarea_siempre(1, self.actualizar)
 
     def actualizar(self):
         if self.juego.ha_eliminado_todas_las_piedras():

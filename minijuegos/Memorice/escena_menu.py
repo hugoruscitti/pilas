@@ -45,7 +45,7 @@ class EscenaMenu(pilas.escenas.Escena):
 
             return True
 
-        pilas.mundo.agregar_tarea(0.2, animacion_escala)
+        pilas.mundo.agregar_tarea_siempre(0.2, animacion_escala)
         
         # boton inicio
         def presionamos_boton_inicio():

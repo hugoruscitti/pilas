@@ -40,8 +40,12 @@ class Tareas:
 
         for t, dt, function, params, ejecutar_una_sola_vez in self.tasks:
             if self.time_counter > t:
-                
-                if ejecutar_una_sola_vez:
+
+
+                if ejecutar_una_sola_vez == "condicional":
+                    ejecutar_una_sola_vez = not function(*params)
+                    to_remove.append((t, dt, function, params, ejecutar_una_sola_vez))
+                elif ejecutar_una_sola_vez:
                     function(*params)
                     to_remove.append((t, dt, function, params, ejecutar_una_sola_vez))
                 else:
@@ -70,3 +74,6 @@ class Tareas:
 
     def siempre(self, time_out, function, params=[]):
         self._agregar(self.time_counter + time_out, time_out, function, params, False)
+
+    def condicional(self, time_out, function, params=[]):
+        self._agregar(self.time_counter + time_out, time_out, function, params, "Condicional")

@@ -12,7 +12,7 @@ class layers:
     def __init__(self, modo = 'automatico'):
         self.capas = []
         if modo == 'automatico':
-            pilas.mundo.agregar_tarea(0, self.actualizar_pantalla)
+            pilas.mundo.agregar_tarea_siempre(0, self.actualizar_pantalla)
         elif modo == 'manual':
             pass
 
@@ -71,9 +71,6 @@ class layers:
                 i[0].x += i[2]
                 i[1].x = i[0].x + i[1].obtener_ancho()
                
-        return True
-    
-
 
 
 

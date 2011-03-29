@@ -272,7 +272,7 @@ class Juego(pilas.escenas.Escena):
                         if self.intentos[0][0] == c: 
                             boton_x = encontrar_boton_x(c)
                             boton_x2 = encontrar_boton_x(c + '2')
-                            pilas.mundo.agregar_tarea(self.tiempo, borrar_ficha_x, boton_x, boton_x2)
+                            pilas.mundo.agregar_tarea_una_vez(self.tiempo, borrar_ficha_x, boton_x, boton_x2)
 
                 self.estado = False
             else:
@@ -288,7 +288,7 @@ class Juego(pilas.escenas.Escena):
                 for i in range(self.area):
                     self.botones[i].primera_vez_presionado = False
                     self.estado = False
-                    pilas.mundo.agregar_tarea(self.tiempo, pintar_normal_ficha_x, self.botones[i])
+                    pilas.mundo.agregar_tarea_una_vez(self.tiempo, pintar_normal_ficha_x, self.botones[i])
                 
             self.intentos.pop()
             self.intentos.pop()
