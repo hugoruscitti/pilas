@@ -142,3 +142,10 @@ def listar_actores_en_consola():
         print "\t", s
 
     print ""
+
+
+
+def obtener_angulo_entre(punto_a, punto_b):
+    (x, y) = punto_a
+    (x1, y1) = punto_b
+    return math.degrees(math.atan2(y1 - y, x1 -x))
