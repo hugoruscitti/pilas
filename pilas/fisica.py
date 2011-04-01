@@ -180,7 +180,10 @@ class Figura(object):
 class Circulo(Figura):
     "Representa un cuerpo de circulo."
     
-    def __init__(self, x, y, radio, dinamica=True, densidad=1.0, restitucion=0.56, friccion=10.5, amortiguacion=0, fisica=None):
+    def __init__(self, x, y, radio, dinamica=True, densidad=1.0, 
+            restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
+            fisica=None):
+
         if not fisica:
             fisica = pilas.mundo.fisica
             
@@ -204,8 +207,6 @@ class Circulo(Figura):
         circleDef.restitution = restitucion
         circleDef.friction = friccion
         
-        
-                
         body.CreateShape(circleDef)
         body.SetMassFromShapes()    
 
@@ -213,9 +214,13 @@ class Circulo(Figura):
 
 class Rectangulo(Figura):
     
-    def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0, restitucion=0.56, friccion=10.5, amortiguacion=0, fisica=None):
+    def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0, 
+            restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
+            fisica=None):
+
         if not fisica:
             fisica = pilas.mundo.fisica
+
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
         bodyDef.linearDamping = amortiguacion
