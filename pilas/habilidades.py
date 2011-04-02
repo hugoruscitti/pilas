@@ -227,3 +227,8 @@ class Imitar(Habilidad):
         self.receptor.x = self.objeto_a_imitar.x
         self.receptor.y = self.objeto_a_imitar.y
         self.receptor.rotacion = self.objeto_a_imitar.rotacion
+
+    def eliminar(self):
+        if isinstance(self.objeto_a_imitar, pilas.fisica.Figura):
+            self.objeto_a_imitar.eliminar()
+
