@@ -8,7 +8,6 @@ def error(biblioteca, web):
     print "Error, no se encuentra la biblioteca '%s' (de %s)" %(biblioteca, web)
     sys.exit(1)
 
-
 try:
     import PySFML
 except ImportError:
@@ -29,12 +28,15 @@ setup(
         install_requires=[
             'setuptools',
             ],
-        packages=['pilas', 'pilas.actores', 'pilas.dispatch', 'pilas.ejemplos', 'pilas.motores', 'pilas.interfaz', 'pilas.video'],
+        packages=['pilas', 'pilas.actores', 'pilas.dispatch', 
+                  'pilas.ejemplos', 'pilas.motores', 
+                  'pilas.interfaz', 'pilas.video'],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
         package_data = {
-            'images': ['pilas/data/*', 'pilas/ejemplos/data/*', 'pilas/data/fondos/*',
-                       'pilas/data/juegobase/*', 'pilas/data/juegobase/data/*'],
+            'images': ['pilas/data/*', 'pilas/ejemplos/data/*', 
+                       'pilas/data/fondos/*', 'pilas/data/juegobase/*', 
+                       'pilas/data/juegobase/data/*'],
             },
 
         scripts=['bin/pilas'],

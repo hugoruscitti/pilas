@@ -1,10 +1,19 @@
-import pilas, Image, opencv
-from opencv import highgui 
+import pilas
+try:
+    import Image
+    import opencv
+    from opencv import highgui 
 
-GLOBALCAM=highgui.cvCreateCameraCapture(0)
-for algo in range(30):
-    ULTIMO_CUADRO_BASURA = highgui.cvQueryFrame(GLOBALCAM)
-ULTIMO_CUADRO_BASURA = opencv.adaptors.Ipl2PIL(opencv.cvGetMat(ULTIMO_CUADRO_BASURA)).convert('RGBA')
+    GLOBALCAM=highgui.cvCreateCameraCapture(0)
+
+    for algo in range(30):
+        ULTIMO_CUADRO_BASURA = highgui.cvQueryFrame(GLOBALCAM)
+
+    ULTIMO_CUADRO_BASURA = opencv.adaptors.Ipl2PIL(opencv.cvGetMat(ULTIMO_CUADRO_BASURA)).convert('RGBA')
+except ImportError:
+    print "Falta la biblioteca opencv o PIL"
+    pass
+
 
 class __camara_buffer(object):
     def __init__(self):

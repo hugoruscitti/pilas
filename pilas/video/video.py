@@ -3,9 +3,10 @@
 import pilas
 try:
     import opencv
+    from opencv import highgui
 except ImportError:
     opencv = None
-from opencv import highgui
+
 import os
 from PySFML import sf
 
