@@ -24,10 +24,22 @@ class Fisica(object):
         self.crear_techo()
         self.crear_suelo()
         self.crear_paredes()
+        self.figuras_a_eliminar = []
         
     def actualizar(self):
         self.mundo.Step(1.0 / 20.0, 10, 8)
         self.i += 1
+        self._procesar_figuras_a_eliminar()
+
+    def _procesar_figuras_a_eliminar(self):
+        "Elimina las figuras que han sido marcadas para quitar."
+        if self.figuras_a_eliminar:
+            for x in self.figuras_a_eliminar:
+                # Solo elimina las figuras que actualmente existen.
+                if x in self.mundo.bodyList:
+                    self.mundo.DestroyBody(x)
+            self.figuras_a_eliminar = []
+
         
     def dibujar_figuras_sobre_pizarra(self, pizarra):
         "Dibuja todas las figuras en una pizarra. Indicado para depuracion."
@@ -84,7 +96,7 @@ class Fisica(object):
             self.pared_izquierda = None
     
     def eliminar_figura(self, figura):
-        self.mundo.DestroyBody(figura)
+        self.figuras_a_eliminar.append(figura)
         
     def obtener_distancia_al_suelo(self, x, y, dy):
         """Obtiene la distancia hacia abajo desde el punto (x,y). 
