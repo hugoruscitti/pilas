@@ -12,6 +12,8 @@ import cairo
 import pilas
 from pilas import eventos
 import motor
+import glob
+import re
 
 ANCHO = 640
 ALTO = 480
@@ -351,7 +353,8 @@ class pySFML(motor.Motor):
         
         if code == sf.Key.P and event.Key.Alt:
             pilas.mundo.alternar_pausa()
-            
+        elif code == sf.Key.F4:
+            pilas.motor.guardar_captura()
         elif code == sf.Key.F6:
             pilas.utils.listar_actores_en_consola()                
         elif code == sf.Key.F7:
@@ -397,3 +400,25 @@ class pySFML(motor.Motor):
         h = imagen.GetHeight()
 
         return cairo.ImageSurface.create_for_data(pixels, cairo.FORMAT_RGB24, w, h)
+
+    def guardar_captura(self):
+        imagen = self.ventana.Capture()
+        numero = self._obtener_numeracion_siguiente_imagen()
+        nombre = "imagen_%d.png" %(numero)
+        imagen.SaveToFile(nombre)
+        print "Guardando el archivo %s" %(nombre)
+
+    def _obtener_numeracion_siguiente_imagen(self):
+        "Obtiene un numero de imagen para guardar una captura."
+        lista_de_archivos = glob.glob("imagen_*.png")
+
+        if lista_de_archivos:
+            archivos = "\n".join(lista_de_archivos)
+            patron = "_(.+).png"
+            numeros = [int(x) for x in re.findall(patron, archivos)]
+            numeros.sort()
+            ultimo_numero = numeros[-1] + 1
+        else:
+            ultimo_numero = 1
+
+        return ultimo_numero
