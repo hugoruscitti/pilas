@@ -8,7 +8,11 @@ except ImportError:
     opencv = None
 
 import os
-from PySFML import sf
+
+try:
+    from PySFML import sf
+except ImportError:
+    pass
 
 class MissingOpencv(Exception):
     def __init__(self):

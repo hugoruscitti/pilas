@@ -6,7 +6,6 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-from PySFML import sf
 import pilas
 
 class Depurador:
@@ -54,6 +53,7 @@ class Depurador:
             m.dibuja_actor(actor)
     
     def pulsa_tecla(self, code):
+        from PySFML import sf
         if code == sf.Key.F8:
             self._alternar_modo(ModoPuntosDeControl)
         elif code == sf.Key.F9:
