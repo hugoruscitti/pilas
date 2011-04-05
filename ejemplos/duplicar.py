@@ -1,5 +1,4 @@
 import pilas
-from PySFML import sf
 # Permite que este ejemplo funcion incluso si no has instalado pilas.
 import sys
 sys.path.insert(0, "..")

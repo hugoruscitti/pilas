@@ -15,7 +15,17 @@ from pilas import eventos
 ANCHO = 640
 ALTO = 480
 
-class PygameActor(pygame.sprite.Sprite):
+
+class BaseActor:
+
+    def __init__(self):
+        self._escala_actual = 1
+        self._rotacion_actual = 0
+
+    def obtener_escala(self):
+        return self._escala_actual
+
+class PygameActor(pygame.sprite.Sprite, BaseActor):
     """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
     Un objeto Actor se tiene que crear siempre indicando la imagen, ya
@@ -50,6 +60,7 @@ class PygameActor(pygame.sprite.Sprite):
     def __init__(self, image="sin_imagen.png", x=0, y=0):
         self.centro_x = 0
         self.centro_y = 0
+        BaseActor.__init__(self)
 
         if isinstance(image, str):
             image = pilas.imagenes.cargar(image)
@@ -58,8 +69,6 @@ class PygameActor(pygame.sprite.Sprite):
         self.image = image
         self.image_original = image.convert_alpha()
         self.rect = self.image.get_rect()
-        self._escala_actual = 1
-        self._rotacion_actual = 0
         
     def obtener_ancho(self):
         return self.rect.width
@@ -117,8 +126,6 @@ class PygameActor(pygame.sprite.Sprite):
     def definir_posicion(self, x, y):
         self.rect.topleft = (x, -y)
 
-    def obtener_escala(self):
-        return self._escala_actual
 
     def definir_escala(self, s):
         self._escala_actual = s
@@ -139,7 +146,7 @@ class PygameActor(pygame.sprite.Sprite):
         self.rect.center = centro
 
 
-class Texto(pygame.sprite.Sprite):
+class Texto(pygame.sprite.Sprite, BaseActor):
     """Representa un texto en pantalla.
 
     El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
@@ -153,23 +160,23 @@ class Texto(pygame.sprite.Sprite):
         self._color = pilas.colores.negro
 
         pygame.sprite.Sprite.__init__(self)
-        self.set_text(texto)
+        BaseActor.__init__(self)
+        self.definir_texto(texto)
         self.rect = self.image.get_rect()
-        pilas.baseactor.BaseActor.__init__(self, x=x, y=y) 
         self._escala_actual = 1
         self._texto = texto
 
-    def get_text(self):
+    def obtener_texto(self):
         return self._texto
 
-    def set_text(self, texto):
+    def definir_texto(self, texto):
         self._texto = texto
         self.image = self.font.render(texto, 1, self.color.obtener_componentes())
 
-    def get_size(self):
+    def obtener_magnitud(self):
         return 32
 
-    def set_size(self, size):
+    def definir_magnitud(self, size):
         print "No se puede cambiar el tamanano del texto en pygame"
 
     '''
@@ -186,16 +193,16 @@ class Texto(pygame.sprite.Sprite):
     def definir_posicion(self, x, y):
         self.rect.topleft = (x, -y)
 
-    def get_color(self):
+    def obtener_color(self):
         return self._color
 
-    def set_color(self, k):
+    def definir_color(self, k):
         self._color = k
         self.texto = self._texto
 
-    texto = property(get_text, set_text, doc="El texto que se tiene que mostrar.")
-    magnitud = property(get_size, set_size, doc="El tamaño del texto.")
-    color = property(get_color, set_color, doc="Color del texto.")
+    texto = property(obtener_texto, definir_texto, doc="El texto que se tiene que mostrar.")
+    magnitud = property(obtener_magnitud, definir_magnitud, doc="El tamaño del texto.")
+    color = property(obtener_color, definir_color, doc="Color del texto.")
 
     def dibujar(self, aplicacion):
         x, y = self.rect.topleft
@@ -227,7 +234,7 @@ class Canvas:
         self.data = array.array('c', chr(0) * ancho * alto * 4)
         stride = ancho * 4
         self.surface = cairo.ImageSurface.create_for_data(self.data, 
-                cairo.FORMAT_ARGB32, ANCHO, alto, stride)
+                cairo.FORMAT_ARGB32, ancho, alto, stride)
 
         self.context = cairo.Context(self.surface)
         self.ancho = ancho
@@ -464,6 +471,9 @@ class Pygame:
 
     def obtener_canvas(self, ancho, alto):
         return Canvas(ancho, alto)
+
+    def obtener_texto(self, texto, x, y):
+        return Texto(texto, x, y)
 
     def obtener_grilla(self, ruta, columnas, filas):
         return Grilla(ruta, columnas, filas)
