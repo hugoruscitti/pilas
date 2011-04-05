@@ -89,4 +89,3 @@ class Tortuga(Actor):
 
     def pintar(self, color=None):
         self.pizarra.pintar(color)
-
