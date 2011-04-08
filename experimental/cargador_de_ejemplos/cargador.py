@@ -3,6 +3,8 @@ import os
 import sys
 import glob
 from PyQt4 import QtGui, QtCore
+from subprocess import call
+
 
 class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
@@ -31,11 +33,8 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
     def cuando_pulsa_boton_ejecutar(self):
         nombre_ejemplo = str(self._obtener_item_actual() + '.py')
-
-        pid = os.fork()
-
-        if pid == 0:
-            execfile(nombre_ejemplo)
+        comando = "python ejemplos/" + nombre_ejemplo
+        call(comando, shell=True)
 
     def cuando_pulsa_boton_guardar(self):
         print self._obtener_item_actual()
