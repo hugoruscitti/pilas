@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui.ui'
 #
-# Created: Wed Apr  6 17:18:16 2011
+# Created: Fri Apr  8 00:49:07 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -32,12 +32,12 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.imagen)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.guardar = QtGui.QPushButton(self.centralwidget)
-        self.guardar.setObjectName(_fromUtf8("guardar"))
-        self.horizontalLayout.addWidget(self.guardar)
         self.ejecutar = QtGui.QPushButton(self.centralwidget)
         self.ejecutar.setObjectName(_fromUtf8("ejecutar"))
         self.horizontalLayout.addWidget(self.ejecutar)
+        self.guardar = QtGui.QPushButton(self.centralwidget)
+        self.guardar.setObjectName(_fromUtf8("guardar"))
+        self.horizontalLayout.addWidget(self.guardar)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.codigo = QtGui.QTextEdit(self.centralwidget)
         self.codigo.setObjectName(_fromUtf8("codigo"))
@@ -45,7 +45,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addLayout(self.verticalLayout, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 513, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 513, 26))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -57,8 +57,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Ejemplos del motor pilas", None, QtGui.QApplication.UnicodeUTF8))
-        self.guardar.setText(QtGui.QApplication.translate("MainWindow", "Ejecutar", None, QtGui.QApplication.UnicodeUTF8))
-        self.ejecutar.setText(QtGui.QApplication.translate("MainWindow", "Guardar Codigo", None, QtGui.QApplication.UnicodeUTF8))
+        self.ejecutar.setText(QtGui.QApplication.translate("MainWindow", "Ejecutar", None, QtGui.QApplication.UnicodeUTF8))
+        self.guardar.setText(QtGui.QApplication.translate("MainWindow", "Guardar Codigo", None, QtGui.QApplication.UnicodeUTF8))
 
 
 if __name__ == "__main__":

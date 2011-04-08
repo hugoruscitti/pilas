@@ -1,4 +1,5 @@
 import ui
+import os
 import sys
 import glob
 from PyQt4 import QtGui, QtCore
@@ -17,7 +18,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
     def _cargar_lista_de_ejemplos(self):
         todos_los_archivos = glob.glob("ejemplos/*.py")
-        nombres = [x.replace('.py', '') for x in todos_los_archivos]
+        nombres = [x.replace('.py', '').replace('ejemplos/','') for x in todos_los_archivos]
 
         for n in nombres:
             self.ui.lista.addItem(n)
@@ -29,7 +30,12 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self.ui.setupUi(self)
 
     def cuando_pulsa_boton_ejecutar(self):
-        print self._obtener_item_actual()
+        nombre_ejemplo = str(self._obtener_item_actual() + '.py')
+
+        pid = os.fork()
+
+        if pid == 0:
+            execfile(nombre_ejemplo)
 
     def cuando_pulsa_boton_guardar(self):
         print self._obtener_item_actual()
@@ -42,11 +48,11 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
     def _mostrar_imagen_del_ejemplo(self, nombre):
         escena = QtGui.QGraphicsScene()
         self.ui.imagen.setScene(escena)
-        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(nombre + '.png'))
+        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap('ejemplos/' + nombre + '.png'))
         escena.addItem(pixmap);
 
     def _mostrar_codigo_del_ejemplo(self, nombre):
-        archivo = open(nombre + '.py', 'rt')
+        archivo = open('ejemplos/' + nombre + '.py', 'rt')
         contenido = archivo.read()
         archivo.close()
         self.ui.codigo.document().setPlainText(contenido)

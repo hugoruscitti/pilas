@@ -26,14 +26,14 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QPushButton" name="guardar">
+         <widget class="QPushButton" name="ejecutar">
           <property name="text">
            <string>Ejecutar</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="ejecutar">
+         <widget class="QPushButton" name="guardar">
           <property name="text">
            <string>Guardar Codigo</string>
           </property>
@@ -54,7 +54,7 @@
      <x>0</x>
      <y>0</y>
      <width>513</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
