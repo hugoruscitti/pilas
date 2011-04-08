@@ -37,7 +37,17 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         call(comando, shell=True)
 
     def cuando_pulsa_boton_guardar(self):
-        print self._obtener_item_actual()
+        nombre = self._obtener_item_actual()
+        path = unicode(QtGui.QFileDialog.getSaveFileName(self, 
+                    'Guardar ejemplo',
+                    nombre + ".py",
+                    "py (*.py)"))
+        contenido = self._obtener_codigo_del_ejemplo(nombre)
+
+        archivo = open(path, "wt")
+        archivo.write(contenido)
+        archivo.close()
+
 
     def cuando_cambia_seleccion(self):
         nombre = self._obtener_item_actual()
@@ -51,10 +61,14 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         escena.addItem(pixmap);
 
     def _mostrar_codigo_del_ejemplo(self, nombre):
+        contenido = self._obtener_codigo_del_ejemplo(nombre)
+        self.ui.codigo.document().setPlainText(contenido)
+
+    def _obtener_codigo_del_ejemplo(self, nombre):
         archivo = open('ejemplos/' + nombre + '.py', 'rt')
         contenido = archivo.read()
         archivo.close()
-        self.ui.codigo.document().setPlainText(contenido)
+        return contenido
 
     def _obtener_item_actual(self):
         return self.ui.lista.currentItem().text()
