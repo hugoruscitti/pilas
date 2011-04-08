@@ -48,7 +48,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
     def _mostrar_imagen_del_ejemplo(self, nombre):
         escena = QtGui.QGraphicsScene()
         self.ui.imagen.setScene(escena)
-        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap('ejemplos/' + nombre + '.png'))
+        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap('ejemplos/capturas/' + nombre + '.png'))
         escena.addItem(pixmap);
 
     def _mostrar_codigo_del_ejemplo(self, nombre):
