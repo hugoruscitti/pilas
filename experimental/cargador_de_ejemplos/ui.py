@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui.ui'
 #
-# Created: Sat Apr  9 11:26:35 2011
+# Created: Sat Apr  9 12:12:33 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -58,6 +58,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.guardar)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.codigo = QtGui.QTextEdit(self.centralwidget)
+        self.codigo.setReadOnly(True)
         self.codigo.setObjectName(_fromUtf8("codigo"))
         self.verticalLayout.addWidget(self.codigo)
         self.gridLayout.addLayout(self.verticalLayout, 0, 1, 1, 1)

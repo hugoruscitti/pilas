@@ -99,7 +99,11 @@
        </layout>
       </item>
       <item>
-       <widget class="QTextEdit" name="codigo"/>
+       <widget class="QTextEdit" name="codigo">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
