@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui.ui'
 #
-# Created: Fri Apr  8 01:05:04 2011
+# Created: Sat Apr  9 11:26:35 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(513, 350)
+        MainWindow.resize(490, 438)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -30,6 +30,24 @@ class Ui_MainWindow(object):
         self.imagen = QtGui.QGraphicsView(self.centralwidget)
         self.imagen.setObjectName(_fromUtf8("imagen"))
         self.verticalLayout.addWidget(self.imagen)
+        self.progreso = QtGui.QFrame(self.centralwidget)
+        self.progreso.setMinimumSize(QtCore.QSize(0, 22))
+        self.progreso.setFrameShape(QtGui.QFrame.NoFrame)
+        self.progreso.setFrameShadow(QtGui.QFrame.Plain)
+        self.progreso.setLineWidth(0)
+        self.progreso.setObjectName(_fromUtf8("progreso"))
+        self.progressBar = QtGui.QProgressBar(self.progreso)
+        self.progressBar.setGeometry(QtCore.QRect(0, 0, 221, 21))
+        self.progressBar.setMaximum(0)
+        self.progressBar.setProperty(_fromUtf8("value"), -1)
+        self.progressBar.setTextVisible(True)
+        self.progressBar.setInvertedAppearance(False)
+        self.progressBar.setTextDirection(QtGui.QProgressBar.BottomToTop)
+        self.progressBar.setObjectName(_fromUtf8("progressBar"))
+        self.label = QtGui.QLabel(self.progreso)
+        self.label.setGeometry(QtCore.QRect(50, 0, 131, 21))
+        self.label.setObjectName(_fromUtf8("label"))
+        self.verticalLayout.addWidget(self.progreso)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.ejecutar = QtGui.QPushButton(self.centralwidget)
@@ -45,7 +63,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addLayout(self.verticalLayout, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 513, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 490, 26))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -57,6 +75,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Ejemplos del motor pilas", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("MainWindow", "Cargando ejemplo", None, QtGui.QApplication.UnicodeUTF8))
         self.ejecutar.setText(QtGui.QApplication.translate("MainWindow", "Ejecutar", None, QtGui.QApplication.UnicodeUTF8))
         self.guardar.setText(QtGui.QApplication.translate("MainWindow", "Guardar Codigo", None, QtGui.QApplication.UnicodeUTF8))
 
