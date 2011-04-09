@@ -26,6 +26,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self.connect(self.ui.ejecutar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_ejecutar)
         self.connect(self.ui.guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_guardar)
         self.connect(self.ui.lista, QtCore.SIGNAL("itemSelectionChanged()"), self.cuando_cambia_seleccion)
+        self.connect(self.ui.lista, QtCore.SIGNAL("itemActivated(QListWidgetItem *)"), self.cuando_pulsa_boton_ejecutar)
 
         syntax.PythonHighlighter(self.ui.codigo.document())
 
@@ -127,6 +128,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
     def _cuando_termina_la_ejecucion_del_ejemplo(self):
         "Vuelve a permitir que se usen todos los botone de la interfaz."
         self._definir_estado_habilitado(True)
+        self.ui.lista.setFocus()
         
 
 if __name__ == "__main__":
