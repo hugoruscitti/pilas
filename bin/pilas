@@ -24,7 +24,7 @@ elif opciones.crearjuego:
     sys.exit(0)
 
 
-print "Error, no has indicado un parametro para inciar pilas."
+print "Error, no has indicado un parametro para iniciar pilas."
 print "Puedes ejecutar el comando 'pilas --help' para ver instrucciones."
 sys.exit(1)
 
