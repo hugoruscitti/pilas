@@ -12,7 +12,6 @@ import sys
 import glob
 from PyQt4 import QtGui, QtCore
 import threading
-import subprocess
 import syntax
 
 
@@ -58,8 +57,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
     def cuando_pulsa_boton_ejecutar(self):
         nombre_ejemplo = str(self._obtener_item_actual() + '.py')
-        comando = "python ejemplos/" + nombre_ejemplo
-        self._ejecutar_comando(comando)
+        self._ejecutar_ejemplo(nombre_ejemplo)
 
 
     def cuando_pulsa_boton_guardar(self):
@@ -98,34 +96,16 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
     def _obtener_item_actual(self):
         return self.ui.lista.currentItem().text()
 
-    def _ejecutar_comando(self, comando):
+    def _ejecutar_ejemplo(self, ejemplo):
+        process = QtCore.QProcess(self)
+        process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
+        process.start(sys.executable, ['ejemplos/' + ejemplo])
 
-        def popenAndCall(onExit, popenArgs):
-            """
-            Runs the given args in a subprocess.Popen, and then calls the function
-            onExit when the subprocess completes.
-            onExit is a callable object, and popenArgs is a list/tuple of args that 
-            would give to subprocess.Popen.
-
-            http://stackoverflow.com/questions/2581817/python-subprocess-callback-when-cmd-exits
-            """
-            def runInThread(onExit, popenArgs):
-                proc = subprocess.Popen(*popenArgs)
-                proc.wait()
-                onExit()
-                return
-
-            thread = threading.Thread(target=runInThread, args=(onExit, popenArgs))
-            thread.start()
-            # returns immediately after the thread starts
-            return thread
-
-        popenAndCall(self._cuando_termina_la_ejecucion_del_ejemplo, [comando.split(' ')])
         # Deshabilita todos los controles para que se pueda
         # ejecutar un ejemplo a la vez.
         self._definir_estado_habilitado(False)
 
-    def _cuando_termina_la_ejecucion_del_ejemplo(self):
+    def _cuando_termina_la_ejecucion_del_ejemplo(self, estado):
         "Vuelve a permitir que se usen todos los botone de la interfaz."
         self._definir_estado_habilitado(True)
         self.ui.lista.setFocus()
