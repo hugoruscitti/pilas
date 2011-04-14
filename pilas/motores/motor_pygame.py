@@ -484,6 +484,10 @@ class Pygame:
     def mostrar_puntero_del_mouse(self):
         pygame.mouse.set_visible(False)
 
+    def obtener_posicion_del_mouse(self):
+        x, y = pygame.mouse.get_pos()
+        return (x - 320, 240 - y)
+
     def pintar(self, color):
         self.ventana.fill((color.r, color.g, color.b))
 

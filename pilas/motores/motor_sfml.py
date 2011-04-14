@@ -236,6 +236,9 @@ class pySFML(motor.Motor):
 
     def obtener_texto(self, texto, x, y):
         return SFMLTexto(texto, x, y)
+
+    def obtener_posicion_del_mouse(self):
+        return (self.mouse_x, self.mouse_y)
     
     def obtener_canvas(self, ancho, alto):
         return SFMLCanvas(ancho, alto)
