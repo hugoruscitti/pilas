@@ -26,6 +26,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self.connect(self.ui.guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_guardar)
         self.connect(self.ui.lista, QtCore.SIGNAL("itemSelectionChanged()"), self.cuando_cambia_seleccion)
         self.connect(self.ui.lista, QtCore.SIGNAL("itemActivated(QListWidgetItem *)"), self.cuando_pulsa_boton_ejecutar)
+        self.connect(self.ui.actionSalir, QtCore.SIGNAL("activated()"), self.cuando_quiere_cerrar)
 
         syntax.PythonHighlighter(self.ui.codigo.document())
 
@@ -59,6 +60,9 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         nombre_ejemplo = str(self._obtener_item_actual() + '.py')
         self._ejecutar_ejemplo(nombre_ejemplo)
 
+    def cuando_quiere_cerrar(self):
+        import sys
+        sys.exit(0)
 
     def cuando_pulsa_boton_guardar(self):
         nombre = self._obtener_item_actual()

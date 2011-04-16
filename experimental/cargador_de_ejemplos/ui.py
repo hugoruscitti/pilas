@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui.ui'
 #
-# Created: Sat Apr  9 12:12:33 2011
+# Created: Fri Apr 15 23:46:15 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -64,12 +64,18 @@ class Ui_MainWindow(object):
         self.gridLayout.addLayout(self.verticalLayout, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 490, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 490, 32))
         self.menubar.setObjectName(_fromUtf8("menubar"))
+        self.menuArchivo = QtGui.QMenu(self.menubar)
+        self.menuArchivo.setObjectName(_fromUtf8("menuArchivo"))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         MainWindow.setStatusBar(self.statusbar)
+        self.actionSalir = QtGui.QAction(MainWindow)
+        self.actionSalir.setObjectName(_fromUtf8("actionSalir"))
+        self.menuArchivo.addAction(self.actionSalir)
+        self.menubar.addAction(self.menuArchivo.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -79,6 +85,8 @@ class Ui_MainWindow(object):
         self.label.setText(QtGui.QApplication.translate("MainWindow", "Cargando ejemplo", None, QtGui.QApplication.UnicodeUTF8))
         self.ejecutar.setText(QtGui.QApplication.translate("MainWindow", "Ejecutar", None, QtGui.QApplication.UnicodeUTF8))
         self.guardar.setText(QtGui.QApplication.translate("MainWindow", "Guardar Codigo", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuArchivo.setTitle(QtGui.QApplication.translate("MainWindow", "Archivo", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSalir.setText(QtGui.QApplication.translate("MainWindow", "Salir", None, QtGui.QApplication.UnicodeUTF8))
 
 
 if __name__ == "__main__":
