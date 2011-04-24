@@ -77,6 +77,7 @@ import fisica
 import grupo
 import lienzo
 import interfaz
+import cargador
 
 
 

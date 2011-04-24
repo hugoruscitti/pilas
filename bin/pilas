@@ -13,6 +13,10 @@ analizador.add_option("-j", "--crearjuego", dest="crearjuego",
         action="store_true", default=False,
         help="Genera un directorio de videojuego vacio.")
 
+analizador.add_option("-e", "--ejemplos", dest="ejemplos",
+        action="store_true", default=False,
+        help="Mustra varios ejemplos sencillos de pilas")
+
 (opciones, argumentos) = analizador.parse_args()
 
 
@@ -21,6 +25,9 @@ if opciones.servir:
     sys.exit(0)
 elif opciones.crearjuego:
     pilas.utils.crear_juego()
+    sys.exit(0)
+elif opciones.ejemplos:
+    pilas.cargador.ejecutar()
     sys.exit(0)
 
 

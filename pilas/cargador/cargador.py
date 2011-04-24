@@ -45,7 +45,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
     def _cargar_lista_de_ejemplos(self):
         todos_los_archivos = glob.glob("ejemplos/*.py")
-        nombres = [x.replace('.py', '').replace('ejemplos/','') for x in todos_los_archivos]
+        nombres = [os.path.basename(x).replace('.py', '') for x in todos_los_archivos]
 
         for n in nombres:
             self.ui.lista.addItem(n)
@@ -114,10 +114,12 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self._definir_estado_habilitado(True)
         self.ui.lista.setFocus()
         
-
-if __name__ == "__main__":
+def main():
     app = QtGui.QApplication(sys.argv)
     window = VentanaPrincipal()
     window.show()
     sys.exit(app.exec_())
 
+
+if __name__ == "__main__":
+    main()
