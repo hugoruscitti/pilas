@@ -19,6 +19,8 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
     def __init__(self):
         self._iniciar_interfaz()
+        self.this_dir = os.path.abspath(os.path.dirname(__file__))
+        self.example_dir = os.path.join(self.this_dir, 'ejemplos')
         self._cargar_lista_de_ejemplos()
 
         # Senales
@@ -44,7 +46,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
             x.setEnabled(esta_habilitado)
 
     def _cargar_lista_de_ejemplos(self):
-        todos_los_archivos = glob.glob("ejemplos/*.py")
+        todos_los_archivos = glob.glob(self.example_dir + '/*.py')
         nombres = [os.path.basename(x).replace('.py', '') for x in todos_los_archivos]
 
         for n in nombres:
@@ -84,7 +86,9 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
     def _mostrar_imagen_del_ejemplo(self, nombre):
         escena = QtGui.QGraphicsScene()
         self.ui.imagen.setScene(escena)
-        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap('ejemplos/capturas/' + nombre + '.png'))
+        base = self.this_dir
+        path = os.path.join(self.example_dir, 'capturas')
+        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(path + '/' + nombre + '.png'))
         escena.addItem(pixmap);
 
     def _mostrar_codigo_del_ejemplo(self, nombre):
@@ -92,7 +96,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self.ui.codigo.document().setPlainText(contenido)
 
     def _obtener_codigo_del_ejemplo(self, nombre):
-        archivo = open('ejemplos/' + nombre + '.py', 'rt')
+        archivo = open(self.example_dir + '/' + nombre + '.py', 'rt')
         contenido = archivo.read()
         archivo.close()
         return contenido
@@ -103,7 +107,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
     def _ejecutar_ejemplo(self, ejemplo):
         process = QtCore.QProcess(self)
         process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
-        process.start(sys.executable, ['ejemplos/' + ejemplo])
+        process.start(sys.executable, [self.this_dir + '/ejemplos/' + ejemplo])
 
         # Deshabilita todos los controles para que se pueda
         # ejecutar un ejemplo a la vez.
