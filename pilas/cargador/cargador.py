@@ -15,6 +15,13 @@ import threading
 import syntax
 
 
+MENSAJE_PRESENTACION = u"""Bienvenido al cargador de ejemplos.
+
+Selecciona un ejemplo usando el panel de
+la izquierda y luego verás el código acá.
+"""
+
+
 class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
     def __init__(self):
@@ -33,6 +40,8 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         syntax.PythonHighlighter(self.ui.codigo.document())
 
         self._definir_estado_habilitado(True)
+        self._mostrar_image_inicial()
+        self._mostrar_codigo_presentacion_inicial()
 
     def _definir_estado_habilitado(self, esta_habilitado):
         "Oculta la barra de progreso y habilita todos los controles."
@@ -83,6 +92,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self._mostrar_codigo_del_ejemplo(nombre)
         self._mostrar_imagen_del_ejemplo(nombre)
 
+
     def _mostrar_imagen_del_ejemplo(self, nombre):
         escena = QtGui.QGraphicsScene()
         self.ui.imagen.setScene(escena)
@@ -91,9 +101,15 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(path + '/' + nombre + '.png'))
         escena.addItem(pixmap);
 
+    def _mostrar_image_inicial(self):
+        self._mostrar_imagen_del_ejemplo('_presentacion')
+
     def _mostrar_codigo_del_ejemplo(self, nombre):
         contenido = self._obtener_codigo_del_ejemplo(nombre)
         self.ui.codigo.document().setPlainText(contenido)
+
+    def _mostrar_codigo_presentacion_inicial(self):
+        self.ui.codigo.document().setPlainText(MENSAJE_PRESENTACION)
 
     def _obtener_codigo_del_ejemplo(self, nombre):
         archivo = open(self.example_dir + '/' + nombre + '.py', 'rt')
