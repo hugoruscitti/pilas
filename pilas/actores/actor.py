@@ -306,6 +306,14 @@ class Actor(object, Estudiante):
     ancho = property(obtener_ancho)
     alto = property(obtener_alto)
 
+    def __mul__(self, cantidad):
+        if type(cantidad) is not int or cantidad < 1:
+            raise TypeError("Solo puede multiplicar por numeros enteros mayores a 1.")
+
+        grupo = pilas.atajos.fabricar(self.__class__, cantidad - 1)
+        grupo.append(self)
+        return grupo
+
     def __str__(self):
         return "<%s en (%d, %d)>" %(self.__class__.__name__, self.x, self.y)
 

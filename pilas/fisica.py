@@ -146,10 +146,7 @@ class Fisica(object):
         return lista_de_cuerpos
     
     def definir_gravedad(self, x, y):
-        self.gravedad = box2d.b2Vec2(x, y)
-        #self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
-        print "Esta funcion esta en desuso..."
-
+        pilas.fisica.definir_gravedad(x, y)
 
 class Figura(object):
     "Representa un figura que simula un cuerpo fisico."

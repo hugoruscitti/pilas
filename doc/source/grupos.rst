@@ -66,3 +66,22 @@ usando una sentencia como la que sigue:
 donde el primer argumento es la gravedad horizontal, en este caso 200
 es hacia la derecha, y la gravedad vertical, que suele ser de -90
 en general.
+
+
+Creando un grupo desde un actor
+-------------------------------
+
+Otra forma práctica de generar un grupo, es usando
+el operador "por" junto a un actor. Por ejemplo, el resultado
+que logramos usando la función ``fabricar`` se podría lograr
+haciendo esto:
+
+.. code-block:: python
+    
+    bomba = pilas.actores.Bomba()
+    muchas_bombas = bomba * 30
+
+
+Es decir, cuando tomamos un actor y lo multiplicamos por
+un número, el resultado es un grupo que contiene al actor
+inicial y a 29 actores mas...
