@@ -70,6 +70,7 @@ class Actor(object, Estudiante):
         self.radio_de_colision = 10
         pilas.actores.utils.insertar_como_nuevo_actor(self)
         self._transparencia = 0
+        self.anexados = []
 
     def definir_centro(self, (x, y)):
         if type(x) == str:
@@ -202,6 +203,7 @@ class Actor(object, Estudiante):
     def eliminar(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."
         self.destruir()
+        self._eliminar_anexados()
     
     def destruir(self):
         "Elimina a un actor pero de manera inmediata."
@@ -332,4 +334,16 @@ class Actor(object, Estudiante):
     def esta_fuera_de_la_pantalla(self):
         if self.derecha < -320 or self.izquierda > 320 or self.arriba < -240 or self.abajo > 240:
                 return True
+
+    def decir(self, mensaje):
+        nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y + (self.alto/2))
+        nuevo_actor.z = self.z - 1
+        self.anexar(nuevo_actor)
+
+    def anexar(self, otro_actor):
+        self.anexados.append(otro_actor)
+
+    def _eliminar_anexados(self):
+        for x in self.anexados:
+            x.eliminar()
 

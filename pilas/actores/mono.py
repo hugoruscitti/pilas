@@ -48,3 +48,7 @@ class Mono(Actor):
 
     def normal(self):
         self.definir_imagen(self.image_normal)
+
+    def decir(self, mensaje):
+        self.sonreir()
+        Actor.decir(self, mensaje)
