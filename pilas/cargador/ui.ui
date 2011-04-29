@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>490</width>
-    <height>438</height>
+    <width>481</width>
+    <height>516</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,20 @@
     <item row="0" column="1">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QGraphicsView" name="imagen"/>
+       <widget class="QGraphicsView" name="imagen">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>300</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QFrame" name="progreso">
@@ -114,8 +127,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>490</width>
-     <height>32</height>
+     <width>481</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">

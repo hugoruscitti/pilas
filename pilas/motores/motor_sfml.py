@@ -37,6 +37,11 @@ class BaseActor:
 
     def obtener_posicion(self):
         x, y = self.GetPosition()
+
+        # Evita decir que la coordenada y=0 es y=-0
+        if y == 0:
+            return x, 0
+
         return x, -y
 
     def definir_posicion(self, x, y):
