@@ -335,8 +335,9 @@ class Actor(object, Estudiante):
         if self.derecha < -320 or self.izquierda > 320 or self.arriba < -240 or self.abajo > 240:
                 return True
 
-    def decir(self, mensaje):
-        nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y + (self.alto/2))
+    def decir(self, mensaje, autoeliminar=True):
+        nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y,
+                autoeliminar=autoeliminar)
         nuevo_actor.z = self.z - 1
         self.anexar(nuevo_actor)
 
