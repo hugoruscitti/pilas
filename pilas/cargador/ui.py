@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui.ui'
 #
-# Created: Thu Apr 28 23:41:45 2011
+# Created: Tue May  3 16:55:22 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(481, 516)
+        MainWindow.resize(510, 520)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -59,6 +59,9 @@ class Ui_MainWindow(object):
         self.ejecutar = QtGui.QPushButton(self.centralwidget)
         self.ejecutar.setObjectName(_fromUtf8("ejecutar"))
         self.horizontalLayout.addWidget(self.ejecutar)
+        self.fuente = QtGui.QPushButton(self.centralwidget)
+        self.fuente.setObjectName(_fromUtf8("fuente"))
+        self.horizontalLayout.addWidget(self.fuente)
         self.guardar = QtGui.QPushButton(self.centralwidget)
         self.guardar.setObjectName(_fromUtf8("guardar"))
         self.horizontalLayout.addWidget(self.guardar)
@@ -70,7 +73,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addLayout(self.verticalLayout, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 481, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 510, 25))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuArchivo = QtGui.QMenu(self.menubar)
         self.menuArchivo.setObjectName(_fromUtf8("menuArchivo"))
@@ -90,6 +93,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Ejemplos del motor pilas", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("MainWindow", "Cargando ejemplo", None, QtGui.QApplication.UnicodeUTF8))
         self.ejecutar.setText(QtGui.QApplication.translate("MainWindow", "Ejecutar", None, QtGui.QApplication.UnicodeUTF8))
+        self.fuente.setText(QtGui.QApplication.translate("MainWindow", "Cambiar tipografia", None, QtGui.QApplication.UnicodeUTF8))
         self.guardar.setText(QtGui.QApplication.translate("MainWindow", "Guardar Codigo", None, QtGui.QApplication.UnicodeUTF8))
         self.menuArchivo.setTitle(QtGui.QApplication.translate("MainWindow", "Archivo", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSalir.setText(QtGui.QApplication.translate("MainWindow", "Salir", None, QtGui.QApplication.UnicodeUTF8))

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>481</width>
-    <height>516</height>
+    <width>510</width>
+    <height>520</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -103,6 +103,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="fuente">
+          <property name="text">
+           <string>Cambiar tipografia</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="guardar">
           <property name="text">
            <string>Guardar Codigo</string>
@@ -127,8 +134,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>481</width>
-     <height>26</height>
+     <width>510</width>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">

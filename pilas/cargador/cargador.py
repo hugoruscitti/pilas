@@ -32,6 +32,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
         # Senales
         self.connect(self.ui.ejecutar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_ejecutar)
+        self.connect(self.ui.fuente, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_fuente)
         self.connect(self.ui.guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_guardar)
         self.connect(self.ui.lista, QtCore.SIGNAL("itemSelectionChanged()"), self.cuando_cambia_seleccion)
         self.connect(self.ui.lista, QtCore.SIGNAL("itemActivated(QListWidgetItem *)"), self.cuando_pulsa_boton_ejecutar)
@@ -74,6 +75,13 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
     def cuando_quiere_cerrar(self):
         import sys
         sys.exit(0)
+
+    def cuando_pulsa_boton_fuente(self):
+        font = self.ui.codigo.font()
+        font, ok = QtGui.QFontDialog.getFont(font)
+
+        if ok:
+            self.ui.codigo.setFont(font)
 
     def cuando_pulsa_boton_guardar(self):
         nombre = self._obtener_item_actual()
