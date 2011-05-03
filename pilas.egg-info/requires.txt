@@ -1,2 +1,1 @@
 setuptools
-Box2D
