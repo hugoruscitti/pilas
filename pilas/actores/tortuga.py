@@ -19,13 +19,13 @@ class Tortuga(Actor):
         imagen = pilas.imagenes.cargar('tortuga.png')
         Actor.__init__(self, imagen, x=x, y=y)
 
+        self.rotacion = 0
+        self.velocidad = 6
+
         if dibuja:
             self.bajalapiz()
         else:
             self.subelapiz()
-
-        self.rotacion = 0
-        self.velocidad = 6
 
     def avanzar(self, pasos):
         self.hacer_luego(pilas.comportamientos.Avanzar(pasos, self.velocidad))
