@@ -1,0 +1,108 @@
+diff -r cfd114a6e279 pilas/fps.py
+--- a/pilas/fps.py	Tue Mar 15 13:16:46 2011 -0300
++++ b/pilas/fps.py	Tue Mar 29 00:55:39 2011 -0300
+@@ -32,7 +32,7 @@
+             else:
+                 pygame.time.delay(int(self.frecuencia - dt))
+ 
+-            returno = 1
++            retorno = 1
+ 
+ 
+         self.rendimiento += 1
+@@ -40,4 +40,4 @@
+ 
+ 
+     def obtener_cuadros_por_segundo(self):
+-        return self.cuadros_por_segundo
+\ No newline at end of file
++        return self.cuadros_por_segundo
+diff -r cfd114a6e279 pilas/mundo.py
+--- a/pilas/mundo.py	Tue Mar 15 13:16:46 2011 -0300
++++ b/pilas/mundo.py	Tue Mar 29 00:55:39 2011 -0300
+@@ -9,6 +9,10 @@
+ import time
+ import sys
+ 
++from twisted.internet import reactor
++from twisted.conch import manhole, manhole_ssh
++from twisted.cred import portal, checkers
++
+ import ventana
+ import control
+ import camara
+@@ -20,6 +24,17 @@
+ import depurador
+ import pilas
+ 
++def installManhole():
++    namespace = {"pilas": pilas}
++    user_pass = {"root": "root"}
++    realm = manhole_ssh.TerminalRealm()
++    def getManhole(_): return manhole.Manhole(namespace)
++    realm.chainedProtocolFactory.protocolFactory = getManhole
++    p = portal.Portal(realm)
++    checker = checkers.InMemoryUsernamePasswordDatabaseDontUse(**user_pass)
++    p.registerChecker(checker)
++    factory = manhole_ssh.ConchFactory(p)
++    reactor.listenTCP(2222, factory)
+ 
+ class Mundo:
+     """Representa un objeto unico que mantiene en funcionamiento al motor.
+@@ -28,9 +43,9 @@
+     motor y mantener el bucle de juego.
+     """
+ 
+-    def __init__(self, ancho, alto, titulo, fps=60, economico=True, gravedad=(0, -90)):
++    def __init__(self, ancho, alto, titulo, fps_deseados=20, economico=True, gravedad=(0, -90)):
+         self.ventana = ventana.iniciar(ancho, alto, titulo)
+-        self.fps = fps
++        self.fps_deseados = fps_deseados
+         self.economico = economico
+         ventana.ancho = ancho
+         ventana.alto = alto
+@@ -41,7 +56,7 @@
+         utils.hacer_flotante_la_ventana()
+         pilas.motor.centrar_ventana()
+ 
+-        self.fps = pilas.fps.FPS(self.fps, self.economico)
++        self.fps = pilas.fps.FPS(self.fps_deseados, self.economico)
+         self.camara = camara.Camara(self.ventana)
+         
+         self.depurador = depurador.Depurador(self.fps)
+@@ -67,21 +82,24 @@
+         "Mantiene en funcionamiento el motor completo."
+ 
+ 
+-        while not self.salir:
++        def iteracion():
++            # FIXME: al usar twisted como mainloop, rompí el contador de FPS
++            pilas.motor.procesar_y_emitir_eventos()
+ 
+-            # Invoca varias veces a la actualizacion si el equipo
+-            # es lento.
+-            for x in range(self.fps.actualizar()):
+-                # Mantiene el control de tiempo y lo reporta al sistema
+-                # de interpolaciones y tareas.
+-
+-                pilas.motor.procesar_y_emitir_eventos()
+-                
+-                if not self.pausa_habilitada:
+-                    self._realizar_actualizacion_logica(ignorar_errores)
++            if not self.pausa_habilitada:
++                self._realizar_actualizacion_logica(ignorar_errores)
+ 
+             self._realizar_actualizacion_grafica()
+ 
++            if self.salir:
++                reactor.stop()
++            else:
++                reactor.callLater((1/self.fps_deseados), iteracion)
++
++        reactor.callWhenRunning(iteracion)
++        installManhole()
++        reactor.run(installSignalHandlers=0)
++
+         self._cerrar_ventana()
+ 
+     def _realizar_actualizacion_logica(self, ignorar_errores):
