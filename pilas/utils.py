@@ -94,8 +94,7 @@ def colisionan(a, b):
 
 def crear_juego():
     nombre = raw_input("Indica el nombre del juego: ")
-    raise "Actualmente no implementado..."
-    #shutil.copytree(PATH + "/data/juegobase", nombre)
+    shutil.copytree(PATH + "/data/juegobase", nombre)
 
     print "Se ha creado el directorio '%s'" %(nombre)
     print "Ingresa en el directorio y econtrarás los archivos iniciales del juego."
