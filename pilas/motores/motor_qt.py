@@ -6,13 +6,15 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-from PySFML import sf
+#from PySFML import sf
+from PySide import QtGui, QtCore
 from pilas.simbolos import *
 import cairo
 import pilas
 from pilas import eventos
 import motor
 import glob
+import sys
 import re
 
 ANCHO = 640
@@ -69,7 +71,7 @@ class BaseActor:
         self.FlipX(espejado)
         
         
-class SFMLActor(sf.Sprite, BaseActor):
+class SFMLActor(BaseActor):
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
 
@@ -89,7 +91,7 @@ class SFMLActor(sf.Sprite, BaseActor):
         aplicacion.Draw(self)
 
 
-class SFMLTexto(sf.String, BaseActor):
+class SFMLTexto(BaseActor):
 
 
     def __init__(self, texto="None", x=0, y=0):
@@ -224,10 +226,79 @@ class SFMLGrilla:
         frame_row = self.cuadro / self.columnas
         dy = frame_row * self.cuadro_alto
         return dy
-        
+               
+class Ventana(QtGui.QWidget):
+
+    def __init__(self, ancho, alto, titulo):
+        super(Ventana, self).__init__()
+        self.init()
+        '''
+        self.startTimer(1000/100.0)
+        self.qp = QtGui.QPainter()
+        self.mouse = QtGui.QCursor()
+
+        time = QtCore.QTimer()
+        time.singleShot(50, self.hacer_flotante_la_ventana_en_i3)
+        self.sprites = []
+        self.sprites.append(Sprite('images/aceituna.png'))
+        '''
+
+    def do_update(self):
+        self.update()
+        '''
+        position = self.mapFromGlobal(QtGui.QCursor.pos())
+        x = position.x()
+        y = position.y()
+        self.sprites[0].x = x
+        self.sprites[0].y = y
+        '''
+
+    def init(self):
+        self.setGeometry(100, 100, 640, 480)
+        self.setWindowTitle('Prueba de concepto: Pilas sobre QT')
+                                                                                                                 
+    def hacer_flotante_la_ventana_en_i3(self):
+        try:
+            subprocess.call(['i3-msg', 't'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        except OSError:
+            pass
+
+    def paintEvent(self, event):
+        self.qp.begin(self)
+        #self.qp.scale(self.scale_x, self.scale_y)
+        self.qp.setClipRect(0, 0, 640, 480)
+
+        # Hace que el centro de coordenadas sea (0, 0)
+        # self.qp.setWindow(-320, -240, 640, 480)
+        # self.qp.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
+        self.render(event, self.qp)
+        self.qp.end()
+    def resizeEvent(self, event):
+        w, h = event.size().width(), event.size().height()
+        self.scale_x = w / 640.0
+        self.scale_y = h / 480.0
+
+    def mousePressEvent(self, event):
+        print "Han pulsado el boton:", event.button()
+
+    def mouseReleaseEvent(self, event):
+        print "Han soltado el boton:", event.button()
+
+    def keyPressEvent(self, event):
+        print "Pulsa la tecla:", event.key()
+
+    def wheelEvent(self, event):
+        print "Mueve rueda:", event.delta()
+
+    def timerEvent(self, event):
+        self.do_update()
+
+    def render(self, event, qp):
+        for r in self.sprites:
+            r.render(qp)
+
         
 class Qt(motor.Motor):
-
 
     def __init__(self):
         motor.Motor.__init__(self)
@@ -252,15 +323,22 @@ class Qt(motor.Motor):
         return SFMLGrilla(ruta, columnas, filas)
 
     def crear_ventana(self, ancho, alto, titulo):
-        
-        ventana = sf.RenderWindow(sf.VideoMode(ancho, alto), titulo)
+        self.app = QtGui.QApplication(sys.argv)
+
+        ventana = Ventana(ancho, alto, titulo)
+        ventana.show()
+        self.ventana = ventana
+        sys.exit(self.app.exec_())
         # Define que la coordenada (0, 0) sea el centro de la ventana.
+        '''
         view = ventana.GetDefaultView()
         view.SetCenter(0, 0)
         self.input = ventana.GetInput()
         self.event = sf.Event()
         self.vista_de_camara = ventana.GetDefaultView()
         self.ventana = ventana
+        return ventana
+        '''
         return ventana
 
     def ocultar_puntero_del_mouse(self):
@@ -283,6 +361,7 @@ class Qt(motor.Motor):
 
     def pulsa_tecla(self, tecla):
         "Indica si una tecla esta siendo pulsada en este instante."
+        '''
 
         mapa = {
                 IZQUIERDA: sf.Key.Left,
@@ -294,25 +373,20 @@ class Qt(motor.Motor):
                 }
 
         return self.input.IsKeyDown(mapa[tecla])
+        '''
+        return False
 
 
     def centrar_ventana(self):
         "Coloca la ventana principal en el centro del escritorio."
+        pass
 
-        vm = sf.VideoMode(100, 100)
-
-        # Obtiene la resolución del escritorio y la ventana.
-        desktop_mode = vm.GetDesktopMode()
-        w, h = self.ventana.GetWidth(), self.ventana.GetHeight()
-
-        # Calcula cual debería la coordenada para centrar la ventana.
-        to_x = desktop_mode.Width/2 - w/2
-        to_y = desktop_mode.Height/2 - h/2
-
-        self.ventana.SetPosition(to_x, to_y)
 
     def procesar_y_emitir_eventos(self):
         "Procesa todos los eventos que la biblioteca SFML pone en una cola."
+        return
+        '''
+        pass
         event = self.event
 
         while self.ventana.GetEvent(self.event):
@@ -356,6 +430,7 @@ class Qt(motor.Motor):
                 eventos.termina_click.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
             elif event.Type == sf.Event.MouseWheelMoved:
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
+        '''
 
     def procesar_evento_teclado(self, event):
         code = event.Key.Code
@@ -374,7 +449,9 @@ class Qt(motor.Motor):
             eventos.pulsa_tecla_escape.send("ejecutar")
 
     def actualizar_pantalla(self):
-        self.ventana.Display()
+        self.ventana.update()
+#self.ventana.Display()
+        pass
 
     def definir_centro_de_la_camara(self, x, y):
         view = self.ventana.GetDefaultView()
@@ -385,7 +462,8 @@ class Qt(motor.Motor):
         return view.GetCenter()
 
     def pintar(self, color):
-        self.ventana.Clear(sf.Color(*color.obtener_componentes()))
+        pass
+#self.ventana.Clear(sf.Color(*color.obtener_componentes()))
             
     def cargar_sonido(self, ruta):
         return SFMLSonido(ruta)

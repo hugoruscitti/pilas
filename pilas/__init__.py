@@ -148,6 +148,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
         print "Advertencia: Te recomendamos usar SFML, busca en la web de pilas como instalarlo..."
 
     motor = motores_disponibles[usar_motor]()
+    print motor
 
     pilas.colisiones = Colisiones()
 
