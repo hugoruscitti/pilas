@@ -330,6 +330,7 @@ pilas/interfaz/selector.py
 pilas/motores/__init__.py
 pilas/motores/motor.py
 pilas/motores/motor_pygame.py
+pilas/motores/motor_qt.py
 pilas/motores/motor_sfml.py
 pilas/video/__init__.py
 pilas/video/video.py
