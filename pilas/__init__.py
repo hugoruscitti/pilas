@@ -123,7 +123,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
         - ancho=640
         - alto=480
         - titulo='pilas'
-        - usar_motor='pysfml' o 'pygame'
+        - usar_motor='qt', 'pysfml' o 'pygame'
         - modo='detectar'
         - rendimiento=60
         - economico=True
@@ -287,6 +287,12 @@ def obtener_motores_disponibles():
     motores_disponibles = {}
     sistema_recomendado = None
     import pilas.motores
+
+    try:
+        motores_disponibles['qt'] = pilas.motores.Qt
+        sistema_recomendado = "qt"
+    except AttributeError:
+        pass
 
     try:
         motores_disponibles['pygame'] = pilas.motores.Pygame
