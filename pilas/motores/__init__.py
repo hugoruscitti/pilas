@@ -22,6 +22,12 @@ try:
 except ImportError:
     pass
 
+try:
+    import PySide
+    disponibles.append('qt')
+except ImportError:
+    pass
+
 
 # Incorpora todo el contenido de los motores, pero
 # lo hace fuera del bloque try except para hacer
@@ -31,3 +37,6 @@ if 'sfml' in disponibles:
 
 if 'pygame' in disponibles:
     from motor_pygame import *
+
+if 'qt' in disponibles:
+    from motor_qt import *
