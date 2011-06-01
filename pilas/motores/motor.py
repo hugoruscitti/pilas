@@ -71,5 +71,5 @@ class Motor(object):
     def obtener_imagen_cairo(self, imagen):
         abstract()
 
-    def ejecutar_bucle_principal(self, mundo):
+    def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         abstract()
