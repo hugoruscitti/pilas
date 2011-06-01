@@ -7,7 +7,13 @@
 # website - http://www.pilas-engine.com.ar
 
 import pilas
-import Box2D as box2d
+
+
+try:
+    import Box2D as box2d
+except ImportError:
+    print "No esta disponible box2d, se deshabilitara la funcionalidad Fisica."
+
 import math
 
 
