@@ -40,8 +40,8 @@ bg = None
 __all__ = ['actores', 'iniciar', 'terminar', 'ejecutar', 'interpolar', 'avisar', 'video']
 
 import utils
-import motores
 import simbolos
+import motores
 import os
 import sys
 import time
@@ -100,7 +100,8 @@ import cargador
 if utils.esta_en_sesion_interactiva():
     utils.cargar_autocompletado()
 
-def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='detectar', rendimiento=60, economico=True, gravedad=(0, -90)):
+def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='sfml', modo='detectar', 
+        rendimiento=60, economico=True, gravedad=(0, -90)):
     """Inicia el motor y abre la ventana principal del videojuego.
     
     Esta funcion se ejecuta al principio de cualquier juego, porque
@@ -128,28 +129,27 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='pysfml', modo='dete
         - rendimiento=60
         - economico=True
         - gravedad=(0, -90)
-
-
     """
     global mundo
     global motor
 
+    if usar_motor == 'qt':
+        from pilas.motores import motor_qt
+        motor = motor_qt.Qt()
+    elif usar_motor == 'pygame':
+        from pilas.motores import motor_pygame
+        motor = motor_pygame.Pygame()
+    elif usar_motor in ['sfml', 'pysfml']:
+        from pilas.motores import motor_sfml
+        motor = motor_sfml.pySFML()
+    else:
+        print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
+        print "Las opciones de motores que puedes probar son 'qt', 'pygame' y 'sfml'."
+        sys.exit(1)
 
-    (motores_disponibles, recomendado) = obtener_motores_disponibles()
+        
 
-    if not recomendado:
-        raise Exception("No se encuentran bibliotecas multimedia, tiene que instalar SFML o pygame.")
-
-    if usar_motor not in motores_disponibles.keys():
-        print "Advertencia: El sistema solicitado '%s' no esta disponible, cargado '%s' en su lugar." %(usar_motor, recomendado)
-        usar_motor = recomendado
-
-    if usar_motor not in ['sfml', 'pysfml']:
-        print "Advertencia: Te recomendamos usar SFML, busca en la web de pilas como instalarlo..."
-
-    motor = motores_disponibles[usar_motor]()
-    print motor
-
+        
     pilas.colisiones = Colisiones()
 
     # Cuando inicia en modo interactivo se asegura
@@ -276,39 +276,6 @@ def ver(objeto):
         codigo = inspect.getsource(objeto)
 
     print codigo
-
-def obtener_motores_disponibles():
-    """Retorna una tupla con dos valores: los motores disponibles y el recomendado.
-
-    Dado que pilas soporta dos motores multimadia (SFML y Pygame), esta
-    función intentará decetar cual de estos sistemas multimedia esta
-    disponible en el sistema.
-    """
-
-    motores_disponibles = {}
-    sistema_recomendado = None
-    import pilas.motores
-
-    try:
-        motores_disponibles['qt'] = pilas.motores.Qt
-        sistema_recomendado = "qt"
-    except AttributeError:
-        pass
-
-    try:
-        motores_disponibles['pygame'] = pilas.motores.Pygame
-        sistema_recomendado = "pygame"
-    except AttributeError:
-        pass
-
-    try:
-        motores_disponibles['sfml'] = pilas.motores.pySFML
-        motores_disponibles['pysfml'] = pilas.motores.pySFML
-        sistema_recomendado = "sfml"
-    except AttributeError:
-        pass
-
-    return (motores_disponibles, sistema_recomendado)
 
 
 def ejecutar_cada(segundos, funcion):

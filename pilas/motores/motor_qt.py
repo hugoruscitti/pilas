@@ -7,7 +7,7 @@
 # website - http://www.pilas-engine.com.ar
 
 #from PySFML import sf
-from PySide import QtGui, QtCore
+from PyQt4 import QtGui, QtCore
 from pilas.simbolos import *
 import cairo
 import pilas
