@@ -65,24 +65,8 @@ class Mundo:
 
     def ejecutar_bucle_principal(self, ignorar_errores=False):
         "Mantiene en funcionamiento el motor completo."
+        pilas.motor.ejecutar_bucle_principal(self, ignorar_errores)
 
-
-        while not self.salir:
-
-            # Invoca varias veces a la actualizacion si el equipo
-            # es lento.
-            for x in range(self.fps.actualizar()):
-                # Mantiene el control de tiempo y lo reporta al sistema
-                # de interpolaciones y tareas.
-
-                pilas.motor.procesar_y_emitir_eventos()
-                
-                if not self.pausa_habilitada:
-                    self._realizar_actualizacion_logica(ignorar_errores)
-
-            self._realizar_actualizacion_grafica()
-
-        self._cerrar_ventana()
 
     def _realizar_actualizacion_logica(self, ignorar_errores):
         self.actualizar_simuladores()
@@ -116,14 +100,14 @@ class Mundo:
         else:
             self.actualizar_actores()
 
-    def _realizar_actualizacion_grafica(self):
+    def realizar_actualizacion_grafica(self):
         self.escena_actual.dibujar(self.ventana)
         self.depurador.inicia_actualizacion_grafica()
         self.dibujar_actores()
         self.depurador.finaliza_actualizacion_grafica()
         pilas.motor.actualizar_pantalla()
 
-    def _cerrar_ventana(self):
+    def cerrar_ventana(self):
         pilas.motor.cerrar_ventana()
         sys.exit(0)
 

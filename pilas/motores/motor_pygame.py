@@ -518,3 +518,21 @@ class Pygame:
 
     def obtener_actor(self, imagen, x, y):
         return PygameActor(imagen, x, y)
+
+    def ejecutar_bucle_principal(self, mundo, ignorar_errores):
+        while not mundo.salir:
+
+            # Invoca varias veces a la actualizacion si el equipo
+            # es lento.
+            for x in range(mundo.fps.actualizar()):
+                # Mantiene el control de tiempo y lo reporta al sistema
+                # de interpolaciones y tareas.
+
+                self.procesar_y_emitir_eventos()
+                
+                if not mundo.pausa_habilitada:
+                    mundo._realizar_actualizacion_logica(ignorar_errores)
+
+            mundo.realizar_actualizacion_grafica()
+
+        mundo.cerrar_ventana()
