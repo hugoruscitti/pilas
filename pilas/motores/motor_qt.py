@@ -26,72 +26,67 @@ class BaseActor:
         pass
 
     def obtener_ancho(self):
-        return self.GetSize()[0]
+        pass
 
     def obtener_alto(self):
-        return self.GetSize()[1]
+        pass
 
     def obtener_area(self):
         return self.obtener_ancho(), self.obtener_alto()
 
     def definir_centro(self, x, y):
-        self.SetCenter(x, y)
+        pass
 
     def obtener_posicion(self):
-        x, y = self.GetPosition()
-
-        # Evita decir que la coordenada y=0 es y=-0
-        if y == 0:
-            return x, 0
-
-        return x, -y
+        pass
 
     def definir_posicion(self, x, y):
-        self.SetPosition(x, -y)
-
+        pass
 
     def obtener_escala(self):
-        return self.GetScale()[0]
+        pass
 
     def definir_escala(self, s):
-        self.SetScale(s, s)
+        pass
 
     def definir_transparencia(self, nuevo_valor):
-        nivel = min(255, 255 - (nuevo_valor*128) / 50)
-        nivel = max(0, nivel)
-        self.SetColor(sf.Color(255, 255, 255, int(nivel)))
+        pass
 
     def obtener_rotacion(self):
-        return (- self.GetRotation()) % 360
+        pass
 
     def definir_rotacion(self, r):
-        self.SetRotation(-r % 360)
+        pass
         
     def set_espejado(self, espejado):        
-        self.FlipX(espejado)
+        pass
         
         
-class SFMLActor(BaseActor):
+class QtActor(BaseActor):
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
 
         if isinstance(imagen, str):
-            imagen = pilas.imagenes.cargar(imagen)
+            self.imagen = pilas.imagenes.cargar(imagen)
+        else:
+            self.imagen = imagen
 
-        sf.Sprite.__init__(self, imagen)
+        self.x = x
+        self.y = y
         BaseActor.__init__(self)
 
     def definir_imagen(self, imagen):
-        self.SetImage(imagen)
+        self.imagen = imagen
 
     def obtener_imagen(self):
-        return self.GetImage()
+        return self.imagen
 
-    def dibujar(self, aplicacion):
-        aplicacion.Draw(self)
+    def dibujar(self, canvas):
+        canvas.drawPixmap(self.x, self.y, self.imagen)
 
 
 class SFMLTexto(BaseActor):
+    # TODO
 
 
     def __init__(self, texto="None", x=0, y=0):
@@ -139,6 +134,7 @@ class SFMLTexto(BaseActor):
         return rect.GetHeight()
 
 class SFMLSonido:
+    # TODO
 
     def __init__(self, ruta):
         buff = sf.SoundBuffer()
@@ -157,6 +153,7 @@ class SFMLSonido:
 
 class SFMLCanvas:
     "Representa una superficie sobre la que se puede dibujar usando cairo."
+    # TODO
 
     def __init__(self, ancho, alto):
         self.ancho = ancho
@@ -174,7 +171,7 @@ class SFMLCanvas:
         self.context = cairo.Context(self.surface)       
 
 class SFMLGrilla:
-
+    # TODO
 
     def __init__(self, ruta, columnas=1, filas=1):
         self.image = pilas.imagenes.cargar(ruta)
@@ -232,16 +229,17 @@ class Ventana(QtGui.QWidget):
     def __init__(self, ancho, alto, titulo):
         super(Ventana, self).__init__()
         self.init()
+        self.canvas = QtGui.QPainter()
+        self.sprites = []
+
         '''
         self.startTimer(1000/100.0)
-        self.qp = QtGui.QPainter()
         self.mouse = QtGui.QCursor()
 
         time = QtCore.QTimer()
         time.singleShot(50, self.hacer_flotante_la_ventana_en_i3)
-        self.sprites = []
-        self.sprites.append(Sprite('images/aceituna.png'))
         '''
+        self.sprites.append(QtActor('aceituna.png'))
 
     def do_update(self):
         self.update()
@@ -264,15 +262,16 @@ class Ventana(QtGui.QWidget):
             pass
 
     def paintEvent(self, event):
-        self.qp.begin(self)
+        self.canvas.begin(self)
         #self.qp.scale(self.scale_x, self.scale_y)
-        self.qp.setClipRect(0, 0, 640, 480)
+        self.canvas.setClipRect(0, 0, 640, 480)
 
         # Hace que el centro de coordenadas sea (0, 0)
         # self.qp.setWindow(-320, -240, 640, 480)
         # self.qp.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
-        self.render(event, self.qp)
-        self.qp.end()
+        self.render(event, self.canvas)
+        self.canvas.end()
+
     def resizeEvent(self, event):
         w, h = event.size().width(), event.size().height()
         self.scale_x = w / 640.0
@@ -295,7 +294,7 @@ class Ventana(QtGui.QWidget):
 
     def render(self, event, qp):
         for r in self.sprites:
-            r.render(qp)
+            r.dibujar(self.canvas)
 
         
 class Qt(motor.Motor):
@@ -328,7 +327,6 @@ class Qt(motor.Motor):
         ventana = Ventana(ancho, alto, titulo)
         ventana.show()
         self.ventana = ventana
-        sys.exit(self.app.exec_())
         # Define que la coordenada (0, 0) sea el centro de la ventana.
         '''
         view = ventana.GetDefaultView()
@@ -469,9 +467,7 @@ class Qt(motor.Motor):
         return SFMLSonido(ruta)
 
     def cargar_imagen(self, ruta):
-        image = sf.Image()
-        image.LoadFromFile(ruta)
-        return image
+        return QtGui.QPixmap(ruta)
 
     def obtener_imagen_cairo(self, imagen):
         """Retorna una superficie de cairo representando a la imagen.
@@ -509,3 +505,25 @@ class Qt(motor.Motor):
             ultimo_numero = 1
 
         return ultimo_numero
+
+    def ejecutar_bucle_principal(self, mundo, ignorar_errores):
+        sys.exit(self.app.exec_())
+
+        '''
+        while not mundo.salir:
+
+            # Invoca varias veces a la actualizacion si el equipo
+            # es lento.
+            for x in range(mundo.fps.actualizar()):
+                # Mantiene el control de tiempo y lo reporta al sistema
+                # de interpolaciones y tareas.
+
+                self.procesar_y_emitir_eventos()
+                
+                if not mundo.pausa_habilitada:
+                    mundo._realizar_actualizacion_logica(ignorar_errores)
+
+            mundo.realizar_actualizacion_grafica()
+
+        mundo.cerrar_ventana()
+        '''
