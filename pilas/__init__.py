@@ -84,14 +84,10 @@ def terminar():
     mundo.terminar()
 
 def ejecutar(ignorar_errores=False):
-    global mundo
-    print mundo
     mundo.ejecutar_bucle_principal(ignorar_errores)
 
 
 '''
-
-
 anterior_texto = None
 
 def avisar(mensaje):
@@ -108,6 +104,18 @@ def avisar(mensaje):
     texto.abajo = -230
     anterior_texto = texto
 
+
+
+def ejecutar_cada(segundos, funcion):
+    """Ejecuta una funcion con la frecuencia que indica el argumento segundos.
+    
+    La funcion ejecutada tiene que retornar True para volver a
+    ejecutarse, si retorna False se elimina el temporizador y la funcion
+    no se vuelve a ejecutar.
+    """
+    pilas.mundo.agregar_tarea_siempre(segundos, funcion)
+'''
+
 def ver(objeto):
     "Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."
     import inspect
@@ -119,17 +127,6 @@ def ver(objeto):
 
     print codigo
 
-
-def ejecutar_cada(segundos, funcion):
-    """Ejecuta una funcion con la frecuencia que indica el argumento segundos.
-    
-    La funcion ejecutada tiene que retornar True para volver a
-    ejecutarse, si retorna False se elimina el temporizador y la funcion
-    no se vuelve a ejecutar.
-    """
-    pilas.mundo.agregar_tarea_siempre(segundos, funcion)
-
-
 def version():
+    import pilasversion
     return pilasversion.VERSION
-'''
