@@ -52,13 +52,13 @@ class Actor(object, Estudiante):
     """
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
-        if not pilas.motor:
+        if not pilas.mundo:
             mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` para comenzar."
             print mensaje
             raise Exception(mensaje)
 
         Estudiante.__init__(self)
-        self._actor = pilas.motor.obtener_actor(imagen, x=x, y=y)
+        self._actor = pilas.mundo.motor.obtener_actor(imagen, x=x, y=y)
         self.centro = ('centro', 'centro')
 
         self.x = x
@@ -82,7 +82,6 @@ class Actor(object, Estudiante):
                 raise Exception("No puedes definir '%s' como eje vertical." %(y))
             y = self._interpretar_y_convertir_posicion(y, self.obtener_alto())            
 
-        
         self._centro = (x, y)
         self._actor.definir_centro(x, y)
     

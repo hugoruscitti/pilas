@@ -12,12 +12,20 @@ import pilas
 try:
     import Box2D as box2d
 except ImportError:
-    print "No esta disponible box2d, se deshabilitara la funcionalidad Fisica."
+    print "No esta disponible box2d, se deshabilitara la fisica."
 
 import math
 
-
 class Fisica(object):
+
+    def __init__(self, gravedad=(0, -90)):
+        pass
+
+    def actualizar(self):
+        pass
+    
+
+class deprecated_Fisica(object):
     "Representa un simulador de mundo fisico, usando la biblioteca box2d."
     
     def __init__(self, gravedad=(0, -90)):

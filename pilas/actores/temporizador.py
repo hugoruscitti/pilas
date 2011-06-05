@@ -9,9 +9,10 @@
 
 import pilas
 from pilas.actores import Texto
+from pilas import colores
 
 class Temporizador(Texto):
-    def __init__(self, x=0, y=0, color=pilas.colores.negro):
+    def __init__(self, x=0, y=0, color=colores.negro):
         Texto.__init__(self, '0', x=x, y=y)
         self.ajustar(1, self.funcion_vacia)
         self.color = color

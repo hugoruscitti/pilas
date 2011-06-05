@@ -116,9 +116,9 @@ def interpolable(f):
             duracion = 1
 
         if isinstance(value, list):
-            value = pilas.interpolar(value, duracion=duracion)
+            value = interpolar(value, duracion=duracion)
         elif isinstance(value, xrange):
-            value = pilas.interpolar(list(value), duracion=duracion)
+            value = interpolar(list(value), duracion=duracion)
             
         if es_interpolacion(value):
             value.apply(args[0], function=f.__name__)
@@ -148,3 +148,44 @@ def obtener_angulo_entre(punto_a, punto_b):
     (x, y) = punto_a
     (x1, y1) = punto_b
     return math.degrees(math.atan2(y1 - y, x1 -x))
+
+def convertir_de_posicion_relativa_a_fisica(x, y):
+    return (x + 320, 240 - y)
+
+def convertir_de_posicion_fisica_relativa(x, y):
+    return (x -320, 240 - y)
+
+def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
+    """Retorna un objeto que representa cambios de atributos progresivos.
+    
+    El resultado de esta función se puede aplicar a varios atributos
+    de los actores, por ejemplo::
+        
+        bomba = pilas.actores.Bomba()
+        bomba.escala = pilas.interpolar(3)
+
+    Esta función también admite otros parámetros cómo:
+
+        - duracion: es la cantidad de segundos que demorará toda la interpolación.
+        - demora: cuantos segundos se deben esperar antes de iniciar.
+        - tipo: es el algoritmo de la interpolación, puede ser 'lineal'.
+    """
+
+
+    import interpolaciones
+
+    algoritmos = {
+            'lineal': interpolaciones.Lineal,
+            }
+
+    if algoritmos.has_key('lineal'):
+        clase = algoritmos[tipo]
+    else:
+        raise ValueError("El tipo de interpolacion %s es invalido" %(tipo))
+
+    # Permite que los valores de interpolacion sean un numero o una lista.
+    if not isinstance(valor_o_valores, list):
+        valor_o_valores = [valor_o_valores]
+
+    return clase(valor_o_valores, duracion, demora)
+

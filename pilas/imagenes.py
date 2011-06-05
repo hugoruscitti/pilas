@@ -31,13 +31,13 @@ def cargar(ruta):
     En caso de error genera una excepción de tipo IOError.
     """
 
-    if not pilas.motor:
+    if not pilas.mundo:
         mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` para comenzar."
         print mensaje
         raise Exception(mensaje)
     
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
-    return pilas.motor.cargar_imagen(ruta)
+    return pilas.mundo.motor.cargar_imagen(ruta)
 
 def cargar_imagen_cairo(ruta):
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)

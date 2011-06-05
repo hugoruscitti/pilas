@@ -6,42 +6,43 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-#from PySFML import sf
-from PyQt4 import QtGui, QtCore
-from pilas.simbolos import *
-import cairo
-import pilas
-from pilas import eventos
-import motor
-import glob
 import sys
-import re
+from PyQt4 import QtGui, QtCore
 
-ANCHO = 640
-ALTO = 480
+import motor
+from pilas import imagenes
+from pilas import actores
+from pilas import eventos
+from pilas import utils
+
 
 class BaseActor:
     
     def __init__(self):
-        pass
+        self._escala_x = 1
+        self._escala_y = 1
+        self._rotacion = 0
+        self.centro_x = 0
+        self.centro_y = 0
 
     def obtener_ancho(self):
-        pass
+        return self.imagen.width()
 
     def obtener_alto(self):
-        pass
+        return self.imagen.height()
 
     def obtener_area(self):
         return self.obtener_ancho(), self.obtener_alto()
 
     def definir_centro(self, x, y):
-        pass
+        self.centro_x = x
+        self.centro_y = y
 
     def obtener_posicion(self):
-        pass
+        return self.x, self.y
 
     def definir_posicion(self, x, y):
-        pass
+        self.x, self.y = x, y
 
     def obtener_escala(self):
         pass
@@ -53,10 +54,10 @@ class BaseActor:
         pass
 
     def obtener_rotacion(self):
-        pass
+        return self._rotacion
 
     def definir_rotacion(self, r):
-        pass
+        self.rotacion = r
         
     def set_espejado(self, espejado):        
         pass
@@ -67,7 +68,7 @@ class QtActor(BaseActor):
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
 
         if isinstance(imagen, str):
-            self.imagen = pilas.imagenes.cargar(imagen)
+            self.imagen = imagenes.cargar(imagen)
         else:
             self.imagen = imagen
 
@@ -81,8 +82,14 @@ class QtActor(BaseActor):
     def obtener_imagen(self):
         return self.imagen
 
-    def dibujar(self, canvas):
-        canvas.drawPixmap(self.x, self.y, self.imagen)
+    def dibujar(self, motor):
+        motor.canvas.save()
+        # TODO: usando 320 x 240 para representar el centro de la ventana.
+        x, y = utils.convertir_de_posicion_relativa_a_fisica(self.x, self.y)
+        motor.canvas.translate(self.x + 320, 240 - self.y)
+        motor.canvas.rotate(self._rotacion)
+        motor.canvas.drawPixmap(-self.centro_x, -self.centro_y, self.imagen)
+        motor.canvas.restore()
 
 
 class SFMLTexto(BaseActor):
@@ -224,22 +231,19 @@ class SFMLGrilla:
         dy = frame_row * self.cuadro_alto
         return dy
                
-class Ventana(QtGui.QWidget):
+class aaaaaaaaaaaaaaaaaaaaVentana(QtGui.QWidget):
 
     def __init__(self, ancho, alto, titulo):
         super(Ventana, self).__init__()
         self.init()
-        self.canvas = QtGui.QPainter()
         self.sprites = []
 
         '''
-        self.startTimer(1000/100.0)
         self.mouse = QtGui.QCursor()
 
         time = QtCore.QTimer()
         time.singleShot(50, self.hacer_flotante_la_ventana_en_i3)
         '''
-        self.sprites.append(QtActor('aceituna.png'))
 
     def do_update(self):
         self.update()
@@ -251,10 +255,6 @@ class Ventana(QtGui.QWidget):
         self.sprites[0].y = y
         '''
 
-    def init(self):
-        self.setGeometry(100, 100, 640, 480)
-        self.setWindowTitle('Prueba de concepto: Pilas sobre QT')
-                                                                                                                 
     def hacer_flotante_la_ventana_en_i3(self):
         try:
             subprocess.call(['i3-msg', 't'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -272,13 +272,8 @@ class Ventana(QtGui.QWidget):
         self.render(event, self.canvas)
         self.canvas.end()
 
-    def resizeEvent(self, event):
-        w, h = event.size().width(), event.size().height()
-        self.scale_x = w / 640.0
-        self.scale_y = h / 480.0
 
-    def mousePressEvent(self, event):
-        print "Han pulsado el boton:", event.button()
+
 
     def mouseReleaseEvent(self, event):
         print "Han soltado el boton:", event.button()
@@ -297,23 +292,28 @@ class Ventana(QtGui.QWidget):
             r.dibujar(self.canvas)
 
         
-class Qt(motor.Motor):
+class Qt(motor.Motor, QtGui.QWidget):
+
+    app = QtGui.QApplication([])
 
     def __init__(self):
+        QtGui.QWidget.__init__(self)
         motor.Motor.__init__(self)
-        # Se usan para calcular el dx y dy del movimiento
-        # del mouse porque pySFML no lo reporta de forma relativa.
-        self.mouse_x = 0
-        self.mouse_y = 0
+
+        self.canvas = QtGui.QPainter()
+        self.setGeometry(100, 100, 640, 480)
+        self.setWindowTitle('Prueba de concepto: Pilas sobre QT')
+        self.show()
 
     def obtener_actor(self, imagen, x, y):
-        return SFMLActor(imagen, x, y)
+        return QtActor(imagen, x, y)
 
     def obtener_texto(self, texto, x, y):
         return SFMLTexto(texto, x, y)
 
     def obtener_posicion_del_mouse(self):
-        return (self.mouse_x, self.mouse_y)
+        #return (self.mouse_x, self.mouse_y)
+        pass
     
     def obtener_canvas(self, ancho, alto):
         return SFMLCanvas(ancho, alto)
@@ -321,12 +321,8 @@ class Qt(motor.Motor):
     def obtener_grilla(self, ruta, columnas, filas):
         return SFMLGrilla(ruta, columnas, filas)
 
-    def crear_ventana(self, ancho, alto, titulo):
-        self.app = QtGui.QApplication(sys.argv)
-
-        ventana = Ventana(ancho, alto, titulo)
-        ventana.show()
-        self.ventana = ventana
+    def iniciar_ventana(self, ancho, alto, titulo):
+        pass
         # Define que la coordenada (0, 0) sea el centro de la ventana.
         '''
         view = ventana.GetDefaultView()
@@ -337,7 +333,6 @@ class Qt(motor.Motor):
         self.ventana = ventana
         return ventana
         '''
-        return ventana
 
     def ocultar_puntero_del_mouse(self):
         self.ventana.ShowMouseCursor(False)
@@ -448,8 +443,6 @@ class Qt(motor.Motor):
 
     def actualizar_pantalla(self):
         self.ventana.update()
-#self.ventana.Display()
-        pass
 
     def definir_centro_de_la_camara(self, x, y):
         view = self.ventana.GetDefaultView()
@@ -507,6 +500,7 @@ class Qt(motor.Motor):
         return ultimo_numero
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
+        self.startTimer(1000/40.0)
         sys.exit(self.app.exec_())
 
         '''
@@ -527,3 +521,49 @@ class Qt(motor.Motor):
 
         mundo.cerrar_ventana()
         '''
+
+    def paintEvent(self, event):
+        self.canvas.begin(self)
+
+        self.canvas.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, False)
+        self.canvas.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
+        self.canvas.setRenderHint(QtGui.QPainter.Antialiasing, False)
+
+        for actor in actores.todos:
+            actor.dibujar(self)
+
+        self.canvas.end()
+
+    def timerEvent(self, event):
+        for actor in actores.todos:
+            actor.actualizar()
+
+        # Invoca el dibujado de la pantalla.
+        self.update()
+
+
+
+        '''
+        self.procesar_y_emitir_eventos()
+                
+        if not self.mundo.pausa_habilitada:
+            self.mundo._realizar_actualizacion_logica(self.ignorar_errores)
+
+        self.mundo.realizar_actualizacion_grafica()
+        '''
+
+    def resizeEvent(self, event):
+        #w, h = event.size().width(), event.size().height()
+        #self.scale_x = w / 640.0
+        #self.scale_y = h / 480.0
+        #QtGui.QWidget.resizeEvent(self, event)
+        #self.fitInView((0, 0, 100, 100), 1)
+        print "resizeEvent"
+
+    def mousePressEvent(self, e):
+        x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x(), e.pos().y())
+        eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=0, dy=0)
+
+    def mouseMoveEvent(self, e):
+        x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x(), e.pos().y())
+        eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=0, dy=0)

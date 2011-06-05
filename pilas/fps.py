@@ -1,6 +1,18 @@
-import pygame
+#import pygame
+import time
 
 class FPS:
+
+    def __init__(self, fps, usar_modo_economico):
+        pass
+
+    def actualizar(self):
+        time.sleep(1 / 40.0)
+
+    def obtener_cuadros_por_segundo(self):
+        return 0
+
+class deprecated_FPS:
 
     def __init__(self, fps, usar_modo_economico):
         self.antes = self.ahora = pygame.time.get_ticks()
