@@ -10,7 +10,7 @@ mundo = None
 bg = None
 
 import utils
-import mundo
+from mundo import Mundo
 import actores
 import fondos
 import habilidades
@@ -41,7 +41,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='sfml',
         sys.exit(1)
 
     gravedad = (0, -90)
-    mundo = mundo.Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad)
+    mundo = Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad)
 
     #pilas.colisiones = Colisiones()
 
@@ -81,19 +81,12 @@ def __iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, gravedad, ignorar_
 def terminar():
     "Finaliza la ejecución de pilas y cierra la ventana principal."
     global mundo
-
-    if mundo:
-        mundo.terminar()
-    else:
-        print "No se puede terminar pilas porque no la has inicializado."
+    mundo.terminar()
 
 def ejecutar(ignorar_errores=False):
     global mundo
-
-    if mundo:
-        mundo.ejecutar_bucle_principal(ignorar_errores)
-    else:
-        raise Exception("Tienes que llamar a pilas.iniciar() antes de ejecutar el juego.")
+    print mundo
+    mundo.ejecutar_bucle_principal(ignorar_errores)
 
 
 '''

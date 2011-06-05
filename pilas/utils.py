@@ -188,4 +188,3 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
         valor_o_valores = [valor_o_valores]
 
     return clase(valor_o_valores, duracion, demora)
-
