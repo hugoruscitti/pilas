@@ -324,6 +324,7 @@ class Qt(motor.Motor, QtGui.QWidget):
         self.setGeometry(100, 100, self.ancho, self.alto)
         self.setWindowTitle(self.titulo)
         self.show()
+        self.startTimer(1000/40.0)
 
 
     def ocultar_puntero_del_mouse(self):
@@ -492,7 +493,6 @@ class Qt(motor.Motor, QtGui.QWidget):
         return ultimo_numero
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
-        self.startTimer(1000/40.0)
         sys.exit(self.app.exec_())
 
         '''

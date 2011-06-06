@@ -21,7 +21,7 @@ if utils.esta_en_sesion_interactiva():
     utils.cargar_autocompletado()
 
 
-def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='sfml', 
+def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt', 
             modo='detectar', rendimiento=60, economico=True, gravedad = (0, -90)):
     global mundo
 
