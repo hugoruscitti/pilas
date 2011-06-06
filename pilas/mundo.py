@@ -7,6 +7,8 @@
 # website - http://www.pilas-engine.com.ar
 
 import pytweener
+from pilas import eventos
+from pilas import tareas
 
 
 class Mundo:
@@ -19,7 +21,16 @@ class Mundo:
     def __init__(self, motor, ancho, alto, titulo, fps=60, economico=True, gravedad=(0, -90)):
         self.motor = motor
         self.motor.iniciar_ventana(ancho, alto, titulo)
+
         self.tweener = pytweener.Tweener()
+        self.tareas = tareas.Tareas() 
+
+        eventos.actualizar.conectar(self.actualizar_simuladores)
+
+    def actualizar_simuladores(self, evento):
+        self.tweener.update(16)
+        self.tareas.update(1/60.0)
+        #self.fisica.actualizar()
 
         '''
         self.ventana = ventana.iniciar(ancho, alto, titulo)
@@ -38,7 +49,6 @@ class Mundo:
         self.escena_actual = None
 
         # Genera los administradores de tareas e interpolaciones.
-        self.tareas = tareas.Tareas() 
         
         # Genera el motor de fisica.
         self.fisica = pilas.fisica.Fisica(gravedad=gravedad)
@@ -125,10 +135,6 @@ class Mundo:
             self.pausa = pilas.actores.Actor("icono_pausa.png")
             self.pausa.z = -100
             
-    def actualizar_simuladores(self):
-        self.tweener.update(16)
-        #self.tareas.update(1/60.0)
-        #self.fisica.actualizar()
 
     def actualizar_actores(self):
         for actor in pilas.actores.todos:

@@ -527,6 +527,8 @@ class Qt(motor.Motor, QtGui.QWidget):
         self.canvas.end()
 
     def timerEvent(self, event):
+        eventos.actualizar.send("Qt::timerEvent")
+
         for actor in actores.todos:
             actor.actualizar()
 
@@ -545,7 +547,7 @@ class Qt(motor.Motor, QtGui.QWidget):
         '''
 
     def resizeEvent(self, event):
-        print "resizeEvent"
+        pass
 
     def mousePressEvent(self, e):
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x(), e.pos().y())
