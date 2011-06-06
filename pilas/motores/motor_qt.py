@@ -526,8 +526,8 @@ class Qt(motor.Motor, QtGui.QWidget):
         #alto = self.ancho * (480 / 640.0)
         #print alto
 
-        self.canvas.setViewport(0, 0, self.ancho *2, self.alto);
-        self.canvas.setWindow(0, 0, 640, 480)
+        #self.canvas.setViewport(0, 0, self.ancho, self.alto);
+        #self.canvas.setWindow(0, 0, 640, 480)
 
 
 
