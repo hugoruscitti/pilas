@@ -299,11 +299,7 @@ class Qt(motor.Motor, QtGui.QWidget):
     def __init__(self):
         QtGui.QWidget.__init__(self)
         motor.Motor.__init__(self)
-
         self.canvas = QtGui.QPainter()
-        self.setGeometry(100, 100, 640, 480)
-        self.setWindowTitle('Prueba de concepto: Pilas sobre QT')
-        self.show()
 
     def obtener_actor(self, imagen, x, y):
         return QtActor(imagen, x, y)
@@ -322,17 +318,13 @@ class Qt(motor.Motor, QtGui.QWidget):
         return SFMLGrilla(ruta, columnas, filas)
 
     def iniciar_ventana(self, ancho, alto, titulo):
-        pass
-        # Define que la coordenada (0, 0) sea el centro de la ventana.
-        '''
-        view = ventana.GetDefaultView()
-        view.SetCenter(0, 0)
-        self.input = ventana.GetInput()
-        self.event = sf.Event()
-        self.vista_de_camara = ventana.GetDefaultView()
-        self.ventana = ventana
-        return ventana
-        '''
+        self.ancho = ancho
+        self.alto = alto
+        self.titulo = titulo
+        self.setGeometry(100, 100, self.ancho, self.alto)
+        self.setWindowTitle(self.titulo)
+        self.show()
+
 
     def ocultar_puntero_del_mouse(self):
         self.ventana.ShowMouseCursor(False)
@@ -553,11 +545,6 @@ class Qt(motor.Motor, QtGui.QWidget):
         '''
 
     def resizeEvent(self, event):
-        #w, h = event.size().width(), event.size().height()
-        #self.scale_x = w / 640.0
-        #self.scale_y = h / 480.0
-        #QtGui.QWidget.resizeEvent(self, event)
-        #self.fitInView((0, 0, 100, 100), 1)
         print "resizeEvent"
 
     def mousePressEvent(self, e):

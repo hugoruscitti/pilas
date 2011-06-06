@@ -22,25 +22,10 @@ if utils.esta_en_sesion_interactiva():
 
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='sfml', 
-            modo='detectar', rendimiento=60, economico=True):
-
+            modo='detectar', rendimiento=60, economico=True, gravedad = (0, -90)):
     global mundo
 
-    if usar_motor == 'qt':
-        from motores import motor_qt
-        motor = motor_qt.Qt()
-    elif usar_motor == 'pygame':
-        from motores import motor_pygame
-        motor = motor_pygame.Pygame()
-    elif usar_motor in ['sfml', 'pysfml']:
-        from motores import motor_sfml
-        motor = motor_sfml.pySFML()
-    else:
-        print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
-        print "Las opciones de motores que puedes probar son 'qt', 'pygame' y 'sfml'."
-        sys.exit(1)
-
-    gravedad = (0, -90)
+    motor = __crear_motor(usar_motor)
     mundo = Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad)
 
     #pilas.colisiones = Colisiones()
@@ -128,5 +113,26 @@ def ver(objeto):
     print codigo
 
 def version():
+    "Retorna el numero de version de pilas."
     import pilasversion
+
     return pilasversion.VERSION
+
+def __crear_motor(usar_motor):
+    "Genera instancia del motor multimedia en base a una cadena seleccion."
+
+    if usar_motor == 'qt':
+        from motores import motor_qt
+        motor = motor_qt.Qt()
+    elif usar_motor == 'pygame':
+        from motores import motor_pygame
+        motor = motor_pygame.Pygame()
+    elif usar_motor in ['sfml', 'pysfml']:
+        from motores import motor_sfml
+        motor = motor_sfml.pySFML()
+    else:
+        print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
+        print "Las opciones de motores que puedes probar son 'qt', 'pygame' y 'sfml'."
+        sys.exit(1)
+
+    return motor
