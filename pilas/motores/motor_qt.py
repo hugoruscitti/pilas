@@ -15,6 +15,8 @@ from pilas import actores
 from pilas import eventos
 from pilas import utils
 
+from pilas import fps
+
 
 class BaseActor:
     
@@ -300,6 +302,9 @@ class Qt(motor.Motor, QtGui.QWidget):
         QtGui.QWidget.__init__(self)
         motor.Motor.__init__(self)
         self.canvas = QtGui.QPainter()
+        self.setMouseTracking(True)
+        self.fps = fps.FPS(60, True)
+
 
     def obtener_actor(self, imagen, x, y):
         return QtActor(imagen, x, y)
@@ -324,8 +329,7 @@ class Qt(motor.Motor, QtGui.QWidget):
         self.setGeometry(100, 100, self.ancho, self.alto)
         self.setWindowTitle(self.titulo)
         self.show()
-        self.startTimer(1000/40.0)
-
+        self.startTimer(1000/100.0)
 
     def ocultar_puntero_del_mouse(self):
         self.ventana.ShowMouseCursor(False)
@@ -517,6 +521,16 @@ class Qt(motor.Motor, QtGui.QWidget):
     def paintEvent(self, event):
         self.canvas.begin(self)
 
+        #windowWidth = 640
+        #windowHeight = (self.alto / self.ancho) * windowWidth;
+        #alto = self.ancho * (480 / 640.0)
+        #print alto
+
+        self.canvas.setViewport(0, 0, self.ancho *2, self.alto);
+        self.canvas.setWindow(0, 0, 640, 480)
+
+
+
         self.canvas.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, False)
         self.canvas.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
         self.canvas.setRenderHint(QtGui.QPainter.Antialiasing, False)
@@ -527,10 +541,11 @@ class Qt(motor.Motor, QtGui.QWidget):
         self.canvas.end()
 
     def timerEvent(self, event):
-        eventos.actualizar.send("Qt::timerEvent")
+        for x in range(self.fps.actualizar()):
+            eventos.actualizar.send("Qt::timerEvent")
 
-        for actor in actores.todos:
-            actor.actualizar()
+            for actor in actores.todos:
+                actor.actualizar()
 
         # Invoca el dibujado de la pantalla.
         self.update()
@@ -547,11 +562,12 @@ class Qt(motor.Motor, QtGui.QWidget):
         '''
 
     def resizeEvent(self, event):
-        pass
+        self.ancho = event.size().width()
+        self.alto = event.size().height()
 
     def mousePressEvent(self, e):
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x(), e.pos().y())
-        eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=0, dy=0)
+        eventos.click_de_mouse.send("ejecutar", x=x, y=y, dx=0, dy=0)
 
     def mouseMoveEvent(self, e):
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x(), e.pos().y())

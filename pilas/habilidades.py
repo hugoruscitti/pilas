@@ -95,8 +95,8 @@ class SeguirClicks(Habilidad):
         pilas.eventos.click_de_mouse.connect(self.moverse_a_este_punto)
 
     def moverse_a_este_punto(self, evento):
-        self.receptor.x = pilas.interpolar(evento.x, duracion=0.5)
-        self.receptor.y = pilas.interpolar(evento.y, duracion=0.5)
+        self.receptor.x = [evento.x], 0.5
+        self.receptor.y = [evento.y], 0.5
 
 
 class Arrastrable(Habilidad):
@@ -116,7 +116,6 @@ class Arrastrable(Habilidad):
 
     def try_to_drag(self, evento):
         "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
-
         if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
             pilas.eventos.termina_click.connect(self.drag_end)
             pilas.eventos.mueve_mouse.connect(self.drag, uid='drag')
