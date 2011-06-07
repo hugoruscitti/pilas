@@ -144,24 +144,19 @@ class SFMLTexto(BaseActor):
         rect = self.GetRect()
         return rect.GetHeight()
 
-class SFMLSonido:
-    # TODO
+class QtSonido:
 
     def __init__(self, ruta):
-        buff = sf.SoundBuffer()
-        buff.LoadFromFile(ruta)
-        self.buffer = buff
-        self.sonido = sf.Sound(self.buffer)
+        self._sonido = QtGui.QSound(ruta)
 
     def reproducir(self):
-        self.sonido.Play()
+        self._sonido.play()
         
     def definir_pitch(self, pitch):
-        self.sonido.SetPitch(pitch)
-        
-    def Play(self):
-        self.reproducir()
+        pass
+        #self.sonido.SetPitch(pitch)
 
+        
 class SFMLCanvas:
     "Representa una superficie sobre la que se puede dibujar usando cairo."
     # TODO
@@ -456,7 +451,7 @@ class Qt(motor.Motor, QtGui.QWidget):
 #self.ventana.Clear(sf.Color(*color.obtener_componentes()))
             
     def cargar_sonido(self, ruta):
-        return SFMLSonido(ruta)
+        return QtSonido(ruta)
 
     def cargar_imagen(self, ruta):
         return QtGui.QPixmap(ruta)

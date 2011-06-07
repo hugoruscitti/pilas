@@ -33,4 +33,4 @@ def cargar(ruta):
     En caso de error genera una excepción de tipo IOError.
     """
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
-    return pilas.motor.cargar_sonido(ruta)
+    return pilas.mundo.motor.cargar_sonido(ruta)
