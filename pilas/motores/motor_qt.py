@@ -24,6 +24,7 @@ class BaseActor:
         self._escala_x = 1
         self._escala_y = 1
         self._rotacion = 0
+        self._escala = 1
         self.centro_x = 0
         self.centro_y = 0
 
@@ -47,10 +48,10 @@ class BaseActor:
         self.x, self.y = x, y
 
     def obtener_escala(self):
-        pass
+        return self._escala
 
     def definir_escala(self, s):
-        pass
+        self._escala = s
 
     def definir_transparencia(self, nuevo_valor):
         pass
@@ -90,6 +91,7 @@ class QtActor(BaseActor):
         x, y = utils.convertir_de_posicion_relativa_a_fisica(self.x, self.y)
         motor.canvas.translate(self.x + 320, 240 - self.y)
         motor.canvas.rotate(self._rotacion)
+        motor.canvas.scale(self._escala, self._escala)
         motor.canvas.drawPixmap(-self.centro_x, -self.centro_y, self.imagen)
         motor.canvas.restore()
 
