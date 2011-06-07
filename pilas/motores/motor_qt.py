@@ -59,7 +59,7 @@ class BaseActor:
         return self._rotacion
 
     def definir_rotacion(self, r):
-        self.rotacion = r
+        self._rotacion = r
         
     def set_espejado(self, espejado):        
         pass
@@ -304,7 +304,7 @@ class Qt(motor.Motor, QtGui.QWidget):
         self.canvas = QtGui.QPainter()
         self.setMouseTracking(True)
         self.fps = fps.FPS(60, True)
-
+        self.pausa_habilitada = False
 
     def obtener_actor(self, imagen, x, y):
         return QtActor(imagen, x, y)
@@ -530,7 +530,6 @@ class Qt(motor.Motor, QtGui.QWidget):
         #self.canvas.setWindow(0, 0, 640, 480)
 
 
-
         self.canvas.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, False)
         self.canvas.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
         self.canvas.setRenderHint(QtGui.QPainter.Antialiasing, False)
@@ -541,16 +540,10 @@ class Qt(motor.Motor, QtGui.QWidget):
         self.canvas.end()
 
     def timerEvent(self, event):
-        for x in range(self.fps.actualizar()):
-            eventos.actualizar.send("Qt::timerEvent")
-
-            for actor in actores.todos:
-                actor.actualizar()
+        self.realizar_actualizacion_logica()
 
         # Invoca el dibujado de la pantalla.
         self.update()
-
-
 
         '''
         self.procesar_y_emitir_eventos()
@@ -560,6 +553,14 @@ class Qt(motor.Motor, QtGui.QWidget):
 
         self.mundo.realizar_actualizacion_grafica()
         '''
+
+    def realizar_actualizacion_logica(self):
+        for x in range(self.fps.actualizar()):
+            if not self.pausa_habilitada:
+                eventos.actualizar.send("Qt::timerEvent")
+
+                for actor in actores.todos:
+                    actor.actualizar()
 
     def resizeEvent(self, event):
         self.ancho = event.size().width()
