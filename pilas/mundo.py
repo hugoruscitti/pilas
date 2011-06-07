@@ -9,6 +9,7 @@
 import pytweener
 from pilas import eventos
 from pilas import tareas
+from pilas import control
 
 
 class Mundo:
@@ -24,12 +25,13 @@ class Mundo:
 
         self.tweener = pytweener.Tweener()
         self.tareas = tareas.Tareas() 
+        self.control = control.Control()
 
         eventos.actualizar.conectar(self.actualizar_simuladores)
 
     def actualizar_simuladores(self, evento):
         self.tweener.update(16)
-        self.tareas.update(1/60.0)
+        self.tareas.actualizar(1/60.0)
         #self.fisica.actualizar()
 
         '''
@@ -39,7 +41,6 @@ class Mundo:
         ventana.ancho = ancho
         ventana.alto = alto
 
-        self.control = control.Control()
 
         self.fps = pilas.fps.FPS(self.fps, self.economico)
         self.camara = camara.Camara(self.ventana)

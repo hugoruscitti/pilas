@@ -32,7 +32,7 @@ class Tareas:
         self.tasks = []
         self.time_counter = 0
 
-    def update(self, dt):
+    def actualizar(self, dt):
         "Actualiza los contadores de tiempo y ejecuta las tareas pendientes."
         self.time_counter += dt
         to_remove = []

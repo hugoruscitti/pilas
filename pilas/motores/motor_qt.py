@@ -16,6 +16,7 @@ from pilas import eventos
 from pilas import utils
 
 from pilas import fps
+from pilas import simbolos
 
 
 class BaseActor:
@@ -349,8 +350,8 @@ class Qt(motor.Motor, QtGui.QWidget):
 
     def pulsa_tecla(self, tecla):
         "Indica si una tecla esta siendo pulsada en este instante."
-        '''
 
+        '''
         mapa = {
                 IZQUIERDA: sf.Key.Left,
                 DERECHA: sf.Key.Right,
@@ -566,8 +567,31 @@ class Qt(motor.Motor, QtGui.QWidget):
 
     def mousePressEvent(self, e):
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x(), e.pos().y())
-        eventos.click_de_mouse.send("ejecutar", x=x, y=y, dx=0, dy=0)
+        eventos.click_de_mouse.send("Qt::mousePressEvent", x=x, y=y, dx=0, dy=0)
 
     def mouseMoveEvent(self, e):
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x(), e.pos().y())
-        eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=0, dy=0)
+        eventos.mueve_mouse.send("Qt::mouseMoveEvent", x=x, y=y, dx=0, dy=0)
+
+    def keyPressEvent(self, event):
+        codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
+        eventos.pulsa_tecla.send("Qt::keyPressEvent", codigo=codigo_de_tecla, texto=event.text())
+
+    def keyReleaseEvent(self, event):
+        codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
+        eventos.suelta_tecla.send("Qt::keyReleaseEvent", codigo=codigo_de_tecla, texto=event.text())
+
+    def obtener_codigo_de_tecla_normalizado(self, tecla_qt):
+        teclas = {
+            QtCore.Qt.Key_Left: simbolos.IZQUIERDA,
+            QtCore.Qt.Key_Right: simbolos.DERECHA,
+            QtCore.Qt.Key_Up: simbolos.ARRIBA,
+            QtCore.Qt.Key_Down: simbolos.ABAJO,
+            QtCore.Qt.Key_Space: simbolos.SELECCION,
+            QtCore.Qt.Key_Return: simbolos.SELECCION,
+        }
+
+        if teclas.has_key(tecla_qt):
+            return teclas[tecla_qt]
+        else:
+            return tecla_qt
