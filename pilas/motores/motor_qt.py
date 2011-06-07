@@ -326,6 +326,7 @@ class Qt(motor.Motor, QtGui.QWidget):
         self.setGeometry(100, 100, self.ancho, self.alto)
         self.setWindowTitle(self.titulo)
         self.show()
+        self.setFixedSize(self.ancho, self.alto)
         self.startTimer(1000/100.0)
 
     def ocultar_puntero_del_mouse(self):
