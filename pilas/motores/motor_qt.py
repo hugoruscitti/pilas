@@ -22,8 +22,6 @@ from pilas import simbolos
 class BaseActor:
     
     def __init__(self):
-        self._escala_x = 1
-        self._escala_y = 1
         self._rotacion = 0
         self._escala = 1
         self.centro_x = 0
@@ -177,17 +175,16 @@ class SFMLCanvas:
         self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, self.ancho, self.alto)
         self.context = cairo.Context(self.surface)       
 
-class SFMLGrilla:
-    # TODO
+class QtGrilla:
 
     def __init__(self, ruta, columnas=1, filas=1):
-        self.image = pilas.imagenes.cargar(ruta)
+        self.image = imagenes.cargar(ruta)
         self.cantidad_de_cuadros = columnas * filas
         self.columnas = columnas
         self.filas = filas
         self.cuadro_ancho = self.image.GetWidth() / columnas
         self.cuadro_alto = self.image.GetHeight() / filas
-        self.sub_rect = sf.IntRect(0, 0, self.cuadro_ancho, self.cuadro_alto)
+        #self.sub_rect = sf.IntRect(0, 0, self.cuadro_ancho, self.cuadro_alto)
         self.definir_cuadro(0)
 
     def definir_cuadro(self, cuadro):
@@ -318,7 +315,7 @@ class Qt(motor.Motor, QtGui.QWidget):
         return SFMLCanvas(ancho, alto)
     
     def obtener_grilla(self, ruta, columnas, filas):
-        return SFMLGrilla(ruta, columnas, filas)
+        return QtGrilla(ruta, columnas, filas)
 
     def iniciar_ventana(self, ancho, alto, titulo):
         self.ancho = ancho

@@ -64,7 +64,7 @@ def cargar_grilla(ruta, columnas=1, filas=1):
         grilla.avanzar()
         grilla.asignar(actor)
     """
-    return pilas.motor.obtener_grilla(ruta, columnas, filas)
+    return pilas.mundo.motor.obtener_grilla(ruta, columnas, filas)
 
 def cargar_lienzo(ancho=640, alto=480):
     """Representa un rectangulo (inicialmente transparente) para dibujar.

@@ -28,9 +28,55 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt',
     motor = __crear_motor(usar_motor)
     mundo = Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad)
 
+
+def ejecutar(ignorar_errores=False):
+    "Pone en funcionamiento las actualizaciones y dibujado."
+    mundo.ejecutar_bucle_principal(ignorar_errores)
+
+def terminar():
+    "Finaliza la ejecución de pilas y cierra la ventana principal."
+    mundo.terminar()
+
+
+def ver(objeto):
+    "Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."
+    import inspect
+
+    try:
+        codigo = inspect.getsource(objeto.__class__)
+    except TypeError:
+        codigo = inspect.getsource(objeto)
+
+    print codigo
+
+def version():
+    "Retorna el numero de version de pilas."
+    import pilasversion
+
+    return pilasversion.VERSION
+
+def __crear_motor(usar_motor):
+    "Genera instancia del motor multimedia en base a un nombre."
+
+    if usar_motor == 'qt':
+        from motores import motor_qt
+        motor = motor_qt.Qt()
+    elif usar_motor == 'pygame':
+        from motores import motor_pygame
+        motor = motor_pygame.Pygame()
+    elif usar_motor in ['sfml', 'pysfml']:
+        from motores import motor_sfml
+        motor = motor_sfml.pySFML()
+    else:
+        print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
+        print "Las opciones de motores que puedes probar son 'qt', 'pygame' y 'sfml'."
+        sys.exit(1)
+
+    return motor
+
+'''
     #pilas.colisiones = Colisiones()
 
-    '''
     if modo == 'detectar':
         if utils.esta_en_sesion_interactiva():
             iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]", rendimiento, economico, gravedad)
@@ -63,14 +109,6 @@ def __iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, gravedad, ignorar_
     ejecutar(ignorar_errores)
 '''
 
-def terminar():
-    "Finaliza la ejecución de pilas y cierra la ventana principal."
-    global mundo
-    mundo.terminar()
-
-def ejecutar(ignorar_errores=False):
-    mundo.ejecutar_bucle_principal(ignorar_errores)
-
 
 '''
 anterior_texto = None
@@ -100,39 +138,3 @@ def ejecutar_cada(segundos, funcion):
     """
     pilas.mundo.agregar_tarea_siempre(segundos, funcion)
 '''
-
-def ver(objeto):
-    "Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."
-    import inspect
-
-    try:
-        codigo = inspect.getsource(objeto.__class__)
-    except TypeError:
-        codigo = inspect.getsource(objeto)
-
-    print codigo
-
-def version():
-    "Retorna el numero de version de pilas."
-    import pilasversion
-
-    return pilasversion.VERSION
-
-def __crear_motor(usar_motor):
-    "Genera instancia del motor multimedia en base a una cadena seleccion."
-
-    if usar_motor == 'qt':
-        from motores import motor_qt
-        motor = motor_qt.Qt()
-    elif usar_motor == 'pygame':
-        from motores import motor_pygame
-        motor = motor_pygame.Pygame()
-    elif usar_motor in ['sfml', 'pysfml']:
-        from motores import motor_sfml
-        motor = motor_sfml.pySFML()
-    else:
-        print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
-        print "Las opciones de motores que puedes probar son 'qt', 'pygame' y 'sfml'."
-        sys.exit(1)
-
-    return motor

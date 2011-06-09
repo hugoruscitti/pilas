@@ -32,9 +32,19 @@ class Mundo:
     def actualizar_simuladores(self, evento):
         self.tweener.update(16)
         self.tareas.actualizar(1/60.0)
-        #self.fisica.actualizar()
 
-        '''
+    def terminar(self):
+        pass
+
+    def ejecutar_bucle_principal(self, ignorar_errores=False):
+        "Mantiene en funcionamiento el motor completo."
+        self.motor.ejecutar_bucle_principal(self, ignorar_errores)
+
+'''
+
+class __deprecated_Mundo():
+
+        #self.fisica.actualizar()
         self.ventana = ventana.iniciar(ancho, alto, titulo)
         self.fps = fps
         self.economico = economico
@@ -58,16 +68,8 @@ class Mundo:
         self.depuracion_fisica_habilitada = False
         self.funciones_depuracion = []
         self.salir = False
-        '''
 
-    def terminar(self):
-        pass
 
-    def ejecutar_bucle_principal(self, ignorar_errores=False):
-        "Mantiene en funcionamiento el motor completo."
-        self.motor.ejecutar_bucle_principal(self, ignorar_errores)
-
-    '''
     def _realizar_actualizacion_logica(self, ignorar_errores):
         self.actualizar_simuladores()
 
@@ -110,9 +112,7 @@ class Mundo:
     def cerrar_ventana(self):
         pilas.motor.cerrar_ventana()
         sys.exit(0)
-    '''
 
-    '''
     def definir_escena(self, escena_nueva):
         "Cambia la escena que se muestra en pantalla"
         self.escena_actual = escena_nueva
@@ -157,4 +157,4 @@ class Mundo:
 
     def analizar_colisiones(self):
         pilas.colisiones.verificar_colisiones()
-    '''
+'''
