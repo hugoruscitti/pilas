@@ -111,7 +111,6 @@ def __iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, gravedad, ignorar_
 '''
 
 
-'''
 anterior_texto = None
 
 def avisar(mensaje):
@@ -123,11 +122,15 @@ def avisar(mensaje):
 
     texto = actores.Texto(mensaje)
     texto.magnitud = 22
+    '''
     texto.centro = ("centro", "centro")
     texto.izquierda = -310
     texto.abajo = -230
+    '''
     anterior_texto = texto
 
+
+'''
 
 
 def ejecutar_cada(segundos, funcion):

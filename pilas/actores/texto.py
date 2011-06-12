@@ -17,7 +17,7 @@ class Texto(Actor):
     
     def __init__(self, texto="None", x=0, y=0):
         Actor.__init__(self, x=x, y=y)
-        self._actor = pilas.motor.obtener_texto(texto, x, y)
+        self._actor = pilas.mundo.motor.obtener_texto(texto, x, y)
         self.texto = texto
         self.x = x
         self.y = y

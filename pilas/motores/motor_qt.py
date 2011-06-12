@@ -166,43 +166,52 @@ class QtActor(BaseActor):
                 escala_x, escala_y, self._rotacion)
 
 
-class SFMLTexto(BaseActor):
-    # TODO
-
+class QtTexto(BaseActor):
 
     def __init__(self, texto="None", x=0, y=0):
-        sf.String.__init__(self, texto)
         BaseActor.__init__(self)
-        self.color = pilas.colores.negro
+        self.x = x
+        self.y = y
+        self._texto = ""
+        self._magnitud = 10
+        #self.color = pilas.colores.negro
 
     def obtener_texto(self):
-        return self.GetText()
+        return self._texto
 
-    def definir_texto(self, text):
-        self.SetText(text)
+    def definir_texto(self, texto):
+        self._texto = texto
         self._definir_eje_en_el_centro()
 
     def obtener_magnitud(self):
-        return self.GetSize()
+        return self._magnitud
 
-    def definir_magnitud(self, size):
-        self.SetSize(size)
+    def definir_magnitud(self, magnitud):
+        self._magnitud = magnitud
         self._definir_eje_en_el_centro()
 
     def _definir_eje_en_el_centro(self):
-        rect = self.GetRect()
-        size = (rect.GetWidth(), rect.GetHeight())
-        self.SetCenter(size[0]/2, size[1]/2)
+        #rect = self.GetRect()
+        #size = (rect.GetWidth(), rect.GetHeight())
+        #self.SetCenter(size[0]/2, size[1]/2)
+        pass
 
     def obtener_color(self):
-        return self.GetColor()
+        #return self.GetColor()
+        # TODO
+        return 1
 
     def definir_color(self, k):
-        self.SetColor(sf.Color(*k.obtener_componentes()))
+        # TODO self.SetColor(sf.Color(*k.obtener_componentes()))
+        pass
 
-    def dibujar(self, aplicacion):
-        aplicacion.Draw(self)
-        
+    def dibujar(self, motor):
+        motor.canvas.save()
+        motor.canvas.setPen(QtGui.QColor(168, 34, 3))
+        motor.canvas.setFont(QtGui.QFont('Decorative', self._magnitud))
+        motor.canvas.drawText(100, 100, self._texto)
+        motor.canvas.restore()
+
     def colisiona_con_un_punto(self, x, y):
         return False
 
@@ -322,7 +331,7 @@ class Qt(motor.Motor, QtGui.QWidget):
         return QtActor(imagen, x, y)
 
     def obtener_texto(self, texto, x, y):
-        return SFMLTexto(texto, x, y)
+        return QtTexto(texto, x, y)
 
     def obtener_posicion_del_mouse(self):
         #return (self.mouse_x, self.mouse_y)
