@@ -15,6 +15,7 @@ import actores
 import fondos
 import habilidades
 import eventos
+import sonidos
 
 
 if utils.esta_en_sesion_interactiva():

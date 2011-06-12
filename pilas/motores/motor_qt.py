@@ -8,6 +8,7 @@
 
 import sys
 from PyQt4 import QtGui, QtCore
+from PyQt4.phonon import Phonon
 
 import motor
 from pilas import imagenes
@@ -58,7 +59,6 @@ class BaseActor:
 class QtImagen():
 
     def __init__(self, ruta):
-        print ruta
         self._imagen = QtGui.QPixmap(ruta)
 
     def ancho(self):
@@ -159,7 +159,11 @@ class QtActor(BaseActor):
         return self.imagen
 
     def dibujar(self, motor):
-        self.imagen.dibujar(motor, self.x, self.y, self.centro_x, self.centro_y)
+        escala_x, escala_y = self._escala, self._escala
+
+        self.imagen.dibujar(motor, self.x, self.y, 
+                self.centro_x, self.centro_y,
+                escala_x, escala_y, self._rotacion)
 
 
 class SFMLTexto(BaseActor):
@@ -213,15 +217,13 @@ class SFMLTexto(BaseActor):
 class QtSonido:
 
     def __init__(self, ruta):
-        self._sonido = QtGui.QSound(ruta)
+        print "Usando pygame para reproducir sonido"
+        import pygame
+        pygame.mixer.init()
+        self.sonido = pygame.mixer.Sound(ruta)
 
     def reproducir(self):
-        self._sonido.play()
-        
-    def definir_pitch(self, pitch):
-        pass
-        #self.sonido.SetPitch(pitch)
-
+        self.sonido.play()
         
 class SFMLCanvas:
     "Representa una superficie sobre la que se puede dibujar usando cairo."
