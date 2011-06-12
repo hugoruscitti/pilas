@@ -51,3 +51,8 @@ class Control:
 
         if mapa.has_key(codigo):
             setattr(self, mapa[codigo], estado)
+
+    def __str__(self):
+        return "<Control izquierda: %s derecha: %s arriba: %s abajo: %s boton: %s>" %(
+                str(self.izquierda), str(self.derecha), str(self.arriba), 
+                str(self.abajo), str(self.boton))
