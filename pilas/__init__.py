@@ -16,6 +16,7 @@ import fondos
 import habilidades
 import eventos
 import sonidos
+import colores
 
 
 if utils.esta_en_sesion_interactiva():

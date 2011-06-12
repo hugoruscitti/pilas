@@ -142,8 +142,10 @@ class QtGrilla(QtImagen):
 class QtTexto(QtImagen):
 
     def _dibujar_pixmap(self, motor, dx, dy):
-        motor.canvas.setPen(QtGui.QColor(168, 34, 3))
-        #motor.canvas.setFont(QtGui.QFont('Decorative', self._magnitud))
+        r, g, b, a = self.color.obtener_componentes()
+        motor.canvas.setPen(QtGui.QColor(r, g, b))
+        nombre_de_fuente = motor.canvas.font().family()
+        motor.canvas.setFont(QtGui.QFont(nombre_de_fuente, self.magnitud))
         motor.canvas.drawText(dx, dy, self.texto)
 
 class QtActor(BaseActor):

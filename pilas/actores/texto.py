@@ -19,6 +19,8 @@ class Texto(Actor):
         Actor.__init__(self, x=x, y=y)
         self.imagen = pilas.mundo.motor.obtener_texto(texto)
         self.texto = texto
+        self.color = pilas.colores.negro
+        self.magnitud = 10
 
     def obtener_texto(self):
         return self.imagen.texto
@@ -40,6 +42,6 @@ class Texto(Actor):
         return self.imagen.color
     
     def definir_color(self, color):
-        self.imagen.color = magnitud
+        self.imagen.color = color
 
     color = property(obtener_color, definir_color, doc="Color del texto.")
