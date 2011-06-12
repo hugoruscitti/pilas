@@ -64,6 +64,12 @@ def cargar_grilla(ruta, columnas=1, filas=1):
         grilla.avanzar()
         grilla.asignar(actor)
     """
+    if not pilas.mundo:
+        mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` para comenzar."
+        print mensaje
+        raise Exception(mensaje)
+    
+    ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
     return pilas.mundo.motor.obtener_grilla(ruta, columnas, filas)
 
 def cargar_lienzo(ancho=640, alto=480):
