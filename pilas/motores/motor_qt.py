@@ -67,8 +67,8 @@ class BaseActor:
 class QtImagen():
 
     def __init__(self, ruta):
+        print ruta
         self._imagen = QtGui.QPixmap(ruta)
-        print self._imagen
 
     def ancho(self):
         return self._imagen.size().width()
@@ -93,10 +93,54 @@ class QtImagen():
         motor.canvas.translate(x + 320, 240 - y)
         motor.canvas.rotate(rotacion)
         motor.canvas.scale(escala_x, escala_y)
-        motor.canvas.drawPixmap(-dx, -dy, self._imagen)
+        self._dibujar_pixmap(motor, -dx, -dy)
         motor.canvas.restore()
 
-        
+    def _dibujar_pixmap(self, motor, x, y):
+        motor.canvas.drawPixmap(x, y, self._imagen)
+
+
+class QtGrilla(QtImagen):
+
+    def __init__(self, ruta, columnas=1, filas=1):
+        QtImagen.__init__(self, ruta)
+        self.cantidad_de_cuadros = columnas * filas
+        self.columnas = columnas
+        self.filas = filas
+        self.cuadro_ancho = QtImagen.ancho(self) / columnas
+        self.cuadro_alto = QtImagen.alto(self) / filas
+        self.definir_cuadro(0)
+
+    def ancho(self):
+        return self.cuadro_ancho
+
+    def alto(self):
+        return self.cuadro_alto
+
+    def _dibujar_pixmap(self, motor, x, y):
+        motor.canvas.drawPixmap(x, y, self._imagen, self.dx, self.dy, 
+                self.cuadro_ancho, self.cuadro_alto)
+
+    def definir_cuadro(self, cuadro):
+        self.cuadro = cuadro
+
+        frame_col = cuadro % self.columnas
+        frame_row = cuadro / self.columnas
+
+        self.dx = frame_col * self.cuadro_ancho
+        self.dy = frame_row * self.cuadro_alto
+
+    def avanzar(self):
+        ha_reiniciado = False
+        cuadro_actual = self.cuadro + 1
+
+        if cuadro_actual >= self.cantidad_de_cuadros:
+            cuadro_actual = 0
+            ha_reiniciado = True
+
+        self.definir_cuadro(cuadro_actual)
+        return ha_reiniciado
+
 class QtActor(BaseActor):
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
@@ -207,61 +251,6 @@ class SFMLCanvas:
         self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, self.ancho, self.alto)
         self.context = cairo.Context(self.surface)       
 
-class QtGrilla:
-
-    def __init__(self, ruta, columnas=1, filas=1):
-        self.image = imagenes.cargar(ruta)
-        self.cantidad_de_cuadros = columnas * filas
-        self.columnas = columnas
-        self.filas = filas
-        self.cuadro_ancho = self.image.size().width() / columnas
-        self.cuadro_alto = self.image.size().height() / filas
-
-    def dibujar(self, motor, cuadro):
-        motor.canvas.save()
-        # TODO: usando 320 x 240 para representar el centro de la ventana.
-        x, y = utils.convertir_de_posicion_relativa_a_fisica(self.x, self.y)
-        motor.canvas.translate(self.x + 320, 240 - self.y)
-        motor.canvas.rotate(self._rotacion)
-        motor.canvas.scale(self._escala, self._escala)
-        motor.canvas.drawPixmap(-self.centro_x, -self.centro_y, self.imagen)
-        motor.canvas.restore()
-
-
-    def definir_cuadro(self, cuadro):
-        self.cuadro = cuadro
-
-        frame_col = cuadro % self.columnas
-        frame_row = cuadro / self.columnas
-
-        dx = frame_col * self.cuadro_ancho - self.sub_rect.Left
-        dy = frame_row * self.cuadro_alto - self.sub_rect.Top
-
-        self.sub_rect.Offset(dx, dy)
-
-    def avanzar(self):
-        ha_reiniciado = False
-        cuadro_actual = self.cuadro + 1
-
-        if cuadro_actual >= self.cantidad_de_cuadros:
-            cuadro_actual = 0
-            ha_reiniciado = True
-
-        self.definir_cuadro(cuadro_actual)
-        return ha_reiniciado
-
-    def obtener_cuadro(self):
-        return self.cuadro
-
-    def obtener_dx(self):
-        frame_col = self.cuadro % self.columnas
-        dx = frame_col * self.cuadro_ancho
-        return dx
-
-    def obtener_dy(self):
-        frame_row = self.cuadro / self.columnas
-        dy = frame_row * self.cuadro_alto
-        return dy
                
 class aaaaaaaaaaaaaaaaaaaaVentana(QtGui.QWidget):
 
