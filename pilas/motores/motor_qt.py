@@ -27,15 +27,6 @@ class BaseActor:
         self.centro_x = 0
         self.centro_y = 0
 
-    def obtener_ancho(self):
-        return self.imagen.ancho()
-
-    def obtener_alto(self):
-        return self.imagen.alto()
-
-    def obtener_area(self):
-        return self.obtener_ancho(), self.obtener_alto()
-
     def definir_centro(self, x, y):
         self.centro_x = x
         self.centro_y = y
@@ -101,6 +92,13 @@ class QtImagen():
 
 
 class QtGrilla(QtImagen):
+    """Representa una grilla regular, que se utiliza en animaciones.
+
+       La grilla regular se tiene que crear indicando la cantidad
+       de filas y columnas. Una vez definida se puede usar como
+       una imagen normal, solo que tiene dos metodos adicionales
+       para ``definir_cuadro`` y ``avanzar`` el cuadro actual.
+    """
 
     def __init__(self, ruta, columnas=1, filas=1):
         QtImagen.__init__(self, ruta)
@@ -122,7 +120,7 @@ class QtGrilla(QtImagen):
                 self.cuadro_ancho, self.cuadro_alto)
 
     def definir_cuadro(self, cuadro):
-        self.cuadro = cuadro
+        self._cuadro = cuadro
 
         frame_col = cuadro % self.columnas
         frame_row = cuadro / self.columnas
@@ -132,7 +130,7 @@ class QtGrilla(QtImagen):
 
     def avanzar(self):
         ha_reiniciado = False
-        cuadro_actual = self.cuadro + 1
+        cuadro_actual = self._cuadro + 1
 
         if cuadro_actual >= self.cantidad_de_cuadros:
             cuadro_actual = 0
@@ -161,14 +159,7 @@ class QtActor(BaseActor):
         return self.imagen
 
     def dibujar(self, motor):
-        motor.canvas.save()
-        # TODO: usando 320 x 240 para representar el centro de la ventana.
-        x, y = utils.convertir_de_posicion_relativa_a_fisica(self.x, self.y)
-        motor.canvas.translate(self.x + 320, 240 - self.y)
-        motor.canvas.rotate(self._rotacion)
-        motor.canvas.scale(self._escala, self._escala)
-        motor.canvas.drawPixmap(-self.centro_x, -self.centro_y, self.imagen)
-        motor.canvas.restore()
+        self.imagen.dibujar(motor, self.x, self.y, self.centro_x, self.centro_y)
 
 
 class SFMLTexto(BaseActor):

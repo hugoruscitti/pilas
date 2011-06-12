@@ -109,12 +109,6 @@ class Actor(object, Estudiante):
     def dibujar(self, aplicacion):
         self._actor.dibujar(aplicacion)
 
-    def obtener_area(self):
-        return self._actor.obtener_area()
-
-    
-    area = property(obtener_area)
-
     def get_x(self):
         x, y = self.obtener_posicion()
         return x
@@ -299,10 +293,10 @@ class Actor(object, Estudiante):
         return duplicado
 
     def obtener_ancho(self):
-        return self.obtener_area()[0]
+        return self.imagen.ancho()
 
     def obtener_alto(self):
-        return self.obtener_area()[1]
+        return self.imagen.alto()
 
     ancho = property(obtener_ancho)
     alto = property(obtener_alto)
