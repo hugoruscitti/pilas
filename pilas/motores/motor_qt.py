@@ -8,7 +8,6 @@
 
 import sys
 from PyQt4 import QtGui, QtCore
-from PyQt4.phonon import Phonon
 
 import motor
 from pilas import imagenes
@@ -139,6 +138,14 @@ class QtGrilla(QtImagen):
         self.definir_cuadro(cuadro_actual)
         return ha_reiniciado
 
+
+class QtTexto(QtImagen):
+
+    def _dibujar_pixmap(self, motor, dx, dy):
+        motor.canvas.setPen(QtGui.QColor(168, 34, 3))
+        #motor.canvas.setFont(QtGui.QFont('Decorative', self._magnitud))
+        motor.canvas.drawText(dx, dy, self.texto)
+
 class QtActor(BaseActor):
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
@@ -165,63 +172,6 @@ class QtActor(BaseActor):
                 self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion)
 
-
-class QtTexto(BaseActor):
-
-    def __init__(self, texto="None", x=0, y=0):
-        BaseActor.__init__(self)
-        self.x = x
-        self.y = y
-        self._texto = ""
-        self._magnitud = 10
-        #self.color = pilas.colores.negro
-
-    def obtener_texto(self):
-        return self._texto
-
-    def definir_texto(self, texto):
-        self._texto = texto
-        self._definir_eje_en_el_centro()
-
-    def obtener_magnitud(self):
-        return self._magnitud
-
-    def definir_magnitud(self, magnitud):
-        self._magnitud = magnitud
-        self._definir_eje_en_el_centro()
-
-    def _definir_eje_en_el_centro(self):
-        #rect = self.GetRect()
-        #size = (rect.GetWidth(), rect.GetHeight())
-        #self.SetCenter(size[0]/2, size[1]/2)
-        pass
-
-    def obtener_color(self):
-        #return self.GetColor()
-        # TODO
-        return 1
-
-    def definir_color(self, k):
-        # TODO self.SetColor(sf.Color(*k.obtener_componentes()))
-        pass
-
-    def dibujar(self, motor):
-        motor.canvas.save()
-        motor.canvas.setPen(QtGui.QColor(168, 34, 3))
-        motor.canvas.setFont(QtGui.QFont('Decorative', self._magnitud))
-        motor.canvas.drawText(100, 100, self._texto)
-        motor.canvas.restore()
-
-    def colisiona_con_un_punto(self, x, y):
-        return False
-
-    def obtener_ancho(self):
-        rect = self.GetRect()
-        return rect.GetWidth()
-
-    def obtener_alto(self):
-        rect = self.GetRect()
-        return rect.GetHeight()
 
 class QtSonido:
 
@@ -330,8 +280,8 @@ class Qt(motor.Motor, QtGui.QWidget):
     def obtener_actor(self, imagen, x, y):
         return QtActor(imagen, x, y)
 
-    def obtener_texto(self, texto, x, y):
-        return QtTexto(texto, x, y)
+    def obtener_texto(self, texto):
+        return QtTexto(texto)
 
     def obtener_posicion_del_mouse(self):
         #return (self.mouse_x, self.mouse_y)

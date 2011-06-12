@@ -122,17 +122,13 @@ def avisar(mensaje):
 
     texto = actores.Texto(mensaje)
     texto.magnitud = 22
-    '''
     texto.centro = ("centro", "centro")
     texto.izquierda = -310
     texto.abajo = -230
-    '''
     anterior_texto = texto
 
 
 '''
-
-
 def ejecutar_cada(segundos, funcion):
     """Ejecuta una funcion con la frecuencia que indica el argumento segundos.
     
