@@ -28,10 +28,10 @@ class BaseActor:
         self.centro_y = 0
 
     def obtener_ancho(self):
-        return self.imagen.width()
+        return self.imagen.ancho()
 
     def obtener_alto(self):
-        return self.imagen.height()
+        return self.imagen.alto()
 
     def obtener_area(self):
         return self.obtener_ancho(), self.obtener_alto()
@@ -64,6 +64,38 @@ class BaseActor:
     def set_espejado(self, espejado):        
         pass
         
+class QtImagen():
+
+    def __init__(self, ruta):
+        self._imagen = QtGui.QPixmap(ruta)
+        print self._imagen
+
+    def ancho(self):
+        return self._imagen.size().width()
+
+    def alto(self):
+        return self._imagen.size().height()
+
+    def centro(self):
+        "Retorna una tupla con la coordenada del punto medio del la imagen."
+        return (self.ancho()/2, self.alto()/2)
+
+    def dibujar(self, motor, x, y, dx=0, dy=0, escala_x=1, escala_y=1, rotacion=0):
+        """Dibuja la imagen sobre la ventana que muestra el motor.
+
+           x, y: indican la posicion dentro del mundo.
+           dx, dy: es el punto centro de la imagen (importante para rotaciones).
+           escala_x, escala_yindican cambio de tamano (1 significa normal).
+           rotacion: angulo de inclinacion en sentido de las agujas del reloj.
+        """
+
+        motor.canvas.save()
+        motor.canvas.translate(x + 320, 240 - y)
+        motor.canvas.rotate(rotacion)
+        motor.canvas.scale(escala_x, escala_y)
+        motor.canvas.drawPixmap(-dx, -dy, self._imagen)
+        motor.canvas.restore()
+
         
 class QtActor(BaseActor):
 
@@ -182,10 +214,19 @@ class QtGrilla:
         self.cantidad_de_cuadros = columnas * filas
         self.columnas = columnas
         self.filas = filas
-        self.cuadro_ancho = self.image.GetWidth() / columnas
-        self.cuadro_alto = self.image.GetHeight() / filas
-        #self.sub_rect = sf.IntRect(0, 0, self.cuadro_ancho, self.cuadro_alto)
-        self.definir_cuadro(0)
+        self.cuadro_ancho = self.image.size().width() / columnas
+        self.cuadro_alto = self.image.size().height() / filas
+
+    def dibujar(self, motor, cuadro):
+        motor.canvas.save()
+        # TODO: usando 320 x 240 para representar el centro de la ventana.
+        x, y = utils.convertir_de_posicion_relativa_a_fisica(self.x, self.y)
+        motor.canvas.translate(self.x + 320, 240 - self.y)
+        motor.canvas.rotate(self._rotacion)
+        motor.canvas.scale(self._escala, self._escala)
+        motor.canvas.drawPixmap(-self.centro_x, -self.centro_y, self.imagen)
+        motor.canvas.restore()
+
 
     def definir_cuadro(self, cuadro):
         self.cuadro = cuadro
@@ -197,12 +238,6 @@ class QtGrilla:
         dy = frame_row * self.cuadro_alto - self.sub_rect.Top
 
         self.sub_rect.Offset(dx, dy)
-
-    def asignar(self, sprite):
-        "Define la imagen que tiene que tener el actor."
-
-        sprite._actor.SetImage(self.image)
-        sprite._actor.SetSubRect(self.sub_rect)
 
     def avanzar(self):
         ha_reiniciado = False
@@ -447,13 +482,12 @@ class Qt(motor.Motor, QtGui.QWidget):
 
     def pintar(self, color):
         pass
-#self.ventana.Clear(sf.Color(*color.obtener_componentes()))
             
     def cargar_sonido(self, ruta):
         return QtSonido(ruta)
 
     def cargar_imagen(self, ruta):
-        return QtGui.QPixmap(ruta)
+        return QtImagen(ruta)
 
     def obtener_imagen_cairo(self, imagen):
         """Retorna una superficie de cairo representando a la imagen.
