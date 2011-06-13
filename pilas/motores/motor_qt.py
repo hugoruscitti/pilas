@@ -148,6 +148,15 @@ class QtTexto(QtImagen):
         motor.canvas.setFont(QtGui.QFont(nombre_de_fuente, self.magnitud))
         motor.canvas.drawText(dx, dy, self.texto)
 
+class QtLienzo(QtImagen):
+
+    def _dibujar_pixmap(self, motor, dx, dy):
+        r, g, b, a = self.color.obtener_componentes()
+        motor.canvas.setPen(QtGui.QColor(r, g, b))
+        nombre_de_fuente = motor.canvas.font().family()
+        motor.canvas.setFont(QtGui.QFont(nombre_de_fuente, self.magnitud))
+        motor.canvas.drawText(dx, dy, self.texto)
+
 class QtActor(BaseActor):
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
@@ -432,20 +441,8 @@ class Qt(motor.Motor, QtGui.QWidget):
     def cargar_imagen(self, ruta):
         return QtImagen(ruta)
 
-    def obtener_imagen_cairo(self, imagen):
-        """Retorna una superficie de cairo representando a la imagen.
-
-        Esta funcion es util para pintar imagenes sobre una pizarra
-        o el escenario de un videojuego.
-        """
-        import array
-
-        pixels = array.array("B", imagen.GetPixels())
-
-        w = imagen.GetWidth()
-        h = imagen.GetHeight()
-
-        return cairo.ImageSurface.create_for_data(pixels, cairo.FORMAT_RGB24, w, h)
+    def obtener_lienzo(self):
+        return QtLienzo()
 
     def guardar_captura(self):
         imagen = self.ventana.Capture()
@@ -472,25 +469,6 @@ class Qt(motor.Motor, QtGui.QWidget):
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         sys.exit(self.app.exec_())
 
-        '''
-        while not mundo.salir:
-
-            # Invoca varias veces a la actualizacion si el equipo
-            # es lento.
-            for x in range(mundo.fps.actualizar()):
-                # Mantiene el control de tiempo y lo reporta al sistema
-                # de interpolaciones y tareas.
-
-                self.procesar_y_emitir_eventos()
-                
-                if not mundo.pausa_habilitada:
-                    mundo._realizar_actualizacion_logica(ignorar_errores)
-
-            mundo.realizar_actualizacion_grafica()
-
-        mundo.cerrar_ventana()
-        '''
-
     def paintEvent(self, event):
         self.canvas.begin(self)
 
@@ -501,7 +479,6 @@ class Qt(motor.Motor, QtGui.QWidget):
 
         #self.canvas.setViewport(0, 0, self.ancho, self.alto);
         #self.canvas.setWindow(0, 0, 640, 480)
-
 
         self.canvas.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, False)
         self.canvas.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)

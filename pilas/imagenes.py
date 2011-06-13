@@ -8,7 +8,6 @@
 
 import pilas
 import os
-import cairo
 
 def cargar(ruta):
     """Intenta cargar la imagen indicada por el argumento ``ruta``.
@@ -39,10 +38,6 @@ def cargar(ruta):
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
     return pilas.mundo.motor.cargar_imagen(ruta)
 
-def cargar_imagen_cairo(ruta):
-    ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
-    return cairo.ImageSurface.create_from_png(ruta)
-
 def cargar_grilla(ruta, columnas=1, filas=1):
     """Representa una grilla de imagenes con varios cuadros de animación.
 
@@ -72,15 +67,6 @@ def cargar_grilla(ruta, columnas=1, filas=1):
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
     return pilas.mundo.motor.obtener_grilla(ruta, columnas, filas)
 
-def cargar_lienzo(ancho=640, alto=480):
-    """Representa un rectangulo (inicialmente transparente) para dibujar.
-    
-    Internamente el lienzo tiene un contexto cairo, lo que permite
-    realizar dibujos vectoriales avanzados.
-    
-    Generalmente este objeto se utiliza usando al actor Pizarra.
-    """
-    return pilas.lienzo.Lienzo(ancho, alto)
-
-# Pronto en desuso
-# Grilla = pilas.motor.Grilla
+def cargar_lienzo():
+    """Representa un rectangulo (inicialmente transparente) para dibujar."""
+    return pilas.mundo.motor.obtener_lienzo()
