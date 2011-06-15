@@ -17,6 +17,7 @@ from pilas import utils
 
 from pilas import fps
 from pilas import simbolos
+from pilas import colores
 
 
 class BaseActor:
@@ -150,12 +151,40 @@ class QtTexto(QtImagen):
 
 class QtLienzo(QtImagen):
 
+    def __init__(self):
+        pass
+
     def _dibujar_pixmap(self, motor, dx, dy):
         r, g, b, a = self.color.obtener_componentes()
         motor.canvas.setPen(QtGui.QColor(r, g, b))
         nombre_de_fuente = motor.canvas.font().family()
         motor.canvas.setFont(QtGui.QFont(nombre_de_fuente, self.magnitud))
         motor.canvas.drawText(dx, dy, self.texto)
+
+    def texto(self, motor, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro):
+        r, g, b, a = color.obtener_componentes()
+        motor.canvas.setPen(QtGui.QColor(r, g, b))
+
+        if not fuente:
+            fuente = motor.canvas.font().family()
+
+        motor.canvas.setFont(QtGui.QFont(fuente, magnitud))
+        motor.canvas.drawText(x, y, cadena)
+
+    def linea(self, motor, x0, y0, x1, y1, color=colores.negro):
+        r, g, b, a = color.obtener_componentes()
+        motor.canvas.setPen(QtGui.QColor(r, g, b))
+        motor.canvas.drawLine(x0, y0, x1, y1)
+
+    def circulo(self, motor, x, y, radio, color=colores.negro):
+        r, g, b, a = color.obtener_componentes()
+        motor.canvas.setPen(QtGui.QColor(r, g, b))
+        motor.canvas.drawEllipse(x -radio, y-radio, radio*2, radio*2)
+
+    def rectangulo(self, motor, x, y, ancho, alto, color=colores.negro):
+        r, g, b, a = color.obtener_componentes()
+        motor.canvas.setPen(QtGui.QColor(r, g, b))
+        motor.canvas.drawRect(x, y, ancho, alto)
 
 class QtActor(BaseActor):
 
