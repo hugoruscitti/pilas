@@ -1,4 +1,4 @@
-#!/sbin/env python
+#!/usr/bin/python
 import sys
 from optparse import OptionParser
 import pilas
