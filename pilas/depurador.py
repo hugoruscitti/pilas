@@ -134,9 +134,7 @@ class ModoArea(ModoDepurador):
     tecla = "F10"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        self.depurador.pizarra.definir_color(pilas.colores.azul)
-        self.depurador.pizarra.dibujar_rectangulo(x, y, actor.ancho, actor.alto, False)
-        lienzo.rectangulo(motor, actor.x, actor.y, actor.radio_de_colision, color=pilas.colores.verde)
+        lienzo.rectangulo(motor, actor.x, actor.y, actor.ancho, actor.alto, color=pilas.colores.azul)
 
 class ModoPosicion(ModoDepurador):
     tecla = "F12"
@@ -144,16 +142,13 @@ class ModoPosicion(ModoDepurador):
     def __init__(self, depurador):
         ModoDepurador.__init__(self, depurador)
 
-    def dibuja_actor(self, actor):
-        posicion = "(%d, %d)" %(actor.x, actor.y)
-
-        (x, y) = pilas.utils.hacer_coordenada_mundo(actor.x, actor.abajo)
-        self.depurador.pizarra.definir_color(pilas.colores.violeta) 
-        self.depurador.pizarra.escribir(posicion, x + 20, y + 20, tamano=14)
-
+    def dibuja_al_actor(self, motor, lienzo, actor):
+        texto = "(%d, %d)" %(actor.x, actor.y)
+        lienzo.texto(motor, texto, actor.x, actor.y, color=pilas.colores.violeta)
         
 class ModoFisica(ModoDepurador):
     tecla = "F11"
     
     def inicia_actualizacion_grafica(self):
-        pilas.mundo.fisica.dibujar_figuras_sobre_pizarra(self.depurador.pizarra)
+        print "No implementando..."
+        #pilas.mundo.fisica.dibujar_figuras_sobre_pizarra(self.depurador.pizarra)
