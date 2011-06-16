@@ -10,6 +10,7 @@ import pytweener
 from pilas import eventos
 from pilas import tareas
 from pilas import control
+from pilas import fisica
 
 
 class Mundo:
@@ -27,10 +28,12 @@ class Mundo:
         self.tareas = tareas.Tareas() 
         self.control = control.Control()
         eventos.actualizar.conectar(self.actualizar_simuladores)
+        self.fisica = fisica.Fisica(gravedad=gravedad)
 
     def actualizar_simuladores(self, evento):
         self.tweener.update(16)
         self.tareas.actualizar(1/60.0)
+        self.fisica.actualizar()
 
     def terminar(self):
         pass

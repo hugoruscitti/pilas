@@ -340,4 +340,3 @@ class Actor(object, Estudiante):
     def _eliminar_anexados(self):
         for x in self.anexados:
             x.eliminar()
-

@@ -123,13 +123,13 @@ class ModoPuntosDeControl(ModoDepurador):
     tecla = "F8"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.circulo(motor, actor.x, actor.y, 1, color=pilas.colores.rojo)
+        lienzo.cruz(motor, actor.x, actor.y, color=pilas.colores.rojo)
         
 class ModoRadiosDeColision(ModoDepurador):
     tecla = "F9"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.cruz(motor, actor.x, actor.y, color=pilas.colores.verde)
+        lienzo.circulo(motor, actor.x, actor.y, actor.radio_de_colision, color=pilas.colores.verde)
  
 class ModoArea(ModoDepurador):
     tecla = "F10"
@@ -151,6 +151,5 @@ class ModoPosicion(ModoDepurador):
 class ModoFisica(ModoDepurador):
     tecla = "F11"
     
-    def inicia_actualizacion_grafica(self):
-        print "No implementando..."
-        #pilas.mundo.fisica.dibujar_figuras_sobre_pizarra(self.depurador.pizarra)
+    def comienza_dibujado(self, motor, lienzo):
+        pilas.mundo.fisica.dibujar_figuras_sobre_lienzo(motor, lienzo)

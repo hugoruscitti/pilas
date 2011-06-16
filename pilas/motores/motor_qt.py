@@ -174,11 +174,17 @@ class QtLienzo(QtImagen):
 
 
     def linea(self, motor, x0, y0, x1, y1, color=colores.negro):
-        x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
+        x0, y0 = utils.hacer_coordenada_pantalla_absoluta(x0, y0)
+        x1, y1 = utils.hacer_coordenada_pantalla_absoluta(x1, y1)
 
         r, g, b, a = color.obtener_componentes()
         motor.canvas.setPen(QtGui.QColor(r, g, b))
         motor.canvas.drawLine(x0, y0, x1, y1)
+
+    def cruz(self, motor, x, y, color=colores.negro):
+        t = 3
+        self.linea(motor, x - t, y - t, x + t, y + t, color)
+        self.linea(motor, x + t, y - t, x - t, y + t, color)
 
     def circulo(self, motor, x, y, radio, color=colores.negro):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
@@ -193,6 +199,7 @@ class QtLienzo(QtImagen):
         r, g, b, a = color.obtener_componentes()
         motor.canvas.setPen(QtGui.QColor(r, g, b))
         motor.canvas.drawRect(x, y, ancho, alto)
+
 
 class QtActor(BaseActor):
 

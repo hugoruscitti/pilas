@@ -7,6 +7,7 @@
 # website - http://www.pilas-engine.com.ar
 
 import pilas
+from pilas import colores
 
 
 try:
@@ -16,16 +17,9 @@ except ImportError:
 
 import math
 
-class Fisica(object):
-
-    def __init__(self, gravedad=(0, -90)):
-        pass
-
-    def actualizar(self):
-        pass
     
 
-class deprecated_Fisica(object):
+class Fisica(object):
     "Representa un simulador de mundo fisico, usando la biblioteca box2d."
     
     def __init__(self, gravedad=(0, -90)):
@@ -55,12 +49,10 @@ class deprecated_Fisica(object):
             self.figuras_a_eliminar = []
 
         
-    def dibujar_figuras_sobre_pizarra(self, pizarra):
+    def dibujar_figuras_sobre_lienzo(self, motor, lienzo):
         "Dibuja todas las figuras en una pizarra. Indicado para depuracion."
         cuerpos = self.mundo.bodyList
         cantidad_de_figuras = 0
-        
-        pizarra.definir_color(pilas.colores.amarillo)
         
         for cuerpo in cuerpos:
             xform = cuerpo.GetXForm()
@@ -77,10 +69,11 @@ class deprecated_Fisica(object):
                         
                         vertices.append((pt.x, pt.y))
                         
-                    pizarra.dibujar_poligono(vertices)
+                    #pizarra.dibujar_poligono(vertices)
+                    #print "dibujar un poligono..."
                     
                 elif tipo_de_figura == box2d.e_circleShape:
-                    pizarra.dibujar_circulo(cuerpo.position.x, cuerpo.position.y, figura.radius, False)
+                    lienzo.circulo(motor, cuerpo.position.x, cuerpo.position.y, figura.radius, colores.rojo)
                 else:
                     print "no puedo identificar el tipo de figura."
         

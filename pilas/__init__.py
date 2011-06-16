@@ -17,6 +17,7 @@ import habilidades
 import eventos
 import sonidos
 import colores
+import atajos
 
 
 if utils.esta_en_sesion_interactiva():
