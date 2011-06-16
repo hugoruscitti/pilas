@@ -26,7 +26,6 @@ class Mundo:
         self.tweener = pytweener.Tweener()
         self.tareas = tareas.Tareas() 
         self.control = control.Control()
-
         eventos.actualizar.conectar(self.actualizar_simuladores)
 
     def actualizar_simuladores(self, evento):
@@ -102,12 +101,6 @@ class __deprecated_Mundo():
         else:
             self.actualizar_actores()
 
-    def realizar_actualizacion_grafica(self):
-        self.escena_actual.dibujar(self.ventana)
-        self.depurador.inicia_actualizacion_grafica()
-        self.dibujar_actores()
-        self.depurador.finaliza_actualizacion_grafica()
-        pilas.motor.actualizar_pantalla()
 
     def cerrar_ventana(self):
         pilas.motor.cerrar_ventana()

@@ -19,50 +19,45 @@ class Depurador:
     que dibujan figuras geometricas.
     """
     
-    def __init__(self, fps):
+    def __init__(self, lienzo, fps):
         self.modos = []
-        self.pizarra = None
+        self.lienzo = lienzo
         self.fps = fps
-        self.posicion_del_mouse = (400, 400)
         self.posicion_del_mouse = (0, 0)
         pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
+        pilas.eventos.pulsa_tecla.conectar(self.cuando_pulsa_tecla)
         
     def cuando_mueve_el_mouse(self, evento):
         self.posicion_del_mouse = (evento.x, evento.y)
         return True
-        
-    def inicia_actualizacion_grafica(self):
-        if self.pizarra:
-            self.pizarra.limpiar()
-            for m in self.modos:
-                m.inicia_actualizacion_grafica()
 
-    def finaliza_actualizacion_grafica(self):
-        if self.pizarra:
-            self._mostrar_cuadros_por_segundo()
-            self._mostrar_posicion_del_mouse()
-            self._mostrar_nombres_de_modos()
-        
-            for m in self.modos:
-                m.finaliza_actualizacion_grafica()
-        
-            self.pizarra.actualizar_imagen()
-            
-    def dibuja_actor(self, actor):
+    def comienza_dibujado(self, motor):
         for m in self.modos:
-            m.dibuja_actor(actor)
+            m.comienza_dibujado(motor, self.lienzo)
+
+    def dibuja_al_actor(self, motor, actor):
+        for m in self.modos:
+            m.dibuja_al_actor(motor, self.lienzo, actor)
+
+    def termina_dibujado(self, motor):
+        if self.modos:
+            self._mostrar_cuadros_por_segundo(motor)
+            self._mostrar_posicion_del_mouse(motor)
+            self._mostrar_nombres_de_modos(motor)
+
+            for m in self.modos:
+                m.termina_dibujado(motor, self.lienzo)
     
-    def pulsa_tecla(self, code):
-        from PySFML import sf
-        if code == sf.Key.F8:
+    def cuando_pulsa_tecla(self, evento):
+        if evento.codigo == 'F8':
             self._alternar_modo(ModoPuntosDeControl)
-        elif code == sf.Key.F9:
+        elif evento.codigo == 'F9':
             self._alternar_modo(ModoRadiosDeColision)
-        elif code == sf.Key.F10:
+        elif evento.codigo == 'F10':
             self._alternar_modo(ModoArea)
-        elif code == sf.Key.F11:
+        elif evento.codigo == 'F11':
             self._alternar_modo(ModoFisica)
-        elif code == sf.Key.F12:
+        elif evento.codigo == 'F12':
             self._alternar_modo(ModoPosicion)
 
     def _alternar_modo(self, clase_del_modo):
@@ -74,42 +69,36 @@ class Depurador:
             self._activar_modo(clase_del_modo)
     
     def _activar_modo(self, clase_del_modo):
-        if not self.pizarra:
-            self.pizarra = pilas.actores.Pizarra()
-            pilas.eventos.inicia_modo_depuracion.send('depurador')
-            self.pizarra.deshabilitar_actualizacion_automatica()
-            
+        pilas.eventos.inicia_modo_depuracion.send('depurador')
         instancia_del_modo = clase_del_modo(self)
         self.modos.append(instancia_del_modo)
         # Ordena todos los registros por numero de tecla.
         self.modos.sort(key=lambda x: x.orden_de_tecla())
         
     def _desactivar_modo(self, clase_del_modo):
-        instancia_a_eliminar = [x for x in self.modos if x.__class__ == clase_del_modo]
+        instancia_a_eliminar = [x for x in self.modos 
+                                if x.__class__ == clase_del_modo]
         self.modos.remove(instancia_a_eliminar[0])
         
         if not self.modos:
-            self.pizarra.eliminar()
             pilas.eventos.sale_modo_depuracion.send('depurador')
-            self.pizarra = None
 
-    def _mostrar_nombres_de_modos(self):
-        self.pizarra.definir_color(pilas.colores.negro)
+    def _mostrar_nombres_de_modos(self, motor):
         dy = 20
-        
         for modo in self.modos:
-            self.pizarra.escribir(modo.tecla + " " + modo.__class__.__name__ + " habilitado.", 10, dy, tamano=14)
+            texto = modo.tecla + " " + modo.__class__.__name__ + " habilitado."
+            self.lienzo.texto(motor, texto, 380, 460, color=pilas.colores.violeta)
             dy += 20
             
-    def _mostrar_posicion_del_mouse(self):
+    def _mostrar_posicion_del_mouse(self, motor):
         x, y = self.posicion_del_mouse    
-        texto = "Posición del mouse: x=%d y=%d " %(x, y)
-        self.pizarra.escribir(texto, 380, 460, tamano=14)
+        texto = u"Posición del mouse: x=%d y=%d " %(x, y)
+        self.lienzo.texto(motor, texto, 380, 460, color=pilas.colores.violeta)
         
-    def _mostrar_cuadros_por_segundo(self):
+    def _mostrar_cuadros_por_segundo(self, motor):
         rendimiento = self.fps.obtener_cuadros_por_segundo()
-        self.pizarra.definir_color(pilas.colores.violeta)
-        self.pizarra.escribir("Cuadros por segundo: %s" %(rendimiento), 10, 460, tamano=14)
+        texto = "Cuadros por segundo: %s" %(rendimiento)
+        self.lienzo.texto(motor, texto, 10, 460, color=pilas.colores.violeta)
         
 class ModoDepurador:
     tecla = "F00"
@@ -117,39 +106,37 @@ class ModoDepurador:
     def __init__(self, depurador):
         self.depurador = depurador
         
-    def inicia_actualizacion_grafica(self):
+    def comienza_dibujado(self, motor, lienzo):
         pass
     
-    def finaliza_actualizacion_grafica(self):
+    def dibuja_al_actor(self, motor, lienzo, actor):
+        pass
+
+    def termina_dibujado(self, motor, lienzo):
         pass
      
-    def dibuja_actor(self, actor):
-        pass
-    
     def orden_de_tecla(self):
         return int(self.tecla[1:])
     
 class ModoPuntosDeControl(ModoDepurador):
     tecla = "F8"
     
-    def dibuja_actor(self, actor):
-        self.depurador.pizarra.pintar_cruz(actor.x, actor.y, 6, pilas.colores.rojo)
+    def dibuja_al_actor(self, motor, lienzo, actor):
+        lienzo.circulo(motor, actor.x, actor.y, 2, color=pilas.colores.rojo)
         
 class ModoRadiosDeColision(ModoDepurador):
     tecla = "F9"
     
-    def dibuja_actor(self, actor):
-        self.depurador.pizarra.definir_color(pilas.colores.verde)
-        self.depurador.pizarra.dibujar_circulo(actor.x, actor.y, actor.radio_de_colision, False)
- 
+    def dibuja_al_actor(self, motor, lienzo, actor):
+        lienzo.circulo(motor, actor.x, actor.y, actor.radio_de_colision, color=pilas.colores.verde)
  
 class ModoArea(ModoDepurador):
     tecla = "F10"
     
-    def dibuja_actor(self, actor):
-        (x, y) = pilas.utils.hacer_coordenada_mundo(actor.izquierda, actor.arriba)
+    def dibuja_al_actor(self, motor, lienzo, actor):
         self.depurador.pizarra.definir_color(pilas.colores.azul)
         self.depurador.pizarra.dibujar_rectangulo(x, y, actor.ancho, actor.alto, False)
+        lienzo.rectangulo(motor, actor.x, actor.y, actor.radio_de_colision, color=pilas.colores.verde)
 
 class ModoPosicion(ModoDepurador):
     tecla = "F12"

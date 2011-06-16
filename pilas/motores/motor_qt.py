@@ -14,6 +14,7 @@ from pilas import imagenes
 from pilas import actores
 from pilas import eventos
 from pilas import utils
+from pilas import depurador
 
 from pilas import fps
 from pilas import simbolos
@@ -153,13 +154,6 @@ class QtLienzo(QtImagen):
 
     def __init__(self):
         pass
-
-    def _dibujar_pixmap(self, motor, dx, dy):
-        r, g, b, a = self.color.obtener_componentes()
-        motor.canvas.setPen(QtGui.QColor(r, g, b))
-        nombre_de_fuente = motor.canvas.font().family()
-        motor.canvas.setFont(QtGui.QFont(nombre_de_fuente, self.magnitud))
-        motor.canvas.drawText(dx, dy, self.texto)
 
     def texto(self, motor, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro):
         r, g, b, a = color.obtener_componentes()
@@ -316,6 +310,8 @@ class Qt(motor.Motor, QtGui.QWidget):
         self.setMouseTracking(True)
         self.fps = fps.FPS(60, True)
         self.pausa_habilitada = False
+        self.depurador = depurador.Depurador(self.obtener_lienzo(), self.fps)
+
 
     def obtener_actor(self, imagen, x, y):
         return QtActor(imagen, x, y)
@@ -351,33 +347,6 @@ class Qt(motor.Motor, QtGui.QWidget):
 
     def cerrar_ventana(self):
         self.ventana.Close()
-
-    def dibujar_circulo(self, x, y, radio, color, color_borde):
-        delta = radio / 2
-        circulo = sf.Shape.Circle(0, 0, delta, 
-                sf.Color(*color.obtener_componentes()), 2, 
-                sf.Color(*color_borde.obtener_componentes()))
-        circulo.SetCenter(0, 0)
-        circulo.SetPosition(x, -y)
-        self.ventana.Draw(circulo)
-
-    def pulsa_tecla(self, tecla):
-        "Indica si una tecla esta siendo pulsada en este instante."
-
-        '''
-        mapa = {
-                IZQUIERDA: sf.Key.Left,
-                DERECHA: sf.Key.Right,
-                ARRIBA: sf.Key.Up,
-                ABAJO: sf.Key.Down,
-                BOTON: sf.Key.Space,
-                SELECCION: sf.Key.Return,
-                }
-
-        return self.input.IsKeyDown(mapa[tecla])
-        '''
-        return False
-
 
     def centrar_ventana(self):
         "Coloca la ventana principal en el centro del escritorio."
@@ -500,6 +469,7 @@ class Qt(motor.Motor, QtGui.QWidget):
 
     def paintEvent(self, event):
         self.canvas.begin(self)
+        self.depurador.comienza_dibujado(self)
 
         #windowWidth = 640
         #windowHeight = (self.alto / self.ancho) * windowWidth;
@@ -515,7 +485,9 @@ class Qt(motor.Motor, QtGui.QWidget):
 
         for actor in actores.todos:
             actor.dibujar(self)
+            self.depurador.dibuja_al_actor(self, actor)
 
+        self.depurador.termina_dibujado(self)
         self.canvas.end()
 
     def timerEvent(self, event):
@@ -569,6 +541,11 @@ class Qt(motor.Motor, QtGui.QWidget):
             QtCore.Qt.Key_Down: simbolos.ABAJO,
             QtCore.Qt.Key_Space: simbolos.SELECCION,
             QtCore.Qt.Key_Return: simbolos.SELECCION,
+            QtCore.Qt.Key_F8: simbolos.F8,
+            QtCore.Qt.Key_F9: simbolos.F9,
+            QtCore.Qt.Key_F10: simbolos.F10,
+            QtCore.Qt.Key_F11: simbolos.F11,
+            QtCore.Qt.Key_F12: simbolos.F12,
         }
 
         if teclas.has_key(tecla_qt):
