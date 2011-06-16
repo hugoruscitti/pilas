@@ -7,7 +7,6 @@
 # Website - http://www.pilas-engine.com.ar
 
 import array
-import cairo
 
 import pilas
 from pilas.actores import Actor
