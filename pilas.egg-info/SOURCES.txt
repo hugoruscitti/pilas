@@ -152,6 +152,7 @@ minijuegos/Memorice/data/u.png
 minijuegos/asteroides/README
 minijuegos/asteroides/contador_de_vidas.py
 minijuegos/asteroides/ejecutar.py
+minijuegos/asteroides/ejecutar.pyc
 minijuegos/asteroides/escena_ayuda.py
 minijuegos/asteroides/escena_juego.py
 minijuegos/asteroides/escena_menu.py
@@ -174,6 +175,7 @@ minijuegos/tres_en_raya/data/ficha_vacia.png
 minijuegos/tres_en_raya/data/fondo.png
 minijuegos/tres_en_raya/data/inicio.png
 pilas/__init__.py
+pilas/anterior__init__.py
 pilas/atajos.py
 pilas/baseactor.py
 pilas/camara.py
@@ -280,6 +282,7 @@ pilas/data/piedra_media.png
 pilas/data/pilas-logo.png
 pilas/data/pingu.png
 pilas/data/plataformas.png
+pilas/data/prueba.png
 pilas/data/punto.png
 pilas/data/shout.wav
 pilas/data/sin_imagen.png
