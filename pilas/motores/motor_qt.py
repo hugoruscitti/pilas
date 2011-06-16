@@ -156,6 +156,13 @@ class QtLienzo(QtImagen):
         pass
 
     def texto(self, motor, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro):
+        "Imprime un texto respespetando el desplazamiento de la camara."
+        self.texto_absoluto(motor, cadena, x, y, magnitud, fuente, color)
+
+    def texto_absoluto(self, motor, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro):
+        "Imprime un texto sin respetar al camara."
+        x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
+
         r, g, b, a = color.obtener_componentes()
         motor.canvas.setPen(QtGui.QColor(r, g, b))
 
@@ -165,17 +172,24 @@ class QtLienzo(QtImagen):
         motor.canvas.setFont(QtGui.QFont(fuente, magnitud))
         motor.canvas.drawText(x, y, cadena)
 
+
     def linea(self, motor, x0, y0, x1, y1, color=colores.negro):
+        x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
+
         r, g, b, a = color.obtener_componentes()
         motor.canvas.setPen(QtGui.QColor(r, g, b))
         motor.canvas.drawLine(x0, y0, x1, y1)
 
     def circulo(self, motor, x, y, radio, color=colores.negro):
+        x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
+
         r, g, b, a = color.obtener_componentes()
         motor.canvas.setPen(QtGui.QColor(r, g, b))
         motor.canvas.drawEllipse(x -radio, y-radio, radio*2, radio*2)
 
     def rectangulo(self, motor, x, y, ancho, alto, color=colores.negro):
+        x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
+
         r, g, b, a = color.obtener_componentes()
         motor.canvas.setPen(QtGui.QColor(r, g, b))
         motor.canvas.drawRect(x, y, ancho, alto)

@@ -84,21 +84,22 @@ class Depurador:
             pilas.eventos.sale_modo_depuracion.send('depurador')
 
     def _mostrar_nombres_de_modos(self, motor):
-        dy = 20
+        dy = 0
+
         for modo in self.modos:
             texto = modo.tecla + " " + modo.__class__.__name__ + " habilitado."
-            self.lienzo.texto(motor, texto, 380, 460, color=pilas.colores.violeta)
-            dy += 20
+            self.lienzo.texto_absoluto(motor, texto, -310, 220 + dy, color=pilas.colores.violeta)
+            dy -= 20
             
     def _mostrar_posicion_del_mouse(self, motor):
         x, y = self.posicion_del_mouse    
         texto = u"Posición del mouse: x=%d y=%d " %(x, y)
-        self.lienzo.texto(motor, texto, 380, 460, color=pilas.colores.violeta)
+        self.lienzo.texto_absoluto(motor, texto, 75, -230, color=pilas.colores.violeta)
         
     def _mostrar_cuadros_por_segundo(self, motor):
         rendimiento = self.fps.obtener_cuadros_por_segundo()
         texto = "Cuadros por segundo: %s" %(rendimiento)
-        self.lienzo.texto(motor, texto, 10, 460, color=pilas.colores.violeta)
+        self.lienzo.texto_absoluto(motor, texto, -310, -230, color=pilas.colores.violeta)
         
 class ModoDepurador:
     tecla = "F00"
@@ -122,19 +123,20 @@ class ModoPuntosDeControl(ModoDepurador):
     tecla = "F8"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.circulo(motor, actor.x, actor.y, 2, color=pilas.colores.rojo)
+        lienzo.circulo(motor, actor.x, actor.y, 1, color=pilas.colores.rojo)
         
 class ModoRadiosDeColision(ModoDepurador):
     tecla = "F9"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.circulo(motor, actor.x, actor.y, actor.radio_de_colision, color=pilas.colores.verde)
+        lienzo.cruz(motor, actor.x, actor.y, color=pilas.colores.verde)
  
 class ModoArea(ModoDepurador):
     tecla = "F10"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.rectangulo(motor, actor.x, actor.y, actor.ancho, actor.alto, color=pilas.colores.azul)
+        dx, dy = actor.centro
+        lienzo.rectangulo(motor, actor.x - dx, actor.y + dy, actor.ancho, actor.alto, color=pilas.colores.azul)
 
 class ModoPosicion(ModoDepurador):
     tecla = "F12"

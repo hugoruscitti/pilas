@@ -130,6 +130,9 @@ def interpolable(f):
 def hacer_coordenada_mundo(x, y):
     return (x + 320, 240 - y)
 
+def hacer_coordenada_pantalla_absoluta(x, y):
+    return (x + 320, 240 - y)
+
 
 def listar_actores_en_consola():
     todos = pilas.actores.todos
