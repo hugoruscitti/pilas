@@ -209,7 +209,10 @@ class Actor(object, Estudiante):
         
         Este metodo se llama una vez por frame, y generalmente se redefine
         en alguna subclase."""
+
+    def pre_actualizar(self):
         self.actualizar_comportamientos()
+        self.actualizar_habilidades()
 
     def __cmp__(self, otro_actor):
         """Compara dos actores para determinar cual esta mas cerca de la camara.

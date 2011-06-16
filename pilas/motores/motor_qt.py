@@ -532,6 +532,7 @@ class Qt(motor.Motor, QtGui.QWidget):
                 eventos.actualizar.send("Qt::timerEvent")
 
                 for actor in actores.todos:
+                    actor.pre_actualizar()
                     actor.actualizar()
 
     def resizeEvent(self, event):
