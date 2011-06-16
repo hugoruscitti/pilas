@@ -8,6 +8,9 @@
 
 import sys
 from PyQt4 import QtGui, QtCore
+from PyQt4.QtOpenGL import QGLWidget
+
+
 
 import motor
 from pilas import imagenes
@@ -320,12 +323,12 @@ class aaaaaaaaaaaaaaaaaaaaVentana(QtGui.QWidget):
             r.dibujar(self.canvas)
 
         
-class Qt(motor.Motor, QtGui.QWidget):
+class Qt(motor.Motor, QGLWidget):
 
     app = QtGui.QApplication([])
 
     def __init__(self):
-        QtGui.QWidget.__init__(self)
+        QGLWidget.__init__(self)
         motor.Motor.__init__(self)
         self.canvas = QtGui.QPainter()
         self.setMouseTracking(True)
@@ -353,11 +356,12 @@ class Qt(motor.Motor, QtGui.QWidget):
     def iniciar_ventana(self, ancho, alto, titulo):
         self.ancho = ancho
         self.alto = alto
+        self.ancho_original = ancho
+        self.alto_original = alto
         self.titulo = titulo
         self.setGeometry(100, 100, self.ancho, self.alto)
         self.setWindowTitle(self.titulo)
         self.show()
-        self.setFixedSize(self.ancho, self.alto)
         self.startTimer(1000/100.0)
 
     def ocultar_puntero_del_mouse(self):
@@ -492,13 +496,8 @@ class Qt(motor.Motor, QtGui.QWidget):
         self.canvas.begin(self)
         self.depurador.comienza_dibujado(self)
 
-        #windowWidth = 640
-        #windowHeight = (self.alto / self.ancho) * windowWidth;
-        #alto = self.ancho * (480 / 640.0)
-        #print alto
-
-        #self.canvas.setViewport(0, 0, self.ancho, self.alto);
-        #self.canvas.setWindow(0, 0, 640, 480)
+        alto = self.alto / float(self.alto_original)
+        self.canvas.scale(alto, alto)
 
         self.canvas.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, False)
         self.canvas.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
