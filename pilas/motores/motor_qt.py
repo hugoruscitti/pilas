@@ -8,8 +8,13 @@
 
 import sys
 from PyQt4 import QtGui, QtCore
-from PyQt4.QtOpenGL import QGLWidget
+from PyQt4.QtGui import QWidget
 
+try:
+    from PyQt4 import QtOpenGL
+    from PyQt4.QtOpenGL import QGLWidget
+except ImportError:
+    QGLWidget = None
 
 
 import motor
@@ -315,27 +320,23 @@ class aaaaaaaaaaaaaaaaaaaaVentana(QtGui.QWidget):
     def wheelEvent(self, event):
         print "Mueve rueda:", event.delta()
 
-    def timerEvent(self, event):
-        self.do_update()
 
     def render(self, event, qp):
         for r in self.sprites:
             r.dibujar(self.canvas)
 
         
-class Qt(motor.Motor, QGLWidget):
+class QtSingle(motor.Motor):
 
     app = QtGui.QApplication([])
 
     def __init__(self):
-        QGLWidget.__init__(self)
         motor.Motor.__init__(self)
         self.canvas = QtGui.QPainter()
         self.setMouseTracking(True)
         self.fps = fps.FPS(60, True)
         self.pausa_habilitada = False
         self.depurador = depurador.Depurador(self.obtener_lienzo(), self.fps)
-
 
     def obtener_actor(self, imagen, x, y):
         return QtActor(imagen, x, y)
@@ -362,6 +363,7 @@ class Qt(motor.Motor, QGLWidget):
         self.setGeometry(100, 100, self.ancho, self.alto)
         self.setWindowTitle(self.titulo)
         self.show()
+        # Activa la invocacion al evento timerEvent.
         self.startTimer(1000/100.0)
 
     def ocultar_puntero_del_mouse(self):
@@ -573,3 +575,18 @@ class Qt(motor.Motor, QGLWidget):
             return teclas[tecla_qt]
         else:
             return tecla_qt
+
+
+class Qt(QtSingle, QWidget):
+
+    def __init__(self):
+        QWidget.__init__(self)
+        QtSingle.__init__(self)
+
+class QtGL(QtSingle, QGLWidget):
+
+    def __init__(self):
+        if not QGLWidget:
+            print "Lo siento, OpenGL no esta disponible..."
+        QGLWidget.__init__(self)
+        QtSingle.__init__(self)

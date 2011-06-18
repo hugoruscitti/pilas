@@ -64,6 +64,9 @@ def __crear_motor(usar_motor):
     if usar_motor == 'qt':
         from motores import motor_qt
         motor = motor_qt.Qt()
+    elif usar_motor == 'qtgl':
+        from motores import motor_qt
+        motor = motor_qt.QtGL()
     elif usar_motor == 'pygame':
         from motores import motor_pygame
         motor = motor_pygame.Pygame()
