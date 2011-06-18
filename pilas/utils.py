@@ -21,10 +21,13 @@ PATH = os.path.dirname(os.path.abspath(__file__))
 
 def cargar_autocompletado():
     "Carga los modulos de python para autocompletar desde la consola interactiva."
-    import rlcompleter
-    import readline
+    try:
+        import rlcompleter
+        import readline
 
-    readline.parse_and_bind("tab: complete")
+        readline.parse_and_bind("tab: complete")
+    except ImportError:
+        print "No se puede cargar el autocompletado, instale readline..."
 
 def hacer_flotante_la_ventana():
     "Hace flotante la ventana para i3 (el manejador de ventanas que utiliza hugo...)"
