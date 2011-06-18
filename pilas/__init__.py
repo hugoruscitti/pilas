@@ -123,10 +123,10 @@ def avisar(mensaje):
         anterior_texto.eliminar()
 
     texto = actores.Texto(mensaje)
-    texto.magnitud = 22
+    texto.magnitud = 18
     texto.centro = ("centro", "centro")
     texto.izquierda = -310
-    texto.abajo = -230
+    texto.abajo = -200
     anterior_texto = texto
 
 
@@ -140,3 +140,7 @@ def ejecutar_cada(segundos, funcion):
     """
     pilas.mundo.agregar_tarea_siempre(segundos, funcion)
 '''
+
+def abrir_cargador():
+    import cargador
+    cargador.ejecutar()

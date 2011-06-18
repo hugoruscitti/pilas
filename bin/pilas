@@ -20,7 +20,7 @@ if opciones.crearjuego:
     pilas.utils.crear_juego()
     sys.exit(0)
 elif opciones.ejemplos:
-    pilas.cargador.ejecutar()
+    pilas.abrir_cargador()
     sys.exit(0)
 
 print "Error, no has indicado un parametro para iniciar pilas."
