@@ -354,7 +354,7 @@ class QtSingle(motor.Motor):
     def obtener_grilla(self, ruta, columnas, filas):
         return QtGrilla(ruta, columnas, filas)
 
-    def iniciar_ventana(self, ancho, alto, titulo):
+    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
         self.ancho = ancho
         self.alto = alto
         self.ancho_original = ancho
@@ -362,7 +362,12 @@ class QtSingle(motor.Motor):
         self.titulo = titulo
         self.setGeometry(100, 100, self.ancho, self.alto)
         self.setWindowTitle(self.titulo)
-        self.show()
+
+        if pantalla_completa:
+            self.showFullScreen()
+        else:
+            self.show()
+
         # Activa la invocacion al evento timerEvent.
         self.startTimer(1000/100.0)
 
@@ -496,7 +501,6 @@ class QtSingle(motor.Motor):
 
     def paintEvent(self, event):
         self.canvas.begin(self)
-        self.depurador.comienza_dibujado(self)
 
         alto = self.alto / float(self.alto_original)
         self.canvas.scale(alto, alto)
@@ -504,6 +508,8 @@ class QtSingle(motor.Motor):
         self.canvas.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, False)
         self.canvas.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
         self.canvas.setRenderHint(QtGui.QPainter.Antialiasing, False)
+
+        self.depurador.comienza_dibujado(self)
 
         for actor in actores.todos:
             actor.dibujar(self)

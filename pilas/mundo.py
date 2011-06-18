@@ -20,9 +20,10 @@ class Mundo:
     motor y mantener el bucle de juego.
     """
 
-    def __init__(self, motor, ancho, alto, titulo, fps=60, economico=True, gravedad=(0, -90)):
+    def __init__(self, motor, ancho, alto, titulo, fps=60, economico=True, 
+            gravedad=(0, -90), pantalla_completa=False):
         self.motor = motor
-        self.motor.iniciar_ventana(ancho, alto, titulo)
+        self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa)
 
         self.tweener = pytweener.Tweener()
         self.tareas = tareas.Tareas() 

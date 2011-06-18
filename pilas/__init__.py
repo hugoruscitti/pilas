@@ -25,11 +25,12 @@ if utils.esta_en_sesion_interactiva():
 
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt', 
-            modo='detectar', rendimiento=60, economico=True, gravedad = (0, -90)):
+            modo='detectar', rendimiento=60, economico=True, 
+            gravedad = (0, -90), pantalla_completa=False):
     global mundo
 
     motor = __crear_motor(usar_motor)
-    mundo = Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad)
+    mundo = Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad, pantalla_completa)
 
 
 def ejecutar(ignorar_errores=False):
