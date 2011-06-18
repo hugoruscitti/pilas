@@ -70,9 +70,6 @@ def __crear_motor(usar_motor):
     elif usar_motor == 'pygame':
         from motores import motor_pygame
         motor = motor_pygame.Pygame()
-    elif usar_motor in ['sfml', 'pysfml']:
-        from motores import motor_sfml
-        motor = motor_sfml.pySFML()
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
         print "Las opciones de motores que puedes probar son 'qt', 'pygame' y 'sfml'."
