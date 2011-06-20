@@ -326,10 +326,10 @@ class aaaaaaaaaaaaaaaaaaaaVentana(QtGui.QWidget):
             r.dibujar(self.canvas)
 
         
-class QtSingle(motor.Motor):
-
+class QtBase(motor.Motor):
+    
     app = QtGui.QApplication([])
-
+    
     def __init__(self):
         motor.Motor.__init__(self)
         self.canvas = QtGui.QPainter()
@@ -337,6 +337,33 @@ class QtSingle(motor.Motor):
         self.fps = fps.FPS(60, True)
         self.pausa_habilitada = False
         self.depurador = depurador.Depurador(self.obtener_lienzo(), self.fps)
+
+    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
+        self.ancho = ancho
+        self.alto = alto
+        self.ancho_original = ancho
+        self.alto_original = alto
+        self.titulo = titulo
+        self.centrar_ventana()
+        self.setWindowTitle(self.titulo)
+
+        if pantalla_completa:
+            self.showFullScreen()
+        else:
+            self.show()
+
+        # Activa la invocacion al evento timerEvent.
+        self.startTimer(1000/100.0)
+
+    def centrar_ventana(self):
+        escritorio = QtGui.QDesktopWidget().screenGeometry()
+        self.setGeometry(
+                    (escritorio.width()-self.ancho)/2, 
+                    (escritorio.height()-self.alto)/2, self.ancho, self.alto)
+
+    def abajo(self):
+        return - (self.alto_original / 2)
+
 
     def obtener_actor(self, imagen, x, y):
         return QtActor(imagen, x, y)
@@ -354,22 +381,6 @@ class QtSingle(motor.Motor):
     def obtener_grilla(self, ruta, columnas, filas):
         return QtGrilla(ruta, columnas, filas)
 
-    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
-        self.ancho = ancho
-        self.alto = alto
-        self.ancho_original = ancho
-        self.alto_original = alto
-        self.titulo = titulo
-        self.setGeometry(100, 100, self.ancho, self.alto)
-        self.setWindowTitle(self.titulo)
-
-        if pantalla_completa:
-            self.showFullScreen()
-        else:
-            self.show()
-
-        # Activa la invocacion al evento timerEvent.
-        self.startTimer(1000/100.0)
 
     def ocultar_puntero_del_mouse(self):
         self.ventana.ShowMouseCursor(False)
@@ -380,9 +391,6 @@ class QtSingle(motor.Motor):
     def cerrar_ventana(self):
         self.ventana.Close()
 
-    def centrar_ventana(self):
-        "Coloca la ventana principal en el centro del escritorio."
-        pass
 
 
     def procesar_y_emitir_eventos(self):
@@ -583,16 +591,14 @@ class QtSingle(motor.Motor):
             return tecla_qt
 
 
-class Qt(QtSingle, QWidget):
-
+class Qt(QtBase, QWidget):
     def __init__(self):
         QWidget.__init__(self)
-        QtSingle.__init__(self)
+        QtBase.__init__(self)
 
-class QtGL(QtSingle, QGLWidget):
-
+class QtGL(QtBase, QGLWidget):
     def __init__(self):
         if not QGLWidget:
             print "Lo siento, OpenGL no esta disponible..."
         QGLWidget.__init__(self)
-        QtSingle.__init__(self)
+        QtBase.__init__(self)
