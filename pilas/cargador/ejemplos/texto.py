@@ -9,7 +9,7 @@ pilas.iniciar()
 pilas.fondos.Pasto()
 
 # Genera un texto que dice "bienvenido a pilas"
-saludo = pilas.actores.Texto("¡Bienvenido a pilas!")
+saludo = pilas.actores.Texto(u"¡Bienvenido a pilas!")
 
 # Realiza una animacion
 saludo.escala = 0.1

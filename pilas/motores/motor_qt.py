@@ -166,6 +166,9 @@ class QtTexto(QtImagen):
             motor.canvas.drawText(dx, dy, line)
             dy += metrica.height()
 
+        self.ancho_real = metrica.width(self.texto)
+        self.alto_real = metrica.height()
+
 class QtLienzo(QtImagen):
 
     def __init__(self):
@@ -588,6 +591,10 @@ class QtBase(motor.Motor):
 
     def keyPressEvent(self, event):
         codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
+
+        if event.key() == QtCore.Qt.Key_Escape:
+            eventos.pulsa_tecla_escape.send("Qt::keyPressEvent")
+
         eventos.pulsa_tecla.send("Qt::keyPressEvent", codigo=codigo_de_tecla, texto=event.text())
 
     def keyReleaseEvent(self, event):

@@ -13,4 +13,5 @@ pilas.iniciar()
 
 a = pilas.actores.Mono()
 a.aprender(GirarPorSiempre, 20)
+pilas.avisar("Girando por siempre...")
 pilas.ejecutar()

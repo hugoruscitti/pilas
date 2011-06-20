@@ -20,7 +20,7 @@ class Texto(Actor):
         self.imagen = pilas.mundo.motor.obtener_texto(texto)
         self.texto = texto
         self.color = pilas.colores.negro
-        self.magnitud = 10
+        self.magnitud = 20
 
     def obtener_texto(self):
         return self.imagen.texto
