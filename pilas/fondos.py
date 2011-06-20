@@ -12,7 +12,7 @@ class Fondo(pilas.actores.Actor):
 
     def __init__(self, imagen):
         pilas.actores.Actor.__init__(self, imagen)
-        self.z = 100
+        self.z = 1000
 
 class Volley(Fondo):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."
@@ -55,7 +55,7 @@ class Noche(Fondo):
 class Color(Fondo):
     
     def __init__(self, color):
-        pilas.actores.Actor.__init__(self)
+        Fondo.__init__(self, "invisible.png")
         self.color = color
         self.lienzo = pilas.imagenes.cargar_lienzo()
 
