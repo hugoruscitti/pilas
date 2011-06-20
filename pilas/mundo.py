@@ -12,6 +12,7 @@ from pilas import tareas
 from pilas import control
 from pilas import fisica
 from pilas import escenas
+from pilas import colisiones
 
 
 class Mundo:
@@ -29,6 +30,7 @@ class Mundo:
         self.tweener = pytweener.Tweener()
         self.tareas = tareas.Tareas() 
         self.control = control.Control()
+        self.colisiones = colisiones.Colisiones()
         eventos.actualizar.conectar(self.actualizar_simuladores)
         self.fisica = fisica.Fisica(motor.obtener_area(), gravedad=gravedad)
         self.escena_actual = None
@@ -37,6 +39,7 @@ class Mundo:
         self.tweener.update(16)
         self.tareas.actualizar(1/60.0)
         self.fisica.actualizar()
+        self.colisiones.verificar_colisiones()
 
     def terminar(self):
         pass
@@ -54,6 +57,14 @@ class Mundo:
         self.escena_actual = escena_nueva
         escena_nueva.iniciar()
 
+    def agregar_tarea_una_vez(self, time_out, function, *params): 
+        self.tareas.una_vez(time_out, function, params)
+
+    def agregar_tarea_siempre(self, time_out, function, *params): 
+        self.tareas.siempre(time_out, function, params)
+
+    def agregar_tarea(self, time_out, funcion, *parametros):
+        self.tareas.condicional(time_out, funcion, parametros)
 
 '''
 
@@ -127,14 +138,6 @@ class __deprecated_Mundo():
         self.escena_actual = escena_nueva
         escena_nueva.iniciar()
 
-    def agregar_tarea_una_vez(self, time_out, function, *params): 
-        self.tareas.una_vez(time_out, function, params)
-
-    def agregar_tarea_siempre(self, time_out, function, *params): 
-        self.tareas.siempre(time_out, function, params)
-
-    def agregar_tarea(self, time_out, funcion, *parametros):
-        self.tareas.condicional(time_out, funcion, parametros)
 
     def alternar_pausa(self):
         if self.pausa_habilitada:
