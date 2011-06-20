@@ -566,11 +566,13 @@ class QtBase(motor.Motor):
         self.alto = event.size().height()
 
     def mousePressEvent(self, e):
-        x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x(), e.pos().y())
+        escala = self.escala()
+        x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
         eventos.click_de_mouse.send("Qt::mousePressEvent", x=x, y=y, dx=0, dy=0)
 
     def mouseMoveEvent(self, e):
-        x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x(), e.pos().y())
+        escala = self.escala()
+        x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
         eventos.mueve_mouse.send("Qt::mouseMoveEvent", x=x, y=y, dx=0, dy=0)
 
     def keyPressEvent(self, event):
@@ -600,6 +602,10 @@ class QtBase(motor.Motor):
             return teclas[tecla_qt]
         else:
             return tecla_qt
+
+    def escala(self):
+        "Obtiene la proporcion de cambio de escala de la pantalla"
+        return self.alto / float(self.alto_original)
 
 
 class Qt(QtBase, QWidget):
