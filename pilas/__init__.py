@@ -128,6 +128,7 @@ def avisar(mensaje):
     texto.magnitud = 17
     texto.centro = ("centro", "centro")
     texto.izquierda = -310
+    texto.color = colores.blanco
     texto.abajo = -200
     anterior_texto = texto
 
