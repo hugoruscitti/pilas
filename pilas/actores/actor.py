@@ -286,6 +286,7 @@ class Actor(object, Estudiante):
 
     def definir_imagen(self, imagen):
         self._actor.definir_imagen(imagen)
+        self.centro = ('centro', 'centro')
 
     def duplicar(self, **kv):
         duplicado = self.__class__()

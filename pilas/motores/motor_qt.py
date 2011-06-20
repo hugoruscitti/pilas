@@ -379,7 +379,6 @@ class QtBase(motor.Motor):
                     (escritorio.width()-self.ancho)/2, 
                     (escritorio.height()-self.alto)/2, self.ancho, self.alto)
 
-
     def obtener_actor(self, imagen, x, y):
         return QtActor(imagen, x, y)
 

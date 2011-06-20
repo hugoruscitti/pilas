@@ -62,7 +62,6 @@ class Caminando(Comportamiento):
         if pilas.mundo.control.arriba:
             self.receptor.hacer(Saltando())
 
-
     def avanzar_animacion(self):
         self.paso += 1
 
