@@ -43,6 +43,15 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self._definir_estado_habilitado(True)
         self._mostrar_image_inicial()
         self._mostrar_codigo_presentacion_inicial()
+        self.centrar_ventana()
+
+    def centrar_ventana(self):
+        ancho = self.size().width()
+        alto = self.size().height()
+        escritorio = QtGui.QDesktopWidget().screenGeometry()
+        self.setGeometry(
+                    (escritorio.width()-ancho)/2, 
+                    (escritorio.height()-alto)/2, ancho, alto)
 
     def _definir_estado_habilitado(self, esta_habilitado):
         "Oculta la barra de progreso y habilita todos los controles."

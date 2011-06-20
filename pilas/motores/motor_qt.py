@@ -153,11 +153,18 @@ class QtGrilla(QtImagen):
 class QtTexto(QtImagen):
 
     def _dibujar_pixmap(self, motor, dx, dy):
+        nombre_de_fuente = motor.canvas.font().family()
+        fuente = QtGui.QFont(nombre_de_fuente, self.magnitud)
+        metrica = QtGui.QFontMetrics(fuente)
+
         r, g, b, a = self.color.obtener_componentes()
         motor.canvas.setPen(QtGui.QColor(r, g, b))
-        nombre_de_fuente = motor.canvas.font().family()
-        motor.canvas.setFont(QtGui.QFont(nombre_de_fuente, self.magnitud))
-        motor.canvas.drawText(dx, dy, self.texto)
+        motor.canvas.setFont(fuente)
+        lines = self.texto.split('\n')
+
+        for line in lines:
+            motor.canvas.drawText(dx, dy, line)
+            dy += metrica.height()
 
 class QtLienzo(QtImagen):
 

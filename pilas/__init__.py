@@ -18,6 +18,7 @@ import eventos
 import sonidos
 import colores
 import atajos
+import escenas
 
 
 if utils.esta_en_sesion_interactiva():
@@ -124,7 +125,7 @@ def avisar(mensaje):
         anterior_texto.eliminar()
 
     texto = actores.Texto(mensaje)
-    texto.magnitud = 18
+    texto.magnitud = 17
     texto.centro = ("centro", "centro")
     texto.izquierda = -310
     texto.abajo = -200
