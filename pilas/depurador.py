@@ -85,21 +85,26 @@ class Depurador:
 
     def _mostrar_nombres_de_modos(self, motor):
         dy = 0
+        izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
 
         for modo in self.modos:
             texto = modo.tecla + " " + modo.__class__.__name__ + " habilitado."
-            self.lienzo.texto_absoluto(motor, texto, -310, 220 + dy, color=pilas.colores.violeta)
+            self.lienzo.texto_absoluto(motor, texto, izquierda + 10, arriba -20 +dy, 
+                    color=pilas.colores.violeta)
             dy -= 20
             
     def _mostrar_posicion_del_mouse(self, motor):
+        izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
         x, y = self.posicion_del_mouse    
         texto = u"Posición del mouse: x=%d y=%d " %(x, y)
-        self.lienzo.texto_absoluto(motor, texto, 75, -230, color=pilas.colores.violeta)
+        self.lienzo.texto_absoluto(motor, texto, derecha - 230, abajo + 10, color=pilas.colores.violeta)
         
     def _mostrar_cuadros_por_segundo(self, motor):
+        izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
         rendimiento = self.fps.obtener_cuadros_por_segundo()
         texto = "Cuadros por segundo: %s" %(rendimiento)
-        self.lienzo.texto_absoluto(motor, texto, -310, -230, color=pilas.colores.violeta)
+        self.lienzo.texto_absoluto(motor, texto, izquierda + 10, abajo + 10, 
+                color=pilas.colores.violeta)
         
 class ModoDepurador:
     tecla = "F00"

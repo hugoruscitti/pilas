@@ -90,7 +90,8 @@ class QtImagen():
         """
 
         motor.canvas.save()
-        motor.canvas.translate(x + 320, 240 - y)
+        centro_x, centro_y = motor.centro_fisico()
+        motor.canvas.translate(x + centro_x, centro_y - y)
         motor.canvas.rotate(rotacion)
         motor.canvas.scale(escala_x, escala_y)
         self._dibujar_pixmap(motor, -dx, -dy)
@@ -267,7 +268,6 @@ class SFMLCanvas:
         self.context = cairo.Context(self.surface)       
 
                
-class aaaaaaaaaaaaaaaaaaaaVentana(QtGui.QWidget):
 
     def __init__(self, ancho, alto, titulo):
         super(Ventana, self).__init__()
@@ -355,14 +355,18 @@ class QtBase(motor.Motor):
         # Activa la invocacion al evento timerEvent.
         self.startTimer(1000/100.0)
 
+    def centro_fisico(self):
+        "Centro de la ventana para situar el punto (0, 0)"
+        return self.ancho_original/2, self.alto_original/2
+
+    def obtener_area(self):
+        return (self.ancho_original, self.alto_original)
+
     def centrar_ventana(self):
         escritorio = QtGui.QDesktopWidget().screenGeometry()
         self.setGeometry(
                     (escritorio.width()-self.ancho)/2, 
                     (escritorio.height()-self.alto)/2, self.ancho, self.alto)
-
-    def abajo(self):
-        return - (self.alto_original / 2)
 
 
     def obtener_actor(self, imagen, x, y):

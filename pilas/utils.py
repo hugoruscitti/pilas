@@ -131,11 +131,12 @@ def interpolable(f):
     return inner
 
 def hacer_coordenada_mundo(x, y):
-    return (x + 320, 240 - y)
+    dx, dy = pilas.mundo.motor.centro_fisico()
+    return (x + dx, dy - y)
 
 def hacer_coordenada_pantalla_absoluta(x, y):
-    return (x + 320, 240 - y)
-
+    dx, dy = pilas.mundo.motor.centro_fisico()
+    return (x + dx, dy - y)
 
 def listar_actores_en_consola():
     todos = pilas.actores.todos
@@ -148,18 +149,18 @@ def listar_actores_en_consola():
 
     print ""
 
-
-
 def obtener_angulo_entre(punto_a, punto_b):
     (x, y) = punto_a
     (x1, y1) = punto_b
     return math.degrees(math.atan2(y1 - y, x1 -x))
 
 def convertir_de_posicion_relativa_a_fisica(x, y):
-    return (x + 320, 240 - y)
+    dx, dy = pilas.mundo.motor.centro_fisico()
+    return (x + dx, dy - y)
 
 def convertir_de_posicion_fisica_relativa(x, y):
-    return (x -320, 240 - y)
+    dx, dy = pilas.mundo.motor.centro_fisico()
+    return (x - dx, dy - y)
 
 def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
     """Retorna un objeto que representa cambios de atributos progresivos.
@@ -194,3 +195,13 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
         valor_o_valores = [valor_o_valores]
 
     return clase(valor_o_valores, duracion, demora)
+
+
+def obtener_area():
+    "Retorna el area que ocupa la ventana"
+    return pilas.mundo.motor.obtener_area()
+
+def obtener_bordes():
+    ancho, alto = pilas.mundo.motor.obtener_area()
+    return -ancho/2, ancho/2, alto/2, -alto/2
+
