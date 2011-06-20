@@ -322,8 +322,6 @@ class SFMLCanvas:
 
 
 
-    def mouseReleaseEvent(self, event):
-        print "Han soltado el boton:", event.button()
 
     def keyPressEvent(self, event):
         print "Pulsa la tecla:", event.key()
@@ -348,6 +346,8 @@ class QtBase(motor.Motor):
         self.fps = fps.FPS(60, True)
         self.pausa_habilitada = False
         self.depurador = depurador.Depurador(self.obtener_lienzo(), self.fps)
+        self.mouse_x = 0
+        self.mouse_y = 0
 
     def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
         self.ancho = ancho
@@ -573,10 +573,18 @@ class QtBase(motor.Motor):
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
         eventos.click_de_mouse.send("Qt::mousePressEvent", x=x, y=y, dx=0, dy=0)
 
+    def mouseReleaseEvent(self, e):
+        escala = self.escala()
+        x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
+        eventos.termina_click.send("Qt::mouseReleaseEvent", x=x, y=y, dx=0, dy=0)
+
     def mouseMoveEvent(self, e):
         escala = self.escala()
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
-        eventos.mueve_mouse.send("Qt::mouseMoveEvent", x=x, y=y, dx=0, dy=0)
+        dx, dy = x - self.mouse_x, y - self.mouse_y
+        eventos.mueve_mouse.send("Qt::mouseMoveEvent", x=x, y=y, dx=dx, dy=dy)
+        self.mouse_x = x
+        self.mouse_y = y
 
     def keyPressEvent(self, event):
         codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
