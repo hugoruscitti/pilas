@@ -52,18 +52,13 @@ class Noche(Fondo):
     def __init__(self):
         Fondo.__init__(self, "fondos/noche.png")
 
-class Blanco(Fondo):
-    "Un fondo de color blanco."
-
-    def __init__(self):
-        Fondo.__init__(self, "fondos/blanco.png")
-        
-        
 class Color(Fondo):
     
     def __init__(self, color):
-        self.lienzo = pilas.lienzo.Lienzo()
-        self.lienzo.pintar(color)
-        Fondo.__init__(self, "invisible.png")
-        self.lienzo.asignar(self)
-        self.centro = ("centro", "centro")
+        pilas.actores.Actor.__init__(self)
+        self.color = color
+        self.lienzo = pilas.imagenes.cargar_lienzo()
+
+    def dibujar(self, motor):
+        self.lienzo.pintar(motor, self.color)
+

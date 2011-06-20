@@ -188,6 +188,10 @@ class QtLienzo(QtImagen):
         motor.canvas.setFont(QtGui.QFont(fuente, magnitud))
         motor.canvas.drawText(x, y, cadena)
 
+    def pintar(self, motor, color):
+        r, g, b, a = color.obtener_componentes()
+        ancho, alto = motor.obtener_area()
+        motor.canvas.fillRect(0, 0, ancho, alto, QtGui.QColor(r, g, b))
 
     def linea(self, motor, x0, y0, x1, y1, color=colores.negro):
         x0, y0 = utils.hacer_coordenada_pantalla_absoluta(x0, y0)

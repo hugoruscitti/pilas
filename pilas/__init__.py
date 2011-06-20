@@ -32,6 +32,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt',
 
     motor = __crear_motor(usar_motor)
     mundo = Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad, pantalla_completa)
+    escenas.Normal(colores.grisclaro)
 
 
 def ejecutar(ignorar_errores=False):

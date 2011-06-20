@@ -11,6 +11,7 @@ from pilas import eventos
 from pilas import tareas
 from pilas import control
 from pilas import fisica
+from pilas import escenas
 
 
 class Mundo:
@@ -30,6 +31,7 @@ class Mundo:
         self.control = control.Control()
         eventos.actualizar.conectar(self.actualizar_simuladores)
         self.fisica = fisica.Fisica(motor.obtener_area(), gravedad=gravedad)
+        self.escena_actual = None
 
     def actualizar_simuladores(self, evento):
         self.tweener.update(16)
@@ -42,6 +44,16 @@ class Mundo:
     def ejecutar_bucle_principal(self, ignorar_errores=False):
         "Mantiene en funcionamiento el motor completo."
         self.motor.ejecutar_bucle_principal(self, ignorar_errores)
+
+    def definir_escena(self, escena_nueva):
+        "Cambia la escena que se muestra en pantalla"
+
+        if self.escena_actual:
+            self.escena_actual.terminar()
+
+        self.escena_actual = escena_nueva
+        escena_nueva.iniciar()
+
 
 '''
 
