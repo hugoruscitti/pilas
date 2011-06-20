@@ -156,5 +156,5 @@ class ModoPosicion(ModoDepurador):
 class ModoFisica(ModoDepurador):
     tecla = "F11"
     
-    def comienza_dibujado(self, motor, lienzo):
+    def termina_dibujado(self, motor, lienzo):
         pilas.mundo.fisica.dibujar_figuras_sobre_lienzo(motor, lienzo)

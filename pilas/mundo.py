@@ -29,7 +29,7 @@ class Mundo:
         self.tareas = tareas.Tareas() 
         self.control = control.Control()
         eventos.actualizar.conectar(self.actualizar_simuladores)
-        self.fisica = fisica.Fisica(gravedad=gravedad)
+        self.fisica = fisica.Fisica(motor.obtener_area(), gravedad=gravedad)
 
     def actualizar_simuladores(self, evento):
         self.tweener.update(16)

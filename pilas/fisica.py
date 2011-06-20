@@ -9,7 +9,6 @@
 import pilas
 from pilas import colores
 
-
 try:
     import Box2D as box2d
 except ImportError:
@@ -22,16 +21,16 @@ import math
 class Fisica(object):
     "Representa un simulador de mundo fisico, usando la biblioteca box2d."
     
-    def __init__(self, gravedad=(0, -90)):
+    def __init__(self, area, gravedad=(0, -90)):
         self.escenario = box2d.b2AABB()
         self.escenario.lowerBound = (-1000.0, -1000.0)
         self.escenario.upperBound = (1000.0, 1000.0)
         self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
         self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
         self.i = 0
-        self.crear_techo()
-        self.crear_suelo()
-        self.crear_paredes()
+        self.crear_techo(area)
+        self.crear_suelo(area)
+        self.crear_paredes(area)
         self.figuras_a_eliminar = []
         
     def actualizar(self):
@@ -80,15 +79,15 @@ class Fisica(object):
     def crear_cuerpo(self, definicion_de_cuerpo):
         return self.mundo.CreateBody(definicion_de_cuerpo)
     
-    def crear_suelo(self, restitucion=1):
-        self.suelo = Rectangulo(0, -240, 640, 2, dinamica=False, fisica=self, restitucion=restitucion)
+    def crear_suelo(self, (ancho, alto), restitucion=1):
+        self.suelo = Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
-    def crear_techo(self, restitucion=1):
-        self.suelo = Rectangulo(0, 240, 640, 2, dinamica=False, fisica=self, restitucion=restitucion)
+    def crear_techo(self, (ancho, alto), restitucion=1):
+        self.suelo = Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
         
-    def crear_paredes(self, restitucion=1):
-        self.pared_izquierda = Rectangulo(-320, 0, 2, 480, dinamica=False, fisica=self, restitucion=restitucion)
-        self.pared_derecha = Rectangulo(320, 0, 2, 480, dinamica=False, fisica=self, restitucion=restitucion)
+    def crear_paredes(self, (ancho, alto), restitucion=1):
+        self.pared_izquierda = Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
+        self.pared_derecha = Rectangulo(ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
         
     def eliminar_suelo(self):
         if self.suelo:

@@ -196,7 +196,6 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
 
     return clase(valor_o_valores, duracion, demora)
 
-
 def obtener_area():
     "Retorna el area que ocupa la ventana"
     return pilas.mundo.motor.obtener_area()
