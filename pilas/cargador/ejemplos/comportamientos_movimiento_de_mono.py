@@ -15,9 +15,8 @@ mono.y = -50
 mono.hacer_luego(pilas.comportamientos.Avanzar(90, pasos))
 mono.hacer_luego(pilas.comportamientos.Girar(180, 10))
 mono.hacer_luego(pilas.comportamientos.Avanzar(180, pasos))
-mono.hacer_luego(pilas.comportamientos.Girar(360, 10))
-mono.hacer_luego(pilas.comportamientos.Avanzar(5, pasos))
-mono.hacer_luego(pilas.comportamientos.Girar(180, 10))
+mono.hacer_luego(pilas.comportamientos.Girar(-180, 10))
+mono.hacer_luego(pilas.comportamientos.Avanzar(180, pasos))
 
 pilas.avisar("Movimiento mediante comportamientos.")
 pilas.ejecutar()

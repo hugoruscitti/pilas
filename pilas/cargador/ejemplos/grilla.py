@@ -8,13 +8,13 @@ sys.path.insert(0, "..")
 pilas.iniciar()
 
 actor = pilas.actores.Actor()
-animacion = pilas.imagenes.cargar_grilla("pingu.png", 10)
-animacion.asignar(actor)
+imagen = pilas.imagenes.cargar_grilla("pingu.png", 10)
+actor.imagen = imagen
 
 def avanzar_cuadro(*k, **kv):
     "Avanza un cuadro de animación."
-    animacion.avanzar()
-    animacion.asignar(actor)
+    imagen.avanzar()
+    actor.imagen = imagen
 
 pilas.eventos.click_de_mouse.connect(avanzar_cuadro)
 pilas.avisar("Pulse el boton del mouse para avanzar un cuadro.")

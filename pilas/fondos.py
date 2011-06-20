@@ -60,5 +60,5 @@ class Color(Fondo):
         self.lienzo = pilas.imagenes.cargar_lienzo()
 
     def dibujar(self, motor):
-        self.lienzo.pintar(motor, self.color)
-
+        if self.color:
+            self.lienzo.pintar(motor, self.color)
