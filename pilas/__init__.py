@@ -120,6 +120,7 @@ anterior_texto = None
 def avisar(mensaje):
     "Emite un mensaje en la ventana principal."
     global anterior_texto
+    izquierda, derecha, arriba, abajo = utils.obtener_bordes()
 
     if anterior_texto:
         anterior_texto.eliminar()
@@ -127,9 +128,9 @@ def avisar(mensaje):
     texto = actores.Texto(mensaje)
     texto.magnitud = 17
     texto.centro = ("centro", "centro")
-    texto.izquierda = -310
+    texto.izquierda = izquierda + 10
     texto.color = colores.blanco
-    texto.abajo = -200
+    texto.abajo = abajo + 40
     anterior_texto = texto
 
 
