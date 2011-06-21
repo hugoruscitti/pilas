@@ -70,3 +70,7 @@ def cargar_grilla(ruta, columnas=1, filas=1):
 def cargar_lienzo():
     """Representa un rectangulo (inicialmente transparente) para dibujar."""
     return pilas.mundo.motor.obtener_lienzo()
+
+def cargar_superficie(ancho, alto):
+    return pilas.mundo.motor.obtener_superficie(ancho, alto)
+    

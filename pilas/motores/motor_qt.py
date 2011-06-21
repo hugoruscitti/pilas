@@ -223,6 +223,31 @@ class QtLienzo(QtImagen):
         motor.canvas.setPen(QtGui.QColor(r, g, b))
         motor.canvas.drawRect(x, y, ancho, alto)
 
+class QtSuperficie(QtImagen):
+
+    def __init__(self, ancho, alto):
+        self._imagen = QtGui.QPixmap(ancho, alto)
+        self._imagen.fill(QtGui.QColor(255, 255, 255, 0))
+
+    def pintar(self, color):
+        r, g, b, a = color.obtener_componentes()
+        self._imagen.fill(QtGui.QColor(r, g, b, a))
+
+    def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
+        self.canvas = QtGui.QPainter()
+        self.canvas.begin(self._imagen)
+        self.canvas.drawPixmap(x, y, imagen._imagen, origen_x, origen_y, ancho, alto)
+        self.canvas.end()
+
+    def ____(self):
+        self.canvas = QtGui.QPainter()
+        self.canvas.begin(self._imagen)
+        self.canvas.setPen(QtGui.QColor(0))
+        self.canvas.drawText(50, 50, "hola")
+        self.canvas.drawEllipse(0, 0, 50, 50)
+        self.canvas.end()
+
+
 
 class QtActor(BaseActor):
 
@@ -498,6 +523,9 @@ class QtBase(motor.Motor):
 
     def obtener_lienzo(self):
         return QtLienzo()
+
+    def obtener_superficie(self, ancho, alto):
+        return QtSuperficie(ancho, alto)
 
     def guardar_captura(self):
         imagen = self.ventana.Capture()
