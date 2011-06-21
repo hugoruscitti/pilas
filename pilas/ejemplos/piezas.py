@@ -17,7 +17,7 @@ class Piezas(pilas.escenas.Normal):
     actores Pieza.
     """
 
-    def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png", filas=4, columnas=4):
+    def __init__(self, ruta_a_la_imagen="ejemplos/data/piezas.png", filas=4, columnas=4, al_terminar=None):
         pilas.actores.utils.eliminar_a_todos()
         pilas.escenas.Normal.__init__(self, pilas.colores.grisoscuro)
         grilla = pilas.imagenes.cargar_grilla(ruta_a_la_imagen, columnas, filas)
@@ -29,6 +29,8 @@ class Piezas(pilas.escenas.Normal):
         pilas.eventos.mueve_mouse.connect(self.al_mover_el_mouse)
 
         self.sonido_tick = pilas.sonidos.cargar("tick.wav")
+        self.al_terminar = al_terminar
+        self.piezas_desconectadas = filas * columnas -1
 
     def crear_piezas(self, grilla, filas, columnas):
         "Genera todas las piezas en base al tamaño del constructor."
@@ -100,6 +102,12 @@ class Piezas(pilas.escenas.Normal):
 
         for pieza in grupo_nuevo:
             self.grupos[pieza] = grupo_nuevo 
+
+        self.piezas_desconectadas -= 1
+
+        if self.piezas_desconectadas < 1:
+            if self.al_terminar:
+                self.al_terminar()
 
         self.sonido_tick.reproducir()
         
@@ -235,3 +243,5 @@ class Pieza(pilas.actores.Animado):
         for numero in self.escena_padre.grupos[self.numero]:
             pieza = self.escena_padre.piezas[numero]
             pieza.z = 0
+
+
