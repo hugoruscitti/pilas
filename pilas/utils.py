@@ -204,3 +204,6 @@ def obtener_bordes():
     ancho, alto = pilas.mundo.motor.obtener_area()
     return -ancho/2, ancho/2, alto/2, -alto/2
 
+def obtener_area_de_texto(texto):
+    "Informa el ancho y alto que necesitara un texto para imprimirse."
+    return pilas.mundo.motor.obtener_area_de_texto(texto)

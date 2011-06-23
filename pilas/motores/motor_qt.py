@@ -657,6 +657,12 @@ class QtBase(motor.Motor):
         "Obtiene la proporcion de cambio de escala de la pantalla"
         return self.alto / float(self.alto_original)
 
+    def obtener_area_de_texto(self, texto):
+        nombre_de_fuente = self.canvas.font().family()
+        fuente = QtGui.QFont(nombre_de_fuente, 10)
+        metrica = QtGui.QFontMetrics(fuente)
+        return metrica.width(texto), metrica.height()
+
 
 class Qt(QtBase, QWidget):
     def __init__(self):
