@@ -228,23 +228,27 @@ class QtSuperficie(QtImagen):
     def __init__(self, ancho, alto):
         self._imagen = QtGui.QPixmap(ancho, alto)
         self._imagen.fill(QtGui.QColor(255, 255, 255, 0))
+        self.canvas = QtGui.QPainter()
 
     def pintar(self, color):
         r, g, b, a = color.obtener_componentes()
         self._imagen.fill(QtGui.QColor(r, g, b, a))
 
     def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
-        self.canvas = QtGui.QPainter()
         self.canvas.begin(self._imagen)
         self.canvas.drawPixmap(x, y, imagen._imagen, origen_x, origen_y, ancho, alto)
         self.canvas.end()
 
-    def ____(self):
-        self.canvas = QtGui.QPainter()
+    def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro):
         self.canvas.begin(self._imagen)
-        self.canvas.setPen(QtGui.QColor(0))
-        self.canvas.drawText(50, 50, "hola")
-        self.canvas.drawEllipse(0, 0, 50, 50)
+        r, g, b, a = color.obtener_componentes()
+        self.canvas.setPen(QtGui.QColor(r, g, b))
+
+        if not fuente:
+            fuente = self.canvas.font().family()
+
+        self.canvas.setFont(QtGui.QFont(fuente, magnitud))
+        self.canvas.drawText(x, y, cadena)
         self.canvas.end()
 
 
