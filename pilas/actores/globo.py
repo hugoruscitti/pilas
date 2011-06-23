@@ -11,7 +11,6 @@ class Globo(Actor):
 
         ancho, alto = pilas.utils.obtener_area_de_texto(texto)
 
-        ancho *=2
         ancho = int((ancho + 12) - (ancho % 12))
         alto = int((alto + 12) - alto % 12)
 

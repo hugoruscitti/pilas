@@ -243,12 +243,20 @@ class QtSuperficie(QtImagen):
         self.canvas.begin(self._imagen)
         r, g, b, a = color.obtener_componentes()
         self.canvas.setPen(QtGui.QColor(r, g, b))
+        dx = 20
+        dy = 30
 
         if not fuente:
             fuente = self.canvas.font().family()
 
-        self.canvas.setFont(QtGui.QFont(fuente, magnitud))
-        self.canvas.drawText(x, y, cadena)
+        font = QtGui.QFont(fuente, magnitud)
+        self.canvas.setFont(font)
+        metrica = QtGui.QFontMetrics(font)
+
+        for line in cadena.split('\n'):
+            self.canvas.drawText(dx, dy, line)
+            dy += metrica.height()
+
         self.canvas.end()
 
 
@@ -658,18 +666,29 @@ class QtBase(motor.Motor):
         return self.alto / float(self.alto_original)
 
     def obtener_area_de_texto(self, texto):
+        ancho = 0
+        alto = 0
         nombre_de_fuente = self.canvas.font().family()
         fuente = QtGui.QFont(nombre_de_fuente, 10)
         metrica = QtGui.QFontMetrics(fuente)
-        return metrica.width(texto), metrica.height()
+
+        lineas = texto.split('\n')
+
+        for linea in lineas:
+            ancho = max(ancho, metrica.width(linea))
+            alto += metrica.height()
+
+        return ancho, alto
 
 
 class Qt(QtBase, QWidget):
+
     def __init__(self):
         QWidget.__init__(self)
         QtBase.__init__(self)
 
 class QtGL(QtBase, QGLWidget):
+
     def __init__(self):
         if not QGLWidget:
             print "Lo siento, OpenGL no esta disponible..."
