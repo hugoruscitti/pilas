@@ -19,6 +19,7 @@ import sonidos
 import colores
 import atajos
 import escenas
+import ejemplos
 
 
 if utils.esta_en_sesion_interactiva():

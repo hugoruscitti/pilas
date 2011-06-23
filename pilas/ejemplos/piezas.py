@@ -154,7 +154,7 @@ class Pieza(pilas.actores.Animado):
     def soltar(self):
         # Busca todas las colisiones entre esta pieza
         # que se suelta y todas las demás.
-        colisiones = pilas.colisiones.obtener_colisiones(self, self.escena_padre.piezas)
+        colisiones = pilas.mundo.colisiones.obtener_colisiones(self, self.escena_padre.piezas)
 
         for x in colisiones:
             self.intentar_conectarse_a(x)
