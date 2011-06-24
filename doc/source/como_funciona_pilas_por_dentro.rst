@@ -633,3 +633,25 @@ Listo, es casi idéntico al anterior, si llamas a ``aprender`` con un
 argumento como ``20``, el actor girará mucho mas rápido que
 antes. Y si no especificas la velocidad, se asumirá que la
 velocidad es ``1``, porque así lo indica el método ``__init__``.
+
+
+
+Documentación
+-------------
+
+El sistema de documentación que usamos en pilas
+es Sphinx, un sistema muy interesante porque nos
+permite gestionar todo el contenido del manual
+en texto plano, y gracias a varias herramientas
+de conversión cómo restructuredText y latex, se
+producen muchos formatos de salida cómo HTML y PDF.
+
+Toda la documentación del proyecto está en el
+directorio ``doc``. El directorio ``doc/sources`` contiene
+todos los archivos que modificamos para escribir contenido
+en la documentación.
+
+Para generar los archivos PDF o HTML usamos el comando
+``make`` dentro del directorio ``doc``. El archivo que
+dispara todas las acciones que sphinx sabe hacer están
+definidas en el archivo ``Makefile``.
