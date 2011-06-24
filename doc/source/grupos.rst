@@ -4,11 +4,11 @@ Grupos
 Ahora que podemos manejar a los actores de manera individual. Vamos
 a ver organizarlos en grupos.
 
-Organizar a los actores en grupo es muy útil, porque es
-algo que hacemos todo el tiempo en el desarrollo de videojuegos. Por
-ejemplo, en un juego de naves espaciales, podríamos hacer un
-grupo de naves enemigas, o un grupo de estrellas, o un grupo
-de disparos.
+Organizar a los actores en grupo es de utilidad, porque generalmente
+es una buena idea agrupar a los actores por características y
+tratarlos a todos por igual. Por ejemplo, en un juego de naves
+podríamos tener un grupo de naves, un grupo de estrellas y un
+grupo de disparos.
 
 Creando grupos con la función fabricar
 --------------------------------------
@@ -18,12 +18,14 @@ podríamos ejecutar algo como lo que sigue:
 
 .. code-block:: python
 
-    bombas = pilas.atajos.fabricar(pilas.actor.Bomba, 30)
+    bombas = pilas.actores.Bomba() * 5
 
+es decir, creamos un actor y luego lo multiplicamos
+para construir un grupo con muchos actores de la misma
+especie.
 
-donde el primer argumento es la clase de la que buscamos crear
-actores, y el segundo argumento es la cantidad de actores
-que queremos.
+Al crear un grupo de esta forma, todos los actores
+se colocarán en posiciones aleatorias.
 
 Esto es lo que veríamos en la ventana de pilas:
 
@@ -33,7 +35,27 @@ Esto es lo que veríamos en la ventana de pilas:
 A partir de ahora, la referencia ``bombas`` nos servirá para
 controlar a todas las bombas al mismo tiempo.
 
-Veamos como alterar el atributo de posición horizontal:
+Esta referencia es parecida a una lista de python
+normal. Así que podríamos contar cuantas bombas
+hay en la escena, o recorrer el grupo haciendo algo:
+
+.. code-block:: python
+
+    >>> print "hay", len(bombas), "bombas"
+    hay 5 bombas
+    
+    >>> for una_bomba in bombas:
+    ...     print una_bomba.x, una_bomba.y
+
+
+Ahora bien, algo que hace un poquito diferente a los
+grupos de las listas de python, es que los grupos
+te permiten alterar a varios actores al mismo tiempo
+con mas facilidad.
+
+Por ejemplo, imagina que quieres hacer que todas las
+bombas aparezcan en el centro de la ventana. Podrías
+hacer algo cómo esto:
 
 .. code-block:: python
 
@@ -53,6 +75,9 @@ con la aceleración gravitatoria:
     bombas.aprender(pilas.habilidades.RebotaComoPelota)
 
 
+Ahora tendrás algo mucho mas interesante, un montón de
+actores rebotando entre sí:
+
 .. image:: images/grupos_bombas_como_pelota.png
 
 
@@ -61,27 +86,42 @@ usando una sentencia como la que sigue:
 
 .. code-block:: python
 
-    pilas.fisica.definir_gravedad(200, 0)
+    pilas.atajos.definir_gravedad(200, 0)
 
 donde el primer argumento es la gravedad horizontal, en este caso 200
 es hacia la derecha, y la gravedad vertical, que suele ser de -90
 en general.
 
+Pruebalo, es divertido!
 
-Creando un grupo desde un actor
--------------------------------
+Creando un grupo para distintos actores
+---------------------------------------
 
-Otra forma práctica de generar un grupo, es usando
-el operador "por" junto a un actor. Por ejemplo, el resultado
-que logramos usando la función ``fabricar`` se podría lograr
-haciendo esto:
+Hay ocasiones, donde quieres tener un grupo
+desde cero e ir agregando actores en él.
+
+Esto se puede hacer fácilmente, e incluso
+abre las puertas a que puedas mezclar actores
+de distintas especies.
+
+Para crear un grupo vacío tienes que crear
+un objeto de la clase Grupo:
+
+
+.. code-block:: python
+
+    mi_grupo = pilas.grupo.Grupo()
+
+y luego, para añadir actores al grupo puedes usar el
+método ``append`` e indicar la referencia del actor
+que quieres agregar:
 
 .. code-block:: python
     
     bomba = pilas.actores.Bomba()
-    muchas_bombas = bomba * 30
+    pelota = pilas.actores.Pelota()
 
+    mi_grupo.append(bomba)
+    mi_grupo.append(pelota)
 
-Es decir, cuando tomamos un actor y lo multiplicamos por
-un número, el resultado es un grupo que contiene al actor
-inicial y a 29 actores mas...
+    mi_grupo.escala = [2]

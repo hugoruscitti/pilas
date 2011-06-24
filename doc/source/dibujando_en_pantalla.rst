@@ -83,8 +83,7 @@ geométricas y trazos de cualquier tipo.
 A diferencia de la tortuga, la ``Pizarra``
 te permite hacer muchos trazos rápidamente
 y mostrarlos en pantalla todos a la vez. Además
-te permite acceder a funciones avanzadas de dibujo
-gracias a la biblioteca ``cairo``.
+te permite acceder a funciones avanzadas de dibujo.
 
 Comencemos con algo sencillo: para crear la pizarra y
 dibujar un punto en el centro de la

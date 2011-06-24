@@ -113,10 +113,14 @@ personaje del juego:
 .. code-block:: python
 
     mi_menu.escala = 2
-    mi_menu.rotacion = [360]
     mi_menu.x = [300, 0]
 
 
 Muchos juegos hace uso de esta característica, por
 ejemplo, para que el menú aparezca por debajo de la pantalla
 o que se mueva constantemente como si estuviera flotando.
+
+Ten en cuenta que en realidad no estamos aplicando transformaciones
+a todo el menú, simplemente estamos transmitiendo las transformaciones
+a cada uno de los textos que componen el menú. Si haces un
+cambio de rotación vas a ver a qué me refiero...

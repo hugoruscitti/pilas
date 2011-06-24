@@ -1,17 +1,20 @@
 Ejemplos
 ========
 
-
 Pilas viene con un módulo de ejemplos muy sencillos
 para que puedas investigar y jugar.
 
 Este módulo de ejemplos es ``pilas.ejemplos`` y está
 organizado como una colección de clases.
 
+Para poner en funcionamiento alguno de los ejemplos
+simplemente tienes que hacer un objeto a partir
+de alguna de las clases que verás en el módulo.
+
 Piezas
 ------
 
-Hay hay un pequeño rompecabezas que se puede
+Hay un pequeño rompecabezas que se puede
 iniciar con la siguiente sentencia:
 
 .. code-block:: python
@@ -40,3 +43,7 @@ Si, ahora en pantalla aparece la imagen del mono pero separado
 en 4 piezas. Dado que hemos especificado 2 (filas) y 2 (columnas).
 
 .. image:: images/piezas_mono.png
+
+Este rompecabezas también admite una función cómo argumento al
+crear el objeto, que se invocará cuando el usuario
+complete el rompecabezas.

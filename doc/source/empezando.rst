@@ -4,7 +4,7 @@ Empezando, la primer prueba
 Si ya tienes instalada la biblioteca podemos
 comenzar a realizar nuestras primeras pruebas.
 
-Para empezar, pilas se puede usar directamente
+Para empezar, **pilas** se puede usar directamente
 desde un intérprete interactivo de python.
 
 Mi recomendación personal es que utilices una
@@ -31,6 +31,10 @@ de color gris:
 
 .. image:: images/cap1.png
     :width: 50%
+
+La función iniciar tiene mas parámetros, pero
+los veremos mas adelante, por ahora continuaremos
+con lo básico.
 
 Esa pantalla será la que utilizaremos para interactuar
 con el motor. Y mas adelante será la única pantalla
@@ -94,6 +98,14 @@ cambiará su aspecto y emitirá un sonido.
     :width: 5cm
 
 
+incluso podríamos decirle al personaje
+que tiene que hablar algo, por ejemplo:
+
+.. code-block:: python
+
+    mono.decir("Hey, bienvenido a pilas!!!")
+
+
 Cosas en común para los actores
 -------------------------------
 
@@ -103,7 +115,10 @@ actores.
 
 Veamos algunas de estas características:
 
-- Podemos cambiar la posición de un actor mediante las propiedades ``x`` e ``y``:
+Posición
+________
+
+Podemos cambiar la posición de un actor mediante las propiedades ``x`` e ``y``:
 
 .. code-block:: python
 
@@ -118,14 +133,27 @@ de la ventana. Y ``x`` aumenta hacia la derecha e ``y`` hacia arriba.
 .. image:: images/mono/normal.png
     :width: 5cm
 
-- Todo actor tiene un atributo para indicar su tamaño en pantalla, el atributo ``escala`` (que originalmente vale 1):
+
+Este espacio de referencia se puede observar en detalle si pulsas
+la tecla **F12**, ahí observarás que el movimiento del mouse
+está asociado a una coordenada y cada actor también.
+
+Escala
+______
+
+Todo actor tiene un atributo para indicar su tamaño
+en pantalla, el atributo ``escala`` (que originalmente vale 1):
 
 .. code-block:: python
 
     mono.escala = 2
 
 
-- También contamos con un atributo que indica la rotación en ángulos que debe tener el actor en pantalla. El atributo ``rotacion``:
+Rotación
+________
+
+También contamos con un atributo que indica la rotación en ángulos que debe
+tener el actor en pantalla. El atributo ``rotacion``:
 
 
 .. code-block:: python
@@ -144,14 +172,19 @@ o bien:
 .. image:: images/mono/rotation80.png
     :width: 5cm
 
+Animaciones
+___________
 
-incluso puedes hacer un pequeña animación de rotación
-completa con el siguiente código:
+Cualquiera de todas las propiedes
+que vimos antes se podrían usar como
+soporte para hacer animaciones, por
+ejemplo, con el siguiente código
+podríamos indicarle al actor que dé una
+vuelta completa:
 
 .. code-block:: python
 
     mono.rotacion = [360]
-
 
 ¿por qué?, porque los caracteres ``[`` y ``]`` representan
 una lista de valores, y cuando pilas ve esta lista asignada
@@ -165,6 +198,24 @@ podemos escribir esto:
 
     mono.x = [-200, 200]
 
+
+Estas animaciones las veremos mas adelante, pero
+de todas formas es interesante observar que son
+listas comunes y corrientes, así que podríamos
+multiplicarlas (para repetir la animación):
+
+.. code-block:: python
+
+    mono.x = [-200, 200] * 5 # ir de una lado a otro 5 veces.
+
+
+o incluso podríamos alterarles la velocidad, digamos
+que el ir y regresar se tiene que hacer
+muy lento, en unos 10 segundos:
+
+.. code-block:: python
+
+    mono.x = [-200, 200], 10
 
 Pidiendo ayuda
 --------------
@@ -219,4 +270,5 @@ de código para probar:
 
     p = pilas.actores.Pingu()    # se mueve con el teclado.
 
-Es todo por ahora, a divertirse!
+Es todo por ahora, sigue leyendo o comienza
+a explorar por tu cuenta. A divertirse!
