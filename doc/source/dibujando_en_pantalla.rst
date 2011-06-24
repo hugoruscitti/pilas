@@ -3,16 +3,17 @@ Dibujando en pantalla
 
 Pilas te permite dibujar figuras en la ventana
 de muchas formas. En esta sección veremos las
-posibilidades de ofrece pilas desde lo mas
-simple a lo mas complejo.
+posibilidades de ofrece pilas para dibujar
+de la manera mas sencilla, mientras que la
+sección que sigue cubre el dibujo mas avanzado.
 
 
 Usando la Tortuga
 =================
 
 El actor ``Tortuga`` está inspirado en una de
-las actividades mas divertidas y representativas
-del lenguaje de programación logo, creado
+las actividades mas divertidas, didácticas y simbólicas
+del lenguaje de programación **logo**, creado
 por Seymour Papert.
 
 La ``Tortuga`` básicamente es un actor que sabe
@@ -26,8 +27,15 @@ movimientos:
 
 .. image:: images/tortuga_dibuja_triangulo.png
 
-Como puedes ver en la imagen, el código que he
-utilizado para crear la tortuga es el siguiente:
+La imagen no alcanza a mostrar por completo el
+concepto, pero en pocas palabras se puede ayudar
+a imaginar cómo funciona realmente.
+
+El dibujo de la imagen anterior es una traza que
+va dibujando la tortuga a partir de su movimiento.
+
+El siguiente código es el que se utilizó para
+dibujar esa figura:
 
 .. code-block:: python
 
@@ -40,6 +48,11 @@ utilizado para crear la tortuga es el siguiente:
     tortuga.color = pilas.colores.verde
     tortuga.avanzar(200)
 
+
+Algo muy valioso en términos didácticos, es que
+uno podría animarse a realizar dibujos simples cómo
+una casa, un hexágono o un número diseñando una estrategía
+de movimiento para la tortuga.
 
 Inspeccionando a la tortuga
 ---------------------------
@@ -69,21 +82,24 @@ Esta es una lista de los comandos mas utilizados:
 +------------------+--------------+--------------------------------------+------------------------------------------------+
 
 
+Por supuesto hay algunos mas, pero esos quedan para
+investigar en la clase propiamente dicha. Recuerda que
+el auto-completado del intérprete de python es bastante
+útil para estas cosas.
+
 Usando una Pizarra
 ==================
 
-
 Si quieres dibujar sobre la pantalla pero
-de forma inmediata y con mas posibilidades puedes
-usar un actor llamado ``Pizarra``. Este
-actor es cómo un lienzo invisible sobre
+de forma inmediata y con algunas posibilidades mas
+elaboradas puedes
+usar un actor llamado ``Pizarra``. Esta no es la
+forma mas avanzada, pero es el siguiente paso después
+de dominar al actor ``Tortuga``.
+
+Este actor ``Pizarra`` es cómo un lienzo invisible sobre
 el que podemos pintar imágenes, figuras
 geométricas y trazos de cualquier tipo.
-
-A diferencia de la tortuga, la ``Pizarra``
-te permite hacer muchos trazos rápidamente
-y mostrarlos en pantalla todos a la vez. Además
-te permite acceder a funciones avanzadas de dibujo.
 
 Comencemos con algo sencillo: para crear la pizarra y
 dibujar un punto en el centro de la
@@ -199,105 +215,3 @@ La pizarra como actor
 
 Recuerda que la pizarra también es un actor, así que puedes enseñarle
 habilidades, cambiar su posición, rotación o lo que quieras.
-
-
-Dibujo avanzado sobre la pizarra usando Cairo
----------------------------------------------
-
-El actor pizarra tiene varios métodos para dibujar, y
-son simples de utilizar. Pero en algunas oportunidades
-puede que quieras hacer algo mas complejo, que la pizarra
-no sabe hacer.
-
-Por ejemplo, imagina que quieres imprimir un gráfico vectorial, o
-pintar un rectángulo con esquinas redondeadas o un degradé circular.
-
-Para operaciones de dibujo complejas, puedes usar la biblioteca
-``cairo``, la biblioteca que usa ``pilas`` para representar a la
-pizarra y permitirte dibujar una imagen sobre otra.
-
-
-Entonces, para dibujar de manera avanzada sobre la pizarra
-tienes que incorporar la biblioteca cairo, dibujar sobre el
-contexto de la pizarra y luego invocar al método ``actualizar_imagen``.
-
-Lo que sigue es un ejemplo que dibujar sobre la pizarra
-usando cairo:
-
-.. code-block:: python
-
-    
-    # paso 1: crear la pizarra
-    pizarra = pilas.actores.Pizarra()
-
-    # paso 2: comienza el dibujo personalizado con cairo:
-    import cairo
-
-    x1, y1 = (100, 100)
-    x2, y2 = (600, 300)
-    x3, y3 = (100, 400)
-
-    pizarra.canvas.context.curve_to(x1, y1, x2, y2, x3, y3)
-    pizarra.canvas.context.set_line_width(50)
-    pizarra.canvas.context.set_dash([10])
-    pizarra.canvas.context.stroke()
-
-    # paso 3: Decirle a la pizarra que se actualice.
-    pizarra.actualizar_imagen()
-
-Es decir, el resultado será una curva que pasa por los
-puntos (x1, y1), (x2, y2) y por último (x3, y3):
-
-.. image:: images/pizarra_avanzado_cairo.png
-
-
-Si quieres obtener mas información sobre las posibilidades
-que te ofrece cairo, puedes consultar los siguientes sitios
-web:
-
-- http://cairographics.org/pycairo/
-- http://cairographics.org/samples/
-- http://www.tortall.net/mu/wiki/CairoTutorial
-
-Y si encuentras algo útil que se pueda simplificar mejorando
-la pizarra avísanos!.
-
-
-
-Dibujando mas rápido
---------------------
-
-Si quieres hacer dibujos complejos, con muchos trazos o formas,
-seguramente notarás que la pizarra no es tan rápida como
-debería.
-
-Resulta que la pizarra, cuando se utiliza normalmente, muestra
-en cada momento el trazo que realizamos o cualquier dibujo
-que realicemos. Esto funciona así porque la mayoría de los
-usuarios quieren dibujar y observar su resultado inmediatamete, 
-de forma interactiva.
-
-Si quieres dibujar mas rápidamente puedes hacer lo siguiente: dile
-a la pizarra que deshabilite el dibujado interactivo, realiza
-todos los trazos que quieras, y luego habilita nuevamente el
-dibujado interactivo. Esto producirá resultados mas rápidos
-y directos.
-
-Aquí hay un ejemplo de dibujado rápido.
-
-.. code-block:: python
-
-    pizarra.deshabilitar_actualizacion_automatica()
-
-    # dibuja 64 puntos sobre la pizarra.
-    for i in range(0, 640, 10):
-        pizarra.dibujar_punto(x=i, y=i)
-
-    pizarra.habilitar_actualizacion_automatica()
-
-
-Ten en cuenta que la pizarra pasará, de un instante a otro, a
-tener los 64 puntos que dibujamos. Así que si usas este
-código desde la consola interactiva, solo verás los
-resultados cuando ejecutes la sentencia
-``pizarra.habilitar_actualizacion_automatica``.

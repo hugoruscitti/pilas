@@ -45,17 +45,6 @@ class PizarraAbstracta():
     def asignar(self, actor):
         actor.imagen = self.canvas.image
         
-    def habilitar_actualizacion_automatica(self):
-        self.actualiza_automaticamente = True
-        self.actualizar_imagen()
-
-    def deshabilitar_actualizacion_automatica(self):
-        self.actualiza_automaticamente = False
-
-    def actualizar_imagen(self):
-        "Se encarga de actualizar la vista de la pizarra."
-        self.canvas.actualizar()
-        
     def levantar_lapiz(self):
         self.lapiz_bajo = False
 

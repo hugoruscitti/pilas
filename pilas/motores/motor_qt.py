@@ -259,6 +259,19 @@ class QtSuperficie(QtImagen):
 
         self.canvas.end()
 
+    def circulo(self, x, y, radio, color=colores.negro, relleno=False):
+        self.canvas.begin(self._imagen)
+
+        r, g, b, a = color.obtener_componentes()
+        color = QtGui.QColor(r, g, b)
+        self.canvas.setPen(color)
+
+        if relleno:
+            self.canvas.setBrush(color)
+
+        self.canvas.drawEllipse(x -radio, y-radio, radio*2, radio*2)
+
+        self.canvas.end()
 
 
 class QtActor(BaseActor):
