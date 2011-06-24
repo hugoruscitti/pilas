@@ -248,13 +248,6 @@ Módulo pilas.ejemplos.colisiones
     :members:
 
 
-Módulo pilas.ejemplos.naves
----------------------------
-
-.. automodule:: pilas.ejemplos.naves
-    :members:
-
-
 Módulo pilas.ejemplos.listaseleccion
 ------------------------------------
 

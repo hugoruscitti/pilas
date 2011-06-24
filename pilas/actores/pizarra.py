@@ -6,8 +6,6 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-import array
-
 import pilas
 from pilas.actores import Actor
 
@@ -33,7 +31,6 @@ class Lapiz(object):
     y = property(get_y, set_y)
 
 class PizarraAbstracta():
-    
     def __init__(self, ancho=640, alto=480):
         self.canvas = pilas.motor.obtener_canvas(ancho, alto)
         self.lapiz = Lapiz()
@@ -234,16 +231,15 @@ class PizarraAbstracta():
             self.actualizar_imagen()
             
             
-class Pizarra(Actor, PizarraAbstracta):
+class Pizarra(Actor):
     """Representa una superficie de dibujo inicialmente transparente.
 
     Puedes pintar sobre esta pizarra usando métodos que simulan
     un lapiz, que se puede mover sobre una superficie.
     """
 
-    def __init__(self, x=0, y=0):
+    def __init__(self, x=0, y=0, ancho=None, alto=None):
         Actor.__init__(self, x=x, y=y)
-        PizarraAbstracta.__init__(self)
         
     def definir_color(self, color):
         PizarraAbstracta.definir_color(self, color)

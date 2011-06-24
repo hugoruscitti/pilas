@@ -27,7 +27,7 @@ como ``import pilas``, la biblioteca se
 leerá desde el directorio.
 
 
-Instalación para desarrolladores
+Instalación luego de la descarga
 --------------------------------
 
 Si realizas videojuegos, pero no quieres tener la biblioteca
@@ -40,7 +40,8 @@ siguiente comando::
 
     sudo apt-get install python-setuptools
 
-Luego, para instalar pilas tienes dos opciones::
+Luego, ingresa en el directorio en donde se encuentra
+tu copia de pilas y ejecuta un comando cómo::
 
     sudo python setup.py install
 
@@ -50,12 +51,13 @@ o bien::
 
 En el primer caso la biblioteca se instala y pasa
 a estar completamente instalada en tu sistema. No importa
-que borres el directorio que has descargador, la biblioteca
-ya se instala en el equipo.
+que borres el directorio que has descargado, la biblioteca
+quedará instalada en un directorio del sistema para bibliotecas
+de python.
 
 El segundo caso es el favorito por los desarrolladores, porque
 te permite actualizar mas fácilmente la biblioteca. Ya que
 no está complemente instalada en el equipo, si no que hace
-referencia al directorio de instalación. Si actualizas
+referencia al directorio en donde se ha descargado pilas. Si actualizas
 el directorio origen, los cambios se reflejarán en
-tu sistema.
+tu sistema sin necesidad de repetir el comando de instalación.
