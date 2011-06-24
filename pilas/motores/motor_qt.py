@@ -259,12 +259,13 @@ class QtSuperficie(QtImagen):
 
         self.canvas.end()
 
-    def circulo(self, x, y, radio, color=colores.negro, relleno=False):
+    def circulo(self, x, y, radio, color=colores.negro, relleno=False, grosor=1):
         self.canvas.begin(self._imagen)
 
         r, g, b, a = color.obtener_componentes()
         color = QtGui.QColor(r, g, b)
-        self.canvas.setPen(color)
+        pen = QtGui.QPen(color, grosor)
+        self.canvas.setPen(pen)
 
         if relleno:
             self.canvas.setBrush(color)
