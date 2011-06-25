@@ -298,6 +298,8 @@ class QtSuperficie(QtImagen):
         self.canvas.drawLine(x, y, x2, y2)
         self.canvas.end()
 
+    def dibujar_punto(self, x, y, color=colores.negro):
+        self.circulo(x, y, 3, color=color, relleno=True)
 
 
 class QtActor(BaseActor):

@@ -109,7 +109,10 @@ de dominar al actor ``Tortuga``.
 
 Este actor ``Pizarra`` es cómo un lienzo invisible sobre
 el que podemos pintar imágenes, figuras
-geométricas y trazos de cualquier tipo.
+geométricas y trazos de cualquier tipo. De hecho, el actor
+``Tortuga`` que vimos antes en realizada estaba
+dibujando sobre una pizarra, solo que lo hacía con
+animaciones y algo lento.
 
 Comencemos con algo sencillo: para crear la pizarra y
 dibujar un punto en el centro de la
@@ -121,37 +124,9 @@ código:
     pizarra = pilas.actores.Pizarra()
     pizarra.dibujar_punto(0, 0)
 
-
-Dibujando usando lapices
-------------------------
-
-La pizarra tiene un componente interno que se
-parece a un lápiz de color. Este lápiz
-lo utilizaremos para dibujar sobre la
-pizarra.
-
-Este código es un ejemplo que imprime sobre
-la pizarra una linea de color negro en diagonal:
-
-.. code-block:: python
-
-    pizarra = pilas.actores.Pizarra()
-    pizarra.bajar_lapiz()
-    pizarra.mover_lapiz(100, 0)
-    pizarra.mover_lapiz(100, 100)
-    pizarra.mover_lapiz(0, 0)
-
-Así se verá:
-
-.. image:: images/pizarra_dibuja_triangulo.png
-
-
-De hecho, ahora que tienes el triangulo puedes
-pulsar la tecla F12 y observar con mas claridad
-dónde están situadas las puntas del triangulo:
-
-.. image:: images/pizarra_dibuja_triangulo_modo_depuracion.png
-
+esto dibujará un punto de color negro en el centro de
+la ventana, podrías usar el argumento opcional ``color``
+si prefieres otro color.
 
 
 Pintando imágenes
@@ -163,7 +138,7 @@ la pizarra o construir un escenario usando bloques tipo
 ladrillos.
 
 Para pintar una imagen solo tienes que cargarla e
-indicarla a la pizarra que la dibuje.
+indicarla a la pizarra que la dibuje en una posicion determinada.
 
 .. code-block:: python
 
@@ -175,17 +150,32 @@ Así se verá:
 
 .. image:: images/pizarra_imagen.png
 
+Ten en cuenta que en estos casos, cuando estamos dibujando
+una imagen sobre otra, el punto destino (x, y) siempre indica
+la esquina superior izquierda de la imagen, no el centro u
+otra posición relativa como en el caso de los actores.
 
-Ten en cuenta que la coordenada de la imagen es un poco
-diferente a las coordenadas que vimos antes, cuando pintas
-una imagen sobre una pizarra las coordenadas se dicen coordenadas
-de pantalla. Eso significa que la posición (0, 0) es la esquina
-superior izquierda. Los valores positivos de "x" son hacia la derecha
-y los valores positivos de "y" van hacia abajo.
+Pintando porciones de imágenes
+------------------------------
+
+Hay ocasiones en las que te resultará útil poder
+pintar solamente porciones de una imagen sobre otra. Para
+estos casos está el método ``pintar_parte_de_imagen``.
+
+Veamos la definición del método::
+
+    def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
 
 
-Pintando grillas de imágenes
-----------------------------
+
+
+Pendiente
+::::::::::
+
+
+
+
+----------------------------------------
 
 De manera similar a las imágenes normales, sobre las pizarras
 también se pueden pintar grillas.

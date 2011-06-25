@@ -22,10 +22,10 @@ class Tortuga(Actor):
         self.rotacion = 0
         self.velocidad = 6
 
-        if dibuja:
-            self.bajalapiz()
-        else:
-            self.subelapiz()
+        #if dibuja:
+        #    self.bajalapiz()
+        #else:
+        #    self.subelapiz()
 
     def avanzar(self, pasos):
         self.hacer_luego(pilas.comportamientos.Avanzar(pasos, self.velocidad))

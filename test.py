@@ -3,6 +3,9 @@ import pilas
 
 pilas.iniciar()
 
+t = pilas.actores.Tortuga()
+
+'''
 superficie = pilas.imagenes.cargar_superficie(100, 100)
 
 # dibujamos el cuerpo
@@ -22,6 +25,7 @@ superficie.circulo(64, 35, 5, color=pilas.colores.negro, relleno=True)
 superficie.pintar(pilas.colores.blanco)
 superficie.texto("Hola mundo", magnitud=20, fuente="Courrier", color=pilas.colores.rojo)
 a = pilas.actores.Actor(superficie)
+'''
 
 
 pilas.ejecutar()
