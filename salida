@@ -1,0 +1,1131 @@
+Loaded plugins: langpacks, presto, refresh-packagekit
+============================= N/S Matched: python ==============================
+GitPython.noarch : Python Git Library
+HippoDraw-python.i686 : HippoDraw Python module
+OpenIPMI-python.i686 : IPMI Python language bindings
+PythonCAD.noarch : Python scriptable CAD package
+PythonCard.noarch : PythonCard GUI construction toolkit
+ScientificPython.i686 : A collection of Python modules that are useful for
+                      : scientific computing
+ScientificPython-devel.i686 : The development files for ScientificPython
+ScientificPython-doc.i686 : Documentation and examples for ScientificPython
+ScientificPython-qt.i686 : The Qt widgets from ScientificPython
+ScientificPython-tk.i686 : The tk widgets from ScientificPython
+abrt-addon-python.i686 : abrt's addon for catching and analyzing Python
+                       : exceptions
+antlr-python.noarch : Python runtime support for ANTLR-generated parsers
+antlr3-python.noarch : Python run-time support for ANTLR-generated parsers
+apt-python.i686 : Python bindings for libapt-pkg
+at-spi-python.i686 : Python bindings for at-spi
+aubio-python.i686 : Python language bindings for aubio
+audit-libs-python.i686 : Python bindings for libaudit
+beecrypt-python.i686 : Files needed for python applications using beecrypt
+boost-mpich2-python.i686 : Python runtime component of Boost.MPI library
+boost-openmpi-python.i686 : Python runtime component of Boost.MPI library
+boost-python.i686 : Runtime component of boost python library
+bpython.noarch : Fancy curses interface to the Python interactive interpreter
+cairo-dock-python.i686 : Python binding for cairo-dock
+claws-mail-plugins-python.i686 : Python scripting access to claws-mail
+cmusphinx3-python.i686 : Python interface to cmusphinx3
+compizconfig-python.i686 : Python bindings for the Compiz Configuration System
+cracklib-python.i686 : Python bindings for applications which use cracklib
+csound-python.i686 : Python Csound development files and libraries
+csound-python-devel.i686 : Csound python development files and libraries
+cwiid-python2.i686 : Python binding for cwiid
+dbus-python.i686 : D-Bus Python Bindings
+dbus-python-devel.i686 : Libraries and headers for dbus-python
+diveintopython.noarch : Dive into Python - a python book
+diveintopython-html.noarch : Dive into Python - a python book
+diveintopython-pdf.noarch : Dive into Python - a python book
+diveintopython-single-html.noarch : Dive into Python - a python book
+diveintopython-txt.noarch : Dive into Python - a python book
+dpm-python.i686 : Disk Pool Manager (DPM) python bindings
+dpm-python3.i686 : Disk Pool Manager (DPM) python bindings
+dreampie-python3.noarch : Support for running the python3 interpreter from
+                        : dreampie
+ecryptfs-utils-python.i686 : Python bindings for the eCryptfs utils
+eekboard-python.i686 : Python binding of eekboard client library
+ekg2-python.i686 : Python scripting plugin for ekg2
+ethos-python.i686 : Python bindings for ethos
+farsight2-python.i686 : Python binding for farsight2
+flann-python.i686 : Python bindings for flann
+flies-python-client.noarch : Python Client for Flies Server
+freeipa-python.i686 : Python libraries used by IPA
+freeradius-python.i686 : Python support for freeradius
+fuse-python.i686 : Python bindings for FUSE - filesystem in userspace
+gamin-python.i686 : Python bindings for the gamin library
+ganglia-gmond-python.i686 : Ganglia Monitor daemon python DSO and metric modules
+gdal-python.i686 : Python modules for the GDAL file format library
+gdcm-python.i686 : Python binding for GDCM
+gdl-python.i686 : GDL python module
+geos-python.i686 : Python modules for GEOS
+getdata-python.i686 : getdata bindings for the python language
+gnome-python2.i686 : PyGNOME Python extension module
+gnome-python2-applet.i686 : Python bindings for GNOME Panel applets.
+gnome-python2-bonobo.i686 : Python bindings for interacting with Bonobo
+gnome-python2-brasero.i686 : Python bindings for interacting with brasero
+gnome-python2-canvas.i686 : Python bindings for the GNOME Canvas
+gnome-python2-desktop.i686 : The sources for additional PyGNOME Python extension
+                           : modules
+gnome-python2-evince.i686 : Python bindings for interacting with evince
+gnome-python2-evolution.i686 : Python bindings for interacting with
+                             : evolution-data-server
+gnome-python2-extras.i686 : Additional PyGNOME Python extension modules
+gnome-python2-gconf.i686 : Python bindings for interacting with GConf
+gnome-python2-gda.i686 : Python bindings for interacting with libgda
+gnome-python2-gda-devel.i686 : Headers for developing programs that will use
+                             : gnome-python2-gda
+gnome-python2-gdl.i686 : Python bindings for the GNOME Development Library
+gnome-python2-gnome.i686 : Python bindings for libgnome
+gnome-python2-gnomedesktop.i686 : Python bindings for interacting with
+                                : gnome-desktop
+gnome-python2-gnomekeyring.i686 : Python bindings for interacting with
+                                : gnome-keyring
+gnome-python2-gnomeprint.i686 : Python bindings for interacting with
+                              : libgnomeprint
+gnome-python2-gnomevfs.i686 : Python bindings for interacting with gnome-vfs
+gnome-python2-gtkhtml2.i686 : Python bindings for interacting with gtkhtml2
+gnome-python2-gtkmozembed.i686 : Python bindings for interacting with
+                               : gtkmozembed
+gnome-python2-gtksourceview.i686 : Python bindings for interacting with the
+                                 : gtksourceview library
+gnome-python2-gtkspell.i686 : Python bindings for interacting with gtkspell
+gnome-python2-libegg.i686 : Python bindings for recent files and tray icons
+gnome-python2-libgtop2.i686 : Python bindings for interacting with libgtop
+gnome-python2-libwnck.i686 : Python bindings for interacting with libwnck
+gnome-python2-metacity.i686 : Python bindings for interacting with metacity
+gnome-python2-rsvg.i686 : Python bindings for interacting with librsvg
+gnome-python2-totem.i686 : Python bindings for interacting with totem
+graphviz-python.i686 : Python extension for graphviz
+groonga-python.i686 : Python language binding for groonga
+gstreamer-python.i686 : Python bindings for GStreamer
+gstreamer-python-devel.i686 : Headers for developing programs that will use
+                            : gstreamer-python
+gstreamer-rtsp-python.i686 : Python bindings for gstreamer-rtsp
+gtk-vnc-python.i686 : Python bindings for the gtk-vnc library
+gupnp-igd-python.i686 : Python bindings for gupnp-igd
+hamlib-python.i686 : Hamlib radio control library Python binding
+hippo-canvas-python.i686 : Python module for hippo-canvas
+ice-python.i686 : The Ice runtime for Python applications
+ice-python-devel.i686 : Tools for developing Ice applications in Python
+input-pad-python.i686 : Input Pad for python
+ipython.noarch : An enhanced interactive Python shell
+ipython-doc.noarch : Documentation for ipython
+ipython-gui.noarch : Gui applications from ipython
+ipython-tests.noarch : Tests for ipython
+kross-python.i686 : Kross plugin for python
+ldns-python.i686 : Python extensions for ldns
+lfc-python.i686 : LCG File Catalog (LFC) python bindings
+lfc-python3.i686 : LCG File Catalog (LFC) python bindings
+libbeagle-python.i686 : Beagle python interface
+libcap-ng-python.i686 : Python bindings for libcap-ng library
+libchewing-python.i686 : libchewing python binding
+libconcord-python.i686 : Python bindings for libconcord
+libftdi-python.i686 : Libftdi library Python binding
+libgsf-python.i686 : Python bindings for libgsf
+libhid-python.i686 : Python bindings for the libhid libraries
+libhocr-python.i686 : Python bindings for libhocr
+libieee1284-python.i686 : Python extension module for libieee1284
+libimobiledevice-python.i686 : Python bindings for libimobiledevice
+libiptcdata-python.i686 : Python bindings for libiptcdata
+liblicense-python.i686 : Python bindings for liblicense, a library to handle
+                       : license metadata
+liblouis-python.noarch : Python language bindings for liblouis
+libopensync-plugin-python.i686 : Python plugin for libopensync
+libplist-python.i686 : Python package for libplist
+libprelude-python.i686 : Python bindings for libprelude
+libpreludedb-python.i686 : Python bindings for libpreludedb
+libproxy-python.noarch : Binding for libproxy and python
+libpst-python.i686 : Python bindings for libpst
+librtfcomp-python.i686 : Python bindings for the librtfcomp library
+libselinux-python.i686 : SELinux python bindings for libselinux
+libselinux-python3.i686 : SELinux python 3 bindings for libselinux
+libsemanage-python.i686 : semanage python bindings for libsemanage
+libsemanage-python3.i686 : semanage python 3 bindings for libsemanage
+libsvm-python.i686 : Python tools and interfaces for libsvm
+libuser-python.i686 : Python bindings for the libuser library
+libvirt-python.i686 : Python bindings for the libvirt library
+libwfut-python.i686 : Python interface for libwfut library
+libxml2-python.i686 : Python bindings for the libxml2 library
+libxslt-python.i686 : Python bindings for the libxslt library
+lunatic-python.i686 : Two-way bridge between Python and Lua
+mapnik-python.i686 : Python bindings for the Mapnik spatial visualization
+                   : library
+mapserver-python.i686 : Python/Mapscript map making extensions to Python
+mlt-python.i686 : Python package to work with MLT
+mod_python.i686 : An embedded Python interpreter for the Apache HTTP Server
+mysql-connector-python.noarch : MySQL Connector for Python 2
+mysql-connector-python3.noarch : MySQL Connector for Python 3
+natus-python.i686 : Python module for Natus
+nautilus-python.i686 : Python bindings for Nautilus
+nautilus-python-devel.i686 : Python bindings for Nautilus
+net-snmp-python.i686 : The Python 'netsnmp' module for the NET-SNMP
+newt-python.i686 : Python bindings for newt
+notify-python.i686 : Python bindings for libnotify
+nxt_python.noarch : Nxt_python is a package for controlling a LEGO NXT robot
+                  : using python
+opencv-python.i686 : Python bindings for apps which use OpenCV
+openscap-python.i686 : Python bindings for openscap
+openwsman-python.i686 : Python bindings for openwsman client API
+pigment-python.i686 : Python bindings to the Pigment Media Center Toolkit
+plasma-scriptengine-python.i686 : Plasma scriptengine for python
+player-python.i686 : Player Python bindings
+pocketsphinx-python.i686 : Python interface to pocketsphinx
+policycoreutils-python.i686 : SELinux policy core python utilities
+postgresql-plpython.i686 : The Python procedural language for PostgreSQL
+protobuf-python.i686 : Python bindings for Google Protocol Buffers
+pymol-wxpython.i686 : wxpython interface for PyMOL
+python-4Suite-XML.i686 : A collection of XML-related technologies for Python
+python-CDDB.i686 : CDDB and FreeDB audio CD track info access in Python
+python-Coherence.noarch : Python framework to participate in digital living
+                        : networks
+python-GeoIP.i686 : Python bindings for the GeoIP geographical lookup libraries
+python-GnuPGInterface.noarch : A Python module to interface with GnuPG
+python-IPy.noarch : Python module for handling IPv4 and IPv6 Addresses and
+                  : Networks
+python-Levenshtein.i686 : Python extension computing string distances and
+                        : similarities
+python-MAPI.i686 : The Python MAPI extension by Zarafa
+python-MythTV.i686 : Python bindings for MythTV
+python-PSI.i686 : Shows real time system information in python
+python-SocksiPy.noarch : A Python SOCKS module
+python-Traits.i686 : Explicitly typed attributes for Python
+python-TraitsBackendWX.noarch : WxPython backend for Traits and TraitsGUI
+                              : (Pyface)
+python-VirtualBox-OSE.i686 : Python bindings for VirtualBox-OSE
+python-ZODB3-devel.noarch : Developer files for python-ZODB3
+python-achoo.noarch : A fluent interface for testing Python objects
+python-adns.i686 : Python interface for the GNU adns library
+python-alsa.i686 : Python binding for the ALSA library
+python-alsaaudio.i686 : Python Alsa Bindings
+python-altgraph.noarch : Python graph (network) package
+python-amara.noarch : A collection of Pythonic tools for XML data binding
+python-application.noarch : Basic building blocks for python applications
+python-arm4.i686 : Application Reponse Measurement (ARM) V4 Python language
+                 : bindings
+python-asyncmongo.noarch : An asynchronous Python MongoDB library
+python-augeas.noarch : Python bindings to augeas
+python-babel.noarch : Library for internationalizing Python applications
+python-basemap-data.noarch : Data for python-basemap
+python-basemap-data-hires.noarch : High resolution map data for python-basemap
+python-basemap-examples.i686 : Example programs and data for python-basemap
+python-bibtex.i686 : Python extension to parse BibTeX files
+python-biopython.i686 : Python tools for computational molecular biology
+python-blist.i686 : A faster list implementation for Python
+python-brlapi.i686 : Python binding for BrlAPI
+python-bson.i686 : Python bson library
+python-bugzilla.noarch : A python library for interacting with Bugzilla
+python-bunch.noarch : Python dictionary with attribute-style access
+python-carrot.noarch : AMQP Messaging Framework for Python
+python-cement.noarch : CLI Application Framework for Python
+python-chardet.noarch : Character encoding auto-detection in Python
+python-cherrypy.noarch : Pythonic, object-oriented web development framework
+python-cherrypy2.noarch : A pythonic, object-oriented web development framework
+python-cherrytemplate.noarch : An easy and powerful templating module for Python
+python-chm.i686 : Python package for CHM files handling
+python-cjson.i686 : Fast JSON encoder/decoder for Python
+python-clearsilver.i686 : Python interface to the ClearSilver HTML templating
+                        : system
+python-cli.noarch : A CLI construction toolkit for Python
+python-clientform.noarch : Python module for client-side HTML forms
+python-cloudfiles.noarch : Python language bindings for Rackspace CloudFiles API
+python-couchdb.noarch : A Python library for working with CouchDB
+python-coverage.i686 : Code coverage testing module for Python
+python-cpio.noarch : A Python module for accessing cpio archives
+python-crypto.i686 : Cryptography library for Python
+python-cryptsetup.i686 : Python bindings for cryptsetup
+python-cssutils.noarch : CSS Cascading Style Sheets library for Python
+python-cssutils-doc.noarch : Documentation for the CSS Cascading Style Sheets
+                           : library for Python
+python-cups.i686 : Python bindings for CUPS
+python-cups-doc.i686 : Documentation for python-cups
+python-cvxopt.i686 : A Python Package for Convex Optimization
+python-cvxopt-examples.noarch : Examples of using python-cvxopt
+python-daap.i686 : DAAP client implemented in Python
+python-debug.i686 : Debug version of the Python runtime
+python-decoratortools.noarch : Use class and function decorators -- even in
+                             : Python 2.3
+python-deltarpm.i686 : Python bindings for deltarpm
+python-demjson.noarch : Python JSON module and lint checker
+python-desktop-agnostic.i686 : Python bindings for libdesktop-agnostic
+python-desktopcouch.noarch : Python bindings for desktopcouch
+python-desktopcouch-records.noarch : Python bindings for desktopcouch records
+python-devel.i686 : The libraries and header files needed for Python development
+python-dialog.noarch : Python interface to the Unix dialog utility
+python-dictclient.noarch : Python client for DICT protocol
+python-digidoc.i686 : Python bindings for libdigidocpp
+python-distutils-extra.noarch : Integrate more support into Python's distutils
+python-dmidecode.i686 : Python module to access DMI data
+python-dns.noarch : DNS toolkit for Python
+python-docs.noarch : Documentation for the Python programming language
+python-drizzle.i686 : Python wrappers for libdrizzle
+python-dulwich.i686 : A python implementation of the Git file formats and
+                    : protocols
+python-durus.i686 : A Python Object Database
+python-elements.noarch : A 2D Physics API for Python
+python-empy.noarch : A powerful and robust template system for Python
+python-enchant.i686 : Python bindings for Enchant spellchecking library
+python-enum.noarch : Robust enumerated type support in Python
+python-epdb.noarch : Extended Python debugger
+python-ethtool.i686 : Ethernet settings python bindings
+python-eventlet-doc.noarch : Documentation for python-eventlet
+python-execnet.noarch : Elastic Python Deployment
+python-exif.noarch : Python module to extract EXIF information
+python-exo.i686 : Python tools for exo library
+python-eyed3.noarch : Python module for processing ID3 tags
+python-fedora.noarch : Python modules for talking to Fedora Infrastructure
+                     : Services
+python-feedparser.noarch : Parse RSS and Atom feeds in Python
+python-firkin.noarch : A python module to convert between different measurement
+                     : units
+python-flask.noarch : A micro-framework for Python based on Werkzeug, Jinja 2
+                    : and good intentions
+python-flask-doc.noarch : Documentation for python-flask
+python-flickrapi.noarch : Python module for interfacing with the Flickr API
+python-flup.noarch : Random assortment of WSGI servers for python
+python-fpconst.noarch : Python module for handling IEEE 754 floating point
+                      : special values
+python-gammu.i686 : Python bindings for Gammu
+python-gdata.noarch : A Python module for accessing online Google services
+python-geoclue.noarch : A Geoclue python module
+python-gevent.i686 : A coroutine-based Python networking library
+python-gflags.noarch : Commandline flags module for Python
+python-gnash.i686 : Gnash Python bindings
+python-gnutls.i686 : Python wrapper for the GNUTLS library
+python-googlevoice.noarch : Python language bindings for the Google Voice API
+python-gpod.i686 : Python module to access iPod content
+python-greenlet-devel.i686 : C development headers for python-greenlet
+python-gtkextra.i686 : Python bindings for gtkextra
+python-gudev.i686 : Python (PyGObject) bindings to the GUDev library
+python-guppy.i686 : A Python Programming Environment
+python-gzipstream.noarch : Streaming zlib (gzip) support for python
+python-hcs_utils.noarch : A collection of useful python snippets for hcs's
+                        : projects
+python-hivex.i686 : Python bindings for hivex
+python-hwdata.noarch : Python bindings to hwdata package
+python-igraph.i686 : Python bindings for igraph
+python-imaging.i686 : Python's own image processing library
+python-imaging-devel.i686 : Development files for python-imaging
+python-imaging-sane.i686 : Python Module for using scanners
+python-imaging-tk.i686 : Tk interface for python-imaging
+python-imgcreate.i686 : Python modules for building system images
+python-iniparse.noarch : Python Module for Accessing and Modifying Configuration
+                       : Data in INI files
+python-inotify.noarch : Monitor filesystem events with Python under Linux
+python-inotify-examples.noarch : Examples for Python inotify module
+python-instant.noarch : Python module for instant inlining of C and C++ code
+python-ipaddr.noarch : A python library for working with IP addresses, both IPv4
+                     : and IPv6
+python-irclib.noarch : A set of Python modules for IRC support
+python-isprelink.i686 : Python module to determine if a file has been prelinked
+python-iwlib.i686 : Wireless settings python bindings
+python-kaa-base.i686 : The Kaa Media - base package for python
+python-kaa-display.i686 : Python API providing Low level support for various
+                        : displays
+python-kaa-imlib2.i686 : The Kaa Media - imlib2 binding for python
+python-kaa-metadata.i686 : The Kaa Media - metadata binding for python
+python-keybinder.i686 : Keybinder python bindings
+python-keyring.noarch : Python library to access the system keyring service
+python-kid.noarch : Kid - A simple and pythonic XML template language
+python-kinterbasdb.i686 : A Python DB-API 2.0 compliant interface to Firebird
+python-kitchen.noarch : Small, useful pieces of code to make python coding
+                      : easier
+python-kiwi.noarch : Framework for Python GUI applications
+python-kiwi-docs.noarch : Documentation related to python-kiwi
+python-krbV.i686 : Python extension module for Kerberos 5
+python-lash.i686 : Python wrapper for LASH
+python-lcms.i686 : Python interface to LittleCMS
+python-ldaphelper.noarch : A python wrapper for LDAP search results
+python-libasyncns.i686 : Python binding for libasyncns
+python-libdmtx.i686 : Python bindings for libdmtx
+python-libgmail.noarch : Library to provide access to Gmail via Python
+python-libgmail-docs.noarch : Documents and examples for python-libgmail
+python-libguestfs.i686 : Python bindings for libguestfs
+python-libs.i686 : Runtime libraries for Python
+python-libvoikko.noarch : Python interface to libvoikko
+python-lirc.i686 : Linux Infrared Remote Control python module
+python-logilab-astng.noarch : Python Abstract Syntax Tree New Generation
+python-louie.noarch : Dispatches signals between Python objects in a wide
+                    : variety of contexts
+python-lxml.i686 : ElementTree-like Python bindings for libxml2 and libxslt
+python-lxml-docs.noarch : Documentation for python-lxml
+python-lyricwiki.noarch : A Python interface to the http://lyrics.wikia.com
+python-lzo.i686 : LZO bindings for Python
+python-magic.i686 : Python bindings for the libmagic API
+python-mako.noarch : Mako template library for Python
+python-markdown.noarch : Markdown implementation in Python
+python-markdown2.noarch : A fast and complete Python implementation of Markdown
+python-markupsafe.i686 : Implements a XML/HTML/XHTML Markup safe string for
+                       : Python
+python-matplotlib.i686 : Python plotting library
+python-matplotlib-doc.i686 : Documentation files for python-matplotlib
+python-matplotlib-tk.i686 : Tk backend for python-matplotlib
+python-matplotlib-wx.i686 : wxPython backend for python-matplotlib
+python-mecab.i686 : Python binding for MeCab
+python-mechanoid.noarch : Python Programmatic Web Browser
+python-meh.noarch : A python library for handling exceptions
+python-meld3.i686 : HTML/XML templating system for Python
+python-meliae.i686 : Python memory usage statistics
+python-memcached.noarch : A Python memcached client library
+python-metar.noarch : Coded METAR weather reports parser for Python
+python-mpd.noarch : Python MPD client library
+python-mpmath.noarch : A pure Python library for multiprecision floating-point
+                     : arithmetic
+python-mpmath-doc.noarch : HTML documentation for python-mpmath
+python-mutagen.noarch : Mutagen is a Python module to handle audio metadata
+python-myghty.noarch : Python-based templating system derived from HTML::Mason
+python-mygpoclient.noarch : Python module to connect to the my.gpodder.org
+                          : webservice
+python-natus.i686 : Natus JavaScript module for Python
+python-netaddr.noarch : A pure Python network address representation and
+                      : manipulation library
+python-nevow.noarch : Web application construction kit written in Python
+python-nose.noarch : A discovery-based unittest extension for Python
+python-nss.i686 : Python bindings for Network Security Services (NSS)
+python-nufw.i686 : Python bindings for NuFW client (nutcpc)
+python-numarray.i686 : Python array manipulation and computational library
+python-numeric.i686 : Numerical Extension to Python
+python-oasa.noarch : Python library for manipulation of chemical formats
+python-oauth2.noarch : Python support for improved oauth
+python-obexftp.i686 : Python library to access devices via the OBEX protocol
+python-ogg.i686 : Python wrapper for the Ogg libraries
+python-ogg-devel.i686 : Development files for the Ogg libraries Python wrapper
+python-openbabel.i686 : Python wrapper for the Open Babel library
+python-openhpi.i686 : Python interface for OpenHPI
+python-openid.noarch : Python OpenID libraries
+python-openoffice.noarch : Python libraries for interacting with LibreOffice
+python-ordereddict.noarch : Implementation of Python 2.7's OrderedDict
+python-paida.noarch : Pure Python scientific analysis package
+python-paramiko.noarch : SSH2 protocol library for python
+python-paver.noarch : Python-based build/distribution/deployment scripting tool
+python-pbs.i686 : PBS/Torque python module
+python-peak-util-assembler.noarch : Generate Python code objects by "assembling"
+                                  : bytecode
+python-pefile.noarch : Python module for working with Portable Executable files
+python-pep8.noarch : Python style guide checker
+python-pika.noarch : AMQP 0-9-1 client library for Python
+python-pip.noarch : Pip installs packages.  Python packages.  An easy_install
+                  : replacement
+python-ply.noarch : Python Lex-Yacc
+python-pmw.noarch : Python powerwidgets
+python-polybori-devel.i686 : Development files for python-polybori
+python-polybori-docs.i686 : Documentation for python-polybori
+python-polybori-gui.i686 : Qt GUI for python-polybori
+python-polybori-static.i686 : Static libraries for python-polybori
+python-portmidi.i686 : Python wrapper for portmidi
+python-posix_ipc.i686 : POSIX IPC primitives (semaphores and shared memory) for
+                      : Python
+python-pp.noarch : Parallel execution of python on smp
+python-progressbar.noarch : Text progressbar library for python
+python-protocols.i686 : Open Protocols and Component Adaptation for Python
+python-psutil.i686 : A process utilities module for Python
+python-psycopg.i686 : PostgreSQL database adapter for Python
+python-psycopg2.i686 : A PostgreSQL database adapter for Python
+python-psycopg2-doc.i686 : Documentation for psycopg python PostgreSQL database
+                         : adapter
+python-ptrace.i686 : Debugger using ptrace written in Python
+python-pyasn1.noarch : ASN.1 tools for Python
+python-pyblock.i686 : Python modules for dealing with block devices
+python-pycha.noarch : A library for drawing charts with Python and Cairo
+python-pycurl.i686 : A Python interface to libcurl
+python-pydns.noarch : Python module for DNS (Domain Name Service)
+python-pygments.noarch : A syntax highlighting engine written in Python
+python-pygooglechart.noarch : A complete Python wrapper for the Google Chart API
+python-pymtp.i686 : A Pythonic wrapper around libmtp
+python-pyquery.noarch : A jQuery-like library for python
+python-pyrad.noarch : Python RADIUS client
+python-pyro.noarch : PYthon Remote Objects
+python-pysctp.i686 : Python sctp socket api extensions bindings
+python-pyside.i686 : Python bindings for Qt4
+python-pyside-devel.i686 : Development files for python-pyside
+python-pyspf.noarch : Python module and programs for SPF (Sender Policy
+                    : Framework)
+python-pytools.noarch : A collection of tools for python
+python-pywt.i686 : Python wavelet transforms module
+python-qmf.i686 : The QPID Management Framework bindings for python
+python-qpid.noarch : Python client library for AMQP
+python-qpid-qmf.i686 : The QPID Management Framework bindings for python
+python-quixote.i686 : A highly Pythonic Web application framework
+python-rabbyt.i686 : Sprite library for Python
+python-rapi.i686 : Python bindings to librapi (part of SynCE)
+python-rdflib.i686 : Python library for working with RDF
+python-recaptcha-client.noarch : Python module for reCAPTCHA and reCAPTCHA
+                               : Mailhide
+python-redis.noarch : A Python client for redis
+python-redland.i686 : Python modules for the Redland RDF library
+python-reportlab.i686 : Python PDF generation library
+python-reportlab-docs.i686 : Documentation files for python-reportlab
+python-rhev.noarch : Python binding to Red Hat Enterprise Virtualization's REST
+                   : API
+python-rhsm.noarch : A Python library to communicate with a Red Hat Unified
+                   : Entitlement Platform
+python-rope.noarch : Python Code Refactoring Library
+python-routes.noarch : Rails-like routes for Python
+python-rra.i686 : Python bindings to librra (part of SynCE)
+python-ruledispatch.i686 : A generic function package for Python
+python-schedutils.i686 : Linux scheduler python bindings
+python-selenium.noarch : Client library for controlling browser from a Python
+                       : script
+python-setuptools.noarch : Easily build and distribute Python packages
+python-sexy.i686 : Python bindings to libsexy
+python-shout.i686 : Python bindings for libshout 2
+python-simplegeneric.noarch : Simple generic functions (similar to Python's own
+                            : len(), pickle.dump(), etc.)
+python-simplejson.i686 : Simple, fast, extensible JSON encoder/decoder for
+                       : Python
+python-simpy.noarch : Python simulation framework
+python-simpy-doc.noarch : Documentation for SimPy, the Python simulation
+                        : framework
+python-sleekxmpp.noarch : Flexible XMPP client/component/server library for
+                        : Python
+python-slip.noarch : Miscellaneous convenience, extension and workaround code
+                   : for Python
+python-smbc.i686 : Python bindings for libsmbclient API from Samba
+python-smbc-doc.i686 : Documentation for python-smbc
+python-smbios.i686 : Python interface to Libsmbios C library
+python-smbpasswd.i686 : Python SMB Password Hash Generator Module
+python-snack.i686 : Python bindings for Snack Sound Toolkit
+python-soaplib.noarch : A python library for writing and calling soap web
+                      : services
+python-speaklater.noarch : Implements a lazy string for python useful for use
+                         : with get-text
+python-sphinx.noarch : Python documentation generator
+python-sphinx-doc.noarch : Documentation for python-sphinx
+python-sqlalchemy.i686 : Modular and flexible ORM library for python
+python-sqlalchemy0.5.noarch : Modular and flexible ORM library for python
+python-sqlparse.noarch : Non-validating SQL parser for Python
+python-squaremap.noarch : SquareMap for wxPython
+python-stomper.noarch : A python client implementation of the STOMP protocol
+python-storm.i686 : An object-relational mapper (ORM) for Python
+python-storm-django.i686 : Support for using python-storm as Django ORM
+python-storm-mysql.i686 : MySQL backend for python-storm
+python-storm-postgresql.i686 : PostgreSQL backend for python-storm
+python-storm-zope.i686 : Zope integration for python-storm
+python-suds.noarch : A python SOAP client
+python-sybase.i686 : Python interface to Sybase
+python-sysv_ipc.i686 : System V IPC for Python - Semaphores, Shared Memory and
+                     : Message Queues
+python-sysv_ipc-examples.i686 : Examples for Python sysv_ipc module
+python-tag.i686 : Python bindings for TagLib to read and write music files tags
+python-tdb.i686 : Python bindings for the Tdb library
+python-telepathy.noarch : Python libraries for Telepathy
+python-test.i686 : The test modules from the main python package
+python-testosterone.noarch : Text-based UI for running Python unit tests
+python-testtools.noarch : Extensions to the Python unit testing framework
+python-tevent.i686 : Python bindings for the Tevent library
+python-tidy.noarch : Python wrapper for tidy, from the HTML tidy project
+python-tools.i686 : A collection of development tools included with Python
+python-tornado-doc.noarch : Examples for python-tornado
+python-tpg.noarch : A Python "toy parser generator"
+python-transaction.noarch : Transaction management for Python
+python-tre.i686 : Python bindings for the tre library
+python-tunepimp.i686 : Python bindings for developing programs that will use
+                     : libtunepimp
+python-turbojson.noarch : Python template plugin that supports json
+python-turbokid.noarch : Python template plugin that supports Kid templates
+python-twisted-core.i686 : Asynchronous networking framework written in Python
+python-twisted-web.i686 : Twisted web client and server, programmable in Python
+python-twitter.noarch : A python wrapper around the Twitter API
+python-txamqp.noarch : A Python library for communicating with AMQP peers and
+                     : brokers using Twisted
+python-unipath.noarch : Alternative to Python modules os, os.path and shutil
+python-unittest2.noarch : Backport of new unittest features for Python 2.7 to
+                        : Python 2.4+
+python-upoints.noarch : Python modules for working with points on Earth
+python-utmp.i686 : Python modules for umtp records
+python-vatnumber.noarch : Python module to validate VAT numbers
+python-virtinst.noarch : Python modules and utilities for installing virtual
+                       : machines
+python-virtkey.i686 : Python extension for emulating keypresses and getting
+                    : current keyboard layout
+python-virtualenv.noarch : Tool to create isolated Python environments
+python-visual-doc.noarch : Documentation and examples for python-visual
+python-vlc.noarch : VLC Media Player binding for Python
+python-vobject.noarch : A python library for manipulating vCard and vCalendar
+                      : files
+python-volume_key.i686 : Python bindings for libvolume_key
+python-vorbis.i686 : Python wrapper for the Ogg Vorbis audio libraries
+python-webdav-library.noarch : Object-oriented Python WebDAV client-side library
+python-webhelpers.noarch : Helper library for aiding the writing of web
+                         : templates in Python
+python-webpy.noarch : A simple web framework for Python
+python-wehjit.noarch : A Python web-widget library
+python-werkzeug.noarch : The Swiss Army knife of Python web development
+python-werkzeug-doc.noarch : Documentation for python-werkzeug
+python-which.noarch : Small which replacement that can be used as a Python
+                    : module
+python-wifi.noarch : Python binding for the wireless extensions
+python-xklavier.i686 : Python bindings for libxklavier
+python-xlib.noarch : X client library for Python
+python-xlib-doc.noarch : Documentation and examples for python-xlib
+python-xmltramp.noarch : Pythonic API for XML
+python-xmpp.noarch : Python library for easy scripting with Jabber
+python-yenc.i686 : yEnc Module for Python
+python-zdaemon.noarch : Python Daemon Process Control Library
+python-zfec.i686 : A fast erasure codec with python bindings
+python-zope-proxy-devel.noarch : Development files for python-zope-proxy
+python3.i686 : Version 3 of the Python programming language aka Python 3000
+python3-ATpy.noarch : Astronomical Tables in Python
+python3-PyQt4.i686 : Python 3 bindings for Qt4
+python3-PyQt4-devel.i686 : Python 3 bindings for Qt4
+python3-PyYAML.i686 : YAML parser and emitter for Python
+python3-babel.noarch : Library for internationalizing Python applications
+python3-bpython.noarch : Fancy curses interface to the Python 3 interactive
+                       : interpreter
+python3-cairo.i686 : Python 3 bindings for the cairo library
+python3-cairo-devel.i686 : Libraries and headers for python3-cairo
+python3-chardet.noarch : Character encoding auto-detection in Python
+python3-cherrypy.noarch : Pythonic, object-oriented web development framework
+python3-coverage.i686 : Code coverage testing module for Python 3
+python3-debug.i686 : Debug version of the Python 3 runtime
+python3-decorator.noarch : Module to simplify usage of decorators in python3
+python3-deltarpm.i686 : Python bindings for deltarpm
+python3-devel.i686 : Libraries and header files needed for Python 3 development
+python3-docutils.noarch : System for processing plaintext documentation for
+                        : python3
+python3-gobject.i686 : Python 3 bindings for GObject and GObject Introspection
+python3-inotify.noarch : Monitor filesystem events with Python under Linux
+python3-libs.i686 : Python 3 runtime libraries
+python3-lxml.i686 : ElementTree-like Python 3 bindings for libxml2 and libxslt
+python3-mako.noarch : Mako template library for Python 3
+python3-markupsafe.i686 : Implements a XML/HTML/XHTML Markup safe string for
+                        : Python
+python3-mpi4py-mpich2.i686 : Python bindings of MPI, MPICH2 version
+python3-mpi4py-openmpi.i686 : Python bindings of MPI, Open MPI version
+python3-nose.noarch : Discovery-based unittest extension for Python3
+python3-numpy.i686 : A fast multidimensional array facility for Python
+python3-ply.noarch : Python Lex-Yacc
+python3-postgresql.i686 : Connect to PostgreSQL with Python 3
+python3-psutil.i686 : A process utilities module for Python 3
+python3-pygments.noarch : A syntax highlighting engine written in Python 3
+python3-pyparsing.noarch : An object-oriented approach to text processing
+                         : (Python 3 version)
+python3-pyro.noarch : Python Remote Objects
+python3-setuptools.noarch : Easily build and distribute Python 3 packages
+python3-sip.i686 : SIP - Python 3/C++ Bindings Generator
+python3-sip-devel.i686 : Files needed to generate Python 3 bindings for any C++
+                       : class library
+python3-sleekxmpp.noarch : Flexible XMPP client/component/server library for
+                         : Python
+python3-smbc.i686 : Python3 bindings for libsmbclient API from Samba
+python3-smbpasswd.i686 : Python SMB Password Hst Generator Module for Python 3
+python3-sqlalchemy.i686 : Modular and flexible ORM library for python
+python3-stomppy.noarch : Python stomp client for messaging for python3
+python3-test.i686 : The test modules from the main python 3 package
+python3-tkinter.i686 : A GUI toolkit for Python 3
+python3-tools.i686 : A collection of tools included with Python 3
+qedje-python.i686 : Python bindings for qedje
+qedje-python-devel.i686 : Python bindings for qedje
+qgis-python.i686 : Python integration and plugins for Quantum GIS
+qzion-python.i686 : Python bindings for qzion
+qzion-python-devel.i686 : Python bindings for qzion
+rb_libtorrent-python.i686 : Python bindings for rb_libtorrent
+rekall-python.i686 : Rekall Python support
+root-python.i686 : Python extension for ROOT
+rpm-python.i686 : Python bindings for apps which will manipulate RPM packages
+rrdtool-python.i686 : Python RRDtool bindings
+scim-python.i686 : Python language binding for Smart Common Input Method
+                 : platform
+scim-python-chinese.i686 : Python chinese IM engines
+scim-python-english.i686 : Python english IM engine
+scim-python-pinyin.i686 : Two python chinese pinyin IM engines
+scim-python-xingma.i686 : Python XingMa IM engine
+scim-python-xingma-cangjie.i686 : CangJie table for Python XingMa IM engine
+scim-python-xingma-erbi.i686 : ErBi table for Python XingMa IM engine
+scim-python-xingma-wubi.i686 : WuBi table for Python XingMa IM engine
+scim-python-xingma-zhengma.i686 : ZhengMa table for Python XingMa IM engine
+sems-python.i686 : Python bindings for SEMS
+setools-libs-python.i686 : Python bindings for SELinux policy analysis
+skf-python.i686 : Python extension module for skf
+smbios-utils-python.i686 : Python executables that use libsmbios
+speech-dispatcher-python.i686 : Python Client API for speech-dispatcher
+sphinxbase-python.i686 : Python interface to sphinxbase
+spice-gtk-python.i686 : Python bindings for the spice-gtk-2.0 library
+stfl-python.i686 : Python binding for STFL
+syck-python.i686 : YAML module for python
+telepathy-farsight-python.i686 : Python binding for telepathy-farsight
+thunarx-python.i686 : Python bindings for the Thunar Extension Framework
+tyrion-service-python.i686 : A Tyrion Python service
+unbound-python.i686 : Python modules and extensions for unbound
+util-vserver-python.i686 : Python bindings to develop vserver-based applications
+vigra-python.i686 : Python interface for the vigra computer vision library
+vips-python.i686 : Python support for vips
+vtk-python.i686 : Python bindings for VTK
+wxPython.i686 : GUI toolkit for the Python programming language
+wxPython-devel.i686 : Development files for wxPython add-on modules
+wxPython-docs.noarch : Documentation and samples for wxPython
+xapian-bindings-python.i686 : Files needed for developing Python scripts which
+                            : use Xapian
+xmms2-python.i686 : Python support for XMMS2
+xulrunner-python.i686 : Python interface for mozilla XPCOM library
+xulrunner-python-devel.i686 : Development files for python XPCOM interface
+zanata-python-client.noarch : Python Client for Zanata Server
+zinnia-python.i686 : Python bindings for zinnia
+znc-modpython.i686 : python module for ZNC
+ATpy.noarch : Astronomical Tables in Python
+Cython.i686 : A language for writing Python extension modules
+Django.noarch : A high-level Python Web framework
+HippoDraw.i686 : Interactive and Python scriptable data analysis application
+MySQL-python.i686 : An interface to MySQL
+PyAmanith.i686 : Python bindings for Amanith
+PyGreSQL.i686 : A Python client library for PostgreSQL
+PyKDE.i686 : Python bindings for KDE3
+PyKDE4.i686 : Python bindings for KDE4
+PyOpenGL.noarch : Python bindings for OpenGL
+PyPAM.i686 : PAM bindings for Python
+PyQt.i686 : Python bindings for Qt3
+PyQt4.i686 : Python bindings for Qt4
+PyQuante.i686 : Python Quantum Chemistry
+PyQwt.i686 : Python bindings for Qwt
+PyRTF.noarch : Rich Text Format (RTF) Document Generation in Python
+PyX.i686 : Python graphics package
+PyXB.noarch : Python XML Schema Bindings
+PyXML.i686 : XML libraries for python
+PyYAML.i686 : YAML parser and emitter for Python
+Pyrex.noarch : A compiler/language for writing Python extension modules
+R2spec.noarch : Python script to generate R spec file
+RunSnakeRun.noarch : GUI Viewer for Python profiling runs
+SOAPpy.noarch : Full-featured SOAP library for Python
+Spawning.noarch : A HTTP server for hosting WSGI python web applications
+TurboGears.noarch : Back-to-front web development in Python
+anjuta.i686 : GNOME IDE for various programming languages (including C/C++,
+            : Python, Vala and Javavscript)
+babel.noarch : Tools for internationalizing Python applications
+bouml.i686 : UML2 tool box for C++, Java, IDL, PHP and Python
+clustershell.noarch : Python framework for efficient cluster administration
+comoonics-cdsl-py.noarch : Comoonics cdsl utilities and library written in
+                         : Python
+comoonics-cluster-py.noarch : Comoonics cluster configuration utilities written
+                            : in Python
+dreampie.noarch : A graphical cross-platform interactive Python shell
+eclipse-pydev.i686 : Eclipse Python development plug-in
+emacs-pymacs.noarch : Emacs and Python integration framework
+epydoc.noarch : Automatic API documentation generation tool for Python
+eric.i686 : Python IDE
+fabric.noarch : A simple Pythonic remote deployment tool
+fedora-cert.noarch : fedora-cert tool and python library
+fmtools-tkradio.noarch : Python/Tk wrapper for fmtools
+gmpy.i686 : A Python interface to the GNU Multiple Precision Arithmetic Library
+gnome-python2-devel.i686 : Development files for building add-on libraries
+gnuplot-py.noarch : Python interface to Gnuplot
+gpodder.noarch : Podcast receiver/catcher written in Python
+gpsd-devel.i686 : Client libraries in C and Python for talking to a running gpsd
+                : or GPS
+gwibber.noarch : An open source microblogging client for GNOME developed with
+               : Python and GTK
+healpy.i686 : A python wrapper of the healpix library
+ht2html.noarch : The www.python.org Web site generator
+jabber-roster.noarch : A Python tool for listing your Jabber roster contacts
+jabberpy.noarch : Python xmlstream and jabber IM protocol libs
+jbrout.noarch : Photo manager, written in python/pygtk
+jython.noarch : A Java implementation of the Python language
+kobo.noarch : Python modules for tools development
+libreoffice-pyuno.i686 : Python support for LibreOffice
+lshell.noarch : Python-based limited Shell
+m2crypto.i686 : Support for using OpenSSL in python scripts
+mod_scgi.i686 : Python implementation of the SCGI protocol
+mod_wsgi.i686 : A WSGI interface for Python web applications in Apache
+mpi4py-mpich2.i686 : Python bindings of MPI, MPICH2 version
+mpi4py-openmpi.i686 : Python bindings of MPI, Open MPI version
+mx.i686 : A collection of Python software tools
+numpy.i686 : A fast multidimensional array facility for Python
+nwsclient.noarch : NetWorkSpaces Client for Python
+oct2spec.noarch : Python script to generate Octave package spec file
+odfpy.noarch : Python library for manipulating OpenDocument files
+papyon.noarch : Python libraries for MSN Messenger network
+pcapy.i686 : A Python interface to libpcap
+peppy.noarch : Editor written in python
+pexpect.noarch : Pure Python Expect-like module
+pida.i686 : A Python IDE written in Python and GTK
+py-bcrypt.i686 : Python bindings for OpenBSD's Blowfish password hashing code
+py-radix.i686 : Radix tree data structure for Python
+pyOpenSSL.i686 : Python wrapper module around the OpenSSL library
+pyabiword.i686 : Python bindings for libabiword
+pyactivemq.i686 : Python wrapper around activemq-cpp for messaging
+pyatspi.noarch : Python bindings for at-spi
+pyaudio.i686 : Python bindings for PortAudio
+pybluez.i686 : Python API for the BlueZ bluetooth stack
+pybox2d.i686 : A 2D rigid body simulation library for Python
+pycairo.i686 : Python bindings for the cairo library
+pycdio.i686 : A Python interface to the CD Input and Control library
+pychart.noarch : Python library for generating chart images
+pychart-doc.noarch : Documentation for using pychart in python programs
+pychecker.noarch : A python source code checking tool
+pyclutter.i686 : Python modules that allow you to use the Clutter toolkit
+pyclutter-gst.i686 : Python modules that allow you to use the Clutter-GST
+                   : toolkit
+pyclutter-gtk.i686 : Python modules that allow you to use the Clutter-GTK
+                   : toolkit
+pycolumnize.noarch : Python module to align in columns a simple list
+pycryptopp.i686 : Python wrappers for the Crypto++ library
+pydb.noarch : Extended Python Debugger
+pydf.noarch : Fully colorized df clone written in python
+pydot.noarch : Python interface to Graphviz's Dot language
+pyephem.i686 : The astronomy library for Python
+pyevent.i686 : Python bindings for libevent
+pyexiv2.i686 : Python binding to exiv2
+pyfits.i686 : Python interface to FITS
+pyflakes.noarch : A Lint-like tool for Python
+pyfribidi.i686 : A Python binding for GNU FriBidi
+pyftpdlib.noarch : Python FTP server library
+pyfuzzy.noarch : Python framework for fuzzy sets
+pygame.i686 : Python modules for writing games
+pygobject2.i686 : Python 2 bindings for GObject
+pygoocanvas.i686 : GooCanvas python bindings
+pygoocanvas-devel.i686 : GooCanvas python bindings development files
+pygpgme.i686 : Python module for working with OpenPGP messages
+pygrace.noarch : Python bindings for grace
+pygsl.i686 : GNU Scientific Library Interface for python
+pygtk2.i686 : Python bindings for GTK+
+pygtkchart.noarch : A GTK chart widget written in Python
+pygtkglext.i686 : Python bindings for GtkGLExt
+pygtksourceview.i686 : Python bindings for gtksourceview
+pygtksourceview-devel.i686 : Development files for using pygtksourceview in
+                           : Python programs
+pyhunspell.i686 : Python bindings for hunspell
+pyicu.i686 : Python extension wrapping IBM's ICU C++ libraries
+pyifp.i686 : Python Bindings for libifp
+pyip.noarch : Python assembling/disassembling of raw ip packets
+pyjamas.noarch : A python to Javascript compiler, Widget set, Framework and
+               : Toolkit
+pyjigdo.noarch : Python version of Jigdo, slightly modified
+pykickstart.noarch : A python library for manipulating kickstart files
+pylast.noarch : A Python interface to Last.fm API compatible social networks
+pyldb.i686 : Python bindings for the LDB library
+pyldb-devel.i686 : Development files for the Python bindings for the LDB library
+pylibacl.i686 : POSIX.1e ACLs library wrapper for python
+pyliblo.i686 : Python bindings for the liblo OSC library
+pyliblzma.i686 : Python bindings for lzma
+pylint.noarch : Analyzes Python code looking for bugs and signs of poor quality
+pymetar.noarch : METAR weather reports parser for Python
+pymilia.i686 : Python wrappers for milia
+pymongo.i686 : Python driver for MongoDB
+pymongo-gridfs.i686 : Python GridFS driver for MongoDB
+pymssql.i686 : A simple database interface to MS-SQL for Python
+pymunk.noarch : Python wrapper for the chipmunk 2D physics engine
+pynetsnmp.noarch : Python ctypes bindings for NET-SNMP with Twisted integration
+pyodbc.i686 : Python DB API 2.0 Module for ODBC
+pyorbit.i686 : Python bindings for ORBit2
+pypar-mpich2.i686 : Parallel programming with Python, MPICH2 version
+pypar-openmpi.i686 : Parallel programming with Python, Open MPI version
+pyparted.i686 : Python module for GNU parted
+pypop.i686 : Python for Population Genomics
+pypoppler.i686 : Python bindings for the Poppler PDF rendering library
+pypy.i686 : Python implementation with a Just-In-Time compiler
+pypy-libs.i686 : Run-time libraries used by PyPy implementations of Python
+pyrrd.noarch : A Pure Python Wrapper for RRDTool
+pyscript.noarch : PyScript - Postscript graphics with Python
+pyserial.noarch : Python serial port access library
+pysnmp.noarch : SNMP engine written in Python
+pystatgrab.i686 : Python bindings for libstatgrab
+pysvn.i686 : Pythonic style bindings for Subversion
+pytagger.noarch : ID3 Tag Reader and Writer Library for Python
+python.i686 : An interpreted, interactive, object-oriented programming language
+python-AppTools.noarch : Enthough Tool Suite Application Tools
+python-BeautifulSoup.noarch : HTML/XML parser for quick-turnaround applications
+                            : like screen-scraping
+python-Chaco.i686 : Interactive 2-Dimensional Plotting
+python-Enable.i686 : Drawing and interaction packages
+python-EnthoughtBase.noarch : Core packages for the Enthought Tool Suite
+python-EnvisageCore.noarch : Extensible Application Framework
+python-EnvisagePlugins.noarch : Plug-ins for the Envisage framework
+python-HTMLgen.noarch : A class library for the generation of HTML documents
+python-Lightbox.noarch : Lightbox photo display widget
+python-Scriptaculous.noarch : TurboGears, Scriptaculous and Prototype
+python-TraitsBackendQt.noarch : PyQt backend for Traits and TraitsGUI (Pyface)
+python-TraitsGUI.noarch : Traits-capable windowing framework
+python-TurboMail.noarch : Multi-threaded mail queue manager for TurboGears
+                        : applications
+python-ZConfig.noarch : Structured Configuration Library
+python-ZODB3.i686 : Zope Object Database: Object Database and Persistence
+python-ZSI.noarch : Zolera SOAP Infrastructure
+python-amqplib.noarch : Client library for AMQP
+python-anyjson.noarch : Wraps the best available JSON implementation available
+python-asciitable.noarch : Extensible ASCII table reader and writer
+python-assets.noarch : Cache-friendly asset management via content-hash-naming
+python-babel-BabelGladeExtractor.noarch : Babel Glade XML files translatable
+                                        : strings extractor
+python-basemap.i686 : Plots data on map projections (with continental and
+                    : political boundaries)
+python-batchhttp.noarch : Parallel fetching of HTTP resources through MIME
+                        : multipart
+python-beaker.noarch : WSGI middleware layer to provide sessions
+python-billiard.noarch : Multiprocessing Pool Extensions
+python-bitarray.i686 : Efficient Array of Booleans --C Extensions
+python-boto.noarch : A simple lightweight interface to Amazon Web Services
+python-catwalk.noarch : A way to view your models using TurboGears
+python-cclib.noarch : A library for processing results of computational
+                    : chemistry packages
+python-cement-devtools.noarch : Development Tools for the Cement CLI Application
+                              : Framework
+python-cement-doc.noarch : Documentation for Cement
+python-cerealizer.noarch : Secure pickle-like module
+python-chameleon.noarch : XML-based template compiler
+python-cheetah.i686 : Template engine and code generator
+python-compositor.noarch : A simple OpenType GSUB and GPOS engine
+python-condorec2e.noarch : Common definitions for EC2 Enhanced
+python-condorutils.noarch : Common functions/utilities for condor job hooks
+python-configobj.noarch : Config file reading, writing, and validation
+python-couchdb-devel.noarch : The  API reference files for CouchDB
+python-ctags.i686 : A wrapper to read tags library
+python-daemon.noarch : Library to implement a well-behaved Unix daemon process
+python-dateutil.noarch : Powerful extensions to the standard datetime module
+python-debian.noarch : Modules for Debian-related data formats
+python-decorator.noarch : Module to simplify usage of decorators
+python-dirq.noarch : Directory based queue
+python-djblets.noarch : A collection of useful classes and functions for Django
+python-docutils.noarch : System for processing plaintext documentation
+python-dotconf.noarch : Parser for the dot.conf configuration file
+python-dpkt.noarch : Simple packet creation/parsing library
+python-dtopt.noarch : Add options to doctest examples while they are running
+python-elixir.noarch : A declarative mapper for SQLAlchemy
+python-eventlet.noarch : Highly concurrent networking library
+python-feedcache.noarch : Wrapper for Mark Pilgrim's FeedParser module which
+                        : caches feed content
+python-ferari.noarch : Optimizer for finite element code
+python-fiat.noarch : Generation of arbitrary order instances of the Lagrange
+                   : elements
+python-fontMath.noarch : A set of objects for performing math operations on font
+                       : data
+python-foolscap.noarch : Next-generation RPC protocol, intended to replace
+                       : Perspective Broker
+python-formencode.noarch : HTML form validation, generation, and convertion
+                         : package
+python-gasp.noarch : API wrapper on top of pygame
+python-genshi.i686 : Toolkit for stream-based generation of output for the web
+python-greenlet.i686 : Lightweight in-process concurrent programming
+python-html2text.noarch : Converts a page of HTML into clean, easy-to-read plain
+                        : ASCII text
+python-httplib2.noarch : A comprehensive HTTP client library
+python-icalendar.noarch : Parser/generator of iCalendar files following the RFC
+                        : 2445
+python-imdb.i686 : Retrieve and manage the data of the IMDb movie database
+python-iso8601.noarch : Simple module to parse ISO 8601 dates
+python-jabberbot.noarch : A simple jabber (XMPP) bot framework
+python-jinja.i686 : Sandboxed template engine
+python-jinja2.noarch : General purpose template engine
+python-jsonpickle.noarch : A module that allows any object to be serialized into
+                         : JSON
+python-kerberos.i686 : A high-level wrapper for Kerberos (GSSAPI) operations
+python-kiwi-gazpacho.noarch : Gazpacho integration for kiwi
+python-ldap.i686 : An object-oriented API to access LDAP directory servers
+python-linux-procfs.noarch : Linux /proc abstraction classes
+python-lockfile.noarch : A platform-independent file locking module
+python-logilab-common.noarch : Common libraries for Logilab projects
+python-mailer.noarch : A module that simplifies sending email
+python-manuel.noarch : Build tested documentation
+python-mechanize.noarch : Stateful programmatic web browsing
+python-mglob.noarch : Enhanced file name globbing module
+python-migrate.noarch : Schema migration tools for SQLAlchemy
+python-migrate0.5.noarch : Schema migration tools for SQLAlchemy
+python-minimock.noarch : The simplest possible mock library
+python-morbid.noarch : A lightweight message queue for bundled deployment
+python-mox.noarch : Mock object framework
+python-musicbrainz2.noarch : Library which provides access to the MusicBrainz
+                           : Database
+python-mwclient.noarch : Mwclient is a client to the MediaWiki API
+python-networkx.noarch : Creates and Manipulates Graphs and Networks
+python-newt_syrup.noarch : Newt Syrup is an app framework built on top of Newt
+python-nltk.noarch : Natural Language Toolkit
+python-nose-docs.noarch : Nose Documentation
+python-nss-doc.i686 : API documentation and examples
+python-numdisplay.noarch : Visualize numpy array objects in ds9
+python-oauth.noarch : Library for OAuth version 1.0a
+python-offtrac.noarch : Trac xmlrpc library
+python-olpcgames.noarch : Utilities for developing games on the OLPC platform
+python-paste.noarch : Tools for using a Web Server Gateway Interface stack
+python-paste-deploy.noarch : Load, configure, and compose WSGI applications and
+                           : servers
+python-paste-script.noarch : A pluggable command-line frontend
+python-peak-rules.noarch : Generic functions and business rules support systems
+python-peak-util-addons.noarch : Dynamically extend other objects with AddOns
+python-peak-util-extremes.noarch : Production-quality 'Min' and 'Max' objects
+python-peak-util-symbols.noarch : Simple "symbol" type, useful for enumerations
+                                : or sentinels
+python-pgu.noarch : A collection of useful modules for writing games with PyGame
+python-polib.noarch : A library to parse and manage gettext catalogs
+python-polybori.i686 : Framework for Boolean Rings
+python-pretty.noarch : Extensible pprint successor
+python-prioritized-methods.noarch : An extension to PEAK-Rules to prioritize
+                                  : methods in order
+python-proteus.noarch : Library to access Tryton's internal objects
+python-py.noarch : Rapid testing (py.test) and development utils (pylib)
+python-pylons.noarch : Pylons web framework
+python-pyramid.noarch : The Pyramid web application framework, a Pylons project
+python-relatorio.noarch : A templating library able to output odt and pdf files
+python-remoteobjects.noarch : An Object RESTational Model
+python-repoze-lru.noarch : A tiny LRU cache implementation and decorator
+python-repoze-tm2.noarch : Zope-like transaction manager via WSGI middleware
+python-repoze-what.noarch : Authorization for WSGI applications
+python-repoze-what-docs.noarch : Documentation for repoze.what
+python-repoze-what-plugins-sql.noarch : The repoze.what SQL plugin
+python-repoze-what-pylons.noarch : A plugin providing utilities for Pylons
+                                 : applications using repoze.what
+python-repoze-what-quickstart.noarch : A plugin for a simple authentication
+                                     : system with repoze.who/what
+python-repoze-who.noarch : An identification and authentication framework for
+                         : WSGI
+python-repoze-who-friendlyform.noarch : Collection of repoze.who friendly form
+                                      : plugins
+python-repoze-who-plugins-sa.noarch : The repoze.who SQLAlchemy plugin
+python-repoze-who-testutil.noarch : Test utilities for repoze.who-powered
+                                  : applications
+python-robofab.noarch : Reads and writes UFO font files
+python-rpmfluff.noarch : Lightweight way of building RPMs, and sabotaging them
+python-scripttest.noarch : Helper to test command-line scripts
+python-setupdocs.noarch : Setuptools plugin
+python-setuptools_trial.noarch : Setuptools plugin that makes unit tests execute
+                               : with trial instead of pyunit
+python-shapely.noarch : Geometric objects, predicates, and operations
+python-shove.noarch : Common object storage frontend
+python-simplemediawiki.noarch : Extremely low-level wrapper to the MediaWiki API
+python-simpletal.noarch : An XML based template processor for TAL, TALES and
+                        : METAL specifications
+python-sippy.noarch : B2BUA (back-to-back user agent) SIP call controlling
+                    : component
+python-slip-dbus.noarch : Convenience functions for dbus services
+python-slip-gtk.noarch : Code to make auto-wrapping gtk labels
+python-snpp.noarch : Simple Network Paging Protocol
+python-sprox.noarch : A package for creation of web widgets directly from
+                    : database schema
+python-sqlamp.noarch : Library for working with hierarchical data structures
+                     : using SQLAlchemy
+python-sqlite2.i686 : DB-API 2.0 interface for SQLite 3.x
+python-sqlobject.noarch : SQLObject Object-Relational Manager, aka database
+                        : wrapper
+python-tempita.noarch : A very small text templating language
+python-text_table.noarch : Simple Eyecandy ASCII Tables
+python-textile.noarch : A Humane Web Text Generator
+python-tg-devtools.noarch : Development tools and templates for TurboGears2
+python-tgcaptcha.noarch : TurboGears CAPTCHA widget for forms
+python-tgexpandingformwidget.noarch : A repeating form widget for TurboGears
+python-tgext-admin.noarch : Admin Controller add-on for basic TG identity model
+python-tgext-crud.noarch : Crud Controller Extension for TG2
+python-tgfastdata.noarch : Automatic user interface generation for TurboGears
+python-tgmochikit.noarch : MochiKit JavaScript library packaged for TurboGears
+                         : widgets
+python-tilecache.noarch : A web map tile caching system
+python-tornado.noarch : Scalable, non-blocking web server and tools
+python-toscawidgets.noarch : Toolkit to help create widgets for WSGI web apps
+python-translationstring.noarch : Utility library for i18n relied on by various
+                                : Repoze packages
+python-trml2pdf.noarch : Tiny RML2PDF is a tool to easily create PDF documents
+                       : without programming
+python-turbocheetah.noarch : TurboGears plugin to support use of Cheetah
+                           : templates
+python-turboflot.noarch : A TurboGears widget for Flot, a jQuery plotting
+                        : library
+python-tw-forms.noarch : Web Widgets for building and validating forms in
+                       : ToscaWidgets
+python-tw-jquery.noarch : ToscaWidgets wrapping for jQuery
+python-twill.noarch : Simple scripting language for Web browsing
+python-twisted.noarch : Event-based framework for internet applications
+python-twisted-conch.i686 : SSH and SFTP protocol implementation together with
+                          : clients and servers
+python-twisted-core-doc.i686 : Documentation for Twisted Core
+python-twisted-core-zsh.i686 : Tab completion for Zsh and Twisted Core
+python-twisted-lore.i686 : Documentation generator with HTML and LaTeX support
+python-twisted-mail.i686 : SMTP, IMAP and POP protocol implementation together
+                         : with clients and servers
+python-twisted-names.i686 : Twisted DNS implementation
+python-twisted-news.i686 : NNTP protocol implementation with client and server
+python-twisted-runner.i686 : Twisted Runner process management library and inetd
+                           : replacement
+python-twisted-web2.i686 : Experimental Twisted Web Server Framework
+python-twisted-words.i686 : Twisted Instant Messaging implementations
+python-typepad.noarch : Connectivity to the TypePad API through remote objects
+python-ufo2fdk.noarch : A bridge between UFOs and the AFKDO
+python-unicodenazi.noarch : Module that finds unicode/bytestring comparisons and
+                          : other problems
+python-urlgrabber.noarch : A high-level cross-protocol url-grabber
+python-urwid.i686 : Console user interface library
+python-vcpx.noarch : Version Control Patch eXchanger
+python-venusian.noarch : A library for deferring decorator actions
+python-visual.i686 : 3D Programming
+python-vkontakte.noarch : vk.com (aka vkontakte.ru) API wrapper
+python-weberror.noarch : Web Error handling and exception catching middleware
+python-webflash.noarch : Portable flash messages for WSGI apps
+python-webob.noarch : WSGI request and response object
+python-webtest.noarch : Helper to test WSGI applications
+python-wikimarkup.noarch : Formats text to Mediawiki syntax
+python-wokkel.noarch : Enhancements to the Twisted XMPP protocol implementation
+python-wsgiproxy.noarch : HTTP proxying tools for WSGI apps
+python-wsgiref.noarch : WSGI (PEP 333) Reference Library
+python-xkit.noarch : A simple, transparent and easy to extend xorg parser
+python-xlrd.noarch : Library to extract data from Microsoft Excel (TM)
+                   : spreadsheet files
+python-zbase32.noarch : A base32 encoder/decoder
+python-zc-buildout.noarch : System for managing development buildouts
+python-zc-lockfile.noarch : Basic Inter-Process Locks
+python-zmq.i686 : Software library for fast, message-based applications
+python-zope-component.noarch : Zope Component Architecture
+python-zope-configuration.noarch : Zope Configuration Markup Language (ZCML)
+python-zope-deprecation.noarch : Zope 3 Deprecation Infrastructure
+python-zope-event.noarch : Zope Event Publication
+python-zope-exceptions.noarch : Zope Exceptions
+python-zope-i18n.noarch : Zope Internationalization Support
+python-zope-i18nmessageid.i686 : Message Identifiers for internationalization
+python-zope-interface.i686 : Zope 3 Interface Infrastructure
+python-zope-proxy.i686 : Generic Transparent Proxies
+python-zope-schema.noarch : Zope 3 schemas
+python-zope-sqlalchemy.noarch : Minimal Zope/SQLAlchemy transaction integration
+python-zope-testing.noarch : Zope Testing Framework
+python3-asciitable.noarch : Extensible ASCII table reader and writer
+python3-beaker.noarch : WSGI middleware layer to provide sessions
+python3-httplib2.noarch : A comprehensive HTTP client library
+python3-jinja2.noarch : General purpose template engine
+python3-minimock.noarch : The simplest possible mock library
+python3-networkx.noarch : Creates and Manipulates Graphs and Networks
+python3-numpy-f2py.i686 : f2py for numpy
+python3-paste.noarch : Tools for using a Web Server Gateway Interface stack
+python3-pyke.noarch : Knowledge-based inference engine
+python3-tempita.noarch : A very small text templating language
+python3-zmq.i686 : Software library for fast, message-based applications
+pytrailer.noarch : Python module to simplify access to movie trailers on
+                 : apple.com
+pytz.noarch : World Timezone Definitions for Python
+pyusb.i686 : Python bindings for libusb
+pyutil.noarch : A collection of mature utilities for Python programmers
+pywbem.noarch : Python WBEM Client and Provider Interface
+pywcs.i686 : Python World Coordinate System routines
+pywebkitgtk.i686 : Python Bindings for WebKit-gtk
+pyxattr.i686 : Extended attributes library wrapper for Python
+pyxdg.noarch : Python library to access freedesktop.org standards
+pyxf86config.i686 : Python wrappers for libxf86config
+pyxmlsec.i686 : Python bindings for the XML Security Library
+pyxmms.i686 : Python Interface to XMMS
+pyzzub.noarch : Python Bindings For libzzub
+qscintilla-python.i686 : QScintilla PyQt4 bindings
+qscintilla-python-devel.noarch : Development files for QScintilla PyQt4 bindings
+reinteract.noarch : Interactive Python shell
+rhnlib.noarch : Python libraries for the RHN project
+rpy.i686 : Python interface to the R language
+rurple.noarch : A Python Learning Environment
+scipy.i686 : Scipy: Scientific Tools for Python
+scitools.noarch : A Python library for scientific computing
+shedskin.noarch : Python to C++ compiler
+shiboken.i686 : CPython bindings generator for C++ libraries
+shiboken-libs.i686 : CPython bindings generator for C++ libraries - shared
+                   : library
+sip.i686 : SIP - Python/C++ Bindings Generator
+sip-devel.i686 : Files needed to generate Python bindings for any C++ class
+               : library
+sk2py.noarch : Migrates Cadence Skill based PCells to Python PyCells
+smbios-utils.i686 : Meta-package that pulls in all smbios binaries and python
+                  : scripts
+solarwolf.noarch : A Python port of SolarFox
+spe.noarch : Python IDE with UML,PyChecker,Debugger,GUI design,Blender & more
+spyder.noarch : Scientific Python Development Environment
+stomppy.noarch : Python stomp client for messaging
+supybot.noarch : Cross-platform IRC bot written in Python
+syck.i686 : YAML for C, Python, and PHP
+sympy.noarch : A Python library for symbolic mathematics
+tepache.noarch : Code sketcher for python
+testoob.noarch : Advanced unit testing framework for Python
+tkinter.i686 : A graphical user interface for the Python scripting language
+viewvc-httpd.noarch : ViewVC configuration for Apache/mod_python
+waf.noarch : A Python-based build system
+winpdb.noarch : An advanced python debugger
+wxGlade.noarch : A wxWidgets/wxPython/wxPerl GUI designer
+
+  Name and summary matches only, use "search all" for everything.

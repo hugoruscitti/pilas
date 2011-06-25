@@ -6,10 +6,17 @@ Los sonidos se pueden cargar usando el módulo
 
 .. code-block:: python
 
-    sonido_de_grito = pilas.sonidos.cargar('shout.wav')
+    sonido_de_explosion = pilas.sonidos.cargar('explosion.wav')
 
-donde ``shout.wav`` es el nombre del archivo de audio
-que pilas buscará en el directorio ``data``.
+donde ``explosion.wav`` es el nombre del archivo de audio.
+
+Ten en cuenta que esta función para cargar sonidos
+se comporta muy parecido a la función que nos permite
+cargar imagenes o grillas. El archivo se buscará en
+el directorio principal de nuestro juego, luego en el
+directorio ``data`` y por último en la biblioteca de
+sonidos que trae pilas.
+
 
 Reproducir
 ----------
@@ -23,6 +30,4 @@ que llamar al método ``reproducir``:
 
 .. code-block:: python
 
-    sonido_de_grito.reproducir()
-
-
+    sonido_de_explosion.reproducir()

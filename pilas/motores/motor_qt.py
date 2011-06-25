@@ -228,25 +228,50 @@ class QtSuperficie(QtImagen):
     def __init__(self, ancho, alto):
         self._imagen = QtGui.QPixmap(ancho, alto)
         self._imagen.fill(QtGui.QColor(255, 255, 255, 0))
+        self.canvas = QtGui.QPainter()
 
     def pintar(self, color):
         r, g, b, a = color.obtener_componentes()
         self._imagen.fill(QtGui.QColor(r, g, b, a))
 
     def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
-        self.canvas = QtGui.QPainter()
         self.canvas.begin(self._imagen)
         self.canvas.drawPixmap(x, y, imagen._imagen, origen_x, origen_y, ancho, alto)
         self.canvas.end()
 
-    def ____(self):
-        self.canvas = QtGui.QPainter()
+    def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro):
         self.canvas.begin(self._imagen)
-        self.canvas.setPen(QtGui.QColor(0))
-        self.canvas.drawText(50, 50, "hola")
-        self.canvas.drawEllipse(0, 0, 50, 50)
+        r, g, b, a = color.obtener_componentes()
+        self.canvas.setPen(QtGui.QColor(r, g, b))
+        dx = 20
+        dy = 30
+
+        if not fuente:
+            fuente = self.canvas.font().family()
+
+        font = QtGui.QFont(fuente, magnitud)
+        self.canvas.setFont(font)
+        metrica = QtGui.QFontMetrics(font)
+
+        for line in cadena.split('\n'):
+            self.canvas.drawText(dx, dy, line)
+            dy += metrica.height()
+
         self.canvas.end()
 
+    def circulo(self, x, y, radio, color=colores.negro, relleno=False):
+        self.canvas.begin(self._imagen)
+
+        r, g, b, a = color.obtener_componentes()
+        color = QtGui.QColor(r, g, b)
+        self.canvas.setPen(color)
+
+        if relleno:
+            self.canvas.setBrush(color)
+
+        self.canvas.drawEllipse(x -radio, y-radio, radio*2, radio*2)
+
+        self.canvas.end()
 
 
 class QtActor(BaseActor):
@@ -653,13 +678,30 @@ class QtBase(motor.Motor):
         "Obtiene la proporcion de cambio de escala de la pantalla"
         return self.alto / float(self.alto_original)
 
+    def obtener_area_de_texto(self, texto):
+        ancho = 0
+        alto = 0
+        nombre_de_fuente = self.canvas.font().family()
+        fuente = QtGui.QFont(nombre_de_fuente, 10)
+        metrica = QtGui.QFontMetrics(fuente)
+
+        lineas = texto.split('\n')
+
+        for linea in lineas:
+            ancho = max(ancho, metrica.width(linea))
+            alto += metrica.height()
+
+        return ancho, alto
+
 
 class Qt(QtBase, QWidget):
+
     def __init__(self):
         QWidget.__init__(self)
         QtBase.__init__(self)
 
 class QtGL(QtBase, QGLWidget):
+
     def __init__(self):
         if not QGLWidget:
             print "Lo siento, OpenGL no esta disponible..."

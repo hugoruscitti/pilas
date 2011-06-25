@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 
+'''
 import video
 import pilas
 
@@ -14,3 +15,4 @@ todos = []
 
 from video import DeCamara
 from video import DePelicula
+'''

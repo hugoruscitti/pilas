@@ -106,7 +106,7 @@ class Juego(pilas.escenas.Escena):
         nave = pilas.actores.Nave()
         nave.aprender(pilas.habilidades.SeMantieneEnPantalla)
         nave.definir_enemigos(self.piedras, self.cuando_explota_asterioide)
-        pilas.colisiones.agregar(nave, self.piedras, self.explotar_y_terminar)
+        pilas.mundo.colisiones.agregar(nave, self.piedras, self.explotar_y_terminar)
 
     def cuando_explota_asterioide(self):
         self.puntaje.aumentar(1)

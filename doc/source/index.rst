@@ -22,6 +22,7 @@ Pilas engine - Documentación
     interfaz_de_usuario.rst
     menu.rst
     dibujando_en_pantalla.rst
+    superficies.rst
     mapas_y_plataformas.rst
     dialogos.rst
 

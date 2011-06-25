@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+'''
 
 import pilas
 try:
@@ -91,3 +92,4 @@ class DePelicula(pilas.actores.Actor):
     def actualizar_video(self):
         self.imagen.LoadFromPixels(self._ancho_cuadro, self._altura_cuadro, self._camara.obtener_imagen())        
         return True
+'''
