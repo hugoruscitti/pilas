@@ -8,6 +8,7 @@
 
 import pilas
 from pilas.actores import Actor
+from pilas import colores
 
 class Lapiz(object):
 
@@ -204,7 +205,6 @@ class PizarraAbstracta():
         if self.actualiza_automaticamente:
             self.actualizar_imagen()
             
-            
     def dibujar_circulo(self, x, y, radio, pintar=True):
         (x, y) = pilas.utils.hacer_coordenada_mundo(x, y)
         
@@ -228,12 +228,25 @@ class Pizarra(Actor):
     """
 
     def __init__(self, x=0, y=0, ancho=None, alto=None):
+        # Si no define area de la pizarra toma el tamano de la ventana.
+        if not ancho or not alto:
+            ancho, alto = pilas.mundo.motor.obtener_area()
+
         Actor.__init__(self, x=x, y=y)
-        
-    def definir_color(self, color):
-        PizarraAbstracta.definir_color(self, color)
-        
-    def actualizar_imagen(self):
-        "Se encarga de actualizar la vista de la pizarra."
-        self.canvas.actualizar()
-        self.definir_imagen(self.canvas.image)
+        self.imagen = pilas.imagenes.cargar_superficie(ancho, alto)
+
+    def dibujar_punto(self, x, y, color=colores.negro):
+        x, y = self.obtener_coordenada_fisica(x, y)
+        self.imagen.dibujar_punto(x, y, color=color)
+
+    def obtener_coordenada_fisica(self, x, y):
+        x = (self.imagen.ancho()/2) + x
+        y = (self.imagen.alto()/2) - y
+        return x, y
+
+    def pintar_imagen(self, imagen, x, y):
+        self.pintar_parte_de_imagen(imagen, 0, 0, imagen.ancho(), imagen.alto(), x, y)
+
+    def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
+        x, y = self.obtener_coordenada_fisica(x, y)
+        self.imagen.pintar_parte_de_imagen(imagen, origen_x, origen_y, ancho, alto, x, y)

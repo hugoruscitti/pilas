@@ -259,19 +259,47 @@ class QtSuperficie(QtImagen):
 
         self.canvas.end()
 
-    def circulo(self, x, y, radio, color=colores.negro, relleno=False):
+    def circulo(self, x, y, radio, color=colores.negro, relleno=False, grosor=1):
         self.canvas.begin(self._imagen)
 
         r, g, b, a = color.obtener_componentes()
         color = QtGui.QColor(r, g, b)
-        self.canvas.setPen(color)
+        pen = QtGui.QPen(color, grosor)
+        self.canvas.setPen(pen)
 
         if relleno:
             self.canvas.setBrush(color)
 
         self.canvas.drawEllipse(x -radio, y-radio, radio*2, radio*2)
-
         self.canvas.end()
+
+    def rectangulo(self, x, y, ancho, alto, color=colores.negro, relleno=False, grosor=1):
+        self.canvas.begin(self._imagen)
+
+        r, g, b, a = color.obtener_componentes()
+        color = QtGui.QColor(r, g, b)
+        pen = QtGui.QPen(color, grosor)
+        self.canvas.setPen(pen)
+
+        if relleno:
+            self.canvas.setBrush(color)
+
+        self.canvas.drawRect(x, y, ancho, alto)
+        self.canvas.end()
+
+    def linea(self, x, y, x2, y2, color=colores.negro, grosor=1):
+        self.canvas.begin(self._imagen)
+
+        r, g, b, a = color.obtener_componentes()
+        color = QtGui.QColor(r, g, b)
+        pen = QtGui.QPen(color, grosor)
+        self.canvas.setPen(pen)
+
+        self.canvas.drawLine(x, y, x2, y2)
+        self.canvas.end()
+
+    def dibujar_punto(self, x, y, color=colores.negro):
+        self.circulo(x, y, 3, color=color, relleno=True)
 
 
 class QtActor(BaseActor):

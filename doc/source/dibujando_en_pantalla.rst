@@ -1,15 +1,25 @@
-Dibujando en pantalla
-=====================
+Dibujado simple en pantalla
+===========================
 
-Pilas te permite dibujar figuras en la ventana
-de muchas formas. En esta sección veremos las
-posibilidades de ofrece pilas para dibujar
-de la manera mas sencilla, mientras que la
-sección que sigue cubre el dibujo mas avanzado.
+Hasta ahora hemos mostrado en la pantalla
+fondos y actores que originalmente estaban
+almacenados en el disco de la computadora
+cómo imágenes.
+
+En esta sección veremos como dibujar libremente, ya
+sean lineas, círculos, texto etc..
+
+Comenzaremos con una forma de dibujado muy
+sencilla, y luego veremos algunas alternativas
+que ofrecen mas flexibilidad.
+
+Ten en cuenta que el dibujo avanzado y mas flexible
+lo vamos a ver en el siguiente capítulo **Dibujo avanzado
+con Superficies**.
 
 
-Usando la Tortuga
-=================
+Usando la Tortuga para dibujar
+==============================
 
 El actor ``Tortuga`` está inspirado en una de
 las actividades mas divertidas, didácticas y simbólicas
@@ -19,7 +29,7 @@ por Seymour Papert.
 La ``Tortuga`` básicamente es un actor que sabe
 dibujar sobre la ventana de pilas. Para ello el
 programador tiene que indicarle a la tortuga qué
-movimiento tiene que hacer.
+movimiento debe realizar.
 
 La siguiente imagen muestra lo que podría
 dibujar la tortuga con algunas sentencias de
@@ -28,8 +38,8 @@ movimientos:
 .. image:: images/tortuga_dibuja_triangulo.png
 
 La imagen no alcanza a mostrar por completo el
-concepto, pero en pocas palabras se puede ayudar
-a imaginar cómo funciona realmente.
+concepto, pero en pocas palabras se puede sintetizar
+lo que realmente hace.
 
 El dibujo de la imagen anterior es una traza que
 va dibujando la tortuga a partir de su movimiento.
@@ -51,7 +61,7 @@ dibujar esa figura:
 
 Algo muy valioso en términos didácticos, es que
 uno podría animarse a realizar dibujos simples cómo
-una casa, un hexágono o un número diseñando una estrategía
+una casa, un hexágono o un número diseñando una estrategia
 de movimiento para la tortuga.
 
 Inspeccionando a la tortuga
@@ -99,7 +109,10 @@ de dominar al actor ``Tortuga``.
 
 Este actor ``Pizarra`` es cómo un lienzo invisible sobre
 el que podemos pintar imágenes, figuras
-geométricas y trazos de cualquier tipo.
+geométricas y trazos de cualquier tipo. De hecho, el actor
+``Tortuga`` que vimos antes en realizada estaba
+dibujando sobre una pizarra, solo que lo hacía con
+animaciones y algo lento.
 
 Comencemos con algo sencillo: para crear la pizarra y
 dibujar un punto en el centro de la
@@ -111,37 +124,9 @@ código:
     pizarra = pilas.actores.Pizarra()
     pizarra.dibujar_punto(0, 0)
 
-
-Dibujando usando lapices
-------------------------
-
-La pizarra tiene un componente interno que se
-parece a un lápiz de color. Este lápiz
-lo utilizaremos para dibujar sobre la
-pizarra.
-
-Este código es un ejemplo que imprime sobre
-la pizarra una linea de color negro en diagonal:
-
-.. code-block:: python
-
-    pizarra = pilas.actores.Pizarra()
-    pizarra.bajar_lapiz()
-    pizarra.mover_lapiz(100, 0)
-    pizarra.mover_lapiz(100, 100)
-    pizarra.mover_lapiz(0, 0)
-
-Así se verá:
-
-.. image:: images/pizarra_dibuja_triangulo.png
-
-
-De hecho, ahora que tienes el triangulo puedes
-pulsar la tecla F12 y observar con mas claridad
-dónde están situadas las puntas del triangulo:
-
-.. image:: images/pizarra_dibuja_triangulo_modo_depuracion.png
-
+esto dibujará un punto de color negro en el centro de
+la ventana, podrías usar el argumento opcional ``color``
+si prefieres otro color.
 
 
 Pintando imágenes
@@ -153,7 +138,7 @@ la pizarra o construir un escenario usando bloques tipo
 ladrillos.
 
 Para pintar una imagen solo tienes que cargarla e
-indicarla a la pizarra que la dibuje.
+indicarla a la pizarra que la dibuje en una posicion determinada.
 
 .. code-block:: python
 
@@ -165,17 +150,32 @@ Así se verá:
 
 .. image:: images/pizarra_imagen.png
 
+Ten en cuenta que en estos casos, cuando estamos dibujando
+una imagen sobre otra, el punto destino (x, y) siempre indica
+la esquina superior izquierda de la imagen, no el centro u
+otra posición relativa como en el caso de los actores.
 
-Ten en cuenta que la coordenada de la imagen es un poco
-diferente a las coordenadas que vimos antes, cuando pintas
-una imagen sobre una pizarra las coordenadas se dicen coordenadas
-de pantalla. Eso significa que la posición (0, 0) es la esquina
-superior izquierda. Los valores positivos de "x" son hacia la derecha
-y los valores positivos de "y" van hacia abajo.
+Pintando porciones de imágenes
+------------------------------
+
+Hay ocasiones en las que te resultará útil poder
+pintar solamente porciones de una imagen sobre otra. Para
+estos casos está el método ``pintar_parte_de_imagen``.
+
+Veamos la definición del método::
+
+    def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
 
 
-Pintando grillas de imágenes
-----------------------------
+
+
+Pendiente
+::::::::::
+
+
+
+
+----------------------------------------
 
 De manera similar a las imágenes normales, sobre las pizarras
 también se pueden pintar grillas.
