@@ -1,5 +1,5 @@
-Superficies
-===========
+Dibujado avanzado con Superficies
+=================================
 
 Anteriormente vimos que los actores podían
 tener un aspecto visual, ya sea gracias a
@@ -9,8 +9,7 @@ de pizarra.
 Pero hay situaciones donde realmente necesitamos
 algo mas. En muchas ocasiones necesitamos que
 los actores se puedan tener una apariencia que
-constuimos programáticamente (si existe la palabra...).
-
+construimos programáticamente (si existe la palabra...).
 
 Por ejemplo, imagina que queremos hacer un indicador
 de energía, un cronómetro, un indicador de vidas, un
@@ -96,6 +95,94 @@ que generalmente se trabaja sobre estas funciones unas pocas veces
 para lograr lo que ya no está implementado como un actor...
 
 El sistema de coordenadas de las superficies tiene su origen
-en la esquina superior izquierda (0, 0), luego el eje ``x`` crece
+en la esquina superior izquierda ``(0, 0)``, luego el eje ``x`` crece
 hacia la derecha y el eje ``y`` crece hacia abajo.
 
+Métodos para dibujar
+--------------------
+
+Pintar
+______
+
+Originalmente cuando creamos una superficie es completamente
+transparente. Si queremos cambiar esto y pintar toda la superficie
+de un color plano, podemos usar el siguiente método::
+
+    superficie.pintar(color)
+
+Donde el argumento color puede ser algo cómo ``pilas.colores.rojo`` o
+un color personalizado indicando las componentes de color
+``rojo``, ``verde`` y ``azul``. Por ejemplo::
+
+    superficie.pintar(pilas.colores.Color(100, 255, 0))
+
+Circulo
+_______
+
+Para pintar círculos podemos usar el método ``circulo``. Indicando la
+posición del círculo, su radio y el color.
+
+Ten en cuenta que también debemos indicar si queremos un círculo completamente
+sólido y pintado o solamente un borde.
+
+Esta es la definición del método::
+
+    def circulo(self, x, y, radio, color=colores.negro, relleno=False, grosor=1):
+
+Si invocamos a la función solamente con sus argumentos principales, obtendremos
+una silueta de circunferencia sin relleno, por ejemplo::
+
+    figura.circulo(50, 50, 100)
+
+o si queremos un trazo mas grueso::
+
+    figura.circulo(50, 50, 100, grosor=5)
+
+aunque también podemos indicarle que la circunferencia tiene que
+estar pintada y con otro color::
+
+    figura.circulo(50, 50, 100, pilas.colores.rojo, relleno=True)
+
+
+Rectángulo
+__________
+
+
+El dibujo de rectángulos es muy similar al de círculos, solo que aquí
+tenemos que indicar la coordenada de la esquina superior izquierda
+del rectángulo y el tamaño, en ancho y alto.
+
+Esta es la definición del método::
+
+    def rectangulo(self, x, y, ancho, alto, color=colores.negro, relleno=False, grosor=1):
+
+Linea
+_____
+
+Una linea se compone obligatoriamente de puntos, los que marcan el
+principio y el final de la linea. Para esto se tienen que usar
+4 números, dos para cada punto.
+
+Por ejemplo, el siguiente código dibuja una linea diagonal
+de color rojo y con 3 píxeles de grosor::
+
+    superficie.linea(20, 20, 50, 50, pilas.colores.rojo, 3)
+
+
+Texto
+_____
+
+El dibujo de texto se realiza siempre a partir de una cadena
+de texto. Y opcionalmente se pueden especificar otros
+parámetros cómo la posición del texto, el color, el tamaño de
+las letras y la tipografía.
+
+Este es un ejemplo sencillo que imprime un texto de color
+azul::
+
+    superficie.texto("Hola mundo", magnitud=20, fuente="Courrier", color=pilas.colores.azul)
+
+Ten en cuenta que la fuente se indica como una cadena, y
+el valor que podemos poner ahí es el de cualquiera de nuestras
+fuentes del sistema. Si nuestro sistema no tiene la fuente que le
+solicitamos, se imprimirá usando una tipografía por defecto.

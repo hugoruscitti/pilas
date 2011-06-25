@@ -19,6 +19,8 @@ superficie.circulo(32, 35, 5, color=pilas.colores.negro, relleno=True)
 superficie.circulo(67, 35, 10, color=pilas.colores.blanco, relleno=True)
 superficie.circulo(64, 35, 5, color=pilas.colores.negro, relleno=True)
 
+superficie.pintar(pilas.colores.blanco)
+superficie.texto("Hola mundo", magnitud=20, fuente="Courrier", color=pilas.colores.rojo)
 a = pilas.actores.Actor(superficie)
 
 
