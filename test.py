@@ -4,6 +4,10 @@ import pilas
 pilas.iniciar()
 
 t = pilas.actores.Tortuga()
+t.av(100)
+t.gd(30)
+t.av(100)
+t.color = pilas.colores.rojo
 
 '''
 superficie = pilas.imagenes.cargar_superficie(100, 100)

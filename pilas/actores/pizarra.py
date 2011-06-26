@@ -250,3 +250,11 @@ class Pizarra(Actor):
     def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
         x, y = self.obtener_coordenada_fisica(x, y)
         self.imagen.pintar_parte_de_imagen(imagen, origen_x, origen_y, ancho, alto, x, y)
+
+    def pintar(self, color):
+        self.imagen.pintar(color)
+
+    def linea(self, x, y, x2, y2, color=colores.negro, grosor=1):
+        x, y = self.obtener_coordenada_fisica(x, y)
+        x2, y2 = self.obtener_coordenada_fisica(x2, y2)
+        self.imagen.linea(x, y, x2, y2, color, grosor)
