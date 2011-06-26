@@ -251,6 +251,9 @@ class Pizarra(Actor):
         x, y = self.obtener_coordenada_fisica(x, y)
         self.imagen.pintar_parte_de_imagen(imagen, origen_x, origen_y, ancho, alto, x, y)
 
+    def pintar_grilla(self, grilla, x, y):
+        grilla.dibujarse_sobre_una_pizarra(self, x, y)
+
     def pintar(self, color):
         self.imagen.pintar(color)
 
