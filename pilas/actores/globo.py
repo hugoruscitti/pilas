@@ -30,8 +30,8 @@ class Globo(Actor):
 
     def colocar_origen_del_globo(self, x, y):
         "Cambia la posicion del globo para que el punto de donde se emite el globo sea (x, y)."
-        self.x = x - self.obtener_ancho() / 2 + 30
-        self.y = y + self.obtener_alto() / 2
+        self.x = x
+        self.y = y
     
 
     def cuando_quieren_avanzar(self, *k):
