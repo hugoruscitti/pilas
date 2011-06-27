@@ -96,7 +96,7 @@ class Mapa(Actor):
     def pintar_bloque(self, fila, columna, indice, es_bloque_solido=False):
         nuevo_bloque = pilas.actores.Actor('invisible.png')
         self.grilla.definir_cuadro(indice)
-        self.grilla.asignar(nuevo_bloque)
+        nuevo_bloque.imagen = self.grilla
         nuevo_bloque.izquierda = columna * self._ancho_cuadro - 320
         nuevo_bloque.arriba = -fila * self._alto_cuadro + 240
         self.bloques.append(nuevo_bloque)
