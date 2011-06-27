@@ -102,6 +102,7 @@ class QtImagen():
 
 
 class QtGrilla(QtImagen):
+
     """Representa una grilla regular, que se utiliza en animaciones.
 
        La grilla regular se tiene que crear indicando la cantidad
@@ -150,8 +151,7 @@ class QtGrilla(QtImagen):
         return ha_reiniciado
 
     def dibujarse_sobre_una_pizarra(self, pizarra, x, y):
-        pizarra.pintar_parte_de_imagen(self, self.dx, self.dy, 
-                self.cuadro_ancho, self.cuadro_alto, x, y)
+        pizarra.pintar_parte_de_imagen(self, self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto, x, y)
 
 class QtTexto(QtImagen):
 
@@ -242,6 +242,9 @@ class QtSuperficie(QtImagen):
         self.canvas.drawPixmap(x, y, imagen._imagen, origen_x, origen_y, ancho, alto)
         self.canvas.end()
 
+    def pintar_imagen(self, imagen, x=0, y=0):
+        self.pintar_parte_de_imagen(imagen, 0, 0, imagen.ancho(), imagen.alto(), x, y)
+
     def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro):
         self.canvas.begin(self._imagen)
         r, g, b, a = color.obtener_componentes()
@@ -304,6 +307,8 @@ class QtSuperficie(QtImagen):
     def dibujar_punto(self, x, y, color=colores.negro):
         self.circulo(x, y, 3, color=color, relleno=True)
 
+    def limpiar(self):
+        self._imagen.fill(QtGui.QColor(0, 0, 0, 0))
 
 class QtActor(BaseActor):
 
@@ -330,7 +335,6 @@ class QtActor(BaseActor):
         self.imagen.dibujar(motor, self.x, self.y, 
                 self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion)
-
 
 class QtSonido:
 
@@ -417,7 +421,6 @@ class SFMLCanvas:
     def render(self, event, qp):
         for r in self.sprites:
             r.dibujar(self.canvas)
-
         
 class QtBase(motor.Motor):
     
@@ -724,7 +727,6 @@ class QtBase(motor.Motor):
 
         return ancho, alto
 
-
 class Qt(QtBase, QWidget):
 
     def __init__(self):
@@ -736,5 +738,6 @@ class QtGL(QtBase, QGLWidget):
     def __init__(self):
         if not QGLWidget:
             print "Lo siento, OpenGL no esta disponible..."
+
         QGLWidget.__init__(self)
         QtBase.__init__(self)

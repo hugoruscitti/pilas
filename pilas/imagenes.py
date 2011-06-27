@@ -74,3 +74,4 @@ def cargar_lienzo():
 def cargar_superficie(ancho, alto):
     return pilas.mundo.motor.obtener_superficie(ancho, alto)
     
+cargar_imagen = cargar

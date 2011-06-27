@@ -17,42 +17,35 @@ class Selector(pilas.actores.Actor):
         
         self.texto = texto
         self._cargar_lienzo(ancho)
-        self._cargar_imagenes(pilas)
+        self._cargar_imagenes()
         self.funcion_de_respuesta = None
 
         self.deseleccionar()
         pilas.eventos.click_de_mouse.conectar(self.detection_click_mouse)
 
-    def _cargar_imagenes(self, pilas):
-        self.imagen_selector = pilas.imagenes.cargar_imagen_cairo("interfaz/selector.png")
-        self.imagen_selector_seleccionado = pilas.imagenes.cargar_imagen_cairo("interfaz/selector_seleccionado.png")
+    def _cargar_imagenes(self):
+        self.imagen_selector = pilas.imagenes.cargar("interfaz/selector.png")
+        self.imagen_selector_seleccionado = pilas.imagenes.cargar("interfaz/selector_seleccionado.png")
 
     def _cargar_lienzo(self, ancho):
-        self.lienzo = pilas.imagenes.cargar_lienzo(ancho, 29)
+        self.imagen = pilas.imagenes.cargar_superficie(ancho, 29)
         
     def pintar_texto(self):
-        self.lienzo.definir_color(pilas.colores.negro)
-        self.lienzo.escribir(self.texto, 35, 20, tamano=14, fuente='sans')
+        self.imagen.texto(self.texto, 35, 20)
         
     def deseleccionar(self):
         self.seleccionado = False
-        self.lienzo.deshabilitar_actualizacion_automatica()
-        self.lienzo.limpiar()
-        self.lienzo.pintar_imagen(self.imagen_selector)
+        self.imagen.limpiar()
+        self.imagen.pintar_imagen(self.imagen_selector)
         self.pintar_texto()
-        self.lienzo.asignar(self)
         self.centro = ("centro", "centro")
-        self.lienzo.habilitar_actualizacion_automatica()
         
     def seleccionar(self):
         self.seleccionado = True
-        self.lienzo.deshabilitar_actualizacion_automatica()
-        self.lienzo.limpiar()
-        self.lienzo.pintar_imagen(self.imagen_selector_seleccionado)
+        self.imagen.limpiar()
+        self.imagen.pintar_imagen(self.imagen_selector_seleccionado)
         self.pintar_texto()
-        self.lienzo.asignar(self)
         self.centro = ("centro", "centro")
-        self.lienzo.habilitar_actualizacion_automatica()
                 
     def detection_click_mouse(self, click):
         if self.colisiona_con_un_punto(click.x, click.y):
