@@ -62,3 +62,28 @@ corresponda según el orden de la conversación que se siga.
 Si quieres que un botón accione un mensaje y lo haga
 de manera inmediata tendrías que usar un método cómo ``dialogo.decir_inmediatamente``.
 
+
+Preguntas
+---------
+
+Para desarrollar conversaciones con preguntas también
+puedes usar a los diálogos. Lo único diferente es que las 
+preguntas traerán asociada una repuesta del usuario, y para
+manejar el resultado tienes que escribir una función.
+
+La función se invocará cuando el usuario haga click en
+alguna de las opciones. Y cuando se llame la función
+se pasará la respuesta que ha elegido como una cadena
+de texto.
+
+Aquí tienes una ejemplo de una pregunta con 3 respuestas. Cuando
+el usuario elija una repuesta el personaje volverá a
+decirlo:
+
+
+.. code-block:: python
+
+    def cuando_responde_color_favorito(respuesta):
+        dialogo.decir(mono, "he dicho: " + respuesta)
+
+    dialogo.elegir(mono, "Mi color favorito es el...", ["rojo", "verde", "azul"], cuando_responde_color_favorito)       

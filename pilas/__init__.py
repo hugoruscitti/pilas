@@ -20,6 +20,7 @@ import colores
 import atajos
 import escenas
 import ejemplos
+import interfaz
 
 
 if utils.esta_en_sesion_interactiva():

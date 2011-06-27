@@ -246,8 +246,8 @@ class QtSuperficie(QtImagen):
         self.canvas.begin(self._imagen)
         r, g, b, a = color.obtener_componentes()
         self.canvas.setPen(QtGui.QColor(r, g, b))
-        dx = 20
-        dy = 30
+        dx = x
+        dy = y
 
         if not fuente:
             fuente = self.canvas.font().family()

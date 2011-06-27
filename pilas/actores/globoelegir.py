@@ -8,19 +8,16 @@ class GloboElegir(Globo):
         self.dialogo = dialogo
         self.opciones = opciones
         self.funcion_a_invocar = funcion_a_invocar
-        Globo.__init__(self, texto, x, y, dialogo=dialogo)
+        espacio = "\n" * (len(opciones) +1)   # representa un espacio en blanco para poner la seleccion
+        Globo.__init__(self, texto + espacio, x, y, dialogo=dialogo)
     
         self.lista_seleccion = pilas.interfaz.ListaSeleccion(opciones, self._cuando_selecciona_opcion, x, y)
-        self._actualizar_posicion_de_la_lista_de_seleccion()
         
     def colocar_origen_del_globo(self, x, y):
-        Globo.colocar_origen_del_globo(self, x, y)
-        self._actualizar_posicion_de_la_lista_de_seleccion()
-
-    def _actualizar_posicion_de_la_lista_de_seleccion(self):
-        self.lista_seleccion.izquierda = self.izquierda + 10
-        self.lista_seleccion.abajo = self.abajo + 33
         self.lista_seleccion.centro = ("centro", "centro")
+        self.x = x
+        self.y = y
+
 
     def _obtener_area_para_el_texto(self, texto):
         ancho, alto = self.lienzo.obtener_area_de_texto(texto, tamano=14)
