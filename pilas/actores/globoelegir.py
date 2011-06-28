@@ -12,6 +12,8 @@ class GloboElegir(Globo):
         Globo.__init__(self, texto + espacio, x, y, dialogo=dialogo)
     
         self.lista_seleccion = pilas.interfaz.ListaSeleccion(opciones, self._cuando_selecciona_opcion, x, y)
+        self.lista_seleccion.escala = 0.1
+        self.lista_seleccion.escala = [1], 0.2
         
     def colocar_origen_del_globo(self, x, y):
         self.lista_seleccion.centro = ("derecha", "abajo")
