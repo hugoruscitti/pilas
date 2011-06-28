@@ -14,10 +14,9 @@ class GloboElegir(Globo):
         self.lista_seleccion = pilas.interfaz.ListaSeleccion(opciones, self._cuando_selecciona_opcion, x, y)
         
     def colocar_origen_del_globo(self, x, y):
-        self.lista_seleccion.centro = ("centro", "centro")
-        self.x = x
-        self.y = y
-
+        self.lista_seleccion.centro = ("derecha", "abajo")
+        self.lista_seleccion.x = x - 10
+        self.lista_seleccion.y = y - 10
 
     def _obtener_area_para_el_texto(self, texto):
         ancho, alto = self.lienzo.obtener_area_de_texto(texto, tamano=14)
