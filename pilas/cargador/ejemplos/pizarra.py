@@ -5,7 +5,7 @@ pilas.iniciar()
 pizarra = pilas.actores.Pizarra()
 
 def dibujar_en_la_pizarra(evento):
-    pizarra.pintar_punto(evento.x, evento.y, 10, pilas.colores.rojo)
+    pizarra.dibujar_punto(evento.x, evento.y, pilas.colores.negro)
 
 pilas.eventos.mueve_mouse.connect(dibujar_en_la_pizarra)
 

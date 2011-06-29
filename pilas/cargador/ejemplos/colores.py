@@ -14,12 +14,10 @@ colores = [color for color in dir(pilas.colores) if not '_' in color and not col
 
 # Por cada color imprime su nombre y un rectangulo de su color.
 for indice, color in enumerate(colores):
-    dy = 30 + indice * 23
-    pizarra.definir_color(getattr(pilas.colores, color))
-    pizarra.dibujar_rectangulo(80, dy, 20, 20)
-
-    pizarra.definir_color(pilas.colores.negro)
-    pizarra.escribir(color, 130, dy + 15, tamano=10)
+    dy = 30 + indice * 23 - 170
+    pizarra.rectangulo(0, dy, 20, 20, getattr(pilas.colores, color), relleno=True)
+    pizarra.rectangulo(0, dy, 20, 20, color=pilas.colores.negro)
+    pizarra.texto(color, 30, dy - 15)
 
 pilas.avisar("Muestra los colores mas usados del modulo pilas.colores")
 pilas.ejecutar()
