@@ -12,7 +12,6 @@ bomba.x = 200
 
 banana = pilas.actores.Banana()
 banana.x = -200
-banana.imagen = 'bomba.png'
 
 pilas.avisar("Mostrando tres actores de ejemplo.")
 pilas.ejecutar()
