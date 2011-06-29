@@ -7,11 +7,9 @@ sys.path.insert(0, "..")
 pilas.iniciar()
 pizarra = pilas.actores.Pizarra()
 
-pizarra.bajar_lapiz()
-
-pizarra.mover_lapiz(100, 0)
-pizarra.mover_lapiz(100, 100)
-pizarra.mover_lapiz(0, 0)
+pizarra.linea(0, 0, 100, 0, grosor=2)
+pizarra.linea(100, 0, 100, 100, grosor=2)
+pizarra.linea(100, 100, 0, 0, grosor=2)
 
 
 #pilas.avisar("Una pizarra con algunas imagenes.")
