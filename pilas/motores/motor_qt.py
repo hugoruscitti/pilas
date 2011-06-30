@@ -7,6 +7,7 @@
 # website - http://www.pilas-engine.com.ar
 
 import sys
+import copy
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QWidget
 
@@ -323,7 +324,11 @@ class QtActor(BaseActor):
         BaseActor.__init__(self)
 
     def definir_imagen(self, imagen):
-        self.imagen = imagen
+        # permite que varios actores usen la misma grilla.
+        if isinstance(imagen, QtGrilla):
+            self.imagen = copy.copy(imagen)
+        else:
+            self.imagen = imagen
 
     def obtener_imagen(self):
         return self.imagen

@@ -22,4 +22,3 @@ pelotas = pilas.atajos.fabricar(pilas.actores.Pelota, 10)
 
 pilas.avisar("Creando dos plataformas solidas...")
 pilas.ejecutar()
-
