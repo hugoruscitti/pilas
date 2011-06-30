@@ -199,24 +199,28 @@ class QtLienzo(QtImagen):
         ancho, alto = motor.obtener_area()
         motor.canvas.fillRect(0, 0, ancho, alto, QtGui.QColor(r, g, b))
 
-    def linea(self, motor, x0, y0, x1, y1, color=colores.negro):
+    def linea(self, motor, x0, y0, x1, y1, color=colores.negro, grosor=1):
         x0, y0 = utils.hacer_coordenada_pantalla_absoluta(x0, y0)
         x1, y1 = utils.hacer_coordenada_pantalla_absoluta(x1, y1)
 
         r, g, b, a = color.obtener_componentes()
-        motor.canvas.setPen(QtGui.QColor(r, g, b))
+        color = QtGui.QColor(r, g, b)
+        pen = QtGui.QPen(color, grosor)
+        motor.canvas.setPen(pen)
         motor.canvas.drawLine(x0, y0, x1, y1)
 
-    def cruz(self, motor, x, y, color=colores.negro):
+    def cruz(self, motor, x, y, color=colores.negro, grosor=1):
         t = 3
-        self.linea(motor, x - t, y - t, x + t, y + t, color)
-        self.linea(motor, x + t, y - t, x - t, y + t, color)
+        self.linea(motor, x - t, y - t, x + t, y + t, color, grosor)
+        self.linea(motor, x + t, y - t, x - t, y + t, color, grosor)
 
-    def circulo(self, motor, x, y, radio, color=colores.negro):
+    def circulo(self, motor, x, y, radio, color=colores.negro, grosor=1):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
 
         r, g, b, a = color.obtener_componentes()
-        motor.canvas.setPen(QtGui.QColor(r, g, b))
+        color = QtGui.QColor(r, g, b)
+        pen = QtGui.QPen(color, grosor)
+        motor.canvas.setPen(pen)
         motor.canvas.drawEllipse(x -radio, y-radio, radio*2, radio*2)
 
     def rectangulo(self, motor, x, y, ancho, alto, color=colores.negro):

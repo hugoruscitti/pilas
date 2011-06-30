@@ -22,6 +22,7 @@ class Depurador:
     def __init__(self, lienzo, fps):
         self.modos = []
         self.lienzo = lienzo
+        self._grosor_lineas = 1
         self.fps = fps
         self.posicion_del_mouse = (0, 0)
         pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
@@ -59,6 +60,13 @@ class Depurador:
             self._alternar_modo(ModoFisica)
         elif evento.codigo == 'F12':
             self._alternar_modo(ModoPosicion)
+        elif evento.texto == '+':
+            self._cambiar_grosor_de_bordes(+1)
+        elif evento.texto == '-':
+            self._cambiar_grosor_de_bordes(-1)
+
+    def _cambiar_grosor_de_bordes(self, cambio):
+        self._grosor_lineas = max(1, self._grosor_lineas + cambio)
 
     def _alternar_modo(self, clase_del_modo):
         clases_activas = [x.__class__ for x in self.modos]
@@ -128,7 +136,7 @@ class ModoPuntosDeControl(ModoDepurador):
     tecla = "F8"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.cruz(motor, actor.x, actor.y, color=pilas.colores.rojo)
+        lienzo.cruz(motor, actor.x, actor.y, color=pilas.colores.rojo, grosor=self.depurador._grosor_lineas)
         
 class ModoRadiosDeColision(ModoDepurador):
     tecla = "F9"
