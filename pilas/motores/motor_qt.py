@@ -15,6 +15,7 @@ try:
     from PyQt4.QtOpenGL import QGLWidget
 except ImportError:
     QGLWidget = None
+    print "No se encuentra OpenGL en este equipo."
 
 
 import motor
@@ -169,8 +170,6 @@ class QtTexto(QtImagen):
             motor.canvas.drawText(dx, dy, line)
             dy += metrica.height()
 
-        self.ancho_real = metrica.width(self.texto)
-        self.alto_real = metrica.height()
 
 class QtLienzo(QtImagen):
 
@@ -712,11 +711,11 @@ class QtBase(motor.Motor):
         "Obtiene la proporcion de cambio de escala de la pantalla"
         return self.alto / float(self.alto_original)
 
-    def obtener_area_de_texto(self, texto):
+    def obtener_area_de_texto(self, texto, magnitud=10):
         ancho = 0
         alto = 0
         nombre_de_fuente = self.canvas.font().family()
-        fuente = QtGui.QFont(nombre_de_fuente, 10)
+        fuente = QtGui.QFont(nombre_de_fuente, magnitud)
         metrica = QtGui.QFontMetrics(fuente)
 
         lineas = texto.split('\n')

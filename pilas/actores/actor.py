@@ -329,12 +329,12 @@ class Actor(object, Estudiante):
         self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura)
 
     def esta_fuera_de_la_pantalla(self):
+        # TODO: detectar area de la pantalla con las funciones que exporta el motor.
         if self.derecha < -320 or self.izquierda > 320 or self.arriba < -240 or self.abajo > 240:
                 return True
 
     def decir(self, mensaje, autoeliminar=True):
-        nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y,
-                autoeliminar=autoeliminar)
+        nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y, autoeliminar=autoeliminar)
         nuevo_actor.z = self.z - 1
         self.anexar(nuevo_actor)
 
