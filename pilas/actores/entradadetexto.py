@@ -16,12 +16,13 @@ class EntradaDeTexto(Actor):
     el nombre a un usuario. Por ejemplo, cuando completa un record
     de puntaje."""
 
-    def __init__(self, x=0, y=0, imagen='invisible.png', color=pilas.colores.negro, limite=10, tamano=32, fuente='Arial', cursor_intermitente=True):
-        self.pizarra = pilas.actores.Pizarra()
+    def __init__(self, x=0, y=0, color=pilas.colores.negro, limite=10, tamano=32, fuente='Arial', cursor_intermitente=True):
         self.cursor = "|"
+        self.texto = ""
+        self.limite = limite
+        imagen = pilas.imagenes.cargar_superficie(640, 480)
         Actor.__init__(self, imagen)
         pilas.eventos.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
-        self._asignar_atributos(x, y, color, limite, tamano, fuente)
         self._actualizar_imagen()
         
         if cursor_intermitente:
@@ -32,17 +33,10 @@ class EntradaDeTexto(Actor):
             self.cursor = "|"
         else:
             self.cursor = ""
+
         self._actualizar_imagen()
         return True
 
-    def _asignar_atributos(self, x, y, color, limite, tamano, fuente):
-        self.x = x
-        self.y = y
-        self.texto = u''
-        self.limite = limite
-        self.tamano = tamano
-        self.fuente = fuente
-        self.color = color
 
     def cuando_pulsa_una_tecla(self, evento):
         if evento.codigo == '\x08':
@@ -50,22 +44,10 @@ class EntradaDeTexto(Actor):
             self.texto = self.texto[:-1]
         else:
             if len(self.texto) < self.limite:
-                self.texto = self.texto + evento.codigo
+                self.texto = self.texto + evento.texto
         
         self._actualizar_imagen()
         
     def _actualizar_imagen(self):
-        self.pizarra.limpiar()
-        self.pizarra.definir_color(self.color)
-        self.pizarra.escribir(self.texto + self.cursor, 320, 240, self.tamano, self.fuente)
-
-    def definir_escala(self, s):
-        self.pizarra.escala = s
-        
-    def definir_rotacion(self, r):
-        pilas.actores.Actor.definir_rotacion(self, r)
-        self.pizarra.rotacion = r
-
-    def definir_posicion(self, x, y):
-        pilas.actores.Actor.definir_posicion(self, x, y)
-        self.pizarra.definir_posicion(x, y)
+        self.imagen.pintar(pilas.colores.blanco)
+        self.imagen.texto(self.texto + self.cursor, 100, 100)
