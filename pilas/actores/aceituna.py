@@ -12,25 +12,26 @@ from pilas.actores import Actor
 class Aceituna(Actor):
 
     def __init__(self, x=0, y=0):
-	self.cuadro_normal = pilas.imagenes.cargar("aceituna.png")
-	self.cuadro_reir = pilas.imagenes.cargar("aceituna_risa.png")
-	self.cuadro_burla = pilas.imagenes.cargar("aceituna_burla.png")
-	self.cuadro_grita = pilas.imagenes.cargar("aceituna_grita.png")
+        self.cuadro_normal = pilas.imagenes.cargar("aceituna.png")
+        self.cuadro_reir = pilas.imagenes.cargar("aceituna_risa.png")
+        self.cuadro_burla = pilas.imagenes.cargar("aceituna_burla.png")
+        self.cuadro_grita = pilas.imagenes.cargar("aceituna_grita.png")
 
-	Actor.__init__(self, x=x, y=y)
-	self.imagen = self.cuadro_normal
-	self.centro = ('centro', 'centro')
+        Actor.__init__(self, x=x, y=y)
+        self.imagen = self.cuadro_normal
+        self.centro = ('centro', 'centro')
+        self.radio_de_colision = 18
 
     def normal(self):
-	self.imagen = self.cuadro_normal
+        self.imagen = self.cuadro_normal
 
     def reir(self):
-	self.imagen = self.cuadro_reir
+        self.imagen = self.cuadro_reir
 
     def burlarse(self):
-	self.imagen = self.cuadro_burla
+        self.imagen = self.cuadro_burla
 
     burlar = burlarse
 
     def gritar(self):
-	self.imagen = self.cuadro_grita
+        self.imagen = self.cuadro_grita
