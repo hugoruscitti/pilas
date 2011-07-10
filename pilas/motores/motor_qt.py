@@ -347,12 +347,13 @@ class QtActor(BaseActor):
 class QtSonido:
 
     def __init__(self, ruta):
-        print "Usando pygame para reproducir sonido"
         import pygame
         pygame.mixer.init()
         self.sonido = pygame.mixer.Sound(ruta)
 
     def reproducir(self):
+        # TODO: quitar esta nota...
+        print "Usando pygame para reproducir sonido"
         self.sonido.play()
         
 class SFMLCanvas:
