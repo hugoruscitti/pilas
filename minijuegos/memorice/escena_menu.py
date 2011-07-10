@@ -22,7 +22,7 @@ class EscenaMenu(pilas.escenas.Escena):
         
         self.titulo.y = 250
         
-        self.titulo.y = pilas.interpolar(170, 0.8)
+        self.titulo.y = [170], 0.8
     def menu_de_juego(self):
         
         opcion = pilas.actores.Actor('data/opcion.png')
