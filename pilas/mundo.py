@@ -42,7 +42,8 @@ class Mundo:
         self.colisiones.verificar_colisiones()
 
     def terminar(self):
-        pass
+        import sys
+        sys.exit(0)
 
     def ejecutar_bucle_principal(self, ignorar_errores=False):
         "Mantiene en funcionamiento el motor completo."

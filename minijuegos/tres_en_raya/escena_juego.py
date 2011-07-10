@@ -56,49 +56,17 @@ class Juego(pilas.escenas.Escena):
     
 
     def pintar_linea_horizontal(self, h):
-        self.pizarra.levantar_lapiz()
-        
-        self.pizarra.mover_lapiz(0,h)
-        
-        self.pizarra.bajar_lapiz()
-        
-        self.pizarra.definir_color(pilas.colores.cyan)
-        self.pizarra.mover_lapiz(-100,h)
-        self.pizarra.mover_lapiz(100,h)
-
-    
+        self.pizarra.linea(-100, h, 100, h, pilas.colores.cyan, grosor=3)
     
     
     def pintar_linea_diagonal_1(self):
-        self.pizarra.levantar_lapiz()
-        
-        self.pizarra.mover_lapiz(-84,84)
-        
-        self.pizarra.bajar_lapiz()
-        
-        self.pizarra.definir_color(pilas.colores.cyan)
-        self.pizarra.mover_lapiz(84,-84) 
+        self.pizarra.linea(-84, 84, 84, -84, pilas.colores.cyan, grosor=3)
         
     def pintar_linea_diagonal_2(self):
-        self.pizarra.levantar_lapiz()
-        
-        self.pizarra.mover_lapiz(84,84)
-        
-        self.pizarra.bajar_lapiz()
-        
-        self.pizarra.definir_color(pilas.colores.cyan)
-        self.pizarra.mover_lapiz(-84,-84) 
+        self.pizarra.linea(84, 84, -84, -84, pilas.colores.cyan, grosor=3)
         
     def pintar_linea_vertical(self, v):
-        self.pizarra.levantar_lapiz()
-        
-        self.pizarra.mover_lapiz(v,0)
-        
-        self.pizarra.bajar_lapiz()
-        
-        self.pizarra.definir_color(pilas.colores.cyan)
-        self.pizarra.mover_lapiz(v,-100)
-        self.pizarra.mover_lapiz(v,100)
+        self.pizarra.linea(v, -100, v, 100, pilas.colores.cyan, grosor=3)
     
     def crear_tablero(self):
         self.tablero_matriz = [[-1, -1, -1],[-1, -1, -1],[-1, -1, -1]]
@@ -129,6 +97,7 @@ class Juego(pilas.escenas.Escena):
         
         self.ruta_ficha_vacia = 'data/ficha_vacia.png'
         self.ruta_ficha_2 = 'data/ficha2.png'
+        B = pilas.actores.Boton
         
         self.ficha2_1 = pilas.actores.Boton(-84, 84,  self.ruta_ficha_vacia, self.ruta_ficha_2, self.ruta_ficha_2)
         self.ficha2_2 = pilas.actores.Boton(0, 84,  self.ruta_ficha_vacia, self.ruta_ficha_2, self.ruta_ficha_2)
@@ -222,7 +191,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[0][0] = 0 
                     self.ficha1_1.pintar_presionado()
                     self.ficha1_1.escala = 0.8
-                    self.ficha1_1.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha1_1.escala = [1], 0.1
                     self.turno = 1
                     self.cambiar_visor_turno_x()
                     
@@ -233,7 +202,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[0][1] = 0 
                     self.ficha1_2.pintar_presionado()
                     self.ficha1_2.escala = 0.8
-                    self.ficha1_2.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha1_2.escala = [1], 0.1
                     self.turno = 1
                     self.cambiar_visor_turno_x()
     
@@ -244,7 +213,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[0][2] = 0 
                     self.ficha1_3.pintar_presionado()
                     self.ficha1_3.escala = 0.8
-                    self.ficha1_3.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha1_3.escala = [1], 0.1
                     self.turno = 1
                     self.cambiar_visor_turno_x()
     
@@ -255,7 +224,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[1][0] = 0 
                     self.ficha1_4.pintar_presionado()
                     self.ficha1_4.escala = 0.8
-                    self.ficha1_4.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha1_4.escala = [1], 0.1
                     self.turno = 1
                     self.cambiar_visor_turno_x()
     
@@ -266,7 +235,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[1][1] = 0 
                     self.ficha1_5.pintar_presionado()
                     self.ficha1_5.escala = 0.8
-                    self.ficha1_5.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha1_5.escala = [1], 0.1
                     self.turno = 1
                     self.cambiar_visor_turno_x()
     
@@ -277,7 +246,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[1][2] = 0 
                     self.ficha1_6.pintar_presionado()
                     self.ficha1_6.escala = 0.8
-                    self.ficha1_6.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha1_6.escala = [1], 0.1
                     self.turno = 1
                     self.cambiar_visor_turno_x()
     
@@ -288,7 +257,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[2][0] = 0 
                     self.ficha1_7.pintar_presionado()
                     self.ficha1_7.escala = 0.8
-                    self.ficha1_7.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha1_7.escala = [1], 0.1
                     self.turno = 1
                     self.cambiar_visor_turno_x()
     
@@ -299,7 +268,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[2][1] = 0 
                     self.ficha1_8.pintar_presionado()
                     self.ficha1_8.escala = 0.8
-                    self.ficha1_8.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha1_8.escala = [1], 0.1
                     self.turno = 1
                     self.cambiar_visor_turno_x()
     
@@ -310,7 +279,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[2][2] = 0 
                     self.ficha1_9.pintar_presionado()
                     self.ficha1_9.escala = 0.8
-                    self.ficha1_9.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha1_9.escala = [1], 0.1
                     self.turno = 1
                     self.cambiar_visor_turno_x()
     
@@ -331,7 +300,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[0][0] = 1 
                     self.ficha2_1.pintar_presionado()
                     self.ficha2_1.escala = 0.8
-                    self.ficha2_1.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha2_1.escala = [1], 0.1
                     self.turno = 0
                     self.cambiar_visor_turno_o()
 
@@ -342,7 +311,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[0][1] = 1 
                     self.ficha2_2.pintar_presionado()
                     self.ficha2_2.escala = 0.8
-                    self.ficha2_2.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha2_2.escala = [1], 0.1
                     self.turno = 0
                     self.cambiar_visor_turno_o()
 
@@ -353,7 +322,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[0][2] = 1 
                     self.ficha2_3.pintar_presionado()
                     self.ficha2_3.escala = 0.8
-                    self.ficha2_3.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha2_3.escala = [1], 0.1
                     self.turno = 0
                     self.cambiar_visor_turno_o()
     
@@ -364,7 +333,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[1][0] = 1 
                     self.ficha2_4.pintar_presionado()
                     self.ficha2_4.escala = 0.8
-                    self.ficha2_4.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha2_4.escala = [1], 0.1
                     self.turno = 0
                     self.cambiar_visor_turno_o()
     
@@ -375,7 +344,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[1][1] = 1
                     self.ficha2_5.pintar_presionado()
                     self.ficha2_5.escala = 0.8
-                    self.ficha2_5.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha2_5.escala = [1], 0.1
                     self.turno = 0
                     self.cambiar_visor_turno_o()
     
@@ -386,7 +355,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[1][2] = 1 
                     self.ficha2_6.pintar_presionado()
                     self.ficha2_6.escala = 0.8
-                    self.ficha2_6.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha2_6.escala = [1], 0.1
                     self.turno = 0
                     self.cambiar_visor_turno_o()
     
@@ -397,7 +366,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[2][0] = 1 
                     self.ficha2_7.pintar_presionado()
                     self.ficha2_7.escala = 0.8
-                    self.ficha2_7.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha2_7.escala = [1], 0.1
                     self.turno = 0
                     self.cambiar_visor_turno_o()
     
@@ -408,7 +377,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[2][1] = 1 
                     self.ficha2_8.pintar_presionado()
                     self.ficha2_8.escala = 0.8
-                    self.ficha2_8.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha2_8.escala = [1], 0.1
                     self.turno = 0
                     self.cambiar_visor_turno_o()
     
@@ -419,7 +388,7 @@ class Juego(pilas.escenas.Escena):
                     self.tablero_matriz[2][2] = 1 
                     self.ficha2_9.pintar_presionado()
                     self.ficha2_9.escala = 0.8
-                    self.ficha2_9.escala = pilas.interpolar([1], duracion=0.1)
+                    self.ficha2_9.escala = [1], 0.1
                     self.turno = 0
                     self.cambiar_visor_turno_o()
     
