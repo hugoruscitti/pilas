@@ -17,6 +17,7 @@ Pilas engine - Documentación
     grupos.rst
     fisica.rst
     controles.rst
+    tareas.rst
     escenas.rst
     ejemplos.rst
     interfaz_de_usuario.rst

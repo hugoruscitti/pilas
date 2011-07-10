@@ -59,13 +59,13 @@ class Mundo:
         escena_nueva.iniciar()
 
     def agregar_tarea_una_vez(self, time_out, function, *params): 
-        self.tareas.una_vez(time_out, function, params)
+        return self.tareas.una_vez(time_out, function, params)
 
     def agregar_tarea_siempre(self, time_out, function, *params): 
-        self.tareas.siempre(time_out, function, params)
+        return self.tareas.siempre(time_out, function, params)
 
     def agregar_tarea(self, time_out, funcion, *parametros):
-        self.tareas.condicional(time_out, funcion, parametros)
+        return self.tareas.condicional(time_out, funcion, parametros)
 
 '''
 
