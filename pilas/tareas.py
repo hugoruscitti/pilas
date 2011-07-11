@@ -96,12 +96,12 @@ class Tareas:
         self.tareas_planificadas.append(tarea)
 
     def una_vez(self, time_out, function, params=[]):
-        tarea = Tarea(self.contador_de_tiempo + time_out, time_out, function, params, False)
+        tarea = Tarea(self.contador_de_tiempo + time_out, time_out, function, params, True)
         self._agregar(tarea)
         return tarea
 
     def siempre(self, time_out, function, params=[]):
-        tarea = Tarea(self.contador_de_tiempo + time_out, time_out, function, params, True)
+        tarea = Tarea(self.contador_de_tiempo + time_out, time_out, function, params, False)
         self._agregar(tarea)
         return tarea
 
