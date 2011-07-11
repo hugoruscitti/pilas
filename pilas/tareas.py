@@ -81,13 +81,13 @@ class Tareas:
                         self.tareas_planificadas.remove(tarea)
                     else:
                         w = self.contador_de_tiempo - tarea.time_out
-                        parte_entera = int((w)/float(dt))
-                        resto = w - (parte_entera * dt)
+                        parte_entera = int((w)/float(tarea.dt))
+                        resto = w - (parte_entera * tarea.dt)
 
-                        for x in range(parte_entera + 1):
+                        for x in range(parte_entera):
                             tarea.ejecutar()
 
-                        tarea.time_out = self.contador_de_tiempo + (1 - resto) * dt
+                        tarea.time_out += tarea.dt + (parte_entera * tarea.dt) - resto
                 else:
                     self.tareas_planificadas.remove(tarea)
 
