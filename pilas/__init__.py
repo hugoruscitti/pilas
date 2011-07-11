@@ -105,8 +105,6 @@ def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo, fps, economico, grave
     bg = threading.Thread(target=__iniciar_y_ejecutar, args=(ancho, alto, titulo, fps, economico, gravedad))
     bg.start()
 
-def reiniciar():
-    actores.utils.eliminar_a_todos()
 
 def __iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, gravedad, ignorar_errores=False):
     global mundo
@@ -116,6 +114,8 @@ def __iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, gravedad, ignorar_
     ejecutar(ignorar_errores)
 '''
 
+def reiniciar():
+    actores.utils.eliminar_a_todos()
 
 anterior_texto = None
 
