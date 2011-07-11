@@ -724,7 +724,12 @@ class QtBase(motor.Motor):
     def obtener_area_de_texto(self, texto, magnitud=10):
         ancho = 0
         alto = 0
-        nombre_de_fuente = self.canvas.font().family()
+
+        canvas = QtGui.QPainter()
+        canvas.begin(self)
+        nombre_de_fuente = canvas.font().family()
+
+
         fuente = QtGui.QFont(nombre_de_fuente, magnitud)
         metrica = QtGui.QFontMetrics(fuente)
 
@@ -734,6 +739,7 @@ class QtBase(motor.Motor):
             ancho = max(ancho, metrica.width(linea))
             alto += metrica.height()
 
+        canvas.end()
         return ancho, alto
 
 class Qt(QtBase, QWidget):
