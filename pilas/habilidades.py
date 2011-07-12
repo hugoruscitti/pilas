@@ -41,10 +41,10 @@ class RebotaComoCaja(Habilidad):
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
         error = random.randint(-10, 10) / 10.0
-        rectangulo = pilas.mundo.fisica.Rectangulo(receptor.x + error, 
+        rectangulo = pilas.fisica.Rectangulo(receptor.x + error, 
                                              receptor.y + error, 
-                                             receptor.radio_de_colision*2,
-                                             receptor.radio_de_colision*2,
+                                             receptor.radio_de_colision*2 - 4,
+                                             receptor.radio_de_colision*2 - 4,
                                              )
         receptor.aprender(pilas.habilidades.Imitar, rectangulo)
         self.rectangulo = rectangulo
