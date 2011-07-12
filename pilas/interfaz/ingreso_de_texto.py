@@ -10,11 +10,11 @@ import pilas
 
 class IngresoDeTexto(pilas.actores.Actor):
     
-    def __init__(self, texto_inicial="", x=0, y=0):
+    def __init__(self, texto_inicial="", x=0, y=0, ancho=300):
         pilas.actores.Actor.__init__(self, x=x, y=y)
         self.texto = texto_inicial
         self.cursor = ""
-        self._cargar_lienzo()
+        self._cargar_lienzo(ancho)
         self.imagen_caja = pilas.imagenes.cargar("interfaz/caja.png")
         self.centro = ("centro", "centro")
         self._actualizar_imagen()
@@ -43,9 +43,15 @@ class IngresoDeTexto(pilas.actores.Actor):
         
         self._actualizar_imagen()
         
-    def _cargar_lienzo(self):
-        self.imagen = pilas.imagenes.cargar_superficie(400, 200)
+    def _cargar_lienzo(self, ancho):
+        self.imagen = pilas.imagenes.cargar_superficie(ancho, 30)
         
     def _actualizar_imagen(self):
-        self.imagen.pintar_imagen(self.imagen_caja)
+        ancho = self.imagen_caja.ancho()
+        alto = self.imagen_caja.alto()
+        self.imagen.pintar_parte_de_imagen(self.imagen_caja, 0, 0, 40, ancho, 0, 0)
+
+        for x in range(40, self.imagen.ancho() - 40):
+            self.imagen.pintar_parte_de_imagen(self.imagen_caja, ancho - 40, 0, 40, alto, x, 0)
+        #self.imagen.pintar_parte_de_imagen(self.imagen_caja, ancho - 40, 0, 40, alto, 40, 0)
         self.imagen.texto(self.texto + self.cursor, 35, 20)
