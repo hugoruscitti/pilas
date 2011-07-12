@@ -725,12 +725,8 @@ class QtBase(motor.Motor):
         ancho = 0
         alto = 0
 
-        canvas = QtGui.QPainter()
-        canvas.begin(self)
-        nombre_de_fuente = canvas.font().family()
-
-
-        fuente = QtGui.QFont(nombre_de_fuente, magnitud)
+        fuente = QtGui.QFont()
+        fuente.setPointSize(magnitud)
         metrica = QtGui.QFontMetrics(fuente)
 
         lineas = texto.split('\n')
@@ -739,7 +735,6 @@ class QtBase(motor.Motor):
             ancho = max(ancho, metrica.width(linea))
             alto += metrica.height()
 
-        canvas.end()
         return ancho, alto
 
 class Qt(QtBase, QWidget):
