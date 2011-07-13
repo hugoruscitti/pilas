@@ -22,7 +22,7 @@ class Depurador:
     def __init__(self, lienzo, fps):
         self.modos = []
         self.lienzo = lienzo
-        self._grosor_lineas = 1
+        ModoDepurador.grosor_de_lineas = 1
         self.fps = fps
         self.posicion_del_mouse = (0, 0)
         pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
@@ -66,7 +66,7 @@ class Depurador:
             self._cambiar_grosor_de_bordes(-1)
 
     def _cambiar_grosor_de_bordes(self, cambio):
-        self._grosor_lineas = max(1, self._grosor_lineas + cambio)
+        ModoDepurador.grosor_de_lineas = max(1, ModoDepurador.grosor_de_lineas + cambio)
 
     def _alternar_modo(self, clase_del_modo):
         clases_activas = [x.__class__ for x in self.modos]
@@ -136,13 +136,13 @@ class ModoPuntosDeControl(ModoDepurador):
     tecla = "F8"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.cruz(motor, actor.x, actor.y, color=pilas.colores.rojo, grosor=self.depurador._grosor_lineas)
+        lienzo.cruz(motor, actor.x, actor.y, color=pilas.colores.rojo, grosor=ModoDepurador.grosor_de_lineas)
         
 class ModoRadiosDeColision(ModoDepurador):
     tecla = "F9"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.circulo(motor, actor.x, actor.y, actor.radio_de_colision, color=pilas.colores.verde)
+        lienzo.circulo(motor, actor.x, actor.y, actor.radio_de_colision, color=pilas.colores.verde, grosor=ModoDepurador.grosor_de_lineas)
  
 class ModoArea(ModoDepurador):
     tecla = "F10"
@@ -158,11 +158,13 @@ class ModoPosicion(ModoDepurador):
         ModoDepurador.__init__(self, depurador)
 
     def dibuja_al_actor(self, motor, lienzo, actor):
-        texto = "(%d, %d)" %(actor.x, actor.y)
-        lienzo.texto(motor, texto, actor.x, actor.y, color=pilas.colores.violeta)
+        if not isinstance(actor, pilas.fondos.Fondo):
+            texto = "(%d, %d)" %(actor.x, actor.y)
+            lienzo.texto(motor, texto, actor.derecha, actor.abajo, color=pilas.colores.violeta)
         
 class ModoFisica(ModoDepurador):
     tecla = "F11"
     
     def termina_dibujado(self, motor, lienzo):
-        pilas.mundo.fisica.dibujar_figuras_sobre_lienzo(motor, lienzo)
+        grosor = ModoDepurador.grosor_de_lineas
+        pilas.mundo.fisica.dibujar_figuras_sobre_lienzo(motor, lienzo, grosor)

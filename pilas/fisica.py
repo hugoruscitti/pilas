@@ -48,7 +48,7 @@ class Fisica(object):
             self.figuras_a_eliminar = []
 
         
-    def dibujar_figuras_sobre_lienzo(self, motor, lienzo):
+    def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
         "Dibuja todas las figuras en una pizarra. Indicado para depuracion."
         cuerpos = self.mundo.bodyList
         cantidad_de_figuras = 0
@@ -72,7 +72,7 @@ class Fisica(object):
                     #print "dibujar un poligono..."
                     
                 elif tipo_de_figura == box2d.e_circleShape:
-                    lienzo.circulo(motor, cuerpo.position.x, cuerpo.position.y, figura.radius, colores.rojo)
+                    lienzo.circulo(motor, cuerpo.position.x, cuerpo.position.y, figura.radius, colores.rojo, grosor=grosor)
                 else:
                     print "no puedo identificar el tipo de figura."
         
