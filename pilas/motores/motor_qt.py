@@ -633,14 +633,22 @@ class QtBase(motor.Motor):
         self.depurador.comienza_dibujado(self)
 
         for actor in actores.todos:
-            actor.dibujar(self)
+            try:
+                actor.dibujar(self)
+            except Exception as e:
+                print e
+                actor.eliminar()
+
             self.depurador.dibuja_al_actor(self, actor)
 
         self.depurador.termina_dibujado(self)
         self.canvas.end()
 
     def timerEvent(self, event):
-        self.realizar_actualizacion_logica()
+        try:
+            self.realizar_actualizacion_logica()
+        except Exception as e:
+            print e
 
         # Invoca el dibujado de la pantalla.
         self.update()
