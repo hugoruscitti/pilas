@@ -34,8 +34,8 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self.connect(self.ui.ejecutar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_ejecutar)
         self.connect(self.ui.fuente, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_fuente)
         self.connect(self.ui.guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_guardar)
-        self.connect(self.ui.lista, QtCore.SIGNAL("itemSelectionChanged()"), self.cuando_cambia_seleccion)
-        self.connect(self.ui.lista, QtCore.SIGNAL("itemActivated(QListWidgetItem *)"), self.cuando_pulsa_boton_ejecutar)
+        self.connect(self.ui.arbol, QtCore.SIGNAL("itemSelectionChanged()"), self.cuando_cambia_seleccion)
+        self.connect(self.ui.arbol, QtCore.SIGNAL("itemActivated(QListWidgetItem *)"), self.cuando_pulsa_boton_ejecutar)
         self.connect(self.ui.actionSalir, QtCore.SIGNAL("activated()"), self.cuando_quiere_cerrar)
 
         syntax.PythonHighlighter(self.ui.codigo.document())
@@ -57,7 +57,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         "Oculta la barra de progreso y habilita todos los controles."
 
         widgets = [self.ui.progreso, self.ui.ejecutar, self.ui.guardar, 
-            self.ui.lista, self.ui.codigo, self.ui.imagen]
+            self.ui.arbol, self.ui.fuente, self.ui.codigo, self.ui.imagen]
 
         self.ui.progreso.setVisible(not esta_habilitado)
 
@@ -65,11 +65,23 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
             x.setEnabled(esta_habilitado)
 
     def _cargar_lista_de_ejemplos(self):
-        todos_los_archivos = glob.glob(self.example_dir + '/*.py')
-        nombres = [os.path.basename(x).replace('.py', '') for x in todos_los_archivos]
 
-        for n in nombres:
-            self.ui.lista.addItem(n)
+        self.ui.arbol.setColumnCount(1)
+        self.ui.arbol.setHeaderLabels(["Nombre"])
+
+        directorios = glob.glob(self.example_dir + '/*')
+
+        for directorio in directorios:
+            raiz = QtGui.QTreeWidgetItem([os.path.basename(directorio), ""])
+            self.ui.arbol.addTopLevelItem(raiz)
+
+            archivos = glob.glob(directorio + '/*.py')
+
+            for archivo in archivos:
+                nombre_legible = os.path.basename(archivo).replace(".py", "")
+                item = QtGui.QTreeWidgetItem([nombre_legible, archivo])
+                raiz.addChild(item)
+
 
     def _iniciar_interfaz(self):
         QtGui.QMainWindow.__init__(self)
@@ -78,7 +90,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self.ui.setupUi(self)
 
     def cuando_pulsa_boton_ejecutar(self):
-        nombre_ejemplo = str(self._obtener_item_actual() + '.py')
+        nombre_ejemplo = self._obtener_item_actual()
         self._ejecutar_ejemplo(nombre_ejemplo)
 
     def cuando_quiere_cerrar(self):
@@ -96,7 +108,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         nombre = self._obtener_item_actual()
         path = unicode(QtGui.QFileDialog.getSaveFileName(self, 
                     'Guardar ejemplo',
-                    nombre + ".py",
+                    nombre,
                     "py (*.py)"))
         contenido = self._obtener_codigo_del_ejemplo(nombre)
 
@@ -105,21 +117,21 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         archivo.close()
 
     def cuando_cambia_seleccion(self):
-        nombre = self._obtener_item_actual()
-        self._mostrar_codigo_del_ejemplo(nombre)
-        self._mostrar_imagen_del_ejemplo(nombre)
+        ruta = self._obtener_item_actual()
+
+        if ruta:
+            self._mostrar_codigo_del_ejemplo(ruta)
+            self._mostrar_imagen_del_ejemplo(ruta)
 
 
-    def _mostrar_imagen_del_ejemplo(self, nombre):
+    def _mostrar_imagen_del_ejemplo(self, ruta):
         escena = QtGui.QGraphicsScene()
         self.ui.imagen.setScene(escena)
-        base = self.this_dir
-        path = os.path.join(self.example_dir, 'capturas')
-        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(path + '/' + nombre + '.png'))
-        escena.addItem(pixmap);
+        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(ruta.replace('.py', '.png')))
+        escena.addItem(pixmap)
 
     def _mostrar_image_inicial(self):
-        self._mostrar_imagen_del_ejemplo('_presentacion')
+        self._mostrar_imagen_del_ejemplo('data/_presentacion')
 
     def _mostrar_codigo_del_ejemplo(self, nombre):
         contenido = self._obtener_codigo_del_ejemplo(nombre)
@@ -129,27 +141,29 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self.ui.codigo.document().setPlainText(MENSAJE_PRESENTACION)
 
     def _obtener_codigo_del_ejemplo(self, nombre):
-        archivo = open(self.example_dir + '/' + nombre + '.py', 'rt')
+        archivo = open(nombre)
         contenido = archivo.read()
         archivo.close()
         return contenido
 
     def _obtener_item_actual(self):
-        return self.ui.lista.currentItem().text()
+        return self.ui.arbol.currentItem().text(1)
 
-    def _ejecutar_ejemplo(self, ejemplo):
-        process = QtCore.QProcess(self)
-        process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
-        process.start(sys.executable, [self.this_dir + '/ejemplos/' + ejemplo])
+    def _ejecutar_ejemplo(self, ruta):
+        self.process = QtCore.QProcess(self)
+        self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
+        self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
+        self.process.start(sys.executable, [ruta])
 
         # Deshabilita todos los controles para que se pueda
         # ejecutar un ejemplo a la vez.
         self._definir_estado_habilitado(False)
 
-    def _cuando_termina_la_ejecucion_del_ejemplo(self, estado):
+    def _cuando_termina_la_ejecucion_del_ejemplo(self, estado, process):
         "Vuelve a permitir que se usen todos los botone de la interfaz."
+        print self.process.readAll()
         self._definir_estado_habilitado(True)
-        self.ui.lista.setFocus()
+        self.ui.arbol.setFocus()
         
 def main():
     app = QtGui.QApplication(sys.argv)
