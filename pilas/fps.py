@@ -14,7 +14,7 @@ class ___FPS:
         return 0
 
 class FPS:
-    print "Usando pygame en el modulo fps"
+    #print "Usando pygame en el modulo fps"
 
     def __init__(self, fps, usar_modo_economico):
         self.antes = self.ahora = pygame.time.get_ticks()

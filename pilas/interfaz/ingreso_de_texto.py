@@ -11,11 +11,17 @@ import re
 
 class IngresoDeTexto(pilas.actores.Actor):
     
-    def __init__(self, texto_inicial="", x=0, y=0, ancho=300, limite_de_caracteres=20):
+    def __init__(self, texto_inicial="", x=0, y=0, ancho=300, limite_de_caracteres=20, icono=None):
         pilas.actores.Actor.__init__(self, x=x, y=y)
         self.texto = texto_inicial
         self.cursor = ""
         self._cargar_lienzo(ancho)
+
+        if icono:
+            self.icono = pilas.imagenes.cargar(icono)
+        else:
+            self.icono = None
+
         self.imagen_caja = pilas.imagenes.cargar("interfaz/caja.png")
         self.centro = ("centro", "centro")
         self._actualizar_imagen()
@@ -68,7 +74,13 @@ class IngresoDeTexto(pilas.actores.Actor):
         alto = self.imagen_caja.alto()
         self.imagen.pintar_parte_de_imagen(self.imagen_caja, 0, 0, 40, ancho, 0, 0)
 
+        if self.icono:
+            dx = 20
+            self.imagen.pintar_parte_de_imagen(self.icono, 0, 0, 40, ancho, 7, 7)
+        else:
+            dx = 0
+
         for x in range(40, self.imagen.ancho() - 40):
             self.imagen.pintar_parte_de_imagen(self.imagen_caja, ancho - 40, 0, 40, alto, x, 0)
 
-        self.imagen.texto(self.texto + self.cursor, 35, 20)
+        self.imagen.texto(self.texto + self.cursor, 15 + dx, 20)

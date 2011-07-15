@@ -353,7 +353,7 @@ class QtSonido:
 
     def reproducir(self):
         # TODO: quitar esta nota...
-        print "Usando pygame para reproducir sonido"
+        # print "Usando pygame para reproducir sonido"
         self.sonido.play()
         
 class SFMLCanvas:
