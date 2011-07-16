@@ -53,6 +53,29 @@ class Girar(Comportamiento):
             self.receptor.rotacion = self.angulo_final
             return True
 
+class Saltar(Comportamiento):
+
+    def __init__(self, velocidad_inicial=10):
+        self.velocidad_inicial = velocidad_inicial
+
+    def iniciar(self, receptor):
+        self.receptor = receptor
+        self.suelo = self.receptor.x
+        self.velocidad = self.velocidad_inicial
+
+    def actualizar(self):
+        self.receptor.y += self.velocidad
+        self.velocidad -= 0.3
+
+        if self.receptor.y <= self.suelo:
+            self.velocidad_inicial /= 2.0
+            self.velocidad = self.velocidad_inicial
+            
+            if self.velocidad_inicial <= 1:
+                # Si toca el suelo
+                self.receptor.x = self.suelo
+                return True
+
 
 class Avanzar(Comportamiento):
     "Desplaza al actor en la dirección y sentido indicado por una rotación."
