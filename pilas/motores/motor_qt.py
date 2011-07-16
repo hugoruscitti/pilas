@@ -82,6 +82,9 @@ class QtImagen():
         "Retorna una tupla con la coordenada del punto medio del la imagen."
         return (self.ancho()/2, self.alto()/2)
 
+    def avanzar(self):
+        pass
+
     def dibujar(self, motor, x, y, dx=0, dy=0, escala_x=1, escala_y=1, rotacion=0):
         """Dibuja la imagen sobre la ventana que muestra el motor.
 

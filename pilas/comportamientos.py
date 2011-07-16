@@ -60,7 +60,7 @@ class Saltar(Comportamiento):
 
     def iniciar(self, receptor):
         self.receptor = receptor
-        self.suelo = self.receptor.x
+        self.suelo = int(self.receptor.y)
         self.velocidad = self.velocidad_inicial
 
     def actualizar(self):
@@ -73,7 +73,7 @@ class Saltar(Comportamiento):
             
             if self.velocidad_inicial <= 1:
                 # Si toca el suelo
-                self.receptor.x = self.suelo
+                self.receptor.y = self.suelo
                 return True
 
 
