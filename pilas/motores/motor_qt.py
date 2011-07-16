@@ -209,6 +209,17 @@ class QtLienzo(QtImagen):
         motor.canvas.setPen(pen)
         motor.canvas.drawLine(x0, y0, x1, y1)
 
+    def poligono(self, motor, puntos, color=colores.negro, grosor=1, cerrado=False):
+        x, y = puntos[0]
+        if cerrado:
+            puntos.append((x, y))
+
+        for p in puntos[1:]:
+            nuevo_x, nuevo_y = p
+            self.linea(motor, x, y, nuevo_x, nuevo_y, color, grosor)
+            x, y = nuevo_x, nuevo_y
+
+
     def cruz(self, motor, x, y, color=colores.negro, grosor=1):
         t = 3
         self.linea(motor, x - t, y - t, x + t, y + t, color, grosor)
@@ -307,6 +318,17 @@ class QtSuperficie(QtImagen):
 
         self.canvas.drawLine(x, y, x2, y2)
         self.canvas.end()
+
+    def poligono(self, puntos, color, grosor, cerrado=False):
+        x, y = puntos[0]
+
+        if cerrado:
+            puntos.append((x, y))
+
+        for p in puntos[1:]:
+            nuevo_x, nuevo_y = p
+            self.linea(x, y, nuevo_x, nuevo_y, color, grosor)
+            x, y = nuevo_x, nuevo_y
 
     def dibujar_punto(self, x, y, color=colores.negro):
         self.circulo(x, y, 3, color=color, relleno=True)

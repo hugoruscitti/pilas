@@ -68,8 +68,7 @@ class Fisica(object):
                         
                         vertices.append((pt.x, pt.y))
                         
-                    #pizarra.dibujar_poligono(vertices)
-                    #print "dibujar un poligono..."
+                    lienzo.poligono(motor, vertices, color=colores.rojo, grosor=grosor, cerrado=True)
                     
                 elif tipo_de_figura == box2d.e_circleShape:
                     lienzo.circulo(motor, cuerpo.position.x, cuerpo.position.y, figura.radius, colores.rojo, grosor=grosor)

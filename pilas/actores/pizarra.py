@@ -59,3 +59,7 @@ class Pizarra(Actor):
     def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro):
         x, y = self.obtener_coordenada_fisica(x, y)
         self.imagen.texto(cadena, x, y, magnitud, fuente, color)
+
+    def poligono(self, puntos, color=pilas.colores.negro, grosor=1):
+        puntos = [self.obtener_coordenada_fisica(*p) for p in puntos]
+        self.imagen.poligono(puntos, color, grosor)

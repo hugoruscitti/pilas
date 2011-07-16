@@ -26,11 +26,15 @@ class Mapa(Actor):
         >>> mapa = pilas.actores.Mapa('untitled2.tmx')
     """
 
-    def __init__(self, grilla_o_mapa, x=0, y=0, restitucion=0.56):
+    def __init__(self, grilla_o_mapa=None, x=0, y=0, restitucion=0.56):
         Actor.__init__(self, 'invisible.png', x, y)
         self.restitucion = restitucion
         self.figuras = []
         self.bloques = []
+
+        if not grilla_o_mapa:
+            grilla_o_mapa = grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
+            
         self.grilla_o_mapa = grilla_o_mapa
 
         if isinstance(grilla_o_mapa, str):
