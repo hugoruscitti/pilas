@@ -12,5 +12,5 @@ pizarra.linea(100, 0, 100, 100, grosor=2)
 pizarra.linea(100, 100, 0, 0, grosor=2)
 
 
-#pilas.avisar("Una pizarra con algunas imagenes.")
+pilas.avisar("Una pizarra con algunas lineas.")
 pilas.ejecutar()

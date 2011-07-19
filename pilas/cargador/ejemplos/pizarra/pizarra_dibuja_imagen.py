@@ -11,4 +11,5 @@ imagen = pilas.imagenes.cargar("pelota.png")
 pizarra.pintar_imagen(imagen, 0, 0)
 
 
+pilas.avisar("Imprimiendo una imagen sobre la pizarra.")
 pilas.ejecutar()
