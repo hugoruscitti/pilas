@@ -8,7 +8,6 @@
 
 import pilas
 
-
 class Camara(object):
     """Representa el punto de vista de la ventana.
 
@@ -16,14 +15,14 @@ class Camara(object):
     punto central de la pantalla. Por defecto estos
     valores con (0, 0)."""
 
-    def __init__(self, app):
-        pass
+    def __init__(self, motor):
+        self.motor = motor
 
     def _set_x(self, x):
         if pilas.utils.es_interpolacion(x):
             x.apply(self, function='_set_x')
         else:
-            pilas.motor.definir_centro_de_la_camara(x, self.y)
+            pilas.motor.camara_x = definir_centro_de_la_camara(x, self.y)
 
     def _get_x(self):
         x, y = pilas.motor.obtener_centro_de_la_camara()

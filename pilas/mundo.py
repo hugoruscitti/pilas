@@ -13,6 +13,7 @@ from pilas import control
 from pilas import fisica
 from pilas import escenas
 from pilas import colisiones
+from pilas import camara
 
 
 class Mundo:
@@ -31,6 +32,8 @@ class Mundo:
         self.tareas = tareas.Tareas() 
         self.control = control.Control()
         self.colisiones = colisiones.Colisiones()
+        self.camara = camara.Camara(self)
+
         eventos.actualizar.conectar(self.actualizar_simuladores)
         self.fisica = fisica.Fisica(motor.obtener_area(), gravedad=gravedad)
         self.escena_actual = None
@@ -80,7 +83,6 @@ class __deprecated_Mundo():
 
 
         self.fps = pilas.fps.FPS(self.fps, self.economico)
-        self.camara = camara.Camara(self.ventana)
         
         self.depurador = depurador.Depurador(self.fps)
 
