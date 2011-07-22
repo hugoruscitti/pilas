@@ -149,7 +149,7 @@ class ModoArea(ModoDepurador):
     
     def dibuja_al_actor(self, motor, lienzo, actor):
         dx, dy = actor.centro
-        lienzo.rectangulo(motor, actor.x - dx, actor.y + dy, actor.ancho, actor.alto, color=pilas.colores.azul)
+        lienzo.rectangulo(motor, actor.x - dx, actor.y + dy, actor.ancho, actor.alto, color=pilas.colores.azul, grosor=ModoDepurador.grosor_de_lineas)
 
 class ModoPosicion(ModoDepurador):
     tecla = "F12"

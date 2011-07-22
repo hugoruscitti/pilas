@@ -243,11 +243,13 @@ class QtLienzo(QtImagen):
         motor.canvas.setPen(pen)
         motor.canvas.drawEllipse(x -radio, y-radio, radio*2, radio*2)
 
-    def rectangulo(self, motor, x, y, ancho, alto, color=colores.negro):
+    def rectangulo(self, motor, x, y, ancho, alto, color=colores.negro, grosor=1):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
 
         r, g, b, a = color.obtener_componentes()
-        motor.canvas.setPen(QtGui.QColor(r, g, b))
+        color = QtGui.QColor(r, g, b)
+        pen = QtGui.QPen(color, grosor)
+        motor.canvas.setPen(pen)
         motor.canvas.drawRect(x, y, ancho, alto)
 
 class QtSuperficie(QtImagen):
