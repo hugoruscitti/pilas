@@ -36,6 +36,7 @@ class BaseActor:
     def __init__(self):
         self._rotacion = 0
         self._escala = 1
+        self._transparencia = 0
         self.centro_x = 0
         self.centro_y = 0
 
@@ -56,7 +57,10 @@ class BaseActor:
         self._escala = s
 
     def definir_transparencia(self, nuevo_valor):
-        pass
+        self._transparencia = nuevo_valor
+
+    def obtener_transparencia(self):
+        return self._transparencia
 
     def obtener_rotacion(self):
         return self._rotacion
@@ -85,7 +89,7 @@ class QtImagen():
     def avanzar(self):
         pass
 
-    def dibujar(self, motor, x, y, dx=0, dy=0, escala_x=1, escala_y=1, rotacion=0):
+    def dibujar(self, motor, x, y, dx=0, dy=0, escala_x=1, escala_y=1, rotacion=0, transparencia=0):
         """Dibuja la imagen sobre la ventana que muestra el motor.
 
            x, y: indican la posicion dentro del mundo.
@@ -99,6 +103,8 @@ class QtImagen():
         motor.canvas.translate(x + centro_x, centro_y - y)
         motor.canvas.rotate(rotacion)
         motor.canvas.scale(escala_x, escala_y)
+        if transparencia:
+            motor.canvas.setOpacity(1 - transparencia/100.0)
         self._dibujar_pixmap(motor, -dx, -dy)
         motor.canvas.restore()
 
@@ -367,7 +373,7 @@ class QtActor(BaseActor):
 
         self.imagen.dibujar(motor, self.x, self.y, 
                 self.centro_x, self.centro_y,
-                escala_x, escala_y, self._rotacion)
+                escala_x, escala_y, self._rotacion, self._transparencia)
 
 class QtSonido:
 

@@ -57,7 +57,6 @@ class Deslizador(Actor):
     def set_y(self, y):
         self.y = y
         self.deslizador.y = y
-        
           
     def conectar(self, f):
         self.funciones.append(f)        

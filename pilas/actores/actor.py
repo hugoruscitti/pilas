@@ -63,6 +63,7 @@ class Actor(object, Estudiante):
 
         self.x = x
         self.y = y
+        self.transparencia = 0
 
         # Define el nivel de lejania respecto del observador.
         self.z = 0
