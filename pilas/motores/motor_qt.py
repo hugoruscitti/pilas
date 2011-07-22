@@ -39,6 +39,7 @@ class BaseActor:
         self._transparencia = 0
         self.centro_x = 0
         self.centro_y = 0
+        self._espejado = False
 
     def definir_centro(self, x, y):
         self.centro_x = x
@@ -69,7 +70,7 @@ class BaseActor:
         self._rotacion = r
         
     def set_espejado(self, espejado):        
-        pass
+        self._espejado = espejado
         
 class QtImagen():
 
@@ -103,8 +104,10 @@ class QtImagen():
         motor.canvas.translate(x + centro_x, centro_y - y)
         motor.canvas.rotate(rotacion)
         motor.canvas.scale(escala_x, escala_y)
+
         if transparencia:
             motor.canvas.setOpacity(1 - transparencia/100.0)
+
         self._dibujar_pixmap(motor, -dx, -dy)
         motor.canvas.restore()
 
@@ -372,6 +375,8 @@ class QtActor(BaseActor):
 
     def dibujar(self, motor):
         escala_x, escala_y = self._escala, self._escala
+        if self._espejado:
+            escala_x *= -1
 
         self.imagen.dibujar(motor, self.x, self.y, 
                 self.centro_x, self.centro_y,
