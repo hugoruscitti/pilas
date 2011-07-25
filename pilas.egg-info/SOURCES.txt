@@ -3,17 +3,13 @@ setup.py
 bin/pilas
 minijuegos/asteroides/README
 minijuegos/asteroides/contador_de_vidas.py
-minijuegos/asteroides/contador_de_vidas.pyc
 minijuegos/asteroides/ejecutar.py
 minijuegos/asteroides/ejecutar.pyc
 minijuegos/asteroides/escena_ayuda.py
-minijuegos/asteroides/escena_ayuda.pyc
 minijuegos/asteroides/escena_juego.py
-minijuegos/asteroides/escena_juego.pyc
 minijuegos/asteroides/escena_menu.py
 minijuegos/asteroides/escena_menu.pyc
 minijuegos/asteroides/piedra_espacial.py
-minijuegos/asteroides/piedra_espacial.pyc
 minijuegos/asteroides/test.py
 minijuegos/asteroides/data/ayuda.png
 minijuegos/asteroides/data/logo.png
@@ -62,11 +58,8 @@ minijuegos/memorice/data/u.png
 minijuegos/tres_en_raya/README
 minijuegos/tres_en_raya/ejecutar.py
 minijuegos/tres_en_raya/escena_ayuda.py
-minijuegos/tres_en_raya/escena_ayuda.pyc
 minijuegos/tres_en_raya/escena_juego.py
-minijuegos/tres_en_raya/escena_juego.pyc
 minijuegos/tres_en_raya/escena_menu.py
-minijuegos/tres_en_raya/escena_menu.pyc
 minijuegos/tres_en_raya/data/ayuda.png
 minijuegos/tres_en_raya/data/ficha1.png
 minijuegos/tres_en_raya/data/ficha2.png
@@ -199,6 +192,9 @@ pilas/data/fondos/selva.png
 pilas/data/fondos/tarde.png
 pilas/data/fondos/volley.png
 pilas/data/grillas/plataformas_10_10.png
+pilas/data/iconos/borrar.png
+pilas/data/iconos/lupa.png
+pilas/data/iconos/ok.png
 pilas/data/interfaz/barra.png
 pilas/data/interfaz/caja.png
 pilas/data/interfaz/deslizador.png
@@ -230,7 +226,6 @@ pilas/interfaz/lista_seleccion.py
 pilas/interfaz/selector.py
 pilas/motores/__init__.py
 pilas/motores/motor.py
-pilas/motores/motor_pygame.py
 pilas/motores/motor_qt.py
 pilas/video/__init__.py
 pilas/video/video.py

@@ -17,9 +17,10 @@ class Deslizador(Actor):
     def __init__(self, x=0, y=0, ruta_barra = 'interfaz/barra.png',
                                  ruta_deslizador = 'interfaz/deslizador.png'):
 
+        self.deslizador = None
         Actor.__init__(self, ruta_barra, x=x, y=y)
-        self.centro = ('izquierda', 'centro')
         self.deslizador = Actor(ruta_deslizador, self.x, self.y)
+        self.centro = ('izquierda', 'centro')
         
         self.click = False
         
@@ -28,6 +29,7 @@ class Deslizador(Actor):
         pilas.eventos.termina_click.conectar(self.termino_del_click)
 
         self.progreso = 0
+        self.posicion_relativa_x = 0
 
         self.funciones = []
 
@@ -35,29 +37,21 @@ class Deslizador(Actor):
         self.x = x
         self.y = y
 
-        self.deslizador.x = x
-        self.deslizador.y = y
         
-        self.a = self.obtener_ancho() 
-        
-        self.limite_izq = self.x
-        self.limite_der = self.x + self.a
 
 
     def set_transparencia(self, nuevo_valor):
         self.transparencia = nuevo_valor
         self.deslizador.transparencia = nuevo_valor
 
-    def set_x(self, x):
-        self.x = x
+    def definir_posicion(self, x, y):
         self.limite_izq = self.x
-        self.limite_der = self.x + self.a
-        self.deslizador.x = x
+        self.limite_der = self.x + self.obtener_ancho()
 
-    def set_y(self, y):
-        self.y = y
-        self.deslizador.y = y
-          
+        self._actor.definir_posicion(x, y)
+        if self.deslizador:
+            self.deslizador.definir_posicion(x + self.posicion_relativa_x, y)
+
     def conectar(self, f):
         self.funciones.append(f)        
 
@@ -75,16 +69,21 @@ class Deslizador(Actor):
 
     def movimiento_del_mouse(self, movimiento):
         if self.click == True:
-            factor = (self.deslizador.x + (self.a - self.x)) / self.a - 1
+            ancho = self.obtener_ancho()
+            factor = (self.deslizador.x + (ancho - abs(self.x))) / ancho - 1
             self.progreso = factor
+            
             self.ejecutar_funciones(factor)
 
             self.deslizador.x = movimiento.x
+
             if self.deslizador.x <= self.limite_izq:
                 self.deslizador.x = self.limite_izq
 
             elif self.deslizador.x >= self.limite_der:
                 self.deslizador.x = self.limite_der
+
+            self.posicion_relativa_x = self.deslizador.x - self.x
                 
 
     def termino_del_click(self, noclick):
