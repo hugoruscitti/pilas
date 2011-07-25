@@ -71,12 +71,9 @@ def __crear_motor(usar_motor):
     elif usar_motor == 'qtgl':
         from motores import motor_qt
         motor = motor_qt.QtGL()
-    elif usar_motor == 'pygame':
-        from motores import motor_pygame
-        motor = motor_pygame.Pygame()
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
-        print "Las opciones de motores que puedes probar son 'qt', 'pygame' y 'sfml'."
+        print "Las opciones de motores que puedes probar son 'qt' y 'qtgl'."
         sys.exit(1)
 
     return motor
@@ -135,17 +132,6 @@ def avisar(mensaje):
     texto.abajo = abajo + 40
     anterior_texto = texto
 
-
-'''
-def ejecutar_cada(segundos, funcion):
-    """Ejecuta una funcion con la frecuencia que indica el argumento segundos.
-    
-    La funcion ejecutada tiene que retornar True para volver a
-    ejecutarse, si retorna False se elimina el temporizador y la funcion
-    no se vuelve a ejecutar.
-    """
-    pilas.mundo.agregar_tarea_siempre(segundos, funcion)
-'''
 
 def abrir_cargador():
     import cargador
