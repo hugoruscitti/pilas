@@ -23,7 +23,7 @@ class Fisica(object):
     
     def __init__(self, area, gravedad=(0, -90)):
         try:
-            self.escenario = box2d.b2AABB11()
+            self.escenario = box2d.b2AABB()
             self.escenario.lowerBound = (-1000.0, -1000.0)
             self.escenario.upperBound = (1000.0, 1000.0)
             self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
