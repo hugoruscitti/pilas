@@ -277,6 +277,7 @@ class Actor(object, Estudiante):
         return self._actor.obtener_rotacion()
 
     def definir_rotacion(self, r):
+        r = r % 360
         self._actor.definir_rotacion(r)
 
     def definir_color(self, c):
