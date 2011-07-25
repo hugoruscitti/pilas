@@ -22,11 +22,17 @@ class Fisica(object):
     "Representa un simulador de mundo fisico, usando la biblioteca box2d."
     
     def __init__(self, area, gravedad=(0, -90)):
-        self.escenario = box2d.b2AABB()
-        self.escenario.lowerBound = (-1000.0, -1000.0)
-        self.escenario.upperBound = (1000.0, 1000.0)
-        self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
-        self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
+        try:
+            self.escenario = box2d.b2AABB11()
+            self.escenario.lowerBound = (-1000.0, -1000.0)
+            self.escenario.upperBound = (1000.0, 1000.0)
+            self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
+            self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
+        except AttributeError:
+            print "Deshabilitando modulo de fisica (no se encuentra instalado pybox2d en este equipo)"
+            self.mundo = None
+            return
+
         self.i = 0
         self.crear_techo(area)
         self.crear_suelo(area)
@@ -34,9 +40,10 @@ class Fisica(object):
         self.figuras_a_eliminar = []
         
     def actualizar(self):
-        self.mundo.Step(1.0 / 20.0, 10, 8)
-        self.i += 1
-        self._procesar_figuras_a_eliminar()
+        if self.mundo:
+            self.mundo.Step(1.0 / 20.0, 10, 8)
+            self.i += 1
+            self._procesar_figuras_a_eliminar()
 
     def _procesar_figuras_a_eliminar(self):
         "Elimina las figuras que han sido marcadas para quitar."
