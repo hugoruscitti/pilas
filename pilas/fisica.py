@@ -183,6 +183,9 @@ class Figura(object):
 
     def definir_velocidad_lineal(self, dx, dy):
         self._cuerpo.SetLinearVelocity((dx, dy))
+
+    def empujar(self, dx, dy):
+        self.definir_velocidad_lineal(dx, dy)
         
     def eliminar(self):
         pilas.mundo.fisica.eliminar_figura(self._cuerpo)

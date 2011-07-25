@@ -21,6 +21,7 @@ class Pingu(Actor):
         self.definir_cuadro(4)
         self.hacer(Esperando())
         self.radio_de_colision = 30
+        self.centro = ("centro", "abajo")
 
     def definir_cuadro(self, indice):
         self.imagen.definir_cuadro(indice)

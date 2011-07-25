@@ -32,9 +32,17 @@ class RebotaComoPelota(Habilidad):
                                        receptor.radio_de_colision)
         receptor.aprender(pilas.habilidades.Imitar, circulo)
         self.circulo = circulo
+        receptor.impulsar = self.impulsar
+        receptor.empujar = self.empujar
         
     def eliminar(self):
         self.circulo.eliminar()
+
+    def impulsar(self, dx, dy):
+        self.circulo.impulsar(dx, dy)
+
+    def empujar(self, dx, dy):
+        self.circulo.empujar(dx, dy)
 
 class RebotaComoCaja(Habilidad):
 

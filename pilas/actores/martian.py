@@ -17,16 +17,14 @@ class Martian(Actor):
 
     def __init__(self, x=0, y=0):
         Actor.__init__(self, x=x, y=y)
-        self.animacion = pilas.imagenes.cargar_grilla("marcianitos/martian.png", 12)
+        self.imagen = pilas.imagenes.cargar_grilla("marcianitos/martian.png", 12)
         self.definir_cuadro(0)
         self.hacer(Esperando())
         self.figura = pilas.fisica.Rectangulo(0, 0, 10, 10, restitucion=0, friccion=0.00)
-
         #self.aprender(pilas.habilidades.PisaPlataformas)
 
     def definir_cuadro(self, indice):
-        self.animacion.definir_cuadro(indice)
-        self.animacion.asignar(self)
+        self.imagen.definir_cuadro(indice)
         self.definir_centro((32, 123))
 
     def mover(self, x, y):
@@ -36,7 +34,7 @@ class Martian(Actor):
         if x < -1:
             self.espejado = True
 
-        self.figura.impulsar(x, y)
+        self.figura.definir_velocidad_lineal(x, y)
 
     def actualizar(self):
         "Sigue el movimiento de la figura."
@@ -53,7 +51,7 @@ class Martian(Actor):
             rotacion = 90
 
         disparo = pilas.actores.Disparo(x=self.x, y=self.y+20, rotacion=rotacion, velocidad=10)
-        disparo.aprender(pilas.habilidades.EliminarseSiSaleDePantalla)
+        #disparo.aprender(pilas.habilidades.EliminarseSiSaleDePantalla)
 
 class Esperando(Comportamiento):
     "Un actor en posicion normal o esperando a que el usuario pulse alguna tecla."
