@@ -131,7 +131,8 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         escena.addItem(pixmap)
 
     def _mostrar_image_inicial(self):
-        self._mostrar_imagen_del_ejemplo('data/_presentacion')
+        path = os.path.join(os.path.dirname(__file__), "data/_presentacion")
+        self._mostrar_imagen_del_ejemplo(path)
 
     def _mostrar_codigo_del_ejemplo(self, nombre):
         contenido = self._obtener_codigo_del_ejemplo(nombre)

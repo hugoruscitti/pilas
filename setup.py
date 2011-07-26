@@ -32,7 +32,9 @@ setup(
         package_data = {
             'images': ['pilas/data/*', 'pilas/ejemplos/data/*', 
                        'pilas/data/fondos/*', 'pilas/data/juegobase/*', 
-                       'pilas/data/juegobase/data/*'],
+                       'pilas/data/juegobase/data/*',
+                       'pilas/cargador/ejemplos',
+                       'pilas/cargador/data'],
             },
 
         scripts=['bin/pilas'],

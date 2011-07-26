@@ -1,14 +1,15 @@
-Empezando, la primer prueba
-===========================
+Empezando, los primeros pasos con pilas
+=======================================
 
 Si ya tienes instalada la biblioteca podemos
-comenzar a realizar nuestras primeras pruebas.
+comenzar a realizar nuestros primeros pasos
+con la biblioteca.
 
 Para empezar, **pilas** se puede usar directamente
 desde un intérprete interactivo de python.
 
 Mi recomendación personal es que utilices una
-herramienta como IDLE, que te permite escribir
+herramienta como ``ipython``, que te permite escribir
 código de python y autocompletar el nombre
 de las funciones. Aunque si
 quieres puedes usar el intérprete estándar
@@ -30,7 +31,6 @@ En tu pantalla tiene que aparecer una ventana
 de color gris:
 
 .. image:: images/cap1.png
-    :width: 50%
 
 La función iniciar tiene mas parámetros, pero
 los veremos mas adelante, por ahora continuaremos
@@ -69,7 +69,6 @@ python:
 En pantalla aparecerá un simpático personaje de color marrón:
 
 .. image:: images/cap2.png
-    :width: 50%
 
 Adoptaremos a este personaje dentro de nuestro juego
 bajo un nombre, en este caso ``mono``. Así que para indicarle
@@ -105,6 +104,12 @@ que tiene que hablar algo, por ejemplo:
 
     mono.decir("Hey, bienvenido a pilas!!!")
 
+y el personaje mostrará exactamente lo que le
+indicamos que tiene que decir, cómo si fuera un
+personaje de comic:
+
+.. image:: images/mono/decir.png
+    :width: 75%
 
 Cosas en común para los actores
 -------------------------------
@@ -138,6 +143,7 @@ Este espacio de referencia se puede observar en detalle si pulsas
 la tecla **F12**, ahí observarás que el movimiento del mouse
 está asociado a una coordenada y cada actor también.
 
+
 Escala
 ______
 
@@ -152,9 +158,8 @@ en pantalla, el atributo ``escala`` (que originalmente vale 1):
 Rotación
 ________
 
-También contamos con un atributo que indica la rotación en ángulos que debe
+También contamos con un atributo que indica la rotación en grados que debe
 tener el actor en pantalla. El atributo ``rotacion``:
-
 
 .. code-block:: python
 
@@ -172,12 +177,17 @@ o bien:
 .. image:: images/mono/rotation80.png
     :width: 5cm
 
+
+La rotación siempre se indica en grados, e indica
+el grado de inclinación hacia la derecha.
+
+
 Animaciones
 ___________
 
 Cualquiera de todas las propiedes
-que vimos antes se podrían usar como
-soporte para hacer animaciones, por
+que vimos anteriormente se pueden usar para hacer
+animaciones, por
 ejemplo, con el siguiente código
 podríamos indicarle al actor que dé una
 vuelta completa:
@@ -270,5 +280,9 @@ de código para probar:
 
     p = pilas.actores.Pingu()    # se mueve con el teclado.
 
-Es todo por ahora, sigue leyendo o comienza
+
+.. image:: images/resultado_parte_1.png
+    :width: 75%
+
+Es todo por ahora, seguí leyendo o comenzá
 a explorar por tu cuenta. A divertirse!

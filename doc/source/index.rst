@@ -9,12 +9,17 @@ Pilas engine - Documentación
     instalar.rst
 
     empezando.rst
+    grupos.rst
+    colisiones.rst
+
+    dibujado_simple_en_pantalla.rst
+    superficies.rst
+
     interpolacion.rst
     controlando_la_pantalla.rst
     imagen.rst
     sonidos.rst
     comportamientos.rst
-    grupos.rst
     fisica.rst
     controles.rst
     tareas.rst
@@ -22,12 +27,9 @@ Pilas engine - Documentación
     ejemplos.rst
     interfaz_de_usuario.rst
     menu.rst
-    dibujado_simple_en_pantalla.rst
-    superficies.rst
     mapas_y_plataformas.rst
     dialogos.rst
 
-    colisiones.rst
     motores.rst
 
     eventos.rst
