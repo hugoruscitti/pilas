@@ -26,6 +26,7 @@ def eliminar_un_actor(actor):
 
 def eliminar_a_todos():
     a_eliminar = list(pilas.actores.todos)
+    a_eliminar = a_eliminar[1:]    # evita borrar el fondo.
 
     for x in a_eliminar:
         x.eliminar()

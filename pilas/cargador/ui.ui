@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>510</width>
-    <height>520</height>
+    <width>822</width>
+    <height>602</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,116 +16,102 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QListWidget" name="lista"/>
-    </item>
-    <item row="0" column="1">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QGraphicsView" name="imagen">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QTreeWidget" name="arbol">
+       <column>
+        <property name="text">
+         <string notr="true">1</string>
         </property>
-        <property name="minimumSize">
-         <size>
-          <width>400</width>
-          <height>300</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QFrame" name="progreso">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>22</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
-        </property>
-        <property name="lineWidth">
-         <number>0</number>
-        </property>
-        <widget class="QProgressBar" name="progressBar">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>221</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="maximum">
-          <number>0</number>
-         </property>
-         <property name="value">
-          <number>-1</number>
-         </property>
-         <property name="textVisible">
-          <bool>true</bool>
-         </property>
-         <property name="invertedAppearance">
-          <bool>false</bool>
-         </property>
-         <property name="textDirection">
-          <enum>QProgressBar::BottomToTop</enum>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>0</y>
-           <width>131</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Cargando ejemplo</string>
-         </property>
-        </widget>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       </column>
+      </widget>
+      <widget class="QWidget" name="">
+       <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QPushButton" name="ejecutar">
-          <property name="text">
-           <string>Ejecutar</string>
+         <widget class="QGraphicsView" name="imagen">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>300</height>
+           </size>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="fuente">
-          <property name="text">
-           <string>Cambiar tipografia</string>
+         <widget class="QFrame" name="progreso">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>22</height>
+           </size>
           </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>0</number>
+          </property>
+          <widget class="QLabel" name="label">
+           <property name="geometry">
+            <rect>
+             <x>6</x>
+             <y>0</y>
+             <width>170</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Aguarde por favor ...</string>
+           </property>
+          </widget>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="guardar">
-          <property name="text">
-           <string>Guardar Codigo</string>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="ejecutar">
+            <property name="text">
+             <string>Ejecutar</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="fuente">
+            <property name="text">
+             <string>Cambiar tipografia</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="guardar">
+            <property name="text">
+             <string>Guardar Codigo</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="codigo">
+          <property name="readOnly">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <widget class="QTextEdit" name="codigo">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -134,7 +120,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>510</width>
+     <width>822</width>
      <height>25</height>
     </rect>
    </property>

@@ -9,13 +9,14 @@ de mas realismo y diversión.
 El protagonista es Box2D
 ------------------------
 
-Así cómo pilas elegimos usar usar motores gráficos externos (pygame o
-sfml), también optamos por usar un motor de física
-externo libre y muy utilizado llamado Box2D.
+Por el mismo motivo que elegí usar motor gráficos externos, he
+seleccionado una biblioteca externa para gestionar la simulación
+física. Box2D y PyBox2D son las bibliotecas protagonistas
+de casi toda la funcionalidad que vas a ver en este módulo.
 
-El módulo ``pilas.fisica`` es simplemente una facilidad
-que te permite integrar comportamiento realista a tus
-juegos de manera muy sencilla.
+El módulo ``pilas.fisica`` es tan sólo una facilidad para
+que no sea necesario tener muchos conocimientos de física
+y bibliotecas como Box2D para hacer juegos con física.
 
 
 Unos ejemplos
@@ -26,7 +27,7 @@ usando un ejemplo, escribe el siguiente código:
 
 .. code-block:: python
 
-    pelotas = pilas.atajos.fabricar(pilas.actor.Pelota, 10)
+    pelotas = pilas.actor.Pelota() * 10
 
 esto creará un grupo de circunferencias que rebotarán
 hasta la parte inferior de la pantalla.
@@ -36,8 +37,12 @@ hacerlas rebotar:
 
 .. code-block:: python
 
-    pelotas = pilas.atajos.fabricar(pilas.actor.Caja, 10)
+    pelotas = pilas.actor.Caja * 10
 
+
+Como puedes ver, el resultado es un grupo caótico
+de actores chocando entre sí. Mas adelante veremos
+como personalizar y "controlar" un poco el escenario.
 
 
 Modo depuración de física
@@ -52,14 +57,19 @@ Observa esta escena:
 .. image:: images/fisica_1.png
 
 Cada uno de esos actores está asociado a una figura
-geométrica, pero para asegurarte de ello puedes pulsar
-en cualquier momento la tecla F11 y observar las lineas
-de color amarillo:
+geométrica, la física en realidad se da en un nivel muy
+primitivo de figuras. El aspecto de las cosas es
+solo eso, un aspecto. Lo que "manda" en el comportamiento
+físico son las figuras geométricas (cuerpos).
+
+Intenta lo siguiente, pulsa la tecla **F11** y observarás
+varias lineas de color rojo indicando las figuras de
+los cuerpos:
 
 .. image:: images/fisica_2.png
 
 
-Las lineas de color amarillo indican polígonos que el
+Las lineas rojas indican polígonos que el
 motor de física puede controlar, las cajas tienen forma
 rectangular, los actores Pelota tienen figuras circulares, y
 el suelo y las paredes también están en el sistema de física.
@@ -74,6 +84,10 @@ lo siguiente:
     pilas.mundo.fisica.eliminar_paredes()
 
 
+Pero recuerda que los objetos que no se ven en la pantalla
+de todas maneras estarán ahí. Una buena idea es eliminarlos
+ni bien los dejas de usar.
+
 
 Física personalizada
 --------------------
@@ -87,7 +101,8 @@ y son invisibles (al principio), pero luego se pueden vincular
 a cualquier actor con facilidad.
 
 Intenta lo siguiente, ingresa en el modo interactivo de pilas
-y pulsa la tecla F11. Tendrías que ver el texto "ModoFisica Habilitado" 
+y pulsa la tecla **F11**. Tendrías que ver el texto 
+"F11 ModoFisica habilitado." 
 en la esquina superior de la ventana:
 
 .. image:: images/fisica_personalizada_1.png
@@ -110,7 +125,7 @@ superior de la ventana y luego caerá rebotando... algo así:
 
 Ahora bien, habrás notado que estas dos circunferencias las
 podemos ver porque está habilitado el módulo de depuración (que
-activamos con F11), pero esto no lo va a ver alguien que juegue
+activamos con **F11**), pero esto no lo va a ver alguien que juegue
 a nuestro juego. El modo depuración es solo para desarrolladores.
 
 Lo que nos falta hacer, es darles apariencia a esas figuras. Algo
@@ -126,7 +141,6 @@ círculo que sea una bomba:
 
 .. code-block:: python
 
-
     mono = pilas.actores.Mono()
     mono.aprender(pilas.habilidades.Imitar(circulo))
     
@@ -134,7 +148,8 @@ círculo que sea una bomba:
     bomba.aprender(pilas.habilidades.Imitar, circulo_dinamico)
 
 
-Esto es diferente a lo anterior, los objetos físicos tienen apariencia:
+Esto es diferente a lo anterior, los objetos físicos ahora
+tienen apariencia:
 
 .. image:: images/fisica_personalizada_3.png
 
@@ -160,8 +175,8 @@ quiero explicar cómo se usar el motor, pero cuando hagas tus
 juegos recuerda usar el modo depuración de física para detectar
 estos detalles y corregirlos, son muy importantes para que
 tus usuarios disfruten del juego. Recuerda que ellos no
-verán los círculos amarillos...
-
+verán los círculos rojos... solo verán la apariencia
+de los actores.
 
 
 Cambiando la gravedad interactivamente
@@ -183,7 +198,7 @@ cambiar la gravedad en cualquier momento invocando a la función
 
 .. code-block:: python
 
-    pilas.fisica.definir_gravedad(200, 0)
+    pilas.atajos.definir_gravedad(200, 0)
 
 o directamente especificar la gravedad cuando inicias pilas, por
 ejemplo:
@@ -191,7 +206,6 @@ ejemplo:
 .. code-block:: python
 
     pilas.fisica.definir_gravedad(90, 90)
-
 
 Ten en cuenta que el primer argumento es la aceleración horizontal y
 la segunda componente es la aceleración vertical. Los valores originales

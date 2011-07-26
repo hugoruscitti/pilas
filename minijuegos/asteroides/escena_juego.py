@@ -17,7 +17,7 @@ class Jugando(Estado):
         self.juego.crear_naves(cantidad=nivel * 3)
 
         # Cada un segundo le avisa al estado que cuente.
-        pilas.mundo.agregar_tarea_siempre(1, self.actualizar)
+        pilas.mundo.agregar_tarea(1, self.actualizar)
 
     def actualizar(self):
         if self.juego.ha_eliminado_todas_las_piedras():
@@ -52,17 +52,14 @@ class Iniciando(Estado):
 class PierdeVida(Estado):
 
     def __init__(self, juego):
+        self.contador_de_segundos = 0
         self.juego = juego
 
         if self.juego.contador_de_vidas.le_quedan_vidas():
             self.juego.contador_de_vidas.quitar_una_vida()
+            pilas.mundo.agregar_tarea(1, self.actualizar)
         else:
             juego.cambiar_estado(PierdeTodoElJuego(juego))
-
-        self.contador_de_segundos = 0
-
-        # Cada un segundo le avisa al estado que cuente.
-        pilas.mundo.agregar_tarea(1, self.actualizar)
 
     def actualizar(self):
         self.contador_de_segundos += 1
@@ -106,7 +103,7 @@ class Juego(pilas.escenas.Escena):
         nave = pilas.actores.Nave()
         nave.aprender(pilas.habilidades.SeMantieneEnPantalla)
         nave.definir_enemigos(self.piedras, self.cuando_explota_asterioide)
-        pilas.colisiones.agregar(nave, self.piedras, self.explotar_y_terminar)
+        pilas.mundo.colisiones.agregar(nave, self.piedras, self.explotar_y_terminar)
 
     def cuando_explota_asterioide(self):
         self.puntaje.aumentar(1)
@@ -125,7 +122,6 @@ class Juego(pilas.escenas.Escena):
         nave.eliminar()
 
         self.cambiar_estado(PierdeVida(self))
-
 
     def crear_naves(self, cantidad):
         "Genera una cantidad especifica de naves en el escenario."

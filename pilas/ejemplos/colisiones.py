@@ -20,7 +20,7 @@ class Colisiones(pilas.escenas.Normal):
         pilas.escenas.Normal.__init__(self, pilas.colores.grisoscuro)
         self.crear_personajes()
 
-        pilas.colisiones.agregar([self.mono], self.bananas, comer)
+        pilas.mundo.colisiones.agregar([self.mono], self.bananas, comer)
         pilas.avisar("Utilice el mouse para mover al mono y comer")
 
     def crear_personajes(self):

@@ -13,13 +13,12 @@ class Banana(Actor):
     "Representa una explosion para una bomba, dinamita etc..."
 
     def __init__(self, x=0, y=0):
-        self.animacion = pilas.imagenes.cargar_grilla("banana.png", 2)
         Actor.__init__(self, x=x, y=y)
+        self.imagen = pilas.imagenes.cargar_grilla("banana.png", 2)
         self.definir_cuadro(0)
 
     def definir_cuadro(self, indice):
-        self.animacion.definir_cuadro(indice)
-        self.animacion.asignar(self)
+        self.imagen.definir_cuadro(indice)
 
     def abrir(self):
         self.definir_cuadro(1)

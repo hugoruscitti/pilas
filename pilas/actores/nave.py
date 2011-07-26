@@ -68,7 +68,7 @@ class Nave(Animacion):
         El argumento cuando_elimina_enemigo tiene que ser una funcion que
         se ejecutara cuando se produzca la colision."""
         self.cuando_elimina_enemigo = cuando_elimina_enemigo
-        pilas.colisiones.agregar(self.disparos, grupo, self.hacer_explotar_al_enemigo)
+        pilas.mundo.colisiones.agregar(self.disparos, grupo, self.hacer_explotar_al_enemigo)
 
     def hacer_explotar_al_enemigo(self, mi_disparo, el_enemigo):
         "Es el método que se invoca cuando se produce una colisión 'tiro <-> enemigo'"

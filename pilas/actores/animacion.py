@@ -29,8 +29,7 @@ class Animacion(Animado):
     def actualizar(self):
         if self.tick > VELOCIDAD:
             self.tick = 0
-            ha_reiniciado = self.animacion.avanzar()
-            self.animacion.asignar(self)
+            ha_reiniciado = self.imagen.avanzar()
 
             # Si la animacion ha terminado se elimina de la pantalla.
             if ha_reiniciado and not self.ciclica:

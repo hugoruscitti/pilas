@@ -7,35 +7,43 @@
 # website - http://www.pilas-engine.com.ar
 
 import pilas
-
+from pilas import colores
 
 try:
     import Box2D as box2d
 except ImportError:
-    print "No esta disponible box2d, se deshabilitara la funcionalidad Fisica."
+    print "No esta disponible box2d, se deshabilitara la fisica."
 
 import math
 
+    
 
 class Fisica(object):
     "Representa un simulador de mundo fisico, usando la biblioteca box2d."
     
-    def __init__(self, gravedad=(0, -90)):
-        self.escenario = box2d.b2AABB()
-        self.escenario.lowerBound = (-1000.0, -1000.0)
-        self.escenario.upperBound = (1000.0, 1000.0)
-        self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
-        self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
+    def __init__(self, area, gravedad=(0, -90)):
+        try:
+            self.escenario = box2d.b2AABB()
+            self.escenario.lowerBound = (-1000.0, -1000.0)
+            self.escenario.upperBound = (1000.0, 1000.0)
+            self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
+            self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
+        except AttributeError:
+            print "Deshabilitando modulo de fisica (no se encuentra instalado pybox2d en este equipo)"
+            self.mundo = None
+            return
+
         self.i = 0
-        self.crear_techo()
-        self.crear_suelo()
-        self.crear_paredes()
+        self.crear_techo(area)
+        self.crear_suelo(area)
+        self.crear_paredes(area)
         self.figuras_a_eliminar = []
         
     def actualizar(self):
-        self.mundo.Step(1.0 / 20.0, 10, 8)
-        self.i += 1
-        self._procesar_figuras_a_eliminar()
+        if self.mundo:
+            self.mundo.Step(1.0 / 20.0, 10, 8)
+            self.i += 1
+            self._procesar_figuras_a_eliminar()
 
     def _procesar_figuras_a_eliminar(self):
         "Elimina las figuras que han sido marcadas para quitar."
@@ -47,12 +55,10 @@ class Fisica(object):
             self.figuras_a_eliminar = []
 
         
-    def dibujar_figuras_sobre_pizarra(self, pizarra):
+    def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
         "Dibuja todas las figuras en una pizarra. Indicado para depuracion."
         cuerpos = self.mundo.bodyList
         cantidad_de_figuras = 0
-        
-        pizarra.definir_color(pilas.colores.amarillo)
         
         for cuerpo in cuerpos:
             xform = cuerpo.GetXForm()
@@ -69,25 +75,25 @@ class Fisica(object):
                         
                         vertices.append((pt.x, pt.y))
                         
-                    pizarra.dibujar_poligono(vertices)
+                    lienzo.poligono(motor, vertices, color=colores.rojo, grosor=grosor, cerrado=True)
                     
                 elif tipo_de_figura == box2d.e_circleShape:
-                    pizarra.dibujar_circulo(cuerpo.position.x, cuerpo.position.y, figura.radius, False)
+                    lienzo.circulo(motor, cuerpo.position.x, cuerpo.position.y, figura.radius, colores.rojo, grosor=grosor)
                 else:
                     print "no puedo identificar el tipo de figura."
         
     def crear_cuerpo(self, definicion_de_cuerpo):
         return self.mundo.CreateBody(definicion_de_cuerpo)
     
-    def crear_suelo(self, restitucion=1):
-        self.suelo = Rectangulo(0, -240, 640, 2, dinamica=False, fisica=self, restitucion=restitucion)
+    def crear_suelo(self, (ancho, alto), restitucion=1):
+        self.suelo = Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
-    def crear_techo(self, restitucion=1):
-        self.suelo = Rectangulo(0, 240, 640, 2, dinamica=False, fisica=self, restitucion=restitucion)
+    def crear_techo(self, (ancho, alto), restitucion=1):
+        self.suelo = Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
         
-    def crear_paredes(self, restitucion=1):
-        self.pared_izquierda = Rectangulo(-320, 0, 2, 480, dinamica=False, fisica=self, restitucion=restitucion)
-        self.pared_derecha = Rectangulo(320, 0, 2, 480, dinamica=False, fisica=self, restitucion=restitucion)
+    def crear_paredes(self, (ancho, alto), restitucion=1):
+        self.pared_izquierda = Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
+        self.pared_derecha = Rectangulo(ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
         
     def eliminar_suelo(self):
         if self.suelo:
@@ -184,6 +190,9 @@ class Figura(object):
 
     def definir_velocidad_lineal(self, dx, dy):
         self._cuerpo.SetLinearVelocity((dx, dy))
+
+    def empujar(self, dx, dy):
+        self.definir_velocidad_lineal(dx, dy)
         
     def eliminar(self):
         pilas.mundo.fisica.eliminar_figura(self._cuerpo)

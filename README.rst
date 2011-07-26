@@ -30,7 +30,8 @@ Dependencias
 ============
 
 - pygame
-- pysfml
+- pyqt4
+- pybox
 - python
 
 
@@ -58,13 +59,13 @@ El modulo ``pilas.dispatch`` se adoptó del
 core de Django, y estába basado en el proyecto pydispatch.
 
 
-PySFML
-------
+PyQt4
+-----
 
 Todo el manejo multimedia se realiza gracias a la biblioteca
-pySFML:
+Qt4:
 
-    http://www.sfml-dev.org/index.php
+- http://qt.nokia.com/
 
 
 pygame
@@ -75,13 +76,12 @@ pygame, que además nos permite seleccionarla
 en casos donde no hay soporte para OpenGL (como
 en los equipos OLPC por ejemplo).
 
-Elements y box2d
-----------------
+Box2d
+-----
 
 Para el manejo multimedia estamos usando
-la biblioteca Elements y box2d:
+la biblioteca box2d:
 
-- http://elements.linuxuser.at
 - http://code.google.com/p/pybox2d/
 
 GFXLib
@@ -104,7 +104,7 @@ DANC, de lostgarden.com
 En pilas utilizamos algunos gráficos que DANC publicó
 en su sitio web:
 
-    www.lostgarden.com
+- www.lostgarden.com
 
 
 a arboris
@@ -113,4 +113,4 @@ a arboris
 Por sus gráficos de naves que se pueden
 descargar desde la siguiente web:
 
-    http://arboris.deviantart.com/art/Spaceship-sprites-43030167
+- http://arboris.deviantart.com/art/Spaceship-sprites-43030167

@@ -21,10 +21,13 @@ PATH = os.path.dirname(os.path.abspath(__file__))
 
 def cargar_autocompletado():
     "Carga los modulos de python para autocompletar desde la consola interactiva."
-    import rlcompleter
-    import readline
+    try:
+        import rlcompleter
+        import readline
 
-    readline.parse_and_bind("tab: complete")
+        readline.parse_and_bind("tab: complete")
+    except ImportError:
+        print "No se puede cargar el autocompletado, instale readline..."
 
 def hacer_flotante_la_ventana():
     "Hace flotante la ventana para i3 (el manejador de ventanas que utiliza hugo...)"
@@ -116,9 +119,9 @@ def interpolable(f):
             duracion = 1
 
         if isinstance(value, list):
-            value = pilas.interpolar(value, duracion=duracion)
+            value = interpolar(value, duracion=duracion)
         elif isinstance(value, xrange):
-            value = pilas.interpolar(list(value), duracion=duracion)
+            value = interpolar(list(value), duracion=duracion)
             
         if es_interpolacion(value):
             value.apply(args[0], function=f.__name__)
@@ -128,8 +131,12 @@ def interpolable(f):
     return inner
 
 def hacer_coordenada_mundo(x, y):
-    return (x + 320, 240 - y)
+    dx, dy = pilas.mundo.motor.centro_fisico()
+    return (x + dx, dy - y)
 
+def hacer_coordenada_pantalla_absoluta(x, y):
+    dx, dy = pilas.mundo.motor.centro_fisico()
+    return (x + dx, dy - y)
 
 def listar_actores_en_consola():
     todos = pilas.actores.todos
@@ -142,9 +149,61 @@ def listar_actores_en_consola():
 
     print ""
 
-
-
 def obtener_angulo_entre(punto_a, punto_b):
     (x, y) = punto_a
     (x1, y1) = punto_b
     return math.degrees(math.atan2(y1 - y, x1 -x))
+
+def convertir_de_posicion_relativa_a_fisica(x, y):
+    dx, dy = pilas.mundo.motor.centro_fisico()
+    return (x + dx, dy - y)
+
+def convertir_de_posicion_fisica_relativa(x, y):
+    dx, dy = pilas.mundo.motor.centro_fisico()
+    return (x - dx, dy - y)
+
+def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
+    """Retorna un objeto que representa cambios de atributos progresivos.
+    
+    El resultado de esta función se puede aplicar a varios atributos
+    de los actores, por ejemplo::
+        
+        bomba = pilas.actores.Bomba()
+        bomba.escala = pilas.interpolar(3)
+
+    Esta función también admite otros parámetros cómo:
+
+        - duracion: es la cantidad de segundos que demorará toda la interpolación.
+        - demora: cuantos segundos se deben esperar antes de iniciar.
+        - tipo: es el algoritmo de la interpolación, puede ser 'lineal'.
+    """
+
+
+    import interpolaciones
+
+    algoritmos = {
+            'lineal': interpolaciones.Lineal,
+            }
+
+    if algoritmos.has_key('lineal'):
+        clase = algoritmos[tipo]
+    else:
+        raise ValueError("El tipo de interpolacion %s es invalido" %(tipo))
+
+    # Permite que los valores de interpolacion sean un numero o una lista.
+    if not isinstance(valor_o_valores, list):
+        valor_o_valores = [valor_o_valores]
+
+    return clase(valor_o_valores, duracion, demora)
+
+def obtener_area():
+    "Retorna el area que ocupa la ventana"
+    return pilas.mundo.motor.obtener_area()
+
+def obtener_bordes():
+    ancho, alto = pilas.mundo.motor.obtener_area()
+    return -ancho/2, ancho/2, alto/2, -alto/2
+
+def obtener_area_de_texto(texto):
+    "Informa el ancho y alto que necesitara un texto para imprimirse."
+    return pilas.mundo.motor.obtener_area_de_texto(texto)

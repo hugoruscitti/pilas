@@ -17,14 +17,14 @@ class Pingu(Actor):
 
     def __init__(self, x=0, y=0):
         Actor.__init__(self, x=x, y=y)
-        self.animacion = pilas.imagenes.cargar_grilla("pingu.png", 10)
+        self.imagen = pilas.imagenes.cargar_grilla("pingu.png", 10)
         self.definir_cuadro(4)
         self.hacer(Esperando())
         self.radio_de_colision = 30
+        self.centro = ("centro", "abajo")
 
     def definir_cuadro(self, indice):
-        self.animacion.definir_cuadro(indice)
-        self.animacion.asignar(self)
+        self.imagen.definir_cuadro(indice)
 
 
 class Esperando(Comportamiento):
@@ -62,7 +62,6 @@ class Caminando(Comportamiento):
 
         if pilas.mundo.control.arriba:
             self.receptor.hacer(Saltando())
-
 
     def avanzar_animacion(self):
         self.paso += 1

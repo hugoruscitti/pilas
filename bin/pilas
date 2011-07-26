@@ -1,13 +1,9 @@
-#!/sbin/env python
+#!/usr/bin/python
 import sys
 from optparse import OptionParser
 import pilas
 
 analizador = OptionParser()
-
-analizador.add_option("-s", "--servir",  dest="servir",
-        action="store_true", default=False,
-        help="Pone a pilas en modo servidor web.")
 
 analizador.add_option("-j", "--crearjuego", dest="crearjuego",
         action="store_true", default=False,
@@ -20,16 +16,12 @@ analizador.add_option("-e", "--ejemplos", dest="ejemplos",
 (opciones, argumentos) = analizador.parse_args()
 
 
-if opciones.servir:
-    pilas.red.iniciar_servidor()
-    sys.exit(0)
-elif opciones.crearjuego:
+if opciones.crearjuego:
     pilas.utils.crear_juego()
     sys.exit(0)
 elif opciones.ejemplos:
-    pilas.cargador.ejecutar()
+    pilas.abrir_cargador()
     sys.exit(0)
-
 
 print "Error, no has indicado un parametro para iniciar pilas."
 print "Puedes ejecutar el comando 'pilas --help' para ver instrucciones."

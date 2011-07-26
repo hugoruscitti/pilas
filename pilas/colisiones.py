@@ -16,7 +16,6 @@ class Colisiones:
         self.colisiones = []
 
     def verificar_colisiones(self):
-
         for x in self.colisiones:
             self._verificar_colisiones_en_tupla(x)
 
@@ -37,8 +36,6 @@ class Colisiones:
                     if b not in pilas.actores.todos:
                         if b in grupo_b:
                             list.remove(grupo_b, b)
-
-
 
     def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
         "Agrega dos listas de actores para analizar colisiones."
@@ -61,4 +58,3 @@ class Colisiones:
                 lista_de_colisiones.append(a)
 
         return lista_de_colisiones
-

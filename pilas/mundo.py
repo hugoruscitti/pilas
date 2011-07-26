@@ -6,19 +6,14 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-import time
-import sys
-
-import ventana
-import control
-import camara
-import escenas
-import utils
-import eventos
-import tareas
 import pytweener
-import depurador
-import pilas
+from pilas import eventos
+from pilas import tareas
+from pilas import control
+from pilas import fisica
+from pilas import escenas
+from pilas import colisiones
+from pilas import camara
 
 
 class Mundo:
@@ -28,29 +23,72 @@ class Mundo:
     motor y mantener el bucle de juego.
     """
 
-    def __init__(self, ancho, alto, titulo, fps=60, economico=True, gravedad=(0, -90)):
+    def __init__(self, motor, ancho, alto, titulo, fps=60, economico=True, 
+            gravedad=(0, -90), pantalla_completa=False):
+        self.motor = motor
+        self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa)
+
+        self.tweener = pytweener.Tweener()
+        self.tareas = tareas.Tareas() 
+        self.control = control.Control()
+        self.colisiones = colisiones.Colisiones()
+        self.camara = camara.Camara(self)
+
+        eventos.actualizar.conectar(self.actualizar_simuladores)
+        self.fisica = fisica.Fisica(motor.obtener_area(), gravedad=gravedad)
+        self.escena_actual = None
+
+    def actualizar_simuladores(self, evento):
+        self.tweener.update(16)
+        self.tareas.actualizar(1/60.0)
+        self.fisica.actualizar()
+        self.colisiones.verificar_colisiones()
+
+    def terminar(self):
+        import sys
+        sys.exit(0)
+
+    def ejecutar_bucle_principal(self, ignorar_errores=False):
+        "Mantiene en funcionamiento el motor completo."
+        self.motor.ejecutar_bucle_principal(self, ignorar_errores)
+
+    def definir_escena(self, escena_nueva):
+        "Cambia la escena que se muestra en pantalla"
+
+        if self.escena_actual:
+            self.escena_actual.terminar()
+
+        self.escena_actual = escena_nueva
+        escena_nueva.iniciar()
+
+    def agregar_tarea_una_vez(self, time_out, function, *params): 
+        return self.tareas.una_vez(time_out, function, params)
+
+    def agregar_tarea_siempre(self, time_out, function, *params): 
+        return self.tareas.siempre(time_out, function, params)
+
+    def agregar_tarea(self, time_out, funcion, *parametros):
+        return self.tareas.condicional(time_out, funcion, parametros)
+
+'''
+
+class __deprecated_Mundo():
+
+        #self.fisica.actualizar()
         self.ventana = ventana.iniciar(ancho, alto, titulo)
         self.fps = fps
         self.economico = economico
         ventana.ancho = ancho
         ventana.alto = alto
 
-        self.control = control.Control()
-
-        # todo: llevar a ventana.iniciar
-        utils.hacer_flotante_la_ventana()
-        pilas.motor.centrar_ventana()
 
         self.fps = pilas.fps.FPS(self.fps, self.economico)
-        self.camara = camara.Camara(self.ventana)
         
         self.depurador = depurador.Depurador(self.fps)
 
         self.escena_actual = None
 
         # Genera los administradores de tareas e interpolaciones.
-        self.tweener = pytweener.Tweener()
-        self.tareas = tareas.Tareas() 
         
         # Genera el motor de fisica.
         self.fisica = pilas.fisica.Fisica(gravedad=gravedad)
@@ -59,13 +97,6 @@ class Mundo:
         self.depuracion_fisica_habilitada = False
         self.funciones_depuracion = []
         self.salir = False
-
-    def terminar(self):
-        self.salir = True
-
-    def ejecutar_bucle_principal(self, ignorar_errores=False):
-        "Mantiene en funcionamiento el motor completo."
-        pilas.motor.ejecutar_bucle_principal(self, ignorar_errores)
 
 
     def _realizar_actualizacion_logica(self, ignorar_errores):
@@ -100,12 +131,6 @@ class Mundo:
         else:
             self.actualizar_actores()
 
-    def realizar_actualizacion_grafica(self):
-        self.escena_actual.dibujar(self.ventana)
-        self.depurador.inicia_actualizacion_grafica()
-        self.dibujar_actores()
-        self.depurador.finaliza_actualizacion_grafica()
-        pilas.motor.actualizar_pantalla()
 
     def cerrar_ventana(self):
         pilas.motor.cerrar_ventana()
@@ -114,16 +139,8 @@ class Mundo:
     def definir_escena(self, escena_nueva):
         "Cambia la escena que se muestra en pantalla"
         self.escena_actual = escena_nueva
-	escena_nueva.iniciar()
+        escena_nueva.iniciar()
 
-    def agregar_tarea_una_vez(self, time_out, function, *params): 
-        self.tareas.una_vez(time_out, function, params)
-
-    def agregar_tarea_siempre(self, time_out, function, *params): 
-        self.tareas.siempre(time_out, function, params)
-
-    def agregar_tarea(self, time_out, funcion, *parametros):
-        self.tareas.condicional(time_out, funcion, parametros)
 
     def alternar_pausa(self):
         if self.pausa_habilitada:
@@ -134,10 +151,6 @@ class Mundo:
             self.pausa = pilas.actores.Actor("icono_pausa.png")
             self.pausa.z = -100
             
-    def actualizar_simuladores(self):
-        self.tweener.update(16)
-        self.tareas.update(1/60.0)
-        self.fisica.actualizar()
 
     def actualizar_actores(self):
         for actor in pilas.actores.todos:
@@ -159,3 +172,4 @@ class Mundo:
 
     def analizar_colisiones(self):
         pilas.colisiones.verificar_colisiones()
+'''

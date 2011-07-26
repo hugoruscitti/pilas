@@ -1,3 +1,4 @@
+'''
 import pilas
 try:
     import Image
@@ -33,3 +34,4 @@ class __camara_buffer(object):
         return self._ultimo_cuadro, self._ultimo_numero_de_cuadro
 
 CamaraWeb = __camara_buffer()
+'''

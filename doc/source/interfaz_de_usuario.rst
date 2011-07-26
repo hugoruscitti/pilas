@@ -115,6 +115,44 @@ cadena de texto de la caja:
     entrada.texto = "Texto inicial"
 
 
+Inicialmente, el objeto ``IngresoDeTexto`` toma un tamaño
+y apariencia predeterminado. Pero esto se puede cambiar
+fácilmente usando argumentos al momento de crear
+el componente.
+
+Por ejemplo, podríamos enviarle cómo argumento un
+tamaño mas pequeño y un ícono de búsqueda:
+
+.. code-block:: python
+
+    entrada = pilas.interfaz.IngresoDeTexto(ancho=100, icono='iconos/lupa.png')
+
+u otro ícono:
+
+.. code-block:: python
+
+    entrada = pilas.interfaz.IngresoDeTexto(ancho=100, icono='iconos/ok.png')
+
+
+La caja también tiene otros métodos para permitir o prohibir
+el ingreso de datos.
+
+Por ejemplo, podríamos decirle a la caja que solo permita
+el ingreso de números, letras, o poner un límite de cantidad
+de caracteres. Los métodos son:
+
+- solo_numeros()
+- solo_letras()
+
+y el límite de caracteres está indicado por la referencia ``limite_de_caracteres``:
+
+.. code-block:: python
+
+    print "El limite de caracteres es"
+    print entrada.limite_de_caracteres
+
+    entrada.limite_de_caracteres = 50
+    
 Lista de selección
 ------------------
 

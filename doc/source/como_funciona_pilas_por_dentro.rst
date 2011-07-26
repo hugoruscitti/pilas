@@ -382,8 +382,7 @@ hacer dos cosas:
 - suscribir funciones.
 - invocar a las funciones que se han suscrito.
 
-1 Suscribir
-___________
+**1 Suscribir**
 
 Por ejemplo, el evento ``mueve_mouse`` es un objeto, y cuando
 invocamos la sentencia ``pilas.eventos.mueve_mouse.conectar(mi_funcion)``, 
@@ -394,8 +393,7 @@ Puedes imaginar al evento como un objeto contenedor (similar
 a una lista), que guarda cada una de las funciones que le enviamos
 con el método ``conectar``.
 
-2 Notificar
-___________
+**2 Notificar**
 
 La segunda tarea del evento es notificar a todas
 las funciones que se suscribieron.
@@ -633,3 +631,25 @@ Listo, es casi idéntico al anterior, si llamas a ``aprender`` con un
 argumento como ``20``, el actor girará mucho mas rápido que
 antes. Y si no especificas la velocidad, se asumirá que la
 velocidad es ``1``, porque así lo indica el método ``__init__``.
+
+
+
+Documentación
+-------------
+
+El sistema de documentación que usamos en pilas
+es Sphinx, un sistema muy interesante porque nos
+permite gestionar todo el contenido del manual
+en texto plano, y gracias a varias herramientas
+de conversión cómo restructuredText y latex, se
+producen muchos formatos de salida cómo HTML y PDF.
+
+Toda la documentación del proyecto está en el
+directorio ``doc``. El directorio ``doc/sources`` contiene
+todos los archivos que modificamos para escribir contenido
+en la documentación.
+
+Para generar los archivos PDF o HTML usamos el comando
+``make`` dentro del directorio ``doc``. El archivo que
+dispara todas las acciones que sphinx sabe hacer están
+definidas en el archivo ``Makefile``.

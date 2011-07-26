@@ -22,10 +22,15 @@ class Tortuga(Actor):
         self.rotacion = 0
         self.velocidad = 6
 
+        self.anterior_x = x
+        self.anterior_y = y
+
         if dibuja:
             self.bajalapiz()
         else:
             self.subelapiz()
+
+        self.color = pilas.colores.negro
 
     def avanzar(self, pasos):
         self.hacer_luego(pilas.comportamientos.Avanzar(pasos, self.velocidad))
@@ -37,16 +42,22 @@ class Tortuga(Actor):
         self.hacer_luego(pilas.comportamientos.Girar(-abs(delta), self.velocidad))
 
     def actualizar(self):
-        self.pizarra.mover_lapiz(self.x, self.y)
+        if self.anterior_x != self.x or self.anterior_y != self.y:
+            self.dibujar_linea_desde_el_punto_anterior()
+            self.anterior_x = self.x
+            self.anterior_y = self.y
+
+    def dibujar_linea_desde_el_punto_anterior(self):
+        self.pizarra.linea(self.anterior_x, self.anterior_y, self.x, self.y, self.color, grosor=4)
 
     def bajalapiz(self):
-        self.hacer_luego(pilas.comportamientos.BajarLapiz())
+        self.lapiz_bajo = True
 
     def subelapiz(self):
-        self.hacer_luego(pilas.comportamientos.SubirLapiz())
+        self.lapiz_bajo = False
 
     def pon_color(self, color):
-        self.hacer_luego(pilas.comportamientos.CambiarColor(color))
+        self.color = color
 
     def crear_poligono(self, lados = 4, escala = 100, sentido = -1):
         "dibuja un poligono de n lados"
@@ -77,15 +88,12 @@ class Tortuga(Actor):
 
 
     def get_color(self):
-        return self.pizarra.color
+        return self._color
 
     def set_color(self, color):
-        self.pizarra.definir_color(color)
+        self._color = color
 
     color = property(get_color, set_color)
-
-    def limpiar(self):
-        self.pizarra.limpiar()
 
     def pintar(self, color=None):
         self.pizarra.pintar(color)

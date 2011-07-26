@@ -5,8 +5,9 @@ Para posicionar actores en el escenario
 principal es importante conocer las
 propiedades de la pantalla.
 
-Estas propiedades se pueden ver y
-alternar accediendo al módulo ``pilas.ventana``.
+La pantalla es lo que contiene la ventana
+principal de pilas, y que puede observar
+una porción del escenario y a un grupo de actores.
 
 
 Modo depuración
@@ -17,15 +18,16 @@ de utilidad cuando estás desarrollando un juego
 o simplemente buscando algún error.
 
 Para iniciar el modo depuración pulsa **F12**. En
-la ventana principal aparecerá un eje
-de coordenadas:
+la ventana principal aparecerán varios textos
+indicando el rendimiento del juego, las coordenadas
+de posición de los actores y la posición del
+mouse.
 
-.. image:: images/ventana_ejes.png
-
-
-Este eje de coordenadas te mostrará que el
-centro de la ventana será tomado como la posición (0, 0).
-
+El centro de la ventana es, inicialmente, el
+punto ``(0, 0)``. Este modelo de coordenadas
+es el cartesiano, y lo hemos elegido porque es
+el que mejor se adapta a los conocimientos
+geométricos que se enseñan en las escuelas.
 
 
 Orden de impresión: atributo z

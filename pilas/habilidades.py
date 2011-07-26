@@ -32,9 +32,17 @@ class RebotaComoPelota(Habilidad):
                                        receptor.radio_de_colision)
         receptor.aprender(pilas.habilidades.Imitar, circulo)
         self.circulo = circulo
+        receptor.impulsar = self.impulsar
+        receptor.empujar = self.empujar
         
     def eliminar(self):
         self.circulo.eliminar()
+
+    def impulsar(self, dx, dy):
+        self.circulo.impulsar(dx, dy)
+
+    def empujar(self, dx, dy):
+        self.circulo.empujar(dx, dy)
 
 class RebotaComoCaja(Habilidad):
 
@@ -43,8 +51,8 @@ class RebotaComoCaja(Habilidad):
         error = random.randint(-10, 10) / 10.0
         rectangulo = pilas.fisica.Rectangulo(receptor.x + error, 
                                              receptor.y + error, 
-                                             receptor.radio_de_colision*2,
-                                             receptor.radio_de_colision*2,
+                                             receptor.radio_de_colision*2 - 4,
+                                             receptor.radio_de_colision*2 - 4,
                                              )
         receptor.aprender(pilas.habilidades.Imitar, rectangulo)
         self.rectangulo = rectangulo
@@ -95,8 +103,8 @@ class SeguirClicks(Habilidad):
         pilas.eventos.click_de_mouse.connect(self.moverse_a_este_punto)
 
     def moverse_a_este_punto(self, evento):
-        self.receptor.x = pilas.interpolar(evento.x, duracion=0.5)
-        self.receptor.y = pilas.interpolar(evento.y, duracion=0.5)
+        self.receptor.x = [evento.x], 0.5
+        self.receptor.y = [evento.y], 0.5
 
 
 class Arrastrable(Habilidad):
@@ -116,7 +124,6 @@ class Arrastrable(Habilidad):
 
     def try_to_drag(self, evento):
         "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
-
         if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
             pilas.eventos.termina_click.connect(self.drag_end)
             pilas.eventos.mueve_mouse.connect(self.drag, uid='drag')

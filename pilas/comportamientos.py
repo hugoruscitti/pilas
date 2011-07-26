@@ -53,6 +53,29 @@ class Girar(Comportamiento):
             self.receptor.rotacion = self.angulo_final
             return True
 
+class Saltar(Comportamiento):
+
+    def __init__(self, velocidad_inicial=10):
+        self.velocidad_inicial = velocidad_inicial
+
+    def iniciar(self, receptor):
+        self.receptor = receptor
+        self.suelo = int(self.receptor.y)
+        self.velocidad = self.velocidad_inicial
+
+    def actualizar(self):
+        self.receptor.y += self.velocidad
+        self.velocidad -= 0.3
+
+        if self.receptor.y <= self.suelo:
+            self.velocidad_inicial /= 2.0
+            self.velocidad = self.velocidad_inicial
+            
+            if self.velocidad_inicial <= 1:
+                # Si toca el suelo
+                self.receptor.y = self.suelo
+                return True
+
 
 class Avanzar(Comportamiento):
     "Desplaza al actor en la dirección y sentido indicado por una rotación."
@@ -82,43 +105,3 @@ class Avanzar(Comportamiento):
 
         if salir:
             return True
-
-class CambiarColor(Comportamiento):
-    "Llama a un metodo para cambiar el color de un actor."
-
-    def __init__(self, nuevo_color):
-        self.nuevo_color = nuevo_color
-
-    def iniciar(self, receptor):
-        self.receptor = receptor
-
-    def actualizar(self):
-        self.receptor.color = self.nuevo_color
-        return True
-
-
-
-class BajarLapiz(Comportamiento):
-
-    def __init__(self):
-        pass
-
-    def iniciar(self, receptor):
-        self.receptor = receptor
-
-    def actualizar(self):
-        self.receptor.pizarra.bajar_lapiz()
-        return True
-
-class SubirLapiz(Comportamiento):
-
-    def __init__(self):
-        pass
-
-    def iniciar(self, receptor):
-        self.receptor = receptor
-
-    def actualizar(self):
-        self.receptor.pizarra.levantar_lapiz()
-        return True
-

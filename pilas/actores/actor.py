@@ -52,17 +52,18 @@ class Actor(object, Estudiante):
     """
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
-        if not pilas.motor:
+        if not pilas.mundo:
             mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` para comenzar."
             print mensaje
             raise Exception(mensaje)
 
         Estudiante.__init__(self)
-        self._actor = pilas.motor.obtener_actor(imagen, x=x, y=y)
+        self._actor = pilas.mundo.motor.obtener_actor(imagen, x=x, y=y)
         self.centro = ('centro', 'centro')
 
         self.x = x
         self.y = y
+        self.transparencia = 0
 
         # Define el nivel de lejania respecto del observador.
         self.z = 0
@@ -82,7 +83,6 @@ class Actor(object, Estudiante):
                 raise Exception("No puedes definir '%s' como eje vertical." %(y))
             y = self._interpretar_y_convertir_posicion(y, self.obtener_alto())            
 
-        
         self._centro = (x, y)
         self._actor.definir_centro(x, y)
     
@@ -109,12 +109,6 @@ class Actor(object, Estudiante):
 
     def dibujar(self, aplicacion):
         self._actor.dibujar(aplicacion)
-
-    def obtener_area(self):
-        return self._actor.obtener_area()
-
-    
-    area = property(obtener_area)
 
     def get_x(self):
         x, y = self.obtener_posicion()
@@ -216,7 +210,10 @@ class Actor(object, Estudiante):
         
         Este metodo se llama una vez por frame, y generalmente se redefine
         en alguna subclase."""
-        pass
+
+    def pre_actualizar(self):
+        self.actualizar_comportamientos()
+        self.actualizar_habilidades()
 
     def __cmp__(self, otro_actor):
         """Compara dos actores para determinar cual esta mas cerca de la camara.
@@ -280,6 +277,7 @@ class Actor(object, Estudiante):
         return self._actor.obtener_rotacion()
 
     def definir_rotacion(self, r):
+        r = r % 360
         self._actor.definir_rotacion(r)
 
     def definir_color(self, c):
@@ -290,6 +288,7 @@ class Actor(object, Estudiante):
 
     def definir_imagen(self, imagen):
         self._actor.definir_imagen(imagen)
+        self.centro = ('centro', 'centro')
 
     def duplicar(self, **kv):
         duplicado = self.__class__()
@@ -300,10 +299,10 @@ class Actor(object, Estudiante):
         return duplicado
 
     def obtener_ancho(self):
-        return self.obtener_area()[0]
+        return self.imagen.ancho()
 
     def obtener_alto(self):
-        return self.obtener_area()[1]
+        return self.imagen.alto()
 
     ancho = property(obtener_ancho)
     alto = property(obtener_alto)
@@ -332,12 +331,12 @@ class Actor(object, Estudiante):
         self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura)
 
     def esta_fuera_de_la_pantalla(self):
+        # TODO: detectar area de la pantalla con las funciones que exporta el motor.
         if self.derecha < -320 or self.izquierda > 320 or self.arriba < -240 or self.abajo > 240:
                 return True
 
     def decir(self, mensaje, autoeliminar=True):
-        nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y,
-                autoeliminar=autoeliminar)
+        nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y, autoeliminar=autoeliminar)
         nuevo_actor.z = self.z - 1
         self.anexar(nuevo_actor)
 
@@ -347,4 +346,3 @@ class Actor(object, Estudiante):
     def _eliminar_anexados(self):
         for x in self.anexados:
             x.eliminar()
-

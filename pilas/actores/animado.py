@@ -19,11 +19,10 @@ class Animado(Actor):
 
     def __init__(self, grilla, x=0, y=0):
         Actor.__init__(self, x=x, y=y)
-        self.animacion = copy.copy(grilla)
+        self.imagen = copy.copy(grilla)
         self.definir_cuadro(0)
 
     def definir_cuadro(self, indice):
-        self.animacion.definir_cuadro(indice)
-        self.animacion.asignar(self)
+        self.imagen.definir_cuadro(indice)
         # FIX: Esta sentencia es muy ambigua, porque no todos actores se deben centrar en ese punto.
         self.centro = ('centro', 'centro')

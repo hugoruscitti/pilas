@@ -8,6 +8,7 @@
 
 import pilas
 from pilas.simbolos import *
+import eventos
 
 class Control:
     """Representa un control de teclado sencillo.
@@ -30,11 +31,28 @@ class Control:
         self.abajo = False
         self.boton = False
 
-    def actualizar(self):
-        pulsa = pilas.motor.pulsa_tecla
+        eventos.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
+        eventos.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
 
-        self.izquierda = pulsa(IZQUIERDA)
-        self.derecha = pulsa(DERECHA)
-        self.arriba = pulsa(ARRIBA)
-        self.abajo = pulsa(ABAJO)
-        self.boton = pulsa(BOTON) or pulsa(SELECCION)
+    def cuando_pulsa_una_tecla(self, evento):
+        self.procesar_cambio_de_estado_en_la_tecla(evento.codigo, True)
+
+    def cuando_suelta_una_tecla(self, evento):
+        self.procesar_cambio_de_estado_en_la_tecla(evento.codigo, False)
+
+    def procesar_cambio_de_estado_en_la_tecla(self, codigo, estado):
+        mapa = {
+            IZQUIERDA: 'izquierda',
+            DERECHA: 'derecha',
+            ARRIBA: 'arriba',
+            ABAJO: 'abajo',
+            SELECCION: 'boton',
+        }
+
+        if mapa.has_key(codigo):
+            setattr(self, mapa[codigo], estado)
+
+    def __str__(self):
+        return "<Control izquierda: %s derecha: %s arriba: %s abajo: %s boton: %s>" %(
+                str(self.izquierda), str(self.derecha), str(self.arriba), 
+                str(self.abajo), str(self.boton))
