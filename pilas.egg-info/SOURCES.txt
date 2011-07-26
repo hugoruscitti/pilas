@@ -217,6 +217,7 @@ pilas/cargador/ejemplos/interaccion/moverse_con_el_teclado.png
 pilas/cargador/ejemplos/interaccion/moverse_con_el_teclado.py
 pilas/cargador/ejemplos/interfaz/boton.png
 pilas/cargador/ejemplos/interfaz/boton.py
+pilas/cargador/ejemplos/interfaz/boton_con_texto.py
 pilas/cargador/ejemplos/interfaz/deslizador.png
 pilas/cargador/ejemplos/interfaz/deslizador.py
 pilas/cargador/ejemplos/interfaz/ejemplo_temporizador.png

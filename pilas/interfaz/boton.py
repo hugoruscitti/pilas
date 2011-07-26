@@ -10,7 +10,7 @@ import pilas
 
 class Boton(pilas.actores.Actor):
     
-    def __init__(self, texto="", x=0, y=0, icono=None):
+    def __init__(self, texto="Sin texto", x=0, y=0, icono=None):
         pilas.actores.Actor.__init__(self, x=x, y=y)
         self.texto = texto
         self._crear_imagenes_de_botones()
