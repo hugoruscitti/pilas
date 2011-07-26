@@ -18,24 +18,20 @@ class Camara(object):
     def __init__(self, motor):
         self.motor = motor
 
+    @pilas.utils.interpolable
     def _set_x(self, x):
-        if pilas.utils.es_interpolacion(x):
-            x.apply(self, function='_set_x')
-        else:
-            pilas.motor.camara_x = definir_centro_de_la_camara(x, self.y)
+        pilas.mundo.motor.definir_centro_de_la_camara(x, self.y)
 
     def _get_x(self):
-        x, y = pilas.motor.obtener_centro_de_la_camara()
+        x, y = pilas.mundo.motor.obtener_centro_de_la_camara()
         return x
 
+    @pilas.utils.interpolable
     def _set_y(self, y):
-        if pilas.utils.es_interpolacion(y):
-            y.apply(self, function='_set_y')
-        else:
-            pilas.motor.definir_centro_de_la_camara(self.x, -y)
+        pilas.mundo.motor.definir_centro_de_la_camara(self.x, y)
 
     def _get_y(self):
-        x, y = pilas.motor.obtener_centro_de_la_camara()
+        x, y = pilas.mundo.motor.obtener_centro_de_la_camara()
         return y
 
     x = property(_get_x, _set_x)

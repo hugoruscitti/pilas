@@ -30,6 +30,8 @@ Pilas engine - Documentación
     mapas_y_plataformas.rst
     dialogos.rst
 
+    camara.rst
+
     motores.rst
 
     eventos.rst

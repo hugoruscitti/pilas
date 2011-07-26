@@ -23,6 +23,7 @@ class Texto(Actor):
         self.texto = texto
         self.color = pilas.colores.blanco
         self.centro = ("centro", "centro")
+        self.fijo = True
 
     def obtener_texto(self):
         return self.imagen.texto

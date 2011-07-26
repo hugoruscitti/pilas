@@ -184,6 +184,12 @@ class Actor(object, Estudiante):
 
         self.definir_imagen(imagen)
 
+    def get_fijo(self):
+        return self._actor.fijo
+
+    def set_fijo(self, fijo):
+        self._actor.fijo = fijo
+
 
     espejado = property(get_espejado, set_espejado, doc="Indica si se tiene que invertir horizonaltamente la imagen del actor.")
     z = property(get_z, set_z, doc="Define lejania respecto del observador.")
@@ -193,6 +199,7 @@ class Actor(object, Estudiante):
     escala = property(get_scale, set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
     transparencia = property(get_transparencia, set_transparencia, doc="Define el nivel de transparencia, 0 indica opaco y 100 la maxima transparencia.")
     imagen = property(get_imagen, set_imagen, doc="Define la imagen a mostrar.")
+    fijo = property(get_fijo, set_fijo, doc="Indica si el actor debe ser independiente a la camara.")
 
     def eliminar(self):
         "Elimina el actor de la lista de actores que se imprimen en pantalla."

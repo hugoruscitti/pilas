@@ -40,6 +40,7 @@ class BaseActor:
         self.centro_x = 0
         self.centro_y = 0
         self._espejado = False
+        self.fijo = 0
 
     def definir_centro(self, x, y):
         self.centro_x = x
@@ -375,10 +376,18 @@ class QtActor(BaseActor):
 
     def dibujar(self, motor):
         escala_x, escala_y = self._escala, self._escala
+
         if self._espejado:
             escala_x *= -1
 
-        self.imagen.dibujar(motor, self.x, self.y, 
+        if not self.fijo:
+            x = self.x - motor.camara_x
+            y = self.y - motor.camara_y
+        else:
+            x = self.x
+            y = self.y
+
+        self.imagen.dibujar(motor, x, y,
                 self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion, self._transparencia)
 
@@ -482,6 +491,8 @@ class QtBase(motor.Motor):
         self.depurador = depurador.Depurador(self.obtener_lienzo(), self.fps)
         self.mouse_x = 0
         self.mouse_y = 0
+        self.camara_x = 0
+        self.camara_y = 0
 
     def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
         self.ancho = ancho
@@ -611,12 +622,11 @@ class QtBase(motor.Motor):
         self.ventana.update()
 
     def definir_centro_de_la_camara(self, x, y):
-        view = self.ventana.GetDefaultView()
-        view.SetCenter(x, y)
+        self.camara_x = x
+        self.camara_y = y
 
     def obtener_centro_de_la_camara(self):
-        view = self.ventana.GetDefaultView()
-        return view.GetCenter()
+        return (self.camara_x, self.camara_y)
 
     def pintar(self, color):
         pass
@@ -683,6 +693,7 @@ class QtBase(motor.Motor):
         self.canvas.end()
 
     def timerEvent(self, event):
+
         try:
             self.realizar_actualizacion_logica()
         except Exception as e:
