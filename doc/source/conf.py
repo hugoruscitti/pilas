@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Pilas Engine'
+project = u'Pilas engine'
 copyright = u'2011, Hugo Ruscitti'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -178,7 +178,7 @@ latex_paper_size = 'a4'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'PilasEngine.tex', u'Pilas Engine Documentation',
+  ('index', 'Pilasengine.tex', u'Pilas Engine Documentation',
    u'Hugo Ruscitti', 'manual'),
 ]
 

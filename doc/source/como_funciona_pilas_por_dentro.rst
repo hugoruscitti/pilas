@@ -382,8 +382,7 @@ hacer dos cosas:
 - suscribir funciones.
 - invocar a las funciones que se han suscrito.
 
-1 Suscribir
-___________
+**1 Suscribir**
 
 Por ejemplo, el evento ``mueve_mouse`` es un objeto, y cuando
 invocamos la sentencia ``pilas.eventos.mueve_mouse.conectar(mi_funcion)``, 
@@ -394,8 +393,7 @@ Puedes imaginar al evento como un objeto contenedor (similar
 a una lista), que guarda cada una de las funciones que le enviamos
 con el método ``conectar``.
 
-2 Notificar
-___________
+**2 Notificar**
 
 La segunda tarea del evento es notificar a todas
 las funciones que se suscribieron.

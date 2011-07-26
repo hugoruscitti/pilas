@@ -2,3 +2,5 @@ recursive-include pilas/data *
 recursive-include pilas/ejemplos/data *
 recursive-include minijuegos *
 recursive-include ejemplos *
+recursive-include pilas/cargador/data *
+recursive-include pilas/cargador/ejemplos *
