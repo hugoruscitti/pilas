@@ -739,6 +739,9 @@ class QtBase(motor.Motor):
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
         eventos.termina_click.send("Qt::mouseReleaseEvent", x=x, y=y, dx=0, dy=0)
 
+    def wheelEvent(self, e):
+        eventos.mueve_rueda.send("ejecutar", delta=e.delta() / 120)
+
     def mouseMoveEvent(self, e):
         escala = self.escala()
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
