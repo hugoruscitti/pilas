@@ -170,6 +170,9 @@ class QtGrilla(QtImagen):
 
 class QtTexto(QtImagen):
 
+    def __init__(self, texto, magnitud, motor):
+        self._ancho, self._alto = motor.obtener_area_de_texto(texto, magnitud)
+
     def _dibujar_pixmap(self, motor, dx, dy):
         nombre_de_fuente = motor.canvas.font().family()
         fuente = QtGui.QFont(nombre_de_fuente, self.magnitud)
@@ -181,8 +184,14 @@ class QtTexto(QtImagen):
         lines = self.texto.split('\n')
 
         for line in lines:
-            motor.canvas.drawText(dx, dy, line)
+            motor.canvas.drawText(dx, dy + self._alto, line)
             dy += metrica.height()
+
+    def ancho(self):
+        return self._ancho
+
+    def alto(self):
+        return self._alto
 
 
 class QtLienzo(QtImagen):
@@ -463,10 +472,6 @@ class SFMLCanvas:
         self.render(event, self.canvas)
         self.canvas.end()
 
-
-
-
-
     def keyPressEvent(self, event):
         print "Pulsa la tecla:", event.key()
 
@@ -527,8 +532,8 @@ class QtBase(motor.Motor):
     def obtener_actor(self, imagen, x, y):
         return QtActor(imagen, x, y)
 
-    def obtener_texto(self, texto):
-        return QtTexto(texto)
+    def obtener_texto(self, texto, magnitud):
+        return QtTexto(texto, magnitud, self)
 
     def obtener_posicion_del_mouse(self):
         #return (self.mouse_x, self.mouse_y)

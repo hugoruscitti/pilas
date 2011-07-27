@@ -16,7 +16,7 @@ class Texto(Actor):
     """
     
     def __init__(self, texto="None", x=0, y=0, magnitud=20):
-        imagen = pilas.mundo.motor.obtener_texto(texto)
+        imagen = pilas.mundo.motor.obtener_texto(texto, magnitud)
         self._definir_area_de_texto(texto, magnitud)
         Actor.__init__(self, imagen, x=x, y=y)
         self.magnitud = magnitud
@@ -50,12 +50,6 @@ class Texto(Actor):
         self.imagen.color = color
 
     color = property(obtener_color, definir_color, doc="Color del texto.")
-
-    def obtener_ancho(self):
-        return self._ancho
-
-    def obtener_alto(self):
-        return self._alto
 
     def _definir_area_de_texto(self, texto, magnitud):
         self._ancho, self._alto = pilas.mundo.motor.obtener_area_de_texto(texto, magnitud)

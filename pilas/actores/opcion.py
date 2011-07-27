@@ -23,7 +23,7 @@ class Opcion(Texto):
         "Pinta la opcion actual de un color mas claro."
 
         if estado:
-            self.color = pilas.colores.negro
+            self.color = pilas.colores.blanco
         else:
             self.color = pilas.colores.gris
 
