@@ -85,13 +85,13 @@ class Fisica(object):
     def crear_cuerpo(self, definicion_de_cuerpo):
         return self.mundo.CreateBody(definicion_de_cuerpo)
     
-    def crear_suelo(self, (ancho, alto), restitucion=1):
+    def crear_suelo(self, (ancho, alto), restitucion=0):
         self.suelo = Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
-    def crear_techo(self, (ancho, alto), restitucion=1):
+    def crear_techo(self, (ancho, alto), restitucion=0):
         self.suelo = Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
         
-    def crear_paredes(self, (ancho, alto), restitucion=1):
+    def crear_paredes(self, (ancho, alto), restitucion=0):
         self.pared_izquierda = Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
         self.pared_derecha = Rectangulo(ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
         
