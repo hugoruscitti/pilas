@@ -7,6 +7,8 @@
 # website - http://www.pilas-engine.com.ar
 
 import pilas
+from pilas import pilasversion
+import sys
 
 class Depurador:
     """Esta clase permite hacer depuraciones visuales.
@@ -50,7 +52,9 @@ class Depurador:
                 m.termina_dibujado(motor, self.lienzo)
     
     def cuando_pulsa_tecla(self, evento):
-        if evento.codigo == 'F8':
+        if evento.codigo == 'F7':
+            self._alternar_modo(ModoInformacionDeSistema)
+        elif evento.codigo == 'F8':
             self._alternar_modo(ModoPuntosDeControl)
         elif evento.codigo == 'F9':
             self._alternar_modo(ModoRadiosDeColision)
@@ -168,3 +172,23 @@ class ModoFisica(ModoDepurador):
     def termina_dibujado(self, motor, lienzo):
         grosor = ModoDepurador.grosor_de_lineas
         pilas.mundo.fisica.dibujar_figuras_sobre_lienzo(motor, lienzo, grosor)
+
+class ModoInformacionDeSistema(ModoDepurador):
+    tecla = "F7"
+
+    def __init__(self, depurador):
+        ModoDepurador.__init__(self, depurador)
+
+        self.informacion = [
+            "Usando el motor: " + pilas.mundo.motor.__class__.__name__,
+            "Sistema: " + sys.platform,
+            "Version de pilas: " + pilasversion.VERSION,
+            "Version de python: " + sys.subversion[0] + " " + sys.subversion[1],
+            ]
+    
+    def termina_dibujado(self, motor, lienzo):
+        izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
+
+        for (i, texto) in enumerate(self.informacion):
+            posicion_y = abajo + 50 + i * 20
+            lienzo.texto(motor, texto, izquierda + 10, posicion_y, color=pilas.colores.negro)
