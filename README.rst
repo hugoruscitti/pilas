@@ -107,6 +107,13 @@ en su sitio web:
 - www.lostgarden.com
 
 
+a Anthony Long
+--------------
+
+Por realizar la biblioteca ``assertlib``, que se encuentra
+en el directorio ``pilas/test/assertlib``, y que se utiliza
+para simplificar los tests de unidad.
+
 a arboris
 ---------
 
