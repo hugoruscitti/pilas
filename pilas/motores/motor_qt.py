@@ -699,22 +699,15 @@ class QtBase(motor.Motor):
 
     def timerEvent(self, event):
 
-        try:
-            self.realizar_actualizacion_logica()
-        except Exception as e:
-            print e
+        if not self.pausa_habilitada:
+            try:
+                self.realizar_actualizacion_logica()
+            except Exception as e:
+                print e
 
         # Invoca el dibujado de la pantalla.
         self.update()
 
-        '''
-        self.procesar_y_emitir_eventos()
-                
-        if not self.mundo.pausa_habilitada:
-            self.mundo._realizar_actualizacion_logica(self.ignorar_errores)
-
-        self.mundo.realizar_actualizacion_grafica()
-        '''
 
     def realizar_actualizacion_logica(self):
         for x in range(self.fps.actualizar()):
@@ -755,6 +748,8 @@ class QtBase(motor.Motor):
 
         if event.key() == QtCore.Qt.Key_Escape:
             eventos.pulsa_tecla_escape.send("Qt::keyPressEvent")
+        if event.key() == QtCore.Qt.Key_P:
+            self.alternar_pausa()
 
         eventos.pulsa_tecla.send("Qt::keyPressEvent", codigo=codigo_de_tecla, texto=event.text())
 
@@ -808,6 +803,14 @@ class QtBase(motor.Motor):
             alto += metrica.height()
 
         return ancho, alto
+
+    def alternar_pausa(self):
+        if self.pausa_habilitada:
+            self.pausa_habilitada = False
+            self.actor_pausa.eliminar()
+        else:
+            self.pausa_habilitada = True
+            self.actor_pausa = actores.Pausa()
 
 class Qt(QtBase, QWidget):
 

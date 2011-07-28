@@ -46,3 +46,4 @@ from aceituna import Aceituna
 from globo import Globo
 from dialogo import Dialogo
 from globoelegir import GloboElegir
+from pausa import Pausa
