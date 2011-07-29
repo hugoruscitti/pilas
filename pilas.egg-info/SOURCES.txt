@@ -77,9 +77,7 @@ minijuegos/tres_en_raya/data/ficha_vacia.png
 minijuegos/tres_en_raya/data/fondo.png
 minijuegos/tres_en_raya/data/inicio.png
 pilas/__init__.py
-pilas/anterior__init__.py
 pilas/atajos.py
-pilas/baseactor.py
 pilas/camara.py
 pilas/colisiones.py
 pilas/colores.py
