@@ -136,7 +136,7 @@ class Actor(object, Estudiante):
 
     @pilas.utils.interpolable
     def set_scale(self, s):
-        if s <= 0:
+        if s < 0:
             return
 
         ultima_escala = self.obtener_escala()

@@ -137,6 +137,7 @@ pilas/actores/moneda.py
 pilas/actores/mono.py
 pilas/actores/nave.py
 pilas/actores/opcion.py
+pilas/actores/pausa.py
 pilas/actores/pelota.py
 pilas/actores/piedra.py
 pilas/actores/pingu.py
@@ -178,6 +179,7 @@ pilas/cargador/ejemplos/basicos/tareas.png
 pilas/cargador/ejemplos/basicos/tareas.py
 pilas/cargador/ejemplos/basicos/test_ejes.png
 pilas/cargador/ejemplos/basicos/test_ejes.py
+pilas/cargador/ejemplos/basicos/__pycache__/test_ejes.cpython-27-PYTEST.pyc
 pilas/cargador/ejemplos/colisiones/colisiones.png
 pilas/cargador/ejemplos/colisiones/colisiones.py
 pilas/cargador/ejemplos/completos/ejemplo_piezas.png
