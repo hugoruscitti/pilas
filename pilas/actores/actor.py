@@ -147,7 +147,7 @@ class Actor(object, Estudiante):
         #  s                      ?
 
         self.definir_escala(s)
-        self.radio_de_colision = (s * self.radio_de_colision) / ultima_escala
+        self.radio_de_colision = (s * self.radio_de_colision) / max(ultima_escala, 0.0001)
 
     def get_scale(self):
         return self.obtener_escala()
