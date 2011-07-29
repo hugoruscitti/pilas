@@ -28,7 +28,7 @@ class Fisica(object):
             self.escenario.upperBound = (1000.0, 1000.0)
             self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
             self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
-        except AttributeError:
+        except AttributeError, ValueError:
             print "Deshabilitando modulo de fisica (no se encuentra instalado pybox2d en este equipo)"
             self.mundo = None
             return
