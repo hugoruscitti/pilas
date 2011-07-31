@@ -12,6 +12,8 @@ Pilas engine - Documentación
     grupos.rst
     colisiones.rst
 
+    fisica.rst
+
     dibujado_simple_en_pantalla.rst
     superficies.rst
 
@@ -20,7 +22,6 @@ Pilas engine - Documentación
     imagen.rst
     sonidos.rst
     comportamientos.rst
-    fisica.rst
     controles.rst
     tareas.rst
     escenas.rst

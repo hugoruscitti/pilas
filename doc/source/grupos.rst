@@ -125,3 +125,6 @@ que quieres agregar:
     mi_grupo.append(pelota)
 
     mi_grupo.escala = [2]
+
+
+.. image:: images/grupos_personalizado_escala.png

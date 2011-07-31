@@ -24,7 +24,7 @@ Usando la Tortuga para dibujar
 El actor ``Tortuga`` está inspirado en una de
 las actividades mas divertidas, didácticas y simbólicas
 del lenguaje de programación **logo**, creado
-por Seymour Papert.
+por **Seymour Papert**.
 
 La ``Tortuga`` básicamente es un actor que sabe
 dibujar sobre la ventana de pilas. Para ello el
@@ -45,23 +45,21 @@ El dibujo de la imagen anterior es una traza que
 va dibujando la tortuga a partir de su movimiento.
 
 El siguiente código es el que se utilizó para
-dibujar esa figura:
+dibujar esa linea de dos colores:
 
 .. code-block:: python
 
+    import pilas
+
+    pilas.iniciar()
     tortuga = pilas.actores.Tortuga()
-
-    for x in range(36):
-        tortuga.avanzar(5)
-        tortuga.giraizquierda(10)
-
-    tortuga.color = pilas.colores.verde
+    tortuga.avanzar(30)
+    tortuga.color = pilas.colores.azul
     tortuga.avanzar(200)
-
 
 Algo muy valioso en términos didácticos, es que
 uno podría animarse a realizar dibujos simples cómo
-una casa, un hexágono o un número diseñando una estrategia
+una casa, un hexágono o cualquier otra figura diseñando una estrategia
 de movimiento para la tortuga.
 
 Inspeccionando a la tortuga
@@ -124,10 +122,15 @@ código:
     pizarra = pilas.actores.Pizarra()
     pizarra.dibujar_punto(0, 0)
 
-esto dibujará un punto de color negro en el centro de
-la ventana, podrías usar el argumento opcional ``color``
-si prefieres otro color.
+incluso podrías usar el argumento opcional ``color``
+si prefieres otro color, o trazar una linea:
 
+
+.. code-block:: python
+
+    pizarra.linea(0, 0, 200, 200, pilas.colores.verdeoscuro, grosor=5)
+
+.. image:: images/linea.png
 
 Pintando imágenes
 -----------------
@@ -168,7 +171,6 @@ Veamos la definición del método::
 
 
 
-
 Dibujando grillas
 -----------------
 
@@ -181,7 +183,7 @@ que pinte el cuadro actual de la grilla:
 
 .. code-block:: python
 
-    grilla = pilas.imagenes.Grilla("pingu.png", 10)
+    grilla = pilas.imagenes.cargar_grilla("pingu.png", 10)
     pizarra.pintar_grilla(grilla, 0, 0)
 
 Así se verá:
@@ -192,12 +194,6 @@ Esto es útil cuando se quieren pintar bloques de un escenario
 completo, por ejemplo podríamos tener una grilla con distintos
 tipos de suelos (pasto, piedra, tierra) y luego ir
 imprimiendo sobre una pizarra para formar un escenario completo.
-
-Ten en cuenta que al igual que la impresión de imágenes, aquí también
-las coordenadas se comportan un poco distinto, tienes que
-usar coordenadas de pantalla. Observa la sección anterior
-para tener mas detalle de las coordenadas de pantalla.
-
 
 La pizarra como actor
 ---------------------

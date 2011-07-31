@@ -78,41 +78,9 @@ def __crear_motor(usar_motor):
 
     return motor
 
-'''
-    #pilas.colisiones = Colisiones()
-
-    if modo == 'detectar':
-        if utils.esta_en_sesion_interactiva():
-            iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]", rendimiento, economico, gravedad)
-        else:
-            mundo = pilas.mundo.Mundo(ancho, alto, titulo, rendimiento, economico, gravedad)
-            escenas.Normal()
-    elif modo == 'interactivo':
-        iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo + " [Modo Interactivo]", rendimiento, economico, gravedad)
-    else:
-        raise Exception("Lo siento, el modo indicado es invalido, solo se admite 'interactivo' y 'detectar'")
-    '''
-
-'''
-def iniciar_y_cargar_en_segundo_plano(ancho, alto, titulo, fps, economico, gravedad):
-    "Ejecuta el bucle de pilas en segundo plano."
-    import threading
-    global gb
-
-    bg = threading.Thread(target=__iniciar_y_ejecutar, args=(ancho, alto, titulo, fps, economico, gravedad))
-    bg.start()
-
-
-def __iniciar_y_ejecutar(ancho, alto, titulo, fps, economico, gravedad, ignorar_errores=False):
-    global mundo
-
-    mundo = Mundo(ancho, alto, titulo, fps, economico, gravedad)
-    escenas.Normal()
-    ejecutar(ignorar_errores)
-'''
-
 def reiniciar():
     actores.utils.eliminar_a_todos()
+    mundo.reiniciar()
 
 anterior_texto = None
 
@@ -131,7 +99,6 @@ def avisar(mensaje):
     texto.color = colores.blanco
     texto.abajo = abajo + 10
     anterior_texto = texto
-
 
 def abrir_cargador():
     import cargador

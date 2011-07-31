@@ -22,6 +22,7 @@ class Fisica(object):
     "Representa un simulador de mundo fisico, usando la biblioteca box2d."
     
     def __init__(self, area, gravedad=(0, -90)):
+        self.area = area
         try:
             self.escenario = box2d.b2AABB()
             self.escenario.lowerBound = (-1000.0, -1000.0)
@@ -38,10 +39,18 @@ class Fisica(object):
             return
 
         self.i = 0
-        self.crear_techo(area)
-        self.crear_suelo(area)
-        self.crear_paredes(area)
+        self.crear_bordes_del_escenario()
         self.figuras_a_eliminar = []
+
+    def crear_bordes_del_escenario(self):
+        self.crear_techo(self.area)
+        self.crear_suelo(self.area)
+        self.crear_paredes(self.area)
+
+    def reiniciar(self):
+        for x in self.mundo.bodyList:
+            self.mundo.DestroyBody(x)
+        self.crear_bordes_del_escenario()
         
     def actualizar(self):
         if self.mundo:
@@ -93,7 +102,7 @@ class Fisica(object):
         self.suelo = Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
     def crear_techo(self, (ancho, alto), restitucion=0):
-        self.suelo = Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
+        self.techo = Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
         
     def crear_paredes(self, (ancho, alto), restitucion=0):
         self.pared_izquierda = Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
@@ -103,6 +112,11 @@ class Fisica(object):
         if self.suelo:
             self.suelo.eliminar()
             self.suelo = None
+
+    def eliminar_techo(self):
+        if self.techo:
+            self.techo.eliminar()
+            self.techo = None
             
     def eliminar_paredes(self):
         if self.pared_izquierda:

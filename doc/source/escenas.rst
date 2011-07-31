@@ -52,6 +52,14 @@ pantalla colorido y mas divertido:
 .. image:: images/paisaje.png
     :width: 15cm
 
+o podrías usar un fondo de atardecer: 
+
+.. code-block:: python
+
+    pilas.fondos.Tarde()
+
+.. image:: images/paisaje.png
+    :width: 15cm
 
 Cómo crear nuevas escenas
 -------------------------
@@ -61,9 +69,8 @@ que simplemente dice "bienvenido" y  otra con
 un personaje para mover.
 
 Claramente tendríamos que hacer dos escenas, e iniciar
-nuestro juego creando la escena principal y dandole
+nuestro juego creando la escena principal y dándole
 el control del juego completo.
-
 
 La primer escena tendríamos que representarla
 con una clase, que herede de la escena Normal
@@ -88,7 +95,9 @@ clase:
     PantallaBienvenida()
 
 Esto eliminará la escena actual y se colocará como la escena
-actual.
+actual:
+
+.. image:: images/escena_simple.png
 
 Ahora, si quieres salir de la escena, simplemente tendrías
 que hacer un objeto de otra clase que represente otra escena. Eso

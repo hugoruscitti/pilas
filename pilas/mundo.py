@@ -38,6 +38,9 @@ class Mundo:
         self.fisica = fisica.Fisica(motor.obtener_area(), gravedad=gravedad)
         self.escena_actual = None
 
+    def reiniciar(self):
+        self.fisica.reiniciar()
+
     def actualizar_simuladores(self, evento):
         self.tweener.update(16)
         self.tareas.actualizar(1/60.0)

@@ -27,7 +27,7 @@ usando un ejemplo, escribe el siguiente código:
 
 .. code-block:: python
 
-    pelotas = pilas.actor.Pelota() * 10
+    pelotas = pilas.actores.Pelota() * 10
 
 esto creará un grupo de circunferencias que rebotarán
 hasta la parte inferior de la pantalla.
@@ -37,7 +37,7 @@ hacerlas rebotar:
 
 .. code-block:: python
 
-    pelotas = pilas.actor.Caja * 10
+    pelotas = pilas.actores.Caja() * 10
 
 
 Como puedes ver, el resultado es un grupo caótico
@@ -45,12 +45,21 @@ de actores chocando entre sí. Mas adelante veremos
 como personalizar y "controlar" un poco el escenario.
 
 
+.. image:: images/fisica.png
+
+
 Modo depuración de física
 -------------------------
 
 Cuando haces juegos con física o movimientos realistas es
-muy importante tener la seguridad de que la geometría de
-las figuras está correctamente configurada.
+muy importante tener en cuenta un concepto importate:
+
+Si bien uno observa pelotas y cajas, en realidad, internamente
+son solo cuadrados y circunferencias.
+
+Lo que ocurre en pantalla son dos cosas, por una lado vemos imágenes
+con aspecto de caja o pelota, y por el otro se nos oculta una
+simulación entre polígonos mucho mas primitiva y simple.
 
 Observa esta escena:
 
@@ -74,19 +83,23 @@ motor de física puede controlar, las cajas tienen forma
 rectangular, los actores Pelota tienen figuras circulares, y
 el suelo y las paredes también están en el sistema de física.
 
-Si por algún motivo quiere que los objetos "caigan" saliendo
-de la pantalla podrías eliminar el suelo o las paredes escribiendo
-lo siguiente:
+Si por algún motivo quieres que los objetos no estén contenidos
+en la pantalla, y sean un poco mas libres, podrías eliminar
+las paredes:
 
 .. code-block:: python
-
-    pilas.mundo.fisica.eliminar_suelo()
     pilas.mundo.fisica.eliminar_paredes()
+
+o incluso podrías eliminar el suelo:
+
+.. code-block:: python
+    pilas.mundo.fisica.eliminar_suelo()
 
 
 Pero recuerda que los objetos que no se ven en la pantalla
 de todas maneras estarán ahí. Una buena idea es eliminarlos
 ni bien los dejas de usar.
+
 
 
 Física personalizada
@@ -117,8 +130,9 @@ y otra dinámica:
     circulo_dinamico = pilas.fisica.Circulo(10, 200, 50)
 
 El primer círculo aparecerá en el centro de la ventana, y el
-segundo comenzará en la posición (10, 200), es decir, en la parte
-superior de la ventana y luego caerá rebotando... algo así:
+segundo comenzará en la posición ``(10, 200)``, es decir, 
+en la parte superior de la ventana y luego caerá 
+rebotando. Algo así:
 
 
 .. image:: images/fisica_personalizada_2.png
@@ -129,7 +143,7 @@ activamos con **F11**), pero esto no lo va a ver alguien que juegue
 a nuestro juego. El modo depuración es solo para desarrolladores.
 
 Lo que nos falta hacer, es darles apariencia a esas figuras. Algo
-así como un piel..
+así como una piel..
 
 Para esto podemos usar actores. La dinámica es así, tenemos que
 crear dos actores, y luego decirle a estos actores que se comporten

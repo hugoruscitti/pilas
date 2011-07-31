@@ -34,17 +34,25 @@ en la pantalla de su juego:
     mono = pilas.actores.Mono()
 
 
-Ahora pulse F12 para ver el área de colisión de cada
-actor.
+Ahora pulsá la tecla **F12** para ver la posición de cada
+uno de los actores:
 
 .. image:: images/mono_colisiones.png
 
-El círculo de color verde indica cual es el area de colisión, y
-se puede cambiar si queremos con una sentencia cómo:
+
+Si pulsas **F9**, aparecerá un circulo verde por cada actor. Ese
+círculo indica el radio de colisión de cada actor:
+
+.. image:: images/mono_colisiones1.png
+
+Este círculo se puede alterar cambiando el valor del ``radio_de_colision``
+del actor:
 
 .. code-block:: python
 
     banana.radio_de_colision = 30
+
+.. image:: images/radios.png
 
 Ahora, para poder mover al mono podemos enseñarle
 una habilidad:

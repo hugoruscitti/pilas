@@ -37,13 +37,28 @@ Escribe lo siguiente:
 
 .. code-block:: python
 
-    pilas.ejemplos.Piezas("monkey_normal.png", 2, 2)
+    pilas.ejemplos.Piezas("mono.png", 2, 2)
 
 Si, ahora en pantalla aparece la imagen del mono pero separado
 en 4 piezas. Dado que hemos especificado 2 (filas) y 2 (columnas).
 
 .. image:: images/piezas_mono.png
 
-Este rompecabezas también admite una función cómo argumento al
+
+Puedes usar cualquier imagen que quieras para construir tu
+ejemplo de piezas.
+
+También se admite una función cómo argumento al
 crear el objeto, que se invocará cuando el usuario
-complete el rompecabezas.
+complete el rompecabezas:
+
+.. code-block:: python
+
+    def cuando_se_complete():
+        pilas.avisar("Lo has completado!!!")
+
+    pilas.ejemplos.Piezas("mono.png", 2, 2, cuando_se_complete)
+
+
+.. image:: images/piezas_completo.png
+
