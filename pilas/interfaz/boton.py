@@ -15,14 +15,19 @@ class Boton(pilas.actores.Actor):
         self.texto = texto
         self._crear_imagenes_de_botones()
         self.centro = ("centro", "centro")
-        pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
+        self.funcion = None
 
         if icono:
             self.icono = pilas.imagenes.cargar(icono)
         else:
             self.icono = None
 
-        
+        pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
+        pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
+
+    def conectar(self, funcion):
+        self.funcion = funcion
+
     def _crear_imagenes_de_botones(self):
         "Genera las 3 imagenes de los botones."
         ancho, alto = pilas.utils.obtener_area_de_texto(self.texto)
@@ -39,6 +44,13 @@ class Boton(pilas.actores.Actor):
             self.imagen = self.imagen_sobre
         else:
             self.imagen = self.imagen_normal
+
+    def cuando_hace_click(self, evento):
+        if self.imagen == self.imagen_sobre:
+            self.imagen = self.imagen_click
+
+            if self.funcion:
+                self.funcion()
         
     def _crear_imagen(self, tema, texto, ancho, dx):
         "Genera una imagen de superficie de boton."
