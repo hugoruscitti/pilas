@@ -15,7 +15,7 @@ try:
     from PyQt4 import QtOpenGL
     from PyQt4.QtOpenGL import QGLWidget
 except ImportError:
-    QGLWidget = None
+    QGLWidget = object
     print "No se encuentra OpenGL en este equipo."
 
 
@@ -826,3 +826,7 @@ class QtGL(QtBase, QGLWidget):
 
         QGLWidget.__init__(self)
         QtBase.__init__(self)
+
+
+if QGLWidget == object:
+    QtGL = Qt
