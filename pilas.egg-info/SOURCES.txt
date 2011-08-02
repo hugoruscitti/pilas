@@ -279,6 +279,7 @@ pilas/data/moneda.png
 pilas/data/monkey_normal.png
 pilas/data/monkey_shout.png
 pilas/data/monkey_smile.png
+pilas/data/mono.png
 pilas/data/nave.png
 pilas/data/parque.tmx
 pilas/data/pelota.png

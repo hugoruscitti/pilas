@@ -300,7 +300,7 @@ class ConstanteDeDistancia():
             raise Exception("Las dos figuras tienen que ser objetos de la clase Figura.")
         
         constante = box2d.b2DistanceJointDef()
-        constante.Initialize(c._cuerpo, c1._cuerpo, (0,0), (0,0))
+        constante.Initialize(figura_1._cuerpo, figura_2._cuerpo, (0,0), (0,0))
         constante.collideConnected = True
         fisica.mundo.CreateJoint(constante)
 
