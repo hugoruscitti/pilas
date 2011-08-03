@@ -1,12 +1,30 @@
-Pilas
-=====
+============
+Pilas Engine
+============
 
-Un motor de videojuegos que presenta una manera sencilla (y algo experimental)
-de hacer videojuegos.
+Pilas es un motor para realizar videojuegos de manera
+rápida y sencilla.
+
+Es una herramienta orientada a programadores casuales
+o principiantes, que quiera comenzar a realizar sus
+primeros videojuegos.
 
 
-Recursos en la web
-==================
+¿Cómo empezar?
+==============
+
+Una buena forma de comenzar con pilas es instalar todo
+el kit de desarrollo siguiendo las intrucciones de
+nuestra web: http://www.pilas-engine.com.ar
+
+
+Y una vez instalada la biblioteca, se puede invocar
+al comando ``pilas -e`` para ver una lista completa
+de ejemplos y minijuegos.
+
+
+Otros recursos en la web
+========================
 
 Existen varios sitios web importantes dentro
 de proyecto pilas, la web principal
@@ -31,19 +49,25 @@ Dependencias
 
 - pygame
 - pyqt4
-- pybox
+- pybox2d
 - python
 
 
 Licencia
 ========
 
+Pilas es software libre, y se distribuye bajo la
+licencia GPLv3.
 
-- GPLv3.
+Créditos y agradecimientos
+==========================
 
+Pilas está principalmente desarrollada por Hugo Ruscitti, y
+cuenta con varios dibujos realizados por Walter Velazquez. Ambos
+fundadores de Losersjuegos (http://www.losersjuegos.com.ar).
 
-Créditos
-========
+A continuación se incluye una lista de otros desarrolladores
+y proyectos que sumaron a pilas:
 
 PyTweener
 ---------
