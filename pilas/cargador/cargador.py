@@ -110,11 +110,12 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
                     'Guardar ejemplo',
                     nombre,
                     "py (*.py)"))
-        contenido = self._obtener_codigo_del_ejemplo(nombre)
+        if path:
+            contenido = self._obtener_codigo_del_ejemplo(nombre)
 
-        archivo = open(path, "wt")
-        archivo.write(contenido)
-        archivo.close()
+            archivo = open(path, "wt")
+            archivo.write(contenido)
+            archivo.close()
 
     def cuando_cambia_seleccion(self):
         ruta = self._obtener_item_actual()
