@@ -8,6 +8,7 @@ def error(biblioteca, web):
     print "Error, no se encuentra la biblioteca '%s' (de %s)" %(biblioteca, web)
     sys.exit(1)
 
+
 try:
     import Box2D
 except ImportError:
