@@ -37,9 +37,6 @@ class Deslizador(Actor):
         self.x = x
         self.y = y
 
-        
-
-
     def set_transparencia(self, nuevo_valor):
         self.transparencia = nuevo_valor
         self.deslizador.transparencia = nuevo_valor
