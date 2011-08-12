@@ -64,7 +64,7 @@ y genera un actor para mostrar el cuadro 1:
 .. code-block:: python
 
     actor = pilas.actores.Actor()
-    animacion = pilas.imagenes.cargar_grilla("pingu.png", 10)
+    grilla = pilas.imagenes.cargar_grilla("pingu.png", 10)
     actor.imagen = grilla
 
 Ten en cuenta que el último argumento de la función ``pilas.imagenes.cargar_grilla`` es la cantidad de columnas que
@@ -80,12 +80,44 @@ la documentación completa de esta función:
     help(pilas.imagenes.cargar_grilla)
 
 
-Seleccionando el cuadro a mostrar
-_________________________________
+Reproduciendo animaciones
+-------------------------
 
-Luego, una vez que tienes asociado la grilla al actor,
-puedes alterar el cuadro de la grilla que se está
-mostrando.
+Tener una grilla de imagenes es una buena
+forma de comenzar a realizar animaciones.
+
+Si quieres tomar una grilla y mostrar una
+y otra vez sus cuadros podrías usar el actor Animación.
+
+El siguiente código genera un actor que mostrará
+uno a uno los cuadros de la grilla:
+
+.. code-block:: python
+
+    grilla = pilas.imagenes.cargar_grilla("explosion.png", 7)
+    p = pilas.actores.Animacion(grilla, True)
+
+El actor ``Animacion``, también puede recibir cómo argumento
+la velocidad con la que tiene que reproducir la animación (medida
+en cuadros por segundo).
+
+El segundo argumento indica que la animación tiene que ser
+cíclica (nunca termina).
+
+Observa este ejemplo, muesta la misma animación de antes pero
+mostrando un cuadro por segundo y se elimina cuando termina:
+
+.. code-block:: python
+
+    grilla = pilas.imagenes.cargar_grilla("explosion.png", 7)
+    p = pilas.actores.Animacion(grilla, False, velocidad=1)
+
+
+Animaciones controladas a mano con una grilla
+---------------------------------------------
+
+Otra forma de hacer animaciones, es asociar una grilla
+directamente a un actor y cambiar el cuadro a mostrar.
 
 Por ejemplo, la siguiente sentencia avanza al siguiente
 cuadro de animación en la grilla. Recuerda que
@@ -93,16 +125,17 @@ comienza en 1:
 
 .. code-block:: python
 
-    animacion.avanzar()
+    grilla.avanzar()
+    actor.imagen = grilla
 
-Este método retornará ``True`` o ``False``. ``False``
+Ten en cuenta que el método ``avanzar`` va a retornar ``True`` o ``False``. ``False``
 significa que la grilla aún tiene cuadros para
 mostrar, y ``True`` significa que la grilla volvió
 a mostrar el primer cuadro.
 
 Este valor de retorno es muy útil a la hora de
-saber si una animación terminó. Un caso bastante
-común a la hora de hacer juegos.
+saber si una animación terminó, y poder tomar
+alguna decisión al respecto.
 
 
 Grillas con filas y columnas

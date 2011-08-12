@@ -165,6 +165,9 @@ class QtGrilla(QtImagen):
         self.definir_cuadro(cuadro_actual)
         return ha_reiniciado
 
+    def obtener_cuadro(self):
+        return self._cuadro
+
     def dibujarse_sobre_una_pizarra(self, pizarra, x, y):
         pizarra.pintar_parte_de_imagen(self, self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto, x, y)
 
@@ -826,7 +829,6 @@ class QtGL(QtBase, QGLWidget):
 
         QGLWidget.__init__(self)
         QtBase.__init__(self)
-
 
 if QGLWidget == object:
     QtGL = Qt

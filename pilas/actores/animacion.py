@@ -10,7 +10,7 @@ import pilas
 from pilas.actores import Animado
 import copy
 
-VELOCIDAD = 4
+VELOCIDAD = 10
 
 
 class Animacion(Animado):
@@ -21,18 +21,27 @@ class Animacion(Animado):
     la animacion termina se elimina a si mismo.
     """
 
-    def __init__(self, grilla, ciclica=False, x=0, y=0):
+    def __init__(self, grilla, ciclica=False, x=0, y=0, velocidad=VELOCIDAD):
         Animado.__init__(self, grilla, x=x, y=y)
         self.tick = 0
         self.ciclica = ciclica     # Indica si la animacion debe reiniciar luego de terminar.
+        self.definir_velocidad(velocidad)
+
+    def definir_velocidad(self, velocidad):
+        self._velocidad = (1000.0 / 60) * velocidad
+
+    def obtener_velocidad(self):
+        return self._velocidad
+
+    velocidad = property(obtener_velocidad, definir_velocidad)
 
     def actualizar(self):
-        if self.tick > VELOCIDAD:
-            self.tick = 0
+        self.tick += self.velocidad
+
+        if self.tick > 1000.0:
+            self.tick -= 1000.0
             ha_reiniciado = self.imagen.avanzar()
 
             # Si la animacion ha terminado se elimina de la pantalla.
             if ha_reiniciado and not self.ciclica:
                 self.eliminar()
-        else:
-            self.tick += 1
