@@ -59,6 +59,21 @@ Licencia
 Pilas es software libre, y se distribuye bajo la
 licencia GPLv3.
 
+
+Test de unidad
+==============
+
+Para realizar pruebas de unidad estamos usando ``py.test``. Para
+ello tienes que instalar una nueva dependencia con el
+comando::
+
+    sudo easy_install pytest
+
+y luego correr todas las pruebas con los siguientes comandos::
+
+    cd pilas/test
+    python test.py
+
 Créditos y agradecimientos
 ==========================
 
@@ -131,8 +146,8 @@ en su sitio web:
 - www.lostgarden.com
 
 
-a arboris
----------
+a "arboris"
+-----------
 
 Por sus gráficos de naves que se pueden
 descargar desde la siguiente web:
