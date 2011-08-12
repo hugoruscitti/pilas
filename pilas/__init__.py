@@ -45,7 +45,7 @@ def terminar():
     mundo.terminar()
 
 
-def ver(objeto):
+def ver(objeto, solo_retornar=False):
     "Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."
     import inspect
 
@@ -54,7 +54,10 @@ def ver(objeto):
     except TypeError:
         codigo = inspect.getsource(objeto)
 
-    print codigo
+    if not solo_retornar:
+        print codigo
+
+    return codigo
 
 def version():
     "Retorna el numero de version de pilas."
