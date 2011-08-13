@@ -10,6 +10,12 @@ import pilas
 from pilas.simbolos import *
 import eventos
 
+__doc__ = """
+Módulo pilas.control
+====================
+
+"""
+
 class Control:
     """Representa un control de teclado sencillo.
 
@@ -18,10 +24,59 @@ class Control:
 
     Por ejemplo, con este objeto, para saber si el usuario
     está pulsando el direccional hacia la izquierda de
-    puede ejecutar::
+    puedes ejecutar::
 
-        if pilas.control.izquierda:
+        if pilas.mundo.control.izquierda:
             print 'Ha pulsado hacia la izquierda'
+
+    Es decir, si bien Control es una clase, no hace falta
+    instanciarla. Ya existe un objeto que se puede consultar
+    bajo el nombre ``pilas.mundo.control``.
+
+    Entonces, una vez que tienes la referencia para consultar, los
+    atributos que tiene este objeto control son:
+
+    - izquierda
+    - derecha
+    - arriba
+    - abajo
+    - boton
+
+    Cada uno de estos atributos te pueden devolver True, o False, indicando
+    si el control está pulsado o no.
+
+    Ten en cuenta que este objeto también se puede imprimir usando
+    la sentencia ``print``. Esto es útil para ver el estado completo
+    del control de una sola vez:
+
+        >>> print pilas.mundo.control
+        <Control izquierda: False derecha: False arriba: False abajo: False boton: False>
+
+
+    Consultando controles desde un actor
+    ------------------------------------
+
+    Una forma habitual de usar los controles, es consultarlos
+    directamente desde el codigo de un actor.
+
+    Para consultar los controles para cambiar la posicion horizontal de
+    un actor podrías implementar el método ``actualizar``::
+
+        class Patito(pilas.actores.Actor):
+
+            def __init__(self):
+                pilas.actores.Actor.__init__(self)
+                self.imagen = "patito.png"
+
+            def actualizar(self):
+                if pilas.mundo.control.izquierda:
+                    self.x -= 5
+                    self.espejado = True
+                elif pilas.mundo.control.derecha:
+                    self.x += 5
+                    self.espejado = False
+
+    .. image:: ../../pilas/data/patito.png
     """
 
     def __init__(self):

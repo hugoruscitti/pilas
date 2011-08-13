@@ -12,3 +12,5 @@ y conocer las posibilidades que ofrece.
 .. automodule:: pilas                                                                            
    :members:
 
+.. automodule:: pilas.control
+   :members:
