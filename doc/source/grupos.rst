@@ -10,8 +10,8 @@ tratarlos a todos por igual. Por ejemplo, en un juego de naves
 podríamos tener un grupo de naves, un grupo de estrellas y un
 grupo de disparos.
 
-Creando grupos con la función fabricar
---------------------------------------
+Creando grupos de actores
+-------------------------
 
 Para crear varios actores de una misma clase
 podríamos ejecutar algo como lo que sigue:
