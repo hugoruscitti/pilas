@@ -67,3 +67,4 @@ from globo import Globo
 from dialogo import Dialogo
 from globoelegir import GloboElegir
 from pausa import Pausa
+from mano import CursorMano
