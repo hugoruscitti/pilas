@@ -19,36 +19,40 @@ ABAJO = ["abajo", "inferior", "debajo"]
 class Actor(object, Estudiante):
     """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
 
-    Un objeto Actor se tiene que crear siempre indicando la imagen, ya
-    sea como una ruta a un archivo como con un objeto Image. Por ejemplo::
+    .. image:: images/actores/actor.png
 
-        protagonista = Actor("protagonista_de_frente.png")
+    Un objeto Actor se tiene que crear siempre indicando una imagen. Si no
+    se especifica una imagen, se verá una pila de color gris cómo la que
+    está mas arriba.
 
-    es equivalente a::
+    Una forma de crear el actor con una imagen es:
 
-        imagen = pilas.imagenes.cargar("protagonista_de_frente.png")
-        protagonista = Actor(imagen)
+        >>> protagonista = Actor("protagonista_de_frente.png")
 
-    Luego, na vez que ha sido ejecutada la sentencia aparecerá en el centro de
-    la pantalla el nuevo actor para que pueda manipularlo. Por ejemplo
-    alterando sus propiedades::
+    incluso, es equivalente hacer lo siguiente:
 
-        protagonista.x = 100
-        protagonista.escala = 2
-        protagonista.rotacion = 30
+        >>> imagen = pilas.imagenes.cargar("protagonista_de_frente.png")
+        >>> protagonista = Actor(imagen)
 
+    Luego, una vez que ha sido ejecutada la sentencia aparecerá
+    el nuevo actor para que puedas manipularlo. Por ejemplo
+    alterando sus propiedades:
 
-    Estas propiedades tambien se pueden manipular mediante
+        >>> protagonista.x = 100
+        >>> protagonista.escala = 2
+        >>> protagonista.rotacion = 30
+
+    Estas propiedades también se pueden manipular mediante
     interpolaciones. Por ejemplo, para aumentar el tamaño del
-    personaje de 1 a 5 en 7 segundos::
+    personaje de 1 a 5 en 7 segundos:
 
-        protagonista.escala = 1
-        protagonista.escala = [5], 7
+        >>> protagonista.escala = 1
+        >>> protagonista.escala = [5], 7
 
-    Si creas un actor sin indicarle la imagen, se cargará
-    una imagen de una pila por defecto. Usa el nombre
-    de imagen 'invisible.png' si no quieres motrar ninguna
-    imagen.
+    Si quieres que el actor sea invisible, un truco es crearlo
+    con la imagen ``invisible.png``:
+
+        >>> invisible = pilas.actores.Actor('invisible.png')
     """
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
@@ -65,7 +69,7 @@ class Actor(object, Estudiante):
         self.y = y
         self.transparencia = 0
 
-        # Define el nivel de lejania respecto del observador.
+        # Define el nivel de lejanía respecto del observador.
         self.z = 0
         self._espejado = False
         self.radio_de_colision = 10
@@ -99,7 +103,30 @@ class Actor(object, Estudiante):
     def obtener_centro(self):
         return self._centro
     
-    centro = property(obtener_centro, definir_centro, "Define el punto de control del actor.")
+    centro = property(obtener_centro, definir_centro, doc="""
+        Cambia la posición del punto (x, y) dentro de actor.
+
+        Inicialmente, cuando tomamos un actor y definimos sus
+        atributos (x, y). Ese punto, será el que representa el centro
+        del personaje.
+
+        Eso hace que las rotaciones sean siempre sobre el centro
+        del personajes, igual que los cambios de escala y la posición.
+
+        En algunas ocasiones, queremos que el punto (x, y) sea otra
+        parte del actor. Por ejemplo sus pies. En esos casos
+        es útil definir el centro del actor.
+
+        Por ejemplo, si queremos mover el centro del actor podemos
+        usar sentencias cómo estas:
+
+            >>> actor.centro = ("izquierda", "abajo")
+            >>> actor.centro = ("centro", "arriba")
+
+        Pulsa la tecla **F8** para ver el centro del los actores
+        dentro de pilas. Es aconsejable pulsar la tecla **+** para
+        que el punto del modo **F8** se vea bien.
+        """)
 
     def definir_posicion(self, x, y):
         self._actor.definir_posicion(x, y)
@@ -202,12 +229,12 @@ class Actor(object, Estudiante):
     fijo = property(get_fijo, set_fijo, doc="Indica si el actor debe ser independiente a la camara.")
 
     def eliminar(self):
-        "Elimina el actor de la lista de actores que se imprimen en pantalla."
+        """Elimina el actor de la lista de actores que se imprimen en pantalla."""
         self.destruir()
         self._eliminar_anexados()
     
     def destruir(self):
-        "Elimina a un actor pero de manera inmediata."
+        """Elimina a un actor pero de manera inmediata."""
         pilas.actores.utils.eliminar_un_actor(self)
         self.eliminar_habilidades()
         self.eliminar_comportamientos()
@@ -215,10 +242,14 @@ class Actor(object, Estudiante):
     def actualizar(self):
         """Actualiza el estado del actor. 
         
-        Este metodo se llama una vez por frame, y generalmente se redefine
-        en alguna subclase."""
+        Este metodo se llama una vez por frame, y generalmente se suele
+        usar para implementar el comportamiento del actor.
+
+        Si estás haciendo una subclase de Actor, es aconsejable que re-definas
+        este método."""
 
     def pre_actualizar(self):
+        """Actualiza comportamiento y habilidades antes de la actualización."""
         self.actualizar_comportamientos()
         self.actualizar_habilidades()
 
@@ -234,8 +265,6 @@ class Actor(object, Estudiante):
             return 1
         else:
             return -1
-
-############
 
     def get_izquierda(self):
         return self.x - (self.centro[0] * self.escala)
@@ -255,7 +284,6 @@ class Actor(object, Estudiante):
 
     derecha = property(get_derecha, set_derecha)
 
-
     def get_abajo(self):
         return self.get_arriba() - self.alto
 
@@ -274,10 +302,13 @@ class Actor(object, Estudiante):
 
     arriba = property(get_arriba, set_arriba)
 
-######
 
     def colisiona_con_un_punto(self, x, y):
-        "Determina si un punto colisiona con el area del actor."
+        """Determina si un punto colisiona con el area del actor.
+
+        Todos los actores tienen un area rectangular, pulsa la
+        tecla **F10** para ver el area de colision.
+        """
         return self.izquierda <= x <= self.derecha and self.abajo <= y <= self.arriba
 
     def obtener_rotacion(self):
@@ -340,9 +371,10 @@ class Actor(object, Estudiante):
     def esta_fuera_de_la_pantalla(self):
         # TODO: detectar area de la pantalla con las funciones que exporta el motor.
         if self.derecha < -320 or self.izquierda > 320 or self.arriba < -240 or self.abajo > 240:
-                return True
+            return True
 
     def decir(self, mensaje, autoeliminar=True):
+        """Emite un mensaje usando un globo similar al de los commics"""
         nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y, autoeliminar=autoeliminar)
         nuevo_actor.z = self.z - 1
         self.anexar(nuevo_actor)

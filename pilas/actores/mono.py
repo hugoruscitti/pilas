@@ -12,13 +12,14 @@ import pilas
 class Mono(Actor):
     """Representa la cara de un mono de color marrón.
 
-    Este personaje se usa como ejemplo básico de un actor. Sus
-    métodos mas usados son:
+    .. image:: images/actores/mono.png
 
-    - sonreir
-    - gritar
+    Este personaje se usa como ejemplo básico de un actor. Por
+    ejemplo, esta es una forma de usar al actor:
 
-    El primero hace que el mono se ría y el segundo que grite.
+        >>> mono = pilas.actores.Mono()
+        >>> mono.decir("Hola!!!")
+        >>> mono.gritar()
     """
 
     def __init__(self, x=0, y=0):
@@ -35,20 +36,34 @@ class Mono(Actor):
         self.radio_de_colision = 50
 
     def sonreir(self):
+        """Hace que el mono sonria y emita un sonido."""
         self.definir_imagen(self.image_smile)
         # Luego de un segundo regresa a la normalidad
         pilas.mundo.agregar_tarea_una_vez(0.5, self.normal)
         self.sound_smile.reproducir()
 
     def gritar(self):
+        """Hace que el mono grite emitiendo un sonido."""
         self.definir_imagen(self.image_shout)
         # Luego de un segundo regresa a la normalidad
         pilas.mundo.agregar_tarea_una_vez(1, self.normal)
         self.sound_shout.reproducir()
 
     def normal(self):
+        """Restaura la expresión del mono.
+
+        Este función se suele ejecutar por si misma, unos
+        segundos después de haber gritado y sonreir."""
         self.definir_imagen(self.image_normal)
 
     def decir(self, mensaje):
+        """Emite un mensaje y además sonrie mientras habla.
+        
+        Por ejemplo:
+
+            >>> mono.decir("Estoy hablando!!!")
+
+        .. image:: images/actores/mono_dice.png
+        """
         self.sonreir()
         Actor.decir(self, mensaje)

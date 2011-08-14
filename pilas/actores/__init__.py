@@ -15,8 +15,28 @@ from actor import Actor
 
 todos = []
 
-from mono import *
-from ejes import *
+__doc__ = """
+Módulo pilas.actores
+====================
+
+El módulo actores contiene una serie de clases
+para representar personajes de videojuegos.
+
+Para crear actores en una escena del juego simplemente
+se tiene que crear un nuevo objeto a partir de una
+clase.
+
+Por ejemplo, para crear un pongüino podríamos
+escribir la siguiente sentencia:
+
+    >>> p = pilas.actores.Pingu()
+
+"""
+
+
+
+from mono import Mono
+from ejes import Ejes
 from animado import Animado
 from animacion import Animacion
 from explosion import Explosion
