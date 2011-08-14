@@ -487,9 +487,6 @@ class QtBase(motor.Motor):
     def obtener_texto(self, texto, magnitud):
         return QtTexto(texto, magnitud, self)
 
-    def obtener_canvas(self, ancho, alto):
-        return SFMLCanvas(ancho, alto)
-    
     def obtener_grilla(self, ruta, columnas, filas):
         return QtGrilla(ruta, columnas, filas)
 
