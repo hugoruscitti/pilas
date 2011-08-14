@@ -573,56 +573,6 @@ class QtBase(motor.Motor):
     def cerrar_ventana(self):
         self.ventana.Close()
 
-    def procesar_y_emitir_eventos(self):
-        "Procesa todos los eventos que la biblioteca SFML pone en una cola."
-        return
-        '''
-        pass
-        event = self.event
-
-        while self.ventana.GetEvent(self.event):
-            if event.Type == sf.Event.Closed:
-                pilas.mundo.terminar()
-            if event.Type == sf.Event.KeyPressed:
-                self.procesar_evento_teclado(event)
-
-                if event.Key.Code == sf.Key.Q and event.Key.Alt:
-                    pilas.mundo.terminar()
-            elif event.Type == sf.Event.TextEntered:
-
-                eventos.pulsa_tecla.send("ejecutar", codigo=unichr(event.Text.Unicode)) 
-            elif event.Type == sf.Event.MouseMoved:
-                # Notifica el movimiento del mouse con una señal
-
-                x, y = event.MouseMove.X, event.MouseMove.Y
-
-                if x > 0 and y > 0:
-                    x, y = self.ventana.ConvertCoords(x, y)
-                    y = -y
-
-                    # Se asegura de los eventos de mouse esten siempre
-                    # dentro de la ventana.
-                    x = min(320, x)
-                    y = max(y, -240)
-
-                    dx = x - self.mouse_x
-                    dy = y - self.mouse_y
-
-                    self.mouse_x = x
-                    self.mouse_y = y
-
-                    eventos.mueve_mouse.send("ejecutar", x=x, y=y, dx=dx, dy=dy)
-
-            elif event.Type == sf.Event.MouseButtonPressed:
-                x, y = self.ventana.ConvertCoords(event.MouseButton.X, event.MouseButton.Y)
-                eventos.click_de_mouse.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
-            elif event.Type == sf.Event.MouseButtonReleased:
-                x, y = self.ventana.ConvertCoords(event.MouseButton.X, event.MouseButton.Y)
-                eventos.termina_click.send("ejecutar", button=event.MouseButton.Button, x=x, y=-y)
-            elif event.Type == sf.Event.MouseWheelMoved:
-                eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
-        '''
-
     def actualizar_pantalla(self):
         self.ventana.update()
 
@@ -633,9 +583,6 @@ class QtBase(motor.Motor):
     def obtener_centro_de_la_camara(self):
         return (self.camara_x, self.camara_y)
 
-    def pintar(self, color):
-        pass
-            
     def cargar_sonido(self, ruta):
         return QtSonido(ruta)
 
