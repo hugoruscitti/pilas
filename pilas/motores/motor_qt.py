@@ -648,28 +648,6 @@ class QtBase(motor.Motor):
     def obtener_superficie(self, ancho, alto):
         return QtSuperficie(ancho, alto)
 
-    def guardar_captura(self):
-        imagen = self.ventana.Capture()
-        numero = self._obtener_numeracion_siguiente_imagen()
-        nombre = "imagen_%d.png" %(numero)
-        imagen.SaveToFile(nombre)
-        print "Guardando el archivo %s" %(nombre)
-
-    def _obtener_numeracion_siguiente_imagen(self):
-        "Obtiene un numero de imagen para guardar una captura."
-        lista_de_archivos = glob.glob("imagen_*.png")
-
-        if lista_de_archivos:
-            archivos = "\n".join(lista_de_archivos)
-            patron = "_(.+).png"
-            numeros = [int(x) for x in re.findall(patron, archivos)]
-            numeros.sort()
-            ultimo_numero = numeros[-1] + 1
-        else:
-            ultimo_numero = 1
-
-        return ultimo_numero
-
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         sys.exit(self.app.exec_())
 
