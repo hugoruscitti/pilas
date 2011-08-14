@@ -36,6 +36,7 @@ class Fisica(object):
             self.mundo = None
             return
 
+        self.constante_mouse = None
         self.i = 0
         self.crear_bordes_del_escenario()
         self.figuras_a_eliminar = []
@@ -48,7 +49,26 @@ class Fisica(object):
     def reiniciar(self):
         for x in self.mundo.bodyList:
             self.mundo.DestroyBody(x)
+
         self.crear_bordes_del_escenario()
+
+    def capturar_figura_con_el_mouse(self, figura):
+        md = box2d.b2MouseJointDef()
+        md.body1 = self.mundo.GetGroundBody()
+        md.body2 = figura._cuerpo
+        md.target = (figura.x, figura.y)
+        md.maxForce = 5000.0 * figura._cuerpo.GetMass()
+        self.constante_mouse = self.mundo.CreateJoint(md).getAsType()
+        figura._cuerpo.WakeUp()
+    
+    def cuando_mueve_el_mouse(self, x, y):
+        if self.constante_mouse:
+            self.constante_mouse.SetTarget((x, y))
+
+    def cuando_suelta_el_mouse(self):
+        if self.constante_mouse:
+            self.mundo.DestroyJoint(self.constante_mouse)
+            self.constante_mouse = None
         
     def actualizar(self):
         if self.mundo:

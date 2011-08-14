@@ -18,6 +18,9 @@ El módulo ``pilas.fisica`` es tan sólo una facilidad para
 que no sea necesario tener muchos conocimientos de física
 y bibliotecas como Box2D para hacer juegos con física.
 
+Así que aprovecho este espacio para dar las gracias a **Erin Catto**, y
+su grupo de desarrollo por haber creado **Box2D**.
+
 
 Unos ejemplos
 -------------
@@ -37,7 +40,7 @@ hacerlas rebotar:
 
 .. code-block:: python
 
-    pelotas = pilas.actores.Caja() * 10
+    cajas = pilas.actores.Caja() * 10
 
 
 Como puedes ver, el resultado es un grupo caótico
@@ -46,6 +49,18 @@ como personalizar y "controlar" un poco el escenario.
 
 
 .. image:: images/fisica.png
+
+
+
+Los actores que tienen física son un poco particulares, pero
+aún así se los puede tratar como a otros actores. Por
+ejemplo, si quieres poder arrastrar y soltar figuras con
+el mouse puedes enseñarles una habilidad:
+
+.. code-block:: python
+
+    pelotas.aprender(pilas.habilidades.Arrastrable)
+    cajas.aprender(pilas.habilidades.Arrastrable)
 
 
 Modo depuración de física
