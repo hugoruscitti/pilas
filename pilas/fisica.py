@@ -16,8 +16,6 @@ except ImportError:
 
 import math
 
-    
-
 class Fisica(object):
     "Representa un simulador de mundo fisico, usando la biblioteca box2d."
     
@@ -67,7 +65,6 @@ class Fisica(object):
                     self.mundo.DestroyBody(x)
             self.figuras_a_eliminar = []
 
-        
     def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
         "Dibuja todas las figuras en una pizarra. Indicado para depuracion."
         cuerpos = self.mundo.bodyList
@@ -224,11 +221,12 @@ class Figura(object):
         self.definir_velocidad_lineal(dx, dy)
         
     def eliminar(self):
+        """Quita una figura de la simulación."""
         pilas.mundo.fisica.eliminar_figura(self._cuerpo)
         
-    x = property(obtener_x, definir_x)
-    y = property(obtener_y, definir_y)
-    rotacion = property(obtener_rotacion, definir_rotacion)
+    x = property(obtener_x, definir_x, doc="define la posición horizontal.")
+    y = property(obtener_y, definir_y, doc="define la posición vertical.")
+    rotacion = property(obtener_rotacion, definir_rotacion, doc="define la rotacion.")
     
 class Circulo(Figura):
     "Representa un cuerpo de circulo."
@@ -266,7 +264,6 @@ class Circulo(Figura):
         self._cuerpo = body
 
 class Rectangulo(Figura):
-    
     def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0, 
             restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
             fisica=None):
@@ -302,7 +299,6 @@ class Rectangulo(Figura):
         self._cuerpo = body
 
 class ConstanteDeDistancia():
-    
     def __init__(self, figura_1, figura_2, fisica=None):
         if not fisica:
             fisica = pilas.mundo.fisica
@@ -314,7 +310,6 @@ class ConstanteDeDistancia():
         constante.Initialize(figura_1._cuerpo, figura_2._cuerpo, (0,0), (0,0))
         constante.collideConnected = True
         fisica.mundo.CreateJoint(constante)
-
 
 def definir_gravedad(x=0, y=-90):
     pilas.mundo.fisica.mundo.gravity = (x, y)

@@ -519,6 +519,21 @@ class QtBase(motor.Motor):
         # Activa la invocacion al evento timerEvent.
         self.startTimer(1000/100.0)
 
+    def pantalla_completa(self):
+        self.showFullScreen()
+
+    def pantalla_modo_ventana(self):
+        self.showNormal()
+
+    def esta_en_pantalla_completa(self):
+        return self.isFullScreen()
+
+    def alternar_pantalla_completa(self):
+        if self.esta_en_pantalla_completa():
+            self.pantalla_modo_ventana()
+        else:
+            self.pantalla_completa()
+
     def centro_fisico(self):
         "Centro de la ventana para situar el punto (0, 0)"
         return self.ancho_original/2, self.alto_original/2
@@ -557,8 +572,6 @@ class QtBase(motor.Motor):
 
     def cerrar_ventana(self):
         self.ventana.Close()
-
-
 
     def procesar_y_emitir_eventos(self):
         "Procesa todos los eventos que la biblioteca SFML pone en una cola."
@@ -609,22 +622,6 @@ class QtBase(motor.Motor):
             elif event.Type == sf.Event.MouseWheelMoved:
                 eventos.mueve_rueda.send("ejecutar", delta=event.MouseWheel.Delta)
         '''
-
-    def procesar_evento_teclado(self, event):
-        code = event.Key.Code
-        
-        if code == sf.Key.P and event.Key.Alt:
-            pilas.mundo.alternar_pausa()
-        elif code == sf.Key.F4:
-            pilas.motor.guardar_captura()
-        elif code == sf.Key.F6:
-            pilas.utils.listar_actores_en_consola()                
-        elif code == sf.Key.F7:
-            eventos.imprimir_todos()
-        elif code in [sf.Key.F8, sf.Key.F9, sf.Key.F10, sf.Key.F11, sf.Key.F12]:
-            pilas.mundo.depurador.pulsa_tecla(code)
-        elif code == sf.Key.Escape:
-            eventos.pulsa_tecla_escape.send("ejecutar")
 
     def actualizar_pantalla(self):
         self.ventana.update()
@@ -753,6 +750,8 @@ class QtBase(motor.Motor):
             eventos.pulsa_tecla_escape.send("Qt::keyPressEvent")
         if event.key() == QtCore.Qt.Key_P:
             self.alternar_pausa()
+        if event.key() == QtCore.Qt.Key_F:
+            self.alternar_pantalla_completa()
 
         eventos.pulsa_tecla.send("Qt::keyPressEvent", codigo=codigo_de_tecla, texto=event.text())
 
@@ -806,7 +805,6 @@ class QtBase(motor.Motor):
             alto += metrica.height()
 
         return ancho, alto
-
 
     def alternar_pausa(self):
         if self.pausa_habilitada:
