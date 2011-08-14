@@ -20,6 +20,7 @@ class Aceituna(Actor):
         Actor.__init__(self, x=x, y=y)
         self.imagen = self.cuadro_normal
         self.centro = ('centro', 'centro')
+        self.radio_de_colision = 18
 
     def normal(self):
         self.imagen = self.cuadro_normal
