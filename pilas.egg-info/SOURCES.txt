@@ -76,10 +76,14 @@ pilas/cargador/syntax.py
 pilas/cargador/ui.py
 pilas/cargador/data/_presentacion.png
 pilas/cargador/data/progressAnimation.gif
+pilas/cargador/ejemplos/animaciones/animacion_con_velocidad.png
+pilas/cargador/ejemplos/animaciones/animacion_con_velocidad.py
 pilas/cargador/ejemplos/animaciones/grilla.png
 pilas/cargador/ejemplos/animaciones/grilla.py
 pilas/cargador/ejemplos/basicos/actor.png
 pilas/cargador/ejemplos/basicos/actor.py
+pilas/cargador/ejemplos/basicos/actor_personalizado_con_imagen_y_control.png
+pilas/cargador/ejemplos/basicos/actor_personalizado_con_imagen_y_control.py
 pilas/cargador/ejemplos/basicos/actores_simples.png
 pilas/cargador/ejemplos/basicos/actores_simples.py
 pilas/cargador/ejemplos/basicos/arrastrable.png
@@ -279,6 +283,8 @@ pilas/data/monkey_smile.png
 pilas/data/mono.png
 pilas/data/nave.png
 pilas/data/parque.tmx
+pilas/data/patito.png
+pilas/data/patito_desde_arriba.png
 pilas/data/pelota.png
 pilas/data/piedra_chica.png
 pilas/data/piedra_grande.png
