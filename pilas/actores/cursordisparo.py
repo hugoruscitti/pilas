@@ -21,4 +21,4 @@ class CursorDisparo(Actor):
         self.radio_de_colision = 25
 
         self.aprender(pilas.habilidades.SeguirAlMouse)
-        pilas.motor.ocultar_puntero_del_mouse()
+        pilas.mundo.motor.ocultar_puntero_del_mouse()

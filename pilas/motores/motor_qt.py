@@ -807,6 +807,7 @@ class QtBase(motor.Motor):
 
         return ancho, alto
 
+
     def alternar_pausa(self):
         if self.pausa_habilitada:
             self.pausa_habilitada = False
@@ -814,6 +815,11 @@ class QtBase(motor.Motor):
         else:
             self.pausa_habilitada = True
             self.actor_pausa = actores.Pausa()
+
+    def ocultar_puntero_del_mouse(self):
+        bitmap = QtGui.QBitmap(1, 1)
+        nuevo_cursor = QtGui.QCursor(bitmap, bitmap)
+        self.setCursor(QtGui.QCursor(nuevo_cursor))
 
 class Qt(QtBase, QWidget):
 
