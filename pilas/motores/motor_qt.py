@@ -16,7 +16,7 @@ try:
     from PyQt4.QtOpenGL import QGLWidget
 except ImportError:
     QGLWidget = object
-    print "No se encuentra OpenGL en este equipo."
+    print "No se encuentra soporte OpenGL en este equipo."
 
 
 import motor
@@ -408,83 +408,13 @@ class QtSonido:
     def __init__(self, ruta):
         import pygame
         pygame.mixer.init()
+        pygame.mixer.init()
         self.sonido = pygame.mixer.Sound(ruta)
 
     def reproducir(self):
         # TODO: quitar esta nota...
         # print "Usando pygame para reproducir sonido"
         self.sonido.play()
-        
-class SFMLCanvas:
-    "Representa una superficie sobre la que se puede dibujar usando cairo."
-    # TODO
-
-    def __init__(self, ancho, alto):
-        self.ancho = ancho
-        self.alto = alto
-        self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, ancho, alto)
-        self.image = sf.Image()
-        self.context = cairo.Context(self.surface)
-        self.actualizar()
-
-    def actualizar(self):
-        self.image.LoadFromPixels(self.ancho, self.alto, self.surface.get_data())
-
-    def limpiar(self):
-        self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, self.ancho, self.alto)
-        self.context = cairo.Context(self.surface)       
-
-               
-
-    def __init__(self, ancho, alto, titulo):
-        super(Ventana, self).__init__()
-        self.init()
-        self.sprites = []
-
-        '''
-        self.mouse = QtGui.QCursor()
-
-        time = QtCore.QTimer()
-        time.singleShot(50, self.hacer_flotante_la_ventana_en_i3)
-        '''
-
-    def do_update(self):
-        self.update()
-        '''
-        position = self.mapFromGlobal(QtGui.QCursor.pos())
-        x = position.x()
-        y = position.y()
-        self.sprites[0].x = x
-        self.sprites[0].y = y
-        '''
-
-    def hacer_flotante_la_ventana_en_i3(self):
-        try:
-            subprocess.call(['i3-msg', 't'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        except OSError:
-            pass
-
-    def paintEvent(self, event):
-        self.canvas.begin(self)
-        #self.qp.scale(self.scale_x, self.scale_y)
-        self.canvas.setClipRect(0, 0, 640, 480)
-
-        # Hace que el centro de coordenadas sea (0, 0)
-        # self.qp.setWindow(-320, -240, 640, 480)
-        # self.qp.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
-        self.render(event, self.canvas)
-        self.canvas.end()
-
-    def keyPressEvent(self, event):
-        print "Pulsa la tecla:", event.key()
-
-    def wheelEvent(self, event):
-        print "Mueve rueda:", event.delta()
-
-
-    def render(self, event, qp):
-        for r in self.sprites:
-            r.dibujar(self.canvas)
         
 class QtBase(motor.Motor):
     
