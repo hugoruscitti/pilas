@@ -4,6 +4,7 @@ sys.path.insert(0, "..")
 import pilas
 pilas.iniciar()
 
+pilas.actores.CursorMano()
 pilas.fondos.Pasto()
 caja = pilas.actores.Caja() * 10
 caja.aprender(pilas.habilidades.Arrastrable)

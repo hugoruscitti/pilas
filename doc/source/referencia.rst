@@ -16,4 +16,4 @@ y conocer las posibilidades que ofrece.
    :members:
 
 .. automodule:: pilas.actores
-   :members: Actor, Mono, Ejes, Animado, Animacion, Explosion, Bomba, Pingu, Banana, Texto, Temporizador, Moneda, Pizarra, Pelota, Puntaje, Estrella, Caja, Nave, Disparo, CursorDisparo, Piedra, Menu, Opcion, Tortuga, Mapa, Martian, Boton, EntradaDeTexto, Aceituna, Globo, Dialogo, GloboElegir, Pausa
+   :members: Actor, Mono, Ejes, Animado, Animacion, Explosion, Bomba, Pingu, Banana, Texto, Temporizador, Moneda, Pizarra, Pelota, Puntaje, Estrella, Caja, Nave, Disparo, CursorDisparo, Piedra, Menu, Opcion, Tortuga, Mapa, Martian, Boton, EntradaDeTexto, Aceituna, Globo, Dialogo, GloboElegir, Pausa, CursorMano
