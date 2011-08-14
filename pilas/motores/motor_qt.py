@@ -529,6 +529,10 @@ class QtBase(motor.Motor):
         return self.isFullScreen()
 
     def alternar_pantalla_completa(self):
+        """Permite cambiar el modo de video.
+
+        Si está en modo ventana, pasa a pantalla completa y viceversa.
+        """
         if self.esta_en_pantalla_completa():
             self.pantalla_modo_ventana()
         else:
@@ -553,25 +557,11 @@ class QtBase(motor.Motor):
     def obtener_texto(self, texto, magnitud):
         return QtTexto(texto, magnitud, self)
 
-    def obtener_posicion_del_mouse(self):
-        #return (self.mouse_x, self.mouse_y)
-        pass
-    
     def obtener_canvas(self, ancho, alto):
         return SFMLCanvas(ancho, alto)
     
     def obtener_grilla(self, ruta, columnas, filas):
         return QtGrilla(ruta, columnas, filas)
-
-
-    def ocultar_puntero_del_mouse(self):
-        self.ventana.ShowMouseCursor(False)
-
-    def mostrar_puntero_del_mouse(self):
-        self.ventana.ShowMouseCursor(True)
-
-    def cerrar_ventana(self):
-        self.ventana.Close()
 
     def actualizar_pantalla(self):
         self.ventana.update()
