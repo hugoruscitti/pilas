@@ -517,7 +517,7 @@ class QtBase(motor.Motor):
             self.show()
 
         # Activa la invocacion al evento timerEvent.
-        self.startTimer(1000/100.0)
+        self.startTimer(1000/60.0)
 
     def pantalla_completa(self):
         self.showFullScreen()
