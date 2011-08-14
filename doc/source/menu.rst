@@ -13,7 +13,7 @@ para iniciar el juego y otra para salir:
 
 .. code-block:: python
 
-    pilas.iniciar()
+    import pilas
 
     pilas.iniciar()
     pilas.fondos.Pasto()

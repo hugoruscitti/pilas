@@ -21,7 +21,6 @@ class Martian(Actor):
         self.definir_cuadro(0)
         self.hacer(Esperando())
         self.figura = pilas.fisica.Rectangulo(0, 0, 10, 10, restitucion=0, friccion=0.00)
-        #self.aprender(pilas.habilidades.PisaPlataformas)
 
     def definir_cuadro(self, indice):
         self.imagen.definir_cuadro(indice)
@@ -43,6 +42,7 @@ class Martian(Actor):
         vx, vy = self.figura.obtener_velocidad_lineal()
         self.figura.definir_velocidad_lineal(0, vy)
         self.figura.definir_rotacion(0)
+
 
     def crear_disparo(self):
         if self.espejado:
@@ -84,7 +84,7 @@ class Caminando(Comportamiento):
         self.avanzar_animacion()
 
         if pilas.mundo.control.izquierda:
-            self.receptor.mover(-VELOCIDAD, 0)
+            self.receptor.mover(-VELOCIDAD * -100, 0)
         elif pilas.mundo.control.derecha:
             self.receptor.mover(VELOCIDAD, 0)
         else:

@@ -206,10 +206,21 @@ class Figura(object):
         velocidad = self._cuerpo.GetLinearVelocity()
         return (velocidad.x, velocidad.y)
 
-    def definir_velocidad_lineal(self, dx, dy):
+    def detener(self):
+        """Hace que la figura regrese al reposo."""
+        self.definir_velocidad_lineal(0, 0)
+
+    def definir_velocidad_lineal(self, dx=None, dy=None):
+        anterior_dx, anterior_dy = self.obtener_velocidad_lineal()
+
+        if not dx:
+            dx = anterior_dx
+        if not dy:
+            dy = anterior_dy
+
         self._cuerpo.SetLinearVelocity((dx, dy))
 
-    def empujar(self, dx, dy):
+    def empujar(self, dx=None, dy=None):
         self.definir_velocidad_lineal(dx, dy)
         
     def eliminar(self):
