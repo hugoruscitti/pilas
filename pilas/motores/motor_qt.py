@@ -31,7 +31,7 @@ from pilas import simbolos
 from pilas import colores
 
 
-class BaseActor:
+class BaseActor(object):
     
     def __init__(self):
         self._rotacion = 0

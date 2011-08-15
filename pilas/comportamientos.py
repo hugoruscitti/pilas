@@ -9,7 +9,7 @@
 import math
 import pilas
 
-class Comportamiento:
+class Comportamiento(object):
     "Representa un comportamiento (estrategia) que se puede anexar a un actor."
     
     def iniciar(self, receptor):

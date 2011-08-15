@@ -10,7 +10,7 @@ import pilas
 from pilas import pilasversion
 import sys
 
-class Depurador:
+class Depurador(object):
     """Esta clase permite hacer depuraciones visuales.
     
     La depuracion visual en pilas consiste en poder mostrar informacion
@@ -118,7 +118,7 @@ class Depurador:
         self.lienzo.texto_absoluto(motor, texto, izquierda + 10, abajo + 10, 
                 color=pilas.colores.violeta)
         
-class ModoDepurador:
+class ModoDepurador(object):
     tecla = "F00"
 
     def __init__(self, depurador):

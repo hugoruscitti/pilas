@@ -8,7 +8,7 @@
 
 import pilas
 
-class Escena:
+class Escena(object):
     "Escena abstracta."
 
     def __init__(self):

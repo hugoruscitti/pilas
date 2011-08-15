@@ -10,7 +10,7 @@ import random
 import pilas
 
 
-class Habilidad:
+class Habilidad(object):
 
     def __init__(self, receptor):
         self.receptor = receptor

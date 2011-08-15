@@ -13,7 +13,7 @@ class ___FPS:
     def obtener_cuadros_por_segundo(self):
         return 0
 
-class FPS:
+class FPS(object):
     #print "Usando pygame en el modulo fps"
 
     def __init__(self, fps, usar_modo_economico):

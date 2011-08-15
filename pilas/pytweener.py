@@ -8,7 +8,7 @@
 # Python version by Ben Harling 2009 
 import math
 
-class Tweener:
+class Tweener(object):
     def __init__(self, duration = 0.5, tween = None):
         """Tweener
         This class manages all active tweens, and provides a factory for

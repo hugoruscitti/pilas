@@ -16,7 +16,7 @@ from pilas import colisiones
 from pilas import camara
 
 
-class Mundo:
+class Mundo(object):
     """Representa un objeto unico que mantiene en funcionamiento al motor.
 
     Mundo tiene como responsabilidad iniciar los componentes del

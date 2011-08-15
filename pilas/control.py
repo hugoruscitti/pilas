@@ -16,7 +16,7 @@ Módulo pilas.control
 
 """
 
-class Control:
+class Control(object):
     """Representa un control de teclado sencillo.
 
     Este objeto permite acceder al estado del teclado usando

@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-class Tarea:
+class Tarea(object):
 
     def __init__(self, time_out, dt, funcion, parametros, una_vez):
         """
@@ -41,7 +41,7 @@ class TareaCondicional(Tarea):
         if not retorno:
             self.una_vez = True
 
-class Tareas:
+class Tareas(object):
     """Contenedor de tareas a ejecutar por tiempo.
 
     El Tareas es un planificador de tareas, permite que

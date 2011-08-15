@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-class Interpolacion:
+class Interpolacion(object):
     """Representa una interpolacion, que pasa por varios puntos clave.
 
     Las interpolacione se utilizan para realizar movimientos de

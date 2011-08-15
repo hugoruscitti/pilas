@@ -1,6 +1,6 @@
 import pilas
 
-class Color:
+class Color(object):
     "Representa un color en base a 4 componentes."
 
     def __init__(self, r, g, b, a=255):
