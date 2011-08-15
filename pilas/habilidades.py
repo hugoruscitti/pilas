@@ -21,7 +21,7 @@ class Habilidad:
     def eliminar(self):
         pass
 
-class RebotaComoPelota(Habilidad):
+class RebotarComoPelota(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
@@ -44,7 +44,7 @@ class RebotaComoPelota(Habilidad):
     def empujar(self, dx, dy):
         self.circulo.empujar(dx, dy)
 
-class RebotaComoCaja(Habilidad):
+class RebotarComoCaja(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
@@ -61,10 +61,10 @@ class RebotaComoCaja(Habilidad):
         self.rectangulo.eliminar()
         
         
-class ColisionableComoPelota(RebotaComoPelota):
+class ColisionableComoPelota(RebotarComoPelota):
 
     def __init__(self, receptor):
-        RebotaComoPelota.__init__(self, receptor)
+        RebotarComoPelota.__init__(self, receptor)
         
     def actualizar(self):
         self.figura.body.position.x = self.receptor.x

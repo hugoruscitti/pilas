@@ -21,6 +21,6 @@ class ColisionesFisicas(pilas.escenas.Normal):
         m.aprender(pilas.habilidades.ColisionableComoPelota)
 
         b = pilas.actores.Bomba()
-        b.aprender(pilas.habilidades.RebotaComoPelota)
+        b.aprender(pilas.habilidades.RebotarComoPelota)
 
         pilas.atajos.fabricar(pilas.actores.Pelota, 20)

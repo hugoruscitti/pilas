@@ -6,7 +6,7 @@ sys.path.insert(0, "..")
 pilas.iniciar()
 
 grupo = pilas.atajos.fabricar(pilas.actores.Mono, 20)
-grupo.aprender(pilas.habilidades.RebotaComoPelota)
+grupo.aprender(pilas.habilidades.RebotarComoPelota)
 grupo.sonreir()
 pilas.ejecutar()
 

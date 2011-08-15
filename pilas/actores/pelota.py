@@ -20,4 +20,4 @@ class Pelota(Actor):
         self.y = y
         self.radio_de_colision = 25
 
-        self.aprender(pilas.habilidades.RebotaComoPelota)
+        self.aprender(pilas.habilidades.RebotarComoPelota)

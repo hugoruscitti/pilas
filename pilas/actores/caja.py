@@ -20,4 +20,4 @@ class Caja(Actor):
         self.y = y
         self.radio_de_colision = 25
 
-        self.aprender(pilas.habilidades.RebotaComoCaja)
+        self.aprender(pilas.habilidades.RebotarComoCaja)

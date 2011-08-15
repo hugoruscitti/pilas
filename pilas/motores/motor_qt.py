@@ -519,8 +519,8 @@ class QtBase(motor.Motor):
         self.canvas.begin(self)
 
         self.canvas.setClipping(True)
-        ratio = self.ancho_original / self.alto_original
-        self.canvas.setClipRect(0, 0, self.alto * ratio, self.alto)
+        proporcion = self.ancho_original / self.alto_original
+        self.canvas.setClipRect(0, 0, self.ancho * proporcion, self.alto)
 
         alto = self.alto / float(self.alto_original)
         self.canvas.scale(alto, alto)

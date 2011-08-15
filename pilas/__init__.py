@@ -81,7 +81,7 @@ def terminar():
     """Finaliza la ejecución de pilas y cierra la ventana principal."""
     mundo.terminar()
 
-def ver(objeto, solo_retornar=False):
+def ver(objeto, imprimir=True, retornar=False):
     """Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."""
     import inspect
 
@@ -90,10 +90,11 @@ def ver(objeto, solo_retornar=False):
     except TypeError:
         codigo = inspect.getsource(objeto)
 
-    if not solo_retornar:
+    if imprimir:
         print codigo
 
-    return codigo
+    if retornar:
+        return codigo
 
 def version():
     """Retorna el número de version de pilas."""
