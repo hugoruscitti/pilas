@@ -15,20 +15,16 @@ Iniciar
 Para empezar puedes escribir ``import pilas``, y luego usar alguna
 de las siguientes funciones:
 
-iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='sfml', gravedad=(0, -90))
-    inicia la biblioteca y la ventana principal. Los valores de usar_motor pueden ser 'sfml' o 'pygame'.
+iniciar(ancho, alto, titulo, usar_motor, gravedad)
+    inicia la biblioteca y la ventana principal. Todos los argumentos son opcionales, los valores de ``usar_motor`` pueden ser 'qt' o 'qtgl'.
 pilas.terminar()
-    para cerrar la ventana (su atajo es la tecla 'q')
+    para cerrar la ventana (su atajo es la tecla 'alt+q')
 pilas.ejecutar()
     para poner en funcionamiento la biblioteca desde script, no hace falta llamarla en modo interactivo.
-pilas.atajos.fabricar(clase, cantidad=1)
-    genera muchos objetos de una clase particular asignandolo una posicion aleatoria.
 pilas.avisar(mensaje)
     dibuja un mensaje al pie de la ventana.
 pilas.ver(objeto)
     muestra el codigo de un objeto o modulo.
-pilas.ejecutar_cada(segundos, funcion)
-    ejecuta una funcion cada intervalos indicandos por el argumento ``segundos``, si la funcion retorna ``False`` se dejan de ejecutar los intervalos.
 
 Uso básico de Actores
 ---------------------
@@ -37,12 +33,11 @@ Los actores te permiten representar personajes con facilidad.
 
 Para crear un actor tienes que escribir algo cómo:
 
-
 .. code-block:: python
 
     mono = pilas.actores.Mono()
 
-y cada actor tiene atributos cómo: x, y, z, rotacion, escala.
+cada actor tiene atributos cómo: x, y, z, rotacion, escala, espejado, centro.
 
 Por ejemplo:
 
@@ -57,11 +52,12 @@ mensajes cómo:
 .. code-block:: python
 
     mono.sonreir()
+    mono.decir("Hola!")
 
 usa el comando ``help(mono)`` para conocer mas de
-este actor.
+este actor, o bien ``pilas.ver(mono)``.
 
-Los atributos tambien pueden recivir listas para
+Los atributos también pueden recibir listas para
 realizar animaciones, por ejemplo, esta sentencia
 duplica el tamaño del actor en 5 segundos:
 
@@ -73,16 +69,25 @@ duplica el tamaño del actor en 5 segundos:
 Otros actores
 -------------
 
-Mono, Bomba, Tortuga, Banana, Pingu, Animacion ... 
+Mono, Pelota, Caja, Bomba, Tortuga, Banana, Pingu, Animacion ... 
 
 Atajos de teclado
 -----------------
 
 La pantalla principal de pilas tiene algunos atajos útiles:
 
-    **F12**  Habilita el modo depuración.
+    **F7**  Ver información de sistema
 
-    **P**    Pone la simulación en pausa.
+    **F8**  Ver puntos de control (centros)
+
+    **F9**  Ver radios de colisión
+
+    **F10**  Ver áreas de imágenes originales.
+
+    **F11**  Ver figuras físicas.
+
+    **F12**  Ver posiciones.
+
 
 Movimientos
 -----------
@@ -115,11 +120,15 @@ Algunas habilidades son:
 - SeguirClicks
 - Arrastrable
 - MoverseConElTeclado
+- RebotarComoPelota
+- RebotarComoCaja
+- etc...
 
 y se pueden anexar a los actores así:
 
 .. code-block:: python
 
+    mono.aprender(pilas.habilidades.RebotarComoPelota)
     mono.aprender(pilas.habilidades.Arrastrable)
 
 Colisiones
@@ -140,13 +149,10 @@ sistema de colisiones:
 
     mono = pilas.actores.Mono()
     bomba = pilas.actores.Bomba()
-    bomba2 = pilas.actores.Bomba()
-    bomba2.x = 200
 
-    bombas = [bomba, bomba2]
+    bombas = bomba * 10
 
     pilas.colisiones.agregar(mono, bombas, toca_bomba)
-
 
 
 Referencias
