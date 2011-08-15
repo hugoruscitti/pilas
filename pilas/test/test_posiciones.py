@@ -215,7 +215,7 @@ def test_cambiodeposicionverticalconescala():
     caja.centro = ("centro", "centro")
     caja.escala = 1
 
-    assert caja.area, (48 == 48)
+    assert caja.area == 48
     assert caja.arriba == 24
     assert caja.abajo == -24
 

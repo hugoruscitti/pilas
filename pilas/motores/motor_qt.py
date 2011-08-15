@@ -518,8 +518,13 @@ class QtBase(motor.Motor):
     def paintEvent(self, event):
         self.canvas.begin(self)
 
+        self.canvas.setClipping(True)
+        ratio = self.ancho_original / self.alto_original
+        self.canvas.setClipRect(0, 0, self.alto * ratio, self.alto)
+
         alto = self.alto / float(self.alto_original)
         self.canvas.scale(alto, alto)
+
 
         self.canvas.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, False)
         self.canvas.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
@@ -675,6 +680,11 @@ class QtGL(QtBase, QGLWidget):
 
         QGLWidget.__init__(self)
         QtBase.__init__(self)
+        self._pintar_fondo_negro()
+
+    def _pintar_fondo_negro(self):
+        color = QtGui.QColor(99, 0, 0)
+        self.setStyleSheet("QWidget { background-color: %s }" % color.name())
 
 if QGLWidget == object:
     QtGL = Qt
