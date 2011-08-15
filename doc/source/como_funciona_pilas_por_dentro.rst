@@ -545,18 +545,19 @@ como a cualquier otra.
 La interfaz que toda habilidad debe tener es la que define
 la clase ``Habilidad`` del archivo ``habilidades.py``:
 
+
 .. code-block:: python
 
     class Habilidad:
 
-    def __init__(self, receptor):
-        self.receptor = receptor
+        def __init__(self, receptor):
+            self.receptor = receptor
 
-    def actualizar(self):
-        pass
+        def actualizar(self):
+            pass
 
-    def eliminar(self):
-        pass
+        def eliminar(self):
+            pass
 
 Tiene que tener tres métodos, uno que se ejecuta al producirle
 la relación con un actor, un método que se ejecutará en
@@ -581,11 +582,11 @@ algo así:
 
     class GirarPorSiempre(pilas.habilidades.Habilidad):
     
-    def __init__(self, receptor):
-        self.receptor = receptor
-    
-    def actualizar(self):
-        self.receptor.rotacion += 1
+        def __init__(self, receptor):
+            self.receptor = receptor
+        
+        def actualizar(self):
+            self.receptor.rotacion += 1
 
     mono = pilas.actores.Mono()
     mono.aprender(GirarPorSiempre)

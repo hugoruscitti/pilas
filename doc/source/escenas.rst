@@ -58,7 +58,7 @@ o podrías usar un fondo de atardecer:
 
     pilas.fondos.Tarde()
 
-.. image:: images/paisaje.png
+.. image:: images/tarde.png
     :width: 15cm
 
 Cómo crear nuevas escenas
