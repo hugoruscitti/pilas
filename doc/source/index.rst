@@ -25,7 +25,6 @@ Recorrido básico:
     sonidos.rst
 
     dibujado_simple_en_pantalla.rst
-    superficies.rst
 
 
 Recorrido modulos avanzados:
@@ -33,6 +32,7 @@ Recorrido modulos avanzados:
 .. toctree::
     :maxdepth: 1
 
+    dibujado_avanzado_con_superficies.rst
     tareas.rst
     interpolacion.rst
     controlando_la_pantalla.rst

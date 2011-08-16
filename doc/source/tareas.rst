@@ -23,7 +23,7 @@ tenemos que escribir algo cómo:
 
 .. code-block:: python
 
-    pilas.mundo.agregar_tarea(tiempo, funcion [,parametros])
+    pilas.mundo.agregar_tarea(tiempo, funcion, parametros)
 
 
 Hay tres tipos de creaciones de tareas:

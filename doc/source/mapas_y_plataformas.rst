@@ -116,10 +116,6 @@ luego cargarlo desde pilas.
 El software que te recomiendo para esta tarea se llama ``tiled``
 (ver http://www.mapeditor.org).
 
-Así se ve la web del programa.
-
-.. image:: images/tiled1.png
-
 Veamos como usar tiled para crear un escenario sencillo, primero
 tienes que crear un mapa desde el menú ``File``, se le solicitará
 indicar el tamaño del escenario:

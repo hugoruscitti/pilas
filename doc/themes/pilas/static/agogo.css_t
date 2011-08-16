@@ -18,7 +18,6 @@ body {
   font-family: {{ theme_bodyfont }};
   line-height: 1.4em;
   color: black;
-  background-color: {{ theme_bgcolor }};
 }
 
 
@@ -31,14 +30,12 @@ div.header, div.content, div.footer {
 }
 
 div.header-wrapper {
-  background: {{ theme_headerbg }};
-  border-bottom: 3px solid #2e3436;
 }
 
 
 /* Default body styles */
 a {
-  color: {{ theme_linkcolor }};
+    color: #0060FF;
 }
 
 div.bodywrapper a, div.footer a {
@@ -87,7 +84,7 @@ h2 {
 
 a.headerlink {
   visibility: hidden;
-  color: #dddddd;
+    color: #0060FF;
   padding-left: .3em;
 }
 
@@ -136,7 +133,7 @@ div.header h1 {
 }
 
 div.header h1 a {
-  color: white;
+  color: black;
 }
 
 div.header div.rel {
@@ -144,9 +141,7 @@ div.header div.rel {
 }
 
 div.header div.rel a {
-  color: {{ theme_headerlinkcolor }};
-  letter-spacing: .1em;
-  text-transform: uppercase;
+    color: #0060FF;
 }
 
 p.logo {

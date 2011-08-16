@@ -170,7 +170,7 @@ con el click del mouse:
 
 .. code-block:: python
 
-   def cuando_selecciona(opcion):
-       print "Ha seleccionado la opcion:", opcion
+    def cuando_selecciona(opcion):
+        print "Ha seleccionado la opcion:", opcion
        
     consulta = pilas.interfaz.ListaSeleccion(['Uno', 'Dos', 'Tres'], cuando_selecciona)

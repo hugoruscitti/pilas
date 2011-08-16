@@ -31,6 +31,7 @@ En tu pantalla tiene que aparecer una ventana
 de color gris:
 
 .. image:: images/cap1.png
+    :width: 100%
 
 La función iniciar tiene mas parámetros, pero
 los veremos mas adelante, por ahora continuaremos
@@ -69,6 +70,7 @@ python:
 En pantalla aparecerá un simpático personaje de color marrón:
 
 .. image:: images/cap2.png
+    :width: 100%
 
 Adoptaremos a este personaje dentro de nuestro juego
 bajo un nombre, en este caso ``mono``. Así que para indicarle

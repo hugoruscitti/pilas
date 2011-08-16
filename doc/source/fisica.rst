@@ -104,11 +104,13 @@ en la pantalla, y sean un poco mas libres, podrías eliminar
 las paredes:
 
 .. code-block:: python
+
     pilas.mundo.fisica.eliminar_paredes()
 
 o incluso podrías eliminar el suelo:
 
 .. code-block:: python
+
     pilas.mundo.fisica.eliminar_suelo()
 
 

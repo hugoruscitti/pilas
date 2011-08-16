@@ -34,13 +34,13 @@ class Control(object):
     bajo el nombre ``pilas.mundo.control``.
 
     Entonces, una vez que tienes la referencia para consultar, los
-    atributos que tiene este objeto control son:
+    atributos que tiene este objeto control son::
 
-    - izquierda
-    - derecha
-    - arriba
-    - abajo
-    - boton
+        izquierda
+        derecha
+        arriba
+        abajo
+        boton
 
     Cada uno de estos atributos te pueden devolver True, o False, indicando
     si el control está pulsado o no.
@@ -53,8 +53,7 @@ class Control(object):
         <Control izquierda: False derecha: False arriba: False abajo: False boton: False>
 
 
-    Consultando controles desde un actor
-    ------------------------------------
+    Consultando controles desde un actor:
 
     Una forma habitual de usar los controles, es consultarlos
     directamente desde el codigo de un actor.

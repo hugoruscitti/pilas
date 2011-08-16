@@ -167,7 +167,7 @@ a derecha y de arriba a abajo).
 Esta es la apariencia de la imágen que usamos antes y
 los números indican el órden con que pilas leerá los cuadros:
 
-.. images:: images/grilla_con_columnas.png
+.. image:: images/grilla_con_columnas.png
 
 
 Haciendo animaciones sencillas
@@ -248,9 +248,9 @@ métodos para intercambiar animaciones:
 
 .. code-block:: python
 
-    class MiNave(...)
+    class MiNave(pilas.actores.Actor):
 
-        [...] # codigo anterior
+        # [...] codigo anterior
     
         def poner_en_movimiento(self):
             self.imagen = self.animacion_movimiento
