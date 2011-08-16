@@ -64,6 +64,12 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         for x in widgets:
             x.setEnabled(esta_habilitado)
 
+    def keyPressEvent(self, event): 
+        if event.key() == QtCore.Qt.Key_Return:
+            self.cuando_pulsa_boton_ejecutar()
+
+        return QtGui.QMainWindow.keyPressEvent(self, event)
+
     def _cargar_lista_de_ejemplos(self):
 
         self.ui.arbol.setColumnCount(1)
