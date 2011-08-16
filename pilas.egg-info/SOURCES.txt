@@ -53,6 +53,7 @@ pilas/actores/estrella.py
 pilas/actores/explosion.py
 pilas/actores/globo.py
 pilas/actores/globoelegir.py
+pilas/actores/mano.py
 pilas/actores/mapa.py
 pilas/actores/martian.py
 pilas/actores/menu.py
@@ -106,6 +107,8 @@ pilas/cargador/ejemplos/basicos/test_ejes.png
 pilas/cargador/ejemplos/basicos/test_ejes.py
 pilas/cargador/ejemplos/basicos/test_explosion.png
 pilas/cargador/ejemplos/basicos/test_explosion.py
+pilas/cargador/ejemplos/basicos/__pycache__/test_ejes.cpython-26-PYTEST.pyc
+pilas/cargador/ejemplos/basicos/__pycache__/test_explosion.cpython-26-PYTEST.pyc
 pilas/cargador/ejemplos/colisiones/colisiones.png
 pilas/cargador/ejemplos/colisiones/colisiones.py
 pilas/cargador/ejemplos/completos/ejemplo_piezas.png
@@ -124,6 +127,8 @@ pilas/cargador/ejemplos/escenas/escenas_con_menu.png
 pilas/cargador/ejemplos/escenas/escenas_con_menu.py
 pilas/cargador/ejemplos/escenas/menu.png
 pilas/cargador/ejemplos/escenas/menu.py
+pilas/cargador/ejemplos/fisica/actores_arrastrables.png
+pilas/cargador/ejemplos/fisica/actores_arrastrables.py
 pilas/cargador/ejemplos/fisica/grupos_y_colisiones.png
 pilas/cargador/ejemplos/fisica/grupos_y_colisiones.py
 pilas/cargador/ejemplos/fisica/mapa_desde_archivo.png
@@ -304,6 +309,10 @@ pilas/data/boton/boton_over.png
 pilas/data/boton/boton_press.png
 pilas/data/boton/tema.png
 pilas/data/boton/tema.xcf
+pilas/data/cursores/arrastrando.png
+pilas/data/cursores/dibujar.png
+pilas/data/cursores/normal.png
+pilas/data/cursores/prohibido.png
 pilas/data/fondos/blanco.png
 pilas/data/fondos/espacio.png
 pilas/data/fondos/noche.png
@@ -347,6 +356,7 @@ pilas/interfaz/lista_seleccion.py
 pilas/interfaz/selector.py
 pilas/motores/__init__.py
 pilas/motores/motor.py
+pilas/motores/motor_android.py
 pilas/motores/motor_qt.py
 pilas/video/__init__.py
 pilas/video/video.py

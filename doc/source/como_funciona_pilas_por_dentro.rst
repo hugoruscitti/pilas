@@ -49,6 +49,23 @@ Posiblemente en el futuro podamos ofrecer una
 versión de pilas alternativa en inglés, pero
 actualmente no es una prioridad.
 
+
+Bibliotecas que usa pilas
+-------------------------
+
+Hay tres grandes bibliotecas que se utilizan
+en pilas:
+
+- Box2D
+- Qt4
+- Pygame
+
+.. image:: images/logos/box2d.png
+
+.. image:: images/logos/pygame.png
+
+.. image:: images/logos/qt-logo.jpg
+
 Objetos y módulos
 -----------------
 
