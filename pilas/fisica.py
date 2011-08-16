@@ -58,7 +58,7 @@ class Fisica(object):
         md.body2 = figura._cuerpo
         md.target = (figura.x, figura.y)
         md.maxForce = 5000.0 * figura._cuerpo.GetMass()
-        self.constante_mouse = self.mundo.CreateJoint(md).getAsType()
+        self.constante_mouse = self.mundo.CreateJoint(md)
         figura._cuerpo.WakeUp()
     
     def cuando_mueve_el_mouse(self, x, y):

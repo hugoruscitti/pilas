@@ -49,6 +49,7 @@ como personalizar y "controlar" un poco el escenario.
 
 
 .. image:: images/fisica.png
+    :width: 100%
 
 
 

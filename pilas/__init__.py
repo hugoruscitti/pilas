@@ -9,6 +9,7 @@
 mundo = None
 bg = None
 
+import sys
 import utils
 from mundo import Mundo
 import actores

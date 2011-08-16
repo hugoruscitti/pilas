@@ -52,6 +52,7 @@ La siguiente imagen es una grilla de 10 columnas
 que utilizamos para crear al personaje "pingu":
 
 .. image:: images/pingu.png
+    :width: 100%
 
 
 Internamente la imagen se almacena así, pero a la

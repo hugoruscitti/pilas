@@ -49,6 +49,23 @@ Posiblemente en el futuro podamos ofrecer una
 versión de pilas alternativa en inglés, pero
 actualmente no es una prioridad.
 
+
+Bibliotecas que usa pilas
+-------------------------
+
+Hay tres grandes bibliotecas que se utilizan
+en pilas:
+
+- Box2D
+- Qt4
+- Pygame
+
+.. image:: images/logos/box2d.png
+
+.. image:: images/logos/pygame.png
+
+.. image:: images/logos/qt-logo.jpg
+
 Objetos y módulos
 -----------------
 
@@ -545,18 +562,19 @@ como a cualquier otra.
 La interfaz que toda habilidad debe tener es la que define
 la clase ``Habilidad`` del archivo ``habilidades.py``:
 
+
 .. code-block:: python
 
     class Habilidad:
 
-    def __init__(self, receptor):
-        self.receptor = receptor
+        def __init__(self, receptor):
+            self.receptor = receptor
 
-    def actualizar(self):
-        pass
+        def actualizar(self):
+            pass
 
-    def eliminar(self):
-        pass
+        def eliminar(self):
+            pass
 
 Tiene que tener tres métodos, uno que se ejecuta al producirle
 la relación con un actor, un método que se ejecutará en
@@ -581,11 +599,11 @@ algo así:
 
     class GirarPorSiempre(pilas.habilidades.Habilidad):
     
-    def __init__(self, receptor):
-        self.receptor = receptor
-    
-    def actualizar(self):
-        self.receptor.rotacion += 1
+        def __init__(self, receptor):
+            self.receptor = receptor
+        
+        def actualizar(self):
+            self.receptor.rotacion += 1
 
     mono = pilas.actores.Mono()
     mono.aprender(GirarPorSiempre)
