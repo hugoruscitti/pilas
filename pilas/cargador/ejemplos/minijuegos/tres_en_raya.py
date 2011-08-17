@@ -1,3 +1,4 @@
 import os
-os.chdir('tres_en_raya')
+directorio_actual = os.path.dirname(os.path.abspath(__file__))
+os.chdir(os.path.join(directorio_actual, 'tres_en_raya'))
 from tres_en_raya import ejecutar
