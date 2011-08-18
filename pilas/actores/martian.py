@@ -10,7 +10,7 @@ import pilas
 from pilas.actores import Actor
 from pilas.comportamientos import Comportamiento
 
-VELOCIDAD = 10000
+VELOCIDAD = 100
 
 
 class Martian(Actor):
@@ -19,30 +19,18 @@ class Martian(Actor):
         Actor.__init__(self, x=x, y=y)
         self.imagen = pilas.imagenes.cargar_grilla("marcianitos/martian.png", 12)
         self.definir_cuadro(0)
+        self.figura = pilas.fisica.Circulo(0, 0, 18, friccion=0, amortiguacion=0, restitucion=0.1)
         self.hacer(Esperando())
-        self.figura = pilas.fisica.Rectangulo(0, 0, 10, 10, restitucion=0, friccion=0.00)
 
     def definir_cuadro(self, indice):
         self.imagen.definir_cuadro(indice)
         self.definir_centro((32, 123))
 
-    def mover(self, x, y):
-        if x > 1:
-            self.espejado = False
-
-        if x < -1:
-            self.espejado = True
-
-        self.figura.definir_velocidad_lineal(x, y)
-
     def actualizar(self):
         "Sigue el movimiento de la figura."
         self.x = self.figura.x
-        self.y = self.figura.y
-        vx, vy = self.figura.obtener_velocidad_lineal()
-        self.figura.definir_velocidad_lineal(0, vy)
-        self.figura.definir_rotacion(0)
-
+        self.y = self.figura.y - 15
+        self.figura.rotacion = 0
 
     def crear_disparo(self):
         if self.espejado:
@@ -51,7 +39,10 @@ class Martian(Actor):
             rotacion = 90
 
         disparo = pilas.actores.Disparo(x=self.x, y=self.y+20, rotacion=rotacion, velocidad=10)
-        #disparo.aprender(pilas.habilidades.EliminarseSiSaleDePantalla)
+
+    def puede_saltar(self):
+        dx, dy = self.figura.obtener_velocidad_lineal()
+        return -2 < dy < 2
 
 class Esperando(Comportamiento):
     "Un actor en posicion normal o esperando a que el usuario pulse alguna tecla."
@@ -67,7 +58,7 @@ class Esperando(Comportamiento):
         elif pilas.mundo.control.derecha:
             self.receptor.hacer(Caminando())
 
-        if pilas.mundo.control.arriba:
+        if pilas.mundo.control.arriba and self.receptor.puede_saltar():
             self.receptor.hacer(Saltando())
 
         if pilas.mundo.control.boton:
@@ -79,15 +70,20 @@ class Caminando(Comportamiento):
         self.cuadros = [1, 1, 1, 2, 2, 2]
         self.paso = 0
 
+    def iniciar(self, receptor):
+        self.receptor = receptor
+
     def actualizar(self):
-        vx, vy = self.receptor.figura.obtener_velocidad_lineal()
         self.avanzar_animacion()
 
         if pilas.mundo.control.izquierda:
-            self.receptor.mover(-VELOCIDAD * -100, 0)
+            self.receptor.figura.definir_velocidad_lineal(-VELOCIDAD)
+            self.receptor.espejado = True
         elif pilas.mundo.control.derecha:
-            self.receptor.mover(VELOCIDAD, 0)
+            self.receptor.figura.definir_velocidad_lineal(+VELOCIDAD)
+            self.receptor.espejado = False
         else:
+            self.receptor.figura.definir_velocidad_lineal(0)
             self.receptor.hacer(Esperando())
 
         if pilas.mundo.control.arriba:
@@ -106,8 +102,9 @@ class Saltando(Comportamiento):
     def iniciar(self, receptor):
         self.receptor = receptor
         self.receptor.definir_cuadro(3)
-        self.receptor.mover(0, +13000)
-        self.esta_bajando = None
+        self.esta_bajando = False
+        self.receptor.figura.definir_velocidad_lineal(None, 300)
+
 
     def actualizar(self):
 
@@ -117,20 +114,19 @@ class Saltando(Comportamiento):
 
         if vy < 0:
             self.esta_bajando = True
-        else:
-            self.esta_bajando = False
 
-        if self.esta_bajando and -1 < vy < 1:
+        if self.esta_bajando and -2 < vy < 2:
             self.receptor.figura.definir_velocidad_lineal(0,0)
             self.receptor.hacer(Esperando())
 
-
         if pilas.mundo.control.izquierda:
             self.receptor.espejado = True
-            self.receptor.mover(-VELOCIDAD, 0)
+            self.receptor.figura.definir_velocidad_lineal(-VELOCIDAD)
         elif pilas.mundo.control.derecha:
             self.receptor.espejado = False
-            self.receptor.mover(+VELOCIDAD, 0)
+            self.receptor.figura.definir_velocidad_lineal(VELOCIDAD)
+        else:
+            self.receptor.figura.definir_velocidad_lineal(0)
 
 class Disparar(Comportamiento):
 
