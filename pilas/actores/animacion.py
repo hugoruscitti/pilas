@@ -25,18 +25,18 @@ class Animacion(Animado):
         Animado.__init__(self, grilla, x=x, y=y)
         self.tick = 0
         self.ciclica = ciclica     # Indica si la animacion debe reiniciar luego de terminar.
-        self.definir_velocidad(velocidad)
+        self.definir_velocidad_de_animacion(velocidad)
 
-    def definir_velocidad(self, velocidad):
-        self._velocidad = (1000.0 / 60) * velocidad
+    def definir_velocidad_de_animacion(self, velocidad_de_animacion):
+        self._velocidad_de_animacion = (1000.0 / 60) * velocidad_de_animacion
 
-    def obtener_velocidad(self):
-        return self._velocidad
+    def obtener_velocidad_de_animacion(self):
+        return self._velocidad_de_animacion
 
-    velocidad = property(obtener_velocidad, definir_velocidad)
+    velocidad_de_animacion = property(obtener_velocidad_de_animacion, definir_velocidad_de_animacion)
 
     def actualizar(self):
-        self.tick += self.velocidad
+        self.tick += self.velocidad_de_animacion
 
         if self.tick > 1000.0:
             self.tick -= 1000.0
