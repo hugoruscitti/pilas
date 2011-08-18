@@ -53,21 +53,18 @@ class Fisica(object):
         self.crear_bordes_del_escenario()
 
     def capturar_figura_con_el_mouse(self, figura):
-        md = box2d.b2MouseJointDef()
-        md.body1 = self.mundo.GetGroundBody()
-        md.body2 = figura._cuerpo
-        md.target = (figura.x, figura.y)
-        md.maxForce = 5000.0 * figura._cuerpo.GetMass()
-        self.constante_mouse = self.mundo.CreateJoint(md)
-        figura._cuerpo.WakeUp()
+        if self.constante_mouse:
+            self.cuando_suelta_el_mouse()
+        
+        self.constante_mouse = ConstanteDeMovimiento(figura)
     
     def cuando_mueve_el_mouse(self, x, y):
         if self.constante_mouse:
-            self.constante_mouse.SetTarget((x, y))
+            self.constante_mouse.mover(x, y)
 
     def cuando_suelta_el_mouse(self):
         if self.constante_mouse:
-            self.mundo.DestroyJoint(self.constante_mouse)
+            self.constante_mouse.eliminar()
             self.constante_mouse = None
         
     def actualizar(self):
@@ -230,9 +227,9 @@ class Figura(object):
     def definir_velocidad_lineal(self, dx=None, dy=None):
         anterior_dx, anterior_dy = self.obtener_velocidad_lineal()
 
-        if not dx:
+        if dx is None:
             dx = anterior_dx
-        if not dy:
+        if dy is None:
             dy = anterior_dy
 
         self._cuerpo.SetLinearVelocity((dx, dy))
@@ -318,7 +315,44 @@ class Rectangulo(Figura):
 
         self._cuerpo = body
 
+class ConstanteDeMovimiento():
+
+    def __init__(self, figura):
+        md = box2d.b2MouseJointDef()
+        mundo = pilas.mundo.fisica.mundo
+        md.body1 = mundo.GetGroundBody()
+        md.body2 = figura._cuerpo
+        md.target = (figura.x, figura.y)
+        md.maxForce = 5000.0 * figura._cuerpo.GetMass()
+
+        try:
+            self.constante = mundo.CreateJoint(md).getAsType()
+        except:
+            self.constante = mundo.CreateJoint(md)
+
+        figura._cuerpo.WakeUp()
+
+    def mover(self, x, y):
+        self.constante.SetTarget((x, y))
+
+    def eliminar(self):
+        pilas.mundo.fisica.mundo.DestroyJoint(self.constante)
+
 class ConstanteDeDistancia():
+    """Representa una distancia fija entre dos figuras.
+
+    Esta constante es útil para representar ejes o barras
+    que sostienen dos cuerpos. Por ejemplo, un eje entre dos
+    ruedas en un automóvil:
+
+        >>> circulo_1 = pilas.fisica.Circulo(-100, 0, 50)
+        >>> circulo_2 = pilas.fisica.Circulo(100, 50, 50)
+        >>> barra = pilas.fisica.ConstanteDeDistancia(circulo_1, circulo_2)
+
+    La distancia que tiene que respetarse en la misma que tienen
+    las figuras en el momento en que se establece la constante.
+    """
+
     def __init__(self, figura_1, figura_2, fisica=None):
         if not fisica:
             fisica = pilas.mundo.fisica
@@ -329,7 +363,11 @@ class ConstanteDeDistancia():
         constante = box2d.b2DistanceJointDef()
         constante.Initialize(figura_1._cuerpo, figura_2._cuerpo, (0,0), (0,0))
         constante.collideConnected = True
-        fisica.mundo.CreateJoint(constante)
+        self.constante = fisica.mundo.CreateJoint(constante)
+
+
+    def eliminar(self):
+        pilas.mundo.fisica.mundo.DestroyJoint(self.constante_mouse)
 
 def definir_gravedad(x=0, y=-90):
     pilas.mundo.fisica.mundo.gravity = (x, y)
