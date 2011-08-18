@@ -44,6 +44,7 @@ class Depurador(object):
 
     def termina_dibujado(self, motor):
         if self.modos:
+            self._mostrar_cantidad_de_actores(motor)
             self._mostrar_cuadros_por_segundo(motor)
             self._mostrar_posicion_del_mouse(motor)
             self._mostrar_nombres_de_modos(motor)
@@ -116,6 +117,13 @@ class Depurador(object):
         rendimiento = self.fps.obtener_cuadros_por_segundo()
         texto = "Cuadros por segundo: %s" %(rendimiento)
         self.lienzo.texto_absoluto(motor, texto, izquierda + 10, abajo + 10, 
+                color=pilas.colores.violeta)
+
+    def _mostrar_cantidad_de_actores(self, motor):
+        izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
+        total_de_actores = len(pilas.actores.todos)
+        texto = "Cantidad de actores: %s" %(total_de_actores)
+        self.lienzo.texto_absoluto(motor, texto, izquierda + 10, abajo + 30, 
                 color=pilas.colores.violeta)
         
 class ModoDepurador(object):
