@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui.ui'
 #
-# Created: Tue Aug 16 19:49:06 2011
+# Created: Sun Aug 21 13:19:30 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,9 +25,15 @@ class Ui_MainWindow(object):
         self.splitter_2 = QtGui.QSplitter(self.centralwidget)
         self.splitter_2.setOrientation(QtCore.Qt.Horizontal)
         self.splitter_2.setObjectName(_fromUtf8("splitter_2"))
-        self.arbol = QtGui.QTreeWidget(self.splitter_2)
+        self.vbox_left = QtGui.QWidget(self.splitter_2)
+        self.vbox_left.setObjectName(_fromUtf8("vbox_left"))
+        self.vlayout_left = QtGui.QVBoxLayout(self.vbox_left)
+        self.vlayout_left.setMargin(0)
+        self.vlayout_left.setObjectName(_fromUtf8("vlayout_left"))
+        self.arbol = QtGui.QTreeWidget(self.vbox_left)
         self.arbol.setObjectName(_fromUtf8("arbol"))
         self.arbol.headerItem().setText(0, _fromUtf8("1"))
+        self.vlayout_left.addWidget(self.arbol)
         self.splitter = QtGui.QSplitter(self.splitter_2)
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName(_fromUtf8("splitter"))
@@ -78,7 +84,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.splitter_2, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 822, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 822, 23))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuArchivo = QtGui.QMenu(self.menubar)
         self.menuArchivo.setObjectName(_fromUtf8("menuArchivo"))
@@ -102,14 +108,4 @@ class Ui_MainWindow(object):
         self.guardar.setText(QtGui.QApplication.translate("MainWindow", "Guardar Codigo", None, QtGui.QApplication.UnicodeUTF8))
         self.menuArchivo.setTitle(QtGui.QApplication.translate("MainWindow", "Archivo", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSalir.setText(QtGui.QApplication.translate("MainWindow", "Salir", None, QtGui.QApplication.UnicodeUTF8))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    MainWindow = QtGui.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
 

@@ -20,12 +20,18 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QTreeWidget" name="arbol">
-       <column>
-        <property name="text">
-         <string notr="true">1</string>
-        </property>
-       </column>
+      <widget class="QWidget" name="vbox_left">
+       <layout class="QVBoxLayout" name="vlayout_left">
+        <item>
+         <widget class="QTreeWidget" name="arbol">
+          <column>
+           <property name="text">
+            <string notr="true">1</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QSplitter" name="splitter">
        <property name="orientation">
@@ -139,7 +145,7 @@
      <x>0</x>
      <y>0</y>
      <width>822</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">

@@ -10,9 +10,11 @@ import ui
 import os
 import sys
 import glob
+
 from PyQt4 import QtGui, QtCore
-import threading
+
 import syntax
+import buscador
 
 
 MENSAJE_PRESENTACION = u"""Bienvenido al cargador de ejemplos.
@@ -29,14 +31,23 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self.this_dir = os.path.abspath(os.path.dirname(__file__))
         self.example_dir = os.path.join(self.this_dir, 'ejemplos')
         self._cargar_lista_de_ejemplos()
+        # LLamar cargar buscador siempre despues de cargar ejemplos
+        self._cargar_buscador()
 
         # Senales
-        self.connect(self.ui.ejecutar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_ejecutar)
-        self.connect(self.ui.fuente, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_fuente)
-        self.connect(self.ui.guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_guardar)
-        self.connect(self.ui.arbol, QtCore.SIGNAL("itemSelectionChanged()"), self.cuando_cambia_seleccion)
-        self.connect(self.ui.arbol, QtCore.SIGNAL("itemActivated(QListWidgetItem *)"), self.cuando_pulsa_boton_ejecutar)
-        self.connect(self.ui.actionSalir, QtCore.SIGNAL("activated()"), self.cuando_quiere_cerrar)
+        self.connect(self.ui.ejecutar, QtCore.SIGNAL("clicked()"),
+            self.cuando_pulsa_boton_ejecutar)
+        self.connect(self.ui.fuente, QtCore.SIGNAL("clicked()"),
+            self.cuando_pulsa_boton_fuente)
+        self.connect(self.ui.guardar, QtCore.SIGNAL("clicked()"),
+            self.cuando_pulsa_boton_guardar)
+        self.connect(self.ui.arbol, QtCore.SIGNAL("itemSelectionChanged()"),
+            self.cuando_cambia_seleccion)
+        self.connect(self.ui.arbol,
+            QtCore.SIGNAL("itemActivated(QListWidgetItem *)"),
+            self.cuando_pulsa_boton_ejecutar)
+        self.connect(self.ui.actionSalir, QtCore.SIGNAL("activated()"),
+            self.cuando_quiere_cerrar)
 
         syntax.PythonHighlighter(self.ui.codigo.document())
 
@@ -50,28 +61,42 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         alto = self.size().height()
         escritorio = QtGui.QDesktopWidget().screenGeometry()
         self.setGeometry(
-                    (escritorio.width()-ancho)/2, 
-                    (escritorio.height()-alto)/2, ancho, alto)
+                    (escritorio.width() - ancho) / 2,
+                    (escritorio.height() - alto) / 2, ancho, alto)
 
     def _definir_estado_habilitado(self, esta_habilitado):
         "Oculta la barra de progreso y habilita todos los controles."
 
-        widgets = [self.ui.progreso, self.ui.ejecutar, self.ui.guardar, 
-            self.ui.arbol, self.ui.fuente, self.ui.codigo, self.ui.imagen]
+        widgets = [self.locate_widget, self.ui.progreso, self.ui.ejecutar,
+            self.ui.guardar, self.ui.arbol, self.ui.fuente, self.ui.codigo,
+            self.ui.imagen]
 
         self.ui.progreso.setVisible(not esta_habilitado)
 
         for x in widgets:
             x.setEnabled(esta_habilitado)
 
-    def keyPressEvent(self, event): 
-        if event.key() == QtCore.Qt.Key_Return:
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Return and \
+        self.ui.arbol.hasFocus() and \
+        self.ui.arbol.currentItem().childCount() == 0:
             self.cuando_pulsa_boton_ejecutar()
 
         return QtGui.QMainWindow.keyPressEvent(self, event)
 
-    def _cargar_lista_de_ejemplos(self):
+    def _cargar_buscador(self):
+        self.locate_widget = buscador.ExampleLocatorWidget(
+            self.ejemplos, self.ui.arbol)
+        self.ui.vlayout_left.addWidget(self.locate_widget)
+        shortcut = QtGui.QShortcut(QtGui.QKeySequence(
+            QtCore.Qt.CTRL + QtCore.Qt.Key_F), self)
+        self.connect(self.locate_widget, QtCore.SIGNAL("itemFound(QString)"),
+            self.buscador_resultado_encontrado)
+        self.connect(shortcut, QtCore.SIGNAL("activated()"),
+            self.locate_widget.setFocus)
 
+    def _cargar_lista_de_ejemplos(self):
+        self.ejemplos = {}
         self.ui.arbol.setColumnCount(1)
         self.ui.arbol.setHeaderLabels(["Nombre"])
 
@@ -87,7 +112,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
                 nombre_legible = os.path.basename(archivo).replace(".py", "")
                 item = QtGui.QTreeWidgetItem([nombre_legible, archivo])
                 raiz.addChild(item)
-
+                self.ejemplos[nombre_legible] = archivo
 
     def _iniciar_interfaz(self):
         QtGui.QMainWindow.__init__(self)
@@ -100,7 +125,6 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         self._ejecutar_ejemplo(nombre_ejemplo)
 
     def cuando_quiere_cerrar(self):
-        import sys
         sys.exit(0)
 
     def cuando_pulsa_boton_fuente(self):
@@ -112,7 +136,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
     def cuando_pulsa_boton_guardar(self):
         nombre = self._obtener_item_actual()
-        path = unicode(QtGui.QFileDialog.getSaveFileName(self, 
+        path = unicode(QtGui.QFileDialog.getSaveFileName(self,
                     'Guardar ejemplo',
                     nombre,
                     "py (*.py)"))
@@ -130,11 +154,16 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
             self._mostrar_codigo_del_ejemplo(ruta)
             self._mostrar_imagen_del_ejemplo(ruta)
 
+    def buscador_resultado_encontrado(self, ruta):
+        if ruta:
+            self._mostrar_codigo_del_ejemplo(ruta)
+            self._mostrar_imagen_del_ejemplo(ruta)
 
     def _mostrar_imagen_del_ejemplo(self, ruta):
         escena = QtGui.QGraphicsScene()
         self.ui.imagen.setScene(escena)
-        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(ruta.replace('.py', '.png')))
+        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(
+            ruta.replace('.py', '.png')))
         escena.addItem(pixmap)
 
     def _mostrar_image_inicial(self):
@@ -160,7 +189,8 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
     def _ejecutar_ejemplo(self, ruta):
         self.process = QtCore.QProcess(self)
         self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
-        self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
+        self.process.finished.connect(
+            self._cuando_termina_la_ejecucion_del_ejemplo)
         self.process.start(sys.executable, [ruta])
 
         # Deshabilita todos los controles para que se pueda
@@ -172,7 +202,8 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         print self.process.readAll()
         self._definir_estado_habilitado(True)
         self.ui.arbol.setFocus()
-        
+
+
 def main():
     app = QtGui.QApplication(sys.argv)
     window = VentanaPrincipal()
