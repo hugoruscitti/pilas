@@ -156,8 +156,20 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
     def buscador_resultado_encontrado(self, ruta):
         if ruta:
-            self._mostrar_codigo_del_ejemplo(ruta)
-            self._mostrar_imagen_del_ejemplo(ruta)
+            item = self._obtener_item_desde_ruta(ruta)
+
+            if item:
+                self.ui.arbol.setCurrentItem(item)
+
+    def _obtener_item_desde_ruta(self, ruta):
+        nombres = ruta.split('/')
+        categoria = nombres[-2]
+        nombre = nombres[-1].replace('.py', '')
+
+        items = self.ui.arbol.findItems(nombre, QtCore.Qt.MatchRecursive)
+
+        if items:
+            return items[0]
 
     def _mostrar_imagen_del_ejemplo(self, ruta):
         escena = QtGui.QGraphicsScene()
