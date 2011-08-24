@@ -57,7 +57,9 @@ crear un actor con esa apariencia:
 Es decir, una vez que creamos la superficie, en realidad lo que obtenemos
 es un objeto que se comporta cómo una imagen, pero con la diferencia
 que podemos dibujar sobre ella libremente y crear desde el código la
-imagen que queramos.
+imagen que queramos:
+
+.. image:: images/carita.png
 
 Ten en cuenta que también estamos mostrando la superficie gracias a un
 actor, así que si rotamos el actor o cambiamos su escala la superficie

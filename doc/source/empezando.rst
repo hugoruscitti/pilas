@@ -268,7 +268,7 @@ Conclusión
 ----------
 
 Hemos visto los pasos principales para gestionar
-actores. Ten en cuenta que el módulo :mod:``pilas.actores`` es
+actores. Ten en cuenta que el módulo :mod:`pilas.actores` es
 donde se guardarán todos los actores.
 
 Un buen ejercicio es ponerse a investigar el módulo

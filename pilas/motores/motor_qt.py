@@ -6,6 +6,7 @@
 #
 # website - http://www.pilas-engine.com.ar
 
+import os
 import sys
 import copy
 from PyQt4 import QtGui, QtCore
@@ -73,9 +74,10 @@ class BaseActor(object):
     def set_espejado(self, espejado):        
         self._espejado = espejado
         
-class QtImagen():
+class QtImagen(object):
 
     def __init__(self, ruta):
+        self.ruta_original = ruta
         self._imagen = QtGui.QPixmap(ruta)
 
     def ancho(self):
@@ -114,6 +116,10 @@ class QtImagen():
 
     def _dibujar_pixmap(self, motor, x, y):
         motor.canvas.drawPixmap(x, y, self._imagen)
+
+    def __str__(self):
+        nombre_imagen = os.path.basename(self.ruta_original)
+        return "<Imagen del archivo '%s'>" %(nombre_imagen)
 
 
 class QtGrilla(QtImagen):
