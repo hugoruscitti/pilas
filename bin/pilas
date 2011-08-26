@@ -13,6 +13,10 @@ analizador.add_option("-e", "--ejemplos", dest="ejemplos",
         action="store_true", default=False,
         help="Mustra varios ejemplos sencillos de pilas")
 
+analizador.add_option("-t", "--test", dest="test",
+        action="store_true", default=False,
+        help="Invoca varias pruebas verificar el funcionamiento de pilas")
+
 (opciones, argumentos) = analizador.parse_args()
 
 
@@ -21,6 +25,9 @@ if opciones.crearjuego:
     sys.exit(0)
 elif opciones.ejemplos:
     pilas.abrir_cargador()
+    sys.exit(0)
+elif opciones.test:
+    pilas.utils.realizar_pruebas()
     sys.exit(0)
 
 print "Error, no has indicado un parametro para iniciar pilas."

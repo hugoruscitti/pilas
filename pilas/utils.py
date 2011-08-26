@@ -207,3 +207,40 @@ def obtener_bordes():
 def obtener_area_de_texto(texto):
     "Informa el ancho y alto que necesitara un texto para imprimirse."
     return pilas.mundo.motor.obtener_area_de_texto(texto)
+
+def realizar_pruebas():
+    print "Realizando pruebas de dependencias:"
+    print ""
+
+    print "Box 2D:",
+
+    try:
+        import Box2D as box2d
+        print "OK, versión", box2d.__version__
+    except ImportError:
+        print "Error -> no se encuentra pybox2d."
+
+    print "pygame:",
+
+    try:
+        import pygame
+        print "OK, versión", pygame.__version__
+    except ImportError:
+        print "Error -> no se encuentra pygame."
+
+    print "pyqt:",
+
+    try:
+        from PyQt4 import Qt
+        print "OK, versión", Qt.PYQT_VERSION_STR
+    except ImportError:
+        print "Error -> no se encuentra pyqt."
+
+    print "pyqt con aceleracion:",
+
+    try:
+        from PyQt4 import QtOpenGL
+        from PyQt4.QtOpenGL import QGLWidget
+        print "OK"
+    except ImportError:
+        print "Error -> no se encuentra pyqt4gl."
