@@ -15,7 +15,7 @@ VELOCIDAD = 4
 class Pingu(Actor):
     """Muestra a un pingüino que sabe caminar con el teclado.
 
-    .. image:: source/images/actores/pingu.png
+    .. image:: images/actores/pingu.png
 
     Este actor responde al teclado, así que podremos
     usar los direccionales del teclado ``izquierda``, ``arriba``
