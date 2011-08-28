@@ -19,12 +19,25 @@ class Animacion(Animado):
     Este actor toma una grilla de cuadros de animacion
     y los reproduce hasta que la animacion termina. Cuando
     la animacion termina se elimina a si mismo.
+
+    El constructor tiene algunos parámetros de utilidad:
+
+        - El parámetro ``ciclica`` permite hacer animaciones infinitas, que se repiten siempre, por defecto vale ``False`` que significa que la animación terminará y no se repetirá.  
+        - El parámetro ``velocidad`` tiene que ser un número que indicará la cantidad de cuadros por segundo que se tienen que mostrar en la animación.
+
+        Por ejemplo, para mostrar una explosión infinita podrías
+        escribir:
+
+        >>> grilla = pilas.imagenes.cargar_grilla("explosion.png", 7)
+        >>> animacion = pilas.actores.Animacion(grilla, ciclica=True, velocidad=1)
+
+        .. image:: images/actores/explosion.png
     """
 
     def __init__(self, grilla, ciclica=False, x=0, y=0, velocidad=VELOCIDAD):
         Animado.__init__(self, grilla, x=x, y=y)
         self.tick = 0
-        self.ciclica = ciclica     # Indica si la animacion debe reiniciar luego de terminar.
+        self.ciclica = ciclica
         self.definir_velocidad_de_animacion(velocidad)
 
     def definir_velocidad_de_animacion(self, velocidad_de_animacion):
@@ -33,7 +46,7 @@ class Animacion(Animado):
     def obtener_velocidad_de_animacion(self):
         return self._velocidad_de_animacion
 
-    velocidad_de_animacion = property(obtener_velocidad_de_animacion, definir_velocidad_de_animacion)
+    velocidad_de_animacion = property(obtener_velocidad_de_animacion, definir_velocidad_de_animacion, doc="Es la cantidad de cuadros por segundo a mostrar")
 
     def actualizar(self):
         self.tick += self.velocidad_de_animacion

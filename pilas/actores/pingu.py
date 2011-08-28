@@ -13,7 +13,16 @@ from pilas.comportamientos import Comportamiento
 VELOCIDAD = 4
 
 class Pingu(Actor):
-    "Representa una tortuga que se mueve por la pantalla como la tortuga de Logo."
+    """Muestra a un pingüino que sabe caminar con el teclado.
+
+    .. image:: source/images/actores/pingu.png
+
+    Este actor responde al teclado, así que podremos
+    usar los direccionales del teclado ``izquierda``, ``arriba``
+    y ``derecha``:
+
+        >>> pingu = pilas.actores.Pingu()
+    """
 
     def __init__(self, x=0, y=0):
         Actor.__init__(self, x=x, y=y)

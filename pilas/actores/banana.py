@@ -10,7 +10,23 @@ import pilas
 from pilas.actores import Actor
 
 class Banana(Actor):
-    "Representa una explosion para una bomba, dinamita etc..."
+    """Muestra una banana que se combina (temáticamente) con el actor Mono.
+
+    .. image:: images/actores/banana.png
+
+
+    Este actor se podría usar cómo alimento o bonus para otros
+    actores.
+
+    Este actor tiene solo dos cuadros de animación que se pueden
+    mostrar con los métodos ``abrir`` y ``cerrar``:
+
+        >>> banana = pilas.actores.Banana()
+        >>> banana.abrir()
+        >>> banana.cerrar()
+
+    
+    """
 
     def __init__(self, x=0, y=0):
         Actor.__init__(self, x=x, y=y)
@@ -21,7 +37,9 @@ class Banana(Actor):
         self.imagen.definir_cuadro(indice)
 
     def abrir(self):
+        """Muestra el gráfico de la banana abierta con menos cáscara."""
         self.definir_cuadro(1)
 
     def cerrar(self):
+        """Muestra el gráfico de banana normal (con cáscara)"""
         self.definir_cuadro(0)

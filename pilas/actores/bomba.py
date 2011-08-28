@@ -13,14 +13,16 @@ from pilas.actores import Explosion
 class Bomba(Animacion):
     """Representa una explosion para una bomba, dinamita etc...
 
+    .. image:: images/actores/bomba.png
+
     La bomba adquiere la habilidad explotar al momento de crearse, así
     que puedes invocar a su método "explotar" y la bomba hará un
     explosión con sonido en pantalla.
 
-    Este es un ejemplo de uso del actor::
+    Este es un ejemplo de uso del actor:
 
-        bomba = pilas.actores.Bomba()
-        bomba.explotar()
+        >>> bomba = pilas.actores.Bomba()
+        >>> bomba.explotar()
     """
 
 
@@ -31,5 +33,5 @@ class Bomba(Animacion):
         self.aprender(pilas.habilidades.PuedeExplotar)
 
     def explotar(self):
-        # Este metodo solo exite para compativilidad hacia atras.
+        "Hace explotar a la bomba y la elimina de la pantalla."
         self.eliminar()

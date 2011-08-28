@@ -15,6 +15,17 @@ class Animado(Actor):
 
     Una de las variantes que introduce este actor es el
     método 'definir_cuadro', que facilita la animación de personajes.
+
+    Por ejemplo, si tenemos una grilla con un pongüino, podríamos
+    mostrarlo usando este código:
+
+        >>> grilla = pilas.imagenes.cargar_grilla("pingu.png", 10)
+        >>> actor = Animado(grilla)
+        >>> actor.definir_cuadro(2)
+        >>> actor.definir_cuadro(5)
+
+
+    .. image:: images/actores/pingu.png
     """
 
     def __init__(self, grilla, x=0, y=0):
@@ -23,6 +34,7 @@ class Animado(Actor):
         self.definir_cuadro(0)
 
     def definir_cuadro(self, indice):
+        "Permite cambiar el cuadro de animación a mostrar"
         self.imagen.definir_cuadro(indice)
         # FIX: Esta sentencia es muy ambigua, porque no todos actores se deben centrar en ese punto.
         self.centro = ('centro', 'centro')
