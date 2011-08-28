@@ -5,3 +5,4 @@ recursive-include pilas/cargador/ejemplos *
 recursive-include doc *
 include AUTHORS
 include LICENSE
+include INSTALL

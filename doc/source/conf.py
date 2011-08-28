@@ -27,6 +27,11 @@ import sys, os
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 
+try:
+    import sphinx.ext.viewcode
+except ImportError:
+    extensions.remove('sphinx.ext.viewcode')
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
