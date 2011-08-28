@@ -62,7 +62,9 @@ def fabricar(clase, cantidad=1, posiciones_al_azar=True, *k, **kv):
             x = 0
             y = 0
 
-        nuevo = clase(*k,x=x, y=y,  **kv )
+        kv['x'] = x
+        kv['y'] = y
+        nuevo = clase(*k, **kv)
         objetos_creados.append(nuevo)
 
     return pilas.grupo.Grupo(objetos_creados)
