@@ -445,3 +445,13 @@ div.viewcode-block:target {
     border-top: 1px solid #ac9;
     border-bottom: 1px solid #ac9;
 }
+
+dl.class
+{
+    margin-top: 2em;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-top: 4px solid #ccc;
+}
+
+
