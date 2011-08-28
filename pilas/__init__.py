@@ -162,6 +162,11 @@ def abrir_cargador():
 
     .. image:: images/cargador.png
     """
-    import cargador
-    cargador.ejecutar()
+    try:
+        import cargador
+
+        cargador.ejecutar()
+    except ImportError:
+        print "Lo siento, no tienes instalada la extesion de ejemplos."
+        print "Instale el paquete 'pilas-examples' para continuar."
     return []
