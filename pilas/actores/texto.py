@@ -12,7 +12,12 @@ from actor import Actor
 class Texto(Actor):
     """Representa un texto en pantalla.
 
-    El texto tiene atributos como ``texto``, ``magnitud`` y ``color``.
+    El texto tiene atributos como ``texto``, ``magnitud`` y ``color``, por
+    ejemplo para crear un mensaje de saludo podríamos escribir:
+
+        >>> saludo = pilas.actores.Texto("Hola mundo!")
+
+
     """
     
     def __init__(self, texto="None", x=0, y=0, magnitud=20):
