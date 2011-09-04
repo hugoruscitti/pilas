@@ -107,6 +107,7 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
             self.ui.arbol.addTopLevelItem(raiz)
 
             archivos = glob.glob(directorio + '/*.py')
+            archivos.sort()
 
             for archivo in archivos:
                 nombre_legible = os.path.basename(archivo).replace(".py", "")
@@ -174,8 +175,8 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
     def _mostrar_imagen_del_ejemplo(self, ruta):
         escena = QtGui.QGraphicsScene()
         self.ui.imagen.setScene(escena)
-        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(
-            ruta.replace('.py', '.png')))
+        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(ruta.replace('.py', '.png')))
+        #ancho = self.ui.imagen.width()
         escena.addItem(pixmap)
 
     def _mostrar_image_inicial(self):

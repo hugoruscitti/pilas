@@ -44,7 +44,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.imagen.sizePolicy().hasHeightForWidth())
         self.imagen.setSizePolicy(sizePolicy)
         self.imagen.setMinimumSize(QtCore.QSize(400, 300))
-        self.imagen.setAutoFillBackground(True)
+        self.imagen.setAutoFillBackground(False)
         self.imagen.setRenderHints(QtGui.QPainter.SmoothPixmapTransform)
         self.imagen.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
         self.imagen.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
