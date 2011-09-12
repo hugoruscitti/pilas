@@ -42,6 +42,7 @@ for x in os.walk("../pilas"):
 
                     if method:
                         argumentos = method.group(2).replace("*", "x")
+                        argumentos = argumentos.replace("self", "")
                         content.append("- **%s** (%s)" %(method.group(1), argumentos))
                         
                         
