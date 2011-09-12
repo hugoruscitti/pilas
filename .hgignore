@@ -13,6 +13,7 @@ dist/*
 open_doc.sh
 doc/build/doctrees
 doc/build/latex
+pilas.egg-info/*
 
 # switch to regexp syntax.
 syntax: regexp
