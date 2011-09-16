@@ -36,10 +36,11 @@ class BaseActor(object):
     
     def __init__(self):
         self._rotacion = 0
-        self._escala = 1
         self._transparencia = 0
         self.centro_x = 0
         self.centro_y = 0
+        self._escala_x = 1
+        self._escala_y = 1
         self._espejado = False
         self.fijo = 0
 
@@ -54,10 +55,17 @@ class BaseActor(object):
         self.x, self.y = x, y
 
     def obtener_escala(self):
-        return self._escala
+        return self._escala_x
 
     def definir_escala(self, s):
-        self._escala = s
+        self._escala_x = s
+        self._escala_y = s
+
+    def definir_escala_x(self, s):
+        self._escala_x = s
+
+    def definir_escala_y(self, s):
+        self._escala_y = s
 
     def definir_transparencia(self, nuevo_valor):
         self._transparencia = nuevo_valor
@@ -393,7 +401,7 @@ class QtActor(BaseActor):
         return self.imagen
 
     def dibujar(self, motor):
-        escala_x, escala_y = self._escala, self._escala
+        escala_x, escala_y = self._escala_x, self._escala_y
 
         if self._espejado:
             escala_x *= -1

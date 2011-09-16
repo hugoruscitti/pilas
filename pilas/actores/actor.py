@@ -176,8 +176,28 @@ class Actor(object, Estudiante):
         self.definir_escala(s)
         self.radio_de_colision = (s * self.radio_de_colision) / max(ultima_escala, 0.0001)
 
+    @pilas.utils.interpolable
+    def set_scale_x(self, s):
+        if s < 0:
+            return
+        self._actor.definir_escala_x(s)
+
+    @pilas.utils.interpolable
+    def set_scale_y(self, s):
+        if s < 0:
+            return
+        self._actor.definir_escala_y(s)
+    
+
+
     def get_scale(self):
         return self.obtener_escala()
+
+    def get_scale_x(self):
+        return self._actor._escala_x
+
+    def get_scale_y(self):
+        return self._actor._escala_y
 
     def get_rotation(self):
         return self.obtener_rotacion()
@@ -224,6 +244,8 @@ class Actor(object, Estudiante):
     y = property(get_y, set_y, doc="Define la posición vertical.")
     rotacion = property(get_rotation, set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
     escala = property(get_scale, set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
+    escala_x = property(get_scale_x, set_scale_x, doc="Escala de tamaño horizontal, 1 es normal, 2 al doble de tamaño etc...)")
+    escala_y = property(get_scale_y, set_scale_y, doc="Escala de tamaño vertical, 1 es normal, 2 al doble de tamaño etc...)")
     transparencia = property(get_transparencia, set_transparencia, doc="Define el nivel de transparencia, 0 indica opaco y 100 la maxima transparencia.")
     imagen = property(get_imagen, set_imagen, doc="Define la imagen a mostrar.")
     fijo = property(get_fijo, set_fijo, doc="Indica si el actor debe ser independiente a la camara.")
