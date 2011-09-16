@@ -68,4 +68,4 @@ from dialogo import Dialogo
 from globoelegir import GloboElegir
 from pausa import Pausa
 from mano import CursorMano
-#from cooperativista import Cooperativista
+from cooperativista import Cooperativista
