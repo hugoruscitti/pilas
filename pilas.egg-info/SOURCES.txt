@@ -199,6 +199,7 @@ pilas/actores/banana.py
 pilas/actores/bomba.py
 pilas/actores/boton.py
 pilas/actores/caja.py
+pilas/actores/cooperativista.py
 pilas/actores/cursordisparo.py
 pilas/actores/dialogo.py
 pilas/actores/disparo.py
@@ -430,6 +431,12 @@ pilas/cargador/ejemplos/pizarra/pizarra_dibuja_triangulo.png
 pilas/cargador/ejemplos/pizarra/pizarra_dibuja_triangulo.py
 pilas/cargador/ejemplos/pizarra/pizarra_dibujando_con_el_mouse.png
 pilas/cargador/ejemplos/pizarra/pizarra_dibujando_con_el_mouse.py
+pilas/cargador/ejemplos/tutoriales/aceitunas_vs_bombas_paso_1.png
+pilas/cargador/ejemplos/tutoriales/aceitunas_vs_bombas_paso_1.py
+pilas/cargador/ejemplos/tutoriales/aceitunas_vs_bombas_paso_2.py
+pilas/cargador/ejemplos/tutoriales/aceitunas_vs_bombas_paso_3.py
+pilas/cargador/ejemplos/tutoriales/aceitunas_vs_bombas_paso_4.py
+pilas/cargador/ejemplos/tutoriales/aceitunas_vs_bombas_paso_5.py
 pilas/data/aceituna.png
 pilas/data/aceituna_burla.png
 pilas/data/aceituna_grita.png
@@ -479,6 +486,13 @@ pilas/data/boton/boton_over.png
 pilas/data/boton/boton_press.png
 pilas/data/boton/tema.png
 pilas/data/boton/tema.xcf
+pilas/data/cooperativista/alerta.png
+pilas/data/cooperativista/camina.png
+pilas/data/cooperativista/camina_sujeta.png
+pilas/data/cooperativista/ok.png
+pilas/data/cooperativista/parado.png
+pilas/data/cooperativista/parado_sujeta.png
+pilas/data/cooperativista/trabajando.png
 pilas/data/cursores/arrastrando.png
 pilas/data/cursores/dibujar.png
 pilas/data/cursores/normal.png

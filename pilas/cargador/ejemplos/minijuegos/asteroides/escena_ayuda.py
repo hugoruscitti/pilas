@@ -22,7 +22,7 @@ class Ayuda(pilas.escenas.Escena):
 
     def crear_texto_ayuda(self):
         titulo = pilas.actores.Texto("Ayuda", y=200)
-        texto = pilas.actores.Texto(MENSAJE_AYUDA)
+        texto = pilas.actores.Texto(MENSAJE_AYUDA, y=275)
         pilas.avisar("Pulsa ESC para regresar")
 
     def cuando_pulsa_tecla(self, *k, **kv):
