@@ -12,13 +12,11 @@ class layers:
     def __init__(self, modo = 'automatico'):
         self.capas = []
         if modo == 'automatico':
-            pilas.mundo.agregar_tarea_siempre(0, self.actualizar_pantalla)
+            pilas.mundo.agregar_tarea_siempre(0.01, self.actualizar_pantalla)
         elif modo == 'manual':
             pass
 
         self.estado = modo
-
-
     
     def agregar(self, ruta, vel = 0, sentido = -1, x = 0, y = 0):
 
@@ -74,7 +72,7 @@ class layers:
 
 
 
-capas = layers(modo = 'manual')
+capas = layers(modo = 'automatico')
 
 capas.agregar('cielo.png')
 capas.agregar('montes.png', 1, sentido = -1)
@@ -100,8 +98,5 @@ def presionamos_tecla(eventos):
             pingu.x = 210            
             capas.mover_derecha()
 
-
-
 pilas.eventos.actualizar.connect(presionamos_tecla)
-
 pilas.ejecutar()
