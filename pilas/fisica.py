@@ -99,7 +99,6 @@ class Fisica(object):
                     
                     for v in figura.vertices:
                         pt = box2d.b2Mul(xform, v)
-                        
                         vertices.append((pt.x, pt.y))
                         
                     lienzo.poligono(motor, vertices, color=colores.rojo, grosor=grosor, cerrado=True)
@@ -313,6 +312,48 @@ class Rectangulo(Figura):
 
         body.SetMassFromShapes()    
 
+        self._cuerpo = body
+
+
+class Poligono(Figura):
+    "Representa un cuerpo poligonal."
+    
+    def __init__(self, puntos, dinamica=True, densidad=1.0, 
+            restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
+            fisica=None):
+
+        if not fisica:
+            fisica = pilas.mundo.fisica
+            
+        bodyDef = box2d.b2BodyDef()
+        bodyDef.position=puntos[0]
+        bodyDef.linearDamping = amortiguacion
+        body = fisica.crear_cuerpo(bodyDef)
+
+        # Create the Body
+        if not dinamica:
+            densidad = 0
+
+        if len(puntos) < 3:
+            raise Exception("Tienes que definir al menos 3 puntos para tener un poligono")
+
+        # Add a shape to the Body
+        poligono_def = box2d.b2PolygonDef()
+        puntos.reverse()
+        poligono_def.setVertices(puntos)
+
+        poligono_def.density = densidad
+        poligono_def.restitution = restitucion
+        poligono_def.friction = friccion
+        #poligono_def.setVertices(puntos)
+        #poligono_def.vertexCount = len(puntos)
+
+        #for indice, punto in enumerate(puntos):
+        #    poligono_def.setVertex(indice, punto[0], punto[1])
+        #    #poligono_def.vertices[indice] = punto
+        
+        body.CreateShape(poligono_def)
+        body.SetMassFromShapes()
         self._cuerpo = body
 
 class ConstanteDeMovimiento():
