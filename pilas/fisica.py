@@ -17,7 +17,7 @@ except ImportError:
 import math
 
 class Fisica(object):
-    "Representa un simulador de mundo fisico, usando la biblioteca box2d."
+    """Representa un simulador de mundo fisico, usando la biblioteca box2d."""
     
     def __init__(self, area, gravedad=(0, -90)):
         self.area = area
@@ -192,7 +192,11 @@ class Fisica(object):
         pilas.fisica.definir_gravedad(x, y)
 
 class Figura(object):
-    "Representa un figura que simula un cuerpo fisico."
+    """Representa un figura que simula un cuerpo fisico.
+    
+    Esta figura es abstracta, no está pensada para crear
+    objetos a partir de ella. Se usa como base para el resto
+    de las figuras cómo el Circulo o el Rectangulo simplemente."""
 
     def obtener_x(self):
         return self._cuerpo.position.x
@@ -245,8 +249,22 @@ class Figura(object):
     rotacion = property(obtener_rotacion, definir_rotacion, doc="define la rotacion.")
     
 class Circulo(Figura):
-    "Representa un cuerpo de circulo."
-    
+    """Representa un cuerpo de circulo.
+
+    Generalmente estas figuras se pueden construir independientes de un
+    actor, y luego asociar.
+
+    Por ejemplo, podríamos crear un círculo:
+
+        >>> circulo_dinamico = pilas.fisica.Circulo(10, 200, 50)
+
+    y luego tomar un actor cualquiera, y decirle que se comporte
+    cómo el circulo:
+
+        >>> mono = pilas.actores.Mono()
+        >>> mono.imitar(circulo_dinamico)
+    """
+
     def __init__(self, x, y, radio, dinamica=True, densidad=1.0, 
             restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
             fisica=None):
@@ -280,6 +298,16 @@ class Circulo(Figura):
         self._cuerpo = body
 
 class Rectangulo(Figura):
+    """Representa un rectángulo que puede colisionar con otras figuras.
+
+    Se puede crear un rectángulo independiente y luego asociarlo
+    a un actor de la siguiente forma:
+
+        >>> rect = pilas.fisica.Rectangulo(50, 90, True)
+        >>> actor = pilas.actores.Pingu()
+        >>> actor.imitar(rect)
+    """
+
     def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0, 
             restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
             fisica=None):
@@ -316,7 +344,17 @@ class Rectangulo(Figura):
 
 
 class Poligono(Figura):
-    "Representa un cuerpo poligonal."
+    """Representa un cuerpo poligonal.
+
+    El poligono necesita al menos tres puntos para dibujarse, y cada
+    uno de los puntos se tienen que ir dando en orden de las agujas
+    del relog.
+
+    Por ejemplo:
+
+        >>> pilas.fisica.Poligono([(100, 2), (-50, 0), (-100, 100.0)])
+        
+    """
     
     def __init__(self, puntos, dinamica=True, densidad=1.0, 
             restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
