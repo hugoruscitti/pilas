@@ -20,6 +20,12 @@ class Volley(Fondo):
     def __init__(self):
         Fondo.__init__(self, "fondos/volley.png")
 
+class Nubes(Fondo):
+    "Muestra un fondo celeste con nubes."
+
+    def __init__(self):
+        Fondo.__init__(self, "fondos/nubes.png")
+
 class Pasto(Fondo):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."
 
