@@ -227,6 +227,7 @@ pilas/actores/temporizador.py
 pilas/actores/texto.py
 pilas/actores/tortuga.py
 pilas/actores/utils.py
+pilas/actores/zanahoria.py
 pilas/cargador/__init__.py
 pilas/cargador/buscador.py
 pilas/cargador/cargador.py
@@ -481,6 +482,8 @@ pilas/data/sin_imagen.png
 pilas/data/smile.wav
 pilas/data/tick.wav
 pilas/data/tortuga.png
+pilas/data/zanahoria_normal.png
+pilas/data/zanahoria_sonrie.png
 pilas/data/boton/boton_normal.png
 pilas/data/boton/boton_over.png
 pilas/data/boton/boton_press.png
