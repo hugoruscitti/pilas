@@ -400,6 +400,7 @@ class Actor(object, Estudiante):
         nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y, autoeliminar=autoeliminar)
         nuevo_actor.z = self.z - 1
         self.anexar(nuevo_actor)
+        pilas.atajos.leer(mensaje)
 
     def anexar(self, otro_actor):
         self.anexados.append(otro_actor)
