@@ -19,8 +19,11 @@ class Estudiante:
 
     def aprender(self, classname, *k, **w):
         "Comienza a realizar una habilidad indicada por parametros."
-        objeto_habilidad = classname(self, *k, **w)
-        self.habilidades.append(objeto_habilidad)
+        habilidades_actuales = [habilidad.__class__ for habilidad in self.habilidades]
+
+        if classname not in habilidades_actuales:
+            objeto_habilidad = classname(self, *k, **w)
+            self.habilidades.append(objeto_habilidad)
 
     def hacer_luego(self, comportamiento, repetir_por_siempre=False):
         """Define un nuevo comportamiento para realizar al final.
