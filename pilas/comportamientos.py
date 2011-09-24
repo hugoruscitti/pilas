@@ -58,11 +58,13 @@ class Saltar(Comportamiento):
     def __init__(self, velocidad_inicial=10, cuando_termina=None):
         self.velocidad_inicial = velocidad_inicial
         self.cuando_termina = cuando_termina
+        self.sonido_saltar = pilas.sonidos.cargar("saltar.wav")
 
     def iniciar(self, receptor):
         self.receptor = receptor
         self.suelo = int(self.receptor.y)
         self.velocidad = self.velocidad_inicial
+        self.sonido_saltar.reproducir()
 
     def actualizar(self):
         self.receptor.y += self.velocidad
