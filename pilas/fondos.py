@@ -59,6 +59,7 @@ class Noche(Fondo):
         Fondo.__init__(self, "fondos/noche.png")
 
 class Color(Fondo):
+    "Pinta todo el fondo de un color uniforme."
     
     def __init__(self, color):
         Fondo.__init__(self, "invisible.png")

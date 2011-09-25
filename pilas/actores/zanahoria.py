@@ -28,11 +28,13 @@ class Zanahoria(Actor):
         self.centro = ('centro', 65)
 
     def saltar(self):
+        """Realiza un salto hacia arriba."""
         self.sonreir()
         accion = pilas.comportamientos.Saltar(cuando_termina=self.normal)
         self.hacer(accion)
 
     def decir(self, mensaje):
+        """Emite un mensaje usando un globo similar al de los commics"""
         self.sonreir()
         Actor.decir(self, mensaje)
         pilas.mundo.agregar_tarea_una_vez(1, self.normal)
