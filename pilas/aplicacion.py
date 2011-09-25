@@ -16,7 +16,7 @@ class Window(QtGui.QWidget):
         self.ui.setupUi(self)
         self.ui.graphicsView.close()
         #self.ui.verticalLayout.removeWidget(self.ui.graphicsView)
-        pilas.iniciar()
+        pilas.iniciar(usar_motor='qt')
         ventana_pilas = pilas.mundo.motor
         ventana_pilas.setFixedHeight(400)
         self.mono = pilas.actores.Mono()
