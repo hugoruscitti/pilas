@@ -13,7 +13,7 @@ class Window(QtGui.QWidget):
         self.setMinimumWidth(500)
         vbox = QtGui.QVBoxLayout(self)
         #self.ui.verticalLayout.removeWidget(self.ui.graphicsView)
-        pilas.iniciar()
+        pilas.iniciar(usar_motor='qt')
         ventana_pilas = pilas.mundo.motor
         ventana_pilas.setMinimumHeight(500)
         vbox.addWidget(ventana_pilas)

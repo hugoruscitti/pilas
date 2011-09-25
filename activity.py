@@ -31,6 +31,16 @@ from sugar.activity.widgets import TitleEntry
 from sugar.activity.widgets import StopButton
 from sugar.activity.widgets import ShareButton
 
+import os
+import sys
+import copy
+
+base = os.environ['SUGAR_BUNDLE_PATH']
+os.chdir(base)
+
+qtlib = os.path.join(base, 'qt/lib/')
+new_env = copy.copy(os.environ)
+new_env['LD_LIBRARY_PATH'] = qtlib
 
 class PilasActivity(activity.Activity):
     """Pilas class as specified in activity.info"""
@@ -76,7 +86,7 @@ class PilasActivity(activity.Activity):
         self.set_canvas(socket)
         socket.show()
 
-        Popen(["python", "pilas_plug.py", str(socket.get_id())])
+        Popen(["python", "pilas_plug.py", str(socket.get_id())], env=new_env)
 
     def _on_plugged_event(self, widget):
         print "I (", widget, ") have just had a plug inserted!"
