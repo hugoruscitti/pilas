@@ -7,7 +7,7 @@ from PyQt4 import uic
 
 
 
-class Window(QtGui.QMainWindow):
+class Window(QtGui.QWidget):
 
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
