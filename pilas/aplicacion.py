@@ -26,6 +26,3 @@ def main():
     ventana = Window()
     ventana.show()
     app.exec_()  
-
-
-main()

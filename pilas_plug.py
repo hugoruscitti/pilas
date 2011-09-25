@@ -14,17 +14,15 @@ from PyQt4.QtGui import QLineEdit
 from PyQt4.QtGui import QX11EmbedWidget
 
 import pilas
+from pilas import aplicacion
 
 app = QApplication(sys.argv)
 
-windowId = QString(app.arguments()[1])
 window = QX11EmbedWidget()
 window.embedInto(int(sys.argv[1]))
-window.show()
 
-line = QLineEdit()
-hbox = QHBoxLayout(window)
-hbox.addWidget(line)
-line.setText('sugar labs')
+pilas_widget = aplicacion.Window(parent=window)
+
+window.show()
 
 sys.exit(app.exec_())
