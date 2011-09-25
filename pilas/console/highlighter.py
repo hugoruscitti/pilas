@@ -119,7 +119,6 @@ class Highlighter (QSyntaxHighlighter):
     def apply_highlight(self, lang, scheme=None):
         load_syntax()
         langSyntax = SYNTAX.get(lang, {})
-        print langSyntax
         if scheme:
             restyle(scheme)
 
