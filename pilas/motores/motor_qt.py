@@ -432,7 +432,7 @@ class QtSonido:
         
 class QtBase(motor.Motor):
     
-    app = QtGui.QApplication([])
+    #app = QtGui.QApplication([])
     
     def __init__(self):
         motor.Motor.__init__(self)
@@ -527,7 +527,8 @@ class QtBase(motor.Motor):
         return QtSuperficie(ancho, alto)
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
-        sys.exit(self.app.exec_())
+        #sys.exit(self.app.exec_())
+        pass
 
     def paintEvent(self, event):
         self.canvas.begin(self)
@@ -698,6 +699,7 @@ class QtGL(QtBase, QGLWidget):
     def _pintar_fondo_negro(self):
         color = QtGui.QColor(99, 0, 0)
         self.setStyleSheet("QWidget { background-color: %s }" % color.name())
+
 
 if QGLWidget == object:
     QtGL = Qt
