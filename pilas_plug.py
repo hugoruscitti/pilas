@@ -6,7 +6,16 @@ The X11 window ID is passed as the unique parameter.
 
 """
 
+import os
 import sys
+
+base = os.environ['SUGAR_BUNDLE_PATH']
+
+qtpath = os.path.join(base, 'qt')
+sys.path.append(qtpath)
+
+# del sys.path[sys.path.index('/usr/lib/python2.7/site-packages')]
+
 from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QString
 from PyQt4.QtGui import QHBoxLayout

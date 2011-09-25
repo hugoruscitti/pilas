@@ -35,12 +35,10 @@ import os
 import sys
 import copy
 
-qtpath = 'qt'
-sys.path.append(qtpath)
+base = os.environ['SUGAR_BUNDLE_PATH']
+os.chdir(base)
 
-# del sys.path[sys.path.index('/usr/lib/python2.7/site-packages')]
-
-qtlib = 'qt/lib/'
+qtlib = os.path.join(base, 'qt/lib/')
 new_env = copy.copy(os.environ)
 new_env['LD_LIBRARY_PATH'] = qtlib
 
