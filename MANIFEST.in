@@ -1,7 +1,0 @@
-recursive-include pilas/data *
-recursive-include pilas/ejemplos/data *
-recursive-include pilas/cargador/data *
-recursive-include pilas/cargador/ejemplos *
-include AUTHORS
-include LICENSE
-include INSTALL
