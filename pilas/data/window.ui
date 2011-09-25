@@ -27,14 +27,6 @@
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QPlainTextEdit" name="plainTextEdit">
-     <property name="plainText">
-      <string>import blabla
-</string>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <resources/>

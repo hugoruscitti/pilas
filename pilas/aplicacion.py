@@ -1,31 +1,30 @@
 import sys
-import window_base as window
-from PyQt4 import QtGui
-from PyQt4 import QtCore
-from PyQt4 import uic
-import pilas
 
+from PyQt4 import QtGui
+
+import pilas
+from pilas.console import console_widget
 
 
 class Window(QtGui.QWidget):
 
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
-        self.ui = window.Ui_Window()
-        self.ui.graphicsView = QtGui.QTextEdit()
-        self.ui.setupUi(self)
-        self.ui.graphicsView.close()
+        self.setMinimumWidth(500)
+        vbox = QtGui.QVBoxLayout(self)
         #self.ui.verticalLayout.removeWidget(self.ui.graphicsView)
         pilas.iniciar()
         ventana_pilas = pilas.mundo.motor
-        ventana_pilas.setFixedHeight(400)
+        ventana_pilas.setMinimumHeight(500)
+        vbox.addWidget(ventana_pilas)
+        # Agrega la Consola
+        locals = {'pilas': pilas}
+        self.consoleWidget = console_widget.ConsoleWidget(locals)
+        vbox.addWidget(self.consoleWidget)
+
+        #Crear actor
         self.mono = pilas.actores.Mono()
-
         pilas.eventos.click_de_mouse.conectar(self.sonreir)
-
-        self.ui.verticalLayout.insertWidget(0, ventana_pilas)
-
-
 
         #self.ui.ventana = pilas.obtener_widget()
         # Agrega un nuevo widget al layout existente.
@@ -36,11 +35,12 @@ class Window(QtGui.QWidget):
     def sonreir(self, evento):
         self.mono.sonreir()
 
+
 def main():
     app = QtGui.QApplication(sys.argv)
     ventana = Window()
     ventana.show()
-    app.exec_()  
+    app.exec_()
 
 if __name__ == '__main__':
     main()
