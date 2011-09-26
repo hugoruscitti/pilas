@@ -1,6 +1,7 @@
 import sys
 
 from PyQt4 import QtGui
+from PyQt4 import QtCore
 
 import pilas
 from pilas.console import console_widget
@@ -8,22 +9,39 @@ from pilas.console import console_widget
 
 class Window(QtGui.QWidget):
 
-    def __init__(self, parent=None, pilas_height=500):
+    def __init__(self, parent=None, pilas_width=320, pilas_height=240):
         QtGui.QWidget.__init__(self, parent)
+
         vbox = QtGui.QVBoxLayout(self)
         pilas.iniciar(usar_motor='qt')
         ventana_pilas = pilas.mundo.motor
+
+        ventana_pilas.setMinimumWidth(pilas_width)
         ventana_pilas.setMinimumHeight(pilas_height)
-        vbox.addWidget(ventana_pilas)
+
+        horizontalLayout = QtGui.QHBoxLayout()
+        spacer1 = QtGui.QSpacerItem(58, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        horizontalLayout.addItem(spacer1)
+
+        horizontalLayout.addWidget(ventana_pilas)
+
+        spacer2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        horizontalLayout.addItem(spacer2)
+
+        vbox.addLayout(horizontalLayout)
+
+        #vbox.addWidget(self.horizontalLayout)
+        #hbox.addWidget(ventana_pilas)
+
+        # Agrega la Consola
+        locals = {'pilas': pilas}
+        self.consoleWidget = console_widget.ConsoleWidget(locals)
+
+        vbox.addWidget(self.consoleWidget)
 
         #Crear actor
         self.mono = pilas.actores.Mono()
         pilas.eventos.click_de_mouse.conectar(self.sonreir)
-
-        # Agrega la Consola
-        locals = {'pilas': pilas, 'mono': self.mono}
-        self.consoleWidget = console_widget.ConsoleWidget(locals)
-        vbox.addWidget(self.consoleWidget)
 
         #self.ui.ventana = pilas.obtener_widget()
         # Agrega un nuevo widget al layout existente.

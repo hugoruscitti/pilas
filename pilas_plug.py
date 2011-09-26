@@ -37,7 +37,8 @@ window.show()
 
 hbox = QHBoxLayout(window)
 pilas_height = 2.0 / 3 * screen_height
-pilas_widget = aplicacion.Window(parent=window, pilas_height=pilas_height)
+pilas_width = 2.0 / 3 * screen_width
+pilas_widget = aplicacion.Window(parent=window, pilas_width=pilas_width, pilas_height=pilas_height)
 hbox.addWidget(pilas_widget)
 
 sys.exit(app.exec_())
