@@ -83,7 +83,9 @@ class PilasActivity(activity.Activity):
 
         socket = gtk.Socket()
         socket.connect("plug-added", self._on_plugged_event)
+        socket.set_flags(gtk.CAN_FOCUS)
         self.set_canvas(socket)
+        self.set_focus(socket)
         socket.show()
 
         screen_width = gtk.gdk.screen_width()
