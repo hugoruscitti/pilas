@@ -33,15 +33,15 @@ class Window(QtGui.QWidget):
         #vbox.addWidget(self.horizontalLayout)
         #hbox.addWidget(ventana_pilas)
 
-        # Agrega la Consola
-        locals = {'pilas': pilas}
-        self.consoleWidget = console_widget.ConsoleWidget(locals)
-
-        vbox.addWidget(self.consoleWidget)
-
         #Crear actor
         self.mono = pilas.actores.Mono()
         pilas.eventos.click_de_mouse.conectar(self.sonreir)
+
+        # Agrega la Consola
+        locals = {'pilas': pilas, 'mono': self.mono}
+        self.consoleWidget = console_widget.ConsoleWidget(locals)
+
+        vbox.addWidget(self.consoleWidget)
 
         #self.ui.ventana = pilas.obtener_widget()
         # Agrega un nuevo widget al layout existente.
