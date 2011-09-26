@@ -36,7 +36,7 @@ window.embedInto(parent_window_id)
 window.show()
 
 hbox = QHBoxLayout(window)
-pilas_height = screen_height / 2
+pilas_height = 2.0 / 3 * screen_height
 pilas_widget = aplicacion.Window(parent=window, pilas_height=pilas_height)
 hbox.addWidget(pilas_widget)
 

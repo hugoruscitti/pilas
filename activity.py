@@ -14,7 +14,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-"""HelloWorld Activity: A case study for developing an activity."""
+"""Pilas Activity.  Live interpreter to learn programming with games."""
 
 import gtk
 import logging
