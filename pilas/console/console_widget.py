@@ -53,6 +53,7 @@ class ConsoleWidget(QPlainTextEdit):
         self.connect(self, SIGNAL("cursorPositionChanged()"),
             self.highlight_current_line)
         self.highlight_current_line()
+        self.setCursorPosition(0)
 
     def setCursorPosition(self, position):
         self.moveCursor(QTextCursor.StartOfLine)
