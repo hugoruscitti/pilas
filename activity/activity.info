@@ -1,7 +1,7 @@
 [Activity]
 name = Pilas
-activity_version = 3
+activity_version = 1
 bundle_id = org.sugarlabs.Pilas
 exec = sugar-activity activity.PilasActivity
 icon = pilas-icon
-license = GPLv2+
+license = LGPLv3
