@@ -27,11 +27,17 @@ from pilas import aplicacion
 
 app = QApplication(sys.argv)
 
+parent_window_id = int(sys.argv[1])
+screen_width = int(sys.argv[2])
+screen_height = int(sys.argv[3])
+
 window = QX11EmbedWidget()
-window.embedInto(int(sys.argv[1]))
-
-pilas_widget = aplicacion.Window(parent=window)
-
+window.embedInto(parent_window_id)
 window.show()
+
+hbox = QHBoxLayout(window)
+pilas_height = screen_height / 2
+pilas_widget = aplicacion.Window(parent=window, pilas_height=pilas_height)
+hbox.addWidget(pilas_widget)
 
 sys.exit(app.exec_())

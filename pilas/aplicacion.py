@@ -8,15 +8,14 @@ from pilas.console import console_widget
 
 class Window(QtGui.QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, pilas_height=500):
         QtGui.QWidget.__init__(self, parent)
-        self.setMinimumWidth(500)
         vbox = QtGui.QVBoxLayout(self)
-        #self.ui.verticalLayout.removeWidget(self.ui.graphicsView)
         pilas.iniciar(usar_motor='qt')
         ventana_pilas = pilas.mundo.motor
-        ventana_pilas.setMinimumHeight(500)
+        ventana_pilas.setMinimumHeight(pilas_height)
         vbox.addWidget(ventana_pilas)
+
         # Agrega la Consola
         locals = {'pilas': pilas}
         self.consoleWidget = console_widget.ConsoleWidget(locals)
