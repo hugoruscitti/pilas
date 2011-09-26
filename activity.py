@@ -86,7 +86,11 @@ class PilasActivity(activity.Activity):
         self.set_canvas(socket)
         socket.show()
 
-        Popen(["python", "pilas_plug.py", str(socket.get_id())], env=new_env)
+        screen_width = gtk.gdk.screen_width()
+        screen_height = gtk.gdk.screen_height()
+
+        Popen(["python", "pilas_plug.py", str(socket.get_id()),
+               str(screen_width), str(screen_height)], env=new_env)
 
     def _on_plugged_event(self, widget):
-        print "I (", widget, ") have just had a plug inserted!"
+        logging.info("Plug inserted")
