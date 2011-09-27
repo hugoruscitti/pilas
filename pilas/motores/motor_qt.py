@@ -31,6 +31,10 @@ from pilas import fps
 from pilas import simbolos
 from pilas import colores
 
+# Allow close azulejo witch ctrl+c
+import signal                                                                                    
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+
 
 class BaseActor(object):
     
@@ -432,7 +436,6 @@ class QtSonido:
         
 class QtBase(motor.Motor):
     
-    #app = QtGui.QApplication([])
     
     def __init__(self):
         motor.Motor.__init__(self)
@@ -527,8 +530,7 @@ class QtBase(motor.Motor):
         return QtSuperficie(ancho, alto)
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
-        #sys.exit(self.app.exec_())
-        pass
+        sys.exit(self.app.exec_())
 
     def paintEvent(self, event):
         self.canvas.begin(self)
@@ -680,15 +682,29 @@ class QtBase(motor.Motor):
         nuevo_cursor = QtGui.QCursor(bitmap, bitmap)
         self.setCursor(QtGui.QCursor(nuevo_cursor))
 
-class Qt(QtBase, QWidget):
+    def terminar(self):
+        self.Close()
 
-    def __init__(self):
+class QtWidget(QtBase, QWidget):
+
+    def __init__(self, app):
+        self.app = app
         QWidget.__init__(self)
         QtBase.__init__(self)
 
-class QtGL(QtBase, QGLWidget):
+class QtWidgetSugar(QtWidget):
 
     def __init__(self):
+        QtWidget.__init__(self, None)
+
+    def ejecutar_bucle_principal(self, mundo, ignorar_errores):
+        pass
+
+class QtWidgetGL(QtBase, QGLWidget):
+
+    def __init__(self, app):
+        self.app = app
+
         if not QGLWidget:
             print "Lo siento, OpenGL no esta disponible..."
 
@@ -701,5 +717,22 @@ class QtGL(QtBase, QGLWidget):
         self.setStyleSheet("QWidget { background-color: %s }" % color.name())
 
 
-if QGLWidget == object:
-    QtGL = Qt
+class Motor(object):
+    """Representa la ventana principal de pilas."""
+
+    def __init__(self, usar_motor):
+        if usar_motor == 'qtgl':
+            app = QtGui.QApplication([])
+
+            if QGLWidget == object:
+                self.widget = QtWidget(app)
+            else:
+                self.widget = QtWidgetGL(app)
+        elif usar_motor == 'qt':
+            app = QtGui.QApplication([])
+            self.widget = QtWidget(app)
+        elif usar_motor == 'qtsugar':
+            self.widget = QtWidgetSugar()
+
+    def __getattr__(self, method):
+        return getattr(self.widget, method)

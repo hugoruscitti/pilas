@@ -66,7 +66,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     
     global mundo
 
-    motor = __crear_motor(usar_motor)
+    motor = _crear_motor(usar_motor)
     mundo = Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad, pantalla_completa)
     escenas.Normal(colores.grisclaro)
 
@@ -80,6 +80,7 @@ def ejecutar(ignorar_errores=False):
 
 def terminar():
     """Finaliza la ejecución de pilas y cierra la ventana principal."""
+    print "terminando..."
     mundo.terminar()
 
 def ver(objeto, imprimir=True, retornar=False):
@@ -100,21 +101,17 @@ def ver(objeto, imprimir=True, retornar=False):
 def version():
     """Retorna el número de version de pilas."""
     import pilasversion
-
     return pilasversion.VERSION
 
-def __crear_motor(usar_motor):
+def _crear_motor(usar_motor):
     """Genera instancia del motor multimedia en base a un nombre.
     
     Esta es una función interna y no debe ser ejecutada
     excepto por el mismo motor pilas."""
 
-    if usar_motor == 'qt':
+    if usar_motor in ['qt', 'qtgl', 'qtsugar']:
         from motores import motor_qt
-        motor = motor_qt.Qt()
-    elif usar_motor == 'qtgl':
-        from motores import motor_qt
-        motor = motor_qt.QtGL()
+        motor = motor_qt.Motor(usar_motor)
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
         print "Las opciones de motores que puedes probar son 'qt' y 'qtgl'."
@@ -162,11 +159,12 @@ def abrir_cargador():
 
     .. image:: images/cargador.png
     """
+
     try:
         import cargador
-
         cargador.ejecutar()
     except ImportError:
         print "Lo siento, no tienes instalada la extesion de ejemplos."
         print "Instale el paquete 'pilas-examples' para continuar."
+
     return []

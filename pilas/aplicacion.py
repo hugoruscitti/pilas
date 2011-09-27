@@ -13,7 +13,7 @@ class Window(QtGui.QWidget):
         QtGui.QWidget.__init__(self, parent)
 
         vbox = QtGui.QVBoxLayout(self)
-        pilas.iniciar(usar_motor='qt')
+        pilas.iniciar(usar_motor='qtsugar')
         ventana_pilas = pilas.mundo.motor
 
         ventana_pilas.setMinimumWidth(pilas_width)
@@ -23,7 +23,7 @@ class Window(QtGui.QWidget):
         spacer1 = QtGui.QSpacerItem(58, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         horizontalLayout.addItem(spacer1)
 
-        horizontalLayout.addWidget(ventana_pilas)
+        horizontalLayout.addWidget(ventana_pilas.widget)
 
         spacer2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         horizontalLayout.addItem(spacer2)
