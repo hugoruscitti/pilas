@@ -9,6 +9,7 @@
 mundo = None
 bg = None
 
+import console
 import sys
 import utils
 from mundo import Mundo
@@ -114,7 +115,7 @@ def _crear_motor(usar_motor):
         motor = motor_qt.Motor(usar_motor)
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
-        print "Las opciones de motores que puedes probar son 'qt' y 'qtgl'."
+        print "Las opciones de motores que puedes probar son 'qt', 'qtgl' y 'qtsugar'."
         sys.exit(1)
 
     return motor

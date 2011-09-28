@@ -458,13 +458,16 @@ class QtBase(motor.Motor):
         self.centrar_ventana()
         self.setWindowTitle(self.titulo)
 
+        self.mostrar_ventana(pantalla_completa)
+
+        # Activa la invocacion al evento timerEvent.
+        self.startTimer(1000/60.0)
+
+    def mostrar_ventana(self, pantalla_completa):
         if pantalla_completa:
             self.showFullScreen()
         else:
             self.show()
-
-        # Activa la invocacion al evento timerEvent.
-        self.startTimer(1000/60.0)
 
     def pantalla_completa(self):
         self.showFullScreen()
@@ -698,6 +701,9 @@ class QtWidgetSugar(QtWidget):
         QtWidget.__init__(self, None)
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
+        pass
+
+    def mostrar_ventana(self, pantalla_completa):
         pass
 
 class QtWidgetGL(QtBase, QGLWidget):
