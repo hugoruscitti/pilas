@@ -25,17 +25,22 @@ class Colisiones:
 
         for a in grupo_a:
             for b in grupo_b:
-                if id(a) != id(b) and utils.colisionan(a, b):
-                    funcion_a_llamar(a, b)
+                try:
 
-                    # verifica si alguno de los dos objetos muere en la colision.
-                    if a not in pilas.actores.todos:
-                        if a in grupo_a:
-                            list.remove(grupo_a, a)
+                    if id(a) != id(b) and utils.colisionan(a, b):
+                        funcion_a_llamar(a, b)
 
-                    if b not in pilas.actores.todos:
-                        if b in grupo_b:
-                            list.remove(grupo_b, b)
+                        # verifica si alguno de los dos objetos muere en la colision.
+                        if a not in pilas.actores.todos:
+                            if a in grupo_a:
+                                list.remove(grupo_a, a)
+
+                        if b not in pilas.actores.todos:
+                            if b in grupo_b:
+                                list.remove(grupo_b, b)
+                except Exception as e:
+                    list.remove(grupo_a, a)
+                    raise e
 
     def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
         "Agrega dos listas de actores para analizar colisiones."

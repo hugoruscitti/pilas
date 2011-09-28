@@ -566,7 +566,7 @@ class QtBase(motor.Motor):
             try:
                 self.realizar_actualizacion_logica()
             except Exception as e:
-                print e
+                print e.__class__.__name__ + ": " + str(e)
 
         # Invoca el dibujado de la pantalla.
         self.update()
