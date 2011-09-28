@@ -244,3 +244,18 @@ def realizar_pruebas():
         print "OK"
     except ImportError:
         print "Error -> no se encuentra pyqt4gl."
+
+def ver_codigo(objeto, imprimir, retornar):
+    """Imprime en pantalla el codigo fuente asociado a un objeto."""
+    import inspect
+
+    try:
+        codigo = inspect.getsource(objeto.__class__)
+    except TypeError:
+        codigo = inspect.getsource(objeto)
+
+    if imprimir:
+        print codigo
+
+    if retornar:
+        return codigo

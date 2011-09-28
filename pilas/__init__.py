@@ -80,23 +80,11 @@ def ejecutar(ignorar_errores=False):
 
 def terminar():
     """Finaliza la ejecución de pilas y cierra la ventana principal."""
-    print "terminando..."
     mundo.terminar()
 
 def ver(objeto, imprimir=True, retornar=False):
-    """Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."""
-    import inspect
-
-    try:
-        codigo = inspect.getsource(objeto.__class__)
-    except TypeError:
-        codigo = inspect.getsource(objeto)
-
-    if imprimir:
-        print codigo
-
-    if retornar:
-        return codigo
+    """Imprime en pantalla el codigo fuente asociado a un objeto."""
+    return utils.ver_codigo(objeto, imprimir, retornar)
 
 def version():
     """Retorna el número de version de pilas."""
@@ -181,6 +169,3 @@ def abrir_interprete():
 
     import aplicacion
     aplicacion.main()
-
-
-
