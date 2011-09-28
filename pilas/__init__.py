@@ -168,3 +168,19 @@ def abrir_cargador():
         print "Instale el paquete 'pilas-examples' para continuar."
 
     return []
+
+def abrir_interprete():
+    """Abre un intérprete interactivo de python con una ventana.
+    
+    Esta función se ejecuta cuando un usuario escribe::
+
+        pilas -i
+
+    en una consola del sistema.
+    """
+
+    import aplicacion
+    aplicacion.main()
+
+
+
