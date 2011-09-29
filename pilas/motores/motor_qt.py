@@ -562,11 +562,10 @@ class QtBase(motor.Motor):
 
     def timerEvent(self, event):
 
-        if not self.pausa_habilitada:
-            try:
-                self.realizar_actualizacion_logica()
-            except Exception as e:
-                print e.__class__.__name__ + ": " + str(e)
+        try:
+            self.realizar_actualizacion_logica()
+        except Exception as e:
+            print e.__class__.__name__ + ": " + str(e)
 
         # Invoca el dibujado de la pantalla.
         self.update()
@@ -580,6 +579,9 @@ class QtBase(motor.Motor):
                 for actor in actores.todos:
                     actor.pre_actualizar()
                     actor.actualizar()
+            else:
+                eventos.actualizar_pausado.send("Qt::timerEvent")
+
 
     def resizeEvent(self, event):
         self.ancho = event.size().width()

@@ -67,9 +67,9 @@ class Fisica(object):
             self.constante_mouse.eliminar()
             self.constante_mouse = None
         
-    def actualizar(self):
+    def actualizar(self, velocidad=1.0):
         if self.mundo:
-            self.mundo.Step(1.0 / 20.0, 10, 8)
+            self.mundo.Step(velocidad / 20.0, 10, 8)
             self.i += 1
             self._procesar_figuras_a_eliminar()
 
