@@ -67,9 +67,9 @@ class Fisica(object):
             self.constante_mouse.eliminar()
             self.constante_mouse = None
         
-    def actualizar(self):
+    def actualizar(self, velocidad=1.0):
         if self.mundo:
-            self.mundo.Step(1.0 / 20.0, 10, 8)
+            self.mundo.Step(velocidad / 20.0, 10, 8)
             self.i += 1
             self._procesar_figuras_a_eliminar()
 
@@ -308,7 +308,7 @@ class Rectangulo(Figura):
         >>> actor.imitar(rect)
     """
 
-    def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0, 
+    def __init__(self, x, y, ancho, alto, dinamica=True, densidad=3.0, 
             restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
             fisica=None):
 

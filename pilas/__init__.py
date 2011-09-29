@@ -81,23 +81,11 @@ def ejecutar(ignorar_errores=False):
 
 def terminar():
     """Finaliza la ejecución de pilas y cierra la ventana principal."""
-    print "terminando..."
     mundo.terminar()
 
 def ver(objeto, imprimir=True, retornar=False):
-    """Imprime en pantalla el codigo fuente asociado a un objeto o elemento de pilas."""
-    import inspect
-
-    try:
-        codigo = inspect.getsource(objeto.__class__)
-    except TypeError:
-        codigo = inspect.getsource(objeto)
-
-    if imprimir:
-        print codigo
-
-    if retornar:
-        return codigo
+    """Imprime en pantalla el codigo fuente asociado a un objeto."""
+    return utils.ver_codigo(objeto, imprimir, retornar)
 
 def version():
     """Retorna el número de version de pilas."""
@@ -169,3 +157,16 @@ def abrir_cargador():
         print "Instale el paquete 'pilas-examples' para continuar."
 
     return []
+
+def abrir_interprete():
+    """Abre un intérprete interactivo de python con una ventana.
+    
+    Esta función se ejecuta cuando un usuario escribe::
+
+        pilas -i
+
+    en una consola del sistema.
+    """
+
+    import aplicacion
+    aplicacion.main()

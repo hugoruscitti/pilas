@@ -5,6 +5,10 @@ import pilas
 
 analizador = OptionParser()
 
+analizador.add_option("-i", "--interactivo", dest="interactivo",
+        action="store_true", default=False,
+        help="Inicia el modo interactivo con una consola.")
+
 analizador.add_option("-j", "--crearjuego", dest="crearjuego",
         action="store_true", default=False,
         help="Genera un directorio de videojuego vacio.")
@@ -20,7 +24,10 @@ analizador.add_option("-t", "--test", dest="test",
 (opciones, argumentos) = analizador.parse_args()
 
 
-if opciones.crearjuego:
+if opciones.interactivo:
+    pilas.abrir_interprete()
+    sys.exit(0)
+elif opciones.crearjuego:
     pilas.utils.crear_juego()
     sys.exit(0)
 elif opciones.ejemplos:

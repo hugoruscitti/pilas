@@ -67,3 +67,6 @@ class Mono(Actor):
         """
         self.sonreir()
         Actor.decir(self, mensaje)
+
+    def saltar(self):
+        self.hacer(pilas.comportamientos.Saltar())

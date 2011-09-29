@@ -35,7 +35,6 @@ class Window(QtGui.QWidget):
 
         #Crear actor
         self.mono = pilas.actores.Mono()
-        pilas.eventos.click_de_mouse.conectar(self.sonreir)
 
         # Agrega la Consola
         locals = {'pilas': pilas, 'mono': self.mono}
