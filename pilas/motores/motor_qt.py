@@ -561,7 +561,6 @@ class QtBase(motor.Motor):
         self.canvas.end()
 
     def timerEvent(self, event):
-
         try:
             self.realizar_actualizacion_logica()
         except Exception as e:
