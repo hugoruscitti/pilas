@@ -54,7 +54,12 @@ class LocateCompleter(QLineEdit):
     def __init__(self, parent=None):
         QLineEdit.__init__(self, parent)
         self._parent = parent
-        self.setPlaceholderText("Buscar... (Ctrl+F)")
+
+        try:
+            self.setPlaceholderText("Buscar... (Ctrl+F)")
+        except AttributeError:
+            pass
+
         self.__prefix = ''
         self.frame = None
         self.tempLocations = []
