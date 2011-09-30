@@ -92,6 +92,7 @@ class Depurador(object):
         instancia_a_eliminar = [x for x in self.modos 
                                 if x.__class__ == clase_del_modo]
         self.modos.remove(instancia_a_eliminar[0])
+        instancia_a_eliminar[0].sale_del_modo()
         
         if not self.modos:
             pilas.eventos.sale_modo_depuracion.send('depurador')
@@ -143,6 +144,9 @@ class ModoDepurador(object):
      
     def orden_de_tecla(self):
         return int(self.tecla[1:])
+
+    def sale_del_modo(self):
+        pass
     
 class ModoPuntosDeControl(ModoDepurador):
     tecla = "F8"
@@ -168,11 +172,15 @@ class ModoPosicion(ModoDepurador):
     
     def __init__(self, depurador):
         ModoDepurador.__init__(self, depurador)
+        self.eje = pilas.actores.Ejes()
 
     def dibuja_al_actor(self, motor, lienzo, actor):
         if not isinstance(actor, pilas.fondos.Fondo):
             texto = "(%d, %d)" %(actor.x, actor.y)
             lienzo.texto(motor, texto, actor.derecha, actor.abajo, color=pilas.colores.violeta)
+
+    def sale_del_modo(self):
+        self.eje.eliminar()
         
 class ModoFisica(ModoDepurador):
     tecla = "F11"
