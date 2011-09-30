@@ -25,7 +25,7 @@ setup(
             'setuptools',
             ],
         packages=['pilas', 'pilas.actores', 'pilas.dispatch', 
-                  'pilas.motores', 
+                  'pilas.motores', 'pilas.console',
                   'pilas.interfaz', 'pilas.video'],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
