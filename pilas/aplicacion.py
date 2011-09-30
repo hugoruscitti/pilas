@@ -9,7 +9,7 @@ from pilas.console import console_widget
 
 class Window(QtGui.QWidget):
 
-    def __init__(self, parent=None, pilas_width=320, pilas_height=240):
+    def __init__(self, parent=None, pilas_width=640, pilas_height=480):
         QtGui.QWidget.__init__(self, parent)
 
         vbox = QtGui.QVBoxLayout(self)
