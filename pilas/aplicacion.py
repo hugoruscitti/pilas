@@ -7,6 +7,7 @@ import pilas
 from pilas.console import console_widget
 
 
+
 class Window(QtGui.QWidget):
 
     def __init__(self, parent=None, pilas_width=640, pilas_height=480):
@@ -19,38 +20,29 @@ class Window(QtGui.QWidget):
         ventana_pilas.setMinimumWidth(pilas_width)
         ventana_pilas.setMinimumHeight(pilas_height)
 
+        expandir = QtGui.QSizePolicy.Expanding
+        minimo = QtGui.QSizePolicy.Minimum
+
         horizontalLayout = QtGui.QHBoxLayout()
-        spacer1 = QtGui.QSpacerItem(58, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        spacer1 = QtGui.QSpacerItem(58, 20, expandir, minimo)
         horizontalLayout.addItem(spacer1)
 
         horizontalLayout.addWidget(ventana_pilas.widget)
 
-        spacer2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        spacer2 = QtGui.QSpacerItem(40, 20, expandir, minimo)
         horizontalLayout.addItem(spacer2)
 
         vbox.addLayout(horizontalLayout)
 
-        #vbox.addWidget(self.horizontalLayout)
-        #hbox.addWidget(ventana_pilas)
-
-        #Crear actor
         self.mono = pilas.actores.Mono()
 
-        # Agrega la Consola
         locals = {'pilas': pilas, 'mono': self.mono}
-        self.consoleWidget = console_widget.ConsoleWidget(locals)
 
+        self.consoleWidget = console_widget.ConsoleWidget(locals, ventana_pilas)
         vbox.addWidget(self.consoleWidget)
 
-        #self.ui.ventana = pilas.obtener_widget()
-        # Agrega un nuevo widget al layout existente.
-        #label = QtGui.QLabel(self.ui.centralwidget)
-        #self.ui.layout.addWidget(label)
-        #label.setText("Hola")
-
-    def sonreir(self, evento):
-        self.mono.sonreir()
-
+        self.ventana_pilas = ventana_pilas
+        self.setWindowTitle("Pilas engine")
 
 def main():
     app = QtGui.QApplication(sys.argv)

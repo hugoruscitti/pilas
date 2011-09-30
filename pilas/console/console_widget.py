@@ -35,7 +35,8 @@ EDITOR_STYLE = """QPlainTextEdit {
 
 class ConsoleWidget(QPlainTextEdit):
 
-    def __init__(self, locals):
+    def __init__(self, locals, ventana=None):
+        self.ventana = ventana
         QPlainTextEdit.__init__(self, u'>>> ')
         self.setUndoRedoEnabled(False)
         self.setStyleSheet(EDITOR_STYLE)
@@ -60,7 +61,14 @@ class ConsoleWidget(QPlainTextEdit):
         for i in xrange(len(self.prompt) + position):
             self.moveCursor(QTextCursor.Right)
 
+    def keyReleaseEvent(self, event):
+        if self.ventana:
+            self.ventana.keyReleaseEvent(event)
+
     def keyPressEvent(self, event):
+        if self.ventana:
+            self.ventana.keyPressEvent(event)
+
         if event.key() in (Qt.Key_Enter, Qt.Key_Return):
             self._write_command()
             return
