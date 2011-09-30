@@ -1,0 +1,22 @@
+# -*- encoding: utf-8 -*-
+# For pilas engine - a video game framework.
+#
+# copyright 2011 - Pablo Garrido
+# license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
+#
+# website - http://www.pilas-engine.com.ar
+
+import pilas
+
+pilas.iniciar(titulo = "Memorice")
+
+
+
+
+# ejecuta escena actual.
+import escena_menu
+escena_menu.EscenaMenu()
+
+
+
+pilas.ejecutar()
