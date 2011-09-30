@@ -21,7 +21,6 @@ import sonidos
 import colores
 import atajos
 import escenas
-import ejemplos
 import interfaz
 
 __doc__ = """
@@ -150,8 +149,8 @@ def abrir_cargador():
     """
 
     try:
-        import cargador
-        cargador.ejecutar()
+        import ejemplos
+        ejemplos.ejecutar()
     except ImportError:
         print "Lo siento, no tienes instalada la extesion de ejemplos."
         print "Instale el paquete 'pilas-examples' para continuar."
