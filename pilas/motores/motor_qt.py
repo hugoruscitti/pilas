@@ -615,9 +615,9 @@ class QtBase(motor.Motor):
 
         if event.key() == QtCore.Qt.Key_Escape:
             eventos.pulsa_tecla_escape.send("Qt::keyPressEvent")
-        if event.key() == QtCore.Qt.Key_P:
+        if event.key() == QtCore.Qt.Key_P and event.modifiers() == QtCore.Qt.AltModifier:
             self.alternar_pausa()
-        if event.key() == QtCore.Qt.Key_F:
+        if event.key() == QtCore.Qt.Key_F and event.modifiers() == QtCore.Qt.AltModifier:
             self.alternar_pantalla_completa()
 
         eventos.pulsa_tecla.send("Qt::keyPressEvent", codigo=codigo_de_tecla, texto=event.text())

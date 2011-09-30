@@ -26,15 +26,16 @@ setup(
             ],
         packages=['pilas', 'pilas.actores', 'pilas.dispatch', 
                   'pilas.motores', 
-                  'pilas.interfaz', 'pilas.video']
+                  'pilas.interfaz', 'pilas.video'],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
         package_data = {
             'images': ['pilas/data/*', 'pilas/ejemplos/data/*', 
                        'pilas/data/fondos/*', 'pilas/data/juegobase/*', 
                        'pilas/data/juegobase/data/*',
-                       'pilas/cargador/ejemplos',
-                       'pilas/cargador/data'],
+                       'pilas/ejemplos/data',
+                       'pilas/ejemplos/ejemplos',
+                       ],
             },
 
         scripts=['bin/pilas'],
