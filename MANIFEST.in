@@ -1,3 +1,4 @@
+recursive-include doc *
 recursive-include pilas/data *
 recursive-include pilas/ejemplos/data *
 recursive-include pilas/ejemplos/ejemplos *
