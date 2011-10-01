@@ -22,6 +22,8 @@ import colores
 import atajos
 import escenas
 import interfaz
+import aplicacion
+import ejemplos
 
 __doc__ = """
 Módulo pilas

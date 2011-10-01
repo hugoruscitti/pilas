@@ -4,9 +4,7 @@ from PyQt4 import QtGui
 from PyQt4 import QtCore
 
 import pilas
-from pilas.console import console_widget
-
-
+from console import console_widget
 
 class Window(QtGui.QWidget):
 

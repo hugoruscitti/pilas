@@ -1,7 +1,7 @@
 recursive-include pilas/data *
 recursive-include pilas/ejemplos/data *
-recursive-include pilas/cargador/data *
-recursive-include pilas/cargador/ejemplos *
+recursive-include pilas/ejemplos/ejemplos *
+recursive-include pilas/console/lang *
 include AUTHORS
 include LICENSE
 include INSTALL
