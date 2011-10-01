@@ -86,7 +86,7 @@ class BaseActor(object):
     def set_espejado(self, espejado):        
         self._espejado = espejado
         
-class QtImagen(object):
+class Imagen(object):
 
     def __init__(self, ruta):
         self.ruta_original = ruta
@@ -134,7 +134,7 @@ class QtImagen(object):
         return "<Imagen del archivo '%s'>" %(nombre_imagen)
 
 
-class QtGrilla(QtImagen):
+class Grilla(Imagen):
 
     """Representa una grilla regular, que se utiliza en animaciones.
 
@@ -145,12 +145,12 @@ class QtGrilla(QtImagen):
     """
 
     def __init__(self, ruta, columnas=1, filas=1):
-        QtImagen.__init__(self, ruta)
+        Imagen.__init__(self, ruta)
         self.cantidad_de_cuadros = columnas * filas
         self.columnas = columnas
         self.filas = filas
-        self.cuadro_ancho = QtImagen.ancho(self) / columnas
-        self.cuadro_alto = QtImagen.alto(self) / filas
+        self.cuadro_ancho = Imagen.ancho(self) / columnas
+        self.cuadro_alto = Imagen.alto(self) / filas
         self.definir_cuadro(0)
 
     def ancho(self):
@@ -189,7 +189,7 @@ class QtGrilla(QtImagen):
     def dibujarse_sobre_una_pizarra(self, pizarra, x, y):
         pizarra.pintar_parte_de_imagen(self, self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto, x, y)
 
-class QtTexto(QtImagen):
+class Texto(Imagen):
 
     def __init__(self, texto, magnitud, motor):
         self._ancho, self._alto = motor.obtener_area_de_texto(texto, magnitud)
@@ -215,7 +215,7 @@ class QtTexto(QtImagen):
         return self._alto
 
 
-class QtLienzo(QtImagen):
+class Lienzo(Imagen):
 
     def __init__(self):
         pass
@@ -286,7 +286,7 @@ class QtLienzo(QtImagen):
         motor.canvas.setPen(pen)
         motor.canvas.drawRect(x, y, ancho, alto)
 
-class QtSuperficie(QtImagen):
+class Superficie(Imagen):
 
     def __init__(self, ancho, alto):
         self._imagen = QtGui.QPixmap(ancho, alto)
@@ -381,7 +381,7 @@ class QtSuperficie(QtImagen):
     def limpiar(self):
         self._imagen.fill(QtGui.QColor(0, 0, 0, 0))
 
-class QtActor(BaseActor):
+class Actor(BaseActor):
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
 
@@ -396,7 +396,7 @@ class QtActor(BaseActor):
 
     def definir_imagen(self, imagen):
         # permite que varios actores usen la misma grilla.
-        if isinstance(imagen, QtGrilla):
+        if isinstance(imagen, Grilla):
             self.imagen = copy.copy(imagen)
         else:
             self.imagen = imagen
@@ -421,7 +421,7 @@ class QtActor(BaseActor):
                 self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion, self._transparencia)
 
-class QtSonido:
+class Sonido:
 
     def __init__(self, ruta):
         import pygame
@@ -434,7 +434,7 @@ class QtSonido:
         # print "Usando pygame para reproducir sonido"
         self.sonido.play()
         
-class QtBase(motor.Motor):
+class Base(motor.Motor):
     
     
     def __init__(self):
@@ -502,13 +502,13 @@ class QtBase(motor.Motor):
                     (escritorio.height()-self.alto)/2, self.ancho, self.alto)
 
     def obtener_actor(self, imagen, x, y):
-        return QtActor(imagen, x, y)
+        return Actor(imagen, x, y)
 
     def obtener_texto(self, texto, magnitud):
-        return QtTexto(texto, magnitud, self)
+        return Texto(texto, magnitud, self)
 
     def obtener_grilla(self, ruta, columnas, filas):
-        return QtGrilla(ruta, columnas, filas)
+        return Grilla(ruta, columnas, filas)
 
     def actualizar_pantalla(self):
         self.ventana.update()
@@ -521,16 +521,16 @@ class QtBase(motor.Motor):
         return (self.camara_x, self.camara_y)
 
     def cargar_sonido(self, ruta):
-        return QtSonido(ruta)
+        return Sonido(ruta)
 
     def cargar_imagen(self, ruta):
-        return QtImagen(ruta)
+        return Imagen(ruta)
 
     def obtener_lienzo(self):
-        return QtLienzo()
+        return Lienzo()
 
     def obtener_superficie(self, ancho, alto):
-        return QtSuperficie(ancho, alto)
+        return Superficie(ancho, alto)
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         sys.exit(self.app.exec_())
@@ -689,17 +689,17 @@ class QtBase(motor.Motor):
     def terminar(self):
         self.Close()
 
-class QtWidget(QtBase, QWidget):
+class Widget(Base, QWidget):
 
     def __init__(self, app):
         self.app = app
         QWidget.__init__(self)
-        QtBase.__init__(self)
+        Base.__init__(self)
 
-class QtWidgetSugar(QtWidget):
+class WidgetSugar(Widget):
 
     def __init__(self):
-        QtWidget.__init__(self, None)
+        Widget.__init__(self, None)
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         pass
@@ -707,7 +707,7 @@ class QtWidgetSugar(QtWidget):
     def mostrar_ventana(self, pantalla_completa):
         pass
 
-class QtWidgetGL(QtBase, QGLWidget):
+class WidgetGL(Base, QGLWidget):
 
     def __init__(self, app):
         self.app = app
@@ -716,7 +716,7 @@ class QtWidgetGL(QtBase, QGLWidget):
             print "Lo siento, OpenGL no esta disponible..."
 
         QGLWidget.__init__(self)
-        QtBase.__init__(self)
+        Base.__init__(self)
         self._pintar_fondo_negro()
 
     def _pintar_fondo_negro(self):
@@ -725,21 +725,30 @@ class QtWidgetGL(QtBase, QGLWidget):
 
 
 class Motor(object):
-    """Representa la ventana principal de pilas."""
+    """Representa la ventana principal de pilas.
+    
+    Esta clase construirá el objeto apuntado por el atributo
+    ``pilas.motor``, asi que será el representante de todas
+    las funcionalidades multimedia.
+    
+    Internamente, este motor, tratará de usar OpenGl para acelerar
+    el dibujado en pantalla si la tarjeta de video lo soporta.
+    """
 
     def __init__(self, usar_motor):
         if usar_motor == 'qtgl':
             app = QtGui.QApplication([])
 
             if QGLWidget == object:
-                self.widget = QtWidget(app)
+                self.widget = Widget(app)
             else:
-                self.widget = QtWidgetGL(app)
+                self.widget = WidgetGL(app)
         elif usar_motor == 'qt':
             app = QtGui.QApplication([])
-            self.widget = QtWidget(app)
+            self.widget = Widget(app)
         elif usar_motor == 'qtsugar':
-            self.widget = QtWidgetSugar()
+            self.widget = WidgetSugar()
 
     def __getattr__(self, method):
+        "Delega todos los pedidos de funcionalidad al widget interno."
         return getattr(self.widget, method)
