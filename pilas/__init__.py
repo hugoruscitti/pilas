@@ -57,7 +57,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :ancho: el tamaño en pixels para la ventana.
     :alto: el tamaño en pixels para la ventana.
     :titulo: el titulo a mostrar en la ventana.
-    :usar_motor: el motor multimedia a utilizar, puede ser 'qt' o 'qtgl'.
+    :usar_motor: el motor multimedia a utilizar, puede ser 'qt', 'qtgl' o 'qtsugar'.
     :rendimiento: cantidad de cuadros por segundo a mostrar.
     :modo: si se utiliza modo interactivo o no.
     :economico: si tiene que evitar consumir muchos recursos de procesador
@@ -69,8 +69,10 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     global mundo
 
     motor = _crear_motor(usar_motor)
-    mundo = Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad, pantalla_completa)
-    escenas.Normal(colores.grisclaro)
+
+    if motor:
+        mundo = Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad, pantalla_completa)
+        escenas.Normal(colores.grisclaro)
 
 
 def ejecutar(ignorar_errores=False):
@@ -105,7 +107,7 @@ def _crear_motor(usar_motor):
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
         print "Las opciones de motores que puedes probar son 'qt', 'qtgl' y 'qtsugar'."
-        sys.exit(1)
+        motor = None
 
     return motor
 
