@@ -56,3 +56,16 @@ class Console(InteractiveConsole):
         self.return_output()
         self.output = self._cache.flush()
         return val
+
+    def get_type(self, var):
+        """Insert a command into the console."""
+        print 'var', var
+        type_line = "'.'.join([type(%s).__module__, type(%s).__name__])" % \
+            (var[:-1], var[:-1])
+        print 'type', type_line
+        self.get_output()
+        InteractiveConsole.push(self, type_line)
+        self.return_output()
+        exec_line = self._cache.flush() + '.'
+        exec_line = exec_line.replace("'", "")
+        return exec_line

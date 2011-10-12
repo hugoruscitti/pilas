@@ -20,7 +20,6 @@ except ImportError:
     print "No se encuentra soporte OpenGL en este equipo."
 
 
-import motor
 from pilas import imagenes
 from pilas import actores
 from pilas import eventos
@@ -31,7 +30,9 @@ from pilas import fps
 from pilas import simbolos
 from pilas import colores
 
-# Allow close azulejo witch ctrl+c
+import motor
+
+# Permite cerrar el programa usando CTRL+C
 import signal                                                                                    
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
@@ -434,8 +435,8 @@ class Sonido:
         # print "Usando pygame para reproducir sonido"
         self.sonido.play()
         
+
 class Base(motor.Motor):
-    
     
     def __init__(self):
         motor.Motor.__init__(self)

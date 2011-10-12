@@ -9,8 +9,10 @@ from PyQt4.QtGui import QTextFormat
 from PyQt4.QtGui import QTextEdit
 from PyQt4.QtGui import QColor
 from PyQt4.QtCore import Qt
+from PyQt4.QtCore import QRegExp
 from PyQt4.QtCore import SIGNAL
 
+from pilas.console import completer
 from pilas.console import console
 from pilas.console import highlighter
 
@@ -47,6 +49,12 @@ class ConsoleWidget(QPlainTextEdit):
         self._console = console.Console(locals)
         self._history = []
         self._braces = None
+        self.imports = ['import pilas', 'import __builtin__']
+        self.patFrom = re.compile('^(\\s)*from ((\\w)+(\\.)*(\\w)*)+ import')
+        self.patImport = re.compile('^(\\s)*import (\\w)+')
+        self.patObject = re.compile('[^a-zA-Z0-9\\.]')
+        self.completer = completer.CompleterWidget(self)
+        self.okPrefix = QRegExp('[.)}:,\]]')
 
         self._highlighter = highlighter.Highlighter(self.document(), 'python',
             highlighter.COLOR_SCHEME)
@@ -54,21 +62,25 @@ class ConsoleWidget(QPlainTextEdit):
         self.connect(self, SIGNAL("cursorPositionChanged()"),
             self.highlight_current_line)
         self.highlight_current_line()
-        self.setCursorPosition(0)
 
     def setCursorPosition(self, position):
         self.moveCursor(QTextCursor.StartOfLine)
         for i in xrange(len(self.prompt) + position):
             self.moveCursor(QTextCursor.Right)
 
-    def keyReleaseEvent(self, event):
-        if self.ventana:
-            self.ventana.keyReleaseEvent(event)
-
     def keyPressEvent(self, event):
+        # Permite que el teclado interactue con la ventana de pilas
         if self.ventana:
             self.ventana.keyPressEvent(event)
 
+        if self.completer.popup().isVisible():
+            if event.key() in (Qt.Key_Enter, Qt.Key_Return, Qt.Key_Tab):
+                event.ignore()
+                self.completer.insert_completion()
+                self.completer.popup().hide()
+                return
+            elif event.key in (Qt.Key_Space, Qt.Key_Escape, Qt.Key_Backtab):
+                self.completer.popup().hide()
         if event.key() in (Qt.Key_Enter, Qt.Key_Return):
             self._write_command()
             return
@@ -147,6 +159,46 @@ class ConsoleWidget(QPlainTextEdit):
                 BRACES[unicode(event.text())])
             self.moveCursor(QTextCursor.Left)
             self.textCursor().insertText(selection)
+        completionPrefix = self._text_under_cursor()
+        if completionPrefix.contains(self.okPrefix):
+            completionPrefix = completionPrefix.remove(self.okPrefix)
+        if event.key() == Qt.Key_Period or (event.key() == Qt.Key_Space and \
+        event.modifiers() == Qt.ControlModifier):
+            self.completer.setCompletionPrefix('')
+            self._resolve_completion_argument()
+        if self.completer.popup().isVisible() and \
+        completionPrefix != self.completer.completionPrefix():
+            self.completer.setCompletionPrefix(completionPrefix)
+            self.completer.popup().setCurrentIndex(
+                self.completer.completionModel().index(0, 0))
+            self.completer.setCurrentRow(0)
+            self._resolve_completion_argument()
+
+    def _resolve_completion_argument(self):
+        try:
+            cursor = self.textCursor()
+            cursor.movePosition(QTextCursor.StartOfLine,
+                QTextCursor.KeepAnchor)
+            var = unicode(cursor.selectedText())
+            chars = self.patObject.findall(var)
+            var = var[var.rfind(chars[-1]) + 1:]
+            cr = self.cursorRect()
+            proposals = completer.get_all_completions(var,
+                imports=self.imports)
+            if not proposals:
+                if self.completer.popup().isVisible():
+                    prefix = var[var.rfind('.') + 1:]
+                    var = var[:var.rfind('.') + 1]
+                    var = self._console.get_type(var)
+                    var += prefix
+                else:
+                    var = self._console.get_type(var)
+                print var
+                proposals = completer.get_all_completions(var,
+                    imports=self.imports)
+            self.completer.complete(cr, proposals)
+        except:
+            self.completer.popup().hide()
 
     def highlight_current_line(self):
         self.emit(SIGNAL("cursorPositionChange(int, int)"),
@@ -288,8 +340,12 @@ class ConsoleWidget(QPlainTextEdit):
                     self.document().lineCount() - 1).text()
         #remove the prompt from the QString
         command = command.remove(0, len(self.prompt)).toUtf8().data()
-        self._add_history(command.decode('utf8'))
-        incomplete = self._write(command.decode('utf8'))
+        command_execute = command.decode('utf8')
+        self._add_history(command_execute)
+        incomplete = self._write(command_execute)
+        if self.patFrom.match(command_execute) or \
+        self.patImport.match(command_execute):
+            self.imports += [command_execute]
         if not incomplete:
             output = self._read()
             if output is not None:

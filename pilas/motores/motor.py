@@ -9,48 +9,49 @@
 def abstract():
     raise Exception("Tienes que re-definir este metodo.")
 
+
 class Motor(object):
-    
+
     def __init__(self):
         pass
 
-    def obtener_actor(self, imagen, x, y):
+    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
         abstract()
 
-    def obtener_texto(self, texto, x, y):
-        abstract()
-    
-    def obtener_canvas(self, ancho, alto):
-        abstract()
-    
-    def obtener_grilla(self, ruta, columnas, filas):
+    def mostrar_ventana(self, pantalla_completa):
         abstract()
 
-    def crear_ventana(self, ancho, alto, titulo):
+    def pantalla_completa(self):
         abstract()
 
-    def ocultar_puntero_del_mouse(self):
+    def pantalla_modo_ventana(self):
         abstract()
 
-    def mostrar_puntero_del_mouse(self):
+    def esta_en_pantalla_completa(self):
         abstract()
 
-    def cerrar_ventana(self):
+    def alternar_pantalla_completa(self):
         abstract()
 
-    def dibujar_circulo(self, x, y, radio, color, color_borde):
+    def centro_fisico(self):
         abstract()
 
-    def pulsa_tecla(self, tecla):
+    def obtener_area(self):
         abstract()
 
     def centrar_ventana(self):
         abstract()
 
-    def procesar_y_emitir_eventos(self):
+    def obtener_actor(self, imagen, x, y):
         abstract()
 
-    def procesar_evento_teclado(self, event):
+    def obtener_texto(self, texto, magnitud):
+        abstract()
+
+    def obtener_grilla(self, ruta, columnas, filas):
+        abstract()
+
+    def actualizar_pantalla(self):
         abstract()
 
     def definir_centro_de_la_camara(self, x, y):
@@ -59,17 +60,38 @@ class Motor(object):
     def obtener_centro_de_la_camara(self):
         abstract()
 
-    def pintar(self, color):
-        abstract()
-
     def cargar_sonido(self, ruta):
         abstract()
 
     def cargar_imagen(self, ruta):
         abstract()
 
-    def obtener_imagen_cairo(self, imagen):
+    def obtener_lienzo(self):
+        abstract()
+
+    def obtener_superficie(self, ancho, alto):
         abstract()
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
+        abstract()
+
+    def realizar_actualizacion_logica(self):
+        abstract()
+
+    def obtener_codigo_de_tecla_normalizado(self, tecla_qt):
+        abstract()
+
+    def escala(self):
+        abstract()
+
+    def obtener_area_de_texto(self, texto, magnitud=10):
+        abstract()
+
+    def alternar_pausa(self):
+        abstract()
+
+    def ocultar_puntero_del_mouse(self):
+        abstract()
+
+    def terminar(self):
         abstract()
