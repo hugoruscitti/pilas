@@ -63,6 +63,7 @@ def complete(s, fname=None, imports=None, debug=False):
             msg = 'no completions!'
         if debug:
             return set(completions)
+
     return result
 
 
@@ -222,6 +223,13 @@ class CompleterWidget(QCompleter):
         self.popup().hide()
 
     def complete(self, cr, results):
+        results = [x for x in results if 
+                        not x.startswith('get_') and
+                        not x.startswith('obtener_') and
+                        not x.startswith('set_') and
+                        not x.startswith('_') and
+                        not x.startswith('definir_')]
+
         self.popupView.clear()
         model = self.obtain_model_items(results)
         self.setModel(model)
