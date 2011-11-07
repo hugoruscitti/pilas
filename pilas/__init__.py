@@ -40,7 +40,7 @@ para iniciar y ejecutar la biblioteca.
 if utils.esta_en_sesion_interactiva():
     utils.cargar_autocompletado()
 
-def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl', 
+def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt', 
             rendimiento=60, modo='detectar', economico=True, 
             gravedad=(0, -90), pantalla_completa=False):
     """
