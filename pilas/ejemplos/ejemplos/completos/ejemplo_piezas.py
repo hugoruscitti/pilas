@@ -4,5 +4,5 @@ import sys
 sys.path.insert(0, "..")
 
 pilas.iniciar()
-pilas.ejemplos.Piezas()
+pilas.ejemplos.piezas.Piezas()
 pilas.ejecutar()
