@@ -57,7 +57,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt',
     :ancho: el tamaño en pixels para la ventana.
     :alto: el tamaño en pixels para la ventana.
     :titulo: el titulo a mostrar en la ventana.
-    :usar_motor: el motor multimedia a utilizar, puede ser 'qt', 'qtgl' o 'qtsugar'.
+    :usar_motor: el motor multimedia a utilizar, puede ser 'qt', 'qtgl', 'qtsugar' o 'qtsugargl'.
     :rendimiento: cantidad de cuadros por segundo a mostrar.
     :modo: si se utiliza modo interactivo o no.
     :economico: si tiene que evitar consumir muchos recursos de procesador
@@ -101,12 +101,12 @@ def _crear_motor(usar_motor):
     Esta es una función interna y no debe ser ejecutada
     excepto por el mismo motor pilas."""
 
-    if usar_motor in ['qt', 'qtgl', 'qtsugar']:
+    if usar_motor in ['qt', 'qtgl', 'qtsugar', 'qtsugargl']:
         from motores import motor_qt
         motor = motor_qt.Motor(usar_motor)
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
-        print "Las opciones de motores que puedes probar son 'qt', 'qtgl' y 'qtsugar'."
+        print "Las opciones de motores que puedes probar son 'qt', 'qtgl', 'qtsugar' y 'qtsugargl'."
         motor = None
 
     return motor
