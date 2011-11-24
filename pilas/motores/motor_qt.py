@@ -723,16 +723,7 @@ class Widget(Base, QWidget):
         QWidget.__init__(self)
         Base.__init__(self)
 
-class WidgetSugar(Widget):
 
-    def __init__(self):
-        Widget.__init__(self, None)
-
-    def ejecutar_bucle_principal(self, mundo, ignorar_errores):
-        pass
-
-    def mostrar_ventana(self, pantalla_completa):
-        pass
 
 class WidgetGL(Base, QGLWidget):
 
@@ -750,6 +741,27 @@ class WidgetGL(Base, QGLWidget):
         color = QtGui.QColor(99, 0, 0)
         self.setStyleSheet("QWidget { background-color: %s }" % color.name())
 
+class WidgetSugar(Widget):
+
+    def __init__(self):
+        Widget.__init__(self, None)
+
+    def ejecutar_bucle_principal(self, mundo, ignorar_errores):
+        pass
+
+    def mostrar_ventana(self, pantalla_completa):
+        pass
+
+class WidgetSugarGL(WidgetGL):
+
+    def __init__(self):
+        WidgetGL.__init__(self, None)
+
+    def ejecutar_bucle_principal(self, mundo, ignorar_errores):
+        pass
+
+    def mostrar_ventana(self, pantalla_completa):
+        pass
 
 class Motor(object):
     """Representa la ventana principal de pilas.
@@ -775,6 +787,8 @@ class Motor(object):
             self.widget = Widget(app)
         elif usar_motor == 'qtsugar':
             self.widget = WidgetSugar()
+        elif usar_motor == 'qtsugargl':
+            self.widget = WidgetSugarGL()
 
     def __getattr__(self, method):
         "Delega todos los pedidos de funcionalidad al widget interno."

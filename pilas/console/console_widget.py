@@ -58,6 +58,7 @@ class ConsoleWidget(QPlainTextEdit):
         self._highlighter = highlighter.Highlighter(self.document(), 'python',
             highlighter.COLOR_SCHEME)
 
+
         self.connect(self, SIGNAL("cursorPositionChanged()"),
             self.highlight_current_line)
         self.highlight_current_line()
@@ -67,6 +68,11 @@ class ConsoleWidget(QPlainTextEdit):
         self.moveCursor(QTextCursor.StartOfLine)
         for i in xrange(len(self.prompt) + position):
             self.moveCursor(QTextCursor.Right)
+
+    def keyReleaseEvent(self, event):
+        # Permite que el teclado interactue con la ventana de pilas
+        if self.ventana:
+            self.ventana.keyReleaseEvent(event)
 
     def keyPressEvent(self, event):
         # Permite que el teclado interactue con la ventana de pilas
@@ -159,6 +165,7 @@ class ConsoleWidget(QPlainTextEdit):
                 BRACES[unicode(event.text())])
             self.moveCursor(QTextCursor.Left)
             self.textCursor().insertText(selection)
+
         completionPrefix = self._text_under_cursor()
         if completionPrefix.contains(self.okPrefix):
             completionPrefix = completionPrefix.remove(self.okPrefix)
