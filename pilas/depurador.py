@@ -196,7 +196,7 @@ class ModoInformacionDeSistema(ModoDepurador):
         ModoDepurador.__init__(self, depurador)
 
         self.informacion = [
-            "Usando el motor: " + pilas.mundo.motor.__class__.__name__,
+            "Usando el motor: " + pilas.mundo.motor.nombre,
             "Sistema: " + sys.platform,
             "Version de pilas: " + pilasversion.VERSION,
             "Version de python: " + sys.subversion[0] + " " + sys.subversion[1],

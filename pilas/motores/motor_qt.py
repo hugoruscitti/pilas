@@ -719,6 +719,7 @@ class Base(motor.Motor):
 class Widget(Base, QWidget):
 
     def __init__(self, app):
+        self.nombre = 'qt'
         self.app = app
         QWidget.__init__(self)
         Base.__init__(self)
@@ -728,6 +729,7 @@ class Widget(Base, QWidget):
 class WidgetGL(Base, QGLWidget):
 
     def __init__(self, app):
+        self.nombre = 'qtgl'
         self.app = app
 
         if not QGLWidget:
@@ -745,6 +747,7 @@ class WidgetSugar(Widget):
 
     def __init__(self):
         Widget.__init__(self, None)
+        self.nombre = 'qtsugar'
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         pass
@@ -756,6 +759,7 @@ class WidgetSugarGL(WidgetGL):
 
     def __init__(self):
         WidgetGL.__init__(self, None)
+        self.nombre = 'qtsugargl'
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         pass
