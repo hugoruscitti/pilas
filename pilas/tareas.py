@@ -8,7 +8,7 @@
 
 class Tarea(object):
 
-    def __init__(self, time_out, dt, funcion, parametros, una_vez):
+    def __init__(self, planificador, time_out, dt, funcion, parametros, una_vez):
         """
 
         Parametros:
@@ -20,18 +20,21 @@ class Tarea(object):
             - una_vez: indica si la funcion se tiene que ejecutar una sola vez.
         """
 
+        self.planificador = planificador
         self.time_out = time_out
         self.dt = dt
         self.funcion = funcion
         self.parametros = parametros
         self.una_vez = una_vez
-        self.activa = True
 
     def ejecutar(self):
         return self.funcion(*self.parametros)
 
     def eliminar(self):
-        self.activa = False
+        self.planificador.eliminar_tarea(self)
+
+    def terminar(self):
+        self.eliminar()
 
 class TareaCondicional(Tarea):
 
@@ -77,38 +80,38 @@ class Tareas(object):
          
         for tarea in self.tareas_planificadas:
             if self.contador_de_tiempo > tarea.time_out:
-                if tarea.activa:
-                    tarea.ejecutar()
-                
-                    if tarea.una_vez:
-                        self.tareas_planificadas.remove(tarea)
-                    else:
-                        w = self.contador_de_tiempo - tarea.time_out
-                        parte_entera = int((w)/float(tarea.dt))
-                        resto = w - (parte_entera * tarea.dt)
-
-                        for x in range(parte_entera):
-                            tarea.ejecutar()
-
-                        tarea.time_out += tarea.dt + (parte_entera * tarea.dt) - resto
-                else:
+                tarea.ejecutar()
+            
+                if tarea.una_vez:
                     self.tareas_planificadas.remove(tarea)
+                else:
+                    w = self.contador_de_tiempo - tarea.time_out
+                    parte_entera = int((w)/float(tarea.dt))
+                    resto = w - (parte_entera * tarea.dt)
+
+                    for x in range(parte_entera):
+                        tarea.ejecutar()
+
+                    tarea.time_out += tarea.dt + (parte_entera * tarea.dt) - resto
 
     def _agregar(self, tarea):
         "Agrega una nueva tarea para ejecutarse luego."
         self.tareas_planificadas.append(tarea)
 
     def una_vez(self, time_out, function, params=[]):
-        tarea = Tarea(self.contador_de_tiempo + time_out, time_out, function, params, True)
+        tarea = Tarea(self, self.contador_de_tiempo + time_out, time_out, function, params, True)
         self._agregar(tarea)
         return tarea
 
     def siempre(self, time_out, function, params=[]):
-        tarea = Tarea(self.contador_de_tiempo + time_out, time_out, function, params, False)
+        tarea = Tarea(self, self.contador_de_tiempo + time_out, time_out, function, params, False)
         self._agregar(tarea)
         return tarea
 
     def condicional(self, time_out, function, params=[]):
-        tarea = TareaCondicional(self.contador_de_tiempo + time_out, time_out, function, params, False)
+        tarea = TareaCondicional(self, self.contador_de_tiempo + time_out, time_out, function, params, False)
         self._agregar(tarea)
         return tarea
+
+    def eliminar_tarea(self, tarea):
+        self.tareas_planificadas.remove(tarea)
