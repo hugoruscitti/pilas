@@ -67,6 +67,9 @@ class Tareas(object):
         self.tareas_planificadas = []
         self.contador_de_tiempo = 0
 
+    def obtener_cantidad_de_tareas_planificadas(self):
+        return len(self.tareas_planificadas)
+
     def actualizar(self, dt):
         "Actualiza los contadores de tiempo y ejecuta las tareas pendientes."
         self.contador_de_tiempo += dt
