@@ -14,6 +14,7 @@ from pilas import fisica
 from pilas import escenas
 from pilas import colisiones
 from pilas import camara
+from pilas import actores
 
 
 class Mundo(object):
@@ -63,6 +64,8 @@ class Mundo(object):
 
     def definir_escena(self, escena_nueva):
         "Cambia la escena que se muestra en pantalla"
+        actores.utils.destruir_a_todos()
+        self.tareas.eliminar_todas()
 
         if self.escena_actual:
             self.escena_actual.terminar()

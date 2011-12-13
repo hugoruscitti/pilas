@@ -115,3 +115,6 @@ class Tareas(object):
 
     def eliminar_tarea(self, tarea):
         self.tareas_planificadas.remove(tarea)
+
+    def eliminar_todas(self):
+        self.tareas_planificadas = []
