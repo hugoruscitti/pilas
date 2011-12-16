@@ -714,7 +714,7 @@ class Base(motor.Motor):
         self.setCursor(QtGui.QCursor(nuevo_cursor))
 
     def terminar(self):
-        self.Close()
+        self.close()
 
 class Widget(Base, QWidget):
 
