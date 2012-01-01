@@ -209,10 +209,10 @@ class CompleterWidget(QCompleter):
         QCompleter.__init__(self)
 
         self.setWidget(editor)
-        self.popupView = QListWidget()
-        self.popupView.setAlternatingRowColors(True)
-        self.popupView.setWordWrap(False)
-        self.setPopup(self.popupView)
+        #self.popupView = QListWidget()
+        #self.popupView.setAlternatingRowColors(False)
+        #self.popupView.setWordWrap(False)
+        #self.setPopup(self.popupView)
         self.setCompletionMode(QCompleter.PopupCompletion)
         self.setCaseSensitivity(Qt.CaseInsensitive)
 
