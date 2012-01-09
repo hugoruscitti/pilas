@@ -22,8 +22,13 @@ import colores
 import atajos
 import escenas
 import interfaz
-import aplicacion
-import ejemplos
+
+try:
+    import aplicacion
+    import ejemplos
+except ImportError:
+    print "ERROR: no está disponible PyQt4"
+
 
 __doc__ = """
 Módulo pilas
