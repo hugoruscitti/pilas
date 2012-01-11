@@ -427,14 +427,25 @@ class Sonido:
     def __init__(self, ruta):
         import pygame
         pygame.mixer.init()
-        pygame.mixer.init()
         self.sonido = pygame.mixer.Sound(ruta)
 
     def reproducir(self):
-        # TODO: quitar esta nota...
-        # print "Usando pygame para reproducir sonido"
         self.sonido.play()
         
+
+class Musica:
+
+    def __init__(self, ruta):
+        import pygame
+        pygame.mixer.init()
+        pygame.mixer.music.load(ruta)
+
+    def reproducir(self, repetir=False):
+        import pygame
+        if repetir:
+            pygame.mixer.music.play(-1)
+        else:
+            pygame.mixer.music.play(0)
 
 class Base(motor.Motor):
     
@@ -524,6 +535,9 @@ class Base(motor.Motor):
     def cargar_sonido(self, ruta):
         return Sonido(ruta)
 
+    def cargar_musica(self, ruta):
+        return Musica(ruta)
+
     def cargar_imagen(self, ruta):
         return Imagen(ruta)
 
@@ -607,6 +621,11 @@ class Base(motor.Motor):
         escala = self.escala()
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
         dx, dy = x - self.mouse_x, y - self.mouse_y
+        
+        izquierda, derecha, arriba, abajo = utils.obtener_bordes()
+        x = max(min(derecha, x), izquierda)
+        y = max(min(arriba, y), abajo)
+
         eventos.mueve_mouse.send("Qt::mouseMoveEvent", x=x, y=y, dx=dx, dy=dy)
         self.mouse_x = x
         self.mouse_y = y
