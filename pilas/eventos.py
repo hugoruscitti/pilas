@@ -8,6 +8,7 @@
 
 import dispatch
 
+mueve_camara = dispatch.Signal(providing_args=['x', 'y', 'dx', 'dy'])
 mueve_mouse = dispatch.Signal(providing_args=['x', 'y', 'dx', 'dy'])
 click_de_mouse = dispatch.Signal(providing_args=['button', 'x', 'y'])
 termina_click = dispatch.Signal(providing_args=['button', 'x', 'y'])

@@ -20,6 +20,7 @@ class Camara(object):
 
     @pilas.utils.interpolable
     def _set_x(self, x):
+        pilas.eventos.mueve_camara.send("movimiento de camara", x=x, y=self.y, dx=x-self.x, dy=0)
         pilas.mundo.motor.definir_centro_de_la_camara(x, self.y)
 
     def _get_x(self):
@@ -28,6 +29,7 @@ class Camara(object):
 
     @pilas.utils.interpolable
     def _set_y(self, y):
+        eventos.mueve_camara.send("movimiento de camara", x=self.x, y=y, dx=0, dy=y-self.y)
         pilas.mundo.motor.definir_centro_de_la_camara(self.x, y)
 
     def _get_y(self):

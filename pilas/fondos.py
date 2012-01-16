@@ -69,3 +69,66 @@ class Color(Fondo):
     def dibujar(self, motor):
         if self.color:
             self.lienzo.pintar(motor, self.color)
+
+
+class Desplazamiento(Fondo):
+    """Representa un fondo formado por varias capas (o actores).
+
+    En fondo de este tipo, ayuda a generar un efecto de profundidad,
+    de perspectiva en tres dimensiones.
+    """
+
+    def __init__(self, ciclico=True):
+        "Inicia el objeto, dando la opción de simular que el fondo es infinitio"
+
+        Fondo.__init__(self, "invisible.png")
+        self.posicion = 0
+        self.posicion_anterior = 0
+        self.capas = []
+        self.velocidades = {}
+        pilas.eventos.mueve_camara.conectar(self.cuando_mueve_camara)
+        self.ciclico = True
+
+        if ciclico:
+            self.capas_auxiliares = []
+
+    def agregar(self, capa, velocidad=1):
+        x, _, _, y = pilas.utils.obtener_bordes()
+        capa.fijo = True
+        capa.izquierda = x
+
+        self.capas.append(capa)
+        self.velocidades[capa] = velocidad
+
+        if self.ciclico:
+            copia = capa.duplicar()
+            copia.fijo = True
+            copia.imagen = capa.imagen
+            self.capas_auxiliares.append(copia)
+            copia.izquierda = capa.derecha
+            self.velocidades[copia] = velocidad
+
+    def actualizar(self):
+        if self.posicion != self.posicion_anterior:
+            dx = self.posicion - self.posicion_anterior
+            self.mover_capas(dx)
+            self.posicion_anterior = self.posicion
+    
+    def cuando_mueve_camara(self, evento):
+        dx = evento.dx
+
+        # Hace que las capas no se desplacen naturalmente
+        # como todos los actores.
+        #for x in self.capas:
+        #    x.x += dx
+
+        # aplica un movimiento respetando las velocidades.
+        self.mover_capas(dx)
+
+    def mover_capas(self, dx):
+        for capa in self.capas:
+            capa.x -= dx * self.velocidades[capa]
+
+        if self.ciclico:
+            for capa in self.capas_auxiliares:
+                capa.x -= dx * self.velocidades[capa]
