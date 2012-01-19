@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import time
-import pygame
 from PyQt4 import QtCore
 
 
@@ -63,10 +62,11 @@ class FPS(object):
         self.timer = QtCore.QTime()
         self.timer.start()
         self.siguiente = self.timer.elapsed() + self.frecuencia
+        self.cuadros = 0
+        self.ultimo_reporte_fps = 0
 
     def actualizar(self):
         actual = self.timer.elapsed()
-        #print actual, "→", self.siguiente,
 
         if actual > self.siguiente:
             cantidad = 0
@@ -74,24 +74,22 @@ class FPS(object):
             while actual > self.siguiente:
                 self.siguiente += self.frecuencia
                 cantidad += 1
+                self._procesar_fps(actual)
 
-            #self.rendimiento.append(str(actual) + ', ' + str(cantidad))
             if cantidad > 10:
                 cantidad = 10
-            #print "Cuadros:", cantidad
+
+            self.cuadros += 1
             return cantidad
         else:
             # wait
-            #print "Cuadros:", 0
-            #print 0
-            #self.rendimiento.append(str(actual) + ', ' + str(0))
             return 0
 
-        
-
-
-
-        #dt = self.actual - self.antes
+    def _procesar_fps(self, actual):
+        if actual - self.ultimo_reporte_fps > 1000.0:
+            self.ultimo_reporte_fps += 1000.0
+            self.cuadros_por_segundo = str(self.cuadros)
+            self.cuadros = 0
 
 
         #sleepTime = self.frecuencia - (newTime - self.delay)
