@@ -657,7 +657,7 @@ class Base(motor.Motor):
         self.mouse_x = x
         self.mouse_y = y
 
-    #def keyPressEvent(self, event):
+    def keyPressEvent(self, event):
         codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
 
         if event.key() == QtCore.Qt.Key_Escape:
