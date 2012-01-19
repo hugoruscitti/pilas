@@ -11,6 +11,7 @@ import sys
 import copy
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QWidget
+from PyQt4.phonon import Phonon
 
 try:
     from PyQt4 import QtOpenGL
@@ -422,7 +423,7 @@ class Actor(BaseActor):
                 self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion, self._transparencia)
 
-class Sonido:
+class _deprecated__Sonido:
 
     def __init__(self, ruta):
         import pygame
@@ -431,7 +432,29 @@ class Sonido:
 
     def reproducir(self):
         self.sonido.play()
-        
+
+class Sonido:
+
+    def __init__(self, media, ruta):
+        self.media = media
+        self.ruta = ruta
+
+        #if self.source.type() != -1:              # -1 stands for invalid file
+        #    self.media.setCurrentSource(self.source)
+        #    #app.connect(media, SIGNAL("finished()"), app, SLOT("quit()"))
+        #else:
+        #    print "error !!!"
+        self.source = Phonon.MediaSource(ruta)
+        self.sonido = Phonon.createPlayer(Phonon.GameCategory, self.source)
+        print "Creando sonido para", ruta
+
+    def reproducir(self):
+        #self.source = Phonon.MediaSource(self.ruta)
+        #self.media.setCurrentSource(self.source)
+        #self.media.play()
+        #self.sonido.setCurrentSource(self.source)
+        self.sonido.seek(0)
+        self.sonido.play()
 
 class Musica:
 
@@ -460,6 +483,10 @@ class Base(motor.Motor):
         self.mouse_y = 0
         self.camara_x = 0
         self.camara_y = 0
+    
+        self.media = Phonon.MediaObject()
+        self.audio = Phonon.AudioOutput(Phonon.MusicCategory)
+        self.path = Phonon.createPath(self.media, self.audio)
 
     def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
         self.ancho = ancho
@@ -473,7 +500,7 @@ class Base(motor.Motor):
         self.mostrar_ventana(pantalla_completa)
 
         # Activa la invocacion al evento timerEvent.
-        self.startTimer(1000/60.0)
+        self.startTimer(1000/100.0)
 
     def mostrar_ventana(self, pantalla_completa):
         if pantalla_completa:
@@ -533,7 +560,7 @@ class Base(motor.Motor):
         return (self.camara_x, self.camara_y)
 
     def cargar_sonido(self, ruta):
-        return Sonido(ruta)
+        return Sonido(self.media, ruta)
 
     def cargar_musica(self, ruta):
         return Musica(ruta)
@@ -630,7 +657,7 @@ class Base(motor.Motor):
         self.mouse_x = x
         self.mouse_y = y
 
-    def keyPressEvent(self, event):
+    #def keyPressEvent(self, event):
         codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
 
         if event.key() == QtCore.Qt.Key_Escape:
@@ -800,6 +827,7 @@ class Motor(object):
     def __init__(self, usar_motor):
         if usar_motor == 'qtgl':
             app = QtGui.QApplication([])
+            app.setApplicationName("pilas")
 
             if QGLWidget == object:
                 self.widget = Widget(app)
