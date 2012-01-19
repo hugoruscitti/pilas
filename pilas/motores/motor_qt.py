@@ -765,7 +765,7 @@ class Base(motor.Motor):
 class Widget(Base, QWidget):
 
     def __init__(self, app):
-        self.nombre = 'qt'
+        self.nombre = 'qt (cuidado: sin acelerar)'
         self.app = app
         QWidget.__init__(self)
         Base.__init__(self)
@@ -793,7 +793,7 @@ class WidgetSugar(Widget):
 
     def __init__(self):
         Widget.__init__(self, None)
-        self.nombre = 'qtsugar'
+        self.nombre = 'qtsugar (cuidado: sin acelerar)'
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         pass
