@@ -187,8 +187,6 @@ class Actor(object, Estudiante):
         if s < 0:
             return
         self._actor.definir_escala_y(s)
-    
-
 
     def get_scale(self):
         return self.obtener_escala()
@@ -390,11 +388,6 @@ class Actor(object, Estudiante):
     def imitar(self, otro_actor_o_figura):
         self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura)
 
-    def esta_fuera_de_la_pantalla(self):
-        # TODO: detectar area de la pantalla con las funciones que exporta el motor.
-        if self.derecha < -320 or self.izquierda > 320 or self.arriba < -240 or self.abajo > 240:
-            return True
-
     def decir(self, mensaje, autoeliminar=True):
         """Emite un mensaje usando un globo similar al de los commics"""
         nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y, autoeliminar=autoeliminar)
@@ -408,3 +401,10 @@ class Actor(object, Estudiante):
     def _eliminar_anexados(self):
         for x in self.anexados:
             x.eliminar()
+
+    def esta_fuera_de_la_pantalla(self):
+        izquierda, derecha, arriba, abajo = pilas.mundo.camara.obtener_area_visible()
+        return self.derecha < izquierda or self.izquierda > derecha or self.abajo > arriba or self.arriba < abajo
+
+
+
