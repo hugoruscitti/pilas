@@ -835,6 +835,7 @@ class Motor(object):
                 self.widget = WidgetGL(app)
         elif usar_motor == 'qt':
             app = QtGui.QApplication([])
+            app.setApplicationName("pilas")
             self.widget = Widget(app)
         elif usar_motor == 'qtsugar':
             self.widget = WidgetSugar()
