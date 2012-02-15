@@ -40,8 +40,8 @@ violeta = Color(128, 0, 255)
 marron = Color(153, 102, 0)
 
 # Colores transparentes
-negro = Color(0, 0, 0, 160)
-blanco = Color(255, 255, 255, 160)
+negro_transparente = Color(0, 0, 0, 160)
+blanco_transparente = Color(255, 255, 255, 160)
 rojo_transparente = Color(255, 0, 0, 160)
 verde_transparente = Color(0, 255, 0, 160)
 azul_transparente = Color(0, 0, 255, 160)
