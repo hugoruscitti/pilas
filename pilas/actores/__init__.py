@@ -70,3 +70,4 @@ from pausa import Pausa
 from mano import CursorMano
 from cooperativista import Cooperativista
 from zanahoria import Zanahoria
+from energia import Energia
