@@ -47,8 +47,7 @@ if utils.esta_en_sesion_interactiva():
     utils.cargar_autocompletado()
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt', 
-            rendimiento=60, modo='detectar', economico=True, 
-            gravedad=(0, -90), pantalla_completa=False):
+            rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -66,7 +65,6 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt',
     :usar_motor: el motor multimedia a utilizar, puede ser 'qt', 'qtgl', 'qtsugar' o 'qtsugargl'.
     :rendimiento: cantidad de cuadros por segundo a mostrar.
     :modo: si se utiliza modo interactivo o no.
-    :economico: si tiene que evitar consumir muchos recursos de procesador
     :gravedad: el vector de aceleracion para la simulacion de fisica.
     :pantalla_completa: si debe usar pantalla completa o no.
 
@@ -77,7 +75,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt',
     motor = _crear_motor(usar_motor)
 
     if motor:
-        mundo = Mundo(motor, ancho, alto, titulo, rendimiento, economico, gravedad, pantalla_completa)
+        mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
         escenas.Normal(colores.grisclaro)
 
 

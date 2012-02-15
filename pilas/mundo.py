@@ -24,8 +24,7 @@ class Mundo(object):
     motor y mantener el bucle de juego.
     """
 
-    def __init__(self, motor, ancho, alto, titulo, fps=60, economico=True, 
-            gravedad=(0, -90), pantalla_completa=False):
+    def __init__(self, motor, ancho, alto, titulo, fps=60, gravedad=(0, -90), pantalla_completa=False):
         self.motor = motor
         self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa)
 
