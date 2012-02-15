@@ -16,6 +16,7 @@ class Boton(pilas.actores.Actor):
         self._crear_imagenes_de_botones()
         self.centro = ("centro", "centro")
         self.funcion = None
+        self.fijo = True
 
         if icono:
             self.icono = pilas.imagenes.cargar(icono)

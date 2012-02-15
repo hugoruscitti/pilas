@@ -30,6 +30,7 @@ class IngresoDeTexto(pilas.actores.Actor):
 
         pilas.eventos.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
         pilas.mundo.agregar_tarea_siempre(0.40, self._actualizar_cursor)
+        self.fijo = True
         
     def _actualizar_cursor(self):
         if self.cursor == "":

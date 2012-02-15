@@ -20,6 +20,7 @@ class Deslizador(Actor):
         self.deslizador = None
         Actor.__init__(self, ruta_barra, x=x, y=y)
         self.deslizador = Actor(ruta_deslizador, self.x, self.y)
+        self.deslizador.fijo = True
         self.centro = ('izquierda', 'centro')
         
         self.click = False
@@ -36,6 +37,7 @@ class Deslizador(Actor):
         # establecemos posicion inicial
         self.x = x
         self.y = y
+        self.fijo = True
 
     def set_transparencia(self, nuevo_valor):
         self.transparencia = nuevo_valor

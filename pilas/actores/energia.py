@@ -20,6 +20,7 @@ class Energia(Actor):
         self.progreso_anterior = progreso
         self.imagen = pilas.imagenes.cargar_superficie(self.area_ancho, self.area_alto)
         self.pintar_imagen()
+        self.fijo = True
 
     def pintar_imagen(self):
         self.imagen.limpiar()

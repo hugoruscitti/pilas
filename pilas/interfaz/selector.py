@@ -22,6 +22,7 @@ class Selector(pilas.actores.Actor):
 
         self.deseleccionar()
         pilas.eventos.click_de_mouse.conectar(self.detection_click_mouse)
+        self.fijo = True
 
     def _cargar_imagenes(self):
         self.imagen_selector = pilas.imagenes.cargar("interfaz/selector.png")
