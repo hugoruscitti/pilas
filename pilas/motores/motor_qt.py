@@ -423,15 +423,6 @@ class Actor(BaseActor):
                 self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion, self._transparencia)
 
-class _deprecated__Sonido:
-
-    def __init__(self, ruta):
-        import pygame
-        pygame.mixer.init()
-        self.sonido = pygame.mixer.Sound(ruta)
-
-    def reproducir(self):
-        self.sonido.play()
 
 class Sonido:
 
@@ -439,20 +430,10 @@ class Sonido:
         self.media = media
         self.ruta = ruta
 
-        #if self.source.type() != -1:              # -1 stands for invalid file
-        #    self.media.setCurrentSource(self.source)
-        #    #app.connect(media, SIGNAL("finished()"), app, SLOT("quit()"))
-        #else:
-        #    print "error !!!"
         self.source = Phonon.MediaSource(ruta)
         self.sonido = Phonon.createPlayer(Phonon.GameCategory, self.source)
-        print "Creando sonido para", ruta
 
     def reproducir(self):
-        #self.source = Phonon.MediaSource(self.ruta)
-        #self.media.setCurrentSource(self.source)
-        #self.media.play()
-        #self.sonido.setCurrentSource(self.source)
         self.sonido.seek(0)
         self.sonido.play()
 

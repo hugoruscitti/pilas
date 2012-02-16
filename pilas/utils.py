@@ -220,14 +220,6 @@ def realizar_pruebas():
     except ImportError:
         print "Error -> no se encuentra pybox2d."
 
-    print "pygame:",
-
-    try:
-        import pygame
-        print "OK, versión", pygame.__version__
-    except ImportError:
-        print "Error -> no se encuentra pygame."
-
     print "pyqt:",
 
     try:
