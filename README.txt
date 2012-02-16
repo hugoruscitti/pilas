@@ -83,19 +83,6 @@ Pilas es software libre, y se distribuye bajo la
 licencia GPLv3.
 
 
-Test de unidad
-==============
-
-Para realizar pruebas de unidad estamos usando ``py.test``. Para
-ello tienes que instalar una nueva dependencia con el
-comando::
-
-    sudo easy_install pytest
-
-y luego correr todas las pruebas con los siguientes comandos::
-
-    make test
-
 Créditos y agradecimientos
 ==========================
 
@@ -128,14 +115,6 @@ Qt4:
 
 - http://qt.nokia.com/
 
-
-pygame
-------
-
-Como biblioteca multimedia secundaria usamos
-pygame, que además nos permite seleccionarla
-en casos donde no hay soporte para OpenGL (como
-en los equipos OLPC por ejemplo).
 
 Box2d
 -----
