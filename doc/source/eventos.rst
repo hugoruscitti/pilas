@@ -1,38 +1,44 @@
-Señales, callbacks y eventos
-============================
+Eventos, conexiones y respuestas
+================================
 
 En el desarrollo de videojuegos es muy importante
-tener herramientas para que el usuario pueda
-interactuar con el juego.
+poder comunicarse con el usuario. Lograr que los
+personajes del juego puedan interactuar con él y
+exista una fuerte interacción.
 
-En pilas se usa una estrategia llamada
-``señales y callbacks``, que se utiliza ampliamente en el
-desarrollo de interfaces gráficas, la web y sistemas de tiempo
-real.
+En pilas usamos una estrategia llamada ``eventos, conexiones
+y respuestas``, no solo porque es muy sencilla de usar, sino
+también porque es una solución conocida y muy utilizada
+en otros lugares como en la web.
 
 ¿Que es un Evento?
 ------------------
 
-Un evento es un mensaje que emite algún componente
-del juego, y que pueden captar o escuchar distintos
-objetos para tomar una acción.
+Los eventos representan algo que esperamos que ocurra
+dentro de un juego, por ejemplo un ``click`` del mouse, la
+``pulsación`` de una tecla, el ``cierre`` de la
+ventana o la ``colisión`` entre un enemigo y nuestro
+protagonista.
 
-Por ejemplo, el componente ``pilas`` emite señales
-de eventos cada vez que el usuario hace algo dentro del juego. Por
-ejemplo, si el usuario mueve el mouse, ``pilas`` emite
-la señal de evento ``mueve_mouse``.
+Lo interesante de los eventos, es que pueden ocurrir en
+cualquier momento, y generalmente no lo controlamos, solamente
+los escuchamos y tomamos alguna respuesta predefinida.
 
-Veamos un ejemplo de esto en la siguiente sección.
+Pilas representa a los eventos como objetos, y nos brinda
+funciones para ser avisados cuando un evento ocurre e incluso
+emitir y generar eventos nuevos.
 
-Conectando eventos a funciones
-------------------------------
+Veamos algunos ejemplos:
 
-Las señales de ``eventos`` solo representan un aviso de que algo
-ha ocurrido, pero no toman ninguna acción al respecto.
+Conectando la emisión de eventos a funciones
+---------------------------------------------
 
-Entonces, para darle utilidad a estas señales tenemos
-que vincularlas, de forma que puedan disparar acciones
-dentro de nuestro juego.
+Los ``eventos`` no disparan ninguna acción automática, nosotros
+los programadores somos los que tenemos que elegir los
+eventos importantes y elegir que hacer al respecto.
+
+Para utilidad a estas señales tenemos que vincularlas a funciones, de
+forma que al emitirse la señal podamos ejecutar código.
 
 La función ``conectar``
 _______________________
@@ -67,16 +73,17 @@ Es decir, la señal de evento que nos interesa es ``mueve_mouse`` (que se emite
 cada vez que el usuario mueve el mouse). Y a esta señal le conectamos
 la función que buscamos ejecutar cada vez que se mueva el mouse.
 
-Nota que pueden existir tantas funciones conectadas a una señal como
-quieras. Y que si la función deja de existir no hace falta desconectarla.
+Ten en cuenta que pueden existir tantas funciones conectadas a una señal como
+quieras.
 
 Las coordenadas que reporta el mouse son relativas al escenario y no
 de la ventana. Por lo tanto puedes asignar directamente el valor
-de las coordenadas del mouse a los actores sin efectos colaterales.
+de las coordenadas del mouse a los actores sin efectos colaterales
+con respecto a la cámara.
 
 
-Viendo las señales antes de procesarlas
----------------------------------------
+Observando a los eventos para conocerlos mejor
+----------------------------------------------
 
 Como puedes ver en la función ``mover_mono_a_la_posicion_del_mouse``, hemos
 definido un parámetro llamado ``evento`` y accedimos a sus valores
@@ -96,16 +103,16 @@ la función de arriba podíamos escribir:
     def mover_mono_a_la_posicion_del_mouse(evento):
         print evento
 
-y en la ventana de nuestro terminar tendríamos que ver
-algo cómo::
+y en la ventana de nuestra computadora tendríamos que ver
+algo así::
 
     {'y': 2.0, 'x': -57.0, 'dx': 0.0, 'dy': -1.0}
 
 
-donde claramente podemos ver lo que viene junto con
-el evento.
+donde claramente podemos ver todos los datos que vienen asociados
+al evento.
 
-Ten en cuenta que este argumento ``evento``, en realidad,
+Por último, ten en cuenta que este argumento ``evento``, en realidad,
 es un diccionario de python como cualquier otro, solo
 que puedes acceder a sus valores usando sentencias cómo
 ``diccionario.clave`` en lugar de ``diccionario['clave']``.
@@ -145,9 +152,39 @@ Durante el desarrollo es útil poder observar qué
 eventos se han conectado a funciones.
 
 Una forma de observar la conexión de los eventos
-es pulsar la tecla F10. Eso imprimirá sobre
+es pulsar la tecla ``F7``. Eso imprimirá sobre
 consola los nombres de las señales conectadas
 junto a las funciones.
+
+
+Creando tus propios eventos
+---------------------------
+
+Si tu juego se vuelve mas complejo y hay interacciones entre
+varios actores, puede ser una buena idea hacer que exista algo
+de comunicación entre ellos usando eventos.
+
+Veamos cómo crear un evento:
+
+Primero tienes que crear un objeto que represente a tu evento:
+
+.. code-block:: python
+
+    evento = pilas.eventos.Evento()
+
+luego, este nuevo objeto ``evento`` podrá ser utilizado como
+canal de comunicación: muchos actores podrán ``conectarse`` para
+recibir alertas y otros podrán ``emitir`` alertas:
+
+.. code-block:: python
+
+    def ha_ocurrido_un_evento(datos_evento):
+        print datos_evento
+
+    evento.conectar(ha_ocurrido_un_evento)
+
+    # En otra parte...
+    evento.emitir("mi nombre de emisor", argumentos)
 
 
 Referencias
@@ -156,7 +193,7 @@ Referencias
 El concepto que hemos visto en esta sección se utiliza
 en muchos sistemas. Tal vez el mas conocido de estos es
 la biblioteca ``GTK``, que se utiliza actualmente para construir
-el escritorio GNOME y Gimp entre otras aplicaciones.
+el escritorio ``GNOME`` y ``Gimp`` entre otras aplicaciones.
 
 El sistema de señales que se utiliza en pilas se obtuvo
 (gentilmente) del núcleo del sistema ``django``, dado que

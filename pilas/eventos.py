@@ -6,24 +6,32 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-import dispatch
+from pilas.dispatch.dispatcher import Signal
 
-mueve_camara = dispatch.Signal(providing_args=['x', 'y', 'dx', 'dy'])
-mueve_mouse = dispatch.Signal(providing_args=['x', 'y', 'dx', 'dy'])
-click_de_mouse = dispatch.Signal(providing_args=['button', 'x', 'y'])
-termina_click = dispatch.Signal(providing_args=['button', 'x', 'y'])
-mueve_rueda = dispatch.Signal(providing_args=['delta'])
-pulsa_tecla = dispatch.Signal(providing_args=['codigo', 'texto'])
-suelta_tecla = dispatch.Signal(providing_args=['codigo', 'texto'])
-pulsa_tecla_escape = dispatch.Signal(providing_args=[])
-actualizar = dispatch.Signal(providing_args=[])
-actualizar_pausado = dispatch.Signal(providing_args=[])
-post_dibujar = dispatch.Signal(providing_args=[])
+class Evento(Signal):
+
+    def __init__(self, argumentos):
+        Signal.__init__(self, argumentos)
+
+    def emitir(self, emisor, **argumentos):
+        return self.send(emisor, **argumentos)
+
+mueve_camara = Evento(['x', 'y', 'dx', 'dy'])
+mueve_mouse = Evento(['x', 'y', 'dx', 'dy'])
+click_de_mouse = Evento(['button', 'x', 'y'])
+termina_click = Evento(['button', 'x', 'y'])
+mueve_rueda = Evento(['delta'])
+pulsa_tecla = Evento(['codigo', 'texto'])
+suelta_tecla = Evento(['codigo', 'texto'])
+pulsa_tecla_escape = Evento([])
+actualizar = Evento([])
+actualizar_pausado = Evento([])
+post_dibujar = Evento([])
 
 # Se emite cuando el mundo ingresa o sale del modo depuracion (pulsando F12)
-inicia_modo_depuracion = dispatch.Signal(providing_args=[]) 
-sale_modo_depuracion = dispatch.Signal(providing_args=[])
-actualiza_modo_depuracion = dispatch.Signal(providing_args=[])
+inicia_modo_depuracion = Evento([]) 
+sale_modo_depuracion = Evento([])
+actualiza_modo_depuracion = Evento([])
 
 
 def imprimir_todos():
@@ -34,7 +42,7 @@ def imprimir_todos():
         nombre = x[0]
         evento = x[1]
         
-        if isinstance(evento, dispatch.Signal):
+        if isinstance(evento, Evento):
             if evento.esta_conectado():
                 imprime_alguno = True
                 print "%s:" %(nombre)

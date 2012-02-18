@@ -195,6 +195,7 @@ class ModoInformacionDeSistema(ModoDepurador):
     def __init__(self, depurador):
         ModoDepurador.__init__(self, depurador)
 
+        pilas.eventos.imprimir_todos()
         self.informacion = [
             "Usando el motor: " + pilas.mundo.motor.nombre,
             "Sistema: " + sys.platform,
