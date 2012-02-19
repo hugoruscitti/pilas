@@ -207,6 +207,10 @@ class Figura(object):
     def obtener_y(self):
         return self._cuerpo.position.y
 
+	def definir_posicion(self, x, y):
+		self.definir_x(x)
+		self.definir_y(y)
+
     def definir_y(self, y):
         self._cuerpo.SetXForm((self.x, y), self._cuerpo.GetAngle())
 
