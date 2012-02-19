@@ -12,7 +12,7 @@ from pilas.actores import Actor
 class Energia(Actor):
     """Representa un indicador de energia (en forma de barra horizontal)."""
 
-    def __init__(self, x=0, y=0, progreso=50, ancho=200, alto=30):
+    def __init__(self, x=0, y=0, progreso=100, ancho=200, alto=30):
         Actor.__init__(self, x=x, y=y)
         self.area_ancho = ancho
         self.area_alto = alto
