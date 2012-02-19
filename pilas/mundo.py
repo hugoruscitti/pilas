@@ -62,7 +62,12 @@ class Mundo(object):
         self.motor.ejecutar_bucle_principal(self, ignorar_errores)
 
     def definir_escena(self, escena_nueva):
-        "Cambia la escena que se muestra en pantalla"
+        """Cambia la escena que se muestra en pantalla.
+
+        Este método se llama automáticamente desde el módulo
+        de escenas, así que no es buena idea llamarlo desde
+        un juego, es mejor dejar que se llame automáticamente
+        desde la escena."""
         actores.utils.destruir_a_todos()
         self.tareas.eliminar_todas()
 
