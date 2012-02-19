@@ -17,7 +17,7 @@ class EscenaDeMenu(Normal):
         self.menu = pilas.actores.Menu(opciones)
 
     def comenzar(self):
-        pilas.mundo.definir_escena(EscenaDeJuego())
+        EscenaDeJuego()
 
     def salir(self):
         import sys
@@ -36,7 +36,8 @@ class EscenaDeJuego(Normal):
 
     def cuando_pulsa_tecla(self, evento):
         if evento.texto == u'q':
-            pilas.mundo.definir_escena(EscenaDeMenu())
+            EscenaDeMenu()
 	
-pilas.mundo.definir_escena(EscenaDeMenu())
+# Carga la nueva escena
+EscenaDeMenu()
 pilas.ejecutar()
