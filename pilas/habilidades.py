@@ -78,7 +78,7 @@ class SeguirAlMouse(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.eventos.mueve_mouse.connect(self.mover)
+        pilas.eventos.mueve_mouse.conectar(self.mover)
 
     def mover(self, evento):
         self.receptor.x = evento.x
@@ -89,7 +89,7 @@ class AumentarConRueda(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.eventos.mueve_rueda.connect(self.cambiar_de_escala)
+        pilas.eventos.mueve_rueda.conectar(self.cambiar_de_escala)
 
     def cambiar_de_escala(self, evento):
         self.receptor.escala += (evento.delta / 4.0)
@@ -100,7 +100,7 @@ class SeguirClicks(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.eventos.click_de_mouse.connect(self.moverse_a_este_punto)
+        pilas.eventos.click_de_mouse.conectar(self.moverse_a_este_punto)
 
     def moverse_a_este_punto(self, evento):
         self.receptor.x = [evento.x], 0.5
@@ -120,13 +120,13 @@ class Arrastrable(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.eventos.click_de_mouse.connect(self.cuando_intenta_arrastrar)
+        pilas.eventos.click_de_mouse.conectar(self.cuando_intenta_arrastrar)
 
     def cuando_intenta_arrastrar(self, evento):
         "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
         if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
-            pilas.eventos.termina_click.connect(self.cuando_termina_de_arrastrar)
-            pilas.eventos.mueve_mouse.connect(self.cuando_arrastra, uid='cuando_arrastra')
+            pilas.eventos.termina_click.conectar(self.cuando_termina_de_arrastrar)
+            pilas.eventos.mueve_mouse.conectar(self.cuando_arrastra, id='cuando_arrastra')
             self.comienza_a_arrastrar()
 
     def cuando_arrastra(self, evento):
@@ -139,7 +139,7 @@ class Arrastrable(Habilidad):
 
     def cuando_termina_de_arrastrar(self, evento):
         "Suelta al actor porque se ha soltado el botón del mouse."
-        pilas.eventos.mueve_mouse.disconnect(uid='cuando_arrastra')
+        pilas.eventos.mueve_mouse.desconectar_por_id(id='cuando_arrastra')
         self.termina_de_arrastrar()
 
     def comienza_a_arrastrar(self):
@@ -159,7 +159,7 @@ class MoverseConElTeclado(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.eventos.actualizar.connect(self.on_key_press)
+        pilas.eventos.actualizar.conectar(self.on_key_press)
 
     def on_key_press(self, evento):
         velocidad = 5

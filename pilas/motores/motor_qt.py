@@ -599,13 +599,13 @@ class Base(motor.Motor):
     def realizar_actualizacion_logica(self):
         for x in range(self.fps.actualizar()):
             if not self.pausa_habilitada:
-                eventos.actualizar.send("Qt::timerEvent")
+                eventos.actualizar.emitir()
 
                 for actor in actores.todos:
                     actor.pre_actualizar()
                     actor.actualizar()
             else:
-                eventos.actualizar_pausado.send("Qt::timerEvent")
+                eventos.actualizar_pausado.emitir()
 
 
     def resizeEvent(self, event):
@@ -615,15 +615,15 @@ class Base(motor.Motor):
     def mousePressEvent(self, e):
         escala = self.escala()
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
-        eventos.click_de_mouse.send("Qt::mousePressEvent", x=x, y=y, dx=0, dy=0)
+        eventos.click_de_mouse.emitir(x=x, y=y, dx=0, dy=0)
 
     def mouseReleaseEvent(self, e):
         escala = self.escala()
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
-        eventos.termina_click.send("Qt::mouseReleaseEvent", x=x, y=y, dx=0, dy=0)
+        eventos.termina_click.emitir(x=x, y=y, dx=0, dy=0)
 
     def wheelEvent(self, e):
-        eventos.mueve_rueda.send("ejecutar", delta=e.delta() / 120)
+        eventos.mueve_rueda.emitir(delta=e.delta() / 120)
 
     def mouseMoveEvent(self, e):
         escala = self.escala()
@@ -634,7 +634,7 @@ class Base(motor.Motor):
         x = max(min(derecha, x), izquierda)
         y = max(min(arriba, y), abajo)
 
-        eventos.mueve_mouse.send("Qt::mouseMoveEvent", x=x, y=y, dx=dx, dy=dy)
+        eventos.mueve_mouse.emitir(x=x, y=y, dx=dx, dy=dy)
         self.mouse_x = x
         self.mouse_y = y
 
@@ -642,17 +642,17 @@ class Base(motor.Motor):
         codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
 
         if event.key() == QtCore.Qt.Key_Escape:
-            eventos.pulsa_tecla_escape.send("Qt::keyPressEvent")
+            eventos.pulsa_tecla_escape.emitir()
         if event.key() == QtCore.Qt.Key_P and event.modifiers() == QtCore.Qt.AltModifier:
             self.alternar_pausa()
         if event.key() == QtCore.Qt.Key_F and event.modifiers() == QtCore.Qt.AltModifier:
             self.alternar_pantalla_completa()
 
-        eventos.pulsa_tecla.send("Qt::keyPressEvent", codigo=codigo_de_tecla, texto=event.text())
+        eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla, texto=event.text())
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
-        eventos.suelta_tecla.send("Qt::keyReleaseEvent", codigo=codigo_de_tecla, texto=event.text())
+        eventos.suelta_tecla.emitir(codigo=codigo_de_tecla, texto=event.text())
 
     def obtener_codigo_de_tecla_normalizado(self, tecla_qt):
         teclas = {

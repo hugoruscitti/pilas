@@ -53,7 +53,9 @@ class Depurador(object):
                 m.termina_dibujado(motor, self.lienzo)
     
     def cuando_pulsa_tecla(self, evento):
-        if evento.codigo == 'F7':
+        if evento.codigo == 'F6':
+            pilas.eventos.imprimir_todos()
+        elif evento.codigo == 'F7':
             self._alternar_modo(ModoInformacionDeSistema)
         elif evento.codigo == 'F8':
             self._alternar_modo(ModoPuntosDeControl)
@@ -82,7 +84,7 @@ class Depurador(object):
             self._activar_modo(clase_del_modo)
     
     def _activar_modo(self, clase_del_modo):
-        pilas.eventos.inicia_modo_depuracion.send('depurador')
+        pilas.eventos.inicia_modo_depuracion.emitir()
         instancia_del_modo = clase_del_modo(self)
         self.modos.append(instancia_del_modo)
         # Ordena todos los registros por numero de tecla.
@@ -95,7 +97,7 @@ class Depurador(object):
         instancia_a_eliminar[0].sale_del_modo()
         
         if not self.modos:
-            pilas.eventos.sale_modo_depuracion.send('depurador')
+            pilas.eventos.sale_modo_depuracion.emitir()
 
     def _mostrar_nombres_de_modos(self, motor):
         dy = 0
@@ -195,7 +197,6 @@ class ModoInformacionDeSistema(ModoDepurador):
     def __init__(self, depurador):
         ModoDepurador.__init__(self, depurador)
 
-        pilas.eventos.imprimir_todos()
         self.informacion = [
             "Usando el motor: " + pilas.mundo.motor.nombre,
             "Sistema: " + sys.platform,

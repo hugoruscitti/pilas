@@ -130,18 +130,18 @@ algún motivo desconectarla. Por ejemplo si el juego cambia
 de estado o algo así...
 
 Si ese es tú caso, simplemente asignarle un identificador único
-al manejador de la señal y luego usa la función ``desconectar`` indicando
+al manejador de la señal y luego usa la función ``desconectar_por_id`` indicando
 el identificador.
 
 Por ejemplo, las siguientes sentencias muestran eso:
 
 .. code-block:: python
 
-    pilas.eventos.mueve_mouse.conectar(imprimir_posicion, uid='drag')
-    pilas.eventos.mueve_mouse.desconectar(dispatch_uid='drag')
+    pilas.eventos.mueve_mouse.conectar(imprimir_posicion, id='drag')
+    pilas.eventos.mueve_mouse.desconectar_por_id('drag')
     
 En la primer sentencia conecté la señal del evento a una función y le di
-un valor al argumento ``uid``. Este valor será el identificador
+un valor al argumento ``id``. Este valor será el identificador
 de ese enlace. Y en la siguiente linea se utilizó el identificador
 para desconectarla.
 
@@ -152,7 +152,7 @@ Durante el desarrollo es útil poder observar qué
 eventos se han conectado a funciones.
 
 Una forma de observar la conexión de los eventos
-es pulsar la tecla ``F7``. Eso imprimirá sobre
+es pulsar la tecla ``F6``. Eso imprimirá sobre
 consola los nombres de las señales conectadas
 junto a las funciones.
 
@@ -166,11 +166,12 @@ de comunicación entre ellos usando eventos.
 
 Veamos cómo crear un evento:
 
-Primero tienes que crear un objeto que represente a tu evento:
+Primero tienes que crear un objeto que represente a tu evento
+y darle un nombre:
 
 .. code-block:: python
 
-    evento = pilas.eventos.Evento()
+    evento = pilas.eventos.Evento("Nombre")
 
 luego, este nuevo objeto ``evento`` podrá ser utilizado como
 canal de comunicación: muchos actores podrán ``conectarse`` para
@@ -179,13 +180,22 @@ recibir alertas y otros podrán ``emitir`` alertas:
 .. code-block:: python
 
     def ha_ocurrido_un_evento(datos_evento):
-        print datos_evento
+        print "Hola!!!", datos_evento
 
     evento.conectar(ha_ocurrido_un_evento)
 
     # En otra parte...
-    evento.emitir("mi nombre de emisor", argumentos)
+    evento.emitir(argumento1=123, argumento2=123)
 
+Cuando se emite un evento se pueden pasar muchos argumentos, tantos
+como se quiera. Todos estos argumentos llegarán a la función de
+respuesta en forma de diccionario.
+
+Por ejemplo, para este caso, cuando llamamos al método ``evento.emitir``,
+el sistema de eventos irá automáticamente a ejecutar la función ``ha_ocurrido_un_evento``
+y ésta imprimirá::
+
+    Hola!!! {argumento1: 123, argumento2: 123}
 
 Referencias
 -----------
