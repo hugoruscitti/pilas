@@ -195,16 +195,20 @@ en muchos sistemas. Tal vez el mas conocido de estos es
 la biblioteca ``GTK``, que se utiliza actualmente para construir
 el escritorio ``GNOME`` y ``Gimp`` entre otras aplicaciones.
 
-El sistema de señales que se utiliza en pilas se obtuvo
-(gentilmente) del núcleo del sistema ``django``, dado que
-es brillante y se adapta muy bien a las necesidades de nuestro
-motor. Eso sí, lo adaptamos un poco para traducirlo a español
-y simplificar un poco su interfaz.
+El sistema de señales que se utiliza en pilas es una
+adaptación del siguiente sistema de eventos:
 
-Si quieres obtener mas información sobre los sistemas de señales
-y en particular sobre el que usamos aquí (el de django) puedes
-ver los siguientes documentos:
+http://stackoverflow.com/questions/1092531/event-system-in-python
 
+Anteriormente usábamos parte del código del sistema ``django``, pero
+luego de varios meses lo reescribimos para que sea mas sencillo
+de utilizar y no tenga efectos colaterales con los métodos y
+el módulo ``weakref``.
+
+Si quieres obtener mas información sobre otros sistemas de
+eventos te recomendamos los siguientes documentos:
+
+- http://pydispatcher.sourceforge.net/
 - http://www.mercurytide.co.uk/news/article/django-signals/
 - http://www.boduch.ca/2009/06/sending-django-dispatch-signals.html
 - http://docs.djangoproject.com/en/dev/topics/signals/
