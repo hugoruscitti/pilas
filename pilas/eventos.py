@@ -10,11 +10,28 @@ from pilas.dispatch.dispatcher import Signal
 
 class Evento(Signal):
 
-    def __init__(self, argumentos):
+    def __init__(self, argumentos=[]):
         Signal.__init__(self, argumentos)
 
     def emitir(self, emisor, **argumentos):
         return self.send(emisor, **argumentos)
+
+    def conectar(self, receptor, emisor=None, weak=True, uid=None):
+        return self.connect(receptor, emisor, weak, uid)
+
+    def desconectar(self, receptor=None, emisor=None, weak=True, uid=None):
+        self.disconnect(receptor, emisor, weak, uid)
+
+    def esta_conectado(self):
+        "Indica si tiene alguna funcion conectada."
+        return len(self.receivers) > 0
+
+    def imprimir_funciones_conectadas(self):
+        "Imprime todas las funciones que tiene conectado el evento."
+        for clave, referencia in self.receivers:
+            nombre = referencia.__str__()
+            nombre = nombre[nombre.index('(')+1:nombre.index(")")]
+            print "\t", nombre
 
 mueve_camara = Evento(['x', 'y', 'dx', 'dy'])
 mueve_mouse = Evento(['x', 'y', 'dx', 'dy'])

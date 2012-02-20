@@ -4,7 +4,6 @@ from pilas.dispatch import saferef
 
 WEAKREF_TYPES = (weakref.ReferenceType, saferef.BoundMethodWeakref)
 
-
 class DictObj(object):
     def __init__(self, d):
         self.d = d
@@ -41,9 +40,6 @@ class Signal(object):
         if providing_args is None:
             providing_args = []
         self.providing_args = set(providing_args)
-
-    def conectar(self, receptor, emisor=None, weak=True, uid=None):
-        return self.connect(receptor, emisor, weak, uid)
 
     def connect(self, receiver, sender=None, weak=True, uid=None):
         """
@@ -95,8 +91,6 @@ class Signal(object):
         else:
             self.receivers.append((lookup_key, receiver))
 
-    def desconectar(self, receptor=None, emisor=None, weak=True, uid=None):
-        self.disconnect(receptor, emisor, weak, uid)
 
     def disconnect(self, receiver=None, sender=None, weak=True, uid=None):
         """
@@ -215,7 +209,9 @@ class Signal(object):
                         receivers.append(receiver)
                 else:
                     receivers.append(receiver)
+
         return receivers
+
 
     def _remove_receiver(self, receiver):
         """
@@ -229,15 +225,5 @@ class Signal(object):
         for key in to_remove:
             for idx, (r_key, _) in enumerate(self.receivers):
                 if r_key == key:
+                    print "Desconectando a:", self.receivers[idx]
                     del self.receivers[idx]
-
-    def esta_conectado(self):
-        "Indica si tiene alguna funcion conectada."
-        return self.receivers
-    
-    def imprimir_funciones_conectadas(self):
-        "Imprime todas las funciones que tiene conectado el evento."
-        for clave, referencia in self.receivers:
-            nombre = referencia.__str__()
-            nombre = nombre[nombre.index('(')+1:nombre.index(")")]
-            print "\t", nombre
