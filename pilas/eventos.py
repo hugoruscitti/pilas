@@ -6,8 +6,6 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from pilas.dispatch.dispatcher import Signal
-
 class Evento(Signal):
 
     def __init__(self, argumentos=[]):
