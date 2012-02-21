@@ -26,10 +26,15 @@ class Energia(Actor):
         self.imagen.limpiar()
         #self.imagen.pintar(pilas.colores.negro)
         color_relleno = pilas.colores.amarillo
+        brillo = pilas.colores.blanco_transparente
+        sombra = pilas.colores.gris_transparente
 
         area = self.area_ancho / 100.0
         self.imagen.rectangulo(0, 0, area * self.progreso, self.area_alto, 
                                     color=color_relleno, relleno=True)
+
+        self.imagen.rectangulo(0, 3, area * self.progreso, 3, color=brillo, relleno=True)
+        self.imagen.rectangulo(0, self.area_alto - 4, area * self.progreso, 1, color=sombra, relleno=True)
         
         # Borde exterior
         self.imagen.rectangulo(1, 1, self.area_ancho-2, self.area_alto-2, 
