@@ -15,6 +15,7 @@ except AttributeError:
     _fromUtf8 = lambda s: s
 
 class Ui_Dialog(object):
+
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(500, 271)
@@ -73,14 +74,34 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         pass
 
+    def obtener_seleccion(self):
+        motor = ['qtgl', 'qt']
+        modo = [False, True]
+
+        i = self.comboBox.currentIndex()
+        j = self.comboBox_2.currentIndex()
+
+        return (motor[i], modo[j])
+
+    def mostrar_imagen(self, ruta):
+        escena = QtGui.QGraphicsScene()
+        self.graphicsView.setScene(escena)
+        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(ruta))
+        escena.addItem(pixmap)
+
+
 import sys
 app = QtGui.QApplication(sys.argv)
+import utils
 
-def ejecutar():
+def ejecutar(imagen):
     Dialog = QtGui.QDialog()
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
-    Dialog.show()
-    app.exec_()
-    return 'qt', True
 
+    if imagen:
+        ruta_a_imagen = utils.obtener_ruta_al_recurso(imagen)
+        ui.mostrar_imagen(ruta_a_imagen)
+
+    app.exec_()
+    return ui.obtener_seleccion()
