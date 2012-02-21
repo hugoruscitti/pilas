@@ -78,6 +78,19 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt',
         mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
         escenas.Normal(colores.grisclaro)
 
+def iniciar_con_asistente(ancho=640, alto=480, titulo='Pilas', usar_motor='qt', 
+            rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False):
+    """Identica a la función iniciar, solo que permite al usuario seleccionar
+    el motor multimedia y el modo de video a utilizar.
+
+    Esta función es útil cuando se quiere distribuir un juego y no se conoce
+    exáctamente el equipo del usuario.
+    """
+
+    import asistente
+    usar_motor, pantalla_completa = asistente.ejecutar()
+    iniciar(ancho, alto, titulo, usar_motor, rendimiento, modo, gravedad, pantalla_completa)
+
 
 def ejecutar(ignorar_errores=False):
     """Pone en funcionamiento las actualizaciones y dibujado.
