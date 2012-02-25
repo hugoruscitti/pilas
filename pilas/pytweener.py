@@ -137,6 +137,15 @@ class Tweener(object):
                 
         for t in removable:
             self.currentTweens.remove(t)
+
+    def eliminar_todas(self):
+        a_eliminar = []
+        for t in self.currentTweens:
+            a_eliminar.append(t)
+
+        for x in a_eliminar:
+            self.currentTweens.remove(x)
+
             
  
 class Tween(object):

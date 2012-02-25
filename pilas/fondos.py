@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-# pilas engine - a video game framework.
+# Pilas engine - A video game framework.
 #
-# copyright 2010 - hugo ruscitti
-# license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
+# Copyright 2010 - Hugo Ruscitti
+# License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
-# website - http://www.pilas-engine.com.ar
+# Website - http://www.pilas-engine.com.ar
 
 import pilas
 

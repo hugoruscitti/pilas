@@ -267,6 +267,7 @@ class Actor(object, Estudiante):
 
         Si estás haciendo una subclase de Actor, es aconsejable que re-definas
         este método."""
+        pass
 
     def pre_actualizar(self):
         """Actualiza comportamiento y habilidades antes de la actualización."""

@@ -70,6 +70,8 @@ class Mundo(object):
         desde la escena."""
         actores.utils.destruir_a_todos()
         self.tareas.eliminar_todas()
+        self.tweener.eliminar_todas()
+        self.camara.x = 0
 
         if self.escena_actual:
             self.escena_actual.terminar()
