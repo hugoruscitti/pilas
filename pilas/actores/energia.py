@@ -21,6 +21,7 @@ class Energia(Actor):
         self.imagen = pilas.imagenes.cargar_superficie(self.area_ancho, self.area_alto)
         self.pintar_imagen()
         self.fijo = True
+        self.miniatura = None
 
     def pintar_imagen(self):
         self.imagen.limpiar()
@@ -45,3 +46,12 @@ class Energia(Actor):
             # Carga el progreso y lo actualiza pero siempre entre 0 y 100
             self.progreso_anterior = self.progreso
             self.pintar_imagen()
+
+    def cargar_miniatura(self, imagen):
+        if self.miniatura:
+            self.miniatura.eliminar()
+
+        self.miniatura = pilas.actores.Actor(imagen)
+        self.miniatura.derecha = self.izquierda - 5
+        self.miniatura.arriba = self.arriba
+        self.miniatura.fijo = True
