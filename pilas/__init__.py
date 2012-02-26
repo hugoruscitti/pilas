@@ -79,7 +79,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qt',
         escenas.Normal(colores.grisclaro)
 
 def iniciar_con_asistente(ancho=640, alto=480, titulo='Pilas', 
-            rendimiento=60, modo='detectar', gravedad=(0, -90), imagen=None):
+            rendimiento=60, modo='detectar', gravedad=(0, -90), imagen="asistente.png"):
     """Identica a la función iniciar, solo que permite al usuario seleccionar
     el motor multimedia y el modo de video a utilizar.
 
@@ -89,7 +89,7 @@ def iniciar_con_asistente(ancho=640, alto=480, titulo='Pilas',
 
     import asistente
 
-    usar_motor, pantalla_completa = asistente.ejecutar(imagen)
+    usar_motor, pantalla_completa = asistente.ejecutar(imagen, titulo)
     iniciar(ancho, alto, titulo, usar_motor, rendimiento, modo, gravedad, pantalla_completa)
 
 

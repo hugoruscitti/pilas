@@ -8,6 +8,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
+import sys
+import utils
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -19,14 +21,13 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(500, 271)
-        Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout_2 = QtGui.QGridLayout(Dialog)
         self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
         self.graphicsView = QtGui.QGraphicsView(Dialog)
         self.graphicsView.setObjectName(_fromUtf8("graphicsView"))
         self.gridLayout_2.addWidget(self.graphicsView, 0, 0, 1, 1)
         self.groupBox = QtGui.QGroupBox(Dialog)
-        self.groupBox.setTitle(QtGui.QApplication.translate("Dialog", "GroupBox", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("Dialog", "Opciones", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setObjectName(_fromUtf8("groupBox"))
         self.gridLayout = QtGui.QGridLayout(self.groupBox)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
@@ -63,16 +64,22 @@ class Ui_Dialog(object):
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setCenterButtons(False)
         self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
+
         self.gridLayout_2.addWidget(self.buttonBox, 3, 0, 1, 1)
         self.label.setBuddy(self.comboBox)
 
         self.retranslateUi(Dialog)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), Dialog.accept)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), self.acepta)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), Dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.ha_aceptado = False
 
     def retranslateUi(self, Dialog):
         pass
+
+    def acepta(self):
+        self.ha_aceptado = True
 
     def obtener_seleccion(self):
         motor = ['qtgl', 'qt']
@@ -90,12 +97,18 @@ class Ui_Dialog(object):
         escena.addItem(pixmap)
 
 
-import sys
-app = QtGui.QApplication(sys.argv)
-import utils
+app = None
 
-def ejecutar(imagen):
+def salir():
+    import sys
+    sys.exit(0)
+
+def ejecutar(imagen, titulo):
+    global app
+
+    app = QtGui.QApplication(sys.argv)
     Dialog = QtGui.QDialog()
+    Dialog.setWindowTitle(titulo)
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
 
@@ -103,5 +116,8 @@ def ejecutar(imagen):
         ruta_a_imagen = utils.obtener_ruta_al_recurso(imagen)
         ui.mostrar_imagen(ruta_a_imagen)
 
+    Dialog.show()
     app.exec_()
+    if not ui.ha_aceptado:
+        salir()
     return ui.obtener_seleccion()
