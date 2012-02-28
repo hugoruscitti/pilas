@@ -154,20 +154,20 @@ class ModoPuntosDeControl(ModoDepurador):
     tecla = "F8"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.cruz(motor, actor.x, actor.y, color=pilas.colores.rojo, grosor=ModoDepurador.grosor_de_lineas)
+        lienzo.cruz(motor, actor.x - pilas.mundo.camara.x, actor.y - pilas.mundo.camara.y, color=pilas.colores.rojo, grosor=ModoDepurador.grosor_de_lineas)
         
 class ModoRadiosDeColision(ModoDepurador):
     tecla = "F9"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.circulo(motor, actor.x, actor.y, actor.radio_de_colision, color=pilas.colores.verde, grosor=ModoDepurador.grosor_de_lineas)
+        lienzo.circulo(motor, actor.x - pilas.mundo.camara.x, actor.y - pilas.mundo.camara.y, actor.radio_de_colision, color=pilas.colores.verde, grosor=ModoDepurador.grosor_de_lineas)
  
 class ModoArea(ModoDepurador):
     tecla = "F10"
     
     def dibuja_al_actor(self, motor, lienzo, actor):
         dx, dy = actor.centro
-        lienzo.rectangulo(motor, actor.x - dx, actor.y + dy, actor.ancho, actor.alto, color=pilas.colores.azul, grosor=ModoDepurador.grosor_de_lineas)
+        lienzo.rectangulo(motor, actor.x - dx - pilas.mundo.camara.x, actor.y + dy - pilas.mundo.camara.y, actor.ancho, actor.alto, color=pilas.colores.azul, grosor=ModoDepurador.grosor_de_lineas)
 
 class ModoPosicion(ModoDepurador):
     tecla = "F12"
@@ -179,7 +179,7 @@ class ModoPosicion(ModoDepurador):
     def dibuja_al_actor(self, motor, lienzo, actor):
         if not isinstance(actor, pilas.fondos.Fondo):
             texto = "(%d, %d)" %(actor.x, actor.y)
-            lienzo.texto(motor, texto, actor.derecha, actor.abajo, color=pilas.colores.violeta)
+            lienzo.texto(motor, texto, actor.derecha - pilas.mundo.camara.x, actor.abajo - pilas.mundo.camara.y, color=pilas.colores.violeta)
 
     def sale_del_modo(self):
         self.eje.eliminar()

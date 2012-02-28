@@ -99,12 +99,12 @@ class Fisica(object):
                     
                     for v in figura.vertices:
                         pt = box2d.b2Mul(xform, v)
-                        vertices.append((pt.x, pt.y))
+                        vertices.append((pt.x - pilas.mundo.camara.x, pt.y - pilas.mundo.camara.y))
                         
                     lienzo.poligono(motor, vertices, color=colores.rojo, grosor=grosor, cerrado=True)
                     
                 elif tipo_de_figura == box2d.e_circleShape:
-                    lienzo.circulo(motor, cuerpo.position.x, cuerpo.position.y, figura.radius, colores.rojo, grosor=grosor)
+                    lienzo.circulo(motor, cuerpo.position.x - pilas.mundo.camara.x, cuerpo.position.y - pilas.mundo.camara.y, figura.radius, colores.rojo, grosor=grosor)
                 else:
                     print "no puedo identificar el tipo de figura."
         
