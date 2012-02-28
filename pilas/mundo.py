@@ -35,7 +35,6 @@ class Mundo(object):
         self.camara = camara.Camara(self)
 
         eventos.actualizar.conectar(self.actualizar_simuladores)
-        eventos.actualizar_pausado.conectar(self.actualizar_simuladores_pausado)
         self.fisica = fisica.Fisica(motor.obtener_area(), gravedad=gravedad)
         self.escena_actual = None
 
@@ -46,12 +45,6 @@ class Mundo(object):
         self.tweener.update(16)
         self.tareas.actualizar(1/60.0)
         self.fisica.actualizar()
-        self.colisiones.verificar_colisiones()
-
-    def actualizar_simuladores_pausado(self, evento):
-        self.tweener.update(0)
-        self.tareas.actualizar(1/60.0)
-        self.fisica.actualizar(velocidad=0)
         self.colisiones.verificar_colisiones()
 
     def terminar(self):

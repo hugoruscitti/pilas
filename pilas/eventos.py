@@ -50,9 +50,13 @@ class Evento():
             raise ValueError("La funcion indicada no estaba agregada como respuesta del evento.")
 
     def desconectar_por_id(self, id):
+        a_eliminar = []
         for respuesta in self.respuestas:
             if respuesta.id == id:
-                self.desconectar(respuesta)
+                a_eliminar.append(respuesta)
+
+        for x in a_eliminar:
+            self.desconectar(x)
 
     def esta_conectado(self):
         return len(self.respuestas) > 0
@@ -171,7 +175,6 @@ pulsa_tecla = Evento('pulsa_tecla')                 # ['codigo', 'texto']
 suelta_tecla = Evento('suelta_tecla')               # ['codigo', 'texto']
 pulsa_tecla_escape = Evento('pulsa_tecla_escape')   # []
 actualizar = Evento('actualizar')                   # []
-actualizar_pausado = Evento('actualizar_pausado')   # []
 post_dibujar = Evento('post_dibujar')               # []
 
 # Se emite cuando el mundo ingresa o sale del modo depuracion (pulsando F12)

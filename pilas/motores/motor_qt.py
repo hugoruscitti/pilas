@@ -599,14 +599,15 @@ class Base(motor.Motor):
     def realizar_actualizacion_logica(self):
         for x in range(self.fps.actualizar()):
             if not self.pausa_habilitada:
-                eventos.actualizar.emitir()
+                self._actualizar_eventos_y_actores()
 
-                for actor in actores.todos:
-                    actor.pre_actualizar()
-                    actor.actualizar()
-            else:
-                eventos.actualizar_pausado.emitir()
 
+    def _actualizar_eventos_y_actores(self):
+        eventos.actualizar.emitir()
+
+        for actor in actores.todos:
+            actor.pre_actualizar()
+            actor.actualizar()
 
     def resizeEvent(self, event):
         self.ancho = event.size().width()
@@ -731,9 +732,15 @@ class Base(motor.Motor):
         if self.pausa_habilitada:
             self.pausa_habilitada = False
             self.actor_pausa.eliminar()
+            eventos.pulsa_tecla.desconectar_por_id('tecla_en_pausa')
         else:
             self.pausa_habilitada = True
             self.actor_pausa = actores.Pausa()
+            self.actor_pausa.fijo = True
+            self.id_evento = eventos.pulsa_tecla.conectar(self.avanzar_un_solo_cuadro_de_animacion, id='tecla_en_pausa')
+
+    def avanzar_un_solo_cuadro_de_animacion(self, evento):
+        self._actualizar_eventos_y_actores()
 
     def ocultar_puntero_del_mouse(self):
         bitmap = QtGui.QBitmap(1, 1)
