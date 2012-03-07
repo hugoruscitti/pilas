@@ -649,11 +649,12 @@ class Base(motor.Motor):
         if event.key() == QtCore.Qt.Key_F and event.modifiers() == QtCore.Qt.AltModifier:
             self.alternar_pantalla_completa()
 
-        eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla, texto=event.text())
+        eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
+        
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
-        eventos.suelta_tecla.emitir(codigo=codigo_de_tecla, texto=event.text())
+        eventos.suelta_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
 
     def obtener_codigo_de_tecla_normalizado(self, tecla_qt):
         teclas = {
