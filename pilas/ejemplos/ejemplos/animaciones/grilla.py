@@ -16,6 +16,6 @@ def avanzar_cuadro(*k, **kv):
     imagen.avanzar()
     actor.imagen = imagen
 
-pilas.eventos.click_de_mouse.connect(avanzar_cuadro)
+pilas.eventos.click_de_mouse.conectar(avanzar_cuadro)
 pilas.avisar("Pulse el boton del mouse para avanzar un cuadro.")
 pilas.ejecutar()

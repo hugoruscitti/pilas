@@ -16,6 +16,6 @@ def crear_explosion(evento):
     sonido_explosion.reproducir()
 
 
-pilas.eventos.click_de_mouse.connect(crear_explosion)
+pilas.eventos.click_de_mouse.conectar(crear_explosion)
 pilas.avisar("Pulse el boton de mouse para crear explosiones.")
 pilas.ejecutar()
