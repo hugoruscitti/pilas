@@ -131,7 +131,6 @@ def _crear_motor(usar_motor):
 
 def reiniciar():
     """Elimina todos los actores y vuelve al estado inicial."""
-    actores.utils.eliminar_a_todos()
     mundo.reiniciar()
 
 anterior_texto = None

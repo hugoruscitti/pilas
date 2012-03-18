@@ -39,6 +39,9 @@ class Mundo(object):
         self.escena_actual = None
 
     def reiniciar(self):
+        actores.utils.eliminar_a_todos()
+        self.tareas.eliminar_todas()
+        self.tweener.eliminar_todas()
         self.fisica.reiniciar()
 
     def actualizar_simuladores(self, evento):
