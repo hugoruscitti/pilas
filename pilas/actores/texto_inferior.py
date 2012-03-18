@@ -7,7 +7,8 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
-from actor import Texto
+from texto import Texto
+
 
 class TextoInferior(Texto):
     """Representa un texto al pie de la ventana.
@@ -24,9 +25,28 @@ class TextoInferior(Texto):
         if TextoInferior.anterior_texto:
             TextoInferior.anterior_texto.eliminar()
 
+        self.z = -100
         TextoInferior.anterior_texto = self
+        self._crear_sombra()
 
         self.centro = ("centro", "centro")
         self.izquierda = izquierda + 10
-        self.color = colores.blanco
+        self.color = pilas.colores.blanco
         self.abajo = abajo + 10
+        self.fijo = True
+
+    def _crear_sombra(self):
+        izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
+        imagen = pilas.imagenes.cargar_superficie(derecha - izquierda, 40)
+        imagen.pintar(pilas.colores.negro_transparente)
+
+        self.sombra = pilas.actores.Actor(imagen)
+        self.sombra.z = self.z + 1
+        self.sombra.fijo = True
+        self.sombra.abajo = abajo
+        self.sombra.izquierda = izquierda
+
+    def eliminar(self):
+        Texto.eliminar(self)
+        self.sombra.eliminar()
+
