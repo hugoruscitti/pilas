@@ -38,7 +38,7 @@ paso_un_segundo.conectar(reloj2.avanzar_segundero)
 
 
 def funcion_pasa_un_segundo():
-    paso_un_segundo.emitir("funcion", argumento1=1, argumento2=0)
+    paso_un_segundo.emitir(argumento1=1, argumento2=0)
 
 pilas.mundo.tareas.siempre(1, funcion_pasa_un_segundo)
 
