@@ -45,7 +45,6 @@ class Evento():
     def desconectar(self, respuesta):
         try:
             self.respuestas.remove(respuesta)
-            print "Desconectando", respuesta.nombre
         except:
             raise ValueError("La funcion indicada no estaba agregada como respuesta del evento.")
 
