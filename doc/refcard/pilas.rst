@@ -17,6 +17,8 @@ de las siguientes funciones:
 
 iniciar(ancho, alto, titulo, usar_motor, gravedad)
     inicia la biblioteca y la ventana principal. Todos los argumentos son opcionales, los valores de ``usar_motor`` pueden ser 'qt' o 'qtgl'.
+iniciar_con_asistente(ancho, alto, titulo, rendimiento, modo, gravedad, imagen)
+    similar a la función 'iniciar', pero muestra una ventana para que el usuario seleccione algunos parametros como pantalla completa.
 pilas.terminar()
     para cerrar la ventana (su atajo es la tecla 'alt+q')
 pilas.ejecutar()
@@ -66,6 +68,28 @@ duplica el tamaño del actor en 5 segundos:
 .. code-block:: python
 
     mono.escala = [2], 5
+
+Imágenes
+--------
+
+Si la imagen es todo lo que representará el actor, asignala como una
+simple cadena o usá la función ``cargar``::
+
+    imagen = pilas.imagenes.cargar("mi_personaje.png")
+    actor = pilas.actores.Actor(imagen)
+
+y si la imagen es una grilla, hay que definir las filas y columnas::
+
+    grilla = pilas.imagenes.cargar_grilla("pingu.png", 10, 1)
+    actor = pilas.actores.Actor(grilla)
+
+y luego, para avanzar la animación::
+
+    grilla.avanzar()
+
+o bien::
+
+    actor.imagen.avanzar()
 
 
 Otros actores
@@ -159,7 +183,17 @@ sistema de colisiones:
 Eventos
 -------
 
-:TODO listar todos los eventos estándar y sus argumentos.
+Eventos mas utilizados:
+
+
+actualizar              < sin argumentos >
+click_de_mouse          button, x, y
+mueve_mouse             x, y, dx, dy                     
+termina_click           button, x, y
+mueve_camara            x, y, dx, dy
+pulsa_tecla             codigo, texto
+suelta_tecla            codigo, texto
+pulsa_tecla_escape      <sin argumentos>
 
 
 .. code-block:: python
