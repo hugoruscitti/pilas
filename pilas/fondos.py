@@ -11,8 +11,17 @@ import pilas
 class Fondo(pilas.actores.Actor):
 
     def __init__(self, imagen):
+        self._eliminar_el_fondo_de_pantalla_actual()
         pilas.actores.Actor.__init__(self, imagen)
         self.z = 1000
+
+    def _eliminar_el_fondo_de_pantalla_actual(self):
+        fondos = [x for x in pilas.actores.todos if x.es_fondo()]
+        for f in fondos:
+            f.eliminar()
+
+    def es_fondo(self):
+        return True
 
 class Volley(Fondo):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."

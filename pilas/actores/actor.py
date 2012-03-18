@@ -407,5 +407,5 @@ class Actor(object, Estudiante):
         izquierda, derecha, arriba, abajo = pilas.mundo.camara.obtener_area_visible()
         return self.derecha < izquierda or self.izquierda > derecha or self.abajo > arriba or self.arriba < abajo
 
-
-
+    def es_fondo(self):
+        return False
