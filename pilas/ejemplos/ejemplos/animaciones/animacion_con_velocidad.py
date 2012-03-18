@@ -14,7 +14,7 @@ texto.color = pilas.colores.negro
 
 def cambia_velocidad(progreso):
     progreso = 1 + progreso * 60.0
-    animacion.velocidad = progreso
+    animacion.velocidad_de_animacion = progreso
     texto.texto = str(int(progreso)) + " cuadros por segundo"
 
 
