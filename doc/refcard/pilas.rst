@@ -25,6 +25,8 @@ pilas.avisar(mensaje)
     dibuja un mensaje al pie de la ventana.
 pilas.ver(objeto)
     muestra el codigo de un objeto o modulo.
+help(objeto)
+    muestra ayuda sobre un objeto o modulo.
 
 Uso básico de Actores
 ---------------------
@@ -153,6 +155,84 @@ sistema de colisiones:
     bombas = bomba * 10
 
     pilas.colisiones.agregar(mono, bombas, toca_bomba)
+
+Eventos
+-------
+
+:TODO listar todos los eventos estándar y sus argumentos.
+
+
+.. code-block:: python
+
+    mono = pilas.actores.Mono()
+
+    def mover_al_mono(evento):
+        mono.x = evento.x
+        mono.y = evento.y
+
+    pilas.eventos.mueve_mouse.conectar(mover_al_mono)
+
+Crear un evento personalizado
+-----------------------------
+
+Los eventos personalizados se pueden usar para comunicar
+partes de un juego. Son cómo canales de comunicación en donde
+se puede escribir y recibir mensajes.
+
+.. code-block:: python
+
+    pilas.eventos.cuando_golpean = pilas.eventos.Evento("cuando golpean")
+
+    def cuando_golpean(evento):
+        print "han golpeado a ", evento.quien
+
+    # conectar una función observadora...
+    pilas.eventos.cuando_golpean.conectar(cuando_golpean)
+
+    # emitir el evento
+    pilas.eventos.cuando_golpean.emitir(quien=self)
+
+
+Tareas
+------
+
+Mediante tareas podemos programar funciones para que se ejecuten
+luego de un determinado tiempo. Ya sea una vez, o de manera frecuente.
+
+Ejemplos:
+
+.. code-block:: python
+
+    # ejecutar una tarea luego de 3 segundos
+    pilas.mundo.tareas.una_vez(3, saludar)
+
+    # repetir la ejecución de la función 1 vez por segundo (hasta que se llama a terminar).
+    tarea_con_frecuencia = pilas.mundo.tareas.siempre(1, saludar)
+    tarea_con_frecuencia.terminar()
+
+
+Actor personalizado y manejo de teclado
+---------------------------------------
+
+Para crear un actor personalizado, es conveniente crear
+una clase que herede de ``Actor`` y sobreescribir el método
+``actualizar`` (se se llamará 60 veces por segundo).
+
+.. code-block:: python
+
+    class Patito(pilas.actores.Actor):
+
+        def __init__(self):
+            pilas.actores.Actor.__init__(self)
+            self.imagen = "patito.png"
+
+        def actualizar(self):
+            if pilas.mundo.control.izquierda:
+                self.x -= 5
+                self.espejado = True
+            elif pilas.mundo.control.derecha:
+                self.x += 5
+                self.espejado = False
 
 
 Referencias
