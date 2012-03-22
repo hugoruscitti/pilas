@@ -489,6 +489,8 @@ class Base(motor.Motor):
         else:
             self.show()
 
+        self.raise_()
+
     def pantalla_completa(self):
         self.showFullScreen()
 

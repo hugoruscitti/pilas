@@ -56,9 +56,6 @@ build/lib.linux-i686-2.7/pilas/pilasversion.py
 build/lib.linux-i686-2.7/pilas/ventana.py
 build/lib.linux-i686-2.7/pilas/camara.py
 build/lib.linux-i686-2.7/pilas/depurador.py
-build/lib.linux-i686-2.7/pilas/dispatch/saferef.py
-build/lib.linux-i686-2.7/pilas/dispatch/__init__.py
-build/lib.linux-i686-2.7/pilas/dispatch/dispatcher.py
 build/lib.linux-i686-2.7/pilas/console/console.py
 build/lib.linux-i686-2.7/pilas/console/console_widget.py
 build/lib.linux-i686-2.7/pilas/console/__init__.py
