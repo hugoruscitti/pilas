@@ -17,8 +17,12 @@ class Fondo(pilas.actores.Actor):
 
     def _eliminar_el_fondo_de_pantalla_actual(self):
         fondos = [x for x in pilas.actores.todos if x.es_fondo()]
+        a_eliminar = []
         for f in fondos:
-            f.eliminar()
+            a_eliminar.append(f)
+
+        for fondo in a_eliminar:
+            fondo.eliminar()
 
     def es_fondo(self):
         return True
@@ -53,6 +57,7 @@ class Tarde(Fondo):
 
     def __init__(self):
         Fondo.__init__(self, "fondos/tarde.jpg")
+        print "tarde fondo..."
 
 
 class Espacio(Fondo):
@@ -69,7 +74,7 @@ class Noche(Fondo):
 
 class Color(Fondo):
     "Pinta todo el fondo de un color uniforme."
-    
+
     def __init__(self, color):
         Fondo.__init__(self, "invisible.png")
         self.color = color
@@ -122,7 +127,7 @@ class Desplazamiento(Fondo):
             dx = self.posicion - self.posicion_anterior
             self.mover_capas(dx)
             self.posicion_anterior = self.posicion
-    
+
     def cuando_mueve_camara(self, evento):
         dx = evento.dx
 

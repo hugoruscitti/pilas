@@ -34,12 +34,12 @@ from pilas import colores
 import motor
 
 # Permite cerrar el programa usando CTRL+C
-import signal                                                                                    
+import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
 class BaseActor(object):
-    
+
     def __init__(self):
         self._rotacion = 0
         self._transparencia = 0
@@ -84,10 +84,10 @@ class BaseActor(object):
 
     def definir_rotacion(self, r):
         self._rotacion = r
-        
-    def set_espejado(self, espejado):        
+
+    def set_espejado(self, espejado):
         self._espejado = espejado
-        
+
 class Imagen(object):
 
     def __init__(self, ruta):
@@ -162,7 +162,7 @@ class Grilla(Imagen):
         return self.cuadro_alto
 
     def _dibujar_pixmap(self, motor, x, y):
-        motor.canvas.drawPixmap(x, y, self._imagen, self.dx, self.dy, 
+        motor.canvas.drawPixmap(x, y, self._imagen, self.dx, self.dy,
                 self.cuadro_ancho, self.cuadro_alto)
 
     def definir_cuadro(self, cuadro):
@@ -452,7 +452,7 @@ class Musica:
             pygame.mixer.music.play(0)
 
 class Base(motor.Motor):
-    
+
     def __init__(self):
         motor.Motor.__init__(self)
         self.canvas = QtGui.QPainter()
@@ -464,7 +464,7 @@ class Base(motor.Motor):
         self.mouse_y = 0
         self.camara_x = 0
         self.camara_y = 0
-    
+
         self.media = Phonon.MediaObject()
         self.audio = Phonon.AudioOutput(Phonon.MusicCategory)
         self.path = Phonon.createPath(self.media, self.audio)
@@ -520,7 +520,7 @@ class Base(motor.Motor):
     def centrar_ventana(self):
         escritorio = QtGui.QDesktopWidget().screenGeometry()
         self.setGeometry(
-                    (escritorio.width()-self.ancho)/2, 
+                    (escritorio.width()-self.ancho)/2,
                     (escritorio.height()-self.alto)/2, self.ancho, self.alto)
 
     def obtener_actor(self, imagen, x, y):
@@ -632,7 +632,7 @@ class Base(motor.Motor):
         escala = self.escala()
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
         dx, dy = x - self.mouse_x, y - self.mouse_y
-        
+
         izquierda, derecha, arriba, abajo = utils.obtener_bordes()
         x = max(min(derecha, x), izquierda)
         y = max(min(arriba, y), abajo)
@@ -652,7 +652,7 @@ class Base(motor.Motor):
             self.alternar_pantalla_completa()
 
         eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
-        
+
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
@@ -758,7 +758,7 @@ class Widget(Base, QWidget):
     def __init__(self, app):
         self.nombre = 'qt (cuidado: sin acelerar)'
         self.app = app
-        QWidget.__init__(self)
+        QWidget.__init__(self, None, QtCore.Qt.WindowStaysOnTopHint)
         Base.__init__(self)
 
 
@@ -772,7 +772,7 @@ class WidgetGL(Base, QGLWidget):
         if not QGLWidget:
             print "Lo siento, OpenGL no esta disponible..."
 
-        QGLWidget.__init__(self)
+        QGLWidget.__init__(self, None, None, QtCore.Qt.WindowStaysOnTopHint)
         Base.__init__(self)
         self._pintar_fondo_negro()
 
@@ -806,11 +806,11 @@ class WidgetSugarGL(WidgetGL):
 
 class Motor(object):
     """Representa la ventana principal de pilas.
-    
+
     Esta clase construirá el objeto apuntado por el atributo
     ``pilas.motor``, asi que será el representante de todas
     las funcionalidades multimedia.
-    
+
     Internamente, este motor, tratará de usar OpenGl para acelerar
     el dibujado en pantalla si la tarjeta de video lo soporta.
     """
