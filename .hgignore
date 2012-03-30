@@ -9,7 +9,7 @@ tags
 .ropeproject/*
 *~
 dist/*
-
+.DS_Store
 open_doc.sh
 doc/build/doctrees
 doc/build/latex
