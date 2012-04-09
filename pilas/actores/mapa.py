@@ -43,16 +43,18 @@ class Mapa(Actor):
             self.grilla = grilla_o_mapa
             self._ancho_cuadro = grilla_o_mapa.cuadro_ancho
             self._alto_cuadro = grilla_o_mapa.cuadro_alto
+            self.superficie = None
 
-        # Creamos un cator con la Superficie que hemos dibujado con los elementos de la capa 0 del mapa.
-        superficie_mapa = pilas.actores.Actor(self.superficie)
-        # Establecemos el nivel Z para que los Actores de las capas superiores se vean.
-        superficie_mapa.z = 1
-        # Obtenemos el area de la ventana.
-        ancho, alto = pilas.mundo.motor.obtener_area()
-        # Establecemos la posición de la Superficie a partir de la esquina superior izquierda. 
-        superficie_mapa.x += ((self.superficie.ancho()/2) - (ancho / 2))
-        superficie_mapa.y -= ((self.superficie.alto()/2) - (alto / 2))
+        if (self.superficie != None):
+            # Creamos un cator con la Superficie que hemos dibujado con los elementos de la capa 0 del mapa.
+            superficie_mapa = pilas.actores.Actor(self.superficie)
+            # Establecemos el nivel Z para que los Actores de las capas superiores se vean.
+            superficie_mapa.z = 1
+            # Obtenemos el area de la ventana.
+            ancho, alto = pilas.mundo.motor.obtener_area()
+            # Establecemos la posición de la Superficie a partir de la esquina superior izquierda. 
+            superficie_mapa.x += ((self.superficie.ancho()/2) - (ancho / 2))
+            superficie_mapa.y -= ((self.superficie.alto()/2) - (alto / 2))
 
     def _cargar_mapa(self, archivo):
         "Carga el escenario desde un archivo .tmz (del programa tiled)."
