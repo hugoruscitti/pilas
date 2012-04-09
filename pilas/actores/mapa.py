@@ -113,7 +113,7 @@ class Mapa(Actor):
                 if bloque:
                     self.pintar_bloque(y, x, bloque -1, solidos)
 
-    def pintar_bloque(self, fila, columna, indice, es_bloque_solido=False):
+    def pintar_bloque(self, fila, columna, indice, es_bloque_solido=True):
         
         if es_bloque_solido: # Solo definimos Actores para los elementos de las capas superiores.
             nuevo_bloque = pilas.actores.Actor('invisible.png')
@@ -149,3 +149,10 @@ class Mapa(Actor):
 
         for f in self.figuras:
             f.eliminar()
+
+    def es_solido(self, x, y):
+        "Comprueba si una coordenada del mapa es transitable o no."
+        fila = (int)(y / self._alto_cuadro)
+        columna = (int)(x / self._ancho_cuadro)
+        
+        
