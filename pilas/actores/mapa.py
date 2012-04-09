@@ -149,10 +149,3 @@ class Mapa(Actor):
 
         for f in self.figuras:
             f.eliminar()
-
-    def es_solido(self, x, y):
-        "Comprueba si una coordenada del mapa es transitable o no."
-        fila = (int)(y / self._alto_cuadro)
-        columna = (int)(x / self._ancho_cuadro)
-        
-        
