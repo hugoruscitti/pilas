@@ -235,15 +235,17 @@ class PisaPlataformas(Habilidad):
 
 class Imitar(Habilidad):
 
-    def __init__(self, receptor, objeto_a_imitar):
+    def __init__(self, receptor, objeto_a_imitar, con_rotacion=True):
         Habilidad.__init__(self, receptor)
         self.objeto_a_imitar = objeto_a_imitar
         receptor.figura = objeto_a_imitar
+        self.con_rotacion = con_rotacion
 
     def actualizar(self):
         self.receptor.x = self.objeto_a_imitar.x
         self.receptor.y = self.objeto_a_imitar.y
-        self.receptor.rotacion = self.objeto_a_imitar.rotacion
+        if (self.con_rotacion):
+            self.receptor.rotacion = self.objeto_a_imitar.rotacion
 
     def eliminar(self):
         if isinstance(self.objeto_a_imitar, pilas.fisica.Figura):

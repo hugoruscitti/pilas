@@ -46,7 +46,7 @@ class Mapa(Actor):
             self.superficie = None
 
         if (self.superficie != None):
-            # Creamos un cator con la Superficie que hemos dibujado con los elementos de la capa 0 del mapa.
+            # Creamos un actor con la Superficie que hemos dibujado con los elementos de la capa 0 del mapa.
             superficie_mapa = pilas.actores.Actor(self.superficie)
             # Establecemos el nivel Z para que los Actores de las capas superiores se vean.
             superficie_mapa.z = 1

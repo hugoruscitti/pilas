@@ -392,6 +392,7 @@ class Actor(object, Estudiante):
     def decir(self, mensaje, autoeliminar=True):
         """Emite un mensaje usando un globo similar al de los commics"""
         nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y, autoeliminar=autoeliminar)
+        nuevo_actor.aprender(pilas.habilidades.Imitar, self, False)
         nuevo_actor.z = self.z - 1
         self.anexar(nuevo_actor)
         pilas.atajos.leer(mensaje)
