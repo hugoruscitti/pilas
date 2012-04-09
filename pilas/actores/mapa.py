@@ -44,6 +44,16 @@ class Mapa(Actor):
             self._ancho_cuadro = grilla_o_mapa.cuadro_ancho
             self._alto_cuadro = grilla_o_mapa.cuadro_alto
 
+        # Creamos un cator con la Superficie que hemos dibujado con los elementos de la capa 0 del mapa.
+        superficie_mapa = pilas.actores.Actor(self.superficie)
+        # Establecemos el nivel Z para que los Actores de las capas superiores se vean.
+        superficie_mapa.z = 1
+        # Obtenemos el area de la ventana.
+        ancho, alto = pilas.mundo.motor.obtener_area()
+        # Establecemos la posición de la Superficie a partir de la esquina superior izquierda. 
+        superficie_mapa.x += ((self.superficie.ancho()/2) - (ancho / 2))
+        superficie_mapa.y -= ((self.superficie.alto()/2) - (alto / 2))
+
     def _cargar_mapa(self, archivo):
         "Carga el escenario desde un archivo .tmz (del programa tiled)."
 
@@ -66,6 +76,10 @@ class Mapa(Actor):
         self._alto_imagen = int(nodo_tileset.getChild('image').getAttributeValue('height'))
         self._ancho_cuadro = int(nodo_tileset.getAttributeValue('tilewidth'))
         self._alto_cuadro = int(nodo_tileset.getAttributeValue('tileheight'))
+
+        # Creamos una Superficie para volcar el contenido del layer 0 del mapa.
+        # El tamaño de la Superficie corresponde al tamaño del mapa.
+        self.superficie = pilas.imagenes.cargar_superficie(self.columnas * self._ancho_cuadro, self.filas * self._alto_cuadro)
 
         # Carga la grilla de imagenes desde el mapa.
         self.grilla = pilas.imagenes.cargar_grilla(self._ruta, 
@@ -98,19 +112,24 @@ class Mapa(Actor):
                     self.pintar_bloque(y, x, bloque -1, solidos)
 
     def pintar_bloque(self, fila, columna, indice, es_bloque_solido=False):
-        nuevo_bloque = pilas.actores.Actor('invisible.png')
-        nuevo_bloque.imagen = self.grilla
-        nuevo_bloque.imagen.definir_cuadro(indice)
-        nuevo_bloque.izquierda = columna * self._ancho_cuadro - 320
-        nuevo_bloque.arriba = -fila * self._alto_cuadro + 240
-        self.bloques.append(nuevo_bloque)
-
-        if es_bloque_solido:
+        
+        if es_bloque_solido: # Solo definimos Actores para los elementos de las capas superiores.
+            nuevo_bloque = pilas.actores.Actor('invisible.png')
+            nuevo_bloque.imagen = self.grilla
+            nuevo_bloque.imagen.definir_cuadro(indice)
+            nuevo_bloque.izquierda = columna * self._ancho_cuadro - 320
+            nuevo_bloque.arriba = -fila * self._alto_cuadro + 240
+            self.bloques.append(nuevo_bloque)
             figura = pilas.fisica.Rectangulo(nuevo_bloque.izquierda + self._ancho_cuadro / 2, 
                     nuevo_bloque.arriba - self._alto_cuadro / 2,
                     self._ancho_cuadro, self._alto_cuadro, dinamica=False, 
                     restitucion=self.restitucion)
             self.figuras.append(figura)
+        else:
+            # Definimos el cuadro que deseamos dibujar en la Superficie.
+            self.grilla.definir_cuadro(indice)
+            # Dibujamos el cuadro de la grilla en la Superficie.
+            self.grilla.dibujarse_sobre_una_pizarra(self.superficie, columna * self._ancho_cuadro, fila * self._alto_cuadro)
 
 
     def reiniciar(self):
