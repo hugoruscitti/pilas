@@ -32,6 +32,9 @@ class Mapa(Actor):
         self.figuras = []
         self.bloques = []
 
+        # Obtenemos el area de la ventana.
+        self._ancho_mundo, self._alto_mundo = pilas.mundo.motor.obtener_area()
+
         if not grilla_o_mapa:
             grilla_o_mapa = grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
             
@@ -50,11 +53,9 @@ class Mapa(Actor):
             superficie_mapa = pilas.actores.Actor(self.superficie)
             # Establecemos el nivel Z para que los Actores de las capas superiores se vean.
             superficie_mapa.z = 1
-            # Obtenemos el area de la ventana.
-            ancho, alto = pilas.mundo.motor.obtener_area()
             # Establecemos la posición de la Superficie a partir de la esquina superior izquierda. 
-            superficie_mapa.x += ((self.superficie.ancho()/2) - (ancho / 2))
-            superficie_mapa.y -= ((self.superficie.alto()/2) - (alto / 2))
+            superficie_mapa.x += ((self.superficie.ancho()/2) - (self._ancho_mundo / 2))
+            superficie_mapa.y -= ((self.superficie.alto()/2) - (self._alto_mundo / 2))
 
     def _cargar_mapa(self, archivo):
         "Carga el escenario desde un archivo .tmz (del programa tiled)."
@@ -119,8 +120,8 @@ class Mapa(Actor):
             nuevo_bloque = pilas.actores.Actor('invisible.png')
             nuevo_bloque.imagen = self.grilla
             nuevo_bloque.imagen.definir_cuadro(indice)
-            nuevo_bloque.izquierda = columna * self._ancho_cuadro - 320
-            nuevo_bloque.arriba = -fila * self._alto_cuadro + 240
+            nuevo_bloque.izquierda = columna * self._ancho_cuadro - (self._ancho_mundo / 2)
+            nuevo_bloque.arriba = -fila * self._alto_cuadro + (self._alto_mundo / 2)
             self.bloques.append(nuevo_bloque)
             figura = pilas.fisica.Rectangulo(nuevo_bloque.izquierda + self._ancho_cuadro / 2, 
                     nuevo_bloque.arriba - self._alto_cuadro / 2,
