@@ -16,6 +16,10 @@ except ImportError:
 
 import math
 
+def obtener_version():
+    """Obtiene la versión de la biblioteca Box2D"""
+    return box2d.__version__
+
 class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca box2d."""
     
