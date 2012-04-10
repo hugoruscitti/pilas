@@ -778,7 +778,7 @@ class WidgetGL(Base, QGLWidget):
 
     def _pintar_fondo_negro(self):
         color = QtGui.QColor(99, 0, 0)
-        self.setStyleSheet("QWidget { background-color: %s }" % color.name())
+        self.setStyleSheet("QFrame { background-color: %s }" % color.name())
 
 class WidgetSugar(Widget):
 
