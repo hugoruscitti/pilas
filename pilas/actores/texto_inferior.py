@@ -17,7 +17,7 @@ class TextoInferior(Texto):
     """
     anterior_texto = None
 
-    def __init__(self, texto="None", x=0, y=0, magnitud=17):
+    def __init__(self, texto="None", x=0, y=0, magnitud=17, autoeliminar=False):
         Texto.__init__(self, texto, x, y, magnitud)
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
 
@@ -34,6 +34,9 @@ class TextoInferior(Texto):
         self.color = pilas.colores.blanco
         self.abajo = abajo + 10
         self.fijo = True
+
+        if autoeliminar:
+            pilas.mundo.tareas.una_vez(5, self.eliminar)
 
     def _crear_sombra(self):
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()

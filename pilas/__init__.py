@@ -136,12 +136,12 @@ def reiniciar():
 def avisar(mensaje):
     """Emite un mensaje en la ventana principal.
 t
-    Este mensaje aparecerá en la parte inferior de la pantalla, por
-    ejemplo:
+    Este mensaje aparecerá en la parte inferior de la pantalla durante 
+    5 segundo, por ejemplo:
 
         >>> pilas.avisar("Use la tecla <esc> para terminar el programa")
     """
-    actores.TextoInferior(mensaje)
+    actores.TextoInferior(mensaje, autoeliminar=True)
 
 def abrir_cargador():
     """Abre un cargador de ejemplos con varios códigos de prueba.
