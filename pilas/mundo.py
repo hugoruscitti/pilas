@@ -70,6 +70,8 @@ class Mundo(object):
         self.camara.x = 0
 
         if self.escena_actual:
+            # Eliminamos cualquier resto de variables (self.*) definidas en la escena.
+            self.escena_actual.__dict__.clear()
             self.escena_actual.terminar()
 
         self.escena_actual = escena_nueva
