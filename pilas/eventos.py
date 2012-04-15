@@ -9,7 +9,7 @@
 # Este sistema de eventos está basado en:
 #
 #     http://stackoverflow.com/questions/1092531/event-system-in-python
-#     
+#
 
 import weakref
 import new
@@ -24,7 +24,7 @@ class Evento():
     def emitir(self, **evento):
         a_eliminar = []
 
-        for respuesta in self.respuestas:
+        for respuesta in set(self.respuestas):
             try:
                 respuesta(**evento)
             except ReferenceError:
