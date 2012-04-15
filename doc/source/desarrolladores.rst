@@ -32,16 +32,13 @@ tiempo en crear la cuenta y comenzar a utilizarla.
 Obteniendo la última versión del repositio
 ------------------------------------------
 
-Nuestro repositorio se encuentra bajo el control
-de versiones ``mercurial``.
-
 Para obtener la última versión tienes que ejecutar
-el comando::
+el siguiente comando desde un terminal::
 
     hg clone http://bitbucket.org/hugoruscitti/pilas
     
 El resultado del comando creará un nuevo directorio
-en tu sistema llamado ``pilas``.
+en la carpeta actual llamada ``pilas``.
 
 
 Primer prueba
@@ -51,25 +48,36 @@ Ingresa en el directorio ``pilas``, ejecuta el comando::
 
     python
 
-y una vez dentro del intérprete ejecuta la sentencia::
+y una vez abierto el intérprete escribe estas dos sentencias::
 
     import pilas
+    pilas.iniciar()
 
-entonces, si aparece una ventana de color gris significa que
-todo ha funcionado correctamente. Ahora puedes proceder a
-instalar la biblioteca en tu sistema.
+lo que tendrías que ver en la pantalla es una ventana de color
+gris. Esa ventana te indicará que todo funciona bien.
+
+Si en lugar de la ventana ves un error de video, lo que tendrías
+que ejecutar es la sentencia::
+
+    pilas.iniciar(usar_motor='qt')
+
+
 
 Instalación en modo desarrollo
 ------------------------------
 
-La opción de instalación mas recomendada, es la instalación en
-modo desarrollo. Ya que te permite mantener actualizada todo
-el tiempo tu versión de la biblioteca.
+Si sos desarrollador, la forma de instalación mas recomendable
+es mediante el comando ``develop``. Esta opción es útil porque te
+permite mentener actualizada la biblioteca en todo momento.
 
 Para usar esta opción de instalación tienes que ejecutar el siguiente
 comando::
 
     sudo python setup.py develop
+
+Ten en cuenta que a partir de ahora, cuando uses ``pilas`` en el
+sistema, se leerá el código directamente desde ese directorio
+en donde has clonado la biblioteca.
 
 
 Mantenerse actualizado, siempre...
@@ -78,6 +86,7 @@ Mantenerse actualizado, siempre...
 Dado que ``pilas`` está creciendo, es una buena idea mantener
 tu copia del motor actualizada.
 
+
 Para ello tienes que ingresar en el directorio ``pilas`` y
 ejecutar el siguiente comando de manera periódica::
 
@@ -85,7 +94,7 @@ ejecutar el siguiente comando de manera periódica::
     hg update
 
 De hecho, si usas un lector de noticias sería recomendable
-que agregues este ``feed``:
+que agregues este ``feed`` a tus marcadores:
 
 - http://bitbucket.org/hugoruscitti/pilas/rss
 
