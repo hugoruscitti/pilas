@@ -18,7 +18,7 @@ import fondos
 import habilidades
 import eventos
 import sonidos
-#import musica
+import musica
 import colores
 import atajos
 import escenas
@@ -46,7 +46,7 @@ para iniciar y ejecutar la biblioteca.
 if utils.esta_en_sesion_interactiva():
     utils.cargar_autocompletado()
 
-def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl', 
+def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
@@ -69,7 +69,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :pantalla_completa: si debe usar pantalla completa o no.
 
     """
-    
+
     global mundo
 
     motor = _crear_motor(usar_motor)
@@ -78,7 +78,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
         mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
         escenas.Normal(colores.grisclaro)
 
-def iniciar_con_asistente(ancho=640, alto=480, titulo='Pilas', 
+def iniciar_con_asistente(ancho=640, alto=480, titulo='Pilas',
             rendimiento=60, modo='detectar', gravedad=(0, -90), imagen="asistente.png"):
     """Identica a la función iniciar, solo que permite al usuario seleccionar
     el motor multimedia y el modo de video a utilizar.
@@ -95,7 +95,7 @@ def iniciar_con_asistente(ancho=640, alto=480, titulo='Pilas',
 
 def ejecutar(ignorar_errores=False):
     """Pone en funcionamiento las actualizaciones y dibujado.
-    
+
     Esta función es necesaria cuando se crea un juego
     en modo ``no-interactivo``."""
     mundo.ejecutar_bucle_principal(ignorar_errores)
@@ -115,7 +115,7 @@ def version():
 
 def _crear_motor(usar_motor):
     """Genera instancia del motor multimedia en base a un nombre.
-    
+
     Esta es una función interna y no debe ser ejecutada
     excepto por el mismo motor pilas."""
 
@@ -136,7 +136,7 @@ def reiniciar():
 def avisar(mensaje):
     """Emite un mensaje en la ventana principal.
 t
-    Este mensaje aparecerá en la parte inferior de la pantalla durante 
+    Este mensaje aparecerá en la parte inferior de la pantalla durante
     5 segundo, por ejemplo:
 
         >>> pilas.avisar("Use la tecla <esc> para terminar el programa")
@@ -166,7 +166,7 @@ def abrir_cargador():
 
 def abrir_interprete():
     """Abre un intérprete interactivo de python con una ventana.
-    
+
     Esta función se ejecuta cuando un usuario escribe::
 
         pilas -i
