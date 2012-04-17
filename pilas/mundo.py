@@ -68,6 +68,7 @@ class Mundo(object):
         self.tareas.eliminar_todas()
         self.tweener.eliminar_todas()
         self.camara.x = 0
+        self.camara.y = 0
 
         if self.escena_actual:
             # Eliminamos cualquier resto de variables (self.*) definidas en la escena.
