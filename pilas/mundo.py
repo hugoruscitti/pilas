@@ -29,7 +29,7 @@ class Mundo(object):
         self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa)
 
         self.tweener = pytweener.Tweener()
-        self.tareas = tareas.Tareas() 
+        self.tareas = tareas.Tareas()
         self.control = control.Control()
         self.colisiones = colisiones.Colisiones()
         self.camara = camara.Camara(self)
@@ -78,11 +78,17 @@ class Mundo(object):
         self.escena_actual = escena_nueva
         escena_nueva.iniciar()
 
-    def agregar_tarea_una_vez(self, time_out, function, *params): 
+    def agregar_tarea_una_vez(self, time_out, function, *params):
         return self.tareas.una_vez(time_out, function, params)
 
-    def agregar_tarea_siempre(self, time_out, function, *params): 
+    def agregar_tarea_siempre(self, time_out, function, *params):
         return self.tareas.siempre(time_out, function, params)
 
     def agregar_tarea(self, time_out, funcion, *parametros):
         return self.tareas.condicional(time_out, funcion, parametros)
+
+    def deshabilitar_sonido(self, estado=True):
+        self.motor.deshabilitar_sonido(estado)
+
+    def deshabilitar_musica(self, estado=True):
+        self.motor.deshabilitar_musica(estado)

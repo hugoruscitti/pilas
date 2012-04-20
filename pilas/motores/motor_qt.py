@@ -425,6 +425,7 @@ class Actor(BaseActor):
 
 
 class Sonido:
+    deshabilitado = False
 
     def __init__(self, media, ruta):
         self.media = media
@@ -434,8 +435,9 @@ class Sonido:
         self.sonido = Phonon.createPlayer(Phonon.GameCategory, self.source)
 
     def reproducir(self):
-        self.sonido.seek(0)
-        self.sonido.play()
+        if not self.deshabilitado:
+            self.sonido.seek(0)
+            self.sonido.play()
 
     def detener(self):
         self.sonido.stop()
@@ -541,6 +543,12 @@ class Base(motor.Motor):
 
     def cargar_musica(self, ruta):
         return Musica(self.media, ruta)
+
+    def deshabilitar_sonido(self, estado=True):
+        Sonido.deshabilitado = estado
+
+    def deshabilitar_musica(self, estado=True):
+        Musica.deshabilitado = estado
 
     def cargar_imagen(self, ruta):
         return Imagen(ruta)
