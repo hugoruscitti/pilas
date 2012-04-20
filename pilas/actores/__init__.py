@@ -72,3 +72,4 @@ from cooperativista import Cooperativista
 from zanahoria import Zanahoria
 from energia import Energia
 from texto_inferior import TextoInferior
+from sonido import Sonido
