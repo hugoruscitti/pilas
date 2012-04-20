@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import sys
 from setuptools import setup
-from setuptools import find_packages
 from pilas import pilasversion
+
 
 def error(biblioteca, web):
     print "Error, no se encuentra la biblioteca '%s' (de %s)" %(biblioteca, web)
@@ -31,8 +31,8 @@ setup(
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
         package_data = {
-            'images': ['pilas/data/*', 'pilas/ejemplos/data/*', 
-                       'pilas/data/fondos/*', 'pilas/data/juegobase/*', 
+            'images': ['pilas/data/*', 'pilas/ejemplos/data/*',
+                       'pilas/data/fondos/*', 'pilas/data/juegobase/*',
                        'pilas/data/juegobase/data/*',
                        'pilas/ejemplos/data',
                        'pilas/ejemplos/ejemplos',
