@@ -578,7 +578,12 @@ class Base(motor.Motor):
 
         for actor in actores.todos:
             try:
-                actor.dibujar(self)
+                # Si el actor se encuantra dentro del area visible se dibuja.
+                if (actor.x + (actor.ancho - actor.obtener_centro()[0]) >= (self.camara_x - (self.ancho_original/2)) and
+                    actor.y + (actor.alto - actor.obtener_centro()[1]) >= (self.camara_y - (self.alto_original/2)) and
+                    actor.x - (actor.ancho - actor.obtener_centro()[0]) <= (self.camara_x + (self.ancho_original/2)) and
+                    actor.y - (actor.alto - actor.obtener_centro()[1]) <= (self.camara_y + (self.alto_original/2))):
+                        actor.dibujar(self)
             except Exception as e:
                 print e
                 actor.eliminar()
