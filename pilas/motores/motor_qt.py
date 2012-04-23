@@ -526,6 +526,17 @@ class Base(motor.Motor):
     def obtener_actor(self, imagen, x, y):
         return Actor(imagen, x, y)
 
+    def actor_en_pantalla(self, actor):
+        """ Confirma si un actor se encuentra dentro de la pantalla """
+        if (actor.x + (actor.ancho - actor.obtener_centro()[0]) >= (self.camara_x - (self.ancho_original/2)) and
+            actor.y + (actor.alto - actor.obtener_centro()[1]) >= (self.camara_y - (self.alto_original/2)) and
+            actor.x - (actor.ancho - actor.obtener_centro()[0]) <= (self.camara_x + (self.ancho_original/2)) and
+            actor.y - (actor.alto - actor.obtener_centro()[1]) <= (self.camara_y + (self.alto_original/2))):            
+            return True        
+        else:
+            return False
+         
+    
     def obtener_texto(self, texto, magnitud):
         return Texto(texto, magnitud, self)
 
@@ -579,11 +590,8 @@ class Base(motor.Motor):
         for actor in actores.todos:
             try:
                 # Si el actor se encuantra dentro del area visible se dibuja.
-                if (actor.x + (actor.ancho - actor.obtener_centro()[0]) >= (self.camara_x - (self.ancho_original/2)) and
-                    actor.y + (actor.alto - actor.obtener_centro()[1]) >= (self.camara_y - (self.alto_original/2)) and
-                    actor.x - (actor.ancho - actor.obtener_centro()[0]) <= (self.camara_x + (self.ancho_original/2)) and
-                    actor.y - (actor.alto - actor.obtener_centro()[1]) <= (self.camara_y + (self.alto_original/2))):
-                        actor.dibujar(self)
+                if self.actor_en_pantalla(actor):
+                    actor.dibujar(self)
             except Exception as e:
                 print e
                 actor.eliminar()
