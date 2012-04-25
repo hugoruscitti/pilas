@@ -42,6 +42,32 @@ class Colisiones:
                     list.remove(grupo_a, a)
                     raise e
 
+    def verificar_colisiones_fisicas(self, id_actor_a, id_actor_b):
+        for x in self.colisiones:
+            self._verificar_colisiones_fisicas_en_tupla(x, id_actor_a, id_actor_b)
+
+    def _verificar_colisiones_fisicas_en_tupla(self, tupla, id_actor_a, id_actor_b):
+        "Toma dos grupos de actores y analiza colisiones entre ellos."
+        (grupo_a, grupo_b, funcion_a_llamar) = tupla
+
+        for a in grupo_a:
+            for b in grupo_b:
+                try:
+                    if a.figura.id == id_actor_a and b.figura.id == id_actor_b:
+                        funcion_a_llamar(a, b)
+
+                        # verifica si alguno de los dos objetos muere en la colision.
+                        if a not in pilas.actores.todos:
+                            if a in grupo_a:
+                                list.remove(grupo_a, a)
+
+                        if b not in pilas.actores.todos:
+                            if b in grupo_b:
+                                list.remove(grupo_b, b)
+                except Exception as e:
+                    list.remove(grupo_a, a)
+                    raise e
+
     def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
         "Agrega dos listas de actores para analizar colisiones."
 

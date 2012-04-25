@@ -239,6 +239,7 @@ class Imitar(Habilidad):
         Habilidad.__init__(self, receptor)
         self.objeto_a_imitar = objeto_a_imitar
         receptor.figura = objeto_a_imitar
+        receptor.id = objeto_a_imitar.id
         self.con_rotacion = con_rotacion
 
     def actualizar(self):

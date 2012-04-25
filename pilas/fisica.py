@@ -32,6 +32,8 @@ class Fisica(object):
             self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
             try:
                 self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
+                self.objetosContactListener = ObjetosContactListener()
+                self.mundo.SetContactListener(self.objetosContactListener)
             except ValueError:
                 print "Solo esta disponible el motor de fisica para box2d 2.0.2b1"
                 raise AttributeError("...")
@@ -203,6 +205,9 @@ class Figura(object):
     Esta figura es abstracta, no está pensada para crear
     objetos a partir de ella. Se usa como base para el resto
     de las figuras cómo el Circulo o el Rectangulo simplemente."""
+    
+    def __init__(self):
+        self.id = pilas.utils.obtener_uuid()
 
     def obtener_x(self):
         return self._cuerpo.position.x
@@ -279,12 +284,17 @@ class Circulo(Figura):
             restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
             fisica=None):
 
+        Figura.__init__(self)
+        
         if not fisica:
             fisica = pilas.mundo.fisica
             
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
         bodyDef.linearDamping = amortiguacion
+        
+        userData = { 'id' : self.id }
+        bodyDef.userData = userData
         #userData = { 'color' : self.parent.get_color() }
         #bodyDef.userData = userData
         #self.parent.element_count += 1
@@ -322,6 +332,8 @@ class Rectangulo(Figura):
             restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
             fisica=None):
 
+        Figura.__init__(self)
+        
         if not fisica:
             fisica = pilas.mundo.fisica
 
@@ -329,6 +341,8 @@ class Rectangulo(Figura):
         bodyDef.position=(x, y)
         bodyDef.linearDamping = amortiguacion
         
+        userData = { 'id' : self.id }
+        bodyDef.userData = userData
         #userData = { 'color' : self.parent.get_color() }
         #bodyDef.userData = userData
         #self.parent.element_count += 1
@@ -370,6 +384,8 @@ class Poligono(Figura):
             restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
             fisica=None):
 
+        Figura.__init__(self)
+        
         if not fisica:
             fisica = pilas.mundo.fisica
             
@@ -377,6 +393,9 @@ class Poligono(Figura):
         bodyDef.position=puntos[0]
         bodyDef.linearDamping = amortiguacion
         body = fisica.crear_cuerpo(bodyDef)
+
+        userData = { 'id' : self.id }
+        bodyDef.userData = userData
 
         # Create the Body
         if not dinamica:
@@ -460,3 +479,19 @@ class ConstanteDeDistancia():
 
 def definir_gravedad(x=0, y=-90):
     pilas.mundo.fisica.mundo.gravity = (x, y)
+
+class ObjetosContactListener(box2d.b2ContactListener):
+
+    def Add(self, objetos_colisionados):
+        pilas.mundo.colisiones.verificar_colisiones_fisicas(objetos_colisionados.shape1.GetBody().GetUserData()['id'], objetos_colisionados.shape2.GetBody().GetUserData()['id'])
+
+    def Persist(self, *args):
+        pass
+
+
+    def Remove(self, *args):
+        pass
+
+
+    def Result(self, *args):
+        pass

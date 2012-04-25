@@ -11,6 +11,7 @@ import interpolaciones
 import sys
 import subprocess
 import math
+import uuid
 
 import pilas
 import xmlreader
@@ -251,3 +252,6 @@ def ver_codigo(objeto, imprimir, retornar):
 
     if retornar:
         return codigo
+
+def obtener_uuid():
+    return str(uuid.uuid4())
