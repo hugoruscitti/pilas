@@ -218,9 +218,9 @@ class Figura(object):
     def obtener_y(self):
         return self._cuerpo.position.y
 
-	def definir_posicion(self, x, y):
-		self.definir_x(x)
-		self.definir_y(y)
+    def definir_posicion(self, x, y):
+        self.definir_x(x)
+        self.definir_y(y)
 
     def definir_y(self, y):
         self._cuerpo.SetXForm((self.x, y), self._cuerpo.GetAngle())
@@ -294,7 +294,7 @@ class Circulo(Figura):
         bodyDef.linearDamping = amortiguacion
         
         userData = { 'id' : self.id }
-        bodyDef.userData = userData
+        
         #userData = { 'color' : self.parent.get_color() }
         #bodyDef.userData = userData
         #self.parent.element_count += 1
@@ -311,6 +311,7 @@ class Circulo(Figura):
         circleDef.radius = radio
         circleDef.restitution = restitucion
         circleDef.friction = friccion
+        circleDef.userData = userData
         
         body.CreateShape(circleDef)
         body.SetMassFromShapes()    
@@ -342,7 +343,7 @@ class Rectangulo(Figura):
         bodyDef.linearDamping = amortiguacion
         
         userData = { 'id' : self.id }
-        bodyDef.userData = userData
+        #bodyDef.userData = userData
         #userData = { 'color' : self.parent.get_color() }
         #bodyDef.userData = userData
         #self.parent.element_count += 1
@@ -360,6 +361,7 @@ class Rectangulo(Figura):
         boxDef.density = densidad
         boxDef.restitution = restitucion
         boxDef.friction = friccion
+        boxDef.userData = userData
         body.CreateShape(boxDef)
 
         body.SetMassFromShapes()    
@@ -395,8 +397,7 @@ class Poligono(Figura):
         body = fisica.crear_cuerpo(bodyDef)
 
         userData = { 'id' : self.id }
-        bodyDef.userData = userData
-
+        #bodyDef.userData = userData
         # Create the Body
         if not dinamica:
             densidad = 0
@@ -412,6 +413,8 @@ class Poligono(Figura):
         poligono_def.density = densidad
         poligono_def.restitution = restitucion
         poligono_def.friction = friccion
+        
+        poligono_def.userData = userData
         #poligono_def.setVertices(puntos)
         #poligono_def.vertexCount = len(puntos)
 
@@ -486,7 +489,8 @@ class ObjetosContactListener(box2d.b2ContactListener):
         box2d.b2ContactListener.__init__(self)
 
     def Add(self, objetos_colisionados):
-        pilas.mundo.colisiones.verificar_colisiones_fisicas(objetos_colisionados.shape1.GetBody().GetUserData()['id'], objetos_colisionados.shape2.GetBody().GetUserData()['id'])
+        if (not (objetos_colisionados.shape1.GetUserData() == None)) and (not (objetos_colisionados.shape2.GetUserData() == None)):
+            pilas.mundo.colisiones.verificar_colisiones_fisicas(objetos_colisionados.shape1.GetUserData()['id'], objetos_colisionados.shape2.GetUserData()['id'])
 
     def Persist(self, *args):
         pass
