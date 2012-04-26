@@ -481,6 +481,9 @@ def definir_gravedad(x=0, y=-90):
     pilas.mundo.fisica.mundo.gravity = (x, y)
 
 class ObjetosContactListener(box2d.b2ContactListener):
+    
+    def __init__(self):
+        box2d.b2ContactListener.__init__(self)
 
     def Add(self, objetos_colisionados):
         pilas.mundo.colisiones.verificar_colisiones_fisicas(objetos_colisionados.shape1.GetBody().GetUserData()['id'], objetos_colisionados.shape2.GetBody().GetUserData()['id'])
