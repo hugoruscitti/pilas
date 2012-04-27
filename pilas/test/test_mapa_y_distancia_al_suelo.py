@@ -31,5 +31,3 @@ def test_mapa_y_distancia_al_suelo():
     mapa.pintar_limite_de_bloques()
 
 
-test_mapa_y_distancia_al_suelo()
-pilas.ejecutar()
