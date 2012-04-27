@@ -29,5 +29,3 @@ def test_mapa_y_distancia_al_suelo():
     mapa.x = 0
     mapa.y = 0
     mapa.pintar_limite_de_bloques()
-
-
