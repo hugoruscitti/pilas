@@ -10,12 +10,13 @@ import pilas
 from pilas.actores import Actor
 
 
-class Mapa(Actor):
+# TODO: hacer que herede de Mapa y no directamente de Actor.
+class MapaTiled(Actor):
     """Representa mapas creados a partir de imagenes mas pequeñas.
 
     Este actor te permite crear escenarios tipo ``tiles``, una técnica
     de contrucción de escenarios muy popular en los videojuegos.
-    
+
     Puedes crear un actor a partir de una grilla, e indicando cada
     uno los bloques o simplemente usando un programa externo llamado
     **tiled** (ver http://www.mapeditor.org).
@@ -37,7 +38,7 @@ class Mapa(Actor):
 
         if not grilla_o_mapa:
             grilla_o_mapa = grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
-            
+
         self.grilla_o_mapa = grilla_o_mapa
 
         if isinstance(grilla_o_mapa, str):
@@ -53,7 +54,7 @@ class Mapa(Actor):
             superficie_mapa = pilas.actores.Actor(self.superficie)
             # Establecemos el nivel Z para que los Actores de las capas superiores se vean.
             superficie_mapa.z = 1
-            # Establecemos la posición de la Superficie a partir de la esquina superior izquierda. 
+            # Establecemos la posición de la Superficie a partir de la esquina superior izquierda.
             superficie_mapa.x += ((self.superficie.ancho()/2) - (self._ancho_mundo / 2))
             superficie_mapa.y -= ((self.superficie.alto()/2) - (self._alto_mundo / 2))
 
@@ -85,8 +86,8 @@ class Mapa(Actor):
         self.superficie = pilas.imagenes.cargar_superficie(self.columnas * self._ancho_cuadro, self.filas * self._alto_cuadro)
 
         # Carga la grilla de imagenes desde el mapa.
-        self.grilla = pilas.imagenes.cargar_grilla(self._ruta, 
-                self._ancho_imagen / self._ancho_cuadro, 
+        self.grilla = pilas.imagenes.cargar_grilla(self._ruta,
+                self._ancho_imagen / self._ancho_cuadro,
                 self._alto_imagen / self._alto_cuadro)
 
         # Carga las capas del mapa.
@@ -115,7 +116,7 @@ class Mapa(Actor):
                     self.pintar_bloque(y, x, bloque -1, solidos)
 
     def pintar_bloque(self, fila, columna, indice, es_bloque_solido=True):
-        
+
         if es_bloque_solido: # Solo definimos Actores para los elementos de las capas superiores.
             nuevo_bloque = pilas.actores.Actor('invisible.png')
             nuevo_bloque.imagen = self.grilla
@@ -123,9 +124,9 @@ class Mapa(Actor):
             nuevo_bloque.izquierda = columna * self._ancho_cuadro - (self._ancho_mundo / 2)
             nuevo_bloque.arriba = -fila * self._alto_cuadro + (self._alto_mundo / 2)
             self.bloques.append(nuevo_bloque)
-            figura = pilas.fisica.Rectangulo(nuevo_bloque.izquierda + self._ancho_cuadro / 2, 
+            figura = pilas.fisica.Rectangulo(nuevo_bloque.izquierda + self._ancho_cuadro / 2,
                     nuevo_bloque.arriba - self._alto_cuadro / 2,
-                    self._ancho_cuadro, self._alto_cuadro, dinamica=False, 
+                    self._ancho_cuadro, self._alto_cuadro, dinamica=False,
                     restitucion=self.restitucion)
             self.figuras.append(figura)
         else:
