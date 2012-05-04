@@ -806,6 +806,91 @@ class WidgetSugarGL(WidgetGL):
     def mostrar_ventana(self, pantalla_completa):
         pass
 
+class WidgetLog(QWidget):
+    """ Representa una ventana de log.    
+    Mediante pilas.log.imprimir() añadiremos elementos a esta ventana
+    """
+    def __init__(self):
+        super(WidgetLog, self).__init__()
+        
+        self.setWindowTitle('Pilas Log')
+
+        hbox = QtGui.QHBoxLayout(self)
+
+        self.treeView = QtGui.QTreeWidget(self)
+        
+        self.treeView.setColumnCount(2)
+        
+        cabecera = QtCore.QStringList()
+        cabecera.append("Clave")
+        cabecera.append("Valor")
+        
+        self.treeView.setHeaderLabels(cabecera)                
+        
+        hbox.addWidget(self.treeView)
+        
+        self.setGeometry(50, 50, 250, 150)
+        self.show()
+        
+        
+    def imprimir(self, *params):
+        for items in params:
+            for elemento in items:
+                self._insertar_elemento(elemento)
+        
+        self.treeView.header().setResizeMode(3)                         
+    
+    def _insertar_elemento(self, elemento, elemento_padre=None):
+        
+        if (self._contiene_diccionario(elemento)):
+            if (hasattr(elemento, '__class__')):
+                if (elemento.__class__.__name__ != 'dict'):
+                    padre = self._insertar_texto_en_lista(elemento.__class__.__name__, elemento_padre)
+                else:
+                    padre = None
+            else:
+                padre = None
+                
+            for key, value in self._obtener_diccionario(elemento):
+                if self._contiene_diccionario(value):                    
+                    self._insertar_elemento(value, self._insertar_texto_en_lista(key, padre))
+                else:
+                    self._insertar_diccionario_en_lista(key, value, padre)
+        else:
+            self._insertar_texto_en_lista(str(elemento))                
+        
+        
+    def _contiene_diccionario(self, valor):
+        if hasattr(valor, '__dict__'):
+            return True
+        elif type(valor) is dict:
+            return True
+        else:
+            return False 
+
+    def _obtener_diccionario(self, valor):
+        if hasattr(valor, '__dict__'):
+            return valor.__dict__.items()
+        elif type(valor) is dict:
+            return valor.items()
+    
+    def _insertar_texto_en_lista(self, texto, itemPadre=None):
+        if (itemPadre == None):
+            item = QtGui.QTreeWidgetItem(self.treeView)
+        else:
+            item = QtGui.QTreeWidgetItem(itemPadre)
+        item.setText(0, str(texto))
+        return item
+            
+    def _insertar_diccionario_en_lista(self, clave, valor, itemPadre=None):
+        if (itemPadre == None):
+            item = QtGui.QTreeWidgetItem(self.treeView)
+        else:
+            item = QtGui.QTreeWidgetItem(itemPadre)
+        item.setText(0, clave)
+        item.setText(1, str(valor))
+        return item
+    
 class Motor(object):
     """Representa la ventana principal de pilas.
 
@@ -835,6 +920,15 @@ class Motor(object):
         elif usar_motor == 'qtsugargl':
             self.widget = WidgetSugarGL()
 
+        self.widgetlog = None
+        
+    def mostrar_log(self):
+        if (self.widgetlog == None):
+            self.widgetlog = WidgetLog()
+        else:
+            self.widgetlog.show()
+        
+        
     def __getattr__(self, method):
         "Delega todos los pedidos de funcionalidad al widget interno."
         return getattr(self.widget, method)

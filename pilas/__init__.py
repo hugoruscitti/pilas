@@ -23,6 +23,7 @@ import colores
 import atajos
 import escenas
 import interfaz
+import log
 
 try:
     import aplicacion
