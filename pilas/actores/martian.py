@@ -58,15 +58,18 @@ class Esperando(Comportamiento):
             self.receptor.hacer(Caminando())
 
         if pilas.mundo.control.arriba and self.receptor.puede_saltar():
-            self.receptor.hacer(Saltando())
+            self.receptor.hacer(Saltando(-8))
 
         if pilas.mundo.control.boton:
             self.receptor.hacer(Disparar(self.receptor))
 
+        self.caer_si_no_toca_el_suelo()
+
+    def caer_si_no_toca_el_suelo(self):
         if self.receptor.obtener_distancia_al_suelo() > 0:
             self.receptor.hacer(Saltando(0))
 
-class Caminando(Comportamiento):
+class Caminando(Esperando):
 
     def __init__(self):
         self.cuadros = [1, 1, 1, 2, 2, 2]
@@ -88,7 +91,9 @@ class Caminando(Comportamiento):
             self.receptor.hacer(Esperando())
 
         if pilas.mundo.control.arriba:
-            self.receptor.hacer(Saltando())
+            self.receptor.hacer(Saltando(-8))
+
+        self.caer_si_no_toca_el_suelo()
 
     def avanzar_animacion(self):
         self.paso += 1
@@ -107,33 +112,28 @@ class Saltando(Comportamiento):
     def iniciar(self, receptor):
         self.receptor = receptor
         self.receptor.definir_cuadro(3)
-        self.esta_bajando = False
-        #self.receptor.figura.definir_velocidad_lineal(None, 300)
-
 
     def actualizar(self):
+        self.velocidad_de_salto += 0.25
+        distancia = self.receptor.obtener_distancia_al_suelo()
 
-        # obtiene la velocidad del personaje para detectar cuando
+        # Si toca el suelo se detiene.
+        if self.velocidad_de_salto > distancia:
+            self.receptor.y -= distancia
+            self.receptor.hacer(Esperando())
+        else:
+            self.receptor.y -= self.velocidad_de_salto
+
+        # obtiene la veloridad del personaje para detectar cuando
         # toca el suelo.
         vx, vy = 0, 0 #self.receptor.figura.obtener_velocidad_lineal()
 
-        if vy < 0:
-            self.esta_bajando = True
-
-        if self.esta_bajando and -2 < vy < 2:
-            self.receptor.hacer(Esperando())
-
         if pilas.mundo.control.izquierda:
             self.receptor.espejado = True
-            #self.receptor.figura.definir_velocidad_lineal(-VELOCIDAD)
+            self.receptor.x -= 3
         elif pilas.mundo.control.derecha:
             self.receptor.espejado = False
-            #self.receptor.figura.definir_velocidad_lineal(VELOCIDAD)
-        else:
-            #self.receptor.figura.definir_velocidad_lineal(0)
-            pass
-
-        #print self.receptor.obtener_distancia_al_suelo()
+            self.receptor.x += 3
 
 class Disparar(Comportamiento):
 
