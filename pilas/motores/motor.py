@@ -95,3 +95,6 @@ class Motor(object):
 
     def terminar(self):
         abstract()
+        
+    def log(self, *params):
+        abstract()

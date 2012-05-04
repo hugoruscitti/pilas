@@ -8,6 +8,5 @@
 import pilas
 
 def imprimir(*params):
-    pilas.mundo.motor.mostrar_log()
-    pilas.mundo.motor.widgetlog.imprimir(params)
+    pilas.mundo.motor.log(params)
     

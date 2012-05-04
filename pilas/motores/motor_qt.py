@@ -464,6 +464,8 @@ class Base(motor.Motor):
         self.media = Phonon.MediaObject()
         self.audio = Phonon.AudioOutput(Phonon.MusicCategory)
         self.path = Phonon.createPath(self.media, self.audio)
+        
+        self._widgetlog = None
 
     def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
         self.ancho = ancho
@@ -755,6 +757,14 @@ class Base(motor.Motor):
     def terminar(self):
         self.close()
 
+    def log(self, params):
+        if (self._widgetlog == None):
+            self._widgetlog = WidgetLog()
+        else:
+            self._widgetlog.show()
+        
+        self._widgetlog.imprimir(params)
+
 class Widget(Base, QWidget):
 
     def __init__(self, app):
@@ -833,10 +843,9 @@ class WidgetLog(QWidget):
         self.show()
         
         
-    def imprimir(self, *params):
-        for items in params:
-            for elemento in items:
-                self._insertar_elemento(elemento)
+    def imprimir(self, params):
+        for elemento in params:
+            self._insertar_elemento(elemento)
         
         self.treeView.header().setResizeMode(3)                         
     
@@ -921,12 +930,6 @@ class Motor(object):
             self.widget = WidgetSugarGL()
 
         self.widgetlog = None
-        
-    def mostrar_log(self):
-        if (self.widgetlog == None):
-            self.widgetlog = WidgetLog()
-        else:
-            self.widgetlog.show()
         
         
     def __getattr__(self, method):
