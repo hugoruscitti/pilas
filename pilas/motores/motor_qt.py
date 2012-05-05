@@ -11,6 +11,7 @@ import sys
 import copy
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QWidget
+from PyQt4.QtGui import QMainWindow
 from PyQt4.phonon import Phonon
 
 try:
@@ -816,18 +817,49 @@ class WidgetSugarGL(WidgetGL):
     def mostrar_ventana(self, pantalla_completa):
         pass
 
-class WidgetLog(QWidget):
+class WidgetLog(QMainWindow):
     """ Representa una ventana de log.    
     Mediante pilas.log.imprimir() añadiremos elementos a esta ventana
     """
     def __init__(self):
         super(WidgetLog, self).__init__()
+        self._initUI()
+        
+        self._ejecutando = True 
+        
+    def _initUI(self):
         
         self.setWindowTitle('Pilas Log')
 
-        hbox = QtGui.QHBoxLayout(self)
+        self.setWindowIcon(QtGui.QIcon(self._ruta_icono('tux.png')))
+        
+        self.centralwidget = QtGui.QWidget(self)
+        
+        accionSalir = QtGui.QAction(QtGui.QIcon(self._ruta_icono('door_out.png')), 'Salir', self)
+        accionSalir.setShortcut('Ctrl+S')
+        accionSalir.triggered.connect(self.close)
 
-        self.treeView = QtGui.QTreeWidget(self)
+        accionEjecutar = QtGui.QAction(QtGui.QIcon(self._ruta_icono('control_play.png')), 'Ejecutar', self)
+        accionEjecutar.setShortcut('Ctrl+E')
+        accionEjecutar.triggered.connect(self._ejecutar)
+
+        accionPausar = QtGui.QAction(QtGui.QIcon(self._ruta_icono('control_pause.png')), 'Pausar', self)
+        accionPausar.setShortcut('Ctrl+P')
+        accionPausar.triggered.connect(self._pausar)
+
+        accionResetear = QtGui.QAction(QtGui.QIcon(self._ruta_icono('arrow_refresh.png')), 'Resetear', self)
+        accionResetear.setShortcut('Ctrl+R')
+        accionResetear.triggered.connect(self._resetear)
+
+        self.toolbar = self.addToolBar('Acciones')
+        self.toolbar.addAction(accionSalir) 
+        self.toolbar.addAction(accionEjecutar)
+        self.toolbar.addAction(accionPausar)
+        self.toolbar.addAction(accionResetear)
+               
+        hbox = QtGui.QHBoxLayout(self.centralwidget)
+
+        self.treeView = QtGui.QTreeWidget(self.centralwidget)
         
         self.treeView.setColumnCount(2)
         
@@ -835,19 +867,38 @@ class WidgetLog(QWidget):
         cabecera.append("Clave")
         cabecera.append("Valor")
         
-        self.treeView.setHeaderLabels(cabecera)                
-        
+        self.treeView.setHeaderLabels(cabecera)              
+                
         hbox.addWidget(self.treeView)
         
-        self.setGeometry(50, 50, 250, 150)
+        self.setCentralWidget(self.centralwidget)  
+
+        self._ejecutar()
+        
+        self.setGeometry(50, 50, 250, 250)
         self.show()
         
+    def _ejecutar(self):
+        self._ejecutando = True
+        self.statusBar().showMessage('Ejecutando')
         
+    def _pausar(self):
+        self._ejecutando = False
+        self.statusBar().showMessage('Pausado')
+        
+    def _resetear(self):
+        self.treeView.clear()
+        self._ejecutar()
+            
+    def _ruta_icono(self, icono):
+        return os.path.join('..', '..', '..', 'data' , 'iconos', icono)
+    
     def imprimir(self, params):
-        for elemento in params:
-            self._insertar_elemento(elemento)
-        
-        self.treeView.header().setResizeMode(3)                         
+        if (self._ejecutando):
+            for elemento in params:
+                self._insertar_elemento(elemento)
+            
+            self.treeView.header().setResizeMode(3)                         
     
     def _insertar_elemento(self, elemento, elemento_padre=None):
         
