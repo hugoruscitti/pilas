@@ -26,6 +26,7 @@ verde = Color(0, 255, 0)
 azul = Color(0, 0, 255)
 gris = Color(128, 128, 128)
 
+
 # Colores secundarios
 amarillo = Color(255, 255, 0)
 magenta = Color(255, 0, 255)

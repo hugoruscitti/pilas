@@ -6,147 +6,149 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import copy
+import math
+
 import pilas
 from pilas.actores import Actor
 
-
 class Mapa(Actor):
-    """Representa mapas creados a partir de imagenes mas pequeñas.
 
-    Este actor te permite crear escenarios tipo ``tiles``, una técnica
-    de contrucción de escenarios muy popular en los videojuegos.
-    
-    Puedes crear un actor a partir de una grilla, e indicando cada
-    uno los bloques o simplemente usando un programa externo llamado
-    **tiled** (ver http://www.mapeditor.org).
-
-    Por ejemplo, para crear un mapa desde un archivo del programa
-    **tiled** puedes escribir:
-
-        >>> mapa = pilas.actores.Mapa('untitled2.tmx')
-    """
-
-    def __init__(self, grilla_o_mapa=None, x=0, y=0, restitucion=0.56):
+    def __init__(self, grilla=None, x=0, y=0, filas=20, columnas=20):
         Actor.__init__(self, 'invisible.png', x, y)
-        self.restitucion = restitucion
-        self.figuras = []
-        self.bloques = []
 
-        # Obtenemos el area de la ventana.
-        self._ancho_mundo, self._alto_mundo = pilas.mundo.motor.obtener_area()
+        self.filas = filas
+        self.columnas = columnas
 
-        if not grilla_o_mapa:
-            grilla_o_mapa = grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
-            
-        self.grilla_o_mapa = grilla_o_mapa
+        # Genera una matriz indicando cuales de los bloque son solidos.
+        self.matriz_de_bloques = self._generar_matriz_de_bloques(filas, columnas)
 
-        if isinstance(grilla_o_mapa, str):
-            self._cargar_mapa(grilla_o_mapa)
-        else:
-            self.grilla = grilla_o_mapa
-            self._ancho_cuadro = grilla_o_mapa.cuadro_ancho
-            self._alto_cuadro = grilla_o_mapa.cuadro_alto
-            self.superficie = None
+        if not grilla:
+            grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
 
-        if (self.superficie != None):
-            # Creamos un actor con la Superficie que hemos dibujado con los elementos de la capa 0 del mapa.
-            superficie_mapa = pilas.actores.Actor(self.superficie)
-            # Establecemos el nivel Z para que los Actores de las capas superiores se vean.
-            superficie_mapa.z = 1
-            # Establecemos la posición de la Superficie a partir de la esquina superior izquierda. 
-            superficie_mapa.x += ((self.superficie.ancho()/2) - (self._ancho_mundo / 2))
-            superficie_mapa.y -= ((self.superficie.alto()/2) - (self._alto_mundo / 2))
+        self.grilla = grilla
+        self.superficie = pilas.imagenes.cargar_superficie(columnas * self.grilla.cuadro_ancho, filas * self.grilla.cuadro_alto)
+        self.imagen = self.superficie
 
-    def _cargar_mapa(self, archivo):
-        "Carga el escenario desde un archivo .tmz (del programa tiled)."
+    def _generar_matriz_de_bloques(self, filas, columnas):
+        cols = copy.copy([False] * columnas)
+        matriz_de_bloques = []
 
-        archivo = pilas.utils.obtener_ruta_al_recurso(archivo)
+        for indice_fila in range(filas):
+            matriz_de_bloques.append(copy.copy(cols))
 
-        # Carga los nodos principales.
-        nodo = pilas.utils.xmlreader.makeRootNode(archivo)
-        nodo_mapa = nodo.getChild('map')
-        nodo_tileset = nodo_mapa.getChild('tileset')
-
-        # Cantidad de bloques en el mapa.
-        self.columnas = int(nodo_mapa.getAttributeValue('width'))
-        self.filas = int(nodo_mapa.getAttributeValue('height'))
-
-        # Atributos de la imagen asociada al mapa.
-        self._ruta = nodo_tileset.getChild('image').getAttributeValue('source')
-        self._ruta = pilas.utils.obtener_ruta_al_recurso(self._ruta)
-
-        self._ancho_imagen = int(nodo_tileset.getChild('image').getAttributeValue('width'))
-        self._alto_imagen = int(nodo_tileset.getChild('image').getAttributeValue('height'))
-        self._ancho_cuadro = int(nodo_tileset.getAttributeValue('tilewidth'))
-        self._alto_cuadro = int(nodo_tileset.getAttributeValue('tileheight'))
-
-        # Creamos una Superficie para volcar el contenido del layer 0 del mapa.
-        # El tamaño de la Superficie corresponde al tamaño del mapa.
-        self.superficie = pilas.imagenes.cargar_superficie(self.columnas * self._ancho_cuadro, self.filas * self._alto_cuadro)
-
-        # Carga la grilla de imagenes desde el mapa.
-        self.grilla = pilas.imagenes.cargar_grilla(self._ruta, 
-                self._ancho_imagen / self._ancho_cuadro, 
-                self._alto_imagen / self._alto_cuadro)
-
-        # Carga las capas del mapa.
-        layers = nodo.getChild('map').getChildren('layer')
-
-        if len(layers) == 0:
-            raise Exception("Debe tener al menos una capa (layer).")
-
-        # La capa 0 (inferior) define los bloques no-solidos.
-        self._crear_bloques(layers[0], solidos=False)
-
-        # El resto de las capas definen bloques solidos
-        for layer in layers[1:]:
-            self._crear_bloques(layer, solidos=True)
-
-    def _crear_bloques(self, capa, solidos):
-        "Genera actores que representan los bloques del escenario."
-        datos = capa.getChild('data').getData()
-
-        # Convierte todo el mapa en una matriz de numeros.
-        bloques = [[int(x) for x in x.split(',') if x] for x in datos.split()]
-
-        for (y, fila) in enumerate(bloques):
-            for (x, bloque) in enumerate(fila):
-                if bloque:
-                    self.pintar_bloque(y, x, bloque -1, solidos)
+        return matriz_de_bloques
 
     def pintar_bloque(self, fila, columna, indice, es_bloque_solido=True):
-        
-        if es_bloque_solido: # Solo definimos Actores para los elementos de las capas superiores.
-            nuevo_bloque = pilas.actores.Actor('invisible.png')
-            nuevo_bloque.imagen = self.grilla
-            nuevo_bloque.imagen.definir_cuadro(indice)
-            nuevo_bloque.izquierda = columna * self._ancho_cuadro - (self._ancho_mundo / 2)
-            nuevo_bloque.arriba = -fila * self._alto_cuadro + (self._alto_mundo / 2)
-            self.bloques.append(nuevo_bloque)
-            figura = pilas.fisica.Rectangulo(nuevo_bloque.izquierda + self._ancho_cuadro / 2, 
-                    nuevo_bloque.arriba - self._alto_cuadro / 2,
-                    self._ancho_cuadro, self._alto_cuadro, dinamica=False, 
-                    restitucion=self.restitucion)
-            self.figuras.append(figura)
-        else:
-            # Definimos el cuadro que deseamos dibujar en la Superficie.
-            self.grilla.definir_cuadro(indice)
-            # Dibujamos el cuadro de la grilla en la Superficie.
-            self.grilla.dibujarse_sobre_una_pizarra(self.superficie, columna * self._ancho_cuadro, fila * self._alto_cuadro)
+        #self.matriz_de_bloques[fila][columna] = es_bloque_solido
+        self.matriz_de_bloques[fila][columna] = es_bloque_solido
 
+        # Definimos el cuadro que deseamos dibujar en la Superficie.
+        self.grilla.definir_cuadro(indice)
 
-    def reiniciar(self):
-        self._eliminar_bloques()
+        # Dibujamos el cuadro de la grilla en la Superficie.
+        ancho = self.grilla.cuadro_ancho
+        alto = self.grilla.cuadro_alto
 
-        if isinstance(self.grilla_o_mapa, str):
-            self._cargar_mapa(self.grilla_o_mapa)
+        x = columna * ancho
+        y = fila * alto
 
-    def eliminar(self):
-        self._eliminar_bloques()
+        self.grilla.dibujarse_sobre_una_pizarra(self.superficie, x, y)
 
-    def _eliminar_bloques(self):
-        for b in self.bloques:
-            b.eliminar()
+    def pintar_limite_de_bloques(self):
+        ancho = self.grilla.cuadro_ancho
+        alto = self.grilla.cuadro_alto
 
-        for f in self.figuras:
-            f.eliminar()
+        for fila in range(self.filas):
+            for columna in range(self.columnas):
+                self._pintar_borde_de_grilla(fila, columna)
+
+    def _pintar_borde_de_grilla(self, fila, columna):
+        ancho = self.grilla.cuadro_ancho
+        alto = self.grilla.cuadro_alto
+        x = columna * ancho
+        y = fila * alto
+
+        self.superficie.rectangulo(x+1, y+1, ancho-2, alto-2)
+
+        texto_coordenada = "%d, %d" %(fila, columna)
+        self.superficie.texto(texto_coordenada, x+3, y-3 + alto, magnitud=8)
+
+    def obtener_distancia_al_suelo(self, x, y, maximo):
+        """Retorna la distancia en pixels desde un punto del mundo al suelo.
+
+        Es importante mostrar que las coordenadas x e y son coordenadas del
+        mundo, no coordenadas de mouse o relativas al mapa.
+
+        El argumento maximo es la cantidad de pixels que tomaremos como
+        valor limite de la busqueda. Por ejemplo, si colocamos 100 como
+        limite y la funcion nos retorna 100 es porque no encontró un suelo
+        a menos de 100 pixels. Este límite existe por una cuestión de
+        eficiencia."""
+
+        # TODO: se puede hacer mas eficiente el algoritmo si en lugar
+        #       de recorrer desde 0 a maximo solamente se recorre dando
+        #       saltos por bloques (de 'self.grilla.cuadro_alto' pixels)
+        try:
+            x, y = self.convertir_de_coordenada_absoluta_a_coordenada_mapa(x, y)
+
+            # El 'resto' es la coordenada 'y' interna a ese tile dentro
+            # del mapa.
+            resto = int(y % self.grilla.cuadro_alto)
+
+            if not resto and self.es_punto_solido_coordenada_mapa(x, y):
+                return 0
+
+            # Es la distancia en pixels a la siguiente fila que se
+            # tiene que evaluar.
+            inicial = self.grilla.cuadro_alto - resto
+
+            # Recorre el escenario hacia abajo, saltando por las filas
+            # del mapa. Si encuentra un suelo se detiene y retorna la
+            # cantidad de pixels que recorrió.
+            for distancia in range(inicial, maximo, self.grilla.cuadro_alto):
+                if self.es_punto_solido_coordenada_mapa(x, y+distancia):
+                    return distancia
+
+        except Exception as a:
+            return maximo
+
+        return maximo
+
+    def es_bloque_solido(self, fila, columna):
+        if not 0 <= fila < self.filas or not 0 <= columna < self.columnas:
+            raise Exception("La fila y columna consultadas estan fuera del area del mapa.")
+
+        return self.matriz_de_bloques[fila][columna]
+
+    def es_punto_solido(self, x, y):
+        # Los parametros x e y son coordenadas del escenario,
+        # lo que se conoce como coordenanadas absolutas.
+
+        # La siguiente conversión pasa esas coordenadas absolutas
+        # a coordenadas del mapa, es decir, donde el punto (0, 0)
+        # es la esquina superior izquierda del mapa.
+        x, y = self.convertir_de_coordenada_absoluta_a_coordenada_mapa(x, y)
+        return self.es_punto_solido_coordenada_mapa(x, y)
+
+    def convertir_de_coordenada_absoluta_a_coordenada_mapa(self, x, y):
+        dx, dy = self.centro
+        x = x + dx - self.x
+        y = -y + dy + self.y
+        return x, y
+
+    def es_punto_solido_coordenada_mapa(self, x, y):
+        fila = self.obtener_numero_de_fila(y)
+        columna = self.obtener_numero_de_columna(x)
+        return self.es_bloque_solido(fila, columna)
+
+    def obtener_numero_de_fila(self, y):
+        # 'y' tiene que ser una coordenada del mapa
+        return self._convertir_en_int(y / self.grilla.cuadro_alto)
+
+    def obtener_numero_de_columna(self, x):
+        # 'x'tiene que ser una coordenada del mapa
+        return self._convertir_en_int(x / self.grilla.cuadro_ancho)
+
+    def _convertir_en_int(self, valor):
+        return int(math.floor(valor))

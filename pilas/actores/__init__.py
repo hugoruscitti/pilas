@@ -59,6 +59,7 @@ from menu import Menu
 from opcion import Opcion
 from tortuga import Tortuga
 from mapa import Mapa
+from mapatiled import MapaTiled
 from martian import Martian
 from boton import Boton
 from entradadetexto import EntradaDeTexto
