@@ -90,10 +90,27 @@ class Mapa(Actor):
         #       de recorrer desde 0 a maximo solamente se recorre dando
         #       saltos por bloques (de 'self.grilla.cuadro_alto' pixels)
         try:
-            for distancia in range(0, maximo):
-                if self.es_punto_solido(x, y-distancia):
+            x, y = self.convertir_de_coordenada_absoluta_a_coordenada_mapa(x, y)
+
+            # El 'resto' es la coordenada 'y' interna a ese tile dentro
+            # del mapa.
+            resto = int(y % self.grilla.cuadro_alto)
+
+            if not resto and self.es_punto_solido_coordenada_mapa(x, y):
+                return 0
+
+            # Es la distancia en pixels a la siguiente fila que se
+            # tiene que evaluar.
+            inicial = self.grilla.cuadro_alto - resto
+
+            # Recorre el escenario hacia abajo, saltando por las filas
+            # del mapa. Si encuentra un suelo se detiene y retorna la
+            # cantidad de pixels que recorrió.
+            for distancia in range(inicial, maximo, self.grilla.cuadro_alto):
+                if self.es_punto_solido_coordenada_mapa(x, y+distancia):
                     return distancia
-        except Exception:
+
+        except Exception as a:
             return maximo
 
         return maximo
@@ -111,13 +128,27 @@ class Mapa(Actor):
         # La siguiente conversión pasa esas coordenadas absolutas
         # a coordenadas del mapa, es decir, donde el punto (0, 0)
         # es la esquina superior izquierda del mapa.
+        x, y = self.convertir_de_coordenada_absoluta_a_coordenada_mapa(x, y)
+        return self.es_punto_solido_coordenada_mapa(x, y)
+
+    def convertir_de_coordenada_absoluta_a_coordenada_mapa(self, x, y):
         dx, dy = self.centro
         x = x + dx - self.x
         y = -y + dy + self.y
+        return x, y
 
-        fila = self._convertir_en_int(y / self.grilla.cuadro_alto)
-        columna = self._convertir_en_int(x / self.grilla.cuadro_ancho)
+    def es_punto_solido_coordenada_mapa(self, x, y):
+        fila = self.obtener_numero_de_fila(y)
+        columna = self.obtener_numero_de_columna(x)
         return self.es_bloque_solido(fila, columna)
+
+    def obtener_numero_de_fila(self, y):
+        # 'y' tiene que ser una coordenada del mapa
+        return self._convertir_en_int(y / self.grilla.cuadro_alto)
+
+    def obtener_numero_de_columna(self, x):
+        # 'x'tiene que ser una coordenada del mapa
+        return self._convertir_en_int(x / self.grilla.cuadro_ancho)
 
     def _convertir_en_int(self, valor):
         return int(math.floor(valor))
