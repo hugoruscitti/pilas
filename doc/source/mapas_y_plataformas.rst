@@ -159,7 +159,7 @@ generado con el programa **tiled**:
 
     import pilas
     pilas.iniciar()
-    mapa_desde_archivo = pilas.actores.Mapa("archivo.tmx")
+    mapa_desde_archivo = pilas.actores.MapaTiled("archivo.tmx")
 
 
 Creando bloques sólidos con tiled
@@ -182,12 +182,7 @@ Un ejemplo completo
 
 Te recomiendo que observes el ejemplo ``mapa_desde_archivo.py`` del
 directorio de ejemplos de pilas, podrás observar un escenario
-muy simple con obstáculos y un personaje que rebota por
-las pareces y árboles:
+muy simple con obstáculos y un personaje que se puede mover
+con el teclado:
 
 .. image:: images/tiled8.png
-
-Recuerda que en pilas puedes pulsar la tecla ``F11`` para observar
-el area de colisión de todos los actores y plataformas:
-
-.. image:: images/tiled7.png
