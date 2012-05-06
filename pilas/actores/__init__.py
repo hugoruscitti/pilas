@@ -74,3 +74,5 @@ from zanahoria import Zanahoria
 from energia import Energia
 from texto_inferior import TextoInferior
 from sonido import Sonido
+from personajes_rpg import Calvo
+from personajes_rpg import Maton
