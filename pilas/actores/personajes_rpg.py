@@ -19,11 +19,13 @@ ESTE = 1
 OESTE = 3
 
 class BasePersonajeRPG(Actor):
-    def __init__(self, x=0, y=0, imagen="rpg/calvo.png", velocidad=3):
+    def __init__(self, mapa, x=0, y=0, imagen="rpg/calvo.png", velocidad=3):
         Actor.__init__(self, x=x, y=y)
         self.imagen = pilas.imagenes.cargar_grilla(imagen, 3, 4)
+        
+        self.mapa = mapa
+        
         self.direccion = pilas.actores.personajes_rpg.SUR
-        self.definir_cuadro(7)
         self.hacer(Esperando())
         self.velocidad = velocidad
 
@@ -75,21 +77,28 @@ class Caminando(Esperando):
 
     def actualizar(self):
         self.avanzar_animacion()
+        
+        dx = 0
+        dy = 0
 
         if pilas.mundo.control.izquierda:
-            self.receptor.x -= self.receptor.velocidad
+            dx = self.receptor.velocidad * -1
             self.receptor.direccion = pilas.actores.personajes_rpg.OESTE            
         elif pilas.mundo.control.derecha:
-            self.receptor.x += self.receptor.velocidad
+            dx = self.receptor.velocidad
             self.receptor.direccion = pilas.actores.personajes_rpg.ESTE
         elif pilas.mundo.control.arriba:
-            self.receptor.y += self.receptor.velocidad
+            dy = self.receptor.velocidad
             self.receptor.direccion = pilas.actores.personajes_rpg.NORTE
         elif pilas.mundo.control.abajo:
-            self.receptor.y -= self.receptor.velocidad
+            dy = self.receptor.velocidad * -1
             self.receptor.direccion = pilas.actores.personajes_rpg.SUR
         else:
             self.receptor.hacer(Esperando())
+
+        if not(self.receptor.mapa.es_punto_solido(self.receptor.x + dx, self.receptor.y + dy)):
+            self.receptor.x += dx
+            self.receptor.y += dy
 
     def avanzar_animacion(self):
         self.paso += 1
@@ -101,10 +110,10 @@ class Caminando(Esperando):
 
 class Calvo(BasePersonajeRPG):
 
-    def __init__(self, x=0, y=0):
-        BasePersonajeRPG.__init__(self, x=x, y=y, imagen="rpg/calvo.png", velocidad=3)
+    def __init__(self, mapa, x=0, y=0):
+        BasePersonajeRPG.__init__(self, mapa=mapa, x=x, y=y, imagen="rpg/calvo.png", velocidad=2)
 
 class Maton(BasePersonajeRPG):
 
-    def __init__(self, x=0, y=0):
-        BasePersonajeRPG.__init__(self, x=x, y=y, imagen="rpg/maton.png", velocidad=3)
+    def __init__(self, mapa, x=0, y=0):
+        BasePersonajeRPG.__init__(self, mapa, x=x, y=y, imagen="rpg/maton.png", velocidad=2)
