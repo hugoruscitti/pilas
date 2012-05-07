@@ -27,8 +27,11 @@ class IngresoDeTexto(pilas.actores.Actor):
         self._actualizar_imagen()
         self.limite_de_caracteres = limite_de_caracteres
         self.cualquier_caracter()
+        
+        self.tiene_el_foco = False
 
         pilas.eventos.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
+        pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
         pilas.mundo.agregar_tarea_siempre(0.40, self._actualizar_cursor)
         self.fijo = True
         
@@ -51,22 +54,27 @@ class IngresoDeTexto(pilas.actores.Actor):
         self.caracteres_permitidos = re.compile("[a-z]+")
         
     def cuando_pulsa_una_tecla(self, evento):
-        if evento.codigo == '\x08' or evento.texto == '\x08':
-            # Indica que se quiere borrar un caracter
-            self.texto = self.texto[:-1]
-        else:
-            if len(self.texto) < self.limite_de_caracteres:
-                nuevo_texto = self.texto + evento.texto
-
-                if (self.caracteres_permitidos.match(evento.texto)):
-                    self.texto = self.texto + evento.texto
-                else:
-                    print "Rechazando el ingreso del caracter:", evento.texto
+        if (self.tiene_el_foco):
+            if evento.codigo == '\x08' or evento.texto == '\x08':
+                # Indica que se quiere borrar un caracter
+                self.texto = self.texto[:-1]
             else:
-                print "Rechazando caracter por llegar al limite."
+                if len(self.texto) < self.limite_de_caracteres:
+                    nuevo_texto = self.texto + evento.texto
+    
+                    if (self.caracteres_permitidos.match(evento.texto)):
+                        self.texto = self.texto + evento.texto
+                    else:
+                        print "Rechazando el ingreso del caracter:", evento.texto
+                else:
+                    print "Rechazando caracter por llegar al limite."
+            
+            self._actualizar_imagen()
         
-        self._actualizar_imagen()
-        
+    def cuando_hace_click(self, evento):
+        if self.colisiona_con_un_punto(evento.x, evento.y):
+            self.tiene_el_foco = True
+                
     def _cargar_lienzo(self, ancho):
         self.imagen = pilas.imagenes.cargar_superficie(ancho, 30)
         
