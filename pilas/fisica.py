@@ -11,7 +11,9 @@ from pilas import colores
 
 try:
     import Box2D as box2d
+    contact_listener = box2d.b2ContactListener
 except ImportError:
+    contact_listener = obj
     print "No esta disponible box2d, se deshabilitara la fisica."
 
 import math
@@ -22,7 +24,7 @@ def obtener_version():
 
 class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca box2d."""
-    
+
     def __init__(self, area, gravedad=(0, -90)):
         self.area = area
         try:
@@ -63,9 +65,9 @@ class Fisica(object):
     def capturar_figura_con_el_mouse(self, figura):
         if self.constante_mouse:
             self.cuando_suelta_el_mouse()
-        
+
         self.constante_mouse = ConstanteDeMovimiento(figura)
-    
+
     def cuando_mueve_el_mouse(self, x, y):
         if self.constante_mouse:
             self.constante_mouse.mover(x, y)
@@ -74,7 +76,7 @@ class Fisica(object):
         if self.constante_mouse:
             self.constante_mouse.eliminar()
             self.constante_mouse = None
-        
+
     def actualizar(self, velocidad=1.0):
         if self.mundo:
             self.mundo.Step(velocidad / 20.0, 10, 8)
@@ -94,41 +96,41 @@ class Fisica(object):
         "Dibuja todas las figuras en una pizarra. Indicado para depuracion."
         cuerpos = self.mundo.bodyList
         cantidad_de_figuras = 0
-        
+
         for cuerpo in cuerpos:
             xform = cuerpo.GetXForm()
-            
+
             for figura in cuerpo.shapeList:
                 cantidad_de_figuras += 1
                 tipo_de_figura = figura.GetType()
-                
+
                 if tipo_de_figura == box2d.e_polygonShape:
                     vertices = []
-                    
+
                     for v in figura.vertices:
                         pt = box2d.b2Mul(xform, v)
                         vertices.append((pt.x - pilas.mundo.camara.x, pt.y - pilas.mundo.camara.y))
-                        
+
                     lienzo.poligono(motor, vertices, color=colores.rojo, grosor=grosor, cerrado=True)
-                    
+
                 elif tipo_de_figura == box2d.e_circleShape:
                     lienzo.circulo(motor, cuerpo.position.x - pilas.mundo.camara.x, cuerpo.position.y - pilas.mundo.camara.y, figura.radius, colores.rojo, grosor=grosor)
                 else:
                     print "no puedo identificar el tipo de figura."
-        
+
     def crear_cuerpo(self, definicion_de_cuerpo):
         return self.mundo.CreateBody(definicion_de_cuerpo)
-    
+
     def crear_suelo(self, (ancho, alto), restitucion=0):
         self.suelo = Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
     def crear_techo(self, (ancho, alto), restitucion=0):
         self.techo = Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
-        
+
     def crear_paredes(self, (ancho, alto), restitucion=0):
         self.pared_izquierda = Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
         self.pared_derecha = Rectangulo(ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
-        
+
     def eliminar_suelo(self):
         if self.suelo:
             self.suelo.eliminar()
@@ -138,39 +140,39 @@ class Fisica(object):
         if self.techo:
             self.techo.eliminar()
             self.techo = None
-            
+
     def eliminar_paredes(self):
         if self.pared_izquierda:
             self.pared_derecha.eliminar()
             self.pared_izquierda.eliminar()
             self.pared_derecha = None
             self.pared_izquierda = None
-    
+
     def eliminar_figura(self, figura):
         self.figuras_a_eliminar.append(figura)
-        
+
     def obtener_distancia_al_suelo(self, x, y, dy):
-        """Obtiene la distancia hacia abajo desde el punto (x,y). 
-        
+        """Obtiene la distancia hacia abajo desde el punto (x,y).
+
         El valor de 'dy' tiene que ser positivo.
-        
+
         Si la funcion no encuentra obstaculos retornara
         dy, pero en paso contrario retornara un valor menor
         a dy.
         """
-        
+
         if dy < 0:
             raise Exception("El valor de 'dy' debe ser positivo, ahora vale '%f'." %(dy))
 
         delta = 0
-        
+
         while delta < dy:
-            
+
             if self.obtener_cuerpos_en(x, y-delta):
                 return delta
-            
+
             delta += 1
-            
+
         return delta
 
     def obtener_cuerpos_en(self, x, y):
@@ -185,27 +187,27 @@ class Fisica(object):
 
         if cuantos == 0:
             return []
-        
+
         lista_de_cuerpos = []
-        
+
         for s in cuerpos:
             cuerpo = s.GetBody()
-                    
+
             if s.TestPoint(cuerpo.GetXForm(), (x, y)):
                 lista_de_cuerpos.append(cuerpo)
 
         return lista_de_cuerpos
-    
+
     def definir_gravedad(self, x, y):
         pilas.fisica.definir_gravedad(x, y)
 
 class Figura(object):
     """Representa un figura que simula un cuerpo fisico.
-    
+
     Esta figura es abstracta, no está pensada para crear
     objetos a partir de ella. Se usa como base para el resto
     de las figuras cómo el Circulo o el Rectangulo simplemente."""
-    
+
     def __init__(self):
         self.id = pilas.utils.obtener_uuid()
 
@@ -230,10 +232,10 @@ class Figura(object):
 
     def definir_rotacion(self, angulo):
         self._cuerpo.SetXForm((self.x, self.y), math.radians(-angulo))
-        
+
     def impulsar(self, dx, dy):
         self._cuerpo.ApplyImpulse((dx, dy), self._cuerpo.GetWorldCenter())
-        
+
     def obtener_velocidad_lineal(self):
         velocidad = self._cuerpo.GetLinearVelocity()
         return (velocidad.x, velocidad.y)
@@ -254,15 +256,15 @@ class Figura(object):
 
     def empujar(self, dx=None, dy=None):
         self.definir_velocidad_lineal(dx, dy)
-        
+
     def eliminar(self):
         """Quita una figura de la simulación."""
         pilas.mundo.fisica.eliminar_figura(self._cuerpo)
-        
+
     x = property(obtener_x, definir_x, doc="define la posición horizontal.")
     y = property(obtener_y, definir_y, doc="define la posición vertical.")
     rotacion = property(obtener_rotacion, definir_rotacion, doc="define la rotacion.")
-    
+
 class Circulo(Figura):
     """Representa un cuerpo de circulo.
 
@@ -280,25 +282,25 @@ class Circulo(Figura):
         >>> mono.imitar(circulo_dinamico)
     """
 
-    def __init__(self, x, y, radio, dinamica=True, densidad=1.0, 
-            restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
+    def __init__(self, x, y, radio, dinamica=True, densidad=1.0,
+            restitucion=0.56, friccion=10.5, amortiguacion=0.1,
             fisica=None):
 
         Figura.__init__(self)
-        
+
         if not fisica:
             fisica = pilas.mundo.fisica
-            
+
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
         bodyDef.linearDamping = amortiguacion
-        
+
         userData = { 'id' : self.id }
-        
+
         #userData = { 'color' : self.parent.get_color() }
         #bodyDef.userData = userData
         #self.parent.element_count += 1
-        
+
         body = fisica.crear_cuerpo(bodyDef)
 
         # Create the Body
@@ -312,9 +314,9 @@ class Circulo(Figura):
         circleDef.restitution = restitucion
         circleDef.friction = friccion
         circleDef.userData = userData
-        
+
         body.CreateShape(circleDef)
-        body.SetMassFromShapes()    
+        body.SetMassFromShapes()
 
         self._cuerpo = body
 
@@ -329,25 +331,25 @@ class Rectangulo(Figura):
         >>> actor.imitar(rect)
     """
 
-    def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0, 
-            restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
+    def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
+            restitucion=0.56, friccion=10.5, amortiguacion=0.1,
             fisica=None):
 
         Figura.__init__(self)
-        
+
         if not fisica:
             fisica = pilas.mundo.fisica
 
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
         bodyDef.linearDamping = amortiguacion
-        
+
         userData = { 'id' : self.id }
         #bodyDef.userData = userData
         #userData = { 'color' : self.parent.get_color() }
         #bodyDef.userData = userData
         #self.parent.element_count += 1
-        
+
         body = fisica.crear_cuerpo(bodyDef)
 
         # Create the Body
@@ -356,7 +358,7 @@ class Rectangulo(Figura):
 
         # Add a shape to the Body
         boxDef = box2d.b2PolygonDef()
-        
+
         boxDef.SetAsBox(ancho/2, alto/2, (0,0), 0)
         boxDef.density = densidad
         boxDef.restitution = restitucion
@@ -364,7 +366,7 @@ class Rectangulo(Figura):
         boxDef.userData = userData
         body.CreateShape(boxDef)
 
-        body.SetMassFromShapes()    
+        body.SetMassFromShapes()
 
         self._cuerpo = body
 
@@ -379,18 +381,18 @@ class Poligono(Figura):
     Por ejemplo:
 
         >>> pilas.fisica.Poligono([(100, 2), (-50, 0), (-100, 100.0)])
-        
+
     """
-    
-    def __init__(self, puntos, dinamica=True, densidad=1.0, 
-            restitucion=0.56, friccion=10.5, amortiguacion=0.1, 
+
+    def __init__(self, puntos, dinamica=True, densidad=1.0,
+            restitucion=0.56, friccion=10.5, amortiguacion=0.1,
             fisica=None):
 
         Figura.__init__(self)
-        
+
         if not fisica:
             fisica = pilas.mundo.fisica
-            
+
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=puntos[0]
         bodyDef.linearDamping = amortiguacion
@@ -413,7 +415,7 @@ class Poligono(Figura):
         poligono_def.density = densidad
         poligono_def.restitution = restitucion
         poligono_def.friction = friccion
-        
+
         poligono_def.userData = userData
         #poligono_def.setVertices(puntos)
         #poligono_def.vertexCount = len(puntos)
@@ -421,7 +423,7 @@ class Poligono(Figura):
         #for indice, punto in enumerate(puntos):
         #    poligono_def.setVertex(indice, punto[0], punto[1])
         #    #poligono_def.vertices[indice] = punto
-        
+
         body.CreateShape(poligono_def)
         body.SetMassFromShapes()
         self._cuerpo = body
@@ -467,10 +469,10 @@ class ConstanteDeDistancia():
     def __init__(self, figura_1, figura_2, fisica=None):
         if not fisica:
             fisica = pilas.mundo.fisica
-            
+
         if not isinstance(figura_1, Figura) or not isinstance(figura_2, Figura):
             raise Exception("Las dos figuras tienen que ser objetos de la clase Figura.")
-        
+
         constante = box2d.b2DistanceJointDef()
         constante.Initialize(figura_1._cuerpo, figura_2._cuerpo, (0,0), (0,0))
         constante.collideConnected = True
@@ -483,8 +485,8 @@ class ConstanteDeDistancia():
 def definir_gravedad(x=0, y=-90):
     pilas.mundo.fisica.mundo.gravity = (x, y)
 
-class ObjetosContactListener(box2d.b2ContactListener):
-    
+class ObjetosContactListener(contact_listener):
+
     def __init__(self):
         box2d.b2ContactListener.__init__(self)
 
