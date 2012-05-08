@@ -9,11 +9,12 @@
 # Deslizador creado por Pablo Garrido
 
 import pilas
+from pilas.interfaz.base_interfaz import BaseInterfaz
 
-class Selector(pilas.actores.Actor):
+class Selector(BaseInterfaz):
     
     def __init__(self, texto, x=0, y=0, ancho=200):
-        pilas.actores.Actor.__init__(self, x=x, y=y)
+        BaseInterfaz.__init__(self, x=x, y=y)
         
         self.texto = texto
         self._cargar_lienzo(ancho)
@@ -49,8 +50,9 @@ class Selector(pilas.actores.Actor):
         self.centro = ("centro", "centro")
                 
     def detection_click_mouse(self, click):
-        if self.colisiona_con_un_punto(click.x, click.y):
-            self.alternar_seleccion()
+        if (self.activo):
+            if self.colisiona_con_un_punto(click.x, click.y):
+                self.alternar_seleccion()
                 
     def alternar_seleccion(self):
         if self.seleccionado:

@@ -7,11 +7,12 @@
 # website - http://www.pilas-engine.com.ar
 
 import pilas
+from pilas.interfaz.base_interfaz import BaseInterfaz
 
-class Boton(pilas.actores.Actor):
+class Boton(BaseInterfaz):
     
     def __init__(self, texto="Sin texto", x=0, y=0, icono=None):
-        pilas.actores.Actor.__init__(self, x=x, y=y)
+        BaseInterfaz.__init__(self, x=x, y=y)
         self.texto = texto
         self._crear_imagenes_de_botones()
         self.centro = ("centro", "centro")
@@ -41,17 +42,19 @@ class Boton(pilas.actores.Actor):
         self.imagen = self.imagen_normal
 
     def cuando_mueve_el_mouse(self, evento):
-        if self.colisiona_con_un_punto(evento.x, evento.y):
-            self.imagen = self.imagen_sobre
-        else:
-            self.imagen = self.imagen_normal
+        if (self.activo):
+            if self.colisiona_con_un_punto(evento.x, evento.y):
+                self.imagen = self.imagen_sobre
+            else:
+                self.imagen = self.imagen_normal
 
     def cuando_hace_click(self, evento):
-        if self.imagen == self.imagen_sobre:
-            self.imagen = self.imagen_click
-
-            if self.funcion:
-                self.funcion()
+        if (self.activo):
+            if self.imagen == self.imagen_sobre:
+                self.imagen = self.imagen_click
+    
+                if self.funcion:
+                    self.funcion()
         
     def _crear_imagen(self, tema, texto, ancho, dx):
         "Genera una imagen de superficie de boton."

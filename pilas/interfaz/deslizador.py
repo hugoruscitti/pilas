@@ -10,15 +10,16 @@
 
 import pilas
 from pilas.actores import Actor
+from pilas.interfaz.base_interfaz import BaseInterfaz
 
 
-class Deslizador(Actor):
+class Deslizador(BaseInterfaz):
 
     def __init__(self, x=0, y=0, ruta_barra = 'interfaz/barra.png',
                                  ruta_deslizador = 'interfaz/deslizador.png'):
 
         self.deslizador = None
-        Actor.__init__(self, ruta_barra, x=x, y=y)
+        BaseInterfaz.__init__(self, ruta_barra, x=x, y=y)
         self.deslizador = Actor(ruta_deslizador, self.x, self.y)
         self.deslizador.fijo = True
         self.centro = ('izquierda', 'centro')
@@ -62,28 +63,37 @@ class Deslizador(Actor):
             i(valor)
     
     def click_del_mouse(self, click):
- 
-        if self.deslizador.colisiona_con_un_punto(click.x, click.y):
-            self.click = True
+        if (self.activo):
+            if self.deslizador.colisiona_con_un_punto(click.x, click.y):
+                self.click = True
 
     def movimiento_del_mouse(self, movimiento):
-        if self.click == True:
-            ancho = self.obtener_ancho()
-            factor = (self.deslizador.x + (ancho - abs(self.x))) / ancho - 1
-            self.progreso = factor
-            
-            self.ejecutar_funciones(factor)
-
-            self.deslizador.x = movimiento.x
-
-            if self.deslizador.x <= self.limite_izq:
-                self.deslizador.x = self.limite_izq
-
-            elif self.deslizador.x >= self.limite_der:
-                self.deslizador.x = self.limite_der
-
-            self.posicion_relativa_x = self.deslizador.x - self.x
+        if (self.activo):
+            if self.click == True:
+                ancho = self.obtener_ancho()
+                factor = (self.deslizador.x + (ancho - abs(self.x))) / ancho - 1
+                self.progreso = factor
+                
+                self.ejecutar_funciones(factor)
+    
+                self.deslizador.x = movimiento.x
+    
+                if self.deslizador.x <= self.limite_izq:
+                    self.deslizador.x = self.limite_izq
+    
+                elif self.deslizador.x >= self.limite_der:
+                    self.deslizador.x = self.limite_der
+    
+                self.posicion_relativa_x = self.deslizador.x - self.x
                 
 
     def termino_del_click(self, noclick):
         self.click = False
+        
+    def mostrar(self):
+        BaseInterfaz.mostrar(self)
+        self.deslizador.transparencia = 0
+
+    def ocultar(self):
+        BaseInterfaz.ocultar(self)
+        self.deslizador.transparencia = 100

@@ -8,11 +8,12 @@
 
 import pilas
 import re
+from pilas.interfaz.base_interfaz import BaseInterfaz
 
-class IngresoDeTexto(pilas.actores.Actor):
+class IngresoDeTexto(BaseInterfaz):
     
     def __init__(self, texto_inicial="", x=0, y=0, ancho=300, limite_de_caracteres=20, icono=None):
-        pilas.actores.Actor.__init__(self, x=x, y=y)
+        BaseInterfaz.__init__(self, x=x, y=y)
         self.texto = texto_inicial
         self.cursor = ""
         self._cargar_lienzo(ancho)
@@ -28,16 +29,16 @@ class IngresoDeTexto(pilas.actores.Actor):
         self.limite_de_caracteres = limite_de_caracteres
         self.cualquier_caracter()
         
-        self.tiene_el_foco = False
-
         pilas.eventos.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
-        pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
         pilas.mundo.agregar_tarea_siempre(0.40, self._actualizar_cursor)
         self.fijo = True
         
     def _actualizar_cursor(self):
-        if self.cursor == "":
-            self.cursor = "_"
+        if (self.tiene_el_foco):
+            if self.cursor == "":
+                self.cursor = "_"
+            else:
+                self.cursor = ""
         else:
             self.cursor = ""
             
@@ -54,7 +55,7 @@ class IngresoDeTexto(pilas.actores.Actor):
         self.caracteres_permitidos = re.compile("[a-z]+")
         
     def cuando_pulsa_una_tecla(self, evento):
-        if (self.tiene_el_foco):
+        if (self.tiene_el_foco and self.activo):
             if evento.codigo == '\x08' or evento.texto == '\x08':
                 # Indica que se quiere borrar un caracter
                 self.texto = self.texto[:-1]
@@ -71,10 +72,6 @@ class IngresoDeTexto(pilas.actores.Actor):
             
             self._actualizar_imagen()
         
-    def cuando_hace_click(self, evento):
-        if self.colisiona_con_un_punto(evento.x, evento.y):
-            self.tiene_el_foco = True
-                
     def _cargar_lienzo(self, ancho):
         self.imagen = pilas.imagenes.cargar_superficie(ancho, 30)
         

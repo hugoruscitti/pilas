@@ -7,12 +7,12 @@
 # website - http://www.pilas-engine.com.ar
 
 import pilas
-from pilas.actores import Actor
+from pilas.interfaz.base_interfaz import BaseInterfaz
 
-class ListaSeleccion(Actor):
+class ListaSeleccion(BaseInterfaz):
 
     def __init__(self, opciones, funcion_a_ejecutar=None, x=0, y=0):
-        Actor.__init__(self, x=x, y=y)
+        BaseInterfaz.__init__(self, x=x, y=y)
         self.opciones = opciones
         self.funcion_a_ejecutar = funcion_a_ejecutar
         
@@ -36,17 +36,19 @@ class ListaSeleccion(Actor):
             self.imagen.texto(opcion, 15, y=12 + indice * 20, color=pilas.colores.negro)
         
     def cuando_mueve_el_mouse(self, evento):
-        if self.colisiona_con_un_punto(evento.x, evento.y):
-            opcion_seleccionada = self._detectar_opcion_bajo_el_mouse(evento)
-            self._pintar_opciones(opcion_seleccionada)
+        if (self.activo):
+            if self.colisiona_con_un_punto(evento.x, evento.y):
+                opcion_seleccionada = self._detectar_opcion_bajo_el_mouse(evento)
+                self._pintar_opciones(opcion_seleccionada)
 
     def cuando_hace_click_con_el_mouse(self, evento):
-        if self.colisiona_con_un_punto(evento.x, evento.y):
-            opcion = self._detectar_opcion_bajo_el_mouse(evento)
-            if self.funcion_a_ejecutar:
-                self.funcion_a_ejecutar(self.opciones[opcion])
-            else:
-                print "Cuidado, no has definido funcion a ejecutar en la lista de seleccion."
+        if (self.activo):
+            if self.colisiona_con_un_punto(evento.x, evento.y):
+                opcion = self._detectar_opcion_bajo_el_mouse(evento)
+                if self.funcion_a_ejecutar:
+                    self.funcion_a_ejecutar(self.opciones[opcion])
+                else:
+                    print "Cuidado, no has definido funcion a ejecutar en la lista de seleccion."
 
     def _detectar_opcion_bajo_el_mouse(self, evento):
         opcion = int((self.arriba - evento.y ) / 20)
