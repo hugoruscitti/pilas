@@ -216,7 +216,7 @@ Cambiando la gravedad interactivamente
 
 Por defecto, la gravedad del escenario es de (0, -90), esto
 significa que los objetos "caen" hacia abajo, y lo hacen con
-una aceleración de 90 (mts por segundo).
+una aceleración de 90 mts/s^2 (metros sobre segundos cuadrados).
 
 Pero no estás obligado a que esto sea siempre así, de hecho
 si quieres hacer un juego que transcurra en el espacio seguramente

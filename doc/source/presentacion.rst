@@ -21,15 +21,14 @@ y elaborando un juego.
 ---------------
 
 Actualmente existen muchas formas de hacer videojuegos, pilas
-es una de esas tantas formas. Solo que tienen características
-que a los desarrolladores del motor nos parecen sobresalientes
-y muy valiosas.
+es una de esas tantas formas. Aunque pilas, para nosotros, 
+tiene ciertas características que son sobresalientes y muy novedosas.
 
 Pilas está focalizado en ofrecer ayuda a los
-desarrolladores de juegos casuales y novatos quieran
+desarrolladores de juegos casuales y novatos que quieran
 hacer sus primeros videojuegos, ofreciendo una
 colección importante de actores, escenas prediseñadas
-y rutinas para facilitar las tareas mas comunes
+y rutinas para facilitar las tareas más comunes
 del desarrollo.
 
 Esos son los objetivos generales de este proyecto, acercar
