@@ -13,7 +13,9 @@ try:
     import Box2D as box2d
     contact_listener = box2d.b2ContactListener
 except ImportError:
-    contact_listener = obj
+    class Tmp:
+        pass
+    contact_listener = Tmp
     print "No esta disponible box2d, se deshabilitara la fisica."
 
 import math
