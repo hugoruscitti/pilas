@@ -286,7 +286,7 @@ class Circulo(Figura):
 
     def __init__(self, x, y, radio, dinamica=True, densidad=1.0,
             restitucion=0.56, friccion=10.5, amortiguacion=0.1,
-            fisica=None):
+            fisica=None, sin_rotacion=False):
 
         Figura.__init__(self)
 
@@ -296,6 +296,7 @@ class Circulo(Figura):
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
         bodyDef.linearDamping = amortiguacion
+        bodyDef.fixedRotation = sin_rotacion
 
         userData = { 'id' : self.id }
 
@@ -335,7 +336,7 @@ class Rectangulo(Figura):
 
     def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
             restitucion=0.56, friccion=10.5, amortiguacion=0.1,
-            fisica=None):
+            fisica=None, sin_rotacion=False):
 
         Figura.__init__(self)
 
@@ -345,6 +346,7 @@ class Rectangulo(Figura):
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
         bodyDef.linearDamping = amortiguacion
+        bodyDef.fixedRotation = sin_rotacion
 
         userData = { 'id' : self.id }
         #bodyDef.userData = userData
@@ -388,7 +390,7 @@ class Poligono(Figura):
 
     def __init__(self, puntos, dinamica=True, densidad=1.0,
             restitucion=0.56, friccion=10.5, amortiguacion=0.1,
-            fisica=None):
+            fisica=None, sin_rotacion=False):
 
         Figura.__init__(self)
 
@@ -398,6 +400,8 @@ class Poligono(Figura):
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=puntos[0]
         bodyDef.linearDamping = amortiguacion
+        bodyDef.fixedRotation = sin_rotacion
+        
         body = fisica.crear_cuerpo(bodyDef)
 
         userData = { 'id' : self.id }
@@ -479,7 +483,6 @@ class ConstanteDeDistancia():
         constante.Initialize(figura_1._cuerpo, figura_2._cuerpo, (0,0), (0,0))
         constante.collideConnected = True
         self.constante = fisica.mundo.CreateJoint(constante)
-
 
     def eliminar(self):
         pilas.mundo.fisica.mundo.DestroyJoint(self.constante_mouse)
