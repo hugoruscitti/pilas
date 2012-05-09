@@ -472,7 +472,7 @@ class ConstanteDeDistancia():
     las figuras en el momento en que se establece la constante.
     """
 
-    def __init__(self, figura_1, figura_2, fisica=None):
+    def __init__(self, figura_1, figura_2, fisica=None, con_colision=True):
         if not fisica:
             fisica = pilas.mundo.fisica
 
@@ -481,7 +481,7 @@ class ConstanteDeDistancia():
 
         constante = box2d.b2DistanceJointDef()
         constante.Initialize(figura_1._cuerpo, figura_2._cuerpo, (0,0), (0,0))
-        constante.collideConnected = True
+        constante.collideConnected = con_colision
         self.constante = fisica.mundo.CreateJoint(constante)
 
     def eliminar(self):

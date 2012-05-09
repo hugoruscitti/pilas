@@ -53,27 +53,43 @@ class Colisiones:
         for a in grupo_a:
             for b in grupo_b:
                 try:
-                    if a.figura.id == id_actor_a and b.figura.id == id_actor_b:
+                    if self._es_objeto_fisico_sin_actor_asociado(a):
+                        a_id = a.figura.id
+                    else:
+                        a_id = a.id
+                    
+                    if self._es_objeto_fisico_sin_actor_asociado(b):
+                        b_id = b.figura.id
+                    else:
+                        b_id = b.id
+
+                    if a_id == id_actor_a and b_id == id_actor_b:
                         funcion_a_llamar(a, b)
 
                         # verifica si alguno de los dos objetos muere en la colision.
-                        if a not in pilas.actores.todos:
-                            if a in grupo_a:
-                                list.remove(grupo_a, a)
+                        if (self._es_objeto_fisico_sin_actor_asociado(a)):
+                            if a not in pilas.actores.todos:
+                                if a in grupo_a:
+                                    list.remove(grupo_a, a)
 
-                        if b not in pilas.actores.todos:
-                            if b in grupo_b:
-                                list.remove(grupo_b, b)
+                        if (self._es_objeto_fisico_sin_actor_asociado(b)):
+                            if b not in pilas.actores.todos:
+                                if b in grupo_b:
+                                    list.remove(grupo_b, b)
+                        
                 except Exception as e:
                     list.remove(grupo_a, a)
                     raise e
+
+    def _es_objeto_fisico_sin_actor_asociado(self, objeto):
+        return hasattr(objeto, 'figura')
 
     def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
         "Agrega dos listas de actores para analizar colisiones."
 
         if not isinstance(grupo_a, list):
             grupo_a = [grupo_a]
-
+            
         if not isinstance(grupo_b, list):
             grupo_b = [grupo_b]
 
