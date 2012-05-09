@@ -53,12 +53,12 @@ class Colisiones:
         for a in grupo_a:
             for b in grupo_b:
                 try:
-                    if self._es_objeto_fisico_sin_actor_asociado(a):
+                    if self._es_objeto_fisico_con_actor_asociado(a):
                         a_id = a.figura.id
                     else:
                         a_id = a.id
                     
-                    if self._es_objeto_fisico_sin_actor_asociado(b):
+                    if self._es_objeto_fisico_con_actor_asociado(b):
                         b_id = b.figura.id
                     else:
                         b_id = b.id
@@ -67,12 +67,12 @@ class Colisiones:
                         funcion_a_llamar(a, b)
 
                         # verifica si alguno de los dos objetos muere en la colision.
-                        if (self._es_objeto_fisico_sin_actor_asociado(a)):
+                        if (self._es_objeto_fisico_con_actor_asociado(a)):
                             if a not in pilas.actores.todos:
                                 if a in grupo_a:
                                     list.remove(grupo_a, a)
 
-                        if (self._es_objeto_fisico_sin_actor_asociado(b)):
+                        if (self._es_objeto_fisico_con_actor_asociado(b)):
                             if b not in pilas.actores.todos:
                                 if b in grupo_b:
                                     list.remove(grupo_b, b)
@@ -81,7 +81,7 @@ class Colisiones:
                     list.remove(grupo_a, a)
                     raise e
 
-    def _es_objeto_fisico_sin_actor_asociado(self, objeto):
+    def _es_objeto_fisico_con_actor_asociado(self, objeto):
         return hasattr(objeto, 'figura')
 
     def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
