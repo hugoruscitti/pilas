@@ -18,3 +18,10 @@ pilas.egg-info/*
 # switch to regexp syntax.
 syntax: regexp
 ^\.pc/
+
+syntax: glob
+.settings/*
+syntax: regexp
+^\.project$
+syntax: regexp
+^\.pydevproject$
