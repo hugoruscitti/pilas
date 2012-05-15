@@ -27,8 +27,9 @@ class Colisiones:
             for b in grupo_b:
                 try:
 
-                    if id(a) != id(b) and utils.colisionan(a, b):
-                        funcion_a_llamar(a, b)
+                    if not(hasattr(a, 'figura')) and not(hasattr(b, 'figura')): 
+                        if id(a) != id(b) and utils.colisionan(a, b):                        
+                            funcion_a_llamar(a, b)
 
                         # verifica si alguno de los dos objetos muere en la colision.
                         if a not in pilas.actores.todos:
