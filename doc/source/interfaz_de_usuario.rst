@@ -9,6 +9,40 @@ Este submódulo tiene objetos basados en actores, así que
 lo que conoces sobre actores vas a poder usarlo para construir
 una interfaz.
 
+Propiedades comunes
+-------------------
+
+Todos lo elementos de la interfaz comparten una serie de propiedades como:
+
+:activar: Permite que un control sea seleccionado y que el usuario interactue
+ con él. Por defecto todos los controles están activados.
+
+.. code-block:: python
+
+    entrada = pilas.interfaz.IngresoDeTexto()
+    entrada.texto = "Texto inicial"
+    
+    entrada.activar()
+
+:descativar: Bloquea el control para que el usuario no pueda utilizarlo.
+ El control se queda semi-transparente para indicar este estado. 
+
+.. code-block:: python
+   
+    entrada.desactivar()
+
+:ocultar: Oculta el control en la pantalla.
+
+.. code-block:: python
+   
+    entrada.ocultar()
+
+:mostrar: Muestra el control y lo activa.
+
+.. code-block:: python
+   
+    entrada.mostrar()
+
 
 Deslizador
 ----------
