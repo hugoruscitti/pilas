@@ -1,6 +1,61 @@
 Guía de preguntas avanzadas
 ===========================
 
+
+Obtengo errores en ingles al iniciar pilas ¿Que anda mal?
+---------------------------------------------------------
+
+Si al ejecutar pilas, ves un mensaje cómo el siguiente::
+
+    X Error: RenderBadPicture (invalid Picture parameter) 163
+    Extension: 149 (RENDER)
+    Minor opcode: 8 (RenderComposite)
+    Resource id: 0x4a0000e
+
+Es muy probable que se deba al adaptador de video. Una forma
+de solucionarlo es cambiar la linea de código::
+
+    pilas.iniciar()
+
+por::
+
+    pilas.iniciar(usar_motor='qt')
+
+El motivo de este problema, es que pilas usa una biblioteca llamada
+OpenGL, y algunos equipos no lo tienen disponible o con algunos detalles
+de configuración.
+
+
+¿Que es OpenGL?, ¿Cómo se configura en mi equipo?
+-------------------------------------------------
+
+OpenGL es una biblioteca que usamos en pilas para que los gráficos
+sean mucho mas rápidos y fluidos. OpenGL utiliza aceleración de hardware
+y rutinas de optimización avanzadas.
+
+El punto es, que tal vez tu equipo no lo soporte, o no esté correctamente
+configurado.
+
+Para saber si tu equipo tiene soporte para opengl, es conveniente que
+ejecutes el comando::
+
+    glxinfo | grep rende
+
+Si tu equipo tiene soporte para opengl, tendrías que ver un mensaje
+cómo el siguiente::
+
+    direct rendering: Yes
+    OpenGL renderer string: Quadro FX 570/PCI/SSE2
+
+
+Luego, si no tienes soporte, puedes ejecutar el siguiente comando
+y volver a intentar::
+
+    sudo apt-get install freeglut3 freeglut3-dev
+
+
+
+
 Obtengo errores de AttributeError por parte de pilas
 ----------------------------------------------------
 
