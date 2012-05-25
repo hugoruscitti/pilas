@@ -9,7 +9,7 @@
 import pilas
 from pilas.actores import Actor
 from pilas import colores
-            
+
 class Pizarra(Actor):
     """Representa una superficie de dibujo inicialmente transparente.
 
@@ -63,3 +63,6 @@ class Pizarra(Actor):
     def poligono(self, puntos, color=pilas.colores.negro, grosor=1):
         puntos = [self.obtener_coordenada_fisica(*p) for p in puntos]
         self.imagen.poligono(puntos, color, grosor)
+
+    def limpiar(self):
+        self.imagen.limpiar()
