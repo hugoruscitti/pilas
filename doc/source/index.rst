@@ -54,6 +54,8 @@ Recorrido modulos avanzados:
     habilidades.rst
 
     depurando.rst
+    
+    pilas_en_pyqt.rst
 
 
 Referencia completa (API):
