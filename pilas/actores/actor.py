@@ -66,7 +66,7 @@ class Actor(object, Estudiante):
         self.centro = ('centro', 'centro')
 
         self.id = ""
-        
+
         self.x = x
         self.y = y
         self.transparencia = 0
@@ -87,11 +87,11 @@ class Actor(object, Estudiante):
         if type(y) == str:
             if y not in ARRIBA + CENTRO + ABAJO:
                 raise Exception("No puedes definir '%s' como eje vertical." %(y))
-            y = self._interpretar_y_convertir_posicion(y, self.obtener_alto())            
+            y = self._interpretar_y_convertir_posicion(y, self.obtener_alto())
 
         self._centro = (x, y)
         self._actor.definir_centro(x, y)
-    
+
     def _interpretar_y_convertir_posicion(self, posicion, maximo_valor):
         if posicion in IZQUIERDA + ARRIBA:
             return 0
@@ -104,7 +104,7 @@ class Actor(object, Estudiante):
 
     def obtener_centro(self):
         return self._centro
-    
+
     centro = property(obtener_centro, definir_centro, doc="""
         Cambia la posición del punto (x, y) dentro de actor.
 
@@ -254,7 +254,7 @@ class Actor(object, Estudiante):
         """Elimina el actor de la lista de actores que se imprimen en pantalla."""
         self.destruir()
         self._eliminar_anexados()
-    
+
     def destruir(self):
         """Elimina a un actor pero de manera inmediata."""
         pilas.actores.utils.eliminar_un_actor(self)
@@ -262,8 +262,8 @@ class Actor(object, Estudiante):
         self.eliminar_comportamientos()
 
     def actualizar(self):
-        """Actualiza el estado del actor. 
-        
+        """Actualiza el estado del actor.
+
         Este metodo se llama una vez por frame, y generalmente se suele
         usar para implementar el comportamiento del actor.
 
@@ -297,7 +297,7 @@ class Actor(object, Estudiante):
         self.x = x + (self.centro[0] * self.escala)
 
     izquierda = property(get_izquierda, set_izquierda)
-    
+
     def get_derecha(self):
         return self.izquierda + self.obtener_ancho()
 
@@ -313,7 +313,7 @@ class Actor(object, Estudiante):
     @pilas.utils.interpolable
     def set_abajo(self, y):
         self.set_arriba(y + self.alto)
-        
+
     abajo = property(get_abajo, set_abajo)
 
     def get_arriba(self):
@@ -407,6 +407,7 @@ class Actor(object, Estudiante):
             x.eliminar()
 
     def esta_fuera_de_la_pantalla(self):
+        "Indica si el actor está fuera del area visible de la pantalla."
         izquierda, derecha, arriba, abajo = pilas.mundo.camara.obtener_area_visible()
         return self.derecha < izquierda or self.izquierda > derecha or self.abajo > arriba or self.arriba < abajo
 
