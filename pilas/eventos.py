@@ -165,6 +165,7 @@ class ProxyMetodo(object):
 
                                                     # Argumentos:
                                                     # -----------
+
 mueve_camara = Evento('mueve_camara')               # ['x', 'y', 'dx', 'dy']
 mueve_mouse = Evento('mueve_mouse')                 # ['x', 'y', 'dx', 'dy']
 click_de_mouse = Evento('click_de_mouse')           # ['button', 'x', 'y']
@@ -175,7 +176,6 @@ suelta_tecla = Evento('suelta_tecla')               # ['codigo', 'texto']
 pulsa_tecla_escape = Evento('pulsa_tecla_escape')   # []
 actualizar = Evento('actualizar')                   # []
 post_dibujar = Evento('post_dibujar')               # []
-
 # Se emite cuando el mundo ingresa o sale del modo depuracion (pulsando F12)
 inicia_modo_depuracion = Evento('inicia_modo_depuracion')        # []
 sale_modo_depuracion = Evento('sale_modo_depuracion')            # []
@@ -191,4 +191,3 @@ def imprimir_todos():
             print "Evento:", attributo.nombre
             attributo.imprimir_funciones_conectadas()
             print ""
-

@@ -136,7 +136,7 @@ def reiniciar():
 
 def avisar(mensaje):
     """Emite un mensaje en la ventana principal.
-t
+
     Este mensaje aparecerá en la parte inferior de la pantalla durante
     5 segundo, por ejemplo:
 
