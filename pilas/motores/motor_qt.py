@@ -194,8 +194,9 @@ class Grilla(Imagen):
 
 class Texto(Imagen):
 
-    def __init__(self, texto, magnitud, motor):
-        self._ancho, self._alto = motor.obtener_area_de_texto(texto, magnitud)
+    def __init__(self, texto, magnitud, motor, vertical=False):
+        self.vertical = vertical
+        self._ancho, self._alto = motor.obtener_area_de_texto(texto, magnitud, vertical)
 
     def _dibujar_pixmap(self, motor, dx, dy):
         nombre_de_fuente = motor.canvas.font().family()
@@ -205,7 +206,11 @@ class Texto(Imagen):
         r, g, b, a = self.color.obtener_componentes()
         motor.canvas.setPen(QtGui.QColor(r, g, b))
         motor.canvas.setFont(fuente)
-        lines = self.texto.split('\n')
+
+        if self.vertical:
+            lines = [t for t in self.texto]
+        else:
+            lines = self.texto.split('\n')
 
         for line in lines:
             motor.canvas.drawText(dx, dy + self._alto, line)
@@ -465,7 +470,7 @@ class Base(motor.Motor):
         self.media = Phonon.MediaObject()
         self.audio = Phonon.AudioOutput(Phonon.MusicCategory)
         self.path = Phonon.createPath(self.media, self.audio)
-        
+
         self._widgetlog = None
 
     def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
@@ -530,14 +535,14 @@ class Base(motor.Motor):
         if (actor.x + (actor.ancho - actor.obtener_centro()[0]) >= (self.camara_x - (self.ancho_original/2)) and
             actor.y + (actor.alto - actor.obtener_centro()[1]) >= (self.camara_y - (self.alto_original/2)) and
             actor.x - (actor.ancho - actor.obtener_centro()[0]) <= (self.camara_x + (self.ancho_original/2)) and
-            actor.y - (actor.alto - actor.obtener_centro()[1]) <= (self.camara_y + (self.alto_original/2))):            
-            return True        
+            actor.y - (actor.alto - actor.obtener_centro()[1]) <= (self.camara_y + (self.alto_original/2))):
+            return True
         else:
             return False
-         
-    
-    def obtener_texto(self, texto, magnitud):
-        return Texto(texto, magnitud, self)
+
+
+    def obtener_texto(self, texto, magnitud, vertical=False):
+        return Texto(texto, magnitud, self, vertical)
 
     def obtener_grilla(self, ruta, columnas, filas):
         return Grilla(ruta, columnas, filas)
@@ -733,7 +738,7 @@ class Base(motor.Motor):
         "Obtiene la proporcion de cambio de escala de la pantalla"
         return self.alto / float(self.alto_original)
 
-    def obtener_area_de_texto(self, texto, magnitud=10):
+    def obtener_area_de_texto(self, texto, magnitud=10, vertical=False):
         ancho = 0
         alto = 0
 
@@ -741,7 +746,10 @@ class Base(motor.Motor):
         fuente.setPointSize(magnitud)
         metrica = QtGui.QFontMetrics(fuente)
 
-        lineas = texto.split('\n')
+        if vertical:
+            lineas = [t for t in texto]
+        else:
+            lineas = texto.split('\n')
 
         for linea in lineas:
             ancho = max(ancho, metrica.width(linea))
@@ -776,7 +784,7 @@ class Base(motor.Motor):
             self._widgetlog = WidgetLog()
         else:
             self._widgetlog.show()
-        
+
         self._widgetlog.imprimir(params)
 
 class Widget(Base, QWidget):
@@ -831,23 +839,23 @@ class WidgetSugarGL(WidgetGL):
         pass
 
 class WidgetLog(QMainWindow):
-    """ Representa una ventana de log.    
+    """ Representa una ventana de log.
     Mediante pilas.log.imprimir() añadiremos elementos a esta ventana
     """
     def __init__(self):
         super(WidgetLog, self).__init__()
         self._initUI()
-        
-        self._ejecutando = True 
-        
+
+        self._ejecutando = True
+
     def _initUI(self):
-        
+
         self.setWindowTitle('Pilas Log')
 
         self.setWindowIcon(QtGui.QIcon(self._ruta_icono('tux.png')))
-        
+
         self.centralwidget = QtGui.QWidget(self)
-        
+
         accionSalir = QtGui.QAction(QtGui.QIcon(self._ruta_icono('door_out.png')), 'Salir', self)
         accionSalir.setShortcut('Ctrl+S')
         accionSalir.triggered.connect(self.close)
@@ -865,56 +873,56 @@ class WidgetLog(QMainWindow):
         accionResetear.triggered.connect(self._resetear)
 
         self.toolbar = self.addToolBar('Acciones')
-        self.toolbar.addAction(accionSalir) 
+        self.toolbar.addAction(accionSalir)
         self.toolbar.addAction(accionEjecutar)
         self.toolbar.addAction(accionPausar)
         self.toolbar.addAction(accionResetear)
-               
+
         hbox = QtGui.QHBoxLayout(self.centralwidget)
 
         self.treeView = QtGui.QTreeWidget(self.centralwidget)
-        
+
         self.treeView.setColumnCount(2)
-        
+
         cabecera = QtCore.QStringList()
         cabecera.append("Clave")
         cabecera.append("Valor")
-        
-        self.treeView.setHeaderLabels(cabecera)              
-                
+
+        self.treeView.setHeaderLabels(cabecera)
+
         hbox.addWidget(self.treeView)
-        
-        self.setCentralWidget(self.centralwidget)  
+
+        self.setCentralWidget(self.centralwidget)
 
         self._ejecutar()
-        
+
         self.setGeometry(50, 50, 250, 250)
         self.show()
-        
+
     def _ejecutar(self):
         self._ejecutando = True
         self.statusBar().showMessage('Ejecutando')
-        
+
     def _pausar(self):
         self._ejecutando = False
         self.statusBar().showMessage('Pausado')
-        
+
     def _resetear(self):
         self.treeView.clear()
         self._ejecutar()
-            
+
     def _ruta_icono(self, icono):
         return os.path.join('..', '..', '..', 'data' , 'iconos', icono)
-    
+
     def imprimir(self, params):
         if (self._ejecutando):
             for elemento in params:
                 self._insertar_elemento(elemento)
-            
-            self.treeView.header().setResizeMode(3)                         
-    
+
+            self.treeView.header().setResizeMode(3)
+
     def _insertar_elemento(self, elemento, elemento_padre=None):
-        
+
         if (self._contiene_diccionario(elemento)):
             if (hasattr(elemento, '__class__')):
                 if (elemento.__class__.__name__ != 'dict'):
@@ -923,30 +931,30 @@ class WidgetLog(QMainWindow):
                     padre = None
             else:
                 padre = None
-                
+
             for key, value in self._obtener_diccionario(elemento):
-                if self._contiene_diccionario(value):                    
+                if self._contiene_diccionario(value):
                     self._insertar_elemento(value, self._insertar_texto_en_lista(key, padre))
                 else:
                     self._insertar_diccionario_en_lista(key, value, padre)
         else:
-            self._insertar_texto_en_lista(str(elemento))                
-        
-        
+            self._insertar_texto_en_lista(str(elemento))
+
+
     def _contiene_diccionario(self, valor):
         if hasattr(valor, '__dict__'):
             return True
         elif type(valor) is dict:
             return True
         else:
-            return False 
+            return False
 
     def _obtener_diccionario(self, valor):
         if hasattr(valor, '__dict__'):
             return valor.__dict__.items()
         elif type(valor) is dict:
             return valor.items()
-    
+
     def _insertar_texto_en_lista(self, texto, itemPadre=None):
         if (itemPadre == None):
             item = QtGui.QTreeWidgetItem(self.treeView)
@@ -954,7 +962,7 @@ class WidgetLog(QMainWindow):
             item = QtGui.QTreeWidgetItem(itemPadre)
         item.setText(0, str(texto))
         return item
-            
+
     def _insertar_diccionario_en_lista(self, clave, valor, itemPadre=None):
         if (itemPadre == None):
             item = QtGui.QTreeWidgetItem(self.treeView)
@@ -963,7 +971,7 @@ class WidgetLog(QMainWindow):
         item.setText(0, clave)
         item.setText(1, str(valor))
         return item
-    
+
 class Motor(object):
     """Representa la ventana principal de pilas.
 
@@ -994,8 +1002,8 @@ class Motor(object):
             self.widget = WidgetSugarGL()
 
         self.widgetlog = None
-        
-        
+
+
     def __getattr__(self, method):
         "Delega todos los pedidos de funcionalidad al widget interno."
         return getattr(self.widget, method)

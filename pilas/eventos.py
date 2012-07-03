@@ -181,7 +181,6 @@ inicia_modo_depuracion = Evento('inicia_modo_depuracion')        # []
 sale_modo_depuracion = Evento('sale_modo_depuracion')            # []
 actualiza_modo_depuracion = Evento('actualiza_modo_depuracion')  # []
 
-
 def imprimir_todos():
     "Muestra en consola los eventos activos y a quienes invocan"
     import pilas
