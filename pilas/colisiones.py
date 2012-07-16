@@ -26,19 +26,17 @@ class Colisiones:
         for a in grupo_a:
             for b in grupo_b:
                 try:
+                    if id(a) != id(b) and utils.colisionan(a, b):
+                        funcion_a_llamar(a, b)
 
-                    if not(hasattr(a, 'figura')) and not(hasattr(b, 'figura')): 
-                        if id(a) != id(b) and utils.colisionan(a, b):                        
-                            funcion_a_llamar(a, b)
+                    # verifica si alguno de los dos objetos muere en la colision.
+                    if a not in pilas.actores.todos:
+                        if a in grupo_a:
+                            list.remove(grupo_a, a)
 
-                        # verifica si alguno de los dos objetos muere en la colision.
-                        if a not in pilas.actores.todos:
-                            if a in grupo_a:
-                                list.remove(grupo_a, a)
-
-                        if b not in pilas.actores.todos:
-                            if b in grupo_b:
-                                list.remove(grupo_b, b)
+                    if b not in pilas.actores.todos:
+                        if b in grupo_b:
+                            list.remove(grupo_b, b)
                 except Exception as e:
                     list.remove(grupo_a, a)
                     raise e
@@ -58,7 +56,7 @@ class Colisiones:
                         a_id = a.figura.id
                     else:
                         a_id = a.id
-                    
+
                     if self._es_objeto_fisico_con_actor_asociado(b):
                         b_id = b.figura.id
                     else:
@@ -77,7 +75,7 @@ class Colisiones:
                             if b not in pilas.actores.todos:
                                 if b in grupo_b:
                                     list.remove(grupo_b, b)
-                        
+
                 except Exception as e:
                     list.remove(grupo_a, a)
                     raise e
@@ -90,7 +88,7 @@ class Colisiones:
 
         if not isinstance(grupo_a, list):
             grupo_a = [grupo_a]
-            
+
         if not isinstance(grupo_b, list):
             grupo_b = [grupo_b]
 

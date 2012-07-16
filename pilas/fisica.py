@@ -401,7 +401,7 @@ class Poligono(Figura):
         bodyDef.position=puntos[0]
         bodyDef.linearDamping = amortiguacion
         bodyDef.fixedRotation = sin_rotacion
-        
+
         body = fisica.crear_cuerpo(bodyDef)
 
         userData = { 'id' : self.id }
