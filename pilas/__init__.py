@@ -27,7 +27,11 @@ import log
 
 try:
     import aplicacion
-    import ejemplos
+    try:
+        import ejemplos
+    except ImportError:
+        # Los ejemplos están en un paquete separado, solo se importa si el paquete está instalado
+        pass
 except ImportError:
     print "ERROR: no está disponible PyQt4"
 
