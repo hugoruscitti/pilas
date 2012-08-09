@@ -2,6 +2,10 @@
 Pilas engine - Documentación
 ============================
 
+.. image:: images/pilas-logo.png
+
+
+
 Introducción:
 
 .. toctree::
