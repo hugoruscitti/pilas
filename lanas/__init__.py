@@ -1,0 +1,2 @@
+from pyinterp import main
+
