@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 import sys
 import code
@@ -13,9 +14,9 @@ import autocomplete
 class DictionaryCompleter(QCompleter):
 
     def __init__(self, parent=None):
-        words = ["uno", "dos", "tres"]
-        QCompleter.__init__(self, words, parent)
+        QCompleter.__init__(self, [], parent)
         self.popup().setFont(QFont('Monaco', 20))
+        self.set_words(["uno", "dos", "tres"])
 
     def set_words(self, words):
         self.model().setStringList(words)
@@ -62,16 +63,15 @@ class PyInterp(autocomplete.CompletionTextEdit):
     def __init__(self,  parent):
         super(PyInterp,  self).__init__(parent)
 
-        sys.stdout              = self
-        sys.stderr              = self
-        self.refreshMarker      = False # to change back to >>> from ...
-        self.multiLine          = False # code spans more than one line
-        self.command            = ''    # command to be ran
-        self.printBanner()              # print sys info
+        sys.stdout = self
+        sys.stderr = self
+        self.refreshMarker = False # to change back to >>> from ...
+        self.multiLine = False # code spans more than one line
+        self.command = ''    # command to be ran
         self.marker()                   # make the >>> or ... marker
-        self.history            = []    # list of commands entered
-        self.historyIndex       = -1
-        self.interpreterLocals  = {}
+        self.history = []    # list of commands entered
+        self.historyIndex = -1
+        self.interpreterLocals = {}
 
         # setting the color for bg and text
         #palette = QPalette()
@@ -80,11 +80,10 @@ class PyInterp(autocomplete.CompletionTextEdit):
         #self.setPalette(palette)
 
         self._set_font_size(20)
-        self._highlighter = highlighter.Highlighter(self.document(), 'python',
-            highlighter.COLOR_SCHEME)
+        self._highlighter = highlighter.Highlighter(self.document(), 'python', highlighter.COLOR_SCHEME)
 
-        completer = DictionaryCompleter()
-        self._set_completer(completer)
+        ##completer = DictionaryCompleter()
+        ##self._set_completer(completer)
 
         # initilize interpreter with self locals
         self.initInterpreter(locals())
@@ -96,36 +95,11 @@ class PyInterp(autocomplete.CompletionTextEdit):
     def _change_font_size(self, delta_size):
         self._set_font_size(self.font_size + delta_size)
 
-    def _set_completer(self, completer):
-        completer.setWidget(self)
-        completer.setCompletionMode(QCompleter.PopupCompletion)
-        completer.setCaseSensitivity(Qt.CaseInsensitive)
-        self.completer = completer
-        self.connect(self.completer, SIGNAL("activated(const QString&)"), self._insert_completion)
-
-    def _insert_completion(self, completion):
-        tc = self.textCursor()
-        extra = (completion.length() -
-            self.completer.completionPrefix().length())
-        tc.movePosition(QtGui.QTextCursor.Left)
-        tc.movePosition(QtGui.QTextCursor.EndOfWord)
-        tc.insertText(completion.right(extra))
-        self.setTextCursor(tc)
-
-    def printBanner(self):
-        #self.write(sys.version)
-        #self.write(' on ' + sys.platform + '\n')
-        #self.write('PyQt4 ' + PYQT_VERSION_STR + '\n')
-        #msg = 'Type !hist for a history view and !hist(n) history index recall'
-        #self.write(msg + '\n')
-        pass
-
-
     def marker(self):
         if self.multiLine:
-            self.insertPlainText('... ')
+            self.insertPlainText(u'... ')
         else:
-            self.insertPlainText('>>> ')
+            self.insertPlainText(u'>>> ')
 
     def initInterpreter(self, interpreterLocals=None):
         if interpreterLocals:
@@ -241,6 +215,7 @@ class PyInterp(autocomplete.CompletionTextEdit):
             word = self._get_current_word()
             block = self._get_current_block_prefix()
 
+            """
             if block != word:
                 items = eval('dir(%s)' %block, self.interpreterLocals, {})
             else:
@@ -265,7 +240,6 @@ class PyInterp(autocomplete.CompletionTextEdit):
 
                 self.completer.complete(cr)
                 event.ignore()
-            """
 
         if event.modifiers() & Qt.AltModifier:
             if event.key() == Qt.Key_Minus:
