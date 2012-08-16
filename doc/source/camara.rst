@@ -23,7 +23,7 @@ Las coordenadas de la cámara
 Inicialmente la cámara estará mostrando el punto ``(0, 0)``
 del escenario, el punto central de la ventana.
 
-Si queremos que apunte a otra parte del escenario 
+Si queremos que muestre otra parte del escenario 
 podemos ejecutar una sentencia como la que sigue:
 
 .. code-block:: python
