@@ -1,0 +1,2 @@
+import lanas
+lanas.main()

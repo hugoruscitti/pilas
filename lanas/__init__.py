@@ -1,2 +1,1 @@
-from pyinterp import main
-
+from lanas import main
