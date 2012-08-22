@@ -21,6 +21,10 @@ analizador.add_option("-t", "--test", dest="test",
         action="store_true", default=False,
         help="Invoca varias pruebas verificar el funcionamiento de pilas")
 
+analizador.add_option("-v", "--version", dest="version",
+        action="store_true", default=False,
+        help="Consulta la version instalada")
+
 (opciones, argumentos) = analizador.parse_args()
 
 
@@ -35,6 +39,10 @@ elif opciones.ejemplos:
     sys.exit(0)
 elif opciones.test:
     pilas.utils.realizar_pruebas()
+    sys.exit(0)
+elif opciones.version:
+    from pilas import pilasversion
+    print pilasversion.VERSION
     sys.exit(0)
 
 print "Error, no has indicado un parametro para iniciar pilas."
