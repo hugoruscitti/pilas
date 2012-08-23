@@ -6,7 +6,7 @@ QtGui.QKeySequence("Ctrl+E").toString(QtGui.QKeySequence.NativeText)))
 
 class DictionaryCompleter(QtGui.QCompleter):
     def __init__(self, parent=None):
-        words = []
+        words = ["hola mundo", "import"]
         try:
             f = open("/usr/share/dict/words","r")
             for word in f:
