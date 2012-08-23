@@ -8,7 +8,7 @@ import interprete
 
 def main():
     app = QApplication(sys.argv)
-    win = interprete.Ventana(None)
+    win = interprete.Ventana(None, "Lanas")
     win.show()
     win.raise_()
     sys.exit(app.exec_())

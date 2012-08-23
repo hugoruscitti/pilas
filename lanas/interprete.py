@@ -10,41 +10,31 @@ import autocomplete
 
 class Ventana(QWidget):
 
-    def __init__(self, parent):
-
+    def __init__(self, parent, title):
         super(Ventana, self).__init__(parent)
-        hBox = QHBoxLayout()
 
-        self.setLayout(hBox)
-        self.textEdit = InterpreteTextEdit(self)
+        self.setWindowTitle(title)
+        box = QHBoxLayout()
+        box.setMargin(12)
+        box.setSpacing(0)
 
-        # this is how you pass in locals to the interpreter
-        self.textEdit.initInterpreter(locals())
+        self.setLayout(box)
+
+        self.text_edit = InterpreteTextEdit(self)
+        self.text_edit.initInterpreter(locals())
 
         self.resize(650, 300)
-        self.centerOnScreen()
+        self.center_on_screen()
 
-        hBox.addWidget(self.textEdit)
-        hBox.setMargin(0)
-        hBox.setSpacing(0)
+        box.addWidget(self.text_edit)
         self.raise_()
 
-    def centerOnScreen(self):
-        # center the widget on the screen
+    def center_on_screen(self):
         resolution = QDesktopWidget().screenGeometry()
         self.move((resolution.width()  / 2) - (self.frameSize().width()  / 2),
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
 
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
-
-    class InteractiveInterpreter(code.InteractiveInterpreter):
-
-        def __init__(self, locals):
-            code.InteractiveInterpreter.__init__(self, locals)
-
-        def runIt(self, command):
-            code.InteractiveInterpreter.runsource(self, command)
-
 
     def __init__(self,  parent):
         super(InterpreteTextEdit,  self).__init__(parent)
@@ -97,7 +87,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             self.interpreterLocals[selfName] = interpreterLocalVars
         else:
             self.interpreterLocals = interpreterLocals
-        self.interpreter = self.InteractiveInterpreter(self.interpreterLocals)
+        self.interpreter = code.InteractiveInterpreter(self.interpreterLocals)
 
     def updateInterpreterLocals(self, newLocals):
         className = newLocals.__class__.__name__
@@ -302,14 +292,14 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 if self.haveLine and not self.multiLine: # one line command
                     self.command = line # line is the command
                     self.append('') # move down one line
-                    self.interpreter.runIt(self.command)
+                    self.interpreter.runsource(self.command)
                     self.command = '' # clear command
                     self.marker() # handle marker style
                     return None
 
                 if self.multiLine and not self.haveLine: #  multi line done
                     self.append('') # move down one line
-                    self.interpreter.runIt(self.command)
+                    self.interpreter.runsource(self.command)
                     self.command = '' # clear command
                     self.multiLine = False # back to single line
                     self.marker() # handle marker style
