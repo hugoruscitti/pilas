@@ -51,14 +51,12 @@ class CompletionTextEdit(QtGui.QTextEdit):
         QtGui.QTextEdit.focusInEvent(self, event)
 
     def autocomplete(self, event):
-        word = self._get_current_word()
+        word = self._get_current_word() + event.text()
 
         if self.completer and self.completer.popup().isVisible():
-            if event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return, QtCore.Qt.Key_Escape, QtCore.Qt.Key_Tab, QtCore.Qt.Key_Backtab):
+            if event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return, QtCore.Qt.Key_Escape):
                 event.ignore()
                 return True
-
-        isShortcut = word and len(word) > 0
 
         if (word != self.completer.completionPrefix()):
             self.completer.setCompletionPrefix(word)
@@ -68,3 +66,5 @@ class CompletionTextEdit(QtGui.QTextEdit):
             cr = self.cursorRect()
             cr.setWidth(self.completer.popup().sizeHintForColumn(0) + self.completer.popup().verticalScrollBar().sizeHint().width())
             self.completer.complete(cr)
+        else:
+            self.completer.popup().hide()

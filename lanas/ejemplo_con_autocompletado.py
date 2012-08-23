@@ -87,9 +87,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
 
         completionPrefix = self.textUnderCursor()
 
-        if (not isShortcut and (hasModifier or event.text().isEmpty() or
-        completionPrefix.length() < 3 or
-        eow.contains(event.text().right(1)))):
+        if (not isShortcut and (hasModifier or event.text().isEmpty() or completionPrefix.length() < 3 or eow.contains(event.text().right(1)))):
             self.completer.popup().hide()
             return
 
