@@ -7,14 +7,8 @@ class DictionaryCompleter(QtGui.QCompleter):
         self.words = []
         QtGui.QCompleter.__init__(self, self.words, parent)
 
-    def append(self,list):
-        self.words=self.words+list
-        fix=[]
-        for word in self.words:
-            if not word in fix:
-                fix.append(word)
-        self.words=fix
-
+    def append(self, words):
+        self.words = list(set(self.words + words))
         QtGui.QCompleter.__init__(self, self.words, parent=None)
 
 class CompletionTextEdit(QtGui.QTextEdit):
@@ -38,7 +32,6 @@ class CompletionTextEdit(QtGui.QTextEdit):
         completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
         self.completer = completer
         self.connect(self.completer, QtCore.SIGNAL("activated(const QString&)"), self.insertCompletion)
-
 
     def insertCompletion(self, completion):
         tc = self.textCursor()
