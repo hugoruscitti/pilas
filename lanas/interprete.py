@@ -12,7 +12,6 @@ class Ventana(QWidget):
 
     def __init__(self, parent, title):
         super(Ventana, self).__init__(parent)
-
         self.setWindowTitle(title)
         box = QHBoxLayout()
         box.setMargin(12)
@@ -21,7 +20,7 @@ class Ventana(QWidget):
         self.setLayout(box)
 
         self.text_edit = InterpreteTextEdit(self)
-        self.text_edit.initInterpreter(locals())
+        self.text_edit.init(locals())
 
         self.resize(650, 300)
         self.center_on_screen()
@@ -40,12 +39,12 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         super(InterpreteTextEdit,  self).__init__(parent)
 
         sys.stdout = self
-        sys.stderr = self
-        self.refreshMarker = False # to change back to >>> from ...
-        self.multiLine = False # code spans more than one line
-        self.command = ''    # command to be ran
-        self.marker()                   # make the >>> or ... marker
-        self.history = []    # list of commands entered
+        #sys.stderr = self
+        self.refreshMarker = False
+        self.multiline = False
+        self.command = ''
+        self.marker()        # cursor >>> o ...
+        self.history = []
         self.historyIndex = -1
         self.interpreterLocals = {}
 
@@ -61,8 +60,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         ##completer = DictionaryCompleter()
         ##self._set_completer(completer)
 
-        # initilize interpreter with self locals
-        self.initInterpreter(locals())
 
     def _set_font_size(self, font_size):
         self.font_size = font_size
@@ -72,22 +69,14 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         self._set_font_size(self.font_size + delta_size)
 
     def marker(self):
-        if self.multiLine:
+        if self.multiline:
             self.insertPlainText(u'... ')
         else:
             self.insertPlainText(u'>>> ')
 
-    def initInterpreter(self, interpreterLocals=None):
-        if interpreterLocals:
-            # when we pass in locals, we don't want it to be named "self"
-            # so we rename it with the name of the class that did the passing
-            # and reinsert the locals back into the interpreter dictionary
-            selfName = interpreterLocals['self'].__class__.__name__
-            interpreterLocalVars = interpreterLocals.pop('self')
-            self.interpreterLocals[selfName] = interpreterLocalVars
-        else:
-            self.interpreterLocals = interpreterLocals
-        self.interpreter = code.InteractiveInterpreter(self.interpreterLocals)
+    def init(self, interpreter_locals):
+        if interpreter_locals:
+            self.interpreter = code.InteractiveInterpreter(interpreter_locals)
 
     def updateInterpreterLocals(self, newLocals):
         className = newLocals.__class__.__name__
@@ -98,21 +87,16 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         self.ensureCursorVisible()
 
     def clearCurrentBlock(self):
-        # block being current row
         length = len(self.document().lastBlock().text()[4:])
-        if length == 0:
-            return None
-        else:
-            # should have a better way of doing this but I can't find it
+
+        if length:
             [self.textCursor().deletePreviousChar() for x in xrange(length)]
-        return True
 
     def recallHistory(self):
         # used when using the arrow keys to scroll through history
         self.clearCurrentBlock()
         if self.historyIndex <> -1:
             self.insertPlainText(self.history[self.historyIndex])
-        return True
 
     def customCommands(self, command):
 
@@ -140,7 +124,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             self.clearCurrentBlock()
             command = history[index]
             if command[-1] == ':':
-                self.multiLine = True
+                self.multiline = True
             self.write(command)
             self.updateInterpreterLocals(backup)
             return True
@@ -169,6 +153,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         current_block = tc.selectedText()
         words = current_block.split(" ")
         prefix = words[-1]
+
         if '(' in prefix:
             prefix = prefix.split('(')[-1]
 
@@ -217,6 +202,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 self.completer.complete(cr)
                 event.ignore()
 
+        # cambia el tamano de la tipografia.
         if event.modifiers() & Qt.AltModifier:
             if event.key() == Qt.Key_Minus:
                 self._change_font_size(-2)
@@ -227,6 +213,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 event.ignore()
                 return
 
+        # navegar por el historial
         if event.key() == Qt.Key_Down:
             if self.historyIndex == len(self.history):
                 self.historyIndex -= 1
@@ -240,6 +227,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 pass
             return None
 
+        # navegar por el historial
         if event.key() == Qt.Key_Up:
             try:
                 if len(self.history) - 1 > self.historyIndex:
@@ -251,9 +239,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 pass
             return None
 
+        # ir al primer caracter del interprete cuando pulsa HOME
         if event.key() == Qt.Key_Home:
-            # set cursor to position 4 in current block. 4 because that's where
-            # the marker stops
             blockLength = len(self.document().lastBlock().text()[4:])
             lineLength  = len(self.document().toPlainText())
             position = lineLength - blockLength
@@ -263,8 +250,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             return None
 
         if event.key() in [Qt.Key_Left, Qt.Key_Backspace]:
-            # don't allow deletion of marker
-            if self.textCursor().positionInBlock() == 4:
+            if self.textCursor().positionInBlock() < 5:
                 return None
 
         if event.key() in [Qt.Key_Return, Qt.Key_Enter]:
@@ -278,18 +264,18 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                     line[-1]
                     self.haveLine = True
                     if line[-1] == ':':
-                        self.multiLine = True
+                        self.multiline = True
                     self.history.insert(0, line)
                 except:
                     self.haveLine = False
 
-                if self.haveLine and self.multiLine: # multi line command
+                if self.haveLine and self.multiline: # multi line command
                     self.command += line + '\n' # + command and line
-                    self.append('') # move down one line
+                    self.append('')
                     self.marker() # handle marker style
                     return None
 
-                if self.haveLine and not self.multiLine: # one line command
+                if self.haveLine and not self.multiline: # one line command
                     self.command = line # line is the command
                     self.append('') # move down one line
                     self.interpreter.runsource(self.command)
@@ -297,18 +283,19 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                     self.marker() # handle marker style
                     return None
 
-                if self.multiLine and not self.haveLine: #  multi line done
+                if self.multiline and not self.haveLine: #  multi line done
                     self.append('') # move down one line
                     self.interpreter.runsource(self.command)
                     self.command = '' # clear command
-                    self.multiLine = False # back to single line
+                    self.multiline = False # back to single line
                     self.marker() # handle marker style
                     return None
 
-                if not self.haveLine and not self.multiLine:  # just enter
+                if not self.haveLine and not self.multiline:  # just enter
                     self.append('')
                     self.marker()
                     return None
+
                 return None
 
         # allow all other key events
