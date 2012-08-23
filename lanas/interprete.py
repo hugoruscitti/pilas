@@ -92,18 +92,15 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         if length:
             [self.textCursor().deletePreviousChar() for x in xrange(length)]
 
-    def recallHistory(self):
-        # used when using the arrow keys to scroll through history
+    def recall_history(self):
         self.clearCurrentBlock()
         if self.historyIndex <> -1:
             self.insertPlainText(self.history[self.historyIndex])
 
-    def customCommands(self, command):
+    def custom_commands(self, command):
 
-        if command == '!hist': # display history
-            self.append('') # move down one line
-            # vars that are in the command are prefixed with ____CC and deleted
-            # once the command is done so they don't show up in dir()
+        if command == '!hist':
+            self.append('')
             backup = self.interpreterLocals.copy()
             history = self.history[:]
             history.reverse()
@@ -114,19 +111,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 self.write(line)
             self.updateInterpreterLocals(backup)
             self.marker()
-            return True
-
-        if re.match('!hist\(\d+\)', command): # recall command from history
-            backup = self.interpreterLocals.copy()
-            history = self.history[:]
-            history.reverse()
-            index = int(command[6:-1])
-            self.clearCurrentBlock()
-            command = history[index]
-            if command[-1] == ':':
-                self.multiline = True
-            self.write(command)
-            self.updateInterpreterLocals(backup)
             return True
 
         return False
@@ -172,11 +156,11 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
     def keyPressEvent(self, event):
 
+        """
         if event.key() == Qt.Key_Tab:
             word = self._get_current_word()
             block = self._get_current_block_prefix()
 
-            """
             if block != word:
                 items = eval('dir(%s)' %block, self.interpreterLocals, {})
             else:
@@ -190,7 +174,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             event.ignore()
             return
 
-            """
             if (word != self.completer.completionPrefix()):
                 self.completer.setCompletionPrefix(word)
                 popup = self.completer.popup()
@@ -201,6 +184,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
                 self.completer.complete(cr)
                 event.ignore()
+        """
 
         # cambia el tamano de la tipografia.
         if event.modifiers() & Qt.AltModifier:
@@ -220,7 +204,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             try:
                 if self.historyIndex > -1:
                     self.historyIndex -= 1
-                    self.recallHistory()
+                    self.recall_history()
                 else:
                     self.clearCurrentBlock()
             except:
@@ -232,7 +216,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             try:
                 if len(self.history) - 1 > self.historyIndex:
                     self.historyIndex += 1
-                    self.recallHistory()
+                    self.recall_history()
                 else:
                     self.historyIndex = len(self.history)
             except:
@@ -257,9 +241,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             line = self._get_entered_line()
             self.historyIndex = -1
 
-            if self.customCommands(line):
-                return None
-            else:
+            if not self.custom_commands(line):
                 try:
                     line[-1]
                     self.haveLine = True
@@ -298,5 +280,4 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
                 return None
 
-        # allow all other key events
         super(InterpreteTextEdit, self).keyPressEvent(event)
