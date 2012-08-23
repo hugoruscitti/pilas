@@ -8,17 +8,6 @@ from PyQt4.QtCore import *
 import highlighter
 import autocomplete
 
-class DictionaryCompleter(QCompleter):
-
-    def __init__(self, parent=None):
-        QCompleter.__init__(self, [], parent)
-        self.popup().setFont(QFont('Monaco', 20))
-        self.set_words(["uno", "dos", "tres"])
-
-    def set_words(self, words):
-        self.model().setStringList(words)
-
-
 class Ventana(QWidget):
 
     def __init__(self, parent):
@@ -27,7 +16,7 @@ class Ventana(QWidget):
         hBox = QHBoxLayout()
 
         self.setLayout(hBox)
-        self.textEdit = PyInterp(self)
+        self.textEdit = InterpreteTextEdit(self)
 
         # this is how you pass in locals to the interpreter
         self.textEdit.initInterpreter(locals())
@@ -46,7 +35,7 @@ class Ventana(QWidget):
         self.move((resolution.width()  / 2) - (self.frameSize().width()  / 2),
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
 
-class PyInterp(autocomplete.CompletionTextEdit):
+class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
     class InteractiveInterpreter(code.InteractiveInterpreter):
 
@@ -58,7 +47,7 @@ class PyInterp(autocomplete.CompletionTextEdit):
 
 
     def __init__(self,  parent):
-        super(PyInterp,  self).__init__(parent)
+        super(InterpreteTextEdit,  self).__init__(parent)
 
         sys.stdout = self
         sys.stderr = self
@@ -333,4 +322,4 @@ class PyInterp(autocomplete.CompletionTextEdit):
                 return None
 
         # allow all other key events
-        super(PyInterp, self).keyPressEvent(event)
+        super(InterpreteTextEdit, self).keyPressEvent(event)

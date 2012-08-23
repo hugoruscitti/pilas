@@ -18,6 +18,7 @@ class DictionaryCompleter(QtGui.QCompleter):
         QtGui.QCompleter.__init__(self, self.words, parent=None)
 
 class CompletionTextEdit(QtGui.QTextEdit):
+
     def __init__(self, parent=None):
         super(CompletionTextEdit, self).__init__(parent)
         self.completer = None
