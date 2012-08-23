@@ -36,8 +36,6 @@ COLOR_SCHEME = {
     "selected-word": "yellow",
     "brace-background": "#5BC85B",
     "brace-foreground": "red"}
-FONT_FAMILY = 'Monaco'
-FONT_SIZE = 11
 SYNTAX = {}
 
 
@@ -57,8 +55,8 @@ def format(color, style=''):
     _color.setNamedColor(color)
 
     _format = QTextCharFormat()
-    _format.setFontFamily(FONT_FAMILY)
     _format.setForeground(_color)
+
     if 'bold' in style:
         _format.setFontWeight(QFont.Bold)
     if 'italic' in style:
@@ -69,42 +67,31 @@ def format(color, style=''):
 
 # Syntax styles that can be shared by all languages
 STYLES = {
-    'keyword': format(COLOR_SCHEME['keyword'], 'bold'),
+    'keyword': format(COLOR_SCHEME['keyword']),
     'operator': format(COLOR_SCHEME['operator']),
     'brace': format(COLOR_SCHEME['brace']),
-    'definition': format(COLOR_SCHEME['definition'], 'bold'),
+    'definition': format(COLOR_SCHEME['definition']),
     'string': format(COLOR_SCHEME['string']),
     'string2': format(COLOR_SCHEME['string2']),
-    'comment': format(COLOR_SCHEME['comment'], 'italic'),
-    'properObject': format(COLOR_SCHEME['properObject'], 'italic'),
+    'comment': format(COLOR_SCHEME['comment']),
+    'properObject': format(COLOR_SCHEME['properObject']),
     'numbers': format(COLOR_SCHEME['numbers']),
     'spaces': format(COLOR_SCHEME['spaces']),
     'extras': format(COLOR_SCHEME['extras'])}
 
 
 def restyle(scheme):
-    STYLES['keyword'] = format(scheme.get('keyword',
-        COLOR_SCHEME['keyword']), 'bold')
-    STYLES['operator'] = format(scheme.get('operator',
-        COLOR_SCHEME['operator']))
-    STYLES['brace'] = format(scheme.get('brace',
-        COLOR_SCHEME['brace']))
-    STYLES['definition'] = format(scheme.get('definition',
-        COLOR_SCHEME['definition']), 'bold')
-    STYLES['string'] = format(scheme.get('string',
-        COLOR_SCHEME['string']))
-    STYLES['string2'] = format(scheme.get('string2',
-        COLOR_SCHEME['string2']))
-    STYLES['comment'] = format(scheme.get('comment',
-        COLOR_SCHEME['comment']), 'italic')
-    STYLES['properObject'] = format(scheme.get('properObject',
-        COLOR_SCHEME['properObject']), 'italic')
-    STYLES['numbers'] = format(scheme.get('numbers',
-        COLOR_SCHEME['numbers']))
-    STYLES['spaces'] = format(scheme.get('spaces',
-        COLOR_SCHEME['spaces']))
-    STYLES['extras'] = format(scheme.get('extras',
-        COLOR_SCHEME['extras']))
+    STYLES['keyword'] = format(scheme.get('keyword', COLOR_SCHEME['keyword']))
+    STYLES['operator'] = format(scheme.get('operator', COLOR_SCHEME['operator']))
+    STYLES['brace'] = format(scheme.get('brace', COLOR_SCHEME['brace']))
+    STYLES['definition'] = format(scheme.get('definition', COLOR_SCHEME['definition']))
+    STYLES['string'] = format(scheme.get('string', COLOR_SCHEME['string']))
+    STYLES['string2'] = format(scheme.get('string2', COLOR_SCHEME['string2']))
+    STYLES['comment'] = format(scheme.get('comment', COLOR_SCHEME['comment']))
+    STYLES['properObject'] = format(scheme.get('properObject', COLOR_SCHEME['properObject']))
+    STYLES['numbers'] = format(scheme.get('numbers', COLOR_SCHEME['numbers']))
+    STYLES['spaces'] = format(scheme.get('spaces', COLOR_SCHEME['spaces']))
+    STYLES['extras'] = format(scheme.get('extras', COLOR_SCHEME['extras']))
 
 
 class Highlighter (QSyntaxHighlighter):
@@ -129,14 +116,10 @@ class Highlighter (QSyntaxHighlighter):
         rules = []
 
         # Keyword, operator, brace and extras rules
-        rules += [(r'\b%s\b' % w, 0, STYLES['keyword'])
-            for w in keywords]
-        rules += [(r'%s' % o, 0, STYLES['operator'])
-            for o in operators]
-        rules += [(r'%s' % b, 0, STYLES['brace'])
-            for b in Highlighter.braces]
-        rules += [(r'\b%s\b' % e, 0, STYLES['extras'])
-            for e in extras]
+        rules += [(r'\b%s\b' % w, 0, STYLES['keyword']) for w in keywords]
+        rules += [(r'%s' % o, 0, STYLES['operator']) for o in operators]
+        rules += [(r'%s' % b, 0, STYLES['brace']) for b in Highlighter.braces]
+        rules += [(r'\b%s\b' % e, 0, STYLES['extras']) for e in extras]
 
         # All other rules
         proper = langSyntax.get('properObject', None)
@@ -282,12 +265,10 @@ class Highlighter (QSyntaxHighlighter):
                 self.setCurrentBlockState(1)
                 commentLength = text.length() - startIndex
             else:
-                commentLength = endIndex - startIndex + \
-                    delimiter_end.matchedLength()
+                commentLength = endIndex - startIndex + delimiter_end.matchedLength()
 
             self.setFormat(startIndex, commentLength, style)
-            startIndex = delimiter_start.indexIn(text,
-                startIndex + commentLength)
+            startIndex = delimiter_start.indexIn(text, startIndex + commentLength)
 
 
 class EmptyHighlighter (QSyntaxHighlighter):
