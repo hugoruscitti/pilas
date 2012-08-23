@@ -33,17 +33,11 @@ class CompletionTextEdit(QtGui.QTextEdit):
         self.setFocus()
 
     def setCompleter(self, completer):
-        #if self.completer:
-            #self.disconnect(self.completer, 0, self, 0)
-        if not completer:
-            return
-
         completer.setWidget(self)
         completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)
         completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
         self.completer = completer
-        self.connect(self.completer,
-            QtCore.SIGNAL("activated(const QString&)"), self.insertCompletion)
+        self.connect(self.completer, QtCore.SIGNAL("activated(const QString&)"), self.insertCompletion)
 
 
     def insertCompletion(self, completion):
@@ -66,52 +60,42 @@ class CompletionTextEdit(QtGui.QTextEdit):
             self.completer.setWidget(self);
         QtGui.QTextEdit.focusInEvent(self, event)
 
-    def keyPressEvent(self, event):
+    def autocomplete(self, event):
 
         if self.completer and self.completer.popup().isVisible():
-            if event.key() in (
-            QtCore.Qt.Key_Enter,
-            QtCore.Qt.Key_Return,
-            QtCore.Qt.Key_Escape,
-            QtCore.Qt.Key_Tab,
-            QtCore.Qt.Key_Backtab):
+            if event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return, QtCore.Qt.Key_Escape, QtCore.Qt.Key_Tab, QtCore.Qt.Key_Backtab):
                 event.ignore()
-                return
+                return True
 
-        ## has ctrl-Space been pressed??
-        isShortcut = (event.modifiers() == QtCore.Qt.ControlModifier and
-                      event.key() == QtCore.Qt.Key_Space)
+        isShortcut = (event.modifiers() == QtCore.Qt.ControlModifier and event.key() == QtCore.Qt.Key_Space)
+
         if (not self.completer or not isShortcut):
-            QtGui.QTextEdit.keyPressEvent(self, event)
+            return
 
         ## ctrl or shift key on it's own??
-        ctrlOrShift = event.modifiers() in (QtCore.Qt.ControlModifier ,
-                QtCore.Qt.ShiftModifier)
+        ctrlOrShift = event.modifiers() in (QtCore.Qt.ControlModifier , QtCore.Qt.ShiftModifier)
+
         if ctrlOrShift and event.text().isEmpty():
             # ctrl or shift key on it's own
             return
 
-        eow = QtCore.QString("~!@#$%^&*()_+{}|:\"<>?,./;'[]\\-=L") #end of word
+        eow = QtCore.QString("~!@#$%^&*()_+{}|:\"<>?,./;'[]\\-=L")
 
         hasModifier = ((event.modifiers() != QtCore.Qt.NoModifier) and
                         not ctrlOrShift)
 
         completionPrefix = self.textUnderCursor()
 
-        if (not isShortcut and (hasModifier or event.text().isEmpty() or
-        completionPrefix.length() < min_show or
-        eow.contains(event.text().right(1)))):
+        if (not isShortcut and (hasModifier or event.text().isEmpty() or completionPrefix.length() < min_show or eow.contains(event.text().right(1)))):
             self.completer.popup().hide()
-            return
+            return False
 
         if (completionPrefix != self.completer.completionPrefix()):
             self.completer.setCompletionPrefix(completionPrefix)
             popup = self.completer.popup()
-            popup.setCurrentIndex(
-                self.completer.completionModel().index(0,0))
+            popup.setCurrentIndex(self.completer.completionModel().index(0,0))
+            return
 
         cr = self.cursorRect()
-        cr.setWidth(self.completer.popup().sizeHintForColumn(0)
-            + self.completer.popup().verticalScrollBar().sizeHint().width())
-        self.completer.complete(cr) ## popup it up!
-
+        cr.setWidth(self.completer.popup().sizeHintForColumn(0) + self.completer.popup().verticalScrollBar().sizeHint().width())
+        self.completer.complete(cr)

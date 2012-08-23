@@ -1,4 +1,3 @@
-import re
 import code
 import sys
 
@@ -236,6 +235,9 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         if event.key() in [Qt.Key_Left, Qt.Key_Backspace]:
             if self.textCursor().positionInBlock() < 5:
                 return None
+
+        if self.autocomplete(event):
+            return None
 
         if event.key() in [Qt.Key_Return, Qt.Key_Enter]:
             line = self._get_entered_line()
