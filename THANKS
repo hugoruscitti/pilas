@@ -1,0 +1,71 @@
+Créditos y agradecimientos
+==========================
+
+Pilas está principalmente desarrollada por Hugo Ruscitti, y
+cuenta con varios dibujos realizados por Walter Velazquez. Ambos
+fundadores de Losersjuegos (http://www.losersjuegos.com.ar).
+
+A continuación se incluye una lista de otros desarrolladores
+y proyectos que sumaron a pilas:
+
+PyTweener
+---------
+
+Las interpolaciones dentro del motor se realizan
+mediante la biblioteca pyTweener, distribuida
+bajo la licencia M.I.T. por Ben Harling.
+
+Dispatch
+--------
+
+El modulo ``pilas.dispatch`` se adoptó del
+core de Django, y estába basado en el proyecto pydispatch.
+
+
+PyQt4
+-----
+
+Todo el manejo multimedia se realiza gracias a la biblioteca
+Qt4:
+
+- http://qt.nokia.com/
+
+
+Box2d
+-----
+
+Para el manejo multimedia estamos usando
+la biblioteca box2d:
+
+- http://code.google.com/p/pybox2d/
+
+GFXLib
+------
+
+He utilizado los siguientes gráficos del proyecto
+gfxlib:
+
+- pilas/data/moneda.png
+
+Estos gráficos se distribuyen bajo la licencia "Common Public License", y
+puedes obtener mas información en: http://www.spicypixel.net
+
+¡ Gracias Marc !
+
+
+DANC, de lostgarden.com
+-----------------------
+
+En pilas utilizamos algunos gráficos que DANC publicó
+en su sitio web:
+
+- www.lostgarden.com
+
+
+a "arboris"
+-----------
+
+Por sus gráficos de naves que se pueden
+descargar desde la siguiente web:
+
+- http://arboris.deviantart.com/art/Spaceship-sprites-43030167
