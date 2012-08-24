@@ -1,3 +1,4 @@
+import sys
 from PyQt4 import QtGui, QtCore
 
 class DictionaryCompleter(QtGui.QCompleter):
@@ -57,14 +58,19 @@ class CompletionTextEdit(QtGui.QTextEdit):
             if event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return, QtCore.Qt.Key_Escape):
                 event.ignore()
                 return True
+            elif event.key() in (QtCore.Qt.Key_Backspace,):
+                self.completer.popup().hide()
 
         if (word != self.completer.completionPrefix()):
             self.completer.setCompletionPrefix(word)
             popup = self.completer.popup()
             popup.setCurrentIndex(self.completer.completionModel().index(0,0))
 
-            cr = self.cursorRect()
-            cr.setWidth(self.completer.popup().sizeHintForColumn(0) + self.completer.popup().verticalScrollBar().sizeHint().width())
-            self.completer.complete(cr)
+            if self.completer and not self.completer.popup().isVisible():
+                cr = self.cursorRect()
+                column_width = self.completer.popup().sizeHintForColumn(0)
+                scroll_width = self.completer.popup().verticalScrollBar().sizeHint().width()
+                cr.setWidth(column_width + scroll_width)
+                self.completer.complete(cr)
         else:
             self.completer.popup().hide()
