@@ -77,7 +77,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
             self.cc.analyze_file('', codigo)
 
             codigo_completo = codigo + "\n" + self._get_current_line() + event.text()
-            result = self.cc.get_completion(codigo_completo, len(codigo_completo))
+            result = self.cc.get_completion(str(codigo_completo), len(codigo_completo))
             values = result['attributes'] + result.get('modules', []) + result['functions'] + result['classes']
             self.set_dictionary(values)
 
