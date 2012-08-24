@@ -9,6 +9,7 @@ import interprete
 
 def main():
     app = QApplication(sys.argv)
+    app.setApplicationName('Lanas')
     win = interprete.Ventana(None, "Lanas")
     win.show()
     win.raise_()
