@@ -62,7 +62,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
     def _set_font_size(self, font_size):
         self.font_size = font_size
-        self.setFont(QFont('Monaco', font_size))
+        font = QFont('Monaco', font_size)
+        self.setFont(font)
 
     def _change_font_size(self, delta_size):
         self._set_font_size(self.font_size + delta_size)

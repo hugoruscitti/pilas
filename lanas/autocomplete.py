@@ -1,4 +1,3 @@
-import sys
 from PyQt4 import QtGui, QtCore
 
 class DictionaryCompleter(QtGui.QCompleter):
@@ -16,15 +15,15 @@ class CompletionTextEdit(QtGui.QTextEdit):
         self.completer = None
         self.moveCursor(QtGui.QTextCursor.End)
         self.dictionary = DictionaryCompleter()
-        self.setCompleter(self.dictionary)
+        self.set_completer(self.dictionary)
         self.set_dictionary(["nueva_palabra", "import"])
 
     def set_dictionary(self, list):
         self.dictionary.set_dictionary(list)
-        self.setCompleter(self.dictionary)
+        self.set_completer(self.dictionary)
         self.setFocus()
 
-    def setCompleter(self, completer):
+    def set_completer(self, completer):
         completer.setWidget(self)
         completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)
         completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
@@ -58,12 +57,13 @@ class CompletionTextEdit(QtGui.QTextEdit):
             if event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return, QtCore.Qt.Key_Escape):
                 event.ignore()
                 return True
-            elif event.key() in (QtCore.Qt.Key_Backspace,):
+            elif event.key() in (QtCore.Qt.Key_Backspace, QtCore.Qt.Key_Space):
                 self.completer.popup().hide()
 
         if (word != self.completer.completionPrefix()):
             self.completer.setCompletionPrefix(word)
             popup = self.completer.popup()
+            popup.setFont(self.font())
             popup.setCurrentIndex(self.completer.completionModel().index(0,0))
 
             if self.completer and not self.completer.popup().isVisible():
