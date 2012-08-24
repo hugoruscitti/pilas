@@ -36,7 +36,6 @@ class CompletionTextEdit(QtGui.QTextEdit):
         tc.removeSelectedText()
         tc.insertText(completion)
         self.setTextCursor(tc)
-
         self.clearFocus()
         self.setFocus()
 
@@ -53,14 +52,19 @@ class CompletionTextEdit(QtGui.QTextEdit):
     def autocomplete(self, event):
         word = self._get_current_word() + event.text()
 
+        if not event.text():
+            self.completer.popup().hide()
+            return False
+
         if self.completer and self.completer.popup().isVisible():
             if event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return, QtCore.Qt.Key_Escape):
                 event.ignore()
                 return True
             elif event.key() in (QtCore.Qt.Key_Backspace, QtCore.Qt.Key_Space):
                 self.completer.popup().hide()
+                return False
 
-        if (word != self.completer.completionPrefix()):
+        if word != self.completer.completionPrefix():
             self.completer.setCompletionPrefix(word)
             popup = self.completer.popup()
             popup.setFont(self.font())
