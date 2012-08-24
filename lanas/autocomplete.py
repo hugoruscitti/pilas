@@ -1,4 +1,3 @@
-import sys
 from PyQt4 import QtGui, QtCore
 from kanzen import code_completion
 
