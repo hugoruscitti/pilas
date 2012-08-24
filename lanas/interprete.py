@@ -32,13 +32,19 @@ class Ventana(QWidget):
         self.move((resolution.width()  / 2) - (self.frameSize().width()  / 2),
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
 
+    def closeEvent(self, event):
+        from kanzen import completion_daemon
+        completion_daemon.shutdown_daemon()
+        import sys
+        sys.exit(0)
+
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
     def __init__(self,  parent):
         super(InterpreteTextEdit,  self).__init__(parent)
 
         sys.stdout = self
-        #sys.stderr = self
+        sys.stderr = self
         self.refreshMarker = False
         self.multiline = False
         self.command = ''

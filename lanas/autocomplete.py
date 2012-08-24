@@ -1,4 +1,6 @@
+import sys
 from PyQt4 import QtGui, QtCore
+from kanzen import code_completion
 
 class DictionaryCompleter(QtGui.QCompleter):
 
@@ -6,7 +8,8 @@ class DictionaryCompleter(QtGui.QCompleter):
         QtGui.QCompleter.__init__(self, [], parent)
 
     def set_dictionary(self, words):
-        QtGui.QCompleter.__init__(self, words, parent=None)
+        model = QtGui.QStringListModel(words, self)
+        self.setModel(model)
 
 class CompletionTextEdit(QtGui.QTextEdit):
 
@@ -17,6 +20,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
         self.dictionary = DictionaryCompleter()
         self.set_completer(self.dictionary)
         self.set_dictionary(["nueva_palabra", "import"])
+        self.cc = code_completion.CodeCompletion()
 
     def set_dictionary(self, list):
         self.dictionary.set_dictionary(list)
@@ -44,6 +48,11 @@ class CompletionTextEdit(QtGui.QTextEdit):
         tc.select(QtGui.QTextCursor.WordUnderCursor)
         return tc.selectedText()
 
+    def _get_current_line(self):
+        tc = self.textCursor()
+        tc.select(QtGui.QTextCursor.LineUnderCursor)
+        return tc.selectedText()[4:]
+
     def focusInEvent(self, event):
         if self.completer:
             self.completer.setWidget(self);
@@ -52,7 +61,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
     def autocomplete(self, event):
         word = self._get_current_word() + event.text()
 
-        if not event.text():
+        if not event.text() or event.text() == '.':
             self.completer.popup().hide()
             return False
 
@@ -63,6 +72,14 @@ class CompletionTextEdit(QtGui.QTextEdit):
             elif event.key() in (QtCore.Qt.Key_Backspace, QtCore.Qt.Key_Space):
                 self.completer.popup().hide()
                 return False
+        else:
+            codigo = '\n'.join(self.history)
+            self.cc.analyze_file('', codigo)
+
+            codigo_completo = codigo + "\n" + self._get_current_line() + event.text()
+            result = self.cc.get_completion(codigo_completo, len(codigo_completo))
+            values = result['attributes'] + result.get('modules', []) + result['functions'] + result['classes']
+            self.set_dictionary(values)
 
         if word != self.completer.completionPrefix():
             self.completer.setCompletionPrefix(word)

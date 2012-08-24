@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
+sys.path.append("kanzen")
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
