@@ -1,2 +1,7 @@
 *.pyc
 doc/build/*
+
+build
+pilas.egg-info
+dist/
+test.py

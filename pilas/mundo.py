@@ -35,7 +35,13 @@ class Mundo(object):
         self.camara = camara.Camara(self)
 
         eventos.actualizar.conectar(self.actualizar_simuladores)
-        self.fisica = fisica.Fisica(motor.obtener_area(), gravedad=gravedad)
+        try:
+            self.fisica = fisica.Fisica(motor.obtener_area(), gravedad=gravedad)
+        except Exception as e:
+            print e
+            print "ERROR: Se deshabilita la funcionalidad de Fisica."
+            self.fisica = fisica.FisicaDeshabilitada()
+
         self.escena_actual = None
 
     def reiniciar(self):
@@ -47,7 +53,8 @@ class Mundo(object):
     def actualizar_simuladores(self, evento):
         self.tweener.update(16)
         self.tareas.actualizar(1/60.0)
-        self.fisica.actualizar()
+        if self.fisica:
+            self.fisica.actualizar()
         self.colisiones.verificar_colisiones()
 
     def terminar(self):

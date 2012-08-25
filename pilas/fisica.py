@@ -24,6 +24,11 @@ def obtener_version():
     """Obtiene la versión de la biblioteca Box2D"""
     return box2d.__version__
 
+class FisicaDeshabilitada(object):
+    def actualizar(self):
+        pass
+    pass
+
 class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca box2d."""
 
