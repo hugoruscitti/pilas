@@ -73,7 +73,11 @@ class Ui_Dialog(object):
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), self.acepta)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), Dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+
         self.ha_aceptado = False
+        self._quitar_barras_scroll()
+        Dialog.setWindowFlags(QtCore.Qt.MSWindowsFixedSizeDialogHint)
+
 
     def retranslateUi(self, Dialog):
         pass
@@ -90,10 +94,20 @@ class Ui_Dialog(object):
 
         return (motor[i], modo[j])
 
+    def _quitar_barras_scroll(self):
+        self.graphicsView.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.graphicsView.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+
     def mostrar_imagen(self, ruta):
         escena = QtGui.QGraphicsScene()
         self.graphicsView.setScene(escena)
         pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(ruta))
+
+        # Define el size para la imagen
+        width = pixmap.boundingRect().width()
+        height = pixmap.boundingRect().height()
+        self.graphicsView.setFixedSize(width, height)
+
         escena.addItem(pixmap)
 
 
@@ -117,7 +131,10 @@ def ejecutar(imagen, titulo):
         ui.mostrar_imagen(ruta_a_imagen)
 
     Dialog.show()
+    Dialog.raise_()
     app.exec_()
+
     if not ui.ha_aceptado:
         salir()
+
     return ui.obtener_seleccion()
