@@ -30,13 +30,6 @@ def cargar_autocompletado():
     except ImportError:
         print "No se puede cargar el autocompletado, instale readline..."
 
-def hacer_flotante_la_ventana():
-    "Hace flotante la ventana para i3 (el manejador de ventanas que utiliza hugo...)"
-    try:
-        subprocess.call(['i3-msg', 't'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    except OSError:
-        pass
-
 def es_interpolacion(an_object):
     "Indica si un objeto se comporta como una colisión."
 
