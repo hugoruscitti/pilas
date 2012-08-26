@@ -93,11 +93,25 @@ def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas',
     """
     import lanzador
 
-    import asistente
-
-    usar_motor, pantalla_completa = asistente.ejecutar(imagen, titulo)
     usar_motor, pantalla_completa = lanzador.ejecutar(imagen, titulo)
     iniciar(ancho, alto, titulo, usar_motor, rendimiento, modo, gravedad, pantalla_completa)
+
+
+def abrir_asistente():
+    """Abre una ventana que permite iniciar pilas graficamente.
+
+    Las opciones que ofrece son "leer el manual" (si esta disponible),
+    "abrir un interprete", "explorar los ejemplos" etc.
+
+    Esta ventana se ha diseñado para mostrarse a los nuevos usuarios
+    de pilas, por ejemplo cuando eligen abrir pilas desde el icono principal.
+    """
+    import asistente
+    asistente.ejecutar()
+
+
+
+
 
 
 def ejecutar(ignorar_errores=False):
