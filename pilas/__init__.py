@@ -109,11 +109,6 @@ def abrir_asistente():
     import asistente
     asistente.ejecutar()
 
-
-
-
-
-
 def ejecutar(ignorar_errores=False):
     """Pone en funcionamiento las actualizaciones y dibujado.
 

@@ -123,7 +123,7 @@ def interpolable(f):
             value = interpolar(value, duracion=duracion)
         elif isinstance(value, xrange):
             value = interpolar(list(value), duracion=duracion)
-            
+
         if es_interpolacion(value):
             value.apply(args[0], function=f.__name__)
         else:
@@ -141,7 +141,7 @@ def hacer_coordenada_pantalla_absoluta(x, y):
 
 def listar_actores_en_consola():
     todos = pilas.actores.todos
-    
+
     print "Hay %d actores en la escena:" %(len(todos))
     print ""
 
@@ -165,10 +165,10 @@ def convertir_de_posicion_fisica_relativa(x, y):
 
 def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
     """Retorna un objeto que representa cambios de atributos progresivos.
-    
+
     El resultado de esta función se puede aplicar a varios atributos
     de los actores, por ejemplo::
-        
+
         bomba = pilas.actores.Bomba()
         bomba.escala = pilas.interpolar(3)
 
