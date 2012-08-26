@@ -1,8 +1,17 @@
-body{
-  margin: 1em;
-}
-
 div.footer {
   font-size: small;
   color: gray;
+}
+
+body {
+    margin-left: 1em;
+}
+
+
+div.span3 img {
+    border-right: 10px;
+}
+
+div.row {
+    margin-bottom: 10px;
 }
