@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'asistente.ui'
+# Form implementation generated from reading ui file 'lanzador.ui'
 #
-# Created: Tue Feb 21 03:46:28 2012
-#      by: PyQt4 UI code generator 4.8.5
+# Created: Sun Aug 26 00:17:17 2012
+#      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-import sys
-import utils
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -17,7 +15,6 @@ except AttributeError:
     _fromUtf8 = lambda s: s
 
 class Ui_Dialog(object):
-
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(500, 271)
@@ -27,31 +24,24 @@ class Ui_Dialog(object):
         self.graphicsView.setObjectName(_fromUtf8("graphicsView"))
         self.gridLayout_2.addWidget(self.graphicsView, 0, 0, 1, 1)
         self.groupBox = QtGui.QGroupBox(Dialog)
-        self.groupBox.setTitle(QtGui.QApplication.translate("Dialog", "Opciones", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setObjectName(_fromUtf8("groupBox"))
         self.gridLayout = QtGui.QGridLayout(self.groupBox)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.label = QtGui.QLabel(self.groupBox)
-        self.label.setText(QtGui.QApplication.translate("Dialog", "Aceleración:", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setObjectName(_fromUtf8("label"))
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.comboBox = QtGui.QComboBox(self.groupBox)
         self.comboBox.setObjectName(_fromUtf8("comboBox"))
         self.comboBox.addItem(_fromUtf8(""))
-        self.comboBox.setItemText(0, QtGui.QApplication.translate("Dialog", "Usar aceleración OpenGL", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBox.addItem(_fromUtf8(""))
-        self.comboBox.setItemText(1, QtGui.QApplication.translate("Dialog", "Sin aceleración", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout.addWidget(self.comboBox, 0, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.groupBox)
-        self.label_2.setText(QtGui.QApplication.translate("Dialog", "Pantalla completa:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
         self.comboBox_2 = QtGui.QComboBox(self.groupBox)
         self.comboBox_2.setObjectName(_fromUtf8("comboBox_2"))
         self.comboBox_2.addItem(_fromUtf8(""))
-        self.comboBox_2.setItemText(0, QtGui.QApplication.translate("Dialog", "Deshabilitar", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBox_2.addItem(_fromUtf8(""))
-        self.comboBox_2.setItemText(1, QtGui.QApplication.translate("Dialog", "Habilitar", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout.addWidget(self.comboBox_2, 1, 1, 1, 1)
         self.gridLayout_2.addWidget(self.groupBox, 1, 0, 1, 1)
         self.line = QtGui.QFrame(Dialog)
@@ -64,77 +54,31 @@ class Ui_Dialog(object):
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setCenterButtons(False)
         self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
-
         self.gridLayout_2.addWidget(self.buttonBox, 3, 0, 1, 1)
         self.label.setBuddy(self.comboBox)
 
         self.retranslateUi(Dialog)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), Dialog.accept)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), self.acepta)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), Dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
-        self.ha_aceptado = False
-        self._quitar_barras_scroll()
-        Dialog.setWindowFlags(QtCore.Qt.MSWindowsFixedSizeDialogHint)
-
-
     def retranslateUi(self, Dialog):
-        pass
-
-    def acepta(self):
-        self.ha_aceptado = True
-
-    def obtener_seleccion(self):
-        motor = ['qtgl', 'qt']
-        modo = [False, True]
-
-        i = self.comboBox.currentIndex()
-        j = self.comboBox_2.currentIndex()
-
-        return (motor[i], modo[j])
-
-    def _quitar_barras_scroll(self):
-        self.graphicsView.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-        self.graphicsView.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-
-    def mostrar_imagen(self, ruta):
-        escena = QtGui.QGraphicsScene()
-        self.graphicsView.setScene(escena)
-        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(ruta))
-
-        # Define el size para la imagen
-        width = pixmap.boundingRect().width()
-        height = pixmap.boundingRect().height()
-        self.graphicsView.setFixedSize(width, height)
-
-        escena.addItem(pixmap)
+        Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("Dialog", "GroupBox", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Dialog", "Aceleración:", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox.setItemText(0, QtGui.QApplication.translate("Dialog", "Usar aceleración OpenGL", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox.setItemText(1, QtGui.QApplication.translate("Dialog", "Sin aceleración", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("Dialog", "Pantalla completa:", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox_2.setItemText(0, QtGui.QApplication.translate("Dialog", "Deshabilitar", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox_2.setItemText(1, QtGui.QApplication.translate("Dialog", "Habilitar", None, QtGui.QApplication.UnicodeUTF8))
 
 
-app = None
-
-def salir():
+if __name__ == "__main__":
     import sys
-    sys.exit(0)
-
-def ejecutar(imagen, titulo):
-    global app
-
     app = QtGui.QApplication(sys.argv)
     Dialog = QtGui.QDialog()
-    Dialog.setWindowTitle(titulo)
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
-
-    if imagen:
-        ruta_a_imagen = utils.obtener_ruta_al_recurso(imagen)
-        ui.mostrar_imagen(ruta_a_imagen)
-
     Dialog.show()
-    Dialog.raise_()
-    app.exec_()
+    sys.exit(app.exec_())
 
-    if not ui.ha_aceptado:
-        salir()
-
-    return ui.obtener_seleccion()

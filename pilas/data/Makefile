@@ -1,2 +1,2 @@
 ui:
-	pyuic4 -o ../asistente.py -x asistente.ui
+	pyuic4 -o ../lanzador_base.py -x lanzador.ui
