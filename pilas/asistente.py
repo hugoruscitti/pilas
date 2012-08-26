@@ -28,7 +28,7 @@ class VentanaAsistente(Ui_Main):
         archivo = open(file_path, "rt")
         contenido = archivo.read()
         archivo.close()
-        return contenido.replace("{{VERSION}}", pilas.version())
+        return contenido.replace("{{VERSION}}", pilas.version()).decode('utf8')
 
     def cuando_pulsa_link(self, url):
         seccion = str(url.path()).split('/')[-1]
@@ -51,7 +51,7 @@ class VentanaAsistente(Ui_Main):
 
     def _cuando_selecciona_abrir_manual(self):
         try:
-            ruta = pilas.utils.obtener_ruta_al_recurso('pddilas.pdf')
+            ruta = pilas.utils.obtener_ruta_al_recurso('pilas.pdf')
             pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
         except IOError as e:
             dialogo = QtGui.QMessageBox.warning(self.main, "Error, no se encuentra el manual", "Lo siento, no se encuentra el archivo 'pilas.pdf' intente visitando la web del proyecto.")
