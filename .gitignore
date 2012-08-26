@@ -5,3 +5,7 @@ build
 pilas.egg-info
 dist/
 test.py
+
+.DS_Store
+
+pilas/data/pilas.pdf

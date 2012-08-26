@@ -248,3 +248,12 @@ def ver_codigo(objeto, imprimir, retornar):
 
 def obtener_uuid():
     return str(uuid.uuid4())
+
+def abrir_archivo_con_aplicacion_predeterminada(ruta_al_archivo):
+    if sys.platform.startswith('darwin'):
+        subprocess.call(('open', ruta_al_archivo))
+    elif os.name == 'nt':
+        os.startfile(ruta_al_archivo)
+    elif os.name == 'posix':
+        subprocess.call(('xdg-open', ruta_al_archivo))
+

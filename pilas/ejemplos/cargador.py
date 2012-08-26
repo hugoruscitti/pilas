@@ -180,7 +180,6 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
 
         if estado:
             dialogo = QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
-            pass
 
         self._definir_estado_habilitado(True)
         self.arbol.setFocus()

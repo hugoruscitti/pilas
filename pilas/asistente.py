@@ -38,7 +38,7 @@ class VentanaAsistente(Ui_Main):
         elif seccion == "ejemplos":
             self._cuando_selecciona_ejemplos()
         elif seccion == "manual":
-            print "El manual"
+            self._cuando_selecciona_abrir_manual()
         elif seccion == "web":
             import webbrowser
             webbrowser.open("http://www.pilas-engine.com.ar")
@@ -48,6 +48,13 @@ class VentanaAsistente(Ui_Main):
     def _cuando_selecciona_ejemplos(self):
         from ejemplos import cargador
         cargador.main(self.main)
+
+    def _cuando_selecciona_abrir_manual(self):
+        try:
+            ruta = pilas.utils.obtener_ruta_al_recurso('pddilas.pdf')
+            pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
+        except IOError as e:
+            dialogo = QtGui.QMessageBox.warning(self.main, "Error, no se encuentra el manual", "Lo siento, no se encuentra el archivo 'pilas.pdf' intente visitando la web del proyecto.")
 
 app = None
 
