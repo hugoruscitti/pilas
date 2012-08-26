@@ -10,7 +10,10 @@ class Ventana(Ui_Dialog):
         Ui_Dialog.setupUi(self, Dialog)
         self.ha_aceptado = False
         self._quitar_barras_scroll()
-        Dialog.setWindowFlags(QtCore.Qt.MSWindowsFixedSizeDialogHint)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), Dialog.accept)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), self.acepta)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), Dialog.reject)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def acepta(self):
         self.ha_aceptado = True
@@ -43,9 +46,6 @@ class Ventana(Ui_Dialog):
 
 app = None
 
-def salir():
-    import sys
-    sys.exit(0)
 
 def ejecutar(imagen, titulo):
     global app
@@ -65,6 +65,6 @@ def ejecutar(imagen, titulo):
     app.exec_()
 
     if not ui.ha_aceptado:
-        salir()
+        sys.exit(0)
 
     return ui.obtener_seleccion()
