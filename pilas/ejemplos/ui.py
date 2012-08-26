@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'ui.ui'
 #
-# Created: Sun Aug 21 13:19:30 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Sun Aug 26 14:47:38 2012
+#      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -14,15 +14,13 @@ try:
 except AttributeError:
     _fromUtf8 = lambda s: s
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(822, 602)
-        self.centralwidget = QtGui.QWidget(MainWindow)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+class Ui_Ejemplos(object):
+    def setupUi(self, Ejemplos):
+        Ejemplos.setObjectName(_fromUtf8("Ejemplos"))
+        Ejemplos.resize(787, 493)
+        self.gridLayout = QtGui.QGridLayout(Ejemplos)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.splitter_2 = QtGui.QSplitter(self.centralwidget)
+        self.splitter_2 = QtGui.QSplitter(Ejemplos)
         self.splitter_2.setOrientation(QtCore.Qt.Horizontal)
         self.splitter_2.setObjectName(_fromUtf8("splitter_2"))
         self.vbox_left = QtGui.QWidget(self.splitter_2)
@@ -44,7 +42,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.imagen.sizePolicy().hasHeightForWidth())
         self.imagen.setSizePolicy(sizePolicy)
         self.imagen.setMinimumSize(QtCore.QSize(400, 300))
-        self.imagen.setAutoFillBackground(False)
+        self.imagen.setAutoFillBackground(True)
         self.imagen.setRenderHints(QtGui.QPainter.SmoothPixmapTransform)
         self.imagen.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
         self.imagen.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
@@ -82,30 +80,24 @@ class Ui_MainWindow(object):
         self.codigo.setObjectName(_fromUtf8("codigo"))
         self.verticalLayout.addWidget(self.codigo)
         self.gridLayout.addWidget(self.splitter_2, 0, 0, 1, 1)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 822, 23))
-        self.menubar.setObjectName(_fromUtf8("menubar"))
-        self.menuArchivo = QtGui.QMenu(self.menubar)
-        self.menuArchivo.setObjectName(_fromUtf8("menuArchivo"))
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(MainWindow)
-        self.statusbar.setObjectName(_fromUtf8("statusbar"))
-        MainWindow.setStatusBar(self.statusbar)
-        self.actionSalir = QtGui.QAction(MainWindow)
-        self.actionSalir.setObjectName(_fromUtf8("actionSalir"))
-        self.menuArchivo.addAction(self.actionSalir)
-        self.menubar.addAction(self.menuArchivo.menuAction())
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(Ejemplos)
+        QtCore.QMetaObject.connectSlotsByName(Ejemplos)
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Ejemplos del motor pilas", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("MainWindow", "Aguarde por favor ...", None, QtGui.QApplication.UnicodeUTF8))
-        self.ejecutar.setText(QtGui.QApplication.translate("MainWindow", "Ejecutar", None, QtGui.QApplication.UnicodeUTF8))
-        self.fuente.setText(QtGui.QApplication.translate("MainWindow", "Cambiar tipografia", None, QtGui.QApplication.UnicodeUTF8))
-        self.guardar.setText(QtGui.QApplication.translate("MainWindow", "Guardar Codigo", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuArchivo.setTitle(QtGui.QApplication.translate("MainWindow", "Archivo", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSalir.setText(QtGui.QApplication.translate("MainWindow", "Salir", None, QtGui.QApplication.UnicodeUTF8))
+    def retranslateUi(self, Ejemplos):
+        Ejemplos.setWindowTitle(QtGui.QApplication.translate("Ejemplos", "Explorador de ejemplos", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Ejemplos", "Aguarde por favor ...", None, QtGui.QApplication.UnicodeUTF8))
+        self.ejecutar.setText(QtGui.QApplication.translate("Ejemplos", "Ejecutar", None, QtGui.QApplication.UnicodeUTF8))
+        self.fuente.setText(QtGui.QApplication.translate("Ejemplos", "Cambiar tipografia", None, QtGui.QApplication.UnicodeUTF8))
+        self.guardar.setText(QtGui.QApplication.translate("Ejemplos", "Guardar Codigo", None, QtGui.QApplication.UnicodeUTF8))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    Ejemplos = QtGui.QDialog()
+    ui = Ui_Ejemplos()
+    ui.setupUi(Ejemplos)
+    Ejemplos.show()
+    sys.exit(app.exec_())
 

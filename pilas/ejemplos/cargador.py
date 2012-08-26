@@ -24,87 +24,64 @@ la izquierda y luego verás el código acá.
 """
 
 
-class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
+class VentanaEjemplos(ui.Ui_Ejemplos):
 
-    def __init__(self):
-        self._iniciar_interfaz()
-        self.this_dir = os.path.abspath(os.path.dirname(__file__))
-        self.example_dir = os.path.join(self.this_dir, 'ejemplos')
-        self._cargar_lista_de_ejemplos()
-        # LLamar cargar buscador siempre despues de cargar ejemplos
-        self._cargar_buscador()
+    def setupUi(self, main):
+        self.main = main
+        ui.Ui_Ejemplos.setupUi(self, main)
+        self._conectar_signals()
 
-        # Senales
-        self.connect(self.ui.ejecutar, QtCore.SIGNAL("clicked()"),
-            self.cuando_pulsa_boton_ejecutar)
-        self.connect(self.ui.fuente, QtCore.SIGNAL("clicked()"),
-            self.cuando_pulsa_boton_fuente)
-        self.connect(self.ui.guardar, QtCore.SIGNAL("clicked()"),
-            self.cuando_pulsa_boton_guardar)
-        self.connect(self.ui.arbol, QtCore.SIGNAL("itemSelectionChanged()"),
-            self.cuando_cambia_seleccion)
-        self.connect(self.ui.arbol,
-            QtCore.SIGNAL("itemActivated(QListWidgetItem *)"),
-            self.cuando_pulsa_boton_ejecutar)
-        self.connect(self.ui.actionSalir, QtCore.SIGNAL("activated()"),
-            self.cuando_quiere_cerrar)
-
-        syntax.PythonHighlighter(self.ui.codigo.document())
+        syntax.PythonHighlighter(self.codigo.document())
 
         self._definir_estado_habilitado(True)
         self._mostrar_image_inicial()
         self._mostrar_codigo_presentacion_inicial()
-        self.centrar_ventana()
 
-    def centrar_ventana(self):
-        ancho = self.size().width()
-        alto = self.size().height()
-        escritorio = QtGui.QDesktopWidget().screenGeometry()
-        self.setGeometry(
-                    (escritorio.width() - ancho) / 2,
-                    (escritorio.height() - alto) / 2, ancho, alto)
+        self.this_dir = os.path.abspath(os.path.dirname(__file__))
+        self.example_dir = os.path.join(self.this_dir, 'ejemplos')
+        self._cargar_lista_de_ejemplos()
+        self._cargar_buscador()
+
+    def _conectar_signals(self):
+        self.ejecutar.connect(self.ejecutar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_ejecutar)
+        self.fuente.connect(self.fuente, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_fuente)
+        self.guardar.connect(self.guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_guardar)
+        self.arbol.connect(self.arbol, QtCore.SIGNAL("itemSelectionChanged()"), self.cuando_cambia_seleccion)
+        self.arbol.connect(self.arbol, QtCore.SIGNAL("itemActivated(QListWidgetItem *)"), self.cuando_pulsa_boton_ejecutar)
 
     def _definir_estado_habilitado(self, esta_habilitado):
         "Oculta la barra de progreso y habilita todos los controles."
 
-        widgets = [self.locate_widget, self.ui.progreso, self.ui.ejecutar,
-            self.ui.guardar, self.ui.arbol, self.ui.fuente, self.ui.codigo,
-            self.ui.imagen]
+        widgets = [self.progreso, self.ejecutar, self.guardar, self.arbol, self.fuente, self.codigo, self.imagen]
 
-        self.ui.progreso.setVisible(not esta_habilitado)
+        self.progreso.setVisible(not esta_habilitado)
 
         for x in widgets:
             x.setEnabled(esta_habilitado)
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Return and \
-        self.ui.arbol.hasFocus() and \
-        self.ui.arbol.currentItem().childCount() == 0:
+        self.arbol.hasFocus() and \
+        self.arbol.currentItem().childCount() == 0:
             self.cuando_pulsa_boton_ejecutar()
 
         return QtGui.QMainWindow.keyPressEvent(self, event)
 
     def _cargar_buscador(self):
-        self.locate_widget = buscador.ExampleLocatorWidget(
-            self.ejemplos, self.ui.arbol)
-        self.ui.vlayout_left.addWidget(self.locate_widget)
-        shortcut = QtGui.QShortcut(QtGui.QKeySequence(
-            QtCore.Qt.CTRL + QtCore.Qt.Key_F), self)
-        self.connect(self.locate_widget, QtCore.SIGNAL("itemFound(QString)"),
-            self.buscador_resultado_encontrado)
-        self.connect(shortcut, QtCore.SIGNAL("activated()"),
-            self.locate_widget.setFocus)
+        self.locate_widget = buscador.ExampleLocatorWidget(self.ejemplos, self.arbol)
+        self.vlayout_left.addWidget(self.locate_widget)
+        self.locate_widget.connect(self.locate_widget, QtCore.SIGNAL("itemFound(QString)"), self.buscador_resultado_encontrado)
 
     def _cargar_lista_de_ejemplos(self):
         self.ejemplos = {}
-        self.ui.arbol.setColumnCount(1)
-        self.ui.arbol.setHeaderLabels(["Nombre"])
+        self.arbol.setColumnCount(1)
+        self.arbol.setHeaderLabels(["Nombre"])
 
         directorios = glob.glob(self.example_dir + '/*')
 
         for directorio in directorios:
             raiz = QtGui.QTreeWidgetItem([os.path.basename(directorio), ""])
-            self.ui.arbol.addTopLevelItem(raiz)
+            self.arbol.addTopLevelItem(raiz)
 
             archivos = glob.glob(directorio + '/*.py')
             archivos.sort()
@@ -115,32 +92,20 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
                 raiz.addChild(item)
                 self.ejemplos[nombre_legible] = archivo
 
-    def _iniciar_interfaz(self):
-        QtGui.QMainWindow.__init__(self)
-        ui.Ui_MainWindow.__init__(self)
-        self.ui = ui.Ui_MainWindow()
-        self.ui.setupUi(self)
-
     def cuando_pulsa_boton_ejecutar(self):
         nombre_ejemplo = self._obtener_item_actual()
         self._ejecutar_ejemplo(nombre_ejemplo)
 
-    def cuando_quiere_cerrar(self):
-        sys.exit(0)
-
     def cuando_pulsa_boton_fuente(self):
-        font = self.ui.codigo.font()
+        font = self.codigo.font()
         font, ok = QtGui.QFontDialog.getFont(font)
 
         if ok:
-            self.ui.codigo.setFont(font)
+            self.codigo.setFont(font)
 
     def cuando_pulsa_boton_guardar(self):
         nombre = self._obtener_item_actual()
-        path = unicode(QtGui.QFileDialog.getSaveFileName(self,
-                    'Guardar ejemplo',
-                    nombre,
-                    "py (*.py)"))
+        path = unicode(QtGui.QFileDialog.getSaveFileName(self.main, 'Guardar ejemplo', nombre, "py (*.py)"))
         if path:
             contenido = self._obtener_codigo_del_ejemplo(nombre)
 
@@ -160,23 +125,23 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
             item = self._obtener_item_desde_ruta(ruta)
 
             if item:
-                self.ui.arbol.setCurrentItem(item)
+                self.arbol.setCurrentItem(item)
 
     def _obtener_item_desde_ruta(self, ruta):
         nombres = ruta.split('/')
         categoria = nombres[-2]
         nombre = nombres[-1].replace('.py', '')
 
-        items = self.ui.arbol.findItems(nombre, QtCore.Qt.MatchRecursive)
+        items = self.arbol.findItems(nombre, QtCore.Qt.MatchRecursive)
 
         if items:
             return items[0]
 
     def _mostrar_imagen_del_ejemplo(self, ruta):
         escena = QtGui.QGraphicsScene()
-        self.ui.imagen.setScene(escena)
+        self.imagen.setScene(escena)
         pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(ruta.replace('.py', '.png')))
-        #ancho = self.ui.imagen.width()
+        #ancho = self.imagen.width()
         escena.addItem(pixmap)
 
     def _mostrar_image_inicial(self):
@@ -185,10 +150,10 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
     def _mostrar_codigo_del_ejemplo(self, nombre):
         contenido = self._obtener_codigo_del_ejemplo(nombre)
-        self.ui.codigo.document().setPlainText(contenido)
+        self.codigo.document().setPlainText(contenido)
 
     def _mostrar_codigo_presentacion_inicial(self):
-        self.ui.codigo.document().setPlainText(MENSAJE_PRESENTACION)
+        self.codigo.document().setPlainText(MENSAJE_PRESENTACION)
 
     def _obtener_codigo_del_ejemplo(self, nombre):
         archivo = open(nombre)
@@ -197,13 +162,12 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
         return contenido
 
     def _obtener_item_actual(self):
-        return self.ui.arbol.currentItem().text(1)
+        return self.arbol.currentItem().text(1)
 
     def _ejecutar_ejemplo(self, ruta):
-        self.process = QtCore.QProcess(self)
+        self.process = QtCore.QProcess(self.main)
         self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
-        self.process.finished.connect(
-            self._cuando_termina_la_ejecucion_del_ejemplo)
+        self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
         self.process.start(sys.executable, [ruta])
 
         # Deshabilita todos los controles para que se pueda
@@ -212,17 +176,20 @@ class VentanaPrincipal(QtGui.QMainWindow, ui.Ui_MainWindow):
 
     def _cuando_termina_la_ejecucion_del_ejemplo(self, estado, process):
         "Vuelve a permitir que se usen todos los botone de la interfaz."
-        print self.process.readAll()
+        salida = str(self.process.readAll())
+
+        if estado:
+            dialogo = QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
+            pass
+
         self._definir_estado_habilitado(True)
-        self.ui.arbol.setFocus()
+        self.arbol.setFocus()
 
-
-def main():
-    app = QtGui.QApplication(sys.argv)
-    window = VentanaPrincipal()
-    window.show()
-    sys.exit(app.exec_())
-
+def main(parent=None):
+    dialog = QtGui.QDialog(parent)
+    ui = VentanaEjemplos()
+    ui.setupUi(dialog)
+    dialog.exec_()
 
 if __name__ == "__main__":
     main()

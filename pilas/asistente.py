@@ -6,16 +6,15 @@ from asistente_base import Ui_Main
 import pilas
 import utils
 
-class Ventana(Ui_Main):
+class VentanaAsistente(Ui_Main):
 
-    def setupUi(self, Main):
-        Ui_Main.setupUi(self, Main)
+    def setupUi(self, main):
+        Ui_Main.setupUi(self, main)
 
         self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateAllLinks)
         self.webView.connect(self.webView, QtCore.SIGNAL("linkClicked(const QUrl&)"), self.cuando_pulsa_link)
         self._cargar_pagina_principal()
-        self.main = Main
-
+        self.main = main
 
     def _cargar_pagina_principal(self):
         file_path = utils.obtener_ruta_al_recurso('asistente/index.html')
@@ -37,14 +36,7 @@ class Ventana(Ui_Main):
         if seccion == "interprete":
             pilas.abrir_interprete()
         elif seccion == "ejemplos":
-            from ejemplos import cargador
-            ventana = cargador.VentanaPrincipal()
-
-            dialogo = QtGui.QDialog(self.main)
-            ventana.setParent(dialogo)
-            dialogo.show()
-            dialogo.raise_()
-
+            self._cuando_selecciona_ejemplos()
         elif seccion == "manual":
             print "El manual"
         elif seccion == "web":
@@ -53,6 +45,9 @@ class Ventana(Ui_Main):
         else:
             print seccion, "es una opcion desconocida"
 
+    def _cuando_selecciona_ejemplos(self):
+        from ejemplos import cargador
+        cargador.main(self.main)
 
 app = None
 
@@ -61,7 +56,7 @@ def ejecutar():
 
     app = QtGui.QApplication(sys.argv)
     Dialog = QtGui.QDialog()
-    ui = Ventana()
+    ui = VentanaAsistente()
     ui.setupUi(Dialog)
 
     Dialog.show()
