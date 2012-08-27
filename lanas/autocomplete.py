@@ -6,8 +6,6 @@ import os
 PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(PATH, '..', 'kanzen'))
 
-print sys.path
-
 from PyQt4 import QtGui, QtCore
 from kanzen import code_completion, completion_daemon
 
@@ -89,7 +87,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
             self.cc.analyze_file('', codigo)
 
             codigo_completo = codigo + "\n" + self._get_current_line() + event.text()
-            result = self.cc.get_completion(codigo_completo, len(codigo_completo))
+            result = self.cc.get_completion(str(codigo_completo), len(codigo_completo))
             values = result['attributes'] + result.get('modules', []) + result['functions'] + result['classes']
             self.set_dictionary(values)
 
