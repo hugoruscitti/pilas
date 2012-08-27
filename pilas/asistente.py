@@ -9,12 +9,17 @@ import utils
 class VentanaAsistente(Ui_Main):
 
     def setupUi(self, main):
+        self.main = main
         Ui_Main.setupUi(self, main)
 
         self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateAllLinks)
         self.webView.connect(self.webView, QtCore.SIGNAL("linkClicked(const QUrl&)"), self.cuando_pulsa_link)
         self._cargar_pagina_principal()
-        self.main = main
+        self._deshabilitar_barras_de_scroll()
+
+    def _deshabilitar_barras_de_scroll(self):
+        self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Horizontal, QtCore.Qt.ScrollBarAlwaysOff)
+        self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Vertical, QtCore.Qt.ScrollBarAlwaysOff)
 
     def _cargar_pagina_principal(self):
         file_path = utils.obtener_ruta_al_recurso('asistente/index.html')
