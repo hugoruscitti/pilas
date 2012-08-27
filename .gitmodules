@@ -1,0 +1,3 @@
+[submodule "lanas"]
+	path = lanas
+	url = http://github.com/hugoruscitti/lanas

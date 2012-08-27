@@ -22,7 +22,19 @@ Y una vez instalada la biblioteca, se puede invocar al comando ``pilas -e`` para
 - pyqt4
 - pybox2d
 - python
+- lanas (subrepo)
 
+
+## Obtener desde repositorio
+
+    git clone http://github.com/hugoruscitti/pilas
+    cd pilas
+    git submodule init
+    git submodule update
+    cd lanas
+    git submodule init
+    git submodule update
+    cd ..
 
 ## Licencia
 

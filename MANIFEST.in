@@ -3,6 +3,8 @@ recursive-include pilas/data *
 recursive-include pilas/ejemplos/data *
 recursive-include pilas/ejemplos/ejemplos *
 recursive-include pilas/console/lang *
+recursive-include lanas/kanzen *
+recursive-include lanas/lanas *
 include AUTHORS
 include LICENSE
 include INSTALL
