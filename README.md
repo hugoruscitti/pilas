@@ -9,5 +9,10 @@ Una consola interactiva de python simple y bonita.
 
     git submodule init
     git submodule update
-    python test.py
+    sudo python setup.py install
 
+## Gracias!
+
+A los desarrolladores [kanzen] por su magnifica biblioteca.
+
+[kanzen]: https://github.com/ninja-ide/kanzen

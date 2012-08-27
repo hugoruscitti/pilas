@@ -33,8 +33,7 @@ class Ventana(QWidget):
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
 
     def closeEvent(self, event):
-        from kanzen import completion_daemon
-        completion_daemon.shutdown_daemon()
+        autocomplete.stop_daemon()
         import sys
         sys.exit(0)
 

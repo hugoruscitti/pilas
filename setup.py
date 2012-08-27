@@ -7,6 +7,12 @@ setup(
         version=version.VERSION,
         description='Una consola sencilla de python',
         author='Hugo Ruscitti',
+        include_package_data = True,
+        package_data = {
+            'kanzen': ['./kanzen/kanzen'],
+        },
+        url='https://github.com/hugoruscitti/lanas',
+        scripts=['bin/lanas'],
         author_email='hugoruscitti@gmail.com',
         install_requires=['setuptools'],
         packages=['lanas'],

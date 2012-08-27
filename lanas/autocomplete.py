@@ -1,6 +1,18 @@
 import sys
+import os
+
+# Hace que el directorio que esta mas arriba pueda
+# tener modulos accesibles como por ejemplo kanzen.
+PATH = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(PATH, '..', 'kanzen'))
+
+print sys.path
+
 from PyQt4 import QtGui, QtCore
-from kanzen import code_completion
+from kanzen import code_completion, completion_daemon
+
+def stop_daemon():
+    completion_daemon.shutdown_daemon()
 
 class DictionaryCompleter(QtGui.QCompleter):
 
