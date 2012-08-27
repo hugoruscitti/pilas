@@ -23,6 +23,7 @@ Y una vez instalada la biblioteca, se puede invocar al comando ``pilas -e`` para
 - pybox2d
 - python
 - lanas (subrepo)
+- kanzen (subrepo)
 
 
 ## Obtener desde repositorio
