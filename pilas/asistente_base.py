@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'asistente.ui'
 #
-# Created: Tue Aug 28 17:30:21 2012
+# Created: Tue Aug 28 17:43:39 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -21,6 +21,8 @@ class Ui_AsistenteWindow(object):
         self.centralwidget = QtGui.QWidget(AsistenteWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+        self.gridLayout.setMargin(0)
+        self.gridLayout.setSpacing(6)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.webView = QtWebKit.QWebView(self.centralwidget)
         self.webView.setProperty("url", QtCore.QUrl(_fromUtf8("about:blank")))

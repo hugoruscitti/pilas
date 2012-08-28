@@ -17,6 +17,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self._cargar_pagina_principal()
         self._deshabilitar_barras_de_scroll()
         pilas.utils.centrar_ventana(main)
+        self.statusbar.showMessage(u"Versión " + pilas.version())
 
     def _deshabilitar_barras_de_scroll(self):
         self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Horizontal, QtCore.Qt.ScrollBarAlwaysOff)
@@ -34,7 +35,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         archivo = open(file_path, "rt")
         contenido = archivo.read()
         archivo.close()
-        return contenido.replace("{{VERSION}}", pilas.version()).decode('utf8')
+        return contenido.decode('utf8')
 
     def cuando_pulsa_link(self, url):
         seccion = str(url.path()).split('/')[-1]

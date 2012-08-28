@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'interprete.ui'
 #
-# Created: Tue Aug 28 17:30:21 2012
+# Created: Tue Aug 28 17:43:39 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
