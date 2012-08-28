@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'asistente.ui'
 #
-# Created: Tue Aug 28 14:53:40 2012
+# Created: Tue Aug 28 17:30:21 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_AsistenteWindow(object):
     def setupUi(self, AsistenteWindow):
         AsistenteWindow.setObjectName(_fromUtf8("AsistenteWindow"))
-        AsistenteWindow.resize(423, 254)
+        AsistenteWindow.resize(507, 342)
         self.centralwidget = QtGui.QWidget(AsistenteWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -28,7 +28,7 @@ class Ui_AsistenteWindow(object):
         self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)
         AsistenteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(AsistenteWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 423, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 507, 26))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         AsistenteWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(AsistenteWindow)

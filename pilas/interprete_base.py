@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'interprete.ui'
 #
-# Created: Tue Aug 28 14:53:40 2012
+# Created: Tue Aug 28 17:30:21 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,14 +17,14 @@ except AttributeError:
 class Ui_InterpreteDialog(object):
     def setupUi(self, InterpreteDialog):
         InterpreteDialog.setObjectName(_fromUtf8("InterpreteDialog"))
-        InterpreteDialog.resize(403, 267)
+        InterpreteDialog.resize(642, 554)
         self.gridLayout = QtGui.QGridLayout(InterpreteDialog)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.splitter = QtGui.QSplitter(InterpreteDialog)
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName(_fromUtf8("splitter"))
         self.canvas = QtGui.QStackedWidget(self.splitter)
-        self.canvas.setMinimumSize(QtCore.QSize(200, 100))
+        self.canvas.setMinimumSize(QtCore.QSize(320, 240))
         self.canvas.setObjectName(_fromUtf8("canvas"))
         self.page = QtGui.QWidget()
         self.page.setObjectName(_fromUtf8("page"))
