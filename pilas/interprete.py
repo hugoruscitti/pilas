@@ -2,7 +2,7 @@
 import sys
 from PyQt4 import QtCore, QtGui, QtWebKit
 
-from interprete_base import Ui_InterpreteWindow
+from interprete_base import Ui_InterpreteDialog
 import pilas
 import utils
 
@@ -11,11 +11,11 @@ sys.path.append('../')
 import lanas
 
 
-class VentanaInterprete(Ui_InterpreteWindow):
+class VentanaInterprete(Ui_InterpreteDialog):
 
     def setupUi(self, main):
         self.main = main
-        Ui_InterpreteWindow.setupUi(self, main)
+        Ui_InterpreteDialog.setupUi(self, main)
 
         scope = self._insertar_ventana_principal_de_pilas()
         self._insertar_consola_interactiva(scope)
@@ -38,9 +38,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.console.setCurrentWidget(consola)
 
 def main(parent=None):
-    main = QtGui.QMainWindow(parent)
+    dialog = QtGui.QDialog(parent)
     ui = VentanaInterprete()
-    ui.setupUi(main)
-
-    main.show()
-    main.raise_()
+    ui.setupUi(dialog)
+    dialog.exec_()

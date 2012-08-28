@@ -29,8 +29,8 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
     def setupUi(self, main):
         self.main = main
         ui.Ui_Ejemplos.setupUi(self, main)
-        self._conectar_signals()
 
+        self._conectar_signals()
         syntax.PythonHighlighter(self.codigo.document())
 
         self._definir_estado_habilitado(True)

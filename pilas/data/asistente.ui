@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Main</class>
- <widget class="QDialog" name="Main">
+ <class>AsistenteWindow</class>
+ <widget class="QMainWindow" name="AsistenteWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>457</width>
-    <height>321</height>
+    <width>423</width>
+    <height>254</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>pilas engine</string>
+   <string>pilas-engine</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <property name="margin">
-    <number>0</number>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QWebView" name="webView" native="true">
+      <property name="url" stdset="0">
+       <url>
+        <string>about:blank</string>
+       </url>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>423</width>
+     <height>26</height>
+    </rect>
    </property>
-   <item row="0" column="0">
-    <widget class="QWebView" name="webView">
-     <property name="url">
-      <url>
-       <string>about:blank</string>
-      </url>
-     </property>
-    </widget>
-   </item>
-  </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>

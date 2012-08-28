@@ -2,15 +2,15 @@
 import sys
 from PyQt4 import QtCore, QtGui, QtWebKit
 
-from asistente_base import Ui_Main
+from asistente_base import Ui_AsistenteWindow
 import pilas
 import utils
 
-class VentanaAsistente(Ui_Main):
+class VentanaAsistente(Ui_AsistenteWindow):
 
     def setupUi(self, main):
         self.main = main
-        Ui_Main.setupUi(self, main)
+        Ui_AsistenteWindow.setupUi(self, main)
 
         self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateAllLinks)
         self.webView.connect(self.webView, QtCore.SIGNAL("linkClicked(const QUrl&)"), self.cuando_pulsa_link)
@@ -62,19 +62,19 @@ class VentanaAsistente(Ui_Main):
         try:
             ruta = pilas.utils.obtener_ruta_al_recurso('pilas.pdf')
             pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
-        except IOError as e:
-            dialogo = QtGui.QMessageBox.warning(self.main, "Error, no se encuentra el manual", "Lo siento, no se encuentra el archivo 'pilas.pdf' intente visitando la web del proyecto.")
-
-app = None
+        except IOError:
+            titulo = "Error, no se encuentra el manual"
+            mensaje = "Lo siento, no se encuentra el archivo 'pilas.pdf' intente visitando la web del proyecto."
+            QtGui.QMessageBox.warning(self.main, titulo, mensaje)
 
 def ejecutar():
-    global app
-
     app = QtGui.QApplication(sys.argv)
-    Dialog = QtGui.QDialog()
-    ui = VentanaAsistente()
-    ui.setupUi(Dialog)
+    app.setApplicationName("pilas-engine")
 
-    Dialog.show()
-    Dialog.raise_()
+    main = QtGui.QMainWindow()
+    ui = VentanaAsistente()
+    ui.setupUi(main)
+
+    main.show()
+    main.raise_()
     app.exec_()

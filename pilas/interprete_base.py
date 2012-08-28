@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'interprete.ui'
 #
-# Created: Tue Aug 28 00:37:41 2012
+# Created: Tue Aug 28 14:53:40 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -14,15 +14,13 @@ try:
 except AttributeError:
     _fromUtf8 = lambda s: s
 
-class Ui_InterpreteWindow(object):
-    def setupUi(self, InterpreteWindow):
-        InterpreteWindow.setObjectName(_fromUtf8("InterpreteWindow"))
-        InterpreteWindow.resize(660, 615)
-        self.centralwidget = QtGui.QWidget(InterpreteWindow)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+class Ui_InterpreteDialog(object):
+    def setupUi(self, InterpreteDialog):
+        InterpreteDialog.setObjectName(_fromUtf8("InterpreteDialog"))
+        InterpreteDialog.resize(403, 267)
+        self.gridLayout = QtGui.QGridLayout(InterpreteDialog)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.splitter = QtGui.QSplitter(self.centralwidget)
+        self.splitter = QtGui.QSplitter(InterpreteDialog)
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName(_fromUtf8("splitter"))
         self.canvas = QtGui.QStackedWidget(self.splitter)
@@ -43,28 +41,20 @@ class Ui_InterpreteWindow(object):
         self.page_4.setObjectName(_fromUtf8("page_4"))
         self.console.addWidget(self.page_4)
         self.gridLayout.addWidget(self.splitter, 0, 0, 1, 1)
-        InterpreteWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(InterpreteWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 660, 22))
-        self.menubar.setObjectName(_fromUtf8("menubar"))
-        InterpreteWindow.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(InterpreteWindow)
-        self.statusbar.setObjectName(_fromUtf8("statusbar"))
-        InterpreteWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(InterpreteWindow)
-        QtCore.QMetaObject.connectSlotsByName(InterpreteWindow)
+        self.retranslateUi(InterpreteDialog)
+        QtCore.QMetaObject.connectSlotsByName(InterpreteDialog)
 
-    def retranslateUi(self, InterpreteWindow):
-        InterpreteWindow.setWindowTitle(QtGui.QApplication.translate("InterpreteWindow", "pilas-engine", None, QtGui.QApplication.UnicodeUTF8))
+    def retranslateUi(self, InterpreteDialog):
+        InterpreteDialog.setWindowTitle(QtGui.QApplication.translate("InterpreteDialog", "pilas-engine interprete", None, QtGui.QApplication.UnicodeUTF8))
 
 
 if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
-    InterpreteWindow = QtGui.QMainWindow()
-    ui = Ui_InterpreteWindow()
-    ui.setupUi(InterpreteWindow)
-    InterpreteWindow.show()
+    InterpreteDialog = QtGui.QDialog()
+    ui = Ui_InterpreteDialog()
+    ui.setupUi(InterpreteDialog)
+    InterpreteDialog.show()
     sys.exit(app.exec_())
 

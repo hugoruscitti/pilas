@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'asistente.ui'
 #
-# Created: Tue Aug 28 00:37:41 2012
+# Created: Tue Aug 28 14:53:40 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -14,32 +14,41 @@ try:
 except AttributeError:
     _fromUtf8 = lambda s: s
 
-class Ui_Main(object):
-    def setupUi(self, Main):
-        Main.setObjectName(_fromUtf8("Main"))
-        Main.resize(457, 321)
-        self.gridLayout = QtGui.QGridLayout(Main)
-        self.gridLayout.setMargin(0)
+class Ui_AsistenteWindow(object):
+    def setupUi(self, AsistenteWindow):
+        AsistenteWindow.setObjectName(_fromUtf8("AsistenteWindow"))
+        AsistenteWindow.resize(423, 254)
+        self.centralwidget = QtGui.QWidget(AsistenteWindow)
+        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.webView = QtWebKit.QWebView(Main)
-        self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
+        self.webView = QtWebKit.QWebView(self.centralwidget)
+        self.webView.setProperty("url", QtCore.QUrl(_fromUtf8("about:blank")))
         self.webView.setObjectName(_fromUtf8("webView"))
         self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)
+        AsistenteWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtGui.QMenuBar(AsistenteWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 423, 26))
+        self.menubar.setObjectName(_fromUtf8("menubar"))
+        AsistenteWindow.setMenuBar(self.menubar)
+        self.statusbar = QtGui.QStatusBar(AsistenteWindow)
+        self.statusbar.setObjectName(_fromUtf8("statusbar"))
+        AsistenteWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Main)
-        QtCore.QMetaObject.connectSlotsByName(Main)
+        self.retranslateUi(AsistenteWindow)
+        QtCore.QMetaObject.connectSlotsByName(AsistenteWindow)
 
-    def retranslateUi(self, Main):
-        Main.setWindowTitle(QtGui.QApplication.translate("Main", "pilas engine", None, QtGui.QApplication.UnicodeUTF8))
+    def retranslateUi(self, AsistenteWindow):
+        AsistenteWindow.setWindowTitle(QtGui.QApplication.translate("AsistenteWindow", "pilas-engine", None, QtGui.QApplication.UnicodeUTF8))
 
 from PyQt4 import QtWebKit
 
 if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
-    Main = QtGui.QDialog()
-    ui = Ui_Main()
-    ui.setupUi(Main)
-    Main.show()
+    AsistenteWindow = QtGui.QMainWindow()
+    ui = Ui_AsistenteWindow()
+    ui.setupUi(AsistenteWindow)
+    AsistenteWindow.show()
     sys.exit(app.exec_())
 
