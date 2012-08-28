@@ -9,17 +9,19 @@ import autocomplete
 
 class Ventana(QWidget):
 
-    def __init__(self, parent, title):
+    def __init__(self, parent=None, scope=None):
         super(Ventana, self).__init__(parent)
-        self.setWindowTitle(title)
         box = QHBoxLayout()
-        box.setMargin(12)
+        box.setMargin(0)
         box.setSpacing(0)
 
         self.setLayout(box)
 
+        if not scope:
+            scope = locals()
+
         self.text_edit = InterpreteTextEdit(self)
-        self.text_edit.init(locals())
+        self.text_edit.init(scope)
 
         self.resize(650, 300)
         self.center_on_screen()
