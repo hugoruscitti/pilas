@@ -36,7 +36,6 @@ class Ventana(QWidget):
 
     def closeEvent(self, event):
         autocomplete.stop_daemon()
-        import sys
         sys.exit(0)
 
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
@@ -162,37 +161,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         tc.insertText(word)
 
     def keyPressEvent(self, event):
-
-        """
-        if event.key() == Qt.Key_Tab:
-            word = self._get_current_word()
-            block = self._get_current_block_prefix()
-
-            if block != word:
-                items = eval('dir(%s)' %block, self.interpreterLocals, {})
-            else:
-                items = self.interpreterLocals
-
-            opciones = [o for o in items if o.startswith(word)]
-
-            if opciones:
-                self._set_current_word(opciones[0])
-
-            event.ignore()
-            return
-
-            if (word != self.completer.completionPrefix()):
-                self.completer.setCompletionPrefix(word)
-                popup = self.completer.popup()
-                popup.setCurrentIndex(self.completer.completionModel().index(0,0))
-
-                cr = self.cursorRect()
-                cr.setWidth(self.completer.popup().sizeHintForColumn(0) + self.completer.popup().verticalScrollBar().sizeHint().width())
-
-                self.completer.complete(cr)
-                event.ignore()
-        """
-
         # cambia el tamano de la tipografia.
         if event.modifiers() & Qt.AltModifier:
             if event.key() == Qt.Key_Minus:
