@@ -59,7 +59,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         #palette.setColor(QPalette.Text, QColor(0, 255, 0))
         #self.setPalette(palette)
 
-        self._set_font_size(20)
+        self._set_font_size(12)
         self._highlighter = highlighter.Highlighter(self.document(), 'python', highlighter.COLOR_SCHEME)
 
         ##completer = DictionaryCompleter()
