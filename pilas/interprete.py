@@ -19,9 +19,11 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
         scope = self._insertar_ventana_principal_de_pilas()
         self._insertar_consola_interactiva(scope)
+        pilas.utils.centrar_ventana(main)
+        pilas.utils.centrar_ventana(main)
 
     def _insertar_ventana_principal_de_pilas(self):
-        pilas.iniciar(usar_motor='qtsugargl')
+        pilas.iniciar(usar_motor='qtsugar')
         mono = pilas.actores.Mono()
         mono.aprender(pilas.habilidades.Arrastrable)
         canvas = pilas.mundo.motor.widget
@@ -29,7 +31,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
         self.canvas.addWidget(canvas)
         self.canvas.setCurrentWidget(canvas)
-        return {'pilas':pilas, 'mono':mono}
+        return {'pilas': pilas, 'mono': mono}
 
     def _insertar_consola_interactiva(self, scope):
         consola = lanas.interprete.Ventana(self.splitter, scope)
@@ -39,6 +41,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
 def main(parent=None):
     dialog = QtGui.QDialog(parent)
+    dialog.setWindowFlags(QtCore.Qt.Window | QtCore.Qt.WindowContextHelpButtonHint)
     ui = VentanaInterprete()
     ui.setupUi(dialog)
     dialog.exec_()

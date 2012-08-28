@@ -15,6 +15,7 @@ from PyQt4 import QtGui, QtCore
 
 import syntax
 import buscador
+import pilas
 
 
 MENSAJE_PRESENTACION = u"""Bienvenido al cargador de ejemplos.
@@ -41,6 +42,7 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
         self.example_dir = os.path.join(self.this_dir, 'ejemplos')
         self._cargar_lista_de_ejemplos()
         self._cargar_buscador()
+        pilas.utils.centrar_ventana(self.main)
 
     def _conectar_signals(self):
         self.ejecutar.connect(self.ejecutar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_boton_ejecutar)
@@ -186,6 +188,7 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
 
 def main(parent=None):
     dialog = QtGui.QDialog(parent)
+    dialog.setWindowFlags(QtCore.Qt.Window | QtCore.Qt.WindowContextHelpButtonHint)
     ui = VentanaEjemplos()
     ui.setupUi(dialog)
     dialog.exec_()

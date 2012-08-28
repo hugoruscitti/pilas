@@ -16,6 +16,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.webView.connect(self.webView, QtCore.SIGNAL("linkClicked(const QUrl&)"), self.cuando_pulsa_link)
         self._cargar_pagina_principal()
         self._deshabilitar_barras_de_scroll()
+        pilas.utils.centrar_ventana(main)
 
     def _deshabilitar_barras_de_scroll(self):
         self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Horizontal, QtCore.Qt.ScrollBarAlwaysOff)
