@@ -32,8 +32,9 @@ analizador.add_option("-v", "--version", dest="version",
 
 
 if opciones.interactivo:
+    app = QtGui.QApplication(sys.argv)
     pilas.abrir_interprete()
-    sys.exit(0)
+    sys.exit(app.exec_())
 elif opciones.crearjuego:
     pilas.utils.crear_juego()
 elif opciones.ejemplos:

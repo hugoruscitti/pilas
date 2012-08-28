@@ -24,6 +24,7 @@ import atajos
 import escenas
 import interfaz
 import log
+import interprete
 
 try:
     import aplicacion
@@ -189,6 +190,5 @@ def abrir_interprete():
 
     en una consola del sistema.
     """
+    interprete.main()
 
-    import aplicacion
-    aplicacion.main()

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'lanzador.ui'
 #
-# Created: Sun Aug 26 00:40:09 2012
+# Created: Tue Aug 28 00:37:40 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!

@@ -39,7 +39,7 @@ class VentanaAsistente(Ui_Main):
         seccion = str(url.path()).split('/')[-1]
 
         if seccion == "interprete":
-            pilas.abrir_interprete()
+            self._cuando_selecciona_interprete()
         elif seccion == "ejemplos":
             self._cuando_selecciona_ejemplos()
         elif seccion == "manual":
@@ -53,6 +53,10 @@ class VentanaAsistente(Ui_Main):
     def _cuando_selecciona_ejemplos(self):
         from ejemplos import cargador
         cargador.main(self.main)
+
+    def _cuando_selecciona_interprete(self):
+        import interprete
+        interprete.main(self.main)
 
     def _cuando_selecciona_abrir_manual(self):
         try:
