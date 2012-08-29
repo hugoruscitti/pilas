@@ -48,8 +48,5 @@ elif opciones.version:
     from pilas import pilasversion
     print pilasversion.VERSION
     sys.exit(0)
-
-print "Error, no has indicado un parametro para iniciar pilas."
-print "Puedes ejecutar el comando 'pilas --help' para ver instrucciones."
-sys.exit(1)
-
+else:
+    pilas.abrir_asistente()
