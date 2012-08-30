@@ -9,7 +9,6 @@
 mundo = None
 bg = None
 
-import console
 import sys
 import utils
 from mundo import Mundo
@@ -25,17 +24,6 @@ import escenas
 import interfaz
 import log
 import interprete
-
-try:
-    import aplicacion
-    try:
-        import ejemplos
-    except ImportError:
-        # Los ejemplos están en un paquete separado, solo se importa si el paquete está instalado
-        pass
-except ImportError:
-    print "ERROR: no está disponible PyQt4"
-
 
 __doc__ = """
 Módulo pilas
