@@ -35,7 +35,6 @@ class Ventana(QWidget):
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
 
     def closeEvent(self, event):
-        #autocomplete.stop_daemon()
         sys.exit(0)
 
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
@@ -103,24 +102,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         self.clearCurrentBlock()
         if self.historyIndex <> -1:
             self.insertPlainText(self.history[self.historyIndex])
-
-    def custom_commands(self, command):
-
-        if command == '!hist':
-            self.append('')
-            backup = self.interpreterLocals.copy()
-            history = self.history[:]
-            history.reverse()
-            for i, x in enumerate(history):
-                iSize = len(str(i))
-                delta = len(str(len(history))) - iSize
-                line = line  = ' ' * delta + '%i: %s' % (i, x) + '\n'
-                self.write(line)
-            self.updateInterpreterLocals(backup)
-            self.marker()
-            return True
-
-        return False
 
     def _get_entered_line(self):
         # set cursor to end of line to avoid line splitting
@@ -220,44 +201,43 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             line = self._get_entered_line()
             self.historyIndex = -1
 
-            if not self.custom_commands(line):
-                try:
-                    line[-1]
-                    self.haveLine = True
-                    if line[-1] == ':':
-                        self.multiline = True
-                    self.history.insert(0, line)
-                except:
-                    self.haveLine = False
+            try:
+                line[-1]
+                self.haveLine = True
+                if line[-1] == ':':
+                    self.multiline = True
+                self.history.insert(0, line)
+            except:
+                self.haveLine = False
 
-                if self.haveLine and self.multiline: # multi line command
-                    self.command += line + '\n' # + command and line
-                    self.append('')
-                    self.marker() # handle marker style
-                    return None
-
-                if self.haveLine and not self.multiline: # one line command
-                    self.command = line # line is the command
-                    self.append('') # move down one line
-                    self.interpreter.runsource(self.command)
-                    self.command = '' # clear command
-                    self.marker() # handle marker style
-                    return None
-
-                if self.multiline and not self.haveLine: #  multi line done
-                    self.append('') # move down one line
-                    self.interpreter.runsource(self.command)
-                    self.command = '' # clear command
-                    self.multiline = False # back to single line
-                    self.marker() # handle marker style
-                    return None
-
-                if not self.haveLine and not self.multiline:  # just enter
-                    self.append('')
-                    self.marker()
-                    return None
-
+            if self.haveLine and self.multiline: # multi line command
+                self.command += line + '\n' # + command and line
+                self.append('')
+                self.marker() # handle marker style
                 return None
+
+            if self.haveLine and not self.multiline: # one line command
+                self.command = line # line is the command
+                self.append('') # move down one line
+                self.interpreter.runsource(self.command)
+                self.command = '' # clear command
+                self.marker() # handle marker style
+                return None
+
+            if self.multiline and not self.haveLine: #  multi line done
+                self.append('') # move down one line
+                self.interpreter.runsource(self.command)
+                self.command = '' # clear command
+                self.multiline = False # back to single line
+                self.marker() # handle marker style
+                return None
+
+            if not self.haveLine and not self.multiline:  # just enter
+                self.append('')
+                self.marker()
+                return None
+
+            return None
 
         super(InterpreteTextEdit, self).keyPressEvent(event)
 
