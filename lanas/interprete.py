@@ -35,7 +35,7 @@ class Ventana(QWidget):
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
 
     def closeEvent(self, event):
-        autocomplete.stop_daemon()
+        #autocomplete.stop_daemon()
         sys.exit(0)
 
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
@@ -44,7 +44,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         super(InterpreteTextEdit,  self).__init__(parent)
 
         sys.stdout = self
-        sys.stderr = self
+        #sys.stderr = self
         self.refreshMarker = False
         self.multiline = False
         self.command = ''
@@ -260,3 +260,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 return None
 
         super(InterpreteTextEdit, self).keyPressEvent(event)
+
+    def log(self, mensaje):
+        sys.stderr.write(mensaje + "\n")

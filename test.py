@@ -1,2 +1,3 @@
 import lanas
+
 lanas.main()

@@ -7,10 +7,10 @@ PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(PATH, '..', 'kanzen'))
 
 from PyQt4 import QtGui, QtCore
-from kanzen import code_completion, completion_daemon
+#from kanzen import code_completion, completion_daemon
 
-def stop_daemon():
-    completion_daemon.shutdown_daemon()
+#def stop_daemon():
+#    completion_daemon.shutdown_daemon()
 
 def autocompletar(scope, texto):
     texto = texto.split(' ')[-1]
@@ -44,7 +44,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
         self.dictionary = DictionaryCompleter()
         self.set_completer(self.dictionary)
         self.set_dictionary(["nueva_palabra", "import"])
-        self.cc = code_completion.CodeCompletion()
+        #self.cc = code_completion.CodeCompletion()
 
     def set_dictionary(self, list):
         self.dictionary.set_dictionary(list)
@@ -97,12 +97,6 @@ class CompletionTextEdit(QtGui.QTextEdit):
                 self.completer.popup().hide()
                 return False
         else:
-            #codigo = '\n'.join(self.history)
-            #self.cc.analyze_file('', codigo)
-
-            #codigo_completo = codigo + "\n" + self._get_current_line() + event.text()
-            #result = self.cc.get_completion(str(codigo_completo), len(codigo_completo))
-            #values = result['attributes'] + result.get('modules', []) + result['functions'] + result['classes']
             codigo_completo = str(self._get_current_line() + event.text())
             values = autocompletar(self.interpreterLocals, codigo_completo)
             self.set_dictionary(values)
