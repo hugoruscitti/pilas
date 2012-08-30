@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import code
 import sys
 
@@ -47,7 +48,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         self.refreshMarker = False
         self.multiline = False
         self.command = ''
-        self.marker()        # cursor >>> o ...
         self.history = []
         self.historyIndex = -1
         self.interpreterLocals = {}
@@ -63,6 +63,13 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         ##completer = DictionaryCompleter()
         ##self._set_completer(completer)
+        self.insertar_mensaje("Lanas")
+        self.marker()        # cursor >>> o ...
+
+    def insertar_mensaje(self, mensaje):
+        self.insertHtml(u"<div>‥  %s</div>" %(mensaje))
+        self.insertPlainText('\n')
+        #self.insertHtml("<div style='background-color: white'>fin</div>")
 
 
     def _set_font_size(self, font_size):
