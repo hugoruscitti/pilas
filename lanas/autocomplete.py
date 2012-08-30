@@ -1,26 +1,22 @@
 import sys
 import os
 
-# Hace que el directorio que esta mas arriba pueda
-# tener modulos accesibles como por ejemplo kanzen.
-PATH = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(PATH, '..', 'kanzen'))
-
 from PyQt4 import QtGui, QtCore
-#from kanzen import code_completion, completion_daemon
-
-#def stop_daemon():
-#    completion_daemon.shutdown_daemon()
 
 def autocompletar(scope, texto):
-    texto = texto.split(' ')[-1]
+    texto = texto.replace('(', ' ').split(' ')[-1]
 
     if '.' in texto:
         palabras = texto.split('.')
         ultima = palabras.pop()
         prefijo = '.'.join(palabras)
 
-        elementos = eval("dir(%s)" %prefijo, scope)
+        try:
+            elementos = eval("dir(%s)" %prefijo, scope)
+        except:
+            # TODO: notificar este error de autocompletado en algun lado...
+            return []
+
         return [a for a in elementos if a.startswith(ultima)]
     else:
         return [a for a in scope.keys() if a.startswith(texto)]
@@ -43,8 +39,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
         self.moveCursor(QtGui.QTextCursor.End)
         self.dictionary = DictionaryCompleter()
         self.set_completer(self.dictionary)
-        self.set_dictionary(["nueva_palabra", "import"])
-        #self.cc = code_completion.CodeCompletion()
+        self.set_dictionary([])
 
     def set_dictionary(self, list):
         self.dictionary.set_dictionary(list)
@@ -101,17 +96,23 @@ class CompletionTextEdit(QtGui.QTextEdit):
             values = autocompletar(self.interpreterLocals, codigo_completo)
             self.set_dictionary(values)
 
+
         if word != self.completer.completionPrefix():
             self.completer.setCompletionPrefix(word)
-            popup = self.completer.popup()
-            popup.setFont(self.font())
-            popup.setCurrentIndex(self.completer.completionModel().index(0,0))
+            if self.completer.completionCount() > 0:
 
-            if self.completer and not self.completer.popup().isVisible():
-                cr = self.cursorRect()
-                column_width = self.completer.popup().sizeHintForColumn(0)
-                scroll_width = self.completer.popup().verticalScrollBar().sizeHint().width()
-                cr.setWidth(column_width + scroll_width)
-                self.completer.complete(cr)
+                popup = self.completer.popup()
+                popup.setFont(self.font())
+                popup.setCurrentIndex(self.completer.completionModel().index(0,0))
+
+                if self.completer and not self.completer.popup().isVisible():
+                    cr = self.cursorRect()
+                    column_width = self.completer.popup().sizeHintForColumn(0)
+                    scroll_width = self.completer.popup().verticalScrollBar().sizeHint().width()
+                    cr.setWidth(column_width + scroll_width)
+                    self.completer.complete(cr)
+            else:
+                self.completer.popup().hide()
+
         else:
             self.completer.popup().hide()
