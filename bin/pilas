@@ -12,10 +12,6 @@ analizador.add_option("-i", "--interactivo", dest="interactivo",
         action="store_true", default=False,
         help="Inicia el modo interactivo con una consola.")
 
-analizador.add_option("-j", "--crearjuego", dest="crearjuego",
-        action="store_true", default=False,
-        help="Genera un directorio de videojuego vacio.")
-
 analizador.add_option("-e", "--ejemplos", dest="ejemplos",
         action="store_true", default=False,
         help="Mustra varios ejemplos sencillos de pilas")
@@ -35,8 +31,6 @@ if opciones.interactivo:
     app = QtGui.QApplication(sys.argv)
     pilas.abrir_interprete()
     sys.exit(app.exec_())
-elif opciones.crearjuego:
-    pilas.utils.crear_juego()
 elif opciones.ejemplos:
     app = QtGui.QApplication(sys.argv)
     pilas.abrir_cargador()
