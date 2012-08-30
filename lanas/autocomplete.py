@@ -12,6 +12,20 @@ from kanzen import code_completion, completion_daemon
 def stop_daemon():
     completion_daemon.shutdown_daemon()
 
+def autocompletar(scope, texto):
+    texto = texto.split(' ')[-1]
+
+    if '.' in texto:
+        palabras = texto.split('.')
+        ultima = palabras.pop()
+        prefijo = '.'.join(palabras)
+
+        elementos = eval("dir(%s)" %prefijo, scope)
+        return [a for a in elementos if a.startswith(ultima)]
+    else:
+        return [a for a in scope.keys() if a.startswith(texto)]
+
+
 class DictionaryCompleter(QtGui.QCompleter):
 
     def __init__(self, parent=None):
@@ -83,12 +97,14 @@ class CompletionTextEdit(QtGui.QTextEdit):
                 self.completer.popup().hide()
                 return False
         else:
-            codigo = '\n'.join(self.history)
-            self.cc.analyze_file('', codigo)
+            #codigo = '\n'.join(self.history)
+            #self.cc.analyze_file('', codigo)
 
-            codigo_completo = codigo + "\n" + self._get_current_line() + event.text()
-            result = self.cc.get_completion(str(codigo_completo), len(codigo_completo))
-            values = result['attributes'] + result.get('modules', []) + result['functions'] + result['classes']
+            #codigo_completo = codigo + "\n" + self._get_current_line() + event.text()
+            #result = self.cc.get_completion(str(codigo_completo), len(codigo_completo))
+            #values = result['attributes'] + result.get('modules', []) + result['functions'] + result['classes']
+            codigo_completo = str(self._get_current_line() + event.text())
+            values = autocompletar(self.interpreterLocals, codigo_completo)
             self.set_dictionary(values)
 
         if word != self.completer.completionPrefix():

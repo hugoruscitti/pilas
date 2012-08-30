@@ -83,6 +83,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
     def init(self, interpreter_locals):
         if interpreter_locals:
             self.interpreter = code.InteractiveInterpreter(interpreter_locals)
+            self.interpreterLocals = interpreter_locals
 
     def updateInterpreterLocals(self, newLocals):
         className = newLocals.__class__.__name__
