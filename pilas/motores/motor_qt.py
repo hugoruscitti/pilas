@@ -89,6 +89,7 @@ class BaseActor(object):
     def set_espejado(self, espejado):
         self._espejado = espejado
 
+
 class Imagen(object):
 
     def __init__(self, ruta):
@@ -192,6 +193,7 @@ class Grilla(Imagen):
     def dibujarse_sobre_una_pizarra(self, pizarra, x, y):
         pizarra.pintar_parte_de_imagen(self, self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto, x, y)
 
+
 class Texto(Imagen):
 
     def __init__(self, texto, magnitud, motor, vertical=False):
@@ -294,6 +296,7 @@ class Lienzo(Imagen):
         motor.canvas.setPen(pen)
         motor.canvas.drawRect(x, y, ancho, alto)
 
+
 class Superficie(Imagen):
 
     def __init__(self, ancho, alto):
@@ -389,6 +392,7 @@ class Superficie(Imagen):
     def limpiar(self):
         self._imagen.fill(QtGui.QColor(0, 0, 0, 0))
 
+
 class Actor(BaseActor):
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
@@ -448,10 +452,12 @@ class Sonido:
     def detener(self):
         self.sonido.stop()
 
+
 class Musica(Sonido):
 
     def __init__(self, media, ruta):
         Sonido.__init__(self, media, ruta)
+
 
 class Base(motor.Motor):
 
@@ -530,17 +536,6 @@ class Base(motor.Motor):
     def obtener_actor(self, imagen, x, y):
         return Actor(imagen, x, y)
 
-    def actor_en_pantalla(self, actor):
-        """ Confirma si un actor se encuentra dentro de la pantalla """
-        if (actor.x + (actor.ancho - actor.obtener_centro()[0]) >= (self.camara_x - (self.ancho_original/2)) and
-            actor.y + (actor.alto - actor.obtener_centro()[1]) >= (self.camara_y - (self.alto_original/2)) and
-            actor.x - (actor.ancho - actor.obtener_centro()[0]) <= (self.camara_x + (self.ancho_original/2)) and
-            actor.y - (actor.alto - actor.obtener_centro()[1]) <= (self.camara_y + (self.alto_original/2))):
-            return True
-        else:
-            return False
-
-
     def obtener_texto(self, texto, magnitud, vertical=False):
         return Texto(texto, magnitud, self, vertical)
 
@@ -590,7 +585,6 @@ class Base(motor.Motor):
         alto = self.alto / float(self.alto_original)
         self.canvas.scale(alto, alto)
 
-
         self.canvas.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, False)
         self.canvas.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
         self.canvas.setRenderHint(QtGui.QPainter.Antialiasing, False)
@@ -600,7 +594,7 @@ class Base(motor.Motor):
         for actor in actores.todos:
             try:
                 # Si el actor se encuantra dentro del area visible se dibuja.
-                if self.actor_en_pantalla(actor):
+                if not actor.esta_fuera_de_la_pantalla():
                     actor.dibujar(self)
             except Exception as e:
                 print e
@@ -620,12 +614,10 @@ class Base(motor.Motor):
         # Invoca el dibujado de la pantalla.
         self.update()
 
-
     def realizar_actualizacion_logica(self):
         for x in range(self.fps.actualizar()):
             if not self.pausa_habilitada:
                 self._actualizar_eventos_y_actores()
-
 
     def _actualizar_eventos_y_actores(self):
         eventos.actualizar.emitir()
@@ -675,7 +667,6 @@ class Base(motor.Motor):
             self.alternar_pantalla_completa()
 
         eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
-
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self.obtener_codigo_de_tecla_normalizado(event.key())
@@ -787,6 +778,7 @@ class Base(motor.Motor):
 
         self._widgetlog.imprimir(params)
 
+
 class Widget(Base, QWidget):
 
     def __init__(self, app):
@@ -794,7 +786,6 @@ class Widget(Base, QWidget):
         self.app = app
         QWidget.__init__(self, None, QtCore.Qt.WindowStaysOnTopHint)
         Base.__init__(self)
-
 
 
 class WidgetGL(Base, QGLWidget):
@@ -814,6 +805,7 @@ class WidgetGL(Base, QGLWidget):
         color = QtGui.QColor(99, 0, 0)
         self.setStyleSheet("QFrame { background-color: %s }" % color.name())
 
+
 class WidgetSugar(Widget):
 
     def __init__(self):
@@ -826,6 +818,7 @@ class WidgetSugar(Widget):
     def mostrar_ventana(self, pantalla_completa):
         pass
 
+
 class WidgetSugarGL(WidgetGL):
 
     def __init__(self):
@@ -837,6 +830,7 @@ class WidgetSugarGL(WidgetGL):
 
     def mostrar_ventana(self, pantalla_completa):
         pass
+
 
 class WidgetLog(QMainWindow):
     """ Representa una ventana de log.
@@ -940,7 +934,6 @@ class WidgetLog(QMainWindow):
         else:
             self._insertar_texto_en_lista(str(elemento))
 
-
     def _contiene_diccionario(self, valor):
         if hasattr(valor, '__dict__'):
             return True
@@ -971,6 +964,7 @@ class WidgetLog(QMainWindow):
         item.setText(0, clave)
         item.setText(1, str(valor))
         return item
+
 
 class Motor(object):
     """Representa la ventana principal de pilas.
