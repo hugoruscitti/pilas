@@ -1,3 +1,4 @@
+# -*- encoding: utf-8
 # pilas engine - a video game framework.
 #
 # copyright 2010 - hugo ruscitti
@@ -7,7 +8,7 @@
 
 
 def abstract():
-    raise Exception("Tienes que re-definir este metodo.")
+    raise Exception("Tienes que re-definir este método.")
 
 
 class Motor(object):
@@ -95,6 +96,6 @@ class Motor(object):
 
     def terminar(self):
         abstract()
-        
+
     def log(self, *params):
         abstract()
