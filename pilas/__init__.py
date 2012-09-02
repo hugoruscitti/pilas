@@ -25,6 +25,10 @@ import interfaz
 import log
 import interprete
 
+# Permite cerrar el programa usando CTRL+C
+import signal
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+
 __doc__ = """
 Módulo pilas
 ============
