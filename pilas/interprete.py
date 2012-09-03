@@ -25,12 +25,15 @@ class VentanaInterprete(Ui_InterpreteDialog):
     def _insertar_ventana_principal_de_pilas(self):
         pilas.iniciar(usar_motor='qtsugar')
         mono = pilas.actores.Mono()
-        mono.aprender(pilas.habilidades.Arrastrable)
-        canvas = pilas.mundo.motor.ventana
-        canvas.setFocusPolicy(QtCore.Qt.ClickFocus)
+        mono.aprender(pilas.habilidades.MoverseConElTeclado)
 
-        self.canvas.addWidget(canvas)
-        self.canvas.setCurrentWidget(canvas)
+        ventana = pilas.mundo.motor.ventana
+        canvas = pilas.mundo.motor.canvas
+        canvas.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.canvas.setFocus()
+
+        self.canvas.addWidget(ventana)
+        self.canvas.setCurrentWidget(ventana)
         return {'pilas': pilas, 'mono': mono}
 
     def _insertar_consola_interactiva(self, scope):

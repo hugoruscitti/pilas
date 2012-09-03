@@ -5,6 +5,8 @@ from PyQt4 import QtCore, QtGui, QtWebKit
 from asistente_base import Ui_AsistenteWindow
 import pilas
 import utils
+import interprete
+from ejemplos import cargador
 
 class VentanaAsistente(Ui_AsistenteWindow):
 
@@ -53,11 +55,9 @@ class VentanaAsistente(Ui_AsistenteWindow):
             print seccion, "es una opcion desconocida"
 
     def _cuando_selecciona_ejemplos(self):
-        from ejemplos import cargador
         cargador.main(self.main)
 
     def _cuando_selecciona_interprete(self):
-        import interprete
         interprete.main(self.main)
 
     def _cuando_selecciona_abrir_manual(self):
