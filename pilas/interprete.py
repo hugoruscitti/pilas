@@ -6,7 +6,8 @@ from interprete_base import Ui_InterpreteDialog
 import pilas
 import utils
 
-sys.path.append('../')
+sys.path.append('lanas')
+sys.path.append('../lanas')
 
 import lanas
 

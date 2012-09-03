@@ -24,10 +24,12 @@ setup(
         install_requires=[
             'setuptools',
             ],
-        packages=['pilas', 'pilas.actores',
-                  'pilas.motores', 'pilas.console',
+        packages=['pilas', 
+                  'pilas.actores',
+                  'pilas.motores',
                   'pilas.ejemplos',
-                  'pilas.interfaz', 'pilas.video'],
+                  'pilas.interfaz',
+	          'pilas.video'],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
         package_data = {
