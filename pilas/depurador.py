@@ -6,9 +6,9 @@
 #
 # website - http://www.pilas-engine.com.ar
 
+import sys
 import pilas
 from pilas import pilasversion
-import sys
 
 class Depurador(object):
     """Esta clase permite hacer depuraciones visuales.
@@ -34,23 +34,23 @@ class Depurador(object):
         self.posicion_del_mouse = (evento.x, evento.y)
         return True
 
-    def comienza_dibujado(self, motor):
+    def comienza_dibujado(self, motor, painter):
         for m in self.modos:
-            m.comienza_dibujado(motor, self.lienzo)
+            m.comienza_dibujado(motor, painter, self.lienzo)
 
-    def dibuja_al_actor(self, motor, actor):
+    def dibuja_al_actor(self, motor, painter, actor):
         for m in self.modos:
-            m.dibuja_al_actor(motor, self.lienzo, actor)
+            m.dibuja_al_actor(motor, painter, self.lienzo, actor)
 
-    def termina_dibujado(self, motor):
+    def termina_dibujado(self, motor, painter):
         if self.modos:
-            self._mostrar_cantidad_de_actores(motor)
-            self._mostrar_cuadros_por_segundo(motor)
-            self._mostrar_posicion_del_mouse(motor)
-            self._mostrar_nombres_de_modos(motor)
+            self._mostrar_cantidad_de_actores(painter)
+            self._mostrar_cuadros_por_segundo(painter)
+            self._mostrar_posicion_del_mouse(painter)
+            self._mostrar_nombres_de_modos(painter)
 
             for m in self.modos:
-                m.termina_dibujado(motor, self.lienzo)
+                m.termina_dibujado(motor, painter, self.lienzo)
 
     def cuando_pulsa_tecla(self, evento):
         if evento.codigo == 'F6':
@@ -87,7 +87,6 @@ class Depurador(object):
         pilas.eventos.inicia_modo_depuracion.emitir()
         instancia_del_modo = clase_del_modo(self)
         self.modos.append(instancia_del_modo)
-        # Ordena todos los registros por numero de tecla.
         self.modos.sort(key=lambda x: x.orden_de_tecla())
 
     def _desactivar_modo(self, clase_del_modo):
@@ -99,35 +98,32 @@ class Depurador(object):
         if not self.modos:
             pilas.eventos.sale_modo_depuracion.emitir()
 
-    def _mostrar_nombres_de_modos(self, motor):
+    def _mostrar_nombres_de_modos(self, painter):
         dy = 0
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
 
         for modo in self.modos:
             texto = modo.tecla + " " + modo.__class__.__name__ + " habilitado."
-            self.lienzo.texto_absoluto(motor, texto, izquierda + 10, arriba -20 +dy,
-                    color=pilas.colores.violeta)
+            self.lienzo.texto_absoluto(painter, texto, izquierda + 10, arriba -20 +dy, color=pilas.colores.violeta)
             dy -= 20
 
-    def _mostrar_posicion_del_mouse(self, motor):
+    def _mostrar_posicion_del_mouse(self, painter):
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
         x, y = self.posicion_del_mouse
         texto = u"Posición del mouse: x=%d y=%d " %(x, y)
-        self.lienzo.texto_absoluto(motor, texto, derecha - 230, abajo + 10, color=pilas.colores.violeta)
+        self.lienzo.texto_absoluto(painter, texto, derecha - 230, abajo + 10, color=pilas.colores.violeta)
 
-    def _mostrar_cuadros_por_segundo(self, motor):
+    def _mostrar_cuadros_por_segundo(self, painter):
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
         rendimiento = self.fps.obtener_cuadros_por_segundo()
         texto = "Cuadros por segundo: %s" %(rendimiento)
-        self.lienzo.texto_absoluto(motor, texto, izquierda + 10, abajo + 10,
-                color=pilas.colores.violeta)
+        self.lienzo.texto_absoluto(painter, texto, izquierda + 10, abajo + 10, color=pilas.colores.violeta)
 
-    def _mostrar_cantidad_de_actores(self, motor):
+    def _mostrar_cantidad_de_actores(self, painter):
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
         total_de_actores = len(pilas.actores.todos)
         texto = "Cantidad de actores: %s" %(total_de_actores)
-        self.lienzo.texto_absoluto(motor, texto, izquierda + 10, abajo + 30,
-                color=pilas.colores.violeta)
+        self.lienzo.texto_absoluto(painter, texto, izquierda + 10, abajo + 30, color=pilas.colores.violeta)
 
 
 class ModoDepurador(object):
@@ -136,13 +132,13 @@ class ModoDepurador(object):
     def __init__(self, depurador):
         self.depurador = depurador
 
-    def comienza_dibujado(self, motor, lienzo):
+    def comienza_dibujado(self, motor, painter, lienzo):
         pass
 
-    def dibuja_al_actor(self, motor, lienzo, actor):
+    def dibuja_al_actor(self, motor, painter, lienzo, actor):
         pass
 
-    def termina_dibujado(self, motor, lienzo):
+    def termina_dibujado(self, motor, painter, lienzo):
         pass
 
     def orden_de_tecla(self):
@@ -151,46 +147,6 @@ class ModoDepurador(object):
     def sale_del_modo(self):
         pass
 
-class ModoPuntosDeControl(ModoDepurador):
-    tecla = "F8"
-
-    def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.cruz(motor, actor.x - pilas.mundo.camara.x, actor.y - pilas.mundo.camara.y, color=pilas.colores.rojo, grosor=ModoDepurador.grosor_de_lineas)
-
-class ModoRadiosDeColision(ModoDepurador):
-    tecla = "F9"
-
-    def dibuja_al_actor(self, motor, lienzo, actor):
-        lienzo.circulo(motor, actor.x - pilas.mundo.camara.x, actor.y - pilas.mundo.camara.y, actor.radio_de_colision, color=pilas.colores.verde, grosor=ModoDepurador.grosor_de_lineas)
-
-class ModoArea(ModoDepurador):
-    tecla = "F10"
-
-    def dibuja_al_actor(self, motor, lienzo, actor):
-        dx, dy = actor.centro
-        lienzo.rectangulo(motor, actor.x - dx - pilas.mundo.camara.x, actor.y + dy - pilas.mundo.camara.y, actor.ancho, actor.alto, color=pilas.colores.azul, grosor=ModoDepurador.grosor_de_lineas)
-
-class ModoPosicion(ModoDepurador):
-    tecla = "F12"
-
-    def __init__(self, depurador):
-        ModoDepurador.__init__(self, depurador)
-        self.eje = pilas.actores.Ejes()
-
-    def dibuja_al_actor(self, motor, lienzo, actor):
-        if not isinstance(actor, pilas.fondos.Fondo):
-            texto = "(%d, %d)" %(actor.x, actor.y)
-            lienzo.texto(motor, texto, actor.derecha - pilas.mundo.camara.x, actor.abajo - pilas.mundo.camara.y, color=pilas.colores.violeta)
-
-    def sale_del_modo(self):
-        self.eje.eliminar()
-
-class ModoFisica(ModoDepurador):
-    tecla = "F11"
-
-    def termina_dibujado(self, motor, lienzo):
-        grosor = ModoDepurador.grosor_de_lineas
-        pilas.mundo.fisica.dibujar_figuras_sobre_lienzo(motor, lienzo, grosor)
 
 class ModoInformacionDeSistema(ModoDepurador):
     tecla = "F7"
@@ -206,9 +162,55 @@ class ModoInformacionDeSistema(ModoDepurador):
             "Version de Box2D: " + pilas.fisica.obtener_version(),
             ]
 
-    def termina_dibujado(self, motor, lienzo):
+    def termina_dibujado(self, motor, painter, lienzo):
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
 
         for (i, texto) in enumerate(self.informacion):
             posicion_y = abajo + 50 + i * 20
-            lienzo.texto(motor, texto, izquierda + 10, posicion_y, color=pilas.colores.negro)
+            lienzo.texto(painter, texto, izquierda + 10, posicion_y, color=pilas.colores.negro)
+
+
+class ModoPuntosDeControl(ModoDepurador):
+    tecla = "F8"
+
+    def dibuja_al_actor(self, motor, painter, lienzo, actor):
+        lienzo.cruz(painter, actor.x - pilas.mundo.camara.x, actor.y - pilas.mundo.camara.y, color=pilas.colores.rojo, grosor=ModoDepurador.grosor_de_lineas)
+
+
+class ModoRadiosDeColision(ModoDepurador):
+    tecla = "F9"
+
+    def dibuja_al_actor(self, motor, painter, lienzo, actor):
+        lienzo.circulo(painter, actor.x - pilas.mundo.camara.x, actor.y - pilas.mundo.camara.y, actor.radio_de_colision, color=pilas.colores.verde, grosor=ModoDepurador.grosor_de_lineas)
+
+
+class ModoArea(ModoDepurador):
+    tecla = "F10"
+
+    def dibuja_al_actor(self, motor, painter, lienzo, actor):
+        dx, dy = actor.centro
+        lienzo.rectangulo(painter, actor.x - dx - pilas.mundo.camara.x, actor.y + dy - pilas.mundo.camara.y, actor.ancho, actor.alto, color=pilas.colores.azul, grosor=ModoDepurador.grosor_de_lineas)
+
+
+class ModoFisica(ModoDepurador):
+    tecla = "F11"
+
+    def termina_dibujado(self, motor, painter, lienzo):
+        grosor = ModoDepurador.grosor_de_lineas
+        pilas.mundo.fisica.dibujar_figuras_sobre_lienzo(painter, lienzo, grosor)
+
+
+class ModoPosicion(ModoDepurador):
+    tecla = "F12"
+
+    def __init__(self, depurador):
+        ModoDepurador.__init__(self, depurador)
+        self.eje = pilas.actores.Ejes()
+
+    def dibuja_al_actor(self, motor, painter, lienzo, actor):
+        if not isinstance(actor, pilas.fondos.Fondo):
+            texto = "(%d, %d)" %(actor.x, actor.y)
+            lienzo.texto(painter, texto, actor.derecha - pilas.mundo.camara.x, actor.abajo - pilas.mundo.camara.y, color=pilas.colores.violeta)
+
+    def sale_del_modo(self):
+        self.eje.eliminar()

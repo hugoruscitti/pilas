@@ -27,7 +27,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
         pilas.iniciar(usar_motor='qtsugar')
         mono = pilas.actores.Mono()
         mono.aprender(pilas.habilidades.Arrastrable)
-        canvas = pilas.mundo.motor.widget
+        canvas = pilas.mundo.motor.ventana
         canvas.setFocusPolicy(QtCore.Qt.ClickFocus)
 
         self.canvas.addWidget(canvas)

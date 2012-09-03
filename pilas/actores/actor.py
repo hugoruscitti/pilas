@@ -408,6 +408,8 @@ class Actor(object, Estudiante):
 
     def esta_fuera_de_la_pantalla(self):
         "Indica si el actor está fuera del area visible de la pantalla."
+        if self.fijo:
+            return False
         izquierda, derecha, arriba, abajo = pilas.mundo.camara.obtener_area_visible()
         return self.derecha < izquierda or self.izquierda > derecha or self.abajo > arriba or self.arriba < abajo
 

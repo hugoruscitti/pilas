@@ -25,6 +25,10 @@ import interfaz
 import log
 import interprete
 
+# Permite cerrar el programa usando CTRL+C
+import signal
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+
 __doc__ = """
 Módulo pilas
 ============
@@ -126,7 +130,7 @@ def _crear_motor(usar_motor):
 
     if usar_motor in ['qt', 'qtgl', 'qtsugar', 'qtsugargl']:
         from motores import motor_qt
-        motor = motor_qt.Motor(usar_motor)
+        motor = motor_qt.Motor(usar_motor, mostrar_ventana=False)
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
         print "Las opciones de motores que puedes probar son 'qt', 'qtgl', 'qtsugar' y 'qtsugargl'."

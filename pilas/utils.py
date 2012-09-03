@@ -251,5 +251,5 @@ def abrir_archivo_con_aplicacion_predeterminada(ruta_al_archivo):
 
 def centrar_ventana(widget):
     from PyQt4 import QtGui
-    resolution = QtGui.QDesktopWidget().screenGeometry()
-    widget.move((resolution.width()  / 2) - (widget.frameSize().width()  / 2), (resolution.height() / 2) - (widget.frameSize().height() / 2))
+    desktop = QtGui.QApplication.desktop()
+    widget.move(desktop.screen().rect().center() - widget.rect().center())
