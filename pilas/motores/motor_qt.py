@@ -248,9 +248,6 @@ class CanvasWidgetSugar(CanvasWidget):
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         pass
 
-    def mostrar_ventana(self, pantalla_completa):
-        pass
-
 class BaseActor(object):
 
     def __init__(self):
@@ -680,13 +677,12 @@ class Motor(object):
     el dibujado en pantalla si la tarjeta de video lo soporta.
     """
 
-    def __init__(self, usar_motor, mostrar_ventana=True):
+    def __init__(self, usar_motor):
         self.app = QtGui.QApplication([])
         self.app.setApplicationName("pilas")
         self.usar_motor = usar_motor
         self.nombre = usar_motor
 
-        self.mostrar_ventana = mostrar_ventana
         self._inicializar_variables()
         self._inicializar_sistema_de_audio()
 
@@ -703,9 +699,11 @@ class Motor(object):
         self.ventana = Ventana()
         self.ventana.resize(ancho, alto)
 
-        if self.usar_motor == 'qtsugar':
+        if self.usar_motor in ['qtsugar', 'qtwidget']:
+            mostrar_ventana = False
             self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto)
         else:
+            mostrar_ventana = True
             self.canvas = CanvasWidget(self, actores.todos, ancho, alto)
 
         self.ventana.set_canvas(self.canvas)
@@ -716,7 +714,7 @@ class Motor(object):
         self.titulo = titulo
         self.ventana.setWindowTitle(self.titulo)
 
-        if self.mostrar_ventana:
+        if mostrar_ventana:
             self.ventana.show()
             self.ventana.raise_()
 

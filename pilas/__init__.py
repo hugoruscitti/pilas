@@ -128,12 +128,12 @@ def _crear_motor(usar_motor):
     Esta es una función interna y no debe ser ejecutada
     excepto por el mismo motor pilas."""
 
-    if usar_motor in ['qt', 'qtgl', 'qtsugar', 'qtsugargl']:
+    if usar_motor in ['qt', 'qtgl', 'qtwidget', 'qtsugar', 'qtsugargl']:
         from motores import motor_qt
-        motor = motor_qt.Motor(usar_motor, mostrar_ventana=False)
+        motor = motor_qt.Motor(usar_motor)
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
-        print "Las opciones de motores que puedes probar son 'qt', 'qtgl', 'qtsugar' y 'qtsugargl'."
+        print "Las opciones de motores que puedes probar son 'qt', 'qtgl', 'qtwidget', 'qtsugar' y 'qtsugargl'."
         motor = None
 
     return motor
