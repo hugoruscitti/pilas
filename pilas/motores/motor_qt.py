@@ -41,6 +41,7 @@ class CanvasWidget(QGLWidget):
         QGLWidget.__init__(self, None)
         self.painter = QtGui.QPainter()
 
+        self.pausa_habilitada = False
         self.mouse_x = 0
         self.mouse_y = 0
         self.motor = motor
@@ -82,8 +83,6 @@ class CanvasWidget(QGLWidget):
             try:
                 if not actor.esta_fuera_de_la_pantalla():
                     actor.dibujar(self.painter)
-                else:
-                    print "Actor fuera de pantalla!"
             except Exception:
                 print traceback.format_exc()
                 print sys.exc_info()[0]
@@ -105,9 +104,8 @@ class CanvasWidget(QGLWidget):
 
     def _realizar_actualizacion_logica(self):
         for x in range(self.fps.actualizar()):
-            #if not self.pausa_habilitada:
-            #    self._actualizar_eventos_y_actores()
-            self._actualizar_eventos_y_actores()
+            if not self.pausa_habilitada:
+                self._actualizar_eventos_y_actores()
 
     def _actualizar_eventos_y_actores(self):
         eventos.actualizar.emitir()
@@ -211,6 +209,39 @@ class CanvasWidget(QGLWidget):
             return teclas[tecla_qt]
         else:
             return tecla_qt
+
+    def pantalla_completa(self):
+        self.showFullScreen()
+
+    def pantalla_modo_ventana(self):
+        self.showNormal()
+
+    def esta_en_pantalla_completa(self):
+        return self.isFullScreen()
+
+    def alternar_pausa(self):
+        if self.pausa_habilitada:
+            self.pausa_habilitada = False
+            self.actor_pausa.eliminar()
+            eventos.pulsa_tecla.desconectar_por_id('tecla_en_pausa')
+        else:
+            self.pausa_habilitada = True
+            self.actor_pausa = actores.Pausa()
+            self.actor_pausa.fijo = True
+            self.id_evento = eventos.pulsa_tecla.conectar(self.avanzar_un_solo_cuadro_de_animacion, id='tecla_en_pausa')
+
+    def avanzar_un_solo_cuadro_de_animacion(self, evento):
+        self._actualizar_eventos_y_actores()
+
+    def alternar_pantalla_completa(self):
+        """Permite cambiar el modo de video.
+
+        Si está en modo ventana, pasa a pantalla completa y viceversa.
+        """
+        if self.esta_en_pantalla_completa():
+            self.pantalla_modo_ventana()
+        else:
+            self.pantalla_completa()
 
 class CanvasWidgetSugar(CanvasWidget):
 
@@ -380,14 +411,14 @@ class Texto(Imagen):
         self.vertical = vertical
         self._ancho, self._alto = motor.obtener_area_de_texto(texto, magnitud, vertical)
 
-    def _dibujar_pixmap(self, motor, dx, dy):
-        nombre_de_fuente = motor.canvas.font().family()
+    def _dibujar_pixmap(self, painter, dx, dy):
+        nombre_de_fuente = painter.font().family()
         fuente = QtGui.QFont(nombre_de_fuente, self.magnitud)
         metrica = QtGui.QFontMetrics(fuente)
 
         r, g, b, a = self.color.obtener_componentes()
-        motor.canvas.setPen(QtGui.QColor(r, g, b))
-        motor.canvas.setFont(fuente)
+        painter.setPen(QtGui.QColor(r, g, b))
+        painter.setFont(fuente)
 
         if self.vertical:
             lines = [t for t in self.texto]
@@ -395,7 +426,7 @@ class Texto(Imagen):
             lines = self.texto.split('\n')
 
         for line in lines:
-            motor.canvas.drawText(dx, dy + self._alto, line)
+            painter.drawText(dx, dy + self._alto, line)
             dy += metrica.height()
 
     def ancho(self):
@@ -432,15 +463,15 @@ class Lienzo(Imagen):
         ancho, alto = pilas.mundo.motor.obtener_area()
         painter.fillRect(0, 0, ancho, alto, QtGui.QColor(r, g, b))
 
-    def linea(self, motor, x0, y0, x1, y1, color=colores.negro, grosor=1):
+    def linea(self, painter, x0, y0, x1, y1, color=colores.negro, grosor=1):
         x0, y0 = utils.hacer_coordenada_pantalla_absoluta(x0, y0)
         x1, y1 = utils.hacer_coordenada_pantalla_absoluta(x1, y1)
 
         r, g, b, a = color.obtener_componentes()
         color = QtGui.QColor(r, g, b)
         pen = QtGui.QPen(color, grosor)
-        motor.canvas.setPen(pen)
-        motor.canvas.drawLine(x0, y0, x1, y1)
+        painter.setPen(pen)
+        painter.drawLine(x0, y0, x1, y1)
 
     def poligono(self, motor, puntos, color=colores.negro, grosor=1, cerrado=False):
         x, y = puntos[0]
@@ -453,28 +484,28 @@ class Lienzo(Imagen):
             x, y = nuevo_x, nuevo_y
 
 
-    def cruz(self, motor, x, y, color=colores.negro, grosor=1):
+    def cruz(self, painter, x, y, color=colores.negro, grosor=1):
         t = 3
-        self.linea(motor, x - t, y - t, x + t, y + t, color, grosor)
-        self.linea(motor, x + t, y - t, x - t, y + t, color, grosor)
+        self.linea(painter, x - t, y - t, x + t, y + t, color, grosor)
+        self.linea(painter, x + t, y - t, x - t, y + t, color, grosor)
 
-    def circulo(self, motor, x, y, radio, color=colores.negro, grosor=1):
+    def circulo(self, painter, x, y, radio, color=colores.negro, grosor=1):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
 
         r, g, b, a = color.obtener_componentes()
         color = QtGui.QColor(r, g, b)
         pen = QtGui.QPen(color, grosor)
-        motor.canvas.setPen(pen)
-        motor.canvas.drawEllipse(x -radio, y-radio, radio*2, radio*2)
+        painter.setPen(pen)
+        painter.drawEllipse(x -radio, y-radio, radio*2, radio*2)
 
-    def rectangulo(self, motor, x, y, ancho, alto, color=colores.negro, grosor=1):
+    def rectangulo(self, painter, x, y, ancho, alto, color=colores.negro, grosor=1):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
 
         r, g, b, a = color.obtener_componentes()
         color = QtGui.QColor(r, g, b)
         pen = QtGui.QPen(color, grosor)
-        motor.canvas.setPen(pen)
-        motor.canvas.drawRect(x, y, ancho, alto)
+        painter.setPen(pen)
+        painter.drawRect(x, y, ancho, alto)
 
 
 class Superficie(Imagen):
@@ -649,16 +680,17 @@ class Motor(object):
     el dibujado en pantalla si la tarjeta de video lo soporta.
     """
 
-    def __init__(self, usar_motor):
+    def __init__(self, usar_motor, mostrar_ventana=True):
         self.app = QtGui.QApplication([])
         self.app.setApplicationName("pilas")
         self.usar_motor = usar_motor
+        self.nombre = usar_motor
 
+        self.mostrar_ventana = mostrar_ventana
         self._inicializar_variables()
         self._inicializar_sistema_de_audio()
 
     def _inicializar_variables(self):
-        self.pausa_habilitada = False
         self.camara_x = 0
         self.camara_y = 0
 
@@ -684,8 +716,14 @@ class Motor(object):
         self.titulo = titulo
         self.ventana.setWindowTitle(self.titulo)
 
-        self.ventana.show()
-        self.ventana.raise_()
+        if self.mostrar_ventana:
+            self.ventana.show()
+            self.ventana.raise_()
+
+    def ocultar_puntero_del_mouse(self):
+        bitmap = QtGui.QBitmap(1, 1)
+        nuevo_cursor = QtGui.QCursor(bitmap, bitmap)
+        self.setCursor(QtGui.QCursor(nuevo_cursor))
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         sys.exit(self.app.exec_())
@@ -703,6 +741,25 @@ class Motor(object):
 
     def obtener_area(self):
         return (self.ancho_original, self.alto_original)
+
+    def obtener_area_de_texto(self, texto, magnitud=10, vertical=False):
+        ancho = 0
+        alto = 0
+
+        fuente = QtGui.QFont()
+        fuente.setPointSize(magnitud)
+        metrica = QtGui.QFontMetrics(fuente)
+
+        if vertical:
+            lineas = [t for t in texto]
+        else:
+            lineas = texto.split('\n')
+
+        for linea in lineas:
+            ancho = max(ancho, metrica.width(linea))
+            alto += metrica.height()
+
+        return ancho, alto
 
     def obtener_actor(self, imagen, x, y):
         return Actor(imagen, x, y)
