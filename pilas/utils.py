@@ -6,7 +6,6 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import os
-import shutil
 import interpolaciones
 import sys
 import subprocess
@@ -14,7 +13,6 @@ import math
 import uuid
 
 import pilas
-import xmlreader
 
 
 PATH = os.path.dirname(os.path.abspath(__file__))

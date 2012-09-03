@@ -6,8 +6,7 @@ from interprete_base import Ui_InterpreteDialog
 import pilas
 import utils
 
-sys.path.append('lanas')
-sys.path.append('../lanas')
+sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))
 
 import lanas
 
