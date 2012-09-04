@@ -221,6 +221,14 @@ def realizar_pruebas():
     except ImportError:
         print "Error -> no se encuentra pyqt4gl."
 
+    print "PIL para soporte de jpeg (opcional):",
+
+    try:
+        from PIL import Image
+        print "OK"
+    except ImportError:
+        print "Cuidado -> no se encuentra PIL."
+
 def ver_codigo(objeto, imprimir, retornar):
     """Imprime en pantalla el codigo fuente asociado a un objeto."""
     import inspect
