@@ -6,7 +6,6 @@ import traceback
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 from PyQt4 import phonon
-from PyQt4 import QtOpenGL
 from PyQt4.QtOpenGL import QGLWidget
 
 from pilas import fps
@@ -303,8 +302,12 @@ class Imagen(object):
 
     def __init__(self, ruta):
         self.ruta_original = ruta
-        if ruta.endswith("jpg"):
-            self._imagen = self.load_jpeg(ruta)
+
+        if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
+            try:
+                self._imagen = self.load_jpeg(ruta)
+            except:
+                self._imagen = QtGui.QPixmap(ruta)
         else:
             self._imagen = QtGui.QPixmap(ruta)
 
@@ -318,6 +321,7 @@ class Imagen(object):
 
         pixmapImage = QtGui.QPixmap()
         pixmapImage.loadFromData(stringIO.getvalue())
+        print "Cargando imagen usando PIL"
 
         return pixmapImage
 
