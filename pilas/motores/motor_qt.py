@@ -303,7 +303,23 @@ class Imagen(object):
 
     def __init__(self, ruta):
         self.ruta_original = ruta
-        self._imagen = QtGui.QPixmap(ruta)
+        if ruta.endswith("jpg"):
+            self._imagen = self.load_jpeg(ruta)
+        else:
+            self._imagen = QtGui.QPixmap(ruta)
+
+    def load_jpeg(self, ruta):
+        from PIL import Image
+        import StringIO
+
+        pilImage = Image.open(ruta)
+        stringIO = StringIO.StringIO()
+        pilImage.save(stringIO, format="png")
+
+        pixmapImage = QtGui.QPixmap()
+        pixmapImage.loadFromData(stringIO.getvalue())
+
+        return pixmapImage
 
     def ancho(self):
         return self._imagen.size().width()
