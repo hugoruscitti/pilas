@@ -63,12 +63,17 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         ##completer = DictionaryCompleter()
         ##self._set_completer(completer)
-        self.insertar_mensaje("Lanas")
+        self.insertar_mensaje("Bienvenido a lanas")
+        self.insertar_comando_falso("import pilas")
         self.marker()        # cursor >>> o ...
 
     def insertar_mensaje(self, mensaje):
         self.insertHtml("<p style='color: green'>%s</p><p></p>" %(mensaje))
 
+    def insertar_comando_falso(self, comando):
+        self.marker()
+        self.insertHtml(comando)
+        self.insertPlainText('\n')
 
     def _set_font_size(self, font_size):
         self.font_size = font_size
@@ -80,9 +85,10 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
     def marker(self):
         if self.multiline:
-            self.insertPlainText(u'. ')
+            self.insertHtml(u"<b style='color: #FF0000'>×</b> ")
+            self.insertPlainText("    ")
         else:
-            self.insertPlainText(u'» ')
+            self.insertHtml(u"<b style='color: #3583FC'>»</b> ")
 
     def init(self, interpreter_locals):
         if interpreter_locals:
