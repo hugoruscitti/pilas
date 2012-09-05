@@ -82,7 +82,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         if self.multiline:
             self.insertPlainText(u'. ')
         else:
-            self.insertPlainText(u'> ')
+            self.insertPlainText(u'» ')
 
     def init(self, interpreter_locals):
         if interpreter_locals:
@@ -115,7 +115,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         textCursor.setPosition(position)
         self.setTextCursor(textCursor)
 
-        line = str(self.document().lastBlock().text())[2:] # remove marker
+        line = unicode(self.document().lastBlock().text())[2:] # remove marker
         line.rstrip()
         return line
 
