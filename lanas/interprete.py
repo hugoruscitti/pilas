@@ -67,9 +67,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         self.marker()        # cursor >>> o ...
 
     def insertar_mensaje(self, mensaje):
-        self.insertHtml(u"<div>‥  %s</div>" %(mensaje))
-        self.insertPlainText('\n')
-        #self.insertHtml("<div style='background-color: white'>fin</div>")
+        self.insertHtml("<p style='color: green'>%s</p><p></p>" %(mensaje))
 
 
     def _set_font_size(self, font_size):
@@ -82,9 +80,9 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
     def marker(self):
         if self.multiline:
-            self.insertPlainText(u'... ')
+            self.insertPlainText(u'. ')
         else:
-            self.insertPlainText(u'>>> ')
+            self.insertPlainText(u'> ')
 
     def init(self, interpreter_locals):
         if interpreter_locals:
@@ -100,7 +98,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         self.ensureCursorVisible()
 
     def clearCurrentBlock(self):
-        length = len(self.document().lastBlock().text()[4:])
+        length = len(self.document().lastBlock().text()[2:])
 
         if length:
             [self.textCursor().deletePreviousChar() for x in xrange(length)]
@@ -117,7 +115,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         textCursor.setPosition(position)
         self.setTextCursor(textCursor)
 
-        line = str(self.document().lastBlock().text())[4:] # remove marker
+        line = str(self.document().lastBlock().text())[2:] # remove marker
         line.rstrip()
         return line
 
@@ -189,7 +187,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         # ir al primer caracter del interprete cuando pulsa HOME
         if event.key() == Qt.Key_Home:
-            blockLength = len(self.document().lastBlock().text()[4:])
+            blockLength = len(self.document().lastBlock().text()[2:])
             lineLength  = len(self.document().toPlainText())
             position = lineLength - blockLength
             textCursor  = self.textCursor()
@@ -198,7 +196,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             return None
 
         if event.key() in [Qt.Key_Left, Qt.Key_Backspace]:
-            if self.textCursor().positionInBlock() < 5:
+            if self.textCursor().positionInBlock() < 3:
                 return None
 
         if self.autocomplete(event):
