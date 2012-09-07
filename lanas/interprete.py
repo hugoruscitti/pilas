@@ -64,17 +64,17 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         # setting the color for bg and text
         #palette = QPalette()
-        #palette.setColor(QPalette.Base, QColor(0, 0, 0))
+        #palette.setColor(QPalette.Base, QColor(20, 20, 20))
         #palette.setColor(QPalette.Text, QColor(0, 255, 0))
         #self.setPalette(palette)
 
-        self._set_font_size(12)
+        self._set_font_size(16)
         self._highlighter = highlighter.Highlighter(self.document(), 'python', highlighter.COLOR_SCHEME)
 
         ##completer = DictionaryCompleter()
         ##self._set_completer(completer)
-        self.insertar_mensaje("Bienvenido a lanas")
-        self.insertar_comando_falso("import pilas")
+        #self.insertar_mensaje("Bienvenido a lanas")
+        #self.insertar_comando_falso("import pilas")
         self.marker()        # cursor >>> o ...
 
     def insertar_error(self, mensaje):
