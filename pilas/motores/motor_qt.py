@@ -72,9 +72,9 @@ class CanvasWidget(QGLWidget):
         self.painter.begin(self)
         self.painter.scale(self.escala, self.escala)
 
-        self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, False)
+        self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
         self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
-        self.painter.setRenderHint(QtGui.QPainter.Antialiasing, False)
+        self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
 
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
@@ -718,7 +718,7 @@ class Motor(object):
         self.ventana = Ventana()
         self.ventana.resize(ancho, alto)
 
-        if self.usar_motor in ['qtsugar', 'qtwidget']:
+        if self.usar_motor in ['qtwidget', 'qtsugar']:
             mostrar_ventana = False
             self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto)
         else:
