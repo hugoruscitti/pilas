@@ -38,13 +38,23 @@ class Ventana(QWidget):
     def closeEvent(self, event):
         sys.exit(0)
 
+class Output:
+
+    def __init__(self, destino):
+        self.destino = destino
+
+    def write(self, linea):
+        self.destino.insertar_error(linea)
+        self.destino.ensureCursorVisible()
+
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
+
 
     def __init__(self,  parent):
         super(InterpreteTextEdit,  self).__init__(parent)
 
         sys.stdout = self
-        #sys.stderr = self
+        sys.stderr = Output(self)
         self.refreshMarker = False
         self.multiline = False
         self.command = ''
@@ -66,6 +76,10 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         self.insertar_mensaje("Bienvenido a lanas")
         self.insertar_comando_falso("import pilas")
         self.marker()        # cursor >>> o ...
+
+    def insertar_error(self, mensaje):
+        self.insertHtml(u"<b style='color: #FF0000'>  ×</b> %s" %(mensaje))
+        self.insertPlainText('\n')
 
     def insertar_mensaje(self, mensaje):
         self.insertHtml("<p style='color: green'>%s</p><p></p>" %(mensaje))
