@@ -25,9 +25,13 @@ def obtener_version():
     return box2d.__version__
 
 class FisicaDeshabilitada(object):
+
     def actualizar(self):
         pass
-    pass
+
+    def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
+        pass
+
 
 class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca box2d."""
