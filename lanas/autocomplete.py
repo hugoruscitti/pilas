@@ -70,7 +70,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
     def _get_current_line(self):
         tc = self.textCursor()
         tc.select(QtGui.QTextCursor.LineUnderCursor)
-        return tc.selectedText()[4:]
+        return tc.selectedText()[2:]
 
     def focusInEvent(self, event):
         if self.completer:

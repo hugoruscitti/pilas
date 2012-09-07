@@ -49,7 +49,6 @@ class Output:
 
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
-
     def __init__(self,  parent):
         super(InterpreteTextEdit,  self).__init__(parent)
 
