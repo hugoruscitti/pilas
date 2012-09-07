@@ -39,7 +39,7 @@ class Mono(Actor):
         """Hace que el mono sonria y emita un sonido."""
         self.definir_imagen(self.image_smile)
         # Luego de un segundo regresa a la normalidad
-        pilas.mundo.agregar_tarea_una_vez(0.5, self.normal)
+        pilas.mundo.agregar_tarea_una_vez(2, self.normal)
         self.sound_smile.reproducir()
 
     def gritar(self):
@@ -58,7 +58,7 @@ class Mono(Actor):
 
     def decir(self, mensaje):
         """Emite un mensaje y además sonrie mientras habla.
-        
+
         Por ejemplo:
 
             >>> mono.decir("Estoy hablando!!!")
@@ -69,4 +69,5 @@ class Mono(Actor):
         Actor.decir(self, mensaje)
 
     def saltar(self):
+        self.sonreir()
         self.hacer(pilas.comportamientos.Saltar())

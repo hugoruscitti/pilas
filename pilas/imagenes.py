@@ -7,7 +7,6 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
-import os
 
 def cargar(ruta):
     """Intenta cargar la imagen indicada por el argumento ``ruta``.
@@ -34,7 +33,7 @@ def cargar(ruta):
         mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` para comenzar."
         print mensaje
         raise Exception(mensaje)
-    
+
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
     return pilas.mundo.motor.cargar_imagen(ruta)
 
@@ -63,7 +62,7 @@ def cargar_grilla(ruta, columnas=1, filas=1):
         mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` para comenzar."
         print mensaje
         raise Exception(mensaje)
-    
+
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
     return pilas.mundo.motor.obtener_grilla(ruta, columnas, filas)
 
@@ -73,5 +72,5 @@ def cargar_lienzo():
 
 def cargar_superficie(ancho, alto):
     return pilas.mundo.motor.obtener_superficie(ancho, alto)
-    
+
 cargar_imagen = cargar

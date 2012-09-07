@@ -321,7 +321,6 @@ class Imagen(object):
 
         pixmapImage = QtGui.QPixmap()
         pixmapImage.loadFromData(stringIO.getvalue())
-        print "Cargando imagen usando PIL"
 
         return pixmapImage
 

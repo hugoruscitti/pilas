@@ -57,7 +57,6 @@ class Tarde(Fondo):
 
     def __init__(self):
         Fondo.__init__(self, "fondos/tarde.jpg")
-        print "tarde fondo..."
 
 
 class Espacio(Fondo):

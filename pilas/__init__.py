@@ -173,7 +173,7 @@ def abrir_cargador():
 
     return []
 
-def abrir_interprete():
+def abrir_interprete(parent=None, do_raise=False):
     """Abre un intérprete interactivo de python con una ventana.
 
     Esta función se ejecuta cuando un usuario escribe::
@@ -182,5 +182,4 @@ def abrir_interprete():
 
     en una consola del sistema.
     """
-    interprete.main()
-
+    interprete.main(parent, do_raise)

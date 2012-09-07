@@ -16,7 +16,6 @@ class VentanaInterprete(Ui_InterpreteDialog):
     def setupUi(self, main):
         self.main = main
         Ui_InterpreteDialog.setupUi(self, main)
-
         scope = self._insertar_ventana_principal_de_pilas()
         self._insertar_consola_interactiva(scope)
         pilas.utils.centrar_ventana(main)
@@ -24,8 +23,9 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
     def _insertar_ventana_principal_de_pilas(self):
         pilas.iniciar(usar_motor='qtsugar')
+
         mono = pilas.actores.Mono()
-        mono.aprender(pilas.habilidades.MoverseConElTeclado)
+        mono.saltar()
 
         ventana = pilas.mundo.motor.ventana
         canvas = pilas.mundo.motor.canvas
@@ -37,14 +37,25 @@ class VentanaInterprete(Ui_InterpreteDialog):
         return {'pilas': pilas, 'mono': mono}
 
     def _insertar_consola_interactiva(self, scope):
-        consola = lanas.interprete.Ventana(self.splitter, scope)
-        consola.text_edit.write("import pilas")
+        codigo_inicial = [
+                'import pilas',
+                '',
+                'mono = pilas.actores.Mono()',
+                'mono.saltar()',
+                ]
+
+        consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
         self.console.addWidget(consola)
         self.console.setCurrentWidget(consola)
 
-def main(parent=None):
+def main(parent=None, do_raise=False):
     dialog = QtGui.QDialog(parent)
     dialog.setWindowFlags(QtCore.Qt.Window | QtCore.Qt.WindowContextHelpButtonHint)
     ui = VentanaInterprete()
     ui.setupUi(dialog)
+
+    if do_raise:
+        dialog.show()
+        dialog.raise_()
+
     dialog.exec_()
