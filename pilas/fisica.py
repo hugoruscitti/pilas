@@ -6,59 +6,52 @@
 #
 # website - http://www.pilas-engine.com.ar
 
+import math
 import pilas
-from pilas import colores
+PPM = 1
+
 
 try:
     import Box2D as box2d
     contact_listener = box2d.b2ContactListener
+    __enabled__ = True
 except ImportError:
+    __enabled__ = False
     class Tmp:
         pass
     contact_listener = Tmp
-    print "No esta disponible box2d, se deshabilitara la fisica."
 
-import math
+
+def crear_motor_fisica(area, gravedad):
+    if __enabled__:
+        if obtener_version().startswith('2.0'):
+            print "El soporte para Box2D version 2.0 es obsoleto."
+            return FisicaDeshabilitada(area, gravedad)
+        else:
+            return Fisica(area, gravedad)
+    else:
+        print "No se pudo iniciar Box2D, se deshabilita el soporte de Fisica."
+        return FisicaDeshabilitada(area, gravedad)
 
 def obtener_version():
     """Obtiene la versión de la biblioteca Box2D"""
     return box2d.__version__
 
-class FisicaDeshabilitada(object):
-
-    def actualizar(self):
-        pass
-
-    def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
-        pass
-
 
 class Fisica(object):
-    """Representa un simulador de mundo fisico, usando la biblioteca box2d."""
+    """Representa un simulador de mundo fisico, usando la biblioteca Box2D (version 2.1)."""
 
     def __init__(self, area, gravedad=(0, -90)):
+        self.mundo = box2d.b2World(gravity=gravedad, doSleep=True)
+        self.mundo.contactListener = ObjetosContactListener()
+        self.mundo.continuousPhysics = False
+
         self.area = area
-        try:
-            self.escenario = box2d.b2AABB()
-            self.escenario.lowerBound = (-1000.0, -1000.0)
-            self.escenario.upperBound = (1000.0, 1000.0)
-            self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
-            try:
-                self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
-                self.objetosContactListener = ObjetosContactListener()
-                self.mundo.SetContactListener(self.objetosContactListener)
-            except ValueError:
-                print "Solo esta disponible el motor de fisica para box2d 2.0.2b1"
-                raise AttributeError("...")
-        except AttributeError:
-            print "Deshabilitando modulo de fisica (no se encuentra instalado pybox2d en este equipo)"
-            self.mundo = None
-            return
+        #self.i = 0
+        self.figuras_a_eliminar = []
 
         self.constante_mouse = None
-        self.i = 0
         self.crear_bordes_del_escenario()
-        self.figuras_a_eliminar = []
 
     def crear_bordes_del_escenario(self):
         self.crear_techo(self.area)
@@ -90,9 +83,10 @@ class Fisica(object):
 
     def actualizar(self, velocidad=1.0):
         if self.mundo:
-            self.mundo.Step(velocidad / 20.0, 10, 8)
-            self.i += 1
+            self.mundo.Step(velocidad / 60.0, 10, 10)
+            #self.i += 1
             self._procesar_figuras_a_eliminar()
+            self.mundo.ClearForces()
 
     def _procesar_figuras_a_eliminar(self):
         "Elimina las figuras que han sido marcadas para quitar."
@@ -105,14 +99,42 @@ class Fisica(object):
 
     def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
         "Dibuja todas las figuras en una pizarra. Indicado para depuracion."
-        cuerpos = self.mundo.bodyList
-        cantidad_de_figuras = 0
+
+        cuerpos = self.mundo.bodies
 
         for cuerpo in cuerpos:
+
+            for fixture in cuerpo:
+
+                # cuerpo.type == 0 → estatico
+                # cuerpo.type == 1 → kinematico
+                # cuerpo.type == 2 → dinamico
+
+                shape = fixture.shape
+
+                # TODO: Convertir las coordenadas para que el movimiento de camara se dibuje bien.
+                # TODO: SE puede aplicar a la multiplicacion de transform los PIXELS por metro.
+
+                if isinstance(shape, box2d.b2PolygonShape):
+                    vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
+                    lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
+                elif isinstance(shape, box2d.b2CircleShape):
+                    (x, y) = cuerpo.transform * shape.pos * PPM
+                    lienzo.circulo(motor, x, y, shape.radius, pilas.colores.rojo, grosor=grosor)
+                else:
+                    # TODO: implementar las figuras de tipo "edge" y "loop".
+                    print "no puedo identificar el tipo de figura."
+
+                #print fixture.shape
+                #print cuerpo.position
+                #print box2d.b2
+
+        """
+        for cuerpo in cuerpos:
+            print cuerpo.position.x
             xform = cuerpo.GetXForm()
 
             for figura in cuerpo.shapeList:
-                cantidad_de_figuras += 1
                 tipo_de_figura = figura.GetType()
 
                 if tipo_de_figura == box2d.e_polygonShape:
@@ -122,12 +144,14 @@ class Fisica(object):
                         pt = box2d.b2Mul(xform, v)
                         vertices.append((pt.x - pilas.mundo.camara.x, pt.y - pilas.mundo.camara.y))
 
-                    lienzo.poligono(motor, vertices, color=colores.rojo, grosor=grosor, cerrado=True)
+                    lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
 
                 elif tipo_de_figura == box2d.e_circleShape:
-                    lienzo.circulo(motor, cuerpo.position.x - pilas.mundo.camara.x, cuerpo.position.y - pilas.mundo.camara.y, figura.radius, colores.rojo, grosor=grosor)
+                    lienzo.circulo(motor, cuerpo.position.x - pilas.mundo.camara.x, cuerpo.position.y - pilas.mundo.camara.y, figura.radius, pilas.colores.rojo, grosor=grosor)
                 else:
                     print "no puedo identificar el tipo de figura."
+        """
+
 
     def crear_cuerpo(self, definicion_de_cuerpo):
         return self.mundo.CreateBody(definicion_de_cuerpo)
@@ -212,6 +236,49 @@ class Fisica(object):
     def definir_gravedad(self, x, y):
         pilas.fisica.definir_gravedad(x, y)
 
+class FisicaDeshabilitada(object):
+
+    def __init__(self, area, gravedad=(0, -90)):
+        pass
+
+    def actualizar(self):
+        pass
+
+    def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
+        pass
+
+class FisicaDesactualizada(Fisica):
+
+    """
+    TODO: Adaptar a  la version anterior de box2d (2.0.xx)
+    """
+
+    def __init__(self, area, gravedad=(0, -90)):
+        self.area = area
+        try:
+            self.escenario = box2d.b2AABB()
+            self.escenario.lowerBound = (-1000.0, -1000.0)
+            self.escenario.upperBound = (1000.0, 1000.0)
+            self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
+            try:
+                self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
+                self.objetosContactListener = ObjetosContactListener()
+                self.mundo.SetContactListener(self.objetosContactListener)
+            except ValueError:
+                print "Solo esta disponible el motor de fisica para box2d 2.0.2b1"
+                raise AttributeError("...")
+        except AttributeError:
+            print "Deshabilitando modulo de fisica (no se encuentra instalado pybox2d en este equipo)"
+            self.mundo = None
+            return
+
+        self.constante_mouse = None
+        self.i = 0
+        self.crear_bordes_del_escenario()
+        self.figuras_a_eliminar = []
+
+
+
 class Figura(object):
     """Representa un figura que simula un cuerpo fisico.
 
@@ -223,13 +290,13 @@ class Figura(object):
         self.id = pilas.utils.obtener_uuid()
 
     def obtener_x(self):
-        return self._cuerpo.position.x
+        return self._cuerpo.position.x * PPM
 
     def definir_x(self, x):
         self._cuerpo.SetXForm((x, self.y), self._cuerpo.GetAngle())
 
     def obtener_y(self):
-        return self._cuerpo.position.y
+        return self._cuerpo.position.y * PPM
 
     def definir_posicion(self, x, y):
         self.definir_x(x)
@@ -239,7 +306,7 @@ class Figura(object):
         self._cuerpo.SetXForm((self.x, y), self._cuerpo.GetAngle())
 
     def obtener_rotacion(self):
-        return - math.degrees(self._cuerpo.GetAngle())
+        return - math.degrees(self._cuerpo.angle)
 
     def definir_rotacion(self, angulo):
         self._cuerpo.SetXForm((self.x, self.y), math.radians(-angulo))
@@ -302,35 +369,19 @@ class Circulo(Figura):
         if not fisica:
             fisica = pilas.mundo.fisica
 
-        bodyDef = box2d.b2BodyDef()
-        bodyDef.position=(x, y)
-        bodyDef.linearDamping = amortiguacion
-        bodyDef.fixedRotation = sin_rotacion
-
-        userData = { 'id' : self.id }
-
-        #userData = { 'color' : self.parent.get_color() }
-        #bodyDef.userData = userData
-        #self.parent.element_count += 1
-
-        body = fisica.crear_cuerpo(bodyDef)
-
-        # Create the Body
         if not dinamica:
             densidad = 0
 
-        # Add a shape to the Body
-        circleDef = box2d.b2CircleDef()
-        circleDef.density = densidad
-        circleDef.radius = radio
-        circleDef.restitution = restitucion
-        circleDef.friction = friccion
-        circleDef.userData = userData
-
-        body.CreateShape(circleDef)
-        body.SetMassFromShapes()
-
-        self._cuerpo = body
+        fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=radio),
+                                     density=densidad,
+                                     linearDamping=amortiguacion,
+                                     fixedRotation=sin_rotacion,
+                                     friction=friccion,
+                                     restitution=restitucion)
+        if dinamica:
+            self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
+        else:
+            self._cuerpo = fisica.mundo.CreateStaticBody(position=(x, y), fixtures=fixture)
 
 class Rectangulo(Figura):
     """Representa un rectángulo que puede colisionar con otras figuras.
@@ -352,6 +403,22 @@ class Rectangulo(Figura):
         if not fisica:
             fisica = pilas.mundo.fisica
 
+        if not dinamica:
+            densidad = 0
+
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(ancho/2, alto/2)),
+                                     density=densidad,
+                                     linearDamping=amortiguacion,
+                                     fixedRotation=sin_rotacion,
+                                     friction=friccion,
+                                     restitution=restitucion)
+
+        if dinamica:
+            self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
+        else:
+            self._cuerpo = fisica.mundo.CreateStaticBody(position=(x, y), fixtures=fixture)
+
+        """
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=(x, y)
         bodyDef.linearDamping = amortiguacion
@@ -382,6 +449,7 @@ class Rectangulo(Figura):
         body.SetMassFromShapes()
 
         self._cuerpo = body
+        """
 
 
 class Poligono(Figura):

@@ -35,13 +35,7 @@ class Mundo(object):
         self.camara = camara.Camara(self)
 
         eventos.actualizar.conectar(self.actualizar_simuladores)
-        try:
-            self.fisica = fisica.Fisica(motor.obtener_area(), gravedad=gravedad)
-        except Exception as e:
-            print e
-            print "ERROR: Se deshabilita la funcionalidad de Fisica."
-            self.fisica = fisica.FisicaDeshabilitada()
-
+        self.fisica = fisica.crear_motor_fisica(motor.obtener_area(), gravedad=gravedad)
         self.escena_actual = None
 
     def reiniciar(self):
