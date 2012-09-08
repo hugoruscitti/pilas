@@ -10,7 +10,7 @@ import autocomplete
 
 class Ventana(QWidget):
 
-    def __init__(self, parent=None, scope=None):
+    def __init__(self, parent=None, scope=None, codigo_inicial=""):
         super(Ventana, self).__init__(parent)
         box = QHBoxLayout()
         box.setMargin(0)
@@ -21,7 +21,7 @@ class Ventana(QWidget):
         if not scope:
             scope = locals()
 
-        self.text_edit = InterpreteTextEdit(self)
+        self.text_edit = InterpreteTextEdit(self, codigo_inicial)
         self.text_edit.init(scope)
 
         self.resize(650, 300)
@@ -49,7 +49,7 @@ class Output:
 
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
-    def __init__(self,  parent):
+    def __init__(self,  parent, codigo_inicial):
         super(InterpreteTextEdit,  self).__init__(parent)
 
         sys.stdout = self
@@ -72,7 +72,11 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         ##completer = DictionaryCompleter()
         ##self._set_completer(completer)
-        #self.insertar_mensaje("Bienvenido a lanas")
+        if codigo_inicial:
+            for line in codigo_inicial.split("\n"):
+                self.insertar_comando_falso(line)
+
+            #self.insertar_mensaje("Bienvenido a lanas")
         #self.insertar_comando_falso("import pilas")
         self.marker()        # cursor >>> o ...
 
@@ -98,7 +102,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
     def marker(self):
         if self.multiline:
-            self.insertHtml(u"<b style='color: #FF0000'>×</b> ")
+            self.insertHtml(u"<b style='color: #FF0000'>‥</b> ")
             self.insertPlainText("    ")
         else:
             self.insertHtml(u"<b style='color: #3583FC'>»</b> ")
