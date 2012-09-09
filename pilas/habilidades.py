@@ -26,15 +26,15 @@ class RebotarComoPelota(Habilidad):
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
         error = random.randint(-10, 10) / 10.0
-        
-        circulo = pilas.fisica.Circulo(receptor.x + error, 
-                                       receptor.y + error, 
+
+        circulo = pilas.fisica.Circulo(receptor.x + error,
+                                       receptor.y + error,
                                        receptor.radio_de_colision)
         receptor.aprender(pilas.habilidades.Imitar, circulo)
         self.circulo = circulo
         receptor.impulsar = self.impulsar
         receptor.empujar = self.empujar
-        
+
     def eliminar(self):
         self.circulo.eliminar()
 
@@ -49,8 +49,8 @@ class RebotarComoCaja(Habilidad):
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
         error = random.randint(-10, 10) / 10.0
-        rectangulo = pilas.fisica.Rectangulo(receptor.x + error, 
-                                             receptor.y + error, 
+        rectangulo = pilas.fisica.Rectangulo(receptor.x + error,
+                                             receptor.y + error,
                                              receptor.radio_de_colision*2 - 4,
                                              receptor.radio_de_colision*2 - 4,
                                              )
@@ -59,13 +59,13 @@ class RebotarComoCaja(Habilidad):
 
     def eliminar(self):
         self.rectangulo.eliminar()
-        
-        
+
+
 class ColisionableComoPelota(RebotarComoPelota):
 
     def __init__(self, receptor):
         RebotarComoPelota.__init__(self, receptor)
-        
+
     def actualizar(self):
         self.figura.body.position.x = self.receptor.x
         self.figura.body.position.y = self.receptor.y
@@ -215,8 +215,8 @@ class PisaPlataformas(Habilidad):
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
         error = random.randint(-10, 10) / 10.0
-        self.figura = pilas.fisica.fisica.crear_figura_cuadrado(receptor.x + error, 
-                                                               receptor.y + error, 
+        self.figura = pilas.fisica.fisica.crear_figura_cuadrado(receptor.x + error,
+                                                               receptor.y + error,
                                                                receptor.radio_de_colision,
                                                                masa=10,
                                                                elasticidad=0,

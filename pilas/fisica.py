@@ -6,10 +6,10 @@
 #
 # website - http://www.pilas-engine.com.ar
 
+PPM = 30
+
 import math
 import pilas
-PPM = 1
-
 
 try:
     import Box2D as box2d
@@ -20,6 +20,13 @@ except ImportError:
     class Tmp:
         pass
     contact_listener = Tmp
+
+
+def convertir_a_metros(valor):
+    return valor / float(PPM)
+
+def convertir_a_pixels(valor):
+    return valor * PPM
 
 
 def crear_motor_fisica(area, gravedad):
@@ -41,13 +48,12 @@ def obtener_version():
 class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca Box2D (version 2.1)."""
 
-    def __init__(self, area, gravedad=(0, -90)):
-        self.mundo = box2d.b2World(gravity=gravedad, doSleep=True)
+    def __init__(self, area, gravedad):
+        self.mundo = box2d.b2World(gravity=gravedad, doSleep=False)
         self.mundo.contactListener = ObjetosContactListener()
         self.mundo.continuousPhysics = False
 
         self.area = area
-        #self.i = 0
         self.figuras_a_eliminar = []
 
         self.constante_mouse = None
@@ -83,8 +89,7 @@ class Fisica(object):
 
     def actualizar(self, velocidad=1.0):
         if self.mundo:
-            self.mundo.Step(velocidad / 60.0, 10, 10)
-            #self.i += 1
+            self.mundo.Step(velocidad/120.0, 6, 3)
             self._procesar_figuras_a_eliminar()
             self.mundo.ClearForces()
 
@@ -119,8 +124,8 @@ class Fisica(object):
                     vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
                     lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
                 elif isinstance(shape, box2d.b2CircleShape):
-                    (x, y) = cuerpo.transform * shape.pos * PPM
-                    lienzo.circulo(motor, x, y, shape.radius, pilas.colores.rojo, grosor=grosor)
+                    (x, y) = (cuerpo.transform * shape.pos * PPM)
+                    lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.rojo, grosor=grosor)
                 else:
                     # TODO: implementar las figuras de tipo "edge" y "loop".
                     print "no puedo identificar el tipo de figura."
@@ -274,9 +279,8 @@ class FisicaDesactualizada(Fisica):
 
         self.constante_mouse = None
         self.i = 0
-        self.crear_bordes_del_escenario()
+        #self.crear_bordes_del_escenario()
         self.figuras_a_eliminar = []
-
 
 
 class Figura(object):
@@ -290,31 +294,34 @@ class Figura(object):
         self.id = pilas.utils.obtener_uuid()
 
     def obtener_x(self):
-        return self._cuerpo.position.x * PPM
+        return convertir_a_pixels(self._cuerpo.position.x)
 
     def definir_x(self, x):
-        self._cuerpo.SetXForm((x, self.y), self._cuerpo.GetAngle())
+        self._cuerpo.position.x = convertir_a_metros(x)
 
     def obtener_y(self):
-        return self._cuerpo.position.y * PPM
+        return convertir_a_pixels(self._cuerpo.position.y)
+
+    def definir_y(self, y):
+        self._cuerpo.position.y = convertir_a_metros(y)
 
     def definir_posicion(self, x, y):
         self.definir_x(x)
         self.definir_y(y)
 
-    def definir_y(self, y):
-        self._cuerpo.SetXForm((self.x, y), self._cuerpo.GetAngle())
-
     def obtener_rotacion(self):
         return - math.degrees(self._cuerpo.angle)
 
     def definir_rotacion(self, angulo):
+        # TODO: simplificar a la nueva api.
         self._cuerpo.SetXForm((self.x, self.y), math.radians(-angulo))
 
     def impulsar(self, dx, dy):
+        # TODO: convertir los valores dx y dy a metros.
         self._cuerpo.ApplyImpulse((dx, dy), self._cuerpo.GetWorldCenter())
 
     def obtener_velocidad_lineal(self):
+        # TODO: convertir a pixels
         velocidad = self._cuerpo.GetLinearVelocity()
         return (velocidad.x, velocidad.y)
 
@@ -323,6 +330,7 @@ class Figura(object):
         self.definir_velocidad_lineal(0, 0)
 
     def definir_velocidad_lineal(self, dx=None, dy=None):
+        # TODO: convertir a metros
         anterior_dx, anterior_dy = self.obtener_velocidad_lineal()
 
         if dx is None:
@@ -333,6 +341,7 @@ class Figura(object):
         self._cuerpo.SetLinearVelocity((dx, dy))
 
     def empujar(self, dx=None, dy=None):
+        # TODO: convertir a metros???
         self.definir_velocidad_lineal(dx, dy)
 
     def eliminar(self):
@@ -366,6 +375,10 @@ class Circulo(Figura):
 
         Figura.__init__(self)
 
+        x = convertir_a_metros(x)
+        y = convertir_a_metros(y)
+        radio = convertir_a_metros(radio)
+
         if not fisica:
             fisica = pilas.mundo.fisica
 
@@ -383,6 +396,7 @@ class Circulo(Figura):
         else:
             self._cuerpo = fisica.mundo.CreateStaticBody(position=(x, y), fixtures=fixture)
 
+
 class Rectangulo(Figura):
     """Representa un rectángulo que puede colisionar con otras figuras.
 
@@ -395,10 +409,15 @@ class Rectangulo(Figura):
     """
 
     def __init__(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
-            restitucion=0.56, friccion=10.5, amortiguacion=0.1,
+            restitucion=0.5, friccion=.2, amortiguacion=0.1,
             fisica=None, sin_rotacion=False):
 
         Figura.__init__(self)
+
+        x = convertir_a_metros(x)
+        y = convertir_a_metros(y)
+        ancho = convertir_a_metros(ancho)
+        alto = convertir_a_metros(alto)
 
         if not fisica:
             fisica = pilas.mundo.fisica
@@ -564,7 +583,7 @@ class ConstanteDeDistancia():
     def eliminar(self):
         pilas.mundo.fisica.mundo.DestroyJoint(self.constante_mouse)
 
-def definir_gravedad(x=0, y=-90):
+def definir_gravedad(x, y):
     pilas.mundo.fisica.mundo.gravity = (x, y)
 
 class ObjetosContactListener(contact_listener):
@@ -586,3 +605,4 @@ class ObjetosContactListener(contact_listener):
 
     def Result(self, *args):
         pass
+
