@@ -70,15 +70,11 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         self._set_font_size(16)
         self._highlighter = highlighter.Highlighter(self.document(), 'python', highlighter.COLOR_SCHEME)
 
-        ##completer = DictionaryCompleter()
-        ##self._set_completer(completer)
         if codigo_inicial:
             for line in codigo_inicial.split("\n"):
                 self.insertar_comando_falso(line)
 
-            #self.insertar_mensaje("Bienvenido a lanas")
-        #self.insertar_comando_falso("import pilas")
-        self.marker()        # cursor >>> o ...
+        self.marker()
 
     def insertar_error(self, mensaje):
         self.insertHtml(u"<b style='color: #FF0000'>  ×</b> %s" %(mensaje))
@@ -132,13 +128,12 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             self.insertPlainText(self.history[self.historyIndex])
 
     def _get_entered_line(self):
-        # set cursor to end of line to avoid line splitting
         textCursor = self.textCursor()
-        position   = len(self.document().toPlainText())
+        position = len(self.document().toPlainText())
         textCursor.setPosition(position)
         self.setTextCursor(textCursor)
 
-        line = unicode(self.document().lastBlock().text())[2:] # remove marker
+        line = unicode(self.document().lastBlock().text())[2:]
         line.rstrip()
         return line
 
@@ -229,6 +224,11 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             line = self._get_entered_line()
             self.historyIndex = -1
 
+            if line == "clear":
+                self.document().setPlainText("")
+                self.marker()
+                return
+
             try:
                 line[-1]
                 self.haveLine = True
@@ -238,10 +238,19 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             except:
                 self.haveLine = False
 
+            # Cuando pulsa ENTER luego de haber hecho un texto multilinea y borrado todos los caracteres.
+            if self.multiline and (not self.haveLine or self._ha_ingresado_solo_espacios(line)): #  multi line done
+                self.append('') # move down one line
+                self.interpreter.runsource(self.command)
+                self.command = '' # clear command
+                self.multiline = False # back to single line
+                self.marker() # handle marker style
+                return None
+
             if self.haveLine and self.multiline: # multi line command
                 self.command += line + '\n' # + command and line
                 self.append('')
-                self.marker() # handle marker style
+                self.marker()
                 return None
 
             if self.haveLine and not self.multiline: # one line command
@@ -252,15 +261,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 self.marker() # handle marker style
                 return None
 
-            if self.multiline and not self.haveLine: #  multi line done
-                self.append('') # move down one line
-                self.interpreter.runsource(self.command)
-                self.command = '' # clear command
-                self.multiline = False # back to single line
-                self.marker() # handle marker style
-                return None
-
-            if not self.haveLine and not self.multiline:  # just enter
+            # Cuando pulsa ENTER sin texto.
+            if not self.haveLine and not self.multiline:
                 self.append('')
                 self.marker()
                 return None
@@ -268,6 +270,12 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             return None
 
         super(InterpreteTextEdit, self).keyPressEvent(event)
+
+    def _ha_ingresado_solo_espacios(self, linea):
+        # TODO: Reemplazar por una expresion regular para
+        #       detectar lineas donde solo hay espacios en blanco.
+        if linea == "    ":
+            return True
 
     def log(self, mensaje):
         sys.stderr.write(mensaje + "\n")
