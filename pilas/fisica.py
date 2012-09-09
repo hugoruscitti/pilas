@@ -533,22 +533,18 @@ class Poligono(Figura):
 class ConstanteDeMovimiento():
 
     def __init__(self, figura):
-        md = box2d.b2MouseJointDef()
         mundo = pilas.mundo.fisica.mundo
-        md.body1 = mundo.GetGroundBody()
-        md.body2 = figura._cuerpo
-        md.target = (figura.x, figura.y)
-        md.maxForce = 5000.0 * figura._cuerpo.GetMass()
+        punto_captura = convertir_a_metros(figura.x), convertir_a_metros(figura.y)
 
-        try:
-            self.constante = mundo.CreateJoint(md).getAsType()
-        except:
-            self.constante = mundo.CreateJoint(md)
+        self.constante = mundo.CreateMouseJoint(bodyA=mundo.CreateBody(),
+                bodyB=figura._cuerpo,
+                target=punto_captura,
+                maxForce=1000.0*figura._cuerpo.mass)
 
-        figura._cuerpo.WakeUp()
+        figura._cuerpo.awake = True
 
     def mover(self, x, y):
-        self.constante.SetTarget((x, y))
+        self.constante.target = (convertir_a_metros(x), convertir_a_metros(y))
 
     def eliminar(self):
         pilas.mundo.fisica.mundo.DestroyJoint(self.constante)
