@@ -125,6 +125,35 @@ class Depurador(object):
         texto = "Cantidad de actores: %s" %(total_de_actores)
         self.lienzo.texto_absoluto(painter, texto, izquierda + 10, abajo + 30, color=pilas.colores.violeta)
 
+    def definir_modos(self, fisica=False, info=False, puntos_de_control=False,
+                            radios=False, areas=False, posiciones=False):
+        self._desactivar_todos_los_modos()
+
+        if info:
+            self._alternar_modo(ModoInformacionDeSistema)
+
+        if puntos_de_control:
+            self._alternar_modo(ModoPuntosDeControl)
+
+        if radios:
+            self._alternar_modo(ModoRadiosDeColision)
+
+        if areas:
+            self._alternar_modo(ModoArea)
+
+        if fisica:
+            self._alternar_modo(ModoFisica)
+
+        if posiciones:
+            self._alternar_modo(ModoPosicion)
+
+
+    def _desactivar_todos_los_modos(self):
+        clases_activas = [x.__class__ for x in self.modos]
+
+        for clase in clases_activas:
+            self._desactivar_modo(clase)
+
 
 class ModoDepurador(object):
     tecla = "F00"
