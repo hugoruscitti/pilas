@@ -14,14 +14,14 @@ fabricar = pilas.actores.utils.fabricar
 def crear_grupo(*k):
     return pilas.grupos.Grupo(k)
 
-def definir_gravedad(x=0, y=-900):
+def definir_gravedad(x, y):
     pilas.mundo.fisica.definir_gravedad(x, y)
 
 
 def leer(texto):
     # TODO: usar speak binding en lugar de subprocess.
     try:
-        comando = subprocess.Popen(["espeak",  texto, "-v", "es-la"], 
+        comando = subprocess.Popen(["espeak",  texto, "-v", "es-la"],
                 stdout=subprocess.PIPE,
                 stdin=subprocess.PIPE,
                 stderr=subprocess.PIPE)

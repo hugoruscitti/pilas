@@ -69,6 +69,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
             mensaje = "Lo siento, no se encuentra el archivo 'pilas.pdf' intente visitando la web del proyecto."
             QtGui.QMessageBox.warning(self.main, titulo, mensaje)
 
+
 def ejecutar():
     app = QtGui.QApplication(sys.argv)
     app.setApplicationName("pilas-engine")

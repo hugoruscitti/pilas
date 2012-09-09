@@ -32,14 +32,14 @@ class Globo(Actor):
         "Cambia la posicion del globo para que el punto de donde se emite el globo sea (x, y)."
         self.x = x
         self.y = y
-    
+
 
     def cuando_quieren_avanzar(self, *k):
         if self.dialogo:
             self.dialogo.avanzar_al_siguiente_dialogo()
         else:
             self.eliminar()
-            
+
     def _pintar_globo(self, ancho, alto):
         imagen = pilas.imagenes.cargar("globo.png")
 
@@ -49,7 +49,7 @@ class Globo(Actor):
         # borde superior
         for x in range(0, int(ancho) + 12, 12):
             self.imagen.pintar_parte_de_imagen(imagen, 12, 0, 12, 12, 12 + x, 0)
-        
+
          # esquina sup-der
         self.imagen.pintar_parte_de_imagen(imagen, 100, 0, 12, 12, 12 + int(ancho) + 12, 0)
 
@@ -60,17 +60,17 @@ class Globo(Actor):
             # linea horizontal blanca, para el centro del dialogo.
             for x in range(0, int(ancho) + 12, 12):
                 self.imagen.pintar_parte_de_imagen(imagen, 12, 12, 12, 12, 12 + x, 12 + y)
-            
+
             # borde derecho
             self.imagen.pintar_parte_de_imagen(imagen, 100, 12, 12, 12, 12 + int(ancho) + 12, 12 + y)
-        
+
         # parte inferior
         self.imagen.pintar_parte_de_imagen(imagen, 0, 35, 12, 12, 0, 0 + int(alto) + 12 + 12)
 
         # linea horizontal de la parte inferior
         for x in range(0, int(ancho) + 12, 12):
             self.imagen.pintar_parte_de_imagen(imagen, 12, 35, 12, 12, 12 + x, 0 + int(alto) + 12 + 12)
-        
+
         self.imagen.pintar_parte_de_imagen(imagen, 100, 35, 12, 12, 12 + int(ancho) + 12, 0 + int(alto) + 12 + 12)
         # Pico de la parte de abajo
         self.imagen.pintar_parte_de_imagen(imagen, 67, 35, 33, 25, int(ancho) - 12, 0 + int(alto) + 12 + 12)
