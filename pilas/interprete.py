@@ -25,7 +25,6 @@ class VentanaInterprete(Ui_InterpreteDialog):
         pilas.iniciar(usar_motor='qtsugar')
 
         mono = pilas.actores.Mono()
-        mono.saltar()
 
         ventana = pilas.mundo.motor.ventana
         canvas = pilas.mundo.motor.canvas
@@ -41,7 +40,6 @@ class VentanaInterprete(Ui_InterpreteDialog):
                 'import pilas',
                 '',
                 'mono = pilas.actores.Mono()',
-                'mono.saltar()',
                 ]
 
         consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
