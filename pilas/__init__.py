@@ -183,3 +183,5 @@ def abrir_interprete(parent=None, do_raise=False):
     en una consola del sistema.
     """
     interprete.main(parent, do_raise)
+
+interpolar = utils.interpolar
