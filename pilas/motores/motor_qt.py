@@ -210,13 +210,13 @@ class CanvasWidget(QGLWidget):
             return tecla_qt
 
     def pantalla_completa(self):
-        self.showFullScreen()
+        self.motor.ventana.showFullScreen()
 
     def pantalla_modo_ventana(self):
-        self.showNormal()
+        self.motor.ventana.showNormal()
 
     def esta_en_pantalla_completa(self):
-        return self.isFullScreen()
+        return self.motor.ventana.isFullScreen()
 
     def alternar_pausa(self):
         if self.pausa_habilitada:
