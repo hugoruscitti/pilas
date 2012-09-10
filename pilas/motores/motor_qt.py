@@ -737,6 +737,9 @@ class Motor(object):
             self.ventana.show()
             self.ventana.raise_()
 
+        if pantalla_completa:
+            self.canvas.pantalla_completa()
+
     def ocultar_puntero_del_mouse(self):
         bitmap = QtGui.QBitmap(1, 1)
         nuevo_cursor = QtGui.QCursor(bitmap, bitmap)
