@@ -32,7 +32,8 @@ def convertir_a_pixels(valor):
 def crear_motor_fisica(area, gravedad):
     if __enabled__:
         if obtener_version().startswith('2.0'):
-            print "El soporte para Box2D version 2.0 es obsoleto."
+            print "Los siento, el soporte para Box2D version 2.0 se ha eliminado."
+            print "Por favor actualice Box2D a la version 2.1 (ver http://www.pilas-engine.com.ar)."
             return FisicaDeshabilitada(area, gravedad)
         else:
             return Fisica(area, gravedad)
@@ -49,7 +50,7 @@ class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca Box2D (version 2.1)."""
 
     def __init__(self, area, gravedad):
-        self.mundo = box2d.b2World(gravity=gravedad, doSleep=False)
+        self.mundo = box2d.b2World(gravedad, False)
         self.mundo.contactListener = ObjetosContactListener()
         self.mundo.continuousPhysics = False
 
@@ -251,36 +252,6 @@ class FisicaDeshabilitada(object):
 
     def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
         pass
-
-class FisicaDesactualizada(Fisica):
-
-    """
-    TODO: Adaptar a  la version anterior de box2d (2.0.xx)
-    """
-
-    def __init__(self, area, gravedad=(0, -90)):
-        self.area = area
-        try:
-            self.escenario = box2d.b2AABB()
-            self.escenario.lowerBound = (-1000.0, -1000.0)
-            self.escenario.upperBound = (1000.0, 1000.0)
-            self.gravedad = box2d.b2Vec2(gravedad[0], gravedad[1])
-            try:
-                self.mundo = box2d.b2World(self.escenario, self.gravedad, True)
-                self.objetosContactListener = ObjetosContactListener()
-                self.mundo.SetContactListener(self.objetosContactListener)
-            except ValueError:
-                print "Solo esta disponible el motor de fisica para box2d 2.0.2b1"
-                raise AttributeError("...")
-        except AttributeError:
-            print "Deshabilitando modulo de fisica (no se encuentra instalado pybox2d en este equipo)"
-            self.mundo = None
-            return
-
-        self.constante_mouse = None
-        self.i = 0
-        #self.crear_bordes_del_escenario()
-        self.figuras_a_eliminar = []
 
 
 class Figura(object):
