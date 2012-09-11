@@ -99,7 +99,7 @@ class Fisica(object):
         if self.figuras_a_eliminar:
             for x in self.figuras_a_eliminar:
                 # Solo elimina las figuras que actualmente existen.
-                if x in self.mundo.bodyList:
+                if x in self.mundo.bodies:
                     self.mundo.DestroyBody(x)
             self.figuras_a_eliminar = []
 
