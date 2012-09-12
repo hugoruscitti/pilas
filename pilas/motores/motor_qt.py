@@ -39,6 +39,7 @@ class CanvasWidget(QGLWidget):
     def __init__(self, motor, lista_actores, ancho, alto):
         QGLWidget.__init__(self, None)
         self.painter = QtGui.QPainter()
+        self.setMouseTracking(True)
 
         self.pausa_habilitada = False
         self.mouse_x = 0
