@@ -28,3 +28,8 @@ def leer(texto):
     except OSError:
         pass
 
+def ocultar_puntero_del_mouse():
+    pilas.mundo.motor.ocultar_puntero_del_mouse()
+
+def mostrar_puntero_del_mouse():
+    pilas.mundo.motor.mostrar_puntero_del_mouse()

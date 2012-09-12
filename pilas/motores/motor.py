@@ -94,6 +94,9 @@ class Motor(object):
     def ocultar_puntero_del_mouse(self):
         abstract()
 
+    def mostrar_puntero_del_mouse(self):
+        abstract()
+
     def terminar(self):
         abstract()
 

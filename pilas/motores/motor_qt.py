@@ -5,6 +5,7 @@ import traceback
 
 from PyQt4 import QtGui
 from PyQt4 import QtCore
+from PyQt4.QtCore import Qt
 from PyQt4 import phonon
 from PyQt4.QtOpenGL import QGLWidget
 
@@ -745,9 +746,10 @@ class Motor(object):
             self.canvas.pantalla_completa()
 
     def ocultar_puntero_del_mouse(self):
-        bitmap = QtGui.QBitmap(1, 1)
-        nuevo_cursor = QtGui.QCursor(bitmap, bitmap)
-        self.setCursor(QtGui.QCursor(nuevo_cursor))
+        self.canvas.setCursor(QtGui.QCursor(Qt.BlankCursor))
+
+    def mostrar_puntero_del_mouse(self):
+        self.canvas.setCursor(QtGui.QCursor(Qt.ArrowCursor))
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         sys.exit(self.app.exec_())
