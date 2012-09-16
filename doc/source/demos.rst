@@ -1,13 +1,13 @@
-Ejemplos
-========
+Demos
+=====
 
 Pilas viene con un módulo de ejemplos muy sencillos
 para que puedas investigar y jugar.
 
-Este módulo de ejemplos es ``pilas.ejemplos`` y está
-organizado como una colección de clases.
+Este módulo de ejemplos es ``pilas.demos`` y está
+organizado como un conjunto de clases sencillas.
 
-Para poner en funcionamiento alguno de los ejemplos
+Para poner en funcionamiento alguna de las demos
 simplemente tienes que hacer un objeto a partir
 de alguna de las clases que verás en el módulo.
 
@@ -19,7 +19,7 @@ iniciar con la siguiente sentencia:
 
 .. code-block:: python
 
-    pilas.ejemplos.Piezas()
+    pilas.demos.Piezas()
 
 inmeditamente despúes de evaluar esa sentencia, aparecerá en
 pantalla un grupo de piezas para que puedas 
@@ -37,7 +37,7 @@ Escribe lo siguiente:
 
 .. code-block:: python
 
-    pilas.ejemplos.Piezas("mono.png", 2, 2)
+    pilas.demos.Piezas("mono.png", 2, 2)
 
 Si, ahora en pantalla aparece la imagen del mono pero separado
 en 4 piezas. Dado que hemos especificado 2 (filas) y 2 (columnas).
@@ -57,7 +57,7 @@ complete el rompecabezas:
     def cuando_se_complete():
         pilas.avisar("Lo has completado!!!")
 
-    pilas.ejemplos.Piezas("mono.png", 2, 2, cuando_se_complete)
+    pilas.demos.Piezas("mono.png", 2, 2, cuando_se_complete)
 
 
 .. image:: images/piezas_completo.png

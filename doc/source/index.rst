@@ -43,7 +43,7 @@ Recorrido modulos avanzados:
     comportamientos.rst
     controles.rst
     escenas.rst
-    ejemplos.rst
+    demos.rst
     interfaz_de_usuario.rst
     menu.rst
     mapas_y_plataformas.rst

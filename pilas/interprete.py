@@ -22,7 +22,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
         pilas.utils.centrar_ventana(main)
 
     def _insertar_ventana_principal_de_pilas(self):
-        pilas.iniciar(usar_motor='qtsugar')
+        pilas.iniciar(usar_motor='qtsugar', ancho=640, alto=400)
 
         mono = pilas.actores.Mono()
 
@@ -39,6 +39,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
         codigo_inicial = [
                 'import pilas',
                 '',
+                'pilas.iniciar()',
                 'mono = pilas.actores.Mono()',
                 ]
 

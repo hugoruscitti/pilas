@@ -19,6 +19,7 @@ import eventos
 import sonidos
 import musica
 import colores
+import demos
 import atajos
 import escenas
 import interfaz

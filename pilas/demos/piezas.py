@@ -25,8 +25,8 @@ class Piezas(pilas.escenas.Normal):
         self.pieza_en_movimiento = None
 
         pilas.eventos.click_de_mouse.conectar(self.al_hacer_click)
-        pilas.eventos.termina_click.connect(self.al_soltar_el_click)
-        pilas.eventos.mueve_mouse.connect(self.al_mover_el_mouse)
+        pilas.eventos.termina_click.conectar(self.al_soltar_el_click)
+        pilas.eventos.mueve_mouse.conectar(self.al_mover_el_mouse)
 
         self.sonido_tick = pilas.sonidos.cargar("tick.wav")
         self.al_terminar = al_terminar
@@ -64,12 +64,12 @@ class Piezas(pilas.escenas.Normal):
         if self.pieza_en_movimiento:
             self.pieza_en_movimiento.x += evento.dx
             self.pieza_en_movimiento.y += evento.dy
-            
+
     def conectar(self, pieza_a, pieza_b):
         a = pieza_a.numero
         b = pieza_b.numero
 
-  
+
         if a in self.grupos[b]:
             #Evita contectar mas de una vez a dos piezas.
             return
@@ -85,7 +85,7 @@ class Piezas(pilas.escenas.Normal):
         ¿y si conecto la pieza 3 con la 2?
 
         - tendría que obtener todas las piezas que conoce 2.
-        
+
         - iterar en ese grupo y decirle a cada pieza que sume a 3 en su grupo::
 
             0: [0, 1, 2, 3]
@@ -97,11 +97,11 @@ class Piezas(pilas.escenas.Normal):
 
             3: [0, 1, 2, 3]
         """
-        
+
         grupo_nuevo = set(self.grupos[a]).union(self.grupos[b])
 
         for pieza in grupo_nuevo:
-            self.grupos[pieza] = grupo_nuevo 
+            self.grupos[pieza] = grupo_nuevo
 
         self.piezas_desconectadas -= 1
 
@@ -110,7 +110,7 @@ class Piezas(pilas.escenas.Normal):
                 self.al_terminar()
 
         self.sonido_tick.reproducir()
-        
+
 class Pieza(pilas.actores.Animado):
     """Representa una pieza del rompecabezas.
 
@@ -243,5 +243,3 @@ class Pieza(pilas.actores.Animado):
         for numero in self.escena_padre.grupos[self.numero]:
             pieza = self.escena_padre.piezas[numero]
             pieza.z = 0
-
-
