@@ -57,6 +57,7 @@ class Tarde(Fondo):
 
     def __init__(self):
         Fondo.__init__(self, "fondos/tarde.jpg")
+        self.y = 40
 
 
 class Espacio(Fondo):
@@ -115,6 +116,8 @@ class Desplazamiento(Fondo):
 
         if self.ciclico:
             copia = capa.duplicar()
+            copia.y = capa.y
+            copia.z = capa.z
             copia.fijo = True
             copia.imagen = capa.imagen
             self.capas_auxiliares.append(copia)
