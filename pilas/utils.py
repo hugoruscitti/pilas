@@ -200,7 +200,11 @@ def realizar_pruebas():
 
     try:
         import Box2D as box2d
-        print "OK, versión", box2d.__version__
+
+        if box2d.__version__.startswith("2.1"):
+            print "OK, versión", box2d.__version__
+        else:
+            print "Error -> la versión está obsoleta, instale una versión de la serie 2.1"
     except ImportError:
         print "Error -> no se encuentra pybox2d."
 
