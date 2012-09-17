@@ -203,7 +203,7 @@ def realizar_pruebas():
     else:
         print "Error -> la versión está obsoleta, instale una versión de la serie 2.1"
 
-        print "pyqt:",
+    print "pyqt:",
 
     try:
         from PyQt4 import Qt
