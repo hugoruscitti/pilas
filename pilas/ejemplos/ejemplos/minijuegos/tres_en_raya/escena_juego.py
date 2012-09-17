@@ -6,7 +6,6 @@ class Juego(pilas.escenas.Escena):
 
     def __init__(self):        
         pilas.escenas.Escena.__init__(self) 
-        pilas.actores.utils.eliminar_a_todos()
         pilas.fondos.Fondo('data/fondo.png')
 
         pilas.eventos.pulsa_tecla_escape.conectar(self.cuando_se_presione_escape)
