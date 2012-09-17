@@ -198,17 +198,12 @@ def realizar_pruebas():
 
     print "Box 2D:",
 
-    try:
-        import Box2D as box2d
+    if pilas.fisica.obtener_version().startswith("2.1"):
+        print "OK, versión", pilas.fisica.obtener_version()
+    else:
+        print "Error -> la versión está obsoleta, instale una versión de la serie 2.1"
 
-        if box2d.__version__.startswith("2.1"):
-            print "OK, versión", box2d.__version__
-        else:
-            print "Error -> la versión está obsoleta, instale una versión de la serie 2.1"
-    except ImportError:
-        print "Error -> no se encuentra pybox2d."
-
-    print "pyqt:",
+        print "pyqt:",
 
     try:
         from PyQt4 import Qt
