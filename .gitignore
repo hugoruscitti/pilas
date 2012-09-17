@@ -9,3 +9,8 @@ test.py
 .DS_Store
 
 pilas/data/pilas.pdf
+
+# Ignorando ficheros del IDE Eclipse
+.project
+.pydevproject
+.settings/*
