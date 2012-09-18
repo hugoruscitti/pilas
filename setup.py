@@ -24,9 +24,10 @@ setup(
         install_requires=[
             'setuptools',
             ],
-        packages=['pilas', 
+        packages=['pilas',
                   'pilas.actores',
                   'pilas.motores',
+                  'pilas.demos',
                   'pilas.ejemplos',
                   'pilas.interfaz',
 	          'pilas.video'],
