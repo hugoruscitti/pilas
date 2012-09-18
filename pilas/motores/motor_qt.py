@@ -85,7 +85,7 @@ class CanvasWidget(QGLWidget):
         self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
-        for actor in self.gestor_escenas.escena_actual().actores:
+        for actor in self.gestor_escenas.actores():
             try:
                 if not actor.esta_fuera_de_la_pantalla():
                     actor.dibujar(self.painter)
@@ -121,11 +121,15 @@ class CanvasWidget(QGLWidget):
         for x in range(self.fps.actualizar()):
             if not self.pausa_habilitada:
                 self._actualizar_eventos_y_actores()
+                self._actualizar_escena()
 
+    def _actualizar_escena(self):
+        self.gestor_escenas.actualizar()
+        
     def _actualizar_eventos_y_actores(self):
         eventos.actualizar.emitir()
 
-        for actor in self.lista_actores:
+        for actor in self.gestor_escenas.actores():
             actor.pre_actualizar()
             actor.actualizar()
 
@@ -153,6 +157,8 @@ class CanvasWidget(QGLWidget):
             self.alternar_pantalla_completa()
 
         eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
+        
+        self.gestor_escenas.gestionar_eventos(codigo_de_tecla)
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self._obtener_codigo_de_tecla_normalizado(event.key())

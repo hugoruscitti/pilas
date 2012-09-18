@@ -8,8 +8,9 @@
 
 
 class EscenaBase(object):
-    def __init__(self):
+    def __init__(self, gestor_escenas):
         self.actores = []
+        self.gestor_escenas = gestor_escenas
         pass
     
     def iniciar(self):
@@ -24,7 +25,7 @@ class EscenaBase(object):
     def reanudar(self):
         pass
     
-    def gestionar_eventos(self, events, parent):
+    def gestionar_eventos(self, events):
         pass
     
     def actualizar(self):

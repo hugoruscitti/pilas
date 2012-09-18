@@ -17,7 +17,7 @@ from pilas import camara
 from pilas import actores
 
 from pilas.escena import gestor
-from pilas.escena import escena_normal
+
 
 class Mundo(object):
     """Representa un objeto unico que mantiene en funcionamiento al motor.
@@ -42,7 +42,7 @@ class Mundo(object):
         self.fisica = fisica.crear_motor_fisica(motor.obtener_area(), gravedad=gravedad)
         self.escena_actual = None
 
-        self.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
+        
 
     def reiniciar(self):
         actores.utils.eliminar_a_todos()

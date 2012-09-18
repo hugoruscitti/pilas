@@ -5,18 +5,19 @@
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
+import pilas
 from pilas.escena.escena_base import EscenaBase
-from pilas.escena.escena_noche import EscenaNoche
-import pilas.colores
 import pilas.fondos
+import pilas.colores
 
-class EscenaNormal(EscenaBase):
+class EscenaNoche(EscenaBase):
     
     def __init__(self, gestor_escenas):
-        EscenaBase.__init__(self, gestor_escenas)
+        EscenaBase.__init__(self, gestor_escenas)        
                 
     def iniciar(self):
-        fondo = pilas.fondos.Color(pilas.colores.naranja)
+        fondo = pilas.fondos.Noche()
+        self.mono = pilas.actores.Mono()
     
     def limpiar(self):
         pass
@@ -29,8 +30,10 @@ class EscenaNormal(EscenaBase):
     
     def gestionarEventos(self, events):
         print events
-        if (events == 'a'):
-            self.gestor_escenas.almacenar_escena(EscenaNoche(self.gestor_escenas))
+        if (events == 'b'):
+            self.gestor_escenas.recuperar_escena()
+        if (events == 'c'):
+            self.mono.gritar()
     
     def actualizar(self):
         pass

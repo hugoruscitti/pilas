@@ -25,6 +25,7 @@ import escenas
 import interfaz
 import log
 import interprete
+from pilas.escena import escena_normal
 
 # Permite cerrar el programa usando CTRL+C
 import signal
@@ -75,7 +76,8 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
 
     if motor:
         mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
-        escenas.Normal(colores.grisclaro)
+        mundo.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal(mundo.gestor_escenas))
+        #escenas.Normal(colores.grisclaro)
 
 def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas',
             rendimiento=60, modo='detectar', gravedad=(0, -90), imagen="asistente.png"):
