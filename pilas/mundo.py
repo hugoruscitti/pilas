@@ -16,6 +16,8 @@ from pilas import colisiones
 from pilas import camara
 from pilas import actores
 
+from pilas.escena import gestor
+from pilas.escena import escena_normal
 
 class Mundo(object):
     """Representa un objeto unico que mantiene en funcionamiento al motor.
@@ -25,8 +27,10 @@ class Mundo(object):
     """
 
     def __init__(self, motor, ancho, alto, titulo, fps=60, gravedad=(0, -10), pantalla_completa=False):
+        self.gestor_escenas = gestor.Gestor()        
+        
         self.motor = motor
-        self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa)
+        self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas)
 
         self.tweener = pytweener.Tweener()
         self.tareas = tareas.Tareas()
@@ -37,6 +41,8 @@ class Mundo(object):
         eventos.actualizar.conectar(self.actualizar_simuladores)
         self.fisica = fisica.crear_motor_fisica(motor.obtener_area(), gravedad=gravedad)
         self.escena_actual = None
+
+        self.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
 
     def reiniciar(self):
         actores.utils.eliminar_a_todos()

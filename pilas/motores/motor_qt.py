@@ -37,7 +37,7 @@ class Ventana(QtGui.QMainWindow):
 
 class CanvasWidget(QGLWidget):
 
-    def __init__(self, motor, lista_actores, ancho, alto):
+    def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas):
         QGLWidget.__init__(self, None)
         self.painter = QtGui.QPainter()
         self.setMouseTracking(True)
@@ -55,6 +55,8 @@ class CanvasWidget(QGLWidget):
         self.original_height = alto
         self.escala = 1
         self.startTimer(1000/100.0)
+        
+        self.gestor_escenas = gestor_escenas
 
     def resize_to(self, w, h):
         escala_x = w / float(self.original_width)
@@ -83,7 +85,7 @@ class CanvasWidget(QGLWidget):
         self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
-        for actor in self.lista_actores:
+        for actor in self.gestor_escenas.escena_actual().actores:
             try:
                 if not actor.esta_fuera_de_la_pantalla():
                     actor.dibujar(self.painter)
@@ -91,6 +93,15 @@ class CanvasWidget(QGLWidget):
                 print traceback.format_exc()
                 print sys.exc_info()[0]
                 actor.eliminar()
+        
+        #for actor in self.lista_actores:
+        #    try:
+        #        if not actor.esta_fuera_de_la_pantalla():
+        #            actor.dibujar(self.painter)
+        #    except Exception:
+        #        print traceback.format_exc()
+        #        print sys.exc_info()[0]
+        #        actor.eliminar()
 
             self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
 
@@ -719,7 +730,7 @@ class Motor(object):
         self.audio = phonon.Phonon.AudioOutput(phonon.Phonon.MusicCategory)
         self.path = phonon.Phonon.createPath(self.media, self.audio)
 
-    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
+    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas):
         self.ventana = Ventana()
         self.ventana.resize(ancho, alto)
 
@@ -728,7 +739,7 @@ class Motor(object):
             self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto)
         else:
             mostrar_ventana = True
-            self.canvas = CanvasWidget(self, actores.todos, ancho, alto)
+            self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas)
 
         self.ventana.set_canvas(self.canvas)
         self.canvas.setFocus()
