@@ -9,6 +9,7 @@
 import sys
 import pilas
 from pilas import pilasversion
+import widget_log
 
 class Depurador(object):
     """Esta clase permite hacer depuraciones visuales.
@@ -53,7 +54,9 @@ class Depurador(object):
                 m.termina_dibujado(motor, painter, self.lienzo)
 
     def cuando_pulsa_tecla(self, evento):
-        if evento.codigo == 'F6':
+        if evento.codigo == 'F5':
+            self._alternar_modo(ModoWidgetLog)
+        elif evento.codigo == 'F6':
             pilas.eventos.imprimir_todos()
         elif evento.codigo == 'F7':
             self._alternar_modo(ModoInformacionDeSistema)
@@ -126,8 +129,11 @@ class Depurador(object):
         self.lienzo.texto_absoluto(painter, texto, izquierda + 10, abajo + 30, color=pilas.colores.violeta)
 
     def definir_modos(self, fisica=False, info=False, puntos_de_control=False,
-                            radios=False, areas=False, posiciones=False):
+                            radios=False, areas=False, posiciones=False, log=False):
         self._desactivar_todos_los_modos()
+
+        if log:
+            self._alternar_modo(ModoWidgetLog)
 
         if info:
             self._alternar_modo(ModoInformacionDeSistema)
@@ -175,6 +181,19 @@ class ModoDepurador(object):
 
     def sale_del_modo(self):
         pass
+
+class ModoWidgetLog(ModoDepurador):
+    tecla = "F5"
+
+    def __init__(self, depurador):
+        ModoDepurador.__init__(self, depurador)
+        self.widget = widget_log.WidgetLog()
+        self.widget.show()
+        self.widget.imprimir(locals())
+
+    def sale_del_modo(self):
+        self.widget.close()
+
 
 
 class ModoInformacionDeSistema(ModoDepurador):
@@ -243,3 +262,6 @@ class ModoPosicion(ModoDepurador):
 
     def sale_del_modo(self):
         self.eje.eliminar()
+
+
+
