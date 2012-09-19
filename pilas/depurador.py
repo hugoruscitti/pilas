@@ -9,7 +9,12 @@
 import sys
 import pilas
 from pilas import pilasversion
-import widget_log
+
+try:
+    import widget_log
+except ImportError, e:
+    print e
+    pass
 
 class Depurador(object):
     """Esta clase permite hacer depuraciones visuales.
