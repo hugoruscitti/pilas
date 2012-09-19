@@ -4,7 +4,6 @@ doc/build/*
 build
 pilas.egg-info
 dist/
-test.py
 
 .DS_Store
 
