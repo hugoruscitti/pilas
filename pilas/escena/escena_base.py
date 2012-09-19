@@ -27,8 +27,11 @@ class EscenaBase(object):
         self.suelta_tecla = Evento('suelta_tecla')               # ['codigo', 'texto']
         self.pulsa_tecla_escape = Evento('pulsa_tecla_escape')   # []
     
+        # Para controlar las escenas en el debug
+        self.id = ""
+    
     def iniciar(self):
-        pass
+        raise Exception("Tienes que re-definir el metodo iniciar método.")
     
     def limpiar(self):
         pass
