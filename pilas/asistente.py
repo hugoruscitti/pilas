@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
+import os
 from PyQt4 import QtCore, QtGui, QtWebKit
 
 from asistente_base import Ui_AsistenteWindow
@@ -61,8 +62,12 @@ class VentanaAsistente(Ui_AsistenteWindow):
         interprete.main(self.main)
 
     def _cuando_selecciona_abrir_manual(self):
+        base_dir = str(QtCore.QDir.homePath())
+        ruta_al_manual = os.path.join(base_dir, 'pilas.pdf')
+        print ruta_al_manual
+
         try:
-            ruta = pilas.utils.obtener_ruta_al_recurso('pilas.pdf')
+            ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
             pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
         except IOError:
             titulo = "Error, no se encuentra el manual"
