@@ -130,6 +130,11 @@ class Depurador(object):
 
     def definir_modos(self, fisica=False, info=False, puntos_de_control=False,
                             radios=False, areas=False, posiciones=False, log=False):
+        """Permite habilitar o deshabilitar los modos depuración.
+
+        Cada uno de los argumentos representa un modo depuración, el valor True
+        habilita el modo, False lo deshabilita.
+        """
         self._desactivar_todos_los_modos()
 
         if log:

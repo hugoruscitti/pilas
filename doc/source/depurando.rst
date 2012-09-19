@@ -1,17 +1,19 @@
 Depurando y buscando detalles
 =============================
 
-Pilas incluye dos modos de ejecución que te
-pueden resultar de utilizar para ver en detalle
+Pilas incluye varios modos de ejecución que te
+pueden resultar de utilidad para ver en detalle
 el funcionamiento de tu juego.
 
+La depuración dentro de la progración de juegos permite detectar errores, corregir
+detalles e incluso comprender algunas interacciones complejas.
 
 Modo pausa y manejo de tiempo
 -----------------------------
 
 Si pulsas las teclas ``ALT + P`` durante la ejecución de
 pilas, el juego completo se detiene. En ese 
-momento puedes pulsar la tecla ``barra espaciadora``
+momento puedes pulsar cualquier tecla
 para avanzar un instante de la simulación o 
 la tecla ``flecha derecha`` para avanzar mas rápidamente.
 
@@ -21,30 +23,40 @@ ver en detalle la interacción de los objetos y detectar
 cualquier inconveniente rápidamente.
 
 
-Modo depuración
----------------
+Modos depuración
+----------------
 
-Pulsando la tecla **F12** puedes ver en la pantalla de
-pilas un gráfico cartesiano con las posiciones en pantalla
-y varios figuras geométricas de los actores.
+Las teclas **F6**, **F7**, **F8**, **F9**, **F10**, **F11** y **F12** te permiten
+hacer visibles los modos de depuración.
 
-Las figuras geométricas son útiles para ver las formas
-que tendrán los actores en una simulación física. Ten en
-cuenta que para pilas, internamente, lo único que existen
-son esas figuras simples. Las imágenes que verá un usuario
-al jugar a nuestros juegos serán disfraces de esas figuras.
+Cada modo representa un aspecto interno del juego que podrías ver. Por ejemplo, el
+modo que se activa con la tecla **F12** te permite ver la posición exácta de
+cada actor, mientras que al tecla **F11** te permite ver las figuras físicas.
 
+Activar modos desde código
+--------------------------
 
-Intercalando modos
-------------------
+Si quieres que el juego inicie alguno de los modos, puedes usar la
+función ``pilas.atajos.definir_modos``. Por ejemplo, para habilitar el
+modo depuración física podrías escribir:
 
-Ten en cuenta que puedes ir del modo depuración al
+.. code-block:: python
+
+    pilas.atajos.definir_modos(fisica=True)
+
+esta función tiene varios argumentos opcionales, cómo ``posicion``, ``radios`` etc. Mira
+la definición de la función para obtener mas detalles:
+
+.. automethod:: pilas.depurador.Depurador.definir_modos
+
+Activando los modos para detectar errores
+-----------------------------------------
+
+Ten en cuenta que puedes activar los modos depuración en cualquier momento,
+incluso en medio de una pasuair del modo depuración al
 modo pausa y al revés. Los dos modos se pueden
 combinar fácilmente.
 
 Mi recomendación es que ante la menor duda, pulses **alt + p** para
-ir al modo pausa, luego **F12** para ver las figuras geométricas
-del los objetos, y luego pulses la barra espaciadora para ir
-paso a paso inspeccionando la simulación del juego.
-
-
+ir al modo pausa, y luego comiences a pulsar alguna de las teclas para
+activar los modos depuración y observar en detalle qué está ocurriendo: **F6** , **F7** etc.

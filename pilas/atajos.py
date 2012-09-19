@@ -17,7 +17,6 @@ def crear_grupo(*k):
 def definir_gravedad(x, y):
     pilas.mundo.fisica.definir_gravedad(x, y)
 
-
 def leer(texto):
     # TODO: usar speak binding en lugar de subprocess.
     try:
@@ -33,3 +32,6 @@ def ocultar_puntero_del_mouse():
 
 def mostrar_puntero_del_mouse():
     pilas.mundo.motor.mostrar_puntero_del_mouse()
+
+def definir_modos(*k, **kv):
+    pilas.mundo.motor.canvas.depurador.definir_modos(*k, **kv)
