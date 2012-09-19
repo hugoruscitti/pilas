@@ -46,15 +46,5 @@ class Gestor(object):
     def escena_actual(self):
         return self.escenas[-1]
 
-    def gestionar_eventos(self, events):
-        self.escenas[-1].gestionarEventos(events)
-
     def actualizar(self):
         self.escenas[-1].actualizar()
-
-    def dibujar(self):
-        self.escenas[-1].dibujar()
-
-    def salir(self):
-        print "Quit"            
-    

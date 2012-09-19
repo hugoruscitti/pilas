@@ -6,7 +6,6 @@
 #
 # website - http://www.pilas-engine.com.ar
 from pilas.escena.escena_base import EscenaBase
-from pilas.escena.escena_noche import EscenaNoche
 import pilas.colores
 import pilas.fondos
 
@@ -16,10 +15,7 @@ class EscenaNormal(EscenaBase):
         EscenaBase.__init__(self, gestor_escenas)
                 
     def iniciar(self):
-        fondo = pilas.fondos.Color(pilas.colores.naranja)
-        self.boton = pilas.interfaz.Boton()
-        self.boton2 = pilas.interfaz.Deslizador()
-        #self.pulsa_tecla.conectar(self.prueba_evento)
+        fondo = pilas.fondos.Color(pilas.colores.grisclaro)
     
     def limpiar(self):
         pass
@@ -33,5 +29,3 @@ class EscenaNormal(EscenaBase):
     def actualizar(self):
         pass
     
-    def prueba_evento(self, evento):
-        pass
