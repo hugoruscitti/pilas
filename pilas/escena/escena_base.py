@@ -5,17 +5,18 @@
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
+import pilas
 from pilas.eventos import Evento
 
 
 class EscenaBase(object):
-    def __init__(self, gestor_escenas):
+    def __init__(self):
         
         # Actores de la escena
         self.actores = []
         
         # Gestor de las escenas para poder cambiar entre ellas.
-        self.gestor_escenas = gestor_escenas
+        self.gestor_escenas = pilas.mundo.gestor_escenas
         
         # Eventos asociados a la escena
         self.mueve_mouse = Evento('mueve_mouse')                 # ['x', 'y', 'dx', 'dy']

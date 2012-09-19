@@ -11,8 +11,8 @@ import pilas.fondos
 
 class EscenaNormal(EscenaBase):
     
-    def __init__(self, gestor_escenas):
-        EscenaBase.__init__(self, gestor_escenas)
+    def __init__(self):
+        EscenaBase.__init__(self)
                 
     def iniciar(self):
         fondo = pilas.fondos.Color(pilas.colores.grisclaro)
