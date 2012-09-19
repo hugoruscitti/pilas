@@ -22,8 +22,8 @@ class Gestor(object):
 
     def cambiar_escena (self, escena):
         if len(self.escenas) > 0:
-            escena = self.escenas.pop()
-            escena.limpiar()
+            escena_vieja = self.escenas.pop()
+            escena_vieja.limpiar()
         
         self.escenas.append(escena)
         self.escenas[-1].iniciar()
