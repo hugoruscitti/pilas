@@ -123,9 +123,11 @@ class Fisica(object):
 
                 if isinstance(shape, box2d.b2PolygonShape):
                     vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
+                    vertices = [pilas.mundo.camara.desplazar(v) for v in vertices]
                     lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
                 elif isinstance(shape, box2d.b2CircleShape):
-                    (x, y) = (cuerpo.transform * shape.pos * PPM)
+                    (x, y) = pilas.mundo.camara.desplazar(cuerpo.transform * shape.pos * PPM)
+
                     lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.rojo, grosor=grosor)
                 else:
                     # TODO: implementar las figuras de tipo "edge" y "loop".

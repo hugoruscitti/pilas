@@ -56,7 +56,7 @@ class Camara(object):
             (100, 740, 240, -240)
 
         Es decir, la tupla representa un rectángulo de la forma::
-        
+
             (izquierda, derecha, arriba, abajo)
 
         En nuestro caso, el último ejemplo muestra que cuando
@@ -80,3 +80,8 @@ class Camara(object):
         """
         ancho, alto = pilas.mundo.motor.obtener_area()
         return (self.x - ancho/2, self.x + ancho/2, self.y + alto/2, self.y - alto/2)
+
+    def desplazar(self, posicion):
+        x, y = posicion
+        return (x - self.x, y - self.y)
+
