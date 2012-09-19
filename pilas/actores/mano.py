@@ -25,9 +25,9 @@ class CursorMano(Actor):
         
         self.centro = ("izquierda", "arriba")
 
-        pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
-        pilas.eventos.click_de_mouse.conectar(self.cuando_pulsa_el_mouse)
-        pilas.eventos.termina_click.conectar(self.cuando_suelta_el_mouse)
+        self.escena.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
+        self.escena.click_de_mouse.conectar(self.cuando_pulsa_el_mouse)
+        self.escena.termina_click.conectar(self.cuando_suelta_el_mouse)
 
     def _cargar_imagenes(self):
         self.imagen_normal = pilas.imagenes.cargar("cursores/normal.png")

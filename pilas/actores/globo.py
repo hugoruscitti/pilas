@@ -23,7 +23,7 @@ class Globo(Actor):
         self.escala = [1], 0.2
 
         if avance_con_clicks:
-            pilas.eventos.click_de_mouse.conectar(self.cuando_quieren_avanzar)
+            self.escena.click_de_mouse.conectar(self.cuando_quieren_avanzar)
 
         if autoeliminar:
             pilas.mundo.tareas.una_vez(3, self.eliminar)

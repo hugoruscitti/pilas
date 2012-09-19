@@ -33,9 +33,9 @@ class Boton(Actor):
         Actor.__init__(self, ruta_normal, x=x, y=y)
         self._cargar_imagenes(self.ruta_normal, self.ruta_press, self.ruta_over)
 
-        pilas.eventos.mueve_mouse.conectar(self.detection_move_mouse)
-        pilas.eventos.click_de_mouse.conectar(self.detection_click_mouse)
-        pilas.eventos.termina_click.conectar(self.detection_end_click_mouse)
+        self.escena.mueve_mouse.conectar(self.detection_move_mouse)
+        self.escena.click_de_mouse.conectar(self.detection_click_mouse)
+        self.escena.termina_click.conectar(self.detection_end_click_mouse)
 
     def _cargar_imagenes(self, ruta_normal, ruta_press, ruta_over):
         self.ruta_normal = ruta_normal
