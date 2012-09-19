@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 import sys
-from PyQt4 import QtCore, QtGui
 
-from interprete_base import Ui_InterpreteDialog
+try:
+    from PyQt4 import QtCore, QtGui
+    from interprete_base import Ui_InterpreteDialog
+except:
+    print "ERROR: No se encuentra pyqt"
+    Ui_InterpreteDialog = object
+    pass
+
 import pilas
 import utils
 
