@@ -176,7 +176,10 @@ suelta_tecla = Evento('suelta_tecla')               # ['codigo', 'texto']
 pulsa_tecla_escape = Evento('pulsa_tecla_escape')   # []
 actualizar = Evento('actualizar')                   # []
 post_dibujar = Evento('post_dibujar')               # []
-# Se emite cuando el mundo ingresa o sale del modo depuracion (pulsando F12)
+log = Evento('log')                                 # ['data']
+
+# Se emite cuando el mundo ingresa o sale
+# del modo depuracion (pulsando F12)
 inicia_modo_depuracion = Evento('inicia_modo_depuracion')        # []
 sale_modo_depuracion = Evento('sale_modo_depuracion')            # []
 actualiza_modo_depuracion = Evento('actualiza_modo_depuracion')  # []

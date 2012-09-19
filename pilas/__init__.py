@@ -23,7 +23,6 @@ import demos
 import atajos
 import escenas
 import interfaz
-import log
 import interprete
 
 # Permite cerrar el programa usando CTRL+C
@@ -185,4 +184,8 @@ def abrir_interprete(parent=None, do_raise=False):
     """
     interprete.main(parent, do_raise)
 
+def log(*parametros):
+    eventos.log.emitir(data=parametros)
+
 interpolar = utils.interpolar
+
