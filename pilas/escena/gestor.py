@@ -14,9 +14,6 @@ class Gestor(object):
         # Pila para almacenar las escenas.
         self.escenas = []
                         
-    def actores(self):
-        if len(self.escenas) > 0:
-            return self.escenas[-1].actores
     
     def limpiar (self):
         while len(self.escenas) > 0:

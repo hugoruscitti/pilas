@@ -15,7 +15,7 @@ def ordenar_actores_por_valor_z():
 
 def insertar_como_nuevo_actor(actor):
     "Coloca a un actor en la lista de actores a imprimir en pantalla."
-    pilas.mundo.gestor_escenas.actores().append(actor)
+    pilas.mundo.gestor_escenas.escena_actual().actores.append(actor)
     actor.escena = pilas.mundo.gestor_escenas.escena_actual()
     
 def eliminar_un_actor(actor):

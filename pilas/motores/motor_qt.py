@@ -85,7 +85,7 @@ class CanvasWidget(QGLWidget):
         self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
-        for actor in self.gestor_escenas.actores():
+        for actor in self.gestor_escenas.escena_actual().actores:
             try:
                 if not actor.esta_fuera_de_la_pantalla():
                     actor.dibujar(self.painter)
@@ -120,7 +120,7 @@ class CanvasWidget(QGLWidget):
     def _actualizar_eventos_y_actores(self):
         eventos.actualizar.emitir()
 
-        for actor in self.gestor_escenas.actores():
+        for actor in self.gestor_escenas.escena_actual().actores:
             actor.pre_actualizar()
             actor.actualizar()
 
