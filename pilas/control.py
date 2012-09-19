@@ -84,7 +84,7 @@ class Control(object):
         self.arriba = False
         self.abajo = False
         self.boton = False
-
+        
         eventos.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
         eventos.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
 

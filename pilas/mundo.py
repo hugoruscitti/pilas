@@ -40,7 +40,7 @@ class Mundo(object):
 
         eventos.actualizar.conectar(self.actualizar_simuladores)
         self.fisica = fisica.crear_motor_fisica(motor.obtener_area(), gravedad=gravedad)
-        self.escena_actual = None
+        
 
         
 

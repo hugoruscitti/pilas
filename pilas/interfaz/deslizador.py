@@ -26,9 +26,9 @@ class Deslizador(BaseInterfaz):
         
         self.click = False
         
-        pilas.eventos.click_de_mouse.conectar(self.click_del_mouse)
-        pilas.eventos.mueve_mouse.conectar(self.movimiento_del_mouse)
-        pilas.eventos.termina_click.conectar(self.termino_del_click)
+        self.escena.click_de_mouse.conectar(self.click_del_mouse)
+        self.escena.mueve_mouse.conectar(self.movimiento_del_mouse)
+        self.escena.termina_click.conectar(self.termino_del_click)
 
         self.progreso = 0
         self.posicion_relativa_x = 0

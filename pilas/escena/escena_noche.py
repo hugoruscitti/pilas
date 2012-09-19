@@ -28,16 +28,5 @@ class EscenaNoche(EscenaBase):
     def reanudar(self):
         pass
     
-    def gestionarEventos(self, events):
-        print events
-        if (events == 'b'):
-            self.gestor_escenas.recuperar_escena()
-        if (events == 'c'):
-            self.mono.gritar()
-    
     def actualizar(self):
         pass
-    
-    def dibujar(self):
-        pass
-        

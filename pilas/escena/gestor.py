@@ -46,6 +46,9 @@ class Gestor(object):
         if len(self.escenas) > 0:
             self.escenas[-1].reanudar()
 
+    def escena_actual(self):
+        return self.escenas[-1]
+
     def gestionar_eventos(self, events):
         self.escenas[-1].gestionarEventos(events)
 

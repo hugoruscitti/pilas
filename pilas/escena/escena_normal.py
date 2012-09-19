@@ -17,6 +17,9 @@ class EscenaNormal(EscenaBase):
                 
     def iniciar(self):
         fondo = pilas.fondos.Color(pilas.colores.naranja)
+        self.boton = pilas.interfaz.Boton()
+        self.boton2 = pilas.interfaz.Deslizador()
+        #self.pulsa_tecla.conectar(self.prueba_evento)
     
     def limpiar(self):
         pass
@@ -27,14 +30,8 @@ class EscenaNormal(EscenaBase):
     def reanudar(self):
         pass
     
-    def gestionarEventos(self, events):
-        print events
-        if (events == 'a'):
-            self.gestor_escenas.almacenar_escena(EscenaNoche(self.gestor_escenas))
-    
     def actualizar(self):
         pass
     
-    def dibujar(self):
+    def prueba_evento(self, evento):
         pass
-        

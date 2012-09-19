@@ -71,6 +71,9 @@ class Actor(object, Estudiante):
         self.y = y
         self.transparencia = 0
 
+        # Define en que escena se encuentra el actor.
+        self.escena = None
+
         # Define el nivel de lejanía respecto del observador.
         self.z = 0
         self._espejado = False
@@ -78,6 +81,7 @@ class Actor(object, Estudiante):
         pilas.actores.utils.insertar_como_nuevo_actor(self)
         self._transparencia = 0
         self.anexados = []
+        
 
     def definir_centro(self, (x, y)):
         if type(x) == str:
