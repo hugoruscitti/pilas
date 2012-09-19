@@ -12,9 +12,13 @@ except:
 import pilas
 import utils
 
-sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))
+try:
+    sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))
 
-import lanas
+    import lanas
+except Exception, e:
+    print e
+    pass
 
 
 class VentanaInterprete(Ui_InterpreteDialog):
