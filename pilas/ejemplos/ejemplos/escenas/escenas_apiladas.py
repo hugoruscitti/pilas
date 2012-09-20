@@ -20,10 +20,10 @@ class EscenaDeMenu(EscenaNormal):
         self.menu = pilas.actores.Menu(opciones)
         
     def comenzar(self):
-        pilas.mundo.gestor_escenas.cambiar_escena(EscenaDeJuego())
+        pilas.cambiar_escena(EscenaDeJuego())
         
     def opciones(self):
-        pilas.mundo.gestor_escenas.almacenar_escena(EscenaDeOpciones())
+        pilas.almacenar_escena(EscenaDeOpciones())
 
     def salir(self):
         import sys
@@ -46,11 +46,11 @@ Si vas a opciones y regresas el pinguino\n seguira en la misma posicion donde \n
         self.pulsa_tecla.conectar(self.cuando_pulsa_tecla)
         
     def ir_a_menu(self, evento):
-        pilas.mundo.gestor_escenas.cambiar_escena(EscenaDeMenu())
+        pilas.cambiar_escena(EscenaDeMenu())
         
     def cuando_pulsa_tecla(self, evento):
         if evento.texto == u'o':
-            pilas.mundo.gestor_escenas.almacenar_escena(EscenaDeOpciones())
+            pilas.almacenar_escena(EscenaDeOpciones())
     
 class EscenaDeOpciones(EscenaNormal):
 
@@ -73,8 +73,8 @@ class EscenaDeOpciones(EscenaNormal):
         pilas.avisar("Esto no hace nada.")
 
     def ir_a_escena_anterior(self, evento):
-        pilas.mundo.gestor_escenas.recuperar_escena()
+        pilas.recuperar_escena()
 
 # Carga la nueva escena
-pilas.mundo.gestor_escenas.cambiar_escena(EscenaDeMenu())
+pilas.cambiar_escena(EscenaDeMenu())
 pilas.ejecutar()
