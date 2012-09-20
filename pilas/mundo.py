@@ -27,6 +27,7 @@ class Mundo(object):
     """
 
     def __init__(self, motor, ancho, alto, titulo, fps=60, gravedad=(0, -10), pantalla_completa=False):
+        
         self.gestor_escenas = gestor.Gestor()        
         
         self.motor = motor

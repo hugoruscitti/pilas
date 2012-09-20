@@ -76,7 +76,6 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     if motor:
         mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
         mundo.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
-        #escenas.Normal(colores.grisclaro)
 
 def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas',
             rendimiento=60, modo='detectar', gravedad=(0, -90), imagen="asistente.png"):
