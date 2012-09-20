@@ -70,11 +70,22 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
 
     global mundo
 
-    motor = _crear_motor(usar_motor)
+    if not esta_inicializada():
+        motor = _crear_motor(usar_motor)
 
-    if motor:
-        mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
-        escenas.Normal(colores.grisclaro)
+        if motor:
+            mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
+            escenas.Normal(colores.grisclaro)
+    else:
+        mundo.motor.modificar_ventana(ancho, alto, titulo, pantalla_completa)
+        mundo.fisica.definir_gravedad(*gravedad)
+
+
+def esta_inicializada():
+    "Indica si la biblioteca pilas ha sido inicializada con pilas.iniciar()"
+    global mundo
+    return isinstance(mundo, Mundo)
+
 
 def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas',
             rendimiento=60, modo='detectar', gravedad=(0, -90), imagen="asistente.png"):
