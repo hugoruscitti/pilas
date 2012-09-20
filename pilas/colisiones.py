@@ -30,11 +30,11 @@ class Colisiones:
                         funcion_a_llamar(a, b)
 
                     # verifica si alguno de los dos objetos muere en la colision.
-                    if a not in pilas.actores.todos:
+                    if a not in pilas.mundo.gestor_escenas.escena_actual().actores:
                         if a in grupo_a:
                             list.remove(grupo_a, a)
 
-                    if b not in pilas.actores.todos:
+                    if b not in pilas.mundo.gestor_escenas.escena_actual().actores:
                         if b in grupo_b:
                             list.remove(grupo_b, b)
                 except Exception as e:
@@ -67,12 +67,12 @@ class Colisiones:
 
                         # verifica si alguno de los dos objetos muere en la colision.
                         if (self._es_objeto_fisico_con_actor_asociado(a)):
-                            if a not in pilas.actores.todos:
+                            if a not in pilas.mundo.gestor_escenas.escena_actual().actores:
                                 if a in grupo_a:
                                     list.remove(grupo_a, a)
 
                         if (self._es_objeto_fisico_con_actor_asociado(b)):
-                            if b not in pilas.actores.todos:
+                            if b not in pilas.mundo.gestor_escenas.escena_actual().actores:
                                 if b in grupo_b:
                                     list.remove(grupo_b, b)
 

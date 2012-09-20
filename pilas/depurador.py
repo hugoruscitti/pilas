@@ -129,7 +129,7 @@ class Depurador(object):
 
     def _mostrar_cantidad_de_actores(self, painter):
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
-        total_de_actores = len(pilas.actores.todos)
+        total_de_actores = len(pilas.mundo.gestor_escenas.escena_actual().actores)
         texto = "Cantidad de actores: %s" %(total_de_actores)
         self.lienzo.texto_absoluto(painter, texto, izquierda + 10, abajo + 30, color=pilas.colores.violeta)
 
