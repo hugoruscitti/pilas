@@ -14,6 +14,7 @@ class EscenaDeMenu(EscenaNormal):
 
         opciones = [
             ('Comenzar a jugar', self.comenzar),
+            ('Opciones', self.opciones),
             ('Salir', self.salir)]
 
         self.menu = pilas.actores.Menu(opciones)
@@ -21,6 +22,9 @@ class EscenaDeMenu(EscenaNormal):
     def comenzar(self):
         self.gestor_escenas.cambiar_escena(EscenaDeJuego())
         
+    def opciones(self):
+        self.gestor_escenas.almacenar_escena(EscenaDeOpciones())
+
     def salir(self):
         import sys
         sys.exit(0)
@@ -34,7 +38,8 @@ class EscenaDeJuego(EscenaNormal):
     def iniciar(self):
         pilas.fondos.Pasto()
         pingu = pilas.actores.Pingu()
-        pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar al menu \n o la tecla 'o' para ir a las opciones ...")
+        pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar al menu \n o la tecla 'o' para ir a las opciones ...\n\
+Si vas a opciones y regresas el pinguino\n seguira en la misma posicion donde \n lo dejaste.")
 
         self.pulsa_tecla_escape.conectar(self.ir_a_menu)
         
@@ -61,15 +66,13 @@ class EscenaDeOpciones(EscenaNormal):
 
         self.menu = pilas.actores.Menu(opciones, y=200)
         
-        
-        
-        pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar al juego\n y comprobaras que el pinguino esta en la\n misma posicion donde lo dejaste.")
-        self.pulsa_tecla_escape.conectar(self.ir_a_juego)
+        pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar.")
+        self.pulsa_tecla_escape.conectar(self.ir_a_escena_anterior)
 
     def nada(self):
         pilas.avisar("Esto no hace nada.")
 
-    def ir_a_juego(self, evento):
+    def ir_a_escena_anterior(self, evento):
         self.gestor_escenas.recuperar_escena()
 
 # Carga la nueva escena
