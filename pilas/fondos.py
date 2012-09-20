@@ -16,7 +16,7 @@ class Fondo(pilas.actores.Actor):
         self.z = 1000
 
     def _eliminar_el_fondo_de_pantalla_actual(self):
-        fondos = [x for x in pilas.mundo.gestor_escenas.escena_actual().actores if x.es_fondo()]
+        fondos = [x for x in pilas.escena_actual().actores if x.es_fondo()]
         a_eliminar = []
         for f in fondos:
             a_eliminar.append(f)

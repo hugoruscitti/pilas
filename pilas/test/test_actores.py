@@ -28,7 +28,7 @@ def test_posicion_de_los_actores():
     assert mono.rotacion == 350
 
     # Analizando el actor existira en la escena
-    assert mono in pilas.mundo.gestor_escenas.escena_actual().actores
+    assert mono in pilas.escena_actual().actores
 
     # Escalas
     assert mono.escala == 1
@@ -44,7 +44,7 @@ def test_posicion_de_los_actores():
 
     # verificando que el mono se elimina de la escena.
     mono.eliminar()
-    assert not (mono in pilas.mundo.gestor_escenas.escena_actual().actores)
+    assert not (mono in pilas.escena_actual().actores)
 
 
 def test_correlacion_de_posiciones():

@@ -11,12 +11,12 @@ import pilas
 
 def ordenar_actores_por_valor_z():
     "Ordena todos los actores para que se impriman con 'z' como criterio de orden."
-    pilas.mundo.gestor_escenas.escena_actual().actores.sort()
+    pilas.escena_actual().actores.sort()
 
 def insertar_como_nuevo_actor(actor):
     "Coloca a un actor en la lista de actores a imprimir en pantalla."
-    pilas.mundo.gestor_escenas.escena_actual().actores.append(actor)
-    actor.escena = pilas.mundo.gestor_escenas.escena_actual()
+    pilas.escena_actual().actores.append(actor)
+    actor.escena = pilas.escena_actual()
     
 def eliminar_un_actor(actor):
     try:
@@ -26,7 +26,7 @@ def eliminar_un_actor(actor):
         pass
 
 def eliminar_a_todos():
-    a_eliminar = list(pilas.mundo.gestor_escenas.escena_actual().actores)
+    a_eliminar = list(pilas.escena_actual().actores)
     a_eliminar = a_eliminar[1:]    # evita borrar el fondo.
 
     for x in a_eliminar:
@@ -34,7 +34,7 @@ def eliminar_a_todos():
 
 def destruir_a_todos():
     "Elimina a los actores inmediatamente (evita que exploten o hagan algo)."
-    a_eliminar = list(pilas.mundo.gestor_escenas.escena_actual().actores)
+    a_eliminar = list(pilas.escena_actual().actores)
 
     for x in a_eliminar:
         x.destruir()
@@ -43,7 +43,7 @@ def obtener_actor_en(x, y):
     "Intenta obtener el actor mas cerca de la pantalla (z mas pequeño) en la posición (x, y)"
 
     # Busca el objeto que colisiones ordenando en sentido inverso.
-    for sprite in pilas.mundo.gestor_escenas.escena_actual().actores[::-1]:
+    for sprite in pilas.escena_actual.actores[::-1]:
         if sprite.colisiona_con_un_punto(x, y):
             return sprite
 

@@ -123,7 +123,7 @@ def hacer_coordenada_pantalla_absoluta(x, y):
     return (x + dx, dy - y)
 
 def listar_actores_en_consola():
-    todos = pilas.mundo.gestor_escenas.escena_actual().actores
+    todos = pilas.escena_actual().actores
 
     print "Hay %d actores en la escena:" %(len(todos))
     print ""
