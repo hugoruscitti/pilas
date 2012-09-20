@@ -15,9 +15,6 @@ class EscenaBase(object):
         # Actores de la escena
         self.actores = []
         
-        # Gestor de las escenas para poder cambiar entre ellas.
-        self.gestor_escenas = pilas.mundo.gestor_escenas
-        
         # Eventos asociados a la escena
         self.mueve_mouse = Evento('mueve_mouse')                 # ['x', 'y', 'dx', 'dy']
         self.click_de_mouse = Evento('click_de_mouse')           # ['button', 'x', 'y']
