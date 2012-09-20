@@ -190,6 +190,9 @@ def log(*parametros):
 
 interpolar = utils.interpolar
 
+def escena_actual():
+    return mundo.gestor_escenas.escena_actual()
+
 def cambiar_escena(escena):
     mundo.gestor_escenas.cambiar_escena(escena)
     
