@@ -191,3 +191,11 @@ def log(*parametros):
 
 interpolar = utils.interpolar
 
+def cambiar_escena(escena):
+    pilas.mundo.gestor_escenas.cambiar_escena(escena)
+    
+def almacenar_escena(escena):
+    pilas.mundo.gestor_escenas.almacenar_escena(escena)
+    
+def recuperar_escena():
+    pilas.mundo.gestor_escenas.recuperar_escena()
