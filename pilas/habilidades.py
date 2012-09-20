@@ -120,13 +120,13 @@ class Arrastrable(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.eventos.click_de_mouse.conectar(self.cuando_intenta_arrastrar)
+        pilas.escena_actual().click_de_mouse.conectar(self.cuando_intenta_arrastrar)
 
     def cuando_intenta_arrastrar(self, evento):
         "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
         if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
-            pilas.eventos.termina_click.conectar(self.cuando_termina_de_arrastrar)
-            pilas.eventos.mueve_mouse.conectar(self.cuando_arrastra, id='cuando_arrastra')
+            pilas.escena_actual().termina_click.conectar(self.cuando_termina_de_arrastrar)
+            pilas.escena_actual().mueve_mouse.conectar(self.cuando_arrastra, id='cuando_arrastra')
             self.comienza_a_arrastrar()
 
     def cuando_arrastra(self, evento):
@@ -139,7 +139,7 @@ class Arrastrable(Habilidad):
 
     def cuando_termina_de_arrastrar(self, evento):
         "Suelta al actor porque se ha soltado el botón del mouse."
-        pilas.eventos.mueve_mouse.desconectar_por_id(id='cuando_arrastra')
+        pilas.escena_actual().mueve_mouse.desconectar_por_id(id='cuando_arrastra')
         self.termina_de_arrastrar()
 
     def comienza_a_arrastrar(self):
