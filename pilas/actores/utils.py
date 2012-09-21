@@ -26,18 +26,21 @@ def eliminar_un_actor(actor):
         pass
 
 def eliminar_a_todos():
-    a_eliminar = list(pilas.escena_actual().actores)
-    a_eliminar = a_eliminar[1:]    # evita borrar el fondo.
+    a_eliminar = pilas.escena_actual().actores[1:]    # evita borrar el fondo.
 
     for x in a_eliminar:
         x.eliminar()
+    
+    pilas.escena_actual().actores = []
 
 def destruir_a_todos():
     "Elimina a los actores inmediatamente (evita que exploten o hagan algo)."
-    a_eliminar = list(pilas.escena_actual().actores)
+    a_eliminar = pilas.escena_actual().actores
 
     for x in a_eliminar:
         x.destruir()
+    
+    pilas.escena_actual().actores = []
 
 def obtener_actor_en(x, y):
     "Intenta obtener el actor mas cerca de la pantalla (z mas pequeño) en la posición (x, y)"
