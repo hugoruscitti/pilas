@@ -5,7 +5,7 @@
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
-from pilas import tareas
+from pilas import tareas, colisiones, pytweener
 from pilas.eventos import Evento
 
 
@@ -30,6 +30,10 @@ class EscenaBase(object):
         # Gestor de tareas
         self.tareas = tareas.Tareas()
         
+        # Gestor de colisiones
+        self.colisiones = colisiones.Colisiones()
+        
+        self.tweener = pytweener.Tweener()
         
     def iniciar(self):
         raise Exception("Tienes que re-definir el metodo iniciar.")
@@ -39,6 +43,7 @@ class EscenaBase(object):
             actor.destruir()
             
         self.tareas.eliminar_todas()
+        self.tweener.eliminar_todas()
     
     def pausar(self):
         pass
@@ -47,5 +52,15 @@ class EscenaBase(object):
         pass
     
     def actualizar(self):
+        pass
+    
+    """ Este metodo no debe ser sobreescrito en las clases que
+    hereden de ella.
+    """
+    def actualizar_eventos(self):
+        self.tweener.update(16)
         self.tareas.actualizar(1/60.0)
+        if pilas.mundo.fisica:
+            self.fisica.actualizar()        
+        self.colisiones.verificar_colisiones()
     

@@ -48,3 +48,4 @@ class Gestor(object):
 
     def actualizar(self):
         self.escenas[-1].actualizar()
+        self.escenas[-1].actualizar_eventos()

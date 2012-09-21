@@ -27,28 +27,22 @@ class Mundo(object):
         self.motor = motor
         self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas)
 
-        self.tweener = pytweener.Tweener()
-        #self.tareas = tareas.Tareas()
         self.control = control.Control()
-        self.colisiones = colisiones.Colisiones()
+
         self.camara = camara.Camara(self)
 
         eventos.actualizar.conectar(self.actualizar_simuladores)
+        
         self.fisica = fisica.crear_motor_fisica(motor.obtener_area(), gravedad=gravedad)
         
     def reiniciar(self):
         self.gestor_escenas.limpiar()
         self.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
-        #self.tareas.eliminar_todas()
-        self.tweener.eliminar_todas()
-        #self.fisica.reiniciar()
+        self.fisica.reiniciar()
 
     def actualizar_simuladores(self, evento):
-        self.tweener.update(16)
-        #self.tareas.actualizar(1/60.0)
         if self.fisica:
             self.fisica.actualizar()
-        self.colisiones.verificar_colisiones()
 
     def terminar(self):
         self.motor.terminar()
@@ -58,13 +52,13 @@ class Mundo(object):
         self.motor.ejecutar_bucle_principal(self, ignorar_errores)
 
     def agregar_tarea_una_vez(self, time_out, function, *params):
-        return self.tareas.una_vez(time_out, function, params)
+        return self.gestor_escenas.escena_actual().tareas.una_vez(time_out, function, params)
 
     def agregar_tarea_siempre(self, time_out, function, *params):
-        return self.tareas.siempre(time_out, function, params)
+        return self.gestor_escenas.escena_actual().tareas.siempre(time_out, function, params)
 
     def agregar_tarea(self, time_out, funcion, *parametros):
-        return self.tareas.condicional(time_out, funcion, parametros)
+        return self.gestor_escenas.escena_actual().tareas.condicional(time_out, funcion, parametros)
 
     def deshabilitar_sonido(self, estado=True):
         self.motor.deshabilitar_sonido(estado)
