@@ -6,17 +6,11 @@
 #
 # website - http://www.pilas-engine.com.ar
 
+from pilas import actores, camara, colisiones, control, escenas, eventos, fisica, \
+    tareas
+from pilas.escena import gestor, escena_normal
 import pytweener
-from pilas import eventos
-from pilas import tareas
-from pilas import control
-from pilas import fisica
-from pilas import escenas
-from pilas import colisiones
-from pilas import camara
-from pilas import actores
 
-from pilas.escena import gestor
 
 
 class Mundo(object):
@@ -42,14 +36,12 @@ class Mundo(object):
         eventos.actualizar.conectar(self.actualizar_simuladores)
         self.fisica = fisica.crear_motor_fisica(motor.obtener_area(), gravedad=gravedad)
         
-
-        
-
     def reiniciar(self):
-        actores.utils.eliminar_a_todos()
+        self.gestor_escenas.limpiar()
+        self.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
         self.tareas.eliminar_todas()
         self.tweener.eliminar_todas()
-        self.fisica.reiniciar()
+        #self.fisica.reiniciar()
 
     def actualizar_simuladores(self, evento):
         self.tweener.update(16)
@@ -64,27 +56,6 @@ class Mundo(object):
     def ejecutar_bucle_principal(self, ignorar_errores=False):
         "Mantiene en funcionamiento el motor completo."
         self.motor.ejecutar_bucle_principal(self, ignorar_errores)
-
-    def definir_escena(self, escena_nueva):
-        """Cambia la escena que se muestra en pantalla.
-
-        Este método se llama automáticamente desde el módulo
-        de escenas, así que no es buena idea llamarlo desde
-        un juego, es mejor dejar que se llame automáticamente
-        desde la escena."""
-        actores.utils.destruir_a_todos()
-        self.tareas.eliminar_todas()
-        self.tweener.eliminar_todas()
-        self.camara.x = 0
-        self.camara.y = 0
-
-        if self.escena_actual:
-            # Eliminamos cualquier resto de variables (self.*) definidas en la escena.
-            self.escena_actual.__dict__.clear()
-            self.escena_actual.terminar()
-
-        self.escena_actual = escena_nueva
-        escena_nueva.iniciar()
 
     def agregar_tarea_una_vez(self, time_out, function, *params):
         return self.tareas.una_vez(time_out, function, params)
