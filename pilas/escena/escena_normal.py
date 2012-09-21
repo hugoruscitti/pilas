@@ -27,5 +27,5 @@ class EscenaNormal(EscenaBase):
         pass
     
     def actualizar(self):
-        pass
+        EscenaBase.actualizar(self)
     

@@ -37,13 +37,18 @@ class EscenaDeJuego(EscenaNormal):
         
     def iniciar(self):
         pilas.fondos.Pasto()
-        pingu = pilas.actores.Pingu()
+        self.pingu = pilas.actores.Pingu()
         pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar al menu \n o la tecla 'o' para ir a las opciones ...\n\
 Si vas a opciones y regresas el pinguino\n seguira en la misma posicion donde \n lo dejaste.")
 
         self.pulsa_tecla_escape.conectar(self.ir_a_menu)
         
         self.pulsa_tecla.conectar(self.cuando_pulsa_tecla)
+
+        self.tareas.siempre(1/60.0, self.girar)
+        
+    def girar(self):
+        self.pingu.rotacion = self.pingu.rotacion + 10
         
     def ir_a_menu(self, evento):
         pilas.cambiar_escena(EscenaDeMenu())
@@ -62,7 +67,7 @@ class EscenaDeOpciones(EscenaNormal):
 
         opciones = [
             ('Sonido: OFF', self.nada),
-            ('Modo Avanzado: ON', self.nada)]
+            ('Reiniciar Mundo', self.reiniciar_mundo)]
 
         self.menu = pilas.actores.Menu(opciones, y=200)
         
@@ -71,6 +76,9 @@ class EscenaDeOpciones(EscenaNormal):
 
     def nada(self):
         pilas.avisar("Esto no hace nada.")
+        
+    def reiniciar_mundo(self):
+        pilas.mundo.reiniciar()
 
     def ir_a_escena_anterior(self, evento):
         pilas.recuperar_escena()

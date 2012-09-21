@@ -5,13 +5,16 @@
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
-import pilas
+from pilas import tareas
 from pilas.eventos import Evento
 
 
 class EscenaBase(object):
     def __init__(self):
         
+        # Para controlar las escenas en el debug
+        self.id = ""
+
         # Actores de la escena
         self.actores = []
         
@@ -23,15 +26,19 @@ class EscenaBase(object):
         self.pulsa_tecla = Evento('pulsa_tecla')                 # ['codigo', 'texto']
         self.suelta_tecla = Evento('suelta_tecla')               # ['codigo', 'texto']
         self.pulsa_tecla_escape = Evento('pulsa_tecla_escape')   # []
-    
-        # Para controlar las escenas en el debug
-        self.id = ""
-    
+        
+        # Gestor de tareas
+        self.tareas = tareas.Tareas()
+        
+        
     def iniciar(self):
-        raise Exception("Tienes que re-definir el metodo iniciar método.")
+        raise Exception("Tienes que re-definir el metodo iniciar.")
     
     def limpiar(self):
-        pass
+        for actor in self.actores:
+            actor.destruir()
+            
+        self.tareas.eliminar_todas()
     
     def pausar(self):
         pass
@@ -40,5 +47,5 @@ class EscenaBase(object):
         pass
     
     def actualizar(self):
-        pass
+        self.tareas.actualizar(1/60.0)
     

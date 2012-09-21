@@ -28,7 +28,7 @@ class Mundo(object):
         self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas)
 
         self.tweener = pytweener.Tweener()
-        self.tareas = tareas.Tareas()
+        #self.tareas = tareas.Tareas()
         self.control = control.Control()
         self.colisiones = colisiones.Colisiones()
         self.camara = camara.Camara(self)
@@ -39,13 +39,13 @@ class Mundo(object):
     def reiniciar(self):
         self.gestor_escenas.limpiar()
         self.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
-        self.tareas.eliminar_todas()
+        #self.tareas.eliminar_todas()
         self.tweener.eliminar_todas()
         #self.fisica.reiniciar()
 
     def actualizar_simuladores(self, evento):
         self.tweener.update(16)
-        self.tareas.actualizar(1/60.0)
+        #self.tareas.actualizar(1/60.0)
         if self.fisica:
             self.fisica.actualizar()
         self.colisiones.verificar_colisiones()
