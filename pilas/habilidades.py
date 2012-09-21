@@ -78,7 +78,7 @@ class SeguirAlMouse(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.eventos.mueve_mouse.conectar(self.mover)
+        pilas.escena_actual().mueve_mouse.conectar(self.mover)
 
     def mover(self, evento):
         self.receptor.x = evento.x
@@ -89,7 +89,7 @@ class AumentarConRueda(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.eventos.mueve_rueda.conectar(self.cambiar_de_escala)
+        pilas.escena_actual().mueve_rueda.conectar(self.cambiar_de_escala)
 
     def cambiar_de_escala(self, evento):
         self.receptor.escala += (evento.delta / 4.0)
@@ -100,7 +100,7 @@ class SeguirClicks(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.eventos.click_de_mouse.conectar(self.moverse_a_este_punto)
+        pilas.escena_actual().click_de_mouse.conectar(self.moverse_a_este_punto)
 
     def moverse_a_este_punto(self, evento):
         self.receptor.x = [evento.x], 0.5
@@ -159,7 +159,7 @@ class MoverseConElTeclado(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.eventos.actualizar.conectar(self.on_key_press)
+        pilas.escena_actual().actualizar.conectar(self.on_key_press)
 
     def on_key_press(self, evento):
         velocidad = 5

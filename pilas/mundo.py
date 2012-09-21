@@ -29,8 +29,6 @@ class Mundo(object):
 
         self.control = control.Control()
 
-        #self.camara = camara.Camara(self)
-
         eventos.actualizar.conectar(self.actualizar_simuladores)
         
         self.fisica = fisica.crear_motor_fisica(motor.obtener_area(), gravedad=gravedad)
