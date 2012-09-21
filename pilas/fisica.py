@@ -123,10 +123,10 @@ class Fisica(object):
 
                 if isinstance(shape, box2d.b2PolygonShape):
                     vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
-                    vertices = [pilas.mundo.camara.desplazar(v) for v in vertices]
+                    vertices = [pilas.escena_actual().camara.desplazar(v) for v in vertices]
                     lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
                 elif isinstance(shape, box2d.b2CircleShape):
-                    (x, y) = pilas.mundo.camara.desplazar(cuerpo.transform * shape.pos * PPM)
+                    (x, y) = pilas.escena_actual().camara.desplazar(cuerpo.transform * shape.pos * PPM)
 
                     lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.rojo, grosor=grosor)
                 else:
@@ -150,12 +150,12 @@ class Fisica(object):
 
                     for v in figura.vertices:
                         pt = box2d.b2Mul(xform, v)
-                        vertices.append((pt.x - pilas.mundo.camara.x, pt.y - pilas.mundo.camara.y))
+                        vertices.append((pt.x - pilas.escena_actual().camara.x, pt.y - pilas.escena_actual().camara.y))
 
                     lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
 
                 elif tipo_de_figura == box2d.e_circleShape:
-                    lienzo.circulo(motor, cuerpo.position.x - pilas.mundo.camara.x, cuerpo.position.y - pilas.mundo.camara.y, figura.radius, pilas.colores.rojo, grosor=grosor)
+                    lienzo.circulo(motor, cuerpo.position.x - pilas.escena_actual().camara.x, cuerpo.position.y - pilas.escena_actual().camara.y, figura.radius, pilas.colores.rojo, grosor=grosor)
                 else:
                     print "no puedo identificar el tipo de figura."
         """

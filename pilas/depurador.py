@@ -232,14 +232,14 @@ class ModoPuntosDeControl(ModoDepurador):
     tecla = "F8"
 
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
-        lienzo.cruz(painter, actor.x - pilas.mundo.camara.x, actor.y - pilas.mundo.camara.y, color=pilas.colores.rojo, grosor=ModoDepurador.grosor_de_lineas)
+        lienzo.cruz(painter, actor.x - pilas.escena_actual().camara.x, actor.y - pilas.escena_actual().camara.y, color=pilas.colores.rojo, grosor=ModoDepurador.grosor_de_lineas)
 
 
 class ModoRadiosDeColision(ModoDepurador):
     tecla = "F9"
 
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
-        lienzo.circulo(painter, actor.x - pilas.mundo.camara.x, actor.y - pilas.mundo.camara.y, actor.radio_de_colision, color=pilas.colores.verde, grosor=ModoDepurador.grosor_de_lineas)
+        lienzo.circulo(painter, actor.x - pilas.escena_actual().camara.x, actor.y - pilas.escena_actual().camara.y, actor.radio_de_colision, color=pilas.colores.verde, grosor=ModoDepurador.grosor_de_lineas)
 
 
 class ModoArea(ModoDepurador):
@@ -247,7 +247,7 @@ class ModoArea(ModoDepurador):
 
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         dx, dy = actor.centro
-        lienzo.rectangulo(painter, actor.x - dx - pilas.mundo.camara.x, actor.y + dy - pilas.mundo.camara.y, actor.ancho, actor.alto, color=pilas.colores.azul, grosor=ModoDepurador.grosor_de_lineas)
+        lienzo.rectangulo(painter, actor.x - dx - pilas.escena_actual().camara.x, actor.y + dy - pilas.escena_actual().camara.y, actor.ancho, actor.alto, color=pilas.colores.azul, grosor=ModoDepurador.grosor_de_lineas)
 
 
 class ModoFisica(ModoDepurador):
@@ -268,7 +268,7 @@ class ModoPosicion(ModoDepurador):
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         if not isinstance(actor, pilas.fondos.Fondo):
             texto = "(%d, %d)" %(actor.x, actor.y)
-            lienzo.texto(painter, texto, actor.derecha - pilas.mundo.camara.x, actor.abajo - pilas.mundo.camara.y, color=pilas.colores.violeta)
+            lienzo.texto(painter, texto, actor.derecha - pilas.escena_actual().camara.x, actor.abajo - pilas.escena_actual().camara.y, color=pilas.colores.violeta)
 
     def sale_del_modo(self):
         self.eje.eliminar()

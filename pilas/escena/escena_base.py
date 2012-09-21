@@ -5,7 +5,7 @@
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
-from pilas import tareas, colisiones, pytweener
+from pilas import tareas, colisiones, pytweener, camara
 from pilas.eventos import Evento
 
 
@@ -18,7 +18,11 @@ class EscenaBase(object):
         # Actores de la escena
         self.actores = []
         
+        # Camara de la escena
+        self.camara = camara.Camara(self)
+        
         # Eventos asociados a la escena
+        self.mueve_camara = Evento('mueve_camara')               # ['x', 'y', 'dx', 'dy']
         self.mueve_mouse = Evento('mueve_mouse')                 # ['x', 'y', 'dx', 'dy']
         self.click_de_mouse = Evento('click_de_mouse')           # ['button', 'x', 'y']
         self.termina_click = Evento('termina_click')             # ['button', 'x', 'y']
@@ -37,14 +41,7 @@ class EscenaBase(object):
         
     def iniciar(self):
         raise Exception("Tienes que re-definir el metodo iniciar.")
-    
-    def limpiar(self):
-        for actor in self.actores:
-            actor.destruir()
-            
-        self.tareas.eliminar_todas()
-        self.tweener.eliminar_todas()
-    
+        
     def pausar(self):
         pass
     
@@ -54,13 +51,18 @@ class EscenaBase(object):
     def actualizar(self):
         pass
     
-    """ Este metodo no debe ser sobreescrito en las clases que
+    """ Estos metodos no deben ser sobreescritos en las clases que
     hereden de ella.
     """
     def actualizar_eventos(self):
         self.tweener.update(16)
         self.tareas.actualizar(1/60.0)
-        if pilas.mundo.fisica:
-            self.fisica.actualizar()        
         self.colisiones.verificar_colisiones()
+    
+    def limpiar(self):
+        for actor in self.actores:
+            actor.destruir()
+            
+        self.tareas.eliminar_todas()
+        self.tweener.eliminar_todas()
     

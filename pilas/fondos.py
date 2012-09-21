@@ -100,7 +100,6 @@ class Desplazamiento(Fondo):
         self.posicion_anterior = 0
         self.capas = []
         self.velocidades = {}
-        #pilas.eventos.mueve_camara.conectar(self.cuando_mueve_camara)
         self.escena.mueve_camara.conectar(self.cuando_mueve_camara)
         self.ciclico = True
 

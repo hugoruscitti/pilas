@@ -38,6 +38,8 @@ class EscenaDeJuego(EscenaNormal):
     def iniciar(self):
         pilas.fondos.Pasto()
         self.pingu = pilas.actores.Pingu()
+        self.pelota = pilas.actores.Pelota()
+        self.pelota2 = pilas.actores.Pelota()
         pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar al menu \n o la tecla 'o' para ir a las opciones ...\n\
 Si vas a opciones y regresas el pinguino\n seguira en la misma posicion donde \n lo dejaste.")
 

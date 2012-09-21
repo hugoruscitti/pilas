@@ -29,7 +29,7 @@ class Mundo(object):
 
         self.control = control.Control()
 
-        self.camara = camara.Camara(self)
+        #self.camara = camara.Camara(self)
 
         eventos.actualizar.conectar(self.actualizar_simuladores)
         

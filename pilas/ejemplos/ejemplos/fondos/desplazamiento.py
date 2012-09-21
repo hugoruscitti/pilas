@@ -18,6 +18,6 @@ fondo.agregar(montes, 0.5)
 fondo.agregar(arboles, 0.9)
 fondo.agregar(pasto, 2)
 
-pilas.mundo.camara.x = [200], 10
+pilas.escena_actual().camara.x = [200], 10
 
 pilas.ejecutar()
