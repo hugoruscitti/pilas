@@ -1,10 +1,12 @@
 import pilas
 
-class EscenaMenu(pilas.escenas.Escena):
+class EscenaMenu(pilas.escena.escena_normal.EscenaBase):
     "Escena de presentacion del juego."
 
     def __init__(self):
-        pilas.escenas.Escena.__init__(self) 
+        pilas.escena.escena_normal.EscenaBase.__init__(self)
+        
+    def iniciar(self):
         pilas.fondos.Fondo('data/inicio.png')
         self.menu_de_juego()
 
@@ -18,11 +20,11 @@ class EscenaMenu(pilas.escenas.Escena):
 
     def iniciar_juego(self):
         import escena_juego
-        escena_juego.Juego()
+        pilas.cambiar_escena(escena_juego.Juego())
 
     def salir_del_juego(self):
         pilas.terminar()
 
     def mostrar_ayuda(self):
         import escena_ayuda
-        escena_ayuda.Ayuda()
+        pilas.cambiar_escena(escena_ayuda.Ayuda())
