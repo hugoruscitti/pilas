@@ -21,6 +21,7 @@ import musica
 import colores
 import demos
 import atajos
+import escena
 import escenas
 import interfaz
 import interprete

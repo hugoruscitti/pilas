@@ -11,14 +11,16 @@ espaciadora y para mover la nave
 puedes usar las flechas del teclado.
 """
 
-class Ayuda(pilas.escenas.Escena):
+class Ayuda(pilas.escena.escena_normal.EscenaBase):
     "Es la escena que da instrucciones de como jugar."
 
     def __init__(self):
-        pilas.escenas.Escena.__init__(self)
+        pilas.escena.escena_normal.EscenaBase.__init__(self)
+    
+    def iniciar(self):
         pilas.fondos.Fondo("data/ayuda.png")
         self.crear_texto_ayuda()
-        pilas.eventos.pulsa_tecla_escape.conectar(self.cuando_pulsa_tecla)
+        self.pulsa_tecla_escape.conectar(self.cuando_pulsa_tecla)
 
     def crear_texto_ayuda(self):
         titulo = pilas.actores.Texto("Ayuda", y=200)
@@ -27,4 +29,4 @@ class Ayuda(pilas.escenas.Escena):
 
     def cuando_pulsa_tecla(self, *k, **kv):
         import escena_menu
-        escena_menu.EscenaMenu()
+        pilas.cambiar_escena(escena_menu.EscenaMenu())
