@@ -24,10 +24,8 @@ class Juego(pilas.escena.escena_normal.EscenaBase):
         self.iniciar_juego(self.nivel)
     
     def iniciar_juego(self, nivel):
-        print "eliminar todos"
         pilas.actores.utils.eliminar_a_todos()
         pilas.fondos.Fondo('data/fondo.png')
-        print self.actores
 
         if nivel == 1:
             self.pos_iniciar = [-35, -35]
