@@ -1,23 +1,16 @@
 # -*- coding: utf-8 -*-
-import sys
+from PyQt4 import QtCore, QtGui, phonon
+from PyQt4.QtCore import Qt
+from PyQt4.QtOpenGL import QGLWidget
+from pilas import actores, colores, depurador, eventos, fps, imagenes, simbolos, \
+    utils
 import copy
+import os
+import pilas
+import sys
 import traceback
 
-from PyQt4 import QtGui
-from PyQt4 import QtCore
-from PyQt4.QtCore import Qt
-from PyQt4 import phonon
-from PyQt4.QtOpenGL import QGLWidget
 
-from pilas import fps
-from pilas import imagenes
-from pilas import actores
-from pilas import eventos
-from pilas import utils
-from pilas import depurador
-from pilas import simbolos
-from pilas import colores
-import pilas
 
 
 
@@ -119,10 +112,12 @@ class CanvasWidget(QGLWidget):
         
     def _actualizar_eventos_y_actores(self):
         eventos.actualizar.emitir()
-
-        for actor in self.gestor_escenas.escena_actual().actores:
-            actor.pre_actualizar()
-            actor.actualizar()
+        try:
+            for actor in self.gestor_escenas.escena_actual().actores:
+                actor.pre_actualizar()
+                actor.actualizar()
+        except:
+            sys.exit(1)
 
     def mouseMoveEvent(self, e):
         escala = self.escala

@@ -41,8 +41,8 @@ class EscenaDeJuego(EscenaNormal):
         pilas.fondos.Espacio()
         self.nave = pilas.actores.Nave()
         
-        pelota1 = pilas.actores.Pelota()
-        #pelota2 = pilas.actores.Pelota()
+        #pelota1 = pilas.actores.Pingu()
+        pelota2 = pilas.actores.Pelota()
         
         pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar al menu \n o la tecla 'o' para ir a las opciones ...\n\
 Si vas a opciones y regresas, la nave\n seguira en la misma posicion donde \n la dejaste.")
@@ -57,6 +57,8 @@ Si vas a opciones y regresas, la nave\n seguira en la misma posicion donde \n la
     def cuando_pulsa_tecla(self, evento):
         if evento.texto == u'o':
             pilas.almacenar_escena(EscenaDeOpciones())
+        if evento.texto == u'a':
+            print self.actores
     
 class EscenaDeOpciones(EscenaNormal):
 

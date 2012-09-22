@@ -22,8 +22,9 @@ class Gestor(object):
 
     def cambiar_escena (self, escena):
         if len(self.escenas) > 0:
-            escena_vieja = self.escenas.pop()
+            escena_vieja = self.escenas[-1]
             escena_vieja.limpiar()
+            self.escenas.pop()
         
         self.escenas.append(escena)
         self.escenas[-1].iniciar()
@@ -37,14 +38,16 @@ class Gestor(object):
 
     def recuperar_escena(self):
         if len(self.escenas) > 0:
-            escena = self.escenas.pop()
+            escena = self.escenas[-1]
             escena.limpiar()
+            self.escenas.pop()
 
         if len(self.escenas) > 0:
             self.escenas[-1].reanudar()
 
     def escena_actual(self):
         return self.escenas[-1]
+
 
     def actualizar(self):
         self.escenas[-1].actualizar()
