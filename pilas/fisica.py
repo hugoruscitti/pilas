@@ -69,7 +69,7 @@ class Fisica(object):
         self.crear_paredes(self.area)
 
     def reiniciar(self):
-        lista = list(self.mundo.bodyList)
+        lista = list(self.mundo.bodies)
 
         for x in lista:
             self.mundo.DestroyBody(x)

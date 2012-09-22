@@ -73,6 +73,6 @@ class EscenaBase(object):
             
         self.tareas.eliminar_todas()
         self.tweener.eliminar_todas()
-        #if self.fisica:
-            #self.fisica.reiniciar()
+        if self.fisica:
+            self.fisica.reiniciar()
     
