@@ -59,6 +59,9 @@ class Fisica(object):
 
         self.constante_mouse = None
         self.crear_bordes_del_escenario()
+        
+        self.velocidad = 1.0
+        self.timeStep = self.velocidad/120.0
 
     def crear_bordes_del_escenario(self):
         self.crear_techo(self.area)
@@ -90,9 +93,17 @@ class Fisica(object):
 
     def actualizar(self, velocidad=1.0):
         if self.mundo:
-            self.mundo.Step(velocidad/120.0, 6, 3)
+            self.mundo.Step(self.timeStep, 6, 3)
             self._procesar_figuras_a_eliminar()
             self.mundo.ClearForces()
+            
+    def pausar_mundo(self):
+        if self.mundo:
+            self.timeStep = 0
+            
+    def reanudar_mundo(self):
+        if self.mundo:
+            self.timeStep = self.velocidad/120.0
 
     def _procesar_figuras_a_eliminar(self):
         "Elimina las figuras que han sido marcadas para quitar."
@@ -319,7 +330,7 @@ class Figura(object):
 
     def eliminar(self):
         """Quita una figura de la simulación."""
-        pilas.mundo.fisica.eliminar_figura(self._cuerpo)
+        pilas.escena_actual().fisica.eliminar_figura(self._cuerpo)
 
     x = property(obtener_x, definir_x, doc="define la posición horizontal.")
     y = property(obtener_y, definir_y, doc="define la posición vertical.")
@@ -353,7 +364,7 @@ class Circulo(Figura):
         radio = convertir_a_metros(radio)
 
         if not fisica:
-            fisica = pilas.mundo.fisica
+            fisica = pilas.escena_actual().fisica
 
         if not dinamica:
             densidad = 0
@@ -393,7 +404,7 @@ class Rectangulo(Figura):
         alto = convertir_a_metros(alto)
 
         if not fisica:
-            fisica = pilas.mundo.fisica
+            fisica = pilas.escena_actual().fisica
 
         if not dinamica:
             densidad = 0
@@ -464,7 +475,7 @@ class Poligono(Figura):
         Figura.__init__(self)
 
         if not fisica:
-            fisica = pilas.mundo.fisica
+            fisica = pilas.escena_actual().fisica
 
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=puntos[0]
@@ -506,7 +517,7 @@ class Poligono(Figura):
 class ConstanteDeMovimiento():
 
     def __init__(self, figura):
-        mundo = pilas.mundo.fisica.mundo
+        mundo = pilas.escena_actual().fisica.mundo
         punto_captura = convertir_a_metros(figura.x), convertir_a_metros(figura.y)
 
         self.constante = mundo.CreateMouseJoint(bodyA=mundo.CreateBody(),
@@ -520,7 +531,7 @@ class ConstanteDeMovimiento():
         self.constante.target = (convertir_a_metros(x), convertir_a_metros(y))
 
     def eliminar(self):
-        pilas.mundo.fisica.mundo.DestroyJoint(self.constante)
+        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
 
 class ConstanteDeDistancia():
     """Representa una distancia fija entre dos figuras.
@@ -539,7 +550,7 @@ class ConstanteDeDistancia():
 
     def __init__(self, figura_1, figura_2, fisica=None, con_colision=True):
         if not fisica:
-            fisica = pilas.mundo.fisica
+            fisica = pilas.escena_actual().fisica
 
         if not isinstance(figura_1, Figura) or not isinstance(figura_2, Figura):
             raise Exception("Las dos figuras tienen que ser objetos de la clase Figura.")
@@ -550,10 +561,10 @@ class ConstanteDeDistancia():
         self.constante = fisica.mundo.CreateJoint(constante)
 
     def eliminar(self):
-        pilas.mundo.fisica.mundo.DestroyJoint(self.constante_mouse)
+        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante_mouse)
 
 def definir_gravedad(x, y):
-    pilas.mundo.fisica.mundo.gravity = (x, y)
+    pilas.escena_actual().fisica.mundo.gravity = (x, y)
 
 class ObjetosContactListener(contact_listener):
 

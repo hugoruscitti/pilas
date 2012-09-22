@@ -17,15 +17,3 @@ class EscenaNormal(EscenaBase):
     def iniciar(self):
         fondo = pilas.fondos.Color(pilas.colores.grisclaro)
     
-    def limpiar(self):
-        pass
-    
-    def pausar(self):
-        pass
-    
-    def reanudar(self):
-        pass
-    
-    def actualizar(self):
-        pass
-    

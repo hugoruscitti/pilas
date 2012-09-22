@@ -132,7 +132,7 @@ class Arrastrable(Habilidad):
     def cuando_arrastra(self, evento):
         "Arrastra el actor a la posicion indicada por el puntero del mouse."
         if self._el_receptor_tiene_fisica():
-            pilas.mundo.fisica.cuando_mueve_el_mouse(evento.x, evento.y)
+            pilas.escena_actual().fisica.cuando_mueve_el_mouse(evento.x, evento.y)
         else:
             self.receptor.x += evento.dx
             self.receptor.y += evento.dy
@@ -144,11 +144,11 @@ class Arrastrable(Habilidad):
 
     def comienza_a_arrastrar(self):
         if self._el_receptor_tiene_fisica():
-            pilas.mundo.fisica.capturar_figura_con_el_mouse(self.receptor.figura)
+            pilas.escena_actual().fisica.capturar_figura_con_el_mouse(self.receptor.figura)
 
     def termina_de_arrastrar(self):
         if self._el_receptor_tiene_fisica():
-            pilas.mundo.fisica.cuando_suelta_el_mouse()
+            pilas.escena_actual().fisica.cuando_suelta_el_mouse()
 
     def _el_receptor_tiene_fisica(self):
         return hasattr(self.receptor, 'figura')

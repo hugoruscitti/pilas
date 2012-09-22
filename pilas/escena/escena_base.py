@@ -5,6 +5,7 @@
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
+import pilas
 from pilas import tareas, colisiones, pytweener, camara
 from pilas.eventos import Evento
 
@@ -39,14 +40,16 @@ class EscenaBase(object):
         
         self.tweener = pytweener.Tweener()
         
+        self.fisica = pilas.mundo.crear_motor_fisica()
+        
     def iniciar(self):
         raise Exception("Tienes que re-definir el metodo iniciar.")
         
     def pausar(self):
-        pass
+        self.fisica.pausar_mundo()
     
     def reanudar(self):
-        pass
+        self.fisica.reanudar_mundo()
     
     def actualizar(self):
         pass
@@ -57,7 +60,12 @@ class EscenaBase(object):
     def actualizar_eventos(self):
         self.tweener.update(16)
         self.tareas.actualizar(1/60.0)
-        self.colisiones.verificar_colisiones()
+        self.colisiones.verificar_colisiones()        
+        
+    def actualizar_fisica(self):
+        if self.fisica:
+            if len(self.fisica.mundo.bodies) > 4: # Es mayor de 4 ya que las paredes son 4 elementos.
+                self.fisica.actualizar()
     
     def limpiar(self):
         for actor in self.actores:
@@ -65,4 +73,6 @@ class EscenaBase(object):
             
         self.tareas.eliminar_todas()
         self.tweener.eliminar_todas()
+        #if self.fisica:
+            #self.fisica.reiniciar()
     

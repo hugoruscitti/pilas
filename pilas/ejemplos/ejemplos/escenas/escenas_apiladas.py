@@ -10,6 +10,7 @@ class EscenaDeMenu(EscenaNormal):
         EscenaNormal.__init__(self)
         
     def iniciar(self):   
+        self.id = "EscenaDeMenu"
         pilas.fondos.Selva()
 
         opciones = [
@@ -36,15 +37,19 @@ class EscenaDeJuego(EscenaNormal):
         EscenaNormal.__init__(self)
         
     def iniciar(self):
+        self.id = "EscenaDeJuego"
         pilas.fondos.Espacio()
         self.nave = pilas.actores.Nave()
+        
+        pelota1 = pilas.actores.Pelota()
+        #pelota2 = pilas.actores.Pelota()
+        
         pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar al menu \n o la tecla 'o' para ir a las opciones ...\n\
 Si vas a opciones y regresas, la nave\n seguira en la misma posicion donde \n la dejaste.")
 
         self.pulsa_tecla_escape.conectar(self.ir_a_menu)
         
         self.pulsa_tecla.conectar(self.cuando_pulsa_tecla)
-
         
     def ir_a_menu(self, evento):
         pilas.cambiar_escena(EscenaDeMenu())
@@ -58,13 +63,15 @@ class EscenaDeOpciones(EscenaNormal):
     def __init__(self):
         EscenaNormal.__init__(self)
         
-    def iniciar(self):   
+    def iniciar(self):
+        self.id = "EscenaDeOpciones"
         pilas.fondos.Noche()
 
         opciones = [
             ('Sonido: OFF', self.nada)]
 
         self.menu = pilas.actores.Menu(opciones, y=200)
+        pelota1 = pilas.actores.Pelota()
         
         pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar.")
         self.pulsa_tecla_escape.conectar(self.ir_a_escena_anterior)

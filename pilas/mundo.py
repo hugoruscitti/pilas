@@ -27,20 +27,16 @@ class Mundo(object):
         self.motor = motor
         self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas)
 
+        self.gravedad = gravedad
+
         self.control = control.Control()
 
-        eventos.actualizar.conectar(self.actualizar_simuladores)
-        
-        self.fisica = fisica.crear_motor_fisica(motor.obtener_area(), gravedad=gravedad)
-        
+    def crear_motor_fisica(self):
+        return fisica.crear_motor_fisica(self.motor.obtener_area(), gravedad=self.gravedad)
+    
     def reiniciar(self):
         self.gestor_escenas.limpiar()
         self.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
-        self.fisica.reiniciar()
-
-    def actualizar_simuladores(self, evento):
-        if self.fisica:
-            self.fisica.actualizar()
 
     def terminar(self):
         self.motor.terminar()

@@ -255,7 +255,7 @@ class ModoFisica(ModoDepurador):
 
     def termina_dibujado(self, motor, painter, lienzo):
         grosor = ModoDepurador.grosor_de_lineas
-        pilas.mundo.fisica.dibujar_figuras_sobre_lienzo(painter, lienzo, grosor)
+        pilas.escena_actual().fisica.dibujar_figuras_sobre_lienzo(painter, lienzo, grosor)
 
 
 class ModoPosicion(ModoDepurador):
