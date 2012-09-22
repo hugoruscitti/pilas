@@ -41,9 +41,6 @@ Este módulo contiene las funciones principales
 para iniciar y ejecutar la biblioteca.
 """
 
-if utils.esta_en_sesion_interactiva():
-    utils.cargar_autocompletado()
-
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False):
     """

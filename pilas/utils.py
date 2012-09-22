@@ -18,16 +18,6 @@ import pilas
 PATH = os.path.dirname(os.path.abspath(__file__))
 
 
-def cargar_autocompletado():
-    "Carga los modulos de python para autocompletar desde la consola interactiva."
-    try:
-        import rlcompleter
-        import readline
-
-        readline.parse_and_bind("tab: complete")
-    except ImportError:
-        print "No se puede cargar el autocompletado, instale readline..."
-
 def es_interpolacion(an_object):
     "Indica si un objeto se comporta como una colisión."
 
