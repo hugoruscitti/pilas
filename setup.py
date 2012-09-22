@@ -30,7 +30,9 @@ setup(
                   'pilas.demos',
                   'pilas.ejemplos',
                   'pilas.interfaz',
-	          'pilas.video'],
+	              'pilas.video',
+                  'lanas',
+                  ],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
         package_data = {
