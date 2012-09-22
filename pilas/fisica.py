@@ -573,7 +573,7 @@ class ObjetosContactListener(contact_listener):
 
     def Add(self, objetos_colisionados):
         if (not (objetos_colisionados.shape1.GetUserData() == None)) and (not (objetos_colisionados.shape2.GetUserData() == None)):
-            pilas.mundo.colisiones.verificar_colisiones_fisicas(objetos_colisionados.shape1.GetUserData()['id'], objetos_colisionados.shape2.GetUserData()['id'])
+            pilas.escena_actual().colisiones.verificar_colisiones_fisicas(objetos_colisionados.shape1.GetUserData()['id'], objetos_colisionados.shape2.GetUserData()['id'])
 
     def Persist(self, *args):
         pass

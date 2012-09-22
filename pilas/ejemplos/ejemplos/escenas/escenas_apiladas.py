@@ -42,7 +42,7 @@ class EscenaDeJuego(EscenaNormal):
         self.nave = pilas.actores.Nave()
         
         #pelota1 = pilas.actores.Pingu()
-        pelota2 = pilas.actores.Pelota()
+        pelota2 = pilas.actores.Pelota(y=200)
         
         pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar al menu \n o la tecla 'o' para ir a las opciones ...\n\
 Si vas a opciones y regresas, la nave\n seguira en la misma posicion donde \n la dejaste.")
@@ -50,6 +50,14 @@ Si vas a opciones y regresas, la nave\n seguira en la misma posicion donde \n la
         self.pulsa_tecla_escape.conectar(self.ir_a_menu)
         
         self.pulsa_tecla.conectar(self.cuando_pulsa_tecla)
+        
+        self.click_de_mouse.conectar(self.raton)
+        
+    def raton(self, evento):
+        if self.fisica.timeStep == 0:
+            self.reanudar()
+        else:
+            self.pausar()
         
     def ir_a_menu(self, evento):
         pilas.cambiar_escena(EscenaDeMenu())
