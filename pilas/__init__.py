@@ -73,6 +73,9 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
         if motor:
             mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
             escenas.Normal(colores.grisclaro)
+
+            if _usa_interprete_lanas():
+                mundo.motor.ventana.show()
     else:
         mundo.motor.modificar_ventana(ancho, alto, titulo, pantalla_completa)
         mundo.fisica.definir_gravedad(*gravedad)
@@ -138,6 +141,10 @@ def _crear_motor(usar_motor):
 
     if usar_motor in ['qt', 'qtgl', 'qtwidget', 'qtsugar', 'qtsugargl']:
         from motores import motor_qt
+
+        if _usa_interprete_lanas():
+            usar_motor = 'qtsugar'
+
         motor = motor_qt.Motor(usar_motor)
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
@@ -145,6 +152,11 @@ def _crear_motor(usar_motor):
         motor = None
 
     return motor
+
+def _usa_interprete_lanas():
+    "Retorna True si se ha iniciado pilas desde lanas"
+    import os
+    return os.environ.has_key('lanas')
 
 def reiniciar():
     """Elimina todos los actores y vuelve al estado inicial."""
