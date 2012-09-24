@@ -51,7 +51,7 @@ class Fisica(object):
 
     def __init__(self, area, gravedad):
         self.mundo = box2d.b2World(gravedad, False)
-        self.mundo.contactListener = ObjetosContactListener()
+        #self.mundo.contactListener = ObjetosContactListener()
         self.mundo.continuousPhysics = False
 
         self.area = area
@@ -59,7 +59,7 @@ class Fisica(object):
 
         self.constante_mouse = None
         self.crear_bordes_del_escenario()
-        
+
         self.velocidad = 1.0
         self.timeStep = self.velocidad/120.0
 
@@ -96,11 +96,11 @@ class Fisica(object):
             self.mundo.Step(self.timeStep, 6, 3)
             self._procesar_figuras_a_eliminar()
             self.mundo.ClearForces()
-            
+
     def pausar_mundo(self):
         if self.mundo:
             self.timeStep = 0
-            
+
     def reanudar_mundo(self):
         if self.mundo:
             self.timeStep = self.velocidad/120.0
