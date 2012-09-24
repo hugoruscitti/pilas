@@ -2,16 +2,13 @@
 from PyQt4 import QtCore, QtGui, phonon
 from PyQt4.QtCore import Qt
 from PyQt4.QtOpenGL import QGLWidget
-from pilas import actores, colores, depurador, eventos, fps, imagenes, simbolos, \
-    utils
+from pilas import actores, colores, depurador, eventos, fps
+from pilas import imagenes, simbolos, utils
 import copy
 import os
 import pilas
 import sys
 import traceback
-
-
-
 
 
 class Ventana(QtGui.QMainWindow):
@@ -67,8 +64,6 @@ class CanvasWidget(QGLWidget):
 
     def paintEvent(self, event):
         self.painter.begin(self)
-
-
         self.painter.scale(self.escala, self.escala)
 
         self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
@@ -78,16 +73,26 @@ class CanvasWidget(QGLWidget):
         self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
-        for actor in self.gestor_escenas.escena_actual().actores:
-            try:
-                if not actor.esta_fuera_de_la_pantalla():
-                    actor.dibujar(self.painter)
-            except Exception:
-                print traceback.format_exc()
-                print sys.exc_info()[0]
-                actor.eliminar()
+        actores_a_eliminar = []
 
-            self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
+        if self.gestor_escenas.escena_actual():
+            actores_de_la_escena = self.gestor_escenas.escena_actual().actores
+            for actor in actores_de_la_escena:
+                if actor._vivo:
+                    try:
+                        if not actor.esta_fuera_de_la_pantalla():
+                            actor.dibujar(self.painter)
+                    except Exception:
+                        print traceback.format_exc()
+                        print sys.exc_info()[0]
+                        actor.eliminar()
+
+                    self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
+                else:
+                    actores_a_eliminar.append(actor)
+
+                for x in actores_a_eliminar:
+                    actores_de_la_escena.remove(x)
 
         self.depurador.termina_dibujado(self.motor, self.painter)
         self.painter.end()
@@ -112,12 +117,14 @@ class CanvasWidget(QGLWidget):
 
     def _actualizar_eventos_y_actores(self):
         eventos.actualizar.emitir()
+
         try:
             for actor in self.gestor_escenas.escena_actual().actores:
                 actor.pre_actualizar()
                 actor.actualizar()
-        except:
-            sys.exit(1)
+        except Exception:
+            print traceback.format_exc()
+            print sys.exc_info()[0]
 
     def mouseMoveEvent(self, e):
         escala = self.escala
@@ -171,7 +178,6 @@ class CanvasWidget(QGLWidget):
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
 
         self.gestor_escenas.escena_actual().termina_click.emitir(x=x, y=y, dx=0, dy=0)
-
 
     def _obtener_codigo_de_tecla_normalizado(self, tecla_qt):
         teclas = {
@@ -322,13 +328,13 @@ class Imagen(object):
 
         if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
             try:
-                self._imagen = self.load_jpeg(ruta)
+                self._imagen = self.cargar_jpeg(ruta)
             except:
                 self._imagen = QtGui.QPixmap(ruta)
         else:
             self._imagen = QtGui.QPixmap(ruta)
 
-    def load_jpeg(self, ruta):
+    def cargar_jpeg(self, ruta):
         from PIL import Image
         import StringIO
 
@@ -515,7 +521,6 @@ class Lienzo(Imagen):
             nuevo_x, nuevo_y = p
             self.linea(motor, x, y, nuevo_x, nuevo_y, color, grosor)
             x, y = nuevo_x, nuevo_y
-
 
     def cruz(self, painter, x, y, color=colores.negro, grosor=1):
         t = 3

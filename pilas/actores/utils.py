@@ -17,20 +17,13 @@ def insertar_como_nuevo_actor(actor):
     "Coloca a un actor en la lista de actores a imprimir en pantalla."
     pilas.escena_actual().actores.append(actor)
     actor.escena = pilas.escena_actual()
-    
-def eliminar_un_actor(actor):
-    try:
-        pilas.actores.todos.remove(actor)
-    except ValueError:
-        #TODO: quitar este silenciador de excepcion.
-        pass
 
 def eliminar_a_todos():
     a_eliminar = pilas.escena_actual().actores[1:]    # evita borrar el fondo.
 
     for x in a_eliminar:
         x.eliminar()
-    
+
     pilas.escena_actual().actores = []
 
 def destruir_a_todos():
@@ -39,7 +32,7 @@ def destruir_a_todos():
 
     for x in a_eliminar:
         x.destruir()
-    
+
     pilas.escena_actual().actores = []
 
 def obtener_actor_en(x, y):

@@ -196,9 +196,9 @@ def escena_actual():
 
 def cambiar_escena(escena):
     mundo.gestor_escenas.cambiar_escena(escena)
-    
+
 def almacenar_escena(escena):
     mundo.gestor_escenas.almacenar_escena(escena)
-    
+
 def recuperar_escena():
     mundo.gestor_escenas.recuperar_escena()

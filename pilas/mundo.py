@@ -21,19 +21,17 @@ class Mundo(object):
     """
 
     def __init__(self, motor, ancho, alto, titulo, fps=60, gravedad=(0, -10), pantalla_completa=False):
-        
-        self.gestor_escenas = gestor.Gestor()        
-        
+        self.gestor_escenas = gestor.Gestor()
+
         self.motor = motor
         self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas)
 
         self.gravedad = gravedad
-
         self.control = control.Control()
 
     def crear_motor_fisica(self):
         return fisica.crear_motor_fisica(self.motor.obtener_area(), gravedad=self.gravedad)
-    
+
     def reiniciar(self):
         self.gestor_escenas.limpiar()
         self.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
