@@ -39,6 +39,7 @@ class EscenaDeJuego(EscenaNormal):
     def iniciar(self):
         self.id = "EscenaDeJuego"
         pilas.fondos.Espacio()
+
         self.nave = pilas.actores.Nave()
         
         #pelota1 = pilas.actores.Pingu()

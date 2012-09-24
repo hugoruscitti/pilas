@@ -14,11 +14,10 @@ class Gestor(object):
 
     def limpiar(self):
         "Elimina todas las escenas del gestor."
-        escenas_a_eliminar = self.escenas
-        self.escenas = []
-
-        for x in escenas_a_eliminar:
+        for x in self.escenas:
             x.limpiar()
+
+        self.escenas = []
 
     def cambiar_escena(self, escena):
         "Define una escena exclusiva y la inicializa (elimina todo lo demas)."
@@ -35,8 +34,8 @@ class Gestor(object):
 
     def recuperar_escena(self):
         if len(self.escenas) > 1:
-            escena_actual = self.escenas.pop()
-            escena_actual.limpiar()
+            self.escenas[-1].limpiar()
+            escena_actual = self.escenas.pop()         
             escena_anterior = self.escenas[-1]
             escena_anterior.reanudar()
         else:
