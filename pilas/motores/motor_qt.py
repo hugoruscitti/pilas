@@ -78,21 +78,21 @@ class CanvasWidget(QGLWidget):
         if self.gestor_escenas.escena_actual():
             actores_de_la_escena = self.gestor_escenas.escena_actual().actores
             for actor in actores_de_la_escena:
-                if actor._vivo:
-                    try:
-                        if not actor.esta_fuera_de_la_pantalla():
-                            actor.dibujar(self.painter)
-                    except Exception:
-                        print traceback.format_exc()
-                        print sys.exc_info()[0]
-                        actor.eliminar()
+                #if actor._vivo:
+                try:
+                    if not actor.esta_fuera_de_la_pantalla():
+                        actor.dibujar(self.painter)
+                except Exception:
+                    print traceback.format_exc()
+                    print sys.exc_info()[0]
+                    actor.eliminar()
 
-                    self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
-                else:
-                    actores_a_eliminar.append(actor)
+                self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
+                #else:
+                #    actores_a_eliminar.append(actor)
 
-                for x in actores_a_eliminar:
-                    actores_de_la_escena.remove(x)
+                #for x in actores_a_eliminar:
+                #    actores_de_la_escena.remove(x)
 
         self.depurador.termina_dibujado(self.motor, self.painter)
         self.painter.end()
