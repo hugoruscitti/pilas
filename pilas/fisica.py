@@ -564,8 +564,7 @@ class ConstanteDeDistancia():
         pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante_mouse)
 
 def definir_gravedad(x, y):
-    print "gravedad"
-    #pilas.escena_actual().fisica.mundo.gravity = (x, y)
+    pilas.escena_actual().fisica.mundo.gravity = (x, y)
 
 class ObjetosContactListener(contact_listener):
 
