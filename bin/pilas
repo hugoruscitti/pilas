@@ -18,6 +18,9 @@ analizador.add_option("-v", "--version", dest="version",
 
 (opciones, argumentos) = analizador.parse_args()
 
+if argumentos:
+    sys.exit(execfile(argumentos[0]))
+
 if opciones.test:
     pilas.utils.realizar_pruebas()
     sys.exit(0)
