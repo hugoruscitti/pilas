@@ -48,7 +48,7 @@ class CanvasWidget(QGLWidget):
         self.original_height = alto
         self.escala = 1
         self.startTimer(1000/100.0)
-        
+
         self.gestor_escenas = gestor_escenas
 
     def resize_to(self, w, h):
@@ -86,7 +86,7 @@ class CanvasWidget(QGLWidget):
                 print traceback.format_exc()
                 print sys.exc_info()[0]
                 actor.eliminar()
-        
+
             self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
 
         self.depurador.termina_dibujado(self.motor, self.painter)
@@ -109,7 +109,7 @@ class CanvasWidget(QGLWidget):
 
     def _actualizar_escena(self):
         self.gestor_escenas.actualizar()
-        
+
     def _actualizar_eventos_y_actores(self):
         eventos.actualizar.emitir()
         try:
@@ -127,7 +127,7 @@ class CanvasWidget(QGLWidget):
         izquierda, derecha, arriba, abajo = utils.obtener_bordes()
         x = max(min(derecha, x), izquierda)
         y = max(min(arriba, y), abajo)
-        
+
         self.gestor_escenas.escena_actual().mueve_mouse.emitir(x=x, y=y, dx=dx, dy=dy)
 
         self.mouse_x = x
@@ -135,7 +135,7 @@ class CanvasWidget(QGLWidget):
 
     def keyPressEvent(self, event):
         codigo_de_tecla = self._obtener_codigo_de_tecla_normalizado(event.key())
-           
+
         # Se mantiene este lanzador de eventos por la clase Control
         if event.key() == QtCore.Qt.Key_Escape:
             eventos.pulsa_tecla_escape.emitir()
@@ -144,19 +144,19 @@ class CanvasWidget(QGLWidget):
             self.alternar_pausa()
         if event.key() == QtCore.Qt.Key_F and event.modifiers() == QtCore.Qt.AltModifier:
             self.alternar_pantalla_completa()
-            
+
         eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
-        
+
         self.gestor_escenas.escena_actual().pulsa_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
-        
+
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self._obtener_codigo_de_tecla_normalizado(event.key())
         # Se mantiene este lanzador de eventos por la clase Control
         eventos.suelta_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
-        
+
         self.gestor_escenas.escena_actual().suelta_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
-        
+
     def wheelEvent(self, e):
         self.gestor_escenas.escena_actual().mueve_rueda.emitir(delta=e.delta() / 120)
 
@@ -730,6 +730,9 @@ class Motor(object):
         self.media = phonon.Phonon.MediaObject()
         self.audio = phonon.Phonon.AudioOutput(phonon.Phonon.MusicCategory)
         self.path = phonon.Phonon.createPath(self.media, self.audio)
+
+    def terminar(self):
+        self.ventana.close()
 
     def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas):
         self.ventana = Ventana()
