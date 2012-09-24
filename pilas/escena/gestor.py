@@ -49,8 +49,11 @@ class Gestor(object):
             return None
 
     def actualizar(self):
-        self.escenas[-1].actualizar()
-        self.escenas[-1].actualizar_eventos()
+        escena = self.escena_actual()
 
-        for escena in self.escenas:
-            escena.actualizar_fisica()
+        if escena:
+            escena.actualizar()
+            escena.actualizar_eventos()
+
+            for escena in self.escenas:
+                escena.actualizar_fisica()
