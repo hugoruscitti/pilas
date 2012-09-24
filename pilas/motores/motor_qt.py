@@ -745,7 +745,7 @@ class Motor(object):
 
         if self.usar_motor in ['qtwidget', 'qtsugar']:
             mostrar_ventana = False
-            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto)
+            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto, gestor_escenas)
         else:
             mostrar_ventana = True
             self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas)
