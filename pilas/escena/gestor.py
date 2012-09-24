@@ -9,50 +9,49 @@
 
 class Gestor(object):
 
-    
     def __init__(self):
-        # Pila para almacenar las escenas.
         self.escenas = []
-                        
-    
-    def limpiar (self):
-        while len(self.escenas) > 0:
-            escena = self.escenas.pop()
-            escena.limpiar()
 
-    def cambiar_escena (self, escena):
-        if len(self.escenas) > 0:
-            escena_vieja = self.escenas[-1]
-            escena_vieja.limpiar()
-            self.escenas.pop()
-        
+    def limpiar(self):
+        "Elimina todas las escenas del gestor."
+        escenas_a_eliminar = self.escenas
+        self.escenas = []
+
+        for x in escenas_a_eliminar:
+            x.limpiar()
+
+    def cambiar_escena(self, escena):
+        "Define una escena exclusiva y la inicializa (elimina todo lo demas)."
+        self.limpiar()
         self.escenas.append(escena)
-        self.escenas[-1].iniciar()
+        escena.iniciar()
 
     def almacenar_escena(self, escena):
-        if len(self.escenas) > 0:
-            self.escenas[-1].pausar()
+        if self.escena_actual():
+            self.escena_actual().pausar()
 
         self.escenas.append(escena)
-        self.escenas[-1].iniciar()
+        escena.iniciar()
 
     def recuperar_escena(self):
-        if len(self.escenas) > 0:
-            escena = self.escenas[-1]
-            escena.limpiar()
-            self.escenas.pop()
-
-        if len(self.escenas) > 0:
-            self.escenas[-1].reanudar()
+        if len(self.escenas) > 1:
+            escena_actual = self.escenas.pop()
+            escena_actual.limpiar()
+            escena_anterior = self.escenas[-1]
+            escena_anterior.reanudar()
+        else:
+            raise Exception("Debe haber al menos una escena en la pila para restaurar.")
 
     def escena_actual(self):
-        return self.escenas[-1]
-
+        "Retorna la escena actual o None si no hay escena definida."
+        if len(self.escenas) > 0:
+            return self.escenas[-1]
+        else:
+            return None
 
     def actualizar(self):
         self.escenas[-1].actualizar()
         self.escenas[-1].actualizar_eventos()
-        
-        for escena in self.escenas:            
+
+        for escena in self.escenas:
             escena.actualizar_fisica()
-        
