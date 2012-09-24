@@ -248,3 +248,8 @@ def centrar_ventana(widget):
     from PyQt4 import QtGui
     desktop = QtGui.QApplication.desktop()
     widget.move(desktop.screen().rect().center() - widget.rect().center())
+
+def descargar_archivo_desde_internet(parent, url, archivo_destino):
+    import descargar
+    ventana = descargar.Descargar(parent, url, archivo_destino)
+    ventana.show()
