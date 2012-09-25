@@ -63,7 +63,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
 def main(parent=None, do_raise=False):
     dialog = QtGui.QDialog(parent)
-    dialog.setWindowFlags(QtCore.Qt.Window | QtCore.Qt.WindowContextHelpButtonHint)
+    dialog.setWindowFlags(dialog.windowFlags() | QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowMinMaxButtonsHint)
     ui = VentanaInterprete()
     ui.setupUi(dialog)
 
