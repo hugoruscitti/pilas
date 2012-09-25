@@ -14,9 +14,8 @@ import utils
 
 try:
     sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))
-
     import lanas
-except Exception, e:
+except ImportError, e:
     print e
     pass
 
