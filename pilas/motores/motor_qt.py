@@ -249,6 +249,10 @@ class CanvasWidget(QGLWidget):
 
 class CanvasWidgetSugar(CanvasWidget):
 
+
+    def _iniciar_aplicacion(self):
+        self.app = None
+
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         pass
 
@@ -702,13 +706,16 @@ class Motor(object):
     """
 
     def __init__(self, usar_motor):
-        self.app = QtGui.QApplication([])
-        self.app.setApplicationName("pilas")
+        self._iniciar_aplicacion()
         self.usar_motor = usar_motor
         self.nombre = usar_motor
 
         self._inicializar_variables()
         self._inicializar_sistema_de_audio()
+
+    def _iniciar_aplicacion(self):
+        self.app = QtGui.QApplication([])
+        self.app.setApplicationName("pilas")
 
     def _inicializar_variables(self):
         self.camara_x = 0
