@@ -20,6 +20,6 @@ pelota = pilas.actores.Pelota(x=-200)
 pelota.radio_de_colision = 1
 pelota.aprender(pilas.habilidades.Arrastrable)
 
-pilas.mundo.colisiones.agregar(caja, pelota, eliminar_caja)
+pilas.escena_actual().colisiones.agregar(caja, pelota, eliminar_caja)
 
 pilas.ejecutar()

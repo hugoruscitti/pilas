@@ -51,7 +51,8 @@ class Fisica(object):
 
     def __init__(self, area, gravedad):
         self.mundo = box2d.b2World(gravedad, False)
-        #self.mundo.contactListener = ObjetosContactListener()
+        self.objetosContactListener = ObjetosContactListener()
+        self.mundo.contactListener = self.objetosContactListener
         self.mundo.continuousPhysics = False
 
         self.area = area
@@ -375,6 +376,12 @@ class Circulo(Figura):
                                      fixedRotation=sin_rotacion,
                                      friction=friccion,
                                      restitution=restitucion)
+
+        # Agregamos un identificador para controlarlo posteriormente en las
+        # colisiones.
+        userData = { 'id' : self.id }
+        fixture.userData = userData
+
         if dinamica:
             self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
@@ -415,6 +422,11 @@ class Rectangulo(Figura):
                                      fixedRotation=sin_rotacion,
                                      friction=friccion,
                                      restitution=restitucion)
+
+        # Agregamos un identificador para controlarlo posteriormente en las
+        # colisiones.
+        userData = { 'id' : self.id }
+        fixture.userData = userData
 
         if dinamica:
             self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
@@ -484,8 +496,11 @@ class Poligono(Figura):
 
         body = fisica.crear_cuerpo(bodyDef)
 
+        # Agregamos un identificador para controlarlo posteriormente en las
+        # colisiones.
         userData = { 'id' : self.id }
-        #bodyDef.userData = userData
+        fixture.userData = userData
+
         # Create the Body
         if not dinamica:
             densidad = 0
@@ -571,18 +586,16 @@ class ObjetosContactListener(contact_listener):
     def __init__(self):
         box2d.b2ContactListener.__init__(self)
 
-    def Add(self, objetos_colisionados):
-        if (not (objetos_colisionados.shape1.GetUserData() == None)) and (not (objetos_colisionados.shape2.GetUserData() == None)):
-            pilas.escena_actual().colisiones.verificar_colisiones_fisicas(objetos_colisionados.shape1.GetUserData()['id'], objetos_colisionados.shape2.GetUserData()['id'])
+    def BeginContact(self, *args, **kwargs):
+        """
+        BeginContact(self, b2Contact contact)
 
-    def Persist(self, *args):
-        pass
+        Called when two fixtures begin to touch.
+        """
+        objeto_colisionado_1 = args[0].fixtureA
+        objeto_colisionado_2 = args[0].fixtureB
 
-
-    def Remove(self, *args):
-        pass
-
-
-    def Result(self, *args):
-        pass
+        if (not objeto_colisionado_1.userData == None) and (not objeto_colisionado_2.userData == None):
+            pilas.escena_actual().colisiones.verificar_colisiones_fisicas(objeto_colisionado_1.userData['id'], 
+                                                                          objeto_colisionado_2.userData['id'])        
 

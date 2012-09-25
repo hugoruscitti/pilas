@@ -81,6 +81,8 @@ class Colisiones:
                     raise e
 
     def _es_objeto_fisico_con_actor_asociado(self, objeto):
+        # Comprobamos si el objeto tiene la propiedad "figura" establecida.
+        # Esta propiedad se establece en la Habilidad de Imitar.
         return hasattr(objeto, 'figura')
 
     def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
