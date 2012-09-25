@@ -49,6 +49,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def cuando_pulsa_link(self, url):
         seccion = str(url.path()).split('/')[-1]
+        print "Ha seleccionado: ", seccion
 
         if seccion == "interprete":
             self._cuando_selecciona_interprete()
@@ -78,13 +79,16 @@ class VentanaAsistente(Ui_AsistenteWindow):
         except IOError:
             titulo = "Error, no se encuentra el manual"
             mensaje = u"Lo siento, no se encuentra el manual en tu equipo. ¿Quieres descargarlo?"
-            respuesta = QtGui.QMessageBox.question(self.main, titulo, mensaje,
-                            QtGui.QMessageBox.Yes,
-                            QtGui.QMessageBox.No)
+            respuesta = self._consultar(self.main, titulo, mensaje)
 
             if respuesta == QtGui.QMessageBox.Yes:
                 url = "http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf"
                 pilas.utils.descargar_archivo_desde_internet(self.main, url, ruta_al_manual)
+
+    def _consultar(parent, titulo, mensaje):
+        "Realizar una consulta usando un cuadro de dialogo."
+        return QtGui.QMessageBox.question(parent, titulo, mensaje,
+                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
 
 def ejecutar():
