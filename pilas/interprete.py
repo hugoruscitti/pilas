@@ -12,8 +12,13 @@ except:
 import pilas
 import utils
 
-sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))
-import lanas
+try:
+    sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))
+    import lanas
+except ImportError, e:
+    print e
+    pass
+
 
 import os
 del os.environ['lanas']
