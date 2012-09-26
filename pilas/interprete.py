@@ -14,12 +14,16 @@ import utils
 
 try:
     sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))
-
     import lanas
-except Exception, e:
+except ImportError, e:
     print e
     pass
 
+
+import os
+
+if os.environ.has_key('lanas'):
+    del os.environ['lanas']
 
 class VentanaInterprete(Ui_InterpreteDialog):
 
@@ -59,7 +63,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
 def main(parent=None, do_raise=False):
     dialog = QtGui.QDialog(parent)
-    dialog.setWindowFlags(QtCore.Qt.Window | QtCore.Qt.WindowContextHelpButtonHint)
+    dialog.setWindowFlags(dialog.windowFlags() | QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowMinMaxButtonsHint)
     ui = VentanaInterprete()
     ui.setupUi(dialog)
 
