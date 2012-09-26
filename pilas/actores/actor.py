@@ -261,7 +261,6 @@ class Actor(object, Estudiante):
     def destruir(self):
         """Elimina a un actor pero de manera inmediata."""
         self._vivo = False
-        pilas.escena_actual().colisiones.eliminar_colisiones_con_actor(self)
         self.eliminar_habilidades()
         self.eliminar_comportamientos()
         pilas.escena_actual().actores.remove(self)
