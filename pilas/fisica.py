@@ -534,8 +534,8 @@ class ConstanteDeMovimiento():
     def __init__(self, figura):
         mundo = pilas.escena_actual().fisica.mundo
         punto_captura = convertir_a_metros(figura.x), convertir_a_metros(figura.y)
-
-        self.constante = mundo.CreateMouseJoint(bodyA=mundo.CreateBody(),
+        self.cuerpo_enlazado = mundo.CreateBody()
+        self.constante = mundo.CreateMouseJoint(bodyA=self.cuerpo_enlazado,
                 bodyB=figura._cuerpo,
                 target=punto_captura,
                 maxForce=1000.0*figura._cuerpo.mass)
@@ -547,6 +547,7 @@ class ConstanteDeMovimiento():
 
     def eliminar(self):
         pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
+        pilas.escena_actual().fisica.mundo.DestroyBody(self.cuerpo_enlazado)
 
 class ConstanteDeDistancia():
     """Representa una distancia fija entre dos figuras.
