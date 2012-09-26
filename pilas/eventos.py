@@ -65,7 +65,7 @@ class Evento():
             print "\t << sin funciones conectadas >>"
         else:
             for x in self.respuestas:
-                print "\t +", x.nombre
+                print "\t +", x.nombre, " en ", x.klass
 
 
 
