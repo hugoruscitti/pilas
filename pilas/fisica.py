@@ -535,6 +535,7 @@ class ConstanteDeMovimiento():
         mundo = pilas.escena_actual().fisica.mundo
         punto_captura = convertir_a_metros(figura.x), convertir_a_metros(figura.y)
         self.cuerpo_enlazado = mundo.CreateBody()
+        self.figura_cuerpo = figura
         self.constante = mundo.CreateMouseJoint(bodyA=self.cuerpo_enlazado,
                 bodyB=figura._cuerpo,
                 target=punto_captura,
@@ -546,7 +547,9 @@ class ConstanteDeMovimiento():
         self.constante.target = (convertir_a_metros(x), convertir_a_metros(y))
 
     def eliminar(self):
-        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
+        # Si se intenta destruir un Joint de un cuerpo que ya no existe, se cierra
+        # la aplicación.
+        #pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
         pilas.escena_actual().fisica.mundo.DestroyBody(self.cuerpo_enlazado)
 
 class ConstanteDeDistancia():
