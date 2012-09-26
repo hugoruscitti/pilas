@@ -257,6 +257,7 @@ class Actor(object, Estudiante):
         """Elimina el actor de la lista de actores que se imprimen en pantalla."""
         self.destruir()
         self._eliminar_anexados()
+        pilas.escena_actual().actores.remove(self)
 
     def destruir(self):
         """Elimina a un actor pero de manera inmediata."""
