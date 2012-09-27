@@ -8,6 +8,8 @@
 
 
 class Gestor(object):
+    """ Clase que permite el control de las escenas en pilas."""
+
 
     def __init__(self):
         self.escenas = []
@@ -36,7 +38,7 @@ class Gestor(object):
     def recuperar_escena(self):
         if len(self.escenas) > 1:
             self.escenas[-1]._limpiar()
-            escena_actual = self.escenas.pop()         
+            escena_actual = self.escenas.pop()
             escena_anterior = self.escenas[-1]
             escena_anterior._reanudar_fisica()
             escena_anterior.reanudar()

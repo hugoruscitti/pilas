@@ -9,11 +9,19 @@ from pilas.escena.escena_base import EscenaBase
 import pilas.colores
 import pilas.fondos
 
+
 class EscenaNormal(EscenaBase):
-    
+    """ Escena básica de pilas.
+    Si no se define ninguna escena, cuando se ejecuta:
+
+    >>> pilas.iniciar()
+    >>> pilas.ejecutar()
+
+    esta es la escena que se muestra en la pantalla.
+    """
+
     def __init__(self):
         EscenaBase.__init__(self)
-                
+
     def iniciar(self):
         fondo = pilas.fondos.Color(pilas.colores.grisclaro)
-    
