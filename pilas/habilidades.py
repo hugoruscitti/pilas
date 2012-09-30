@@ -195,19 +195,22 @@ class SeMantieneEnPantalla(Habilidad):
 
     Si el actor sale por la derecha de la pantalla, entonces regresa
     por la izquiera. Si sale por arriba regresa por abajo y asi..."""
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
+        self.ancho, self.alto = pilas.mundo.motor.obtener_area()
 
     def actualizar(self):
         # Se asegura de regresar por izquierda y derecha.
-        if self.receptor.derecha < -320:
-            self.receptor.izquierda = 320
-        elif self.receptor.izquierda > 320:
-            self.receptor.derecha = -320
+        if self.receptor.derecha < -(self.ancho/2):
+            self.receptor.izquierda = (self.ancho/2)
+        elif self.receptor.izquierda > (self.ancho/2):
+            self.receptor.derecha = -(self.ancho/2)
 
         # Se asegura de regresar por arriba y abajo.
-        if self.receptor.abajo > 240:
-            self.receptor.arriba = -240
-        elif self.receptor.arriba < -240:
-            self.receptor.abajo = 240
+        if self.receptor.abajo > (self.alto/2):
+            self.receptor.arriba = -(self.alto/2)
+        elif self.receptor.arriba < -(self.alto/2):
+            self.receptor.abajo = (self.alto/2)
 
 
 class PisaPlataformas(Habilidad):
