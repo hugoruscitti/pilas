@@ -1,7 +1,6 @@
 #!/usr/bin/python
 import sys
 sys.path.append('..')
-from PyQt4 import QtGui
 
 from optparse import OptionParser
 import pilas
@@ -17,6 +16,9 @@ analizador.add_option("-v", "--version", dest="version",
         help="Consulta la version instalada")
 
 (opciones, argumentos) = analizador.parse_args()
+
+if argumentos:
+    sys.exit(execfile(argumentos[0]))
 
 if opciones.test:
     pilas.utils.realizar_pruebas()

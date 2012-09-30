@@ -249,6 +249,10 @@ class CanvasWidget(QGLWidget):
 
 class CanvasWidgetSugar(CanvasWidget):
 
+
+    def _iniciar_aplicacion(self):
+        self.app = None
+
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
         pass
 
@@ -702,13 +706,16 @@ class Motor(object):
     """
 
     def __init__(self, usar_motor):
-        self.app = QtGui.QApplication([])
-        self.app.setApplicationName("pilas")
+        self._iniciar_aplicacion()
         self.usar_motor = usar_motor
         self.nombre = usar_motor
 
         self._inicializar_variables()
         self._inicializar_sistema_de_audio()
+
+    def _iniciar_aplicacion(self):
+        self.app = QtGui.QApplication([])
+        self.app.setApplicationName("pilas")
 
     def _inicializar_variables(self):
         self.camara_x = 0
@@ -718,6 +725,7 @@ class Motor(object):
         self.media = phonon.Phonon.MediaObject()
         self.audio = phonon.Phonon.AudioOutput(phonon.Phonon.MusicCategory)
         self.path = phonon.Phonon.createPath(self.media, self.audio)
+
 
     def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
         self.ventana = Ventana()
@@ -744,6 +752,18 @@ class Motor(object):
 
         if pantalla_completa:
             self.canvas.pantalla_completa()
+
+    def modificar_ventana(self, ancho, alto, titulo, pantalla_completa):
+        self.titulo = titulo
+        self.ventana.setWindowTitle(self.titulo)
+        self.canvas.original_width = ancho
+        self.canvas.original_height = alto
+        self.ventana.resize(ancho, alto)
+
+        if pantalla_completa:
+            self.canvas.pantalla_completa()
+        else:
+            self.canvas.pantalla_modo_ventana()
 
     def ocultar_puntero_del_mouse(self):
         self.canvas.setCursor(QtGui.QCursor(Qt.BlankCursor))

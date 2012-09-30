@@ -18,16 +18,6 @@ import pilas
 PATH = os.path.dirname(os.path.abspath(__file__))
 
 
-def cargar_autocompletado():
-    "Carga los modulos de python para autocompletar desde la consola interactiva."
-    try:
-        import rlcompleter
-        import readline
-
-        readline.parse_and_bind("tab: complete")
-    except ImportError:
-        print "No se puede cargar el autocompletado, instale readline..."
-
 def es_interpolacion(an_object):
     "Indica si un objeto se comporta como una colisión."
 
@@ -258,3 +248,8 @@ def centrar_ventana(widget):
     from PyQt4 import QtGui
     desktop = QtGui.QApplication.desktop()
     widget.move(desktop.screen().rect().center() - widget.rect().center())
+
+def descargar_archivo_desde_internet(parent, url, archivo_destino):
+    import descargar
+    ventana = descargar.Descargar(parent, url, archivo_destino)
+    ventana.show()

@@ -1,4 +1,11 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
+# pilas engine - a video game framework.
+#
+# copyright 2010 - hugo ruscitti
+# license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
+#
+# website - http://www.pilas-engine.com.ar
+
 import sys
 import os
 from PyQt4 import QtCore, QtGui, QtWebKit
@@ -64,15 +71,20 @@ class VentanaAsistente(Ui_AsistenteWindow):
     def _cuando_selecciona_abrir_manual(self):
         base_dir = str(QtCore.QDir.homePath())
         ruta_al_manual = os.path.join(base_dir, 'pilas.pdf')
-        print ruta_al_manual
 
         try:
             ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
             pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
         except IOError:
             titulo = "Error, no se encuentra el manual"
-            mensaje = "Lo siento, no se encuentra el archivo 'pilas.pdf' intente visitando la web del proyecto."
-            QtGui.QMessageBox.warning(self.main, titulo, mensaje)
+            mensaje = u"Lo siento, no se encuentra el manual en tu equipo. ¿Quieres descargarlo?"
+            respuesta = QtGui.QMessageBox.question(self.main, titulo, mensaje,
+                            QtGui.QMessageBox.Yes,
+                            QtGui.QMessageBox.No)
+
+            if respuesta == QtGui.QMessageBox.Yes:
+                url = "http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf"
+                pilas.utils.descargar_archivo_desde_internet(self.main, url, ruta_al_manual)
 
 
 def ejecutar():
