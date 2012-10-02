@@ -263,7 +263,9 @@ class Actor(object, Estudiante):
         self._vivo = False
         self.eliminar_habilidades()
         self.eliminar_comportamientos()
-        pilas.escena_actual().actores.remove(self)
+        # Solo permite eliminar el actor si está en su escena.
+        if self in pilas.escena_actual().actores: 
+            pilas.escena_actual().actores.remove(self)
 
     def actualizar(self):
         """Actualiza el estado del actor.
