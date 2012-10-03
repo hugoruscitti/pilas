@@ -25,31 +25,32 @@ El ``antiguo método`` para crear una escena era el siguiente:
     
 .. code-block:: python
 
-class MiEscena(pilas.escenas.Escena):
+    class MiEscena(pilas.escenas.Escena):
     
-    def __init__(self):
-        pilas.escenas.Escena.__init__(self)
+        def __init__(self):
+            pilas.escenas.Escena.__init__(self)
         
-        pilas.fondos.Pasto()
-        mono = pilas.actores.Mono()
+            pilas.fondos.Pasto()
+            mono = pilas.actores.Mono()
         
 
 Ahora el ``nuevo método`` para crear una escena es el siguiente:
 
 .. code-block:: python
 
-class MiEscena(pilas.escena.escena_base.EscenaBase):
+    class MiEscena(pilas.escena.escena_base.EscenaBase):
     
-    def __init__(self):
-        pilas.escena.escena_base.EscenaBase.__init__(self)
+        def __init__(self):
+            pilas.escena.escena_base.EscenaBase.__init__(self)
 
-    def iniciar(self):
-        pilas.fondos.Pasto()
-        mono = pilas.actores.Mono()
+        def iniciar(self):
+            pilas.fondos.Pasto()
+            mono = pilas.actores.Mono()
 
 Como puedes observar, ahora la escena hereda de 
 
 .. code-block:: python
+
     pilas.escena.escena_base.EscenaBase
     
 Otro cambio muy importante es que en el metodo ``__init__(self)`` no debe
@@ -77,15 +78,15 @@ Para iniciar pilas, con el nuevo sistema, debemos ejecutar lo siguiente
 
 .. code-block:: python
 
-pilas.cambiar_escena(mi_escena.MiEscena())
-pilas.ejecutar()
+    pilas.cambiar_escena(mi_escena.MiEscena())
+    pilas.ejecutar()
 
 Te habrás fijado que pilas dispone de un nuevo método para realizar esta
 acción.
 
 .. code-block:: python
 
-pilas.cambiar_escena(escena_a_cambiar)
+    pilas.cambiar_escena(escena_a_cambiar)
 
 En el próximo punto explicarémos su función junto con otros 2 metodos nuevos.
 
@@ -104,11 +105,11 @@ Pilas dispone de 3 métodos para realizar esta operaciones:
 
 .. code-block:: python
 
-pilas.cambiar_escena(mi_escena)
+    pilas.cambiar_escena(mi_escena)
 
-pilas.almacenar_escena(mi_escena)
+    pilas.almacenar_escena(mi_escena)
 
-pilas.recuperar_escena()
+    pilas.recuperar_escena()
 
 
 - **pilas.cambiar_escena(mi_escena)** VACIA por completo la pila de escenas del
