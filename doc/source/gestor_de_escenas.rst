@@ -19,7 +19,7 @@ Es la Escena de la cual deben heredar todas las escenas del juego en pilas.
 
 .. code-block:: python
 
-    pilas.escena.escena_normal.EscenaBase
+    pilas.escena.escena_base.EscenaBase
 
 El ``antiguo método`` para crear una escena era el siguiente:
     
