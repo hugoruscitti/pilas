@@ -58,6 +58,9 @@ class EscenaBase(object):
         # Administrador de la fisica de la escena.
         self.fisica = pilas.mundo.crear_motor_fisica()
 
+        # Control para saber si se ha iniciado la escena y poder actualizarla.
+        self.iniciada = False
+
     def iniciar(self):
         """ Este método debe ser reimplementado en todas las clases que
         hereden de ella.

@@ -26,6 +26,7 @@ class Gestor(object):
         self.limpiar()
         self.escenas.append(escena)
         escena.iniciar()
+        escena.iniciada = True
 
     def almacenar_escena(self, escena):
         if self.escena_actual():
@@ -34,6 +35,7 @@ class Gestor(object):
 
         self.escenas.append(escena)
         escena.iniciar()
+        escena.iniciada = True
 
     def recuperar_escena(self):
         if len(self.escenas) > 1:
@@ -56,8 +58,9 @@ class Gestor(object):
         escena = self.escena_actual()
 
         if escena:
-            escena.actualizar()
-            escena._actualizar_eventos()
+            if escena.iniciada:
+                escena.actualizar()
+                escena._actualizar_eventos()
 
             for escena in self.escenas:
                 escena._actualizar_fisica()
