@@ -303,7 +303,7 @@ class Figura(object):
 
     def impulsar(self, dx, dy):
         # TODO: convertir los valores dx y dy a metros.
-        self._cuerpo.ApplyImpulse((dx, dy), self._cuerpo.GetWorldCenter())
+        self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0))
 
     def obtener_velocidad_lineal(self):
         # TODO: convertir a pixels
@@ -600,6 +600,6 @@ class ObjetosContactListener(contact_listener):
         objeto_colisionado_2 = args[0].fixtureB
 
         if (not objeto_colisionado_1.userData == None) and (not objeto_colisionado_2.userData == None):
-            pilas.escena_actual().colisiones.verificar_colisiones_fisicas(objeto_colisionado_1.userData['id'], 
-                                                                          objeto_colisionado_2.userData['id'])        
+            pilas.escena_actual().colisiones.verificar_colisiones_fisicas(objeto_colisionado_1.userData['id'],
+                                                                          objeto_colisionado_2.userData['id'])
 
