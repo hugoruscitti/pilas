@@ -26,7 +26,7 @@ class Globo(Actor):
             self.escena.click_de_mouse.conectar(self.cuando_quieren_avanzar)
 
         if autoeliminar:
-            pilas.mundo.tareas.una_vez(3, self.eliminar)
+            pilas.escena_actual().tareas.una_vez(3, self.eliminar)
 
     def colocar_origen_del_globo(self, x, y):
         "Cambia la posicion del globo para que el punto de donde se emite el globo sea (x, y)."
