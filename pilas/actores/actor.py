@@ -65,6 +65,8 @@ class Actor(object, Estudiante):
         self._actor = pilas.mundo.motor.obtener_actor(imagen, x=x, y=y)
         self.centro = ('centro', 'centro')
 
+        self.id = ""
+        
         self.x = x
         self.y = y
         self.transparencia = 0
@@ -253,14 +255,17 @@ class Actor(object, Estudiante):
 
     def eliminar(self):
         """Elimina el actor de la lista de actores que se imprimen en pantalla."""
-        self.destruir()
         self._eliminar_anexados()
+        self.destruir()
 
     def destruir(self):
         """Elimina a un actor pero de manera inmediata."""
         self._vivo = False
         self.eliminar_habilidades()
         self.eliminar_comportamientos()
+        # Solo permite eliminar el actor si está en su escena.
+        if self in pilas.escena_actual().actores: 
+            pilas.escena_actual().actores.remove(self)
 
     def actualizar(self):
         """Actualiza el estado del actor.

@@ -23,7 +23,7 @@ tenemos que escribir algo cómo:
 
 .. code-block:: python
 
-    pilas.mundo.agregar_tarea(tiempo, funcion, parametros)
+    pilas.escena_actual().agregar_tarea(tiempo, funcion, parametros)
 
 
 Hay tres tipos de creaciones de tareas:
@@ -52,7 +52,7 @@ Por ejemplo:
 
 .. code-block:: python
 
-    una_tarea = pilas.mundo.agregar_tarea_siempre(5, funcion)
+    una_tarea = pilas.escena_actual().agregar_tarea_siempre(5, funcion)
 
 y luego, cuando queramos que la tarea finalice
 y no se vuelva a ejecutar, tendríamos que ejecutar

@@ -8,6 +8,8 @@
 
 
 class Gestor(object):
+    """ Clase que permite el control de las escenas en pilas."""
+
 
     def __init__(self):
         self.escenas = []
@@ -15,7 +17,7 @@ class Gestor(object):
     def limpiar(self):
         "Elimina todas las escenas del gestor."
         for x in self.escenas:
-            x.limpiar()
+            x._limpiar()
 
         self.escenas = []
 
@@ -24,19 +26,23 @@ class Gestor(object):
         self.limpiar()
         self.escenas.append(escena)
         escena.iniciar()
+        escena.iniciada = True
 
     def almacenar_escena(self, escena):
         if self.escena_actual():
+            self.escena_actual()._pausar_fisica()
             self.escena_actual().pausar()
 
         self.escenas.append(escena)
         escena.iniciar()
+        escena.iniciada = True
 
     def recuperar_escena(self):
         if len(self.escenas) > 1:
-            self.escenas[-1].limpiar()
-            escena_actual = self.escenas.pop()         
+            self.escenas[-1]._limpiar()
+            escena_actual = self.escenas.pop()
             escena_anterior = self.escenas[-1]
+            escena_anterior._reanudar_fisica()
             escena_anterior.reanudar()
         else:
             raise Exception("Debe haber al menos una escena en la pila para restaurar.")
@@ -52,8 +58,9 @@ class Gestor(object):
         escena = self.escena_actual()
 
         if escena:
-            escena.actualizar()
-            escena.actualizar_eventos()
+            if escena.iniciada:
+                escena.actualizar()
+                escena._actualizar_eventos()
 
             for escena in self.escenas:
-                escena.actualizar_fisica()
+                escena._actualizar_fisica()

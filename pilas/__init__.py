@@ -43,9 +43,6 @@ Este módulo contiene las funciones principales
 para iniciar y ejecutar la biblioteca.
 """
 
-if utils.esta_en_sesion_interactiva():
-    utils.cargar_autocompletado()
-
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False):
     """
@@ -72,11 +69,25 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
 
     global mundo
 
-    motor = _crear_motor(usar_motor)
+    if not esta_inicializada():
+        motor = _crear_motor(usar_motor)
 
-    if motor:
-        mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
-        mundo.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
+        if motor:
+            mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
+            mundo.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
+
+            if _usa_interprete_lanas():
+                mundo.motor.ventana.show()
+    else:
+        mundo.motor.modificar_ventana(ancho, alto, titulo, pantalla_completa)
+        mundo.fisica.definir_gravedad(*gravedad)
+
+
+def esta_inicializada():
+    "Indica si la biblioteca pilas ha sido inicializada con pilas.iniciar()"
+    global mundo
+    return isinstance(mundo, Mundo)
+
 
 def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas',
             rendimiento=60, modo='detectar', gravedad=(0, -90), imagen="asistente.png"):
@@ -132,6 +143,10 @@ def _crear_motor(usar_motor):
 
     if usar_motor in ['qt', 'qtgl', 'qtwidget', 'qtsugar', 'qtsugargl']:
         from motores import motor_qt
+
+        if _usa_interprete_lanas():
+            usar_motor = 'qtsugar'
+
         motor = motor_qt.Motor(usar_motor)
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
@@ -139,6 +154,11 @@ def _crear_motor(usar_motor):
         motor = None
 
     return motor
+
+def _usa_interprete_lanas():
+    "Retorna True si se ha iniciado pilas desde lanas"
+    import os
+    return os.environ.has_key('lanas')
 
 def reiniciar():
     """Elimina todos los actores y vuelve al estado inicial."""

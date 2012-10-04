@@ -17,8 +17,8 @@ Hay algunas cosas a tener en cuenta
 a la hora de manejar escenaas, porque
 simplifican mucho el trabajo posterior:
 
-- La escena actual siempre está señalada por el atributo ``pilas.mundo.escena_actual``.
-- Solo puede existir una escena a la vez.
+- La escena actual siempre está señalada por el atributo ``pilas.escena_actual()``.
+- Solo puede existir una escena activa a la vez.
 - Cuando se cambia de escena, generalmente la misma escena eliminará a todos los actores del escenario.
 
 
@@ -69,8 +69,7 @@ que simplemente dice "bienvenido" y  otra con
 un personaje para mover.
 
 Claramente tendríamos que hacer dos escenas, e iniciar
-nuestro juego creando la escena principal y dándole
-el control del juego completo.
+nuestro juego creando la escena principal.
 
 La primer escena tendríamos que representarla
 con una clase, que herede de la escena Normal
@@ -78,27 +77,35 @@ así:
 
 .. code-block:: python
 
-    class PantallaBienvenida(pilas.escenas.Normal):
+    class PantallaBienvenida(pilas.escena.escena_normal.EscenaNormal):
 
         def __init__(self):
-            pilas.escenas.Normal.__init__(self)
+            pilas.escena.escena_normal.EscenaNormal.__init__(self)
+        
+        def iniciar(self):
             pilas.fondos.Pasto()
             texto = pilas.actores.Texto("Bienvenido a pilas!!!")
 
 
 Ahora, para poner en funcionamiento esta escena
-simplemente tienes que crear un objeto de esa
-clase:
+simplemente tienes que decirle a pilas que esta escena es la activa:
 
 .. code-block:: python
 
-    PantallaBienvenida()
+    pilas.cambiar_escena(PantallaBienvenida())
 
-Esto eliminará la escena actual y se colocará como la escena
-actual:
+Esto eliminará las escenas almacenadas y se colocará como la escena
+actual y activa:
+
+**NOTA:** Mira la documentación "Gestor de escenas" para comprender mejor el 
+apilamiento de escenas.
 
 .. image:: images/escena_simple.png
 
 Ahora, si quieres salir de la escena, simplemente tendrías
-que hacer un objeto de otra clase que represente otra escena. Eso
-invocará el cambio de escena inmediatamente.
+que hacer un objeto de otra clase que represente otra escena y llamar a uno de
+estos tres metodos:
+
+- pilas.cambiar_escena(mi_escena)
+
+- pilas.almacenar_escena(mi_escena)
