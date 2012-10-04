@@ -105,13 +105,13 @@ las paredes:
 
 .. code-block:: python
 
-    pilas.mundo.fisica.eliminar_paredes()
+    pilas.escena_actual().fisica.eliminar_paredes()
 
 o incluso podrías eliminar el suelo:
 
 .. code-block:: python
 
-    pilas.mundo.fisica.eliminar_suelo()
+    pilas.escena_actual().fisica.eliminar_suelo()
 
 
 Pero recuerda que los objetos que no se ven en la pantalla

@@ -79,7 +79,7 @@ la colisión:
 .. code-block:: python
 
     bananas = [banana]
-    pilas.mundo.colisiones.agregar(mono, bananas, el_mono_come)
+    pilas.escena_actual().colisiones.agregar(mono, bananas, el_mono_come)
 
 Perfecto, ahora si mueves al mono por la pantalla con el
 mouse podrá comer bananas.
