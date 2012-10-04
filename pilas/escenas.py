@@ -12,7 +12,9 @@ class Escena(object):
     "Escena abstracta."
 
     def __init__(self):
-        pilas.mundo.definir_escena(self)
+        #pilas.mundo.definir_escena(self)
+        escena_aviso = pilas.escena.EscenaAviso()
+        pilas.cambiar_escena(escena_aviso)
 
     def iniciar(self):
         pass
