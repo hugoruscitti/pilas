@@ -68,5 +68,11 @@ class Mundo(object):
         print "\t utilice en su lugar: pilas.escena_actual().camara"
         return self.gestor_escenas.escena_actual().camara
 
+    def get_colisiones_deprecated(self):
+        print "CUIDADO: Acceder al atributo 'colisiones' esta desaconsejado."
+        print "\t utilice en su lugar: pilas.escena_actual().colisiones"
+        return self.gestor_escenas.escena_actual().colisiones
+
     tareas = property(get_tareas_deprecated)
     camara = property(get_camara_deprecated)
+    colisiones = property(get_colisiones_deprecated)
