@@ -27,6 +27,12 @@ class DepuradorDeshabilitado(object):
     def termina_dibujado(self, motor, painter):
         pass
 
+    def cuando_pulsa_tecla(self, codigo_tecla, texto_tecla):
+        pass
+
+    def cuando_mueve_el_mouse(self, x, y):
+        pass
+
 class Depurador(DepuradorDeshabilitado):
     """Esta clase permite hacer depuraciones visuales.
 
@@ -44,12 +50,6 @@ class Depurador(DepuradorDeshabilitado):
         ModoDepurador.grosor_de_lineas = 1
         self.fps = fps
         self.posicion_del_mouse = (0, 0)
-        pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
-        pilas.eventos.pulsa_tecla.conectar(self.cuando_pulsa_tecla)
-
-    def cuando_mueve_el_mouse(self, evento):
-        self.posicion_del_mouse = (evento.x, evento.y)
-        return True
 
     def comienza_dibujado(self, motor, painter):
         for m in self.modos:
@@ -69,27 +69,31 @@ class Depurador(DepuradorDeshabilitado):
             for m in self.modos:
                 m.termina_dibujado(motor, painter, self.lienzo)
 
-    def cuando_pulsa_tecla(self, evento):
-        if evento.codigo == 'F5':
+    def cuando_pulsa_tecla(self, codigo_tecla, texto_tecla):
+        if codigo_tecla == 'F5':
             self._alternar_modo(ModoWidgetLog)
-        elif evento.codigo == 'F6':
+        elif codigo_tecla == 'F6':
             pilas.eventos.imprimir_todos()
-        elif evento.codigo == 'F7':
+        elif codigo_tecla == 'F7':
             self._alternar_modo(ModoInformacionDeSistema)
-        elif evento.codigo == 'F8':
+        elif codigo_tecla == 'F8':
             self._alternar_modo(ModoPuntosDeControl)
-        elif evento.codigo == 'F9':
+        elif codigo_tecla == 'F9':
             self._alternar_modo(ModoRadiosDeColision)
-        elif evento.codigo == 'F10':
+        elif codigo_tecla == 'F10':
             self._alternar_modo(ModoArea)
-        elif evento.codigo == 'F11':
+        elif codigo_tecla == 'F11':
             self._alternar_modo(ModoFisica)
-        elif evento.codigo == 'F12':
+        elif codigo_tecla == 'F12':
             self._alternar_modo(ModoPosicion)
-        elif evento.texto == '+':
+        elif texto_tecla == '+':
             self._cambiar_grosor_de_bordes(+1)
-        elif evento.texto == '-':
+        elif texto_tecla == '-':
             self._cambiar_grosor_de_bordes(-1)
+
+    def cuando_mueve_el_mouse(self, x, y):
+        self.posicion_del_mouse = x, y
+        return True
 
     def _cambiar_grosor_de_bordes(self, cambio):
         ModoDepurador.grosor_de_lineas = max(1, ModoDepurador.grosor_de_lineas + cambio)

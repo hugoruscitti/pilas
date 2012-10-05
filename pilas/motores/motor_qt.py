@@ -142,6 +142,7 @@ class CanvasWidget(QGLWidget):
 
         self.mouse_x = x
         self.mouse_y = y
+        self.depurador.cuando_mueve_el_mouse(x, y)
 
     def keyPressEvent(self, event):
         codigo_de_tecla = self._obtener_codigo_de_tecla_normalizado(event.key())
@@ -159,6 +160,7 @@ class CanvasWidget(QGLWidget):
 
         self.gestor_escenas.escena_actual().pulsa_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
 
+        self.depurador.cuando_pulsa_tecla(codigo_de_tecla, event.text())
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self._obtener_codigo_de_tecla_normalizado(event.key())
