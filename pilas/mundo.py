@@ -57,3 +57,16 @@ class Mundo(object):
 
     def deshabilitar_musica(self, estado=True):
         self.motor.deshabilitar_musica(estado)
+
+    def get_tareas_deprecated(self):
+        print "CUIDADO: Acceder al atributo 'tareas' esta desaconsejado."
+        print "\t utilice en su lugar: pilas.utils.agregar_tarea, agregar_tarea_una_vez o agregar_tarea_siempre"
+        return self.gestor_escenas.escena_actual().tareas
+
+    def get_camara_deprecated(self):
+        print "CUIDADO: Acceder al atributo 'camara' esta desaconsejado."
+        print "\t utilice en su lugar: pilas.escena_actual().camara"
+        return self.gestor_escenas.escena_actual().camara
+
+    tareas = property(get_tareas_deprecated)
+    camara = property(get_camara_deprecated)
