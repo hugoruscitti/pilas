@@ -52,15 +52,15 @@ class Esperando(Comportamiento):
         self.receptor.definir_cuadro(0)
 
     def actualizar(self):
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.receptor.hacer(Caminando())
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.receptor.hacer(Caminando())
 
-        if pilas.mundo.control.arriba and self.receptor.puede_saltar():
+        if pilas.escena_actual().control.arriba and self.receptor.puede_saltar():
             self.receptor.hacer(Saltando(-8))
 
-        if pilas.mundo.control.boton:
+        if pilas.escena_actual().control.boton:
             self.receptor.hacer(Disparar(self.receptor))
 
         self.caer_si_no_toca_el_suelo()
@@ -81,16 +81,16 @@ class Caminando(Esperando):
     def actualizar(self):
         self.avanzar_animacion()
 
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.receptor.x -= 3
             self.receptor.espejado = True
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.receptor.x += 3
             self.receptor.espejado = False
         else:
             self.receptor.hacer(Esperando())
 
-        if pilas.mundo.control.arriba:
+        if pilas.escena_actual().control.arriba:
             self.receptor.hacer(Saltando(-8))
 
         self.caer_si_no_toca_el_suelo()
@@ -128,10 +128,10 @@ class Saltando(Comportamiento):
         # toca el suelo.
         vx, vy = 0, 0 #self.receptor.figura.obtener_velocidad_lineal()
 
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.receptor.espejado = True
             self.receptor.x -= 3
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.receptor.espejado = False
             self.receptor.x += 3
 

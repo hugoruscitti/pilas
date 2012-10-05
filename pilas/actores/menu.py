@@ -59,14 +59,14 @@ class Menu(Actor):
         "Se ejecuta de manera periodica."
 
         if self.demora_al_responder < 0:
-            if pilas.mundo.control.boton:
+            if pilas.escena_actual().control.boton:
                 self.seleccionar_opcion_actual()
                 self.demora_al_responder = DEMORA
 
-            if pilas.mundo.control.abajo:
+            if pilas.escena_actual().control.abajo:
                 self.mover_cursor(1)
                 self.demora_al_responder = DEMORA
-            elif pilas.mundo.control.arriba:
+            elif pilas.escena_actual().control.arriba:
                 self.mover_cursor(-1)
                 self.demora_al_responder = DEMORA
 

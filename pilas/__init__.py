@@ -13,6 +13,7 @@ import sys
 import utils
 from mundo import Mundo
 import actores
+import escena
 import escenas
 import fondos
 import habilidades
@@ -22,7 +23,6 @@ import musica
 import colores
 import demos
 import atajos
-import escena
 import interfaz
 import interprete
 from pilas.escena import escena_normal

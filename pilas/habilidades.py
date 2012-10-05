@@ -163,7 +163,7 @@ class MoverseConElTeclado(Habilidad):
 
     def on_key_press(self, evento):
         velocidad = 5
-        c = pilas.mundo.control
+        c = pilas.escena_actual().control
 
         if c.izquierda:
             self.receptor.x -= velocidad
