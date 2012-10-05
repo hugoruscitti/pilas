@@ -25,7 +25,6 @@ class Mundo(object):
         self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas)
 
         self.gravedad = gravedad
-        self.control = control.Control()
 
     def crear_motor_fisica(self):
         return fisica.crear_motor_fisica(self.motor.obtener_area(), gravedad=self.gravedad)
@@ -71,6 +70,12 @@ class Mundo(object):
         print "\t utilice en su lugar: pilas.escena_actual().colisiones"
         return self.gestor_escenas.escena_actual().colisiones
 
+    def get_control_deprecated(self):
+        print "CUIDADO: Acceder al atributo 'control' esta desaconsejado."
+        print "\t utilice en su lugar: pilas.escena_actual().control"
+        return self.gestor_escenas.escena_actual().control
+
     tareas = property(get_tareas_deprecated)
     camara = property(get_camara_deprecated)
     colisiones = property(get_colisiones_deprecated)
+    control = property(get_control_deprecated)

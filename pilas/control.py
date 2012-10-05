@@ -78,15 +78,15 @@ class Control(object):
     .. image:: ../../pilas/data/patito.png
     """
 
-    def __init__(self):
+    def __init__(self, escena):
         self.izquierda = False
         self.derecha = False
         self.arriba = False
         self.abajo = False
         self.boton = False
-        
-        eventos.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
-        eventos.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
+
+        escena.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
+        escena.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
 
     def cuando_pulsa_una_tecla(self, evento):
         self.procesar_cambio_de_estado_en_la_tecla(evento.codigo, True)
