@@ -6,11 +6,9 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-from pilas import actores, camara, colisiones, control, escenas, eventos, fisica, \
-    tareas
+from pilas import control
+from pilas import fisica
 from pilas.escena import gestor, escena_normal
-import pytweener
-
 
 
 class Mundo(object):
