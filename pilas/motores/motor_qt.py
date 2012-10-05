@@ -27,7 +27,7 @@ class Ventana(QtGui.QMainWindow):
 
 class CanvasWidget(QGLWidget):
 
-    def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas):
+    def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas, permitir_depuracion):
         QGLWidget.__init__(self, None)
         self.painter = QtGui.QPainter()
         self.setMouseTracking(True)
@@ -36,10 +36,13 @@ class CanvasWidget(QGLWidget):
         self.mouse_x = 0
         self.mouse_y = 0
         self.motor = motor
-        self.depurador = depurador
         self.lista_actores = lista_actores
         self.fps = fps.FPS(60, True)
-        self.depurador = depurador.Depurador(motor.obtener_lienzo(), self.fps)
+
+        if permitir_depuracion:
+            self.depurador = depurador.Depurador(motor.obtener_lienzo(), self.fps)
+        else:
+            self.depurador = depurador.DepuradorDeshabilitado()
 
         self.original_width = ancho
         self.original_height = alto
@@ -266,7 +269,6 @@ class CanvasWidget(QGLWidget):
             self.pantalla_completa()
 
 class CanvasWidgetSugar(CanvasWidget):
-
 
     def _iniciar_aplicacion(self):
         self.app = None
@@ -722,10 +724,11 @@ class Motor(object):
     el dibujado en pantalla si la tarjeta de video lo soporta.
     """
 
-    def __init__(self, usar_motor):
+    def __init__(self, usar_motor, permitir_depuracion):
         self._iniciar_aplicacion()
         self.usar_motor = usar_motor
         self.nombre = usar_motor
+        self.permitir_depuracion = permitir_depuracion
 
         self._inicializar_variables()
         self._inicializar_sistema_de_audio()
@@ -752,10 +755,10 @@ class Motor(object):
 
         if self.usar_motor in ['qtwidget', 'qtsugar']:
             mostrar_ventana = False
-            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto, gestor_escenas)
+            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion)
         else:
             mostrar_ventana = True
-            self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas)
+            self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion)
 
         self.ventana.set_canvas(self.canvas)
         self.canvas.setFocus()

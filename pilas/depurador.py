@@ -16,7 +16,18 @@ except ImportError, e:
     print e
     pass
 
-class Depurador(object):
+class DepuradorDeshabilitado(object):
+
+    def comienza_dibujado(self, motor, painter):
+        pass
+
+    def dibuja_al_actor(self, motor, painter, actor):
+        pass
+
+    def termina_dibujado(self, motor, painter):
+        pass
+
+class Depurador(DepuradorDeshabilitado):
     """Esta clase permite hacer depuraciones visuales.
 
     La depuracion visual en pilas consiste en poder mostrar informacion
