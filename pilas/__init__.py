@@ -65,6 +65,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :modo: si se utiliza modo interactivo o no.
     :gravedad: el vector de aceleracion para la simulacion de fisica.
     :pantalla_completa: si debe usar pantalla completa o no.
+    :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12
 
     """
 
