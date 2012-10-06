@@ -39,7 +39,7 @@ def obtener_actor_en(x, y):
     "Intenta obtener el actor mas cerca de la pantalla (z mas pequeño) en la posición (x, y)"
 
     # Busca el objeto que colisiones ordenando en sentido inverso.
-    for sprite in pilas.escena_actual.actores[::-1]:
+    for sprite in pilas.escena_actual().actores[::-1]:
         if sprite.colisiona_con_un_punto(x, y):
             return sprite
 
