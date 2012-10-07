@@ -46,6 +46,8 @@ class EscenaBase(object):
         self.suelta_tecla = Evento('suelta_tecla')               # ['codigo', 'texto']
         self.pulsa_tecla_escape = Evento('pulsa_tecla_escape')   # []
 
+        self.control = pilas.control.Control(self)
+
         # Gestor de tareas
         self.tareas = tareas.Tareas()
 

@@ -8,6 +8,7 @@
 
 import pilas
 
+
 class Fondo(pilas.actores.Actor):
 
     def __init__(self, imagen):

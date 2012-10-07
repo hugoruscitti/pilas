@@ -26,12 +26,12 @@ class Control(object):
     está pulsando el direccional hacia la izquierda de
     puedes ejecutar::
 
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             print 'Ha pulsado hacia la izquierda'
 
     Es decir, si bien Control es una clase, no hace falta
     instanciarla. Ya existe un objeto que se puede consultar
-    bajo el nombre ``pilas.mundo.control``.
+    bajo el nombre ``pilas.escena_actual().control``.
 
     Entonces, una vez que tienes la referencia para consultar, los
     atributos que tiene este objeto control son::
@@ -68,25 +68,25 @@ class Control(object):
                 self.imagen = "patito.png"
 
             def actualizar(self):
-                if pilas.mundo.control.izquierda:
+                if pilas.escena_actual().control.izquierda:
                     self.x -= 5
                     self.espejado = True
-                elif pilas.mundo.control.derecha:
+                elif pilas.escena_actual().control.derecha:
                     self.x += 5
                     self.espejado = False
 
     .. image:: ../../pilas/data/patito.png
     """
 
-    def __init__(self):
+    def __init__(self, escena):
         self.izquierda = False
         self.derecha = False
         self.arriba = False
         self.abajo = False
         self.boton = False
-        
-        eventos.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
-        eventos.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
+
+        escena.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
+        escena.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
 
     def cuando_pulsa_una_tecla(self, evento):
         self.procesar_cambio_de_estado_en_la_tecla(evento.codigo, True)

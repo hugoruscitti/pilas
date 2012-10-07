@@ -25,17 +25,17 @@ class Nave(Animacion):
     def actualizar(self):
         Animacion.actualizar(self)
 
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.rotacion -= self.velocidad
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.rotacion += self.velocidad
 
-        if pilas.mundo.control.arriba:
+        if pilas.escena_actual().control.arriba:
             self.avanzar()
 
         self.contador_frecuencia_disparo += 1
 
-        if pilas.mundo.control.boton:
+        if pilas.escena_actual().control.boton:
             if self.contador_frecuencia_disparo > 10:
                 self.contador_frecuencia_disparo = 0
                 self.disparar()
