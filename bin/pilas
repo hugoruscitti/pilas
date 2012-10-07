@@ -15,6 +15,10 @@ analizador.add_option("-v", "--version", dest="version",
         action="store_true", default=False,
         help="Consulta la version instalada")
 
+analizador.add_option("-i", "--interprete", dest="interprete",
+        action="store_true", default=False,
+        help="Abre el interprete interactivo")
+
 (opciones, argumentos) = analizador.parse_args()
 
 if argumentos:
@@ -23,6 +27,11 @@ if argumentos:
 if opciones.test:
     pilas.utils.realizar_pruebas()
     sys.exit(0)
+elif opciones.interprete:
+    from PyQt4 import QtGui
+    app = QtGui.QApplication(sys.argv)
+    app.setApplicationName("pilas-engine")
+    pilas.abrir_interprete(do_raise=True)
 elif opciones.version:
     from pilas import pilasversion
     print pilasversion.VERSION

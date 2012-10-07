@@ -66,7 +66,9 @@ class VentanaAsistente(Ui_AsistenteWindow):
         cargador.main(self.main)
 
     def _cuando_selecciona_interprete(self):
-        interprete.main(self.main)
+        comando = " ".join([sys.executable, sys.argv[0], '-i'])
+        self.proceso = QtCore.QProcess()
+        self.proceso.startDetached(comando)
 
     def _cuando_selecciona_abrir_manual(self):
         base_dir = str(QtCore.QDir.homePath())
