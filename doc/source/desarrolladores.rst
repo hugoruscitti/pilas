@@ -1,32 +1,27 @@
 Guía para desarrolladores
 =========================
 
-En esta sección veremos como contribuir
-en el desarrollo de pilas.
+En esta sección veremos como contribuir en el desarrollo de pilas, mostrando
+las herramientas de desarrollo y dando algunas recomendaciones.
 
-Actualmente se utiliza un control de versiones 
-mercurial [#]_ y
-un sistema de tickets.
+Actualmente utilizamos Git junto a los servicios de github_.
 
-.. [#] http://mercurial.selenic.com
+.. _github: http://github.com
 
 Repositorio
 -----------
 
 Para contribuir en el desarrollo de pilas
-necesitas una cuenta en ``bitbucket``, nuestros
+necesitas una cuenta de usuario en github_, nuestros
 proveedores del servicio de repositorios.
 
 La dirección de acceso web al respositorio
 es:
 
-- http://bitbucket.org/hugoruscitti/pilas
+- http://github.com/hugoruscitti/pilas
 
-Ten en cuenta que el servicio ``bitbucket`` es
-gratuito, aunque tienes que tomarte un poco de
-tiempo en crear la cuenta y comenzar a utilizarla.
-
-
+Ten en cuenta que el servicio github_ es gratuito, y
+solo lleva unos minutos registrarse.
 
 
 Obteniendo la última versión del repositio
@@ -35,10 +30,10 @@ Obteniendo la última versión del repositio
 Para obtener la última versión tienes que ejecutar
 el siguiente comando desde un terminal::
 
-    hg clone http://bitbucket.org/hugoruscitti/pilas
+    git clone http://github.com/hugoruscitti/pilas
     
-El resultado del comando creará un nuevo directorio
-en la carpeta actual llamada ``pilas``.
+Luego aparecerá un directorio llamado ``pilas``, con el contenido completo
+del repositorio.
 
 
 Primer prueba
@@ -46,22 +41,10 @@ Primer prueba
 
 Ingresa en el directorio ``pilas``, ejecuta el comando::
 
-    python
-
-y una vez abierto el intérprete escribe estas dos sentencias::
-
-    import pilas
-    pilas.iniciar()
-
-lo que tendrías que ver en la pantalla es una ventana de color
-gris. Esa ventana te indicará que todo funciona bien.
-
-Si en lugar de la ventana ves un error de video, lo que tendrías
-que ejecutar es la sentencia::
-
-    pilas.iniciar(usar_motor='qt')
+    python bin/pilas
 
 
+debería aparecer en pantalla el asistente de primer inicio.
 
 Instalación en modo desarrollo
 ------------------------------
@@ -90,23 +73,13 @@ tu copia del motor actualizada.
 Para ello tienes que ingresar en el directorio ``pilas`` y
 ejecutar el siguiente comando de manera periódica::
 
-    hg pull
-    hg update
-
-De hecho, si usas un lector de noticias sería recomendable
-que agregues este ``feed`` a tus marcadores:
-
-- http://bitbucket.org/hugoruscitti/pilas/rss
-
-Ahí se publicarán todas las actualizaciones que se realicen
-sobre el repositorio.
-
+    git pull
 
 Mas detalles
 ------------
 
-Usamos el modelo de trabajo de bitbucket, haciendo clones
-del repositorio principal para luego elaborar los parches.
+Usamos el modelo de trabajo de github_, haciendo ``forks`` y ``pull requests``.
 
-Si quieres obtener mas detalles te recomiendo ver el artículo
-`programando en pilas <http://www.pilas-engine.com.ar/doc/tutoriales/pilas_desarrolladores/pilas_desarrolladores.rst>`_.
+Si quieres obtener mas detalles te recomiendo ver el siguiente artículo:
+
+- http://www.cocoanetics.com/2012/01/github-fork-fix-pull-request/
