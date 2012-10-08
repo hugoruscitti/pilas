@@ -258,7 +258,7 @@ class Fisica(object):
 
 class FisicaDeshabilitada(object):
 
-    def __init__(self, area, gravedad=(0, -90)):
+    def __init__(self, area, gravedad=None):
         pass
 
     def actualizar(self):

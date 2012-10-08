@@ -9,14 +9,14 @@ de mas realismo y diversión.
 El protagonista es Box2D
 ------------------------
 
-Por el mismo motivo que elegí usar motor gráficos externos, he
-seleccionado una biblioteca externa para gestionar la simulación
-física. Box2D y PyBox2D son las bibliotecas protagonistas
+El motor de física seleccionado para pilas se llama Box2D, el mismo
+motor de física utilizando en el juego Angry Birds.
+
+Así, Box2D y PyBox2D son las bibliotecas protagonistas
 de casi toda la funcionalidad que vas a ver en este módulo.
 
-El módulo ``pilas.fisica`` es tan sólo una facilidad para
-que no sea necesario tener muchos conocimientos de física
-y bibliotecas como Box2D para hacer juegos con física.
+El módulo ``pilas.fisica`` es solamente un facilitador para utilizar Box2D, y
+que puedas comenzar a jugar con físicas rápidamente.
 
 Así que aprovecho este espacio para dar las gracias a **Erin Catto**, y
 su grupo de desarrollo por haber creado **Box2D**.
@@ -209,6 +209,24 @@ estos detalles y corregirlos, son muy importantes para que
 tus usuarios disfruten del juego. Recuerda que ellos no
 verán los círculos rojos... solo verán la apariencia
 de los actores.
+
+
+Escala real y tamaño de figuras
+-------------------------------
+
+Pilas utiliza una pantalla que se puede medir en pixels, de hecho, todas
+las imágenes tienen un tamaño en pixels predefinido.
+
+Pero dentro del mundo físico de box2d, las figuras no tienen tamaño en pixels
+sino en metros.
+
+¿Cual es la relación?, pilas convierte pixels a metros para mantener al mundo
+de box2D en coherencia con lo que estamos viendo en pantalla. 
+
+30 pixels son equivalentes a 1 metro:
+
+
+.. image:: images/escalas.png
 
 
 Cambiando la gravedad interactivamente
