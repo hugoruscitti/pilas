@@ -57,7 +57,7 @@ Como puedes observar, ahora la escena hereda de
 
     pilas.escena.escena_base.EscenaBase
     
-Otro cambio muy importante es que en el metodo ``__init__(self)`` no debe
+Otro cambio **muy importante** es que en el metodo ``__init__(self)`` no debe
 contener nada más que la llamada al ``__init__`` de la EscenaBase
 
 .. code-block:: python

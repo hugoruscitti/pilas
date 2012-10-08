@@ -22,8 +22,6 @@ simplifican mucho el trabajo posterior:
 
 - La escena actual siempre está señalada por el atributo ``pilas.escena_actual()``.
 - Solo puede existir una escena activa a la vez.
-- Cuando se cambia de escena, generalmente la misma escena eliminará a todos los actores del escenario.
-
 
 
 La escena Normal
@@ -111,3 +109,46 @@ estos tres metodos:
 - pilas.cambiar_escena(mi_escena)
 
 - pilas.almacenar_escena(mi_escena)
+
+
+Método sobreescribibles
+-------------------------
+
+Dentro de cada escena existen 3 métodos que pueden ser sobreescritos.
+
+.. code-block:: python
+
+    def pausar(self):
+        pass
+
+    def reanudar(self):
+        pass
+
+    def actualizar(self):
+        pass
+        
+        
+Si quieres tener el control de cuando una escena se queda apilada, deberás 
+sobreescritir el método:
+
+.. code-block:: python
+
+    def pausar(self):
+        pass
+
+Si quieres sabes cuando una escena apilada vuelve a ser la escena activa, 
+deberás sobreescribir el método:
+
+.. code-block:: python
+
+    def reanudar(self):
+        pass
+
+Y por último, una vez por frame, el motor de pilas llamará al método actualizar.
+Puede ser útil sobreescribirlo para, por ejemplo, controlar si le quedan vidas
+a un jugador y debemos acabar el juego.
+
+.. code-block:: python
+
+    def actualizar(self):
+        pass
