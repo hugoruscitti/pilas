@@ -2,7 +2,7 @@
 import pilas
 
 pilas.iniciar(titulo='Reloj')
-paso_un_segundo = pilas.eventos.Evento(['x', 'y'])
+paso_un_segundo = pilas.evento.Evento(['x', 'y'])
 
 
 class RelojDigital(pilas.actores.Texto):

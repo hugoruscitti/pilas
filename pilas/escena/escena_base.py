@@ -8,7 +8,7 @@
 
 import pilas
 from pilas import tareas, colisiones, pytweener, camara
-from pilas.eventos import Evento
+from pilas.evento import Evento
 
 
 class EscenaBase(object):

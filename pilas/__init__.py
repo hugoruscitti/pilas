@@ -17,7 +17,6 @@ import escena
 import escenas
 import fondos
 import habilidades
-import eventos
 import sonidos
 import musica
 import colores

@@ -68,7 +68,6 @@ class Evento():
                 print "\t +", x.nombre, " en ", x.klass
 
 
-
 class AttrDict(dict):
     """Envoltorio para que el diccionario de eventos
     se pueda acceder usando como si tuviera attributos
@@ -109,6 +108,7 @@ class ProxyFuncion(object):
             f(AttrDict(evento))
         else:
             raise ReferenceError("La funcion dejo de existir")
+
 
 class ProxyMetodo(object):
     """
@@ -162,7 +162,6 @@ class ProxyMetodo(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
-
                                                     # Argumentos:
                                                     # -----------
 
@@ -184,25 +183,3 @@ inicia_modo_depuracion = Evento('inicia_modo_depuracion')        # []
 sale_modo_depuracion = Evento('sale_modo_depuracion')            # []
 actualiza_modo_depuracion = Evento('actualiza_modo_depuracion')  # []
 
-def imprimir_todos():
-
-    "Muestra en consola los eventos activos y a quienes invocan"
-    import pilas
-
-    print "Eventos GLOBALES"
-    for x in dir(pilas.eventos):
-        attributo = getattr(pilas.eventos, x)
-        if isinstance(attributo, Evento):
-            print "Evento:", attributo.nombre
-            attributo.imprimir_funciones_conectadas()
-            print ""
-
-    print "--------------------------------"
-    print "Eventos ESCENA ACTUAL"
-    for x in dir(pilas.escena_actual()):
-        attributo = getattr(pilas.escena_actual(), x)
-        if isinstance(attributo, Evento):
-            print "Evento:", attributo.nombre
-            attributo.imprimir_funciones_conectadas()
-            print ""
-    

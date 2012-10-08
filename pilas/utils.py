@@ -253,3 +253,14 @@ def descargar_archivo_desde_internet(parent, url, archivo_destino):
     import descargar
     ventana = descargar.Descargar(parent, url, archivo_destino)
     ventana.show()
+
+def imprimir_todos_los_eventos():
+    "Muestra en consola los eventos activos y a quienes invocan"
+    import pilas
+
+    for x in dir(pilas.escena_actual()):
+        attributo = getattr(pilas.escena_actual(), x)
+        if isinstance(attributo, pilas.evento.Evento):
+            print "Evento:", attributo.nombre
+            attributo.imprimir_funciones_conectadas()
+            print ""
