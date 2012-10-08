@@ -43,6 +43,7 @@ Recorrido modulos avanzados:
     comportamientos.rst
     controles.rst
     escenas.rst
+    gestor_de_escenas.rst
     demos.rst
     interfaz_de_usuario.rst
     menu.rst

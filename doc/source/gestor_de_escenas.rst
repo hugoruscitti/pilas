@@ -1,13 +1,17 @@
+.. _ref_gestor_de_escenas:
+
 Nuevo Gestor de Escenas
-=======
+=======================
 
 Pilas contiene un nuevo gestor de escenas que permite tener más de una
 escena en el juego, aunque sólo una de ellas será la activa.
 
 Esta nueva funcionalidad nos permitiría, por ejemplo, estar jugando y en
 cualquier momento pulsar una tecla y acceder a las opciones del juego.
+
 Allí quitaríamos el sonido y luego pulsando otra tecla volveriamos al juego,
 justo donde lo habíamos dejado.
+
 Nuestros actores estarán en la misma posición y estado en el que los habíamos
 dejado antes de ir a las opciones.
 
@@ -72,7 +76,7 @@ nuevos actores y lo necesario para iniciar tu escena.
 
 
 Iniciar pilas con una Escena
---------------------------
+----------------------------
 
 Para iniciar pilas, con el nuevo sistema, debemos ejecutar lo siguiente
 

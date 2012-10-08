@@ -100,8 +100,7 @@ simplemente tienes que decirle a pilas que esta escena es la activa:
 Esto eliminará las escenas almacenadas y se colocará como la escena
 actual y activa:
 
-**NOTA:** Mira la documentación "Gestor de escenas" para comprender mejor el 
-apilamiento de escenas.
+.. seealso:: Mira la documentación :ref:`ref_gestor_de_escenas` para comprender mejor el apilamiento de escenas.
 
 .. image:: images/escena_simple.png
 
