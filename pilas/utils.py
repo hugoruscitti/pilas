@@ -260,6 +260,7 @@ def imprimir_todos_los_eventos():
 
     for x in dir(pilas.escena_actual()):
         attributo = getattr(pilas.escena_actual(), x)
+
         if isinstance(attributo, pilas.evento.Evento):
             print "Evento:", attributo.nombre
             attributo.imprimir_funciones_conectadas()

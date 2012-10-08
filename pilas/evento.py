@@ -14,6 +14,7 @@
 import weakref
 import new
 import inspect
+import pilas
 
 class Evento():
 
@@ -65,7 +66,7 @@ class Evento():
             print "\t << sin funciones conectadas >>"
         else:
             for x in self.respuestas:
-                print "\t +", x.nombre, " en ", x.klass
+                print "\t +", x.nombre, " en ", x.receptor
 
 
 class AttrDict(dict):
@@ -100,6 +101,7 @@ class ProxyFuncion(object):
         self.funcion = weakref.ref(cb)
         self.id = id
         self.nombre = str(cb)
+        self.receptor = str('modulo actual')
 
     def __call__(self, **evento):
         f = self.funcion()
@@ -142,6 +144,7 @@ class ProxyMetodo(object):
 
         self.id = id
         self.nombre = str(cb.__name__)
+        self.receptor = self.klass
 
     def __call__(self, **evento):
         if self.inst is not None and self.inst() is None:
@@ -162,20 +165,51 @@ class ProxyMetodo(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
-                                                    # Argumentos:
-                                                    # -----------
 
-mueve_camara = Evento('mueve_camara')               # ['x', 'y', 'dx', 'dy']
-mueve_mouse = Evento('mueve_mouse')                 # ['x', 'y', 'dx', 'dy']
-click_de_mouse = Evento('click_de_mouse')           # ['button', 'x', 'y']
-termina_click = Evento('termina_click')             # ['button', 'x', 'y']
-mueve_rueda = Evento('mueve_rueda')                 # ['delta']
-pulsa_tecla = Evento('pulsa_tecla')                 # ['codigo', 'texto']
-suelta_tecla = Evento('suelta_tecla')               # ['codigo', 'texto']
-pulsa_tecla_escape = Evento('pulsa_tecla_escape')   # []
+class ProxyEventos(object):
+    """Representa el objeto pilas.evento, que internamenta delega todos los metodos
+    conectados a la escena actual.
 
+    Este objeto permite que la API de pilas no cambie notoriamente con la inclusion
+    de las nuevas escenas.
+    """
 
-actualizar = Evento('actualizar')                   # []
-post_dibujar = Evento('post_dibujar')               # []
-log = Evento('log')                                 # ['data']
+    @property
+    def click_de_mouse(self):
+        return pilas.escena_actual().click_de_mouse
 
+    @property
+    def mueve_camara(self):
+        return pilas.escena_actual().mueve_camara
+
+    @property
+    def mueve_mouse(self):
+        return pilas.escena_actual().mueve_mouse
+
+    @property
+    def termina_click(self):
+        return pilas.escena_actual().termina_click
+
+    @property
+    def mueve_rueda(self):
+        return pilas.escena_actual().mueve_rueda
+
+    @property
+    def pulsa_tecla(self):
+        return pilas.escena_actual().pulsa_tecla
+
+    @property
+    def suelta_tecla(self):
+        return pilas.escena_actual().suelta_tecla
+
+    @property
+    def pulsa_tecla_escape(self):
+        return pilas.escena_actual().pulsa_tecla_escape
+
+    @property
+    def cuando_actualiza(self):
+        return pilas.escena_actual().cuando_actualiza
+
+    @property
+    def log(self):
+        return pilas.escena_actual().log

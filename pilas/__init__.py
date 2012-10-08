@@ -224,3 +224,9 @@ def almacenar_escena(escena):
 
 def recuperar_escena():
     mundo.gestor_escenas.recuperar_escena()
+
+
+# Representa el viejo acceso al modulo eventos, pero convierte cada uno
+# de los eventos en una referencia al evento dentro de la escena actual.
+from evento import ProxyEventos
+eventos = ProxyEventos()

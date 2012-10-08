@@ -119,7 +119,7 @@ class CanvasWidget(QGLWidget):
         self.gestor_escenas.actualizar()
 
     def _actualizar_eventos_y_actores(self):
-        eventos.actualizar.emitir()
+        eventos.cuando_actualiza.emitir()
 
         try:
             for actor in self.gestor_escenas.escena_actual().actores:

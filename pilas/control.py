@@ -8,7 +8,6 @@
 
 import pilas
 from pilas.simbolos import *
-import eventos
 
 __doc__ = """
 Módulo pilas.control
@@ -108,5 +107,5 @@ class Control(object):
 
     def __str__(self):
         return "<Control izquierda: %s derecha: %s arriba: %s abajo: %s boton: %s>" %(
-                str(self.izquierda), str(self.derecha), str(self.arriba), 
+                str(self.izquierda), str(self.derecha), str(self.arriba),
                 str(self.abajo), str(self.boton))
