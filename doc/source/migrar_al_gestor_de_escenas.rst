@@ -12,7 +12,7 @@ Ahora pasamos a explicar los sencillos pasos a seguir para hacer la migración d
 Iniciar el juego
 ----------------
 
-Tu juego debe tener una estrutura de inicio parecida a la siguiente:
+Tu juego debe tener una estructura de inicio parecida a la siguiente:
 
 .. code-block:: python
 
@@ -70,7 +70,7 @@ nuevos actores y lo necesario para iniciar tu escena.
         mono = pilas.actores.Mono()
         
         
-Aquí un ejemplo de como debería se el cambio.
+Aquí un ejemplo de como debería ser el cambio.
 
 ** Escena antigua **
 
