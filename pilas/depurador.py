@@ -107,7 +107,6 @@ class Depurador(DepuradorDeshabilitado):
             self._activar_modo(clase_del_modo)
 
     def _activar_modo(self, clase_del_modo):
-        pilas.eventos.inicia_modo_depuracion.emitir()
         instancia_del_modo = clase_del_modo(self)
         self.modos.append(instancia_del_modo)
         self.modos.sort(key=lambda x: x.orden_de_tecla())
@@ -117,9 +116,6 @@ class Depurador(DepuradorDeshabilitado):
                                 if x.__class__ == clase_del_modo]
         self.modos.remove(instancia_a_eliminar[0])
         instancia_a_eliminar[0].sale_del_modo()
-
-        if not self.modos:
-            pilas.eventos.sale_modo_depuracion.emitir()
 
     def _mostrar_nombres_de_modos(self, painter):
         dy = 0
