@@ -15,20 +15,32 @@ class Gestor(object):
         self.escenas = []
 
     def limpiar(self):
-        "Elimina todas las escenas del gestor."
+        """Elimina todas las escenas del gestor."""
         for x in self.escenas:
             x._limpiar()
 
         self.escenas = []
 
     def cambiar_escena(self, escena):
-        "Define una escena exclusiva y la inicializa (elimina todo lo demas)."
+        """Define una escena unica y la inicializa.
+        Las escenas que estuvieran apiladas se eliminan.
+
+        Parámetros:
+         :escena: Escena a la que se quiere cambiar."""
+
         self.limpiar()
         self.escenas.append(escena)
         escena.iniciar()
         escena.iniciada = True
 
     def almacenar_escena(self, escena):
+        """Pausa la escena actualmente activa e inicializa la escena que
+        le pasamos como parametro.
+
+        Parámetros:
+         :escena: Escena que deseamos que sea la activa.
+
+        """
         if self.escena_actual():
             self.escena_actual()._pausar_fisica()
             self.escena_actual().pausar()
@@ -38,6 +50,8 @@ class Gestor(object):
         escena.iniciada = True
 
     def recuperar_escena(self):
+        """Recupera la escena que fue Pausada mediante **almacenar_escena**.
+        """
         if len(self.escenas) > 1:
             self.escenas[-1]._limpiar()
             escena_actual = self.escenas.pop()
@@ -48,7 +62,7 @@ class Gestor(object):
             raise Exception("Debe haber al menos una escena en la pila para restaurar.")
 
     def escena_actual(self):
-        "Retorna la escena actual o None si no hay escena definida."
+        """Retorna la escena actual o None si no hay escena definida."""
         if len(self.escenas) > 0:
             return self.escenas[-1]
         else:
