@@ -10,6 +10,9 @@ el menú principal, una presentanción y una
 pantalla de juego.
 
 
+.. image:: images/escenas_juego.png
+
+
 Cosas a tener en cuenta
 -----------------------
 
