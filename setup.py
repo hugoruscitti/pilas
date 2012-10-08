@@ -9,7 +9,6 @@ setup(
         author='Hugo Ruscitti',
         include_package_data = True,
         package_data = {
-            'kanzen': ['./kanzen/kanzen'],
         },
         url='https://github.com/hugoruscitti/lanas',
         scripts=['bin/lanas'],
