@@ -7,8 +7,7 @@ Antes de migrar tu juego al nuevo sistema de gestión de escenas, es mejor que
 le des un vistazo a :ref:`ref_gestor_de_escenas` para comprender mejor el 
 apilamiento de escenas.
 
-Ahora pasamos a explicar los pasos a seguir para hacer la migración de tu juego
-en unos sencillos pasos.
+Ahora pasamos a explicar los sencillos pasos a seguir para hacer la migración de tu juego.
 
 Iniciar el juego
 ----------------
