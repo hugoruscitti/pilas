@@ -18,9 +18,6 @@ Opción 2 - Avanzada, desde repositorios
 ---------------------------------------
 
 Si ya eres un programador avanzado con algo
-de experiencia en el lenguaje python, podrías ir a
-obtener la versión de desarrollo de pilas (con los
-cambios mas recientes) a la siguiente web:
-
-https://bitbucket.org/hugoruscitti/pilas
-
+de experiencia en el lenguaje python, podrías ir directamente
+a :ref:`ref_desarrolladores`, en donde encontrarás instrucciones
+para acceder directamente al repositorio de pilas.
