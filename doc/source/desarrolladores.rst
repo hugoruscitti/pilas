@@ -1,4 +1,4 @@
-.. _ref_desarolladores:
+.. _ref_desarrolladores:
 
 Guía para desarrolladores
 =========================
