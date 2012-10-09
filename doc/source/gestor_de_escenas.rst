@@ -23,7 +23,7 @@ Es la Escena de la cual deben heredar todas las escenas del juego en pilas.
 
 .. code-block:: python
 
-    pilas.escena.escena_base.EscenaBase
+    pilas.escena.Base
 
 El ``antiguo método`` para crear una escena era el siguiente:
     
@@ -42,10 +42,10 @@ Ahora el ``nuevo método`` para crear una escena es el siguiente:
 
 .. code-block:: python
 
-    class MiEscena(pilas.escena.escena_base.EscenaBase):
+    class MiEscena(pilas.escena.Base):
     
         def __init__(self):
-            pilas.escena.escena_base.EscenaBase.__init__(self)
+            pilas.escena.Base.__init__(self)
 
         def iniciar(self):
             pilas.fondos.Pasto()
@@ -55,15 +55,28 @@ Como puedes observar, ahora la escena hereda de
 
 .. code-block:: python
 
-    pilas.escena.escena_base.EscenaBase
+    pilas.escena.Base
     
 Otro cambio **muy importante** es que el metodo ``__init__(self)`` no debe
-contener nada más que la llamada al ``__init__`` de la EscenaBase
+contener nada más que la llamada al ``__init__`` de la escena Base.
 
 .. code-block:: python
     
-    def __init__(self):
-        pilas.escena.escena_base.EscenaBase.__init__(self)
+    def __init__(self, titulo):
+        pilas.escena.Base.__init__(self)
+        
+        self._titulo = titulo
+        self._puntuacion = puntuacion
+
+Puedes almacenar unicamente parámetros que quieras pasar a la escena.
+Por ejemplo así:
+
+.. code-block:: python
+    
+    def __init__(self, titulo):
+        pilas.escena.Base.__init__(self)
+        
+        self._titulo = titulo
 
 Y por último debes definir un método ``iniciar(self)`` donde podrás crear los
 nuevos actores y lo necesario para iniciar tu escena.
@@ -73,6 +86,7 @@ nuevos actores y lo necesario para iniciar tu escena.
     def iniciar(self):
         pilas.fondos.Pasto()
         mono = pilas.actores.Mono()
+        texti = pilas.actores.Texto(self._titulo)
 
 
 Iniciar pilas con una Escena

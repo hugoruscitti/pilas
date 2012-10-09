@@ -6,12 +6,12 @@
 #
 # website - http://www.pilas-engine.com.ar
 import pilas.actores
-from pilas.escena.escena_base import EscenaBase
+from pilas.escena import Base
 import pilas.colores
 import pilas.fondos
 
 
-class EscenaNormal(EscenaBase):
+class Normal(Base):
     """ Escena básica de pilas.
     Si no se define ninguna escena, cuando se ejecuta:
 
@@ -22,12 +22,13 @@ class EscenaNormal(EscenaBase):
     """
 
     def __init__(self):
-        EscenaBase.__init__(self)
+        Base.__init__(self)
 
     def iniciar(self):
         fondo = pilas.fondos.Color(pilas.colores.grisclaro)
 
-class EscenaAviso(EscenaBase):
+
+class Aviso(Base):
     """ Escena básica de pilas.
     Si no se define ninguna escena, cuando se ejecuta:
 
@@ -38,7 +39,7 @@ class EscenaAviso(EscenaBase):
     """
 
     def __init__(self):
-        EscenaBase.__init__(self)
+        Base.__init__(self)
 
     def iniciar(self):
         fondo = pilas.fondos.Color(pilas.colores.grisclaro)

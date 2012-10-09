@@ -83,11 +83,11 @@ class PierdeTodoElJuego(Estado):
         pass
 
 
-class Juego(pilas.escena.escena_normal.EscenaBase):
+class Juego(pilas.escena.Base):
     "Es la escena que permite controlar la nave y jugar"
 
     def __init__(self):
-        pilas.escena.escena_normal.EscenaBase.__init__(self)
+        pilas.escena.Base.__init__(self)
         
     def iniciar(self):        
         pilas.fondos.Espacio()

@@ -10,7 +10,7 @@ import pilas
 import random
 
 
-class Piezas(pilas.escena.escena_base.EscenaBase):
+class Piezas(pilas.escena.Base):
     """Representa la escena de rompecabezas.
 
     La escena comienza con una imagen que se descompone en muchos
@@ -18,7 +18,7 @@ class Piezas(pilas.escena.escena_base.EscenaBase):
     """
 
     def __init__(self, ruta_a_la_imagen="fondos/noche.jpg", filas=4, columnas=4, al_terminar=None):
-        pilas.escena.escena_base.EscenaBase.__init__(self)
+        pilas.escena.Base.__init__(self)
         self.ruta_a_la_imagen = ruta_a_la_imagen
         self.filas = filas
         self.columnas = columnas

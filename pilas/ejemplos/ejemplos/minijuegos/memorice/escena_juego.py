@@ -12,11 +12,11 @@ from random import random
 class puntuacion:
     p = 0
 
-class Juego(pilas.escena.escena_normal.EscenaBase):
+class Juego(pilas.escena.Base):
     "Escena que Controla el juego"
 
     def __init__(self, nivel):
-        pilas.escena.escena_normal.EscenaBase.__init__(self)
+        pilas.escena.Base.__init__(self)
         self.nivel = nivel
     
     def iniciar(self):

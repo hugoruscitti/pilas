@@ -78,10 +78,10 @@ así:
 
 .. code-block:: python
 
-    class PantallaBienvenida(pilas.escena.escena_normal.EscenaNormal):
+    class PantallaBienvenida(pilas.escena.Normal):
 
         def __init__(self):
-            pilas.escena.escena_normal.EscenaNormal.__init__(self)
+            pilas.escena.Normal.__init__(self)
         
         def iniciar(self):
             pilas.fondos.Pasto()

@@ -1,11 +1,11 @@
 import pilas
 import random
 
-class EscenaMenu(pilas.escena.escena_normal.EscenaBase):
+class EscenaMenu(pilas.escena.Base):
     "Es la escena de presentacion donde se elijen las opciones del juego."
 
     def __init__(self):
-        pilas.escena.escena_normal.EscenaBase.__init__(self)
+        pilas.escena.Base.__init__(self)
     
     def iniciar(self):
         pilas.fondos.Fondo("data/menu.png")

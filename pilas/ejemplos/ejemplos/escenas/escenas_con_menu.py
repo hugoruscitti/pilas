@@ -3,10 +3,10 @@ import pilas
 pilas.iniciar()
 
 
-class EscenaDeMenu(pilas.escena.escena_base.EscenaBase):
+class EscenaDeMenu(pilas.escena.Base):
 
     def __init__(self):
-        pilas.escena.escena_base.EscenaBase.__init__(self)
+        pilas.escena.Base.__init__(self)
 
     def iniciar(self):
         pilas.fondos.Selva()
@@ -25,10 +25,10 @@ class EscenaDeMenu(pilas.escena.escena_base.EscenaBase):
         sys.exit(0)
 
 
-class EscenaDeJuego(pilas.escena.escena_base.EscenaBase):
+class EscenaDeJuego(pilas.escena.Base):
 
     def __init__(self):
-        pilas.escena.escena_base.EscenaBase.__init__(self)
+        pilas.escena.Base.__init__(self)
 
     def iniciar(self):
         self.pingu = pilas.actores.Pingu()

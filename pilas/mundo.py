@@ -8,7 +8,7 @@
 
 from pilas import control
 from pilas import fisica
-from pilas.escena import gestor, escena_normal
+from pilas.escena import Gestor, Normal
 
 
 class Mundo(object):
@@ -19,7 +19,7 @@ class Mundo(object):
     """
 
     def __init__(self, motor, ancho, alto, titulo, fps=60, gravedad=(0, -10), pantalla_completa=False):
-        self.gestor_escenas = gestor.Gestor()
+        self.gestor_escenas = Gestor()
 
         self.motor = motor
         self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas)
@@ -31,7 +31,7 @@ class Mundo(object):
 
     def reiniciar(self):
         self.gestor_escenas.limpiar()
-        self.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
+        self.gestor_escenas.cambiar_escena(Normal())
 
     def terminar(self):
         self.motor.terminar()

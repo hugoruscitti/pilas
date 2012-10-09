@@ -13,7 +13,7 @@ class Escena(object):
 
     def __init__(self):
         #pilas.mundo.definir_escena(self)
-        escena_aviso = pilas.escena.EscenaAviso()
+        escena_aviso = pilas.escena.Aviso()
         pilas.cambiar_escena(escena_aviso)
 
     def iniciar(self):

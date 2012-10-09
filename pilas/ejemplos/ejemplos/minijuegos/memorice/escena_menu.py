@@ -8,11 +8,11 @@
 
 import pilas
 
-class EscenaMenu(pilas.escena.escena_normal.EscenaBase):
+class EscenaMenu(pilas.escena.Base):
     "Escena de presentacion del juego."
 
     def __init__(self):
-        pilas.escena.escena_normal.EscenaBase.__init__(self)
+        pilas.escena.Base.__init__(self)
 
     def iniciar(self):
         pilas.fondos.Fondo('data/menu.png')

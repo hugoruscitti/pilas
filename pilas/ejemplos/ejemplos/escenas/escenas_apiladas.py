@@ -1,11 +1,11 @@
 import pilas
-from pilas.escena.escena_normal import EscenaNormal
+from pilas.escena import Normal
 
 
-class EscenaDeMenu(EscenaNormal):
+class EscenaDeMenu(pilas.escena.Normal):
 
     def __init__(self):
-        EscenaNormal.__init__(self)
+        Normal.__init__(self)
 
     def iniciar(self):
         pilas.fondos.Color(pilas.colores.negro)
@@ -31,10 +31,10 @@ class EscenaDeMenu(EscenaNormal):
         sys.exit(0)
 
 
-class Escena_1(EscenaNormal):
+class Escena_1(pilas.escena.Normal):
 
     def __init__(self):
-        EscenaNormal.__init__(self)
+        Normal.__init__(self)
 
     def iniciar(self):
         pilas.actores.Texto("Acabas de cambiar a la Escena 1.\n\
@@ -62,10 +62,10 @@ seguira en la misma posicion donde la dejaste.")
             print self.actores
 
 
-class Escena_2(EscenaNormal):
+class Escena_2(pilas.escena.Normal):
 
     def __init__(self):
-        EscenaNormal.__init__(self)
+        Normal.__init__(self)
 
     def iniciar(self):
         pilas.fondos.Tarde()

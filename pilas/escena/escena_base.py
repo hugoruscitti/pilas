@@ -11,13 +11,13 @@ from pilas import tareas, colisiones, pytweener, camara
 from pilas.evento import Evento
 
 
-class EscenaBase(object):
+class Base(object):
     """ Escena base abstracta de la que deben heredar el resto de escenas.
 
-        >>> class MiEscena(EscenaBase):
+        >>> class MiEscena(Base):
         >>>
         >>>    def __init__(self):
-        >>>        EscenaBase.__init__(self)
+        >>>        Base.__init__(self)
         >>>
         >>>    def iniciar(self):
         >>>        fondo = pilas.fondos.Color(pilas.colores.grisclaro)

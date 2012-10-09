@@ -1,11 +1,11 @@
 import pilas
 from random import random
 
-class Juego(pilas.escena.escena_normal.EscenaBase):
+class Juego(pilas.escena.Base):
     "Escena que Controla el juego"
 
     def __init__(self):        
-        pilas.escena.escena_normal.EscenaBase.__init__(self)
+        pilas.escena.Base.__init__(self)
     
     def iniciar(self): 
         pilas.fondos.Fondo('data/fondo.png')

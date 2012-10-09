@@ -24,7 +24,7 @@ import demos
 import atajos
 import interfaz
 import interprete
-from pilas.escena import escena_normal
+from pilas.escena import Normal
 
 # Permite cerrar el programa usando CTRL+C
 import signal
@@ -75,7 +75,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
 
         if motor:
             mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
-            mundo.gestor_escenas.cambiar_escena(escena_normal.EscenaNormal())
+            mundo.gestor_escenas.cambiar_escena(Normal())
 
             if _usa_interprete_lanas():
                 mundo.motor.ventana.show()

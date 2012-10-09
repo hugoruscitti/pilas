@@ -45,19 +45,19 @@ Tendrá que quedar de la siguiente forma:
 Escenas del juego
 -----------------
 
-Todas las escenas de tu juego deben heredar ahora de `pilas.escena.escena_base.EscenaBase`.
+Todas las escenas de tu juego deben heredar ahora de `pilas.escena.Base`.
 
 .. code-block:: python
 
-    class MiEscena(pilas.escena.escena_base.EscenaBase):
+    class MiEscena(pilas.escena.Base):
 
 Y el otro cambio que debes realizar en la escenas es que el metodo ``__init__(self)`` no debe
-contener nada más que la llamada al ``__init__`` de la EscenaBase
+contener nada más que la llamada al ``__init__`` de la escena Base
 
 .. code-block:: python
     
     def __init__(self):
-        pilas.escena.escena_base.EscenaBase.__init__(self)
+        pilas.escena.Base.__init__(self)
 
 
 Luego debes definir un método ``iniciar(self)`` donde podrás crear los
@@ -89,10 +89,10 @@ Aquí un ejemplo de como debería ser el cambio.
 
 .. code-block:: python
 
-    class MiEscena(pilas.escena.escena_base.EscenaBase):
+    class MiEscena(pilas.escena.Base):
     
         def __init__(self):
-            pilas.escena.escena_base.EscenaBase.__init__(self)
+            pilas.escena.Base.__init__(self)
 
         def iniciar(self):
             pilas.fondos.Pasto()
