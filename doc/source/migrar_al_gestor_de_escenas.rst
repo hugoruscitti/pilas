@@ -115,10 +115,6 @@ Debes sustituir esta llamada a la nueva escena por esta otra forma:
     pilas.cambiar_escena(escena_juego.Escena_Juego())
 
 
-Eventos
--------
-
-
 Fin de la migración
 -------------------
 
