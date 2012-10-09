@@ -721,8 +721,11 @@ class Motor(object):
     """
 
     def __init__(self, usar_motor, permitir_depuracion):
-        self._iniciar_aplicacion()
+        if usar_motor not in ['qtwidget', 'qtsugar']:
+            self._iniciar_aplicacion()
+
         self.usar_motor = usar_motor
+
         self.nombre = usar_motor
         self.permitir_depuracion = permitir_depuracion
 
