@@ -10,7 +10,7 @@ import pilas
 import random
 
 
-class Piezas(pilas.escenas.Normal):
+class Piezas(pilas.escena.escena_base.EscenaBase):
     """Representa la escena de rompecabezas.
 
     La escena comienza con una imagen que se descompone en muchos
@@ -18,10 +18,16 @@ class Piezas(pilas.escenas.Normal):
     """
 
     def __init__(self, ruta_a_la_imagen="fondos/noche.jpg", filas=4, columnas=4, al_terminar=None):
+        pilas.escena.escena_base.EscenaBase.__init__(self)
+        self.ruta_a_la_imagen = ruta_a_la_imagen
+        self.filas = filas
+        self.columnas = columnas
+        self.al_terminar = al_terminar
+
+    def iniciar(self):
         pilas.actores.utils.eliminar_a_todos()
-        pilas.escenas.Normal.__init__(self, pilas.colores.grisoscuro)
-        grilla = pilas.imagenes.cargar_grilla(ruta_a_la_imagen, columnas, filas)
-        self.crear_piezas(grilla, filas, columnas)
+        grilla = pilas.imagenes.cargar_grilla(self.ruta_a_la_imagen, self.columnas, self.filas)
+        self.crear_piezas(grilla, self.filas, self.columnas)
         self.pieza_en_movimiento = None
 
         pilas.eventos.click_de_mouse.conectar(self.al_hacer_click)
@@ -29,8 +35,8 @@ class Piezas(pilas.escenas.Normal):
         pilas.eventos.mueve_mouse.conectar(self.al_mover_el_mouse)
 
         self.sonido_tick = pilas.sonidos.cargar("tick.wav")
-        self.al_terminar = al_terminar
-        self.piezas_desconectadas = filas * columnas -1
+        self.al_terminar = self.al_terminar
+        self.piezas_desconectadas = self.filas * self.columnas -1
 
     def crear_piezas(self, grilla, filas, columnas):
         "Genera todas las piezas en base al tamaño del constructor."
@@ -154,7 +160,7 @@ class Pieza(pilas.actores.Animado):
     def soltar(self):
         # Busca todas las colisiones entre esta pieza
         # que se suelta y todas las demás.
-        colisiones = pilas.mundo.colisiones.obtener_colisiones(self, self.escena_padre.piezas)
+        colisiones = pilas.escena_actual().colisiones.obtener_colisiones(self, self.escena_padre.piezas)
 
         for x in colisiones:
             self.intentar_conectarse_a(x)

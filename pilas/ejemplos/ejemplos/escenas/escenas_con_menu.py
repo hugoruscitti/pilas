@@ -1,13 +1,14 @@
 import pilas
-from pilas.escenas import Normal
 
 pilas.iniciar()
 
 
-class EscenaDeMenu(Normal):
+class EscenaDeMenu(pilas.escena.escena_base.EscenaBase):
 
     def __init__(self):
-        Normal.__init__(self)
+        pilas.escena.escena_base.EscenaBase.__init__(self)
+
+    def iniciar(self):
         pilas.fondos.Selva()
 
         opciones = [
@@ -17,18 +18,20 @@ class EscenaDeMenu(Normal):
         self.menu = pilas.actores.Menu(opciones)
 
     def comenzar(self):
-        EscenaDeJuego()
+        pilas.cambiar_escena(EscenaDeJuego())
 
     def salir(self):
         import sys
         sys.exit(0)
 
 
-class EscenaDeJuego(Normal):
+class EscenaDeJuego(pilas.escena.escena_base.EscenaBase):
 
     def __init__(self):
-        Normal.__init__(self)
-        pingu = pilas.actores.Pingu()
+        pilas.escena.escena_base.EscenaBase.__init__(self)
+
+    def iniciar(self):
+        self.pingu = pilas.actores.Pingu()
         pilas.fondos.Pasto()
         pilas.avisar("Pulsa la tecla 'q' para regresar al menu...")
 
@@ -36,8 +39,8 @@ class EscenaDeJuego(Normal):
 
     def cuando_pulsa_tecla(self, evento):
         if evento.texto == u'q':
-            EscenaDeMenu()
+            pilas.cambiar_escena(EscenaDeMenu())
 	
 # Carga la nueva escena
-EscenaDeMenu()
+pilas.cambiar_escena(EscenaDeMenu())
 pilas.ejecutar()

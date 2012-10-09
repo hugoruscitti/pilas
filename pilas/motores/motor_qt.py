@@ -150,24 +150,18 @@ class CanvasWidget(QGLWidget):
         # Se mantiene este lanzador de eventos por la clase Control
         if event.key() == QtCore.Qt.Key_Escape:
             eventos.pulsa_tecla_escape.emitir()
-            self.gestor_escenas.escena_actual().pulsa_tecla_escape.emitir()
         if event.key() == QtCore.Qt.Key_P and event.modifiers() == QtCore.Qt.AltModifier:
             self.alternar_pausa()
         if event.key() == QtCore.Qt.Key_F and event.modifiers() == QtCore.Qt.AltModifier:
             self.alternar_pantalla_completa()
 
         eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
-
-        self.gestor_escenas.escena_actual().pulsa_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
-
         self.depurador.cuando_pulsa_tecla(codigo_de_tecla, event.text())
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self._obtener_codigo_de_tecla_normalizado(event.key())
         # Se mantiene este lanzador de eventos por la clase Control
         eventos.suelta_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
-
-        self.gestor_escenas.escena_actual().suelta_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
 
     def wheelEvent(self, e):
         self.gestor_escenas.escena_actual().mueve_rueda.emitir(delta=e.delta() / 120)
