@@ -5,5 +5,3 @@
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
-
-import motor
