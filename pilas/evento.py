@@ -180,8 +180,15 @@ class ProxyEventos(object):
 
         >>> pilas.eventos.click_de_mouse.conectar(una_funcion)
 
-    Este objeto permite que la API de pilas no cambie notoriamente con la inclusion
-    de las nuevas escenas.
+    La función enviada como parámetro será invocada cuando el evento
+    ocurra. Y se enviará como argumento los datos del evento, por ejemplo:
+
+        >>> def cuando_hace_click(evento):
+        ...     print evento.x
+        ...     print evento.x
+        ...
+        >>> pilas.eventos.click_de_mouse.conectar(cuando_hace_click)
+
     """
 
     @property
