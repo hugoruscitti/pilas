@@ -22,6 +22,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.main = main
         Ui_AsistenteWindow.setupUi(self, main)
 
+        self.webView.setAcceptDrops(False)
         self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateAllLinks)
         self.webView.connect(self.webView, QtCore.SIGNAL("linkClicked(const QUrl&)"), self.cuando_pulsa_link)
         self._cargar_pagina_principal()
@@ -67,6 +68,14 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _cuando_selecciona_interprete(self):
         comando = " ".join([sys.executable, sys.argv[0], '-i'])
+        self._ejecutar_comando(comando)
+
+    def ejecutar_script(self, nombre_archivo_script):
+        comando = " ".join([sys.executable, sys.argv[0], '-i', str(nombre_archivo_script)])
+        self._ejecutar_comando(comando)
+
+    def _ejecutar_comando(self, comando):
+        "Ejecuta un comando en segundo plano."
         self.proceso = QtCore.QProcess()
         self.proceso.startDetached(comando)
 
@@ -89,12 +98,38 @@ class VentanaAsistente(Ui_AsistenteWindow):
                 pilas.utils.descargar_archivo_desde_internet(self.main, url, ruta_al_manual)
 
 
+
+class MainWindow(QtGui.QMainWindow):
+
+    def __init__(self):
+        QtGui.QMainWindow.__init__(self)
+        self.setAcceptDrops(True)
+
+    def definir_receptor_de_comandos(self, ui):
+        self.ui = ui
+
+    def dragEnterEvent(self, event):
+        if event.mimeData().hasUrls():
+            event.acceptProposedAction()
+
+    def dragMoveEvent(self, event):
+        super(MainWindow, self).dragMoveEvent(event)
+
+    def dropEvent(self, event):
+        if event.mimeData().hasUrls():
+            for url in event.mimeData().urls():
+                self.ui.ejecutar_script(url.path())
+            event.acceptProposedAction()
+        else:
+            super(MainWindow,self).dropEvent(event)
+
 def ejecutar():
     app = QtGui.QApplication(sys.argv)
     app.setApplicationName("pilas-engine")
 
-    main = QtGui.QMainWindow()
+    main = MainWindow()
     ui = VentanaAsistente()
+    main.definir_receptor_de_comandos(ui)
     ui.setupUi(main)
 
     main.show()
