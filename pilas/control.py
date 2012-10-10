@@ -109,3 +109,10 @@ class Control(object):
         return "<Control izquierda: %s derecha: %s arriba: %s abajo: %s boton: %s>" %(
                 str(self.izquierda), str(self.derecha), str(self.arriba),
                 str(self.abajo), str(self.boton))
+
+    def limpiar(self):
+        self.izquierda = False
+        self.derecha = False
+        self.arriba = False
+        self.abajo = False
+        self.boton = False

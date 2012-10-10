@@ -57,6 +57,7 @@ class Gestor(object):
             escena_actual = self.escenas.pop()
             escena_anterior = self.escenas[-1]
             escena_anterior._reanudar_fisica()
+            escena_anterior.control.limpiar()
             escena_anterior.reanudar()
         else:
             raise Exception("Debe haber al menos una escena en la pila para restaurar.")
