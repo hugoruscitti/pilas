@@ -13,7 +13,7 @@ Introducción:
     
     presentacion.rst
     instalar.rst
-
+    migrar_al_gestor_de_escenas.rst
 
 Recorrido básico:
 

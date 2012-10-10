@@ -145,4 +145,5 @@ Fin de la migración
 Con estos simples pasos, tu juego debe funcionar sin problemas con el nuevo
 sistema de gestión de escenas.
 
-Ante cualquier problema no tengas dudas en ponerte en contacto con nosotros.
+Ante cualquier problema no tengas dudas en ponerte en contacto con nosotros
+mediante el `foro de losersjuegos <http://www.losersjuegos.com.ar/foro/viewforum.php?f=24>`_.
