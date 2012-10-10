@@ -16,6 +16,12 @@ import new
 import inspect
 import pilas
 
+__doc__ = """
+Módulo pilas.evento
+===================
+
+"""
+
 class Evento():
 
     def __init__(self, nombre):
@@ -167,8 +173,12 @@ class ProxyMetodo(object):
 
 
 class ProxyEventos(object):
-    """Representa el objeto pilas.evento, que internamenta delega todos los metodos
+    """Representa el objeto pilas.evento, que internamente delega todos los metodos
     conectados a la escena actual.
+
+    Para acceder a este objeto, usar una sentencia como la siguiente:
+
+        >>> pilas.eventos.click_de_mouse.conectar(una_funcion)
 
     Este objeto permite que la API de pilas no cambie notoriamente con la inclusion
     de las nuevas escenas.
@@ -176,6 +186,13 @@ class ProxyEventos(object):
 
     @property
     def click_de_mouse(self):
+        """Informa ante la pulsación del mouse.
+
+        :param x: Posición horizontal del mouse.
+        :param y: Posición vertical del mouse.
+        :param dx: Posición horizontal relativa del mouse.
+        :param dy: Posición vertical relativa del mouse.
+        """
         return pilas.escena_actual().click_de_mouse
 
     @property
@@ -188,6 +205,13 @@ class ProxyEventos(object):
 
     @property
     def termina_click(self):
+        """Informa cuando la pulsación del mouse termina.
+
+        :param x: Posición horizontal del mouse.
+        :param y: Posición vertical del mouse.
+        :param dx: Posición horizontal relativa del mouse.
+        :param dy: Posición vertical relativa del mouse.
+        """
         return pilas.escena_actual().termina_click
 
     @property

@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+# Pilas engine - A video game framework.
+#
+# Copyright 2010 - Hugo Ruscitti
+# License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
+#
+# Website - http://www.pilas-engine.com.ar
+
 from PyQt4 import QtCore, QtGui, phonon
 from PyQt4.QtCore import Qt
 from PyQt4.QtOpenGL import QGLWidget
