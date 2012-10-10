@@ -9,7 +9,6 @@ class GloboElegir(Globo):
         self.dialogo = dialogo
         self.opciones = opciones
         self.funcion_a_invocar = funcion_a_invocar
-        espacio = "\n" * (len(opciones) +2)   # representa un espacio en blanco para poner la seleccion
 
         self.lista_seleccion = pilas.interfaz.ListaSeleccion(opciones, self._cuando_selecciona_opcion, x, y)
         self.lista_seleccion.escala = 0.1
