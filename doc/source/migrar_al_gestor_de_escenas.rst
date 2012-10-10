@@ -119,15 +119,18 @@ Eventos
 -------
 
 Ahora los eventos son individuales por cada escena.
-Si quieres conectar a algún evento, como `mueve_mouse` o `pulsa_tecla`, puedes
+Si quieres conectar a algún evento, como `mueve_mouse`, `actualizar`, `pulsa_tecla`, puedes
 hacerlo de cualquiera de las dos siguientes formas:
 
 .. code-block:: python
+
+    def mi_metodo(evento):
+        # Hace algo
     
-    pilas.eventos.pulsa_tecla.conectar(mi_metodo())
+    pilas.eventos.actualizar.conectar(mi_metodo())
 
     # Otra forma de conectar    
-    pilas.escena_actual().pulsa_tecla.conectar(mi_metodo())
+    pilas.escena_actual().actualizar.conectar(mi_metodo())
     
 Ambas formas conectan a los eventos de la escena actualmente activa.
 
