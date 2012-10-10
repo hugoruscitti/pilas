@@ -73,7 +73,6 @@ class Gestor(object):
 
         if escena:
             if escena.iniciada:
-                escena.actualizar()
                 escena._actualizar_eventos()
 
             for escena in self.escenas:

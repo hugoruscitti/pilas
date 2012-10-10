@@ -159,7 +159,7 @@ class MoverseConElTeclado(Habilidad):
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
-        pilas.escena_actual().cuando_actualiza.conectar(self.on_key_press)
+        pilas.escena_actual().actualizar.conectar(self.on_key_press)
 
     def on_key_press(self, evento):
         velocidad = 5
