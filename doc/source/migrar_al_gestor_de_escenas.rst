@@ -136,6 +136,7 @@ Si deseas crear tu propio evento, lo deberás hacer de la siguiente forma:
 .. code-block:: python
     
     pilas.eventos.mi_evento_personalizado = pilas.evento.Evento("mi_evento_personalizado")
+    pilas.eventos.mi_evento_personalizado.conectar(self._mi_evento_personalizado)
 
 
 Fin de la migración
