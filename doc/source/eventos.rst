@@ -66,7 +66,7 @@ esto:
         mono.x = evento.x
         mono.y = evento.y
 
-    pilas.escena_actual().mueve_mouse.conectar(mover_mono_a_la_posicion_del_mouse)
+    pilas.eventos.mueve_mouse.conectar(mover_mono_a_la_posicion_del_mouse)
 
 
 Es decir, la señal de evento que nos interesa es ``mueve_mouse`` (que se emite
@@ -137,8 +137,8 @@ Por ejemplo, las siguientes sentencias muestran eso:
 
 .. code-block:: python
 
-    pilas.escena_actual().mueve_mouse.conectar(imprimir_posicion, id='drag')
-    pilas.escena_actual().mueve_mouse.desconectar_por_id('drag')
+    pilas.eventos.mueve_mouse.conectar(imprimir_posicion, id='drag')
+    pilas.eventos.mueve_mouse.desconectar_por_id('drag')
     
 En la primer sentencia conecté la señal del evento a una función y le di
 un valor al argumento ``id``. Este valor será el identificador
