@@ -130,19 +130,13 @@ Pilas dispone de 3 métodos para realizar esta operaciones:
     pilas.recuperar_escena()
 
 
-- **pilas.cambiar_escena(mi_escena)** VACIA por completo la pila de escenas del
-sistema e incorporar la escena que pasamos como parámetro. La escena incorporada
-será la escena activa.
+* ``pilas.cambiar_escena(mi_escena)``: VACIA por completo la pila de escenas del sistema e incorporar la escena que pasamos como parámetro. La escena incorporada será la escena activa.
 
-- **pilas.almacenar_escena(mi_escena)** apila la escena actual y
-establece como escena activa la que le pasamos como parámetro. La escena que ha
-sido apilada quedará pausada hasta su recuperación.
+* ``pilas.almacenar_escena(mi_escena)``: apila la escena actual y establece como escena activa la que le pasamos como parámetro. La escena que ha sido apilada quedará pausada hasta su recuperación.
 
-- **pilas.recuperar_escena()** recupera la última escena que fué apilada
-mediante ``alamacenar_escena()`` y la establece como escena activa.
+* ``pilas.recuperar_escena()``: recupera la última escena que fué apilada mediante ``alamacenar_escena()`` y la establece como escena activa.
 
-Por último indicar que si quieres tener acceso a la escena actualmente activa,
-puedes hacerlo mediante el comando:
+Por último indicar que si quieres tener acceso a la escena actualmente activa, puedes hacerlo mediante el comando:
 
 .. code-block:: python
 
