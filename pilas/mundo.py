@@ -6,15 +6,9 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-import pytweener
-from pilas import eventos
-from pilas import tareas
 from pilas import control
 from pilas import fisica
-from pilas import escenas
-from pilas import colisiones
-from pilas import camara
-from pilas import actores
+from pilas.escena import Gestor, Normal
 
 
 class Mundo(object):
@@ -25,31 +19,19 @@ class Mundo(object):
     """
 
     def __init__(self, motor, ancho, alto, titulo, fps=60, gravedad=(0, -10), pantalla_completa=False):
+        self.gestor_escenas = Gestor()
+
         self.motor = motor
-        self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa)
+        self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas)
 
-        self.tweener = pytweener.Tweener()
-        self.tareas = tareas.Tareas()
-        self.control = control.Control()
-        self.colisiones = colisiones.Colisiones()
-        self.camara = camara.Camara(self)
+        self.gravedad = gravedad
 
-        eventos.actualizar.conectar(self.actualizar_simuladores)
-        self.fisica = fisica.crear_motor_fisica(motor.obtener_area(), gravedad=gravedad)
-        self.escena_actual = None
+    def crear_motor_fisica(self):
+        return fisica.crear_motor_fisica(self.motor.obtener_area(), gravedad=self.gravedad)
 
     def reiniciar(self):
-        actores.utils.eliminar_a_todos()
-        self.tareas.eliminar_todas()
-        self.tweener.eliminar_todas()
-        self.fisica.reiniciar()
-
-    def actualizar_simuladores(self, evento):
-        self.tweener.update(16)
-        self.tareas.actualizar(1/60.0)
-        if self.fisica:
-            self.fisica.actualizar()
-        self.colisiones.verificar_colisiones()
+        self.gestor_escenas.limpiar()
+        self.gestor_escenas.cambiar_escena(Normal())
 
     def terminar(self):
         self.motor.terminar()
@@ -58,38 +40,42 @@ class Mundo(object):
         "Mantiene en funcionamiento el motor completo."
         self.motor.ejecutar_bucle_principal(self, ignorar_errores)
 
-    def definir_escena(self, escena_nueva):
-        """Cambia la escena que se muestra en pantalla.
-
-        Este método se llama automáticamente desde el módulo
-        de escenas, así que no es buena idea llamarlo desde
-        un juego, es mejor dejar que se llame automáticamente
-        desde la escena."""
-        actores.utils.destruir_a_todos()
-        self.tareas.eliminar_todas()
-        self.tweener.eliminar_todas()
-        self.camara.x = 0
-        self.camara.y = 0
-
-        if self.escena_actual:
-            # Eliminamos cualquier resto de variables (self.*) definidas en la escena.
-            self.escena_actual.__dict__.clear()
-            self.escena_actual.terminar()
-
-        self.escena_actual = escena_nueva
-        escena_nueva.iniciar()
-
     def agregar_tarea_una_vez(self, time_out, function, *params):
-        return self.tareas.una_vez(time_out, function, params)
+        return self.gestor_escenas.escena_actual().tareas.una_vez(time_out, function, params)
 
     def agregar_tarea_siempre(self, time_out, function, *params):
-        return self.tareas.siempre(time_out, function, params)
+        return self.gestor_escenas.escena_actual().tareas.siempre(time_out, function, params)
 
     def agregar_tarea(self, time_out, funcion, *parametros):
-        return self.tareas.condicional(time_out, funcion, parametros)
+        return self.gestor_escenas.escena_actual().tareas.condicional(time_out, funcion, parametros)
 
     def deshabilitar_sonido(self, estado=True):
         self.motor.deshabilitar_sonido(estado)
 
     def deshabilitar_musica(self, estado=True):
         self.motor.deshabilitar_musica(estado)
+
+    def get_tareas_deprecated(self):
+        print "CUIDADO: Acceder al atributo 'tareas' esta desaconsejado."
+        print "\t utilice en su lugar: pilas.utils.agregar_tarea, agregar_tarea_una_vez o agregar_tarea_siempre"
+        return self.gestor_escenas.escena_actual().tareas
+
+    def get_camara_deprecated(self):
+        print "CUIDADO: Acceder al atributo 'camara' esta desaconsejado."
+        print "\t utilice en su lugar: pilas.escena_actual().camara"
+        return self.gestor_escenas.escena_actual().camara
+
+    def get_colisiones_deprecated(self):
+        print "CUIDADO: Acceder al atributo 'colisiones' esta desaconsejado."
+        print "\t utilice en su lugar: pilas.escena_actual().colisiones"
+        return self.gestor_escenas.escena_actual().colisiones
+
+    def get_control_deprecated(self):
+        print "CUIDADO: Acceder al atributo 'control' esta desaconsejado."
+        print "\t utilice en su lugar: pilas.escena_actual().control"
+        return self.gestor_escenas.escena_actual().control
+
+    tareas = property(get_tareas_deprecated)
+    camara = property(get_camara_deprecated)
+    colisiones = property(get_colisiones_deprecated)
+    control = property(get_control_deprecated)

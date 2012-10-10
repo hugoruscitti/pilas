@@ -49,12 +49,12 @@ class Esperando(Comportamiento):
         self.receptor.definir_cuadro(0)
 
     def actualizar(self):
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.receptor.hacer(Caminando())
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.receptor.hacer(Caminando())
 
-        if pilas.mundo.control.arriba:
+        if pilas.escena_actual().control.arriba:
             self.receptor.hacer(DecirOk())
 
 
@@ -71,10 +71,10 @@ class Caminando(Comportamiento):
     def actualizar(self):
         self.avanzar_animacion()
 
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.receptor.x -= VELOCIDAD
             self.receptor.espejado = False
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.receptor.x += VELOCIDAD
             self.receptor.espejado = True
         else:

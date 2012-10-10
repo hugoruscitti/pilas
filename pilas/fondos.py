@@ -8,6 +8,7 @@
 
 import pilas
 
+
 class Fondo(pilas.actores.Actor):
 
     def __init__(self, imagen):
@@ -16,7 +17,7 @@ class Fondo(pilas.actores.Actor):
         self.z = 1000
 
     def _eliminar_el_fondo_de_pantalla_actual(self):
-        fondos = [x for x in pilas.actores.todos if x.es_fondo()]
+        fondos = [x for x in pilas.escena_actual().actores if x.es_fondo()]
         a_eliminar = []
         for f in fondos:
             a_eliminar.append(f)
@@ -100,7 +101,7 @@ class Desplazamiento(Fondo):
         self.posicion_anterior = 0
         self.capas = []
         self.velocidades = {}
-        pilas.eventos.mueve_camara.conectar(self.cuando_mueve_camara)
+        self.escena.mueve_camara.conectar(self.cuando_mueve_camara)
         self.ciclico = True
 
         if ciclico:

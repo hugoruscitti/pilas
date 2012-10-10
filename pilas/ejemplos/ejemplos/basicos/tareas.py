@@ -12,7 +12,7 @@ def girar():
     mono.rotacion = mono.rotacion + 10
     return True
 
-pilas.mundo.tareas.siempre(1/60.0, girar)
+pilas.escena_actual().tareas.siempre(1/30.0, girar)
 
 pilas.avisar("Creando una tarea interminable de girar...")
 pilas.ejecutar()

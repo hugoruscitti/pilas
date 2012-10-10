@@ -12,18 +12,18 @@ from random import random
 class puntuacion:
     p = 0
 
-class Juego(pilas.escenas.Escena):
+class Juego(pilas.escena.Base):
     "Escena que Controla el juego"
 
     def __init__(self, nivel):
+        pilas.escena.Base.__init__(self)
+        self.nivel = nivel
+    
+    def iniciar(self):
         puntuacion.p = 0 
-        self.iniciar_juego(nivel)
-        
-        
+        self.iniciar_juego(self.nivel)
     
     def iniciar_juego(self, nivel):
-
-        pilas.escenas.Escena.__init__(self) 
         pilas.actores.utils.eliminar_a_todos()
         pilas.fondos.Fondo('data/fondo.png')
 
@@ -99,7 +99,7 @@ class Juego(pilas.escenas.Escena):
             self.agregar_puntaje = 100
             self.restar_puntaje = 7
          
-        pilas.eventos.pulsa_tecla_escape.conectar(self.cuando_se_presione_escape)
+        self.pulsa_tecla_escape.conectar(self.cuando_se_presione_escape)
         
         
         self.crear_puntaje()
@@ -132,7 +132,7 @@ class Juego(pilas.escenas.Escena):
     def cuando_se_presione_escape(self, *k, **kv):
         "Regresa al menu principal"
         import escena_menu
-        escena_menu.EscenaMenu()
+        pilas.cambiar_escena(escena_menu.EscenaMenu())
 
 
     def crear_puntaje(self):

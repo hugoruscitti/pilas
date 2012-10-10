@@ -14,7 +14,7 @@ class BaseInterfaz(pilas.actores.Actor):
         pilas.actores.Actor.__init__(self, imagen=imagen, x=x, y=y)
 
         self.tiene_el_foco = False
-        pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
+        self.escena.click_de_mouse.conectar(self.cuando_hace_click)
         
         self._visible = True
         

@@ -28,6 +28,7 @@ setup(
                   'pilas.actores',
                   'pilas.motores',
                   'pilas.demos',
+                  'pilas.escena',
                   'pilas.ejemplos',
                   'pilas.interfaz',
 	              'pilas.video',

@@ -3,13 +3,12 @@ Cómo funciona pilas por dentro
 
 Pilas es un proyecto con una arquitectura de objetos
 grande. Tiene mucha funcionalidad, incluye un
-motor de física, muchos personaje pre-diseñados y soporta (hasta
-el momento) dos motores multimedia opcionales (pygame
-y sfml).
+motor de física, muchos personaje pre-diseñados, eventos, escenas
+y un enlace al motor multimedia Qt.
 
 Mediante este capítulo quisiera explicar a grandes
 rasgos los componentes de pilas. Cómo están estructurados
-los módulos, qué hacen las clases mas importantes.
+los módulos, y qué hacen las clases mas importantes.
 
 El objetivo es orientar a los programadores mas
 avanzados para que puedan investigar pilas
@@ -53,18 +52,20 @@ actualmente no es una prioridad.
 Bibliotecas que usa pilas
 -------------------------
 
-Hay tres grandes bibliotecas que se utilizan
-en pilas:
+Hay tres grandes bibliotecas que se utilizan dentro de pilas:
 
 - Box2D
 - Qt4
-- Pygame
 
 .. image:: images/logos/box2d.png
 
-.. image:: images/logos/pygame.png
-
 .. image:: images/logos/qt-logo.jpg
+
+
+Box2D se utiliza cómo motor de física, mientras que Qt es un
+motor multimedia utilizado para dibujar, reproducir sonidos y
+manejar eventos.
+
 
 Objetos y módulos
 -----------------
@@ -100,9 +101,8 @@ Luego, el ``Motor``, permite que pilas sea un motor
 multimedia portable y multiplaforma. Básicamente
 pilas delega la tarea de dibujar, emitir sonidos y controlar
 eventos a una biblioteca externa. Actualmente esa biblioteca
-puede ser pygame o SFML, y ambas reciben en nombre 'Motor'
-dentro de pilas.
-
+es Qt, pero en versiones anteriores ha sido implementada en pygame y
+sfml.
 
 Ahora que lo he mencionado, veamos con un poco mas
 de profundidad lo que hace cada uno.
@@ -175,24 +175,21 @@ Motores multimedia
 ------------------
 
 Al principio pilas delegaba todo el manejo multimedia a una
-biblioteca llamada
-SFML. Pero esta biblioteca requería que todos los equipos
+biblioteca llamada SFML. Pero esta biblioteca requería que todos los equipos
 en donde funcionan tengan aceleradoras gráficas (al menos con
 soporte OpenGL básico).
 
 Pero como queremos que pilas funcione en la mayor cantidad
 de equipos, incluso en los equipos antiguos de algunas
-escuelas, añadimos soporte alternativo para una biblioteca
-mas accesible llamada pygame.
+escuelas, reemplazamos el soporte multimedia con la biblioteca Qt. Que sabe
+acceder a las funciones de aceleración de gráficos (si están disponibles), o
+brinda una capa de compatibilidad con equipos antiguos.
 
-Entonces, cuanto inicializas pilas tienes la oportunidad
-de seleccionar el motor a utilizar, por ejemplo la
-siguiente sentencia habilita el usuario de la biblioteca
-pygame:
+La función que permite iniciar y seleccionar el motor es ``pilas.iniciar``.
 
 .. code-block:: python
 
-    pilas.iniciar(usar_motor='pygame')
+    pilas.iniciar(usar_motor='qt')
 
 
 Ahora bien, ¿cómo funciona?. Dado que pilas está realizado
@@ -213,13 +210,6 @@ reproducir sonidos, entre tantas otras cosas.
 El objeto mundo no sabe exactamente que motor está utilizando, solo
 tiene una referencia a un motor y delega en él todas las
 tareas multimedia.
-
-La diferencia de funcionamiento radica en cómo está implementado
-el motor. En el caso de SFML, todas las tareas se terminan
-realizando sobre un contexto OpenGL (que es rápido, pero requiere
-un equipo relativamente moderno), y la implementación de motor
-que usa pygame es algo mas lenta, pero funciona en todos
-los equipos: OLPCs, netbook, PC antiguas o nuevas.
 
 Solo puede haber una instancia de motor en funcionamiento, y
 se define cuando se inicia el motor.
@@ -425,8 +415,8 @@ argumentos o detalles:
 
 .. code-block:: python
 
-    click_de_mouse = dispatch.Signal(providing_args=['button', 'x', 'y'])
-    pulsa_tecla = dispatch.Signal(providing_args=['codigo'])
+    click_de_mouse = Evento("click_de_mouse")
+    pulsa_tecla = Evento("pulsa_tecla")
     [ etc...]
 
 Los argumentos indican información adicional del evento, en
@@ -458,8 +448,7 @@ se invoquen con el argumento ``evento`` representando esos detalles:
 
 
 La parte de pilas que se encarga de llamar a los métodos ``emitir``
-es el método ``procesar_y_emitir_eventos`` del
-motor, por ejemplo en el archivo ``motores/motor_sfml.py``.
+es el método ``procesar_y_emitir_eventos`` del motor.
 
 
 

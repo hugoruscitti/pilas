@@ -36,7 +36,7 @@ class TextoInferior(Texto):
         self.fijo = True
 
         if autoeliminar:
-            pilas.mundo.tareas.una_vez(5, self.eliminar)
+            pilas.escena_actual().tareas.una_vez(5, self.eliminar)
 
     def _crear_sombra(self):
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()

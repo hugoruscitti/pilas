@@ -20,7 +20,7 @@ class Camara(object):
 
     @pilas.utils.interpolable
     def _set_x(self, x):
-        pilas.eventos.mueve_camara.emitir(x=x, y=self.y, dx=x-self.x, dy=0)
+        pilas.escena_actual().mueve_camara.emitir(x=x, y=self.y, dx=x-self.x, dy=0)
         pilas.mundo.motor.definir_centro_de_la_camara(x, self.y)
 
     def _get_x(self):
@@ -29,7 +29,7 @@ class Camara(object):
 
     @pilas.utils.interpolable
     def _set_y(self, y):
-        pilas.eventos.mueve_camara.emitir(x=self.x, y=y, dx=0, dy=y-self.y)
+        pilas.escena_actual().mueve_camara.emitir(x=self.x, y=y, dx=0, dy=y-self.y)
         pilas.mundo.motor.definir_centro_de_la_camara(self.x, y)
 
     def _get_y(self):
@@ -46,13 +46,13 @@ class Camara(object):
         Por ejemplo, si la cámara está en posición inicial, esta
         función podría retornar:
 
-            >>> pilas.mundo.camara.obtener_area_visible()
+            >>> pilas.escena_actual().camara.obtener_area_visible()
             (0, 640, 240, -240)
 
         y si movemos la cámara un poco para la derecha:
 
-            >>> pilas.mundo.camara.x = 100
-            >>> pilas.mundo.camara.obtener_area_visible()
+            >>> pilas.escena_actual().camara.x = 100
+            >>> pilas.escena_actual().camara.obtener_area_visible()
             (100, 740, 240, -240)
 
         Es decir, la tupla representa un rectángulo de la forma::
@@ -74,7 +74,7 @@ class Camara(object):
             >>> mi_actor = pilas.actores.Mono(x=0, y=0)
             >>> mi_actor.esta_fuera_de_la_pantalla()
             False
-            >>> pilas.mundo.camara.x == 900
+            >>> pilas.escena_actual().camara.x == 900
             >>> mi_actor.esta_fuera_de_la_pantalla()
             True
         """

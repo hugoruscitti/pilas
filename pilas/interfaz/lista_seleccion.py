@@ -30,6 +30,7 @@ class ListaSeleccion(BaseInterfaz):
 
         pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
         pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click_con_el_mouse)
+
         self.centro = ("centro", "centro")
         self.fijo = True
 

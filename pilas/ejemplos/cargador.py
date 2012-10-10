@@ -14,7 +14,6 @@ import glob
 from PyQt4 import QtGui, QtCore
 
 import syntax
-import buscador
 import pilas
 
 
@@ -41,7 +40,6 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
         self.this_dir = os.path.abspath(os.path.dirname(__file__))
         self.example_dir = os.path.join(self.this_dir, 'ejemplos')
         self._cargar_lista_de_ejemplos()
-        self._cargar_buscador()
         pilas.utils.centrar_ventana(self.main)
 
     def _conectar_signals(self):
@@ -68,11 +66,6 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
             self.cuando_pulsa_boton_ejecutar()
 
         return QtGui.QMainWindow.keyPressEvent(self, event)
-
-    def _cargar_buscador(self):
-        self.locate_widget = buscador.ExampleLocatorWidget(self.ejemplos, self.arbol)
-        self.vlayout_left.addWidget(self.locate_widget)
-        self.locate_widget.connect(self.locate_widget, QtCore.SIGNAL("itemFound(QString)"), self.buscador_resultado_encontrado)
 
     def _cargar_lista_de_ejemplos(self):
         self.ejemplos = {}
@@ -121,13 +114,6 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
         if ruta:
             self._mostrar_codigo_del_ejemplo(ruta)
             self._mostrar_imagen_del_ejemplo(ruta)
-
-    def buscador_resultado_encontrado(self, ruta):
-        if ruta:
-            item = self._obtener_item_desde_ruta(ruta)
-
-            if item:
-                self.arbol.setCurrentItem(item)
 
     def _obtener_item_desde_ruta(self, ruta):
         nombres = ruta.split('/')

@@ -9,11 +9,14 @@ Es una buena referencia a la hora explorar
 en profundidad alguna característica de la biblioteca
 y conocer las posibilidades que ofrece.
 
-.. automodule:: pilas                                                                            
+.. automodule:: pilas
    :members:
 
 .. automodule:: pilas.control
    :members:
+
+.. automodule:: pilas.evento
+   :members: ProxyEventos
 
 .. automodule:: pilas.actores
    :members: Actor, Mono, Ejes, Animado, Animacion, Explosion, Bomba, Pingu, Banana, Texto, Temporizador, Moneda, Pizarra, Pelota, Puntaje, Estrella, Caja, Nave, Disparo, CursorDisparo, Piedra, Menu, Opcion, Tortuga, Mapa, Martian, Boton, EntradaDeTexto, Aceituna, Globo, Dialogo, GloboElegir, Pausa, CursorMano

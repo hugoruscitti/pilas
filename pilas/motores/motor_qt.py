@@ -1,24 +1,21 @@
 # -*- coding: utf-8 -*-
-import sys
-import copy
-import traceback
+# Pilas engine - A video game framework.
+#
+# Copyright 2010 - Hugo Ruscitti
+# License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
+#
+# Website - http://www.pilas-engine.com.ar
 
-from PyQt4 import QtGui
-from PyQt4 import QtCore
+from PyQt4 import QtCore, QtGui, phonon
 from PyQt4.QtCore import Qt
-from PyQt4 import phonon
 from PyQt4.QtOpenGL import QGLWidget
-
-from pilas import fps
-from pilas import imagenes
-from pilas import actores
-from pilas import eventos
-from pilas import utils
-from pilas import depurador
-from pilas import simbolos
-from pilas import colores
+from pilas import actores, colores, depurador, eventos, fps
+from pilas import imagenes, simbolos, utils
+import copy
+import os
 import pilas
-
+import sys
+import traceback
 
 
 class Ventana(QtGui.QMainWindow):
@@ -37,7 +34,7 @@ class Ventana(QtGui.QMainWindow):
 
 class CanvasWidget(QGLWidget):
 
-    def __init__(self, motor, lista_actores, ancho, alto):
+    def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas, permitir_depuracion):
         QGLWidget.__init__(self, None)
         self.painter = QtGui.QPainter()
         self.setMouseTracking(True)
@@ -46,15 +43,20 @@ class CanvasWidget(QGLWidget):
         self.mouse_x = 0
         self.mouse_y = 0
         self.motor = motor
-        self.depurador = depurador
         self.lista_actores = lista_actores
         self.fps = fps.FPS(60, True)
-        self.depurador = depurador.Depurador(motor.obtener_lienzo(), self.fps)
+
+        if permitir_depuracion:
+            self.depurador = depurador.Depurador(motor.obtener_lienzo(), self.fps)
+        else:
+            self.depurador = depurador.DepuradorDeshabilitado()
 
         self.original_width = ancho
         self.original_height = alto
         self.escala = 1
         self.startTimer(1000/100.0)
+
+        self.gestor_escenas = gestor_escenas
 
     def resize_to(self, w, h):
         escala_x = w / float(self.original_width)
@@ -72,8 +74,6 @@ class CanvasWidget(QGLWidget):
 
     def paintEvent(self, event):
         self.painter.begin(self)
-
-
         self.painter.scale(self.escala, self.escala)
 
         self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
@@ -83,16 +83,26 @@ class CanvasWidget(QGLWidget):
         self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
-        for actor in self.lista_actores:
-            try:
-                if not actor.esta_fuera_de_la_pantalla():
-                    actor.dibujar(self.painter)
-            except Exception:
-                print traceback.format_exc()
-                print sys.exc_info()[0]
-                actor.eliminar()
+        actores_a_eliminar = []
 
-            self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
+        if self.gestor_escenas.escena_actual():
+            actores_de_la_escena = self.gestor_escenas.escena_actual().actores
+            for actor in actores_de_la_escena:
+                #if actor._vivo:
+                try:
+                    if not actor.esta_fuera_de_la_pantalla():
+                        actor.dibujar(self.painter)
+                except Exception:
+                    print traceback.format_exc()
+                    print sys.exc_info()[0]
+                    actor.eliminar()
+
+                self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
+                #else:
+                #    actores_a_eliminar.append(actor)
+
+                #for x in actores_a_eliminar:
+                #    actores_de_la_escena.remove(x)
 
         self.depurador.termina_dibujado(self.motor, self.painter)
         self.painter.end()
@@ -110,13 +120,21 @@ class CanvasWidget(QGLWidget):
         for x in range(self.fps.actualizar()):
             if not self.pausa_habilitada:
                 self._actualizar_eventos_y_actores()
+                self._actualizar_escena()
+
+    def _actualizar_escena(self):
+        self.gestor_escenas.actualizar()
 
     def _actualizar_eventos_y_actores(self):
         eventos.actualizar.emitir()
 
-        for actor in self.lista_actores:
-            actor.pre_actualizar()
-            actor.actualizar()
+        try:
+            for actor in self.gestor_escenas.escena_actual().actores:
+                actor.pre_actualizar()
+                actor.actualizar()
+        except Exception:
+            print traceback.format_exc()
+            print sys.exc_info()[0]
 
     def mouseMoveEvent(self, e):
         escala = self.escala
@@ -127,13 +145,16 @@ class CanvasWidget(QGLWidget):
         x = max(min(derecha, x), izquierda)
         y = max(min(arriba, y), abajo)
 
-        eventos.mueve_mouse.emitir(x=x, y=y, dx=dx, dy=dy)
+        self.gestor_escenas.escena_actual().mueve_mouse.emitir(x=x, y=y, dx=dx, dy=dy)
+
         self.mouse_x = x
         self.mouse_y = y
+        self.depurador.cuando_mueve_el_mouse(x, y)
 
     def keyPressEvent(self, event):
         codigo_de_tecla = self._obtener_codigo_de_tecla_normalizado(event.key())
 
+        # Se mantiene este lanzador de eventos por la clase Control
         if event.key() == QtCore.Qt.Key_Escape:
             eventos.pulsa_tecla_escape.emitir()
         if event.key() == QtCore.Qt.Key_P and event.modifiers() == QtCore.Qt.AltModifier:
@@ -142,24 +163,27 @@ class CanvasWidget(QGLWidget):
             self.alternar_pantalla_completa()
 
         eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
+        self.depurador.cuando_pulsa_tecla(codigo_de_tecla, event.text())
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self._obtener_codigo_de_tecla_normalizado(event.key())
+        # Se mantiene este lanzador de eventos por la clase Control
         eventos.suelta_tecla.emitir(codigo=codigo_de_tecla, es_repeticion=event.isAutoRepeat(), texto=event.text())
 
     def wheelEvent(self, e):
-        eventos.mueve_rueda.emitir(delta=e.delta() / 120)
+        self.gestor_escenas.escena_actual().mueve_rueda.emitir(delta=e.delta() / 120)
 
     def mousePressEvent(self, e):
         escala = self.escala
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
-        eventos.click_de_mouse.emitir(x=x, y=y, dx=0, dy=0)
+
+        self.gestor_escenas.escena_actual().click_de_mouse.emitir(x=x, y=y, dx=0, dy=0)
 
     def mouseReleaseEvent(self, e):
         escala = self.escala
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
-        eventos.termina_click.emitir(x=x, y=y, dx=0, dy=0)
 
+        self.gestor_escenas.escena_actual().termina_click.emitir(x=x, y=y, dx=0, dy=0)
 
     def _obtener_codigo_de_tecla_normalizado(self, tecla_qt):
         teclas = {
@@ -249,7 +273,6 @@ class CanvasWidget(QGLWidget):
 
 class CanvasWidgetSugar(CanvasWidget):
 
-
     def _iniciar_aplicacion(self):
         self.app = None
 
@@ -314,13 +337,13 @@ class Imagen(object):
 
         if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
             try:
-                self._imagen = self.load_jpeg(ruta)
+                self._imagen = self.cargar_jpeg(ruta)
             except:
                 self._imagen = QtGui.QPixmap(ruta)
         else:
             self._imagen = QtGui.QPixmap(ruta)
 
-    def load_jpeg(self, ruta):
+    def cargar_jpeg(self, ruta):
         from PIL import Image
         import StringIO
 
@@ -507,7 +530,6 @@ class Lienzo(Imagen):
             nuevo_x, nuevo_y = p
             self.linea(motor, x, y, nuevo_x, nuevo_y, color, grosor)
             x, y = nuevo_x, nuevo_y
-
 
     def cruz(self, painter, x, y, color=colores.negro, grosor=1):
         t = 3
@@ -705,10 +727,14 @@ class Motor(object):
     el dibujado en pantalla si la tarjeta de video lo soporta.
     """
 
-    def __init__(self, usar_motor):
-        self._iniciar_aplicacion()
+    def __init__(self, usar_motor, permitir_depuracion):
+        if usar_motor not in ['qtwidget', 'qtsugar']:
+            self._iniciar_aplicacion()
+
         self.usar_motor = usar_motor
+
         self.nombre = usar_motor
+        self.permitir_depuracion = permitir_depuracion
 
         self._inicializar_variables()
         self._inicializar_sistema_de_audio()
@@ -726,17 +752,19 @@ class Motor(object):
         self.audio = phonon.Phonon.AudioOutput(phonon.Phonon.MusicCategory)
         self.path = phonon.Phonon.createPath(self.media, self.audio)
 
+    def terminar(self):
+        self.ventana.close()
 
-    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa):
+    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas):
         self.ventana = Ventana()
         self.ventana.resize(ancho, alto)
 
         if self.usar_motor in ['qtwidget', 'qtsugar']:
             mostrar_ventana = False
-            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto)
+            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion)
         else:
             mostrar_ventana = True
-            self.canvas = CanvasWidget(self, actores.todos, ancho, alto)
+            self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion)
 
         self.ventana.set_canvas(self.canvas)
         self.canvas.setFocus()

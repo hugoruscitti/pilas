@@ -12,9 +12,9 @@ class DibujoDeLineas:
         self.mouse_y = 0
         self.boton_pulsado = False
         self.pizarra = pilas.actores.Pizarra()
-        pilas.eventos.click_de_mouse.conectar(self.cuando_pulsa_el_boton)
-        pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
-        pilas.eventos.termina_click.conectar(self.cuando_deja_de_pulsar_el_boton)
+        pilas.escena_actual().click_de_mouse.conectar(self.cuando_pulsa_el_boton)
+        pilas.escena_actual().mueve_mouse.conectar(self.cuando_mueve_el_mouse)
+        pilas.escena_actual().termina_click.conectar(self.cuando_deja_de_pulsar_el_boton)
 
     def cuando_pulsa_el_boton(self, evento):
         self.boton_pulsado = True

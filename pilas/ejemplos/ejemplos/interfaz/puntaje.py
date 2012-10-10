@@ -17,7 +17,7 @@ texto.y = -2
 def sumar_5_al_clickear(evento):
     puntaje.aumentar(5)
     
-pilas.eventos.click_de_mouse.conectar(sumar_5_al_clickear)
+pilas.escena_actual().click_de_mouse.conectar(sumar_5_al_clickear)
 pilas.avisar('Clickea la pantalla y agregaras 5 puntos al puntaje')
 
 pilas.ejecutar()

@@ -5,5 +5,5 @@ sys.path.insert(0, "..")
 import pilas
 
 pilas.iniciar()
-pilas.demos.piezas.Piezas()
+pilas.cambiar_escena(pilas.demos.piezas.Piezas())
 pilas.ejecutar()

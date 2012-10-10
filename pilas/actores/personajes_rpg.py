@@ -51,13 +51,13 @@ class Esperando(Comportamiento):
             self.receptor.definir_cuadro(10)
 
     def actualizar(self):
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.receptor.hacer(Caminando())
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.receptor.hacer(Caminando())
-        elif pilas.mundo.control.arriba:
+        elif pilas.escena_actual().control.arriba:
             self.receptor.hacer(Caminando())
-        elif pilas.mundo.control.abajo:
+        elif pilas.escena_actual().control.abajo:
             self.receptor.hacer(Caminando())
 
 class Caminando(Esperando):
@@ -81,16 +81,16 @@ class Caminando(Esperando):
         dx = 0
         dy = 0
 
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             dx = self.receptor.velocidad * -1
             self.receptor.direccion = pilas.actores.personajes_rpg.OESTE            
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             dx = self.receptor.velocidad
             self.receptor.direccion = pilas.actores.personajes_rpg.ESTE
-        elif pilas.mundo.control.arriba:
+        elif pilas.escena_actual().control.arriba:
             dy = self.receptor.velocidad
             self.receptor.direccion = pilas.actores.personajes_rpg.NORTE
-        elif pilas.mundo.control.abajo:
+        elif pilas.escena_actual().control.abajo:
             dy = self.receptor.velocidad * -1
             self.receptor.direccion = pilas.actores.personajes_rpg.SUR
         else:

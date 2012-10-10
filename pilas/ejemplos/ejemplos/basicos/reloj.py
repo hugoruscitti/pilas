@@ -2,7 +2,7 @@
 import pilas
 
 pilas.iniciar(titulo='Reloj')
-paso_un_segundo = pilas.eventos.Evento(['x', 'y'])
+paso_un_segundo = pilas.evento.Evento(['x', 'y'])
 
 
 class RelojDigital(pilas.actores.Texto):
@@ -40,7 +40,7 @@ paso_un_segundo.conectar(reloj2.avanzar_segundero)
 def funcion_pasa_un_segundo():
     paso_un_segundo.emitir(argumento1=1, argumento2=0)
 
-pilas.mundo.tareas.siempre(1, funcion_pasa_un_segundo)
+pilas.escena_actual().tareas.siempre(1, funcion_pasa_un_segundo)
 
 pilas.avisar("Dos actores asociados al mismo evento personalizado.")
 pilas.ejecutar()
