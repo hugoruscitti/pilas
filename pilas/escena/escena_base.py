@@ -45,7 +45,7 @@ class Base(object):
         self.pulsa_tecla = Evento('pulsa_tecla')                 # ['codigo', 'texto']
         self.suelta_tecla = Evento('suelta_tecla')               # ['codigo', 'texto']
         self.pulsa_tecla_escape = Evento('pulsa_tecla_escape')   # []
-        self.cuando_actualiza = Evento('actualizar')                   # []
+        self.actualizar = Evento('actualizar')                   # []
         self.log = Evento('log')                                 # ['data']
 
         self.control = pilas.control.Control(self)
@@ -95,17 +95,6 @@ class Base(object):
         Al efectuar esta instrucción el gestor llamará primero a nuestro
         método ::reanudar:: antes de cambiar a la escena que habiamos
         almacenado.
-        """
-        pass
-
-    def actualizar(self):
-        """ Este método es llamado una vez por frame.
-        Lo puedes utilizar para implementar parte de la logica del juego.
-        Por ejemplo:
-
-        >>>    def actualizar(self):
-        >>>        if (self.mi_actor.vidas == 0):
-        >>>            pilas.cambiar_escena(Game_Over())
         """
         pass
 

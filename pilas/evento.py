@@ -185,7 +185,7 @@ class ProxyEventos(object):
 
         >>> def cuando_hace_click(evento):
         ...     print evento.x
-        ...     print evento.x
+        ...     print evento.y
         ...
         >>> pilas.eventos.click_de_mouse.conectar(cuando_hace_click)
 
@@ -269,9 +269,9 @@ class ProxyEventos(object):
         return pilas.escena_actual().pulsa_tecla_escape
 
     @property
-    def cuando_actualiza(self):
+    def actualizar(self):
         """Se invoca regularmente, 60 veces por segundo."""
-        return pilas.escena_actual().cuando_actualiza
+        return pilas.escena_actual().actualizar
 
     @property
     def log(self):
