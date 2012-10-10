@@ -185,7 +185,7 @@ class ProxyEventos(object):
 
         >>> def cuando_hace_click(evento):
         ...     print evento.x
-        ...     print evento.x
+        ...     print evento.y
         ...
         >>> pilas.eventos.click_de_mouse.conectar(cuando_hace_click)
 
