@@ -72,7 +72,7 @@ nuevos actores y lo necesario para iniciar tu escena.
         
 Aquí un ejemplo de como debería ser el cambio.
 
-** Escena antigua **
+**Escena antigua**
 
 .. code-block:: python
 
@@ -85,7 +85,7 @@ Aquí un ejemplo de como debería ser el cambio.
             mono = pilas.actores.Mono()
             
             
-** Escena nueva ***
+**Escena nueva**
 
 .. code-block:: python
 
@@ -113,6 +113,29 @@ Debes sustituir esta llamada a la nueva escena por esta otra forma:
 .. code-block:: python
     
     pilas.cambiar_escena(escena_juego.Escena_Juego())
+
+
+Eventos
+-------
+
+Ahora los eventos son individuales por cada escena.
+Si quieres conectar a algún evento, como `mueve_mouse` o `pulsa_tecla`, puedes
+hacerlo de cualquiera de las dos siguientes formas:
+
+.. code-block:: python
+    
+    pilas.eventos.pulsa_tecla.conectar(mi_metodo())
+
+    # Otra forma de conectar    
+    pilas.escena_actual().pulsa_tecla.conectar(mi_metodo())
+    
+Ambas formas conectan a los eventos de la escena actualmente activa.
+
+Si deseas crear tu propio evento, lo deberás hacer de la siguiente forma:
+
+.. code-block:: python
+    
+    pilas.eventos.mi_evento_personalizado = pilas.evento.Evento("mi_evento_personalizado")
 
 
 Fin de la migración
