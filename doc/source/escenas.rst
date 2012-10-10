@@ -114,7 +114,7 @@ estos tres metodos:
 Método sobreescribibles
 -------------------------
 
-Dentro de cada escena existen 3 métodos que pueden ser sobreescritos.
+Dentro de cada escena existen 2 métodos que pueden ser sobreescritos.
 
 .. code-block:: python
 
@@ -122,11 +122,7 @@ Dentro de cada escena existen 3 métodos que pueden ser sobreescritos.
         pass
 
     def reanudar(self):
-        pass
-
-    def actualizar(self):
-        pass
-        
+        pass       
         
 Si quieres tener el control de cuando una escena se queda apilada, deberás 
 sobreescritir el método:
@@ -142,13 +138,4 @@ deberás sobreescribir el método:
 .. code-block:: python
 
     def reanudar(self):
-        pass
-
-Y por último, una vez por frame, el motor de pilas llamará al método actualizar.
-Puede ser útil sobreescribirlo para, por ejemplo, controlar si le quedan vidas
-a un jugador y debemos acabar el juego.
-
-.. code-block:: python
-
-    def actualizar(self):
         pass
