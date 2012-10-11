@@ -199,6 +199,7 @@ class ProxyEventos(object):
         :param y: Posición vertical del mouse.
         :param dx: Posición horizontal relativa del mouse.
         :param dy: Posición vertical relativa del mouse.
+        :param boton: Botón del mouse que se pulsó (1 - Izquierdo, 2 - Derecho, 4 - Central)
         """
         return pilas.escena_actual().click_de_mouse
 
@@ -232,6 +233,7 @@ class ProxyEventos(object):
         :param y: Posición vertical del mouse.
         :param dx: Posición horizontal relativa del mouse.
         :param dy: Posición vertical relativa del mouse.
+        :param boton: Botón del mouse que se pulsó (1 - Izquierdo, 2 - Derecho, 4 - Central)
         """
         return pilas.escena_actual().termina_click
 

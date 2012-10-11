@@ -176,14 +176,16 @@ class CanvasWidget(QGLWidget):
     def mousePressEvent(self, e):
         escala = self.escala
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
+        boton_pulsado = e.button()
 
-        self.gestor_escenas.escena_actual().click_de_mouse.emitir(x=x, y=y, dx=0, dy=0)
+        self.gestor_escenas.escena_actual().click_de_mouse.emitir(x=x, y=y, dx=0, dy=0, boton=boton_pulsado)
 
     def mouseReleaseEvent(self, e):
         escala = self.escala
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
+        boton_pulsado = e.button()
 
-        self.gestor_escenas.escena_actual().termina_click.emitir(x=x, y=y, dx=0, dy=0)
+        self.gestor_escenas.escena_actual().termina_click.emitir(x=x, y=y, dx=0, dy=0, boton=boton_pulsado)
 
     def _obtener_codigo_de_tecla_normalizado(self, tecla_qt):
         teclas = {

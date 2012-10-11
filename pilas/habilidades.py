@@ -103,8 +103,9 @@ class SeguirClicks(Habilidad):
         pilas.escena_actual().click_de_mouse.conectar(self.moverse_a_este_punto)
 
     def moverse_a_este_punto(self, evento):
-        self.receptor.x = [evento.x], 0.5
-        self.receptor.y = [evento.y], 0.5
+        if (evento.boton == 1):
+            self.receptor.x = [evento.x], 0.5
+            self.receptor.y = [evento.y], 0.5
 
 
 class Arrastrable(Habilidad):
@@ -124,10 +125,11 @@ class Arrastrable(Habilidad):
 
     def cuando_intenta_arrastrar(self, evento):
         "Intenta mover el objeto con el mouse cuando se pulsa sobre el."
-        if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
-            pilas.escena_actual().termina_click.conectar(self.cuando_termina_de_arrastrar)
-            pilas.escena_actual().mueve_mouse.conectar(self.cuando_arrastra, id='cuando_arrastra')
-            self.comienza_a_arrastrar()
+        if (evento.boton == 1):
+            if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
+                pilas.escena_actual().termina_click.conectar(self.cuando_termina_de_arrastrar)
+                pilas.escena_actual().mueve_mouse.conectar(self.cuando_arrastra, id='cuando_arrastra')
+                self.comienza_a_arrastrar()
 
     def cuando_arrastra(self, evento):
         "Arrastra el actor a la posicion indicada por el puntero del mouse."
