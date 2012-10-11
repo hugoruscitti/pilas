@@ -40,10 +40,6 @@ class Colisiones:
                 except Exception as e:
                     list.remove(grupo_a, a)
                     raise e
-
-        if len(grupo_a) == 0 or len(grupo_b) == 0:
-            self.colisiones.remove(tupla)
-
         
     def verificar_colisiones_fisicas(self, id_actor_a, id_actor_b):
         for x in self.colisiones:
@@ -83,9 +79,6 @@ class Colisiones:
                 except Exception as e:
                     list.remove(grupo_a, a)
                     raise e
-
-        if len(grupo_a) == 0 or len(grupo_b) == 0:
-            self.colisiones.remove(tupla)
 
 
     def _es_objeto_fisico_con_actor_asociado(self, objeto):
