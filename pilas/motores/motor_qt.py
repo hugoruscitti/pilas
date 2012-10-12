@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from PyQt4 import QtCore, QtGui, phonon
+from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import Qt
 from PyQt4.QtOpenGL import QGLWidget
 from pilas import actores, colores, depurador, eventos, fps
@@ -16,6 +16,8 @@ import os
 import pilas
 import sys
 import traceback
+import gst
+import pygst
 
 
 class Ventana(QtGui.QMainWindow):
@@ -696,21 +698,19 @@ class Actor(BaseActor):
 class Sonido:
     deshabilitado = False
 
-    def __init__(self, media, ruta):
-        self.media = media
+    def __init__(self, ruta):
         self.ruta = ruta
+        self.sonido = gst.element_factory_make("playbin", "player")
+        
+        self.sonido.set_property('uri','file://'+ruta)
 
-        self.source = phonon.Phonon.MediaSource(ruta)
-        self.sonido = phonon.Phonon.createPlayer(phonon.Phonon.GameCategory, self.source)
-
-    def reproducir(self):
+    def reproducir(self):        
         if not self.deshabilitado:
-            self.sonido.seek(0)
-            self.sonido.play()
+            self.sonido.set_state(gst.STATE_NULL)
+            self.sonido.set_state(gst.STATE_PLAYING)
 
     def detener(self):
-        self.sonido.stop()
-
+        self.sonido.set_state(gst.STATE_NULL)
 
 class Musica(Sonido):
 
@@ -750,9 +750,7 @@ class Motor(object):
         self.camara_y = 0
 
     def _inicializar_sistema_de_audio(self):
-        self.media = phonon.Phonon.MediaObject()
-        self.audio = phonon.Phonon.AudioOutput(phonon.Phonon.MusicCategory)
-        self.path = phonon.Phonon.createPath(self.media, self.audio)
+        pass
 
     def terminar(self):
         self.ventana.close()
@@ -847,7 +845,7 @@ class Motor(object):
         return Grilla(ruta, columnas, filas)
 
     def cargar_sonido(self, ruta):
-        return Sonido(self.media, ruta)
+        return Sonido(ruta)
 
     def cargar_musica(self, ruta):
         return Musica(self.media, ruta)
