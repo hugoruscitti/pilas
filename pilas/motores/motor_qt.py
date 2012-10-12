@@ -698,9 +698,9 @@ class Actor(BaseActor):
 class Sonido:
     deshabilitado = False
 
-    def __init__(self, ruta):
+    def __init__(self, player, ruta):
         self.ruta = ruta
-        self.sonido = gst.element_factory_make("playbin", "player")
+        self.sonido =  player
         
         self.sonido.set_property('uri','file://'+ruta)
 
@@ -750,7 +750,7 @@ class Motor(object):
         self.camara_y = 0
 
     def _inicializar_sistema_de_audio(self):
-        pass
+        self.player = gst.element_factory_make("playbin", "player")
 
     def terminar(self):
         self.ventana.close()
@@ -845,10 +845,10 @@ class Motor(object):
         return Grilla(ruta, columnas, filas)
 
     def cargar_sonido(self, ruta):
-        return Sonido(ruta)
+        return Sonido(self.player, ruta)
 
     def cargar_musica(self, ruta):
-        return Musica(self.media, ruta)
+        return Musica(self.player, ruta)
 
     def deshabilitar_sonido(self, estado=True):
         Sonido.deshabilitado = estado
