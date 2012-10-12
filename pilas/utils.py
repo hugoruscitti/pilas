@@ -265,3 +265,11 @@ def imprimir_todos_los_eventos():
             print "Evento:", attributo.nombre
             attributo.imprimir_funciones_conectadas()
             print ""
+
+def habilitar_depuracion():
+    """Permite habilitar un breakpoint para depuracion una vez inicializado pilas."""
+    from PyQt4.QtCore import pyqtRemoveInputHook
+    from pdb import set_trace
+    pyqtRemoveInputHook()
+    set_trace()
+
