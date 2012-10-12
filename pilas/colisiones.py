@@ -30,17 +30,17 @@ class Colisiones:
                         funcion_a_llamar(a, b)
 
                     # verifica si alguno de los dos objetos muere en la colision.
-                    if a not in pilas.actores.todos:
+                    if a not in pilas.escena_actual().actores:
                         if a in grupo_a:
                             list.remove(grupo_a, a)
 
-                    if b not in pilas.actores.todos:
+                    if b not in pilas.escena_actual().actores:
                         if b in grupo_b:
                             list.remove(grupo_b, b)
                 except Exception as e:
                     list.remove(grupo_a, a)
                     raise e
-
+        
     def verificar_colisiones_fisicas(self, id_actor_a, id_actor_b):
         for x in self.colisiones:
             self._verificar_colisiones_fisicas_en_tupla(x, id_actor_a, id_actor_b)
@@ -67,12 +67,12 @@ class Colisiones:
 
                         # verifica si alguno de los dos objetos muere en la colision.
                         if (self._es_objeto_fisico_con_actor_asociado(a)):
-                            if a not in pilas.actores.todos:
+                            if a not in pilas.escena_actual().actores:
                                 if a in grupo_a:
                                     list.remove(grupo_a, a)
 
                         if (self._es_objeto_fisico_con_actor_asociado(b)):
-                            if b not in pilas.actores.todos:
+                            if b not in pilas.escena_actual().actores:
                                 if b in grupo_b:
                                     list.remove(grupo_b, b)
 
@@ -80,7 +80,10 @@ class Colisiones:
                     list.remove(grupo_a, a)
                     raise e
 
+
     def _es_objeto_fisico_con_actor_asociado(self, objeto):
+        # Comprobamos si el objeto tiene la propiedad "figura" establecida.
+        # Esta propiedad se establece en la Habilidad de Imitar.
         return hasattr(objeto, 'figura')
 
     def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
@@ -93,6 +96,32 @@ class Colisiones:
             grupo_b = [grupo_b]
 
         self.colisiones.append((grupo_a, grupo_b, funcion_a_llamar))
+
+    def eliminar_colisiones_con_actor(self, actor):
+
+        for x in self.colisiones:
+
+            grupo_a = x[0]
+            grupo_b = x[1]
+            fucion_a_llamar = x[2]
+
+            if actor in grupo_a:
+                # Si solo estaba el actor en este grupo eliminamos la colision.
+                if len(grupo_a) == 1:
+                    self.colisiones.remove(x)
+                else:
+                    # Si hay mas de un actore eliminamos el actor de la lista.
+                    grupo_a.remove(x)
+                break
+
+            if actor in grupo_b:
+                # Si solo estaba el actor en este grupo eliminamos la colision.
+                if len(grupo_b) == 1:
+                    self.colisiones.remove(x)
+                else:
+                    # Si hay mas de un actore eliminamos el actor de la lista.
+                    grupo_b.remove(x)
+                break
 
     def obtener_colisiones(self, actor, grupo_de_actores):
         "Retorna una lista de los actores que colisionan con uno en particular."

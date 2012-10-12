@@ -51,7 +51,8 @@ class Fisica(object):
 
     def __init__(self, area, gravedad):
         self.mundo = box2d.b2World(gravedad, False)
-        self.mundo.contactListener = ObjetosContactListener()
+        self.objetosContactListener = ObjetosContactListener()
+        self.mundo.contactListener = self.objetosContactListener
         self.mundo.continuousPhysics = False
 
         self.area = area
@@ -60,13 +61,16 @@ class Fisica(object):
         self.constante_mouse = None
         self.crear_bordes_del_escenario()
 
+        self.velocidad = 1.0
+        self.timeStep = self.velocidad/120.0
+
     def crear_bordes_del_escenario(self):
         self.crear_techo(self.area)
         self.crear_suelo(self.area)
         self.crear_paredes(self.area)
 
     def reiniciar(self):
-        lista = list(self.mundo.bodyList)
+        lista = list(self.mundo.bodies)
 
         for x in lista:
             self.mundo.DestroyBody(x)
@@ -90,9 +94,17 @@ class Fisica(object):
 
     def actualizar(self, velocidad=1.0):
         if self.mundo:
-            self.mundo.Step(velocidad/120.0, 6, 3)
+            self.mundo.Step(self.timeStep, 6, 3)
             self._procesar_figuras_a_eliminar()
             self.mundo.ClearForces()
+
+    def pausar_mundo(self):
+        if self.mundo:
+            self.timeStep = 0
+
+    def reanudar_mundo(self):
+        if self.mundo:
+            self.timeStep = self.velocidad/120.0
 
     def _procesar_figuras_a_eliminar(self):
         "Elimina las figuras que han sido marcadas para quitar."
@@ -123,10 +135,10 @@ class Fisica(object):
 
                 if isinstance(shape, box2d.b2PolygonShape):
                     vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
-                    vertices = [pilas.mundo.camara.desplazar(v) for v in vertices]
+                    vertices = [pilas.escena_actual().camara.desplazar(v) for v in vertices]
                     lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
                 elif isinstance(shape, box2d.b2CircleShape):
-                    (x, y) = pilas.mundo.camara.desplazar(cuerpo.transform * shape.pos * PPM)
+                    (x, y) = pilas.escena_actual().camara.desplazar(cuerpo.transform * shape.pos * PPM)
 
                     lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.rojo, grosor=grosor)
                 else:
@@ -150,12 +162,12 @@ class Fisica(object):
 
                     for v in figura.vertices:
                         pt = box2d.b2Mul(xform, v)
-                        vertices.append((pt.x - pilas.mundo.camara.x, pt.y - pilas.mundo.camara.y))
+                        vertices.append((pt.x - pilas.escena_actual().camara.x, pt.y - pilas.escena_actual().camara.y))
 
                     lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
 
                 elif tipo_de_figura == box2d.e_circleShape:
-                    lienzo.circulo(motor, cuerpo.position.x - pilas.mundo.camara.x, cuerpo.position.y - pilas.mundo.camara.y, figura.radius, pilas.colores.rojo, grosor=grosor)
+                    lienzo.circulo(motor, cuerpo.position.x - pilas.escena_actual().camara.x, cuerpo.position.y - pilas.escena_actual().camara.y, figura.radius, pilas.colores.rojo, grosor=grosor)
                 else:
                     print "no puedo identificar el tipo de figura."
         """
@@ -246,7 +258,7 @@ class Fisica(object):
 
 class FisicaDeshabilitada(object):
 
-    def __init__(self, area, gravedad=(0, -90)):
+    def __init__(self, area, gravedad=None):
         pass
 
     def actualizar(self):
@@ -291,7 +303,7 @@ class Figura(object):
 
     def impulsar(self, dx, dy):
         # TODO: convertir los valores dx y dy a metros.
-        self._cuerpo.ApplyImpulse((dx, dy), self._cuerpo.GetWorldCenter())
+        self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0))
 
     def obtener_velocidad_lineal(self):
         # TODO: convertir a pixels
@@ -319,7 +331,7 @@ class Figura(object):
 
     def eliminar(self):
         """Quita una figura de la simulación."""
-        pilas.mundo.fisica.eliminar_figura(self._cuerpo)
+        pilas.escena_actual().fisica.eliminar_figura(self._cuerpo)
 
     x = property(obtener_x, definir_x, doc="define la posición horizontal.")
     y = property(obtener_y, definir_y, doc="define la posición vertical.")
@@ -353,7 +365,7 @@ class Circulo(Figura):
         radio = convertir_a_metros(radio)
 
         if not fisica:
-            fisica = pilas.mundo.fisica
+            fisica = pilas.escena_actual().fisica
 
         if not dinamica:
             densidad = 0
@@ -364,6 +376,12 @@ class Circulo(Figura):
                                      fixedRotation=sin_rotacion,
                                      friction=friccion,
                                      restitution=restitucion)
+
+        # Agregamos un identificador para controlarlo posteriormente en las
+        # colisiones.
+        userData = { 'id' : self.id }
+        fixture.userData = userData
+
         if dinamica:
             self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
@@ -393,7 +411,7 @@ class Rectangulo(Figura):
         alto = convertir_a_metros(alto)
 
         if not fisica:
-            fisica = pilas.mundo.fisica
+            fisica = pilas.escena_actual().fisica
 
         if not dinamica:
             densidad = 0
@@ -404,6 +422,11 @@ class Rectangulo(Figura):
                                      fixedRotation=sin_rotacion,
                                      friction=friccion,
                                      restitution=restitucion)
+
+        # Agregamos un identificador para controlarlo posteriormente en las
+        # colisiones.
+        userData = { 'id' : self.id }
+        fixture.userData = userData
 
         if dinamica:
             self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
@@ -464,7 +487,7 @@ class Poligono(Figura):
         Figura.__init__(self)
 
         if not fisica:
-            fisica = pilas.mundo.fisica
+            fisica = pilas.escena_actual().fisica
 
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=puntos[0]
@@ -473,8 +496,11 @@ class Poligono(Figura):
 
         body = fisica.crear_cuerpo(bodyDef)
 
+        # Agregamos un identificador para controlarlo posteriormente en las
+        # colisiones.
         userData = { 'id' : self.id }
-        #bodyDef.userData = userData
+        fixture.userData = userData
+
         # Create the Body
         if not dinamica:
             densidad = 0
@@ -506,10 +532,11 @@ class Poligono(Figura):
 class ConstanteDeMovimiento():
 
     def __init__(self, figura):
-        mundo = pilas.mundo.fisica.mundo
+        mundo = pilas.escena_actual().fisica.mundo
         punto_captura = convertir_a_metros(figura.x), convertir_a_metros(figura.y)
-
-        self.constante = mundo.CreateMouseJoint(bodyA=mundo.CreateBody(),
+        self.cuerpo_enlazado = mundo.CreateBody()
+        self.figura_cuerpo = figura
+        self.constante = mundo.CreateMouseJoint(bodyA=self.cuerpo_enlazado,
                 bodyB=figura._cuerpo,
                 target=punto_captura,
                 maxForce=1000.0*figura._cuerpo.mass)
@@ -520,7 +547,10 @@ class ConstanteDeMovimiento():
         self.constante.target = (convertir_a_metros(x), convertir_a_metros(y))
 
     def eliminar(self):
-        pilas.mundo.fisica.mundo.DestroyJoint(self.constante)
+        # Si se intenta destruir un Joint de un cuerpo que ya no existe, se cierra
+        # la aplicación.
+        #pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
+        pilas.escena_actual().fisica.mundo.DestroyBody(self.cuerpo_enlazado)
 
 class ConstanteDeDistancia():
     """Representa una distancia fija entre dos figuras.
@@ -539,7 +569,7 @@ class ConstanteDeDistancia():
 
     def __init__(self, figura_1, figura_2, fisica=None, con_colision=True):
         if not fisica:
-            fisica = pilas.mundo.fisica
+            fisica = pilas.escena_actual().fisica
 
         if not isinstance(figura_1, Figura) or not isinstance(figura_2, Figura):
             raise Exception("Las dos figuras tienen que ser objetos de la clase Figura.")
@@ -550,28 +580,26 @@ class ConstanteDeDistancia():
         self.constante = fisica.mundo.CreateJoint(constante)
 
     def eliminar(self):
-        pilas.mundo.fisica.mundo.DestroyJoint(self.constante_mouse)
+        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante_mouse)
 
 def definir_gravedad(x, y):
-    pilas.mundo.fisica.mundo.gravity = (x, y)
+    pilas.escena_actual().fisica.mundo.gravity = (x, y)
 
 class ObjetosContactListener(contact_listener):
 
     def __init__(self):
         box2d.b2ContactListener.__init__(self)
 
-    def Add(self, objetos_colisionados):
-        if (not (objetos_colisionados.shape1.GetUserData() == None)) and (not (objetos_colisionados.shape2.GetUserData() == None)):
-            pilas.mundo.colisiones.verificar_colisiones_fisicas(objetos_colisionados.shape1.GetUserData()['id'], objetos_colisionados.shape2.GetUserData()['id'])
+    def BeginContact(self, *args, **kwargs):
+        """
+        BeginContact(self, b2Contact contact)
 
-    def Persist(self, *args):
-        pass
+        Called when two fixtures begin to touch.
+        """
+        objeto_colisionado_1 = args[0].fixtureA
+        objeto_colisionado_2 = args[0].fixtureB
 
-
-    def Remove(self, *args):
-        pass
-
-
-    def Result(self, *args):
-        pass
+        if (not objeto_colisionado_1.userData == None) and (not objeto_colisionado_2.userData == None):
+            pilas.escena_actual().colisiones.verificar_colisiones_fisicas(objeto_colisionado_1.userData['id'],
+                                                                          objeto_colisionado_2.userData['id'])
 

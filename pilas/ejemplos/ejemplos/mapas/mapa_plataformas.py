@@ -12,7 +12,7 @@ class DistanciaAlSuelo(pilas.actores.Actor):
         self.distancia = 100
         self.pizarra = pilas.imagenes.cargar_superficie(640, 480)
         self.imagen = self.pizarra
-        pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
+        pilas.escena_actual().mueve_mouse.conectar(self.cuando_mueve_el_mouse)
         self.mapa = mapa
 
     def cuando_mueve_el_mouse(self, evento):

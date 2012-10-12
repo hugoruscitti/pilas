@@ -22,7 +22,7 @@ class Selector(BaseInterfaz):
         self.funcion_de_respuesta = None
 
         self.deseleccionar()
-        pilas.eventos.click_de_mouse.conectar(self.detection_click_mouse)
+        self.escena.click_de_mouse.conectar(self.detection_click_mouse)
         self.fijo = True
 
     def _cargar_imagenes(self):

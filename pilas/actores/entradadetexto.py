@@ -22,7 +22,7 @@ class EntradaDeTexto(Actor):
         self.limite = limite
         imagen = pilas.imagenes.cargar_superficie(640, 480)
         Actor.__init__(self, imagen)
-        pilas.eventos.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
+        self.escena.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
         self._actualizar_imagen()
         
         if cursor_intermitente:

@@ -15,7 +15,7 @@ def crear_grupo(*k):
     return pilas.grupos.Grupo(k)
 
 def definir_gravedad(x, y):
-    pilas.mundo.fisica.definir_gravedad(x, y)
+    pilas.escena_actual().fisica.definir_gravedad(x, y)
 
 def leer(texto):
     # TODO: usar speak binding en lugar de subprocess.

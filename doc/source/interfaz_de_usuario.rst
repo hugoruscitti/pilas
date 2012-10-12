@@ -43,6 +43,13 @@ Todos lo elementos de la interfaz comparten una serie de propiedades como:
    
     entrada.mostrar()
 
+:obtener_foco: Establece el control como activo.
+
+.. code-block:: python
+   
+    entrada.obtener_foco()
+
+
 
 Deslizador
 ----------

@@ -12,10 +12,10 @@ class Patito(pilas.actores.Actor):
         self.imagen = "patito.png"
 
     def actualizar(self):
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.x -= 5
             self.espejado = True
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.x += 5
             self.espejado = False
 

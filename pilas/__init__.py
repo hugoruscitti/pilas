@@ -13,17 +13,18 @@ import sys
 import utils
 from mundo import Mundo
 import actores
+import escena
+import escenas
 import fondos
 import habilidades
-import eventos
 import sonidos
 import musica
 import colores
 import demos
 import atajos
-import escenas
 import interfaz
 import interprete
+from pilas.escena import Normal
 
 # Permite cerrar el programa usando CTRL+C
 import signal
@@ -42,7 +43,8 @@ para iniciar y ejecutar la biblioteca.
 """
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
-            rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False):
+            rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False,
+            permitir_depuracion=True):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -62,17 +64,18 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :modo: si se utiliza modo interactivo o no.
     :gravedad: el vector de aceleracion para la simulacion de fisica.
     :pantalla_completa: si debe usar pantalla completa o no.
+    :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12
 
     """
 
     global mundo
 
     if not esta_inicializada():
-        motor = _crear_motor(usar_motor)
+        motor = _crear_motor(usar_motor, permitir_depuracion)
 
         if motor:
             mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
-            escenas.Normal(colores.grisclaro)
+            mundo.gestor_escenas.cambiar_escena(Normal())
 
             if _usa_interprete_lanas():
                 mundo.motor.ventana.show()
@@ -88,7 +91,8 @@ def esta_inicializada():
 
 
 def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas',
-            rendimiento=60, modo='detectar', gravedad=(0, -90), imagen="asistente.png"):
+            rendimiento=60, modo='detectar', gravedad=(0, -90), imagen="asistente.png",
+            permitir_depuracion=True):
     """Identica a la función iniciar, solo que permite al usuario seleccionar
     el motor multimedia y el modo de video a utilizar.
 
@@ -98,7 +102,7 @@ def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas',
     import lanzador
 
     usar_motor, pantalla_completa = lanzador.ejecutar(imagen, titulo)
-    iniciar(ancho, alto, titulo, usar_motor, rendimiento, modo, gravedad, pantalla_completa)
+    iniciar(ancho, alto, titulo, usar_motor, rendimiento, modo, gravedad, pantalla_completa, permitir_depuracion)
 
 
 def abrir_asistente():
@@ -133,7 +137,7 @@ def version():
     import pilasversion
     return pilasversion.VERSION
 
-def _crear_motor(usar_motor):
+def _crear_motor(usar_motor, permitir_depuracion):
     """Genera instancia del motor multimedia en base a un nombre.
 
     Esta es una función interna y no debe ser ejecutada
@@ -145,7 +149,7 @@ def _crear_motor(usar_motor):
         if _usa_interprete_lanas():
             usar_motor = 'qtsugar'
 
-        motor = motor_qt.Motor(usar_motor)
+        motor = motor_qt.Motor(usar_motor, permitir_depuracion)
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
         print "Las opciones de motores que puedes probar son 'qt', 'qtgl', 'qtwidget', 'qtsugar' y 'qtsugargl'."
@@ -209,3 +213,20 @@ def log(*parametros):
 
 interpolar = utils.interpolar
 
+def escena_actual():
+    return mundo.gestor_escenas.escena_actual()
+
+def cambiar_escena(escena):
+    mundo.gestor_escenas.cambiar_escena(escena)
+
+def almacenar_escena(escena):
+    mundo.gestor_escenas.almacenar_escena(escena)
+
+def recuperar_escena():
+    mundo.gestor_escenas.recuperar_escena()
+
+
+# Representa el viejo acceso al modulo eventos, pero convierte cada uno
+# de los eventos en una referencia al evento dentro de la escena actual.
+from evento import ProxyEventos
+eventos = ProxyEventos()

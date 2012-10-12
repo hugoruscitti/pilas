@@ -66,10 +66,13 @@ class Actor(object, Estudiante):
         self.centro = ('centro', 'centro')
 
         self.id = ""
-
+        
         self.x = x
         self.y = y
         self.transparencia = 0
+
+        # Define en que escena se encuentra el actor.
+        self.escena = None
 
         # Define el nivel de lejanía respecto del observador.
         self.z = 0
@@ -78,6 +81,7 @@ class Actor(object, Estudiante):
         pilas.actores.utils.insertar_como_nuevo_actor(self)
         self._transparencia = 0
         self.anexados = []
+        self._vivo = True
 
     def definir_centro(self, (x, y)):
         if type(x) == str:
@@ -237,7 +241,6 @@ class Actor(object, Estudiante):
     def set_fijo(self, fijo):
         self._actor.fijo = fijo
 
-
     espejado = property(get_espejado, set_espejado, doc="Indica si se tiene que invertir horizonaltamente la imagen del actor.")
     z = property(get_z, set_z, doc="Define lejania respecto del observador.")
     x = property(get_x, set_x, doc="Define la posición horizontal.")
@@ -252,14 +255,17 @@ class Actor(object, Estudiante):
 
     def eliminar(self):
         """Elimina el actor de la lista de actores que se imprimen en pantalla."""
-        self.destruir()
         self._eliminar_anexados()
+        self.destruir()
 
     def destruir(self):
         """Elimina a un actor pero de manera inmediata."""
-        pilas.actores.utils.eliminar_un_actor(self)
+        self._vivo = False
         self.eliminar_habilidades()
         self.eliminar_comportamientos()
+        # Solo permite eliminar el actor si está en su escena.
+        if self in pilas.escena_actual().actores: 
+            pilas.escena_actual().actores.remove(self)
 
     def actualizar(self):
         """Actualiza el estado del actor.
@@ -410,7 +416,7 @@ class Actor(object, Estudiante):
         "Indica si el actor está fuera del area visible de la pantalla."
         if self.fijo:
             return False
-        izquierda, derecha, arriba, abajo = pilas.mundo.camara.obtener_area_visible()
+        izquierda, derecha, arriba, abajo = self.escena.camara.obtener_area_visible()
         return self.derecha < izquierda or self.izquierda > derecha or self.abajo > arriba or self.arriba < abajo
 
     def es_fondo(self):

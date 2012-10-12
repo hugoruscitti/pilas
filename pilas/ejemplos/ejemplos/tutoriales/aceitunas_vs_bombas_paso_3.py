@@ -15,7 +15,7 @@ class BombaConMovimiento(Bomba):
     def _empujar(self):
         dx = 1
         dy = 1
-        self.circulo.impulsar(dx * 100000, dy * 100000)
+        self.circulo.impulsar(dx * 10, dy * 10)
 
 
 pilas.iniciar(gravedad=(0,0))
