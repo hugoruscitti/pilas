@@ -50,7 +50,6 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def cuando_pulsa_link(self, url):
         seccion = str(url.path()).split('/')[-1]
-        print "Ha seleccionado: ", seccion
 
         if seccion == "interprete":
             self._cuando_selecciona_interprete()
