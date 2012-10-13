@@ -191,7 +191,7 @@ class MoverseConElTeclado(Habilidad):
     param: con_wasd: Valor booleano que indica si se desea que el movimientos
     se realice con las teclas W,A,S,D."""
 
-    def __init__(self, receptor, control=None):
+    def __init__(self, receptor, control=None, velocidad=5):
         Habilidad.__init__(self, receptor)
         pilas.escena_actual().actualizar.conectar(self.on_key_press)
 
@@ -200,20 +200,21 @@ class MoverseConElTeclado(Habilidad):
         else:
             self.control = control
 
+        self.velocidad = velocidad
+
     def on_key_press(self, evento):
-        velocidad = 5
-        
+
         c = self.control
 
         if c.izquierda:
-            self.receptor.x -= velocidad
+            self.receptor.x -= self.velocidad
         elif c.derecha:
-            self.receptor.x += velocidad
+            self.receptor.x += self.velocidad
 
         if c.arriba:
-            self.receptor.y += velocidad
+            self.receptor.y += self.velocidad
         elif c.abajo:
-            self.receptor.y -= velocidad
+            self.receptor.y -= self.velocidad
 
 class PuedeExplotar(Habilidad):
     "Hace que un actor se pueda hacer explotar invocando al metodo eliminar."
