@@ -27,6 +27,17 @@ class Menu(Actor):
         # contador para evitar la repeticion de teclas
         self.activar()
 
+        # Mapeamos unas teclas para mover el menu
+        teclas = {pilas.simbolos.IZQUIERDA: 'izquierda',
+                              pilas.simbolos.DERECHA: 'derecha',
+                              pilas.simbolos.ARRIBA: 'arriba',
+                              pilas.simbolos.ABAJO: 'abajo',
+                              pilas.simbolos.SELECCION: 'boton'}
+
+        # Creamos un control personalizado
+        self.control_menu = pilas.control.Control(pilas.escena_actual(), teclas)
+
+
     def activar(self):
         self.escena.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
         self.escena.click_de_mouse.conectar(self.cuando_hace_click_con_el_mouse)
@@ -59,14 +70,14 @@ class Menu(Actor):
         "Se ejecuta de manera periodica."
 
         if self.demora_al_responder < 0:
-            if pilas.escena_actual().control.boton:
+            if self.control_menu.boton:
                 self.seleccionar_opcion_actual()
                 self.demora_al_responder = DEMORA
 
-            if pilas.escena_actual().control.abajo:
+            if self.control_menu.abajo:
                 self.mover_cursor(1)
                 self.demora_al_responder = DEMORA
-            elif pilas.escena_actual().control.arriba:
+            elif self.control_menu.arriba:
                 self.mover_cursor(-1)
                 self.demora_al_responder = DEMORA
 

@@ -92,7 +92,7 @@ class Control(object):
                                   DERECHA: 'derecha',
                                   ARRIBA: 'arriba',
                                   ABAJO: 'abajo',
-                                  SELECCION: 'boton'}
+                                  ESPACIO: 'boton'}
         else:
             self.mapa_teclado = mapa_teclado
 
