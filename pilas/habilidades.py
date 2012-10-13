@@ -191,14 +191,19 @@ class MoverseConElTeclado(Habilidad):
     param: con_wasd: Valor booleano que indica si se desea que el movimientos
     se realice con las teclas W,A,S,D."""
 
-    def __init__(self, receptor):
+    def __init__(self, receptor, control=None):
         Habilidad.__init__(self, receptor)
         pilas.escena_actual().actualizar.conectar(self.on_key_press)
+
+        if control == None:
+            self.control = self.receptor.escena.control
+        else:
+            self.control = control
 
     def on_key_press(self, evento):
         velocidad = 5
         
-        c = pilas.escena_actual().control
+        c = self.control
 
         if c.izquierda:
             self.receptor.x -= velocidad

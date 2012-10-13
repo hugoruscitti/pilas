@@ -195,7 +195,7 @@ class CanvasWidget(QGLWidget):
             QtCore.Qt.Key_Right: simbolos.DERECHA,
             QtCore.Qt.Key_Up: simbolos.ARRIBA,
             QtCore.Qt.Key_Down: simbolos.ABAJO,
-            QtCore.Qt.Key_Space: simbolos.SELECCION,
+            QtCore.Qt.Key_Space: simbolos.ESPACIO,
             QtCore.Qt.Key_Return: simbolos.SELECCION,
             QtCore.Qt.Key_F1: simbolos.F1,
             QtCore.Qt.Key_F2: simbolos.F2,

@@ -77,7 +77,7 @@ class Control(object):
     .. image:: ../../pilas/data/patito.png
     """
 
-    def __init__(self, escena):
+    def __init__(self, escena, mapa_teclado=None):
         self.izquierda = False
         self.derecha = False
         self.arriba = False
@@ -86,6 +86,15 @@ class Control(object):
 
         escena.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
         escena.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
+        
+        if mapa_teclado == None:
+            self.mapa_teclado = {IZQUIERDA: 'izquierda',
+                                  DERECHA: 'derecha',
+                                  ARRIBA: 'arriba',
+                                  ABAJO: 'abajo',
+                                  SELECCION: 'boton'}
+        else:
+            self.mapa_teclado = mapa_teclado
 
     def cuando_pulsa_una_tecla(self, evento):
         self.procesar_cambio_de_estado_en_la_tecla(evento.codigo, True)
@@ -94,16 +103,8 @@ class Control(object):
         self.procesar_cambio_de_estado_en_la_tecla(evento.codigo, False)
 
     def procesar_cambio_de_estado_en_la_tecla(self, codigo, estado):
-        mapa = {
-            IZQUIERDA: 'izquierda',
-            DERECHA: 'derecha',
-            ARRIBA: 'arriba',
-            ABAJO: 'abajo',
-            SELECCION: 'boton',
-        }
-
-        if mapa.has_key(codigo):
-            setattr(self, mapa[codigo], estado)
+        if self. mapa_teclado.has_key(codigo):
+            setattr(self, self. mapa_teclado[codigo], estado)
 
     def __str__(self):
         return "<Control izquierda: %s derecha: %s arriba: %s abajo: %s boton: %s>" %(
