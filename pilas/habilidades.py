@@ -8,7 +8,7 @@
 
 import random
 import pilas
-
+from math import atan2, pi
 
 class Habilidad(object):
 
@@ -84,6 +84,34 @@ class SeguirAlMouse(Habilidad):
         self.receptor.x = evento.x
         self.receptor.y = evento.y
 
+class RotarConMouse(Habilidad):
+    """"Hace que un actor rote con respecto a la posicion del mouse.
+    
+    param: lado_seguimiento: Establece el lado del actor que rotará para estar
+    encarado hacia el puntero del mouse.
+    
+        >>> actor.aprender(pilas.habilidades.RotarConMouse, lado_seguimiento=pilas.habilidades.RotarConMouse.ABAJO)
+    
+    """
+    ARRIBA = 270
+    ABAJO = 90
+    IZQUIERDA = 180
+    DERECHA = 0
+    
+    def __init__(self, receptor, lado_seguimiento=ARRIBA):
+        Habilidad.__init__(self, receptor)
+        pilas.escena_actual().mueve_mouse.conectar(self.rotar)
+        self.lado_seguimiento = lado_seguimiento
+
+    def rotar(self, evento):
+        deltax = evento.x - self.receptor.x
+        deltay = evento.y - self.receptor.y
+
+        angle_rad = atan2(deltay, deltax)
+        angle_deg = angle_rad * 180.0 / pi
+
+        self.receptor.rotacion = -(angle_deg) - self.lado_seguimiento
+
 class AumentarConRueda(Habilidad):
     "Permite cambiar el tamaño de un actor usando la ruedita scroll del mouse."
 
@@ -158,7 +186,10 @@ class Arrastrable(Habilidad):
 
 
 class MoverseConElTeclado(Habilidad):
-    "Hace que un actor cambie de posición con pulsar el teclado."
+    """Hace que un actor cambie de posición con pulsar el teclado.
+    
+    param: con_wasd: Valor booleano que indica si se desea que el movimientos
+    se realice con las teclas W,A,S,D."""
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
@@ -166,6 +197,7 @@ class MoverseConElTeclado(Habilidad):
 
     def on_key_press(self, evento):
         velocidad = 5
+        
         c = pilas.escena_actual().control
 
         if c.izquierda:
