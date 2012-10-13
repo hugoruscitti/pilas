@@ -93,9 +93,9 @@ def interpolable(f):
             duracion = 1
 
         if isinstance(value, list):
-            value = interpolar(value, duracion=duracion)
+            value = interpolar(value, duracion=duracion, tipo='lineal')
         elif isinstance(value, xrange):
-            value = interpolar(list(value), duracion=duracion)
+            value = interpolar(list(value), duracion=duracion, tipo='lineal')
 
         if es_interpolacion(value):
             value.apply(args[0], function=f.__name__)
@@ -157,9 +157,13 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
 
     algoritmos = {
             'lineal': interpolaciones.Lineal,
+            'aceleracion_gradual': interpolaciones.AceleracionGradual,
+            'desaceleracion_gradual': interpolaciones.DesaceleracionGradual,
+            'rebote_inicial': interpolaciones.ReboteInicial,
+            'rebote_final': interpolaciones.ReboteFinal
             }
 
-    if algoritmos.has_key('lineal'):
+    if algoritmos.has_key(tipo):
         clase = algoritmos[tipo]
     else:
         raise ValueError("El tipo de interpolacion %s es invalido" %(tipo))
