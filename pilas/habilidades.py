@@ -187,9 +187,9 @@ class Arrastrable(Habilidad):
 
 class MoverseConElTeclado(Habilidad):
     """Hace que un actor cambie de posición con pulsar el teclado.
-    
-    param: con_wasd: Valor booleano que indica si se desea que el movimientos
-    se realice con las teclas W,A,S,D."""
+
+    param: control: Control al que va a responder para mover el Actor.
+    param: velocidad: Velocidad en pixeles a la que se moverá el Actor."""
 
     def __init__(self, receptor, control=None, velocidad=5):
         Habilidad.__init__(self, receptor)
