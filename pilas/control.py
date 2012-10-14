@@ -51,6 +51,22 @@ class Control(object):
         >>> print pilas.mundo.control
         <Control izquierda: False derecha: False arriba: False abajo: False boton: False>
 
+    También tienes la posibilidad de crearte un control estableciendo las teclas
+    personalizadas.
+    Para ello debes crearte un diccionario con las claves izquierda, derecha,
+    arriba, abajo y boton.
+    Con las constantes de pilas.simbolos, puedes asignar una tecla a cada una
+    de las entradas del diccionario.
+    
+    
+    >>>    teclas = {pilas.simbolos.a: 'izquierda',
+                              pilas.simbolos.d: 'derecha',
+                              pilas.simbolos.w: 'arriba',
+                              pilas.simbolos.s: 'abajo',
+                              pilas.simbolos.ESPACIO: 'boton'}
+                
+    >>>    mi_control = pilas.control.Control(pilas.escena_actual(), teclas)
+    
 
     Consultando controles desde un actor:
 
