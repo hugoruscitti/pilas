@@ -83,6 +83,12 @@ class Actor(object, Estudiante):
         self.anexados = []
         self._vivo = True
 
+        # Velocidades horizontal y vertical
+        self._vx = 0
+        self._vy = 0
+        self._dx = self.x
+        self._dy = self.y
+
     def definir_centro(self, (x, y)):
         if type(x) == str:
             if x not in IZQUIERDA + CENTRO + DERECHA:
@@ -241,10 +247,18 @@ class Actor(object, Estudiante):
     def set_fijo(self, fijo):
         self._actor.fijo = fijo
 
+    def get_vx(self):
+        return self._vx
+    
+    def get_vy(self):
+        return self._vy
+
     espejado = property(get_espejado, set_espejado, doc="Indica si se tiene que invertir horizonaltamente la imagen del actor.")
     z = property(get_z, set_z, doc="Define lejania respecto del observador.")
     x = property(get_x, set_x, doc="Define la posición horizontal.")
     y = property(get_y, set_y, doc="Define la posición vertical.")
+    vx = property(get_vx, None, doc="Obtiene la velocidad horizontal del actor.")
+    vy = property(get_vy, None, doc="Obtiene la velocidad vertical del actor.")
     rotacion = property(get_rotation, set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
     escala = property(get_scale, set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
     escala_x = property(get_scale_x, set_scale_x, doc="Escala de tamaño horizontal, 1 es normal, 2 al doble de tamaño etc...)")
@@ -278,9 +292,27 @@ class Actor(object, Estudiante):
         pass
 
     def pre_actualizar(self):
-        """Actualiza comportamiento y habilidades antes de la actualización."""
+        """Actualiza comportamiento y habilidades antes de la actualización.
+        También actualiza la velocidad horizontal y vertical que lleva el actor.
+        """
         self.actualizar_comportamientos()
         self.actualizar_habilidades()
+        self.obtener_velocidad()
+
+    def obtener_velocidad(self):
+        """ Obtiene la velocidad que lleva el actor """
+
+        if (self._dx != self.x):
+            self._vx = abs(self._dx - self.x)
+            self._dx = self.x
+        else:
+            self._vx = 0
+
+        if (self._dy != self.y):
+            self._vy = abs(self._dy - self.y)
+            self._dy = self.y
+        else:
+            self._vy = 0
 
     def __cmp__(self, otro_actor):
         """Compara dos actores para determinar cual esta mas cerca de la camara.
