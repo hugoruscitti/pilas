@@ -13,6 +13,11 @@ import pilas
 from pilas.actores import Actor
 
 class Mapa(Actor):
+    """Representa una mapa de bloques rectangulares, ideal para crear escenarios de plataformas
+    y mapas.
+
+    """
+
 
     def __init__(self, grilla=None, x=0, y=0, filas=20, columnas=20):
         Actor.__init__(self, 'invisible.png', x, y)
@@ -116,12 +121,18 @@ class Mapa(Actor):
         return maximo
 
     def es_bloque_solido(self, fila, columna):
+        """Indica si un determinado bloque es solido.
+
+        Los bloques sólidos se utilizan para marcar paredes y plataformas, es
+        decir que son bloques que generalmente no se pueden sobrepasar.
+        """
         if not 0 <= fila < self.filas or not 0 <= columna < self.columnas:
             raise Exception("La fila y columna consultadas estan fuera del area del mapa.")
 
         return self.matriz_de_bloques[fila][columna]
 
     def es_punto_solido(self, x, y):
+        """Indica si una coordenada del escenario está sobre un bloque solido."""
         # Los parametros x e y son coordenadas del escenario,
         # lo que se conoce como coordenanadas absolutas.
 
