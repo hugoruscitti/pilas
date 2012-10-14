@@ -11,6 +11,7 @@ class FPS(object):
         self.siguiente = self.timer.elapsed() + self.frecuencia
         self.cuadros = 0
         self.ultimo_reporte_fps = 0
+        self.cuadros_por_segundo_numerico = 0
 
     def actualizar(self):
         actual = self.timer.elapsed()
@@ -36,6 +37,7 @@ class FPS(object):
         if actual - self.ultimo_reporte_fps > 1000.0:
             self.ultimo_reporte_fps += 1000.0
             self.cuadros_por_segundo = str(self.cuadros)
+            self.cuadros_por_segundo_numerico = self.cuadros
             self.cuadros = 0
 
     def obtener_cuadros_por_segundo(self):

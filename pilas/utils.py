@@ -5,13 +5,13 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
+from __future__ import division
 import os
 import interpolaciones
 import sys
 import subprocess
 import math
 import uuid
-
 import pilas
 
 
@@ -135,6 +135,15 @@ def convertir_de_posicion_relativa_a_fisica(x, y):
 def convertir_de_posicion_fisica_relativa(x, y):
     dx, dy = pilas.mundo.motor.centro_fisico()
     return (x - dx, dy - y)
+
+def calcular_tiempo_en_recorrer(distancia_en_pixeles, velocidad):
+    """ Calcula el tiempo que se tardará en recorrer una distancia en 
+    pixeles con una velocidad constante """
+
+    if (pilas.mundo.motor.canvas.fps.cuadros_por_segundo_numerico > 0):
+        return (distancia_en_pixeles / (pilas.mundo.motor.canvas.fps.cuadros_por_segundo_numerico * velocidad))        
+    else:
+        return 0
 
 def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
     """Retorna un objeto que representa cambios de atributos progresivos.
