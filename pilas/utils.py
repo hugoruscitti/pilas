@@ -174,6 +174,22 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
 
     return clase(valor_o_valores, duracion, demora)
 
+
+def deneter_interpolacion(objeto, propiedad):
+    """ Deteiene una interpolación iniciada en un campo de un objeto.
+
+        param: objeto: Actor del que se desea detener al interpolacion.
+        para: propiedad: Cadena de texto que indica la propiedad del objeto cuya interpolación se desea terminar.
+
+       >>> pilas.utils.deneter_interpolacion(actor, 'y')
+    """
+    setter = 'set_' + propiedad
+    try:
+        getattr(objeto, setter)
+        pilas.escena_actual().tweener.removeTweeningFromObjectField(objeto, setter)
+    except:
+        print "El obejto %s no tiene esa propiedad %s" %(objeto.__class__.__name__, setter)
+
 def obtener_area():
     "Retorna el area que ocupa la ventana"
     return pilas.mundo.motor.obtener_area()
