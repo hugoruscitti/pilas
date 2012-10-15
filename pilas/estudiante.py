@@ -30,6 +30,12 @@ class Estudiante:
         habilidades_actuales = [habilidad.__class__ for habilidad in self.habilidades]
         return (classname in habilidades_actuales)
 
+    def obtener_habilidad(self, classname):
+        """ Obtiene la habilidad asociada a un Actor """
+        for habilidad in self.habilidades:
+            if habilidad.__class__ == classname:
+                return habilidad
+
 
     def hacer_luego(self, comportamiento, repetir_por_siempre=False):
         """Define un nuevo comportamiento para realizar al final.

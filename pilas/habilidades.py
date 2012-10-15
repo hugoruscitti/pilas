@@ -368,9 +368,12 @@ class Disparar(Habilidad):
         self.velocidad = velocidad
 
         if (grupo_enemigos) and (cuando_elimina_enemigo):
+            self.definir_colision(grupo_enemigos, cuando_elimina_enemigo)
+
+    def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
             pilas.escena_actual().colisiones.agregar(self.disparos, grupo_enemigos,
                                                      cuando_elimina_enemigo)
-
+    
     def actualizar(self):
         self.contador_frecuencia_disparo += 1
 

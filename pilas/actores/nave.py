@@ -19,8 +19,11 @@ class Nave(Animacion):
         Animacion.__init__(self, grilla, ciclica=True, x=x, y=y)
         self.radio_de_colision = 20
         self.aprender(pilas.habilidades.PuedeExplotar)
-        self.contador_frecuencia_disparo = 0
-        self.disparos = []
+
+        self.aprender(pilas.habilidades.Disparar,
+                       actor_disparado=pilas.actores.Disparo,
+                       salida_disparo=pilas.habilidades.Disparar.ARRIBA,
+                       velocidad=4)
 
     def actualizar(self):
         Animacion.actualizar(self)
@@ -32,27 +35,6 @@ class Nave(Animacion):
 
         if pilas.escena_actual().control.arriba:
             self.avanzar()
-
-        self.contador_frecuencia_disparo += 1
-
-        if pilas.escena_actual().control.boton:
-            if self.contador_frecuencia_disparo > 10:
-                self.contador_frecuencia_disparo = 0
-                self.disparar()
-        
-        self.eliminar_disparos_innecesarios()
-
-    def eliminar_disparos_innecesarios(self):
-        for d in list(self.disparos):
-            if d.x < -320 or d.x > 320 or d.y < -240 or d.y > 240:
-                d.eliminar()
-                self.disparos.remove(d)
-
-
-    def disparar(self):
-        "Hace que la nave dispare."
-        disparo_nuevo = pilas.actores.Disparo(self.x, self.y, self.rotacion, 4)
-        self.disparos.append(disparo_nuevo)
 
     def avanzar(self):
         "Hace avanzar la nave en direccion a su angulo."
@@ -68,7 +50,8 @@ class Nave(Animacion):
         El argumento cuando_elimina_enemigo tiene que ser una funcion que
         se ejecutara cuando se produzca la colision."""
         self.cuando_elimina_enemigo = cuando_elimina_enemigo
-        self.escena.colisiones.agregar(self.disparos, grupo, self.hacer_explotar_al_enemigo)
+        habilidad_dispara = self.obtener_habilidad(pilas.habilidades.Disparar)
+        habilidad_dispara.definir_colision(grupo, self.hacer_explotar_al_enemigo)
 
     def hacer_explotar_al_enemigo(self, mi_disparo, el_enemigo):
         "Es el método que se invoca cuando se produce una colisión 'tiro <-> enemigo'"
