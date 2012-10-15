@@ -1,0 +1,14 @@
+v 0.7
+
+* Creada una nueva Habilidad llamada RotarConMouse.
+* Creada una nueva Habilidad llamada Disparar.
+* La habilidad MoverseConElTeclado ahora permite asignarle un Control
+  personalizado.
+* Creado un nuevo Actor llamado Pacman
+* Cambiado el motor de Sonido. Ahora utiliza la biblioteca pygst y gst (GStreamer).
+* La Habilidad de SeMantieneEnPantalla ahora permite que el Actor no salga de la
+  misma.
+* Se puede consultar la velocidad horizontal y vertical de un actor mediante los
+  campos actor.vx y actor.vy
+* Añadidas las interpolaciones: AceleracionGradual, DesaceleracionGradual,
+  ReboteInicial, ReboteFinal.  
