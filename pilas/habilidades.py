@@ -351,7 +351,7 @@ class Disparar(Habilidad):
     IZQUIERDA = 180
     DERECHA = 0
 
-    def __init__(self, receptor, actor_disparado, grupo_enemigos=None,
+    def __init__(self, receptor, actor_disparado, grupo_enemigos=[],
                  cuando_elimina_enemigo=None, velocidad=5,
                  frecuencia_de_disparo=10,
                  salida_disparo=ARRIBA):
@@ -367,13 +367,14 @@ class Disparar(Habilidad):
         self.disparos = []
         self.velocidad = velocidad
 
-        if (grupo_enemigos) and (cuando_elimina_enemigo):
-            self.definir_colision(grupo_enemigos, cuando_elimina_enemigo)
+        self.grupo_enemigos = grupo_enemigos
+
+        self.definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
 
     def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
-            pilas.escena_actual().colisiones.agregar(self.disparos, grupo_enemigos,
-                                                     cuando_elimina_enemigo)
-    
+        self.grupo_enemigos = grupo_enemigos
+        pilas.escena_actual().colisiones.agregar(self.disparos, self.grupo_enemigos,
+                                                 cuando_elimina_enemigo)
     def actualizar(self):
         self.contador_frecuencia_disparo += 1
 
