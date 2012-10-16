@@ -29,22 +29,26 @@ def crear_enemigo():
     x = random.randrange(-320,320)
     y = random.randrange(-240,240)
 
+    # Hace que la aceituna aparezca gradualmente, aumentando de tamaño.
+    enemigo.escala = 0
+    enemigo.escala = pilas.interpolar(1, duracion=0.5, tipo='rebote_final')
+
     print x
     print y
 
     if x < 100 and x > 0:
-        x = 150 
+        x = 150
     if x < -100 and x < 0:
-        x = -150 
+        x = -150
 
     if y < 100 and y > 0:
-        y = 150 
+        y = 150
     if y < -100 and y < 0:
-        y = -150 
+        y = -150
 
     enemigo.x = x
     enemigo.y = y
-    
+
     enemigos.append(enemigo)
 
     tipo_interpolacion = ['lineal',
@@ -52,10 +56,10 @@ def crear_enemigo():
                           'desaceleracion_gradual',
                           'rebote_inicial',
                           'rebote_final']
-    
-    enemigo.x = pilas.interpolar(0,3, tipo=random.choice(tipo_interpolacion))
-    enemigo.y = pilas.interpolar(0,3, tipo=random.choice(tipo_interpolacion))
-    
+
+    enemigo.x = pilas.interpolar(0, 4, tipo=random.choice(tipo_interpolacion))
+    enemigo.y = pilas.interpolar(0, 4, tipo=random.choice(tipo_interpolacion))
+
     if fin_de_juego:
         return False
     else:
