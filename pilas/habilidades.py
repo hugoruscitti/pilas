@@ -394,7 +394,7 @@ class Disparar(Habilidad):
         self.offset_disparo = offset_disparo
 
         self.salida_disparo = salida_disparo
-        self.frecuencia_de_disparo = frecuencia_de_disparo
+        self.frecuencia_de_disparo = 60 / frecuencia_de_disparo
         self.contador_frecuencia_disparo = 0
         self.disparos = []
         self.velocidad = velocidad
