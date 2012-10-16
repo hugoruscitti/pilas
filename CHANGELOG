@@ -11,4 +11,9 @@ v 0.7
 * Se puede consultar la velocidad horizontal y vertical de un actor mediante los
   campos actor.vx y actor.vy
 * Añadidas las interpolaciones: AceleracionGradual, DesaceleracionGradual,
-  ReboteInicial, ReboteFinal.  
+  ReboteInicial, ReboteFinal.
+* Añadida la Habilidad de MirarAlActor.
+* Añadida la posibilidad de eliminar una Habilidad mediante
+  actor.eliminar_habilidad(nombre_de_la_habilidad)
+* Si se añade una habilidad a un Actor que ya la tenia, se elimina y se
+  da de alta la nueva habilidad.
