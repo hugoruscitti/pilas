@@ -10,9 +10,7 @@ pilas.iniciar(ancho=624, alto=480, sonido='deshabilitado')
 class Pastilla(pilas.actores.Actor):
 
     def __init__(self, x, y):
-        x-=12
-        y-=12
-        pilas.actores.Actor.__init__(self, "pastilla_1.png", x, y)
+        pilas.actores.Actor.__init__(self, "pastilla_1.png", x - 12, y - 12)
         self.radio_de_colision = 5
 
 
@@ -43,8 +41,8 @@ class Pacman(pilas.actores.Pacman):
             self.mover(0, -1)
 
     def mover(self, x, y):
-        destino_x = x + self.velocidad * x
-        destino_y = y + self.velocidad * y
+        destino_x = self.x + self.velocidad * x
+        destino_y = self.y + self.velocidad * y
 
         va_a_pisar_solido = self.mapa.es_punto_solido(destino_x, destino_y)
 
