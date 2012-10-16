@@ -8,7 +8,7 @@
 
 import random
 import pilas
-from math import atan2, pi
+import math
 
 class Habilidad(object):
 
@@ -373,6 +373,8 @@ class Disparar(Habilidad):
     param: frecuencia_de_disparo: El número de disparos por segundo que
     realizará.
     param: salida_disparo: Especifica el lado por donde disparará el actor.
+    param: offset_disparo: Separación en pixeles del dispara con respecto al
+    centro del Actor que dispara.
     """
     ARRIBA = 270
     ABAJO = 90
@@ -382,12 +384,14 @@ class Disparar(Habilidad):
     def __init__(self, receptor, actor_disparado, grupo_enemigos=[],
                  cuando_elimina_enemigo=None, velocidad=5,
                  frecuencia_de_disparo=10,
-                 salida_disparo=ARRIBA):
+                 salida_disparo=ARRIBA,
+                 offset_disparo=0):
 
         Habilidad.__init__(self, receptor)
         self.receptor = receptor
 
         self.actor_disparado = actor_disparado
+        self.offset_disparo = offset_disparo
 
         self.salida_disparo = salida_disparo
         self.frecuencia_de_disparo = frecuencia_de_disparo
@@ -424,6 +428,13 @@ class Disparar(Habilidad):
                                              y=self.receptor.y)
 
         disparo_nuevo.rotacion = self.receptor.rotacion + self.salida_disparo
+
+        rotacion_en_radianes = math.radians(-disparo_nuevo.rotacion)
+        dx = math.cos(rotacion_en_radianes)
+        dy = math.sin(rotacion_en_radianes)
+
+        disparo_nuevo.x += dx * self.offset_disparo
+        disparo_nuevo.y += dy * self.offset_disparo
 
         disparo_nuevo.hacer(pilas.comportamientos.Avanzar(velocidad=self.velocidad))
 
