@@ -24,18 +24,30 @@ class Estudiante:
         if classname not in habilidades_actuales:
             objeto_habilidad = classname(self, *k, **w)
             self.habilidades.append(objeto_habilidad)
-            
+
+    def eliminar_habilidad(self, classname):
+        """ Elimina una habilidad asociada a un Actor. """
+        habilidad = self.obtener_habilidad(classname)
+
+        if habilidad:
+            self.habilidades.remove(habilidad)
+
     def tiene_habilidad(self, classname):
         "Comprueba si tiene la habildad indicada"
         habilidades_actuales = [habilidad.__class__ for habilidad in self.habilidades]
         return (classname in habilidades_actuales)
 
     def obtener_habilidad(self, classname):
-        """ Obtiene la habilidad asociada a un Actor """
+        """ Obtiene la habilidad asociada a un Actor.
+        Devuelve None si no se encontró."""
+        su_habilidad = None
+        
         for habilidad in self.habilidades:
             if habilidad.__class__ == classname:
-                return habilidad
-
+                su_habilidad = habilidad
+                break
+        
+        return su_habilidad
 
     def hacer_luego(self, comportamiento, repetir_por_siempre=False):
         """Define un nuevo comportamiento para realizar al final.
