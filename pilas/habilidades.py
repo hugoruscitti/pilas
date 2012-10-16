@@ -86,12 +86,12 @@ class SeguirAlMouse(Habilidad):
 
 class RotarConMouse(Habilidad):
     """"Hace que un actor rote con respecto a la posicion del mouse.
-    
+
     param: lado_seguimiento: Establece el lado del actor que rotará para estar
     encarado hacia el puntero del mouse.
-    
+
         >>> actor.aprender(pilas.habilidades.RotarConMouse, lado_seguimiento=pilas.habilidades.RotarConMouse.ABAJO)
-    
+
     """
     ARRIBA = 270
     ABAJO = 90
@@ -112,13 +112,41 @@ class RotarConMouse(Habilidad):
         self.raton_y = evento.y
 
     def rotar(self, evento):
-        deltax = self.raton_x - self.receptor.x
-        deltay = self.raton_y - self.receptor.y
 
-        angle_rad = atan2(deltay, deltax)
-        angle_deg = angle_rad * 180.0 / pi
+        receptor = (self.receptor.x, self.receptor.y)
+        raton = (self.raton_x, self.raton_y)
 
-        self.receptor.rotacion = -(angle_deg) - self.lado_seguimiento
+        angulo = pilas.utils.obtener_angulo_entre(receptor, raton)
+
+        self.receptor.rotacion = -(angulo) - self.lado_seguimiento
+
+class MirarAlActor(Habilidad):
+    """"Hace que un actor rote para mirar hacia otro actor.
+
+    param: actor_a_seguir : Actor al que se desea seguir con la mirada.
+    param: lado_seguimiento: Establece el lado del actor que rotará para estar
+    encarado hacia el actor que desea vigilar.
+
+    """
+    ARRIBA = 270
+    ABAJO = 90
+    IZQUIERDA = 180
+    DERECHA = 0
+
+    def __init__(self, receptor, actor_a_seguir, lado_seguimiento=ARRIBA):
+        Habilidad.__init__(self, receptor)
+        pilas.escena_actual().actualizar.conectar(self.rotar)
+        self.lado_seguimiento = lado_seguimiento
+
+        self.actor_a_seguir = actor_a_seguir
+
+    def rotar(self, evento):
+        receptor = (self.receptor.x, self.receptor.y)
+        actor_a_seguir = (self.actor_a_seguir.x, self.actor_a_seguir.y)
+
+        angulo = pilas.utils.obtener_angulo_entre(receptor, actor_a_seguir)
+
+        self.receptor.rotacion = -(angulo) - self.lado_seguimiento
 
 class AumentarConRueda(Habilidad):
     "Permite cambiar el tamaño de un actor usando la ruedita scroll del mouse."
