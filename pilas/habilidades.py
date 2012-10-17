@@ -310,7 +310,7 @@ class MoverseConElTeclado(Habilidad):
                 elif c.abajo:
                     if self.marcha_atras:
                         self.receptor.y -= self.velocidad_maxima
-                
+
     def decelerar(self):
         if self.velocidad > self.deceleracion:
             self.velocidad -= self.deceleracion
@@ -318,7 +318,7 @@ class MoverseConElTeclado(Habilidad):
             self.velocidad += self.deceleracion
         else:
             self.velocidad = 0
-        
+
     def avanzar(self, delta):
         self.velocidad += self.aceleracion * delta
 
@@ -326,6 +326,19 @@ class MoverseConElTeclado(Habilidad):
             self.velocidad = self.velocidad_maxima
         elif self.velocidad < - self.velocidad_maxima / 2:
             self.velocidad = - self.velocidad_maxima / 2
+
+class MoverseComoCoche(MoverseConElTeclado):
+    "Hace que un actor se mueva como un coche."
+
+    def __init__(self, receptor, control=None, velocidad_maxima=4,
+                 aceleracion=0.06, deceleracion=0.1):
+        MoverseConElTeclado.__init__(self, receptor,
+                                     control=control,
+                                     velocidad_maxima=velocidad_maxima,
+                                     aceleracion=aceleracion,
+                                     deceleracion=deceleracion,
+                                     con_rotacion=True)
+
 
 class PuedeExplotar(Habilidad):
     "Hace que un actor se pueda hacer explotar invocando al metodo eliminar."
