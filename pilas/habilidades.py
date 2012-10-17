@@ -225,9 +225,15 @@ class MoverseConElTeclado(Habilidad):
     """Hace que un actor cambie de posición con pulsar el teclado.
 
     param: control: Control al que va a responder para mover el Actor.
-    param: velocidad_maxima: Velocidad maxima en pixeles a la que se moverá el Actor."""
+    param: velocidad_maxima: Velocidad maxima en pixeles a la que se moverá el Actor.
+    param: aceleracion: Indica lo rapido que acelera el actor hasta su velocidad máxima.
+    param: con_rotacion: Si deseas que el actor rote pulsando las teclas de izquierda
+    y derecha.
+    param: velocidad_rotacion: Indica lo rapido que rota un actor sobre si mismo.
+    """
 
-    def __init__(self, receptor, control=None, velocidad_maxima=5):
+    def __init__(self, receptor, control=None, velocidad_maxima=5,
+                 aceleracion=1, con_rotacion=False, velocidad_rotacion=1):
         Habilidad.__init__(self, receptor)
         pilas.escena_actual().actualizar.conectar(self.on_key_press)
 
@@ -236,21 +242,61 @@ class MoverseConElTeclado(Habilidad):
         else:
             self.control = control
 
+        self.velocidad = 0
+        self.velocidad_delta = 0.1
         self.velocidad_maxima = velocidad_maxima
+        self.aceleracion = aceleracion
+        self.con_rotacion = con_rotacion
+        self.velocidad_rotacion = velocidad_rotacion
 
     def on_key_press(self, evento):
 
         c = self.control
 
-        if c.izquierda:
-            self.receptor.x -= self.velocidad_maxima
-        elif c.derecha:
-            self.receptor.x += self.velocidad_maxima
+        if self.con_rotacion:
 
-        if c.arriba:
-            self.receptor.y += self.velocidad_maxima
-        elif c.abajo:
-            self.receptor.y -= self.velocidad_maxima
+            if c.izquierda:
+                self.receptor.rotacion -= self.velocidad_rotacion * self.velocidad_maxima
+            elif c.derecha:
+                self.receptor.rotacion += self.velocidad_rotacion * self.velocidad_maxima
+
+            if c.arriba:
+                self.avanzar(+1)
+            elif c.abajo:
+                self.avanzar(-1)
+            else:
+                if self.velocidad > self.velocidad_delta:
+                    self.velocidad -= self.velocidad_delta
+                elif self.velocidad < -self.velocidad_delta:
+                    self.velocidad += self.velocidad_delta
+                else:
+                    self.velocidad = 0
+
+            rotacion_en_radianes = math.radians(-self.receptor.rotacion + 90)
+            dx = math.cos(rotacion_en_radianes) * self.velocidad
+            dy = math.sin(rotacion_en_radianes) * self.velocidad
+            self.receptor.x += dx
+            self.receptor.y += dy
+
+        else:
+
+            if c.izquierda:
+                self.receptor.x -= self.velocidad_maxima
+            elif c.derecha:
+                self.receptor.x += self.velocidad_maxima
+
+            if c.arriba:
+                self.receptor.y += self.velocidad_maxima
+            elif c.abajo:
+                self.receptor.y -= self.velocidad_maxima
+
+    def avanzar(self, delta):
+        self.velocidad += self.aceleracion * delta
+
+        if self.velocidad > self.velocidad_maxima:
+            self.velocidad = self.velocidad_maxima
+        elif self.velocidad < - self.velocidad_maxima / 2:
+            self.velocidad = - self.velocidad_maxima / 2
 
 class PuedeExplotar(Habilidad):
     "Hace que un actor se pueda hacer explotar invocando al metodo eliminar."
