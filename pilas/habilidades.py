@@ -230,6 +230,7 @@ class MoverseConElTeclado(Habilidad):
     establece las direcciones a OCHO_DIRECCIONES siempre.
     param: velocidad_maxima: Velocidad maxima en pixeles a la que se moverá el Actor.
     param: aceleracion: Indica lo rapido que acelera el actor hasta su velocidad máxima.
+    param: deceleracion: Indica lo rapido que decelera el actor hasta parar.
     param: con_rotacion: Si deseas que el actor rote pulsando las teclas de izquierda
     y derecha.
     param: velocidad_rotacion: Indica lo rapido que rota un actor sobre si mismo.
@@ -240,7 +241,7 @@ class MoverseConElTeclado(Habilidad):
 
 
     def __init__(self, receptor, control=None, direcciones=OCHO_DIRECCIONES, velocidad_maxima=4,
-                 aceleracion=1, con_rotacion=False, velocidad_rotacion=1, marcha_atras=True):
+                 aceleracion=1, deceleracion=0.1, con_rotacion=False, velocidad_rotacion=1, marcha_atras=True):
         Habilidad.__init__(self, receptor)
         pilas.escena_actual().actualizar.conectar(self.on_key_press)
 
@@ -252,7 +253,7 @@ class MoverseConElTeclado(Habilidad):
         self.direcciones = direcciones
 
         self.velocidad = 0
-        self.velocidad_delta = 0.1
+        self.deceleracion = deceleracion
         self.velocidad_maxima = velocidad_maxima
         self.aceleracion = aceleracion
         self.con_rotacion = con_rotacion
@@ -311,10 +312,10 @@ class MoverseConElTeclado(Habilidad):
                         self.receptor.y -= self.velocidad_maxima
                 
     def decelerar(self):
-        if self.velocidad > self.velocidad_delta:
-            self.velocidad -= self.velocidad_delta
-        elif self.velocidad < -self.velocidad_delta:
-            self.velocidad += self.velocidad_delta
+        if self.velocidad > self.deceleracion:
+            self.velocidad -= self.deceleracion
+        elif self.velocidad < -self.deceleracion:
+            self.velocidad += self.deceleracion
         else:
             self.velocidad = 0
         
