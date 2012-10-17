@@ -254,11 +254,28 @@ class MoverseConElTeclado(Habilidad):
 
         self.velocidad = 0
         self.deceleracion = deceleracion
-        self.velocidad_maxima = velocidad_maxima
-        self.aceleracion = aceleracion
+        self._velocidad_maxima = velocidad_maxima
+        self._aceleracion = aceleracion
         self.con_rotacion = con_rotacion
         self.velocidad_rotacion = velocidad_rotacion
         self.marcha_atras = marcha_atras
+
+
+    def set_velocidad_maxima(self, velocidad):
+        self._velocidad_maxima = velocidad
+
+    def get_velocidad_maxima(self):
+        return self._velocidad_maxima
+
+    def get_aceleracion(self):
+        return self._aceleracion
+
+    def set_aceleracion(self, aceleracion):
+        self._aceleracion = aceleracion
+
+    velocidad_maxima = property(get_velocidad_maxima, set_velocidad_maxima, doc="Define la velocidad maxima.")
+    aceleracion = property(get_aceleracion, set_aceleracion, doc="Define la acelaracion.")
+
 
     def on_key_press(self, evento):
 
@@ -331,13 +348,32 @@ class MoverseComoCoche(MoverseConElTeclado):
     "Hace que un actor se mueva como un coche."
 
     def __init__(self, receptor, control=None, velocidad_maxima=4,
-                 aceleracion=0.06, deceleracion=0.1):
+                 aceleracion=0.06, deceleracion=0.1, rozamiento=0):
         MoverseConElTeclado.__init__(self, receptor,
                                      control=control,
                                      velocidad_maxima=velocidad_maxima,
                                      aceleracion=aceleracion,
                                      deceleracion=deceleracion,
                                      con_rotacion=True)
+
+        self._rozamiento = rozamiento
+        self._velocidad_maxima_aux = self.velocidad_maxima
+
+    def set_rozamiento(self, nivel_rozamiento):
+        self._rozamiento = nivel_rozamiento
+        self.velocidad_maxima = self._velocidad_maxima_aux - self._rozamiento
+
+    def get_rozamiento(self):
+        return self._rozamiento
+
+    def set_velocidad_maxima(self, velocidad):
+        self._velocidad_maxima = velocidad
+        self._velocidad_maxima_aux = self._velocidad_maxima
+
+    def get_velocidad_maxima(self):
+        return self.velocidad_maxima
+
+    rozamiento = property(get_rozamiento, set_rozamiento, doc="Define el rozamiento del coche con la superficie por donde circula.")
 
 
 class PuedeExplotar(Habilidad):
