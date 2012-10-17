@@ -16,13 +16,14 @@ class EntradaDeTexto(Actor):
     el nombre a un usuario. Por ejemplo, cuando completa un record
     de puntaje."""
 
-    def __init__(self, x=0, y=0, color=pilas.colores.negro, limite=10, tamano=32, fuente='Arial', cursor_intermitente=True):
+    def __init__(self, x=0, y=0, color=pilas.colores.negro, limite=10, tamano=32, fuente='Arial', cursor_intermitente=True, acepta_multilinea=True):
         self.cursor = "|"
         self.texto = ""
         self.limite = limite
+        self.acepta_multilinea = acepta_multilinea
         imagen = pilas.imagenes.cargar_superficie(640, 480)
         Actor.__init__(self, imagen)
-        pilas.eventos.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
+        self.escena.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
         self._actualizar_imagen()
         
         if cursor_intermitente:
@@ -42,6 +43,8 @@ class EntradaDeTexto(Actor):
         if evento.codigo == '\x08':
             # Indica que se quiere borrar un caracter
             self.texto = self.texto[:-1]
+        elif str(evento.texto) == '\r' and self.acepta_multilinea:
+            self.texto += '\n'
         else:
             if len(self.texto) < self.limite:
                 self.texto = self.texto + evento.texto
