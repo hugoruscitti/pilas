@@ -28,8 +28,8 @@ podemos ejecutar una sentencia como la que sigue:
 
 .. code-block:: python
 
-    pilas.mundo.camara.x = [200]
-    pilas.mundo.camara.y = [200]
+    pilas.escena_actual().camara.x = [200]
+    pilas.escena_actual().camara.y = [200]
 
 
 Con esto le estaríamos diciendo a la cámara que nos

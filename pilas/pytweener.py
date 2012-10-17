@@ -121,6 +121,15 @@ class Tweener(object):
             if t.target is obj:
                 t.complete = True
  
+    def removeTweeningFromObjectField(self, obj, field):
+        """Stop tweening an object, without completing the motion
+        or firing the completeFunction"""
+        for t in self.currentTweens:
+            if t.target is obj:
+                for f in t.tFuncs:
+                    if f[0] == field:
+                        t.complete = True
+
     def finish(self):
         #go to last frame for all tweens
         for t in self.currentTweens:

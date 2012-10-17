@@ -5,13 +5,13 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
+from __future__ import division
 import os
 import interpolaciones
 import sys
 import subprocess
 import math
 import uuid
-
 import pilas
 
 
@@ -93,9 +93,9 @@ def interpolable(f):
             duracion = 1
 
         if isinstance(value, list):
-            value = interpolar(value, duracion=duracion)
+            value = interpolar(value, duracion=duracion, tipo='lineal')
         elif isinstance(value, xrange):
-            value = interpolar(list(value), duracion=duracion)
+            value = interpolar(list(value), duracion=duracion, tipo='lineal')
 
         if es_interpolacion(value):
             value.apply(args[0], function=f.__name__)
@@ -113,7 +113,7 @@ def hacer_coordenada_pantalla_absoluta(x, y):
     return (x + dx, dy - y)
 
 def listar_actores_en_consola():
-    todos = pilas.actores.todos
+    todos = pilas.escena_actual().actores
 
     print "Hay %d actores en la escena:" %(len(todos))
     print ""
@@ -136,6 +136,15 @@ def convertir_de_posicion_fisica_relativa(x, y):
     dx, dy = pilas.mundo.motor.centro_fisico()
     return (x - dx, dy - y)
 
+def calcular_tiempo_en_recorrer(distancia_en_pixeles, velocidad):
+    """ Calcula el tiempo que se tardará en recorrer una distancia en 
+    pixeles con una velocidad constante """
+
+    if (pilas.mundo.motor.canvas.fps.cuadros_por_segundo_numerico > 0):
+        return (distancia_en_pixeles / (pilas.mundo.motor.canvas.fps.cuadros_por_segundo_numerico * velocidad))        
+    else:
+        return 0
+
 def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
     """Retorna un objeto que representa cambios de atributos progresivos.
 
@@ -157,9 +166,13 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
 
     algoritmos = {
             'lineal': interpolaciones.Lineal,
+            'aceleracion_gradual': interpolaciones.AceleracionGradual,
+            'desaceleracion_gradual': interpolaciones.DesaceleracionGradual,
+            'rebote_inicial': interpolaciones.ReboteInicial,
+            'rebote_final': interpolaciones.ReboteFinal
             }
 
-    if algoritmos.has_key('lineal'):
+    if algoritmos.has_key(tipo):
         clase = algoritmos[tipo]
     else:
         raise ValueError("El tipo de interpolacion %s es invalido" %(tipo))
@@ -169,6 +182,22 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
         valor_o_valores = [valor_o_valores]
 
     return clase(valor_o_valores, duracion, demora)
+
+
+def deneter_interpolacion(objeto, propiedad):
+    """ Deteiene una interpolación iniciada en un campo de un objeto.
+
+        param: objeto: Actor del que se desea detener al interpolacion.
+        para: propiedad: Cadena de texto que indica la propiedad del objeto cuya interpolación se desea terminar.
+
+       >>> pilas.utils.deneter_interpolacion(actor, 'y')
+    """
+    setter = 'set_' + propiedad
+    try:
+        getattr(objeto, setter)
+        pilas.escena_actual().tweener.removeTweeningFromObjectField(objeto, setter)
+    except:
+        print "El obejto %s no tiene esa propiedad %s" %(objeto.__class__.__name__, setter)
 
 def obtener_area():
     "Retorna el area que ocupa la ventana"
@@ -253,3 +282,23 @@ def descargar_archivo_desde_internet(parent, url, archivo_destino):
     import descargar
     ventana = descargar.Descargar(parent, url, archivo_destino)
     ventana.show()
+
+def imprimir_todos_los_eventos():
+    "Muestra en consola los eventos activos y a quienes invocan"
+    import pilas
+
+    for x in dir(pilas.escena_actual()):
+        attributo = getattr(pilas.escena_actual(), x)
+
+        if isinstance(attributo, pilas.evento.Evento):
+            print "Evento:", attributo.nombre
+            attributo.imprimir_funciones_conectadas()
+            print ""
+
+def habilitar_depuracion():
+    """Permite habilitar un breakpoint para depuracion una vez inicializado pilas."""
+    from PyQt4.QtCore import pyqtRemoveInputHook
+    from pdb import set_trace
+    pyqtRemoveInputHook()
+    set_trace()
+

@@ -3,15 +3,15 @@ import pilas
 
 pilas.iniciar()
 
-# La secuencia es sencilla, el mono dice 'hola', 
+# La secuencia es sencilla, el mono dice 'hola',
 mono = pilas.actores.Mono(x=-100)
 mono_chiquito = pilas.actores.Mono(x=200)
 mono_chiquito.escala = 0.75
 
 d = pilas.actores.Dialogo()
-d.decir(mono, "Hola, como estas?")
-d.decir(mono_chiquito, "Bien, ¿y vos?...")
-d.decir(mono, "Bien... ¡Mirá cómo salto !")
+d.decir(mono, u"Hola, ¿como estas?")
+d.decir(mono_chiquito, u"Bien, ¿y vos?...")
+d.decir(mono, u"Bien... ¡Mirá cómo salto !")
 
 def hacer_que_el_mono_salte():
     mono.sonreir()

@@ -71,6 +71,9 @@ class Actor(object, Estudiante):
         self.y = y
         self.transparencia = 0
 
+        # Define en que escena se encuentra el actor.
+        self.escena = None
+
         # Define el nivel de lejanía respecto del observador.
         self.z = 0
         self._espejado = False
@@ -78,6 +81,13 @@ class Actor(object, Estudiante):
         pilas.actores.utils.insertar_como_nuevo_actor(self)
         self._transparencia = 0
         self.anexados = []
+        self._vivo = True
+
+        # Velocidades horizontal y vertical
+        self._vx = 0
+        self._vy = 0
+        self._dx = self.x
+        self._dy = self.y
 
     def definir_centro(self, (x, y)):
         if type(x) == str:
@@ -165,8 +175,8 @@ class Actor(object, Estudiante):
 
     @pilas.utils.interpolable
     def set_scale(self, s):
-        if s < 0:
-            return
+        if s < 0.001:
+            s = 0.001
 
         ultima_escala = self.obtener_escala()
 
@@ -180,14 +190,14 @@ class Actor(object, Estudiante):
 
     @pilas.utils.interpolable
     def set_scale_x(self, s):
-        if s < 0:
-            return
+        if s < 0.001:
+            s = 0.001
         self._actor.definir_escala_x(s)
 
     @pilas.utils.interpolable
     def set_scale_y(self, s):
-        if s < 0:
-            return
+        if s < 0.001:
+            s = 0.001
         self._actor.definir_escala_y(s)
 
     def get_scale(self):
@@ -237,11 +247,18 @@ class Actor(object, Estudiante):
     def set_fijo(self, fijo):
         self._actor.fijo = fijo
 
+    def get_vx(self):
+        return self._vx
+
+    def get_vy(self):
+        return self._vy
 
     espejado = property(get_espejado, set_espejado, doc="Indica si se tiene que invertir horizonaltamente la imagen del actor.")
     z = property(get_z, set_z, doc="Define lejania respecto del observador.")
     x = property(get_x, set_x, doc="Define la posición horizontal.")
     y = property(get_y, set_y, doc="Define la posición vertical.")
+    vx = property(get_vx, None, doc="Obtiene la velocidad horizontal del actor.")
+    vy = property(get_vy, None, doc="Obtiene la velocidad vertical del actor.")
     rotacion = property(get_rotation, set_rotation, doc="Angulo de rotación (en grados, de 0 a 360)")
     escala = property(get_scale, set_scale, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
     escala_x = property(get_scale_x, set_scale_x, doc="Escala de tamaño horizontal, 1 es normal, 2 al doble de tamaño etc...)")
@@ -252,14 +269,17 @@ class Actor(object, Estudiante):
 
     def eliminar(self):
         """Elimina el actor de la lista de actores que se imprimen en pantalla."""
-        self.destruir()
         self._eliminar_anexados()
+        self.destruir()
 
     def destruir(self):
         """Elimina a un actor pero de manera inmediata."""
-        pilas.actores.utils.eliminar_un_actor(self)
+        self._vivo = False
         self.eliminar_habilidades()
         self.eliminar_comportamientos()
+        # Solo permite eliminar el actor si está en su escena.
+        if self in pilas.escena_actual().actores:
+            pilas.escena_actual().actores.remove(self)
 
     def actualizar(self):
         """Actualiza el estado del actor.
@@ -272,9 +292,27 @@ class Actor(object, Estudiante):
         pass
 
     def pre_actualizar(self):
-        """Actualiza comportamiento y habilidades antes de la actualización."""
+        """Actualiza comportamiento y habilidades antes de la actualización.
+        También actualiza la velocidad horizontal y vertical que lleva el actor.
+        """
         self.actualizar_comportamientos()
         self.actualizar_habilidades()
+        self.obtener_velocidad()
+
+    def obtener_velocidad(self):
+        """ Obtiene la velocidad que lleva el actor """
+
+        if (self._dx != self.x):
+            self._vx = abs(self._dx - self.x)
+            self._dx = self.x
+        else:
+            self._vx = 0
+
+        if (self._dy != self.y):
+            self._vy = abs(self._dy - self.y)
+            self._dy = self.y
+        else:
+            self._vy = 0
 
     def __cmp__(self, otro_actor):
         """Compara dos actores para determinar cual esta mas cerca de la camara.
@@ -410,7 +448,7 @@ class Actor(object, Estudiante):
         "Indica si el actor está fuera del area visible de la pantalla."
         if self.fijo:
             return False
-        izquierda, derecha, arriba, abajo = pilas.mundo.camara.obtener_area_visible()
+        izquierda, derecha, arriba, abajo = self.escena.camara.obtener_area_visible()
         return self.derecha < izquierda or self.izquierda > derecha or self.abajo > arriba or self.arriba < abajo
 
     def es_fondo(self):

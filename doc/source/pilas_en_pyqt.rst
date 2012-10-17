@@ -106,7 +106,7 @@ Código
             super(ActorVacio, self).__init__(*args, **kwargs)
 
             # El evento que emitiremos cuando clickean al actor
-            self.me_clickearon = pilas.eventos.Evento("me_clickearon")
+            self.me_clickearon = pilas.evento.Evento("me_clickearon")
 
             # Conectamos el evento genérico de click del mouse con un
             # validador que se encargara de determinar si el click
@@ -143,7 +143,7 @@ Código
 
         def __init__(self):
             self._actores = set() # aca almacenaremos todos los actores
-            self.click_en_actor = pilas.eventos.Evento("click_en_actor")
+            self.click_en_actor = pilas.evento.Evento("click_en_actor")
 
 
         def __getattr__(self, k):

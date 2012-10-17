@@ -171,7 +171,7 @@ y darle un nombre:
 
 .. code-block:: python
 
-    evento = pilas.eventos.Evento("Nombre")
+    evento = pilas.evento.Evento("Nombre")
 
 luego, este nuevo objeto ``evento`` podrá ser utilizado como
 canal de comunicación: muchos actores podrán ``conectarse`` para

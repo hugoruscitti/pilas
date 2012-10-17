@@ -72,7 +72,7 @@ con la aceleración gravitatoria:
 
 .. code-block:: python
 
-    bombas.aprender(pilas.habilidades.RebotaComoPelota)
+    bombas.aprender(pilas.habilidades.RebotarComoPelota)
 
 
 Ahora tendrás algo mucho mas interesante, un montón de

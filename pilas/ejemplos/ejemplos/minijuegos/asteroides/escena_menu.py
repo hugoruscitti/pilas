@@ -1,11 +1,13 @@
 import pilas
 import random
 
-class EscenaMenu(pilas.escenas.Escena):
+class EscenaMenu(pilas.escena.Base):
     "Es la escena de presentacion donde se elijen las opciones del juego."
 
     def __init__(self):
-        pilas.escenas.Escena.__init__(self)
+        pilas.escena.Base.__init__(self)
+    
+    def iniciar(self):
         pilas.fondos.Fondo("data/menu.png")
         self.crear_titulo_del_juego()
         pilas.avisar("Use el teclado para controlar el menu.")
@@ -27,11 +29,11 @@ class EscenaMenu(pilas.escenas.Escena):
 
     def comenzar_a_jugar(self):
         import escena_juego
-        escena_juego.Juego()
+        pilas.cambiar_escena(escena_juego.Juego())
 
     def mostrar_ayuda_del_juego(self):
         import escena_ayuda
-        escena_ayuda.Ayuda()
+        pilas.cambiar_escena(escena_ayuda.Ayuda())
 
     def salir_del_juego(self):
         pilas.terminar()

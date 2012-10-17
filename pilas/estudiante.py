@@ -19,19 +19,48 @@ class Estudiante:
 
     def aprender(self, classname, *k, **w):
         "Comienza a realizar una habilidad indicada por parametros."
-        habilidades_actuales = [habilidad.__class__ for habilidad in self.habilidades]
 
-        if classname not in habilidades_actuales:
-            objeto_habilidad = classname(self, *k, **w)
-            self.habilidades.append(objeto_habilidad)
+        if self.tiene_habilidad(classname):
+            self.eliminar_habilidad(classname)
+            self.agregar_habilidad(classname, *k, **w)
+        else:
+            self.agregar_habilidad(classname, *k, **w)
+
+    def agregar_habilidad(self, classname, *k, **w):
+        objeto_habilidad = classname(self, *k, **w)
+        self.habilidades.append(objeto_habilidad)
+
+    def eliminar_habilidad(self, classname):
+        """ Elimina una habilidad asociada a un Actor. """
+        habilidad = self.obtener_habilidad(classname)
+
+        if habilidad:
+            self.habilidades.remove(habilidad)
+
+    def tiene_habilidad(self, classname):
+        "Comprueba si tiene la habildad indicada"
+        habilidades_actuales = [habilidad.__class__ for habilidad in self.habilidades]
+        return (classname in habilidades_actuales)
+
+    def obtener_habilidad(self, classname):
+        """ Obtiene la habilidad asociada a un Actor.
+        Devuelve None si no se encontró."""
+        su_habilidad = None
+
+        for habilidad in self.habilidades:
+            if habilidad.__class__ == classname:
+                su_habilidad = habilidad
+                break
+
+        return su_habilidad
 
     def hacer_luego(self, comportamiento, repetir_por_siempre=False):
         """Define un nuevo comportamiento para realizar al final.
-        
+
         Los actores pueden tener una cadena de comportamientos, este
         metodo agrega el comportamiento al final de la cadena.
         """
-        
+
         self.comportamientos.append(comportamiento)
         self.repetir_comportamientos_por_siempre = repetir_por_siempre
 

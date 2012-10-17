@@ -24,8 +24,8 @@ class Boton(BaseInterfaz):
         else:
             self.icono = None
 
-        pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
-        pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
+        self.escena.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
+        self.escena.click_de_mouse.conectar(self.cuando_hace_click)
 
     def conectar(self, funcion):
         self.funcion = funcion

@@ -27,13 +27,24 @@ class Menu(Actor):
         # contador para evitar la repeticion de teclas
         self.activar()
 
+        # Mapeamos unas teclas para mover el menu
+        teclas = {pilas.simbolos.IZQUIERDA: 'izquierda',
+                              pilas.simbolos.DERECHA: 'derecha',
+                              pilas.simbolos.ARRIBA: 'arriba',
+                              pilas.simbolos.ABAJO: 'abajo',
+                              pilas.simbolos.SELECCION: 'boton'}
+
+        # Creamos un control personalizado
+        self.control_menu = pilas.control.Control(pilas.escena_actual(), teclas)
+
+
     def activar(self):
-        pilas.eventos.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
-        pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click_con_el_mouse)
+        self.escena.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
+        self.escena.click_de_mouse.conectar(self.cuando_hace_click_con_el_mouse)
 
     def desactivar(self):
-        pilas.eventos.mueve_mouse.desconectar(self.cuando_mueve_el_mouse)
-        pilas.eventos.click_de_mouse.desconectar(self.cuando_hace_click_con_el_mouse)
+        self.escena.mueve_mouse.desconectar(self.cuando_mueve_el_mouse)
+        self.escena.click_de_mouse.desconectar(self.cuando_hace_click_con_el_mouse)
 
     def crear_texto_de_las_opciones(self, opciones):
         "Genera un actor por cada opcion del menu."
@@ -59,14 +70,14 @@ class Menu(Actor):
         "Se ejecuta de manera periodica."
 
         if self.demora_al_responder < 0:
-            if pilas.mundo.control.boton:
+            if self.control_menu.boton:
                 self.seleccionar_opcion_actual()
                 self.demora_al_responder = DEMORA
 
-            if pilas.mundo.control.abajo:
+            if self.control_menu.abajo:
                 self.mover_cursor(1)
                 self.demora_al_responder = DEMORA
-            elif pilas.mundo.control.arriba:
+            elif self.control_menu.arriba:
                 self.mover_cursor(-1)
                 self.demora_al_responder = DEMORA
 

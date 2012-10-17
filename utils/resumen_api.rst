@@ -224,8 +224,8 @@ class **ConstanteDeDistancia** ()
 
 - **eliminar** ()
 
-pilas.eventos
--------------
+pilas.evento
+------------
 
 
 

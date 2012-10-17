@@ -44,12 +44,12 @@ class Esperando(Comportamiento):
         self.receptor.definir_cuadro(4)
 
     def actualizar(self):
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.receptor.hacer(Caminando())
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.receptor.hacer(Caminando())
 
-        if pilas.mundo.control.arriba:
+        if pilas.escena_actual().control.arriba:
             self.receptor.hacer(Saltando())
 
 
@@ -62,14 +62,14 @@ class Caminando(Comportamiento):
     def actualizar(self):
         self.avanzar_animacion()
 
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.receptor.x -= VELOCIDAD
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.receptor.x += VELOCIDAD
         else:
             self.receptor.hacer(Esperando())
 
-        if pilas.mundo.control.arriba:
+        if pilas.escena_actual().control.arriba:
             self.receptor.hacer(Saltando())
 
     def avanzar_animacion(self):
@@ -98,7 +98,7 @@ class Saltando(Comportamiento):
             self.receptor.y = self.origen
             self.receptor.hacer(Esperando())
 
-        if pilas.mundo.control.izquierda:
+        if pilas.escena_actual().control.izquierda:
             self.receptor.x -= VELOCIDAD
-        elif pilas.mundo.control.derecha:
+        elif pilas.escena_actual().control.derecha:
             self.receptor.x += VELOCIDAD

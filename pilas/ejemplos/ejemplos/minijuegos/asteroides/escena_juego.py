@@ -83,13 +83,15 @@ class PierdeTodoElJuego(Estado):
         pass
 
 
-class Juego(pilas.escenas.Escena):
+class Juego(pilas.escena.Base):
     "Es la escena que permite controlar la nave y jugar"
 
     def __init__(self):
-        pilas.escenas.Escena.__init__(self)
+        pilas.escena.Base.__init__(self)
+        
+    def iniciar(self):        
         pilas.fondos.Espacio()
-        pilas.eventos.pulsa_tecla_escape.conectar(self.cuando_pulsa_tecla_escape)
+        self.pulsa_tecla_escape.conectar(self.cuando_pulsa_tecla_escape)
         self.piedras = []
         self.crear_nave()
         self.crear_contador_de_vidas()
@@ -103,7 +105,7 @@ class Juego(pilas.escenas.Escena):
         nave = pilas.actores.Nave()
         nave.aprender(pilas.habilidades.SeMantieneEnPantalla)
         nave.definir_enemigos(self.piedras, self.cuando_explota_asterioide)
-        pilas.mundo.colisiones.agregar(nave, self.piedras, self.explotar_y_terminar)
+        self.colisiones.agregar(nave, self.piedras, self.explotar_y_terminar)
 
     def cuando_explota_asterioide(self):
         self.puntaje.aumentar(1)
@@ -115,7 +117,7 @@ class Juego(pilas.escenas.Escena):
     def cuando_pulsa_tecla_escape(self, *k, **kv):
         "Regresa al menu principal."
         import escena_menu
-        escena_menu.EscenaMenu()
+        pilas.cambiar_escena(escena_menu.EscenaMenu())
 
     def explotar_y_terminar(self, nave, piedra):
         "Responde a la colision entre la nave y una piedra."

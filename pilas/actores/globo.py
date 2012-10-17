@@ -5,14 +5,27 @@ from pilas.actores import Actor
 class Globo(Actor):
     "Representa un cuadro de dialogo estilo historietas."
 
-    def __init__(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True, autoeliminar=False):
+    def __init__(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True, autoeliminar=False, ancho_globo=0, alto_globo=0):
         self.dialogo = dialogo
         Actor.__init__(self, imagen='invisible.png', x=x, y=y)
 
         ancho, alto = pilas.utils.obtener_area_de_texto(texto)
 
-        ancho = int((ancho + 12) - (ancho % 12))
-        alto = int((alto + 12) - alto % 12)
+        # Podemos pasar el ancho del globo ya que si contiene opciones
+        # cuyo texto es más largo que la cabecera del globo, no queda bien.
+        if (ancho_globo == 0):            
+            ancho = int((ancho + 12) - (ancho % 12))
+        else:
+            if (ancho_globo > ancho):
+                ancho = ancho_globo
+            else:
+                ancho = int((ancho + 12) - (ancho % 12))
+
+        # Lo mismo para el alto
+        if (alto_globo == 0):
+            alto = int((alto + 12) - alto % 12)
+        else:
+            alto = alto + alto_globo
 
         self.imagen = pilas.imagenes.cargar_superficie(ancho + 36, alto + 24 + 35)
 
@@ -22,11 +35,14 @@ class Globo(Actor):
         self.escala = 0.1
         self.escala = [1], 0.2
 
+        self.ancho_globo = ancho
+        self.alto_globo = alto
+
         if avance_con_clicks:
-            pilas.eventos.click_de_mouse.conectar(self.cuando_quieren_avanzar)
+            self.escena.click_de_mouse.conectar(self.cuando_quieren_avanzar)
 
         if autoeliminar:
-            pilas.mundo.tareas.una_vez(3, self.eliminar)
+            pilas.escena_actual().tareas.una_vez(3, self.eliminar)
 
     def colocar_origen_del_globo(self, x, y):
         "Cambia la posicion del globo para que el punto de donde se emite el globo sea (x, y)."

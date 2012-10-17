@@ -1,14 +1,16 @@
 import pilas
 from random import random
 
-class Juego(pilas.escenas.Escena):
+class Juego(pilas.escena.Base):
     "Escena que Controla el juego"
 
     def __init__(self):        
-        pilas.escenas.Escena.__init__(self) 
+        pilas.escena.Base.__init__(self)
+    
+    def iniciar(self): 
         pilas.fondos.Fondo('data/fondo.png')
 
-        pilas.eventos.pulsa_tecla_escape.conectar(self.cuando_se_presione_escape)
+        self.pulsa_tecla_escape.conectar(self.cuando_se_presione_escape)
         
         #creamos tablero
         self.crear_tablero()
@@ -47,7 +49,7 @@ class Juego(pilas.escenas.Escena):
     def cuando_se_presione_escape(self, *k, **kv):
         "Regresa al menu principal"
         import escena_menu
-        escena_menu.EscenaMenu()
+        pilas.cambiar_escena(escena_menu.EscenaMenu())
     
 
     def crear_pizarra(self):

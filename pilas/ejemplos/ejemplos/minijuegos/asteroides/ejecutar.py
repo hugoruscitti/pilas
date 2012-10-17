@@ -10,5 +10,5 @@ pilas.iniciar(titulo="Asteroides")
 
 # Inicia la escena actual.
 import escena_menu
-escena_menu.EscenaMenu()
+pilas.cambiar_escena(escena_menu.EscenaMenu())
 pilas.ejecutar()
