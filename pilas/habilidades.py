@@ -233,13 +233,14 @@ class MoverseConElTeclado(Habilidad):
     param: con_rotacion: Si deseas que el actor rote pulsando las teclas de izquierda
     y derecha.
     param: velocidad_rotacion: Indica lo rapido que rota un actor sobre si mismo.
+    param: marcha_atras: Posibilidad de ir hacia atrás. (True o False) 
     """
     CUATRO_DIRECCIONES = 4
     OCHO_DIRECCIONES = 8
 
 
-    def __init__(self, receptor, control=None, direcciones=OCHO_DIRECCIONES, velocidad_maxima=5,
-                 aceleracion=1, con_rotacion=False, velocidad_rotacion=1):
+    def __init__(self, receptor, control=None, direcciones=OCHO_DIRECCIONES, velocidad_maxima=4,
+                 aceleracion=1, con_rotacion=False, velocidad_rotacion=1, marcha_atras=True):
         Habilidad.__init__(self, receptor)
         pilas.escena_actual().actualizar.conectar(self.on_key_press)
 
@@ -256,6 +257,7 @@ class MoverseConElTeclado(Habilidad):
         self.aceleracion = aceleracion
         self.con_rotacion = con_rotacion
         self.velocidad_rotacion = velocidad_rotacion
+        self.marcha_atras = marcha_atras
 
     def on_key_press(self, evento):
 
@@ -271,14 +273,12 @@ class MoverseConElTeclado(Habilidad):
             if c.arriba:
                 self.avanzar(+1)
             elif c.abajo:
-                self.avanzar(-1)
-            else:
-                if self.velocidad > self.velocidad_delta:
-                    self.velocidad -= self.velocidad_delta
-                elif self.velocidad < -self.velocidad_delta:
-                    self.velocidad += self.velocidad_delta
+                if self.marcha_atras:
+                    self.avanzar(-1)
                 else:
-                    self.velocidad = 0
+                    self.decelerar()
+            else:
+                self.decelerar()
 
             rotacion_en_radianes = math.radians(-self.receptor.rotacion + 90)
             dx = math.cos(rotacion_en_radianes) * self.velocidad
@@ -297,7 +297,8 @@ class MoverseConElTeclado(Habilidad):
                 if c.arriba:
                     self.receptor.y += self.velocidad_maxima
                 elif c.abajo:
-                    self.receptor.y -= self.velocidad_maxima
+                    if self.marcha_atras:
+                        self.receptor.y -= self.velocidad_maxima
             else:
                 if c.izquierda:
                     self.receptor.x -= self.velocidad_maxima
@@ -306,9 +307,17 @@ class MoverseConElTeclado(Habilidad):
                 elif c.arriba:
                     self.receptor.y += self.velocidad_maxima
                 elif c.abajo:
-                    self.receptor.y -= self.velocidad_maxima
+                    if self.marcha_atras:
+                        self.receptor.y -= self.velocidad_maxima
                 
-
+    def decelerar(self):
+        if self.velocidad > self.velocidad_delta:
+            self.velocidad -= self.velocidad_delta
+        elif self.velocidad < -self.velocidad_delta:
+            self.velocidad += self.velocidad_delta
+        else:
+            self.velocidad = 0
+        
     def avanzar(self, delta):
         self.velocidad += self.aceleracion * delta
 
