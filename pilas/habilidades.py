@@ -225,14 +225,20 @@ class MoverseConElTeclado(Habilidad):
     """Hace que un actor cambie de posición con pulsar el teclado.
 
     param: control: Control al que va a responder para mover el Actor.
+    param: direcciones: Establece si puede mover en cualquier direccion o
+    unicamente en 4 direcciones arriba, abajo, izquierda y derecha. El parametro con_rotacion
+    establece las direcciones a OCHO_DIRECCIONES siempre.
     param: velocidad_maxima: Velocidad maxima en pixeles a la que se moverá el Actor.
     param: aceleracion: Indica lo rapido que acelera el actor hasta su velocidad máxima.
     param: con_rotacion: Si deseas que el actor rote pulsando las teclas de izquierda
     y derecha.
     param: velocidad_rotacion: Indica lo rapido que rota un actor sobre si mismo.
     """
+    CUATRO_DIRECCIONES = 4
+    OCHO_DIRECCIONES = 8
 
-    def __init__(self, receptor, control=None, velocidad_maxima=5,
+
+    def __init__(self, receptor, control=None, direcciones=OCHO_DIRECCIONES, velocidad_maxima=5,
                  aceleracion=1, con_rotacion=False, velocidad_rotacion=1):
         Habilidad.__init__(self, receptor)
         pilas.escena_actual().actualizar.conectar(self.on_key_press)
@@ -241,6 +247,8 @@ class MoverseConElTeclado(Habilidad):
             self.control = self.receptor.escena.control
         else:
             self.control = control
+
+        self.direcciones = direcciones
 
         self.velocidad = 0
         self.velocidad_delta = 0.1
@@ -280,15 +288,26 @@ class MoverseConElTeclado(Habilidad):
 
         else:
 
-            if c.izquierda:
-                self.receptor.x -= self.velocidad_maxima
-            elif c.derecha:
-                self.receptor.x += self.velocidad_maxima
+            if self.direcciones == MoverseConElTeclado.OCHO_DIRECCIONES:
+                if c.izquierda:
+                    self.receptor.x -= self.velocidad_maxima
+                elif c.derecha:
+                    self.receptor.x += self.velocidad_maxima
 
-            if c.arriba:
-                self.receptor.y += self.velocidad_maxima
-            elif c.abajo:
-                self.receptor.y -= self.velocidad_maxima
+                if c.arriba:
+                    self.receptor.y += self.velocidad_maxima
+                elif c.abajo:
+                    self.receptor.y -= self.velocidad_maxima
+            else:
+                if c.izquierda:
+                    self.receptor.x -= self.velocidad_maxima
+                elif c.derecha:
+                    self.receptor.x += self.velocidad_maxima
+                elif c.arriba:
+                    self.receptor.y += self.velocidad_maxima
+                elif c.abajo:
+                    self.receptor.y -= self.velocidad_maxima
+                
 
     def avanzar(self, delta):
         self.velocidad += self.aceleracion * delta
