@@ -312,6 +312,17 @@ class PuedeExplotar(Habilidad):
         explosion.escala = self.receptor.escala * 2
         pilas.actores.Actor.eliminar(self.receptor)
 
+class SiempreEnElCentro(Habilidad):
+    """Hace que un actor siempre esté en el centro de la camara y la desplace
+    cuando el actor se desplaza."""
+
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
+
+    def actualizar(self):
+        pilas.escena_actual().camara.x = self.receptor.x
+        pilas.escena_actual().camara.y = self.receptor.y
+
 
 class SeMantieneEnPantalla(Habilidad):
     """Se asegura de que el actor regrese a la pantalla si sale o que no
