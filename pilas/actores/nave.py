@@ -9,6 +9,7 @@
 import pilas
 from pilas.actores import Animacion
 import math
+from ImageChops import offset
 
 class Nave(Animacion):
     "Representa una nave que puede disparar."
@@ -23,26 +24,20 @@ class Nave(Animacion):
         self.aprender(pilas.habilidades.Disparar,
                        actor_disparado=pilas.actores.Disparo,
                        salida_disparo=pilas.habilidades.Disparar.ARRIBA,
+                       frecuencia_de_disparo=5,
+                       offset_disparo=20,
                        velocidad=4)
+
+        self.aprender(pilas.habilidades.MoverseConElTeclado,
+                      velocidad_maxima=self.velocidad,
+                      aceleracion=1,
+                      deceleracion=0.04,
+                      con_rotacion=True,
+                      velocidad_rotacion=1,
+                      marcha_atras=False)
 
     def actualizar(self):
         Animacion.actualizar(self)
-
-        if pilas.escena_actual().control.izquierda:
-            self.rotacion -= self.velocidad
-        elif pilas.escena_actual().control.derecha:
-            self.rotacion += self.velocidad
-
-        if pilas.escena_actual().control.arriba:
-            self.avanzar()
-
-    def avanzar(self):
-        "Hace avanzar la nave en direccion a su angulo."
-        rotacion_en_radianes = math.radians(-self.rotacion + 90)
-        dx = math.cos(rotacion_en_radianes) * self.velocidad
-        dy = math.sin(rotacion_en_radianes) * self.velocidad
-        self.x += dx
-        self.y += dy
 
     def definir_enemigos(self, grupo, cuando_elimina_enemigo=None):
         """hace que una nave tenga como enemigos a todos los actores del grupo.
