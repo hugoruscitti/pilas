@@ -149,3 +149,34 @@ class ReboteFinal(Interpolacion):
 
     def apply(self, target, function):
         Interpolacion.apply(self, target, function, pilas.pytweener.Easing.Bounce.easeOut) 
+
+class ElasticoInicial(Interpolacion):
+    "Representa una interpolación con rebote."
+
+    def __init__(self, values, duration, delay):
+        Interpolacion.__init__(self, values, duration, delay)
+
+    def __neg__(self):
+        "Retorna la interpolación inversa a la original."
+        new_values = list(self.values)
+        new_values.reverse()
+        return ReboteInicial(new_values, self.duration, self.delay)
+
+    def apply(self, target, function):
+        Interpolacion.apply(self, target, function, pilas.pytweener.Easing.Elastic.easeIn) 
+
+
+class ElasticoFinal(Interpolacion):
+    "Representa una interpolación con rebote."
+
+    def __init__(self, values, duration, delay):
+        Interpolacion.__init__(self, values, duration, delay)
+
+    def __neg__(self):
+        "Retorna la interpolación inversa a la original."
+        new_values = list(self.values)
+        new_values.reverse()
+        return ReboteInicial(new_values, self.duration, self.delay)
+
+    def apply(self, target, function):
+        Interpolacion.apply(self, target, function, pilas.pytweener.Easing.Elastic.easeOut) 

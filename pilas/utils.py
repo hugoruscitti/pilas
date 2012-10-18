@@ -169,7 +169,9 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
             'aceleracion_gradual': interpolaciones.AceleracionGradual,
             'desaceleracion_gradual': interpolaciones.DesaceleracionGradual,
             'rebote_inicial': interpolaciones.ReboteInicial,
-            'rebote_final': interpolaciones.ReboteFinal
+            'rebote_final': interpolaciones.ReboteFinal,
+            'elastico_inicial': interpolaciones.ElasticoInicial,
+            'elastico_final': interpolaciones.ElasticoFinal
             }
 
     if algoritmos.has_key(tipo):
