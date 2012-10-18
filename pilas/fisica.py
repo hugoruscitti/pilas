@@ -373,7 +373,6 @@ class Circulo(Figura):
         fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=radio),
                                      density=densidad,
                                      linearDamping=amortiguacion,
-                                     fixedRotation=sin_rotacion,
                                      friction=friccion,
                                      restitution=restitucion)
 
@@ -387,6 +386,7 @@ class Circulo(Figura):
         else:
             self._cuerpo = fisica.mundo.CreateStaticBody(position=(x, y), fixtures=fixture)
 
+        self._cuerpo.fixedRotation = sin_rotacion
 
 class Rectangulo(Figura):
     """Representa un rectángulo que puede colisionar con otras figuras.
@@ -419,7 +419,6 @@ class Rectangulo(Figura):
         fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(ancho/2, alto/2)),
                                      density=densidad,
                                      linearDamping=amortiguacion,
-                                     fixedRotation=sin_rotacion,
                                      friction=friccion,
                                      restitution=restitucion)
 
@@ -432,6 +431,8 @@ class Rectangulo(Figura):
             self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
             self._cuerpo = fisica.mundo.CreateStaticBody(position=(x, y), fixtures=fixture)
+
+        self._cuerpo.fixedRotation = sin_rotacion
 
         """
         bodyDef = box2d.b2BodyDef()
