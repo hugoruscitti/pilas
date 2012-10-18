@@ -139,11 +139,16 @@ class CanvasWidget(QGLWidget):
     def mouseMoveEvent(self, e):
         escala = self.escala
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
+
         dx, dy = x - self.mouse_x, y - self.mouse_y
 
         izquierda, derecha, arriba, abajo = utils.obtener_bordes()
-        x = max(min(derecha, x), izquierda)
-        y = max(min(arriba, y), abajo)
+
+        #x = max(min(derecha, x), izquierda)
+        #y = max(min(arriba, y), abajo)
+
+        x += pilas.mundo.motor.camara_x
+        y += pilas.mundo.motor.camara_y
 
         self.gestor_escenas.escena_actual().mueve_mouse.emitir(x=x, y=y, dx=dx, dy=dy)
 
@@ -178,12 +183,18 @@ class CanvasWidget(QGLWidget):
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
         boton_pulsado = e.button()
 
+        x += pilas.mundo.motor.camara_x
+        y += pilas.mundo.motor.camara_y
+
         self.gestor_escenas.escena_actual().click_de_mouse.emitir(x=x, y=y, dx=0, dy=0, boton=boton_pulsado)
 
     def mouseReleaseEvent(self, e):
         escala = self.escala
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
         boton_pulsado = e.button()
+
+        x += pilas.mundo.motor.camara_x
+        y += pilas.mundo.motor.camara_y
 
         self.gestor_escenas.escena_actual().termina_click.emitir(x=x, y=y, dx=0, dy=0, boton=boton_pulsado)
 
