@@ -16,8 +16,6 @@ import os
 import pilas
 import sys
 import traceback
-import gst
-import pygst
 
 
 class Ventana(QtGui.QMainWindow):
@@ -695,27 +693,76 @@ class Actor(BaseActor):
                 escala_x, escala_y, self._rotacion, self._transparencia)
 
 
-class Sonido:
+## Backend: audio deshabilitado
+
+class SonidoDeshabilitado:
+    deshabilitado = True
+
+    def __init__(self, player, ruta):
+        pass
+
+    def reproducir(self):
+        pass
+
+    def detener(self):
+        pass
+
+class MusicaDeshabilitada(SonidoDeshabilitado):
+
+    def __init__(self, media, ruta):
+        SonidoDeshabilitado.__init__(self, media, ruta)
+
+## Backend: gstreamer
+
+class SonidoGST:
     deshabilitado = False
 
     def __init__(self, player, ruta):
         self.ruta = ruta
-        self.sonido =  player
-        
+        self.sonido = player
         self.sonido.set_property('uri','file://'+ruta)
 
-    def reproducir(self):        
+    def reproducir(self):
+        import gst
         if not self.deshabilitado:
             self.sonido.set_state(gst.STATE_NULL)
             self.sonido.set_state(gst.STATE_PLAYING)
 
     def detener(self):
+        import gst
         self.sonido.set_state(gst.STATE_NULL)
 
-class Musica(Sonido):
+
+class MusicaGST(SonidoGST):
 
     def __init__(self, media, ruta):
-        Sonido.__init__(self, media, ruta)
+        SonidoGST.__init__(self, media, ruta)
+
+## Backend: audio phonon
+
+class SonidoPhonon:
+    deshabilitado = False
+
+    def __init__(self, media, ruta):
+        from PyQt4 import phonon
+        self.media = media
+        self.ruta = ruta
+
+        self.source = phonon.Phonon.MediaSource(ruta)
+        self.sonido = phonon.Phonon.createPlayer(phonon.Phonon.GameCategory, self.source)
+
+    def reproducir(self):
+        if not self.deshabilitado:
+            self.sonido.seek(0)
+            self.sonido.play()
+
+    def detener(self):
+        self.sonido.stop()
+
+class MusicaPhonon(SonidoPhonon):
+
+    def __init__(self, media, ruta):
+        SonidoPhonon.__init__(self, media, ruta)
 
 
 class Motor(object):
@@ -729,7 +776,7 @@ class Motor(object):
     el dibujado en pantalla si la tarjeta de video lo soporta.
     """
 
-    def __init__(self, usar_motor, permitir_depuracion):
+    def __init__(self, usar_motor, permitir_depuracion, audio):
         if usar_motor not in ['qtwidget', 'qtsugar']:
             self._iniciar_aplicacion()
 
@@ -739,7 +786,7 @@ class Motor(object):
         self.permitir_depuracion = permitir_depuracion
 
         self._inicializar_variables()
-        self._inicializar_sistema_de_audio()
+        self._inicializar_sistema_de_audio(audio)
 
     def _iniciar_aplicacion(self):
         self.app = QtGui.QApplication([])
@@ -749,8 +796,38 @@ class Motor(object):
         self.camara_x = 0
         self.camara_y = 0
 
-    def _inicializar_sistema_de_audio(self):
-        self.player = gst.element_factory_make("playbin", "player")
+    def _inicializar_sistema_de_audio(self, audio):
+        sistemas_de_sonido = ['deshabilitado', 'phonon', 'gst']
+
+        if audio not in sistemas_de_sonido:
+            error = "El sistema de audio '%s' es invalido" %(audio)
+            sugerencia = ". Use alguno de los siguientes: %s" %(str(sistemas_de_sonido))
+            raise Exception(error + sugerencia)
+
+        if audio == 'gst':
+            try:
+                import gst
+            except ImportError:
+                print "Nota: El sistema de audio gstreamer no está disponible, usando phonon en su lugar."
+                audio = 'phonon'
+
+        if audio == 'deshabilitado':
+            self.player = None
+            self.clase_sonido = SonidoDeshabilitado
+            self.clase_musica = MusicaDeshabilitada
+        elif audio == 'phonon':
+            from PyQt4 import phonon
+            self.media = phonon.Phonon.MediaObject()
+            self.audio = phonon.Phonon.AudioOutput(phonon.Phonon.MusicCategory)
+            self.path = phonon.Phonon.createPath(self.media, self.audio)
+            self.player = self.media
+            self.clase_sonido = SonidoPhonon
+            self.clase_musica = MusicaPhonon
+        elif audio == 'gst':
+            import gst
+            self.player = gst.element_factory_make("playbin", "player")
+            self.clase_sonido = SonidoGST
+            self.clase_musica = MusicaGST
 
     def terminar(self):
         self.ventana.close()
@@ -845,13 +922,13 @@ class Motor(object):
         return Grilla(ruta, columnas, filas)
 
     def cargar_sonido(self, ruta):
-        return Sonido(self.player, ruta)
+        return self.clase_sonido(self.player, ruta)
 
     def cargar_musica(self, ruta):
         return Musica(self.player, ruta)
 
     def deshabilitar_sonido(self, estado=True):
-        Sonido.deshabilitado = estado
+        SonidoGST.deshabilitado = estado
 
     def deshabilitar_musica(self, estado=True):
         Musica.deshabilitado = estado

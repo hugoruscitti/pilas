@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>271</height>
+    <width>486</width>
+    <height>288</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -64,6 +64,32 @@
         <item>
          <property name="text">
           <string>Habilitar</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Sistema de audio</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="comboBox_3">
+        <item>
+         <property name="text">
+          <string>Gstreamer</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Phonon</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Deshabilitar</string>
          </property>
         </item>
        </widget>

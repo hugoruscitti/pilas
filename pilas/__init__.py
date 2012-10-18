@@ -44,7 +44,7 @@ para iniciar y ejecutar la biblioteca.
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False,
-            permitir_depuracion=True):
+            permitir_depuracion=True, audio='phonon'):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -71,7 +71,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     global mundo
 
     if not esta_inicializada():
-        motor = _crear_motor(usar_motor, permitir_depuracion)
+        motor = _crear_motor(usar_motor, permitir_depuracion, audio)
 
         if motor:
             mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
@@ -101,8 +101,8 @@ def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas',
     """
     import lanzador
 
-    usar_motor, pantalla_completa = lanzador.ejecutar(imagen, titulo)
-    iniciar(ancho, alto, titulo, usar_motor, rendimiento, modo, gravedad, pantalla_completa, permitir_depuracion)
+    usar_motor, pantalla_completa, audio = lanzador.ejecutar(imagen, titulo)
+    iniciar(ancho, alto, titulo, usar_motor, rendimiento, modo, gravedad, pantalla_completa, permitir_depuracion, audio)
 
 
 def abrir_asistente():
@@ -137,7 +137,7 @@ def version():
     import pilasversion
     return pilasversion.VERSION
 
-def _crear_motor(usar_motor, permitir_depuracion):
+def _crear_motor(usar_motor, permitir_depuracion, audio):
     """Genera instancia del motor multimedia en base a un nombre.
 
     Esta es una función interna y no debe ser ejecutada
@@ -149,7 +149,7 @@ def _crear_motor(usar_motor, permitir_depuracion):
         if _usa_interprete_lanas():
             usar_motor = 'qtsugar'
 
-        motor = motor_qt.Motor(usar_motor, permitir_depuracion)
+        motor = motor_qt.Motor(usar_motor, permitir_depuracion, audio)
     else:
         print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
         print "Las opciones de motores que puedes probar son 'qt', 'qtgl', 'qtwidget', 'qtsugar' y 'qtsugargl'."

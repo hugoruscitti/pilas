@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'lanzador.ui'
 #
-# Created: Mon Sep 10 13:22:22 2012
+# Created: Wed Oct 17 21:53:37 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(500, 271)
+        Dialog.resize(486, 288)
         self.gridLayout_2 = QtGui.QGridLayout(Dialog)
         self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
         self.graphicsView = QtGui.QGraphicsView(Dialog)
@@ -43,6 +43,15 @@ class Ui_Dialog(object):
         self.comboBox_2.addItem(_fromUtf8(""))
         self.comboBox_2.addItem(_fromUtf8(""))
         self.gridLayout.addWidget(self.comboBox_2, 1, 1, 1, 1)
+        self.label_3 = QtGui.QLabel(self.groupBox)
+        self.label_3.setObjectName(_fromUtf8("label_3"))
+        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
+        self.comboBox_3 = QtGui.QComboBox(self.groupBox)
+        self.comboBox_3.setObjectName(_fromUtf8("comboBox_3"))
+        self.comboBox_3.addItem(_fromUtf8(""))
+        self.comboBox_3.addItem(_fromUtf8(""))
+        self.comboBox_3.addItem(_fromUtf8(""))
+        self.gridLayout.addWidget(self.comboBox_3, 2, 1, 1, 1)
         self.gridLayout_2.addWidget(self.groupBox, 1, 0, 1, 1)
         self.line = QtGui.QFrame(Dialog)
         self.line.setFrameShape(QtGui.QFrame.HLine)
@@ -71,6 +80,10 @@ class Ui_Dialog(object):
         self.label_2.setText(QtGui.QApplication.translate("Dialog", "Pantalla completa:", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBox_2.setItemText(0, QtGui.QApplication.translate("Dialog", "Deshabilitar", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBox_2.setItemText(1, QtGui.QApplication.translate("Dialog", "Habilitar", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("Dialog", "Sistema de audio", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox_3.setItemText(0, QtGui.QApplication.translate("Dialog", "Gstreamer", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox_3.setItemText(1, QtGui.QApplication.translate("Dialog", "Phonon", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox_3.setItemText(2, QtGui.QApplication.translate("Dialog", "Deshabilitar", None, QtGui.QApplication.UnicodeUTF8))
 
 
 if __name__ == "__main__":

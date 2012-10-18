@@ -21,11 +21,13 @@ class Ventana(Ui_Dialog):
     def obtener_seleccion(self):
         motor = ['qtgl', 'qt']
         modo = [False, True]
+        audio = ['gst', 'phonon', 'deshabilitado']
 
         i = self.comboBox.currentIndex()
         j = self.comboBox_2.currentIndex()
+        k = self.comboBox_3.currentIndex()
 
-        return (motor[i], modo[j])
+        return (motor[i], modo[j], audio[k])
 
     def _quitar_barras_scroll(self):
         self.graphicsView.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
