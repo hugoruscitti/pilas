@@ -115,7 +115,7 @@ class Mapa(Actor):
                 if self.es_punto_solido_coordenada_mapa(x, y+distancia):
                     return distancia
 
-        except Exception as a:
+        except Exception:
             return maximo
 
         return maximo

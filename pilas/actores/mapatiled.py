@@ -75,12 +75,13 @@ class MapaTiled(Mapa):
         bloques = self._pintar_bloques(layers[0], solidos=False)
         self.capas[0] = bloques
 
+        # La capa 1 define bloques solidos.
         if len(layers) > 1:
-            bloques = self._pintar_bloques(layers[1], solidos=False)
+            bloques = self._pintar_bloques(layers[1], solidos=True)
             self.capas[1] = bloques
 
-
-        # El resto de las capas definen bloques solidos
+        # El resto de las capas solo definen matrices para acceder mediante
+        # el atributo 'capas', no se imprimen automaticamente.
         for (indice, layer) in enumerate(layers[2:]):
             self.capas[indice + 2] = self._convertir_capa_en_bloques_enteros(layer)
 
