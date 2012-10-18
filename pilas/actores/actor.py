@@ -66,7 +66,7 @@ class Actor(object, Estudiante):
         self.centro = ('centro', 'centro')
 
         self.id = ""
-        
+
         self.x = x
         self.y = y
         self.transparencia = 0
@@ -175,8 +175,8 @@ class Actor(object, Estudiante):
 
     @pilas.utils.interpolable
     def set_scale(self, s):
-        if s < 0:
-            return
+        if s < 0.001:
+            s = 0.001
 
         ultima_escala = self.obtener_escala()
 
@@ -190,14 +190,14 @@ class Actor(object, Estudiante):
 
     @pilas.utils.interpolable
     def set_scale_x(self, s):
-        if s < 0:
-            return
+        if s < 0.001:
+            s = 0.001
         self._actor.definir_escala_x(s)
 
     @pilas.utils.interpolable
     def set_scale_y(self, s):
-        if s < 0:
-            return
+        if s < 0.001:
+            s = 0.001
         self._actor.definir_escala_y(s)
 
     def get_scale(self):
@@ -249,7 +249,7 @@ class Actor(object, Estudiante):
 
     def get_vx(self):
         return self._vx
-    
+
     def get_vy(self):
         return self._vy
 
@@ -278,7 +278,7 @@ class Actor(object, Estudiante):
         self.eliminar_habilidades()
         self.eliminar_comportamientos()
         # Solo permite eliminar el actor si está en su escena.
-        if self in pilas.escena_actual().actores: 
+        if self in pilas.escena_actual().actores:
             pilas.escena_actual().actores.remove(self)
 
     def actualizar(self):

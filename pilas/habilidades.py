@@ -8,7 +8,7 @@
 
 import random
 import pilas
-from math import atan2, pi
+import math
 
 class Habilidad(object):
 
@@ -86,31 +86,67 @@ class SeguirAlMouse(Habilidad):
 
 class RotarConMouse(Habilidad):
     """"Hace que un actor rote con respecto a la posicion del mouse.
-    
+
     param: lado_seguimiento: Establece el lado del actor que rotará para estar
     encarado hacia el puntero del mouse.
-    
+
         >>> actor.aprender(pilas.habilidades.RotarConMouse, lado_seguimiento=pilas.habilidades.RotarConMouse.ABAJO)
-    
+
     """
     ARRIBA = 270
     ABAJO = 90
     IZQUIERDA = 180
     DERECHA = 0
-    
+
     def __init__(self, receptor, lado_seguimiento=ARRIBA):
         Habilidad.__init__(self, receptor)
-        pilas.escena_actual().mueve_mouse.conectar(self.rotar)
+        pilas.escena_actual().mueve_mouse.conectar(self.se_movio_el_mouse)
+        pilas.escena_actual().actualizar.conectar(self.rotar)
         self.lado_seguimiento = lado_seguimiento
 
+        self.raton_x = receptor.x
+        self.raton_y = receptor.y
+
+    def se_movio_el_mouse(self, evento):
+        self.raton_x = evento.x
+        self.raton_y = evento.y
+
     def rotar(self, evento):
-        deltax = evento.x - self.receptor.x
-        deltay = evento.y - self.receptor.y
 
-        angle_rad = atan2(deltay, deltax)
-        angle_deg = angle_rad * 180.0 / pi
+        receptor = (self.receptor.x, self.receptor.y)
+        raton = (self.raton_x, self.raton_y)
 
-        self.receptor.rotacion = -(angle_deg) - self.lado_seguimiento
+        angulo = pilas.utils.obtener_angulo_entre(receptor, raton)
+
+        self.receptor.rotacion = -(angulo) - self.lado_seguimiento
+
+class MirarAlActor(Habilidad):
+    """"Hace que un actor rote para mirar hacia otro actor.
+
+    param: actor_a_seguir : Actor al que se desea seguir con la mirada.
+    param: lado_seguimiento: Establece el lado del actor que rotará para estar
+    encarado hacia el actor que desea vigilar.
+
+    """
+    ARRIBA = 270
+    ABAJO = 90
+    IZQUIERDA = 180
+    DERECHA = 0
+
+    def __init__(self, receptor, actor_a_seguir, lado_seguimiento=ARRIBA):
+        Habilidad.__init__(self, receptor)
+        pilas.escena_actual().actualizar.conectar(self.rotar)
+        self.lado_seguimiento = lado_seguimiento
+
+        self.actor_a_seguir = actor_a_seguir
+
+    def rotar(self, evento):
+        receptor = (self.receptor.x, self.receptor.y)
+        actor_a_seguir = (self.actor_a_seguir.x, self.actor_a_seguir.y)
+
+        angulo = pilas.utils.obtener_angulo_entre(receptor, actor_a_seguir)
+
+        self.receptor.rotacion = -(angulo) - self.lado_seguimiento
 
 class AumentarConRueda(Habilidad):
     "Permite cambiar el tamaño de un actor usando la ruedita scroll del mouse."
@@ -189,9 +225,23 @@ class MoverseConElTeclado(Habilidad):
     """Hace que un actor cambie de posición con pulsar el teclado.
 
     param: control: Control al que va a responder para mover el Actor.
-    param: velocidad: Velocidad en pixeles a la que se moverá el Actor."""
+    param: direcciones: Establece si puede mover en cualquier direccion o
+    unicamente en 4 direcciones arriba, abajo, izquierda y derecha. El parametro con_rotacion
+    establece las direcciones a OCHO_DIRECCIONES siempre.
+    param: velocidad_maxima: Velocidad maxima en pixeles a la que se moverá el Actor.
+    param: aceleracion: Indica lo rapido que acelera el actor hasta su velocidad máxima.
+    param: deceleracion: Indica lo rapido que decelera el actor hasta parar.
+    param: con_rotacion: Si deseas que el actor rote pulsando las teclas de izquierda
+    y derecha.
+    param: velocidad_rotacion: Indica lo rapido que rota un actor sobre si mismo.
+    param: marcha_atras: Posibilidad de ir hacia atrás. (True o False) 
+    """
+    CUATRO_DIRECCIONES = 4
+    OCHO_DIRECCIONES = 8
 
-    def __init__(self, receptor, control=None, velocidad=5):
+
+    def __init__(self, receptor, control=None, direcciones=OCHO_DIRECCIONES, velocidad_maxima=4,
+                 aceleracion=1, deceleracion=0.1, con_rotacion=False, velocidad_rotacion=1, marcha_atras=True):
         Habilidad.__init__(self, receptor)
         pilas.escena_actual().actualizar.conectar(self.on_key_press)
 
@@ -200,21 +250,131 @@ class MoverseConElTeclado(Habilidad):
         else:
             self.control = control
 
-        self.velocidad = velocidad
+        self.direcciones = direcciones
+
+        self.velocidad = 0
+        self.deceleracion = deceleracion
+        self._velocidad_maxima = velocidad_maxima
+        self._aceleracion = aceleracion
+        self.con_rotacion = con_rotacion
+        self.velocidad_rotacion = velocidad_rotacion
+        self.marcha_atras = marcha_atras
+
+
+    def set_velocidad_maxima(self, velocidad):
+        self._velocidad_maxima = velocidad
+
+    def get_velocidad_maxima(self):
+        return self._velocidad_maxima
+
+    def get_aceleracion(self):
+        return self._aceleracion
+
+    def set_aceleracion(self, aceleracion):
+        self._aceleracion = aceleracion
+
+    velocidad_maxima = property(get_velocidad_maxima, set_velocidad_maxima, doc="Define la velocidad maxima.")
+    aceleracion = property(get_aceleracion, set_aceleracion, doc="Define la acelaracion.")
+
 
     def on_key_press(self, evento):
 
         c = self.control
 
-        if c.izquierda:
-            self.receptor.x -= self.velocidad
-        elif c.derecha:
-            self.receptor.x += self.velocidad
+        if self.con_rotacion:
 
-        if c.arriba:
-            self.receptor.y += self.velocidad
-        elif c.abajo:
-            self.receptor.y -= self.velocidad
+            if c.izquierda:
+                self.receptor.rotacion -= self.velocidad_rotacion * self.velocidad_maxima
+            elif c.derecha:
+                self.receptor.rotacion += self.velocidad_rotacion * self.velocidad_maxima
+
+            if c.arriba:
+                self.avanzar(+1)
+            elif c.abajo:
+                if self.marcha_atras:
+                    self.avanzar(-1)
+                else:
+                    self.decelerar()
+            else:
+                self.decelerar()
+
+            rotacion_en_radianes = math.radians(-self.receptor.rotacion + 90)
+            dx = math.cos(rotacion_en_radianes) * self.velocidad
+            dy = math.sin(rotacion_en_radianes) * self.velocidad
+            self.receptor.x += dx
+            self.receptor.y += dy
+
+        else:
+
+            if self.direcciones == MoverseConElTeclado.OCHO_DIRECCIONES:
+                if c.izquierda:
+                    self.receptor.x -= self.velocidad_maxima
+                elif c.derecha:
+                    self.receptor.x += self.velocidad_maxima
+
+                if c.arriba:
+                    self.receptor.y += self.velocidad_maxima
+                elif c.abajo:
+                    if self.marcha_atras:
+                        self.receptor.y -= self.velocidad_maxima
+            else:
+                if c.izquierda:
+                    self.receptor.x -= self.velocidad_maxima
+                elif c.derecha:
+                    self.receptor.x += self.velocidad_maxima
+                elif c.arriba:
+                    self.receptor.y += self.velocidad_maxima
+                elif c.abajo:
+                    if self.marcha_atras:
+                        self.receptor.y -= self.velocidad_maxima
+
+    def decelerar(self):
+        if self.velocidad > self.deceleracion:
+            self.velocidad -= self.deceleracion
+        elif self.velocidad < -self.deceleracion:
+            self.velocidad += self.deceleracion
+        else:
+            self.velocidad = 0
+
+    def avanzar(self, delta):
+        self.velocidad += self.aceleracion * delta
+
+        if self.velocidad > self.velocidad_maxima:
+            self.velocidad = self.velocidad_maxima
+        elif self.velocidad < - self.velocidad_maxima / 2:
+            self.velocidad = - self.velocidad_maxima / 2
+
+class MoverseComoCoche(MoverseConElTeclado):
+    "Hace que un actor se mueva como un coche."
+
+    def __init__(self, receptor, control=None, velocidad_maxima=4,
+                 aceleracion=0.06, deceleracion=0.1, rozamiento=0):
+        MoverseConElTeclado.__init__(self, receptor,
+                                     control=control,
+                                     velocidad_maxima=velocidad_maxima,
+                                     aceleracion=aceleracion,
+                                     deceleracion=deceleracion,
+                                     con_rotacion=True)
+
+        self._rozamiento = rozamiento
+        self._velocidad_maxima_aux = self.velocidad_maxima
+
+    def set_rozamiento(self, nivel_rozamiento):
+        self._rozamiento = nivel_rozamiento
+        self.velocidad_maxima = self._velocidad_maxima_aux - self._rozamiento
+
+    def get_rozamiento(self):
+        return self._rozamiento
+
+    def set_velocidad_maxima(self, velocidad):
+        self._velocidad_maxima = velocidad
+        self._velocidad_maxima_aux = self._velocidad_maxima
+
+    def get_velocidad_maxima(self):
+        return self.velocidad_maxima
+
+    rozamiento = property(get_rozamiento, set_rozamiento, doc="Define el rozamiento del coche con la superficie por donde circula.")
+
 
 class PuedeExplotar(Habilidad):
     "Hace que un actor se pueda hacer explotar invocando al metodo eliminar."
@@ -229,6 +389,17 @@ class PuedeExplotar(Habilidad):
         explosion.y = self.receptor.y
         explosion.escala = self.receptor.escala * 2
         pilas.actores.Actor.eliminar(self.receptor)
+
+class SiempreEnElCentro(Habilidad):
+    """Hace que un actor siempre esté en el centro de la camara y la desplace
+    cuando el actor se desplaza."""
+
+    def __init__(self, receptor):
+        Habilidad.__init__(self, receptor)
+
+    def actualizar(self):
+        pilas.escena_actual().camara.x = self.receptor.x
+        pilas.escena_actual().camara.y = self.receptor.y
 
 
 class SeMantieneEnPantalla(Habilidad):
@@ -324,3 +495,85 @@ class Imitar(Habilidad):
         if isinstance(self.objeto_a_imitar, pilas.fisica.Figura):
             self.objeto_a_imitar.eliminar()
 
+class Disparar(Habilidad):
+    """ Establece la habilidad de poder disparar un objeto.
+    El objeto disparado puede ser cualquier actor.
+    
+    param: actor_disparado: Nombre de la clase del actor que se va a disparar.
+    param: grupo_enemigos: Actores que son considerados enemigos y con los que
+    colisionará el proyectil disparado.
+    param: cuando_elimina_enemigo: Funcion que debe llamar cuando se produzca un
+    impacto con un enemigo.
+    param: velocidad: Velocidad del proyectil disparado.
+    param: frecuencia_de_disparo: El número de disparos por segundo que
+    realizará.
+    param: salida_disparo: Especifica el lado por donde disparará el actor.
+    param: offset_disparo: Separación en pixeles del dispara con respecto al
+    centro del Actor que dispara.
+    """
+    ARRIBA = 270
+    ABAJO = 90
+    IZQUIERDA = 180
+    DERECHA = 0
+
+    def __init__(self, receptor, actor_disparado, grupo_enemigos=[],
+                 cuando_elimina_enemigo=None, velocidad=5,
+                 frecuencia_de_disparo=10,
+                 salida_disparo=ARRIBA,
+                 offset_disparo=0):
+
+        Habilidad.__init__(self, receptor)
+        self.receptor = receptor
+
+        self.actor_disparado = actor_disparado
+        self.offset_disparo = offset_disparo
+
+        self.salida_disparo = salida_disparo
+        self.frecuencia_de_disparo = 60 / frecuencia_de_disparo
+        self.contador_frecuencia_disparo = 0
+        self.disparos = []
+        self.velocidad = velocidad
+
+        self.grupo_enemigos = grupo_enemigos
+
+        self.definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
+
+    def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
+        self.grupo_enemigos = grupo_enemigos
+        pilas.escena_actual().colisiones.agregar(self.disparos, self.grupo_enemigos,
+                                                 cuando_elimina_enemigo)
+    def actualizar(self):
+        self.contador_frecuencia_disparo += 1
+
+        if pilas.escena_actual().control.boton:
+            if self.contador_frecuencia_disparo > self.frecuencia_de_disparo:
+                self.contador_frecuencia_disparo = 0
+                self.disparar()
+
+        self.eliminar_disparos_innecesarios()
+
+    def eliminar_disparos_innecesarios(self):
+        for d in list(self.disparos):
+            if d.esta_fuera_de_la_pantalla():
+                d.eliminar()
+                self.disparos.remove(d)
+
+    def disparar(self):
+        disparo_nuevo = self.actor_disparado(x=self.receptor.x,
+                                             y=self.receptor.y)
+
+        disparo_nuevo.rotacion = self.receptor.rotacion + self.salida_disparo
+
+        rotacion_en_radianes = math.radians(-disparo_nuevo.rotacion)
+        dx = math.cos(rotacion_en_radianes)
+        dy = math.sin(rotacion_en_radianes)
+
+        disparo_nuevo.x += dx * self.offset_disparo
+        disparo_nuevo.y += dy * self.offset_disparo
+
+        disparo_nuevo.hacer(pilas.comportamientos.Avanzar(velocidad=self.velocidad))
+
+        self.disparos.append(disparo_nuevo)
+
+    def eliminar(self):
+        pass

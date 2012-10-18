@@ -22,7 +22,7 @@ class Disparo(Animacion):
 
     def actualizar(self):
         Animacion.actualizar(self)
-        self.avanzar()
+        #self.avanzar()
 
     def avanzar(self):
         "Hace avanzar la nave en direccion a su angulo."
