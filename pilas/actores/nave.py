@@ -9,7 +9,7 @@
 import pilas
 from pilas.actores import Animacion
 import math
-from ImageChops import offset
+from PIL.ImageChops import offset
 
 class Nave(Animacion):
     "Representa una nave que puede disparar."

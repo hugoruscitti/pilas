@@ -1,0 +1,2 @@
+svn+http://pybox2d.googlecode.com/svn/trunk/#egg=Box2D
+Pillow
