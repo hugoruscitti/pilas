@@ -25,10 +25,9 @@ class Martian(Actor):
                        actor_disparado=pilas.actores.Disparo,
                        angulo_salida_disparo=0,
                        frecuencia_de_disparo=8,
-                       offset_disparo_x=25,
-                       offset_disparo_y=0,
-                       offset_origen_disparo_y=23,
-                       velocidad=4)
+                       offset_disparo=(25,0),
+                       offset_origen_disparo=(0,23),
+                       velocidad=9)
 
 
     def definir_cuadro(self, indice):

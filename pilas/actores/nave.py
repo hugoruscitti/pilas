@@ -24,8 +24,7 @@ class Nave(Animacion):
                        actor_disparado=pilas.actores.Disparo,
                        angulo_salida_disparo=90,
                        frecuencia_de_disparo=5,
-                       offset_disparo_x=20,
-                       offset_disparo_y=20,
+                       offset_disparo=(20,20),
                        velocidad=4)
 
         self.aprender(pilas.habilidades.MoverseConElTeclado,
