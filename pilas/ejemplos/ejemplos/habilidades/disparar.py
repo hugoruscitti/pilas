@@ -21,6 +21,7 @@ enemigos = []
 
 fin_de_juego = False
 
+pilas.actores.Sonido()
 
 def crear_enemigo():
 
@@ -30,7 +31,7 @@ def crear_enemigo():
 
     # Hace que la aceituna aparezca gradualmente, aumentando de tamaño.
     enemigo.escala = 0
-    enemigo.escala = pilas.interpolar(0.5, duracion=0.5, tipo='rebote_final')
+    enemigo.escala = pilas.interpolar(0.5, duracion=0.5, tipo='elastico_final')
 
     enemigo.aprender(pilas.habilidades.PuedeExplotar)
 
@@ -98,8 +99,9 @@ arma.aprender(pilas.habilidades.Disparar,
                grupo_enemigos=enemigos,               
                cuando_elimina_enemigo=destruido,
                frecuencia_de_disparo=5,
-               salida_disparo=pilas.habilidades.Disparar.ARRIBA,
-               offset_disparo=27)
+               angulo_salida_disparo=90,
+               offset_disparo_x=27,
+               offset_disparo_y=27)
 
 pilas.mundo.agregar_tarea(1, crear_enemigo)
 
