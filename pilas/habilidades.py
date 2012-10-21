@@ -672,7 +672,12 @@ class Disparar(Habilidad):
                 self.disparos.remove(d)
 
     def disparar(self):
-        self.municion.disparar(x=self.receptor.x+self.offset_origen_disparo_x,
+        if (self.receptor.espejado):
+            offset_origen_disparo_x = -1 * self.offset_origen_disparo_x
+        else:
+            offset_origen_disparo_x = self.offset_origen_disparo_x
+            
+        self.municion.disparar(x=self.receptor.x+offset_origen_disparo_x,
                                y=self.receptor.y+self.offset_origen_disparo_y,
                                angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo),
                                rotacion=self.receptor.rotacion - 90,
