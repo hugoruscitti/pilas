@@ -151,3 +151,17 @@ class DobleBalasDesviadas(Municion):
                                   angulo_de_movimiento=rotacion-self.angulo_desvio), 
                              offset_disparo_x,
                              offset_disparo_y)
+        
+class MisilSimple(Municion):
+
+    def __init__(self):
+        Municion.__init__(self)
+
+    def disparar(self, x, y, rotacion, offset_disparo_x, offset_disparo_y):
+
+        self.agregar_disparo(Misil(x=x,
+                                  y=y,
+                                  angulo_de_movimiento=rotacion),
+                             offset_disparo_x,
+                             offset_disparo_y)
+        

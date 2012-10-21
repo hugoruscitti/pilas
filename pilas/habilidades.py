@@ -627,7 +627,7 @@ class Disparar(Habilidad):
         self.offset_origen_disparo_y = offset_origen_disparo[1]
 
         self.angulo_salida_disparo = angulo_salida_disparo
-        self.frecuencia_de_disparo = 60 / frecuencia_de_disparo
+        self.frecuencia_de_disparo = frecuencia_de_disparo
         self.contador_frecuencia_disparo = 0
         self.disparos = []
 
@@ -637,6 +637,16 @@ class Disparar(Habilidad):
 
         self.cuando_dispara = cuando_dispara
 
+
+    def set_frecuencia_de_disparo(self, valor):        
+        self._frecuencia_de_disparo = 60 / valor
+        print self._frecuencia_de_disparo
+
+    def get_frecuencia_de_disparo(self, valor):
+        return self._frecuencia_de_disparo
+
+    frecuencia_de_disparo = property(get_frecuencia_de_disparo, set_frecuencia_de_disparo, doc="")
+    
     def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
         self.grupo_enemigos = grupo_enemigos
         pilas.escena_actual().colisiones.agregar(self.disparos, self.grupo_enemigos,
@@ -645,7 +655,7 @@ class Disparar(Habilidad):
         self.contador_frecuencia_disparo += 1
 
         if pilas.escena_actual().control.boton:
-            if self.contador_frecuencia_disparo > self.frecuencia_de_disparo:
+            if self.contador_frecuencia_disparo > self._frecuencia_de_disparo:
                 self.contador_frecuencia_disparo = 0
                 self.disparar()
                 for disparo in self.municion.disparos:
