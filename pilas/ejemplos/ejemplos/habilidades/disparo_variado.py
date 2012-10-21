@@ -25,6 +25,7 @@ arma.aprender(pilas.habilidades.Disparar,
               municion=municion,
               grupo_enemigos=[banana,aceituna],
               cuando_elimina_enemigo=eliminar,
-              angulo_salida_disparo=0)
+              angulo_salida_disparo=0,
+              offset_disparo=(27,27))
 
 pilas.ejecutar()

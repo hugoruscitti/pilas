@@ -40,7 +40,7 @@ class Disparo(Animacion):
 
 class Misil(Disparo):
 
-    def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=7,aceleracion=0.1,
+    def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=8,aceleracion=0.5,
                  angulo_de_movimiento=90):
 
         Disparo.__init__(self,
@@ -95,7 +95,7 @@ class Municion(object):
     def __init__(self):
         self._disparos = []
 
-    def disparar(self, x, y, rotacion, offset_disparo_x, offset_disparo_y):
+    def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
         pass
 
     def get_disparos(self):
@@ -124,11 +124,12 @@ class BalaSimple(Municion):
     def __init__(self):
         Municion.__init__(self)
 
-    def disparar(self, x, y, rotacion, offset_disparo_x, offset_disparo_y):
+    def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
 
         self.agregar_disparo(Bala(x=x,
                                   y=y,
-                                  angulo_de_movimiento=rotacion),
+                                  angulo_de_movimiento=angulo_de_movimiento,
+                                  rotacion=rotacion),
                              offset_disparo_x,
                              offset_disparo_y)
         
@@ -138,17 +139,19 @@ class DobleBalasDesviadas(Municion):
         Municion.__init__(self)
         self.angulo_desvio = angulo_desvio
 
-    def disparar(self, x, y, rotacion, offset_disparo_x, offset_disparo_y):
+    def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
 
         self.agregar_disparo(Bala(x=x,
                                   y=y,
-                                  angulo_de_movimiento=rotacion+self.angulo_desvio),
+                                  angulo_de_movimiento=angulo_de_movimiento+self.angulo_desvio,
+                                  rotacion=rotacion),
                              offset_disparo_x,
                              offset_disparo_y)
 
         self.agregar_disparo(Bala(x=x,
                                   y=y,
-                                  angulo_de_movimiento=rotacion-self.angulo_desvio), 
+                                  angulo_de_movimiento=angulo_de_movimiento-self.angulo_desvio,
+                                  rotacion=rotacion), 
                              offset_disparo_x,
                              offset_disparo_y)
         
@@ -157,11 +160,12 @@ class MisilSimple(Municion):
     def __init__(self):
         Municion.__init__(self)
 
-    def disparar(self, x, y, rotacion, offset_disparo_x, offset_disparo_y):
+    def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
 
         self.agregar_disparo(Misil(x=x,
                                   y=y,
-                                  angulo_de_movimiento=rotacion),
+                                  angulo_de_movimiento=angulo_de_movimiento,
+                                  rotacion=rotacion),
                              offset_disparo_x,
                              offset_disparo_y)
         

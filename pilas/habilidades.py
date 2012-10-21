@@ -640,7 +640,6 @@ class Disparar(Habilidad):
 
     def set_frecuencia_de_disparo(self, valor):        
         self._frecuencia_de_disparo = 60 / valor
-        print self._frecuencia_de_disparo
 
     def get_frecuencia_de_disparo(self, valor):
         return self._frecuencia_de_disparo
@@ -675,7 +674,8 @@ class Disparar(Habilidad):
     def disparar(self):
         self.municion.disparar(x=self.receptor.x+self.offset_origen_disparo_x,
                                y=self.receptor.y+self.offset_origen_disparo_y,
-                               rotacion=self.receptor.rotacion + -(self.angulo_salida_disparo),
+                               angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo),
+                               rotacion=self.receptor.rotacion - 90,
                                offset_disparo_x=self.offset_disparo_x,
                                offset_disparo_y=self.offset_disparo_y)
 
