@@ -88,3 +88,66 @@ class Bala(Disparo):
         dy = math.sin(rotacion_en_radianes) * self.velocidad_maxima
         self.x += dx
         self.y += dy
+
+
+class Municion(object):
+
+    def __init__(self):
+        self._disparos = []
+
+    def disparar(self, x, y, rotacion, offset_disparo_x, offset_disparo_y):
+        pass
+
+    def get_disparos(self):
+        return self._disparos
+    
+    def eliminar_disparos(self):
+        self._disparos = []
+
+    def agregar_disparo(self, disparo, offset_x, offset_y):
+        self.desplazar_disparo(disparo, offset_x, offset_y)
+        self._disparos.append(disparo)
+
+    def desplazar_disparo(self, disparo, offset_x, offset_y):
+        rotacion_en_radianes = math.radians(-disparo.rotacion)
+        dx = math.cos(rotacion_en_radianes)
+        dy = math.sin(rotacion_en_radianes)
+
+        disparo.x += dx * offset_x
+        disparo.y += dy * offset_y
+
+    disparos = property(get_disparos, None, doc="Define los disaparos de la munición.")
+
+
+class BalaSimple(Municion):
+
+    def __init__(self):
+        Municion.__init__(self)
+
+    def disparar(self, x, y, rotacion, offset_disparo_x, offset_disparo_y):
+
+        self.agregar_disparo(Bala(x=x,
+                                  y=y,
+                                  angulo_de_movimiento=rotacion),
+                             offset_disparo_x,
+                             offset_disparo_y)
+        
+class DobleBalasDesviadas(Municion):
+
+    def __init__(self, angulo_desvio=5):
+        Municion.__init__(self)
+        self.angulo_desvio = angulo_desvio
+
+    def disparar(self, x, y, rotacion, offset_disparo_x, offset_disparo_y):
+
+        self.agregar_disparo(Bala(x=x,
+                                  y=y,
+                                  angulo_de_movimiento=rotacion+self.angulo_desvio),
+                             offset_disparo_x,
+                             offset_disparo_y)
+
+        self.agregar_disparo(Bala(x=x,
+                                  y=y,
+                                  angulo_de_movimiento=rotacion-self.angulo_desvio), 
+                             offset_disparo_x,
+                             offset_disparo_y)
