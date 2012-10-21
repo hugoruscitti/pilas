@@ -96,12 +96,11 @@ arma.aprender(pilas.habilidades.RotarConMouse,
 
 arma.aprender(pilas.habilidades.Disparar,
                actor_disparado=Bala,
-               grupo_enemigos=enemigos,               
+               grupo_enemigos=enemigos,
                cuando_elimina_enemigo=destruido,
                frecuencia_de_disparo=5,
                angulo_salida_disparo=90,
-               offset_disparo_x=27,
-               offset_disparo_y=27)
+               offset_disparo=(27,27))
 
 pilas.mundo.agregar_tarea(1, crear_enemigo)
 
