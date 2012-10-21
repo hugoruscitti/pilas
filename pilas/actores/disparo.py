@@ -65,3 +65,26 @@ class Misil(Disparo):
         dy = math.sin(rotacion_en_radianes) * self.velocidad
         self.x += dx
         self.y += dy
+
+class Bala(Disparo):
+
+    def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=9,
+                 angulo_de_movimiento=90):
+
+        Disparo.__init__(self,
+                         grilla="disparos/bola_amarilla.png",
+                         frames=1,
+                         x=x,
+                         y=y,
+                         rotacion=rotacion,
+                         velocidad_maxima=velocidad_maxima,
+                         aceleracion=1,
+                         radio_de_colision=8,
+                         angulo_de_movimiento=angulo_de_movimiento)
+
+    def avanzar(self):
+        rotacion_en_radianes = math.radians(-self.angulo_de_movimiento + 90)
+        dx = math.cos(rotacion_en_radianes) * self.velocidad_maxima
+        dy = math.sin(rotacion_en_radianes) * self.velocidad_maxima
+        self.x += dx
+        self.y += dy
