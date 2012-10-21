@@ -21,6 +21,14 @@ class Martian(Actor):
         self.definir_cuadro(0)
         self.mapa = mapa
         self.hacer(Esperando())
+        self.aprender(pilas.habilidades.Disparar,
+                       actor_disparado=pilas.actores.Disparo,
+                       angulo_salida_disparo=0,
+                       frecuencia_de_disparo=8,
+                       offset_disparo=(25,0),
+                       offset_origen_disparo=(0,23),
+                       velocidad=9)
+
 
     def definir_cuadro(self, indice):
         self.imagen.definir_cuadro(indice)
@@ -29,14 +37,6 @@ class Martian(Actor):
     def actualizar(self):
         "Sigue el movimiento de la figura."
         pass
-
-    def crear_disparo(self):
-        if self.espejado:
-            rotacion = -90
-        else:
-            rotacion = 90
-
-        disparo = pilas.actores.Disparo(x=self.x, y=self.y+20, rotacion=rotacion, velocidad=10)
 
     def puede_saltar(self):
         return True
@@ -84,9 +84,11 @@ class Caminando(Esperando):
         if pilas.escena_actual().control.izquierda:
             self.receptor.x -= 3
             self.receptor.espejado = True
+            self.receptor.habilidades.Disparar.angulo_salida_disparo = 180
         elif pilas.escena_actual().control.derecha:
             self.receptor.x += 3
             self.receptor.espejado = False
+            self.receptor.habilidades.Disparar.angulo_salida_disparo = 0
         else:
             self.receptor.hacer(Esperando())
 
@@ -130,9 +132,11 @@ class Saltando(Comportamiento):
 
         if pilas.escena_actual().control.izquierda:
             self.receptor.espejado = True
+            self.receptor.habilidades.Disparar.angulo_salida_disparo = 180
             self.receptor.x -= 3
         elif pilas.escena_actual().control.derecha:
             self.receptor.espejado = False
+            self.receptor.habilidades.Disparar.angulo_salida_disparo = 0
             self.receptor.x += 3
 
 class Disparar(Comportamiento):
@@ -140,7 +144,6 @@ class Disparar(Comportamiento):
     def __init__(self, receptor):
         self.cuadros = [6, 6, 7, 7, 8, 8]
         self.paso = 0
-        receptor.crear_disparo()
 
     def actualizar(self):
         termina = self.avanzar_animacion()

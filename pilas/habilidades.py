@@ -507,28 +507,33 @@ class Disparar(Habilidad):
     param: velocidad: Velocidad del proyectil disparado.
     param: frecuencia_de_disparo: El número de disparos por segundo que
     realizará.
-    param: salida_disparo: Especifica el lado por donde disparará el actor.
-    param: offset_disparo: Separación en pixeles del dispara con respecto al
-    centro del Actor que dispara.
+    param: angulo_salida_disparo: Especifica el angulo por donde disparará el actor.
+    param: offset_disparo: Separación en pixeles (x,y) del dispara con respecto al centro
+    del Actor.
+    param: offset_origen_disparo: Si el actor no tiene su origen en el centro, con
+    este parametro podremos colocar correctamente el disparo.
+    param: cuando_dispara: Metodo al que se llamara cuando se produzca un disparo.
     """
-    ARRIBA = 270
-    ABAJO = 90
-    IZQUIERDA = 180
-    DERECHA = 0
-
+    
     def __init__(self, receptor, actor_disparado, grupo_enemigos=[],
                  cuando_elimina_enemigo=None, velocidad=5,
                  frecuencia_de_disparo=10,
-                 salida_disparo=ARRIBA,
-                 offset_disparo=0):
+                 angulo_salida_disparo=0,
+                 offset_disparo=(0,0),
+                 offset_origen_disparo=(0,0),
+                 cuando_dispara=None):
 
         Habilidad.__init__(self, receptor)
         self.receptor = receptor
 
         self.actor_disparado = actor_disparado
-        self.offset_disparo = offset_disparo
+        self.offset_disparo_x = offset_disparo[0]
+        self.offset_disparo_y = offset_disparo[1]
 
-        self.salida_disparo = salida_disparo
+        self.offset_origen_disparo_x = offset_origen_disparo[0]
+        self.offset_origen_disparo_y = offset_origen_disparo[1]
+
+        self.angulo_salida_disparo = angulo_salida_disparo
         self.frecuencia_de_disparo = 60 / frecuencia_de_disparo
         self.contador_frecuencia_disparo = 0
         self.disparos = []
@@ -537,6 +542,8 @@ class Disparar(Habilidad):
         self.grupo_enemigos = grupo_enemigos
 
         self.definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
+        
+        self.cuando_dispara = cuando_dispara
 
     def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
         self.grupo_enemigos = grupo_enemigos
@@ -559,21 +566,25 @@ class Disparar(Habilidad):
                 self.disparos.remove(d)
 
     def disparar(self):
-        disparo_nuevo = self.actor_disparado(x=self.receptor.x,
-                                             y=self.receptor.y)
+        disparo_nuevo = self.actor_disparado(x=self.receptor.x+self.offset_origen_disparo_x,
+                                             y=self.receptor.y+self.offset_origen_disparo_y)
 
-        disparo_nuevo.rotacion = self.receptor.rotacion + self.salida_disparo
+        disparo_nuevo.rotacion = self.receptor.rotacion + -(self.angulo_salida_disparo)
 
         rotacion_en_radianes = math.radians(-disparo_nuevo.rotacion)
         dx = math.cos(rotacion_en_radianes)
         dy = math.sin(rotacion_en_radianes)
 
-        disparo_nuevo.x += dx * self.offset_disparo
-        disparo_nuevo.y += dy * self.offset_disparo
+        disparo_nuevo.x += dx * self.offset_disparo_x
+        disparo_nuevo.y += dy * self.offset_disparo_y
 
         disparo_nuevo.hacer(pilas.comportamientos.Avanzar(velocidad=self.velocidad))
 
         self.disparos.append(disparo_nuevo)
+        
+        if self.cuando_dispara:
+            self.cuando_dispara(disparo_nuevo)
+            
 
     def eliminar(self):
         pass

@@ -939,10 +939,10 @@ class Motor(object):
         return Musica(self.player, ruta)
 
     def deshabilitar_sonido(self, estado=True):
-        SonidoGST.deshabilitado = estado
+        self.clase_sonido.deshabilitado = estado
 
     def deshabilitar_musica(self, estado=True):
-        Musica.deshabilitado = estado
+        self.clase_musica.deshabilitado = estado
 
     def cargar_imagen(self, ruta):
         return Imagen(ruta)

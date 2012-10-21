@@ -9,7 +9,7 @@
 import pilas
 from pilas.actores import Animacion
 import math
-from PIL.ImageChops import offset
+
 
 class Nave(Animacion):
     "Representa una nave que puede disparar."
@@ -23,9 +23,9 @@ class Nave(Animacion):
 
         self.aprender(pilas.habilidades.Disparar,
                        actor_disparado=pilas.actores.Disparo,
-                       salida_disparo=pilas.habilidades.Disparar.ARRIBA,
+                       angulo_salida_disparo=90,
                        frecuencia_de_disparo=5,
-                       offset_disparo=20,
+                       offset_disparo=(20,20),
                        velocidad=4)
 
         self.aprender(pilas.habilidades.MoverseConElTeclado,
@@ -45,8 +45,7 @@ class Nave(Animacion):
         El argumento cuando_elimina_enemigo tiene que ser una funcion que
         se ejecutara cuando se produzca la colision."""
         self.cuando_elimina_enemigo = cuando_elimina_enemigo
-        habilidad_dispara = self.obtener_habilidad(pilas.habilidades.Disparar)
-        habilidad_dispara.definir_colision(grupo, self.hacer_explotar_al_enemigo)
+        self.habilidades.Disparar.definir_colision(grupo, self.hacer_explotar_al_enemigo)
 
     def hacer_explotar_al_enemigo(self, mi_disparo, el_enemigo):
         "Es el método que se invoca cuando se produce una colisión 'tiro <-> enemigo'"
