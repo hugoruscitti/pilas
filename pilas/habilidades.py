@@ -673,7 +673,7 @@ class Disparar(Habilidad):
 
     def disparar(self):
         if (self.receptor.espejado):
-            offset_origen_disparo_x = -1 * self.offset_origen_disparo_x
+            offset_origen_disparo_x = -self.offset_origen_disparo_x
         else:
             offset_origen_disparo_x = self.offset_origen_disparo_x
             
