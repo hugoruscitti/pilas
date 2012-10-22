@@ -3,7 +3,7 @@ import os
 
 pilas.iniciar()
 
-def eliminar(disparo, enemigo):    
+def eliminar(disparo, enemigo):
     enemigo.eliminar()
     if isinstance(enemigo, pilas.actores.Banana):
         arma.habilidades.Disparar.municion = pilas.actores.disparo.BalaSimple()
@@ -21,7 +21,7 @@ aceituna = pilas.actores.Aceituna(x=-200, y=150)
 arma.aprender(pilas.habilidades.RotarConMouse,
               lado_seguimiento=pilas.habilidades.RotarConMouse.ARRIBA)
 
-arma.aprender(pilas.habilidades.Disparar,
+arma.aprender(pilas.habilidades.DispararConClick,
               municion=municion,
               grupo_enemigos=[banana,aceituna],
               cuando_elimina_enemigo=eliminar,

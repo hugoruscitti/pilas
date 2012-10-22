@@ -234,7 +234,7 @@ class MoverseConElTeclado(Habilidad):
     param: con_rotacion: Si deseas que el actor rote pulsando las teclas de izquierda
     y derecha.
     param: velocidad_rotacion: Indica lo rapido que rota un actor sobre si mismo.
-    param: marcha_atras: Posibilidad de ir hacia atrás. (True o False) 
+    param: marcha_atras: Posibilidad de ir hacia atrás. (True o False)
     """
     CUATRO_DIRECCIONES = 4
     OCHO_DIRECCIONES = 8
@@ -408,7 +408,7 @@ class SeMantieneEnPantalla(Habilidad):
 
     Si el actor sale por la derecha de la pantalla, entonces regresa
     por la izquiera. Si sale por arriba regresa por abajo y asi...
-    
+
     param: permitir_salida: Valor booleano que establece si el actor
     puede salir por los lados de la ventana y regresar por el lado opuesto.
     Si se establece a False, el actor no puede salir de la ventana en ningún
@@ -426,7 +426,7 @@ class SeMantieneEnPantalla(Habilidad):
                 self.receptor.izquierda = (self.ancho/2)
             elif self.receptor.izquierda > (self.ancho/2):
                 self.receptor.derecha = -(self.ancho/2)
-    
+
             # Se asegura de regresar por arriba y abajo.
             if self.receptor.abajo > (self.alto/2):
                 self.receptor.arriba = -(self.alto/2)
@@ -592,7 +592,7 @@ class DispararLineal(Habilidad):
 class Disparar(Habilidad):
     """ Establece la habilidad de poder disparar un objeto.
     El objeto disparado puede ser cualquier actor.
-    
+
     param: municion: Municion que se disparará.
     param: grupo_enemigos: Actores que son considerados enemigos y con los que
     colisionará el proyectil disparado.
@@ -607,7 +607,7 @@ class Disparar(Habilidad):
     este parametro podremos colocar correctamente el disparo.
     param: cuando_dispara: Metodo al que se llamara cuando se produzca un disparo.
     """
-    
+
     def __init__(self, receptor, municion, grupo_enemigos=[],
                  cuando_elimina_enemigo=None,
                  frecuencia_de_disparo=10,
@@ -638,14 +638,14 @@ class Disparar(Habilidad):
         self.cuando_dispara = cuando_dispara
 
 
-    def set_frecuencia_de_disparo(self, valor):        
+    def set_frecuencia_de_disparo(self, valor):
         self._frecuencia_de_disparo = 60 / valor
 
     def get_frecuencia_de_disparo(self, valor):
         return self._frecuencia_de_disparo
 
     frecuencia_de_disparo = property(get_frecuencia_de_disparo, set_frecuencia_de_disparo, doc="")
-    
+
     def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
         self.grupo_enemigos = grupo_enemigos
         pilas.escena_actual().colisiones.agregar(self.disparos, self.grupo_enemigos,
@@ -653,7 +653,7 @@ class Disparar(Habilidad):
     def actualizar(self):
         self.contador_frecuencia_disparo += 1
 
-        if pilas.escena_actual().control.boton:
+        if self.pulsa_disparar():
             if self.contador_frecuencia_disparo > self._frecuencia_de_disparo:
                 self.contador_frecuencia_disparo = 0
                 self.disparar()
@@ -676,7 +676,7 @@ class Disparar(Habilidad):
             offset_origen_disparo_x = -self.offset_origen_disparo_x
         else:
             offset_origen_disparo_x = self.offset_origen_disparo_x
-            
+
         self.municion.disparar(x=self.receptor.x+offset_origen_disparo_x,
                                y=self.receptor.y+self.offset_origen_disparo_y,
                                angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo),
@@ -690,3 +690,26 @@ class Disparar(Habilidad):
 
     def eliminar(self):
         pass
+
+    def pulsa_disparar(self):
+        return pilas.escena_actual().control.boton
+
+
+class DispararConClick(Disparar):
+
+    def __init__(self, *k, **kv):
+        Disparar.__init__(self, *k, **kv)
+        self.boton_pulsado = False
+        pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
+        pilas.eventos.termina_click.conectar(self.cuando_termina_click)
+
+    def cuando_hace_click(self, evento):
+        if evento.boton == 1:
+            self.boton_pulsado = True
+
+    def cuando_termina_click(self, evento):
+        if evento.boton == 1:
+            self.boton_pulsado = False
+
+    def pulsa_disparar(self):
+        return self.boton_pulsado
