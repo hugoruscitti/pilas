@@ -712,4 +712,6 @@ class DispararConClick(Disparar):
             self.boton_pulsado = False
 
     def pulsa_disparar(self):
-        return self.boton_pulsado
+        if self.boton_pulsado:
+            self.boton_pulsado = False
+            return True
