@@ -698,7 +698,7 @@ class Disparar(Habilidad):
 class DispararConClick(Disparar):
 
     def __init__(self, *k, **kv):
-        Disparar.__init__(self, *k, **kv)
+        super(DispararConClick, self).__init__(*k, **kv)
         self.boton_pulsado = False
         pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
         pilas.eventos.termina_click.conectar(self.cuando_termina_click)
@@ -712,6 +712,4 @@ class DispararConClick(Disparar):
             self.boton_pulsado = False
 
     def pulsa_disparar(self):
-        if self.boton_pulsado:
-            self.boton_pulsado = False
-            return True
+        return self.boton_pulsado
