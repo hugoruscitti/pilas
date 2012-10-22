@@ -118,5 +118,9 @@ class ProxyHabilidades(object):
             if habilidad.__class__.__name__ == name:
                 su_habilidad = habilidad
                 break
+            
+        if not su_habilidad:
+            raise Exception("El actor no tiene asignada la habilidad " + name + 
+                            ".\n No puede acceder mediante actor.habilidades." + name)
 
         return su_habilidad
