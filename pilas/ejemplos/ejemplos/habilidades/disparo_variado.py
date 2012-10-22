@@ -5,11 +5,12 @@ pilas.iniciar()
 
 def eliminar(disparo, enemigo):
     enemigo.eliminar()
+        
     if isinstance(enemigo, pilas.actores.Banana):
-        arma.habilidades.Disparar.municion = pilas.actores.disparo.BalaSimple()
+        arma.habilidades.DispararConClick.municion = pilas.actores.disparo.BalaSimple()
     else:
-        arma.habilidades.Disparar.municion = pilas.actores.disparo.MisilSimple()
-        arma.habilidades.Disparar.frecuencia_de_disparo = 1
+        arma.habilidades.DispararConClick.municion = pilas.actores.disparo.MisilSimple()
+        arma.habilidades.DispararConClick.frecuencia_de_disparo = 1
 
 municion = pilas.actores.disparo.DobleBalasDesviadas()
 
