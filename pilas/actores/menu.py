@@ -13,7 +13,11 @@ import pilas
 DEMORA = 14
 
 class Menu(Actor):
-    "Representa un bloque que tiene fisica como una caja."
+    """Una lista de Opciones que se pueden seleccionar
+        :param opciones: Tupla con al menos dos elementos obligatorios (:texto:, :funcion:) y :argumentos: opcionales
+        :param x: Posicion en el eje x
+        :param y: Posicion en el eje y
+    """
 
     def __init__(self, opciones, x=0, y=0):
         self.opciones_como_actores = []
@@ -49,9 +53,10 @@ class Menu(Actor):
     def crear_texto_de_las_opciones(self, opciones):
         "Genera un actor por cada opcion del menu."
 
-        for indice, (texto, funcion) in enumerate(opciones):
+        for indice, opcion in enumerate(opciones):
             y = self.y - indice * 50
-            opciones = pilas.actores.Opcion(texto, x=0, y=y, funcion_a_invocar=funcion)
+            texto, funcion, argumentos = opcion[0],opcion[1],opcion[2:]
+            opciones = pilas.actores.Opcion(texto, x=0, y=y, funcion_a_invocar=funcion, argumentos=argumentos)
 
             self.opciones_como_actores.append(opciones)
 
@@ -62,8 +67,10 @@ class Menu(Actor):
     def _verificar_opciones(self, opciones):
         "Se asegura de que la lista este bien definida."
 
+        
         for x in opciones:
-            if not isinstance(x, tuple) or len(x) != 2:
+
+            if not isinstance(x, tuple) or len(x)<2:
                 raise Exception("Opciones incorrectas, cada opcion tiene que ser una tupla.")
 
     def actualizar(self):
