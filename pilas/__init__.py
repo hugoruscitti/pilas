@@ -166,7 +166,7 @@ def reiniciar():
     """Elimina todos los actores y vuelve al estado inicial."""
     mundo.reiniciar()
 
-def avisar(mensaje):
+def avisar(mensaje, retraso=5):
     """Emite un mensaje en la ventana principal.
 
     Este mensaje aparecerá en la parte inferior de la pantalla durante
@@ -174,7 +174,7 @@ def avisar(mensaje):
 
         >>> pilas.avisar("Use la tecla <esc> para terminar el programa")
     """
-    actores.TextoInferior(mensaje, autoeliminar=True)
+    actores.TextoInferior(mensaje, autoeliminar=True, retraso=retraso)
 
 def abrir_cargador():
     """Abre un cargador de ejemplos con varios códigos de prueba.
