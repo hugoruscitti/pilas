@@ -68,7 +68,7 @@ class Misil(Disparo):
 
 class MisilGuiado(Disparo):
 
-    def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=8,aceleracion=0.5,
+    def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=2,aceleracion=0.5,
                  angulo_de_movimiento=90):
 
         Disparo.__init__(self,
@@ -85,10 +85,10 @@ class MisilGuiado(Disparo):
         self.actor_mas_cercano = pilas.utils.actor_mas_cercano_al_actor(self)
 
         if (self.actor_mas_cercano):
-            self.aprender(pilas.habilidades.MirarAlActor, self.actor_mas_cercano)
+            self.aprender(pilas.habilidades.MirarAlActor, self.actor_mas_cercano, pilas.habilidades.MirarAlActor.DERECHA)
 
     def avanzar(self):
-        if not(self.actor_mas_cercano._vi):
+        if not(self.actor_mas_cercano._vivo):
             self.eliminar()
 
         self.velocidad += self.aceleracion
