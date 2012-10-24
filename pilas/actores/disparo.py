@@ -89,6 +89,33 @@ class Bala(Disparo):
         self.x += dx
         self.y += dy
 
+class Dinamita(Disparo):
+
+    def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=4,
+                 angulo_de_movimiento=90):
+
+        Disparo.__init__(self,
+                         grilla="disparos/dinamita.png",
+                         frames=2,
+                         x=x,
+                         y=y,
+                         rotacion=rotacion,
+                         velocidad_maxima=velocidad_maxima,
+                         aceleracion=1,
+                         radio_de_colision=20,
+                         angulo_de_movimiento=angulo_de_movimiento)
+
+        self.escala = 0.7
+
+        self.aprender(pilas.habilidades.PuedeExplotar)
+
+    def avanzar(self):
+        rotacion_en_radianes = math.radians(-self.angulo_de_movimiento + 90)
+        dx = math.cos(rotacion_en_radianes) * self.velocidad_maxima
+        dy = math.sin(rotacion_en_radianes) * self.velocidad_maxima
+        self.x += dx
+        self.y += dy
+        self.rotacion += 3
 
 class Municion(object):
 
@@ -119,6 +146,19 @@ class Municion(object):
     disparos = property(get_disparos, None, doc="Define los disaparos de la munición.")
 
 
+class DinamitaSimple(Municion):
+
+    def __init__(self):
+        Municion.__init__(self)
+
+    def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
+
+        self.agregar_disparo(Dinamita(x=x,
+                                  y=y,
+                                  angulo_de_movimiento=angulo_de_movimiento,
+                                  rotacion=rotacion),
+                             offset_disparo_x,
+                             offset_disparo_y)
 class BalaSimple(Municion):
 
     def __init__(self):
