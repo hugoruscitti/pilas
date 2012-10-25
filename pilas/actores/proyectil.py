@@ -75,38 +75,6 @@ class Misil(Proyectil):
 
         self.mover_respecto_angulo_movimiento()
 
-class MisilGuiado(Proyectil):
-
-    def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=2,aceleracion=0.5,
-                 angulo_de_movimiento=90):
-
-        Proyectil.__init__(self,
-                         grilla="disparos/misil.png",
-                         frames=3,
-                         x=x,
-                         y=y,
-                         rotacion=rotacion,
-                         velocidad_maxima=velocidad_maxima,
-                         aceleracion=aceleracion,
-                         radio_de_colision=15,
-                         angulo_de_movimiento=angulo_de_movimiento)
-
-        self.actor_mas_cercano = pilas.utils.actor_mas_cercano_al_actor(self)
-
-        if (self.actor_mas_cercano):
-            self.aprender(pilas.habilidades.MirarAlActor, self.actor_mas_cercano, pilas.habilidades.MirarAlActor.DERECHA)
-
-    def avanzar(self):
-        if not(self.actor_mas_cercano._vivo):
-            self.eliminar()
-
-        self.velocidad += self.aceleracion
-
-        if self.velocidad > self.velocidad_maxima:
-            self.velocidad = self.velocidad_maxima
-
-        self.mover_respecto_angulo_movimiento()
-
 
 class Bala(Proyectil):
 
