@@ -14,27 +14,19 @@ def eliminar(disparo, enemigo):
     enemigo.eliminar()
 
     if isinstance(enemigo, pilas.actores.Banana):
-        arma.habilidades.DispararConClick.municion = BalaSimple()
+        torreta.habilidades.DispararConClick.municion = BalaSimple()
+        torreta.habilidades.DispararConClick.frecuencia_de_disparo = 10
     else:
-        arma.habilidades.DispararConClick.municion = MisilSimple()
-        arma.habilidades.DispararConClick.frecuencia_de_disparo = 1
+        torreta.habilidades.DispararConClick.municion = MisilSimple()
+        torreta.habilidades.DispararConClick.frecuencia_de_disparo = 2
 
-municion = DobleBala()
-
-arma = pilas.actores.Actor(os.path.abspath("arma.png"))
+municion_bala_simple = DobleBala()
 
 banana = pilas.actores.Banana(x=200, y=150)
 aceituna = pilas.actores.Aceituna(x=-200, y=150)
 
-arma.aprender(pilas.habilidades.RotarConMouse,
-              lado_seguimiento=pilas.habilidades.RotarConMouse.ARRIBA)
+torreta = pilas.actores.Torreta(municion_bala_simple=municion_bala_simple, enemigos=[banana, aceituna],
+                             cuando_elimina_enemigo=eliminar)
 
-arma.aprender(pilas.habilidades.DispararConClick,
-              municion=municion,
-              grupo_enemigos=[banana,aceituna],
-              cuando_elimina_enemigo=eliminar,
-              frecuencia_de_disparo=10,
-              angulo_salida_disparo=0,
-              offset_disparo=(27,27))
 
 pilas.ejecutar()
