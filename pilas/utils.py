@@ -73,6 +73,16 @@ def distancia_entre_dos_puntos((x1, y1), (x2, y2)):
 def distancia_entre_dos_actores(a, b):
     return distancia_entre_dos_puntos((a.x, a.y), (b.x, b.y))
 
+def actor_mas_cercano_al_actor(actor):
+    actor_mas_cercano = None
+    distancia = 999999
+    for actor_cercano in pilas.escena_actual().actores:
+        if id(actor_cercano) != id(actor):
+            if distancia_entre_dos_actores(actor,actor_cercano) < distancia:
+                actor_mas_cercano = actor_cercano
+
+    return actor_mas_cercano
+
 def colisionan(a, b):
     "Retorna True si dos actores estan en contacto."
     return distancia_entre_dos_actores(a, b) < a.radio_de_colision + b.radio_de_colision
