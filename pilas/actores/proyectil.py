@@ -120,3 +120,27 @@ class Dinamita(Proyectil):
     def avanzar(self):
         self.mover_respecto_angulo_movimiento()
         self.rotacion += 3
+
+
+class EstrellaNinja(Proyectil):
+    """ Representa una estrella ninja. """
+
+    def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=4,
+                 angulo_de_movimiento=90):
+
+        Proyectil.__init__(self,
+                         grilla="disparos/estrella.png",
+                         frames=1,
+                         x=x,
+                         y=y,
+                         rotacion=rotacion,
+                         velocidad_maxima=velocidad_maxima,
+                         aceleracion=1,
+                         radio_de_colision=20,
+                         angulo_de_movimiento=angulo_de_movimiento)
+
+        self.escala = 0.5
+
+    def avanzar(self):
+        self.mover_respecto_angulo_movimiento()
+        self.rotacion += 10

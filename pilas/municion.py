@@ -5,6 +5,7 @@ import math
 from pilas.actores.proyectil import Bala
 from pilas.actores.proyectil import Misil
 from pilas.actores.proyectil import Dinamita
+from pilas.actores.proyectil import EstrellaNinja
 
 
 class Municion(object):
@@ -49,6 +50,21 @@ class DinamitaSimple(Municion):
                                   rotacion=rotacion),
                              offset_disparo_x,
                              offset_disparo_y)
+
+class EstrellaNinjaSimple(Municion):
+
+    def __init__(self):
+        Municion.__init__(self)
+
+    def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
+
+        self.agregar_proyectil(EstrellaNinja(x=x,
+                                  y=y,
+                                  angulo_de_movimiento=angulo_de_movimiento,
+                                  rotacion=rotacion),
+                             offset_disparo_x,
+                             offset_disparo_y)
+
 class BalaSimple(Municion):
 
     def __init__(self):
