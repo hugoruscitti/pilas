@@ -48,6 +48,9 @@ class Proyectil(Animacion):
         self.x += dx
         self.y += dy
 
+    def stop(self):
+        pass
+
 
 class Misil(Proyectil):
     """ Representa un misil que va en línea recta con aceleración. """
@@ -140,7 +143,12 @@ class EstrellaNinja(Proyectil):
                          angulo_de_movimiento=angulo_de_movimiento)
 
         self.escala = 0.5
+        self.velocidad_de_rotacion = 10
 
     def avanzar(self):
         self.mover_respecto_angulo_movimiento()
-        self.rotacion += 10
+        self.rotacion += self.velocidad_de_rotacion
+
+    def stop(self):
+        self.velocidad = 0
+        self.velocidad_de_rotacion = 0

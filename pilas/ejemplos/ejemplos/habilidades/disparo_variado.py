@@ -21,6 +21,7 @@ def eliminar(disparo, enemigo):
         torreta.habilidades.DispararConClick.municion = MisilSimple()
         torreta.habilidades.DispararConClick.frecuencia_de_disparo = 2
 
+
 municion_bala_simple = EstrellaNinjaSimple()
 
 banana = pilas.actores.Banana(x=200, y=150)
