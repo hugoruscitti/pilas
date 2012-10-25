@@ -4,6 +4,9 @@ import os
 import random
 
 from pilas.actores.actor import Actor
+from pilas.municion import BalaSimple
+from pilas.municion import DobleBalasDesviadas
+
 pilas.iniciar()
 
 pilas.fondos.Pasto()
@@ -68,7 +71,7 @@ def crear_enemigo():
     enemigo.y = pilas.interpolar(0, tiempo, tipo=random.choice(tipo_interpolacion))
 
     if random.randrange(0, 20) > 15:
-        if isinstance(arma.habilidades.DispararConClick.municion, pilas.actores.disparo.BalaSimple):
+        if isinstance(arma.habilidades.DispararConClick.municion, BalaSimple):
             estrella = pilas.actores.Estrella(x,y)
             estrella.escala = pilas.interpolar(0.5, duracion=0.5, tipo='elastico_final')
             pilas.escena_actual().colisiones.agregar(estrella, arma.habilidades.DispararConClick.disparos, nueva_arma)
@@ -108,8 +111,8 @@ def perder(arma, enemigo):
 arma.aprender(pilas.habilidades.RotarConMouse,
               lado_seguimiento=pilas.habilidades.RotarConMouse.ARRIBA)
 
-municion = pilas.actores.disparo.BalaSimple()
-municion2 = pilas.actores.disparo.DobleBalasDesviadas()
+municion = BalaSimple()
+municion2 = DobleBalasDesviadas()
 
 arma.aprender(pilas.habilidades.DispararConClick,
               municion=municion,
