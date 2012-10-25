@@ -80,4 +80,5 @@ from fantasma import Fantasma
 from humo import Humo
 from proyectil import Bala
 from proyectil import Misil
-from proyectil import Dinamita 
+from proyectil import Dinamita
+from torreta import Torreta
