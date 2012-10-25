@@ -40,7 +40,7 @@ class Proyectil(Animacion):
         del Proyectil."""
         raise Exception("Debes de sobreescribir el metodo avanzar.")
 
-    def mover_respector_angulo_movimiento(self):
+    def mover_respecto_angulo_movimiento(self):
         """ Mueve el disparo hacia adelante respecto a su angulo de movimiento. """
         rotacion_en_radianes = math.radians(-self.angulo_de_movimiento + 90)
         dx = math.cos(rotacion_en_radianes) * self.velocidad
@@ -73,7 +73,7 @@ class Misil(Proyectil):
         if self.velocidad > self.velocidad_maxima:
             self.velocidad = self.velocidad_maxima
 
-        self.mover_respector_angulo_movimiento()
+        self.mover_respecto_angulo_movimiento()
 
 class MisilGuiado(Proyectil):
 
@@ -105,7 +105,7 @@ class MisilGuiado(Proyectil):
         if self.velocidad > self.velocidad_maxima:
             self.velocidad = self.velocidad_maxima
 
-        self.mover_respector_angulo_movimiento()
+        self.mover_respecto_angulo_movimiento()
 
 
 class Bala(Proyectil):
@@ -125,7 +125,7 @@ class Bala(Proyectil):
                          angulo_de_movimiento=angulo_de_movimiento)
 
     def avanzar(self):
-        self.mover_respector_angulo_movimiento()
+        self.mover_respecto_angulo_movimiento()
 
 
 class Dinamita(Proyectil):
@@ -150,5 +150,5 @@ class Dinamita(Proyectil):
         self.aprender(pilas.habilidades.PuedeExplotar)
 
     def avanzar(self):
-        self.mover_respector_angulo_movimiento()
+        self.mover_respecto_angulo_movimiento()
         self.rotacion += 3

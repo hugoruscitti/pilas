@@ -9,7 +9,7 @@ from pilas.actores.proyectil import Dinamita
 
 class Municion(object):
 
-    def __init__(self, escala=1):
+    def __init__(self):
         self._proyectiles = []
 
     def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
