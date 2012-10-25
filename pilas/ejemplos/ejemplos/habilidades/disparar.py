@@ -5,7 +5,7 @@ import random
 
 from pilas.actores.actor import Actor
 from pilas.municion import BalaSimple
-from pilas.municion import DobleBalasDesviadas
+from pilas.municion import BalasDoblesDesviadas
 
 pilas.iniciar()
 
@@ -119,7 +119,7 @@ pilas.actores.Sonido()
 
 
 municion_bala_simple = BalaSimple()
-municion_doble_bala = DobleBalasDesviadas()
+municion_doble_bala = BalasDoblesDesviadas()
 
 torreta = pilas.actores.Torreta(municion_bala_simple=municion_bala_simple,
                                 enemigos=enemigos,

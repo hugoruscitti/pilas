@@ -3,7 +3,7 @@ import os
 
 from pilas.actores.actor import Actor
 from pilas.municion import BalaSimple
-from pilas.municion import DobleBala
+from pilas.municion import BalaDoble
 from pilas.municion import MisilSimple
 
 pilas.iniciar()
@@ -20,7 +20,7 @@ def eliminar(disparo, enemigo):
         torreta.habilidades.DispararConClick.municion = MisilSimple()
         torreta.habilidades.DispararConClick.frecuencia_de_disparo = 2
 
-municion_bala_simple = DobleBala()
+municion_bala_simple = BalaDoble()
 
 banana = pilas.actores.Banana(x=200, y=150)
 aceituna = pilas.actores.Aceituna(x=-200, y=150)
