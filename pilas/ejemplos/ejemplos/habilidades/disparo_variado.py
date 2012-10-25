@@ -1,18 +1,25 @@
 import pilas
 import os
 
+from pilas.actores.actor import Actor
+from pilas.municion import BalaSimple
+from pilas.municion import DobleBala
+from pilas.municion import MisilSimple
+
 pilas.iniciar()
 
+
 def eliminar(disparo, enemigo):
+
     enemigo.eliminar()
-        
+
     if isinstance(enemigo, pilas.actores.Banana):
-        arma.habilidades.DispararConClick.municion = pilas.actores.disparo.BalaSimple()
+        arma.habilidades.DispararConClick.municion = BalaSimple()
     else:
-        arma.habilidades.DispararConClick.municion = pilas.actores.disparo.MisilSimple()
+        arma.habilidades.DispararConClick.municion = MisilSimple()
         arma.habilidades.DispararConClick.frecuencia_de_disparo = 1
 
-municion = pilas.actores.disparo.DobleBala()
+municion = DobleBala()
 
 arma = pilas.actores.Actor(os.path.abspath("arma.png"))
 
