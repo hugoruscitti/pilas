@@ -29,7 +29,7 @@ class Torreta(Actor):
                       lado_seguimiento=pilas.habilidades.RotarConMouse.ARRIBA)
 
         self.aprender(pilas.habilidades.DispararConClick,
-                      municion_bala_simple=municion_bala_simple,
+                      municion=municion_bala_simple,
                       grupo_enemigos=enemigos,
                       cuando_elimina_enemigo=cuando_elimina_enemigo,
                       frecuencia_de_disparo=frecuencia_de_disparo,
