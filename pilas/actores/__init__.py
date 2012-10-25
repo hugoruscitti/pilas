@@ -52,7 +52,6 @@ from puntaje import Puntaje
 from estrella import Estrella
 from caja import Caja
 from nave import Nave
-from disparo import Disparo
 from cursordisparo import CursorDisparo
 from piedra import Piedra
 from menu import Menu
@@ -79,3 +78,7 @@ from personajes_rpg import Maton
 from pacman import Pacman
 from fantasma import Fantasma
 from humo import Humo
+from proyectil import Bala
+from proyectil import Misil
+from proyectil import Dinamita
+from torreta import Torreta

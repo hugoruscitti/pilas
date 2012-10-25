@@ -21,12 +21,12 @@ class Nave(Animacion):
         self.radio_de_colision = 20
         self.aprender(pilas.habilidades.PuedeExplotar)
 
+        self.municion = pilas.municion.MisilSimple()
         self.aprender(pilas.habilidades.Disparar,
-                       actor_disparado=pilas.actores.Disparo,
-                       angulo_salida_disparo=90,
+                       municion=self.municion,
+                       angulo_salida_disparo=0,
                        frecuencia_de_disparo=5,
-                       offset_disparo=(20,20),
-                       velocidad=4)
+                       offset_disparo=(29,29))
 
         self.aprender(pilas.habilidades.MoverseConElTeclado,
                       velocidad_maxima=self.velocidad,

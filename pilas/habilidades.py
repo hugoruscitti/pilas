@@ -505,7 +505,7 @@ class DispararLineal(Habilidad):
     param: cuando_elimina_enemigo: Funcion que debe llamar cuando se produzca un
     impacto con un enemigo.
     param: velocidad: Velocidad del proyectil disparado.
-    param: frecuencia_de_disparo: El número de disparos por segundo que
+    param: frecuencia_de_disparo: El número de proyectiles por segundo que
     realizará.
     param: angulo_salida_disparo: Especifica el angulo por donde disparará el actor.
     param: offset_disparo: Separación en pixeles (x,y) del dispara con respecto al centro
@@ -536,7 +536,7 @@ class DispararLineal(Habilidad):
         self.angulo_salida_disparo = angulo_salida_disparo
         self.frecuencia_de_disparo = 60 / frecuencia_de_disparo
         self.contador_frecuencia_disparo = 0
-        self.disparos = []
+        self.proyectiles = []
         self.velocidad = velocidad
 
         self.grupo_enemigos = grupo_enemigos
@@ -547,7 +547,7 @@ class DispararLineal(Habilidad):
 
     def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
         self.grupo_enemigos = grupo_enemigos
-        pilas.escena_actual().colisiones.agregar(self.disparos, self.grupo_enemigos,
+        pilas.escena_actual().colisiones.agregar(self.proyectiles, self.grupo_enemigos,
                                                  cuando_elimina_enemigo)
     def actualizar(self):
         self.contador_frecuencia_disparo += 1
@@ -560,10 +560,10 @@ class DispararLineal(Habilidad):
         self.eliminar_disparos_innecesarios()
 
     def eliminar_disparos_innecesarios(self):
-        for d in list(self.disparos):
+        for d in list(self.proyectiles):
             if d.esta_fuera_de_la_pantalla():
                 d.eliminar()
-                self.disparos.remove(d)
+                self.proyectiles.remove(d)
 
     def disparar(self):
         disparo_nuevo = self.actor_disparado(x=self.receptor.x+self.offset_origen_disparo_x,
@@ -580,7 +580,7 @@ class DispararLineal(Habilidad):
 
         disparo_nuevo.hacer(pilas.comportamientos.Avanzar(velocidad=self.velocidad))
 
-        self.disparos.append(disparo_nuevo)
+        self.proyectiles.append(disparo_nuevo)
 
         if self.cuando_dispara:
             self.cuando_dispara(disparo_nuevo)
@@ -598,7 +598,7 @@ class Disparar(Habilidad):
     colisionará el proyectil disparado.
     param: cuando_elimina_enemigo: Funcion que debe llamar cuando se produzca un
     impacto con un enemigo.
-    param: frecuencia_de_disparo: El número de disparos por segundo que
+    param: frecuencia_de_disparo: El número de proyectiles por segundo que
     realizará.
     param: angulo_salida_disparo: Especifica el angulo por donde disparará el actor.
     param: offset_disparo: Separación en pixeles (x,y) del dispara con respecto al centro
@@ -629,7 +629,7 @@ class Disparar(Habilidad):
         self.angulo_salida_disparo = angulo_salida_disparo
         self.frecuencia_de_disparo = frecuencia_de_disparo
         self.contador_frecuencia_disparo = 0
-        self.disparos = []
+        self.proyectiles = []
 
         self.grupo_enemigos = grupo_enemigos
 
@@ -648,7 +648,7 @@ class Disparar(Habilidad):
 
     def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
         self.grupo_enemigos = grupo_enemigos
-        pilas.escena_actual().colisiones.agregar(self.disparos, self.grupo_enemigos,
+        pilas.escena_actual().colisiones.agregar(self.proyectiles, self.grupo_enemigos,
                                                  cuando_elimina_enemigo)
     def actualizar(self):
         self.contador_frecuencia_disparo += 1
@@ -657,19 +657,19 @@ class Disparar(Habilidad):
             if self.contador_frecuencia_disparo > self._frecuencia_de_disparo:
                 self.contador_frecuencia_disparo = 0
                 self.disparar()
-                for disparo in self.municion.disparos:
-                    self.disparos.append(disparo)
+                for disparo in self.municion.proyectiles:
+                    self.proyectiles.append(disparo)
 
-                # Eliminamos los disparos ya importados para poder generar nuevos.
-                self.municion.eliminar_disparos()
+                # Eliminamos los proyectiles ya importados para poder generar nuevos.
+                self.municion.eliminar_proyectiles()
 
         self.eliminar_disparos_innecesarios()
 
     def eliminar_disparos_innecesarios(self):
-        for d in list(self.disparos):
+        for d in list(self.proyectiles):
             if d.esta_fuera_de_la_pantalla():
                 d.eliminar()
-                self.disparos.remove(d)
+                self.proyectiles.remove(d)
 
     def disparar(self):
         if (self.receptor.espejado):
