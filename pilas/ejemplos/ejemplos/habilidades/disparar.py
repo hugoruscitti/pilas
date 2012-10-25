@@ -66,7 +66,7 @@ def crear_enemigo():
             estrella.escala = pilas.interpolar(0.5, duracion=0.5, tipo='elastico_final')
 
             pilas.escena_actual().colisiones.agregar(estrella,
-                                                     torreta.habilidades.DispararConClick.disparos,
+                                                     torreta.habilidades.DispararConClick.proyectiles,
                                                      asignar_arma_doble)
 
             pilas.mundo.agregar_tarea(3, eliminar_estrella, estrella)

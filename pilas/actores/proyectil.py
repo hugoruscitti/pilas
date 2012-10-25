@@ -12,7 +12,7 @@ import math
 
 
 class Proyectil(Animacion):
-    "Representa un disparo que avanza."
+    "Representa un proyectil que avanza."
 
     def __init__(self, grilla="sin_imagen.png", frames=1, x=0, y=0, rotacion=0,
                  velocidad_maxima=1, aceleracion=1, radio_de_colision=10,
