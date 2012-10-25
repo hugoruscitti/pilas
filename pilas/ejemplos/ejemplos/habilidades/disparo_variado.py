@@ -12,7 +12,7 @@ def eliminar(disparo, enemigo):
         arma.habilidades.DispararConClick.municion = pilas.actores.disparo.MisilSimple()
         arma.habilidades.DispararConClick.frecuencia_de_disparo = 1
 
-municion = pilas.actores.disparo.DobleBalasDesviadas()
+municion = pilas.actores.disparo.DobleBala()
 
 arma = pilas.actores.Actor(os.path.abspath("arma.png"))
 

@@ -6,11 +6,6 @@ import random
 from pilas.actores.actor import Actor
 pilas.iniciar()
 
-
-class Bala(Actor):
-    def __init__(self, x, y):
-        Actor.__init__(self,os.path.abspath("bala.png"), x, y)
-
 pilas.fondos.Pasto()
 arma = pilas.actores.Actor(os.path.abspath("arma.png"))
 puntos = pilas.actores.Puntaje(x=230, y=200, color=pilas.colores.blanco)
@@ -22,6 +17,19 @@ enemigos = []
 fin_de_juego = False
 
 pilas.actores.Sonido()
+
+def peor_arma():
+    arma.habilidades.DispararConClick.municion = municion
+
+def nueva_arma(estrella, disparo):
+    arma.habilidades.DispararConClick.municion = municion2
+    estrella.eliminar()
+    pilas.mundo.agregar_tarea(10, peor_arma)
+    pilas.avisar("ARMA MEJORADA")
+        
+def eliminar_estrella(estrella):
+    estrella.eliminar()
+    
 
 def crear_enemigo():
 
@@ -59,6 +67,13 @@ def crear_enemigo():
     enemigo.x = pilas.interpolar(0, tiempo, tipo=random.choice(tipo_interpolacion))
     enemigo.y = pilas.interpolar(0, tiempo, tipo=random.choice(tipo_interpolacion))
 
+    if random.randrange(0, 20) > 15:
+        if isinstance(arma.habilidades.DispararConClick.municion, pilas.actores.disparo.BalaSimple):
+            estrella = pilas.actores.Estrella(x,y)
+            estrella.escala = pilas.interpolar(0.5, duracion=0.5, tipo='elastico_final')
+            pilas.escena_actual().colisiones.agregar(estrella, arma.habilidades.DispararConClick.disparos, nueva_arma)
+            pilas.mundo.agregar_tarea(3, eliminar_estrella, estrella)
+
     if fin_de_juego:
         return False
     else:
@@ -67,11 +82,11 @@ def crear_enemigo():
 
 def reducir_tiempo():
     global tiempo
-    
     tiempo -= 1
     pilas.avisar("HURRY UP!!!")
     if tiempo < 1:
         tiempo = 0.5
+    
     return True
 
 
@@ -88,19 +103,21 @@ def perder(arma, enemigo):
     arma.eliminar()
     pilas.escena_actual().tareas.eliminar_todas()
     fin_de_juego = True
-    pilas.avisar("HAS PERDIDO. Conseguiste %d putnos" %(puntos.obtener()))
+    pilas.avisar("GAME OVER. Conseguiste %d putnos" %(puntos.obtener()))
 
 arma.aprender(pilas.habilidades.RotarConMouse,
               lado_seguimiento=pilas.habilidades.RotarConMouse.ARRIBA)
 
+municion = pilas.actores.disparo.BalaSimple()
+municion2 = pilas.actores.disparo.DobleBalasDesviadas()
 
-arma.aprender(pilas.habilidades.Disparar,
-               actor_disparado=Bala,
-               grupo_enemigos=enemigos,
-               cuando_elimina_enemigo=destruido,
-               frecuencia_de_disparo=5,
-               angulo_salida_disparo=90,
-               offset_disparo=(27,27))
+arma.aprender(pilas.habilidades.DispararConClick,
+              municion=municion,
+              grupo_enemigos=enemigos,
+              cuando_elimina_enemigo=destruido,
+              frecuencia_de_disparo=10,
+              angulo_salida_disparo=0,
+              offset_disparo=(27,27))
 
 pilas.mundo.agregar_tarea(1, crear_enemigo)
 
@@ -108,5 +125,5 @@ pilas.mundo.agregar_tarea(20, reducir_tiempo)
 
 pilas.escena_actual().colisiones.agregar(arma, enemigos, perder)
 
-pilas.avisar("Pulsa ESPACIO y mueve el raton para matarlos.")
+pilas.avisar("Pulsa pulsa y mueve el raton para matarlos.")
 pilas.ejecutar()
