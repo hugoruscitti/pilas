@@ -29,6 +29,12 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self._deshabilitar_barras_de_scroll()
         pilas.utils.centrar_ventana(main)
         self.statusbar.showMessage(u"Versión " + pilas.version())
+        self._habilitar_inspector_web()
+
+    def _habilitar_inspector_web(self):
+        QtWebKit.QWebSettings.globalSettings()
+        settings = QtWebKit.QWebSettings.globalSettings()
+        settings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
 
     def _deshabilitar_barras_de_scroll(self):
         self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Horizontal, QtCore.Qt.ScrollBarAlwaysOff)
