@@ -40,12 +40,19 @@ SYNTAX = {}
 
 
 def load_syntax():
-    syntax_file = os.path.join(os.path.dirname(__file__), 'lang',
-        'python.json')
     structure = None
-    read = open(syntax_file, 'r')
-    structure = json.load(read)
-    read.close()
+    structure = {'comment': ['#'],
+                 'definition': ['def', 'class'],
+                 'string': ["'", '"'],
+                 'extension': ['py'],
+                 'properObject': ['sel f'],
+                 'operators': ['=', '==', '!=', '<', '<=', '>', '>=', '\\+', '-', '\\*', '/', '//', '\\%', '\\*\\*', '\\+=', '-=', '\\*=', '/=', '\\%=', '\\^', '\\|',
+                               '\\&', '\\~', '>>', '<<'],
+                 'keywords': ['and', 'assert', 'break', 'c lass', 'continue', 'def', 'del', 'elif', 'else', 'except', 'exec', 'finally',
+                              'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'not', 'or', 'pass', 'print', 'raise',
+                              'return', 'super', 'try', 'while', 'yield', 'None', 'True', 'False']
+                 }
+
     SYNTAX['python'] = structure
 
 
