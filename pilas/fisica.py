@@ -307,7 +307,7 @@ class Figura(object):
 
     def obtener_velocidad_lineal(self):
         # TODO: convertir a pixels
-        velocidad = self._cuerpo.GetLinearVelocity()
+        velocidad = self._cuerpo.linearVelocity
         return (velocidad.x, velocidad.y)
 
     def detener(self):
@@ -323,7 +323,16 @@ class Figura(object):
         if dy is None:
             dy = anterior_dy
 
-        self._cuerpo.SetLinearVelocity((dx, dy))
+        b2vec = self._cuerpo.linearVelocity
+        b2vec.x = dx
+        b2vec.y = dy
+
+        # Añadimos eltry, porque aparece el siguiente error:
+        # TypeError: in method 'b2Vec2___call__', argument 2 of type 'int32'
+        try:
+            self._cuerpo.linearVelocity(b2vec)
+        except:
+            pass
 
     def empujar(self, dx=None, dy=None):
         # TODO: convertir a metros???
@@ -384,7 +393,7 @@ class Circulo(Figura):
         if dinamica:
             self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
-            self._cuerpo = fisica.mundo.CreateStaticBody(position=(x, y), fixtures=fixture)
+            self._cuerpo = fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
 
         self._cuerpo.fixedRotation = sin_rotacion
 
@@ -430,7 +439,7 @@ class Rectangulo(Figura):
         if dinamica:
             self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
-            self._cuerpo = fisica.mundo.CreateStaticBody(position=(x, y), fixtures=fixture)
+            self._cuerpo = fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
 
         self._cuerpo.fixedRotation = sin_rotacion
 

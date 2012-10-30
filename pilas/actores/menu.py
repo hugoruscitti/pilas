@@ -78,6 +78,7 @@ class Menu(Actor):
 
         if self.demora_al_responder < 0:
             if self.control_menu.boton:
+                self.control_menu.limpiar()
                 self.seleccionar_opcion_actual()
                 self.demora_al_responder = DEMORA
 

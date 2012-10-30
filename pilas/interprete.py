@@ -17,8 +17,6 @@ try:
     import lanas
 except ImportError, e:
     print e
-    pass
-
 
 import os
 
