@@ -48,6 +48,9 @@ class Proyectil(Animacion):
         self.x += dx
         self.y += dy
 
+    def stop(self):
+        pass
+
 
 class Misil(Proyectil):
     """ Representa un misil que va en línea recta con aceleración. """
@@ -67,38 +70,6 @@ class Misil(Proyectil):
                          angulo_de_movimiento=angulo_de_movimiento)
 
     def avanzar(self):
-
-        self.velocidad += self.aceleracion
-
-        if self.velocidad > self.velocidad_maxima:
-            self.velocidad = self.velocidad_maxima
-
-        self.mover_respecto_angulo_movimiento()
-
-class MisilGuiado(Proyectil):
-
-    def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=2,aceleracion=0.5,
-                 angulo_de_movimiento=90):
-
-        Proyectil.__init__(self,
-                         grilla="disparos/misil.png",
-                         frames=3,
-                         x=x,
-                         y=y,
-                         rotacion=rotacion,
-                         velocidad_maxima=velocidad_maxima,
-                         aceleracion=aceleracion,
-                         radio_de_colision=15,
-                         angulo_de_movimiento=angulo_de_movimiento)
-
-        self.actor_mas_cercano = pilas.utils.actor_mas_cercano_al_actor(self)
-
-        if (self.actor_mas_cercano):
-            self.aprender(pilas.habilidades.MirarAlActor, self.actor_mas_cercano, pilas.habilidades.MirarAlActor.DERECHA)
-
-    def avanzar(self):
-        if not(self.actor_mas_cercano._vivo):
-            self.eliminar()
 
         self.velocidad += self.aceleracion
 
@@ -152,3 +123,32 @@ class Dinamita(Proyectil):
     def avanzar(self):
         self.mover_respecto_angulo_movimiento()
         self.rotacion += 3
+
+
+class EstrellaNinja(Proyectil):
+    """ Representa una estrella ninja. """
+
+    def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=4,
+                 angulo_de_movimiento=90):
+
+        Proyectil.__init__(self,
+                         grilla="disparos/estrella.png",
+                         frames=1,
+                         x=x,
+                         y=y,
+                         rotacion=rotacion,
+                         velocidad_maxima=velocidad_maxima,
+                         aceleracion=1,
+                         radio_de_colision=20,
+                         angulo_de_movimiento=angulo_de_movimiento)
+
+        self.escala = 0.5
+        self.velocidad_de_rotacion = 10
+
+    def avanzar(self):
+        self.mover_respecto_angulo_movimiento()
+        self.rotacion += self.velocidad_de_rotacion
+
+    def stop(self):
+        self.velocidad = 0
+        self.velocidad_de_rotacion = 0
