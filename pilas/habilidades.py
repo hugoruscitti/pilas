@@ -614,7 +614,8 @@ class Disparar(Habilidad):
                  angulo_salida_disparo=0,
                  offset_disparo=(0,0),
                  offset_origen_disparo=(0,0),
-                 cuando_dispara=None):
+                 cuando_dispara=None,
+                 velocidad_de_disparo=5):
 
         Habilidad.__init__(self, receptor)
         self.receptor = receptor
@@ -636,6 +637,8 @@ class Disparar(Habilidad):
         self.definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
 
         self.cuando_dispara = cuando_dispara
+        
+        self.velocidad_de_disparo = velocidad_de_disparo
 
 
     def set_frecuencia_de_disparo(self, valor):
@@ -657,11 +660,6 @@ class Disparar(Habilidad):
             if self.contador_frecuencia_disparo > self._frecuencia_de_disparo:
                 self.contador_frecuencia_disparo = 0
                 self.disparar()
-                for disparo in self.municion.proyectiles:
-                    self.proyectiles.append(disparo)
-
-                # Eliminamos los proyectiles ya importados para poder generar nuevos.
-                self.municion.eliminar_proyectiles()
 
         self.eliminar_disparos_innecesarios()
 
@@ -671,18 +669,62 @@ class Disparar(Habilidad):
                 d.eliminar()
                 self.proyectiles.remove(d)
 
+    def desplazar_proyectil(self, proyectil, offset_x, offset_y):
+        rotacion_en_radianes = math.radians(-proyectil.rotacion)
+        dx = math.cos(rotacion_en_radianes)
+        dy = math.sin(rotacion_en_radianes)
+
+        proyectil.x += dx * offset_x
+        proyectil.y += dy * offset_y
+
     def disparar(self):
         if (self.receptor.espejado):
             offset_origen_disparo_x = -self.offset_origen_disparo_x
         else:
             offset_origen_disparo_x = self.offset_origen_disparo_x
 
-        self.municion.disparar(x=self.receptor.x+offset_origen_disparo_x,
-                               y=self.receptor.y+self.offset_origen_disparo_y,
-                               angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo),
-                               rotacion=self.receptor.rotacion - 90,
-                               offset_disparo_x=self.offset_disparo_x,
-                               offset_disparo_y=self.offset_disparo_y)
+        if issubclass(self.municion, pilas.municion.Municion):
+
+            objeto_a_disparar = self.municion()
+
+            objeto_a_disparar.disparar(x=self.receptor.x+offset_origen_disparo_x,
+                                   y=self.receptor.y+self.offset_origen_disparo_y,
+                                   angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo),
+                                   rotacion=self.receptor.rotacion - 90,
+                                   offset_disparo_x=self.offset_disparo_x,
+                                   offset_disparo_y=self.offset_disparo_y)
+
+            for disparo in objeto_a_disparar.proyectiles:
+                self.proyectiles.append(disparo)
+
+        elif issubclass(self.municion, pilas.actores.proyectil.Proyectil):
+
+            objeto_a_disparar = self.municion(x=self.receptor.x+offset_origen_disparo_x,
+                                              y=self.receptor.y+self.offset_origen_disparo_y,
+                                              angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo),
+                                              rotacion=self.receptor.rotacion - 90)
+
+            self.desplazar_proyectil(objeto_a_disparar, self.offset_disparo_x, self.offset_disparo_y)
+
+            self.proyectiles.append(objeto_a_disparar)
+
+        elif issubclass(self.municion, pilas.actores.Actor):
+
+            objeto_a_disparar = self.municion()
+
+            objeto_a_disparar.x = self.receptor.x+offset_origen_disparo_x
+            objeto_a_disparar.y = self.receptor.y+self.offset_origen_disparo_y
+
+            objeto_a_disparar.rotacion = self.receptor.rotacion - 90
+
+            self.desplazar_proyectil(objeto_a_disparar, self.offset_disparo_x, self.offset_disparo_y)
+
+            objeto_a_disparar.hacer(pilas.comportamientos.Avanzar(velocidad=self.velocidad_de_disparo))
+
+            self.proyectiles.append(objeto_a_disparar)
+
+        else:
+            print "No se puede disparar este objeto." 
 
         if self.cuando_dispara:
             self.cuando_dispara()
