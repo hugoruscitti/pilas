@@ -23,9 +23,9 @@ class Deslizador(BaseInterfaz):
         self.deslizador = Actor(ruta_deslizador, self.x, self.y)
         self.deslizador.fijo = True
         self.centro = ('izquierda', 'centro')
-        
+
         self.click = False
-        
+
         self.escena.click_de_mouse.conectar(self.click_del_mouse)
         self.escena.mueve_mouse.conectar(self.movimiento_del_mouse)
         self.escena.termina_click.conectar(self.termino_del_click)
@@ -53,7 +53,7 @@ class Deslizador(BaseInterfaz):
             self.deslizador.definir_posicion(x + self.posicion_relativa_x, y)
 
     def conectar(self, f):
-        self.funciones.append(f)        
+        self.funciones.append(f)
 
     def desconectar(self, f):
         self.funciones.remove(f)
@@ -61,7 +61,7 @@ class Deslizador(BaseInterfaz):
     def ejecutar_funciones(self, valor):
         for i in self.funciones:
             i(valor)
-    
+
     def click_del_mouse(self, click):
         if (self.activo):
             if self.deslizador.colisiona_con_un_punto(click.x, click.y):
@@ -73,23 +73,22 @@ class Deslizador(BaseInterfaz):
                 ancho = self.obtener_ancho()
                 factor = (self.deslizador.x + (ancho - abs(self.x))) / ancho - 1
                 self.progreso = factor
-                
+
                 self.ejecutar_funciones(factor)
-    
+
                 self.deslizador.x = movimiento.x
-    
+
                 if self.deslizador.x <= self.limite_izq:
                     self.deslizador.x = self.limite_izq
-    
+
                 elif self.deslizador.x >= self.limite_der:
                     self.deslizador.x = self.limite_der
-    
+
                 self.posicion_relativa_x = self.deslizador.x - self.x
-                
 
     def termino_del_click(self, noclick):
         self.click = False
-        
+
     def mostrar(self):
         BaseInterfaz.mostrar(self)
         self.deslizador.transparencia = 0
@@ -97,3 +96,8 @@ class Deslizador(BaseInterfaz):
     def ocultar(self):
         BaseInterfaz.ocultar(self)
         self.deslizador.transparencia = 100
+
+    def eliminar(self):
+        self.deslizador.eliminar()
+        BaseInterfaz.eliminar(self)
+
