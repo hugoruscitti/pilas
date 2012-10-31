@@ -9,24 +9,35 @@ from pilas.actores.proyectil import EstrellaNinja
 
 
 class Municion(object):
+    """ Clase base para representar un conjunto de proyectiles que pueden
+    ser disparados mediante la habilidad de Disparar.
+    """
 
     def __init__(self):
         self._proyectiles = []
 
     def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
-        pass
+        """ Este método debe ser sobreescrito.
+        En él se deben crear los proyectiles y agregarlos a la lista de proyectiles
 
-    def get_proyectiles(self):
-        return self._proyectiles
+        >>>         self.agregar_proyectil(Bala(x=x,
+                                  y=y,
+                                  angulo_de_movimiento=angulo_de_movimiento,
+                                  rotacion=rotacion),
+                             offset_disparo_x,
+                             offset_disparo_y)
 
-    def eliminar_proyectiles(self):
-        self._proyectiles = []
+        """
+        raise Exception("No ha sobreescrito el metodo disparar.")
 
     def agregar_proyectil(self, disparo, offset_x, offset_y):
-        self.desplazar_proyectil(disparo, offset_x, offset_y)
+        """ Agrega un proyectil a la lista de proyectiles de la munición. """
+        self._desplazar_proyectil(disparo, offset_x, offset_y)
         self._proyectiles.append(disparo)
 
-    def desplazar_proyectil(self, disparo, offset_x, offset_y):
+    def _desplazar_proyectil(self, disparo, offset_x, offset_y):
+        """ Desplaza un proyectil para que no salga desde el centro del actor
+        que lo dispara """
         rotacion_en_radianes = math.radians(-disparo.rotacion)
         dx = math.cos(rotacion_en_radianes)
         dy = math.sin(rotacion_en_radianes)
@@ -34,10 +45,15 @@ class Municion(object):
         disparo.x += dx * offset_x
         disparo.y += dy * offset_y
 
+    def get_proyectiles(self):
+        """ Obtiene los proyectiles que acaba de disparar la munición. """
+        return self._proyectiles
+
     proyectiles = property(get_proyectiles, None, doc="Define los disaparos de la munición.")
 
 
 class DinamitaSimple(Municion):
+    """ Munición que dispara un cartucho de dinamita. """
 
     def __init__(self):
         Municion.__init__(self)
@@ -52,6 +68,7 @@ class DinamitaSimple(Municion):
                              offset_disparo_y)
 
 class EstrellaNinjaSimple(Municion):
+    """ Munición que dispara una estrella ninja. """
 
     def __init__(self):
         Municion.__init__(self)
@@ -66,6 +83,7 @@ class EstrellaNinjaSimple(Municion):
                              offset_disparo_y)
 
 class BalaSimple(Municion):
+    """ Munición que dispara una bala. """
 
     def __init__(self):
         Municion.__init__(self)
@@ -81,6 +99,7 @@ class BalaSimple(Municion):
 
 
 class BalaDoble(Municion):
+    """ Munición que dispara 2 balas paralelas. """
 
     def __init__(self, separacion=10):
         Municion.__init__(self)
@@ -105,6 +124,7 @@ class BalaDoble(Municion):
 
 
 class BalasDoblesDesviadas(Municion):
+    """ Munición que dispara 2 balas en angulos distintos. """
 
     def __init__(self, angulo_desvio=5):
         Municion.__init__(self)
@@ -128,6 +148,7 @@ class BalasDoblesDesviadas(Municion):
 
 
 class MisilSimple(Municion):
+    """ Munición que dispara 1 misil que acelera poco a poco. """
 
     def __init__(self):
         Municion.__init__(self)
@@ -142,6 +163,7 @@ class MisilSimple(Municion):
                              offset_disparo_y)
 
 class MisilDoble(Municion):
+    """ Munición que dispara 2 misiles paralelos que aceleran poco a poco. """
 
     def __init__(self, separacion=10):
         Municion.__init__(self)
