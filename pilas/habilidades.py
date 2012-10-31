@@ -615,7 +615,8 @@ class Disparar(Habilidad):
                  offset_disparo=(0,0),
                  offset_origen_disparo=(0,0),
                  cuando_dispara=None,
-                 velocidad_de_disparo=5):
+                 velocidad_de_disparo=5,
+                 escala=1):
 
         Habilidad.__init__(self, receptor)
         self.receptor = receptor
@@ -639,6 +640,8 @@ class Disparar(Habilidad):
         self.cuando_dispara = cuando_dispara
         
         self.velocidad_de_disparo = velocidad_de_disparo
+        
+        self.escala = escala
 
 
     def set_frecuencia_de_disparo(self, valor):
@@ -695,6 +698,7 @@ class Disparar(Habilidad):
                                    offset_disparo_y=self.offset_disparo_y)
 
             for disparo in objeto_a_disparar.proyectiles:
+                disparo.escala = self.escala
                 self.proyectiles.append(disparo)
 
         elif issubclass(self.municion, pilas.actores.proyectil.Proyectil):
@@ -706,6 +710,7 @@ class Disparar(Habilidad):
 
             self.desplazar_proyectil(objeto_a_disparar, self.offset_disparo_x, self.offset_disparo_y)
 
+            objeto_a_disparar.escala = self.escala
             self.proyectiles.append(objeto_a_disparar)
 
         elif issubclass(self.municion, pilas.actores.Actor):
@@ -721,6 +726,7 @@ class Disparar(Habilidad):
 
             objeto_a_disparar.hacer(pilas.comportamientos.Avanzar(velocidad=self.velocidad_de_disparo))
 
+            objeto_a_disparar.escala = self.escala
             self.proyectiles.append(objeto_a_disparar)
 
         else:
