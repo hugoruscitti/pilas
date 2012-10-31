@@ -29,6 +29,7 @@ class LanzadorDeBananas:
         self.fuerza.eliminar()
         self.etiqueta_1.eliminar()
         self.etiqueta_2.eliminar()
+        self.boton.desactivar()
         self.boton.eliminar()
 
     def cuando_pulsa_disparar(self):
