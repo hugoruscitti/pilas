@@ -279,3 +279,7 @@ class ProxyEventos(object):
     def log(self):
         """Indica que se emitió un mensaje para depuración usando la función ``pilas.log``."""
         return pilas.escena_actual().log
+
+    @property
+    def Evento(self):
+        return Evento

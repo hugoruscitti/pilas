@@ -10,6 +10,7 @@ import pilas
 from pilas.actores import Animacion
 import math
 
+
 class Nave(Animacion):
     "Representa una nave que puede disparar."
 

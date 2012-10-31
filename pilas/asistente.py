@@ -29,6 +29,14 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self._deshabilitar_barras_de_scroll()
         pilas.utils.centrar_ventana(main)
         self.statusbar.showMessage(u"Versión " + pilas.version())
+        self._habilitar_inspector_web()
+
+
+    def _habilitar_inspector_web(self):
+        QtWebKit.QWebSettings.globalSettings()
+        settings = QtWebKit.QWebSettings.globalSettings()
+        settings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
+        settings.setAttribute(QtWebKit.QWebSettings.LocalContentCanAccessFileUrls, True)
 
     def _deshabilitar_barras_de_scroll(self):
         self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Horizontal, QtCore.Qt.ScrollBarAlwaysOff)
@@ -36,10 +44,12 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _cargar_pagina_principal(self):
         file_path = utils.obtener_ruta_al_recurso('asistente/index.html')
+        # TODO: convierto la ruta en absoluta para que mac desde py2app
+        #       pueda interpretar correctamente las imagenes.
+        file_path = os.path.abspath(file_path)
 
         contenido = self._obtener_html(file_path)
         base_dir =  QtCore.QUrl.fromLocalFile(file_path)
-
         self.webView.setHtml(contenido, base_dir)
 
     def _obtener_html(self, file_path):
