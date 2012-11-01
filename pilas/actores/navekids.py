@@ -22,11 +22,11 @@ class NaveKids(Animacion):
         self.aprender(pilas.habilidades.PuedeExplotar)
 
         self.municion = pilas.municion.BalaSimple
-        self.aprender(pilas.habilidades.Disparar,
-                       municion=self.municion,
-                       angulo_salida_disparo=0,
-                       frecuencia_de_disparo=9,
-                       offset_disparo=(29,29))
+#        self.aprender(pilas.habilidades.Disparar,
+#                       municion=self.municion,
+#                       angulo_salida_disparo=0,
+#                       frecuencia_de_disparo=9,
+#                       offset_disparo=(29,29))
 
         self.aprender(pilas.habilidades.MoverseConElTeclado,
                       velocidad_maxima=self.velocidad,

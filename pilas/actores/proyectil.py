@@ -8,6 +8,7 @@
 
 import pilas
 from pilas.actores import Animacion
+from pilas.actores import Actor
 import math
 
 
@@ -79,24 +80,23 @@ class Misil(Proyectil):
         self.mover_respecto_angulo_movimiento()
 
 
-class Bala(Proyectil):
+class Bala(Actor):
 
     def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=9,
                  angulo_de_movimiento=90):
 
-        Proyectil.__init__(self,
-                         grilla="disparos/bola_amarilla.png",
-                         frames=1,
-                         x=x,
-                         y=y,
-                         rotacion=rotacion,
-                         velocidad_maxima=velocidad_maxima,
-                         aceleracion=1,
-                         radio_de_colision=8,
-                         angulo_de_movimiento=angulo_de_movimiento)
+        imagen = pilas.imagenes.cargar('disparos/bola_amarilla.png')
+        Actor.__init__(self, imagen)
+        self.x = x
+        self.y = y
+        self.rotacion = rotacion
 
-    def avanzar(self):
-        self.mover_respecto_angulo_movimiento()
+        self.radio_de_colision = 20
+
+        self.hacer(pilas.comportamientos.Proyectil(velocidad_maxima=velocidad_maxima,
+                                                   aceleracion=1,
+                                                   angulo_de_movimiento=angulo_de_movimiento,
+                                                   gravedad=0))
 
 
 class Dinamita(Proyectil):

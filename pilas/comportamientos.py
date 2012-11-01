@@ -118,3 +118,43 @@ class Avanzar(Comportamiento):
         if salir:
             return True
 
+class Proyectil(Comportamiento):
+    "Hace que un actor actue como un proyectil."
+
+    def __init__(self, velocidad_maxima=5, aceleracion=1,
+                 angulo_de_movimiento=90, gravedad=0):
+
+        self._velocidad_maxima = velocidad_maxima
+        self._aceleracion = aceleracion
+        self._angulo_de_movimiento = angulo_de_movimiento
+        self._gravedad = gravedad
+        self._vy = self._gravedad
+
+        if (self._aceleracion == 1):
+            self._velocidad = self._velocidad_maxima
+        else:
+            self._velocidad = 0
+
+    def iniciar(self, receptor):
+        self.receptor = receptor
+
+    def actualizar(self):
+
+        self._velocidad += self._aceleracion
+
+        if self._velocidad > self._velocidad_maxima:
+            self._velocidad = self._velocidad_maxima
+
+        self.mover_respecto_angulo_movimiento()
+
+    def mover_respecto_angulo_movimiento(self):
+        """ Mueve el actor hacia adelante respecto a su angulo de movimiento. """
+        rotacion_en_radianes = math.radians(-self._angulo_de_movimiento + 90)
+        dx = math.cos(rotacion_en_radianes) * self._velocidad
+        dy = math.sin(rotacion_en_radianes) * self._velocidad
+        self.receptor.x += dx        
+        if self._gravedad > 0:
+            self.receptor.y += dy + self._vy
+            self._vy -= 0.1
+        else:
+            self.receptor.y += dy
