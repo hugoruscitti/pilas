@@ -9,7 +9,7 @@
 
 import pilas
 from pilas.actores import Actor
-from pilas.municion import BalaSimple
+from pilas.actores.proyectil import Bala
 
 
 class Torreta(Actor):
@@ -23,7 +23,7 @@ class Torreta(Actor):
         self.radio_de_colision = 15
 
         if municion_bala_simple is None:
-            municion_bala_simple = BalaSimple()
+            municion_bala_simple = Bala()
 
         self.aprender(pilas.habilidades.RotarConMouse,
                       lado_seguimiento=pilas.habilidades.RotarConMouse.ARRIBA)

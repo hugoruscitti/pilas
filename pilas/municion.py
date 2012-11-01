@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pilas
 import math
 
 from pilas.actores.proyectil import Bala

@@ -19,13 +19,22 @@ def disparo_doble():
                   grupo_enemigos=aceitunas,
                   cuando_elimina_enemigo=eliminar_aceituna)
 
+def disparo_desviado():
+    nave.aprender(pilas.habilidades.Disparar,
+                  municion=pilas.municion.BalasDoblesDesviadas,
+                  offset_disparo=(0, 30),
+                  grupo_enemigos=aceitunas,
+                  cuando_elimina_enemigo=eliminar_aceituna)
+
 def cuando_selecciona(opcion_seleccionada):
     if (opcion_seleccionada == 'Simple'):
         disparo_simple()
-    else:
+    elif (opcion_seleccionada == 'Doble'):
         disparo_doble()
+    else:
+        disparo_desviado()
 
-opciones = pilas.interfaz.ListaSeleccion(['Simple', 'Doble'], cuando_selecciona)
+opciones = pilas.interfaz.ListaSeleccion(['Simple', 'Doble', 'Desviados'], cuando_selecciona)
 opciones.x = -280
 opciones.y = 200
 

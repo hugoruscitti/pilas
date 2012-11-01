@@ -21,13 +21,6 @@ class NaveKids(Animacion):
         self.radio_de_colision = 20
         self.aprender(pilas.habilidades.PuedeExplotar)
 
-        self.municion = pilas.municion.BalaSimple
-#        self.aprender(pilas.habilidades.Disparar,
-#                       municion=self.municion,
-#                       angulo_salida_disparo=0,
-#                       frecuencia_de_disparo=9,
-#                       offset_disparo=(29,29))
-
         self.aprender(pilas.habilidades.MoverseConElTeclado,
                       velocidad_maxima=self.velocidad,
                       aceleracion=1,
@@ -38,19 +31,3 @@ class NaveKids(Animacion):
 
     def actualizar(self):
         Animacion.actualizar(self)
-
-    def definir_enemigos(self, grupo, cuando_elimina_enemigo=None):
-        """hace que una nave tenga como enemigos a todos los actores del grupo.
-
-        El argumento cuando_elimina_enemigo tiene que ser una funcion que
-        se ejecutara cuando se produzca la colision."""
-        self.cuando_elimina_enemigo = cuando_elimina_enemigo
-        self.habilidades.Disparar.definir_colision(grupo, self.hacer_explotar_al_enemigo)
-
-    def hacer_explotar_al_enemigo(self, mi_disparo, el_enemigo):
-        "Es el método que se invoca cuando se produce una colisión 'tiro <-> enemigo'"
-        mi_disparo.eliminar()
-        el_enemigo.eliminar()
-
-        if self.cuando_elimina_enemigo:
-            self.cuando_elimina_enemigo()
