@@ -91,7 +91,7 @@ class Bala(Actor):
         self.y = y
         self.rotacion = rotacion
 
-        self.radio_de_colision = 20
+        self.radio_de_colision = 5
 
         self.hacer(pilas.comportamientos.Proyectil(velocidad_maxima=velocidad_maxima,
                                                    aceleracion=1,
