@@ -695,6 +695,7 @@ class Disparar(Habilidad):
                                    offset_disparo_y=self.offset_disparo_y)
 
             for disparo in objeto_a_disparar.proyectiles:
+                self.desplazar_proyectil(disparo, self.offset_disparo_x, self.offset_disparo_y)
                 disparo.escala = self.escala
                 self.proyectiles.append(disparo)
 

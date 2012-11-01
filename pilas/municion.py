@@ -30,20 +30,9 @@ class Municion(object):
         """
         raise Exception("No ha sobreescrito el metodo disparar.")
 
-    def agregar_proyectil(self, disparo, offset_x, offset_y):
+    def agregar_proyectil(self, disparo):
         """ Agrega un proyectil a la lista de proyectiles de la munición. """
-        self._desplazar_proyectil(disparo, offset_x, offset_y)
         self._proyectiles.append(disparo)
-
-    def _desplazar_proyectil(self, disparo, offset_x, offset_y):
-        """ Desplaza un proyectil para que no salga desde el centro del actor
-        que lo dispara """
-        rotacion_en_radianes = math.radians(-disparo.rotacion)
-        dx = math.cos(rotacion_en_radianes)
-        dy = math.sin(rotacion_en_radianes)
-
-        disparo.x += dx * offset_x
-        disparo.y += dy * offset_y
 
     def get_proyectiles(self):
         """ Obtiene los proyectiles que acaba de disparar la munición. """
@@ -111,16 +100,12 @@ class BalaDoble(Municion):
         self.agregar_proyectil(Bala(x=x + math.cos(angulo) * self.separacion,
                                     y=y - math.sin(angulo) * self.separacion,
                                     angulo_de_movimiento=angulo_de_movimiento,
-                                    rotacion=rotacion),
-                               offset_disparo_x,
-                               offset_disparo_y)
+                                    rotacion=rotacion))
 
         self.agregar_proyectil(Bala(x=x - math.cos(angulo) * self.separacion,
                                     y=y + math.sin(angulo) * self.separacion,
                                     angulo_de_movimiento=angulo_de_movimiento,
-                                    rotacion=rotacion),
-                               offset_disparo_x,
-                               offset_disparo_y)
+                                    rotacion=rotacion))
 
 
 class BalasDoblesDesviadas(Municion):
