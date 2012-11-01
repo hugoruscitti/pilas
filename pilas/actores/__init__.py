@@ -52,6 +52,7 @@ from puntaje import Puntaje
 from estrella import Estrella
 from caja import Caja
 from nave import Nave
+from navekids import NaveKids
 from cursordisparo import CursorDisparo
 from piedra import Piedra
 from menu import Menu
