@@ -699,18 +699,6 @@ class Disparar(Habilidad):
                 disparo.escala = self.escala
                 self.proyectiles.append(disparo)
 
-#        elif issubclass(self.municion, pilas.actores.proyectil.Proyectil):
-#
-#            objeto_a_disparar = self.municion(x=self.receptor.x+offset_origen_disparo_x,
-#                                              y=self.receptor.y+self.offset_origen_disparo_y,
-#                                              angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo),
-#                                              rotacion=self.receptor.rotacion - 90)
-#
-#            self.desplazar_proyectil(objeto_a_disparar, self.offset_disparo_x, self.offset_disparo_y)
-#
-#            objeto_a_disparar.escala = self.escala
-#            self.proyectiles.append(objeto_a_disparar)
-#
         elif issubclass(self.municion, pilas.actores.Actor):
 
             objeto_a_disparar = self.municion(x=self.receptor.x+offset_origen_disparo_x,
@@ -723,8 +711,8 @@ class Disparar(Habilidad):
             objeto_a_disparar.escala = self.escala
             self.proyectiles.append(objeto_a_disparar)
 
-#        else:
-#            print "No se puede disparar este objeto." 
+        else:
+            print "No se puede disparar este objeto." 
 
         if self.cuando_dispara:
             self.cuando_dispara()
