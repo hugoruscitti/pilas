@@ -42,8 +42,21 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_Archivo">
+    <property name="title">
+     <string>&amp;Archivo</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="salir_action"/>
+   </widget>
+   <addaction name="menu_Archivo"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="salir_action">
+   <property name="text">
+    <string>Salir</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
