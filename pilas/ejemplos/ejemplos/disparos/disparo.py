@@ -56,6 +56,5 @@ disparo_simple()
 
 pilas.fondos.Color(pilas.colores.negro)
 
-pilas.escena_actual().tareas.siempre(1, mover_ovnis)
 
 pilas.ejecutar()
