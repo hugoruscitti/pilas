@@ -615,7 +615,6 @@ class Disparar(Habilidad):
                  offset_disparo=(0,0),
                  offset_origen_disparo=(0,0),
                  cuando_dispara=None,
-                 velocidad_de_disparo=5,
                  escala=1):
 
         Habilidad.__init__(self, receptor)
@@ -638,9 +637,7 @@ class Disparar(Habilidad):
         self.definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
 
         self.cuando_dispara = cuando_dispara
-        
-        self.velocidad_de_disparo = velocidad_de_disparo
-        
+
         self.escala = escala
 
 
@@ -698,33 +695,18 @@ class Disparar(Habilidad):
                                    offset_disparo_y=self.offset_disparo_y)
 
             for disparo in objeto_a_disparar.proyectiles:
+                self.desplazar_proyectil(disparo, self.offset_disparo_x, self.offset_disparo_y)
                 disparo.escala = self.escala
                 self.proyectiles.append(disparo)
 
-        elif issubclass(self.municion, pilas.actores.proyectil.Proyectil):
+        elif issubclass(self.municion, pilas.actores.Actor):
 
             objeto_a_disparar = self.municion(x=self.receptor.x+offset_origen_disparo_x,
                                               y=self.receptor.y+self.offset_origen_disparo_y,
-                                              angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo),
-                                              rotacion=self.receptor.rotacion - 90)
+                                              rotacion=self.receptor.rotacion - 90,
+                                              angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo))
 
             self.desplazar_proyectil(objeto_a_disparar, self.offset_disparo_x, self.offset_disparo_y)
-
-            objeto_a_disparar.escala = self.escala
-            self.proyectiles.append(objeto_a_disparar)
-
-        elif issubclass(self.municion, pilas.actores.Actor):
-
-            objeto_a_disparar = self.municion()
-
-            objeto_a_disparar.x = self.receptor.x+offset_origen_disparo_x
-            objeto_a_disparar.y = self.receptor.y+self.offset_origen_disparo_y
-
-            objeto_a_disparar.rotacion = self.receptor.rotacion - 90
-
-            self.desplazar_proyectil(objeto_a_disparar, self.offset_disparo_x, self.offset_disparo_y)
-
-            objeto_a_disparar.hacer(pilas.comportamientos.Avanzar(velocidad=self.velocidad_de_disparo))
 
             objeto_a_disparar.escala = self.escala
             self.proyectiles.append(objeto_a_disparar)
