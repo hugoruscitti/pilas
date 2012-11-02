@@ -83,3 +83,4 @@ from proyectil import Bala
 from proyectil import Misil
 from proyectil import Dinamita
 from torreta import Torreta
+from ovni import Ovni
