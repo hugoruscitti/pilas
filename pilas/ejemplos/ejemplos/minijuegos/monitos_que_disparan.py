@@ -2,6 +2,41 @@ import math
 import pilas
 
 
+class Flecha(pilas.actores.Pizarra):
+    """Representa una flecha para indicar hacia donde disparara el mono.
+
+    Esta flecha se muestra detras del mono que va a disparar, y es una
+    ayuda para el jugador.
+    """
+
+    def __init__(self, x, y, deslizador_angulo, deslizador_fuerza):
+        pilas.actores.Pizarra.__init__(self, x=x, y=y, ancho=300, alto=300)
+        self.angulo = 0
+        self.fuerza = 0
+        self.z = 4
+
+        self.deslizador_angulo = deslizador_angulo
+        self.deslizador_fuerza = deslizador_fuerza
+        self.redibujar()
+
+    def actualizar(self):
+        angulo = 180 - self.deslizador_angulo.progreso * 180
+        fuerza = (1 + self.deslizador_fuerza.progreso) * 50
+
+        if angulo != self.angulo or fuerza != self.fuerza:
+            self.angulo = angulo
+            self.fuerza = fuerza
+            self.redibujar()
+
+    def redibujar(self):
+        angulo_en_radianes = math.radians(self.angulo)
+        delta = 50 + self.fuerza
+        self.limpiar()
+        self.linea(0, 0, math.cos(angulo_en_radianes) * delta,
+                         math.sin(angulo_en_radianes) * delta,
+                         pilas.colores.rojo, grosor=3)
+
+
 class LanzadorDeBananas:
 
     def __init__(self, mono_que_dispara, escena_juego):
@@ -18,6 +53,8 @@ class LanzadorDeBananas:
 
         self.boton = pilas.interfaz.Boton("Disparar !", x=x, y=y-80)
         self.boton.conectar(self.cuando_pulsa_disparar)
+        self.flecha = Flecha(mono_que_dispara.x, mono_que_dispara.y, self.angulo, self.fuerza)
+
 
     def _crear_etiqueta(self, texto, deslizador):
         actor_texto = pilas.actores.Texto(texto, magnitud=10, y=deslizador.y)
@@ -31,10 +68,11 @@ class LanzadorDeBananas:
         self.etiqueta_2.eliminar()
         self.boton.desactivar()
         self.boton.eliminar()
+        self.flecha.eliminar()
 
     def cuando_pulsa_disparar(self):
         angulo = 180 - self.angulo.progreso * 180
-        fuerza = (1 + self.fuerza.progreso) * 2
+        fuerza = (1 + self.fuerza.progreso) * 3
 
         self.escena_juego.disparar(self.mono_que_dispara.x, self.mono_que_dispara.y, angulo, fuerza)
 
