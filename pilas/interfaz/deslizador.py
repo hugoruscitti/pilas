@@ -14,6 +14,7 @@ from pilas.interfaz.base_interfaz import BaseInterfaz
 
 
 class Deslizador(BaseInterfaz):
+    """Representa un deslizador (slider) tipo volumen horizontal."""
 
     def __init__(self, x=0, y=0, ruta_barra = 'interfaz/barra.png',
                                  ruta_deslizador = 'interfaz/deslizador.png'):
@@ -71,7 +72,8 @@ class Deslizador(BaseInterfaz):
         if (self.activo):
             if self.click == True:
                 ancho = self.obtener_ancho()
-                factor = (self.deslizador.x + (ancho - abs(self.x))) / ancho - 1
+                deslizador_pos_x = self.deslizador.x - self.x
+                factor = (deslizador_pos_x + ancho) / ancho - 1
                 self.progreso = factor
 
                 self.ejecutar_funciones(factor)
