@@ -18,5 +18,8 @@ y conocer las posibilidades que ofrece.
 .. automodule:: pilas.evento
    :members: ProxyEventos
 
+.. automodule:: pilas.habilidades
+   :members: Disparar
+
 .. automodule:: pilas.actores
    :members: Actor, Mono, Ejes, Animado, Animacion, Explosion, Bomba, Pingu, Banana, Texto, Temporizador, Moneda, Pizarra, Pelota, Puntaje, Estrella, Caja, Nave, Disparo, CursorDisparo, Piedra, Menu, Opcion, Tortuga, Mapa, Martian, Boton, EntradaDeTexto, Aceituna, Globo, Dialogo, GloboElegir, Pausa, CursorMano
