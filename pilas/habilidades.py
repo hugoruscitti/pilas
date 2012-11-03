@@ -605,7 +605,6 @@ class Disparar(Habilidad):
         Construye la habilidad.
 
         :param municion: Municion o Actor que se disparará.
-        :type municion: int
         :param grupo_enemigos: Actores que son considerados enemigos y con los que colisionará la munición disparada.
         :param cuando_elimina_enemigo: Método que será llamado cuando se produzca un impacto con un enemigo.
         :param frecuencia_de_disparo: El número de disparos por segundo que realizará.
@@ -735,17 +734,7 @@ class Disparar(Habilidad):
 
 
 class DispararConClick(Disparar):
-    """
-    Return the maximum speed for a fox.
 
-    :Parameters:
-      size
-        The size of the fox (in meters)
-      weight : float
-        The weight of the fox (in stones)
-      age : int
-        The age of the fox (in years)
-    """
     def __init__(self, *k, **kv):
         super(DispararConClick, self).__init__(*k, **kv)
         self.boton_pulsado = False
