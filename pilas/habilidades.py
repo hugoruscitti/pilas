@@ -590,32 +590,36 @@ class DispararLineal(Habilidad):
         pass
 
 class Disparar(Habilidad):
-    """ Establece la habilidad de poder disparar un objeto.
-    El objeto disparado puede ser cualquier actor.
-
-    param: municion: Municion que se disparará.
-    param: grupo_enemigos: Actores que son considerados enemigos y con los que
-    colisionará el proyectil disparado.
-    param: cuando_elimina_enemigo: Funcion que debe llamar cuando se produzca un
-    impacto con un enemigo.
-    param: frecuencia_de_disparo: El número de proyectiles por segundo que
-    realizará.
-    param: angulo_salida_disparo: Especifica el angulo por donde disparará el actor.
-    param: offset_disparo: Separación en pixeles (x,y) del dispara con respecto al centro
-    del Actor.
-    param: offset_origen_disparo: Si el actor no tiene su origen en el centro, con
-    este parametro podremos colocar correctamente el disparo.
-    param: cuando_dispara: Metodo al que se llamara cuando se produzca un disparo.
-    """
+    """ Establece la habilidad de poder disparar un Actor o un objeto de tipo
+    pilas.municion.Municion."""
 
     def __init__(self, receptor, municion, grupo_enemigos=[],
                  cuando_elimina_enemigo=None,
                  frecuencia_de_disparo=10,
                  angulo_salida_disparo=0,
                  offset_disparo=(0,0),
-                 offset_origen_disparo=(0,0),
+                 offset_origen_actor=(0,0),
                  cuando_dispara=None,
                  escala=1):
+        """
+        :param municion: Municion o Actor que se disparará.
+        :type municion: int
+        :param grupo_enemigos: Actores que son considerados enemigos y con los que colisionará la munición disparada.
+        :param cuando_elimina_enemigo: Método que será llamado cuando se produzca un impacto con un enemigo.
+        :param frecuencia_de_disparo: El número de disparos por segundo que realizará.
+        :param angulo_salida_disparo: Especifica el angulo por donde saldrá el disparo efectuado por el Actor.
+        :param offset_disparo: Separación en pixeles (x,y) del disparo con respecto al centro del Actor.
+        :param offset_origen_actor: Si el Actor no tiene su origen en el centro, con este parametro podremos colocar correctamente el disparo.
+        :param cuando_dispara: Metodo que será llamado cuando se produzca un disparo.
+        
+        :Example:
+
+        >>> mono = pilas.actores.Mono()
+        >>> mono.aprender(pilas.habilidades.Disparar,
+        >>>               municion=pilas.actores.proyectil.Bala,
+        >>>               grupo_enemigos=enemigos,
+        >>>               cuando_elimina_enemigo=eliminar_enemigo)
+        """
 
         Habilidad.__init__(self, receptor)
         self.receptor = receptor
@@ -624,8 +628,8 @@ class Disparar(Habilidad):
         self.offset_disparo_x = offset_disparo[0]
         self.offset_disparo_y = offset_disparo[1]
 
-        self.offset_origen_disparo_x = offset_origen_disparo[0]
-        self.offset_origen_disparo_y = offset_origen_disparo[1]
+        self.offset_origen_actor_x = offset_origen_actor[0]
+        self.offset_origen_actor_y = offset_origen_actor[1]
 
         self.angulo_salida_disparo = angulo_salida_disparo
         self.frecuencia_de_disparo = frecuencia_de_disparo
@@ -679,16 +683,16 @@ class Disparar(Habilidad):
 
     def disparar(self):
         if (self.receptor.espejado):
-            offset_origen_disparo_x = -self.offset_origen_disparo_x
+            offset_origen_actor_x = -self.offset_origen_actor_x
         else:
-            offset_origen_disparo_x = self.offset_origen_disparo_x
+            offset_origen_actor_x = self.offset_origen_actor_x
 
         if issubclass(self.municion, pilas.municion.Municion):
 
             objeto_a_disparar = self.municion()
 
-            objeto_a_disparar.disparar(x=self.receptor.x+offset_origen_disparo_x,
-                                   y=self.receptor.y+self.offset_origen_disparo_y,
+            objeto_a_disparar.disparar(x=self.receptor.x+offset_origen_actor_x,
+                                   y=self.receptor.y+self.offset_origen_actor_y,
                                    angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo),
                                    rotacion=self.receptor.rotacion - 90,
                                    offset_disparo_x=self.offset_disparo_x,
@@ -701,8 +705,8 @@ class Disparar(Habilidad):
 
         elif issubclass(self.municion, pilas.actores.Actor):
 
-            objeto_a_disparar = self.municion(x=self.receptor.x+offset_origen_disparo_x,
-                                              y=self.receptor.y+self.offset_origen_disparo_y,
+            objeto_a_disparar = self.municion(x=self.receptor.x+offset_origen_actor_x,
+                                              y=self.receptor.y+self.offset_origen_actor_y,
                                               rotacion=self.receptor.rotacion - 90,
                                               angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo))
 
@@ -726,7 +730,17 @@ class Disparar(Habilidad):
 
 
 class DispararConClick(Disparar):
+    """
+    Return the maximum speed for a fox.
 
+    :Parameters:
+      size
+        The size of the fox (in meters)
+      weight : float
+        The weight of the fox (in stones)
+      age : int
+        The age of the fox (in years)
+    """
     def __init__(self, *k, **kv):
         super(DispararConClick, self).__init__(*k, **kv)
         self.boton_pulsado = False
