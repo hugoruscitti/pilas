@@ -1,0 +1,16 @@
+Package: pilas
+Version: 0.70
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 316
+Depends: python-qt4 (>= 4.9)
+Suggests: gnome-control-center
+Section: admin
+Priority: optional
+Homepage: http://www.pilas-engine.com.ar
+Description: query and manipulate user account information
+ The AccountService project provides a set of D-Bus
+ interfaces for querying and manipulating user account
+ information and an implementation of these interfaces,
+ based on the useradd, usermod and userdel commands.
+Original-Maintainer: Hugo Ruscitt <hugoruscitti@gmail.com>
