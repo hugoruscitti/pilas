@@ -495,100 +495,6 @@ class Imitar(Habilidad):
         if isinstance(self.objeto_a_imitar, pilas.fisica.Figura):
             self.objeto_a_imitar.eliminar()
 
-class DispararLineal(Habilidad):
-    """ Establece la habilidad de poder disparar un objeto.
-    El objeto disparado puede ser cualquier actor.
-
-    :param actor_disparado: Nombre de la clase del actor que se va a disparar.
-    :param grupo_enemigos: Actores que son considerados enemigos y
-            con los que colisionará el proyectil disparado.
-    :param cuando_elimina_enemigo: Funcion que debe llamar cuando se produzca un
-        impacto con un enemigo.
-    :param velocidad: Velocidad del proyectil disparado.
-    :param frecuencia_de_disparo: El número de proyectiles por segundo que
-        realizará.
-    :param angulo_salida_disparo: Especifica el angulo por donde disparará el actor.
-    :param offset_disparo: Separación en pixeles (x,y) del dispara con respecto al centro
-        del Actor.
-    :param offset_origen_disparo: Si el actor no tiene su origen en el centro, con
-        este parametro podremos colocar correctamente el disparo.
-    :param cuando_dispara: Metodo al que se llamara cuando se produzca un disparo.
-    """
-
-    def __init__(self, receptor, actor_disparado, grupo_enemigos=[],
-                 cuando_elimina_enemigo=None, velocidad=5,
-                 frecuencia_de_disparo=10,
-                 angulo_salida_disparo=0,
-                 offset_disparo=(0,0),
-                 offset_origen_disparo=(0,0),
-                 cuando_dispara=None):
-
-        Habilidad.__init__(self, receptor)
-        self.receptor = receptor
-
-        self.actor_disparado = actor_disparado
-        self.offset_disparo_x = offset_disparo[0]
-        self.offset_disparo_y = offset_disparo[1]
-
-        self.offset_origen_disparo_x = offset_origen_disparo[0]
-        self.offset_origen_disparo_y = offset_origen_disparo[1]
-
-        self.angulo_salida_disparo = angulo_salida_disparo
-        self.frecuencia_de_disparo = 60 / frecuencia_de_disparo
-        self.contador_frecuencia_disparo = 0
-        self.proyectiles = []
-        self.velocidad = velocidad
-
-        self.grupo_enemigos = grupo_enemigos
-
-        self.definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
-
-        self.cuando_dispara = cuando_dispara
-
-    def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
-        self.grupo_enemigos = grupo_enemigos
-        pilas.escena_actual().colisiones.agregar(self.proyectiles, self.grupo_enemigos,
-                                                 cuando_elimina_enemigo)
-    def actualizar(self):
-        self.contador_frecuencia_disparo += 1
-
-        if pilas.escena_actual().control.boton:
-            if self.contador_frecuencia_disparo > self.frecuencia_de_disparo:
-                self.contador_frecuencia_disparo = 0
-                self.disparar()
-
-        self.eliminar_disparos_innecesarios()
-
-    def eliminar_disparos_innecesarios(self):
-        for d in list(self.proyectiles):
-            if d.esta_fuera_de_la_pantalla():
-                d.eliminar()
-                self.proyectiles.remove(d)
-
-    def disparar(self):
-        disparo_nuevo = self.actor_disparado(x=self.receptor.x+self.offset_origen_disparo_x,
-                                             y=self.receptor.y+self.offset_origen_disparo_y)
-
-        disparo_nuevo.rotacion = self.receptor.rotacion + -(self.angulo_salida_disparo)
-
-        rotacion_en_radianes = math.radians(-disparo_nuevo.rotacion)
-        dx = math.cos(rotacion_en_radianes)
-        dy = math.sin(rotacion_en_radianes)
-
-        disparo_nuevo.x += dx * self.offset_disparo_x
-        disparo_nuevo.y += dy * self.offset_disparo_y
-
-        disparo_nuevo.hacer(pilas.comportamientos.Avanzar(velocidad=self.velocidad))
-
-        self.proyectiles.append(disparo_nuevo)
-
-        if self.cuando_dispara:
-            self.cuando_dispara(disparo_nuevo)
-
-
-    def eliminar(self):
-        pass
-
 class Disparar(Habilidad):
     """Establece la habilidad de poder disparar un Actor o un objeto de tipo
     pilas.municion.Municion."""
@@ -641,7 +547,7 @@ class Disparar(Habilidad):
 
         self.grupo_enemigos = grupo_enemigos
 
-        self.definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
+        self._definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
 
         self.cuando_dispara = cuando_dispara
 
@@ -649,15 +555,14 @@ class Disparar(Habilidad):
 
 
     def set_frecuencia_de_disparo(self, valor):
-        "Defina la frecuencia de disparo."
         self._frecuencia_de_disparo = 60 / valor
 
     def get_frecuencia_de_disparo(self, valor):
         return self._frecuencia_de_disparo
 
-    frecuencia_de_disparo = property(get_frecuencia_de_disparo, set_frecuencia_de_disparo, doc="Frecuencia de disparo")
+    frecuencia_de_disparo = property(get_frecuencia_de_disparo, set_frecuencia_de_disparo, doc="Número de disparos por segundo.")
 
-    def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
+    def _definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
         self.grupo_enemigos = grupo_enemigos
         pilas.escena_actual().colisiones.agregar(self.proyectiles, self.grupo_enemigos,
                                                  cuando_elimina_enemigo)
@@ -669,15 +574,15 @@ class Disparar(Habilidad):
                 self.contador_frecuencia_disparo = 0
                 self.disparar()
 
-        self.eliminar_disparos_innecesarios()
+        self._eliminar_disparos_innecesarios()
 
-    def eliminar_disparos_innecesarios(self):
+    def _eliminar_disparos_innecesarios(self):
         for d in list(self.proyectiles):
             if d.esta_fuera_de_la_pantalla():
                 d.eliminar()
                 self.proyectiles.remove(d)
 
-    def desplazar_proyectil(self, proyectil, offset_x, offset_y):
+    def _desplazar_proyectil(self, proyectil, offset_x, offset_y):
         rotacion_en_radianes = math.radians(-proyectil.rotacion)
         dx = math.cos(rotacion_en_radianes)
         dy = math.sin(rotacion_en_radianes)
@@ -703,7 +608,7 @@ class Disparar(Habilidad):
                                    offset_disparo_y=self.offset_disparo_y)
 
             for disparo in objeto_a_disparar.proyectiles:
-                self.desplazar_proyectil(disparo, self.offset_disparo_x, self.offset_disparo_y)
+                self._desplazar_proyectil(disparo, self.offset_disparo_x, self.offset_disparo_y)
                 disparo.escala = self.escala
                 self.proyectiles.append(disparo)
 
@@ -714,7 +619,7 @@ class Disparar(Habilidad):
                                               rotacion=self.receptor.rotacion - 90,
                                               angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo))
 
-            self.desplazar_proyectil(objeto_a_disparar, self.offset_disparo_x, self.offset_disparo_y)
+            self._desplazar_proyectil(objeto_a_disparar, self.offset_disparo_x, self.offset_disparo_y)
 
             objeto_a_disparar.escala = self.escala
             self.proyectiles.append(objeto_a_disparar)
@@ -734,6 +639,8 @@ class Disparar(Habilidad):
 
 
 class DispararConClick(Disparar):
+    """Establece la habilidad de poder disparar un Actor o un objeto de tipo
+    pilas.municion.Municion pulsando el boton izquierdo del ratón."""
 
     def __init__(self, *k, **kv):
         super(DispararConClick, self).__init__(*k, **kv)

@@ -16,7 +16,16 @@ class Misil(Animacion):
 
     def __init__(self, x=0, y=0, rotacion=0, velocidad_maxima=8,
                  angulo_de_movimiento=90):
+        """
+        Construye el Misil.
 
+        :param x: Posición x del proyectil.
+        :param y: Posición y del proyectil.
+        :param rotacion: Angulo de rotación del Actor.
+        :param velocidad_maxima: Velocidad máxima que alcanzará el proyectil.
+        :param angulo_de_movimiento: Angulo en que se moverá el Actor..
+
+        """
         grilla = pilas.imagenes.cargar_grilla("disparos/misil.png", 3)
         Animacion.__init__(self, grilla, ciclica=True, x=x, y=y)
         self.rotacion = rotacion
@@ -28,10 +37,19 @@ class Misil(Animacion):
                                                    gravedad=0))
 
 class Bala(Actor):
-
+    """ Representa una bala que va en línea recta. """
     def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=9,
                  angulo_de_movimiento=90):
 
+        """
+        Construye la Bala.
+
+        :param x: Posición x del proyectil.
+        :param y: Posición y del proyectil.
+        :param velocidad_maxima: Velocidad máxima que alcanzará el proyectil.
+        :param angulo_de_movimiento: Angulo en que se moverá el Actor..
+
+        """
         imagen = pilas.imagenes.cargar('disparos/bola_amarilla.png')
         Actor.__init__(self, imagen)
         self.x = x
@@ -52,6 +70,16 @@ class Dinamita(Animacion):
     def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=4,
                  angulo_de_movimiento=90):
 
+        """
+        Construye la Dinamita.
+
+        :param x: Posición x del proyectil.
+        :param y: Posición y del proyectil.
+        :param rotacion: Angulo de rotación del Actor.
+        :param velocidad_maxima: Velocidad máxima que alcanzará el proyectil.
+        :param angulo_de_movimiento: Angulo en que se moverá el Actor..
+
+        """
         grilla = pilas.imagenes.cargar_grilla("disparos/dinamita.png", 2)
         Animacion.__init__(self, grilla, ciclica=True, x=x, y=y)
         self.rotacion = rotacion
@@ -75,6 +103,16 @@ class EstrellaNinja(Actor):
     def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=4,
                  angulo_de_movimiento=90):
 
+        """
+        Construye la Estella Ninja.
+
+        :param x: Posición x del proyectil.
+        :param y: Posición y del proyectil.
+        :param rotacion: Angulo de rotación del Actor.
+        :param velocidad_maxima: Velocidad máxima que alcanzará el proyectil.
+        :param angulo_de_movimiento: Angulo en que se moverá el Actor..
+
+        """
         imagen = pilas.imagenes.cargar('disparos/estrella.png')
         Actor.__init__(self, imagen)
         self.x = x
