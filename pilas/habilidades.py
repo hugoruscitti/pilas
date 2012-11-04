@@ -518,6 +518,7 @@ class Disparar(Habilidad):
         :param offset_disparo: Separación en pixeles (x,y) del disparo con respecto al centro del Actor.
         :param offset_origen_actor: Si el Actor no tiene su origen en el centro, con este parametro podremos colocar correctamente el disparo.
         :param cuando_dispara: Metodo que será llamado cuando se produzca un disparo.
+        :param escala: Escala de los actores que serán disparados.
 
         :example:
 
@@ -547,7 +548,7 @@ class Disparar(Habilidad):
 
         self.grupo_enemigos = grupo_enemigos
 
-        self._definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
+        self.definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
 
         self.cuando_dispara = cuando_dispara
 
@@ -562,7 +563,7 @@ class Disparar(Habilidad):
 
     frecuencia_de_disparo = property(get_frecuencia_de_disparo, set_frecuencia_de_disparo, doc="Número de disparos por segundo.")
 
-    def _definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
+    def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
         self.grupo_enemigos = grupo_enemigos
         pilas.escena_actual().colisiones.agregar(self.proyectiles, self.grupo_enemigos,
                                                  cuando_elimina_enemigo)

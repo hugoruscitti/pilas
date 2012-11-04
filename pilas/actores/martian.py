@@ -21,13 +21,13 @@ class Martian(Actor):
         self.definir_cuadro(0)
         self.mapa = mapa
         self.hacer(Esperando())
-        self.municion = pilas.municion.BalaSimple()
+        self.municion = pilas.actores.proyectil.Bala
         self.aprender(pilas.habilidades.Disparar,
-                       municion=self.municion,
+                       municion=pilas.actores.proyectil.Bala,
                        angulo_salida_disparo=-90,
                        frecuencia_de_disparo=8,
                        offset_disparo=(25,0),
-                       offset_origen_disparo=(25,23))
+                       offset_origen_actor=(25,23))
 
 
     def definir_cuadro(self, indice):

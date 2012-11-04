@@ -4,18 +4,14 @@ import os
 import random
 
 from pilas.actores.actor import Actor
-from pilas.municion import BalaSimple
-from pilas.municion import BalasDoblesDesviadas
 
 pilas.iniciar()
 
 def asignar_arma_simple():
     torreta.municion = municion_bala_simple
-    torreta.habilidades.DispararConClick.escala = 0.7
 
 def asignar_arma_doble(estrella, disparo):
     torreta.municion = municion_doble_bala
-    torreta.habilidades.DispararConClick.escala = 1
     estrella.eliminar()
     pilas.mundo.agregar_tarea(10, asignar_arma_simple)
     pilas.avisar("ARMA MEJORADA")
@@ -62,7 +58,7 @@ def crear_enemigo():
     enemigo.y = pilas.interpolar(0, tiempo, tipo=random.choice(tipo_interpolacion))
 
     if random.randrange(0, 20) > 15:
-        if issubclass(torreta.habilidades.DispararConClick.municion, pilas.actores.Banana):
+        if issubclass(torreta.habilidades.DispararConClick.municion, pilas.actores.Bala):
 
             estrella = pilas.actores.Estrella(x,y)
             estrella.escala = pilas.interpolar(0.5, duracion=0.5, tipo='elastico_final')
@@ -120,8 +116,8 @@ fin_de_juego = False
 pilas.actores.Sonido()
 
 
-municion_bala_simple = pilas.actores.Banana
-municion_doble_bala = BalasDoblesDesviadas
+municion_bala_simple = pilas.actores.proyectil.Bala
+municion_doble_bala = pilas.municion.BalaDoble
 
 torreta = pilas.actores.Torreta(municion_bala_simple=municion_bala_simple,
                                 enemigos=enemigos,

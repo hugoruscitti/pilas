@@ -36,17 +36,8 @@ def cuando_selecciona(opcion_seleccionada):
         disparo_desviado()
 
 opciones = pilas.interfaz.ListaSeleccion(['Simple', 'Doble', 'Desviados'], cuando_selecciona)
-opciones.x = -280
+opciones.x = -200
 opciones.y = 200
-
-planeta_1 = pilas.actores.ovni.Planeta(color="verde", x=-200, y=200)
-planeta_1.escala = 0.8
-planeta_2 = pilas.actores.ovni.Planeta(color="azul", x=-150, y=40)
-planeta_2.escala = 0.5
-planeta_3 = pilas.actores.ovni.Planeta(color="marron", x=150, y=90)
-planeta_2.escala = 0.4
-planeta_4 = pilas.actores.ovni.Planeta(color="naranja")
-planeta_5 = pilas.actores.ovni.Planeta(color="rojo", x=200)
 
 ovnis = pilas.actores.Ovni(y=100) * 10
 
@@ -56,5 +47,6 @@ disparo_simple()
 
 pilas.fondos.Color(pilas.colores.negro)
 
+pilas.avisar("Selecciona el tipo de disparo.")
 
 pilas.ejecutar()

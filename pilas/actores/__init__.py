@@ -82,5 +82,6 @@ from humo import Humo
 from proyectil import Bala
 from proyectil import Misil
 from proyectil import Dinamita
+from proyectil import EstrellaNinja
 from torreta import Torreta
 from ovni import Ovni
