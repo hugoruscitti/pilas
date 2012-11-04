@@ -39,8 +39,9 @@ cd pilas/dist
 cp -r ../../../DEBIAN ./
 rm pilas-*
 cd ..
-pkg --build dist pilas.deb
+dpkg --build dist pilas.deb
 mv pilas.deb ../../
 
+cd ../../
 echo "Archivos generados:"
 ls *.deb
