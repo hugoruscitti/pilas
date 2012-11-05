@@ -589,6 +589,11 @@ class Disparar(Habilidad):
 
         self._eliminar_disparos_innecesarios()
 
+    def _agregar_disparo(self, proyectil):
+        proyectil.escala = self.escala
+        self._desplazar_proyectil(proyectil, self.offset_disparo_x, self.offset_disparo_y)
+        self.proyectiles.append(proyectil)
+
     def _eliminar_disparos_innecesarios(self):
         for d in list(self.proyectiles):
             if d.esta_fuera_de_la_pantalla():
@@ -621,9 +626,7 @@ class Disparar(Habilidad):
                                    offset_disparo_y=self.offset_disparo_y)
 
             for disparo in objeto_a_disparar.proyectiles:
-                self._desplazar_proyectil(disparo, self.offset_disparo_x, self.offset_disparo_y)
-                disparo.escala = self.escala
-                self.proyectiles.append(disparo)
+                self._agregar_disparo(disparo)
 
         elif issubclass(self.municion, pilas.actores.Actor):
 
@@ -632,11 +635,7 @@ class Disparar(Habilidad):
                                               rotacion=self.receptor.rotacion - 90,
                                               angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo))
 
-            #if (objeto_a_disparar.tiene_comportamiento(pilas.comportamientos.Proyectil)):
-            self._desplazar_proyectil(objeto_a_disparar, self.offset_disparo_x, self.offset_disparo_y)
-
-            objeto_a_disparar.escala = self.escala
-            self.proyectiles.append(objeto_a_disparar)
+            self._agregar_disparo(objeto_a_disparar)
 
         else:
             raise "No se puede disparar este objeto."
