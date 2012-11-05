@@ -499,7 +499,9 @@ class Disparar(Habilidad):
     """Establece la habilidad de poder disparar un Actor o un objeto de tipo
     pilas.municion.Municion."""
 
-    def __init__(self, receptor, municion, grupo_enemigos=[],
+    def __init__(self, receptor, municion,
+                 parametros_municion = {},
+                 grupo_enemigos=[],
                  cuando_elimina_enemigo=None,
                  frecuencia_de_disparo=10,
                  angulo_salida_disparo=0,
@@ -552,6 +554,8 @@ class Disparar(Habilidad):
 
         self.cuando_dispara = cuando_dispara
 
+        self.parametros_municion = parametros_municion
+
         self.escala = escala
 
 
@@ -599,7 +603,7 @@ class Disparar(Habilidad):
 
         if issubclass(self.municion, pilas.municion.Municion):
 
-            objeto_a_disparar = self.municion()
+            objeto_a_disparar = self.municion(**self.parametros_municion)
 
             objeto_a_disparar.disparar(x=self.receptor.x+offset_origen_actor_x,
                                    y=self.receptor.y+self.offset_origen_actor_y,
