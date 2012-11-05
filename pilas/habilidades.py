@@ -567,6 +567,7 @@ class Disparar(Habilidad):
 
     def set_municion(self, valor):
         self._municion = valor
+        self.parametros_municion = {}
 
     def get_municion(self):
         return self._municion
