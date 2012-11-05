@@ -536,7 +536,9 @@ class Disparar(Habilidad):
         Habilidad.__init__(self, receptor)
         self.receptor = receptor
 
-        self.municion = municion
+        self._municion = municion
+        self.parametros_municion = parametros_municion
+
         self.offset_disparo_x = offset_disparo[0]
         self.offset_disparo_y = offset_disparo[1]
 
@@ -554,18 +556,22 @@ class Disparar(Habilidad):
 
         self.cuando_dispara = cuando_dispara
 
-        self.parametros_municion = parametros_municion
-
         self.escala = escala
-
 
     def set_frecuencia_de_disparo(self, valor):
         self._frecuencia_de_disparo = 60 / valor
 
-    def get_frecuencia_de_disparo(self, valor):
+    def get_frecuencia_de_disparo(self):
         return self._frecuencia_de_disparo
 
+    def set_municion(self, valor):
+        self._municion = valor
+
+    def get_municion(self):
+        return self._municion
+
     frecuencia_de_disparo = property(get_frecuencia_de_disparo, set_frecuencia_de_disparo, doc="Número de disparos por segundo.")
+    municion = property(get_municion, set_municion, doc="Establece el tipo de municion que dispara.")
 
     def definir_colision(self, grupo_enemigos, cuando_elimina_enemigo):
         self.grupo_enemigos = grupo_enemigos
@@ -624,13 +630,14 @@ class Disparar(Habilidad):
                                               rotacion=self.receptor.rotacion - 90,
                                               angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo))
 
+            #if (objeto_a_disparar.tiene_comportamiento(pilas.comportamientos.Proyectil)):
             self._desplazar_proyectil(objeto_a_disparar, self.offset_disparo_x, self.offset_disparo_y)
 
             objeto_a_disparar.escala = self.escala
             self.proyectiles.append(objeto_a_disparar)
 
         else:
-            print "No se puede disparar este objeto."
+            raise "No se puede disparar este objeto."
 
         if self.cuando_dispara:
             self.cuando_dispara()
