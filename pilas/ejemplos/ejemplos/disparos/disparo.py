@@ -23,6 +23,7 @@ def disparo_doble():
 def disparo_desviado():
     nave.aprender(pilas.habilidades.Disparar,
                   municion=pilas.municion.BalasDoblesDesviadas,
+                  parametros_municion={"angulo_desvio" : 15},
                   offset_disparo=(0, 30),
                   grupo_enemigos=ovnis,
                   cuando_elimina_enemigo=eliminar_aceituna)

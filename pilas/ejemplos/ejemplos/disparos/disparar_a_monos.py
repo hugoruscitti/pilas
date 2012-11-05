@@ -58,7 +58,7 @@ def crear_enemigo():
     enemigo.y = pilas.interpolar(0, tiempo, tipo=random.choice(tipo_interpolacion))
 
     if random.randrange(0, 20) > 15:
-        if issubclass(torreta.habilidades.DispararConClick.municion, pilas.actores.Bala):
+        if issubclass(torreta.habilidades.DispararConClick.municion, municion_bala_simple):
 
             estrella = pilas.actores.Estrella(x,y)
             estrella.escala = pilas.interpolar(0.5, duracion=0.5, tipo='elastico_final')
@@ -116,14 +116,12 @@ fin_de_juego = False
 pilas.actores.Sonido()
 
 
-municion_bala_simple = pilas.actores.proyectil.Bala
-municion_doble_bala = pilas.municion.BalaDoble
+municion_bala_simple = pilas.actores.Bala
+municion_doble_bala = pilas.municion.BalasDoblesDesviadas
 
 torreta = pilas.actores.Torreta(municion_bala_simple=municion_bala_simple,
                                 enemigos=enemigos,
                                 cuando_elimina_enemigo=enemigo_destruido)
-
-torreta.habilidades.DispararConClick.escala = 0.7
 
 pilas.mundo.agregar_tarea(1, crear_enemigo)
 
