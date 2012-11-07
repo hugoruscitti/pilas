@@ -85,7 +85,7 @@ def reducir_tiempo():
     return True
 
 
-def enemigo_destruido(disparo, enemigo): 
+def enemigo_destruido(disparo, enemigo):
     enemigo.eliminar()
     puntos.escala = 0
     puntos.escala = pilas.interpolar(1, duracion=0.5, tipo='rebote_final')
@@ -99,7 +99,7 @@ def perder(torreta, enemigo):
     torreta.eliminar()
     pilas.escena_actual().tareas.eliminar_todas()
     fin_de_juego = True
-    pilas.avisar("GAME OVER. Conseguiste %d putnos" %(puntos.obtener()))
+    pilas.avisar("GAME OVER. Conseguiste %d puntos" %(puntos.obtener()))
 
 
 pilas.fondos.Pasto()
