@@ -1,41 +1,25 @@
 import math
 import pilas
 
-
-class Flecha(pilas.actores.Pizarra):
-    """Representa una flecha para indicar hacia donde disparara el mono.
-
-    Esta flecha se muestra detras del mono que va a disparar, y es una
-    ayuda para el jugador.
-    """
+class Flecha(pilas.actores.Actor):
 
     def __init__(self, x, y, deslizador_angulo, deslizador_fuerza):
-        pilas.actores.Pizarra.__init__(self, x=x, y=y, ancho=300, alto=300)
-        self.angulo = 0
-        self.fuerza = 0
-        self.z = 4
-
+        pilas.actores.Actor.__init__(self)
+        self.imagen = "flecha.png"
+        self.centro = (0, "centro")
+        self.x = x
+        self.y = y
         self.deslizador_angulo = deslizador_angulo
         self.deslizador_fuerza = deslizador_fuerza
-        self.redibujar()
+        self.z = 10
 
     def actualizar(self):
-        angulo = 180 - self.deslizador_angulo.progreso * 180
-        fuerza = (1 + self.deslizador_fuerza.progreso) * 50
+        angulo = 180 + self.deslizador_angulo.progreso * 180
+        fuerza = 0.5 + self.deslizador_fuerza.progreso / 4.0
 
-        if angulo != self.angulo or fuerza != self.fuerza:
-            self.angulo = angulo
-            self.fuerza = fuerza
-            self.redibujar()
-
-    def redibujar(self):
-        angulo_en_radianes = math.radians(self.angulo)
-        delta = 50 + self.fuerza
-        self.limpiar()
-        self.linea(0, 0, math.cos(angulo_en_radianes) * delta,
-                         math.sin(angulo_en_radianes) * delta,
-                         pilas.colores.rojo, grosor=3)
-
+        self.rotacion = angulo
+        self.fuerza = fuerza
+        self.escala_x = fuerza
 
 class LanzadorDeBananas:
 
