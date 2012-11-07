@@ -42,7 +42,7 @@ class LanzadorDeBananas:
     def __init__(self, mono_que_dispara, escena_juego):
         self.escena_juego = escena_juego
         self.mono_que_dispara = mono_que_dispara
-        x = mono_que_dispara.x
+        x = mono_que_dispara.x - 60
         y = 200
 
         self.angulo = pilas.interfaz.Deslizador(x=x, y=y)
@@ -82,20 +82,14 @@ class Banana(pilas.actores.Banana):
     def __init__(self, *k, **kv):
         pilas.actores.Banana.__init__(self, *k, **kv)
         self.escala = 0.5
-        self.dx = 0
-        self.dy = 0
-        self._vel_y = 3
 
     def actualizar(self):
         self.rotacion += 10
-        self.x += self.dx
-        self.y += self.dy + self._vel_y
-        self._vel_y -= 0.1
 
     def lanzar(self, angulo, fuerza):
-        angulo_en_radianes = math.radians(angulo)
-        self.dx = math.cos(angulo_en_radianes) * fuerza
-        self.dy = math.sin(angulo_en_radianes) * fuerza
+        self.hacer(pilas.comportamientos.Proyectil(velocidad_maxima=1.5*fuerza,
+                                                   angulo_de_movimiento=90-angulo,
+                                                   gravedad=1))
 
 
 class EscenaJuego(pilas.escena.Normal):
@@ -107,8 +101,8 @@ class EscenaJuego(pilas.escena.Normal):
         self.cambiar_turno()
 
     def _crear_monos(self):
-        self.mono1 = self._crear_mono(x=-200)
-        self.mono2 = self._crear_mono(x=200)
+        self.mono1 = self._crear_mono(x=-180)
+        self.mono2 = self._crear_mono(x=170)
 
     def _crear_mono(self, x=0, y=0):
         mono = pilas.actores.Mono(x, y)
@@ -125,7 +119,7 @@ class EscenaJuego(pilas.escena.Normal):
             self.turno = 2
             mono = self.mono2
 
-        mono.decir("Es mi turno!")
+        pilas.avisar("Turno del jugador %d" % self.turno)
 
         if self.lanzador:
             self.lanzador.eliminar()
