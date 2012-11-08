@@ -21,13 +21,13 @@ class Martian(Actor):
         self.definir_cuadro(0)
         self.mapa = mapa
         self.hacer(Esperando())
+        self.municion = pilas.actores.proyectil.Bala
         self.aprender(pilas.habilidades.Disparar,
-                       actor_disparado=pilas.actores.Disparo,
-                       angulo_salida_disparo=0,
+                       municion=pilas.actores.proyectil.Bala,
+                       angulo_salida_disparo=-90,
                        frecuencia_de_disparo=8,
                        offset_disparo=(25,0),
-                       offset_origen_disparo=(0,23),
-                       velocidad=9)
+                       offset_origen_actor=(25,23))
 
 
     def definir_cuadro(self, indice):
@@ -84,11 +84,11 @@ class Caminando(Esperando):
         if pilas.escena_actual().control.izquierda:
             self.receptor.x -= 3
             self.receptor.espejado = True
-            self.receptor.habilidades.Disparar.angulo_salida_disparo = 180
+            self.receptor.habilidades.Disparar.angulo_salida_disparo = 90
         elif pilas.escena_actual().control.derecha:
             self.receptor.x += 3
             self.receptor.espejado = False
-            self.receptor.habilidades.Disparar.angulo_salida_disparo = 0
+            self.receptor.habilidades.Disparar.angulo_salida_disparo = -90
         else:
             self.receptor.hacer(Esperando())
 
@@ -132,11 +132,11 @@ class Saltando(Comportamiento):
 
         if pilas.escena_actual().control.izquierda:
             self.receptor.espejado = True
-            self.receptor.habilidades.Disparar.angulo_salida_disparo = 180
+            self.receptor.habilidades.Disparar.angulo_salida_disparo = 90
             self.receptor.x -= 3
         elif pilas.escena_actual().control.derecha:
             self.receptor.espejado = False
-            self.receptor.habilidades.Disparar.angulo_salida_disparo = 0
+            self.receptor.habilidades.Disparar.angulo_salida_disparo = -90
             self.receptor.x += 3
 
 class Disparar(Comportamiento):

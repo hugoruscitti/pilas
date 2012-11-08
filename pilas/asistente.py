@@ -30,6 +30,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         pilas.utils.centrar_ventana(main)
         self.statusbar.showMessage(u"Versión " + pilas.version())
         self._habilitar_inspector_web()
+        self.salir_action.connect(self.salir_action, QtCore.SIGNAL("triggered()"), self.salir)
 
 
     def _habilitar_inspector_web(self):
@@ -109,6 +110,10 @@ class VentanaAsistente(Ui_AsistenteWindow):
         "Realizar una consulta usando un cuadro de dialogo."
         return QtGui.QMessageBox.question(parent, titulo, mensaje,
                                     QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+
+    def salir(self, *_):
+        self.main.close()
+
 
 
 

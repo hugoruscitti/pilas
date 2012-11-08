@@ -25,6 +25,7 @@ analizador.add_option("-i", "--interprete", dest="interprete",
 (opciones, argumentos) = analizador.parse_args()
 
 if argumentos:
+    os.chdir(os.path.dirname(argumentos[0]))
     sys.exit(execfile(argumentos[0]))
 
 if opciones.interprete or '-i' in sys.argv:

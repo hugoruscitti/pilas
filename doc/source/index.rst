@@ -69,6 +69,7 @@ Referencia completa (API):
     :maxdepth: 2
 
     referencia.rst
+    referencia-habilidades.rst
 
 
 Avanzado:

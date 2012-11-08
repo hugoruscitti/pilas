@@ -13,3 +13,12 @@ pilas/data/pilas.pdf
 .project
 .pydevproject
 .settings/*
+
+utils/paquete-ubuntu/resultado/pybox2d/.svn/pristine/23/237d46a2e94e3b26beb5971999b97a9cf2c3beba.svn-base
+
+*.svn-base
+
+utils/paquete-ubuntu/resultado/pilas/
+
+utils/paquete-ubuntu/resultado
+utils/paquete-ubuntu/resultado/pilas_clone.log

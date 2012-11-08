@@ -43,6 +43,11 @@ class Estudiante:
         habilidades_actuales = [habilidad.__class__ for habilidad in self._habilidades]
         return (classname in habilidades_actuales)
 
+    def tiene_comportamiento(self, classname):
+        "Comprueba si tiene el comportamiento indicado"
+        comportamientos_actuales = [comportamiento.__class__ for comportamiento in self.comportamientos]
+        return (classname in comportamientos_actuales)
+
     def obtener_habilidad(self, classname):
         """ Obtiene la habilidad asociada a un Actor.
         Devuelve None si no se encontró."""
@@ -118,5 +123,9 @@ class ProxyHabilidades(object):
             if habilidad.__class__.__name__ == name:
                 su_habilidad = habilidad
                 break
+            
+        if not su_habilidad:
+            raise Exception("El actor no tiene asignada la habilidad " + name + 
+                            ".\n No puede acceder mediante actor.habilidades." + name)
 
         return su_habilidad

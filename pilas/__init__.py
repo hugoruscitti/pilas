@@ -24,6 +24,7 @@ import demos
 import atajos
 import interfaz
 import interprete
+import municion
 from pilas.escena import Normal
 
 # Permite cerrar el programa usando CTRL+C
