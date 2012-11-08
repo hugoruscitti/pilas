@@ -1,19 +1,91 @@
-v 0.7
+Pilas engine - 0.71 (2012-11-08)
+--------------------------------
+- Fix #95 Los eventos del raton ahora envian tambien el boton que se pulsó.
+- Creado el actor pacman.
+- Creado fantasma para el juego pacman.
+- Cambiado el sistema de audio (opciones Phonon o GStreamer)
+- #Fix 78 Se elimina el evento conectado al terminar el click
+- Añadida a la habilidad de SeMantieneEnPantalla un parametro para que el actor 
+  no pueda salir de la ventana de juego. Por defecto si sale, aparece por el
+  lado opuesto por donde salió.
+- Añadida la habilidad RotarConMouse.
+- Control personalizado: Añadida la opcion de mover con el teclado un Actor con
+  un control personalizado. Se puede mapear las teclas del Control.
+- Por defecto se ha dejado el boton del Control asociado a la tecla ESPACIO.Así
+  que el menú responde ahora a un control personalizado en la que la tecla de
+  boton es el INTRO.
+- Estableciendo la velocidad como parametro en la habilidad de
+  MoverseConElTeclado
+- Añadida la opcion de eliminar una interpolación mientras está en ejecución.
+- Añadido el cálculo de la velocidad que lleva un Actor. actor.vx y actor.vy
+- Añadida una utilidad para calcular el tiempo que se tardaría en recorrer una
+  distancia en pixeles con una velocidad constante en pixeles.
+- Añadida la habilidad de Disparar
+- Evitado que la escala del actor elimine el radio de colisión.
+- Añadida la opcion de eliminar una habilidad.
+- Añadida la habilidad de MirarAlActor
+- Si se añade una habilidad a un Actor y este ya la tenia, se elimina y se da de
+  alta la nueva.
+- Añadida la posibilidad de acelerar y rotar en la habilidad de
+  MoverseConElTeclado.
+- Añadida la habilidad de SiempreEnElCentro.
+- Añadida la opcion de moverse en 4 u 8 direcciones a la habilidad de
+  MoverseConElTeclado.
+- Añadido el parametro marcha_atras para no poder ir hacia atrás en la habilidad
+  de MoverseConElTeclado.
+- Añadido el parametro de deceleracion a la habilidad de MoverseConElTeclado.
+- Creado un proxy para poder acceder a las habilidades de un actor mediante
+  actor.habilidades.Nombre_De_Habilidad.
+- agregando soporte multilinea para el actor EntradaDeTexto.
+- Creado el actor Humo
+- Agregando opción para seleccionar el backend de sonido.
+- Fixed #105 Los eventos del raton ahora acompañan a la camara.
+- Creadas las interpolaciones ElasticoInicial y ElasticoFinal.
+- Creando una habilidad para disparar haciendo click con el mouse.
+- Permitidoo a `Opcion` recibir argumentos para `funcion_a_invocar`, de manera
+  opcional.
+- `aviso` acepta un parámetro opcional `retraso`.
+- Añadida la utilidad de Obtener Actor más cercano
+  (pilas.utils.actor_mas_cercano_al_actor).
+- Creado el actor Torreta
+- Agregado el proyectil Estrella Ninja
+- Habilitando el inspector web en el asistente (pulsar el boton derecho sobre el
+  asistente y seleccionar inspeccionar)
+- Arreglada las velocidad lineal en los bojetos fisicos.
+- Creando archivos para que se pueda crear una aplicación Mac de pilas.
+- Modificando el deslizador para que se pueda eliminar
+- Creando un minijuego de monos que lanzan bananas tipo el juego gorillas.
+- Añadido el actor NaveKids.
+- fix #103 haciendo que se puedan arrastrar programas al asistente y que puedan
+  cargar imagenes.
+- Creando el comportamiento de Proyectil.
+- La habilidad de Disparar permite disparar Municiones o Actores que tengan
+  el comportamiento de Proyectil.
+- Agregando opción para salir del asistente desde un menú fix #101
+- Reparando bug en el deslizador fix #113
+- Añadido un Ovni como actor.
+- Creado un generador de paquete .deb para pilas.
+- Close #115 ahora se pueden pasar parámetros a la municion.
+- Añadida la opcion de saber si un Actor tiene un comportamiento en concreto.
 
-* Creada una nueva Habilidad llamada RotarConMouse.
-* Creada una nueva Habilidad llamada Disparar.
-* La habilidad MoverseConElTeclado ahora permite asignarle un Control
+
+Pilas engine - 0.70 (2012-10-10)
+--------------------------------
+- Creada una nueva Habilidad llamada RotarConMouse.
+- Creada una nueva Habilidad llamada Disparar.
+- La habilidad MoverseConElTeclado ahora permite asignarle un Control
   personalizado.
-* Creado un nuevo Actor llamado Pacman
-* Cambiado el motor de Sonido. Ahora utiliza la biblioteca pygst y gst (GStreamer).
-* La Habilidad de SeMantieneEnPantalla ahora permite que el Actor no salga de la
+- Creado un nuevo Actor llamado Pacman
+- Cambiado el motor de Sonido. Ahora utiliza la biblioteca pygst y gst 
+  (GStreamer).
+- La Habilidad de SeMantieneEnPantalla ahora permite que el Actor no salga de la
   misma.
-* Se puede consultar la velocidad horizontal y vertical de un actor mediante los
+- Se puede consultar la velocidad horizontal y vertical de un actor mediante los
   campos actor.vx y actor.vy
-* Añadidas las interpolaciones: AceleracionGradual, DesaceleracionGradual,
+- Añadidas las interpolaciones: AceleracionGradual, DesaceleracionGradual,
   ReboteInicial, ReboteFinal.
-* Añadida la Habilidad de MirarAlActor.
-* Añadida la posibilidad de eliminar una Habilidad mediante
+- Añadida la Habilidad de MirarAlActor.
+- Añadida la posibilidad de eliminar una Habilidad mediante
   actor.eliminar_habilidad(nombre_de_la_habilidad)
-* Si se añade una habilidad a un Actor que ya la tenia, se elimina y se
+- Si se añade una habilidad a un Actor que ya la tenia, se elimina y se
   da de alta la nueva habilidad.
