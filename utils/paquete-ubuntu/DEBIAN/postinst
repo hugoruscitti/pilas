@@ -1,0 +1,78 @@
+#!/bin/sh
+
+set -e
+
+get_pid() {
+    [ -n "$1" ] || return 0
+    [ -S /var/run/dbus/system_bus_socket ] || return 0
+
+    dbus-send --system --dest=org.freedesktop.DBus --print-reply \
+              /org/freedesktop/DBus org.freedesktop.DBus.GetConnectionUnixProcessID \
+              string:$1 2>/dev/null | awk '/uint32/ {print $2}'
+}
+
+if [ "$1" = "configure" ]; then
+   # stop accounts-daemon
+   pid=$(get_pid org.freedesktop.Accounts)
+   kill $pid 2>/dev/null || true
+fi
+
+#
+# Modify /etc/default/locale and /etc/environment due to a changed
+# meaning in Ubuntu 12.04 of the LANG environment variable. LANG
+# now represents the display language instead of regional formats.
+#
+LANG_definition_migration() {
+    unset LANG LC_MESSAGES
+    test -f /etc/default/locale && . /etc/default/locale
+    test -n "$LC_MESSAGES" || return 0
+
+    config_files='/etc/default/locale /etc/environment'
+
+    update() {
+        # if that file doesn't define a locale, skip it
+        grep -q "^LANG=" $f || return 0
+
+        f=$1; var=$2; value=$3
+        if grep -q "^$var=" $f; then
+            sed -i "s/^$var=.*/$var=\"$value\"/" $f
+        else
+            echo "$var=\"$value\"" >> $f
+        fi
+    }
+
+    if [ -n "$LANG" ] && [ $LANG != ${LANG%.utf8*} ]; then
+        LANG=${LANG%.*}.UTF-8${LANG#*.utf8}
+    fi
+    if [ $LC_MESSAGES != ${LC_MESSAGES%.utf8*} ]; then
+        LC_MESSAGES=${LC_MESSAGES%.*}.UTF-8${LC_MESSAGES#*.utf8}
+    fi
+
+    for f in $config_files; do
+        test -f "$f" || continue
+        update $f 'LANG' $LC_MESSAGES
+    done
+
+    if [ -n "$LANG" ] && [ $LANG != $LC_MESSAGES ]; then
+        for f in $config_files; do
+            test -f "$f" || continue
+            for var in 'LC_NUMERIC' 'LC_TIME' 'LC_MONETARY' 'LC_PAPER' 'LC_NAME' \
+                       'LC_ADDRESS' 'LC_TELEPHONE' 'LC_MEASUREMENT' 'LC_IDENTIFICATION'; do
+                update $f $var $LANG
+            done
+        done
+    fi
+
+    for f in $config_files; do
+        test -f "$f" || continue
+        for var in 'LC_MESSAGES' 'LC_CTYPE' 'LC_COLLATE'; do
+            sed -i "/^$var=\"[^[:space:]]*\"$/d" $f
+        done
+    done
+}
+
+if dpkg --compare-versions "$2" lt-nl 0.6.15-2ubuntu9; then
+    LANG_definition_migration
+fi
+
+
