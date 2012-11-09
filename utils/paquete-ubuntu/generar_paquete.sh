@@ -43,7 +43,7 @@ mkdir -p usr/share/applications
 cp ../../../desktop/pilas.desktop usr/share/applications
 
 mkdir -p usr/local/share/pixmaps
-cp ../pilas/data/pilas-logo.png usr/local/share/pixmaps
+cp ../pilas/data/pilas-64x64.png usr/local/share/pixmaps
 
 rm pilas-*
 cd ..
