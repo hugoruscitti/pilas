@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=pilas-engine
+GenericName=pilas-engine
+Comment=Motor para desarrollar videojuegos de manera sencilla.
+Icon=pilas-64x64
+Exec=pilas
+Terminal=false
+Type=Application
+Categories=Qt;Utility;

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+VERSION='0.71'
 
 echo "Creando o reiniciando el directorio 'resultado'"
 rm -r -f resultado
@@ -37,10 +38,17 @@ cp -r -f pybox2d/dist/usr/* pilas/dist/usr
 cd pilas/dist
 
 cp -r ../../../DEBIAN ./
+
+mkdir -p usr/share/applications
+cp ../../../desktop/pilas.desktop usr/share/applications
+
+mkdir -p usr/local/share/pixmaps
+cp ../pilas/data/pilas-logo.png usr/local/share/pixmaps
+
 rm pilas-*
 cd ..
-dpkg --build dist pilas.deb
-mv pilas.deb ../../
+dpkg --build dist pilas-${VERSION}.deb
+mv pilas-${VERSION}.deb ../../
 
 cd ../../
 echo "Archivos generados:"

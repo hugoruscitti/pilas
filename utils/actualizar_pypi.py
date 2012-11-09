@@ -8,9 +8,9 @@ def renombrar_instalador_para_windows():
 
 
 os.system("find . -name '*.pyc' -delete")
-os.system("python setup.py sdist")
-os.system("python setup.py bdist_wininst")
-renombrar_instalador_para_windows()
+#os.system("python setup.py sdist")
+#os.system("python setup.py bdist_wininst")
+#renombrar_instalador_para_windows()
 
 os.system("python setup.py sdist upload")
-os.system("python setup.py bdist_wininst upload")
+#os.system("python setup.py bdist_wininst upload")
