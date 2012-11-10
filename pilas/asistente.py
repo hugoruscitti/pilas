@@ -48,9 +48,12 @@ class VentanaAsistente(Ui_AsistenteWindow):
         version_en_el_servidor = float(respuesta_como_json['version'])
         version_instalada = float(pilas.pilasversion.VERSION)
 
-        print "La ultima versión en el servidor es", version_en_el_servidor
-        print "y la version instalada es", version_instalada
+        if version_en_el_servidor == version_instalada:
+            mensaje = "(actualizada)"
+        else:
+            mensaje = "(desactualizada, la version mas reciente es la %.2f)" %(version_en_el_servidor)
 
+        self.statusbar.showMessage(u"Versión " + pilas.version() + " " +mensaje)
 
 
     def _habilitar_inspector_web(self):
