@@ -51,9 +51,9 @@ class VentanaAsistente(Ui_AsistenteWindow):
         if version_en_el_servidor == version_instalada:
             mensaje = "(actualizada)"
         else:
-            mensaje = "(desactualizada, la version mas reciente es la %.2f)" %(version_en_el_servidor)
+            mensaje = "(desactualizada: la version %.2f ya esta disponible!)" %(version_en_el_servidor)
 
-        self.statusbar.showMessage(u"Versión " + pilas.version() + " " +mensaje)
+        self.statusbar.showMessage(u"Versión " + pilas.version() + " " + mensaje)
 
 
     def _habilitar_inspector_web(self):
@@ -79,6 +79,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
     def _obtener_html(self, file_path):
         archivo = open(file_path, "rt")
         contenido = archivo.read()
+        contenido = contenido.replace("{{VERSION_FRAME}}", """<iframe src='http://www.pilas-engine.com.ar/estadistica'></iframe>""")
         archivo.close()
         return contenido.decode('utf8')
 
