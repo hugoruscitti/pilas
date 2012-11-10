@@ -8,7 +8,8 @@
 
 import sys
 import os
-from PyQt4 import QtCore, QtGui, QtWebKit
+from PyQt4 import QtCore, QtGui, QtWebKit, QtNetwork
+import json
 
 from asistente_base import Ui_AsistenteWindow
 import pilas
@@ -31,6 +32,25 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.statusbar.showMessage(u"Versión " + pilas.version())
         self._habilitar_inspector_web()
         self.salir_action.connect(self.salir_action, QtCore.SIGNAL("triggered()"), self.salir)
+        self._consultar_ultima_version_del_servidor()
+
+    def _consultar_ultima_version_del_servidor(self):
+        direccion = QtCore.QUrl("http://www.pilas-engine.com.ar/version.json")
+        self.manager = QtNetwork.QNetworkAccessManager(self.main)
+        self.manager.get(QtNetwork.QNetworkRequest(direccion))
+
+        self.manager.connect(self.manager, QtCore.SIGNAL("finished(QNetworkReply*)"),
+                self._cuando_termina_de_consultar_version)
+
+    def _cuando_termina_de_consultar_version(self, respuesta):
+        respuesta_como_texto = respuesta.readAll().data()
+        respuesta_como_json = json.loads(str(respuesta_como_texto))
+        version_en_el_servidor = float(respuesta_como_json['version'])
+        version_instalada = float(pilas.pilasversion.VERSION)
+
+        print "La ultima versión en el servidor es", version_en_el_servidor
+        print "y la version instalada es", version_instalada
+
 
 
     def _habilitar_inspector_web(self):
