@@ -8,7 +8,8 @@
 
 import sys
 import os
-from PyQt4 import QtCore, QtGui, QtWebKit
+from PyQt4 import QtCore, QtGui, QtWebKit, QtNetwork
+import json
 
 from asistente_base import Ui_AsistenteWindow
 import pilas
@@ -31,6 +32,28 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.statusbar.showMessage(u"Versión " + pilas.version())
         self._habilitar_inspector_web()
         self.salir_action.connect(self.salir_action, QtCore.SIGNAL("triggered()"), self.salir)
+        self._consultar_ultima_version_del_servidor()
+
+    def _consultar_ultima_version_del_servidor(self):
+        direccion = QtCore.QUrl("http://www.pilas-engine.com.ar/version.json")
+        self.manager = QtNetwork.QNetworkAccessManager(self.main)
+        self.manager.get(QtNetwork.QNetworkRequest(direccion))
+
+        self.manager.connect(self.manager, QtCore.SIGNAL("finished(QNetworkReply*)"),
+                self._cuando_termina_de_consultar_version)
+
+    def _cuando_termina_de_consultar_version(self, respuesta):
+        respuesta_como_texto = respuesta.readAll().data()
+        respuesta_como_json = json.loads(str(respuesta_como_texto))
+        version_en_el_servidor = float(respuesta_como_json['version'])
+        version_instalada = float(pilas.pilasversion.VERSION)
+
+        if version_en_el_servidor == version_instalada:
+            mensaje = "(actualizada)"
+        else:
+            mensaje = "(desactualizada: la version %.2f ya esta disponible!)" %(version_en_el_servidor)
+
+        self.statusbar.showMessage(u"Versión " + pilas.version() + " " + mensaje)
 
 
     def _habilitar_inspector_web(self):
@@ -56,6 +79,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
     def _obtener_html(self, file_path):
         archivo = open(file_path, "rt")
         contenido = archivo.read()
+        contenido = contenido.replace("{{VERSION_FRAME}}", """<iframe src='http://www.pilas-engine.com.ar/estadistica'></iframe>""")
         archivo.close()
         return contenido.decode('utf8')
 

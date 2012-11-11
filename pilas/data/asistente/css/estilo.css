@@ -31,3 +31,7 @@ div.tip {
     font-size: small; 
     color: gray;
 }
+
+div.frame {
+    display:none;
+}
