@@ -9,9 +9,18 @@
 import pilas
 from pilas.actores import Actor
 
+
 class Aceituna(Actor):
+    """ Representa una Aceituna.
+    Tiene la capacidad de reir, burlarse, gritar y saltar.
+    """
 
     def __init__(self, x=0, y=0):
+        """ Constructor de la Aceituna
+
+        :param :x Posición horizontal de la aceituna.
+        :param :y Posición vertical de la aceituna.
+        """
         self.cuadro_normal = pilas.imagenes.cargar("aceituna.png")
         self.cuadro_reir = pilas.imagenes.cargar("aceituna_risa.png")
         self.cuadro_burla = pilas.imagenes.cargar("aceituna_burla.png")
@@ -23,18 +32,23 @@ class Aceituna(Actor):
         self.radio_de_colision = 18
 
     def normal(self):
+        """ Establece la imagen de la aceituna a Normal. """
         self.imagen = self.cuadro_normal
 
     def reir(self):
+        """ Hace que la aceituna aparezca sonriendo."""
         self.imagen = self.cuadro_reir
 
     def burlarse(self):
+        """ Hace que la aceituna aparezca sacando la lengua. """
         self.imagen = self.cuadro_burla
 
     burlar = burlarse
 
     def gritar(self):
+        """ Hace que la aceituna abra la boca. """
         self.imagen = self.cuadro_grita
 
     def saltar(self):
+        """ Hace que la aceituna salte y emita un sonido de 'boing'."""
         self.hacer(pilas.comportamientos.Saltar())
