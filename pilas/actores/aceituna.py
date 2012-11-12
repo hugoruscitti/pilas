@@ -18,8 +18,10 @@ class Aceituna(Actor):
     def __init__(self, x=0, y=0):
         """ Constructor de la Aceituna
 
-        :param :x Posición horizontal de la aceituna.
-        :param :y Posición vertical de la aceituna.
+        :param x: Posición horizontal de la aceituna.
+        :type x: int
+        :param y: Posición vertical de la aceituna.
+        :type y: int
         """
         self.cuadro_normal = pilas.imagenes.cargar("aceituna.png")
         self.cuadro_reir = pilas.imagenes.cargar("aceituna_risa.png")
