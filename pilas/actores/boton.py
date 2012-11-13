@@ -13,7 +13,11 @@ import pilas
 
 
 class Boton(Actor):
-    """Representa un boton que reacciona al ser presionado."""
+    """Representa un boton que reacciona al ser presionado.
+
+    .. image:: images/actores/boton_normal.png
+    
+    """
 
     def __init__(self, x=0, y=0,
                 ruta_normal='boton/boton_normal.png',
