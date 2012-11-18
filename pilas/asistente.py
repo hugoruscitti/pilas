@@ -44,14 +44,18 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _cuando_termina_de_consultar_version(self, respuesta):
         respuesta_como_texto = respuesta.readAll().data()
-        respuesta_como_json = json.loads(str(respuesta_como_texto))
-        version_en_el_servidor = float(respuesta_como_json['version'])
-        version_instalada = float(pilas.pilasversion.VERSION)
+        try:
+            respuesta_como_json = json.loads(str(respuesta_como_texto))
 
-        if version_en_el_servidor == version_instalada:
-            mensaje = "(actualizada)"
-        else:
-            mensaje = "(desactualizada: la version %.2f ya esta disponible!)" %(version_en_el_servidor)
+            version_en_el_servidor = float(respuesta_como_json['version'])
+            version_instalada = float(pilas.pilasversion.VERSION)
+
+            if version_en_el_servidor == version_instalada:
+                mensaje = "(actualizada)"
+            else:
+                mensaje = u"(desactualizada: la version %.2f ya está disponible!)" %(version_en_el_servidor)
+        except ValueError:
+            mensaje = u"(sin conexión a internet)"
 
         self.statusbar.showMessage(u"Versión " + pilas.version() + " " + mensaje)
 
