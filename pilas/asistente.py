@@ -44,14 +44,18 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _cuando_termina_de_consultar_version(self, respuesta):
         respuesta_como_texto = respuesta.readAll().data()
-        respuesta_como_json = json.loads(str(respuesta_como_texto))
-        version_en_el_servidor = float(respuesta_como_json['version'])
-        version_instalada = float(pilas.pilasversion.VERSION)
+        try:
+            respuesta_como_json = json.loads(str(respuesta_como_texto))
 
-        if version_en_el_servidor == version_instalada:
-            mensaje = "(actualizada)"
-        else:
-            mensaje = "(desactualizada: la version %.2f ya esta disponible!)" %(version_en_el_servidor)
+            version_en_el_servidor = float(respuesta_como_json['version'])
+            version_instalada = float(pilas.pilasversion.VERSION)
+
+            if version_en_el_servidor == version_instalada:
+                mensaje = "(actualizada)"
+            else:
+                mensaje = u"(desactualizada: la version %.2f ya está disponible!)" %(version_en_el_servidor)
+        except ValueError:
+            mensaje = u"(sin conexión a internet)"
 
         self.statusbar.showMessage(u"Versión " + pilas.version() + " " + mensaje)
 
@@ -116,7 +120,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _cuando_selecciona_abrir_manual(self):
         base_dir = str(QtCore.QDir.homePath())
-        ruta_al_manual = os.path.join(base_dir, 'pilas.pdf')
+        ruta_al_manual = os.path.join(base_dir, '.pilas', 'pilas-%s.pdf' %(pilas.version()))
 
         try:
             ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
@@ -130,7 +134,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
                 url = "http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf"
                 pilas.utils.descargar_archivo_desde_internet(self.main, url, ruta_al_manual)
 
-    def _consultar(parent, titulo, mensaje):
+    def _consultar(self, parent, titulo, mensaje):
         "Realizar una consulta usando un cuadro de dialogo."
         return QtGui.QMessageBox.question(parent, titulo, mensaje,
                                     QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)

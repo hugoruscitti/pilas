@@ -1,3 +1,8 @@
+Pilas engine - 0.72 (2012-11-18)
+--------------------------------
+- Mejoras en la documentación de API
+- Cambiando la ruta del manual, ahora está en $HOME/.pilas
+
 Pilas engine - 0.71 (2012-11-08)
 --------------------------------
 - Fix #95 Los eventos del raton ahora envian tambien el boton que se pulsó.

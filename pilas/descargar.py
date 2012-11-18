@@ -12,6 +12,7 @@ from PyQt4.QtCore import QUrl, QFile, QIODevice
 from PyQt4.QtGui import QDialog, QProgressBar
 from PyQt4.QtGui import QLabel, QPushButton, QDialogButtonBox, QVBoxLayout, QMessageBox
 from PyQt4.QtNetwork import QHttp
+import os
 
 
 class Descargar(QDialog):
@@ -48,6 +49,10 @@ class Descargar(QDialog):
     def downloadFile(self, url, archivo_destino):
         url = QUrl(url)
         fileName = archivo_destino
+        directorio_usuario_para_pilas = os.path.dirname(archivo_destino)
+
+        if not os.path.exists(directorio_usuario_para_pilas):
+            os.mkdir(directorio_usuario_para_pilas)
 
         if QFile.exists(fileName):
             QFile.remove(fileName)

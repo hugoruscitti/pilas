@@ -3,7 +3,10 @@
 #
 # El comando que permite generar y probar la aplicacion es::
 #
-#    rm -r -f dist build; python setup.py py2app; ./dist/pilas-engine.app/Contents/MacOS/pilas-engine
+#    rm -r -f dist build; python setup-mac.py py2app;
+#    hdiutil create pilas-engine-0.72.dmg -srcfolder ./dist/pilas-engine.app
+#
+#    ./dist/pilas-engine.app/Contents/MacOS/pilas-engine
 #
 # y la aplicacion generada quedara en el directorio 'dist'.
 from setuptools import setup

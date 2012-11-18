@@ -17,7 +17,8 @@ ABAJO = ["abajo", "inferior", "debajo"]
 
 
 class Actor(object, Estudiante):
-    """Representa un objeto visible en pantalla, algo que se ve y tiene posicion.
+    """Representa un objeto visible en pantalla, algo que se ve y tiene
+    posicion.
 
     .. image:: images/actores/actor.png
 
@@ -56,8 +57,19 @@ class Actor(object, Estudiante):
     """
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
+        """ Constructor del Actor.
+
+        :param imagen: Ruta de la imagen del Actor.
+        :type imagen: string
+        :param x: Posición horizontal del Actor.
+        :type x: int
+        :param y: Posición vertical del Actor.
+        :type y: int
+        """
+
         if not pilas.mundo:
-            mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` para comenzar."
+            mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` " \
+            "para comenzar."
             print mensaje
             raise Exception(mensaje)
 
@@ -90,6 +102,24 @@ class Actor(object, Estudiante):
         self._dy = self.y
 
     def definir_centro(self, (x, y)):
+        """ Define en que posición estará el centro del Actor.
+
+        Se puede definir la posición mediante unas coordenadas numéricas o
+        mediante texto.
+
+        La forma de definirlo mediante coordenadas numéricas seria así:
+
+        >>> mi_actor.definir_centro((10,50))
+
+        La otra forma de definirlo mediante texto sería:
+
+        >>> mi_actor.definir_centro(('centro','derecha'))
+
+        :param x: Coordenadas horizontal en la que se establecerá el centro del Actor.
+        :type x: int
+        :param y: Coordenadas vertical en la que se establecerá el centro del Actor.
+        :type y: int
+        """
         if type(x) == str:
             if x not in IZQUIERDA + CENTRO + DERECHA:
                 raise Exception("No puedes definir '%s' como eje horizontal." %(x))
@@ -113,6 +143,7 @@ class Actor(object, Estudiante):
             raise Exception("El valor '%s' no corresponde a una posicion, use numeros o valores como 'izquierda', 'arriba' etc." %(posicion))
 
     def obtener_centro(self):
+        """ Obtiene las coordenadas del centro del Actor. """
         return self._centro
 
     centro = property(obtener_centro, definir_centro, doc="""
@@ -141,12 +172,21 @@ class Actor(object, Estudiante):
         """)
 
     def definir_posicion(self, x, y):
+        """ Define la posición del Actor en el mundo.
+
+        :param x: Posición horizontal del Actor en el mundo.
+        :type x: int
+        :param y: Posición vertical del Actor en el mundo.
+        :type y: int
+        """
         self._actor.definir_posicion(x, y)
 
     def obtener_posicion(self):
+        """ Obtiene la posición del Actor en el mundo. """
         return self._actor.obtener_posicion()
 
     def dibujar(self, aplicacion):
+        """ Metodo interno para el dibujado del Actor en pantalla. """
         self._actor.dibujar(aplicacion)
 
     def get_x(self):
@@ -297,10 +337,10 @@ class Actor(object, Estudiante):
         """
         self.actualizar_comportamientos()
         self.actualizar_habilidades()
-        self.obtener_velocidad()
+        self.__actualizar_velocidad()
 
-    def obtener_velocidad(self):
-        """ Obtiene la velocidad que lleva el actor """
+    def __actualizar_velocidad(self):
+        """ Calcula la velocidad horizontal y vertical del actor. """
 
         if (self._dx != self.x):
             self._vx = abs(self._dx - self.x)
@@ -334,7 +374,9 @@ class Actor(object, Estudiante):
     def set_izquierda(self, x):
         self.x = x + (self.centro[0] * self.escala)
 
-    izquierda = property(get_izquierda, set_izquierda)
+    izquierda = property(get_izquierda, set_izquierda, doc="Establece el " \
+                         "espacio entre la izquierda del actor y el centro " \
+                         "de coordenadas del mundo.")
 
     def get_derecha(self):
         return self.izquierda + self.obtener_ancho() * self.escala
@@ -343,7 +385,9 @@ class Actor(object, Estudiante):
     def set_derecha(self, x):
         self.set_izquierda(x - self.ancho)
 
-    derecha = property(get_derecha, set_derecha)
+    derecha = property(get_derecha, set_derecha, doc="Establece el " \
+                         "espacio entre la derecha del actor y el centro " \
+                         "de coordenadas del mundo.")
 
     def get_abajo(self):
         return self.get_arriba() - self.alto * self.escala
@@ -352,7 +396,9 @@ class Actor(object, Estudiante):
     def set_abajo(self, y):
         self.set_arriba(y + self.alto)
 
-    abajo = property(get_abajo, set_abajo)
+    abajo = property(get_abajo, set_abajo, doc="Establece el " \
+                         "espacio entre la parte inferior del actor y el " \
+                         "centro de coordenadas del mundo.")
 
     def get_arriba(self):
         return self.y + (self.centro[1] * self.escala)
@@ -361,14 +407,20 @@ class Actor(object, Estudiante):
     def set_arriba(self, y):
         self.y = y - (self.centro[1] * self.escala)
 
-    arriba = property(get_arriba, set_arriba)
-
+    arriba = property(get_arriba, set_arriba, doc="Establece el " \
+                         "espacio entre la parte superior del actor y el " \
+                         "centro de coordenadas del mundo.")
 
     def colisiona_con_un_punto(self, x, y):
         """Determina si un punto colisiona con el area del actor.
 
         Todos los actores tienen un area rectangular, pulsa la
         tecla **F10** para ver el area de colision.
+
+        :param x: Posición horizontal del punto.
+        :type x: int
+        :param y: Posición vertical del punto.
+        :type y: int
         """
         return self.izquierda <= x <= self.derecha and self.abajo <= y <= self.arriba
 
@@ -383,13 +435,24 @@ class Actor(object, Estudiante):
         self._actor.definir_color(c)
 
     def obtener_imagen(self):
+        """ Obtinene la imagen del Actor. """
         return self._actor.obtener_imagen()
 
     def definir_imagen(self, imagen):
+        """ Define la imagen del Actor y establece el centro del mismo a
+        ('centro,'centro').
+
+        :param imagen: Ruta de la imagen del Actor.
+        :type imagen: string
+        """
         self._actor.definir_imagen(imagen)
         self.centro = ('centro', 'centro')
 
     def duplicar(self, **kv):
+        """ Duplica un Actor.
+
+        :return: `Actor`.
+        """
         duplicado = self.__class__()
 
         for clave in kv:
@@ -403,19 +466,20 @@ class Actor(object, Estudiante):
     def obtener_alto(self):
         return self.imagen.alto()
 
-    ancho = property(obtener_ancho)
-    alto = property(obtener_alto)
+    ancho = property(obtener_ancho, doc="Obtiene el ancho del Actor.")
+    alto = property(obtener_alto, doc="Obtiene el alto del Actor.")
 
     def __mul__(self, cantidad):
         if type(cantidad) is not int or cantidad < 1:
-            raise TypeError("Solo puede multiplicar por numeros enteros mayores a 1.")
+            raise TypeError("Solo puede multiplicar por numeros enteros " \
+                            "mayores a 1.")
 
         grupo = pilas.atajos.fabricar(self.__class__, cantidad - 1)
         grupo.append(self)
         return grupo
 
     def __str__(self):
-        return "<%s en (%d, %d)>" %(self.__class__.__name__, self.x, self.y)
+        return "<%s en (%d, %d)>" % (self.__class__.__name__, self.x, self.y)
 
     def obtener_escala(self):
         return self._actor.obtener_escala()
@@ -427,10 +491,27 @@ class Actor(object, Estudiante):
         self._actor.definir_transparencia(valor)
 
     def imitar(self, otro_actor_o_figura):
+        """ Hace que un Actor copie la posición y la rotación de otro Actor o
+        Figura fisica.
+
+        Por ejemplo:
+
+        >>> circulo_dinamico = pilas.fisica.Circulo(10, 200, 50)
+        >>> mi_actor.imitar(circulo_dinamico)
+
+        :param otro_actor_o_figura: Actor o Figura física a imitar.
+        :type otro_actor_o_figura: `Actor`, `Figura`
+        """
         self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura)
 
     def decir(self, mensaje, autoeliminar=True):
-        """Emite un mensaje usando un globo similar al de los commics"""
+        """Emite un mensaje usando un globo similar al de los comics.
+
+        :param mensaje: Texto a mostrar en el mensaje.
+        :type mensaje: string
+        :param autoeliminar: Establece si se eliminará el globo al cabo de unos segundos.
+        :type autoeliminar: boolean
+        """
         nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y, autoeliminar=autoeliminar)
         nuevo_actor.aprender(pilas.habilidades.Imitar, self, False)
         nuevo_actor.z = self.z - 1
@@ -438,6 +519,12 @@ class Actor(object, Estudiante):
         pilas.atajos.leer(mensaje)
 
     def anexar(self, otro_actor):
+        """ Agrega un Actor a la lista de actores anexados al Actor actual.
+        Cuando se elimina un Actor, se eliminan los actores anexados.
+
+        :param otro_actor: Actor a anexar.
+        :type otro_actor: `Actor`
+        """
         self.anexados.append(otro_actor)
 
     def _eliminar_anexados(self):
@@ -445,11 +532,16 @@ class Actor(object, Estudiante):
             x.eliminar()
 
     def esta_fuera_de_la_pantalla(self):
-        "Indica si el actor está fuera del area visible de la pantalla."
+        """Indica si el actor está fuera del area visible de la pantalla.
+
+        :return: boolean"""
         if self.fijo:
             return False
         izquierda, derecha, arriba, abajo = self.escena.camara.obtener_area_visible()
         return self.derecha < izquierda or self.izquierda > derecha or self.abajo > arriba or self.arriba < abajo
 
     def es_fondo(self):
+        """ Comprueba si el actor es un fondo del juego.
+
+        :return: boolean"""
         return False

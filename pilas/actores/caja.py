@@ -9,10 +9,22 @@
 from pilas.actores import Actor
 import pilas
 
+
 class Caja(Actor):
-    "Representa un bloque que tiene fisica como una caja."
+    """Representa una caja que posee fisica.
+
+    .. image:: images/actores/caja.png
+
+    """
 
     def __init__(self, x=0, y=0):
+        """ Constructor de la Caja.
+
+        :param x: Posición horizontal de la Caja.
+        :type x: int
+        :param y: Posición vertical del Caja.
+        :type y: int
+        """
         imagen = pilas.imagenes.cargar('caja.png')
         Actor.__init__(self, imagen)
         self.rotacion = 0
