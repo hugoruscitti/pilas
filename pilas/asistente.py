@@ -116,7 +116,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _cuando_selecciona_abrir_manual(self):
         base_dir = str(QtCore.QDir.homePath())
-        ruta_al_manual = os.path.join(base_dir, 'pilas.pdf')
+        ruta_al_manual = os.path.join(base_dir, 'pilas-%s.pdf' %(pilas.version()))
 
         try:
             ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
@@ -130,7 +130,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
                 url = "http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf"
                 pilas.utils.descargar_archivo_desde_internet(self.main, url, ruta_al_manual)
 
-    def _consultar(parent, titulo, mensaje):
+    def _consultar(self, parent, titulo, mensaje):
         "Realizar una consulta usando un cuadro de dialogo."
         return QtGui.QMessageBox.question(parent, titulo, mensaje,
                                     QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
