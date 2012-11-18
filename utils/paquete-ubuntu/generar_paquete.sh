@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION='0.71'
+VERSION='0.72'
 
 echo "Creando o reiniciando el directorio 'resultado'"
 rm -r -f resultado
