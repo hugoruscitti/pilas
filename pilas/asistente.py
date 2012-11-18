@@ -116,7 +116,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _cuando_selecciona_abrir_manual(self):
         base_dir = str(QtCore.QDir.homePath())
-        ruta_al_manual = os.path.join(base_dir, 'pilas-%s.pdf' %(pilas.version()))
+        ruta_al_manual = os.path.join(base_dir, '.pilas', 'pilas-%s.pdf' %(pilas.version()))
 
         try:
             ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
