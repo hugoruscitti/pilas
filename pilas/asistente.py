@@ -119,20 +119,30 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.proceso.startDetached(comando)
 
     def _cuando_selecciona_abrir_manual(self):
-        base_dir = str(QtCore.QDir.homePath())
-        ruta_al_manual = os.path.join(base_dir, '.pilas', 'pilas-%s.pdf' %(pilas.version()))
+        base_dir = '/usr/share/doc/pilas'
+        ruta_al_manual = os.path.join(base_dir, 'pilas-%s.pdf' %(pilas.version()))
 
         try:
+            # BUSCA el archivo: /usr/share/doc/pilas/pilas-0.xx.pdf
+            # xx es la version
             ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
             pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
         except IOError:
-            titulo = "Error, no se encuentra el manual"
-            mensaje = u"Lo siento, no se encuentra el manual en tu equipo. ¿Quieres descargarlo?"
-            respuesta = self._consultar(self.main, titulo, mensaje)
+            try:
+                # BUSCA el archivo: /home/mi_usuario/.pilas/pilas-0.xx.pdf
+                # xx es la version
+                base_dir = str(QtCore.QDir.homePath())
+                ruta_al_manual = os.path.join(base_dir, '.pilas', 'pilas-%s.pdf' %(pilas.version()))
+                ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
+                pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
+            except IOError:
+                titulo = "Error, no se encuentra el manual"
+                mensaje = u"Lo siento, no se encuentra el manual en tu equipo. ¿Quieres descargarlo?"
+                respuesta = self._consultar(self.main, titulo, mensaje)
 
-            if respuesta == QtGui.QMessageBox.Yes:
-                url = "http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf"
-                pilas.utils.descargar_archivo_desde_internet(self.main, url, ruta_al_manual)
+                if respuesta == QtGui.QMessageBox.Yes:
+                    url = "http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf"
+                    pilas.utils.descargar_archivo_desde_internet(self.main, url, ruta_al_manual)
 
     def _consultar(self, parent, titulo, mensaje):
         "Realizar una consulta usando un cuadro de dialogo."
