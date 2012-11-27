@@ -13,14 +13,25 @@ from pilas.comportamientos import Comportamiento
 VELOCIDAD = 4
 
 class Cooperativista(Actor):
+    """ Representa un Cooperativista.
+    """
 
     def __init__(self, x=0, y=0):
+        """ Constructor del Cooperativista
+
+        :param x: Posición horizontal de la aceituna.
+        :type x: int
+        :param y: Posición vertical de la aceituna.
+        :type y: int
+        """
         Actor.__init__(self, x=x, y=y)
         self._cargar_animaciones()
         self.hacer(Esperando())
         self.radio_de_colision = 30
 
     def _cargar_animaciones(self):
+	""" Carga las animaciones del actor.
+	"""
         cargar = pilas.imagenes.cargar_grilla
         self.animaciones = {
             "ok": cargar("cooperativista/ok.png", 1),
@@ -34,14 +45,18 @@ class Cooperativista(Actor):
             }
 
     def definir_cuadro(self, indice):
+	""" Define el cuadro de la animación del actor.
+	"""
         self.imagen.definir_cuadro(indice)
 
     def cambiar_animacion(self, nombre):
+	""" Cambia la animación del Cooperativista.
+	"""
         self.imagen = self.animaciones[nombre]
         self.centro = ("centro", "abajo")
 
 class Esperando(Comportamiento):
-    "Un actor en posicion normal o esperando a que el usuario pulse alguna tecla."
+    """Clase que define un comportamiento del actor Cooperativista."""
 
     def iniciar(self, receptor):
         self.receptor = receptor
@@ -59,6 +74,7 @@ class Esperando(Comportamiento):
 
 
 class Caminando(Comportamiento):
+    """Clase que define un comportamiento del actor Cooperativista."""
 
     def __init__(self):
         self.cuadros = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3]
@@ -90,6 +106,7 @@ class Caminando(Comportamiento):
 
 
 class DecirOk(Comportamiento):
+    """Clase que define un comportamiento del actor Cooperativista."""
 
     def __init__(self):
         self.paso = 0
