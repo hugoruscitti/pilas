@@ -90,6 +90,8 @@ class RotarConMouse(Habilidad):
     :param lado_seguimiento: Establece el lado del actor que rotará para estar
     encarado hacia el puntero del mouse.
 
+    :example:
+
         >>> actor.aprender(pilas.habilidades.RotarConMouse, lado_seguimiento=pilas.habilidades.RotarConMouse.ABAJO)
 
     """
