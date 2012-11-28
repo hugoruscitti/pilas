@@ -18,6 +18,10 @@ class Dialogo:
         >>> dialogo.decir(mono, "Hola Mundo")
         >>> dialogo.decir(mono2, "Estoy diciendo algo")
         >>> dialogo.iniciar()
+
+        .. image:: images/actores/mono_dice.png
+
+
     """
 
     def __init__(self, modo_automatico=True):
