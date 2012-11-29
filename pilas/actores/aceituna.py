@@ -13,6 +13,9 @@ from pilas.actores import Actor
 class Aceituna(Actor):
     """ Representa una Aceituna.
     Tiene la capacidad de reir, burlarse, gritar y saltar.
+
+        .. image:: images/actores/aceituna.png
+
     """
 
     def __init__(self, x=0, y=0):

@@ -23,7 +23,7 @@ class Explosion(Animacion):
 
     Este actor también se puede anexar a cualquier
     otro para producir explosiones. Cuando enseñamos a un
-    actor a explotar (por ejemplo un pingüino), el actor 
+    actor a explotar (por ejemplo un pingüino), el actor
     ``Explosion`` aparece cuando se elimina al actor::
 
         >>> actor = pilas.actores.Pingu()
@@ -33,6 +33,13 @@ class Explosion(Animacion):
 
 
     def __init__(self, x=0, y=0):
+        """ Constructor de la Explosion
+
+        :param x: Posición horizontal de la explosion.
+        :type x: int
+        :param y: Posición vertical de la explosion.
+        :type y: int
+        """
         grilla = pilas.imagenes.cargar_grilla("explosion.png", 7)
         Animacion.__init__(self, grilla, x=x, y=y)
         self.sonido_explosion = pilas.sonidos.cargar("explosion.wav")

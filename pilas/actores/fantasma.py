@@ -21,6 +21,15 @@ class Fantasma(Actor):
     """
 
     def __init__(self, x=0, y=0, velocidad=3):
+        """ Constructor del Fantasma
+
+        :param x: Posición horizontal de la explosion.
+        :type x: int
+        :param y: Posición vertical de la explosion.
+        :type y: int
+        :param velocidad: Velocidad con la que se desplaza el fantasma.
+        :type velocidad: int
+        """
         self.grilla = pilas.imagenes.cargar_grilla("fantasma.png", 8, 1)
         Actor.__init__(self, self.grilla, x, y)
         self.cuadro = 0
