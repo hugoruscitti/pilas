@@ -3,9 +3,36 @@ import pilas
 from pilas.actores import Actor
 
 class Globo(Actor):
-    "Representa un cuadro de dialogo estilo historietas."
+    """
+        Representa un cuadro de dialogo estilo historietas.
+
+        >>> globo = pilas.actores.Globo("Hola mundo")
+
+        .. image:: images/actores/mono_dice.png
+
+    """
 
     def __init__(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True, autoeliminar=False, ancho_globo=0, alto_globo=0):
+        """ Constructor del Globo
+
+        :param texto: Texto a mostrar en el globo.
+        :type texto: boolean
+        :param x: posicion horizontal del globo.
+        :type x: int
+        :param y: posicion vertical del globo.
+        :type y: int
+        :param dialogo: Dialogo que contiene las frases a mostrar en el globo.
+        :type dialogo: Dialogo
+        :param avance_con_clicks: Permite avanzar el dialogo pulsando el ratón.
+        :type avance_con_clicks: boolean
+        :param autoeliminar: Indica si se desea eliminar el globo cuando pasen 3 segundos.
+        :type autoeliminar: boolean
+        :param ancho_globo: Estabece el ancho del globo en pixeles.
+        :type ancho_globo: int
+        :param alto_globo: Estabece el alto del globo en pixeles.
+        :type alto_globo: int
+
+        """
         self.dialogo = dialogo
         Actor.__init__(self, imagen='invisible.png', x=x, y=y)
 
@@ -13,7 +40,7 @@ class Globo(Actor):
 
         # Podemos pasar el ancho del globo ya que si contiene opciones
         # cuyo texto es más largo que la cabecera del globo, no queda bien.
-        if (ancho_globo == 0):            
+        if (ancho_globo == 0):
             ancho = int((ancho + 12) - (ancho % 12))
         else:
             if (ancho_globo > ancho):
@@ -45,7 +72,13 @@ class Globo(Actor):
             pilas.escena_actual().tareas.una_vez(3, self.eliminar)
 
     def colocar_origen_del_globo(self, x, y):
-        "Cambia la posicion del globo para que el punto de donde se emite el globo sea (x, y)."
+        """ Cambia la posicion del globo para que el punto de donde se emite el globo sea (x, y).
+
+        :param x: Posición horizontal del globo.
+        :type x: int
+        :param y: Posición vertical del globo.
+        :type y: int
+        """
         self.x = x
         self.y = y
 
