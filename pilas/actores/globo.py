@@ -3,9 +3,29 @@ import pilas
 from pilas.actores import Actor
 
 class Globo(Actor):
-    "Representa un cuadro de dialogo estilo historietas."
+    """Representa un cuadro de dialogo estilo historietas.
+
+    El actor se tiene que inicializar con una cadena de texto:
+
+        >>> globo = pilas.actores.Globo("Hola mundo")
+
+    .. image:: images/actores/globo.png
+
+    """
 
     def __init__(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True, autoeliminar=False, ancho_globo=0, alto_globo=0):
+        """Constructor del dialogo:
+
+        :param texto: Cadena de texto que se tiene que mostrar.
+        :param x: Posición horizontal.
+        :param y: Posición vertical.
+        :param dialogo: Instancia del manejador de dialogos, para crear mensajes enlazados.
+        :param avance_con_clicks: Indica si se puede eliminar el globo haciendo click con el mouse.
+        :param autoeliminar: Indica si el globo se tiene que eliminar luego de 3 segundos.
+        :param ancho_globo: Tamaño horizontal del globo a mostrar (0 significa auto-adaptable).
+        :param algo_globo: Tamaño vertical del globo a mostrar (0 significa auto-adaptable).
+        """
+
         self.dialogo = dialogo
         Actor.__init__(self, imagen='invisible.png', x=x, y=y)
 
@@ -13,7 +33,7 @@ class Globo(Actor):
 
         # Podemos pasar el ancho del globo ya que si contiene opciones
         # cuyo texto es más largo que la cabecera del globo, no queda bien.
-        if (ancho_globo == 0):            
+        if (ancho_globo == 0):
             ancho = int((ancho + 12) - (ancho % 12))
         else:
             if (ancho_globo > ancho):
@@ -49,8 +69,8 @@ class Globo(Actor):
         self.x = x
         self.y = y
 
-
     def cuando_quieren_avanzar(self, *k):
+        "Función que se ejecuta al hacer click para avanzar o eliminar el globo."
         if self.dialogo:
             self.dialogo.avanzar_al_siguiente_dialogo()
         else:
