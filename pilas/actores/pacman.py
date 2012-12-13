@@ -26,6 +26,7 @@ class Pacman(Actor):
         self.cuadro = 0
         self.control = pilas.escena_actual().control
         self.velocidad = velocidad
+        self.radio_de_colision = 5
         self.posicion = 0  # 0 = para izquierda
                            # 1 = para la derecha
                            # 2 = para arriba
