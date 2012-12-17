@@ -149,3 +149,18 @@ class Desplazamiento(Fondo):
         if self.ciclico:
             for capa in self.capas_auxiliares:
                 capa.x -= dx * self.velocidades[capa]
+
+class Plano(Fondo):
+
+    def __init__(self, ciclico=True):
+        Fondo.__init__(self, "plano.png")
+
+    def dibujar(self, painter):
+        painter.save()
+        x = pilas.mundo.motor.camara_x
+        y = -pilas.mundo.motor.camara_y
+
+        ancho, alto = pilas.mundo.motor.obtener_area()
+        painter.drawTiledPixmap(0, 0, ancho, alto, self.imagen._imagen, x % 30, y % 30)
+
+        painter.restore()
