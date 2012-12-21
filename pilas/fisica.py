@@ -490,7 +490,7 @@ class Poligono(Figura):
 
     """
 
-    def __init__(self, puntos, dinamica=True, densidad=1.0,
+    def __init__(self, x, y, puntos, dinamica=True, densidad=1.0,
             restitucion=0.56, friccion=10.5, amortiguacion=0.1,
             fisica=None, sin_rotacion=False):
 
@@ -498,6 +498,34 @@ class Poligono(Figura):
 
         if not fisica:
             fisica = pilas.escena_actual().fisica
+
+        vertices = [(convertir_a_metros(x1), convertir_a_metros(y1)) for (x1, y1) in puntos]
+
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(vertices=vertices),
+                                     density=densidad,
+                                     linearDamping=amortiguacion,
+                                     friction=friccion,
+                                     restitution=restitucion)
+
+        userData = { 'id' : self.id }
+        fixture.userData = userData
+
+        if dinamica:
+            self._cuerpo = fisica.mundo.CreateDynamicBody(position=(0, 0), fixtures=fixture)
+        else:
+            self._cuerpo = fisica.mundo.CreateKinematicBody(position=(0, 0), fixtures=fixture)
+
+        self._cuerpo.fixedRotation = sin_rotacion
+
+
+
+
+
+
+"""
+
+
+
 
         bodyDef = box2d.b2BodyDef()
         bodyDef.position=puntos[0]
@@ -509,7 +537,6 @@ class Poligono(Figura):
         # Agregamos un identificador para controlarlo posteriormente en las
         # colisiones.
         userData = { 'id' : self.id }
-        fixture.userData = userData
 
         # Create the Body
         if not dinamica:
@@ -538,6 +565,7 @@ class Poligono(Figura):
         body.CreateShape(poligono_def)
         body.SetMassFromShapes()
         self._cuerpo = body
+"""
 
 class ConstanteDeMovimiento():
 
