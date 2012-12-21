@@ -130,9 +130,6 @@ class Fisica(object):
 
                 shape = fixture.shape
 
-                # TODO: Convertir las coordenadas para que el movimiento de camara se dibuje bien.
-                # TODO: SE puede aplicar a la multiplicacion de transform los PIXELS por metro.
-
                 if isinstance(shape, box2d.b2PolygonShape):
                     vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
                     vertices = [pilas.escena_actual().camara.desplazar(v) for v in vertices]
@@ -143,34 +140,7 @@ class Fisica(object):
                     lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
                 else:
                     # TODO: implementar las figuras de tipo "edge" y "loop".
-                    print "no puedo identificar el tipo de figura."
-
-                #print fixture.shape
-                #print cuerpo.position
-                #print box2d.b2
-
-        """
-        for cuerpo in cuerpos:
-            print cuerpo.position.x
-            xform = cuerpo.GetXForm()
-
-            for figura in cuerpo.shapeList:
-                tipo_de_figura = figura.GetType()
-
-                if tipo_de_figura == box2d.e_polygonShape:
-                    vertices = []
-
-                    for v in figura.vertices:
-                        pt = box2d.b2Mul(xform, v)
-                        vertices.append((pt.x - pilas.escena_actual().camara.x, pt.y - pilas.escena_actual().camara.y))
-
-                    lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
-
-                elif tipo_de_figura == box2d.e_circleShape:
-                    lienzo.circulo(motor, cuerpo.position.x - pilas.escena_actual().camara.x, cuerpo.position.y - pilas.escena_actual().camara.y, figura.radius, pilas.colores.rojo, grosor=grosor)
-                else:
-                    print "no puedo identificar el tipo de figura."
-        """
+                    raise Exception("No puedo identificar el tipo de figura.")
 
 
     def crear_cuerpo(self, definicion_de_cuerpo):
@@ -443,39 +413,6 @@ class Rectangulo(Figura):
 
         self._cuerpo.fixedRotation = sin_rotacion
 
-        """
-        bodyDef = box2d.b2BodyDef()
-        bodyDef.position=(x, y)
-        bodyDef.linearDamping = amortiguacion
-        bodyDef.fixedRotation = sin_rotacion
-
-        userData = { 'id' : self.id }
-        #bodyDef.userData = userData
-        #userData = { 'color' : self.parent.get_color() }
-        #bodyDef.userData = userData
-        #self.parent.element_count += 1
-
-        body = fisica.crear_cuerpo(bodyDef)
-
-        # Create the Body
-        if not dinamica:
-            densidad = 0
-
-        # Add a shape to the Body
-        boxDef = box2d.b2PolygonDef()
-
-        boxDef.SetAsBox(ancho/2, alto/2, (0,0), 0)
-        boxDef.density = densidad
-        boxDef.restitution = restitucion
-        boxDef.friction = friccion
-        boxDef.userData = userData
-        body.CreateShape(boxDef)
-
-        body.SetMassFromShapes()
-
-        self._cuerpo = body
-        """
-
 
 class Poligono(Figura):
     """Representa un cuerpo poligonal.
@@ -517,55 +454,6 @@ class Poligono(Figura):
 
         self._cuerpo.fixedRotation = sin_rotacion
 
-
-
-
-
-
-"""
-
-
-
-
-        bodyDef = box2d.b2BodyDef()
-        bodyDef.position=puntos[0]
-        bodyDef.linearDamping = amortiguacion
-        bodyDef.fixedRotation = sin_rotacion
-
-        body = fisica.crear_cuerpo(bodyDef)
-
-        # Agregamos un identificador para controlarlo posteriormente en las
-        # colisiones.
-        userData = { 'id' : self.id }
-
-        # Create the Body
-        if not dinamica:
-            densidad = 0
-
-        if len(puntos) < 3:
-            raise Exception("Tienes que definir al menos 3 puntos para tener un poligono")
-
-        # Add a shape to the Body
-        poligono_def = box2d.b2PolygonDef()
-        puntos.reverse()
-        poligono_def.setVertices(puntos)
-
-        poligono_def.density = densidad
-        poligono_def.restitution = restitucion
-        poligono_def.friction = friccion
-
-        poligono_def.userData = userData
-        #poligono_def.setVertices(puntos)
-        #poligono_def.vertexCount = len(puntos)
-
-        #for indice, punto in enumerate(puntos):
-        #    poligono_def.setVertex(indice, punto[0], punto[1])
-        #    #poligono_def.vertices[indice] = punto
-
-        body.CreateShape(poligono_def)
-        body.SetMassFromShapes()
-        self._cuerpo = body
-"""
 
 class ConstanteDeMovimiento():
 
