@@ -25,7 +25,7 @@ class Normal(Base):
         Base.__init__(self)
 
     def iniciar(self):
-        fondo = pilas.fondos.Color(pilas.colores.grisclaro)
+        self.fondo = pilas.fondos.Plano()
 
 
 class Aviso(Base):
