@@ -167,7 +167,7 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
         salida = str(self.process.readAll())
 
         if estado:
-            dialogo = QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
+            QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
         self._definir_estado_habilitado(True)
         self.arbol.setFocus()

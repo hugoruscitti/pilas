@@ -31,23 +31,119 @@
                 codigo: "<img class='boton' src='imagenes/codigo.png'>",
             };
 
-
-            var elemento = "<li rel='{categoria}'><a href='http://pilas/ejecutar/{nombre}'><img src='imagenes/ejemplos/{nombre}.png'></a><br/><a href='http://pilas/ejecutar/{nombre}'>{run}</a> <a href='http://pilas/codigo/{nombre}'>{codigo}</a><br/></li>".format(opciones);
+            var elemento = "<li rel='{categoria}'><img src='../../ejemplos/ejemplos/{categoria}/{nombre}.png'><br/><a href='http://pilas/ejecutar/{categoria}/{nombre}'>{run}</a> <a href='http://pilas/codigo/{categoria}/{nombre}'>{codigo}</a><br/></li>".format(opciones);
 
 	          $(".item").append(elemento);
         }
 
-        function crear_seccion(nombre, identificador) {
+        function crear_nueva_seccion(nombre, identificador) {
             var elemento = '<li><a href="#" rel="{id}">{nombre}</a></li>'.format({nombre: nombre, id: identificador});
             $(".menu").append(elemento);
         }
 
 
-        crear_seccion("Animación", 'animacion');
-        crear_ejemplo('animacion', 'animacion_con_velocidad');
+        crear_nueva_seccion("Animación", 'animaciones');
+        crear_ejemplo('animaciones', 'animacion_con_velocidad');
+        crear_ejemplo('animaciones', 'grilla');
 
-        crear_seccion("Actores", 'actores');
-        crear_ejemplo('actores', 'actor_personalizado_con_imagen_y_control');
+        crear_nueva_seccion("Basicos", 'basicos');
+        crear_ejemplo("basicos", "actor");
+        crear_ejemplo("basicos", "actor_personalizado_con_imagen_y_control");
+        crear_ejemplo("basicos", "actores_simples");
+        crear_ejemplo("basicos", "arrastrable");
+        crear_ejemplo("basicos", "arrastrable_varios_z");
+        crear_ejemplo("basicos", "duplicar");
+        crear_ejemplo("basicos", "fondo");
+        crear_ejemplo("basicos", "interpolacion");
+        crear_ejemplo("basicos", "punto_de_control");
+        crear_ejemplo("basicos", "reloj");
+        crear_ejemplo("basicos", "sonidos");
+        crear_ejemplo("basicos", "tareas");
+        crear_ejemplo("basicos", "test_ejes");
+        crear_ejemplo("basicos", "test_explosion");
+
+
+        crear_nueva_seccion("Colisiones", "colisiones");
+        crear_ejemplo("colisiones", "colisiones");
+
+        crear_nueva_seccion("Dialogos", "dialogos");
+        crear_ejemplo("dialogos", "dialogo");
+        crear_ejemplo("dialogos", "dialogo_con_botones");
+        crear_ejemplo("dialogos", "dialogo_con_funciones");
+        crear_ejemplo("dialogos", "dialogo_con_preguntas");
+        crear_ejemplo("dialogos", "globo_simple");
+        crear_ejemplo("disparos", "disparar_a_monos");
+        crear_ejemplo("disparos", "disparo");
+
+        crear_nueva_seccion("Escenas", "escenas");
+        crear_ejemplo("escenas", "escenas_apiladas");
+        crear_ejemplo("escenas", "escenas_con_menu");
+        crear_ejemplo("escenas", "menu");
+
+        crear_nueva_seccion("Física", "fisica");
+        crear_ejemplo("fisica", "actores_arrastrables");
+        crear_ejemplo("fisica", "colisiones_fisicas");
+        crear_ejemplo("fisica", "grupos_y_colisiones");
+        crear_ejemplo("fisica", "mapas");
+
+        crear_nueva_seccion("Interfaz", "interfaz");
+        crear_ejemplo("interfaz", "barra_de_energia");
+        crear_ejemplo("interfaz", "boton");
+        crear_ejemplo("interfaz", "boton_con_texto");
+        crear_ejemplo("interfaz", "deslizador");
+        crear_ejemplo("interfaz", "ejemplo_global");
+        crear_ejemplo("interfaz", "ejemplo_temporizador");
+        crear_ejemplo("interfaz", "entrada_de_texto");
+        crear_ejemplo("interfaz", "ingreso_de_texto_y_selector");
+        crear_ejemplo("interfaz", "lista_seleccion");
+        crear_ejemplo("interfaz", "puntaje");
+        crear_ejemplo("interfaz", "selector");
+        crear_ejemplo("interfaz", "texto");
+        crear_ejemplo("interfaz", "texto_que_cambia");
+
+        crear_nueva_seccion("Pizzara", "pizarra");
+        crear_ejemplo("pizarra", "colores");
+        crear_ejemplo("pizarra", "pizarra");
+        crear_ejemplo("pizarra", "pizarra_actores_conectados_por_linea");
+        crear_ejemplo("pizarra", "pizarra_dibuja_grilla");
+        crear_ejemplo("pizarra", "pizarra_dibuja_imagen");
+        crear_ejemplo("pizarra", "pizarra_dibuja_triangulo");
+        crear_ejemplo("pizarra", "pizarra_dibujando_con_el_mouse");
+
+        crear_nueva_seccion("Mapas", "mapas");
+        crear_ejemplo("mapas", "mapa_desde_archivo");
+        crear_ejemplo("mapas", "mapa_personaje_martian");
+        crear_ejemplo("mapas", "mapa_plataformas");
+
+
+        crear_ejemplo("completos", "ejemplo_piezas");
+        crear_ejemplo("control", "control_personalizado");
+        crear_ejemplo("fondos", "desplazamiento");
+        crear_ejemplo("habilidades", "habilidad_personalizada");
+        crear_ejemplo("habilidades", "habilidad_personalizada_con_argumentos");
+        crear_ejemplo("habilidades", "pingu_controlado_por_teclado");
+        crear_ejemplo("habilidades", "seguir_clicks");
+        crear_ejemplo("interaccion", "mover_actor_por_eventos");
+        crear_ejemplo("interaccion", "moverse_con_el_teclado");
+
+
+        crear_ejemplo("interpolaciones", "interpolaciones");
+        crear_ejemplo("log", "log");
+        crear_ejemplo("minijuegos", "asteroides/test");
+        crear_ejemplo("minijuegos", "memorice");
+        crear_ejemplo("minijuegos", "monitos_que_disparan");
+        crear_ejemplo("minijuegos", "pacman");
+        crear_ejemplo("minijuegos", "tres_en_raya");
+        crear_ejemplo("otros", "camara");
+        crear_ejemplo("otros", "comportamientos_movimiento_de_mono");
+        crear_ejemplo("otros", "transparencia");
+        crear_ejemplo("tutoriales", "aceitunas_vs_bombas_paso_1");
+        crear_ejemplo("tutoriales", "aceitunas_vs_bombas_paso_2");
+        crear_ejemplo("tutoriales", "aceitunas_vs_bombas_paso_3");
+        crear_ejemplo("tutoriales", "aceitunas_vs_bombas_paso_4");
+        crear_ejemplo("tutoriales", "aceitunas_vs_bombas_paso_5");
+
+
 
 
         $('.menu li a').click(function() {
