@@ -52,6 +52,7 @@ ul.item li {
 
 ul.item li:hover {
     /* border: 1px solid yellow; */
+    background-color: yellow;
 }
 	
 	ul.item li img {
