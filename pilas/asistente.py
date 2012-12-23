@@ -106,7 +106,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
                 if accion == "ejecutar":
                     self._ejecutar_ejemplo(str(categoria), str(ejemplo))
                 elif accion == "codigo":
-                    QtGui.QMessageBox.information(self.main, "", "Funcionalidad no implementada aun...")
+                    self._mostrar_codigo(str(categoria), str(ejemplo))
                 else:
                     print accion, "sobre el ejemplo", ejemplo
             else:
@@ -119,9 +119,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         ruta "../ejemplos/ejemplos/{categoria}/{nombre}.py".
         """
         try:
-            recurso = "../ejemplos/ejemplos/" + categoria + "/" + nombre + ".py"
-            print "Ejecutando.... ", recurso
-            ruta = pilas.utils.obtener_ruta_al_recurso(recurso)
+            ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
 
             self.process = QtCore.QProcess(self.main)
             self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
@@ -129,6 +127,30 @@ class VentanaAsistente(Ui_AsistenteWindow):
             self.process.start(sys.executable, [ruta])
         except Exception, name:
             QtGui.QMessageBox.critical(self.main, "Error", str(name))
+
+    def _mostrar_codigo(self, categoria, nombre):
+        try:
+            ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
+            file_path = utils.obtener_ruta_al_recurso('asistente/codigo.html')
+            # TODO: convierto la ruta en absoluta para que mac desde py2app
+            #       pueda interpretar correctamente las imagenes.
+            file_path = os.path.abspath(file_path)
+
+            contenido = self._obtener_html(file_path)
+
+            import codecs
+            archivo_codigo = codecs.open(ruta, "r", "utf-8")
+            contenido_codigo = archivo_codigo.read()
+            archivo_codigo.close()
+            contenido = contenido.replace("{codigo}", contenido_codigo)
+            base_dir =  QtCore.QUrl.fromLocalFile(file_path)
+            self.webView.setHtml(contenido, base_dir)
+        except Exception, name:
+            QtGui.QMessageBox.critical(self.main, "Error", str(name))
+
+    def _obtener_ruta_al_ejemplo(self, categoria, nombre):
+        recurso = "../ejemplos/ejemplos/" + categoria + "/" + nombre + ".py"
+        return pilas.utils.obtener_ruta_al_recurso(recurso)
 
 
     def _cuando_termina_la_ejecucion_del_ejemplo(self, codigo, estado):
