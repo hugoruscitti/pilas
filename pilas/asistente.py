@@ -14,7 +14,6 @@ import json
 from asistente_base import Ui_AsistenteWindow
 import pilas
 import utils
-from ejemplos import cargador
 
 class VentanaAsistente(Ui_AsistenteWindow):
 
@@ -67,7 +66,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _deshabilitar_barras_de_scroll(self):
         self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Horizontal, QtCore.Qt.ScrollBarAlwaysOff)
-        self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Vertical, QtCore.Qt.ScrollBarAlwaysOff)
+        self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Vertical, QtCore.Qt.ScrollBarAsNeeded)
 
     def _cargar_pagina_principal(self):
         file_path = utils.obtener_ruta_al_recurso('asistente/index.html')
@@ -97,10 +96,47 @@ class VentanaAsistente(Ui_AsistenteWindow):
             import webbrowser
             webbrowser.open("http://www.pilas-engine.com.ar")
         else:
-            print seccion, "es una opcion desconocida"
+            partes = url.path().split('/')
 
-    def _cuando_selecciona_ejemplos(self):
-        cargador.main(self.main)
+            if len(partes) == 4:
+                accion = partes[1]
+                categoria = partes[2]
+                ejemplo = partes[3]
+
+                if accion == "ejecutar":
+                    self._ejecutar_ejemplo(str(categoria), str(ejemplo))
+                elif accion == "codigo":
+                    QtGui.QMessageBox.information(self.main, "", "Funcionalidad no implementada aun...")
+                else:
+                    print accion, "sobre el ejemplo", ejemplo
+            else:
+                raise Exception(seccion + "es una opcion desconocida")
+
+    def _ejecutar_ejemplo(self, categoria, nombre):
+        """Intenta ejecutar un programa de ejemplo en base a la categoria y nombre.
+
+        Internamente, esta funcion intenta buscar un archivo dentro de la
+        ruta "../ejemplos/ejemplos/{categoria}/{nombre}.py".
+        """
+        try:
+            recurso = "../ejemplos/ejemplos/" + categoria + "/" + nombre + ".py"
+            print "Ejecutando.... ", recurso
+            ruta = pilas.utils.obtener_ruta_al_recurso(recurso)
+
+            self.process = QtCore.QProcess(self.main)
+            self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
+            self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
+            self.process.start(sys.executable, [ruta])
+        except Exception, name:
+            QtGui.QMessageBox.critical(self.main, "Error", str(name))
+
+
+    def _cuando_termina_la_ejecucion_del_ejemplo(self, codigo, estado):
+        "Vuelve a permitir que se usen todos los botone de la interfaz."
+        salida = str(self.process.readAll())
+
+        if codigo:
+            QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
     def _cuando_selecciona_interprete(self):
         comando = " ".join([sys.executable, sys.argv[0], '-i'])
