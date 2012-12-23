@@ -14,7 +14,6 @@ import json
 from asistente_base import Ui_AsistenteWindow
 import pilas
 import utils
-import interprete
 from ejemplos import cargador
 
 class VentanaAsistente(Ui_AsistenteWindow):
@@ -24,7 +23,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         Ui_AsistenteWindow.setupUi(self, main)
 
         self.webView.setAcceptDrops(False)
-        self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateAllLinks)
+        self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
         self.webView.connect(self.webView, QtCore.SIGNAL("linkClicked(const QUrl&)"), self.cuando_pulsa_link)
         self._cargar_pagina_principal()
         self._deshabilitar_barras_de_scroll()
@@ -92,8 +91,6 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
         if seccion == "interprete":
             self._cuando_selecciona_interprete()
-        elif seccion == "ejemplos":
-            self._cuando_selecciona_ejemplos()
         elif seccion == "manual":
             self._cuando_selecciona_abrir_manual()
         elif seccion == "web":
