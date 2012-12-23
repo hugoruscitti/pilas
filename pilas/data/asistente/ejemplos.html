@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>pilas engine</title>
+  <meta charset="utf-8"> 
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/estilo.css" rel="stylesheet">
+  <link href="css/demo.css" rel="stylesheet">
+
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript">
+
+    String.prototype.format = function (o) {
+        return this.replace(/{([^{}]*)}/g,
+            function (a, b) {
+                var r = o[b];
+                return typeof r === 'string' || typeof r === 'number' ? r : a;
+            }
+        );
+    };
+
+    $(document).ready(function() {
+        
+        function crear_ejemplo(categoria, nombre) {
+            var opciones = {
+                nombre: nombre,
+                categoria: categoria,
+                run: "<img class='boton' src='imagenes/ejecutar.png'>",
+                codigo: "<img class='boton' src='imagenes/codigo.png'>",
+            };
+
+
+            var elemento = "<li rel='{categoria}'><a href='http://pilas/ejecutar/{nombre}'><img src='imagenes/ejemplos/{nombre}.png'></a><br/><a href='http://pilas/ejecutar/{nombre}'>{run}</a> <a href='http://pilas/codigo/{nombre}'>{codigo}</a><br/></li>".format(opciones);
+
+	          $(".item").append(elemento);
+        }
+
+        function crear_seccion(nombre, identificador) {
+            var elemento = '<li><a href="#" rel="{id}">{nombre}</a></li>'.format({nombre: nombre, id: identificador});
+            $(".menu").append(elemento);
+        }
+
+
+        crear_seccion("Animación", 'animacion');
+        crear_ejemplo('animacion', 'animacion_con_velocidad');
+
+        crear_seccion("Actores", 'actores');
+        crear_ejemplo('actores', 'actor_personalizado_con_imagen_y_control');
+
+
+        $('.menu li a').click(function() {
+            $('.menu li').removeClass('selected');
+            $(this).parent('li').addClass('selected');
+
+            var elemento 	= $(this).attr('rel');
+
+            if (elemento != "all") {
+              $('.item li[rel='+elemento+']').stop().animate({
+                  'width' : '128px', 
+                  'opacity' : 1, 
+                  'marginRight' : '.5em', 
+                  'marginLeft' : '.5em'
+                });
+
+              $('.item li[rel!='+elemento+']').stop().animate({
+                   'width': 0, 
+                   'opacity': 0,
+                   'marginRight': 0, 
+                   'marginLeft': 0
+                });
+
+            } else {
+
+              $('.item li').stop().animate({
+                  'opacity': 1, 
+                  'width': '128px', 
+                  'marginRight': '.5em', 
+                  'marginLeft': '.5em'
+                });
+            }
+        })
+
+    });
+
+</script>
+</head>
+
+<body>
+
+<div id="container">
+
+  <div class='superior'>
+    <a href='index.html'>« Regresar</a>
+  </div>
+
+	<ul class="menu">
+		<li class="selected"><a href="#" rel="all">Todos</a></li>
+    <!-- placeholder -->
+	</ul>
+	
+	<ul class="item">
+    <!-- placeholder -->
+	</ul>
+	
+	<div class="cleaner"></div>
+</div>
+</body>
+</html>
+
+
