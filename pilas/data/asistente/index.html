@@ -8,6 +8,19 @@
   <link href="css/estilo.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery-1.4.2.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("a").click(function() {
+        var id = $(this).attr('id');
+        $(this).attr('id', 'procesando');
+
+        /* Restaurando el icono del boton */
+        var self = $(this);
+        setTimeout(function() {self.attr('id', id)}, 3000);
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -26,13 +39,13 @@
 
   <div class="row">
     <div class='span3'>
-          <a href="http://pilas/interprete" id="interprete" class="button"><span>abrir intérprete</span></a>
+      <a href="http://pilas/interprete" id="interprete" class="button"><span>abrir intérprete</span></a>
     </div>
 
     <div class='span3'>
           <a href="ejemplos.html" id="ejemplos" class="button"><span>ver ejemplos</span></a>
     </div>
-    </div>
+  </div>
 
   <div class="row">
     <div class='span3'>
@@ -42,11 +55,9 @@
     <div class='span3'>
           <a href="http://pilas/web" id="web" class="button"><span>visitar la web</span></a>
     </div>
-</div>
-
+  </div>
 
   <div class="row">
-
     <div class='span9'>
         <div class='tip'>Ten en cuenta, puedes ejecutar archivos .py soltándolos sobre esta ventana.</div>
     </div>
