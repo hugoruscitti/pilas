@@ -314,3 +314,20 @@ def habilitar_depuracion():
     pyqtRemoveInputHook()
     set_trace()
 
+def mostrar_mensaje_de_error_y_salir(motivo):
+    app = QtGui.QApplication(sys.argv[:1])
+    app.setApplicationName("pilas-engine error")
+    main_window = QtGui.QMainWindow()
+    main_window.show()
+    main_window.raise_()
+    QtGui.QMessageBox.critical(main_window, "Error", motivo)
+    app.exit()
+
+def obtener_archivo_a_ejecutar_desde_argv():
+    import sys, copy
+
+
+    if '-i' in argv:
+        argv.remove('-i')
+
+    return " ".join(sys.argv[1:])
