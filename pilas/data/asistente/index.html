@@ -13,6 +13,11 @@
     $(document).ready(function() {
       $("a").click(function() {
         var id = $(this).attr('id');
+
+        if (id === 'procesando')
+            return false;
+
+
         $(this).attr('id', 'procesando');
 
         /* Restaurando el icono del boton */
