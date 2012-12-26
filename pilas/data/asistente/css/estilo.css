@@ -72,3 +72,20 @@ div.tip {
 div.frame {
     display:none;
 }
+
+
+div.contenedor_ejemplo { 
+    position: relative;
+}
+
+span.progresando {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 128px;
+    height: 35px;
+    padding-top: 15px;
+    display: none;
+}
+

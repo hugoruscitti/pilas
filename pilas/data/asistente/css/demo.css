@@ -50,14 +50,6 @@ ul.item li {
     /* border: 1px solid white; */
 }
 
-ul.item li:hover {
-    /* border: 1px solid yellow; */
-    background-color: yellow;
-}
-	
-	ul.item li img {
-	}
-
 a, a:visited {
 	color: #161616;
 	text-decoration: none; 

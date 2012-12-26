@@ -8,8 +8,8 @@
   <link href="css/estilo.css" rel="stylesheet">
   <link href="css/demo.css" rel="stylesheet">
 
+  <script src="js/jquery-1.8.3.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery-1.4.2.min.js"></script>
   <script type="text/javascript">
 
     String.prototype.format = function (o) {
@@ -31,7 +31,9 @@
                 codigo: "<img class='boton' src='imagenes/codigo.png'>",
             };
 
-            var elemento = "<li rel='{categoria}'><a href='http://pilas/ejecutar/{categoria}/{nombre}'><img src='../../ejemplos/ejemplos/{categoria}/{nombre}.png'></a><br/><a href='http://pilas/ejecutar/{categoria}/{nombre}'>{run}</a> <a href='http://pilas/codigo/{categoria}/{nombre}'>{codigo}</a><br/></li>".format(opciones);
+            var elemento_template = $('.elemento_template').html();
+            var elemento = elemento_template.format(opciones);
+            
 
 	          $(".item").append(elemento);
         }
@@ -40,7 +42,6 @@
             var elemento = '<li><a href="#" rel="{id}">{nombre}</a></li>'.format({nombre: nombre, id: identificador});
             $(".menu").append(elemento);
         }
-
 
         crear_nueva_seccion("Animación", 'animaciones');
         crear_ejemplo('animaciones', 'animacion_con_velocidad');
@@ -160,6 +161,16 @@
         crear_ejemplo("log", "log");
 
 
+        $("ul.item a").click(function() {
+            var elemento = $(this);
+
+            // Haciendo visible la barra de progreso.
+            elemento.parent().find(".progresando").css("display", "block");
+
+            var self = elemento;
+            setTimeout(function() {self.parent().find(".progresando").css("display", "none")}, 3000);
+        });
+
         $('.menu li a').click(function() {
             $('.menu li').removeClass('selected');
             $(this).parent('li').addClass('selected');
@@ -184,8 +195,8 @@
             } else {
 
               $('.item li').stop().animate({
-                  'opacity': 1, 
                   'width': '128px', 
+                  'opacity': 1, 
                   'marginRight': '.5em', 
                   'marginLeft': '.5em'
                 });
@@ -213,6 +224,23 @@
 	<ul class="item">
     <!-- placeholder -->
 	</ul>
+
+  <div style='display: none'>
+    <div class='elemento_template'>
+      <li rel='{categoria}'>
+        <div class='contenedor_ejemplo'>
+            <a href='http://pilas/ejecutar/{categoria}/{nombre}'><img src='../../ejemplos/ejemplos/{categoria}/{nombre}.png'></a>
+            <br/>
+            <a href='http://pilas/ejecutar/{categoria}/{nombre}'>{run}</a> 
+            <a href='http://pilas/codigo/{categoria}/{nombre}'>{codigo}</a>
+            <br/>
+
+            <span class='progresando'><img src='imagenes/procesando.gif'/></span>
+        </div>
+      </li>
+    </div> 
+
+  </div>
 	
 	<div class="cleaner"></div>
 </div>
