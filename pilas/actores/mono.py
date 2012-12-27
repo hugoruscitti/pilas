@@ -23,7 +23,15 @@ class Mono(Actor):
     """
 
     def __init__(self, x=0, y=0):
-        # carga las imagenes adicionales.
+        """
+        Constructor del Mono.
+
+        :param x: posicion horizontal del mono.
+        :type x: int
+        :param y: posicion vertical del mono.
+        :type y: int
+
+        """
         self.image_normal = pilas.imagenes.cargar('monkey_normal.png')
         self.image_smile = pilas.imagenes.cargar('monkey_smile.png')
         self.image_shout = pilas.imagenes.cargar('monkey_shout.png')
@@ -59,6 +67,9 @@ class Mono(Actor):
     def decir(self, mensaje):
         """Emite un mensaje y además sonrie mientras habla.
 
+        :param mensaje: Texto que se desea mostrar.
+        :type mensaje: string
+
         Por ejemplo:
 
             >>> mono.decir("Estoy hablando!!!")
@@ -69,5 +80,6 @@ class Mono(Actor):
         Actor.decir(self, mensaje)
 
     def saltar(self):
+        """ Hace que el mono sonria y salte. """
         self.sonreir()
         self.hacer(pilas.comportamientos.Saltar())

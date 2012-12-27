@@ -12,9 +12,24 @@ import math
 
 
 class Nave(Animacion):
-    "Representa una nave que puede disparar."
+    """Representa una nave que puede disparar.
+
+    .. image:: images/actores/nave.png
+
+    """
 
     def __init__(self, x=0, y=0, velocidad=2):
+        """
+        Constructor de la Nave.
+
+        :param x: posicion horizontal de la nave.
+        :type x: int
+        :param y: posicion vertical de la nave.
+        :type y: int
+        :param velocidad: Velocidad que llevará la nave.
+        :type velocidad: int
+
+        """
         self.velocidad = velocidad
         grilla = pilas.imagenes.cargar_grilla("nave.png", 2)
         Animacion.__init__(self, grilla, ciclica=True, x=x, y=y)
@@ -41,10 +56,13 @@ class Nave(Animacion):
         Animacion.actualizar(self)
 
     def definir_enemigos(self, grupo, cuando_elimina_enemigo=None):
-        """hace que una nave tenga como enemigos a todos los actores del grupo.
+        """Hace que una nave tenga como enemigos a todos los actores del grupo.
 
-        El argumento cuando_elimina_enemigo tiene que ser una funcion que
-        se ejecutara cuando se produzca la colision."""
+        :param grupo: El grupo de actores que serán sus enemigos.
+        :type grupo: array
+        :param cuando_elimina_enemigo: Funcion que se ejecutará cuando se elimine un enemigo.
+
+        """
         self.cuando_elimina_enemigo = cuando_elimina_enemigo
         self.habilidades.Disparar.definir_colision(grupo, self.hacer_explotar_al_enemigo)
 
