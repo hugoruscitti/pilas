@@ -36,6 +36,14 @@ class NaveKids(Animacion):
         self.radio_de_colision = 20
         self.aprender(pilas.habilidades.PuedeExplotar)
 
+        self.municion = pilas.actores.proyectil.Bala
+        self.aprender(pilas.habilidades.Disparar,
+                       municion=self.municion,
+                       angulo_salida_disparo=0,
+                       frecuencia_de_disparo=6,
+                       offset_disparo=(29,29),
+                       escala=0.7)
+
         self.aprender(pilas.habilidades.MoverseConElTeclado,
                       velocidad_maxima=self.velocidad,
                       aceleracion=1,
