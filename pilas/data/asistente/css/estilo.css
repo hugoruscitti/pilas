@@ -31,7 +31,8 @@ div.version {
 div.tip {
     margin-top: 5em;
     font-size: small; 
-    color: gray;
+    color: #3e424d;
+    border: 1px dashed #ccc;
 }
 
 div.frame {
