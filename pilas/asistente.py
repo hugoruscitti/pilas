@@ -119,18 +119,16 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.proceso.startDetached(comando)
 
     def _cuando_selecciona_abrir_manual(self):
-        base_dir = '/usr/share/doc/pilas'
+        base_dir = '/usr/share/pilas'
         ruta_al_manual = os.path.join(base_dir, 'pilas-%s.pdf' %(pilas.version()))
 
         try:
-            # BUSCA el archivo: /usr/share/doc/pilas/pilas-0.xx.pdf
-            # xx es la version
+            # BUSCA el archivo: /usr/share/pilas/pilas-VERSION.pdf
             ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
             pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
         except IOError:
             try:
-                # BUSCA el archivo: /home/mi_usuario/.pilas/pilas-0.xx.pdf
-                # xx es la version
+                # BUSCA el archivo: /home/mi_usuario/.pilas/pilas-VERSION.pdf
                 base_dir = str(QtCore.QDir.homePath())
                 ruta_al_manual = os.path.join(base_dir, '.pilas', 'pilas-%s.pdf' %(pilas.version()))
                 ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
@@ -151,8 +149,6 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def salir(self, *_):
         self.main.close()
-
-
 
 
 class MainWindow(QtGui.QMainWindow):
