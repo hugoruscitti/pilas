@@ -147,11 +147,11 @@ def convertir_de_posicion_fisica_relativa(x, y):
     return (x - dx, dy - y)
 
 def calcular_tiempo_en_recorrer(distancia_en_pixeles, velocidad):
-    """ Calcula el tiempo que se tardará en recorrer una distancia en 
+    """ Calcula el tiempo que se tardará en recorrer una distancia en
     pixeles con una velocidad constante """
 
     if (pilas.mundo.motor.canvas.fps.cuadros_por_segundo_numerico > 0):
-        return (distancia_en_pixeles / (pilas.mundo.motor.canvas.fps.cuadros_por_segundo_numerico * velocidad))        
+        return (distancia_en_pixeles / (pilas.mundo.motor.canvas.fps.cuadros_por_segundo_numerico * velocidad))
     else:
         return 0
 
