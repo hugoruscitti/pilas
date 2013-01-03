@@ -2,15 +2,16 @@
 Pilas engine - Documentación
 ============================
 
-.. image:: images/pilas-logo.png
+.. only:: html
 
+    .. image:: images/pilas-logo.png
 
 
 Introducción:
 
 .. toctree::
     :maxdepth: 1
-    
+
     presentacion.rst
     instalar.rst
     migrar_al_gestor_de_escenas.rst
@@ -59,7 +60,7 @@ Recorrido modulos avanzados:
     habilidades.rst
 
     depurando.rst
-    
+
     pilas_en_pyqt.rst
 
 

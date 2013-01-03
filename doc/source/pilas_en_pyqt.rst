@@ -1,7 +1,7 @@
 Integrando Pilas a una Aplicación Qt
 ======================================
 
-En esta sección vamos a mostrar como integrar Pilas como un widget dentro de tu 
+En esta sección vamos a mostrar como integrar Pilas como un widget dentro de tu
 aplicación desarrollada con *PyQt*.
 
 **Nota: En este capitulo asumimos que el programador ya conoce PyQt y Pilas.**
@@ -9,39 +9,39 @@ aplicación desarrollada con *PyQt*.
 
 Antes de empezar vamos a establecer algunos objetivos:
 
-    * Trataremos que la programación de la parte *Pilas* sea lo mas 
+    * Trataremos que la programación de la parte *Pilas* sea lo mas
       *Pilas-Like*.
-    * Pilas nos brinda un solo widget; por el objetivo anterior intentaremos 
+    * Pilas nos brinda un solo widget; por el objetivo anterior intentaremos
       mantener esto.
-    * La programación de la parte PyQt trataremos que se mantenga lo mas 
+    * La programación de la parte PyQt trataremos que se mantenga lo mas
       *PyQt-Like*.
-    
-    
+
+
 Con esto en mente vamos a proponernos un proyecto:
 
     Desarrollaremos una aplicación PyQt que muestre algunos actores en pantalla
     y al hacerle click sobre alguno nos permita seleccionar una imagen desde
     un archivo para reemplazar desde a la del actor.
-    
+
 La estructura de objetos que manejaremos sera la siguiente:
 
 .. image:: images/pilasqtclass.png
 
 Donde el objetivo de cada clase es el siguiente:
 
-    * ``MainWindow``: Es un widget PyQt4 que hereda de 
-      ``PyQt4.QtGui.QMainWindow``. Se encargara de recibir el evento de cuando 
-      un ``ActorVacio`` fue "clickeado" y mostrara la ventana emergente para 
-      seleccionar la imagen que luego sera asignada en el actor que lanzo el 
+    * ``MainWindow``: Es un widget PyQt4 que hereda de
+      ``PyQt4.QtGui.QMainWindow``. Se encargara de recibir el evento de cuando
+      un ``ActorVacio`` fue "clickeado" y mostrara la ventana emergente para
+      seleccionar la imagen que luego sera asignada en el actor que lanzo el
       evento.
-    
+
     * ``PilasProxy``: Esta clase es un *singleton* que cada vez que es destruida
       *finje* su destrucción y solo limpia el widget principal de Pilas, para
       que cuando sea reutilizada, parezca que esta como nueva. Tendrá 3
       métodos/propiedades imporantes implementara:
-          
+
           - ``widget``: Propiedad que referencia al widget principal de Pilas.
-          - ``__getattr__``: Método que delegara todas las llamadas que no 
+          - ``__getattr__``: Método que delegara todas las llamadas que no
             posea el proxy al widget principal de Pilas.
           - ``destroy``: Método que ocultara la implementación de ``destroy``
             del widget principal de Pilas.
@@ -50,11 +50,11 @@ Donde el objetivo de cada clase es el siguiente:
           - ``agregar_actor``: permitirá agregar un actor al proxy y conectará
              las señales del actor con la señal del proxy.
           - ``borrar_actor``: borra un actor de los manejados por el proxy
-    
+
     * ``ActorVacio``: Subclase de ``pilas.actores.Actor`` que emitirá un evento
       al ser clickeada sobre si misma.
 
-    
+
 Código
 ------
 
@@ -83,8 +83,10 @@ Código
     # antes de importar pilas creamos la app QT del programa
     # si tenemos los componentes pilas en otro modulo puede llegar a ser conveniente
     # importar ese modulo (el que usa pilas) dentro de un metodo de clase o una
-    # funcion
+    # funcion. Tambien para que phonon no se queje es bueno setearle una nombre a
+    # nuestro QApplication
     app = QtGui.QApplication(sys.argv[1:])
+    app.setApplicationName(__name__)
 
 
     # Importamos pilas con un motor que sirva para embeber
@@ -185,7 +187,7 @@ Código
 
         @property
         def widget(self):
-            return pilas.mundo.motor.widget
+            return pilas.mundo.motor.ventana
 
 
     #===============================================================================
@@ -198,6 +200,7 @@ Código
             super(QtGui.QMainWindow, self).__init__()
             self.pilas = PilasProxy() # traemos nuestro proxy
             self.setCentralWidget(self.pilas.widget) # lo agregamos a la ventana
+            self.resize(self.pilas.widget.size())
 
             # creamos entre 5 y 10 actores
             actores = ActorVacio() * random.randint(5,10)
@@ -233,6 +236,20 @@ Código
 Resultado
 ---------
 
-.. image:: images/pilasqtrun.png
+.. only:: latex
 
-Si quieren ver en video: http://www.youtube.com/watch?v=DA1DFTHJ-rE&feature=youtu.be
+    .. image:: images/pilasqtrun.png
+
+    Si quieren ver en video: http://www.youtube.com/watch?v=DA1DFTHJ-rE&feature=youtu.be
+
+
+.. only:: html
+
+    .. raw:: html
+
+        <iframe width="560"
+                height="315"
+                src="http://www.youtube.com/embed/DA1DFTHJ-rE"
+                frameborder="0"
+                allowfullscreen>
+        </iframe>
