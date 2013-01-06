@@ -18,9 +18,20 @@ class Pacman(Actor):
     ``arriba``, ``abajo`` y ``derecha``.
 
         >>> pacman = pilas.actores.Pacman(velocidad=5)
+
     """
 
     def __init__(self, x=0, y=0, velocidad=3):
+        """Constructor de Pacman
+
+        :param x: Posición horizontal del pacman.
+        :type x: int
+        :param y: Posición vertical del pacman.
+        :type y: int
+        :param velocidad: velocidad en la que se desplaza pacman
+        :type velocidad: int
+
+        """
         self.grilla = pilas.imagenes.cargar_grilla("pacman.png", 4, 4)
         Actor.__init__(self, self.grilla, x, y)
         self.cuadro = 0
