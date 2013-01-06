@@ -33,7 +33,11 @@ class Ovni(Actor):
 
 
 class Planeta(Actor):
-    """Representa un planeta para utilizar con el ovni."""
+    """Representa un planeta para utilizar con el ovni.
+
+        .. image:: images/actores/ovni.png
+
+    """
 
     def __init__(self, x=0, y=0, color='azul'):
         """
