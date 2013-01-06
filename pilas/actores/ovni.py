@@ -10,10 +10,14 @@ from pilas.actores import Actor
 import pilas
 
 class Ovni(Actor):
-    """Representa Ovni que explota al momento de ser eliminado."""
+    """Representa Ovni que explota al momento de ser eliminado.
+
+        .. image:: images/actores/ovni.png
+
+    """
 
     def __init__(self, x=0, y=0):
-        """Constructor de la Aceituna
+        """Constructor de la Ovni
 
         :param x: Posición horizontal del ovni.
         :type x: int
@@ -35,12 +39,12 @@ class Ovni(Actor):
 class Planeta(Actor):
     """Representa un planeta para utilizar con el ovni.
 
-        .. image:: images/actores/ovni.png
+        .. image:: images/actores/planeta_azul.png
 
     """
 
     def __init__(self, x=0, y=0, color='azul'):
-        """
+        """Constructor del planeta.
 
         :param x: Posición horizontal del planeta.
         :type x: int
