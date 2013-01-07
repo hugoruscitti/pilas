@@ -21,6 +21,7 @@ class Habilidad(object):
     def eliminar(self):
         pass
 
+
 class RebotarComoPelota(Habilidad):
 
     def __init__(self, receptor):
@@ -43,6 +44,7 @@ class RebotarComoPelota(Habilidad):
 
     def empujar(self, dx, dy):
         self.circulo.empujar(dx, dy)
+
 
 class RebotarComoCaja(Habilidad):
 
@@ -73,6 +75,7 @@ class ColisionableComoPelota(RebotarComoPelota):
     def eliminar(self):
         pilas.fisica.fisica.eliminar(self.figura)
 
+
 class SeguirAlMouse(Habilidad):
     "Hace que un actor siga la posición del mouse en todo momento."
 
@@ -84,15 +87,16 @@ class SeguirAlMouse(Habilidad):
         self.receptor.x = evento.x
         self.receptor.y = evento.y
 
+
 class RotarConMouse(Habilidad):
     """"Hace que un actor rote con respecto a la posicion del mouse.
 
     :param lado_seguimiento: Establece el lado del actor que rotará para estar
-    encarado hacia el puntero del mouse.
-
+                             encarado hacia el puntero del mouse.
     :example:
 
-        >>> actor.aprender(pilas.habilidades.RotarConMouse, lado_seguimiento=pilas.habilidades.RotarConMouse.ABAJO)
+        >>> actor.aprender(pilas.habilidades.RotarConMouse,
+                           lado_seguimiento=pilas.habilidades.RotarConMouse.ABAJO)
 
     """
     ARRIBA = 270
@@ -122,6 +126,7 @@ class RotarConMouse(Habilidad):
 
         self.receptor.rotacion = -(angulo) - self.lado_seguimiento
 
+
 class MirarAlActor(Habilidad):
     """"Hace que un actor rote para mirar hacia otro actor.
 
@@ -149,6 +154,7 @@ class MirarAlActor(Habilidad):
         angulo = pilas.utils.obtener_angulo_entre(receptor, actor_a_seguir)
 
         self.receptor.rotacion = -(angulo) - self.lado_seguimiento
+
 
 class AumentarConRueda(Habilidad):
     "Permite cambiar el tamaño de un actor usando la ruedita scroll del mouse."
@@ -183,6 +189,7 @@ class Arrastrable(Habilidad):
     que puedes usar polimorfismo para redefinir el comportamiento
     de estos dos metodos. Observa un ejemplo de esto en
     el ejemplo ``pilas.ejemplos.Piezas``.
+
     """
 
     def __init__(self, receptor):
@@ -346,6 +353,7 @@ class MoverseConElTeclado(Habilidad):
         elif self.velocidad < - self.velocidad_maxima / 2:
             self.velocidad = - self.velocidad_maxima / 2
 
+
 class MoverseComoCoche(MoverseConElTeclado):
     "Hace que un actor se mueva como un coche."
 
@@ -445,6 +453,7 @@ class SeMantieneEnPantalla(Habilidad):
             elif self.receptor.abajo < -(self.alto/2):
                 self.receptor.abajo = -(self.alto/2)
 
+
 class PisaPlataformas(Habilidad):
 
     def __init__(self, receptor):
@@ -467,6 +476,7 @@ class PisaPlataformas(Habilidad):
 
     def eliminar(self):
         pilas.fisica.fisica.eliminar(self.figura)
+
 
 class Imitar(Habilidad):
 
@@ -496,6 +506,7 @@ class Imitar(Habilidad):
     def eliminar(self):
         if isinstance(self.objeto_a_imitar, pilas.fisica.Figura):
             self.objeto_a_imitar.eliminar()
+
 
 class Disparar(Habilidad):
     """Establece la habilidad de poder disparar un Actor o un objeto de tipo
