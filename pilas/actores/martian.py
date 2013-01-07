@@ -14,8 +14,32 @@ VELOCIDAD = 100
 
 
 class Martian(Actor):
+    """Es un personaje de un marciano que puede caminar, saltar y disparar.
+
+        .. image:: images/actores/martian.png
+
+    Este actor se puede mover con el teclado, pulsando las teclas ``izquierda``,
+    ``arriba``, ``abajo`` y ``derecha`` ademas de disparar con la
+    ``barra espaciadora``.
+
+    El marciano necesita un mapa para no caer al vacio y desaparecer de la
+    pantalla.
+
+        >>> marciano = pilas.actores.Martian(pilas.actores.Mapa())
+
+    """
 
     def __init__(self, mapa, x=0, y=0):
+        """Constructor del marciano
+
+        :param mapa: el mapa para que interactue el marciano.
+        :type mapa: pilas.actores.Mapa
+        :param x: Posición horizontal del marciano.
+        :type x: int
+        :param y: Posición vertical del marciano.
+        :type y: int
+
+        """
         Actor.__init__(self, x=x, y=y)
         self.imagen = pilas.imagenes.cargar_grilla("marcianitos/martian.png", 12)
         self.definir_cuadro(0)
@@ -43,6 +67,11 @@ class Martian(Actor):
 
     def obtener_distancia_al_suelo(self):
         return self.mapa.obtener_distancia_al_suelo(self.x, self.y, 100)
+
+
+#===============================================================================
+# Estados del marciano
+#===============================================================================
 
 class Esperando(Comportamiento):
     "Un actor en posicion normal o esperando a que el usuario pulse alguna tecla."
