@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
+from pilas import utils
 from pilas.estudiante import Estudiante
 
 IZQUIERDA = ["izquierda"]
@@ -423,6 +424,42 @@ class Actor(object, Estudiante):
         :type y: int
         """
         return self.izquierda <= x <= self.derecha and self.abajo <= y <= self.arriba
+
+    def distancia_con(self, otro_actor):
+        """Determina la distancia con el ``otro_actor``
+
+        :param otro_actor: El otro actor para ver la distancia
+        :type otro_actor: pilas.actores.Actor
+
+        """
+        return utils.distancia_entre_dos_actores(self, otro_actor)
+
+    def actor_mas_cercano(self):
+        """Retorna otro actor mas cercano a este actor"""
+        return utils.actor_mas_cercano_al_actor(self)
+
+    def distancia_al_punto(self, x, y):
+        """Determina la distancia desde el centro del actor hasta el punto
+        determinado
+
+        Todos los actores tienen un area rectangular, pulsa la
+        tecla **F10** para ver el area de colision.
+
+        :param x: Posición horizontal del punto.
+        :type x: int
+        :param y: Posición vertical del punto.
+        :type y: int
+        """
+        return utils.distancia_entre_dos_puntos((self.x, self.y), (x, y))
+
+    def colisiona_con(self, otro_actor):
+        """Determina si este actor colisiona con ``otro_actor``
+
+        :param otro_actor: El otro actor para verificar si colisiona.
+        :type otro_actor: pilas.actores.Actor
+
+        """
+        return utils.colisionan(self, otro_actor)
 
     def obtener_rotacion(self):
         return self._actor.obtener_rotacion()
