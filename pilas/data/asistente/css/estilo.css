@@ -5,6 +5,8 @@ div.footer {
 
 body {
     margin-left: 1em;
+    background: url('../imagenes/fondo.png');
+    background-repeat: repeat;
 }
 
 
@@ -29,9 +31,62 @@ div.version {
 div.tip {
     margin-top: 5em;
     font-size: small; 
+    color: #3e424d;
+    border: 1px dashed #ccc;
+}
+
+div.frame {
+    display:none;
+}
+
+div.footer {
+  font-size: small;
+  color: gray;
+}
+
+body {
+    margin-left: 1em;
+}
+
+
+div.span3 img {
+    border-right: 10px;
+}
+
+
+div.consulta_version {
+    font-size: x-small;
+    color: gray;
+}
+
+div.version {
+    font-size: small; 
+    color: gray;
+}
+
+div.tip {
+    margin-top: 5em;
+    font-size: small; 
     color: gray;
 }
 
 div.frame {
     display:none;
 }
+
+
+div.contenedor_ejemplo { 
+    position: relative;
+}
+
+span.progresando {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 128px;
+    height: 35px;
+    padding-top: 15px;
+    display: none;
+}
+
