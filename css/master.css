@@ -52,7 +52,6 @@ pre code {
   font-size: .95em;
   margin: 0 auto;
   width: 850px;
-  overflow: hidden;
 }
 
 #content {
@@ -107,7 +106,11 @@ header .logo a:visited {
   margin-bottom: 8px;
 }
 
-
+#contenido_web {
+    height: 900px;
+    width: 600px;
+    background-color: #555;
+}
 /* miscellaneous
 ----------------------------------------*/
 
