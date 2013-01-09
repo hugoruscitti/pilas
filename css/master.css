@@ -107,9 +107,17 @@ header .logo a:visited {
 }
 
 #contenido_web {
-    height: 900px;
-    width: 600px;
+    height: 300px;
+    width: 700px;
     background-color: #555;
+}
+
+#footer {
+    bottom: 0;
+    left: 0;
+    background-color: #440000;
+    height: 100px;
+    width: 800px;
 }
 /* miscellaneous
 ----------------------------------------*/
