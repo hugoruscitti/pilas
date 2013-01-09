@@ -1,0 +1,137 @@
+/*
+ * Jekyll quickstart master CSS file.
+ */
+
+/* mini-reset. */
+
+h1, h2, h3, h4, h5, div, p, ul, li, section {
+  margin: 0;
+  padding: 0;
+}
+
+/* main styles */
+
+body {
+  font-size: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+a:link,
+a:visited {
+  color: #F33;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #F33;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+em {
+  font-style: italic;
+}
+
+pre {
+  margin: 1.5em;
+}
+
+pre code {
+  display: block;
+  padding: 15px;
+  background-color: #EEEEEE;
+  overflow: auto;
+}
+
+#container {
+  /* bump down global font size. */
+  font-size: .95em;
+  margin: 0 auto;
+  width: 850px;
+}
+
+#content {
+  padding: 25px 0 0;
+}
+
+p {
+  margin-bottom: 1.3em;
+}
+
+header {
+  border-bottom: 3px solid #000000;
+  margin: 0;
+  padding: 10px 0;
+}
+
+header .logo {
+  float: left;
+  font-size: 2em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+header .logo a:link,
+header .logo a:hover,
+header .logo a:visited {
+  color: #000000;
+  text-decoration: none;
+}
+
+#main {
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+#main h2 {
+  font-size: 1.75em;
+  margin-bottom: 0.2em;
+}
+
+#main h3,
+#main h4 {
+  margin-bottom: 0.75em;
+}
+
+#main ul {
+  list-style-type: none;
+}
+
+#main ul li {
+  margin-bottom: 8px;
+}
+
+
+/* miscellaneous
+----------------------------------------*/
+
+.post-date {
+  color: #999999;
+  font-size: .9em;
+  margin-bottom: .8em;
+}
+
+
+/* clearfix */
+
+.group:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+* html .group {
+  height: 1%;
+}
+
+*:first-child+html .group {
+  min-height: 1px;
+}
+
