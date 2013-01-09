@@ -52,11 +52,11 @@ pre code {
   font-size: .95em;
   margin: 0 auto;
   width: 850px;
+  overflow: hidden;
 }
 
 #content {
   padding: 25px 0 0;
-  overflow: hidden;
 }
 
 p {
