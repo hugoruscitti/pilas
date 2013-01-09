@@ -56,6 +56,7 @@ pre code {
 
 #content {
   padding: 25px 0 0;
+  overflow: hidden;
 }
 
 p {
