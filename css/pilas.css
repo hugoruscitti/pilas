@@ -80,5 +80,10 @@ pre{ padding: 10px; font-size:16px; background: rgb(100, 100, 100);
           #footer a.logo{ display:inline-block; background:transparent url(../images/logo-pilas-footer.png) no-repeat; width:119px; height:21px; }
           #footer nav{ position:absolute; left:140px; top:9px;   }
           
-          #github-star{ position:absolute; left:600px; top:9px; }
-          #github-fork{ position:absolute; left:700px; top:9px; }
+          #github-star {display: inline-block}
+          #github-fork {display: inline-block}
+
+#github-footer {
+    text-align: center;
+    margin: 1em;
+}
