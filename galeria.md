@@ -9,7 +9,7 @@ title: Imágenes
      <h3>PYCON 2011 en Junín</h3>
      <p>Fotos del evento PyCon 2011 Junin en donde se presentó la charla "Creando videojuegos con pilas":</p>
      <div class='gallery'><a href='http://www.pilas-engine.com.ar/images/galeria/pycon_2011/100_0977.JPG'><img src='http://www.pilas-engine.com.ar/thumb/images/galeria/pycon_2011/100_0977.JPG'/></a></div>
-</div><!-- .post -->
+</div>
 
 <div class="post" id="evento-conurbania-2010">
      <h3>Evento Conurbania 2010</h3>

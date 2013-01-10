@@ -10,17 +10,15 @@ Ten en cuenta que hay varios tutoriales para instalar pilas en distintos sistema
 
 ## Versiones Empaquetadas
 
-<ul class="versions">
-     <li><a href="#">Descargar pilas 0.71 para Windows</a></li>
-     <li><a href="#">Descargar pilas 0.71 para Mac OS X</a></li>
-     <li><a href="#">Descargar pilas 0.71 para Ubuntu y Debian GNU/Linux</a></li>
-</ul>
+- Descargar pilas 0.71 para Windows
+- Descargar pilas 0.71 para Mac OS X
+- Descargar pilas 0.71 para Ubuntu y Debian GNU/Linux
 
 ## Otras opciones de instalación
 
 Si quieres obtener e instalar la versión estable de pilas de manera más sencilla puedes usar el siguiente comando:
 
-{% highlight %}
+{% highlight python %}
 sudo easy_install pilas
 {% endhighlight %}
 
