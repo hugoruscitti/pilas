@@ -18,19 +18,7 @@
         <h1 id="logo"><a title="Pilas Engine" href="/"><span>Pilas Engine</span></a></h1>
 
         <nav id="access" class="navigation" role="natigation">
-          <ul id='navlist'>
-
-          {% for link in site.navigation %}
-            {% assign current = nil %}
-
-            {% if page.url == link.url %}
-                {% assign current = 'active' %}
-            {% endif %}
-
-            <li class="nav-list-item{% if forloop.first %}first{% endif %} {{ current }} {% if forloop.last %}nav-list-item-last{% endif %}"><a class="{{ current }}" href="{{ link.url }}">{{ link.text }}</a></li>
-
-          {% endfor %}
-          </ul>
+            {% include menu.html %}
         </nav>
 
       </div>
@@ -42,16 +30,7 @@
       <div id="footer" class="grid_12 clearfix">
         <a href="#" class="logo"><span class="hide">pilas engine</a>
           <nav class="navigation" role="natigation">
-          <ul>
-            <li><a href="./" title="">Home</a></li>
-            <li><a href="foro.html" title="">Comunidad</a></li>
-            <li><a href="galeria.html" title="">Imágenes</a></li>
-            <li><a href="videos.html" title="">Videos</a></li>
-            <li><a href="docs.html" title="">Documentación</a></li>
-            <li><a href="descargas.html" title="">Descargas</a></li>
-            <li><a href="donaciones.html" title="">Doná</a></li>
-            <li><a href="test.html" title="">Test</a></li>
-          </ul>
+            {% include menu.html %}
           </nav>
 
           <div id="github-star"><iframe src="http://ghbtns.com/github-btn.html?user=hugoruscitti&repo=pilas&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></div>
