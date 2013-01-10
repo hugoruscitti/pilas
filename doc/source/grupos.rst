@@ -2,7 +2,7 @@ Grupos
 ======
 
 Ahora que podemos manejar a los actores de manera individual. Vamos
-a ver organizarlos en grupos.
+a ver cómo organizarlos en grupos.
 
 Organizar a los actores en grupo es de utilidad, porque generalmente
 es una buena idea agrupar a los actores por características y

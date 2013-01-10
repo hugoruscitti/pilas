@@ -13,7 +13,7 @@ unos pocos pasos.
 
 - Tienes que pensar "qué" quieres hacer cuando se produce una colisión.
 - Escribir una función de respuesta a la colisión.
-- y por último decirle a pilas que actores son colisionables entre sí.
+- y, por último, decirle a pilas qué actores son colisionables entre sí.
 
 
 Ten en cuenta que cada actor tiene un atributo llamado
@@ -54,7 +54,7 @@ del actor:
 
 .. image:: images/radios.png
 
-Ahora, para poder mover al mono podemos enseñarle
+Ahora, para poder mover al mono, podemos enseñarle
 una habilidad:
 
 .. code-block:: python
@@ -81,8 +81,8 @@ la colisión:
     bananas = [banana]
     pilas.escena_actual().colisiones.agregar(mono, bananas, el_mono_come)
 
-Perfecto, ahora si mueves al mono por la pantalla con el
-mouse podrá comer bananas.
+Perfecto. Ahora, si mueves al mono por la pantalla con el
+mouse, podrá comer bananas.
 
 Intenta crear mas actores que representen bananas y
 agregarlos a la lista que usamos antes, por ejemplo:

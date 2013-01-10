@@ -101,7 +101,7 @@ Usando una Pizarra
 
 Si quieres dibujar sobre la pantalla pero
 de forma inmediata y con algunas posibilidades mas
-elaboradas puedes
+elaboradas, puedes
 usar un actor llamado ``Pizarra``. Esta no es la
 forma mas avanzada, pero es el siguiente paso después
 de dominar al actor ``Tortuga``.
@@ -109,7 +109,7 @@ de dominar al actor ``Tortuga``.
 Este actor ``Pizarra`` es cómo un lienzo invisible sobre
 el que podemos pintar imágenes, figuras
 geométricas y trazos de cualquier tipo. De hecho, el actor
-``Tortuga`` que vimos antes en realizada estaba
+``Tortuga`` que vimos antes, en realidad estaba
 dibujando sobre una pizarra, solo que lo hacía con
 animaciones y algo lento.
 

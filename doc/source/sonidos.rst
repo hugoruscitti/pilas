@@ -21,7 +21,7 @@ sonidos que trae pilas.
 Reproducir
 ----------
 
-La función ``sound.cargar`` nos retorna un objeto de tipo
+La función ``sonidos.cargar`` nos retorna un objeto de tipo
 ``Sonido`` que tiene un método para reproducirse llamado
 ``reproducir()``.
 

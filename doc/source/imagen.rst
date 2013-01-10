@@ -28,7 +28,7 @@ en pantalla:
     imagen = pilas.imagenes.cargar("mi_personaje.png")
     actor = pilas.actores.Actor(imagen)
 
-otra opcione similar es crear al actor, y luego
+otra opción similar es crear al actor, y luego
 asignarle la imagen:
 
 .. code-block:: python
@@ -161,7 +161,7 @@ filas.
 
 Cuando usas una grilla con pilas y columnas, la función ``avanzar``
 que vimos antes va a recorriendo los cuadros de la misma
-manera en que se leer una historieta (de izquierda
+manera en que se lee una historieta (de izquierda
 a derecha y de arriba a abajo).
 
 Esta es la apariencia de la imágen que usamos antes y

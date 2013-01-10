@@ -361,7 +361,7 @@ hace ``click`` en la pantalla:
 
     pilas.eventos.click_de_mouse.conectar(crear_bomba)
 
-Si queremos que el mouse deje de crear bombas podemos
+Si queremos que el mouse deje de crear bombas, podemos
 ejecutar la función ``desconectar``:
 
 .. code-block:: python
@@ -420,11 +420,11 @@ argumentos o detalles:
     [ etc...]
 
 Los argumentos indican información adicional del evento, en
-el caso del click observarás que los argumentos con el botón pulsado
+el caso del click, observarás que los argumentos son el botón pulsado
 y la coordenada del puntero.
 
-Cuanto se quiere notificar a las funciones conectadas a
-un eventos simplemente se tiene que invocar al método ``emitir``
+Cuando se quiere notificar a las funciones conectadas a
+un evento simplemente se tiene que invocar al método ``emitir``
 del evento y proveer los argumentos que necesita:
 
 .. code-block:: python
@@ -517,7 +517,7 @@ archivo ``mundo.py```:
 
 
 Aquí puedes ver dos llamadas a métodos del actor, el método
-``actualizar`` se creó para que cada programar escriba
+``actualizar`` se creó para que cada programador escriba
 ahí lo que quiera que el personaje haga (leer el teclado, 
 hacer validaciones, moverse etc). Y el método ``actualizar_habilidades``
 es el encargado de *dar vida* a las habilidades.

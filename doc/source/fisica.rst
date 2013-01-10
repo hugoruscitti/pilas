@@ -10,7 +10,7 @@ El protagonista es Box2D
 ------------------------
 
 El motor de física seleccionado para pilas se llama Box2D, el mismo
-motor de física utilizando en el juego Angry Birds.
+motor de física utilizado en el juego Angry Birds.
 
 Así, Box2D y PyBox2D son las bibliotecas protagonistas
 de casi toda la funcionalidad que vas a ver en este módulo.
@@ -202,9 +202,9 @@ que escribir ``circulo_dinamico.y = 200`` para mover al actor...
 
 Otra cosa a considerar, es que en nuestro ejemplo no ajustamos
 muy bien el tamaño del ``circulo_dinamico`` con el de la
-bomba. Esto es un detalles poco relevante aquí, porque solo
-quiero explicar cómo se usar el motor, pero cuando hagas tus
-juegos recuerda usar el modo depuración de física para detectar
+bomba. Esto es un detalle poco relevante aquí, porque solo
+quiero explicar cómo se usa el motor, pero cuando hagas tus
+juegos, recuerda usar el modo depuración de física para detectar
 estos detalles y corregirlos, son muy importantes para que
 tus usuarios disfruten del juego. Recuerda que ellos no
 verán los círculos rojos... solo verán la apariencia
