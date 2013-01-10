@@ -11,6 +11,6 @@ title: Donaciones
      <a class="boton boton-donar200" href="#" title=""><span class="hide">donar $200</span></a>
      <a class="boton boton-donar500" href="#" title=""><span class="hide">donar $500</span></a>
      <a class="boton boton-donar900" href="#" title=""><span class="hide">donar $900</span></a>
-</div><!-- .margin20 -->
+</div>
 
 <p class="center">El equipo de pilas-engine agradece mucho tu colaboración. :)</p>
