@@ -7,7 +7,7 @@ una rutina o tarea para que la realicen.
 
 En pilas usamos el concepto de comportamiento. Un
 comportamiento es un objeto que le dice a
-un actor que debe hacer en todo momento.
+un actor qué debe hacer en todo momento.
 
 La utilidad de usar componentes es que puedes
 asociarlos y intercambiarlos libremente para
@@ -51,7 +51,7 @@ sola vez:
     pilas.ejecutar()
 
 De hecho, tenemos una variante que puede ser un poco
-mas interesante, decirle al mono que repita estas tareas todo
+mas interesante; decirle al mono que repita estas tareas todo
 el tiempo:
 
 .. code-block:: python

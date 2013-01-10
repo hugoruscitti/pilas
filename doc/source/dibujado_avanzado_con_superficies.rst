@@ -8,7 +8,7 @@ de pizarra.
 
 Pero hay situaciones donde realmente necesitamos
 algo mas. En muchas ocasiones necesitamos que
-los actores se puedan tener una apariencia que
+los actores puedan tener una apariencia que
 construimos programáticamente (si existe la palabra...).
 
 Por ejemplo, imagina que queremos hacer un indicador

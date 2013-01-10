@@ -17,7 +17,7 @@ Cosas a tener en cuenta
 -----------------------
 
 Hay algunas cosas a tener en cuenta
-a la hora de manejar escenaas, porque
+a la hora de manejar escenas, porque
 simplifican mucho el trabajo posterior:
 
 - La escena actual siempre está señalada por el atributo ``pilas.escena_actual()``.
@@ -38,7 +38,7 @@ escena limpia.
 Cambiando el fondo de las escenas
 ---------------------------------
 
-Para hacer un pequeña prueba sobre una
+Para hacer una pequeña prueba sobre una
 escena, podrías ejecutar la siguiente sentencia
 de código:
 

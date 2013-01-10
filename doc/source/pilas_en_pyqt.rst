@@ -21,7 +21,7 @@ Con esto en mente vamos a proponernos un proyecto:
 
     Desarrollaremos una aplicación PyQt que muestre algunos actores en pantalla
     y al hacerle click sobre alguno nos permita seleccionar una imagen desde
-    un archivo para reemplazar desde a la del actor.
+    un archivo para reemplazar a la del actor.
 
 La estructura de objetos que manejaremos sera la siguiente:
 
