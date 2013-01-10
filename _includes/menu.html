@@ -7,7 +7,7 @@
                 {% assign current = 'active' %}
             {% endif %}
 
-            <li class="nav-list-item{% if forloop.first %}first{% endif %} {{ current }} {% if forloop.last %}nav-list-item-last{% endif %}"><a class="{{ current }}" href="{{ link.url }}">{{ link.text }}</a></li>
+            <li class="nav-list-item{% if forloop.first %}first{% endif %} {{ current }} {% if forloop.last %}nav-list-item-last{% endif %}"><a class="{{ current }}" href=".{{ link.url }}">{{ link.text }}</a></li>
 
           {% endfor %}
           </ul>
