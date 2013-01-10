@@ -3,11 +3,12 @@ layout: base
 title: Descargas
 ---
 
-<h2 class="title">Descargas</h2>
 
-<p>Ten en cuenta que hay varios tutoriales para instalar pilas en distintos sistemas. Es aconsejable que visites la <a href="#">sección de tutoriales</a> antes de continuar.</p>
+# Descargas
 
-<h3 class="title">Versiones Empaquetadas</h3>
+Ten en cuenta que hay varios tutoriales para instalar pilas en distintos sistemas. Es aconsejable que visites la <a href="#">sección de tutoriales</a> antes de continuar.
+
+## Versiones Empaquetadas
 
 <ul class="versions">
      <li><a href="#">Descargar pilas 0.71 para Windows</a></li>
@@ -15,12 +16,13 @@ title: Descargas
      <li><a href="#">Descargar pilas 0.71 para Ubuntu y Debian GNU/Linux</a></li>
 </ul>
 
-<h3 class="title">Otras opciones de instalación</h3>
+## Otras opciones de instalación
 
-<p>Si quieres obtener e instalar la versión estable de pilas de manera más sencilla puedes usar el siguiente comando:
+Si quieres obtener e instalar la versión estable de pilas de manera más sencilla puedes usar el siguiente comando:
 
-<pre>sudo easy_install pilas</pre>
+{% highlight %}
+sudo easy_install pilas
+{% endhighlight %}
 
-<p>Y si quieres la versión mas reciente, con muchas mejoras y ejemplos, puedes ejecutar el siguiente comando y obtener el repositorio completo:</p>
-
-<pre>git clone https://github.com/hugoruscitti/pilas.git</pre>
+Y si quieres la versión mas reciente, con muchas mejoras y ejemplos, puedes descargar 
+nuestro repositorio desde <a href='https://github.com/hugoruscitti/pilas'>github</a>
