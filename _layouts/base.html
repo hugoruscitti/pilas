@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang='es'>
+
+  <head>
+    <title>Pilas Engine - {{page.title}}</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="shortcut icon" href="./images/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="css/{{ page.css }}" />
+    <link rel="stylesheet" type="text/css" href="css/pygments.css" />
+
+    <!--
+    <script type="text/javascript" src="js/vendor/jquery-1.8.3.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        var pathname = window.location.pathname;
+
+        $("#navlist a").each(function(index) {
+          if (pathname.toUpperCase().indexOf($(this).text().toUpperCase()) != -1)
+          $(this).addClass("active");
+        });
+
+        if ($("a.current").length == 0)
+            $("a#index").addClass("active");
+      });
+    </script>
+    -->
+  </head>
+  
+  <body>
+
+    <div id="container" class="container_12">
+      <div id="header" role="banner" class="grid_12 clearfix">
+        <h1 id="logo"><a title="Pilas Engine" href="/"><span>Pilas Engine</span></a></h1>
+
+        <nav id="access" class="navigation" role="natigation">
+          <ul id='navlist'>
+            <li><a href="index.html" title="">Home</a></li>
+            <li><a href="foro.html" title="">Comunidad</a></li>
+            <li><a href="galeria.php" title="">Imágenes</a></li>
+            <li><a href="videos.php" title="">Videos</a></li>
+            <li><a href="docs.php" title="">Documentación</a></li>
+            <li><a href="descargas.php" title="">Descargas</a></li>
+            <li><a href="donaciones.php" title="">Doná</a></li>
+            <li><a href="test.html" title="">Test</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div id="main" class="grid_12 clearfix">
+        {{ content }}
+      </div>
+
+      <div id="footer" class="grid_12 clearfix">
+        <a href="#" class="logo"><span class="hide">pilas engine</a>
+          <nav class="navigation" role="natigation">
+          <ul>
+            <li><a href="./" title="">Home</a></li>
+            <li><a href="galeria.php" title="">Imágenes</a></li>
+            <li><a href="videos.php" title="">Videos</a></li>
+            <li><a href="docs.php" title="">Documentación</a></li>
+            <li><a href="descargas.php" title="">Descargas</a></li>
+            <li><a href="donaciones.php" title="">Doná</a></li>
+          </ul>
+          </nav>
+
+          <div id="github-star"><iframe src="http://ghbtns.com/github-btn.html?user=hugoruscitti&repo=pilas&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></div>
+          <div id="github-fork"><iframe src="http://ghbtns.com/github-btn.html?user=hugoruscitti&repo=pilas&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe></div>
+
+        </div>
+      </div>
+
+      <script type="text/javascript" src="//use.typekit.net/lqu4btl.js"></script>
+      <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    </body>
+</html>
