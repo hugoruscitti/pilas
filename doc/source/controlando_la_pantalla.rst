@@ -64,7 +64,7 @@ Todos los actores tienen atributos cómo:
 
 que sirven para cambiar la posición del actor dentro de la escena.
 
-También encontrarás atributos que permite hacer lo mismo pero
+También encontrarás atributos que permiten hacer lo mismo, pero
 tomando como referencia alguno de los bordes del
 actor. Por ejemplo:
 

@@ -51,7 +51,7 @@ Todas las escenas de tu juego deben heredar ahora de `pilas.escena.Base`.
 
     class MiEscena(pilas.escena.Base):
 
-Y el otro cambio que debes realizar en la escenas es que el metodo ``__init__(self)`` no debe
+Y el otro cambio que debes realizar en las escenas es que el método ``__init__(self)`` no debe
 contener nada más que la llamada al ``__init__`` de la escena Base
 
 .. code-block:: python

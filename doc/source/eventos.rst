@@ -37,7 +37,7 @@ Los ``eventos`` no disparan ninguna acción automática, nosotros
 los programadores somos los que tenemos que elegir los
 eventos importantes y elegir que hacer al respecto.
 
-Para utilidad a estas señales tenemos que vincularlas a funciones, de
+Para utilizar estas señales, tenemos que vincularlas a funciones, de
 forma que al emitirse la señal podamos ejecutar código.
 
 La función ``conectar``
@@ -129,7 +129,7 @@ De todas formas, puede que quieras conectar una señal, y por
 algún motivo desconectarla. Por ejemplo si el juego cambia
 de estado o algo así...
 
-Si ese es tú caso, simplemente asignarle un identificador único
+Si ese es tu caso, simplemente asígnale un identificador único
 al manejador de la señal y luego usa la función ``desconectar_por_id`` indicando
 el identificador.
 
@@ -140,7 +140,7 @@ Por ejemplo, las siguientes sentencias muestran eso:
     pilas.eventos.mueve_mouse.conectar(imprimir_posicion, id='drag')
     pilas.eventos.mueve_mouse.desconectar_por_id('drag')
     
-En la primer sentencia conecté la señal del evento a una función y le di
+En la primera sentencia conecté la señal del evento a una función y le di
 un valor al argumento ``id``. Este valor será el identificador
 de ese enlace. Y en la siguiente linea se utilizó el identificador
 para desconectarla.

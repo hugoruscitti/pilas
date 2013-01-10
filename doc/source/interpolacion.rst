@@ -20,7 +20,7 @@ es asignarle todos los valores en forma de lista:
 
 .. code-block:: python
 
-    actor.x = range(10, 100)
+    actor.x = range(10, 100, 10)
 
 o lo que es lo mismo:
 
@@ -77,6 +77,7 @@ podemos hacer algo como:
 
 .. code-block:: python
 
+    actor.rotacion = 0
     actor.rotacion = pilas.interpolar(360, duracion=5)
 
 con lo que estaríamos diciendo al personaje que dé un

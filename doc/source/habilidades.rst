@@ -88,7 +88,7 @@ mezclando habilidades.
 Otras habilidades para investigar
 ---------------------------------
 
-Pilas viene con varias habiliades incluidas, pero
+Pilas viene con varias habilidades incluidas, pero
 lamentablemente este manual no las menciona a todas. Así
 que te recomendamos abrir un intérprete de python
 y consultarle directamente a él que habilidades tienes
