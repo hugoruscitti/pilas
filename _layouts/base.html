@@ -9,23 +9,6 @@
     <link rel="stylesheet" type="text/css" href="css/{{ page.css }}" />
     <link rel="stylesheet" type="text/css" href="css/pygments.css" />
 
-    <!--
-    <script type="text/javascript" src="js/vendor/jquery-1.8.3.min.js"></script>
-
-    <script>
-      $(document).ready(function() {
-        var pathname = window.location.pathname;
-
-        $("#navlist a").each(function(index) {
-          if (pathname.toUpperCase().indexOf($(this).text().toUpperCase()) != -1)
-          $(this).addClass("active");
-        });
-
-        if ($("a.current").length == 0)
-            $("a#index").addClass("active");
-      });
-    </script>
-    -->
   </head>
   
   <body>
@@ -36,14 +19,17 @@
 
         <nav id="access" class="navigation" role="natigation">
           <ul id='navlist'>
-            <li><a href="index.html" title="">Home</a></li>
-            <li><a href="foro.html" title="">Comunidad</a></li>
-            <li><a href="galeria.html" title="">Imágenes</a></li>
-            <li><a href="videos.html" title="">Videos</a></li>
-            <li><a href="docs.html" title="">Documentación</a></li>
-            <li><a href="descargas.html" title="">Descargas</a></li>
-            <li><a href="donaciones.html" title="">Doná</a></li>
-            <li><a href="test.html" title="">Test</a></li>
+
+          {% for link in site.navigation %}
+            {% assign current = nil %}
+
+            {% if page.url == link.url %}
+                {% assign current = 'active' %}
+            {% endif %}
+
+            <li class="nav-list-item{% if forloop.first %}first{% endif %} {{ current }} {% if forloop.last %}nav-list-item-last{% endif %}"><a class="{{ current }}" href="{{ link.url }}">{{ link.text }}</a></li>
+
+          {% endfor %}
           </ul>
         </nav>
 

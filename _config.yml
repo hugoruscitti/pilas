@@ -1,3 +1,21 @@
 safe: true
 lsi: false
 pygments: true
+
+navigation:
+- text: Home
+  url: /index.html
+- text: Comunidad
+  url: /foro.html
+- text: Imágenes
+  url: /galeria.html
+- text: Videos
+  url: /videos.html
+- text: Documentación
+  url: /docs.html
+- text: Descargas
+  url: /descargas.html
+- text: Doná
+  url: /donaciones.html
+- text: Test
+  url: /test.html
