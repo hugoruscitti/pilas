@@ -41,7 +41,12 @@ a:hover{ color:#127bb0; }
 .boton-donar900:hover{ background-position:0px -429px;  }
 
 
-pre{ padding: 10px; font-size:16px; background: rgb(100, 100, 100)}
+pre{ padding: 10px; font-size:16px; background: rgb(100, 100, 100);
+
+    border: 1px solid black;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
 
 #container{ margin-top:10px;}
      
