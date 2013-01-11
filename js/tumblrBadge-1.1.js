@@ -5,7 +5,7 @@ var tumblrBadge = function () {
 		userName : "pilas-engine", // Your Tumblr user name
 		itemsToShow : 5, // Number of Tumblr posts to retrieve
 		itemToAddBadgeTo : "tumblr-badge", // Id of HTML element to put badge code into
-		imageSize : 100, // Values can be 75, 100, 250, 400 or 500
+		imageSize : 250, // Values can be 75, 100, 250, 400 or 500
 		shortPublishDate : true, // Whether the publishing date should be cut shorter
 		timeToWait : 2000 // Milliseconds, 1000 = 1 second
 	};
