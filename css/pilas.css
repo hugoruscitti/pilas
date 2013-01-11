@@ -12,7 +12,7 @@ html,body{
 .center{ text-align:center; }
 .aligncenter, div.aligncenter { display:block; margin: 5px auto 5px auto;}
 .margin20{margin-top:20px;}
-p{margin: 1em;}
+p{margin: 1em 0;}
 strong{font-weight:700; }
 em{ font-style: italic; }
 ul li{}
@@ -72,7 +72,7 @@ pre{ padding: 10px; font-size:16px; background: rgb(100, 100, 100);
                .feature p{ font-size:16px; }
           #primary{}
           .post{ margin-top:10px; }
-          .gallery img{ -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); margin: 0.5em; }
+          .gallery img{ -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); margin: 0.5em 0; }
           
           #secondary{}
           
