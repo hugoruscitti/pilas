@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <link rel="shortcut icon" href="./images/favicon.png"/>
+    {% if page.css %}
     <link rel="stylesheet" type="text/css" href="css/{{ page.css }}" />
+    {% endif %}
     <link rel="stylesheet" type="text/css" href="css/pygments.css" />
 
     <script type="text/javascript">
