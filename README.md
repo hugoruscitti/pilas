@@ -25,11 +25,16 @@ Una vez instalado rvm, podemos hacer:
     sudo gem install jekyll
     sudo apt-get install python-pygments
 
-luego, ingresar en el directorio de pilas y ejecutar:
+## Edición en modo desarrollo
+
+Ejecuta el siguiente comando:
 
     jekyll --auto --server
 
-el sitio debería estar disponible en http://localhost:4000
+y el sitio será accesible desde http://localhost:4000
+
+Todos los cambios que hagas a los fuentes se visualizarán
+después de hacer 'refresh' sobre el navegador.
 
 ## Links útiles
 
