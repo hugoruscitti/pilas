@@ -61,8 +61,9 @@ pre{ padding: 10px; font-size:16px; background: rgb(100, 100, 100);
      
      #main{ margin-top:10px; }
      #main .tagline{ font-weight:300; margin-top:50px; margin-bottom:50px;  font-size:60px; text-align:center; line-height:1.2;  }
-     #main h2.title{ font-weight:300; margin-top:15px; margin-bottom:15px;  font-size:60px; text-align:left; line-height:1.2; border-bottom:1px solid #000;  }
-     #main h3.title{ font-weight:400; margin-top: 2em; margin-bottom:10px;  font-size:26px; text-align:left; line-height:1.2; border-bottom:1px solid #000;  }
+     #main h1{ font-weight:300; margin-top:15px; margin-bottom:15px;  font-size:60px; text-align:left; line-height:1.2; }
+     #main h2{ font-weight:300; margin-top:15px; margin-bottom:15px;  font-size:40px; text-align:left; line-height:1.2; }
+     #main h3{ font-weight:400; margin-top: 2em; margin-bottom:10px;  font-size:26px; text-align:left; line-height:1.2; }
      #main .small{ font-size:16px; }
      #main .versions{ font-size:18px; }
      #main .versions li{ margin-top:5px; }  
@@ -105,5 +106,15 @@ ul.tumblr {
     ul.tumblr li a.tumblr-post-date {
         font-size: small;
         color: gray;
+    }
+
+
+
+ul#descargas {
+}
+
+    ul#descargas li {
+        margin-left: 1em;
+        margin-bottom: 7px;
     }
 

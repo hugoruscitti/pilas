@@ -3,24 +3,23 @@ layout: base
 title: Descargas
 ---
 
-
 # Descargas
 
-Ten en cuenta que hay varios tutoriales para instalar pilas en distintos sistemas. Es aconsejable que visites la <a href="#">sección de tutoriales</a> antes de continuar.
+Elige tu sabor favorito:
 
-## Versiones Empaquetadas
+<ul id='descargas'>
+ <li><a href='#'><img width=16 height=16 src='images/windows.png'> Windows</a></li>
+ <li><a href='#'><img width=16 height=16 src='images/platform_mac.png'> Mac OS X</a></li>
+ <li><a href='#'><img width=16 height=16 src='images/ico-ubuntu.png'> Ubuntu Linux</a></li>
+ <li><a href='#'><img width=16 height=16 src='images/menu_pack.gif'> Código fuente</a></li>
+</ul>
 
-- Descargar pilas 0.71 para Windows
-- Descargar pilas 0.71 para Mac OS X
-- Descargar pilas 0.71 para Ubuntu y Debian GNU/Linux
 
 ## Otras opciones de instalación
 
-Si quieres obtener e instalar la versión estable de pilas de manera más sencilla puedes usar el siguiente comando:
+Existe una versión desarrollo de pilas, en donde los programadores del
+motor estamos trabajando en las siguientes funcionalidades y varios experimentos.
 
-{% highlight python %}
-sudo easy_install pilas
-{% endhighlight %}
-
-Y si quieres la versión mas reciente, con muchas mejoras y ejemplos, puedes descargar 
-nuestro repositorio desde <a href='https://github.com/hugoruscitti/pilas'>github</a>
+Visita
+nuestro repositorio en <a href='https://github.com/hugoruscitti/pilas'>github</a> y ayúdanos
+a mejorar pilas :)
