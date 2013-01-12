@@ -111,10 +111,14 @@ ul.tumblr {
 
 
 ul#descargas {
+    margin: 2em;
+    text-align: center;
 }
+
 
     ul#descargas li {
         margin-left: 1em;
         margin-bottom: 7px;
+        display: inline;
     }
 
