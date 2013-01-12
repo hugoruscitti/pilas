@@ -3,13 +3,25 @@ layout: base
 title: Videos
 ---
 
-<h2 class="title">Videos</h2>
-<p>En esta sección encontrarás videos con demostraciones técnicas y didácticas del motor pilas.</p>
+# Videos
+
+Aquí encontrarás charlas y tutoriales en videos para comenzar a programar.
+
+
+## Presentaciones
+
+<div class="post" id="presentacion-de-pilas-en-betabeers-bs-as-marzo-2012">
+ <h5>Presentación de pilas en betabeers Bs. As. Marzo 2012</h5>
+ <iframe width="640" height="480" src="http://www.youtube.com/embed/sQhxjLoJlZs" frameborder="0" allowfullscreen></iframe>
+ 
+</div>
 
 <div class="post" id="presentacion-de-pilas-en-betabeers-bs-as-marzo-2012">
  <h3>Presentación de pilas en betabeers Bs. As. Marzo 2012</h3>
  <iframe width="420" height="315" src="http://www.youtube.com/embed/-Z6Qi_B9QSA" frameborder="0" allowfullscreen="1"></iframe>
 </div>
+
+
 
 <div class="post" id="haciendo-videojuegos-con-pilas-pyday-2011">
  <h3>Haciendo videojuegos con pilas (pyday 2011)</h3>
