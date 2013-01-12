@@ -48,7 +48,7 @@ de actores chocando entre sí. Mas adelante veremos
 como personalizar y "controlar" un poco el escenario.
 
 
-.. image:: images/fisica.jpg
+.. image:: images/pilas-0.75/fisica.jpg
     :width: 100%
 
 
