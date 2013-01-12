@@ -10,15 +10,20 @@ al actor y escribir estas sentencias.
 
 .. code-block:: python
 
-    if pilas.mundo.control.izquierda:
+    if pilas.escena_actual().control.izquierda:
         mono.x -= 1
-    elif pilas.mundo.control.derecha:
+    elif pilas.escena_actual().control.derecha:
         mono.x += 1
 
 Esta no es la única forma de mover a un personaje por
 la pantalla, pero suele ser la mas conveniente porque
 es muy directa, y se puede escribir en cualquier parte
 del código.
+
+.. note::
+    Recuerda que para poder interactuar con el teclado, debes seleccionar la
+    ventana de resultado. Haz click en la parte de arriba del intérprete de
+    pilas para seleccionarla.
 
 Investigando al objeto control
 ------------------------------
@@ -64,12 +69,10 @@ así:
             self.imagen = pilas.imagenes.cargar("aceituna.png")
 
         def actualizar(self):
-            if pilas.mundo.control.izquierda:
+            if pilas.escena_actual().control.izquierda:
                 self.x -= 10
 
-            if pilas.mundo.control.derecha:
-                self.x += 10                                                                  
+            if pilas.escena_actual().control.derecha:
+                self.x += 10
 
     MiActor()
-    pilas.ejecutar()
-
