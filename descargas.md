@@ -15,6 +15,7 @@ Elige tu sabor favorito:
 </ul>
 
 
+
 ## Otras opciones de instalación
 
 Existe una versión desarrollo de pilas, en donde los programadores del
