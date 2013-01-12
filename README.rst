@@ -15,8 +15,6 @@ Instalación en ubuntu
     sudo apt-get install python-setuptools python-qt4
     git clone http://github.com/hugoruscitti/lanas
     cd lanas
-    git submodule init
-    git submodule update
     sudo python setup.py install
 
 
@@ -25,11 +23,4 @@ Instalación en Mac OSX
 
 Similar a los pasos en ubuntu, solo que hay que usar homebrew_ para instalar pyqt4.
 
-
-Gracias!
---------
-
-A los desarrolladores kanzen_ por su magnifica biblioteca.
-
-.. _kanzen: https://github.com/ninja-ide/kanzen
 .. _homebrew: http://mxcl.github.com/homebrew/

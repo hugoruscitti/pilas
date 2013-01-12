@@ -80,9 +80,9 @@ class CompletionTextEdit(QtGui.QTextEdit):
     def autocomplete(self, event):
         word = self._get_current_word() + event.text()
 
-        if not event.text() or event.text() == '.':
-            self.completer.popup().hide()
-            return False
+        #if not event.text() or event.text() == '.':
+        #    self.completer.popup().hide()
+        #    return False
 
         if self.completer and self.completer.popup().isVisible():
             if event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return, QtCore.Qt.Key_Escape):

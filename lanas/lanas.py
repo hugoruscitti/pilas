@@ -3,8 +3,6 @@ import sys
 import os
 os.environ['lanas'] = 'enabled'
 
-sys.path.append("kanzen")
-
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
