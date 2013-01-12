@@ -45,30 +45,6 @@
     })();
 
     </script>
-
-    <script>
-      alert("hola?");
-    handleSizingResponse = function(e) {
-      alert('respuesta');
-      alert(e);
-
-        if(e.origin == 'http://foro-pilasengine.com.ar') {
-          var action = e.data.split(':')[0]
-          if(action == 'sizing') {
-            resizeCanvas(e.data.split(':')[1]);
-            } else {
-            console.log("Unknown message: "+e.data);
-          }
-        }
-    }
-
-    window.addEventListener('message', handleSizingResponse, false);
-
-
-    iframe = document.getElementById('ifrm');
-    iframe.contentWindow.postMessage('sizing?', 'http://foro-pilasengine.com.ar');
-    </script>
-
   </head>
   
   <body>
