@@ -5,49 +5,63 @@ Si ya tienes instalada la biblioteca podemos
 comenzar a realizar nuestros primeros pasos
 con la biblioteca.
 
-Para empezar, **pilas** se puede usar directamente
-desde un intérprete interactivo de python.
+**pilas** incluye un intérprete interactivo
+que te permite escribir código de python y
+autocompletar el nombre de las funciones.
+Aunque si quieres, puedes usar el intérprete
+estándar de python, abriendo un terminal de
+texto y ejecutando el comando ``python``.
 
-Mi recomendación personal es que utilices una
-herramienta como ``ipython``, que te permite escribir
-código de python y autocompletar el nombre
-de las funciones. Aunque si
-quieres puedes usar el intérprete estándar
-de python, abriendo un terminal de texto y
-ejecutando el comando ``python``.
+Iniciando pilas
+---------------
+
+Para ejecutar el asistente de **pilas**,
+abre un terminal y ejecuta el comando
+``pilas``.
+
+En tu pantalla tiene que aparecer una ventana como esta.
+
+.. image:: images/pilas-0.75/asistente.jpg
+    :width: 100%
+
+Intérprete de pilas
+-------------------
+
+Haz click en **Abrir intérprete** y aparecerá esta ventana.
+
+.. image:: images/pilas-0.75/interprete.jpg
+    :width: 100%
+
+La ventana se divide en dos partes. La parte de abajo muestra el editor. Todo lo
+que escribas en el editor se ejecutará automáticamente. El resultado se muestra
+en la parte de arriba.
 
 Iniciando la biblioteca
 -----------------------
 
-Una vez dentro del intérprete, tienes
-que escribir estas dos lineas de código:
+La parte de arriba es la que utilizaremos para interactuar
+con el motor. Y mas adelante será la única pantalla
+que verán los usuarios de nuestros juegos.
+
+Puedes ver que el intérprete viene con algunas líneas de ejemplo.
 
 .. code-block:: python
 
     import pilas
+
     pilas.iniciar()
+    mono = pilas.actores.Mono()
 
-En tu pantalla tiene que aparecer una ventana
-de color gris:
+La línea ``import pilas`` le dice a Python que use la librería pilas. La función
+``pilas.iniciar()`` prepara la ventana (entre otras cosas) para empezar a usar
+pilas. La línea ``mono = pilas.actores.Mono()``, por una parte crea un personaje
+con forma de mono (**pilas.actores.Mono()**) y, por otra parte, le da el nombre de
+**mono**.
 
-.. image:: images/cap1.png
-    :width: 100%
+La función ``pilas.iniciar()`` tiene mas parámetros, pero los veremos mas
+adelante. Por ahora, continuaremos con lo básico.
 
-La función iniciar tiene mas parámetros, pero
-los veremos mas adelante, por ahora continuaremos
-con lo básico.
-
-Esa pantalla será la que utilizaremos para interactuar
-con el motor. Y mas adelante será la única pantalla
-que verán los usuarios de nuestros juegos.
-
-A partir de ahora comenzaremos a escribir algunos
-ejemplos. Ten en cuenta que no es necesario que
-escribas todo el código de los ejemplos, el intérprete de python
-te permite autocompletar sentencias usando la tecla ``Tab``. 
-
-
-Creando al primer personaje
+Creando personajes
 ---------------------------
 
 Un concepto importante en :mod:`pilas` es del de ``actores``. Un
@@ -57,28 +71,15 @@ una posición determinada y se puede manipular.
 Por ejemplo, una nave, un enemigo, una medalla... etc.
 
 Para agilizar el desarrollo de juegos se incluyen varios
-actores dentro del motor, un de ellos es ``Mono``, un
+actores dentro del motor, uno de ellos es ``Mono``, un
 simpático chimpancé.
 
-Escriba la siguiente sentencia dentro del intérprete de
-python:
-
-.. code-block:: python
-
-    mono = pilas.actores.Mono()
-
-En pantalla aparecerá un simpático personaje de color marrón:
-
-.. image:: images/cap2.png
-    :width: 100%
-
-Adoptaremos a este personaje dentro de nuestro juego
-bajo un nombre, en este caso ``mono``. Así que para indicarle
+Tenemos al actor ``mono``. Para indicarle
 acciones solo tenemos que utilizar su nombre y sentencias
 simples.
 
-Por ejemplo, para que el personaje cambie su expresión
-fácil podemos usar sentencias cómo:
+Por ejemplo, para que el personaje cambie su expresión,
+podemos usar sentencias cómo:
 
 
 .. code-block:: python
@@ -92,14 +93,14 @@ o:
     mono.gritar()
 
 
-En cualquiera de los dos casos el personaje
+En cualquiera de los dos casos, el personaje
 cambiará su aspecto y emitirá un sonido.
 
 .. image:: images/mono/smile.png
     :width: 5cm
 
 
-incluso podríamos decirle al personaje
+Incluso podríamos decirle al personaje
 que tiene que hablar algo, por ejemplo:
 
 .. code-block:: python
@@ -112,6 +113,11 @@ personaje de comic:
 
 .. image:: images/mono/decir.png
     :width: 75%
+
+A partir de ahora, comenzaremos a escribir algunos
+ejemplos. Ten en cuenta que no es necesario que
+escribas todo el código de los ejemplos, el intérprete de pilas
+te permite autocompletar sentencias mientras escribes. 
 
 Cosas en común para los actores
 -------------------------------
@@ -144,6 +150,10 @@ de la ventana. Y ``x`` aumenta hacia la derecha e ``y`` hacia arriba.
 Este espacio de referencia se puede observar en detalle si pulsas
 la tecla **F12**, ahí observarás que el movimiento del mouse
 está asociado a una coordenada y cada actor también.
+
+.. note::
+    Para que tenga efecto, debes tener seleccionada la ventana de resultado
+    (parte de arriba). Haz click sobre ella antes de pulsar F12.
 
 
 Escala
@@ -200,7 +210,7 @@ vuelta completa:
 
 ¿por qué?, porque los caracteres ``[`` y ``]`` representan
 una lista de valores, y cuando pilas ve esta lista asignada
-a un atributo de pilas intenta hacer una animación.
+a un atributo de pilas, intenta hacer una animación.
 
 Veamos otro ejemplo, si queremos que un personaje
 como el mono se mueva horizontalmente con una animación
@@ -213,11 +223,14 @@ podemos escribir esto:
 
 Estas animaciones las veremos mas adelante, pero
 de todas formas es interesante observar que son
-listas comunes y corrientes, así que podríamos
-multiplicarlas (para repetir la animación):
+listas comunes y corrientes.
+
+Python permite multiplicar listas, así que podríamos multiplicarlas para repetir
+la animación.
 
 .. code-block:: python
 
+    # Sólo en python.
     mono.x = [-200, 200] * 5 # ir de una lado a otro 5 veces.
 
 
@@ -233,7 +246,7 @@ Pidiendo ayuda
 --------------
 
 Recuerda que cada componente de :mod:`pilas` está documentado
-como un módulo de python. Por lo tanto puedes
+como un módulo de python. Por lo tanto, puedes
 ejecutar una sentencia cómo:
 
 .. code-block:: python
@@ -272,7 +285,7 @@ actores. Ten en cuenta que el módulo :mod:`pilas.actores` es
 donde se guardarán todos los actores.
 
 Un buen ejercicio es ponerse a investigar el módulo
-actores. Hay muchos actores, estos son algunos ejemplos
+**actores**. Hay muchos actores, estos son algunos ejemplos
 de código para probar:
 
 .. code-block:: python
@@ -283,8 +296,8 @@ de código para probar:
     p = pilas.actores.Pingu()    # se mueve con el teclado.
 
 
-.. image:: images/resultado_parte_1.png
-    :width: 75%
+.. image:: images/resultado_parte_1.jpg
+    :width: 50%
 
 Es todo por ahora, seguí leyendo o comenzá
 a explorar por tu cuenta. A divertirse!

@@ -37,13 +37,13 @@ en la pantalla de su juego:
 Ahora pulsá la tecla **F12** para ver la posición de cada
 uno de los actores:
 
-.. image:: images/mono_colisiones.png
+.. image:: images/mono_colisiones.jpg
 
 
 Si pulsas **F9**, aparecerá un circulo verde por cada actor. Ese
 círculo indica el radio de colisión de cada actor:
 
-.. image:: images/mono_colisiones1.png
+.. image:: images/mono_colisiones1.jpg
 
 Este círculo se puede alterar cambiando el valor del ``radio_de_colision``
 del actor:
@@ -108,7 +108,7 @@ sencilla es ejecutar lo siguiente:
 
 La pantalla se llenará de bananas, bah, habrá exactamente 20...
 
-.. image:: images/colisiones_muchas_bananas.png
+.. image:: images/colisiones_muchas_bananas.jpg
 
 De hecho, si quieres tener mas control sobre las bananas
 que se crearán, puedes usar esta rutina de código

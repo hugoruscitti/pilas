@@ -68,7 +68,8 @@ en el directorio ``ejemplos``. Tiene tres deslizadores, y
 el usuario puede regular cualquiera de los tres para ver
 los cambios en el actor:
 
-.. image:: images/deslizador.png
+.. image:: images/deslizador.jpg
+    :width: 90%
 
 
 Para construir un deslizador y asociarlo a una función
@@ -103,6 +104,9 @@ Selector
 
 El selector te permite seleccionar una opción con
 dos valores: habilitado, deshabilitado.
+
+.. image:: images/selector.png
+    :width: 90%
 
 Se puede usar para opciones cómo habilitar o deshabilitar
 el modo pantalla completa o algo así.
