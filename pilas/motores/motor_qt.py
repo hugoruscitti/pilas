@@ -888,7 +888,8 @@ class Motor(object):
         self.canvas.setCursor(QtGui.QCursor(Qt.ArrowCursor))
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
-        sys.exit(self.app.exec_())
+        if getattr(self, 'app', None):
+            sys.exit(self.app.exec_())
 
     def definir_centro_de_la_camara(self, x, y):
         self.camara_x = x

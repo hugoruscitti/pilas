@@ -82,7 +82,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
                 mundo.motor.ventana.show()
     else:
         mundo.motor.modificar_ventana(ancho, alto, titulo, pantalla_completa)
-        mundo.fisica.definir_gravedad(*gravedad)
+        escena_actual().fisica.definir_gravedad(*gravedad)
 
 
 def esta_inicializada():
