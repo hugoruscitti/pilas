@@ -49,9 +49,11 @@ class VentanaAsistente(Ui_AsistenteWindow):
             version_instalada = float(pilas.pilasversion.VERSION)
 
             if version_en_el_servidor == version_instalada:
-                mensaje = "(actualizada)"
+                mensaje = "- actualizada"
+            elif version_en_el_servidor < version_instalada:
+                mensaje = u"- desarrollo (versión estable en la web: %.2f)" %(version_en_el_servidor)
             else:
-                mensaje = u"(desactualizada: la version %.2f ya está disponible!)" %(version_en_el_servidor)
+                mensaje = u"- desactualizada: la version %.2f ya está disponible en la web!)" %(version_en_el_servidor)
         except ValueError:
             mensaje = u"(sin conexión a internet)"
 
