@@ -1,5 +1,6 @@
 *.pyc
 doc/build/*
+_site/*
 
 build
 pilas.egg-info

@@ -26,7 +26,11 @@ if argumentos:
     archivo_a_ejecutar = pilas.utils.obtener_archivo_a_ejecutar_desde_argv()
 
     try:
-        os.chdir(os.path.dirname(archivo_a_ejecutar))
+        if archivo_a_ejecutar.startswith("-i"):
+            archivo_a_ejecutar = archivo_a_ejecutar.replace("-i ", "")
+
+        directorio_juego = os.path.dirname(archivo_a_ejecutar)
+        os.chdir(directorio_juego)
         sys.exit(execfile(archivo_a_ejecutar))
     except Exception, e:
         pilas.utils.mostrar_mensaje_de_error_y_salir(str(e))

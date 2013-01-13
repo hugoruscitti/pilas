@@ -23,7 +23,6 @@ setup(
     app=["bin/pilas-mac.py"],
     data_files = [
                     ('../lanas', ['lanas']),
-                    ('../lanas/lanas/lang', ['lanas/lanas/lang']),
                     ('bin/pilas-mac.py', ['bin/pilas-mac.py']),
                     ('../PlugIns/phonon_backend', ['/usr/local/Cellar/qt/4.8.0/plugins/phonon_backend/libphonon_qt7.dylib']),
                  ],
