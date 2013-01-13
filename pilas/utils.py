@@ -328,7 +328,7 @@ def mostrar_mensaje_de_error_y_salir(motivo):
 def obtener_archivo_a_ejecutar_desde_argv():
     import sys, copy
 
-    argv = copy.copy(sys.arv)
+    argv = copy.copy(sys.argv)
 
     if '-i' in argv:
         argv.remove('-i')
