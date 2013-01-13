@@ -43,7 +43,7 @@ la posición (8, 10):
 
     mapa.pintar_bloque(8, 10, 1)
 
-.. image:: images/mapa_un_bloque.png
+.. image:: images/mapa_un_bloque.jpg
 
 
 Otro ejemplo: si queremos dibujar en la parte inferior de la
@@ -65,7 +65,7 @@ anteriormente.
 
 Este será el resultado:
 
-.. image:: images/mapa_muchos_bloques.png
+.. image:: images/mapa_muchos_bloques.jpg
 
 
 Colisiones con el escenario
