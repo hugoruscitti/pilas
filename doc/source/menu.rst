@@ -16,7 +16,7 @@ para iniciar el juego y otra para salir:
     import pilas
 
     pilas.iniciar()
-    pilas.fondos.Pasto()
+    pilas.fondos.Selva()
 
     def iniciar_juego():
         print "Tengo que iniciar el juego"
@@ -41,7 +41,7 @@ teclado.
 Esta es una imagen de cómo se vé el menú del
 ejemplo de mas arriba:
 
-.. image:: images/menu.png
+.. image:: images/menu.jpg
 
 
 Cada vez que selecciones una opción aparecerá un

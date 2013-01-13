@@ -71,7 +71,7 @@ una posición determinada y se puede manipular.
 Por ejemplo, una nave, un enemigo, una medalla... etc.
 
 Para agilizar el desarrollo de juegos se incluyen varios
-actores dentro del motor, un de ellos es ``Mono``, un
+actores dentro del motor, uno de ellos es ``Mono``, un
 simpático chimpancé.
 
 Tenemos al actor ``mono``. Para indicarle
@@ -153,7 +153,7 @@ está asociado a una coordenada y cada actor también.
 
 .. note::
     Para que tenga efecto, debes tener seleccionada la ventana de resultado
-    (parte de arriba). Haz click sobre ella antes de pulsar **F12**``.
+    (parte de arriba). Haz click sobre ella antes de pulsar F12.
 
 
 Escala
@@ -296,7 +296,7 @@ de código para probar:
     p = pilas.actores.Pingu()    # se mueve con el teclado.
 
 
-.. image:: images/resultado_parte_1.png
+.. image:: images/resultado_parte_1.jpg
     :width: 50%
 
 Es todo por ahora, seguí leyendo o comenzá
