@@ -51,7 +51,7 @@ crear un actor con esa apariencia:
 
     pilas.actores.Actor(superficie)
 
-    pilas.ejecutar()
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
 
 
 Es decir, una vez que creamos la superficie, en realidad lo que obtenemos

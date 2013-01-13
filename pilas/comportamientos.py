@@ -86,7 +86,7 @@ class Avanzar(Comportamiento):
     "Desplaza al actor en la dirección y sentido indicado por una rotación."
 
     def __init__(self, pasos=0, velocidad=5):
-        if pasos > 0:
+        if pasos < 0:
             self.pasos = abs(pasos)
         else:
             self.pasos = pasos
@@ -105,15 +105,13 @@ class Avanzar(Comportamiento):
         if self.pasos > 0:
             if self.pasos - self.velocidad < 0:
                 avance = self.pasos
-                salir = True
             else:
                 avance = self.velocidad
+            self.pasos -= avance
+            self.receptor.x += self.dx * avance
+            self.receptor.y += self.dy * avance
         else:
-            avance = self.velocidad
-
-        self.pasos -= avance
-        self.receptor.x += self.dx * avance
-        self.receptor.y += self.dy * avance
+            salir = True
 
         if salir:
             return True

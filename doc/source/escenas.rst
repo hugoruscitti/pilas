@@ -50,7 +50,7 @@ Esto le dará a tu escena una vista
 mas agradable, porque carga un fondo de
 pantalla colorido y mas divertido:
 
-.. image:: images/paisaje.png
+.. image:: images/paisaje.jpg
     :width: 15cm
 
 o podrías usar un fondo de atardecer: 
@@ -59,7 +59,7 @@ o podrías usar un fondo de atardecer:
 
     pilas.fondos.Tarde()
 
-.. image:: images/tarde.png
+.. image:: images/tarde.jpg
     :width: 15cm
 
 Cómo crear nuevas escenas
@@ -100,7 +100,7 @@ actual y activa:
 
 .. seealso:: Mira la documentación :ref:`ref_gestor_de_escenas` para comprender mejor el apilamiento de escenas.
 
-.. image:: images/escena_simple.png
+.. image:: images/escena_simple.jpg
 
 Ahora, si quieres salir de la escena, simplemente tendrías
 que hacer un objeto de otra clase que represente otra escena y llamar a uno de
