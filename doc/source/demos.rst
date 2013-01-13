@@ -19,10 +19,12 @@ Hay un pequeño rompecabezas que se puede iniciar con el siguiente código:
 .. code-block:: python
 
     import pilas
-
+    
     pilas.iniciar()
     piezas = pilas.demos.piezas.Piezas()
     piezas.iniciar()
+    
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
 
 
 inmeditamente despúes de evaluar estas sentencias, aparecerá en
@@ -42,10 +44,12 @@ Escribe lo siguiente:
 .. code-block:: python
 
     import pilas
-
+    
     pilas.iniciar()
     piezas = pilas.demos.piezas.Piezas("mono.png", 2, 2)
     piezas.iniciar()
+    
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
 
 Si, ahora en pantalla aparece la imagen del mono pero separado
 en 4 piezas. Dado que hemos especificado 2 (filas) y 2 (columnas).
@@ -65,12 +69,14 @@ complete el rompecabezas:
     import pilas
     
     pilas.iniciar()
-
+    
     def cuando_se_complete():
         pilas.avisar("Lo has completado!!!")
     
     piezas = pilas.demos.piezas.Piezas("mono.png", 2, 2, cuando_se_complete)
     piezas.iniciar()
+    
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
 
 
 .. image:: images/piezas_completo.jpg

@@ -49,6 +49,8 @@ sola vez:
 
     moverse_a_la_izquierda = pilas.comportamientos.Avanzar(pasos)
     mono.hacer_luego(moverse_a_la_izquierda)
+    
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
 
 De hecho, tenemos una variante que puede ser un poco
 mas interesante; decirle al mono que repita estas tareas todo

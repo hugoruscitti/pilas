@@ -76,3 +76,5 @@ así:
                 self.x += 10
 
     MiActor()
+    
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
