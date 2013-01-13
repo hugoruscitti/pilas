@@ -235,7 +235,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             try:
                 line[-1]
                 self.haveLine = True
-                if line[-1] == ':':
+                if line[-1] in [':', ',', '[', '(']:
                     self.multiline = True
                 self.history.insert(0, line)
             except:
