@@ -6,6 +6,11 @@ title: Home
 <h2 class="tagline">Crea videojuegos de manera didáctica y divertida.</h2>
 
 <div class="clearfix center">
+    <a href='#' class='button green'>descargar</a>
+    <a href='#' class='button purple'>ver la documentación</a>
+</div>
+
+<div class="clearfix center">
   <a class="boton boton-descarga" href="#" title="Descargar"><span class="hide">Descargar pilas-engine</span></a>
   <a class="boton boton-documentacion" href="#" title="ver documentacion de pilas engine"><span class="hide">ver documentacion</span></a>
 </div>
