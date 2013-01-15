@@ -197,6 +197,10 @@ y ésta imprimirá::
 
     Hola!!! {argumento1: 123, argumento2: 123}
 
+.. note::
+    Para entender mejor cómo se han implementado los eventos, visita este link
+    http://hugoruscitti.github.com/2012/03/01/redisenando-el-sistema-de-eventos-pilas/
+
 Referencias
 -----------
 
