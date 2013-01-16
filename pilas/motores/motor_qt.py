@@ -449,15 +449,15 @@ class Grilla(Imagen):
         self.dy = frame_row * self.cuadro_alto
 
     def avanzar(self):
-        ha_reiniciado = False
+        ha_avanzado = True
         cuadro_actual = self._cuadro + 1
 
         if cuadro_actual >= self.cantidad_de_cuadros:
             cuadro_actual = 0
-            ha_reiniciado = True
+            ha_avanzado = False
 
         self.definir_cuadro(cuadro_actual)
-        return ha_reiniciado
+        return ha_avanzado
 
     def obtener_cuadro(self):
         return self._cuadro
