@@ -2,7 +2,6 @@ Presentación
 ============
 
 .. image:: images/pilas-logo.png
-    :width: 30%
 
 Pilas es un motor para construir videjuegos
 de manera sencilla y didáctica.

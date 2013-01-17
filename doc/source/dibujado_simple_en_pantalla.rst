@@ -36,7 +36,6 @@ dibujar la tortuga con algunas sentencias de
 movimientos:
 
 .. image:: images/pilas-0.75/tortuga_dibuja_triangulo.jpg
-    :width: 100%
 
 La imagen no alcanza a mostrar por completo el
 concepto, pero en pocas palabras se puede sintetizar

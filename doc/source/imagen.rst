@@ -52,7 +52,6 @@ La siguiente imagen es una grilla de 10 columnas
 que utilizamos para crear al personaje "pingu":
 
 .. image:: images/pingu.png
-    :width: 100%
 
 
 Internamente la imagen se almacena así, pero a la
@@ -129,10 +128,9 @@ comienza en 1:
     grilla.avanzar()
     actor.imagen = grilla
 
-Ten en cuenta que el método ``avanzar`` va a retornar ``True`` o ``False``. ``False``
-significa que la grilla aún tiene cuadros para
-mostrar, y ``True`` significa que la grilla volvió
-a mostrar el primer cuadro.
+Ten en cuenta que el método ``avanzar`` va a retornar ``True`` o ``False``.
+``True`` signigica que la grilla ha avanzado y ha mostrado un cuadro nuevo.
+``False`` significa que la grilla volvió a mostrar el primer cuadro.
 
 Este valor de retorno es muy útil a la hora de
 saber si una animación terminó, y poder tomar

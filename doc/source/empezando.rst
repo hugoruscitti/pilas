@@ -22,7 +22,6 @@ abre un terminal y ejecuta el comando
 En tu pantalla tiene que aparecer una ventana como esta.
 
 .. image:: images/pilas-0.75/asistente.jpg
-    :width: 100%
 
 Intérprete de pilas
 -------------------
@@ -30,7 +29,6 @@ Intérprete de pilas
 Haz click en **Abrir intérprete** y aparecerá esta ventana.
 
 .. image:: images/pilas-0.75/interprete.jpg
-    :width: 100%
 
 La ventana se divide en dos partes. La parte de abajo muestra el editor. Todo lo
 que escribas en el editor se ejecutará automáticamente. El resultado se muestra
@@ -97,7 +95,6 @@ En cualquiera de los dos casos, el personaje
 cambiará su aspecto y emitirá un sonido.
 
 .. image:: images/mono/smile.png
-    :width: 5cm
 
 
 Incluso podríamos decirle al personaje
@@ -112,7 +109,6 @@ indicamos que tiene que decir, cómo si fuera un
 personaje de comic:
 
 .. image:: images/mono/decir.png
-    :width: 75%
 
 A partir de ahora, comenzaremos a escribir algunos
 ejemplos. Ten en cuenta que no es necesario que
@@ -144,7 +140,6 @@ en el escenario. Por lo tanto el punto (0, 0) es el centro
 de la ventana. Y ``x`` aumenta hacia la derecha e ``y`` hacia arriba.
 
 .. image:: images/mono/normal.png
-    :width: 5cm
 
 
 Este espacio de referencia se puede observar en detalle si pulsas
@@ -178,7 +173,6 @@ tener el actor en pantalla. El atributo ``rotacion``:
     mono.rotacion = 40
 
 .. image:: images/mono/rotation40.png
-    :width: 5cm
 
 o bien:
 
@@ -187,7 +181,6 @@ o bien:
     mono.rotacion = 80
 
 .. image:: images/mono/rotation80.png
-    :width: 5cm
 
 
 La rotación siempre se indica en grados, e indica
@@ -297,7 +290,6 @@ de código para probar:
 
 
 .. image:: images/resultado_parte_1.jpg
-    :width: 50%
 
 Es todo por ahora, seguí leyendo o comenzá
 a explorar por tu cuenta. A divertirse!

@@ -15,6 +15,8 @@ class Moneda(Animacion):
 
     .. image:: images/actores/moneda.png
 
+    Ejemplo:
+
         >>> moneda = pilas.actores.Moneda()
 
     """
