@@ -49,7 +49,6 @@ como personalizar y "controlar" un poco el escenario.
 
 
 .. image:: images/pilas-0.75/fisica.jpg
-    :width: 100%
 
 
 

@@ -51,7 +51,6 @@ mas agradable, porque carga un fondo de
 pantalla colorido y mas divertido:
 
 .. image:: images/paisaje.jpg
-    :width: 15cm
 
 o podrías usar un fondo de atardecer: 
 
@@ -60,7 +59,6 @@ o podrías usar un fondo de atardecer:
     pilas.fondos.Tarde()
 
 .. image:: images/tarde.jpg
-    :width: 15cm
 
 Cómo crear nuevas escenas
 -------------------------
