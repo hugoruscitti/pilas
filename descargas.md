@@ -16,7 +16,7 @@ Elige tu sabor favorito:
 
 
 
-## Otras opciones de instalación
+## Github
 
 Existe una versión desarrollo de pilas, en donde los programadores del
 motor estamos trabajando en las siguientes funcionalidades y varios experimentos.
