@@ -3,9 +3,9 @@ python:
   - "2.7"
   - "2.6"
 before_install:
-  - wget http://www.riverbankcomputing.com/static/Downloads/sip4/sip-4.13.3.tar.gz
-  - tar zxvf sip-4.13.3.tar.gz
-  - cd sip-4.13.3/
+  - wget http://www.riverbankcomputing.co.uk/static/Downloads/sip4/sip-4.14.3-snapshot-ee3b1348996c.tar.gz
+  - tar zxvf sip-4.14.3-snapshot-ee3b1348996c.tar.gz
+  - cd sip-4.14.3-snapshot-ee3b1348996c/
   - python configure.py
   - make
   - sudo make install
