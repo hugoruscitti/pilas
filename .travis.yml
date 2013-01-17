@@ -3,6 +3,8 @@ python:
   - "2.7"
   - "2.6"
 before_install:
+  - sudo apt-get update 
+  - sudo apt-get install g++ make python-dev libxext-dev
   - wget http://www.riverbankcomputing.co.uk/static/Downloads/sip4/sip-4.14.3-snapshot-ee3b1348996c.tar.gz
   - tar zxf sip-4.14.3-snapshot-ee3b1348996c.tar.gz
   - cd sip-4.14.3-snapshot-ee3b1348996c/
@@ -23,5 +25,8 @@ before_install:
   - python -c 'import PyQt4.QtCore'
 install:
   - pip install nose
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 script:
   - nosetests
