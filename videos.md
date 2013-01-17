@@ -8,12 +8,12 @@ title: Videos
 Aquí encontrarás charlas y tutoriales en videos para comenzar a programar.
 
 
-## Presentaciones
-
 <div class="post" id="presentacion-de-pilas-en-betabeers-bs-as-marzo-2012">
- <h5>Presentación de pilas en betabeers Bs. As. Marzo 2012</h5>
+ <h5>Pilas en PyCon Argentina 2012</h5>
  <iframe width="640" height="480" src="http://www.youtube.com/embed/sQhxjLoJlZs" frameborder="0" allowfullscreen></iframe>
  
+ <p>
+    Puedes ver mas información en el <a href='http://ar.pycon.org/2012/default/index'>sitio del evento</a>.
 </div>
 
 <div class="post" id="presentacion-de-pilas-en-betabeers-bs-as-marzo-2012">
