@@ -12,17 +12,16 @@ before_install:
   - cd ..
   - python -c 'import sip'
   - sudo apt-get install libqt4-dev python-qt4 pyqt4-dev-tools qt4-designer
-  # - wget http://www.riverbankcomputing.com/static/Downloads/PyQt4/PyQt-x11-gpl-4.9.4.tar.gz
-  # - tar zxvf PyQt-x11-gpl-4.9.4.tar.gz
-  # - cd PyQt-x11-gpl-4.9.4/
-  # - echo 'yes' | python configure.py
-  # - make
-  # - sudo make install
-  # - cd ..
+  - wget http://www.riverbankcomputing.co.uk/static/Downloads/PyQt4/PyQt-x11-gpl-snapshot-4.10-e143a1307289.tar.gz
+  - tar zxvf PyQt-x11-gpl-snapshot-4.10-e143a1307289.tar.gz
+  - cd PyQt-x11-gpl-snapshot-4.10-e143a1307289
+  - echo 'yes' | python configure.py
+  - make
+  - sudo make install
+  - cd ..
   - python -c 'import PyQt4'
   - python -c 'import PyQt4.QtCore'
 install:
   - pip install nose
-# command to run tests, e.g. python setup.py test
 script:
   - nosetests
