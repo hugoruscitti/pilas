@@ -4,13 +4,12 @@ title: Documentación
 ---
 
 <h2 class="title">Documentación</h2>
-<p>Un buen punto de inicio para comenzar a utilizar pilas es descargar el manual completo en español.</p>
+<p>Un buen punto de inicio para comenzar a utilizar pilas es explorar el manual completo en español.</p>
+
 <p>Este manual recorre toda la funcionalidad de pilas, y explica con ejemplos cómo utilizar cada parte del motor.</p>
 
-<div class="clearfix center margin20">
-     <a class="boton boton-vermanual" href="#" title=""><span class="hide">ver manual</span></a>
-     <a class="boton boton-descmanual" href="#" title=""><span class="hide">descargar manual</span></a>
-</div><!-- .margin20 -->
+<div class="clearfix center">
+    <a href='https://pilas.readthedocs.org/es/latest/' class='button purple'>ver manual</a>
+    <a href='http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf' class='button blue'>descargar manual</a>
+</div>
 
-<h2 class="title">GitHub</h2>
-<p>Podés encontrar todo el repositorio de Pilas Engine en GitHub. Visitá el proyecto y conocé cómo descargar la última versión.</p>
