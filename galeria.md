@@ -48,6 +48,9 @@ title: Imágenes
         settings.album = 'PilasEngineSistema';
         $("#container-sistema").pwi(settings);
 
+        settings.album = 'PilasEngineEquipos';
+        $("#container-equipos").pwi(settings);
+
       });
 </script>
 
@@ -60,3 +63,7 @@ title: Imágenes
 ## Sistemas
 
 <div id="container-sistema"> </div>
+
+## Equipos
+
+<div id="container-equipos"> </div>
