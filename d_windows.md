@@ -1,15 +1,18 @@
 ---
 layout: base 
 title: Descargando
+active: /descargas.html
 ---
 
+{% assign download_url = "https://github.com/downloads/hugoruscitti/pilas/pilas_0-73.exe" %}
 
 ## Descargando ...
 
-La descarga de pilas comenzará en unos segundos, sino puedes descargarlo
-nuevamente <a href='#'>desde aquí</a>.
+La descarga de pilas comenzará en unos segundos, sino, puedes descargarlo
+nuevamente <a href='{{ download_url }}'>desde aquí</a>.
 
 
+<iframe src="{{ download_url }}" style="display: none"></iframe>
 
 
 <div class="grid_12 alpha" style='margin-top: 5em'>
