@@ -9,7 +9,7 @@ Elige tu sabor favorito:
 
 <ul id='descargas'>
  <li><a href='d_windows.html'><img width=16 height=16 src='images/windows.png'> Windows</a></li>
- <li><img width=16 height=16 src='images/platform_mac.png'> Mac OS X</li>
+ <li><a href='d_mac.html'><img width=16 height=16 src='images/platform_mac.png'> Mac OS X</a></li>
  <li><img width=16 height=16 src='images/ico-ubuntu.png'> Ubuntu Linux</li>
  <li><img width=16 height=16 src='images/menu_pack.gif'> Código fuente</li>
 </ul>
