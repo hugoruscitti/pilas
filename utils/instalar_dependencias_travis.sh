@@ -25,3 +25,4 @@ cd ..
 python -c 'import PyQt4'
 python -c 'import PyQt4.QtCore'
 python -c 'import PyQt4.QtGui'
+echo "Finaliza instalar dependencias"
