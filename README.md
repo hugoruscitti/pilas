@@ -1,5 +1,7 @@
 # Pilas Engine
 
+Estado rama develop: [![Build Status](https://travis-ci.org/hugoruscitti/pilas.png?branch=develop)](undefined)
+
 Pilas es un motor para realizar videojuegos de manera rápida y sencilla.
 
 Es una herramienta orientada a programadores casuales o principiantes, es ideal para quienes quieran aprender a realizar sus primeros videojuegos.
