@@ -11,7 +11,7 @@ wget http://thomasmansencal.com/Sharing/ThirdParty/Riverbank/sip-4.13.3/sip-4.13
 tar zxf sip-4.13.3.tar.gz
 cd sip-4.13.3/
 python configure.py
-make
+make -j 4
 sudo make install
 cd ..
 python -c 'import sip'
@@ -19,7 +19,7 @@ wget http://thomasmansencal.com/Sharing/ThirdParty/Riverbank/PyQt%204.9.4/PyQt-x
 tar zxf PyQt-x11-gpl-4.9.4.tar.gz
 cd PyQt-x11-gpl-4.9.4/
 echo 'yes' | python configure.py
-make
+make -j 4
 sudo make install
 cd ..
 python -c 'import PyQt4'
