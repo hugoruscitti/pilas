@@ -6,4 +6,4 @@ install:
   - pip install nose
 before_install: utils/instalar_dependencias_travis.sh
 script:
-  - xvfb-run nosetests
+  - nosetests
