@@ -468,3 +468,8 @@ ul#descargas {
     -moz-box-shadow: none;
     box-shadow: none;
   }
+
+
+img.borde {
+    border: 1px solid gray;
+}

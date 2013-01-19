@@ -19,20 +19,20 @@ nuevamente <a href='{{ download_url }}'>desde aquí</a>.
 <div class='center'>Te sugerimos estos pasos a seguir</div>
 
   <div class="feature grid_4 alpha center small">
-    <img src='images/descargas/windows_1.png'></img>
+    <img class='borde' src='images/descargas/windows_1.png'></img>
     <br/>
-    Abrir el instalador
+    Guardar y luego abrir el instalador.
   </div>
 
   <div class="feature grid_4 center small">
-    <img src='images/descargas/windows_2.png'></img>
+    <img class='borde' src='images/descargas/windows_2.png'></img>
     <br/>
-    Seguir el asistente
+    Seguir el asistente.
   </div>
 
   <div class="feature grid_4 omega center small">
-    <img src='images/descargas/windows_3.png'></img>
+    <img class='borde' src='images/descargas/windows_3.png'></img>
     <br/>
-    Abrir pilas desde el menú inicio
+    Abrir pilas desde el menú inicio.
   </div>
 </div>
