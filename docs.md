@@ -23,7 +23,7 @@ sobre pilas haciendo juegos:
 
 <div class='grid_12 alpha borde' style='margin-top: 1em'>
     <div class='grid_2 alpha'>
-        <img src='http://placehold.it/140x100'>
+        <a href="aceitunas_vs_bombas_parte_1.html"><img src='./images/tutoriales/aceitunas_vs_bombas.png'></a>
     </div>
 
     <div class="grid_10 omega">
