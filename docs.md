@@ -22,20 +22,20 @@ sobre pilas haciendo juegos:
 
 
 <div class='grid_12 alpha borde' style='margin-top: 1em'>
-    <div class='grid_2 alpha'>
-        <a href="aceitunas_vs_bombas_parte_1.html"><img src='./images/tutoriales/aceitunas_vs_bombas.png'></a>
-    </div>
 
-    <div class="grid_10 omega">
-        <h4>Aceitunas vs Bombas</h4>
-
-        <p>Un juego sencillo realizado paso a paso, desde el diseño hasta la publicación
-
-        <ul>
-            <li><a href="aceitunas_vs_bombas_parte_1.html">Parte 1</a></li>
-            <li><a href="aceitunas_vs_bombas_parte_2.html">Parte 2</a></li>
-            <li>Parte 3 <small>(proximamente)</small></li>
-        </ul>
-    </div>
+<div class='grid_2 alpha'>
+<a href="aceitunas_vs_bombas_parte_1.html"><img src='./images/tutoriales/aceitunas_vs_bombas.png'></a>
 </div>
 
+<div class="grid_10 omega">
+ <h4>Aceitunas vs Bombas</h4>
+
+ <p>Un juego sencillo realizado paso a paso, desde el diseño hasta la publicación
+ <ul>
+  <li><a href="aceitunas_vs_bombas_parte_1.html">Parte 1</a></li>
+  <li><a href="aceitunas_vs_bombas_parte_2.html">Parte 2</a></li>
+  <li>Parte 3 <small>(proximamente)</small></li>
+ </ul>
+</div>
+
+</div>
