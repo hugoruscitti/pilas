@@ -51,19 +51,28 @@ title: Imágenes
         settings.album = 'PilasEngineEquipos';
         $("#container-equipos").pwi(settings);
 
+        settings.album = 'PilasEngineEjemplos';
+        $("#container-ejemplos").pwi(settings);
+
       });
 </script>
 
 # Galería de imágenes
 
-## Eventos
+## Ejemplos
 
-<div id="container-eventos"> </div>
+<div id="container-ejemplos"> </div>
+
+## Equipos
+
+<div id="container-equipos"> </div>
 
 ## Sistemas
 
 <div id="container-sistema"> </div>
 
-## Equipos
 
-<div id="container-equipos"> </div>
+## Eventos
+
+<div id="container-eventos"> </div>
+
