@@ -31,7 +31,7 @@ sobre pilas haciendo juegos:
  <h4>Aceitunas vs Bombas</h4>
 
  <p>Un juego sencillo realizado paso a paso, desde el diseño hasta la publicación
- <ul>
+ <ul style='margin-left: 1em; list-style-type: disc'>
   <li><a href="aceitunas_vs_bombas_parte_1.html">Parte 1</a></li>
   <li><a href="aceitunas_vs_bombas_parte_2.html">Parte 2</a></li>
   <li>Parte 3 <small>(proximamente)</small></li>
