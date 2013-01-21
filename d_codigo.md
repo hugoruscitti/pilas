@@ -1,10 +1,10 @@
 ---
 layout: base 
-title: Descargando versión Windows
+title: Descargando versión en código fuente
 active: /descargas.html
 ---
 
-{% assign download_url = "https://github.com/downloads/hugoruscitti/pilas/pilas_0-73.exe" %}
+{% assign download_url = "https://github.com/hugoruscitti/pilas/archive/master.zip" %}
 
 ## Descargando ...
 
@@ -21,20 +21,20 @@ nuevamente <a href='{{ download_url }}'>desde aquí</a>.
 <div class='center'><img style='margin-bottom: -80px' src='images/asistente.png'/></div>
 
   <div class="feature grid_4 alpha center small">
-    <img class='borde debajo' src='images/descargas/windows_1.png'></img>
+    <img class='borde debajo' src='images/descargas/codigo_1.png'></img>
     <br/>
-    Guardar y luego abrir el instalador.
+    Ubica el archivo descargado.
   </div>
 
   <div class="feature grid_4 center small">
-    <img class='borde debajo' src='images/descargas/windows_2.png'></img>
+    <img class='borde debajo' src='images/descargas/codigo_2.png'></img>
     <br/>
-    Seguir el asistente.
+    Abre el archivo con tu descrompresor favorito.
   </div>
 
   <div class="feature grid_4 omega center small">
-    <img class='borde debajo' src='images/descargas/windows_3.png'></img>
+    <img class='borde debajo' src='images/descargas/codigo_3.png'></img>
     <br/>
-    Abrir pilas desde el menú inicio.
+    Comienza abriendo en archivo README.md
   </div>
 </div>

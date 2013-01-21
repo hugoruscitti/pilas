@@ -474,3 +474,9 @@ ul#descargas {
 img.borde {
     border: 1px solid gray;
 }
+
+img.debajo {
+    position: relative;
+    z-index: -200;
+}
+
