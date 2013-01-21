@@ -40,6 +40,19 @@ title: Imágenes
           showAlbumThumbs: false,
           showAlbumdate: false,
           thumbSize:128,
+
+          fancybox_config: {
+                config_photos: {
+                    closeClick : false,
+                    nextEffect : 'none',
+			        closeEffect: 'none',
+                    loop       : false,
+                    beforeLoad : formatPhotoTitleFancyBox,
+                    helpers	   : {
+                        buttons	: {}
+                    }
+                },
+            },
         };
 
         settings.album = 'PilasEngineEventos';
