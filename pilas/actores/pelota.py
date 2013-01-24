@@ -10,9 +10,14 @@ from pilas.actores import Actor
 import pilas
 
 class Pelota(Actor):
-    "Representa una pelota de Volley."
+    """Representa una pelota de Volley, que puede rebotar e interactuar con la física del escenario."""
 
     def __init__(self, x=0, y=0):
+        """Construye una pelota y define la posición inicial.
+
+        :param x: Posición horizontal inicial.
+        :param y: posición vertical inicial.
+        """
         imagen = pilas.imagenes.cargar('pelota.png')
         Actor.__init__(self, imagen)
         self.rotacion = 0
