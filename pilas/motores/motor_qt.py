@@ -34,7 +34,7 @@ class Ventana(QtGui.QMainWindow):
 
 class CanvasWidget(QGLWidget):
 
-    def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas, permitir_depuracion):
+    def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas, permitir_depuracion, rendimiento):
         QGLWidget.__init__(self, None)
         self.painter = QtGui.QPainter()
         self.setMouseTracking(True)
@@ -44,7 +44,7 @@ class CanvasWidget(QGLWidget):
         self.mouse_y = 0
         self.motor = motor
         self.lista_actores = lista_actores
-        self.fps = fps.FPS(60, True)
+        self.fps = fps.FPS(rendimiento, True)
 
         if permitir_depuracion:
             self.depurador = depurador.Depurador(motor.obtener_lienzo(), self.fps)
@@ -843,16 +843,16 @@ class Motor(object):
     def terminar(self):
         self.ventana.close()
 
-    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas):
+    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas, rendimiento):
         self.ventana = Ventana()
         self.ventana.resize(ancho, alto)
 
         if self.usar_motor in ['qtwidget', 'qtsugar']:
             mostrar_ventana = False
-            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion)
+            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
         else:
             mostrar_ventana = True
-            self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion)
+            self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
 
         self.ventana.set_canvas(self.canvas)
         self.canvas.setFocus()

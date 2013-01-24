@@ -18,11 +18,11 @@ class Mundo(object):
     motor y mantener el bucle de juego.
     """
 
-    def __init__(self, motor, ancho, alto, titulo, fps=60, gravedad=(0, -10), pantalla_completa=False):
+    def __init__(self, motor, ancho, alto, titulo, rendimiento=60, gravedad=(0, -10), pantalla_completa=False):
         self.gestor_escenas = Gestor()
 
         self.motor = motor
-        self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas)
+        self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas, rendimiento)
 
         self.gravedad = gravedad
 
