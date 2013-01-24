@@ -15,14 +15,12 @@ def cargar(ruta):
 
     Por ejemplo::
 
-        import pilas
-
-        risa = pilas.musica.cargar("jazz_loop.ogg")
+        >>> musica = pilas.musica.cargar("jazz_loop.ogg")
 
     En caso de éxito retorna el objeto Musica, que se puede
     reproducir usando el método ``reproducir()``, por ejemplo::
 
-        risa.reproducir(repetir=True)
+        >>> musica.reproducir(repetir=True)
 
     El directorio de búsqueda del sonido sigue el siguiente orden:
 
@@ -31,6 +29,8 @@ def cargar(ruta):
         * por último en el directorio estándar de la biblioteca.
 
     En caso de error genera una excepción de tipo IOError.
+
+    :param ruta: La ruta al archivo a reproducir.
     """
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
     return pilas.mundo.motor.cargar_musica(ruta)
