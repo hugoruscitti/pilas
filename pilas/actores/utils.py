@@ -14,11 +14,15 @@ def ordenar_actores_por_valor_z():
     pilas.escena_actual().actores.sort()
 
 def insertar_como_nuevo_actor(actor):
-    "Coloca a un actor en la lista de actores a imprimir en pantalla."
+    """Coloca a un actor en la lista de actores a imprimir en pantalla.
+
+    :param actor: Actor que se quiere comenzar a mostrar en pantalla.
+    """
     pilas.escena_actual().actores.append(actor)
     actor.escena = pilas.escena_actual()
 
 def eliminar_a_todos():
+    """Elimina a todos los actores de la escena."""
     a_eliminar = pilas.escena_actual().actores[1:]    # evita borrar el fondo.
 
     for x in a_eliminar:
@@ -27,7 +31,7 @@ def eliminar_a_todos():
     pilas.escena_actual().actores = []
 
 def destruir_a_todos():
-    "Elimina a los actores inmediatamente (evita que exploten o hagan algo)."
+    """Elimina a los actores inmediatamente (evita que exploten o hagan algo)."""
     a_eliminar = pilas.escena_actual().actores
 
     for x in a_eliminar:
@@ -36,7 +40,11 @@ def destruir_a_todos():
     pilas.escena_actual().actores = []
 
 def obtener_actor_en(x, y):
-    "Intenta obtener el actor mas cerca de la pantalla (z mas pequeño) en la posición (x, y)"
+    """Intenta obtener el actor mas cerca de la pantalla (z mas pequeño) en la posición (x, y)
+
+    :param x: Posición horizontal del punto selección.
+    :param y: Posición vertical del punto selección.
+    """
 
     # Busca el objeto que colisiones ordenando en sentido inverso.
     for sprite in pilas.escena_actual().actores[::-1]:
@@ -47,8 +55,14 @@ def obtener_actor_en(x, y):
 
 
 def fabricar(clase, cantidad=1, posiciones_al_azar=True, *k, **kv):
-    "Genera muchas intancias de objetos asignando posiciones aleatorias."
+    """Genera muchas instancias de una clase particular asignando posiciones aleatorias.
 
+        >>> pilas.utils.fabricar(pilas.actores.Caja, 30)
+
+    :param clase: Clase del objeto a generar.
+    :param cantidad: Cantidad de objetos que se van a crear de esa clase.
+    :param posiciones_al_azar: True o False indicando si se tienen que dar posiciones al azar.
+    """
     objetos_creados = []
 
     for x in range(cantidad):
