@@ -55,7 +55,8 @@ class Esperando(Comportamiento):
 
 class Caminando(Comportamiento):
 
-    def __init__(self):
+    def iniciar(self, receptor):
+        self.receptor = receptor
         self.cuadros = [5, 5, 6, 6, 7, 7, 8, 8, 9, 9]
         self.paso = 0
 
@@ -82,14 +83,12 @@ class Caminando(Comportamiento):
 
 class Saltando(Comportamiento):
 
-    def __init__(self):
-        self.dy = 10
-        
     def iniciar(self, receptor):
+        self.dy = 10
         self.receptor = receptor
         self.receptor.definir_cuadro(0)
         self.origen = self.receptor.y
-        
+
     def actualizar(self):
         self.receptor.y += self.dy
         self.dy -= 0.3

@@ -5,13 +5,13 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
- 
+
 import math
 import pilas
 
 class Comportamiento(object):
     "Representa un comportamiento (estrategia) que se puede anexar a un actor."
-    
+
     def iniciar(self, receptor):
         "Se invoca cuando se anexa el comportamiento a un actor."
         self.receptor = receptor
@@ -37,7 +37,6 @@ class Girar(Comportamiento):
             self.velocidad = velocidad
         else:
             self.velocidad = -velocidad
-
 
     def iniciar(self, receptor):
         "Define el angulo inicial."
@@ -73,7 +72,7 @@ class Saltar(Comportamiento):
         if self.receptor.y <= self.suelo:
             self.velocidad_inicial /= 2.0
             self.velocidad = self.velocidad_inicial
-            
+
             if self.velocidad_inicial <= 1:
                 # Si toca el suelo
                 self.receptor.y = self.suelo
