@@ -3,8 +3,9 @@ Presentación
 
 .. image:: images/pilas-logo.png
 
-Pilas es un motor para construir videjuegos
-de manera sencilla y didáctica.
+Pilas es una herramienta para construir videojuegos
+de manera sencilla y didáctica. También conocido como
+"motor" o "biblioteca" de videojuegos.
 
 El objetivo de este documento es presentar
 las características del motor, y dar un recorrido
@@ -19,10 +20,6 @@ y elaborando un juego.
 ¿Por qué pilas?
 ---------------
 
-Actualmente existen muchas formas de hacer videojuegos, pilas
-es una de esas tantas formas. Aunque pilas, para nosotros, 
-tiene ciertas características que son sobresalientes y muy novedosas.
-
 Pilas está focalizado en ofrecer ayuda a los
 desarrolladores de juegos casuales y novatos que quieran
 hacer sus primeros videojuegos, ofreciendo una
@@ -30,13 +27,14 @@ colección importante de actores, escenas prediseñadas
 y rutinas para facilitar las tareas más comunes
 del desarrollo.
 
-Esos son los objetivos generales de este proyecto, acercar
-el desarrollo de videojuegos a todas las personas que quieran
-comenzar a programar juegos y darle vida a sus ideas.
+Pensamos que pilas es una gran oportunidad de acercar
+el desarrollo de videojuegos a todas las personas, principalmente
+jóvenes con interés en aprender a programar computadoras y
+darle vida a sus ideas.
 
-Pilas está profundamente inspirada en conceptos de
-las bibliotecas ``cocos2d``, ``pygame``, ``rabbyt``
-y ``squeak``.
+Pilas está profundamente inspirada en las ideas de Seymour
+Papert, logo y bibliotecas de videjuegos modernas como ``cocos2d``,
+``pygame``, ``rabbyt`` y ``squeak``.
 
 
 Características
