@@ -8,7 +8,8 @@
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import Qt
-from PyQt4.QtOpenGL import QGLWidget
+#from PyQt4.QtOpenGL import QGLWidget
+from PyQt4.QtGui import QWidget as QGLWidget
 from pilas import actores, colores, depurador, eventos, fps
 from pilas import imagenes, simbolos, utils
 import copy
