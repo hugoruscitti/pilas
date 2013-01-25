@@ -1,3 +1,16 @@
+Pilas engine - 0.75 (2013-01-25)
+--------------------------------
+
+- Documentando la API completa del motor.
+- Diseñando un nuevo asistente.
+- Implementando un nuevo explorador de ejemplos.
+- Mejorando la introducción del manual fix #24
+- Mejorando el asistente para que cargue correctamente los recursos del directorio del juego.
+- Implementando tests automáticos sobre travis-ci.org
+- Actualizando todas las imágenes del manual a la nueva versión.
+- Reparando bugs de sonido e imagenes gif en aplicacion Mac.
+
+
 Pilas engine - 0.73 (2012-11-23)
 --------------------------------
 - Haciendo que el manual se pueda cargar desde /usr/share/doc/pilas
