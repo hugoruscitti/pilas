@@ -13,7 +13,10 @@ class Comportamiento(object):
     "Representa un comportamiento (estrategia) que se puede anexar a un actor."
 
     def iniciar(self, receptor):
-        "Se invoca cuando se anexa el comportamiento a un actor."
+        """Se invoca cuando se anexa el comportamiento a un actor.
+
+        :param receptor: El actor que comenzará a ejecutar este comportamiento.
+        """
         self.receptor = receptor
 
     def actualizar(self):
@@ -39,7 +42,10 @@ class Girar(Comportamiento):
             self.velocidad = -velocidad
 
     def iniciar(self, receptor):
-        "Define el angulo inicial."
+        """Se invoca cuando se anexa el comportamiento a un actor.
+
+        :param receptor: El actor que comenzará a ejecutar este comportamiento.
+        """
         self.receptor = receptor
         self.angulo_final = (receptor.rotacion + self.delta) % 360
 
@@ -53,6 +59,7 @@ class Girar(Comportamiento):
             return True
 
 class Saltar(Comportamiento):
+    """Realiza un salto, cambiando los atributos 'y'."""
 
     def __init__(self, velocidad_inicial=10, cuando_termina=None):
         self.velocidad_inicial = velocidad_inicial
@@ -60,6 +67,10 @@ class Saltar(Comportamiento):
         self.sonido_saltar = pilas.sonidos.cargar("saltar.wav")
 
     def iniciar(self, receptor):
+        """Se invoca cuando se anexa el comportamiento a un actor.
+
+        :param receptor: El actor que comenzará a ejecutar este comportamiento.
+        """
         self.receptor = receptor
         self.suelo = int(self.receptor.y)
         self.velocidad = self.velocidad_inicial
@@ -93,6 +104,10 @@ class Avanzar(Comportamiento):
         self.velocidad = velocidad
 
     def iniciar(self, receptor):
+        """Se invoca cuando se anexa el comportamiento a un actor.
+
+        :param receptor: El actor que comenzará a ejecutar este comportamiento.
+        """
         self.receptor = receptor
         rotacion_en_radianes = math.radians(-receptor.rotacion)
         self.dx = math.cos(rotacion_en_radianes)
@@ -120,7 +135,6 @@ class Proyectil(Comportamiento):
 
     def __init__(self, velocidad_maxima=5, aceleracion=1,
                  angulo_de_movimiento=90, gravedad=0):
-
         """
         Construye el comportamiento.
 
@@ -142,10 +156,13 @@ class Proyectil(Comportamiento):
             self._velocidad = 0
 
     def iniciar(self, receptor):
+        """Se invoca cuando se anexa el comportamiento a un actor.
+
+        :param receptor: El actor que comenzará a ejecutar este comportamiento.
+        """
         self.receptor = receptor
 
     def actualizar(self):
-
         self._velocidad += self._aceleracion
 
         if self._velocidad > self._velocidad_maxima:
@@ -154,11 +171,12 @@ class Proyectil(Comportamiento):
         self.mover_respecto_angulo_movimiento()
 
     def mover_respecto_angulo_movimiento(self):
-        """ Mueve el actor hacia adelante respecto a su angulo de movimiento. """
+        """Mueve el actor hacia adelante respecto a su angulo de movimiento."""
         rotacion_en_radianes = math.radians(-self._angulo_de_movimiento + 90)
         dx = math.cos(rotacion_en_radianes) * self._velocidad
         dy = math.sin(rotacion_en_radianes) * self._velocidad
         self.receptor.x += dx
+
         if self._gravedad > 0:
             self.receptor.y += dy + self._vy
             self._vy -= 0.1
