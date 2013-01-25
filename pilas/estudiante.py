@@ -9,9 +9,10 @@
 import pilas.utils
 
 class Estudiante:
-    """Representa la habilidad de poder realizar habiliadades y comportamientos."""
+    """Componente que permite a los actores aprender habilidades o realizar comportamientos."""
 
     def __init__(self):
+        """Inicializa el componente."""
         self._habilidades = []
         self.comportamiento_actual = None
         self.comportamientos = []
@@ -19,8 +20,10 @@ class Estudiante:
         self.habilidades = ProxyHabilidades(self._habilidades)
 
     def aprender(self, classname, *k, **w):
-        "Comienza a realizar una habilidad indicada por parametros."
+        """Comienza a realizar una habilidad indicada por parametros.
 
+        :param classname: Referencia a la clase que representa la habilidad.
+        """
         if self.tiene_habilidad(classname):
             self.eliminar_habilidad(classname)
             self.agregar_habilidad(classname, *k, **w)
@@ -28,29 +31,45 @@ class Estudiante:
             self.agregar_habilidad(classname, *k, **w)
 
     def agregar_habilidad(self, classname, *k, **w):
+        """Agrega una habilidad a la lista de cosas que puede hacer un actor.
+
+        :param classname: Referencia a la clase que representa la habilidad.
+        """
         objeto_habilidad = classname(self, *k, **w)
         self._habilidades.append(objeto_habilidad)
 
     def eliminar_habilidad(self, classname):
-        """ Elimina una habilidad asociada a un Actor. """
+        """ Elimina una habilidad asociada a un Actor.
+
+        :param classname: Referencia a la clase que representa la habilidad.
+        """
         habilidad = self.obtener_habilidad(classname)
 
         if habilidad:
             self._habilidades.remove(habilidad)
 
     def tiene_habilidad(self, classname):
-        "Comprueba si tiene la habildad indicada"
+        """Comprueba si el actor ha aprendido la habilidad indicada.
+
+        :param classname: Referencia a la clase que representa la habilidad.
+        """
         habilidades_actuales = [habilidad.__class__ for habilidad in self._habilidades]
         return (classname in habilidades_actuales)
 
     def tiene_comportamiento(self, classname):
-        "Comprueba si tiene el comportamiento indicado"
+        """Comprueba si el actor tiene el comportamiento indicado.
+
+        :param classname: Referencia a la clase que representa el comportamiento.
+        """
         comportamientos_actuales = [comportamiento.__class__ for comportamiento in self.comportamientos]
         return (classname in comportamientos_actuales)
 
     def obtener_habilidad(self, classname):
-        """ Obtiene la habilidad asociada a un Actor.
-        Devuelve None si no se encontró."""
+        """Obtiene la habilidad asociada a un Actor.
+
+        :param classname: Referencia a la clase que representa la habilidad.
+        :return: Devuelve None si no se encontró.
+        """
         su_habilidad = None
 
         for habilidad in self._habilidades:
@@ -65,13 +84,19 @@ class Estudiante:
 
         Los actores pueden tener una cadena de comportamientos, este
         metodo agrega el comportamiento al final de la cadena.
+
+        :param comportamiento: Referencia al comportamiento.
+        :param repetir_por_siempre: Si el comportamiento se volverá a ejecutar luego de terminar.
         """
 
         self.comportamientos.append(comportamiento)
         self.repetir_comportamientos_por_siempre = repetir_por_siempre
 
     def hacer(self, comportamiento):
-        "Define el comportamiento para el actor de manera inmediata."
+        """Define el comportamiento para el actor de manera inmediata.
+
+        :param comportamiento: Referencia al comportamiento a realizar.
+        """
         self.comportamientos.append(comportamiento)
         self._adoptar_el_siguiente_comportamiento()
 
@@ -86,10 +111,12 @@ class Estudiante:
             c.eliminar()
 
     def actualizar_habilidades(self):
+        "Realiza una actualización sobre todas las habilidades."
         for h in self._habilidades:
             h.actualizar()
 
     def actualizar_comportamientos(self):
+        "Actualiza la lista de comportamientos"
         termina = None
 
         if self.comportamiento_actual:
@@ -111,12 +138,12 @@ class Estudiante:
 
 
 class ProxyHabilidades(object):
+    """Implementa un intermediario con todas las habilidades del Actor."""
 
     def __init__(self, habilidades):
         self.habilidades = habilidades
 
     def __getattr__(self, name):
-
         su_habilidad = None
 
         for habilidad in self.habilidades:
