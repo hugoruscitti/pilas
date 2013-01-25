@@ -10,7 +10,6 @@
 class Gestor(object):
     """ Clase que permite el control de las escenas en pilas."""
 
-
     def __init__(self):
         self.escenas = []
 
@@ -23,10 +22,10 @@ class Gestor(object):
 
     def cambiar_escena(self, escena):
         """Define una escena unica y la inicializa.
+
         Las escenas que estuvieran apiladas se eliminan.
 
-        Parámetros:
-         :escena: Escena a la que se quiere cambiar."""
+        :param escena: Escena a la que se quiere cambiar."""
 
         self.limpiar()
         self.escenas.append(escena)
@@ -37,9 +36,7 @@ class Gestor(object):
         """Pausa la escena actualmente activa e inicializa la escena que
         le pasamos como parametro.
 
-        Parámetros:
-         :escena: Escena que deseamos que sea la activa.
-
+        :param escena: Escena que deseamos que sea la activa.
         """
         if self.escena_actual():
             self.escena_actual()._pausar_fisica()

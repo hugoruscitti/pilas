@@ -18,7 +18,13 @@ class Deslizador(BaseInterfaz):
 
     def __init__(self, x=0, y=0, ruta_barra = 'interfaz/barra.png',
                                  ruta_deslizador = 'interfaz/deslizador.png'):
+        """Inicializa al actor.
 
+        :param x: Posición horizontal inicial.
+        :param y: Posición vertical inicial.
+        :param ruta_barra: Imagen que se usará como barra.
+        :param ruta_deslizador: Imagen para presentar al manejado o cursor del deslizador.
+        """
         self.deslizador = None
         BaseInterfaz.__init__(self, ruta_barra, x=x, y=y)
         self.deslizador = Actor(ruta_deslizador, self.x, self.y)
@@ -42,10 +48,16 @@ class Deslizador(BaseInterfaz):
         self.fijo = True
 
     def set_transparencia(self, nuevo_valor):
+        """Define la transparecia del actor."""
         self.transparencia = nuevo_valor
         self.deslizador.transparencia = nuevo_valor
 
     def definir_posicion(self, x, y):
+        """Cambia la posición.
+
+        :param x: Nueva posición horizontal.
+        :param y: Nueva posición vertical.
+        """
         self.limite_izq = self.x
         self.limite_der = self.x + self.obtener_ancho()
 
@@ -102,4 +114,3 @@ class Deslizador(BaseInterfaz):
     def eliminar(self):
         self.deslizador.eliminar()
         BaseInterfaz.eliminar(self)
-
