@@ -13,6 +13,7 @@ import sys
 import utils
 from mundo import Mundo
 import actores
+import grupo
 import escena
 import escenas
 import fondos
