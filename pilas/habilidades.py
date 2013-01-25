@@ -11,6 +11,7 @@ import pilas
 import math
 
 class Habilidad(object):
+    """Representa una habilidad que un actor puede aprender."""
 
     def __init__(self, receptor):
         self.receptor = receptor
@@ -21,7 +22,13 @@ class Habilidad(object):
     def eliminar(self):
         pass
 
+
 class RebotarComoPelota(Habilidad):
+    """Le indica al actor que rebote y colisiones como una pelota.
+
+    >>> un_actor = pilas.actores.Aceituna()
+    >>> un_actor.aprender(pilas.habilidades.RebotarComoPelota)
+    """
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
@@ -44,7 +51,13 @@ class RebotarComoPelota(Habilidad):
     def empujar(self, dx, dy):
         self.circulo.empujar(dx, dy)
 
+
 class RebotarComoCaja(Habilidad):
+    """Le indica al actor que rebote y colisiones como una caja cuadrada.
+
+    >>> un_actor = pilas.actores.Aceituna()
+    >>> un_actor.aprender(pilas.habilidades.RebotarComoPelota)
+    """
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
@@ -62,6 +75,11 @@ class RebotarComoCaja(Habilidad):
 
 
 class ColisionableComoPelota(RebotarComoPelota):
+    """Le indica al actor que colisione como una pelota, pero que no rebote.
+
+    >>> un_actor = pilas.actores.Aceituna()
+    >>> un_actor.aprender(pilas.habilidades.ColisionableComoPelota)
+    """
 
     def __init__(self, receptor):
         RebotarComoPelota.__init__(self, receptor)
@@ -72,6 +90,7 @@ class ColisionableComoPelota(RebotarComoPelota):
 
     def eliminar(self):
         pilas.fisica.fisica.eliminar(self.figura)
+
 
 class SeguirAlMouse(Habilidad):
     "Hace que un actor siga la posición del mouse en todo momento."
@@ -84,15 +103,14 @@ class SeguirAlMouse(Habilidad):
         self.receptor.x = evento.x
         self.receptor.y = evento.y
 
+
 class RotarConMouse(Habilidad):
     """"Hace que un actor rote con respecto a la posicion del mouse.
 
-    :param lado_seguimiento: Establece el lado del actor que rotará para estar
-    encarado hacia el puntero del mouse.
+    Ejemplo:
 
-    :example:
-
-        >>> actor.aprender(pilas.habilidades.RotarConMouse, lado_seguimiento=pilas.habilidades.RotarConMouse.ABAJO)
+        >>> actor.aprender(pilas.habilidades.RotarConMouse,
+                           lado_seguimiento=pilas.habilidades.RotarConMouse.ABAJO)
 
     """
     ARRIBA = 270
@@ -101,6 +119,11 @@ class RotarConMouse(Habilidad):
     DERECHA = 0
 
     def __init__(self, receptor, lado_seguimiento=ARRIBA):
+        """Inicializa la Habilidad
+
+        :param receptor: La referencia al actor.
+        :param lado_seguimiento: Establece el lado del actor que rotará para estar encarado hacia el puntero del mouse.
+        """
         Habilidad.__init__(self, receptor)
         pilas.escena_actual().mueve_mouse.conectar(self.se_movio_el_mouse)
         pilas.escena_actual().actualizar.conectar(self.rotar)
@@ -122,13 +145,9 @@ class RotarConMouse(Habilidad):
 
         self.receptor.rotacion = -(angulo) - self.lado_seguimiento
 
+
 class MirarAlActor(Habilidad):
     """"Hace que un actor rote para mirar hacia otro actor.
-
-    :param actor_a_seguir : Actor al que se desea seguir con la mirada.
-    :param lado_seguimiento: Establece el lado del actor que rotará para estar
-    encarado hacia el actor que desea vigilar.
-
     """
     ARRIBA = 270
     ABAJO = 90
@@ -136,6 +155,12 @@ class MirarAlActor(Habilidad):
     DERECHA = 0
 
     def __init__(self, receptor, actor_a_seguir, lado_seguimiento=ARRIBA):
+        """Inicializa la habilidad.
+
+        :param receptor: Actor que aprenderá la habilidad.
+        :param actor_a_seguir : Actor al que se desea seguir con la mirada.
+        :param lado_seguimiento: Establece el lado del actor que rotará para estar encarado hacia el actor que desea vigilar.
+        """
         Habilidad.__init__(self, receptor)
         pilas.escena_actual().actualizar.conectar(self.rotar)
         self.lado_seguimiento = lado_seguimiento
@@ -149,6 +174,7 @@ class MirarAlActor(Habilidad):
         angulo = pilas.utils.obtener_angulo_entre(receptor, actor_a_seguir)
 
         self.receptor.rotacion = -(angulo) - self.lado_seguimiento
+
 
 class AumentarConRueda(Habilidad):
     "Permite cambiar el tamaño de un actor usando la ruedita scroll del mouse."
@@ -183,6 +209,7 @@ class Arrastrable(Habilidad):
     que puedes usar polimorfismo para redefinir el comportamiento
     de estos dos metodos. Observa un ejemplo de esto en
     el ejemplo ``pilas.ejemplos.Piezas``.
+
     """
 
     def __init__(self, receptor):
@@ -224,26 +251,26 @@ class Arrastrable(Habilidad):
 
 
 class MoverseConElTeclado(Habilidad):
-    """Hace que un actor cambie de posición con pulsar el teclado.
-
-    :param control: Control al que va a responder para mover el Actor.
-    :param direcciones: Establece si puede mover en cualquier direccion o
-        unicamente en 4 direcciones arriba, abajo, izquierda y derecha. El parametro con_rotacion
-        establece las direcciones a OCHO_DIRECCIONES siempre.
-    :param velocidad_maxima: Velocidad maxima en pixeles a la que se moverá el Actor.
-    :param aceleracion: Indica lo rapido que acelera el actor hasta su velocidad máxima.
-    :param deceleracion: Indica lo rapido que decelera el actor hasta parar.
-    :param con_rotacion: Si deseas que el actor rote pulsando las teclas de izquierda
-        y derecha.
-    :param velocidad_rotacion: Indica lo rapido que rota un actor sobre si mismo.
-    :param marcha_atras: Posibilidad de ir hacia atrás. (True o False)
-    """
+    """Hace que un actor cambie de posición con pulsar el teclado."""
     CUATRO_DIRECCIONES = 4
     OCHO_DIRECCIONES = 8
 
 
     def __init__(self, receptor, control=None, direcciones=OCHO_DIRECCIONES, velocidad_maxima=4,
                  aceleracion=1, deceleracion=0.1, con_rotacion=False, velocidad_rotacion=1, marcha_atras=True):
+        """Inicializa la habilidad.
+
+        :param receptor: Referencia al actor que aprenderá la habilidad.
+        :param control: Control al que va a responder para mover el Actor.
+        :param direcciones: Establece si puede mover en cualquier direccion o unicamente en 4 direcciones arriba, abajo, izquierda y derecha. El parametro con_rotacion establece las direcciones a OCHO_DIRECCIONES siempre.
+        :param velocidad_maxima: Velocidad maxima en pixeles a la que se moverá el Actor.
+        :param aceleracion: Indica lo rapido que acelera el actor hasta su velocidad máxima.
+        :param deceleracion: Indica lo rapido que decelera el actor hasta parar.
+        :param con_rotacion: Si deseas que el actor rote pulsando las teclas de izquierda y derecha.
+        :param velocidad_rotacion: Indica lo rapido que rota un actor sobre si mismo.
+        :param marcha_atras: Posibilidad de ir hacia atrás. (True o False)
+        """
+
         Habilidad.__init__(self, receptor)
         pilas.escena_actual().actualizar.conectar(self.on_key_press)
 
@@ -262,7 +289,6 @@ class MoverseConElTeclado(Habilidad):
         self.velocidad_rotacion = velocidad_rotacion
         self.marcha_atras = marcha_atras
 
-
     def set_velocidad_maxima(self, velocidad):
         self._velocidad_maxima = velocidad
 
@@ -277,7 +303,6 @@ class MoverseConElTeclado(Habilidad):
 
     velocidad_maxima = property(get_velocidad_maxima, set_velocidad_maxima, doc="Define la velocidad maxima.")
     aceleracion = property(get_aceleracion, set_aceleracion, doc="Define la acelaracion.")
-
 
     def on_key_press(self, evento):
 
@@ -346,6 +371,7 @@ class MoverseConElTeclado(Habilidad):
         elif self.velocidad < - self.velocidad_maxima / 2:
             self.velocidad = - self.velocidad_maxima / 2
 
+
 class MoverseComoCoche(MoverseConElTeclado):
     "Hace que un actor se mueva como un coche."
 
@@ -411,12 +437,13 @@ class SeMantieneEnPantalla(Habilidad):
     Si el actor sale por la derecha de la pantalla, entonces regresa
     por la izquiera. Si sale por arriba regresa por abajo y asi...
 
-    param: permitir_salida: Valor booleano que establece si el actor
-    puede salir por los lados de la ventana y regresar por el lado opuesto.
-    Si se establece a False, el actor no puede salir de la ventana en ningún
-    momento.
     """
     def __init__(self, receptor, permitir_salida=True):
+        """Inicializa la habilidad.
+
+        :param receptor: El actor que aprenderá la habilidad.
+        :param permitir_salida: Valor booleano que establece si el actor puede salir por los lados de la ventana y regresar por el lado opuesto. Si se establece a False, el actor no puede salir de la ventana en ningún momento.
+        """
         Habilidad.__init__(self, receptor)
         self.ancho, self.alto = pilas.mundo.motor.obtener_area()
         self.permitir_salida = permitir_salida
@@ -445,7 +472,9 @@ class SeMantieneEnPantalla(Habilidad):
             elif self.receptor.abajo < -(self.alto/2):
                 self.receptor.abajo = -(self.alto/2)
 
+
 class PisaPlataformas(Habilidad):
+    """Enseña al actor a pisar plataformas físicas."""
 
     def __init__(self, receptor):
         Habilidad.__init__(self, receptor)
@@ -468,9 +497,17 @@ class PisaPlataformas(Habilidad):
     def eliminar(self):
         pilas.fisica.fisica.eliminar(self.figura)
 
+
 class Imitar(Habilidad):
+    "Logra que el actor imite las propiedades de otro."
 
     def __init__(self, receptor, objeto_a_imitar, con_rotacion=True):
+        """Inicializa la habilidad.
+
+        :param receptor: Referencia al actor.
+        :param objeto_a_imitar: Cualquier objeto con atributos rotacion, x e y (por ejemplo otro actor).
+        :param con_rotacion: Si debe imitar o no la rotación.
+        """
         Habilidad.__init__(self, receptor)
         self.objeto_a_imitar = objeto_a_imitar
 
@@ -496,6 +533,7 @@ class Imitar(Habilidad):
     def eliminar(self):
         if isinstance(self.objeto_a_imitar, pilas.fisica.Figura):
             self.objeto_a_imitar.eliminar()
+
 
 class Disparar(Habilidad):
     """Establece la habilidad de poder disparar un Actor o un objeto de tipo

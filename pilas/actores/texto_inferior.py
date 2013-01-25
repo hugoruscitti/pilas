@@ -18,6 +18,14 @@ class TextoInferior(Texto):
     anterior_texto = None
 
     def __init__(self, texto="None", x=0, y=0, magnitud=17, autoeliminar=False, retraso=5):
+        """Inicializa el texto.
+
+        :param texto: Texto a mostrar.
+        :param x: Posición horizontal.
+        :param y: Posición vertical.
+        :param magnitud: Tamaño del texto.
+        :param vertical: Si el texto será vertical u horizontal, como True o False.
+        """
         Texto.__init__(self, texto, x, y, magnitud)
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
 
@@ -39,6 +47,7 @@ class TextoInferior(Texto):
             pilas.escena_actual().tareas.una_vez(retraso, self.eliminar)
 
     def _crear_sombra(self):
+        """Genera una sombra para el texto."""
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
         imagen = pilas.imagenes.cargar_superficie(derecha - izquierda, 40)
         imagen.pintar(pilas.colores.negro_transparente)
@@ -50,6 +59,6 @@ class TextoInferior(Texto):
         self.sombra.izquierda = izquierda
 
     def eliminar(self):
+        """Quita el texto de la escena."""
         Texto.eliminar(self)
         self.sombra.eliminar()
-

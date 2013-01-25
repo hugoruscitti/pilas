@@ -8,7 +8,8 @@
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import Qt
-from PyQt4.QtOpenGL import QGLWidget
+#from PyQt4.QtOpenGL import QGLWidget
+from PyQt4.QtGui import QWidget as QGLWidget
 from pilas import actores, colores, depurador, eventos, fps
 from pilas import imagenes, simbolos, utils
 import copy
@@ -34,7 +35,7 @@ class Ventana(QtGui.QMainWindow):
 
 class CanvasWidget(QGLWidget):
 
-    def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas, permitir_depuracion):
+    def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas, permitir_depuracion, rendimiento):
         QGLWidget.__init__(self, None)
         self.painter = QtGui.QPainter()
         self.setMouseTracking(True)
@@ -44,7 +45,7 @@ class CanvasWidget(QGLWidget):
         self.mouse_y = 0
         self.motor = motor
         self.lista_actores = lista_actores
-        self.fps = fps.FPS(60, True)
+        self.fps = fps.FPS(rendimiento, True)
 
         if permitir_depuracion:
             self.depurador = depurador.Depurador(motor.obtener_lienzo(), self.fps)
@@ -449,15 +450,15 @@ class Grilla(Imagen):
         self.dy = frame_row * self.cuadro_alto
 
     def avanzar(self):
-        ha_reiniciado = False
+        ha_avanzado = True
         cuadro_actual = self._cuadro + 1
 
         if cuadro_actual >= self.cantidad_de_cuadros:
             cuadro_actual = 0
-            ha_reiniciado = True
+            ha_avanzado = False
 
         self.definir_cuadro(cuadro_actual)
-        return ha_reiniciado
+        return ha_avanzado
 
     def obtener_cuadro(self):
         return self._cuadro
@@ -843,16 +844,16 @@ class Motor(object):
     def terminar(self):
         self.ventana.close()
 
-    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas):
+    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas, rendimiento):
         self.ventana = Ventana()
         self.ventana.resize(ancho, alto)
 
         if self.usar_motor in ['qtwidget', 'qtsugar']:
             mostrar_ventana = False
-            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion)
+            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
         else:
             mostrar_ventana = True
-            self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion)
+            self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
 
         self.ventana.set_canvas(self.canvas)
         self.canvas.setFocus()
@@ -888,7 +889,8 @@ class Motor(object):
         self.canvas.setCursor(QtGui.QCursor(Qt.ArrowCursor))
 
     def ejecutar_bucle_principal(self, mundo, ignorar_errores):
-        sys.exit(self.app.exec_())
+        if getattr(self, 'app', None):
+            sys.exit(self.app.exec_())
 
     def definir_centro_de_la_camara(self, x, y):
         self.camara_x = x

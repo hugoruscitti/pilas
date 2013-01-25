@@ -28,7 +28,7 @@ en pantalla:
     imagen = pilas.imagenes.cargar("mi_personaje.png")
     actor = pilas.actores.Actor(imagen)
 
-otra opcione similar es crear al actor, y luego
+otra opción similar es crear al actor, y luego
 asignarle la imagen:
 
 .. code-block:: python
@@ -52,7 +52,6 @@ La siguiente imagen es una grilla de 10 columnas
 que utilizamos para crear al personaje "pingu":
 
 .. image:: images/pingu.png
-    :width: 100%
 
 
 Internamente la imagen se almacena así, pero a la
@@ -129,10 +128,9 @@ comienza en 1:
     grilla.avanzar()
     actor.imagen = grilla
 
-Ten en cuenta que el método ``avanzar`` va a retornar ``True`` o ``False``. ``False``
-significa que la grilla aún tiene cuadros para
-mostrar, y ``True`` significa que la grilla volvió
-a mostrar el primer cuadro.
+Ten en cuenta que el método ``avanzar`` va a retornar ``True`` o ``False``.
+``True`` signigica que la grilla ha avanzado y ha mostrado un cuadro nuevo.
+``False`` significa que la grilla volvió a mostrar el primer cuadro.
 
 Este valor de retorno es muy útil a la hora de
 saber si una animación terminó, y poder tomar
@@ -161,7 +159,7 @@ filas.
 
 Cuando usas una grilla con pilas y columnas, la función ``avanzar``
 que vimos antes va a recorriendo los cuadros de la misma
-manera en que se leer una historieta (de izquierda
+manera en que se lee una historieta (de izquierda
 a derecha y de arriba a abajo).
 
 Esta es la apariencia de la imágen que usamos antes y

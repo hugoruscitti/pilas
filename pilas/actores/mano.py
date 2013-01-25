@@ -10,9 +10,24 @@ from pilas.actores import Actor
 import pilas
 
 class CursorMano(Actor):
-    "Representa un bloque que tiene fisica como una caja."
+    """
+    Representa un cusor del raton en forma de mano.
+    Cuando se pulsa el boton del ratón la mano cambia a un puño cerrado.
+
+        .. image:: images/actores/mano.png
+
+    """
 
     def __init__(self, x=0, y=0):
+        """
+        Constructor del cursor de la mano.
+
+        :param x: posicion horizontal del cursor.
+        :type x: int
+        :param y: posicion vertical del cursor.
+        :type y: int
+
+        """
         self._cargar_imagenes()
         Actor.__init__(self, self.imagen_normal)
         self.x = x
@@ -22,7 +37,7 @@ class CursorMano(Actor):
         pilas.mundo.motor.ocultar_puntero_del_mouse()
         self.z = -200
         self.pulsado = False
-        
+
         self.centro = ("izquierda", "arriba")
 
         self.escena.mueve_mouse.conectar(self.cuando_mueve_el_mouse)

@@ -2,7 +2,7 @@ Grupos
 ======
 
 Ahora que podemos manejar a los actores de manera individual. Vamos
-a ver organizarlos en grupos.
+a ver cómo organizarlos en grupos.
 
 Organizar a los actores en grupo es de utilidad, porque generalmente
 es una buena idea agrupar a los actores por características y
@@ -29,7 +29,7 @@ se colocarán en posiciones aleatorias.
 
 Esto es lo que veríamos en la ventana de pilas:
 
-.. image:: images/grupos_bombas.png
+.. image:: images/pilas-0.75/grupos_bombas.jpg
 
 
 A partir de ahora, la referencia ``bombas`` nos servirá para
@@ -63,7 +63,7 @@ hacer algo cómo esto:
 
 Y en la ventana obtendremos:
 
-.. image:: images/grupos_bombas_x.png
+.. image:: images/grupos_bombas_x.jpg
 
 
 Incluso, les podríamos enseñar a las bombas a reaccionar
@@ -78,7 +78,7 @@ con la aceleración gravitatoria:
 Ahora tendrás algo mucho mas interesante, un montón de
 actores rebotando entre sí:
 
-.. image:: images/grupos_bombas_como_pelota.png
+.. image:: images/grupos_bombas_como_pelota.jpg
 
 
 Un consejo, la gravedad del escenario se puede modificar
@@ -88,8 +88,8 @@ usando una sentencia como la que sigue:
 
     pilas.atajos.definir_gravedad(200, 0)
 
-donde el primer argumento es la gravedad horizontal, en este caso 200
-es hacia la derecha, y la gravedad vertical, que suele ser de -90
+donde el primer argumento es la gravedad horizontal, en este caso 200 es hacia
+la derecha, y el segundo argumento es la gravedad vertical, que suele ser de -90
 en general.
 
 Pruebalo, es divertido!
@@ -127,4 +127,4 @@ que quieres agregar:
     mi_grupo.escala = [2]
 
 
-.. image:: images/grupos_personalizado_escala.png
+.. image:: images/grupos_personalizado_escala.jpg

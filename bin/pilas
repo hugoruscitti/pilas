@@ -23,8 +23,17 @@ analizador.add_option("-i", "--interprete", dest="interprete",
 (opciones, argumentos) = analizador.parse_args()
 
 if argumentos:
-    os.chdir(os.path.dirname(argumentos[0]))
-    sys.exit(execfile(argumentos[0]))
+    archivo_a_ejecutar = pilas.utils.obtener_archivo_a_ejecutar_desde_argv()
+
+    try:
+        if archivo_a_ejecutar.startswith("-i"):
+            archivo_a_ejecutar = archivo_a_ejecutar.replace("-i ", "")
+
+        directorio_juego = os.path.dirname(archivo_a_ejecutar)
+        os.chdir(directorio_juego)
+        sys.exit(execfile(archivo_a_ejecutar))
+    except Exception, e:
+        pilas.utils.mostrar_mensaje_de_error_y_salir(str(e))
 
 if opciones.test:
     pilas.utils.realizar_pruebas()

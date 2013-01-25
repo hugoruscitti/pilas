@@ -35,8 +35,7 @@ La siguiente imagen muestra lo que podría
 dibujar la tortuga con algunas sentencias de
 movimientos:
 
-.. image:: images/tortuga_dibuja_triangulo.png
-    :width: 100%
+.. image:: images/pilas-0.75/tortuga_dibuja_triangulo.jpg
 
 La imagen no alcanza a mostrar por completo el
 concepto, pero en pocas palabras se puede sintetizar
@@ -101,7 +100,7 @@ Usando una Pizarra
 
 Si quieres dibujar sobre la pantalla pero
 de forma inmediata y con algunas posibilidades mas
-elaboradas puedes
+elaboradas, puedes
 usar un actor llamado ``Pizarra``. Esta no es la
 forma mas avanzada, pero es el siguiente paso después
 de dominar al actor ``Tortuga``.
@@ -109,7 +108,7 @@ de dominar al actor ``Tortuga``.
 Este actor ``Pizarra`` es cómo un lienzo invisible sobre
 el que podemos pintar imágenes, figuras
 geométricas y trazos de cualquier tipo. De hecho, el actor
-``Tortuga`` que vimos antes en realizada estaba
+``Tortuga`` que vimos antes, en realidad estaba
 dibujando sobre una pizarra, solo que lo hacía con
 animaciones y algo lento.
 
@@ -131,7 +130,7 @@ si prefieres otro color, o trazar una linea:
 
     pizarra.linea(0, 0, 200, 200, pilas.colores.verdeoscuro, grosor=5)
 
-.. image:: images/linea.png
+.. image:: images/linea.jpg
 
 Pintando imágenes
 -----------------
@@ -152,7 +151,7 @@ indicarla a la pizarra que la dibuje en una posicion determinada.
 
 Así se verá:
 
-.. image:: images/pizarra_imagen.png
+.. image:: images/pizarra_imagen.jpg
 
 Ten en cuenta que en estos casos, cuando estamos dibujando
 una imagen sobre otra, el punto destino (x, y) siempre indica
@@ -189,7 +188,7 @@ que pinte el cuadro actual de la grilla:
 
 Así se verá:
 
-.. image:: images/pizarra_grilla.png
+.. image:: images/pizarra_grilla.jpg
 
 Esto es útil cuando se quieren pintar bloques de un escenario
 completo, por ejemplo podríamos tener una grilla con distintos

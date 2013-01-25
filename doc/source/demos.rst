@@ -9,23 +9,29 @@ organizado como un conjunto de clases sencillas.
 
 Para poner en funcionamiento alguna de las demos
 simplemente tienes que hacer un objeto a partir
-de alguna de las clases que verás en el módulo.
+de alguna de las clases que verás en el módulo y ejecutar su método 'iniciar()'.
 
 Piezas
 ------
 
-Hay un pequeño rompecabezas que se puede
-iniciar con la siguiente sentencia:
+Hay un pequeño rompecabezas que se puede iniciar con el siguiente código:
 
 .. code-block:: python
 
-    pilas.demos.Piezas()
+    import pilas
+    
+    pilas.iniciar()
+    piezas = pilas.demos.piezas.Piezas()
+    piezas.iniciar()
+    
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
 
-inmeditamente despúes de evaluar esa sentencia, aparecerá en
+
+inmeditamente despúes de evaluar estas sentencias, aparecerá en
 pantalla un grupo de piezas para que puedas 
 empezar a acomodarlas usando el mouse.
 
-.. image:: images/piezas.png
+.. image:: images/piezas.jpg
 
 Ten en cuenta que los ejemplos también reciben parámetros, así
 podemos alterar un poco mas el funcionamiento del minijuego.
@@ -37,12 +43,18 @@ Escribe lo siguiente:
 
 .. code-block:: python
 
-    pilas.demos.Piezas("mono.png", 2, 2)
+    import pilas
+    
+    pilas.iniciar()
+    piezas = pilas.demos.piezas.Piezas("mono.png", 2, 2)
+    piezas.iniciar()
+    
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
 
 Si, ahora en pantalla aparece la imagen del mono pero separado
 en 4 piezas. Dado que hemos especificado 2 (filas) y 2 (columnas).
 
-.. image:: images/piezas_mono.png
+.. image:: images/piezas_mono.jpg
 
 
 Puedes usar cualquier imagen que quieras para construir tu
@@ -54,11 +66,18 @@ complete el rompecabezas:
 
 .. code-block:: python
 
+    import pilas
+    
+    pilas.iniciar()
+    
     def cuando_se_complete():
         pilas.avisar("Lo has completado!!!")
+    
+    piezas = pilas.demos.piezas.Piezas("mono.png", 2, 2, cuando_se_complete)
+    piezas.iniciar()
+    
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
 
-    pilas.demos.Piezas("mono.png", 2, 2, cuando_se_complete)
 
-
-.. image:: images/piezas_completo.png
+.. image:: images/piezas_completo.jpg
 

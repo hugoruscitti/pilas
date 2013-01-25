@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>pilas engine</title>
+  <meta charset="utf-8"> 
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/estilo.css" rel="stylesheet">
+  <link href="css/demo.css" rel="stylesheet">
+
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+
+    String.prototype.format = function (o) {
+        return this.replace(/{([^{}]*)}/g,
+            function (a, b) {
+                var r = o[b];
+                return typeof r === 'string' || typeof r === 'number' ? r : a;
+            }
+        );
+    };
+
+    $(document).ready(function() {
+        
+        function crear_ejemplo(categoria, nombre) {
+            var opciones = {
+                nombre: nombre,
+                categoria: categoria,
+                run: "<img class='boton' src='imagenes/ejecutar.png'>",
+                codigo: "<img class='boton' src='imagenes/codigo.png'>",
+            };
+
+            var elemento_template = $('.elemento_template').html();
+            var elemento = elemento_template.format(opciones);
+            
+
+	          $(".item").append(elemento);
+        }
+
+        function crear_nueva_seccion(nombre, identificador) {
+            var elemento = '<li><a href="#" rel="{id}">{nombre}</a></li>'.format({nombre: nombre, id: identificador});
+            $(".menu").append(elemento);
+        }
+
+        crear_nueva_seccion("Animación", 'animaciones');
+        crear_ejemplo('animaciones', 'animacion_con_velocidad');
+        crear_ejemplo('animaciones', 'grilla');
+
+        crear_nueva_seccion("Basicos", 'basicos');
+        crear_ejemplo("basicos", "actor");
+        crear_ejemplo("basicos", "actor_personalizado_con_imagen_y_control");
+        crear_ejemplo("basicos", "actores_simples");
+        crear_ejemplo("basicos", "arrastrable");
+        crear_ejemplo("basicos", "arrastrable_varios_z");
+        crear_ejemplo("basicos", "duplicar");
+        crear_ejemplo("basicos", "fondo");
+        crear_ejemplo("basicos", "interpolacion");
+        crear_ejemplo("basicos", "punto_de_control");
+        crear_ejemplo("basicos", "reloj");
+        crear_ejemplo("basicos", "sonidos");
+        crear_ejemplo("basicos", "tareas");
+        crear_ejemplo("basicos", "test_ejes");
+        crear_ejemplo("basicos", "test_explosion");
+
+
+        crear_nueva_seccion("Colisiones", "colisiones");
+        crear_ejemplo("colisiones", "colisiones");
+
+        crear_nueva_seccion("Dialogos", "dialogos");
+        crear_ejemplo("dialogos", "dialogo");
+        crear_ejemplo("dialogos", "dialogo_con_botones");
+        crear_ejemplo("dialogos", "dialogo_con_funciones");
+        crear_ejemplo("dialogos", "dialogo_con_preguntas");
+        crear_ejemplo("dialogos", "globo_simple");
+        crear_ejemplo("disparos", "disparar_a_monos");
+        crear_ejemplo("disparos", "disparo");
+
+        crear_nueva_seccion("Escenas", "escenas");
+        crear_ejemplo("escenas", "escenas_apiladas");
+        crear_ejemplo("escenas", "escenas_con_menu");
+        crear_ejemplo("escenas", "menu");
+
+        crear_nueva_seccion("Física", "fisica");
+        crear_ejemplo("fisica", "actores_arrastrables");
+        crear_ejemplo("fisica", "colisiones_fisicas");
+        crear_ejemplo("fisica", "grupos_y_colisiones");
+        crear_ejemplo("fisica", "mapas");
+
+        crear_nueva_seccion("Interfaz", "interfaz");
+        crear_ejemplo("interfaz", "barra_de_energia");
+        crear_ejemplo("interfaz", "boton");
+        crear_ejemplo("interfaz", "boton_con_texto");
+        crear_ejemplo("interfaz", "deslizador");
+        crear_ejemplo("interfaz", "ejemplo_global");
+        crear_ejemplo("interfaz", "ejemplo_temporizador");
+        crear_ejemplo("interfaz", "ingreso_de_texto_y_selector");
+        crear_ejemplo("interfaz", "lista_seleccion");
+        crear_ejemplo("interfaz", "puntaje");
+        crear_ejemplo("interfaz", "selector");
+        crear_ejemplo("interfaz", "texto");
+        crear_ejemplo("interfaz", "texto_que_cambia");
+
+        crear_nueva_seccion("Pizzara", "pizarra");
+        crear_ejemplo("pizarra", "colores");
+        crear_ejemplo("pizarra", "pizarra");
+        crear_ejemplo("pizarra", "pizarra_actores_conectados_por_linea");
+        crear_ejemplo("pizarra", "pizarra_dibuja_grilla");
+        crear_ejemplo("pizarra", "pizarra_dibuja_imagen");
+        crear_ejemplo("pizarra", "pizarra_dibuja_triangulo");
+        crear_ejemplo("pizarra", "pizarra_dibujando_con_el_mouse");
+
+        crear_nueva_seccion("Mapas", "mapas");
+        crear_ejemplo("mapas", "mapa_desde_archivo");
+        crear_ejemplo("mapas", "mapa_personaje_martian");
+        crear_ejemplo("mapas", "mapa_plataformas");
+
+        crear_nueva_seccion("Minijuegos", "minijuegos");
+        crear_ejemplo("minijuegos", "asteroides");
+        crear_ejemplo("minijuegos", "memorice");
+        crear_ejemplo("minijuegos", "monitos_que_disparan");
+        crear_ejemplo("minijuegos", "pacman_simple");
+        crear_ejemplo("minijuegos", "tres_en_raya");
+
+        crear_nueva_seccion("Otros", "otros");
+        crear_ejemplo("otros", "camara");
+        crear_ejemplo("otros", "comportamientos_movimiento_de_mono");
+        crear_ejemplo("otros", "transparencia");
+
+        crear_nueva_seccion("Tutoriales", "tutoriales");
+        crear_ejemplo("tutoriales", "aceitunas_vs_bombas_paso_1");
+        crear_ejemplo("tutoriales", "aceitunas_vs_bombas_paso_2");
+        crear_ejemplo("tutoriales", "aceitunas_vs_bombas_paso_3");
+        crear_ejemplo("tutoriales", "aceitunas_vs_bombas_paso_4");
+        crear_ejemplo("tutoriales", "aceitunas_vs_bombas_paso_5");
+
+
+        crear_nueva_seccion("Completos", "completos");
+        crear_ejemplo("completos", "ejemplo_piezas");
+
+        crear_nueva_seccion("Control", "control");
+        crear_ejemplo("control", "control_personalizado");
+
+        crear_nueva_seccion("Fondos", "fondos");
+        crear_ejemplo("fondos", "desplazamiento");
+
+        crear_nueva_seccion("Habilidades", "habilidades");
+        crear_ejemplo("habilidades", "habilidad_personalizada");
+        crear_ejemplo("habilidades", "habilidad_personalizada_con_argumentos");
+        crear_ejemplo("habilidades", "pingu_controlado_por_teclado");
+        crear_ejemplo("habilidades", "seguir_clicks");
+
+        crear_nueva_seccion("Interaccion", "interaccion");
+        crear_ejemplo("interaccion", "mover_actor_por_eventos");
+        crear_ejemplo("interaccion", "moverse_con_el_teclado");
+
+        crear_nueva_seccion("Interpolaciones", "interpolaciones");
+        crear_ejemplo("interpolaciones", "interpolaciones");
+
+        crear_nueva_seccion("Log", "log");
+        crear_ejemplo("log", "log");
+
+
+        $("ul.item a").click(function() {
+            var elemento = $(this);
+
+            // Haciendo visible la barra de progreso.
+            elemento.parent().find(".progresando").css("display", "block");
+
+            var self = elemento;
+            setTimeout(function() {self.parent().find(".progresando").css("display", "none")}, 3000);
+        });
+
+        $('.menu li a').click(function() {
+            $('.menu li').removeClass('selected');
+            $(this).parent('li').addClass('selected');
+
+            var elemento 	= $(this).attr('rel');
+
+            if (elemento != "all") {
+              $('.item li[rel='+elemento+']').stop().animate({
+                  'width' : '128px', 
+                  'opacity' : 1, 
+                  'marginRight' : '.5em', 
+                  'marginLeft' : '.5em'
+                });
+
+              $('.item li[rel!='+elemento+']').stop().animate({
+                   'width': 0, 
+                   'opacity': 0,
+                   'marginRight': 0, 
+                   'marginLeft': 0
+                });
+
+            } else {
+
+              $('.item li').stop().animate({
+                  'width': '128px', 
+                  'opacity': 1, 
+                  'marginRight': '.5em', 
+                  'marginLeft': '.5em'
+                });
+            }
+        })
+
+    });
+
+</script>
+</head>
+
+<body>
+
+<div id="container">
+
+  <div class='superior'>
+    <a href='index.html'>« Regresar</a>
+  </div>
+
+	<ul class="menu">
+		<li class="selected"><a href="#" rel="all">Todos</a></li>
+    <!-- placeholder -->
+	</ul>
+	
+	<ul class="item">
+    <!-- placeholder -->
+	</ul>
+
+  <div style='display: none'>
+    <div class='elemento_template'>
+      <li rel='{categoria}'>
+        <div class='contenedor_ejemplo'>
+            <a href='http://pilas/ejecutar/{categoria}/{nombre}'><img src='../../ejemplos/ejemplos/{categoria}/{nombre}.png'></a>
+            <br/>
+            <a href='http://pilas/ejecutar/{categoria}/{nombre}'>{run}</a> 
+            <a href='http://pilas/codigo/{categoria}/{nombre}'>{codigo}</a>
+            <br/>
+
+            <span class='progresando'><img src='imagenes/procesando.gif'/></span>
+        </div>
+      </li>
+    </div> 
+
+  </div>
+	
+	<div class="cleaner"></div>
+</div>
+</body>
+</html>
+
+

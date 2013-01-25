@@ -33,18 +33,17 @@ def test_actor_texto():
     texto = pilas.actores.Texto("Hola")
     assert texto.texto == "Hola"
 
-    # verificando que el tamaño inicial es de 30 y el color negro
-    assert texto.magnitud == 30
+    assert texto.magnitud == 20
 
 def test_habilidades():
     texto = pilas.actores.Texto("Hola")
 
     # Vincula la clase Text con un componente.
-    component = pilas.habilidades.AumentarConRueda 
+    component = pilas.habilidades.AumentarConRueda
     texto.aprender(component)
 
     # Se asegura que el componente pasa a ser de la superclase.
-    assert component == texto.habilidades[0].__class__
+    assert texto.habilidades.AumentarConRueda
 
 def test_existen_los_atajos():
     assert pilas.atajos
@@ -55,7 +54,7 @@ def test_Ejes():
 
 
 def test_Grilla():
-    grilla = pilas.imagenes.cargar_grilla("fondos/volley.png", 10, 10)
+    grilla = pilas.imagenes.cargar_grilla("fondos/volley.jpg", 10, 10)
     assert grilla
     grilla.avanzar()
 
@@ -63,14 +62,6 @@ def test_Fondo():
     un_fondo = pilas.fondos.Tarde()
     assert un_fondo
 
-def test_Control():
-    control = pilas.mundo.control
-
-    assert control.izquierda
-    assert control.derecha
-    assert control.arriba
-    assert control.abajo
-    assert control.boton
 
 
 def test_Distancias():

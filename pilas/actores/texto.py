@@ -16,11 +16,17 @@ class Texto(Actor):
     ejemplo para crear un mensaje de saludo podríamos escribir:
 
         >>> saludo = pilas.actores.Texto("Hola mundo!")
-
-
     """
 
     def __init__(self, texto="None", x=0, y=0, magnitud=20, vertical=False):
+        """Inicializa el actor.
+
+        :param texto: Texto a mostrar.
+        :param x: Posición horizontal.
+        :param y: Posición vertical.
+        :param magnitud: Tamaño del texto.
+        :param vertical: Si el texto será vertical u horizontal, como True o False.
+        """
         imagen = pilas.mundo.motor.obtener_texto(texto, magnitud, vertical)
         self._definir_area_de_texto(texto, magnitud)
         Actor.__init__(self, imagen, x=x, y=y)
@@ -31,27 +37,33 @@ class Texto(Actor):
         self.fijo = True
 
     def obtener_texto(self):
+        """Retorna el texto definido."""
         return self.imagen.texto
 
     def definir_texto(self, texto):
+        """Define el texto a mostrar."""
         self.imagen.texto = texto
         self._definir_area_de_texto(texto, self.magnitud)
 
     texto = property(obtener_texto, definir_texto, doc="El texto que se tiene que mostrar.")
 
     def obtener_magnitud(self):
+        """Devuelve el tamaño del texto."""
         return self.imagen.magnitud
 
     def definir_magnitud(self, magnitud):
+        """Define el tamaño del texto a mostrar."""
         self._magnitud = magnitud
         self.imagen.magnitud = magnitud
 
     magnitud = property(obtener_magnitud, definir_magnitud, doc="El tamaño del texto.")
 
     def obtener_color(self):
+        """Devuelve el color que tiene asignado el texto."""
         return self.imagen.color
 
     def definir_color(self, color):
+        """Define el color del texto."""
         self.imagen.color = color
 
     color = property(obtener_color, definir_color, doc="Color del texto.")

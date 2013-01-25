@@ -11,8 +11,18 @@ import re
 from pilas.interfaz.base_interfaz import BaseInterfaz
 
 class IngresoDeTexto(BaseInterfaz):
+    """Representa una caja de texto para escribir sobre ella."""
 
     def __init__(self, texto_inicial="", x=0, y=0, ancho=300, limite_de_caracteres=20, icono=None):
+        """Inicializa la caja de texto.
+
+        :param texto_inicial: La cadena de texto inicial del campo de texto.
+        :param x: Posición horizontal.
+        :param y: Posición vertical.
+        :param ancho: Ancho de la caja para ingresar texto.
+        :param limite_de_caracteres: Límite de la longitud de cadena (en cantidad de caracteres).
+        :param icono: Icono que se mostrará en la cada de texto.
+        """
         BaseInterfaz.__init__(self, x=x, y=y)
         self.texto = texto_inicial
         self.cursor = ""

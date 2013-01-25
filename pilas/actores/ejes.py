@@ -22,5 +22,12 @@ class Ejes(Actor):
     """
 
     def __init__(self, x=0, y=0):
+        """ Constructor de los ejes.
+
+        :param x: Posición horizontal de los ejes.
+        :type x: int
+        :param y: Posición vertical de los ejes.
+        :type y: int
+        """
         Actor.__init__(self, "ejes.png", x=x, y=y)
         self.z = 100

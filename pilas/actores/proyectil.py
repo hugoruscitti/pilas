@@ -12,7 +12,7 @@ from pilas.actores import Animacion
 
 
 class Misil(Animacion):
-    """ Representa un misil que va en línea recta con aceleración. """
+    """Representa un misil que va en línea recta con aceleración."""
 
     def __init__(self, x=0, y=0, rotacion=0, velocidad_maxima=8,
                  angulo_de_movimiento=90):

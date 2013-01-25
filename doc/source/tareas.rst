@@ -18,7 +18,7 @@ en un determinado momento.
 
 Al momento de crear la tarea tenemos que
 pensar "en qué momento se tiene que ejecutar
-la tarea", y dependiendo de lo que queramos
+la tarea", y dependiendo de lo que queramos,
 tenemos que escribir algo cómo:
 
 .. code-block:: python
@@ -35,7 +35,7 @@ Hay tres tipos de creaciones de tareas:
 
 las tareas condicionales se ejecutarán siempre y cuando
 la función que las representa retorna True. Si la función
-retorna False la tareas dejará de ejecutarse.
+retorna False la tarea dejará de ejecutarse.
 
 
 Eliminar tareas

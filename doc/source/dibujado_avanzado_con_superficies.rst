@@ -8,7 +8,7 @@ de pizarra.
 
 Pero hay situaciones donde realmente necesitamos
 algo mas. En muchas ocasiones necesitamos que
-los actores se puedan tener una apariencia que
+los actores puedan tener una apariencia que
 construimos programáticamente (si existe la palabra...).
 
 Por ejemplo, imagina que queremos hacer un indicador
@@ -51,7 +51,7 @@ crear un actor con esa apariencia:
 
     pilas.actores.Actor(superficie)
 
-    pilas.ejecutar()
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
 
 
 Es decir, una vez que creamos la superficie, en realidad lo que obtenemos

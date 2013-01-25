@@ -10,9 +10,16 @@ from pilas.actores import Actor
 import pilas
 
 class CursorDisparo(Actor):
-    "Representa un bloque que tiene fisica como una caja."
+    """ Representa un cursor con una cruz roja."""
 
     def __init__(self, x=0, y=0):
+        """ Constructor del CursorDisparo
+
+        :param x: Posición horizontal del cursor.
+        :type x: int
+        :param y: Posición vertical del cursor.
+        :type y: int
+        """
         imagen = pilas.imagenes.cargar('cursordisparo.png')
         Actor.__init__(self, imagen)
         self.rotacion = 0

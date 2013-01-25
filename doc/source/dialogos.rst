@@ -22,8 +22,9 @@ puedes usar el método ``decir``:
 
 
 Esto hará que el personaje muestre un globo similar al
-de las historietas con las frase que has colocado.
+de las historietas con las frases que has colocado.
 
+.. image:: images/dialogos/decir.jpg
 
 Conversaciones
 --------------
@@ -87,3 +88,5 @@ decirlo:
         dialogo.decir(mono, "he dicho: " + respuesta)
 
     dialogo.elegir(mono, "Mi color favorito es el...", ["rojo", "verde", "azul"], cuando_responde_color_favorito)       
+
+.. image:: images/dialogos/pregunta.jpg

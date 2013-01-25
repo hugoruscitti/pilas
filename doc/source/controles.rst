@@ -2,7 +2,7 @@ Controles
 =========
 
 Si quieres conocer el estado de los controles
-en pilas tienes que usar el objeto ``pilas.mundo.control``.
+en pilas, tienes que usar el objeto ``pilas.mundo.control``.
 
 Por ejemplo, para hacer que un actor
 se mueva por la pantalla simplemente puedes crear
@@ -10,15 +10,20 @@ al actor y escribir estas sentencias.
 
 .. code-block:: python
 
-    if pilas.mundo.control.izquierda:
+    if pilas.escena_actual().control.izquierda:
         mono.x -= 1
-    elif pilas.mundo.control.derecha:
+    elif pilas.escena_actual().control.derecha:
         mono.x += 1
 
 Esta no es la única forma de mover a un personaje por
 la pantalla, pero suele ser la mas conveniente porque
-es muy directa, y se pueda escribir en cualquier parte
+es muy directa, y se puede escribir en cualquier parte
 del código.
+
+.. note::
+    Recuerda que para poder interactuar con el teclado, debes seleccionar la
+    ventana de resultado. Haz click en la parte de arriba del intérprete de
+    pilas para seleccionarla.
 
 Investigando al objeto control
 ------------------------------
@@ -48,8 +53,7 @@ es en la actualización de un actor.
 
 Esto se logra colocando un método llamado ``actualizar`` dentro
 del actor y haciendo la consulta ahí. Veamos un
-actor sencillo que se pueda mover de izquierda a derecha, pero
-que no salga nunca de la pantalla. El código sería
+actor sencillo que se pueda mover de izquierda a derecha. El código sería
 así:
 
 .. code-block:: python
@@ -65,12 +69,12 @@ así:
             self.imagen = pilas.imagenes.cargar("aceituna.png")
 
         def actualizar(self):
-            if pilas.mundo.control.izquierda:
+            if pilas.escena_actual().control.izquierda:
                 self.x -= 10
 
-            if pilas.mundo.control.derecha:
-                self.x += 10                                                                  
+            if pilas.escena_actual().control.derecha:
+                self.x += 10
 
     MiActor()
-    pilas.ejecutar()
-
+    
+    pilas.ejecutar() # Necesario al ejecutar en scripts.

@@ -14,24 +14,26 @@ class Sonido(Boton):
 
     Este actor se utilizará para habilitar el sonido o deshabilitarlo al
     hacer click sobre él.
-    
     """
 
     def __init__(self, x=0, y=0):
-        Boton.__init__(self, x=x, y=y, ruta_normal = 'iconos/sonido_on.png',
+        """Inicializa actor que permite controlar el sonido."""
+        # TODO: quitar x e y de los argumentos, ya se no se utilizan.
+        Boton.__init__(self, x=0, y=0, ruta_normal = 'iconos/sonido_on.png',
                        ruta_press = 'iconos/sonido_off.png')
-        
+
         self.conectar_presionado(self.deshabilitar_sonido)
-        
+
         # Colocamos el boton en la esquina inferior derecha de la pantalla.
         self._ancho_mundo, self._alto_mundo = pilas.mundo.motor.obtener_area()
         self.x = (self._ancho_mundo / 2) - self.ancho
         self.y = -1 * (self._alto_mundo / 2) + self.alto
-        
+
         self.activado = True
-        
+
     def deshabilitar_sonido(self):
-        if (self.activado):
+        """Alterna entre sonido habilitado o deshabilitado."""
+        if self.activado:
             pilas.mundo.deshabilitar_musica()
             pilas.mundo.deshabilitar_sonido()
             self.pintar_presionado()
@@ -43,4 +45,3 @@ class Sonido(Boton):
             self.pintar_normal()
             pilas.avisar("Sonido habilitado")
             self.activado = True
-        

@@ -15,16 +15,31 @@ class Puntaje(Texto):
     """Representa un contador de Puntaje"""
 	
     def __init__(self, texto='0', x=0, y=0, color=pilas.colores.negro):
+        """Inicializa el Puntaje.
+
+        :param texto: El número inicial del puntaje.
+        :param x: Posición horizontal para el puntaje.
+        :param y: Posición vertical para el puntaje.
+        :param color: Color que tendrá el texto de puntaje.
+        """
         Texto.__init__(self, texto, x=x, y=y)
         self.color = color
 
     def definir(self, puntaje_variable = '0'):
+        """Cambia el texto que se mostrará cómo puntaje.
+
+        :param puntaje_variable: Texto a definir.
+        """
         self.puntaje_texto = str(puntaje_variable)
         self.texto = self.puntaje_texto
 
     def aumentar(self, cantidad=1):
-        self.definir(int(self.texto) + int(cantidad))
-        
-    def obtener(self):
-        return int(self.texto)
+        """Incrementa el puntaje.
 
+        :param cantidad: La cantidad de puntaje que se aumentará.
+        """
+        self.definir(int(self.texto) + int(cantidad))
+
+    def obtener(self):
+        """Retorna el puntaje en forma de número."""
+        return int(self.texto)

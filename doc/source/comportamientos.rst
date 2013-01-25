@@ -7,7 +7,7 @@ una rutina o tarea para que la realicen.
 
 En pilas usamos el concepto de comportamiento. Un
 comportamiento es un objeto que le dice a
-un actor que debe hacer en todo momento.
+un actor qué debe hacer en todo momento.
 
 La utilidad de usar componentes es que puedes
 asociarlos y intercambiarlos libremente para
@@ -42,16 +42,18 @@ sola vez:
 
     pasos = 200
 
-    moverse_a_la_derecha = pilas.comportamientos.Avanzar(0, pasos)
-    moverse_a_la_izquierda = pilas.comportamientos.Avanzar(180, pasos)
-
+    moverse_a_la_derecha = pilas.comportamientos.Avanzar(pasos)
     mono.hacer_luego(moverse_a_la_derecha)
-    mono.hacer_luego(moverse_a_la_izquierda)
 
-    pilas.ejecutar()
+    mono.rotacion = [180] # Dar la vuelta.
+
+    moverse_a_la_izquierda = pilas.comportamientos.Avanzar(pasos)
+    mono.hacer_luego(moverse_a_la_izquierda)
+    
+    pilas.ejecutar() # Necesario al ejecutar en scripts.
 
 De hecho, tenemos una variante que puede ser un poco
-mas interesante, decirle al mono que repita estas tareas todo
+mas interesante; decirle al mono que repita estas tareas todo
 el tiempo:
 
 .. code-block:: python

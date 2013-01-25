@@ -10,8 +10,16 @@ import pilas
 from pilas.interfaz.base_interfaz import BaseInterfaz
 
 class Boton(BaseInterfaz):
-    
+    """Representa un botón que se puede pulsar y disparar una acción."""
+
     def __init__(self, texto="Sin texto", x=0, y=0, icono=None):
+        """Inicializa al actor.
+
+        :param texto: Texto que se mostrará dentro de botón.
+        :param x: Posición horizontal inicial.
+        :param y: Posición vertical inicial.
+        :param icono: Imagen que se mostrará sobre el botón.
+        """
         BaseInterfaz.__init__(self, x=x, y=y)
         self.texto = texto
         self._crear_imagenes_de_botones()
@@ -28,6 +36,10 @@ class Boton(BaseInterfaz):
         self.escena.click_de_mouse.conectar(self.cuando_hace_click)
 
     def conectar(self, funcion):
+        """Asocia la función a ejecutar cuando se haga click sobre el botón.
+
+        :param funcion: Referencia a la función que se desea vincular.
+        """
         self.funcion = funcion
 
     def _crear_imagenes_de_botones(self):
@@ -42,20 +54,28 @@ class Boton(BaseInterfaz):
         self.imagen = self.imagen_normal
 
     def cuando_mueve_el_mouse(self, evento):
-        if (self.activo):
+        """Detecta el movimiento del mouse.
+
+        :param evento: El objeto que representa el movimiento del mouse.
+        """
+        if self.activo:
             if self.colisiona_con_un_punto(evento.x, evento.y):
                 self.imagen = self.imagen_sobre
             else:
                 self.imagen = self.imagen_normal
 
     def cuando_hace_click(self, evento):
-        if (self.activo):
+        """Gestiona los clicks sobre el botón.
+
+        :param evento: Evento que representa al click.
+        """
+        if self.activo:
             if self.imagen == self.imagen_sobre:
                 self.imagen = self.imagen_click
-    
+
                 if self.funcion:
                     self.funcion()
-        
+
     def _crear_imagen(self, tema, texto, ancho, dx):
         "Genera una imagen de superficie de boton."
         imagen = pilas.imagenes.cargar_superficie(20 + ancho, 30)

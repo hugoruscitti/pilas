@@ -76,8 +76,8 @@ class Animacion(Animado):
 
         if self.tick > 1000.0:
             self.tick -= 1000.0
-            ha_reiniciado = self.imagen.avanzar()
+            ha_avanzado = self.imagen.avanzar()
 
             # Si la animacion ha terminado se elimina de la pantalla.
-            if ha_reiniciado and not self.ciclica:
+            if not ha_avanzado and not self.ciclica:
                 self.eliminar()

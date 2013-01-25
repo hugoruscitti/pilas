@@ -34,7 +34,7 @@ def test_posicion_de_los_actores():
     assert mono.escala == 1
 
     mono.escala = 0
-    assert mono.escala == 0
+    assert mono.escala == 0.001
 
     mono.escala = 0.5
     assert mono.escala == 0.5

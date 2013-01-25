@@ -10,7 +10,7 @@ El protagonista es Box2D
 ------------------------
 
 El motor de física seleccionado para pilas se llama Box2D, el mismo
-motor de física utilizando en el juego Angry Birds.
+motor de física utilizado en el juego Angry Birds.
 
 Así, Box2D y PyBox2D son las bibliotecas protagonistas
 de casi toda la funcionalidad que vas a ver en este módulo.
@@ -48,15 +48,14 @@ de actores chocando entre sí. Mas adelante veremos
 como personalizar y "controlar" un poco el escenario.
 
 
-.. image:: images/fisica.png
-    :width: 100%
+.. image:: images/pilas-0.75/fisica.jpg
 
 
 
 Los actores que tienen física son un poco particulares, pero
 aún así se los puede tratar como a otros actores. Por
 ejemplo, si quieres poder arrastrar y soltar figuras con
-el mouse puedes enseñarles una habilidad:
+el mouse, puedes enseñarles una habilidad:
 
 .. code-block:: python
 
@@ -79,7 +78,7 @@ simulación entre polígonos mucho mas primitiva y simple.
 
 Observa esta escena:
 
-.. image:: images/fisica_1.png
+.. image:: images/fisica_1.jpg
 
 Cada uno de esos actores está asociado a una figura
 geométrica, la física en realidad se da en un nivel muy
@@ -91,7 +90,7 @@ Intenta lo siguiente, pulsa la tecla **F11** y observarás
 varias lineas de color rojo indicando las figuras de
 los cuerpos:
 
-.. image:: images/fisica_2.png
+.. image:: images/fisica_2.jpg
 
 
 Las lineas rojas indican polígonos que el
@@ -136,7 +135,7 @@ y pulsa la tecla **F11**. Tendrías que ver el texto
 "F11 ModoFisica habilitado." 
 en la esquina superior de la ventana:
 
-.. image:: images/fisica_personalizada_1.png
+.. image:: images/fisica_personalizada_1.jpg
 
 
 Ahora genera dos figuras físicas, una circunferencia estática
@@ -153,7 +152,7 @@ en la parte superior de la ventana y luego caerá
 rebotando. Algo así:
 
 
-.. image:: images/fisica_personalizada_2.png
+.. image:: images/fisica_personalizada_2.jpg
 
 Ahora bien, habrás notado que estas dos circunferencias las
 podemos ver porque está habilitado el módulo de depuración (que
@@ -183,7 +182,7 @@ círculo que sea una bomba:
 Esto es diferente a lo anterior, los objetos físicos ahora
 tienen apariencia:
 
-.. image:: images/fisica_personalizada_3.png
+.. image:: images/fisica_personalizada_3.jpg
 
 
 Ahora podríamos desactivar el modo depuración física (pulsando
@@ -202,9 +201,9 @@ que escribir ``circulo_dinamico.y = 200`` para mover al actor...
 
 Otra cosa a considerar, es que en nuestro ejemplo no ajustamos
 muy bien el tamaño del ``circulo_dinamico`` con el de la
-bomba. Esto es un detalles poco relevante aquí, porque solo
-quiero explicar cómo se usar el motor, pero cuando hagas tus
-juegos recuerda usar el modo depuración de física para detectar
+bomba. Esto es un detalle poco relevante aquí, porque solo
+quiero explicar cómo se usa el motor, pero cuando hagas tus
+juegos, recuerda usar el modo depuración de física para detectar
 estos detalles y corregirlos, son muy importantes para que
 tus usuarios disfruten del juego. Recuerda que ellos no
 verán los círculos rojos... solo verán la apariencia

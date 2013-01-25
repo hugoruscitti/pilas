@@ -14,8 +14,32 @@ VELOCIDAD = 100
 
 
 class Martian(Actor):
+    """Es un personaje de un marciano que puede caminar, saltar y disparar.
+
+        .. image:: images/actores/martian.png
+
+    Este actor se puede mover con el teclado, pulsando las teclas ``izquierda``,
+    ``arriba``, ``abajo`` y ``derecha`` ademas de disparar con la
+    ``barra espaciadora``.
+
+    El marciano necesita un mapa para no caer al vacio y desaparecer de la
+    pantalla.
+
+        >>> marciano = pilas.actores.Martian(pilas.actores.Mapa())
+
+    """
 
     def __init__(self, mapa, x=0, y=0):
+        """Constructor del marciano
+
+        :param mapa: el mapa para que interactue el marciano.
+        :type mapa: pilas.actores.Mapa
+        :param x: Posición horizontal del marciano.
+        :type x: int
+        :param y: Posición vertical del marciano.
+        :type y: int
+
+        """
         Actor.__init__(self, x=x, y=y)
         self.imagen = pilas.imagenes.cargar_grilla("marcianitos/martian.png", 12)
         self.definir_cuadro(0)
@@ -31,6 +55,10 @@ class Martian(Actor):
 
 
     def definir_cuadro(self, indice):
+        """Define el cuadro de animación a mostrar.
+
+        :param indice: El número de cuadro comenzando desde 0.
+        """
         self.imagen.definir_cuadro(indice)
         self.definir_centro((32, 123))
 
@@ -39,15 +67,25 @@ class Martian(Actor):
         pass
 
     def puede_saltar(self):
+        "Indica si el persona puede saltar."
         return True
 
     def obtener_distancia_al_suelo(self):
+        "Retorna la distancia en pixels al suelo."
         return self.mapa.obtener_distancia_al_suelo(self.x, self.y, 100)
 
-class Esperando(Comportamiento):
-    "Un actor en posicion normal o esperando a que el usuario pulse alguna tecla."
 
+class Esperando(Comportamiento):
+    """Representa al actor en posicion normal.
+
+    Este comportamiento espera a que el usuario pulse
+    alguna tecla para entrar en movimiento.
+    """
     def iniciar(self, receptor):
+        """Inicia el comportamiento y define los valores iniciales.
+
+        :param receptor: El actor que será controlado por este comportamiento."
+        """
         self.receptor = receptor
         self.receptor.definir_cuadro(0)
 
@@ -70,12 +108,17 @@ class Esperando(Comportamiento):
             self.receptor.hacer(Saltando(0))
 
 class Caminando(Esperando):
+    """Representa al actor caminando hacia la izquierda o derecha."""
 
     def __init__(self):
         self.cuadros = [1, 1, 1, 2, 2, 2]
         self.paso = 0
 
     def iniciar(self, receptor):
+        """Inicia el comportamiento y define los valores iniciales.
+
+        :param receptor: El actor que será controlado por este comportamiento."
+        """
         self.receptor = receptor
 
     def actualizar(self):
@@ -98,6 +141,7 @@ class Caminando(Esperando):
         self.caer_si_no_toca_el_suelo()
 
     def avanzar_animacion(self):
+        """Cambia el cuado de animación para avanzar la animación"""
         self.paso += 1
 
         if self.paso >= len(self.cuadros):
@@ -106,12 +150,17 @@ class Caminando(Esperando):
         self.receptor.definir_cuadro(self.cuadros[self.paso])
 
 class Saltando(Comportamiento):
+    """Representa al actor realizando un salto."""
 
     def __init__(self, velocidad_de_salto):
         self.velocidad_de_salto = velocidad_de_salto
         Comportamiento.__init__(self)
 
     def iniciar(self, receptor):
+        """Inicia el comportamiento y define los valores iniciales.
+
+        :param receptor: El actor que será controlado por este comportamiento."
+        """
         self.receptor = receptor
         self.receptor.definir_cuadro(3)
 
@@ -140,6 +189,7 @@ class Saltando(Comportamiento):
             self.receptor.x += 3
 
 class Disparar(Comportamiento):
+    """Representa al actor disparando un proyectil."""
 
     def __init__(self, receptor):
         self.cuadros = [6, 6, 7, 7, 8, 8]

@@ -17,7 +17,7 @@ Cosas a tener en cuenta
 -----------------------
 
 Hay algunas cosas a tener en cuenta
-a la hora de manejar escenaas, porque
+a la hora de manejar escenas, porque
 simplifican mucho el trabajo posterior:
 
 - La escena actual siempre está señalada por el atributo ``pilas.escena_actual()``.
@@ -38,7 +38,7 @@ escena limpia.
 Cambiando el fondo de las escenas
 ---------------------------------
 
-Para hacer un pequeña prueba sobre una
+Para hacer una pequeña prueba sobre una
 escena, podrías ejecutar la siguiente sentencia
 de código:
 
@@ -50,8 +50,7 @@ Esto le dará a tu escena una vista
 mas agradable, porque carga un fondo de
 pantalla colorido y mas divertido:
 
-.. image:: images/paisaje.png
-    :width: 15cm
+.. image:: images/paisaje.jpg
 
 o podrías usar un fondo de atardecer: 
 
@@ -59,8 +58,7 @@ o podrías usar un fondo de atardecer:
 
     pilas.fondos.Tarde()
 
-.. image:: images/tarde.png
-    :width: 15cm
+.. image:: images/tarde.jpg
 
 Cómo crear nuevas escenas
 -------------------------
@@ -100,7 +98,7 @@ actual y activa:
 
 .. seealso:: Mira la documentación :ref:`ref_gestor_de_escenas` para comprender mejor el apilamiento de escenas.
 
-.. image:: images/escena_simple.png
+.. image:: images/escena_simple.jpg
 
 Ahora, si quieres salir de la escena, simplemente tendrías
 que hacer un objeto de otra clase que represente otra escena y llamar a uno de

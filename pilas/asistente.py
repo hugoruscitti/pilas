@@ -14,8 +14,6 @@ import json
 from asistente_base import Ui_AsistenteWindow
 import pilas
 import utils
-import interprete
-from ejemplos import cargador
 
 class VentanaAsistente(Ui_AsistenteWindow):
 
@@ -24,7 +22,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         Ui_AsistenteWindow.setupUi(self, main)
 
         self.webView.setAcceptDrops(False)
-        self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateAllLinks)
+        self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
         self.webView.connect(self.webView, QtCore.SIGNAL("linkClicked(const QUrl&)"), self.cuando_pulsa_link)
         self._cargar_pagina_principal()
         self._deshabilitar_barras_de_scroll()
@@ -51,9 +49,11 @@ class VentanaAsistente(Ui_AsistenteWindow):
             version_instalada = float(pilas.pilasversion.VERSION)
 
             if version_en_el_servidor == version_instalada:
-                mensaje = "(actualizada)"
+                mensaje = "- actualizada"
+            elif version_en_el_servidor < version_instalada:
+                mensaje = u"- desarrollo (versión estable en la web: %.2f)" %(version_en_el_servidor)
             else:
-                mensaje = u"(desactualizada: la version %.2f ya está disponible!)" %(version_en_el_servidor)
+                mensaje = u"- desactualizada: la version %.2f ya está disponible en la web!)" %(version_en_el_servidor)
         except ValueError:
             mensaje = u"(sin conexión a internet)"
 
@@ -68,7 +68,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _deshabilitar_barras_de_scroll(self):
         self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Horizontal, QtCore.Qt.ScrollBarAlwaysOff)
-        self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Vertical, QtCore.Qt.ScrollBarAlwaysOff)
+        self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Vertical, QtCore.Qt.ScrollBarAsNeeded)
 
     def _cargar_pagina_principal(self):
         file_path = utils.obtener_ruta_al_recurso('asistente/index.html')
@@ -92,18 +92,75 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
         if seccion == "interprete":
             self._cuando_selecciona_interprete()
-        elif seccion == "ejemplos":
-            self._cuando_selecciona_ejemplos()
         elif seccion == "manual":
             self._cuando_selecciona_abrir_manual()
         elif seccion == "web":
             import webbrowser
             webbrowser.open("http://www.pilas-engine.com.ar")
         else:
-            print seccion, "es una opcion desconocida"
+            partes = url.path().split('/')
 
-    def _cuando_selecciona_ejemplos(self):
-        cargador.main(self.main)
+            if len(partes) == 4:
+                accion = partes[1]
+                categoria = partes[2]
+                ejemplo = partes[3]
+
+                if accion == "ejecutar":
+                    self._ejecutar_ejemplo(str(categoria), str(ejemplo))
+                elif accion == "codigo":
+                    self._mostrar_codigo(str(categoria), str(ejemplo))
+                else:
+                    print accion, "sobre el ejemplo", ejemplo
+            else:
+                raise Exception(seccion + "es una opcion desconocida")
+
+    def _ejecutar_ejemplo(self, categoria, nombre):
+        """Intenta ejecutar un programa de ejemplo en base a la categoria y nombre.
+
+        Internamente, esta funcion intenta buscar un archivo dentro de la
+        ruta "../ejemplos/ejemplos/{categoria}/{nombre}.py".
+        """
+        try:
+            ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
+
+            self.process = QtCore.QProcess(self.main)
+            self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
+            self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
+            self.process.start(sys.executable, [ruta])
+        except Exception, name:
+            QtGui.QMessageBox.critical(self.main, "Error", str(name))
+
+    def _mostrar_codigo(self, categoria, nombre):
+        try:
+            ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
+            file_path = utils.obtener_ruta_al_recurso('asistente/codigo.html')
+            # TODO: convierto la ruta en absoluta para que mac desde py2app
+            #       pueda interpretar correctamente las imagenes.
+            file_path = os.path.abspath(file_path)
+
+            contenido = self._obtener_html(file_path)
+
+            import codecs
+            archivo_codigo = codecs.open(ruta, "r", "utf-8")
+            contenido_codigo = archivo_codigo.read()
+            archivo_codigo.close()
+            contenido = contenido.replace("{codigo}", contenido_codigo)
+            base_dir =  QtCore.QUrl.fromLocalFile(file_path)
+            self.webView.setHtml(contenido, base_dir)
+        except Exception, name:
+            QtGui.QMessageBox.critical(self.main, "Error", str(name))
+
+    def _obtener_ruta_al_ejemplo(self, categoria, nombre):
+        recurso = "../ejemplos/ejemplos/" + categoria + "/" + nombre + ".py"
+        return pilas.utils.obtener_ruta_al_recurso(recurso)
+
+
+    def _cuando_termina_la_ejecucion_del_ejemplo(self, codigo, estado):
+        "Vuelve a permitir que se usen todos los botone de la interfaz."
+        salida = str(self.process.readAll())
+
+        if codigo:
+            QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
     def _cuando_selecciona_interprete(self):
         comando = " ".join([sys.executable, sys.argv[0], '-i'])

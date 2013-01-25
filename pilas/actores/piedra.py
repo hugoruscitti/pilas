@@ -10,9 +10,18 @@ from pilas.actores import Actor
 import pilas
 
 class Piedra(Actor):
-    "Representa un bloque que tiene fisica como una caja."
+    """Representa una piedra que podría ser usada como meteoríto."""
 
     def __init__(self, x=0, y=0, tamano="grande", dx=0, dy=0):
+        """Genera el actor.
+
+        :param x: Posición horizontal del actor.
+        :param y: Posición vertical del actor.
+        :param tamano: Tamaño que tendrá la piedra, puerde ser "grande", "media" o  "chica"
+        :param dx: Velocidad horizontal del movimiento.
+        :param dy: Velocidad vertical del movimiento.
+        """
+
         imagen = pilas.imagenes.cargar('piedra_' + tamano + '.png')
         Actor.__init__(self, imagen)
         self.rotacion = 0
@@ -31,6 +40,7 @@ class Piedra(Actor):
         self.aprender(pilas.habilidades.SeMantieneEnPantalla)
 
     def actualizar(self):
+        "Realiza una actualización de la posición."
         self.rotacion += 1
         self.x += self.dx
         self.y += self.dy

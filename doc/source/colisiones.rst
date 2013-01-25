@@ -13,7 +13,7 @@ unos pocos pasos.
 
 - Tienes que pensar "qué" quieres hacer cuando se produce una colisión.
 - Escribir una función de respuesta a la colisión.
-- y por último decirle a pilas que actores son colisionables entre sí.
+- y, por último, decirle a pilas qué actores son colisionables entre sí.
 
 
 Ten en cuenta que cada actor tiene un atributo llamado
@@ -37,13 +37,13 @@ en la pantalla de su juego:
 Ahora pulsá la tecla **F12** para ver la posición de cada
 uno de los actores:
 
-.. image:: images/mono_colisiones.png
+.. image:: images/mono_colisiones.jpg
 
 
 Si pulsas **F9**, aparecerá un circulo verde por cada actor. Ese
 círculo indica el radio de colisión de cada actor:
 
-.. image:: images/mono_colisiones1.png
+.. image:: images/mono_colisiones1.jpg
 
 Este círculo se puede alterar cambiando el valor del ``radio_de_colision``
 del actor:
@@ -54,7 +54,7 @@ del actor:
 
 .. image:: images/radios.png
 
-Ahora, para poder mover al mono podemos enseñarle
+Ahora, para poder mover al mono, podemos enseñarle
 una habilidad:
 
 .. code-block:: python
@@ -81,8 +81,8 @@ la colisión:
     bananas = [banana]
     pilas.escena_actual().colisiones.agregar(mono, bananas, el_mono_come)
 
-Perfecto, ahora si mueves al mono por la pantalla con el
-mouse podrá comer bananas.
+Perfecto. Ahora, si mueves al mono por la pantalla con el
+mouse, podrá comer bananas.
 
 Intenta crear mas actores que representen bananas y
 agregarlos a la lista que usamos antes, por ejemplo:
@@ -108,7 +108,7 @@ sencilla es ejecutar lo siguiente:
 
 La pantalla se llenará de bananas, bah, habrá exactamente 20...
 
-.. image:: images/colisiones_muchas_bananas.png
+.. image:: images/colisiones_muchas_bananas.jpg
 
 De hecho, si quieres tener mas control sobre las bananas
 que se crearán, puedes usar esta rutina de código

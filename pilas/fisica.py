@@ -23,13 +23,20 @@ except ImportError:
 
 
 def convertir_a_metros(valor):
+    """Convierte una magnitid de pixels a metros."""
     return valor / float(PPM)
 
 def convertir_a_pixels(valor):
+    """Convierte una magnitud de metros a pixels."""
     return valor * PPM
 
 
 def crear_motor_fisica(area, gravedad):
+    """Genera el motor de física Box2D.
+
+    :param area: El area de juego.
+    :param gravedad: La gravedad del escenario.
+    """
     if __enabled__:
         if obtener_version().startswith('2.0'):
             print "Los siento, el soporte para Box2D version 2.0 se ha eliminado."
@@ -50,6 +57,11 @@ class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca Box2D (version 2.1)."""
 
     def __init__(self, area, gravedad):
+        """Inicializa el motor de física.
+
+        :param area: El area del escenario, en forma de tupla.
+        :param gravedad: La aceleración del escenario.
+        """
         self.mundo = box2d.b2World(gravedad, False)
         self.objetosContactListener = ObjetosContactListener()
         self.mundo.contactListener = self.objetosContactListener
@@ -65,11 +77,13 @@ class Fisica(object):
         self.timeStep = self.velocidad/120.0
 
     def crear_bordes_del_escenario(self):
+        """Genera las paredes, el techo y el suelo."""
         self.crear_techo(self.area)
         self.crear_suelo(self.area)
         self.crear_paredes(self.area)
 
     def reiniciar(self):
+        """Elimina todos los objetos físicos y vuelve a crear el entorno."""
         lista = list(self.mundo.bodies)
 
         for x in lista:
@@ -78,31 +92,46 @@ class Fisica(object):
         self.crear_bordes_del_escenario()
 
     def capturar_figura_con_el_mouse(self, figura):
+        """Comienza a capturar una figura con el mouse.
+
+        :param figura: La figura a controlar con el mouse.
+        """
         if self.constante_mouse:
             self.cuando_suelta_el_mouse()
 
         self.constante_mouse = ConstanteDeMovimiento(figura)
 
     def cuando_mueve_el_mouse(self, x, y):
+        """Gestiona el evento de movimiento del mouse.
+
+        :param x: Coordenada horizontal del mouse.
+        :param y: Coordenada vertical del mouse.
+        """
         if self.constante_mouse:
             self.constante_mouse.mover(x, y)
 
     def cuando_suelta_el_mouse(self):
+        """Se ejecuta cuando se suelta el botón de mouse."""
         if self.constante_mouse:
             self.constante_mouse.eliminar()
             self.constante_mouse = None
 
     def actualizar(self, velocidad=1.0):
+        """Realiza la actualización lógica del escenario.
+        """
+        # TODO: eliminar el arguemnto velocidad que no se utiliza.
         if self.mundo:
             self.mundo.Step(self.timeStep, 6, 3)
             self._procesar_figuras_a_eliminar()
             self.mundo.ClearForces()
 
     def pausar_mundo(self):
+        """Detiene la simulación física."""
         if self.mundo:
             self.timeStep = 0
 
     def reanudar_mundo(self):
+        """Restaura la simulación física."""
         if self.mundo:
             self.timeStep = self.velocidad/120.0
 
@@ -116,7 +145,12 @@ class Fisica(object):
             self.figuras_a_eliminar = []
 
     def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
-        "Dibuja todas las figuras en una pizarra. Indicado para depuracion."
+        """Dibuja todas las figuras en una pizarra. Indicado para depuracion.
+
+        :param motor: Referencia al motor de pilas.
+        :param lienzo: Un actor lienzo sobre el que se dibujará.
+        :param grosor: El grosor de la linea medida en pixels.
+        """
 
         cuerpos = self.mundo.bodies
 
@@ -130,73 +164,68 @@ class Fisica(object):
 
                 shape = fixture.shape
 
-                # TODO: Convertir las coordenadas para que el movimiento de camara se dibuje bien.
-                # TODO: SE puede aplicar a la multiplicacion de transform los PIXELS por metro.
-
                 if isinstance(shape, box2d.b2PolygonShape):
                     vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
                     vertices = [pilas.escena_actual().camara.desplazar(v) for v in vertices]
-                    lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
+                    lienzo.poligono(motor, vertices, color=pilas.colores.blanco, grosor=grosor, cerrado=True)
                 elif isinstance(shape, box2d.b2CircleShape):
                     (x, y) = pilas.escena_actual().camara.desplazar(cuerpo.transform * shape.pos * PPM)
 
-                    lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.rojo, grosor=grosor)
+                    lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
                 else:
                     # TODO: implementar las figuras de tipo "edge" y "loop".
-                    print "no puedo identificar el tipo de figura."
-
-                #print fixture.shape
-                #print cuerpo.position
-                #print box2d.b2
-
-        """
-        for cuerpo in cuerpos:
-            print cuerpo.position.x
-            xform = cuerpo.GetXForm()
-
-            for figura in cuerpo.shapeList:
-                tipo_de_figura = figura.GetType()
-
-                if tipo_de_figura == box2d.e_polygonShape:
-                    vertices = []
-
-                    for v in figura.vertices:
-                        pt = box2d.b2Mul(xform, v)
-                        vertices.append((pt.x - pilas.escena_actual().camara.x, pt.y - pilas.escena_actual().camara.y))
-
-                    lienzo.poligono(motor, vertices, color=pilas.colores.rojo, grosor=grosor, cerrado=True)
-
-                elif tipo_de_figura == box2d.e_circleShape:
-                    lienzo.circulo(motor, cuerpo.position.x - pilas.escena_actual().camara.x, cuerpo.position.y - pilas.escena_actual().camara.y, figura.radius, pilas.colores.rojo, grosor=grosor)
-                else:
-                    print "no puedo identificar el tipo de figura."
-        """
+                    raise Exception("No puedo identificar el tipo de figura.")
 
 
     def crear_cuerpo(self, definicion_de_cuerpo):
+        """Genera un Body de box2d.
+
+        :param definicion_de_cuerpo: Los parámetros de configuración de un cuerpo para Box2d.
+        """
         return self.mundo.CreateBody(definicion_de_cuerpo)
 
     def crear_suelo(self, (ancho, alto), restitucion=0):
+        """Genera un suelo sólido para el escenario.
+
+        :param ancho: El ancho del suelo.
+        :param alto: Alto del suelo.
+        :param restitucion: El grado de conservación de energía ante una colisión.
+        """
         self.suelo = Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
     def crear_techo(self, (ancho, alto), restitucion=0):
+        """Genera un techo sólido para el escenario.
+
+        :param ancho: El ancho del techo.
+        :param alto: Alto del techo.
+        :param restitucion: El grado de conservación de energía ante una colisión.
+        """
         self.techo = Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
     def crear_paredes(self, (ancho, alto), restitucion=0):
+        """Genera dos paredes para el escenario.
+
+        :param ancho: El ancho de las paredes.
+        :param alto: El alto de las paredes.
+        :param restitucion: El grado de conservación de energía ante una colisión.
+        """
         self.pared_izquierda = Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
         self.pared_derecha = Rectangulo(ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
 
     def eliminar_suelo(self):
+        "Elimina el suelo del escenario."
         if self.suelo:
             self.suelo.eliminar()
             self.suelo = None
 
     def eliminar_techo(self):
+        "Elimina el techo del escenario."
         if self.techo:
             self.techo.eliminar()
             self.techo = None
 
     def eliminar_paredes(self):
+        "Elimina las dos paredes del escenario."
         if self.pared_izquierda:
             self.pared_derecha.eliminar()
             self.pared_izquierda.eliminar()
@@ -204,6 +233,10 @@ class Fisica(object):
             self.pared_izquierda = None
 
     def eliminar_figura(self, figura):
+        """Elimina una figura del escenario.
+
+        :param figura: Figura a eliminar.
+        """
         self.figuras_a_eliminar.append(figura)
 
     def obtener_distancia_al_suelo(self, x, y, dy):
@@ -214,6 +247,9 @@ class Fisica(object):
         Si la funcion no encuentra obstaculos retornara
         dy, pero en paso contrario retornara un valor menor
         a dy.
+
+        :param x: posición horizontal del punto a analizar.
+        :param y: posición vertical del punto a analizar.
         """
 
         if dy < 0:
@@ -231,7 +267,11 @@ class Fisica(object):
         return delta
 
     def obtener_cuerpos_en(self, x, y):
-        "Retorna una lista de cuerpos que se encuentran en la posicion (x, y) o retorna una lista vacia []."
+        """Retorna una lista de cuerpos que se encuentran en la posicion (x, y) o retorna una lista vacia [].
+
+        :param x: posición horizontal del punto a analizar.
+        :param y: posición vertical del punto a analizar.
+        """
 
         AABB = box2d.b2AABB()
         f = 1
@@ -254,9 +294,17 @@ class Fisica(object):
         return lista_de_cuerpos
 
     def definir_gravedad(self, x, y):
+        """Define la gravedad del motor de física.
+
+        :param x: Aceleración horizontal.
+        :param y: Aceleración vertical.
+        """
         pilas.fisica.definir_gravedad(x, y)
 
 class FisicaDeshabilitada(object):
+    """Representa a un motor de física que no realiza acciones, y solo se habilita si box2d
+    no funciona en el equipo.
+    """
 
     def __init__(self, area, gravedad=None):
         pass
@@ -265,6 +313,62 @@ class FisicaDeshabilitada(object):
         pass
 
     def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
+        pass
+    def crear_bordes_del_escenario(self):
+        pass
+
+    def reiniciar(self):
+        pass
+
+    def capturar_figura_con_el_mouse(self, figura):
+        pass
+
+    def cuando_mueve_el_mouse(self, x, y):
+        pass
+
+    def cuando_suelta_el_mouse(self):
+        pass
+
+    def pausar_mundo(self):
+        pass
+
+    def reanudar_mundo(self):
+        pass
+
+    def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
+        pass
+
+    def crear_cuerpo(self, definicion_de_cuerpo):
+        pass
+
+    def crear_suelo(self, (ancho, alto), restitucion=0):
+        pass
+
+    def crear_techo(self, (ancho, alto), restitucion=0):
+        pass
+
+    def crear_paredes(self, (ancho, alto), restitucion=0):
+        pass
+
+    def eliminar_suelo(self):
+        pass
+
+    def eliminar_techo(self):
+        pass
+
+    def eliminar_paredes(self):
+        pass
+
+    def obtener_distancia_al_suelo(self, x, y, dy):
+        pass
+
+    def eliminar_figura(self, figura):
+        pass
+
+    def obtener_cuerpos_en(self, x, y):
+        pass
+
+    def definir_gravedad(self, x, y):
         pass
 
 
@@ -279,18 +383,33 @@ class Figura(object):
         self.id = pilas.utils.obtener_uuid()
 
     def obtener_x(self):
+        "Retorna la posición horizontal del cuerpo."
         return convertir_a_pixels(self._cuerpo.position.x)
 
     def definir_x(self, x):
+        """Define la posición horizontal del cuerpo.
+
+        :param x: El valor horizontal a definir.
+        """
         self._cuerpo.position.x = convertir_a_metros(x)
 
     def obtener_y(self):
+        "Retorna la posición vertical del cuerpo."
         return convertir_a_pixels(self._cuerpo.position.y)
 
     def definir_y(self, y):
+        """Define la posición vertical del cuerpo.
+
+        :param y: El valor vertical a definir.
+        """
         self._cuerpo.position.y = convertir_a_metros(y)
 
     def definir_posicion(self, x, y):
+        """Define la posición para el cuerpo.
+
+        :param x: Posición horizontal que se asignará al cuerpo.
+        :param y: Posición vertical que se asignará al cuerpo.
+        """
         self.definir_x(x)
         self.definir_y(y)
 
@@ -443,39 +562,6 @@ class Rectangulo(Figura):
 
         self._cuerpo.fixedRotation = sin_rotacion
 
-        """
-        bodyDef = box2d.b2BodyDef()
-        bodyDef.position=(x, y)
-        bodyDef.linearDamping = amortiguacion
-        bodyDef.fixedRotation = sin_rotacion
-
-        userData = { 'id' : self.id }
-        #bodyDef.userData = userData
-        #userData = { 'color' : self.parent.get_color() }
-        #bodyDef.userData = userData
-        #self.parent.element_count += 1
-
-        body = fisica.crear_cuerpo(bodyDef)
-
-        # Create the Body
-        if not dinamica:
-            densidad = 0
-
-        # Add a shape to the Body
-        boxDef = box2d.b2PolygonDef()
-
-        boxDef.SetAsBox(ancho/2, alto/2, (0,0), 0)
-        boxDef.density = densidad
-        boxDef.restitution = restitucion
-        boxDef.friction = friccion
-        boxDef.userData = userData
-        body.CreateShape(boxDef)
-
-        body.SetMassFromShapes()
-
-        self._cuerpo = body
-        """
-
 
 class Poligono(Figura):
     """Representa un cuerpo poligonal.
@@ -490,7 +576,7 @@ class Poligono(Figura):
 
     """
 
-    def __init__(self, puntos, dinamica=True, densidad=1.0,
+    def __init__(self, x, y, puntos, dinamica=True, densidad=1.0,
             restitucion=0.56, friccion=10.5, amortiguacion=0.1,
             fisica=None, sin_rotacion=False):
 
@@ -499,49 +585,33 @@ class Poligono(Figura):
         if not fisica:
             fisica = pilas.escena_actual().fisica
 
-        bodyDef = box2d.b2BodyDef()
-        bodyDef.position=puntos[0]
-        bodyDef.linearDamping = amortiguacion
-        bodyDef.fixedRotation = sin_rotacion
+        vertices = [(convertir_a_metros(x1), convertir_a_metros(y1)) for (x1, y1) in puntos]
 
-        body = fisica.crear_cuerpo(bodyDef)
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(vertices=vertices),
+                                     density=densidad,
+                                     linearDamping=amortiguacion,
+                                     friction=friccion,
+                                     restitution=restitucion)
 
-        # Agregamos un identificador para controlarlo posteriormente en las
-        # colisiones.
         userData = { 'id' : self.id }
         fixture.userData = userData
 
-        # Create the Body
-        if not dinamica:
-            densidad = 0
+        if dinamica:
+            self._cuerpo = fisica.mundo.CreateDynamicBody(position=(0, 0), fixtures=fixture)
+        else:
+            self._cuerpo = fisica.mundo.CreateKinematicBody(position=(0, 0), fixtures=fixture)
 
-        if len(puntos) < 3:
-            raise Exception("Tienes que definir al menos 3 puntos para tener un poligono")
+        self._cuerpo.fixedRotation = sin_rotacion
 
-        # Add a shape to the Body
-        poligono_def = box2d.b2PolygonDef()
-        puntos.reverse()
-        poligono_def.setVertices(puntos)
-
-        poligono_def.density = densidad
-        poligono_def.restitution = restitucion
-        poligono_def.friction = friccion
-
-        poligono_def.userData = userData
-        #poligono_def.setVertices(puntos)
-        #poligono_def.vertexCount = len(puntos)
-
-        #for indice, punto in enumerate(puntos):
-        #    poligono_def.setVertex(indice, punto[0], punto[1])
-        #    #poligono_def.vertices[indice] = punto
-
-        body.CreateShape(poligono_def)
-        body.SetMassFromShapes()
-        self._cuerpo = body
 
 class ConstanteDeMovimiento():
+    """Representa una constante de movimiento para el mouse."""
 
     def __init__(self, figura):
+        """Inicializa la constante.
+
+        :param figura: Figura a controlar desde el mouse.
+        """
         mundo = pilas.escena_actual().fisica.mundo
         punto_captura = convertir_a_metros(figura.x), convertir_a_metros(figura.y)
         self.cuerpo_enlazado = mundo.CreateBody()
@@ -554,6 +624,11 @@ class ConstanteDeMovimiento():
         figura._cuerpo.awake = True
 
     def mover(self, x, y):
+        """Realiza un movimiento de la figura.
+
+        :param x: Posición horizontal.
+        :param y: Posición vertical.
+        """
         self.constante.target = (convertir_a_metros(x), convertir_a_metros(y))
 
     def eliminar(self):
@@ -578,6 +653,13 @@ class ConstanteDeDistancia():
     """
 
     def __init__(self, figura_1, figura_2, fisica=None, con_colision=True):
+        """Inicializa la constante.
+
+        :param figura_1: Una de las figuras a conectar por la constante.
+        :param figura_2: La otra figura a conectar por la constante.
+        :param fisica: Referencia al motor de física.
+        :param con_colision: Indica si se permite colisión entre las dos figuras.
+        """
         if not fisica:
             fisica = pilas.escena_actual().fisica
 
@@ -593,19 +675,20 @@ class ConstanteDeDistancia():
         pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante_mouse)
 
 def definir_gravedad(x, y):
+    """Define la gravedad del motor de física.
+
+    :param x: Aceleración horizontal.
+    :param y: Aceleración vertical.
+    """
     pilas.escena_actual().fisica.mundo.gravity = (x, y)
 
 class ObjetosContactListener(contact_listener):
+    """Gestiona las colisiones de los objetos para ejecutar funcionés."""
 
     def __init__(self):
         box2d.b2ContactListener.__init__(self)
 
     def BeginContact(self, *args, **kwargs):
-        """
-        BeginContact(self, b2Contact contact)
-
-        Called when two fixtures begin to touch.
-        """
         objeto_colisionado_1 = args[0].fixtureA
         objeto_colisionado_2 = args[0].fixtureB
 

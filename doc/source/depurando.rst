@@ -53,7 +53,7 @@ Activando los modos para detectar errores
 -----------------------------------------
 
 Ten en cuenta que puedes activar los modos depuración en cualquier momento,
-incluso en medio de una pasuair del modo depuración al
+incluso en medio de una pausa, ir del modo depuración al
 modo pausa y al revés. Los dos modos se pueden
 combinar fácilmente.
 

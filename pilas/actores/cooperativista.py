@@ -13,8 +13,16 @@ from pilas.comportamientos import Comportamiento
 VELOCIDAD = 4
 
 class Cooperativista(Actor):
+    """ Representa un Cooperativista que puede caminar y trabajar."""
 
     def __init__(self, x=0, y=0):
+        """Constructor del Cooperativista
+
+        :param x: Posición horizontal de la aceituna.
+        :type x: int
+        :param y: Posición vertical de la aceituna.
+        :type y: int
+        """
         Actor.__init__(self, x=x, y=y)
         self._cargar_animaciones()
         self.hacer(Esperando())
@@ -34,16 +42,28 @@ class Cooperativista(Actor):
             }
 
     def definir_cuadro(self, indice):
+        """Define el cuadro de la animación del actor.
+
+        :param indice: el cuadro que la animación que se quiere mostrar.
+	    """
         self.imagen.definir_cuadro(indice)
 
     def cambiar_animacion(self, nombre):
+        """Cambia la animación del Cooperativista.
+
+        :param nombre: El nombre de la animación que se quiere mostar.
+	    """
         self.imagen = self.animaciones[nombre]
         self.centro = ("centro", "abajo")
 
 class Esperando(Comportamiento):
-    "Un actor en posicion normal o esperando a que el usuario pulse alguna tecla."
+    """Clase que define un comportamiento del actor Cooperativista."""
 
     def iniciar(self, receptor):
+        """Inicializa el comportamiento.
+
+        :param receptor: La referencia al actor.
+        """
         self.receptor = receptor
         self.receptor.cambiar_animacion("parado")
         self.receptor.definir_cuadro(0)
@@ -59,12 +79,17 @@ class Esperando(Comportamiento):
 
 
 class Caminando(Comportamiento):
+    """Clase que define un comportamiento del actor Cooperativista."""
 
     def __init__(self):
         self.cuadros = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3]
         self.paso = 0
 
     def iniciar(self, receptor):
+        """Inicializa el comportamiento.
+
+        :param receptor: La referencia al actor.
+        """
         self.receptor = receptor
         self.receptor.cambiar_animacion("camina")
 
@@ -90,11 +115,16 @@ class Caminando(Comportamiento):
 
 
 class DecirOk(Comportamiento):
+    """Clase que define un comportamiento del actor Cooperativista."""
 
     def __init__(self):
         self.paso = 0
 
     def iniciar(self, receptor):
+        """Inicializa el comportamiento.
+
+        :param receptor: La referencia al actor.
+        """
         self.receptor = receptor
         self.receptor.cambiar_animacion("ok")
 

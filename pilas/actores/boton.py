@@ -16,7 +16,7 @@ class Boton(Actor):
     """Representa un boton que reacciona al ser presionado.
 
     .. image:: images/actores/boton_normal.png
-    
+
     """
 
     def __init__(self, x=0, y=0,
@@ -127,7 +127,7 @@ class Boton(Actor):
 
         :param funcion: Método al que se llama cuando el botón pasa estado Normal.
         :param arg: Argumentos que se pasaban a la funcion.
-        """ 
+        """
         t = (funcion, arg)
         self.funciones_normal.remove(t)
 
@@ -136,7 +136,7 @@ class Boton(Actor):
 
         :param funcion: Método al que se llama cuando el botón pasa estado Presionado.
         :param arg: Argumentos que se pasaban a la funcion.
-        """ 
+        """
         t = (funcion, arg)
         self.funciones_press.remove(t)
 
@@ -145,7 +145,7 @@ class Boton(Actor):
 
         :param funcion: Método al que se llama cuando el botón pasa estado Sobre.
         :param arg: Argumentos que se pasaban a la funcion.
-        """ 
+        """
         t = (funcion, arg)
         self.funciones_over.remove(t)
 

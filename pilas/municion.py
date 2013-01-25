@@ -24,7 +24,7 @@ class Municion(object):
         raise Exception("No ha sobreescrito el metodo disparar.")
 
     def agregar_proyectil(self, proyectil):
-        """ Agrega un proyectil a la lista de proyectiles de la munición. 
+        """ Agrega un proyectil a la lista de proyectiles de la munición.
 
         :param proyectil: Actor que se añadirá a la lista de proyectiles."""
         self._proyectiles.append(proyectil)
@@ -50,6 +50,14 @@ class BalaDoble(Municion):
         self.separacion = separacion
 
     def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
+        """Realiza un disparo.
+
+        :param x: Posición horizontal desde donde comenzará a disparar.
+        :param y: Posición vertical desde donde comenzará a disparar.
+        :param angulo_de_movimiento: Angulo de inclinación inicial del disparo.
+        :param offset_disparo_x: Desplazamiento del disparo horizontal.
+        :param offset_disparo_y: Desplazamiento del disparo vertical.
+        """
         angulo = math.radians(angulo_de_movimiento)
 
         self.agregar_proyectil(Bala(x=x + math.cos(angulo) * self.separacion,
@@ -77,6 +85,14 @@ class BalasDoblesDesviadas(Municion):
         self.angulo_desvio = angulo_desvio
 
     def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
+        """Realiza un disparo.
+
+        :param x: Posición horizontal desde donde comenzará a disparar.
+        :param y: Posición vertical desde donde comenzará a disparar.
+        :param angulo_de_movimiento: Angulo de inclinación inicial del disparo.
+        :param offset_disparo_x: Desplazamiento del disparo horizontal.
+        :param offset_disparo_y: Desplazamiento del disparo vertical.
+        """
 
         self.agregar_proyectil(Bala(x=x,
                                   y=y,
@@ -102,6 +118,15 @@ class MisilDoble(Municion):
         self.separacion = separacion
 
     def disparar(self, x, y, rotacion, angulo_de_movimiento, offset_disparo_x, offset_disparo_y):
+        """Realiza un disparo.
+
+        :param x: Posición horizontal desde donde comenzará a disparar.
+        :param y: Posición vertical desde donde comenzará a disparar.
+        :param angulo_de_movimiento: Angulo de inclinación inicial del disparo.
+        :param offset_disparo_x: Desplazamiento del disparo horizontal.
+        :param offset_disparo_y: Desplazamiento del disparo vertical.
+        """
+
         angulo = math.radians(angulo_de_movimiento)
 
         self.agregar_proyectil(Misil(x=x + math.cos(angulo) * self.separacion,

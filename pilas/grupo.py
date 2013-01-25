@@ -14,11 +14,10 @@ class Grupo(list):
     se los pueda tratar como uno.
 
     Por ejemplo si tienes un contenedor con 20 actores, podrías ampliar
-    el tamaño de todos ellos juntos usando la sentencia::
+    el tamaño de todos ellos juntos usando la sentencia:
 
-            grupo = pilas.atajos.fabricar(pilas.actores.Mono, 20)
-            grupo.escala = 2
-
+        >>> grupo = pilas.atajos.fabricar(pilas.actores.Mono, 20)
+        >>> grupo.escala = 2
     """
 
     def __getattr__(self, attr):
@@ -38,11 +37,13 @@ class Grupo(list):
             setattr(a, atributo, valor)
 
     def desordenar(self):
+        """Les asigna una posición aleatoria a todos los actores del grupo."""
         for a in self:
             a.x = random.randint(-300, 300)
             a.y = random.randint(-200, 200)
 
     def limpiar(self):
+        """Elimina a todos los actores dentro del grupo."""
         eliminar = list(self)
         for e in eliminar:
             e.eliminar()

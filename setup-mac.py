@@ -3,8 +3,15 @@
 #
 # El comando que permite generar y probar la aplicacion es::
 #
-#    rm -r -f dist build; python setup-mac.py py2app;
-#    hdiutil create pilas-engine-0.72.dmg -srcfolder ./dist/pilas-engine.app
+"""
+
+rm -r -f dist build; python setup-mac.py py2app;
+rm dist/pilas-engine.app/Contents/Resources/qt.conf
+macdeployqt dist/pilas-engine.app
+hdiutil create pilas-engine-0.72.dmg -srcfolder ./dist/pilas-engine.app
+
+"""
+#
 #
 #    ./dist/pilas-engine.app/Contents/MacOS/pilas-engine
 #
@@ -16,14 +23,13 @@ setup(
     app=["bin/pilas-mac.py"],
     data_files = [
                     ('../lanas', ['lanas']),
-                    ('../lanas/lanas/lang', ['lanas/lanas/lang']),
                     ('bin/pilas-mac.py', ['bin/pilas-mac.py']),
+                    ('../PlugIns/phonon_backend', ['/usr/local/Cellar/qt/4.8.0/plugins/phonon_backend/libphonon_qt7.dylib']),
                  ],
         options={
                     "py2app":
                         {"argv_emulation": True,
                             "includes": ["sip", "PyQt4", 'PyQt4.QtWebKit', 'PyQt4.QtNetwork'],
-
                     "resources": ['./README.md'],
                     'packages': ['pilas', 'lanas'],
                     'iconfile': 'pilas/data/pilas-icono.icns',
