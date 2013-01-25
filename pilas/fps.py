@@ -2,8 +2,15 @@
 from PyQt4 import QtCore
 
 class FPS(object):
+    """Representa un controlador de tiempo para el mainloop de pilas."""
 
     def __init__(self, fps, usar_modo_economico):
+        """Inicia el administrador de cuadros por segundo.
+
+        :param fps: Cantidad de cuadros por segundo esperados.
+        :param usar_modo_economico: Si vale True intenta reducir la cantidad de recursos utilizados.
+        """
+        # TODO: Eliminar el argumento usar_modo_economico que no se está usando.
         self.cuadros_por_segundo = "??"
         self.frecuencia = 1000.0 / fps
         self.timer = QtCore.QTime()
@@ -41,4 +48,5 @@ class FPS(object):
             self.cuadros = 0
 
     def obtener_cuadros_por_segundo(self):
+        "Retorna la cantidad de cuadros por segundo."
         return self.cuadros_por_segundo

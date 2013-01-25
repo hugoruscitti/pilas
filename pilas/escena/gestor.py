@@ -8,7 +8,7 @@
 
 
 class Gestor(object):
-    """ Clase que permite el control de las escenas en pilas."""
+    """Clase que permite el control de las escenas en pilas."""
 
     def __init__(self):
         self.escenas = []
