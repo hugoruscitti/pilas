@@ -71,4 +71,5 @@ class Pacman(Actor):
         self.definir_cuadro(int(self.posicion * 4 + self.cuadro))
 
     def definir_cuadro(self, indice):
+        """Cambia el cuadro de animación del actor."""
         self.imagen.definir_cuadro(indice)

@@ -51,9 +51,7 @@ class Planeta(Actor):
         :param y: Posición vertical del planeta.
         :type y: int
         :param color: El color del planeta
-        :type color: Puede ser ``azul``, ``marron``, ``naranja``, ``rojo``
-                     o ``verde``
-
+        :type color: Puede ser ``azul``, ``marron``, ``naranja``, ``rojo`` o ``verde``
         """
 
         imagen = pilas.imagenes.cargar("planeta_{}.png".format(color))

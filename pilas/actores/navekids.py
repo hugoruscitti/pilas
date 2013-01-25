@@ -12,7 +12,7 @@ import math
 
 
 class NaveKids(Animacion):
-    """Representa una nave de aspecto infantil  que puede disparar.
+    """Representa una nave de aspecto infantil que puede disparar.
 
     .. image:: images/actores/spacekids.png
 
@@ -67,7 +67,11 @@ class NaveKids(Animacion):
         self.habilidades.Disparar.definir_colision(grupo, self.hacer_explotar_al_enemigo)
 
     def hacer_explotar_al_enemigo(self, mi_disparo, el_enemigo):
-        "Es el método que se invoca cuando se produce una colisión 'tiro <-> enemigo'"
+        """Es el método que se invoca cuando se produce una colisión 'tiro <-> enemigo'
+
+        :param mi_disparo: El disparo de la nave.
+        :param el_enemigo: El enemigo que se eliminará.
+        """
         mi_disparo.eliminar()
         el_enemigo.eliminar()
 

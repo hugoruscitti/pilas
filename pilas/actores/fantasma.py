@@ -67,4 +67,8 @@ class Fantasma(Actor):
         self.definir_cuadro(int(self.posicion * 2 + self.cuadro))
 
     def definir_cuadro(self, indice):
+        """Cambia el cuadro de animación a mostrar.
+
+        :param indice: Número de cuadro a mostrar.
+        """
         self.imagen.definir_cuadro(indice)

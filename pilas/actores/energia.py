@@ -49,7 +49,6 @@ class Energia(Actor):
     def pintar_imagen(self):
         """ Dibuja la barra de energia en pantalla. """
         self.imagen.limpiar()
-        #self.imagen.pintar(pilas.colores.negro)
         color_relleno = self.color_relleno
         brillo = pilas.colores.blanco_transparente
         sombra = pilas.colores.gris_transparente
@@ -58,9 +57,9 @@ class Energia(Actor):
         self.imagen.rectangulo(0, 0, area * self.progreso, self.area_alto,
                                     color=color_relleno, relleno=True)
 
-        if (self.con_brillo):
+        if self.con_brillo:
             self.imagen.rectangulo(0, 3, area * self.progreso, 3, color=brillo, relleno=True)
-        if (self.con_sombra):
+        if self.con_sombra:
             self.imagen.rectangulo(0, self.area_alto - 4, area * self.progreso, 1, color=sombra, relleno=True)
 
         # Borde exterior

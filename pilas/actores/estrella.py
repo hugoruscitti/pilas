@@ -11,7 +11,7 @@ import pilas
 
 
 class Estrella(Actor):
-    """ Representa una estrella de color amarillo.
+    """Representa una estrella de color amarillo.
 
         .. image:: images/actores/estrella.png
 

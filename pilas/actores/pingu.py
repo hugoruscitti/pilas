@@ -25,6 +25,11 @@ class Pingu(Actor):
     """
 
     def __init__(self, x=0, y=0):
+        """Inicializa al actor.
+
+        :param x: Posición horizontal.
+        :param y: Posición vertical.
+        """
         Actor.__init__(self, x=x, y=y)
         self.imagen = pilas.imagenes.cargar_grilla("pingu.png", 10)
         self.definir_cuadro(4)
@@ -33,6 +38,10 @@ class Pingu(Actor):
         self.centro = ("centro", "abajo")
 
     def definir_cuadro(self, indice):
+        """Define el cuadro de la animación.
+
+        :param indice: Número de cuadro.
+        """
         self.imagen.definir_cuadro(indice)
 
 
@@ -54,6 +63,7 @@ class Esperando(Comportamiento):
 
 
 class Caminando(Comportamiento):
+    """Representa al personaje caminando por el escenario."""
 
     def iniciar(self, receptor):
         self.receptor = receptor
@@ -82,6 +92,7 @@ class Caminando(Comportamiento):
         self.receptor.definir_cuadro(self.cuadros[self.paso])
 
 class Saltando(Comportamiento):
+    """Representa al actor saltando con animación."""
 
     def iniciar(self, receptor):
         self.dy = 10

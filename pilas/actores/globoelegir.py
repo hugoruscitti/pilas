@@ -46,6 +46,11 @@ class GloboElegir(Globo):
         self.z = 2
 
     def colocar_origen_del_globo(self, x, y):
+        """Cambia el punto de referencia del globo.
+
+        :param x: Punto de referencia horizontal.
+        :param y: Punto de referencia vertical.
+        """
         Globo.colocar_origen_del_globo(self, x, y)
 
         self.lista_seleccion.centro = ("derecha", "abajo")

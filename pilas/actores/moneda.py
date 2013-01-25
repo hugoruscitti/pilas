@@ -9,7 +9,6 @@
 import pilas
 from pilas.actores import Animacion
 
-
 class Moneda(Animacion):
     """Representa una moneda con animación.
 

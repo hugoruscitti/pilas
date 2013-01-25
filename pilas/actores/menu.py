@@ -7,19 +7,20 @@
 # Website - http://www.pilas-engine.com.ar
 
 from pilas.actores import Actor
-from pilas.grupo import Grupo
 import pilas
 
 DEMORA = 14
 
 class Menu(Actor):
-    """Una lista de Opciones que se pueden seleccionar
+    """Un actor que puede mostrar una lista de opciones a seleccionar."""
+
+    def __init__(self, opciones, x=0, y=0):
+        """Inicializa el menú.
+
         :param opciones: Tupla con al menos dos elementos obligatorios (:texto:, :funcion:) y :argumentos: opcionales
         :param x: Posicion en el eje x
         :param y: Posicion en el eje y
-    """
-
-    def __init__(self, opciones, x=0, y=0):
+        """
         self.opciones_como_actores = []
         self.demora_al_responder = 0
         Actor.__init__(self, "invisible.png", x=x, y=y)
@@ -43,15 +44,20 @@ class Menu(Actor):
 
 
     def activar(self):
+        """Se ejecuta para activar el comportamiento del menú."""
         self.escena.mueve_mouse.conectar(self.cuando_mueve_el_mouse)
         self.escena.click_de_mouse.conectar(self.cuando_hace_click_con_el_mouse)
 
     def desactivar(self):
+        """Deshabilita toda la funcionalidad del menú."""
         self.escena.mueve_mouse.desconectar(self.cuando_mueve_el_mouse)
         self.escena.click_de_mouse.desconectar(self.cuando_hace_click_con_el_mouse)
 
     def crear_texto_de_las_opciones(self, opciones):
-        "Genera un actor por cada opcion del menu."
+        """Genera un actor por cada opcion del menu.
+
+        :param opciones: Una lista con todas las opciones que tendrá el menú.
+        """
 
         for indice, opcion in enumerate(opciones):
             y = self.y - indice * 50
@@ -61,13 +67,15 @@ class Menu(Actor):
             self.opciones_como_actores.append(opciones)
 
     def seleccionar_primer_opcion(self):
+        """Destaca la primer opción del menú."""
         if self.opciones_como_actores:
             self.opciones_como_actores[0].resaltar()
 
     def _verificar_opciones(self, opciones):
-        "Se asegura de que la lista este bien definida."
+        """Se asegura de que la lista este bien definida.
 
-        
+        :param opciones: La lista de opciones a inspeccionar.
+        """
         for x in opciones:
 
             if not isinstance(x, tuple) or len(x)<2:
@@ -92,20 +100,25 @@ class Menu(Actor):
         self.demora_al_responder -= 1
 
     def seleccionar_opcion_actual(self):
+        """Se ejecuta para activar y lanzar el item actual."""
         opcion = self.opciones_como_actores[self.opcion_actual]
         opcion.seleccionar()
 
     def mover_cursor(self, delta):
+        """Realiza un movimiento del cursor que selecciona opciones.
+
+        :param delta: El movimiento a realizar (+1 es avanzar y -1 retroceder).
+        """
         # Deja como no-seleccionada la opcion actual.
         self._deshabilitar_opcion_actual()
-        
+
         # Se asegura que las opciones esten entre 0 y 'cantidad de opciones'.
         self.opcion_actual += delta
         self.opcion_actual %= len(self.opciones_como_actores)
 
         # Selecciona la opcion nueva.
         self.opciones_como_actores[self.opcion_actual].resaltar()
-    
+
     def __setattr__(self, atributo, valor):
         # Intenta propagar la accion a los actores del grupo.
         try:
@@ -117,7 +130,10 @@ class Menu(Actor):
         Actor.__setattr__(self, atributo, valor)
 
     def cuando_mueve_el_mouse(self, evento):
-        "Permite cambiar la opcion actual moviendo el mouse. Retorna True si el mouse esta sobre alguna opcion."
+        """Permite cambiar la opcion actual moviendo el mouse. Retorna True si el mouse esta sobre alguna opcion.
+
+        :param evento: El evento que representa el movimiento del mouse.
+        """
         for indice, opcion in enumerate(self.opciones_como_actores):
             if opcion.colisiona_con_un_punto(evento.x, evento.y):
                 if indice != self.opcion_actual:
@@ -125,10 +141,15 @@ class Menu(Actor):
                     self.opcion_actual = indice
                     self.opciones_como_actores[indice].resaltar()
                 return True
-                    
+
     def _deshabilitar_opcion_actual(self):
+        """Le quita el foco o resaltado a la opción del menú actual."""
         self.opciones_como_actores[self.opcion_actual].resaltar(False)
 
     def cuando_hace_click_con_el_mouse(self, evento):
+        """Se ejecuta cuando se hace click con el mouse.
+
+        :param evento: objeto que representa el evento click de mouse.
+        """
         if self.cuando_mueve_el_mouse(evento):
             self.seleccionar_opcion_actual()

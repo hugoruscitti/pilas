@@ -40,16 +40,16 @@ class Globo(Actor):
 
         # Podemos pasar el ancho del globo ya que si contiene opciones
         # cuyo texto es más largo que la cabecera del globo, no queda bien.
-        if (ancho_globo == 0):
+        if ancho_globo == 0:
             ancho = int((ancho + 12) - (ancho % 12))
         else:
-            if (ancho_globo > ancho):
+            if ancho_globo > ancho:
                 ancho = ancho_globo
             else:
                 ancho = int((ancho + 12) - (ancho % 12))
 
         # Lo mismo para el alto
-        if (alto_globo == 0):
+        if alto_globo == 0:
             alto = int((alto + 12) - alto % 12)
         else:
             alto = alto + alto_globo

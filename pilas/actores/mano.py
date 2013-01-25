@@ -10,7 +10,6 @@ from pilas.actores import Actor
 import pilas
 
 class CursorMano(Actor):
-
     """
     Representa un cusor del raton en forma de mano.
     Cuando se pulsa el boton del ratón la mano cambia a un puño cerrado.

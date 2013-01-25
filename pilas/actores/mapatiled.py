@@ -36,9 +36,11 @@ class MapaTiled(Mapa):
         self._dibujar_mapa(ruta_mapa)
 
     def cuadro_ancho(self):
+        """Retorna el ancho de un bloque del mapa"""
         return self.ancho_cuadro
 
     def cuadro_alto(self):
+        """Retorna el alto de un bloque del mapa"""
         return self.alto_cuadro
 
     def _cargar_datos_basicos_del_mapa(self, archivo):
@@ -108,14 +110,17 @@ class MapaTiled(Mapa):
 
 
 class XmlNode:
-    """An XML node represents a single field in an XML document."""
+    """Representa un nodo XML."""
 
     def __init__(self, domElement):
-        """Construct an XML node from a DOM element."""
+        """Construstor del nodo desde un elemento dom.
+
+        :param domElement: Elemento de DOM a convertir.
+        """
         self.elem = domElement
 
     def getData(self):
-        """Extract data from a DOM node."""
+        """Extrae datos desde un nodo del DOM."""
         for child in self.elem.childNodes:
             if child.nodeType == child.TEXT_NODE:
                 return str(child.data)
@@ -126,15 +131,16 @@ class XmlNode:
         return str(self.elem.attributes[name].value)
 
     def getChild(self, tag):
-        """Returns the first child node having the specified tag."""
+        """Retorna el primer nodo hijo que contenga el tag especificado."""
         return XmlNode(self.elem.getElementsByTagName(tag)[0])
 
     def getChildren(self, tag):
-        """Returns a list of child nodes having the specified tag."""
+        """Retorna una lista de todos los nodos hijos que tienen el tag especificado."""
         return [XmlNode(x) for x in self.elem.getElementsByTagName(tag)]
 
-
 def makeRootNode(xmlFileName):
-    """Creates the root node from an XML file."""
+    """Genera un nodo XML dado un archivo.
+
+    :param xmlFileName: El nombre del archivo .xml"""
     return XmlNode(minidom.parse(xmlFileName))
 
