@@ -13,7 +13,7 @@ class Opcion(Texto):
     """Un item discreto, dispara una funcion al seleccionares.
     """
 
-    def __init__(self, texto, x=0, y=0, funcion_a_invocar=None, argumentos=None):
+    def __init__(self, texto, x=0, y=0, funcion_a_invocar=None, argumentos=None, fuente=None):
         """Inicializa el actor.
 
         :param texto: Etiqueta a mostrar
@@ -21,8 +21,9 @@ class Opcion(Texto):
         :param y: Posicion en el eje y
         :param funcion_a_invocar: Manejador, se dispara al seleccionar la opcion
         :param argumentos: Argumentos posicionales para :funcion_a_invocar:
+        :param fuente: Tipografía a utilizar.
         """
-        Texto.__init__(self, texto, x=x, y=y)
+        Texto.__init__(self, texto, x=x, y=y, fuente=fuente)
         self.magnitud = 20
         self.funcion_a_invocar = funcion_a_invocar
         self.argumentos = argumentos
