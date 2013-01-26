@@ -7,7 +7,7 @@ Pilas es un motor para realizar videojuegos de manera rápida y sencilla.
 Es una herramienta orientada a programadores casuales o principiantes, es ideal para quienes quieran aprender a realizar sus primeros videojuegos.
 
 
-![](https://github.com/binary-sequence/pilas/raw/develop/README.interprete.jpg)
+![](http://hugoruscitti.github.com/pilas/images/imagen-readme.png)
 > Nota:
 > La imagen se obtiene del propio repositorio. Actualmente se obtiene de la rama develop.
 > _Es necesario indicarle que use la rama master cuando se haga **merge** de la rama **develop** en la rama **master**._
