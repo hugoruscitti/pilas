@@ -4,7 +4,7 @@ title: Descargando versión Windows
 active: /descargas.html
 ---
 
-{% assign download_url = "https://github.com/downloads/hugoruscitti/pilas/pilas_0-73.exe" %}
+{% assign download_url = "https://github.com/downloads/hugoruscitti/pilas/pilas_0-75.exe" %}
 
 ## Descargando ...
 
