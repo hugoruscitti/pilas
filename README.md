@@ -1,17 +1,12 @@
 # Pilas Engine
 
-Estado rama develop: [![Build Status](https://travis-ci.org/hugoruscitti/pilas.png?branch=develop)](undefined)
+Estado rama develop: [![Build Status](https://travis-ci.org/hugoruscitti/pilas.png?branch=develop)](https://travis-ci.org/hugoruscitti/pilas)
 
 Pilas es un motor para realizar videojuegos de manera rápida y sencilla.
 
 Es una herramienta orientada a programadores casuales o principiantes, es ideal para quienes quieran aprender a realizar sus primeros videojuegos.
 
-
-![](https://github.com/binary-sequence/pilas/raw/develop/README.interprete.jpg)
-> Nota:
-> La imagen se obtiene del propio repositorio. Actualmente se obtiene de la rama develop.
-> _Es necesario indicarle que use la rama master cuando se haga **merge** de la rama **develop** en la rama **master**._
-
+![](http://hugoruscitti.github.com/pilas/images/imagen-readme.png)
 
 ## ¿Cómo empezar?
 
@@ -29,19 +24,24 @@ Y una vez instalada la biblioteca, se puede invocar al comando ``pilas -e`` para
 Obtener desde repositorio
 
     git clone http://github.com/hugoruscitti/pilas
+    
     cd pilas
     git submodule init
     git submodule update
+    
     cd lanas
     git submodule init
     git submodule update
     cd ..
-
-Instalar y compilar dependencias
-
-    pip install -r requirements.txt
+    
+    sudo python setup.py install
+    pilas
+    
     
 ## Tests
+
+Nuestros tests se ejecutan en [travis](https://travis-ci.org/hugoruscitti/pilas), aunque
+si quieres los puedes ejecutar manualmente en tu equipo con el siguiente comando:
 
     nosetests
 
