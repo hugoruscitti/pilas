@@ -810,7 +810,7 @@ class SonidoPhonon:
 
     def pausar(self):
         "Hace una pausa del audio."
-        self.sonido.stop()
+        self.sonido.pause()
 
     def continuar(self):
         "Continúa reproduciendo el audio."
