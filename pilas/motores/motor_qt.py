@@ -749,6 +749,12 @@ class SonidoDeshabilitado:
     def detener(self):
         pass
 
+    def pausar(self):
+        pass
+
+    def continuar(self):
+        pass
+
 class MusicaDeshabilitada(SonidoDeshabilitado):
 
     def __init__(self, media, ruta):
@@ -799,7 +805,18 @@ class SonidoPhonon:
             self.sonido.play()
 
     def detener(self):
+        "Detiene el audio."
         self.sonido.stop()
+
+    def pausar(self):
+        "Hace una pausa del audio."
+        self.sonido.stop()
+
+    def continuar(self):
+        "Continúa reproduciendo el audio."
+        if not self.deshabilitado:
+            self.sonido.play()
+
 
 class MusicaPhonon(SonidoPhonon):
 
@@ -972,7 +989,7 @@ class Motor(object):
         return self.clase_sonido(self.player, ruta)
 
     def cargar_musica(self, ruta):
-        return Musica(self.player, ruta)
+        return self.clase_musica(self.player, ruta)
 
     def deshabilitar_sonido(self, estado=True):
         self.clase_sonido.deshabilitado = estado
