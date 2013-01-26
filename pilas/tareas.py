@@ -86,13 +86,14 @@ class Tareas(object):
         :param dt: Tiempo transcurrido desde la anterior llamada.
         """
         self.contador_de_tiempo += dt
+        tareas_a_eliminar = []
 
         for tarea in self.tareas_planificadas:
             if self.contador_de_tiempo > tarea.time_out:
                 tarea.ejecutar()
 
                 if tarea.una_vez:
-                    self.tareas_planificadas.remove(tarea)
+                    tareas_a_eliminar.append(tarea)
                 else:
                     w = self.contador_de_tiempo - tarea.time_out
                     parte_entera = int((w)/float(tarea.dt))
@@ -102,6 +103,10 @@ class Tareas(object):
                         tarea.ejecutar()
 
                     tarea.time_out += tarea.dt + (parte_entera * tarea.dt) - resto
+
+        for x in tareas_a_eliminar:
+            if x in self.tareas_planificadas:
+                self.tareas_planificadas.remove(x)
 
     def _agregar(self, tarea):
         """Agrega una nueva tarea para ejecutarse luego.
