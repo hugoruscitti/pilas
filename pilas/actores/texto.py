@@ -18,7 +18,7 @@ class Texto(Actor):
         >>> saludo = pilas.actores.Texto("Hola mundo!")
     """
 
-    def __init__(self, texto="None", x=0, y=0, magnitud=20, vertical=False):
+    def __init__(self, texto="None", x=0, y=0, magnitud=20, vertical=False, fuente=None):
         """Inicializa el actor.
 
         :param texto: Texto a mostrar.
@@ -26,8 +26,9 @@ class Texto(Actor):
         :param y: Posición vertical.
         :param magnitud: Tamaño del texto.
         :param vertical: Si el texto será vertical u horizontal, como True o False.
+        :param fuente: Nombre de la fuente a utilizar.
         """
-        imagen = pilas.mundo.motor.obtener_texto(texto, magnitud, vertical)
+        imagen = pilas.mundo.motor.obtener_texto(texto, magnitud, vertical, fuente)
         self._definir_area_de_texto(texto, magnitud)
         Actor.__init__(self, imagen, x=x, y=y)
         self.magnitud = magnitud

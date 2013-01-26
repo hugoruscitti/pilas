@@ -468,13 +468,19 @@ class Grilla(Imagen):
 
 
 class Texto(Imagen):
+    CACHE_FUENTES = {}
 
-    def __init__(self, texto, magnitud, motor, vertical=False):
+    def __init__(self, texto, magnitud, motor, vertical=False, fuente=None):
         self.vertical = vertical
-        self._ancho, self._alto = motor.obtener_area_de_texto(texto, magnitud, vertical)
+        self.fuente = fuente
+        self._ancho, self._alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente)
 
     def _dibujar_pixmap(self, painter, dx, dy):
-        nombre_de_fuente = painter.font().family()
+        if self.fuente:
+            nombre_de_fuente = Texto.cargar_fuente_desde_cache(self.fuente)
+        else:
+            nombre_de_fuente = painter.font().family()
+
         fuente = QtGui.QFont(nombre_de_fuente, self.magnitud)
         metrica = QtGui.QFontMetrics(fuente)
 
@@ -490,6 +496,30 @@ class Texto(Imagen):
         for line in lines:
             painter.drawText(dx, dy + self._alto, line)
             dy += metrica.height()
+
+    @classmethod
+    def cargar_fuente_desde_cache(kclass, fuente_como_ruta):
+        """Carga o convierte una fuente para ser utilizada dentro del motor.
+
+        Permite a los usuarios referirse a las fuentes como ruta a archivos, sin
+        tener que preocuparse por el font-family.
+
+        :param fuente_como_ruta: Ruta al archivo TTF que se quiere utilizar.
+
+        Ejemplo:
+
+            >>> Texto.cargar_fuente_desde_cache('myttffile.ttf')
+            'Visitor TTF1'
+        """
+
+        if not fuente_como_ruta in Texto.CACHE_FUENTES:
+            fuente_como_ruta = pilas.utils.obtener_ruta_al_recurso(fuente_como_ruta)
+            fuente_id = QtGui.QFontDatabase.addApplicationFont(fuente_como_ruta)
+            Texto.CACHE_FUENTES[fuente_como_ruta] = fuente_id
+        else:
+            fuente_id = Texto.CACHE_FUENTES[fuente_como_ruta]
+
+        return str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
 
     def ancho(self):
         return self._ancho
@@ -906,12 +936,16 @@ class Motor(object):
     def obtener_area(self):
         return (self.ancho_original, self.alto_original)
 
-    def obtener_area_de_texto(self, texto, magnitud=10, vertical=False):
+    def obtener_area_de_texto(self, texto, magnitud=10, vertical=False, fuente=None):
         ancho = 0
         alto = 0
 
-        fuente = QtGui.QFont()
-        fuente.setPointSize(magnitud)
+        if fuente:
+            nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
+        else:
+            nombre_de_fuente = ''
+
+        fuente = QtGui.QFont(nombre_de_fuente, magnitud)
         metrica = QtGui.QFontMetrics(fuente)
 
         if vertical:
@@ -928,8 +962,8 @@ class Motor(object):
     def obtener_actor(self, imagen, x, y):
         return Actor(imagen, x, y)
 
-    def obtener_texto(self, texto, magnitud, vertical=False):
-        return Texto(texto, magnitud, self, vertical)
+    def obtener_texto(self, texto, magnitud, vertical=False, fuente=None):
+        return Texto(texto, magnitud, self, vertical, fuente)
 
     def obtener_grilla(self, ruta, columnas, filas):
         return Grilla(ruta, columnas, filas)
