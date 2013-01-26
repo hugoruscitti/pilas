@@ -512,9 +512,9 @@ class Texto(Imagen):
             'Visitor TTF1'
         """
 
-        if not fuente_como_ruta in Texto.CACHE_FUENTES:
-            fuente_como_ruta = pilas.utils.obtener_ruta_al_recurso(fuente_como_ruta)
-            fuente_id = QtGui.QFontDatabase.addApplicationFont(fuente_como_ruta)
+        if not fuente_como_ruta in Texto.CACHE_FUENTES.keys():
+            ruta_a_la_fuente = pilas.utils.obtener_ruta_al_recurso(fuente_como_ruta)
+            fuente_id = QtGui.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
             Texto.CACHE_FUENTES[fuente_como_ruta] = fuente_id
         else:
             fuente_id = Texto.CACHE_FUENTES[fuente_como_ruta]
