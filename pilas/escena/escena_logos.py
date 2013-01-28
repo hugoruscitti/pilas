@@ -17,8 +17,8 @@ import pilas.mundo
 
 
 class Logos(Normal):
-    """Esta escena es el clasico inicio donde se van mostrando todas las
-    tecnologias y empresas involucradas en el juego y luego pasa a la primer
+    """Esta escena es el clásico inicio donde se van mostrando todas las
+    tecnologías y empresas involucradas en el juego y luego pasa a la primer
     escena propiamente del juego.
 
     Por defecto ya agrega como primer pantalla el logo de Pilas en 640*480.
@@ -28,6 +28,7 @@ class Logos(Normal):
 
         >>> logos = pilas.escenas.Logos(MiMenuPrincipal())
         >>> logos.agregar_logo("mi_logo.png")
+        >>> pilas.cambiar_escena(logos)
 
     Si por otro lado si querés que el logo se muestre en pantalla por 10
     segundos, y no 2 como es por defecto, puedes hacer:
@@ -35,15 +36,25 @@ class Logos(Normal):
         >>> logos = pilas.escenas.Logos(MiMenuPrincipal())
         >>> logos.agregar_logo("mi_logo.png", timer=10)
 
-    Tambien puedes agregarle alguna musica o sonido a tus logos utilizando el
+    También puedes agregarle alguna musica o sonido a tus logos utilizando el
     parámetro ``sonido`` en agregar logo.
 
         >>> logos = pilas.escenas.Logos(MiMenuPrincipal())
         >>> logos.agregar_logo("mi_logo.png", sonido="misonido.mp3")
+        >>> pilas.cambiar_escena(logos)
 
     """
 
     def __init__(self, escena_siguiente, pilas_logo=True):
+        """Constructor de Logos
+
+        :param escena_siguiente: Cual sera la escena siguiente a mostrar luego
+                                 de todos los logos.
+        :type escena_siguiente: pilas.escena.Base
+        :param pilas_logo: Si el primer logo a mostrar va a ser el de Pilas
+        :type pilas_logo: bool
+
+        """
         super(Logos, self).__init__()
         self.escena_siguiente = escena_siguiente
         self._logos_futuros = OrderedDict()

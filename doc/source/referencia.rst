@@ -15,6 +15,9 @@ y conocer las posibilidades que ofrece.
 .. automodule:: pilas.control
    :members:
 
+.. automodule:: pilas.escena
+   :members: Logos
+
 .. automodule:: pilas.evento
    :members: ProxyEventos
 
