@@ -46,7 +46,8 @@ class Logos(Normal):
 
     """
 
-    def __init__(self, escena_siguiente, pilas_logo=True):
+    def __init__(self, escena_siguiente, pilas_logo=True, mostrar_almenos=2,
+                  pasar_con_teclado=False, pasar_con_click_de_mouse=False):
         """Constructor de Logos
 
         :param escena_siguiente: Cual sera la escena siguiente a mostrar luego
@@ -54,12 +55,26 @@ class Logos(Normal):
         :type escena_siguiente: pilas.escena.Base
         :param pilas_logo: Si el primer logo a mostrar va a ser el de Pilas
         :type pilas_logo: bool
+        :param mostrar_almenos: El minimo tiempo que se debe mostrar cada logo
+                                aunque se intente acelerar.
+        :type timer: float
+        :param pasar_con_teclado: Si es ``True`` cuando aprietes una tecla el
+                                  pasará al siguiente logo
+        :type pasar_con_teclado: bool
+        :param pasar_con_click_de_mouse: Si es ``True`` cuando hagas click con
+                                         el mouse pasará al siguiente logo.
+        :type pasar_con_teclado: bool
 
         """
         super(Logos, self).__init__()
-        self.escena_siguiente = escena_siguiente
+
         self._logos_futuros = OrderedDict()
         self._sonido = None
+
+        self.escena_siguiente = escena_siguiente
+        self.mostrar_almenos = mostrar_almenos
+        self.pasar_con_teclado = pasar_con_teclado
+        self.pasar_con_click_de_mouse = pasar_con_click_de_mouse
         if pilas_logo:
             self.agregar_logo("pilasengine.png")
 
@@ -86,14 +101,22 @@ class Logos(Normal):
             self._sonido = pilas.sonidos.cargar(sonido)
             self._sonido.reproducir()
         pilas.mundo.agregar_tarea(timer, self._siguiente)
-        self.pulsa_tecla.conectar(self._siguiente)
-        self.click_de_mouse.conectar(self._siguiente)
+        pilas.mundo.agregar_tarea(self.mostrar_almenos, self._conectar_eventos)
+
+    def _conectar_eventos(self):
+        if self.pasar_con_teclado:
+            self.pulsa_tecla.conectar(self._siguiente)
+        if self.pasar_con_click_de_mouse:
+            self.click_de_mouse.conectar(self._siguiente)
 
     def _siguiente(self, *args, **kwargs):
         if self._sonido:
             self._sonido.detener()
         if self._logos_futuros:
             siguiente_logos = Logos(self.escena_siguiente, pilas_logo=False)
+            siguiente_logos.mostrar_almenos = self.mostrar_almenos
+            siguiente_logos.pasar_con_teclado = self.pasar_con_teclado
+            siguiente_logos.pasar_con_click_de_mouse = self.pasar_con_click_de_mouse
             siguiente_logos._logos_futuros = self._logos_futuros
             pilas.cambiar_escena(siguiente_logos)
         else:
