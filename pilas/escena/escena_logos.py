@@ -78,18 +78,20 @@ class Logos(Normal):
         if pilas_logo:
             self.agregar_logo("pilasengine.png")
 
-    def agregar_logo(self, imagen, timer=2.5, sonido=None):
+    def agregar_logo(self, imagen, timer=None, sonido=None):
         """Agrega una nueva imagen a la lista de imagenes a mostrar antes
         de pasar a la escena siguiente
 
         :param imagen: El nombre de una imagen a mostrar.
         :type imagen: str
-        :param timer: Cuanto tiempo quieres que se muestre esta imagen.
+        :param timer: Cuanto tiempo quieres que se muestre esta imagen. Si timer
+                      es ``None`` se usara como valor el de ``mostrar_almenos``
         :type timer: float
         :param sonido: El sonido para la imagen
         :type sonido: str
 
         """
+        timer = timer if timer is None else self.mostrar_almenos
         self._logos_futuros[imagen] = (timer, sonido)
 
     def iniciar(self):
