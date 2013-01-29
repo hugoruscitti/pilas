@@ -35,6 +35,7 @@ class Logos(Normal):
 
         >>> logos = pilas.escenas.Logos(MiMenuPrincipal())
         >>> logos.agregar_logo("mi_logo.png", timer=10)
+        >>> pilas.cambiar_escena(logos)
 
     También puedes agregarle alguna musica o sonido a tus logos utilizando el
     parámetro ``sonido`` en agregar logo.

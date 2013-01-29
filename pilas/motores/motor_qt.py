@@ -743,7 +743,7 @@ class SonidoDeshabilitado:
     def __init__(self, player, ruta):
         pass
 
-    def reproducir(self):
+    def reproducir(self, repetir=False):
         pass
 
     def detener(self):
@@ -770,7 +770,7 @@ class SonidoGST:
         self.sonido = player
         self.sonido.set_property('uri','file://'+ruta)
 
-    def reproducir(self):
+    def reproducir(self, repetir=False):
         import gst
         if not self.deshabilitado:
             self.sonido.set_state(gst.STATE_NULL)
@@ -799,10 +799,25 @@ class SonidoPhonon:
         self.source = phonon.Phonon.MediaSource(ruta)
         self.sonido = phonon.Phonon.createPlayer(phonon.Phonon.GameCategory, self.source)
 
-    def reproducir(self):
+    def _play(self):
         if not self.deshabilitado:
             self.sonido.seek(0)
             self.sonido.play()
+
+    def reproducir(self, repetir=False):
+        if not self.deshabilitado:
+            if repetir:
+                try:
+                    self.sonido.finished.disconnect(self._play)
+                except TypeError:
+                    pass
+                self.sonido.finished.connect(self._play)
+            else:
+                try:
+                    self.sonido.finished.disconnect(self._play)
+                except TypeError:
+                    pass
+            self._play()
 
     def detener(self):
         "Detiene el audio."
