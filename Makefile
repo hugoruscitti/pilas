@@ -12,7 +12,12 @@ html:
 	@cd doc; make html
 
 api:
-	epydoc pilas -c utils/epydoc.css -o doc/build/api
+	## IMPORTANTE: Aplica el siguiente patch a epydoc
+	## 
+	## http://stackoverflow.com/a/6705529
+	rm -r -f doc/build/api
+	epydoc pilas -c utils/epydoc.css -o doc/build/api --html --graph classtree --docformat restructuredtext --debug -v 
+	cp -r doc/source/images doc/build/api/
 	@echo ""
 	@echo "Nota: el resultado de la documentación está en:"
-	@echo "  doc/build/html/index.html"
+	@echo "  doc/build/api/index.html"
