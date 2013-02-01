@@ -135,8 +135,41 @@ que en el segundo la referencia ``sonido`` seguirá existiendo mientras
 el sonido esté reproduciéndose.
 
 
-Tengo una consulta puntual, ¿quien me ayuda?
---------------------------------------------
+Como desinstalo una versión vieja de pilas
+------------------------------------------
+
+Pilas de puede desinstalar directamente borrando el cargador
+e instalando una versión nueva.
+
+Si has instalado pilas en un sistema linux, también podrías
+desinstalar pilas ubicando el directorio de instalación y
+borrándolo.
+
+Por ejemplo, con el siguiente comando podemos conocer el directorio
+de instalación::
+
+    sudo easy_install -m pilas
+
+En pantalla tendría que aparecer un mensaje cómo::
+
+    Using /usr/lib/python2.7/dist-packages
+
+
+Este mensaje significa que pilas se buscará dentro de ese
+contenedor de directorio. Este directorio puede ser distinto
+en tu sistema.
+
+En mi caso, como el directorio es ``/usr/lib/python2.7/dist-packages``,
+para desinstalar pilas puedo borrar el directorio ``pilas`` dentro
+del directorio anterior:
+
+    rm -r -f /usr/lib/python2.7/dist-packages/pilas
+
+    (IMPORTANTE: puede variar en tu sistema)
+
+
+Tengo una consulta puntual, ¿quien me puede ayudar?
+---------------------------------------------------
 
 Tenemos un foro de mensajes en donde puedes preguntar
 lo que quieras sobre pilas, esta es la dirección
