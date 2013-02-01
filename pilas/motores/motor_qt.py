@@ -285,14 +285,6 @@ class CanvasWidget(QGLWidget):
         else:
             self.pantalla_completa()
 
-class CanvasWidgetSugar(CanvasWidget):
-
-    def _iniciar_aplicacion(self):
-        self.app = None
-
-    def ejecutar_bucle_principal(self, mundo, ignorar_errores):
-        pass
-
 class BaseActor(object):
 
     def __init__(self):
@@ -836,8 +828,7 @@ class Motor(object):
     """
 
     def __init__(self, usar_motor, permitir_depuracion, audio):
-        if usar_motor not in ['qtwidget', 'qtsugar']:
-            self._iniciar_aplicacion()
+        self._iniciar_aplicacion()
 
         self.usar_motor = usar_motor
 
@@ -899,12 +890,8 @@ class Motor(object):
             resolucion_pantalla = QtGui.QDesktopWidget().screenGeometry()
             self.ventana.move((resolucion_pantalla.width() - ancho)/2, (resolucion_pantalla.height() - alto)/2)
 
-        if self.usar_motor in ['qtwidget', 'qtsugar']:
-            mostrar_ventana = False
-            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
-        else:
-            mostrar_ventana = True
-            self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
+        mostrar_ventana = True
+        self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
 
         self.ventana.set_canvas(self.canvas)
         self.canvas.setFocus()
