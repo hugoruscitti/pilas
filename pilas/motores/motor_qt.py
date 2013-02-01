@@ -891,9 +891,13 @@ class Motor(object):
     def terminar(self):
         self.ventana.close()
 
-    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas, rendimiento):
+    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas, rendimiento, centrado):
         self.ventana = Ventana()
         self.ventana.resize(ancho, alto)
+
+        if centrado:
+            resolucion_pantalla = QtGui.QDesktopWidget().screenGeometry()
+            self.ventana.move((resolucion_pantalla.width() - ancho)/2, (resolucion_pantalla.height() - alto)/2)
 
         if self.usar_motor in ['qtwidget', 'qtsugar']:
             mostrar_ventana = False
