@@ -16,8 +16,8 @@ api:
 	## 
 	## http://stackoverflow.com/a/6705529
 	rm -r -f doc/build/api
-	mkdir doc/build
-	mkdir doc/build/api
+	mkdir -p doc/build
+	mkdir -p doc/build/api
 	epydoc pilas -c utils/epydoc.css -o doc/build/api --html --graph classtree --docformat restructuredtext --debug -v 
 	cp -r doc/source/images doc/build/api/
 	@echo ""
