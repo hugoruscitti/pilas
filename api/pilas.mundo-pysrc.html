@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.mundo</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        Module&nbsp;mundo
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.mundo-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.mundo-module.html">Module pilas.mundo</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"># pilas engine - a video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"># copyright 2010 - hugo ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"># website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-0', 'pilas', 'link-0');">pilas</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module pilas.control=pilas.control-module.html,Variable pilas.mundo.Mundo.control=pilas.mundo.Mundo-class.html#control"><a title="pilas.control
+pilas.mundo.Mundo.control" class="py-name" href="#" onclick="return doclink('link-1', 'control', 'link-1');">control</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-2', 'pilas', 'link-0');">pilas</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Module pilas.fisica=pilas.fisica-module.html"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-3', 'fisica', 'link-3');">fisica</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-4" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-4', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Package pilas.escena=pilas.escena-module.html"><a title="pilas.escena" class="py-name" href="#" onclick="return doclink('link-5', 'escena', 'link-5');">escena</a></tt> <tt class="py-keyword">import</tt> <tt id="link-6" class="py-name" targets="Class pilas.escena.gestor.Gestor=pilas.escena.gestor.Gestor-class.html"><a title="pilas.escena.gestor.Gestor" class="py-name" href="#" onclick="return doclink('link-6', 'Gestor', 'link-6');">Gestor</a></tt><tt class="py-op">,</tt> <tt id="link-7" class="py-name" targets="Class pilas.escena.escena_normal.Normal=pilas.escena.escena_normal.Normal-class.html,Class pilas.escenas.Normal=pilas.escenas.Normal-class.html"><a title="pilas.escena.escena_normal.Normal
+pilas.escenas.Normal" class="py-name" href="#" onclick="return doclink('link-7', 'Normal', 'link-7');">Normal</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
+<a name="Mundo"></a><div id="Mundo-def"><a name="L14"></a><tt class="py-lineno">14</tt> <a class="py-toggle" href="#" id="Mundo-toggle" onclick="return toggle('Mundo');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html">Mundo</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Mundo-expanded"><a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line">    <tt class="py-docstring">"""Representa un objeto unico que mantiene en funcionamiento al motor.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-docstring">    Mundo tiene como responsabilidad iniciar los componentes del</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-docstring">    motor y mantener el bucle de juego.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.__init__"></a><div id="Mundo.__init__-def"><a name="L21"></a><tt class="py-lineno">21</tt> <a class="py-toggle" href="#" id="Mundo.__init__-toggle" onclick="return toggle('Mundo.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">motor</tt><tt class="py-op">,</tt> <tt class="py-param">ancho</tt><tt class="py-op">,</tt> <tt class="py-param">alto</tt><tt class="py-op">,</tt> <tt class="py-param">titulo</tt><tt class="py-op">,</tt> <tt class="py-param">rendimiento</tt><tt class="py-op">=</tt><tt class="py-number">60</tt><tt class="py-op">,</tt> <tt class="py-param">gravedad</tt><tt class="py-op">=</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">10</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-param">pantalla_completa</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-param">centrado</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.__init__-expanded"><a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="pilas.escena.gestor.Gestor" class="py-name" href="#" onclick="return doclink('link-8', 'Gestor', 'link-6');">Gestor</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">motor</tt> <tt class="py-op">=</tt> <tt class="py-name">motor</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method pilas.motores.motor_qt.Motor.iniciar_ventana()=pilas.motores.motor_qt.Motor-class.html#iniciar_ventana"><a title="pilas.motores.motor_qt.Motor.iniciar_ventana" class="py-name" href="#" onclick="return doclink('link-9', 'iniciar_ventana', 'link-9');">iniciar_ventana</a></tt><tt class="py-op">(</tt><tt id="link-10" class="py-name" targets="Variable pilas.actores.actor.Actor.ancho=pilas.actores.actor.Actor-class.html#ancho,Method pilas.motores.motor_qt.Grilla.ancho()=pilas.motores.motor_qt.Grilla-class.html#ancho,Method pilas.motores.motor_qt.Imagen.ancho()=pilas.motores.motor_qt.Imagen-class.html#ancho,Method pilas.motores.motor_qt.Texto.ancho()=pilas.motores.motor_qt.Texto-class.html#ancho"><a title="pilas.actores.actor.Actor.ancho
+pilas.motores.motor_qt.Grilla.ancho
+pilas.motores.motor_qt.Imagen.ancho
+pilas.motores.motor_qt.Texto.ancho" class="py-name" href="#" onclick="return doclink('link-10', 'ancho', 'link-10');">ancho</a></tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name" targets="Variable pilas.actores.actor.Actor.alto=pilas.actores.actor.Actor-class.html#alto,Method pilas.motores.motor_qt.Grilla.alto()=pilas.motores.motor_qt.Grilla-class.html#alto,Method pilas.motores.motor_qt.Imagen.alto()=pilas.motores.motor_qt.Imagen-class.html#alto,Method pilas.motores.motor_qt.Texto.alto()=pilas.motores.motor_qt.Texto-class.html#alto"><a title="pilas.actores.actor.Actor.alto
+pilas.motores.motor_qt.Grilla.alto
+pilas.motores.motor_qt.Imagen.alto
+pilas.motores.motor_qt.Texto.alto" class="py-name" href="#" onclick="return doclink('link-11', 'alto', 'link-11');">alto</a></tt><tt class="py-op">,</tt> <tt class="py-name">titulo</tt><tt class="py-op">,</tt> <tt id="link-12" class="py-name" targets="Method pilas.motores.motor_qt.CanvasWidget.pantalla_completa()=pilas.motores.motor_qt.CanvasWidget-class.html#pantalla_completa"><a title="pilas.motores.motor_qt.CanvasWidget.pantalla_completa" class="py-name" href="#" onclick="return doclink('link-12', 'pantalla_completa', 'link-12');">pantalla_completa</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">,</tt> <tt class="py-name">rendimiento</tt><tt class="py-op">,</tt> <tt class="py-name">centrado</tt><tt class="py-op">)</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gravedad</tt> <tt class="py-op">=</tt> <tt class="py-name">gravedad</tt> </tt>
+</div><a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.crear_motor_fisica"></a><div id="Mundo.crear_motor_fisica-def"><a name="L29"></a><tt class="py-lineno">29</tt> <a class="py-toggle" href="#" id="Mundo.crear_motor_fisica-toggle" onclick="return toggle('Mundo.crear_motor_fisica');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#crear_motor_fisica">crear_motor_fisica</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.crear_motor_fisica-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.crear_motor_fisica-expanded"><a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-13" class="py-name"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-13', 'fisica', 'link-3');">fisica</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Function pilas.fisica.crear_motor_fisica()=pilas.fisica-module.html#crear_motor_fisica,Method pilas.mundo.Mundo.crear_motor_fisica()=pilas.mundo.Mundo-class.html#crear_motor_fisica"><a title="pilas.fisica.crear_motor_fisica
+pilas.mundo.Mundo.crear_motor_fisica" class="py-name" href="#" onclick="return doclink('link-14', 'crear_motor_fisica', 'link-14');">crear_motor_fisica</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method pilas.motores.motor_qt.Motor.obtener_area()=pilas.motores.motor_qt.Motor-class.html#obtener_area,Function pilas.utils.obtener_area()=pilas.utils-module.html#obtener_area"><a title="pilas.motores.motor_qt.Motor.obtener_area
+pilas.utils.obtener_area" class="py-name" href="#" onclick="return doclink('link-15', 'obtener_area', 'link-15');">obtener_area</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">gravedad</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gravedad</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.reiniciar"></a><div id="Mundo.reiniciar-def"><a name="L32"></a><tt class="py-lineno">32</tt> <a class="py-toggle" href="#" id="Mundo.reiniciar-toggle" onclick="return toggle('Mundo.reiniciar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#reiniciar">reiniciar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.reiniciar-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.reiniciar-expanded"><a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method pilas.actores.pizarra.Pizarra.limpiar()=pilas.actores.pizarra.Pizarra-class.html#limpiar,Method pilas.control.Control.limpiar()=pilas.control.Control-class.html#limpiar,Method pilas.escena.gestor.Gestor.limpiar()=pilas.escena.gestor.Gestor-class.html#limpiar,Method pilas.grupo.Grupo.limpiar()=pilas.grupo.Grupo-class.html#limpiar,Method pilas.motores.motor_qt.Superficie.limpiar()=pilas.motores.motor_qt.Superficie-class.html#limpiar"><a title="pilas.actores.pizarra.Pizarra.limpiar
+pilas.control.Control.limpiar
+pilas.escena.gestor.Gestor.limpiar
+pilas.grupo.Grupo.limpiar
+pilas.motores.motor_qt.Superficie.limpiar" class="py-name" href="#" onclick="return doclink('link-16', 'limpiar', 'link-16');">limpiar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Function pilas.cambiar_escena()=pilas-module.html#cambiar_escena,Method pilas.escena.gestor.Gestor.cambiar_escena()=pilas.escena.gestor.Gestor-class.html#cambiar_escena"><a title="pilas.cambiar_escena
+pilas.escena.gestor.Gestor.cambiar_escena" class="py-name" href="#" onclick="return doclink('link-17', 'cambiar_escena', 'link-17');">cambiar_escena</a></tt><tt class="py-op">(</tt><tt id="link-18" class="py-name"><a title="pilas.escena.escena_normal.Normal
+pilas.escenas.Normal" class="py-name" href="#" onclick="return doclink('link-18', 'Normal', 'link-7');">Normal</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.terminar"></a><div id="Mundo.terminar-def"><a name="L36"></a><tt class="py-lineno">36</tt> <a class="py-toggle" href="#" id="Mundo.terminar-toggle" onclick="return toggle('Mundo.terminar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#terminar">terminar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.terminar-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.terminar-expanded"><a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method pilas.comportamientos.Comportamiento.terminar()=pilas.comportamientos.Comportamiento-class.html#terminar,Method pilas.escenas.Escena.terminar()=pilas.escenas.Escena-class.html#terminar,Method pilas.motores.motor_qt.Motor.terminar()=pilas.motores.motor_qt.Motor-class.html#terminar,Method pilas.mundo.Mundo.terminar()=pilas.mundo.Mundo-class.html#terminar,Method pilas.tareas.Tarea.terminar()=pilas.tareas.Tarea-class.html#terminar,Function pilas.terminar()=pilas-module.html#terminar"><a title="pilas.comportamientos.Comportamiento.terminar
+pilas.escenas.Escena.terminar
+pilas.motores.motor_qt.Motor.terminar
+pilas.mundo.Mundo.terminar
+pilas.tareas.Tarea.terminar
+pilas.terminar" class="py-name" href="#" onclick="return doclink('link-19', 'terminar', 'link-19');">terminar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.ejecutar_bucle_principal"></a><div id="Mundo.ejecutar_bucle_principal-def"><a name="L39"></a><tt class="py-lineno">39</tt> <a class="py-toggle" href="#" id="Mundo.ejecutar_bucle_principal-toggle" onclick="return toggle('Mundo.ejecutar_bucle_principal');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#ejecutar_bucle_principal">ejecutar_bucle_principal</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">ignorar_errores</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.ejecutar_bucle_principal-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.ejecutar_bucle_principal-expanded"><a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-docstring">"Mantiene en funcionamiento el motor completo."</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method pilas.motores.motor_qt.Motor.ejecutar_bucle_principal()=pilas.motores.motor_qt.Motor-class.html#ejecutar_bucle_principal,Method pilas.mundo.Mundo.ejecutar_bucle_principal()=pilas.mundo.Mundo-class.html#ejecutar_bucle_principal"><a title="pilas.motores.motor_qt.Motor.ejecutar_bucle_principal
+pilas.mundo.Mundo.ejecutar_bucle_principal" class="py-name" href="#" onclick="return doclink('link-20', 'ejecutar_bucle_principal', 'link-20');">ejecutar_bucle_principal</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">ignorar_errores</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.agregar_tarea_una_vez"></a><div id="Mundo.agregar_tarea_una_vez-def"><a name="L43"></a><tt class="py-lineno">43</tt> <a class="py-toggle" href="#" id="Mundo.agregar_tarea_una_vez-toggle" onclick="return toggle('Mundo.agregar_tarea_una_vez');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#agregar_tarea_una_vez">agregar_tarea_una_vez</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">time_out</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">params</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.agregar_tarea_una_vez-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.agregar_tarea_una_vez-expanded"><a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method pilas.escena.gestor.Gestor.escena_actual()=pilas.escena.gestor.Gestor-class.html#escena_actual,Function pilas.escena_actual()=pilas-module.html#escena_actual"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-21', 'escena_actual', 'link-21');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Variable pilas.mundo.Mundo.tareas=pilas.mundo.Mundo-class.html#tareas,Module pilas.tareas=pilas.tareas-module.html"><a title="pilas.mundo.Mundo.tareas
+pilas.tareas" class="py-name" href="#" onclick="return doclink('link-22', 'tareas', 'link-22');">tareas</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method pilas.tareas.Tareas.una_vez()=pilas.tareas.Tareas-class.html#una_vez"><a title="pilas.tareas.Tareas.una_vez" class="py-name" href="#" onclick="return doclink('link-23', 'una_vez', 'link-23');">una_vez</a></tt><tt class="py-op">(</tt><tt class="py-name">time_out</tt><tt class="py-op">,</tt> <tt class="py-name">function</tt><tt class="py-op">,</tt> <tt class="py-name">params</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.agregar_tarea_siempre"></a><div id="Mundo.agregar_tarea_siempre-def"><a name="L46"></a><tt class="py-lineno">46</tt> <a class="py-toggle" href="#" id="Mundo.agregar_tarea_siempre-toggle" onclick="return toggle('Mundo.agregar_tarea_siempre');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#agregar_tarea_siempre">agregar_tarea_siempre</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">time_out</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">params</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.agregar_tarea_siempre-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.agregar_tarea_siempre-expanded"><a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-24', 'escena_actual', 'link-21');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="pilas.mundo.Mundo.tareas
+pilas.tareas" class="py-name" href="#" onclick="return doclink('link-25', 'tareas', 'link-22');">tareas</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Method pilas.tareas.Tareas.siempre()=pilas.tareas.Tareas-class.html#siempre"><a title="pilas.tareas.Tareas.siempre" class="py-name" href="#" onclick="return doclink('link-26', 'siempre', 'link-26');">siempre</a></tt><tt class="py-op">(</tt><tt class="py-name">time_out</tt><tt class="py-op">,</tt> <tt class="py-name">function</tt><tt class="py-op">,</tt> <tt class="py-name">params</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.agregar_tarea"></a><div id="Mundo.agregar_tarea-def"><a name="L49"></a><tt class="py-lineno">49</tt> <a class="py-toggle" href="#" id="Mundo.agregar_tarea-toggle" onclick="return toggle('Mundo.agregar_tarea');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#agregar_tarea">agregar_tarea</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">time_out</tt><tt class="py-op">,</tt> <tt class="py-param">funcion</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">parametros</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.agregar_tarea-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.agregar_tarea-expanded"><a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-27', 'escena_actual', 'link-21');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="pilas.mundo.Mundo.tareas
+pilas.tareas" class="py-name" href="#" onclick="return doclink('link-28', 'tareas', 'link-22');">tareas</a></tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method pilas.tareas.Tareas.condicional()=pilas.tareas.Tareas-class.html#condicional"><a title="pilas.tareas.Tareas.condicional" class="py-name" href="#" onclick="return doclink('link-29', 'condicional', 'link-29');">condicional</a></tt><tt class="py-op">(</tt><tt class="py-name">time_out</tt><tt class="py-op">,</tt> <tt class="py-name">funcion</tt><tt class="py-op">,</tt> <tt class="py-name">parametros</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.deshabilitar_sonido"></a><div id="Mundo.deshabilitar_sonido-def"><a name="L52"></a><tt class="py-lineno">52</tt> <a class="py-toggle" href="#" id="Mundo.deshabilitar_sonido-toggle" onclick="return toggle('Mundo.deshabilitar_sonido');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#deshabilitar_sonido">deshabilitar_sonido</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">estado</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.deshabilitar_sonido-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.deshabilitar_sonido-expanded"><a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Method pilas.actores.sonido.Sonido.deshabilitar_sonido()=pilas.actores.sonido.Sonido-class.html#deshabilitar_sonido,Method pilas.motores.motor_qt.Motor.deshabilitar_sonido()=pilas.motores.motor_qt.Motor-class.html#deshabilitar_sonido,Method pilas.mundo.Mundo.deshabilitar_sonido()=pilas.mundo.Mundo-class.html#deshabilitar_sonido"><a title="pilas.actores.sonido.Sonido.deshabilitar_sonido
+pilas.motores.motor_qt.Motor.deshabilitar_sonido
+pilas.mundo.Mundo.deshabilitar_sonido" class="py-name" href="#" onclick="return doclink('link-30', 'deshabilitar_sonido', 'link-30');">deshabilitar_sonido</a></tt><tt class="py-op">(</tt><tt class="py-name">estado</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.deshabilitar_musica"></a><div id="Mundo.deshabilitar_musica-def"><a name="L55"></a><tt class="py-lineno">55</tt> <a class="py-toggle" href="#" id="Mundo.deshabilitar_musica-toggle" onclick="return toggle('Mundo.deshabilitar_musica');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#deshabilitar_musica">deshabilitar_musica</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">estado</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.deshabilitar_musica-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.deshabilitar_musica-expanded"><a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Method pilas.motores.motor_qt.Motor.deshabilitar_musica()=pilas.motores.motor_qt.Motor-class.html#deshabilitar_musica,Method pilas.mundo.Mundo.deshabilitar_musica()=pilas.mundo.Mundo-class.html#deshabilitar_musica"><a title="pilas.motores.motor_qt.Motor.deshabilitar_musica
+pilas.mundo.Mundo.deshabilitar_musica" class="py-name" href="#" onclick="return doclink('link-31', 'deshabilitar_musica', 'link-31');">deshabilitar_musica</a></tt><tt class="py-op">(</tt><tt class="py-name">estado</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.get_tareas_deprecated"></a><div id="Mundo.get_tareas_deprecated-def"><a name="L58"></a><tt class="py-lineno">58</tt> <a class="py-toggle" href="#" id="Mundo.get_tareas_deprecated-toggle" onclick="return toggle('Mundo.get_tareas_deprecated');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#get_tareas_deprecated">get_tareas_deprecated</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.get_tareas_deprecated-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.get_tareas_deprecated-expanded"><a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"CUIDADO: Acceder al atributo 'tareas' esta desaconsejado."</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"\t utilice en su lugar: pilas.utils.agregar_tarea, agregar_tarea_una_vez o agregar_tarea_siempre"</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-32', 'escena_actual', 'link-21');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="pilas.mundo.Mundo.tareas
+pilas.tareas" class="py-name" href="#" onclick="return doclink('link-33', 'tareas', 'link-22');">tareas</a></tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.get_camara_deprecated"></a><div id="Mundo.get_camara_deprecated-def"><a name="L63"></a><tt class="py-lineno">63</tt> <a class="py-toggle" href="#" id="Mundo.get_camara_deprecated-toggle" onclick="return toggle('Mundo.get_camara_deprecated');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#get_camara_deprecated">get_camara_deprecated</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.get_camara_deprecated-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.get_camara_deprecated-expanded"><a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"CUIDADO: Acceder al atributo 'camara' esta desaconsejado."</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"\t utilice en su lugar: pilas.escena_actual().camara"</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-34', 'escena_actual', 'link-21');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name" targets="Module pilas.camara=pilas.camara-module.html,Variable pilas.mundo.Mundo.camara=pilas.mundo.Mundo-class.html#camara"><a title="pilas.camara
+pilas.mundo.Mundo.camara" class="py-name" href="#" onclick="return doclink('link-35', 'camara', 'link-35');">camara</a></tt> </tt>
+</div><a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.get_colisiones_deprecated"></a><div id="Mundo.get_colisiones_deprecated-def"><a name="L68"></a><tt class="py-lineno">68</tt> <a class="py-toggle" href="#" id="Mundo.get_colisiones_deprecated-toggle" onclick="return toggle('Mundo.get_colisiones_deprecated');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#get_colisiones_deprecated">get_colisiones_deprecated</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.get_colisiones_deprecated-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.get_colisiones_deprecated-expanded"><a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"CUIDADO: Acceder al atributo 'colisiones' esta desaconsejado."</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"\t utilice en su lugar: pilas.escena_actual().colisiones"</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-36', 'escena_actual', 'link-21');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name" targets="Module pilas.colisiones=pilas.colisiones-module.html,Variable pilas.mundo.Mundo.colisiones=pilas.mundo.Mundo-class.html#colisiones"><a title="pilas.colisiones
+pilas.mundo.Mundo.colisiones" class="py-name" href="#" onclick="return doclink('link-37', 'colisiones', 'link-37');">colisiones</a></tt> </tt>
+</div><a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line"> </tt>
+<a name="Mundo.get_control_deprecated"></a><div id="Mundo.get_control_deprecated-def"><a name="L73"></a><tt class="py-lineno">73</tt> <a class="py-toggle" href="#" id="Mundo.get_control_deprecated-toggle" onclick="return toggle('Mundo.get_control_deprecated');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.mundo.Mundo-class.html#get_control_deprecated">get_control_deprecated</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mundo.get_control_deprecated-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mundo.get_control_deprecated-expanded"><a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"CUIDADO: Acceder al atributo 'control' esta desaconsejado."</tt> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"\t utilice en su lugar: pilas.escena_actual().control"</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-38', 'escena_actual', 'link-21');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="pilas.control
+pilas.mundo.Mundo.control" class="py-name" href="#" onclick="return doclink('link-39', 'control', 'link-1');">control</a></tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">    <tt id="link-40" class="py-name"><a title="pilas.mundo.Mundo.tareas
+pilas.tareas" class="py-name" href="#" onclick="return doclink('link-40', 'tareas', 'link-22');">tareas</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-41" class="py-name" targets="Method pilas.mundo.Mundo.get_tareas_deprecated()=pilas.mundo.Mundo-class.html#get_tareas_deprecated"><a title="pilas.mundo.Mundo.get_tareas_deprecated" class="py-name" href="#" onclick="return doclink('link-41', 'get_tareas_deprecated', 'link-41');">get_tareas_deprecated</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">    <tt id="link-42" class="py-name"><a title="pilas.camara
+pilas.mundo.Mundo.camara" class="py-name" href="#" onclick="return doclink('link-42', 'camara', 'link-35');">camara</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-43" class="py-name" targets="Method pilas.mundo.Mundo.get_camara_deprecated()=pilas.mundo.Mundo-class.html#get_camara_deprecated"><a title="pilas.mundo.Mundo.get_camara_deprecated" class="py-name" href="#" onclick="return doclink('link-43', 'get_camara_deprecated', 'link-43');">get_camara_deprecated</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line">    <tt id="link-44" class="py-name"><a title="pilas.colisiones
+pilas.mundo.Mundo.colisiones" class="py-name" href="#" onclick="return doclink('link-44', 'colisiones', 'link-37');">colisiones</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-45" class="py-name" targets="Method pilas.mundo.Mundo.get_colisiones_deprecated()=pilas.mundo.Mundo-class.html#get_colisiones_deprecated"><a title="pilas.mundo.Mundo.get_colisiones_deprecated" class="py-name" href="#" onclick="return doclink('link-45', 'get_colisiones_deprecated', 'link-45');">get_colisiones_deprecated</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">    <tt id="link-46" class="py-name"><a title="pilas.control
+pilas.mundo.Mundo.control" class="py-name" href="#" onclick="return doclink('link-46', 'control', 'link-1');">control</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-47" class="py-name" targets="Method pilas.mundo.Mundo.get_control_deprecated()=pilas.mundo.Mundo-class.html#get_control_deprecated"><a title="pilas.mundo.Mundo.get_control_deprecated" class="py-name" href="#" onclick="return doclink('link-47', 'get_control_deprecated', 'link-47');">get_control_deprecated</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:48 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

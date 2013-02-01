@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.demos.piezas</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        <a href="pilas.demos-module.html">Package&nbsp;demos</a> ::
+        Module&nbsp;piezas
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.demos.piezas-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.demos.piezas-module.html">Module pilas.demos.piezas</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># pilas engine - a video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># copyright 2010 - hugo ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-0', 'pilas', 'link-0');">pilas</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">random</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"> </tt>
+<a name="Piezas"></a><div id="Piezas-def"><a name="L13"></a><tt class="py-lineno"> 13</tt> <a class="py-toggle" href="#" id="Piezas-toggle" onclick="return toggle('Piezas');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.demos.piezas.Piezas-class.html">Piezas</a><tt class="py-op">(</tt><tt class="py-base-class">pilas</tt><tt class="py-op">.</tt><tt class="py-base-class">escena</tt><tt class="py-op">.</tt><tt class="py-base-class">Base</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Piezas-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Piezas-expanded"><a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line">    <tt class="py-docstring">"""Representa la escena de rompecabezas.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">    La escena comienza con una imagen que se descompone en muchos</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">    actores Pieza.</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"> </tt>
+<a name="Piezas.__init__"></a><div id="Piezas.__init__-def"><a name="L20"></a><tt class="py-lineno"> 20</tt> <a class="py-toggle" href="#" id="Piezas.__init__-toggle" onclick="return toggle('Piezas.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Piezas-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">ruta_a_la_imagen</tt><tt class="py-op">=</tt><tt class="py-string">"fondos/noche.jpg"</tt><tt class="py-op">,</tt> <tt class="py-param">filas</tt><tt class="py-op">=</tt><tt class="py-number">4</tt><tt class="py-op">,</tt> <tt class="py-param">columnas</tt><tt class="py-op">=</tt><tt class="py-number">4</tt><tt class="py-op">,</tt> <tt class="py-param">al_terminar</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Piezas.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Piezas.__init__-expanded"><a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">        <tt id="link-1" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-1', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Package pilas.escena=pilas.escena-module.html"><a title="pilas.escena" class="py-name" href="#" onclick="return doclink('link-2', 'escena', 'link-2');">escena</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Class pilas.escena.escena_base.Base=pilas.escena.escena_base.Base-class.html"><a title="pilas.escena.escena_base.Base" class="py-name" href="#" onclick="return doclink('link-3', 'Base', 'link-3');">Base</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method pilas.actores.aceituna.Aceituna.__init__()=pilas.actores.aceituna.Aceituna-class.html#__init__,Method pilas.actores.actor.Actor.__init__()=pilas.actores.actor.Actor-class.html#__init__,Method pilas.actores.animacion.Animacion.__init__()=pilas.actores.animacion.Animacion-class.html#__init__,Method pilas.actores.animado.Animado.__init__()=pilas.actores.animado.Animado-class.html#__init__,Method pilas.actores.banana.Banana.__init__()=pilas.actores.banana.Banana-class.html#__init__,Method pilas.actores.bomba.Bomba.__init__()=pilas.actores.bomba.Bomba-class.html#__init__,Method pilas.actores.boton.Boton.__init__()=pilas.actores.boton.Boton-class.html#__init__,Method pilas.actores.caja.Caja.__init__()=pilas.actores.caja.Caja-class.html#__init__,Method pilas.actores.cooperativista.Caminando.__init__()=pilas.actores.cooperativista.Caminando-class.html#__init__,Method pilas.actores.cooperativista.Cooperativista.__init__()=pilas.actores.cooperativista.Cooperativista-class.html#__init__,Method pilas.actores.cooperativista.DecirOk.__init__()=pilas.actores.cooperativista.DecirOk-class.html#__init__,Method pilas.actores.cursordisparo.CursorDisparo.__init__()=pilas.actores.cursordisparo.CursorDisparo-class.html#__init__,Method pilas.actores.dialogo.Dialogo.__init__()=pilas.actores.dialogo.Dialogo-class.html#__init__,Method pilas.actores.ejes.Ejes.__init__()=pilas.actores.ejes.Ejes-class.html#__init__,Method pilas.actores.energia.Energia.__init__()=pilas.actores.energia.Energia-class.html#__init__,Method pilas.actores.estrella.Estrella.__init__()=pilas.actores.estrella.Estrella-class.html#__init__,Method pilas.actores.explosion.Explosion.__init__()=pilas.actores.explosion.Explosion-class.html#__init__,Method pilas.actores.fantasma.Fantasma.__init__()=pilas.actores.fantasma.Fantasma-class.html#__init__,Method pilas.actores.globo.Globo.__init__()=pilas.actores.globo.Globo-class.html#__init__,Method pilas.actores.globoelegir.GloboElegir.__init__()=pilas.actores.globoelegir.GloboElegir-class.html#__init__,Method pilas.actores.humo.Humo.__init__()=pilas.actores.humo.Humo-class.html#__init__,Method pilas.actores.mano.CursorMano.__init__()=pilas.actores.mano.CursorMano-class.html#__init__,Method pilas.actores.mapa.Mapa.__init__()=pilas.actores.mapa.Mapa-class.html#__init__,Method pilas.actores.mapatiled.MapaTiled.__init__()=pilas.actores.mapatiled.MapaTiled-class.html#__init__,Method pilas.actores.mapatiled.XmlNode.__init__()=pilas.actores.mapatiled.XmlNode-class.html#__init__,Method pilas.actores.martian.Caminando.__init__()=pilas.actores.martian.Caminando-class.html#__init__,Method pilas.actores.martian.Disparar.__init__()=pilas.actores.martian.Disparar-class.html#__init__,Method pilas.actores.martian.Martian.__init__()=pilas.actores.martian.Martian-class.html#__init__,Method pilas.actores.martian.Saltando.__init__()=pilas.actores.martian.Saltando-class.html#__init__,Method pilas.actores.menu.Menu.__init__()=pilas.actores.menu.Menu-class.html#__init__,Method pilas.actores.moneda.Moneda.__init__()=pilas.actores.moneda.Moneda-class.html#__init__,Method pilas.actores.mono.Mono.__init__()=pilas.actores.mono.Mono-class.html#__init__,Method pilas.actores.nave.Nave.__init__()=pilas.actores.nave.Nave-class.html#__init__,Method pilas.actores.navekids.NaveKids.__init__()=pilas.actores.navekids.NaveKids-class.html#__init__,Method pilas.actores.opcion.Opcion.__init__()=pilas.actores.opcion.Opcion-class.html#__init__,Method pilas.actores.ovni.Ovni.__init__()=pilas.actores.ovni.Ovni-class.html#__init__,Method pilas.actores.ovni.Planeta.__init__()=pilas.actores.ovni.Planeta-class.html#__init__,Method pilas.actores.pacman.Pacman.__init__()=pilas.actores.pacman.Pacman-class.html#__init__,Method pilas.actores.pausa.Pausa.__init__()=pilas.actores.pausa.Pausa-class.html#__init__,Method pilas.actores.pelota.Pelota.__init__()=pilas.actores.pelota.Pelota-class.html#__init__,Method pilas.actores.personajes_rpg.BasePersonajeRPG.__init__()=pilas.actores.personajes_rpg.BasePersonajeRPG-class.html#__init__,Method pilas.actores.personajes_rpg.Calvo.__init__()=pilas.actores.personajes_rpg.Calvo-class.html#__init__,Method pilas.actores.personajes_rpg.Caminando.__init__()=pilas.actores.personajes_rpg.Caminando-class.html#__init__,Method pilas.actores.personajes_rpg.Maton.__init__()=pilas.actores.personajes_rpg.Maton-class.html#__init__,Method pilas.actores.piedra.Piedra.__init__()=pilas.actores.piedra.Piedra-class.html#__init__,Method pilas.actores.pingu.Pingu.__init__()=pilas.actores.pingu.Pingu-class.html#__init__,Method pilas.actores.pizarra.Pizarra.__init__()=pilas.actores.pizarra.Pizarra-class.html#__init__,Method pilas.actores.proyectil.Bala.__init__()=pilas.actores.proyectil.Bala-class.html#__init__,Method pilas.actores.proyectil.Dinamita.__init__()=pilas.actores.proyectil.Dinamita-class.html#__init__,Method pilas.actores.proyectil.EstrellaNinja.__init__()=pilas.actores.proyectil.EstrellaNinja-class.html#__init__,Method pilas.actores.proyectil.Misil.__init__()=pilas.actores.proyectil.Misil-class.html#__init__,Method pilas.actores.puntaje.Puntaje.__init__()=pilas.actores.puntaje.Puntaje-class.html#__init__,Method pilas.actores.sonido.Sonido.__init__()=pilas.actores.sonido.Sonido-class.html#__init__,Method pilas.actores.temporizador.Temporizador.__init__()=pilas.actores.temporizador.Temporizador-class.html#__init__,Method pilas.actores.texto.Texto.__init__()=pilas.actores.texto.Texto-class.html#__init__,Method pilas.actores.texto_inferior.TextoInferior.__init__()=pilas.actores.texto_inferior.TextoInferior-class.html#__init__,Method pilas.actores.torreta.Torreta.__init__()=pilas.actores.torreta.Torreta-class.html#__init__,Method pilas.actores.tortuga.Tortuga.__init__()=pilas.actores.tortuga.Tortuga-class.html#__init__,Method pilas.actores.zanahoria.Zanahoria.__init__()=pilas.actores.zanahoria.Zanahoria-class.html#__init__,Method pilas.asistente.MainWindow.__init__()=pilas.asistente.MainWindow-class.html#__init__,Method pilas.camara.Camara.__init__()=pilas.camara.Camara-class.html#__init__,Method pilas.colisiones.Colisiones.__init__()=pilas.colisiones.Colisiones-class.html#__init__,Method pilas.colores.Color.__init__()=pilas.colores.Color-class.html#__init__,Method pilas.comportamientos.Avanzar.__init__()=pilas.comportamientos.Avanzar-class.html#__init__,Method pilas.comportamientos.Girar.__init__()=pilas.comportamientos.Girar-class.html#__init__,Method pilas.comportamientos.Proyectil.__init__()=pilas.comportamientos.Proyectil-class.html#__init__,Method pilas.comportamientos.Saltar.__init__()=pilas.comportamientos.Saltar-class.html#__init__,Method pilas.control.Control.__init__()=pilas.control.Control-class.html#__init__,Method pilas.demos.piezas.Pieza.__init__()=pilas.demos.piezas.Pieza-class.html#__init__,Method pilas.demos.piezas.Piezas.__init__()=pilas.demos.piezas.Piezas-class.html#__init__,Method pilas.depurador.Depurador.__init__()=pilas.depurador.Depurador-class.html#__init__,Method pilas.depurador.ModoDepurador.__init__()=pilas.depurador.ModoDepurador-class.html#__init__,Method pilas.depurador.ModoInformacionDeSistema.__init__()=pilas.depurador.ModoInformacionDeSistema-class.html#__init__,Method pilas.depurador.ModoPosicion.__init__()=pilas.depurador.ModoPosicion-class.html#__init__,Method pilas.depurador.ModoWidgetLog.__init__()=pilas.depurador.ModoWidgetLog-class.html#__init__,Method pilas.descargar.Descargar.__init__()=pilas.descargar.Descargar-class.html#__init__,Method pilas.ejemplos.syntax.PythonHighlighter.__init__()=pilas.ejemplos.syntax.PythonHighlighter-class.html#__init__,Method pilas.escena.escena_base.Base.__init__()=pilas.escena.escena_base.Base-class.html#__init__,Method pilas.escena.escena_logos.Logos.__init__()=pilas.escena.escena_logos.Logos-class.html#__init__,Method pilas.escena.escena_normal.Aviso.__init__()=pilas.escena.escena_normal.Aviso-class.html#__init__,Method pilas.escena.escena_normal.Normal.__init__()=pilas.escena.escena_normal.Normal-class.html#__init__,Method pilas.escena.gestor.Gestor.__init__()=pilas.escena.gestor.Gestor-class.html#__init__,Method pilas.escenas.Escena.__init__()=pilas.escenas.Escena-class.html#__init__,Method pilas.escenas.Normal.__init__()=pilas.escenas.Normal-class.html#__init__,Method pilas.estudiante.Estudiante.__init__()=pilas.estudiante.Estudiante-class.html#__init__,Method pilas.estudiante.ProxyHabilidades.__init__()=pilas.estudiante.ProxyHabilidades-class.html#__init__,Method pilas.evento.AttrDict.__init__()=pilas.evento.AttrDict-class.html#__init__,Method pilas.evento.Evento.__init__()=pilas.evento.Evento-class.html#__init__,Method pilas.evento.ProxyFuncion.__init__()=pilas.evento.ProxyFuncion-class.html#__init__,Method pilas.evento.ProxyMetodo.__init__()=pilas.evento.ProxyMetodo-class.html#__init__,Method pilas.fisica.Circulo.__init__()=pilas.fisica.Circulo-class.html#__init__,Method pilas.fisica.ConstanteDeDistancia.__init__()=pilas.fisica.ConstanteDeDistancia-class.html#__init__,Method pilas.fisica.ConstanteDeMovimiento.__init__()=pilas.fisica.ConstanteDeMovimiento-class.html#__init__,Method pilas.fisica.Figura.__init__()=pilas.fisica.Figura-class.html#__init__,Method pilas.fisica.Fisica.__init__()=pilas.fisica.Fisica-class.html#__init__,Method pilas.fisica.FisicaDeshabilitada.__init__()=pilas.fisica.FisicaDeshabilitada-class.html#__init__,Method pilas.fisica.ObjetosContactListener.__init__()=pilas.fisica.ObjetosContactListener-class.html#__init__,Method pilas.fisica.Poligono.__init__()=pilas.fisica.Poligono-class.html#__init__,Method pilas.fisica.Rectangulo.__init__()=pilas.fisica.Rectangulo-class.html#__init__,Method pilas.fondos.Color.__init__()=pilas.fondos.Color-class.html#__init__,Method pilas.fondos.Desplazamiento.__init__()=pilas.fondos.Desplazamiento-class.html#__init__,Method pilas.fondos.Espacio.__init__()=pilas.fondos.Espacio-class.html#__init__,Method pilas.fondos.Fondo.__init__()=pilas.fondos.Fondo-class.html#__init__,Method pilas.fondos.Noche.__init__()=pilas.fondos.Noche-class.html#__init__,Method pilas.fondos.Nubes.__init__()=pilas.fondos.Nubes-class.html#__init__,Method pilas.fondos.Pasto.__init__()=pilas.fondos.Pasto-class.html#__init__,Method pilas.fondos.Plano.__init__()=pilas.fondos.Plano-class.html#__init__,Method pilas.fondos.Selva.__init__()=pilas.fondos.Selva-class.html#__init__,Method pilas.fondos.Tarde.__init__()=pilas.fondos.Tarde-class.html#__init__,Method pilas.fondos.Volley.__init__()=pilas.fondos.Volley-class.html#__init__,Method pilas.fps.FPS.__init__()=pilas.fps.FPS-class.html#__init__,Method pilas.habilidades.Arrastrable.__init__()=pilas.habilidades.Arrastrable-class.html#__init__,Method pilas.habilidades.AumentarConRueda.__init__()=pilas.habilidades.AumentarConRueda-class.html#__init__,Method pilas.habilidades.ColisionableComoPelota.__init__()=pilas.habilidades.ColisionableComoPelota-class.html#__init__,Method pilas.habilidades.Disparar.__init__()=pilas.habilidades.Disparar-class.html#__init__,Method pilas.habilidades.DispararConClick.__init__()=pilas.habilidades.DispararConClick-class.html#__init__,Method pilas.habilidades.Habilidad.__init__()=pilas.habilidades.Habilidad-class.html#__init__,Method pilas.habilidades.Imitar.__init__()=pilas.habilidades.Imitar-class.html#__init__,Method pilas.habilidades.MirarAlActor.__init__()=pilas.habilidades.MirarAlActor-class.html#__init__,Method pilas.habilidades.MoverseComoCoche.__init__()=pilas.habilidades.MoverseComoCoche-class.html#__init__,Method pilas.habilidades.MoverseConElTeclado.__init__()=pilas.habilidades.MoverseConElTeclado-class.html#__init__,Method pilas.habilidades.PisaPlataformas.__init__()=pilas.habilidades.PisaPlataformas-class.html#__init__,Method pilas.habilidades.PuedeExplotar.__init__()=pilas.habilidades.PuedeExplotar-class.html#__init__,Method pilas.habilidades.RebotarComoCaja.__init__()=pilas.habilidades.RebotarComoCaja-class.html#__init__,Method pilas.habilidades.RebotarComoPelota.__init__()=pilas.habilidades.RebotarComoPelota-class.html#__init__,Method pilas.habilidades.RotarConMouse.__init__()=pilas.habilidades.RotarConMouse-class.html#__init__,Method pilas.habilidades.SeMantieneEnPantalla.__init__()=pilas.habilidades.SeMantieneEnPantalla-class.html#__init__,Method pilas.habilidades.SeguirAlMouse.__init__()=pilas.habilidades.SeguirAlMouse-class.html#__init__,Method pilas.habilidades.SeguirClicks.__init__()=pilas.habilidades.SeguirClicks-class.html#__init__,Method pilas.habilidades.SiempreEnElCentro.__init__()=pilas.habilidades.SiempreEnElCentro-class.html#__init__,Method pilas.interfaz.base_interfaz.BaseInterfaz.__init__()=pilas.interfaz.base_interfaz.BaseInterfaz-class.html#__init__,Method pilas.interfaz.boton.Boton.__init__()=pilas.interfaz.boton.Boton-class.html#__init__,Method pilas.interfaz.deslizador.Deslizador.__init__()=pilas.interfaz.deslizador.Deslizador-class.html#__init__,Method pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__()=pilas.interfaz.ingreso_de_texto.IngresoDeTexto-class.html#__init__,Method pilas.interfaz.lista_seleccion.ListaSeleccion.__init__()=pilas.interfaz.lista_seleccion.ListaSeleccion-class.html#__init__,Method pilas.interfaz.selector.Selector.__init__()=pilas.interfaz.selector.Selector-class.html#__init__,Method pilas.interpolaciones.AceleracionGradual.__init__()=pilas.interpolaciones.AceleracionGradual-class.html#__init__,Method pilas.interpolaciones.DesaceleracionGradual.__init__()=pilas.interpolaciones.DesaceleracionGradual-class.html#__init__,Method pilas.interpolaciones.ElasticoFinal.__init__()=pilas.interpolaciones.ElasticoFinal-class.html#__init__,Method pilas.interpolaciones.ElasticoInicial.__init__()=pilas.interpolaciones.ElasticoInicial-class.html#__init__,Method pilas.interpolaciones.Interpolacion.__init__()=pilas.interpolaciones.Interpolacion-class.html#__init__,Method pilas.interpolaciones.Lineal.__init__()=pilas.interpolaciones.Lineal-class.html#__init__,Method pilas.interpolaciones.ReboteFinal.__init__()=pilas.interpolaciones.ReboteFinal-class.html#__init__,Method pilas.interpolaciones.ReboteInicial.__init__()=pilas.interpolaciones.ReboteInicial-class.html#__init__,Method pilas.motores.motor_qt.Actor.__init__()=pilas.motores.motor_qt.Actor-class.html#__init__,Method pilas.motores.motor_qt.BaseActor.__init__()=pilas.motores.motor_qt.BaseActor-class.html#__init__,Method pilas.motores.motor_qt.CanvasWidget.__init__()=pilas.motores.motor_qt.CanvasWidget-class.html#__init__,Method pilas.motores.motor_qt.Grilla.__init__()=pilas.motores.motor_qt.Grilla-class.html#__init__,Method pilas.motores.motor_qt.Imagen.__init__()=pilas.motores.motor_qt.Imagen-class.html#__init__,Method pilas.motores.motor_qt.Lienzo.__init__()=pilas.motores.motor_qt.Lienzo-class.html#__init__,Method pilas.motores.motor_qt.Motor.__init__()=pilas.motores.motor_qt.Motor-class.html#__init__,Method pilas.motores.motor_qt.MusicaDeshabilitada.__init__()=pilas.motores.motor_qt.MusicaDeshabilitada-class.html#__init__,Method pilas.motores.motor_qt.MusicaGST.__init__()=pilas.motores.motor_qt.MusicaGST-class.html#__init__,Method pilas.motores.motor_qt.MusicaPhonon.__init__()=pilas.motores.motor_qt.MusicaPhonon-class.html#__init__,Method pilas.motores.motor_qt.SonidoDeshabilitado.__init__()=pilas.motores.motor_qt.SonidoDeshabilitado-class.html#__init__,Method pilas.motores.motor_qt.SonidoGST.__init__()=pilas.motores.motor_qt.SonidoGST-class.html#__init__,Method pilas.motores.motor_qt.SonidoPhonon.__init__()=pilas.motores.motor_qt.SonidoPhonon-class.html#__init__,Method pilas.motores.motor_qt.Superficie.__init__()=pilas.motores.motor_qt.Superficie-class.html#__init__,Method pilas.motores.motor_qt.Texto.__init__()=pilas.motores.motor_qt.Texto-class.html#__init__,Method pilas.motores.motor_qt.Ventana.__init__()=pilas.motores.motor_qt.Ventana-class.html#__init__,Method pilas.mundo.Mundo.__init__()=pilas.mundo.Mundo-class.html#__init__,Method pilas.municion.BalaDoble.__init__()=pilas.municion.BalaDoble-class.html#__init__,Method pilas.municion.BalasDoblesDesviadas.__init__()=pilas.municion.BalasDoblesDesviadas-class.html#__init__,Method pilas.municion.MisilDoble.__init__()=pilas.municion.MisilDoble-class.html#__init__,Method pilas.municion.Municion.__init__()=pilas.municion.Municion-class.html#__init__,Method pilas.pytweener.Tween.__init__()=pilas.pytweener.Tween-class.html#__init__,Method pilas.pytweener.TweenTestObject.__init__()=pilas.pytweener.TweenTestObject-class.html#__init__,Method pilas.pytweener.Tweenable.__init__()=pilas.pytweener.Tweenable-class.html#__init__,Method pilas.pytweener.Tweener.__init__()=pilas.pytweener.Tweener-class.html#__init__,Method pilas.tareas.Tarea.__init__()=pilas.tareas.Tarea-class.html#__init__,Method pilas.tareas.Tareas.__init__()=pilas.tareas.Tareas-class.html#__init__,Method pilas.widget_log.WidgetLog.__init__()=pilas.widget_log.WidgetLog-class.html#__init__"><a title="pilas.actores.aceituna.Aceituna.__init__
+pilas.actores.actor.Actor.__init__
+pilas.actores.animacion.Animacion.__init__
+pilas.actores.animado.Animado.__init__
+pilas.actores.banana.Banana.__init__
+pilas.actores.bomba.Bomba.__init__
+pilas.actores.boton.Boton.__init__
+pilas.actores.caja.Caja.__init__
+pilas.actores.cooperativista.Caminando.__init__
+pilas.actores.cooperativista.Cooperativista.__init__
+pilas.actores.cooperativista.DecirOk.__init__
+pilas.actores.cursordisparo.CursorDisparo.__init__
+pilas.actores.dialogo.Dialogo.__init__
+pilas.actores.ejes.Ejes.__init__
+pilas.actores.energia.Energia.__init__
+pilas.actores.estrella.Estrella.__init__
+pilas.actores.explosion.Explosion.__init__
+pilas.actores.fantasma.Fantasma.__init__
+pilas.actores.globo.Globo.__init__
+pilas.actores.globoelegir.GloboElegir.__init__
+pilas.actores.humo.Humo.__init__
+pilas.actores.mano.CursorMano.__init__
+pilas.actores.mapa.Mapa.__init__
+pilas.actores.mapatiled.MapaTiled.__init__
+pilas.actores.mapatiled.XmlNode.__init__
+pilas.actores.martian.Caminando.__init__
+pilas.actores.martian.Disparar.__init__
+pilas.actores.martian.Martian.__init__
+pilas.actores.martian.Saltando.__init__
+pilas.actores.menu.Menu.__init__
+pilas.actores.moneda.Moneda.__init__
+pilas.actores.mono.Mono.__init__
+pilas.actores.nave.Nave.__init__
+pilas.actores.navekids.NaveKids.__init__
+pilas.actores.opcion.Opcion.__init__
+pilas.actores.ovni.Ovni.__init__
+pilas.actores.ovni.Planeta.__init__
+pilas.actores.pacman.Pacman.__init__
+pilas.actores.pausa.Pausa.__init__
+pilas.actores.pelota.Pelota.__init__
+pilas.actores.personajes_rpg.BasePersonajeRPG.__init__
+pilas.actores.personajes_rpg.Calvo.__init__
+pilas.actores.personajes_rpg.Caminando.__init__
+pilas.actores.personajes_rpg.Maton.__init__
+pilas.actores.piedra.Piedra.__init__
+pilas.actores.pingu.Pingu.__init__
+pilas.actores.pizarra.Pizarra.__init__
+pilas.actores.proyectil.Bala.__init__
+pilas.actores.proyectil.Dinamita.__init__
+pilas.actores.proyectil.EstrellaNinja.__init__
+pilas.actores.proyectil.Misil.__init__
+pilas.actores.puntaje.Puntaje.__init__
+pilas.actores.sonido.Sonido.__init__
+pilas.actores.temporizador.Temporizador.__init__
+pilas.actores.texto.Texto.__init__
+pilas.actores.texto_inferior.TextoInferior.__init__
+pilas.actores.torreta.Torreta.__init__
+pilas.actores.tortuga.Tortuga.__init__
+pilas.actores.zanahoria.Zanahoria.__init__
+pilas.asistente.MainWindow.__init__
+pilas.camara.Camara.__init__
+pilas.colisiones.Colisiones.__init__
+pilas.colores.Color.__init__
+pilas.comportamientos.Avanzar.__init__
+pilas.comportamientos.Girar.__init__
+pilas.comportamientos.Proyectil.__init__
+pilas.comportamientos.Saltar.__init__
+pilas.control.Control.__init__
+pilas.demos.piezas.Pieza.__init__
+pilas.demos.piezas.Piezas.__init__
+pilas.depurador.Depurador.__init__
+pilas.depurador.ModoDepurador.__init__
+pilas.depurador.ModoInformacionDeSistema.__init__
+pilas.depurador.ModoPosicion.__init__
+pilas.depurador.ModoWidgetLog.__init__
+pilas.descargar.Descargar.__init__
+pilas.ejemplos.syntax.PythonHighlighter.__init__
+pilas.escena.escena_base.Base.__init__
+pilas.escena.escena_logos.Logos.__init__
+pilas.escena.escena_normal.Aviso.__init__
+pilas.escena.escena_normal.Normal.__init__
+pilas.escena.gestor.Gestor.__init__
+pilas.escenas.Escena.__init__
+pilas.escenas.Normal.__init__
+pilas.estudiante.Estudiante.__init__
+pilas.estudiante.ProxyHabilidades.__init__
+pilas.evento.AttrDict.__init__
+pilas.evento.Evento.__init__
+pilas.evento.ProxyFuncion.__init__
+pilas.evento.ProxyMetodo.__init__
+pilas.fisica.Circulo.__init__
+pilas.fisica.ConstanteDeDistancia.__init__
+pilas.fisica.ConstanteDeMovimiento.__init__
+pilas.fisica.Figura.__init__
+pilas.fisica.Fisica.__init__
+pilas.fisica.FisicaDeshabilitada.__init__
+pilas.fisica.ObjetosContactListener.__init__
+pilas.fisica.Poligono.__init__
+pilas.fisica.Rectangulo.__init__
+pilas.fondos.Color.__init__
+pilas.fondos.Desplazamiento.__init__
+pilas.fondos.Espacio.__init__
+pilas.fondos.Fondo.__init__
+pilas.fondos.Noche.__init__
+pilas.fondos.Nubes.__init__
+pilas.fondos.Pasto.__init__
+pilas.fondos.Plano.__init__
+pilas.fondos.Selva.__init__
+pilas.fondos.Tarde.__init__
+pilas.fondos.Volley.__init__
+pilas.fps.FPS.__init__
+pilas.habilidades.Arrastrable.__init__
+pilas.habilidades.AumentarConRueda.__init__
+pilas.habilidades.ColisionableComoPelota.__init__
+pilas.habilidades.Disparar.__init__
+pilas.habilidades.DispararConClick.__init__
+pilas.habilidades.Habilidad.__init__
+pilas.habilidades.Imitar.__init__
+pilas.habilidades.MirarAlActor.__init__
+pilas.habilidades.MoverseComoCoche.__init__
+pilas.habilidades.MoverseConElTeclado.__init__
+pilas.habilidades.PisaPlataformas.__init__
+pilas.habilidades.PuedeExplotar.__init__
+pilas.habilidades.RebotarComoCaja.__init__
+pilas.habilidades.RebotarComoPelota.__init__
+pilas.habilidades.RotarConMouse.__init__
+pilas.habilidades.SeMantieneEnPantalla.__init__
+pilas.habilidades.SeguirAlMouse.__init__
+pilas.habilidades.SeguirClicks.__init__
+pilas.habilidades.SiempreEnElCentro.__init__
+pilas.interfaz.base_interfaz.BaseInterfaz.__init__
+pilas.interfaz.boton.Boton.__init__
+pilas.interfaz.deslizador.Deslizador.__init__
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__
+pilas.interfaz.lista_seleccion.ListaSeleccion.__init__
+pilas.interfaz.selector.Selector.__init__
+pilas.interpolaciones.AceleracionGradual.__init__
+pilas.interpolaciones.DesaceleracionGradual.__init__
+pilas.interpolaciones.ElasticoFinal.__init__
+pilas.interpolaciones.ElasticoInicial.__init__
+pilas.interpolaciones.Interpolacion.__init__
+pilas.interpolaciones.Lineal.__init__
+pilas.interpolaciones.ReboteFinal.__init__
+pilas.interpolaciones.ReboteInicial.__init__
+pilas.motores.motor_qt.Actor.__init__
+pilas.motores.motor_qt.BaseActor.__init__
+pilas.motores.motor_qt.CanvasWidget.__init__
+pilas.motores.motor_qt.Grilla.__init__
+pilas.motores.motor_qt.Imagen.__init__
+pilas.motores.motor_qt.Lienzo.__init__
+pilas.motores.motor_qt.Motor.__init__
+pilas.motores.motor_qt.MusicaDeshabilitada.__init__
+pilas.motores.motor_qt.MusicaGST.__init__
+pilas.motores.motor_qt.MusicaPhonon.__init__
+pilas.motores.motor_qt.SonidoDeshabilitado.__init__
+pilas.motores.motor_qt.SonidoGST.__init__
+pilas.motores.motor_qt.SonidoPhonon.__init__
+pilas.motores.motor_qt.Superficie.__init__
+pilas.motores.motor_qt.Texto.__init__
+pilas.motores.motor_qt.Ventana.__init__
+pilas.mundo.Mundo.__init__
+pilas.municion.BalaDoble.__init__
+pilas.municion.BalasDoblesDesviadas.__init__
+pilas.municion.MisilDoble.__init__
+pilas.municion.Municion.__init__
+pilas.pytweener.Tween.__init__
+pilas.pytweener.TweenTestObject.__init__
+pilas.pytweener.Tweenable.__init__
+pilas.pytweener.Tweener.__init__
+pilas.tareas.Tarea.__init__
+pilas.tareas.Tareas.__init__
+pilas.widget_log.WidgetLog.__init__" class="py-name" href="#" onclick="return doclink('link-4', '__init__', 'link-4');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ruta_a_la_imagen</tt> <tt class="py-op">=</tt> <tt class="py-name">ruta_a_la_imagen</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">filas</tt> <tt class="py-op">=</tt> <tt class="py-name">filas</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">columnas</tt> <tt class="py-op">=</tt> <tt class="py-name">columnas</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">al_terminar</tt> <tt class="py-op">=</tt> <tt class="py-name">al_terminar</tt> </tt>
+</div><a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="Piezas.iniciar"></a><div id="Piezas.iniciar-def"><a name="L27"></a><tt class="py-lineno"> 27</tt> <a class="py-toggle" href="#" id="Piezas.iniciar-toggle" onclick="return toggle('Piezas.iniciar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Piezas-class.html#iniciar">iniciar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Piezas.iniciar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Piezas.iniciar-expanded"><a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt id="link-5" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-5', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Package pilas.actores=pilas.actores-module.html"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-6', 'actores', 'link-6');">actores</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Module pilas.actores.utils=pilas.actores.utils-module.html,Module pilas.utils=pilas.utils-module.html"><a title="pilas.actores.utils
+pilas.utils" class="py-name" href="#" onclick="return doclink('link-7', 'utils', 'link-7');">utils</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Function pilas.actores.utils.eliminar_a_todos()=pilas.actores.utils-module.html#eliminar_a_todos"><a title="pilas.actores.utils.eliminar_a_todos" class="py-name" href="#" onclick="return doclink('link-8', 'eliminar_a_todos', 'link-8');">eliminar_a_todos</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt class="py-name">grilla</tt> <tt class="py-op">=</tt> <tt id="link-9" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-9', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Module pilas.imagenes=pilas.imagenes-module.html"><a title="pilas.imagenes" class="py-name" href="#" onclick="return doclink('link-10', 'imagenes', 'link-10');">imagenes</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Function pilas.imagenes.cargar_grilla()=pilas.imagenes-module.html#cargar_grilla"><a title="pilas.imagenes.cargar_grilla" class="py-name" href="#" onclick="return doclink('link-11', 'cargar_grilla', 'link-11');">cargar_grilla</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ruta_a_la_imagen</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">columnas</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">filas</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method pilas.demos.piezas.Piezas.crear_piezas()=pilas.demos.piezas.Piezas-class.html#crear_piezas"><a title="pilas.demos.piezas.Piezas.crear_piezas" class="py-name" href="#" onclick="return doclink('link-12', 'crear_piezas', 'link-12');">crear_piezas</a></tt><tt class="py-op">(</tt><tt class="py-name">grilla</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">filas</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">columnas</tt><tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pieza_en_movimiento</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt id="link-13" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-13', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Variable pilas.eventos=pilas-module.html#eventos"><a title="pilas.eventos" class="py-name" href="#" onclick="return doclink('link-14', 'eventos', 'link-14');">eventos</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Variable pilas.evento.ProxyEventos.click_de_mouse=pilas.evento.ProxyEventos-class.html#click_de_mouse"><a title="pilas.evento.ProxyEventos.click_de_mouse" class="py-name" href="#" onclick="return doclink('link-15', 'click_de_mouse', 'link-15');">click_de_mouse</a></tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method pilas.demos.piezas.Piezas.conectar()=pilas.demos.piezas.Piezas-class.html#conectar,Method pilas.evento.Evento.conectar()=pilas.evento.Evento-class.html#conectar,Method pilas.interfaz.boton.Boton.conectar()=pilas.interfaz.boton.Boton-class.html#conectar,Method pilas.interfaz.deslizador.Deslizador.conectar()=pilas.interfaz.deslizador.Deslizador-class.html#conectar"><a title="pilas.demos.piezas.Piezas.conectar
+pilas.evento.Evento.conectar
+pilas.interfaz.boton.Boton.conectar
+pilas.interfaz.deslizador.Deslizador.conectar" class="py-name" href="#" onclick="return doclink('link-16', 'conectar', 'link-16');">conectar</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method pilas.demos.piezas.Piezas.al_hacer_click()=pilas.demos.piezas.Piezas-class.html#al_hacer_click"><a title="pilas.demos.piezas.Piezas.al_hacer_click" class="py-name" href="#" onclick="return doclink('link-17', 'al_hacer_click', 'link-17');">al_hacer_click</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt id="link-18" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-18', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="pilas.eventos" class="py-name" href="#" onclick="return doclink('link-19', 'eventos', 'link-14');">eventos</a></tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Variable pilas.evento.ProxyEventos.termina_click=pilas.evento.ProxyEventos-class.html#termina_click"><a title="pilas.evento.ProxyEventos.termina_click" class="py-name" href="#" onclick="return doclink('link-20', 'termina_click', 'link-20');">termina_click</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="pilas.demos.piezas.Piezas.conectar
+pilas.evento.Evento.conectar
+pilas.interfaz.boton.Boton.conectar
+pilas.interfaz.deslizador.Deslizador.conectar" class="py-name" href="#" onclick="return doclink('link-21', 'conectar', 'link-16');">conectar</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method pilas.demos.piezas.Piezas.al_soltar_el_click()=pilas.demos.piezas.Piezas-class.html#al_soltar_el_click"><a title="pilas.demos.piezas.Piezas.al_soltar_el_click" class="py-name" href="#" onclick="return doclink('link-22', 'al_soltar_el_click', 'link-22');">al_soltar_el_click</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt id="link-23" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-23', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="pilas.eventos" class="py-name" href="#" onclick="return doclink('link-24', 'eventos', 'link-14');">eventos</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Variable pilas.evento.ProxyEventos.mueve_mouse=pilas.evento.ProxyEventos-class.html#mueve_mouse"><a title="pilas.evento.ProxyEventos.mueve_mouse" class="py-name" href="#" onclick="return doclink('link-25', 'mueve_mouse', 'link-25');">mueve_mouse</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="pilas.demos.piezas.Piezas.conectar
+pilas.evento.Evento.conectar
+pilas.interfaz.boton.Boton.conectar
+pilas.interfaz.deslizador.Deslizador.conectar" class="py-name" href="#" onclick="return doclink('link-26', 'conectar', 'link-16');">conectar</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Method pilas.demos.piezas.Piezas.al_mover_el_mouse()=pilas.demos.piezas.Piezas-class.html#al_mover_el_mouse"><a title="pilas.demos.piezas.Piezas.al_mover_el_mouse" class="py-name" href="#" onclick="return doclink('link-27', 'al_mover_el_mouse', 'link-27');">al_mover_el_mouse</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sonido_tick</tt> <tt class="py-op">=</tt> <tt id="link-28" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-28', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Module pilas.sonidos=pilas.sonidos-module.html"><a title="pilas.sonidos" class="py-name" href="#" onclick="return doclink('link-29', 'sonidos', 'link-29');">sonidos</a></tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Function pilas.imagenes.cargar()=pilas.imagenes-module.html#cargar,Function pilas.musica.cargar()=pilas.musica-module.html#cargar,Function pilas.sonidos.cargar()=pilas.sonidos-module.html#cargar"><a title="pilas.imagenes.cargar
+pilas.musica.cargar
+pilas.sonidos.cargar" class="py-name" href="#" onclick="return doclink('link-30', 'cargar', 'link-30');">cargar</a></tt><tt class="py-op">(</tt><tt class="py-string">"tick.wav"</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">al_terminar</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">al_terminar</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">piezas_desconectadas</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">filas</tt> <tt class="py-op">*</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">columnas</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="Piezas.crear_piezas"></a><div id="Piezas.crear_piezas-def"><a name="L41"></a><tt class="py-lineno"> 41</tt> <a class="py-toggle" href="#" id="Piezas.crear_piezas-toggle" onclick="return toggle('Piezas.crear_piezas');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Piezas-class.html#crear_piezas">crear_piezas</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">grilla</tt><tt class="py-op">,</tt> <tt class="py-param">filas</tt><tt class="py-op">,</tt> <tt class="py-param">columnas</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Piezas.crear_piezas-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Piezas.crear_piezas-expanded"><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-docstring">"Genera todas las piezas en base al tama&#241;o del constructor."</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Module pilas.demos.piezas=pilas.demos.piezas-module.html"><a title="pilas.demos.piezas" class="py-name" href="#" onclick="return doclink('link-31', 'piezas', 'link-31');">piezas</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-32" class="py-name" targets="Variable pilas.actores.actor.Actor.x=pilas.actores.actor.Actor-class.html#x,Variable pilas.camara.Camara.x=pilas.camara.Camara-class.html#x,Variable pilas.demos.piezas.Pieza.x=pilas.demos.piezas.Pieza-class.html#x,Variable pilas.fisica.Figura.x=pilas.fisica.Figura-class.html#x,Variable pilas.simbolos.x=pilas.simbolos-module.html#x"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-32', 'x', 'link-32');">x</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">filas</tt> <tt class="py-op">*</tt> <tt class="py-name">columnas</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt><tt class="py-op">[</tt><tt id="link-33" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-33', 'x', 'link-32');">x</a></tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-op">[</tt><tt id="link-34" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-34', 'x', 'link-32');">x</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">            <tt class="py-name">pieza</tt> <tt class="py-op">=</tt> <tt id="link-35" class="py-name" targets="Class pilas.demos.piezas.Pieza=pilas.demos.piezas.Pieza-class.html"><a title="pilas.demos.piezas.Pieza" class="py-name" href="#" onclick="return doclink('link-35', 'Pieza', 'link-35');">Pieza</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">grilla</tt><tt class="py-op">,</tt> <tt id="link-36" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-36', 'x', 'link-32');">x</a></tt><tt class="py-op">,</tt> <tt class="py-name">filas</tt><tt class="py-op">,</tt> <tt class="py-name">columnas</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="pilas.demos.piezas" class="py-name" href="#" onclick="return doclink('link-37', 'piezas', 'link-31');">piezas</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">pieza</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">            <tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-38', 'x', 'link-32');">x</a></tt> <tt class="py-op">=</tt> <tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">randint</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">200</tt><tt class="py-op">,</tt> <tt class="py-number">200</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">            <tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Variable pilas.actores.actor.Actor.y=pilas.actores.actor.Actor-class.html#y,Variable pilas.camara.Camara.y=pilas.camara.Camara-class.html#y,Variable pilas.demos.piezas.Pieza.y=pilas.demos.piezas.Pieza-class.html#y,Variable pilas.fisica.Figura.y=pilas.fisica.Figura-class.html#y,Variable pilas.simbolos.y=pilas.simbolos-module.html#y"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-39', 'y', 'link-39');">y</a></tt> <tt class="py-op">=</tt> <tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">randint</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">200</tt><tt class="py-op">,</tt> <tt class="py-number">200</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"> </tt>
+<a name="Piezas.al_hacer_click"></a><div id="Piezas.al_hacer_click-def"><a name="L54"></a><tt class="py-lineno"> 54</tt> <a class="py-toggle" href="#" id="Piezas.al_hacer_click-toggle" onclick="return toggle('Piezas.al_hacer_click');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Piezas-class.html#al_hacer_click">al_hacer_click</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">evento</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Piezas.al_hacer_click-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Piezas.al_hacer_click-expanded"><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-docstring">"Atiente cualquier click que realice el usuario en la pantalla."</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt id="link-40" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-40', 'x', 'link-32');">x</a></tt><tt class="py-op">,</tt> <tt id="link-41" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-41', 'y', 'link-39');">y</a></tt> <tt class="py-op">=</tt> <tt id="link-42" class="py-name" targets="Module pilas.evento=pilas.evento-module.html"><a title="pilas.evento" class="py-name" href="#" onclick="return doclink('link-42', 'evento', 'link-42');">evento</a></tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-43', 'x', 'link-32');">x</a></tt><tt class="py-op">,</tt> <tt id="link-44" class="py-name"><a title="pilas.evento" class="py-name" href="#" onclick="return doclink('link-44', 'evento', 'link-42');">evento</a></tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-45', 'y', 'link-39');">y</a></tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-name">pieza_debajo_de_mouse</tt> <tt class="py-op">=</tt> <tt id="link-46" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-46', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-47" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-47', 'actores', 'link-6');">actores</a></tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="pilas.actores.utils
+pilas.utils" class="py-name" href="#" onclick="return doclink('link-48', 'utils', 'link-7');">utils</a></tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Function pilas.actores.utils.obtener_actor_en()=pilas.actores.utils-module.html#obtener_actor_en"><a title="pilas.actores.utils.obtener_actor_en" class="py-name" href="#" onclick="return doclink('link-49', 'obtener_actor_en', 'link-49');">obtener_actor_en</a></tt><tt class="py-op">(</tt><tt id="link-50" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-50', 'x', 'link-32');">x</a></tt><tt class="py-op">,</tt> <tt id="link-51" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-51', 'y', 'link-39');">y</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">pieza_debajo_de_mouse</tt> <tt class="py-keyword">and</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">pieza_debajo_de_mouse</tt><tt class="py-op">,</tt> <tt id="link-52" class="py-name"><a title="pilas.demos.piezas.Pieza" class="py-name" href="#" onclick="return doclink('link-52', 'Pieza', 'link-35');">Pieza</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pieza_en_movimiento</tt> <tt class="py-op">=</tt> <tt class="py-name">pieza_debajo_de_mouse</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pieza_en_movimiento</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name" targets="Method pilas.demos.piezas.Pieza.mostrar_arriba_todas_las_piezas()=pilas.demos.piezas.Pieza-class.html#mostrar_arriba_todas_las_piezas"><a title="pilas.demos.piezas.Pieza.mostrar_arriba_todas_las_piezas" class="py-name" href="#" onclick="return doclink('link-53', 'mostrar_arriba_todas_las_piezas', 'link-53');">mostrar_arriba_todas_las_piezas</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="Piezas.al_soltar_el_click"></a><div id="Piezas.al_soltar_el_click-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="Piezas.al_soltar_el_click-toggle" onclick="return toggle('Piezas.al_soltar_el_click');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Piezas-class.html#al_soltar_el_click">al_soltar_el_click</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">evento</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Piezas.al_soltar_el_click-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Piezas.al_soltar_el_click-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pieza_en_movimiento</tt><tt class="py-op">:</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pieza_en_movimiento</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name" targets="Method pilas.demos.piezas.Pieza.soltar_todas_las_piezas_del_grupo()=pilas.demos.piezas.Pieza-class.html#soltar_todas_las_piezas_del_grupo"><a title="pilas.demos.piezas.Pieza.soltar_todas_las_piezas_del_grupo" class="py-name" href="#" onclick="return doclink('link-54', 'soltar_todas_las_piezas_del_grupo', 'link-54');">soltar_todas_las_piezas_del_grupo</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pieza_en_movimiento</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name" targets="Method pilas.demos.piezas.Pieza.mostrar_abajo_todas_las_piezas()=pilas.demos.piezas.Pieza-class.html#mostrar_abajo_todas_las_piezas"><a title="pilas.demos.piezas.Pieza.mostrar_abajo_todas_las_piezas" class="py-name" href="#" onclick="return doclink('link-55', 'mostrar_abajo_todas_las_piezas', 'link-55');">mostrar_abajo_todas_las_piezas</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pieza_en_movimiento</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="Piezas.al_mover_el_mouse"></a><div id="Piezas.al_mover_el_mouse-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="Piezas.al_mover_el_mouse-toggle" onclick="return toggle('Piezas.al_mover_el_mouse');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Piezas-class.html#al_mover_el_mouse">al_mover_el_mouse</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">evento</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Piezas.al_mover_el_mouse-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Piezas.al_mover_el_mouse-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pieza_en_movimiento</tt><tt class="py-op">:</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pieza_en_movimiento</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-56', 'x', 'link-32');">x</a></tt> <tt class="py-op">+=</tt> <tt id="link-57" class="py-name"><a title="pilas.evento" class="py-name" href="#" onclick="return doclink('link-57', 'evento', 'link-42');">evento</a></tt><tt class="py-op">.</tt><tt class="py-name">dx</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pieza_en_movimiento</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-58', 'y', 'link-39');">y</a></tt> <tt class="py-op">+=</tt> <tt id="link-59" class="py-name"><a title="pilas.evento" class="py-name" href="#" onclick="return doclink('link-59', 'evento', 'link-42');">evento</a></tt><tt class="py-op">.</tt><tt class="py-name">dy</tt> </tt>
+</div><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="Piezas.conectar"></a><div id="Piezas.conectar-def"><a name="L74"></a><tt class="py-lineno"> 74</tt> <a class="py-toggle" href="#" id="Piezas.conectar-toggle" onclick="return toggle('Piezas.conectar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Piezas-class.html#conectar">conectar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">pieza_a</tt><tt class="py-op">,</tt> <tt class="py-param">pieza_b</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Piezas.conectar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Piezas.conectar-expanded"><a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt id="link-60" class="py-name" targets="Variable pilas.simbolos.a=pilas.simbolos-module.html#a"><a title="pilas.simbolos.a" class="py-name" href="#" onclick="return doclink('link-60', 'a', 'link-60');">a</a></tt> <tt class="py-op">=</tt> <tt class="py-name">pieza_a</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt id="link-61" class="py-name" targets="Variable pilas.simbolos.b=pilas.simbolos-module.html#b"><a title="pilas.simbolos.b" class="py-name" href="#" onclick="return doclink('link-61', 'b', 'link-61');">b</a></tt> <tt class="py-op">=</tt> <tt class="py-name">pieza_b</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-62" class="py-name"><a title="pilas.simbolos.a" class="py-name" href="#" onclick="return doclink('link-62', 'a', 'link-60');">a</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt><tt class="py-op">[</tt><tt id="link-63" class="py-name"><a title="pilas.simbolos.b" class="py-name" href="#" onclick="return doclink('link-63', 'b', 'link-61');">b</a></tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">            <tt class="py-comment">#Evita contectar mas de una vez a dos piezas.</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-string">"""Inicialmente comienzo con::</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-string">            0: [0, 1, 2]</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-string">            1: [0, 1, 2]</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-string">            2: [0, 1, 2]</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-string">            3: [3]</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-string">        &#191;y si conecto la pieza 3 con la 2?</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-string">        - tendr&#237;a que obtener todas las piezas que conoce 2.</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-string">        - iterar en ese grupo y decirle a cada pieza que sume a 3 en su grupo::</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-string">            0: [0, 1, 2, 3]</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-string">            1: [0, 1, 2, 3]</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-string">            2: [0, 1, 2, 3]</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-string">        - luego solo me falta tomar a uno de esos grupos actualizados</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-string">          y decirle a 3 que ese ser&#225; su grupo::</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"><tt class="py-string">            3: [0, 1, 2, 3]</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"><tt class="py-string">        """</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-name">grupo_nuevo</tt> <tt class="py-op">=</tt> <tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt><tt class="py-op">[</tt><tt id="link-64" class="py-name"><a title="pilas.simbolos.a" class="py-name" href="#" onclick="return doclink('link-64', 'a', 'link-60');">a</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">union</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt><tt class="py-op">[</tt><tt id="link-65" class="py-name"><a title="pilas.simbolos.b" class="py-name" href="#" onclick="return doclink('link-65', 'b', 'link-61');">b</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">pieza</tt> <tt class="py-keyword">in</tt> <tt class="py-name">grupo_nuevo</tt><tt class="py-op">:</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt><tt class="py-op">[</tt><tt class="py-name">pieza</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">grupo_nuevo</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">piezas_desconectadas</tt> <tt class="py-op">-=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">piezas_desconectadas</tt> <tt class="py-op">&lt;</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">al_terminar</tt><tt class="py-op">:</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">al_terminar</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sonido_tick</tt><tt class="py-op">.</tt><tt id="link-66" class="py-name" targets="Method pilas.motores.motor_qt.SonidoDeshabilitado.reproducir()=pilas.motores.motor_qt.SonidoDeshabilitado-class.html#reproducir,Method pilas.motores.motor_qt.SonidoGST.reproducir()=pilas.motores.motor_qt.SonidoGST-class.html#reproducir,Method pilas.motores.motor_qt.SonidoPhonon.reproducir()=pilas.motores.motor_qt.SonidoPhonon-class.html#reproducir"><a title="pilas.motores.motor_qt.SonidoDeshabilitado.reproducir
+pilas.motores.motor_qt.SonidoGST.reproducir
+pilas.motores.motor_qt.SonidoPhonon.reproducir" class="py-name" href="#" onclick="return doclink('link-66', 'reproducir', 'link-66');">reproducir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="Pieza"></a><div id="Pieza-def"><a name="L120"></a><tt class="py-lineno">120</tt> <a class="py-toggle" href="#" id="Pieza-toggle" onclick="return toggle('Pieza');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html">Pieza</a><tt class="py-op">(</tt><tt class="py-base-class">pilas</tt><tt class="py-op">.</tt><tt class="py-base-class">actores</tt><tt class="py-op">.</tt><tt class="py-base-class">Animado</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Pieza-expanded"><a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">    <tt class="py-docstring">"""Representa una pieza del rompecabezas.</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-docstring">    Esta pieza se puede arrastrar con el mouse y cuando se suelta</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"><tt class="py-docstring">    intentar&#225; conectarse con las dem&#225;s."""</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.__init__"></a><div id="Pieza.__init__-def"><a name="L126"></a><tt class="py-lineno">126</tt> <a class="py-toggle" href="#" id="Pieza.__init__-toggle" onclick="return toggle('Pieza.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">escena_padre</tt><tt class="py-op">,</tt> <tt class="py-param">grilla</tt><tt class="py-op">,</tt> <tt class="py-param">cuadro</tt><tt class="py-op">,</tt> <tt class="py-param">filas</tt><tt class="py-op">,</tt> <tt class="py-param">columnas</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.__init__-expanded"><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-docstring">"Genera la pieza que representa una parte de la imagen completa."</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt> <tt class="py-op">=</tt> <tt class="py-name">escena_padre</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt> <tt class="py-op">=</tt> <tt class="py-name">cuadro</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt id="link-67" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-67', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-68" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-68', 'actores', 'link-6');">actores</a></tt><tt class="py-op">.</tt><tt id="link-69" class="py-name" targets="Class pilas.actores.animado.Animado=pilas.actores.animado.Animado-class.html"><a title="pilas.actores.animado.Animado" class="py-name" href="#" onclick="return doclink('link-69', 'Animado', 'link-69');">Animado</a></tt><tt class="py-op">.</tt><tt id="link-70" class="py-name"><a title="pilas.actores.aceituna.Aceituna.__init__
+pilas.actores.actor.Actor.__init__
+pilas.actores.animacion.Animacion.__init__
+pilas.actores.animado.Animado.__init__
+pilas.actores.banana.Banana.__init__
+pilas.actores.bomba.Bomba.__init__
+pilas.actores.boton.Boton.__init__
+pilas.actores.caja.Caja.__init__
+pilas.actores.cooperativista.Caminando.__init__
+pilas.actores.cooperativista.Cooperativista.__init__
+pilas.actores.cooperativista.DecirOk.__init__
+pilas.actores.cursordisparo.CursorDisparo.__init__
+pilas.actores.dialogo.Dialogo.__init__
+pilas.actores.ejes.Ejes.__init__
+pilas.actores.energia.Energia.__init__
+pilas.actores.estrella.Estrella.__init__
+pilas.actores.explosion.Explosion.__init__
+pilas.actores.fantasma.Fantasma.__init__
+pilas.actores.globo.Globo.__init__
+pilas.actores.globoelegir.GloboElegir.__init__
+pilas.actores.humo.Humo.__init__
+pilas.actores.mano.CursorMano.__init__
+pilas.actores.mapa.Mapa.__init__
+pilas.actores.mapatiled.MapaTiled.__init__
+pilas.actores.mapatiled.XmlNode.__init__
+pilas.actores.martian.Caminando.__init__
+pilas.actores.martian.Disparar.__init__
+pilas.actores.martian.Martian.__init__
+pilas.actores.martian.Saltando.__init__
+pilas.actores.menu.Menu.__init__
+pilas.actores.moneda.Moneda.__init__
+pilas.actores.mono.Mono.__init__
+pilas.actores.nave.Nave.__init__
+pilas.actores.navekids.NaveKids.__init__
+pilas.actores.opcion.Opcion.__init__
+pilas.actores.ovni.Ovni.__init__
+pilas.actores.ovni.Planeta.__init__
+pilas.actores.pacman.Pacman.__init__
+pilas.actores.pausa.Pausa.__init__
+pilas.actores.pelota.Pelota.__init__
+pilas.actores.personajes_rpg.BasePersonajeRPG.__init__
+pilas.actores.personajes_rpg.Calvo.__init__
+pilas.actores.personajes_rpg.Caminando.__init__
+pilas.actores.personajes_rpg.Maton.__init__
+pilas.actores.piedra.Piedra.__init__
+pilas.actores.pingu.Pingu.__init__
+pilas.actores.pizarra.Pizarra.__init__
+pilas.actores.proyectil.Bala.__init__
+pilas.actores.proyectil.Dinamita.__init__
+pilas.actores.proyectil.EstrellaNinja.__init__
+pilas.actores.proyectil.Misil.__init__
+pilas.actores.puntaje.Puntaje.__init__
+pilas.actores.sonido.Sonido.__init__
+pilas.actores.temporizador.Temporizador.__init__
+pilas.actores.texto.Texto.__init__
+pilas.actores.texto_inferior.TextoInferior.__init__
+pilas.actores.torreta.Torreta.__init__
+pilas.actores.tortuga.Tortuga.__init__
+pilas.actores.zanahoria.Zanahoria.__init__
+pilas.asistente.MainWindow.__init__
+pilas.camara.Camara.__init__
+pilas.colisiones.Colisiones.__init__
+pilas.colores.Color.__init__
+pilas.comportamientos.Avanzar.__init__
+pilas.comportamientos.Girar.__init__
+pilas.comportamientos.Proyectil.__init__
+pilas.comportamientos.Saltar.__init__
+pilas.control.Control.__init__
+pilas.demos.piezas.Pieza.__init__
+pilas.demos.piezas.Piezas.__init__
+pilas.depurador.Depurador.__init__
+pilas.depurador.ModoDepurador.__init__
+pilas.depurador.ModoInformacionDeSistema.__init__
+pilas.depurador.ModoPosicion.__init__
+pilas.depurador.ModoWidgetLog.__init__
+pilas.descargar.Descargar.__init__
+pilas.ejemplos.syntax.PythonHighlighter.__init__
+pilas.escena.escena_base.Base.__init__
+pilas.escena.escena_logos.Logos.__init__
+pilas.escena.escena_normal.Aviso.__init__
+pilas.escena.escena_normal.Normal.__init__
+pilas.escena.gestor.Gestor.__init__
+pilas.escenas.Escena.__init__
+pilas.escenas.Normal.__init__
+pilas.estudiante.Estudiante.__init__
+pilas.estudiante.ProxyHabilidades.__init__
+pilas.evento.AttrDict.__init__
+pilas.evento.Evento.__init__
+pilas.evento.ProxyFuncion.__init__
+pilas.evento.ProxyMetodo.__init__
+pilas.fisica.Circulo.__init__
+pilas.fisica.ConstanteDeDistancia.__init__
+pilas.fisica.ConstanteDeMovimiento.__init__
+pilas.fisica.Figura.__init__
+pilas.fisica.Fisica.__init__
+pilas.fisica.FisicaDeshabilitada.__init__
+pilas.fisica.ObjetosContactListener.__init__
+pilas.fisica.Poligono.__init__
+pilas.fisica.Rectangulo.__init__
+pilas.fondos.Color.__init__
+pilas.fondos.Desplazamiento.__init__
+pilas.fondos.Espacio.__init__
+pilas.fondos.Fondo.__init__
+pilas.fondos.Noche.__init__
+pilas.fondos.Nubes.__init__
+pilas.fondos.Pasto.__init__
+pilas.fondos.Plano.__init__
+pilas.fondos.Selva.__init__
+pilas.fondos.Tarde.__init__
+pilas.fondos.Volley.__init__
+pilas.fps.FPS.__init__
+pilas.habilidades.Arrastrable.__init__
+pilas.habilidades.AumentarConRueda.__init__
+pilas.habilidades.ColisionableComoPelota.__init__
+pilas.habilidades.Disparar.__init__
+pilas.habilidades.DispararConClick.__init__
+pilas.habilidades.Habilidad.__init__
+pilas.habilidades.Imitar.__init__
+pilas.habilidades.MirarAlActor.__init__
+pilas.habilidades.MoverseComoCoche.__init__
+pilas.habilidades.MoverseConElTeclado.__init__
+pilas.habilidades.PisaPlataformas.__init__
+pilas.habilidades.PuedeExplotar.__init__
+pilas.habilidades.RebotarComoCaja.__init__
+pilas.habilidades.RebotarComoPelota.__init__
+pilas.habilidades.RotarConMouse.__init__
+pilas.habilidades.SeMantieneEnPantalla.__init__
+pilas.habilidades.SeguirAlMouse.__init__
+pilas.habilidades.SeguirClicks.__init__
+pilas.habilidades.SiempreEnElCentro.__init__
+pilas.interfaz.base_interfaz.BaseInterfaz.__init__
+pilas.interfaz.boton.Boton.__init__
+pilas.interfaz.deslizador.Deslizador.__init__
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__
+pilas.interfaz.lista_seleccion.ListaSeleccion.__init__
+pilas.interfaz.selector.Selector.__init__
+pilas.interpolaciones.AceleracionGradual.__init__
+pilas.interpolaciones.DesaceleracionGradual.__init__
+pilas.interpolaciones.ElasticoFinal.__init__
+pilas.interpolaciones.ElasticoInicial.__init__
+pilas.interpolaciones.Interpolacion.__init__
+pilas.interpolaciones.Lineal.__init__
+pilas.interpolaciones.ReboteFinal.__init__
+pilas.interpolaciones.ReboteInicial.__init__
+pilas.motores.motor_qt.Actor.__init__
+pilas.motores.motor_qt.BaseActor.__init__
+pilas.motores.motor_qt.CanvasWidget.__init__
+pilas.motores.motor_qt.Grilla.__init__
+pilas.motores.motor_qt.Imagen.__init__
+pilas.motores.motor_qt.Lienzo.__init__
+pilas.motores.motor_qt.Motor.__init__
+pilas.motores.motor_qt.MusicaDeshabilitada.__init__
+pilas.motores.motor_qt.MusicaGST.__init__
+pilas.motores.motor_qt.MusicaPhonon.__init__
+pilas.motores.motor_qt.SonidoDeshabilitado.__init__
+pilas.motores.motor_qt.SonidoGST.__init__
+pilas.motores.motor_qt.SonidoPhonon.__init__
+pilas.motores.motor_qt.Superficie.__init__
+pilas.motores.motor_qt.Texto.__init__
+pilas.motores.motor_qt.Ventana.__init__
+pilas.mundo.Mundo.__init__
+pilas.municion.BalaDoble.__init__
+pilas.municion.BalasDoblesDesviadas.__init__
+pilas.municion.MisilDoble.__init__
+pilas.municion.Municion.__init__
+pilas.pytweener.Tween.__init__
+pilas.pytweener.TweenTestObject.__init__
+pilas.pytweener.Tweenable.__init__
+pilas.pytweener.Tweener.__init__
+pilas.tareas.Tarea.__init__
+pilas.tareas.Tareas.__init__
+pilas.widget_log.WidgetLog.__init__" class="py-name" href="#" onclick="return doclink('link-70', '__init__', 'link-4');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">grilla</tt><tt class="py-op">)</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">z_de_la_pieza_mas_alta</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-71" class="py-name" targets="Method pilas.demos.piezas.Pieza.asignar_numero_de_piezas_laterales()=pilas.demos.piezas.Pieza-class.html#asignar_numero_de_piezas_laterales"><a title="pilas.demos.piezas.Pieza.asignar_numero_de_piezas_laterales" class="py-name" href="#" onclick="return doclink('link-71', 'asignar_numero_de_piezas_laterales', 'link-71');">asignar_numero_de_piezas_laterales</a></tt><tt class="py-op">(</tt><tt class="py-name">cuadro</tt><tt class="py-op">,</tt> <tt class="py-name">columnas</tt><tt class="py-op">)</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-72" class="py-name" targets="Method pilas.actores.animado.Animado.definir_cuadro()=pilas.actores.animado.Animado-class.html#definir_cuadro,Method pilas.actores.banana.Banana.definir_cuadro()=pilas.actores.banana.Banana-class.html#definir_cuadro,Method pilas.actores.cooperativista.Cooperativista.definir_cuadro()=pilas.actores.cooperativista.Cooperativista-class.html#definir_cuadro,Method pilas.actores.fantasma.Fantasma.definir_cuadro()=pilas.actores.fantasma.Fantasma-class.html#definir_cuadro,Method pilas.actores.martian.Martian.definir_cuadro()=pilas.actores.martian.Martian-class.html#definir_cuadro,Method pilas.actores.pacman.Pacman.definir_cuadro()=pilas.actores.pacman.Pacman-class.html#definir_cuadro,Method pilas.actores.personajes_rpg.BasePersonajeRPG.definir_cuadro()=pilas.actores.personajes_rpg.BasePersonajeRPG-class.html#definir_cuadro,Method pilas.actores.pingu.Pingu.definir_cuadro()=pilas.actores.pingu.Pingu-class.html#definir_cuadro,Method pilas.motores.motor_qt.Grilla.definir_cuadro()=pilas.motores.motor_qt.Grilla-class.html#definir_cuadro"><a title="pilas.actores.animado.Animado.definir_cuadro
+pilas.actores.banana.Banana.definir_cuadro
+pilas.actores.cooperativista.Cooperativista.definir_cuadro
+pilas.actores.fantasma.Fantasma.definir_cuadro
+pilas.actores.martian.Martian.definir_cuadro
+pilas.actores.pacman.Pacman.definir_cuadro
+pilas.actores.personajes_rpg.BasePersonajeRPG.definir_cuadro
+pilas.actores.pingu.Pingu.definir_cuadro
+pilas.motores.motor_qt.Grilla.definir_cuadro" class="py-name" href="#" onclick="return doclink('link-72', 'definir_cuadro', 'link-72');">definir_cuadro</a></tt><tt class="py-op">(</tt><tt class="py-name">cuadro</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">radio_de_colision</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-73" class="py-name" targets="Method pilas.actores.actor.Actor.obtener_ancho()=pilas.actores.actor.Actor-class.html#obtener_ancho"><a title="pilas.actores.actor.Actor.obtener_ancho" class="py-name" href="#" onclick="return doclink('link-73', 'obtener_ancho', 'link-73');">obtener_ancho</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">/</tt> <tt class="py-number">2</tt> <tt class="py-op">+</tt> <tt class="py-number">12</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">piezas_conectadas</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.asignar_numero_de_piezas_laterales"></a><div id="Pieza.asignar_numero_de_piezas_laterales-def"><a name="L140"></a><tt class="py-lineno">140</tt> <a class="py-toggle" href="#" id="Pieza.asignar_numero_de_piezas_laterales-toggle" onclick="return toggle('Pieza.asignar_numero_de_piezas_laterales');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#asignar_numero_de_piezas_laterales">asignar_numero_de_piezas_laterales</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">cuadro</tt><tt class="py-op">,</tt> <tt class="py-param">columnas</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.asignar_numero_de_piezas_laterales-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.asignar_numero_de_piezas_laterales-expanded"><a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt class="py-docstring">"Guarda el numero de las piezas que se pueden conectar en sus bordes."</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero_arriba</tt> <tt class="py-op">=</tt> <tt class="py-name">cuadro</tt> <tt class="py-op">-</tt> <tt class="py-name">columnas</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero_abajo</tt> <tt class="py-op">=</tt> <tt class="py-name">cuadro</tt> <tt class="py-op">+</tt> <tt class="py-name">columnas</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">cuadro</tt> <tt class="py-op">%</tt> <tt class="py-name">columnas</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero_izquierda</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero_izquierda</tt> <tt class="py-op">=</tt> <tt class="py-name">cuadro</tt> <tt class="py-op">-</tt> <tt class="py-number">1</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">cuadro</tt> <tt class="py-op">%</tt> <tt class="py-name">columnas</tt> <tt class="py-op">==</tt> <tt class="py-name">columnas</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero_derecha</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero_derecha</tt> <tt class="py-op">=</tt> <tt class="py-name">cuadro</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt> </tt>
+</div><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.soltar_todas_las_piezas_del_grupo"></a><div id="Pieza.soltar_todas_las_piezas_del_grupo-def"><a name="L155"></a><tt class="py-lineno">155</tt> <a class="py-toggle" href="#" id="Pieza.soltar_todas_las_piezas_del_grupo-toggle" onclick="return toggle('Pieza.soltar_todas_las_piezas_del_grupo');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#soltar_todas_las_piezas_del_grupo">soltar_todas_las_piezas_del_grupo</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.soltar_todas_las_piezas_del_grupo-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.soltar_todas_las_piezas_del_grupo-expanded"><a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">numero</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">            <tt class="py-name">pieza</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt id="link-74" class="py-name"><a title="pilas.demos.piezas" class="py-name" href="#" onclick="return doclink('link-74', 'piezas', 'link-31');">piezas</a></tt><tt class="py-op">[</tt><tt class="py-name">numero</tt><tt class="py-op">]</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">            <tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-75" class="py-name" targets="Method pilas.demos.piezas.Pieza.soltar()=pilas.demos.piezas.Pieza-class.html#soltar"><a title="pilas.demos.piezas.Pieza.soltar" class="py-name" href="#" onclick="return doclink('link-75', 'soltar', 'link-75');">soltar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.soltar"></a><div id="Pieza.soltar-def"><a name="L160"></a><tt class="py-lineno">160</tt> <a class="py-toggle" href="#" id="Pieza.soltar-toggle" onclick="return toggle('Pieza.soltar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#soltar">soltar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.soltar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.soltar-expanded"><a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-comment"># Busca todas las colisiones entre esta pieza</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-comment"># que se suelta y todas las dem&#225;s.</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">        <tt id="link-76" class="py-name" targets="Module pilas.colisiones=pilas.colisiones-module.html,Variable pilas.mundo.Mundo.colisiones=pilas.mundo.Mundo-class.html#colisiones"><a title="pilas.colisiones
+pilas.mundo.Mundo.colisiones" class="py-name" href="#" onclick="return doclink('link-76', 'colisiones', 'link-76');">colisiones</a></tt> <tt class="py-op">=</tt> <tt id="link-77" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-77', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-78" class="py-name" targets="Method pilas.escena.gestor.Gestor.escena_actual()=pilas.escena.gestor.Gestor-class.html#escena_actual,Function pilas.escena_actual()=pilas-module.html#escena_actual"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-78', 'escena_actual', 'link-78');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-79" class="py-name"><a title="pilas.colisiones
+pilas.mundo.Mundo.colisiones" class="py-name" href="#" onclick="return doclink('link-79', 'colisiones', 'link-76');">colisiones</a></tt><tt class="py-op">.</tt><tt id="link-80" class="py-name" targets="Method pilas.colisiones.Colisiones.obtener_colisiones()=pilas.colisiones.Colisiones-class.html#obtener_colisiones"><a title="pilas.colisiones.Colisiones.obtener_colisiones" class="py-name" href="#" onclick="return doclink('link-80', 'obtener_colisiones', 'link-80');">obtener_colisiones</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt id="link-81" class="py-name"><a title="pilas.demos.piezas" class="py-name" href="#" onclick="return doclink('link-81', 'piezas', 'link-31');">piezas</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-82" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-82', 'x', 'link-32');">x</a></tt> <tt class="py-keyword">in</tt> <tt id="link-83" class="py-name"><a title="pilas.colisiones
+pilas.mundo.Mundo.colisiones" class="py-name" href="#" onclick="return doclink('link-83', 'colisiones', 'link-76');">colisiones</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-84" class="py-name" targets="Method pilas.demos.piezas.Pieza.intentar_conectarse_a()=pilas.demos.piezas.Pieza-class.html#intentar_conectarse_a"><a title="pilas.demos.piezas.Pieza.intentar_conectarse_a" class="py-name" href="#" onclick="return doclink('link-84', 'intentar_conectarse_a', 'link-84');">intentar_conectarse_a</a></tt><tt class="py-op">(</tt><tt id="link-85" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-85', 'x', 'link-32');">x</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.se_pueden_conectar_los_bordes"></a><div id="Pieza.se_pueden_conectar_los_bordes-def"><a name="L168"></a><tt class="py-lineno">168</tt> <a class="py-toggle" href="#" id="Pieza.se_pueden_conectar_los_bordes-toggle" onclick="return toggle('Pieza.se_pueden_conectar_los_bordes');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#se_pueden_conectar_los_bordes">se_pueden_conectar_los_bordes</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">borde1</tt><tt class="py-op">,</tt> <tt class="py-param">borde2</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.se_pueden_conectar_los_bordes-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.se_pueden_conectar_los_bordes-expanded"><a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">        <tt id="link-86" class="py-name" targets="Function pilas.utils.distancia()=pilas.utils-module.html#distancia"><a title="pilas.utils.distancia" class="py-name" href="#" onclick="return doclink('link-86', 'distancia', 'link-86');">distancia</a></tt> <tt class="py-op">=</tt> <tt id="link-87" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-87', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-88" class="py-name"><a title="pilas.actores.utils
+pilas.utils" class="py-name" href="#" onclick="return doclink('link-88', 'utils', 'link-7');">utils</a></tt><tt class="py-op">.</tt><tt id="link-89" class="py-name"><a title="pilas.utils.distancia" class="py-name" href="#" onclick="return doclink('link-89', 'distancia', 'link-86');">distancia</a></tt><tt class="py-op">(</tt><tt class="py-name">borde1</tt><tt class="py-op">,</tt> <tt class="py-name">borde2</tt><tt class="py-op">)</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt>  <tt id="link-90" class="py-name"><a title="pilas.utils.distancia" class="py-name" href="#" onclick="return doclink('link-90', 'distancia', 'link-86');">distancia</a></tt> <tt class="py-op">&lt;</tt> <tt class="py-number">12</tt> </tt>
+</div><a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.intentar_conectarse_a"></a><div id="Pieza.intentar_conectarse_a-def"><a name="L172"></a><tt class="py-lineno">172</tt> <a class="py-toggle" href="#" id="Pieza.intentar_conectarse_a-toggle" onclick="return toggle('Pieza.intentar_conectarse_a');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#intentar_conectarse_a">intentar_conectarse_a</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">otra</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.intentar_conectarse_a-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.intentar_conectarse_a-expanded"><a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">        <tt class="py-docstring">"Intenta vincular dos piezas, siempre y cuando coincidan en sus bordes."</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">        <tt class="py-comment"># Intenta conectar los bordes laterales</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero_derecha</tt> <tt class="py-op">==</tt> <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt><tt class="py-op">:</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-91" class="py-name" targets="Method pilas.demos.piezas.Pieza.se_pueden_conectar_los_bordes()=pilas.demos.piezas.Pieza-class.html#se_pueden_conectar_los_bordes"><a title="pilas.demos.piezas.Pieza.se_pueden_conectar_los_bordes" class="py-name" href="#" onclick="return doclink('link-91', 'se_pueden_conectar_los_bordes', 'link-91');">se_pueden_conectar_los_bordes</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-92" class="py-name" targets="Variable pilas.actores.actor.Actor.derecha=pilas.actores.actor.Actor-class.html#derecha"><a title="pilas.actores.actor.Actor.derecha" class="py-name" href="#" onclick="return doclink('link-92', 'derecha', 'link-92');">derecha</a></tt><tt class="py-op">,</tt> <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-93" class="py-name" targets="Variable pilas.actores.actor.Actor.izquierda=pilas.actores.actor.Actor-class.html#izquierda"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-93', 'izquierda', 'link-93');">izquierda</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">                <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-94" class="py-name"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-94', 'izquierda', 'link-93');">izquierda</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-95" class="py-name"><a title="pilas.actores.actor.Actor.derecha" class="py-name" href="#" onclick="return doclink('link-95', 'derecha', 'link-92');">derecha</a></tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">                <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-96" class="py-name" targets="Variable pilas.actores.actor.Actor.arriba=pilas.actores.actor.Actor-class.html#arriba"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-96', 'arriba', 'link-96');">arriba</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-97" class="py-name"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-97', 'arriba', 'link-96');">arriba</a></tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-98" class="py-name" targets="Method pilas.demos.piezas.Pieza.conectar_con()=pilas.demos.piezas.Pieza-class.html#conectar_con"><a title="pilas.demos.piezas.Pieza.conectar_con" class="py-name" href="#" onclick="return doclink('link-98', 'conectar_con', 'link-98');">conectar_con</a></tt><tt class="py-op">(</tt><tt class="py-name">otra</tt><tt class="py-op">)</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line"> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt class="py-keyword">elif</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero_izquierda</tt> <tt class="py-op">==</tt> <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt><tt class="py-op">:</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-99" class="py-name"><a title="pilas.demos.piezas.Pieza.se_pueden_conectar_los_bordes" class="py-name" href="#" onclick="return doclink('link-99', 'se_pueden_conectar_los_bordes', 'link-91');">se_pueden_conectar_los_bordes</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-100" class="py-name"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-100', 'izquierda', 'link-93');">izquierda</a></tt><tt class="py-op">,</tt> <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-101" class="py-name"><a title="pilas.actores.actor.Actor.derecha" class="py-name" href="#" onclick="return doclink('link-101', 'derecha', 'link-92');">derecha</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">                <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-102" class="py-name"><a title="pilas.actores.actor.Actor.derecha" class="py-name" href="#" onclick="return doclink('link-102', 'derecha', 'link-92');">derecha</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-103" class="py-name"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-103', 'izquierda', 'link-93');">izquierda</a></tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">                <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-104" class="py-name"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-104', 'arriba', 'link-96');">arriba</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-105" class="py-name"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-105', 'arriba', 'link-96');">arriba</a></tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-106" class="py-name"><a title="pilas.demos.piezas.Pieza.conectar_con" class="py-name" href="#" onclick="return doclink('link-106', 'conectar_con', 'link-98');">conectar_con</a></tt><tt class="py-op">(</tt><tt class="py-name">otra</tt><tt class="py-op">)</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">        <tt class="py-comment"># Intenta conectar los bordes superior e inferior</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero_abajo</tt> <tt class="py-op">==</tt> <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt><tt class="py-op">:</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-107" class="py-name"><a title="pilas.demos.piezas.Pieza.se_pueden_conectar_los_bordes" class="py-name" href="#" onclick="return doclink('link-107', 'se_pueden_conectar_los_bordes', 'link-91');">se_pueden_conectar_los_bordes</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-108" class="py-name" targets="Variable pilas.actores.actor.Actor.abajo=pilas.actores.actor.Actor-class.html#abajo"><a title="pilas.actores.actor.Actor.abajo" class="py-name" href="#" onclick="return doclink('link-108', 'abajo', 'link-108');">abajo</a></tt><tt class="py-op">,</tt> <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-109" class="py-name"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-109', 'arriba', 'link-96');">arriba</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">                <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-110" class="py-name"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-110', 'arriba', 'link-96');">arriba</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-111" class="py-name"><a title="pilas.actores.actor.Actor.abajo" class="py-name" href="#" onclick="return doclink('link-111', 'abajo', 'link-108');">abajo</a></tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">                <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-112" class="py-name"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-112', 'izquierda', 'link-93');">izquierda</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-113" class="py-name"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-113', 'izquierda', 'link-93');">izquierda</a></tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-114" class="py-name"><a title="pilas.demos.piezas.Pieza.conectar_con" class="py-name" href="#" onclick="return doclink('link-114', 'conectar_con', 'link-98');">conectar_con</a></tt><tt class="py-op">(</tt><tt class="py-name">otra</tt><tt class="py-op">)</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">        <tt class="py-keyword">elif</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero_arriba</tt> <tt class="py-op">==</tt> <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt><tt class="py-op">:</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-115" class="py-name"><a title="pilas.demos.piezas.Pieza.se_pueden_conectar_los_bordes" class="py-name" href="#" onclick="return doclink('link-115', 'se_pueden_conectar_los_bordes', 'link-91');">se_pueden_conectar_los_bordes</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-116" class="py-name"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-116', 'arriba', 'link-96');">arriba</a></tt><tt class="py-op">,</tt> <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-117" class="py-name"><a title="pilas.actores.actor.Actor.abajo" class="py-name" href="#" onclick="return doclink('link-117', 'abajo', 'link-108');">abajo</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line">                <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-118" class="py-name"><a title="pilas.actores.actor.Actor.abajo" class="py-name" href="#" onclick="return doclink('link-118', 'abajo', 'link-108');">abajo</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-119" class="py-name"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-119', 'arriba', 'link-96');">arriba</a></tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">                <tt class="py-name">otra</tt><tt class="py-op">.</tt><tt id="link-120" class="py-name"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-120', 'izquierda', 'link-93');">izquierda</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-121" class="py-name"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-121', 'izquierda', 'link-93');">izquierda</a></tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-122" class="py-name"><a title="pilas.demos.piezas.Pieza.conectar_con" class="py-name" href="#" onclick="return doclink('link-122', 'conectar_con', 'link-98');">conectar_con</a></tt><tt class="py-op">(</tt><tt class="py-name">otra</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line"> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.conectar_con"></a><div id="Pieza.conectar_con-def"><a name="L202"></a><tt class="py-lineno">202</tt> <a class="py-toggle" href="#" id="Pieza.conectar_con-toggle" onclick="return toggle('Pieza.conectar_con');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#conectar_con">conectar_con</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">otra_pieza</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.conectar_con-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.conectar_con-expanded"><a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt id="link-123" class="py-name"><a title="pilas.demos.piezas.Piezas.conectar
+pilas.evento.Evento.conectar
+pilas.interfaz.boton.Boton.conectar
+pilas.interfaz.deslizador.Deslizador.conectar" class="py-name" href="#" onclick="return doclink('link-123', 'conectar', 'link-16');">conectar</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">otra_pieza</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line"> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.__repr__"></a><div id="Pieza.__repr__-def"><a name="L206"></a><tt class="py-lineno">206</tt> <a class="py-toggle" href="#" id="Pieza.__repr__-toggle" onclick="return toggle('Pieza.__repr__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#__repr__">__repr__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.__repr__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.__repr__-expanded"><a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-string">"&lt;&lt;Pieza %d&gt;&gt;"</tt> <tt class="py-op">%</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-124" class="py-name" targets="Module pilas.actores.animacion=pilas.actores.animacion-module.html"><a title="pilas.actores.animacion" class="py-name" href="#" onclick="return doclink('link-124', 'animacion', 'link-124');">animacion</a></tt><tt class="py-op">.</tt><tt id="link-125" class="py-name" targets="Method pilas.motores.motor_qt.Grilla.obtener_cuadro()=pilas.motores.motor_qt.Grilla-class.html#obtener_cuadro"><a title="pilas.motores.motor_qt.Grilla.obtener_cuadro" class="py-name" href="#" onclick="return doclink('link-125', 'obtener_cuadro', 'link-125');">obtener_cuadro</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line"> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.set_x"></a><div id="Pieza.set_x-def"><a name="L210"></a><tt class="py-lineno">210</tt> <a class="py-toggle" href="#" id="Pieza.set_x-toggle" onclick="return toggle('Pieza.set_x');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#set_x">set_x</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.set_x-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.set_x-expanded"><a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">        <tt class="py-docstring">"A diferencia de los actores normales, las piezas tienen que mover a todo su grupo."</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">        <tt class="py-name">dx</tt> <tt class="py-op">=</tt> <tt id="link-126" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-126', 'x', 'link-32');">x</a></tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-127" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-127', 'x', 'link-32');">x</a></tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">numero</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">                <tt class="py-name">pieza</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt id="link-128" class="py-name"><a title="pilas.demos.piezas" class="py-name" href="#" onclick="return doclink('link-128', 'piezas', 'link-31');">piezas</a></tt><tt class="py-op">[</tt><tt class="py-name">numero</tt><tt class="py-op">]</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">                <tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-129" class="py-name" targets="Method pilas.actores.actor.Actor.definir_posicion()=pilas.actores.actor.Actor-class.html#definir_posicion,Method pilas.fisica.Figura.definir_posicion()=pilas.fisica.Figura-class.html#definir_posicion,Method pilas.interfaz.deslizador.Deslizador.definir_posicion()=pilas.interfaz.deslizador.Deslizador-class.html#definir_posicion,Method pilas.motores.motor_qt.BaseActor.definir_posicion()=pilas.motores.motor_qt.BaseActor-class.html#definir_posicion"><a title="pilas.actores.actor.Actor.definir_posicion
+pilas.fisica.Figura.definir_posicion
+pilas.interfaz.deslizador.Deslizador.definir_posicion
+pilas.motores.motor_qt.BaseActor.definir_posicion" class="py-name" href="#" onclick="return doclink('link-129', 'definir_posicion', 'link-129');">definir_posicion</a></tt><tt class="py-op">(</tt><tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-130" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-130', 'x', 'link-32');">x</a></tt> <tt class="py-op">+</tt> <tt class="py-name">dx</tt><tt class="py-op">,</tt> <tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-131" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-131', 'y', 'link-39');">y</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">IndexError</tt><tt class="py-op">:</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">                <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.set_y"></a><div id="Pieza.set_y-def"><a name="L221"></a><tt class="py-lineno">221</tt> <a class="py-toggle" href="#" id="Pieza.set_y-toggle" onclick="return toggle('Pieza.set_y');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#set_y">set_y</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">y</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.set_y-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.set_y-expanded"><a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">        <tt class="py-docstring">"A diferencia de los actores normales, las piezas tienen que mover a todo su grupo."</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">        <tt class="py-name">dy</tt> <tt class="py-op">=</tt> <tt id="link-132" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-132', 'y', 'link-39');">y</a></tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-133" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-133', 'y', 'link-39');">y</a></tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line"> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">numero</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line">                <tt class="py-name">pieza</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt id="link-134" class="py-name"><a title="pilas.demos.piezas" class="py-name" href="#" onclick="return doclink('link-134', 'piezas', 'link-31');">piezas</a></tt><tt class="py-op">[</tt><tt class="py-name">numero</tt><tt class="py-op">]</tt> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">                <tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-135" class="py-name"><a title="pilas.actores.actor.Actor.definir_posicion
+pilas.fisica.Figura.definir_posicion
+pilas.interfaz.deslizador.Deslizador.definir_posicion
+pilas.motores.motor_qt.BaseActor.definir_posicion" class="py-name" href="#" onclick="return doclink('link-135', 'definir_posicion', 'link-129');">definir_posicion</a></tt><tt class="py-op">(</tt><tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-136" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-136', 'x', 'link-32');">x</a></tt><tt class="py-op">,</tt> <tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-137" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-137', 'y', 'link-39');">y</a></tt> <tt class="py-op">+</tt> <tt class="py-name">dy</tt><tt class="py-op">)</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">IndexError</tt><tt class="py-op">:</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">                <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.get_x"></a><div id="Pieza.get_x-def"><a name="L232"></a><tt class="py-lineno">232</tt> <a class="py-toggle" href="#" id="Pieza.get_x-toggle" onclick="return toggle('Pieza.get_x');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#get_x">get_x</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.get_x-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.get_x-expanded"><a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">        <tt id="link-138" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-138', 'x', 'link-32');">x</a></tt><tt class="py-op">,</tt> <tt id="link-139" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-139', 'y', 'link-39');">y</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-140" class="py-name" targets="Method pilas.actores.actor.Actor.obtener_posicion()=pilas.actores.actor.Actor-class.html#obtener_posicion,Method pilas.motores.motor_qt.BaseActor.obtener_posicion()=pilas.motores.motor_qt.BaseActor-class.html#obtener_posicion"><a title="pilas.actores.actor.Actor.obtener_posicion
+pilas.motores.motor_qt.BaseActor.obtener_posicion" class="py-name" href="#" onclick="return doclink('link-140', 'obtener_posicion', 'link-140');">obtener_posicion</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-141" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-141', 'x', 'link-32');">x</a></tt> </tt>
+</div><a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.get_y"></a><div id="Pieza.get_y-def"><a name="L236"></a><tt class="py-lineno">236</tt> <a class="py-toggle" href="#" id="Pieza.get_y-toggle" onclick="return toggle('Pieza.get_y');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#get_y">get_y</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.get_y-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.get_y-expanded"><a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line">        <tt id="link-142" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-142', 'x', 'link-32');">x</a></tt><tt class="py-op">,</tt> <tt id="link-143" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-143', 'y', 'link-39');">y</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-144" class="py-name"><a title="pilas.actores.actor.Actor.obtener_posicion
+pilas.motores.motor_qt.BaseActor.obtener_posicion" class="py-name" href="#" onclick="return doclink('link-144', 'obtener_posicion', 'link-140');">obtener_posicion</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-145" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-145', 'y', 'link-39');">y</a></tt> </tt>
+</div><a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line"> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line">    <tt id="link-146" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-146', 'x', 'link-32');">x</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-147" class="py-name" targets="Method pilas.actores.actor.Actor.get_x()=pilas.actores.actor.Actor-class.html#get_x,Method pilas.demos.piezas.Pieza.get_x()=pilas.demos.piezas.Pieza-class.html#get_x"><a title="pilas.actores.actor.Actor.get_x
+pilas.demos.piezas.Pieza.get_x" class="py-name" href="#" onclick="return doclink('link-147', 'get_x', 'link-147');">get_x</a></tt><tt class="py-op">,</tt> <tt id="link-148" class="py-name" targets="Method pilas.actores.actor.Actor.set_x()=pilas.actores.actor.Actor-class.html#set_x,Method pilas.demos.piezas.Pieza.set_x()=pilas.demos.piezas.Pieza-class.html#set_x"><a title="pilas.actores.actor.Actor.set_x
+pilas.demos.piezas.Pieza.set_x" class="py-name" href="#" onclick="return doclink('link-148', 'set_x', 'link-148');">set_x</a></tt><tt class="py-op">,</tt> <tt class="py-name">doc</tt><tt class="py-op">=</tt><tt class="py-string">"Define la posici&#243;n horizontal."</tt><tt class="py-op">)</tt> </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line">    <tt id="link-149" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-149', 'y', 'link-39');">y</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-150" class="py-name" targets="Method pilas.actores.actor.Actor.get_y()=pilas.actores.actor.Actor-class.html#get_y,Method pilas.demos.piezas.Pieza.get_y()=pilas.demos.piezas.Pieza-class.html#get_y"><a title="pilas.actores.actor.Actor.get_y
+pilas.demos.piezas.Pieza.get_y" class="py-name" href="#" onclick="return doclink('link-150', 'get_y', 'link-150');">get_y</a></tt><tt class="py-op">,</tt> <tt id="link-151" class="py-name" targets="Method pilas.actores.actor.Actor.set_y()=pilas.actores.actor.Actor-class.html#set_y,Method pilas.demos.piezas.Pieza.set_y()=pilas.demos.piezas.Pieza-class.html#set_y"><a title="pilas.actores.actor.Actor.set_y
+pilas.demos.piezas.Pieza.set_y" class="py-name" href="#" onclick="return doclink('link-151', 'set_y', 'link-151');">set_y</a></tt><tt class="py-op">,</tt> <tt class="py-name">doc</tt><tt class="py-op">=</tt><tt class="py-string">"Define la posici&#243;n vertical."</tt><tt class="py-op">)</tt> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.mostrar_arriba_todas_las_piezas"></a><div id="Pieza.mostrar_arriba_todas_las_piezas-def"><a name="L243"></a><tt class="py-lineno">243</tt> <a class="py-toggle" href="#" id="Pieza.mostrar_arriba_todas_las_piezas-toggle" onclick="return toggle('Pieza.mostrar_arriba_todas_las_piezas');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#mostrar_arriba_todas_las_piezas">mostrar_arriba_todas_las_piezas</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.mostrar_arriba_todas_las_piezas-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.mostrar_arriba_todas_las_piezas-expanded"><a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">numero</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">            <tt class="py-name">pieza</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt id="link-152" class="py-name"><a title="pilas.demos.piezas" class="py-name" href="#" onclick="return doclink('link-152', 'piezas', 'link-31');">piezas</a></tt><tt class="py-op">[</tt><tt class="py-name">numero</tt><tt class="py-op">]</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">            <tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-153" class="py-name" targets="Variable pilas.actores.actor.Actor.z=pilas.actores.actor.Actor-class.html#z,Variable pilas.simbolos.z=pilas.simbolos-module.html#z"><a title="pilas.actores.actor.Actor.z
+pilas.simbolos.z" class="py-name" href="#" onclick="return doclink('link-153', 'z', 'link-153');">z</a></tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+</div><a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line"> </tt>
+<a name="Pieza.mostrar_abajo_todas_las_piezas"></a><div id="Pieza.mostrar_abajo_todas_las_piezas-def"><a name="L248"></a><tt class="py-lineno">248</tt> <a class="py-toggle" href="#" id="Pieza.mostrar_abajo_todas_las_piezas-toggle" onclick="return toggle('Pieza.mostrar_abajo_todas_las_piezas');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.demos.piezas.Pieza-class.html#mostrar_abajo_todas_las_piezas">mostrar_abajo_todas_las_piezas</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pieza.mostrar_abajo_todas_las_piezas-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pieza.mostrar_abajo_todas_las_piezas-expanded"><a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">numero</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt class="py-name">grupos</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numero</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">            <tt class="py-name">pieza</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">escena_padre</tt><tt class="py-op">.</tt><tt id="link-154" class="py-name"><a title="pilas.demos.piezas" class="py-name" href="#" onclick="return doclink('link-154', 'piezas', 'link-31');">piezas</a></tt><tt class="py-op">[</tt><tt class="py-name">numero</tt><tt class="py-op">]</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">            <tt class="py-name">pieza</tt><tt class="py-op">.</tt><tt id="link-155" class="py-name"><a title="pilas.actores.actor.Actor.z
+pilas.simbolos.z" class="py-name" href="#" onclick="return doclink('link-155', 'z', 'link-153');">z</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+</div></div><a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:47 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

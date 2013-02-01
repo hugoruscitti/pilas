@@ -10,9 +10,9 @@ Un buen punto de inicio para comenzar a utilizar pilas es explorar el manual com
 Este manual recorre toda la funcionalidad de pilas, y explica con ejemplos cómo utilizar cada parte del motor.
 
 <div class="clearfix center">
-    <a href='https://pilas.readthedocs.org/es/latest/' class='button purple'>ver manual</a>
-    <a href='http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf' class='button blue'>descargar manual</a>
-    <a href='referencia/index.html' class='button green'>ver referencia API</a>
+   <a href='https://pilas.readthedocs.org/es/latest/' class='button purple'>ver manual</a>
+   <a href='http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf' class='button blue'>descargar manual</a>
+   <a href='api/index.html' class='button green'>ver referencia API</a>
 </div>
 
 

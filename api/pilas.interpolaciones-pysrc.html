@@ -1,0 +1,1606 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.interpolaciones</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        Module&nbsp;interpolaciones
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.interpolaciones-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.interpolaciones-module.html">Module pilas.interpolaciones</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># Pilas engine - A video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2010 - Hugo Ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># Website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-0', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module pilas.pytweener=pilas.pytweener-module.html"><a title="pilas.pytweener" class="py-name" href="#" onclick="return doclink('link-1', 'pytweener', 'link-1');">pytweener</a></tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="Interpolacion"></a><div id="Interpolacion-def"><a name="L10"></a><tt class="py-lineno"> 10</tt> <a class="py-toggle" href="#" id="Interpolacion-toggle" onclick="return toggle('Interpolacion');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.interpolaciones.Interpolacion-class.html">Interpolacion</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Interpolacion-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Interpolacion-expanded"><a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line">    <tt class="py-docstring">"""Representa una interpolacion, que pasa por varios puntos clave.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">    Las interpolacione se utilizan para realizar movimientos de</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">    actores en la pantalla. O simplemente para cambiar el</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring">    estado de un actor de un punto a otro, por ejemplo, de 0 a 360</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">    grados de manera gradual.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">    Todo objeto de interpolaciones se puede asignar directamente a</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">    una propiedad de un actor. Por ejemplo:</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">        actor.rotation = pilas.interpolations.Lineal(400)</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">    note que hay un atajo para usar estos objetos, es mejor</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">    utilizar directamente una sentencias como la que sigue::</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">        actor.rotation = pilas.interpolate(360)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="Interpolacion.__init__"></a><div id="Interpolacion.__init__-def"><a name="L28"></a><tt class="py-lineno"> 28</tt> <a class="py-toggle" href="#" id="Interpolacion.__init__-toggle" onclick="return toggle('Interpolacion.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.Interpolacion-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">,</tt> <tt class="py-param">duration</tt><tt class="py-op">,</tt> <tt class="py-param">delay</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Interpolacion.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Interpolacion.__init__-expanded"><a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt class="py-docstring">"""Inicializa la interpolaci&#243;n.</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">        ``values`` tiene que ser una lista con todos los puntos</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">        por los que se quiere adoptar valores y ``duration`` es la cantidad</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">        de segundos que deben tomarse para realizar la interpolaci&#243;n.</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt> <tt class="py-op">=</tt> <tt class="py-name">values</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">duration</tt> <tt class="py-op">=</tt> <tt class="py-name">duration</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt> <tt class="py-op">=</tt> <tt class="py-name">delay</tt> </tt>
+</div><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="Interpolacion.apply"></a><div id="Interpolacion.apply-def"><a name="L39"></a><tt class="py-lineno"> 39</tt> <a class="py-toggle" href="#" id="Interpolacion.apply-toggle" onclick="return toggle('Interpolacion.apply');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.Interpolacion-class.html#apply">apply</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">target</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">,</tt> <tt class="py-param">type</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Interpolacion.apply-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Interpolacion.apply-expanded"><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-docstring">"""Aplica la interpolaci&#243;n a un actor usando un m&#233;todo.</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">        Esta funcionalidad se utiliza para que toda interpolaci&#243;n</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">        se pueda acoplar a un actor.</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">        La idea es contar con la interpolaci&#243;n, un actor y luego</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring">        ponerla en funcionamiento::</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">            mi_interpolacion.apply(mono, set_rotation)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">        de esta forma los dos objetos est&#225;n y seguir&#225;n estando</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">        desacoplados."""</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-2', 'pilas', 'link-0');">pilas</a></tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-comment"># Tiempo que se debe invertir para hacer cada interpolacion</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-comment"># individual.</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-name">step</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">duration</tt> <tt class="py-op">/</tt> <tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-name">step</tt> <tt class="py-op">*=</tt> <tt class="py-number">1000.0</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-comment"># En base a la funcion busca el getter que le dara</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-comment"># el valor inicial.</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-name">getter</tt> <tt class="py-op">=</tt> <tt class="py-name">function</tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-string">'set_'</tt><tt class="py-op">,</tt> <tt class="py-string">'get_'</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-name">function_to_get_value</tt> <tt class="py-op">=</tt> <tt class="py-name">getattr</tt><tt class="py-op">(</tt><tt class="py-name">target</tt><tt class="py-op">,</tt> <tt class="py-name">getter</tt><tt class="py-op">)</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-name">fist_value</tt> <tt class="py-op">=</tt> <tt class="py-name">function_to_get_value</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-comment"># Le indica al objeto que tiene que hacer para cumplir</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-comment"># con cada paso de la interpolacion.</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">index</tt><tt class="py-op">,</tt> <tt class="py-name">value</tt> <tt class="py-keyword">in</tt> <tt class="py-name">enumerate</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">            <tt id="link-3" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-3', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method pilas.escena.gestor.Gestor.escena_actual()=pilas.escena.gestor.Gestor-class.html#escena_actual,Function pilas.escena_actual()=pilas-module.html#escena_actual"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-4', 'escena_actual', 'link-4');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">tweener</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method pilas.pytweener.Tweener.addTweenNoArgs()=pilas.pytweener.Tweener-class.html#addTweenNoArgs"><a title="pilas.pytweener.Tweener.addTweenNoArgs" class="py-name" href="#" onclick="return doclink('link-5', 'addTweenNoArgs', 'link-5');">addTweenNoArgs</a></tt><tt class="py-op">(</tt><tt class="py-name">target</tt><tt class="py-op">,</tt> <tt class="py-name">function</tt><tt class="py-op">=</tt><tt class="py-name">function</tt><tt class="py-op">,</tt>  </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">                    <tt class="py-name">initial_value</tt><tt class="py-op">=</tt><tt class="py-name">fist_value</tt><tt class="py-op">,</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">                    <tt class="py-name">value</tt><tt class="py-op">=</tt><tt class="py-name">value</tt><tt class="py-op">,</tt>  </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">                    <tt class="py-name">tweenDelay</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt> <tt class="py-op">*</tt> <tt class="py-number">1000.0</tt> <tt class="py-op">+</tt> <tt class="py-op">(</tt><tt class="py-name">index</tt> <tt class="py-op">*</tt> <tt class="py-name">step</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">                    <tt class="py-name">tweenTime</tt><tt class="py-op">=</tt><tt class="py-name">step</tt><tt class="py-op">,</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">                    <tt class="py-name">tweenType</tt><tt class="py-op">=</tt><tt class="py-name">type</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">            <tt class="py-comment"># El siguiente valor inicial sera el que ha alcanzado.</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">            <tt class="py-name">fist_value</tt> <tt class="py-op">=</tt> <tt class="py-name">value</tt> </tt>
+</div></div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="Lineal"></a><div id="Lineal-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="Lineal-toggle" onclick="return toggle('Lineal');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.interpolaciones.Lineal-class.html">Lineal</a><tt class="py-op">(</tt><tt class="py-base-class">Interpolacion</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Lineal-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Lineal-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-docstring">"Representa una interpolaci&#243;n lineal."</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="Lineal.__init__"></a><div id="Lineal.__init__-def"><a name="L81"></a><tt class="py-lineno"> 81</tt> <a class="py-toggle" href="#" id="Lineal.__init__-toggle" onclick="return toggle('Lineal.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.Lineal-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">,</tt> <tt class="py-param">duration</tt><tt class="py-op">,</tt> <tt class="py-param">delay</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Lineal.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Lineal.__init__-expanded"><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt id="link-6" class="py-name" targets="Class pilas.interpolaciones.Interpolacion=pilas.interpolaciones.Interpolacion-class.html"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-6', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method pilas.actores.aceituna.Aceituna.__init__()=pilas.actores.aceituna.Aceituna-class.html#__init__,Method pilas.actores.actor.Actor.__init__()=pilas.actores.actor.Actor-class.html#__init__,Method pilas.actores.animacion.Animacion.__init__()=pilas.actores.animacion.Animacion-class.html#__init__,Method pilas.actores.animado.Animado.__init__()=pilas.actores.animado.Animado-class.html#__init__,Method pilas.actores.banana.Banana.__init__()=pilas.actores.banana.Banana-class.html#__init__,Method pilas.actores.bomba.Bomba.__init__()=pilas.actores.bomba.Bomba-class.html#__init__,Method pilas.actores.boton.Boton.__init__()=pilas.actores.boton.Boton-class.html#__init__,Method pilas.actores.caja.Caja.__init__()=pilas.actores.caja.Caja-class.html#__init__,Method pilas.actores.cooperativista.Caminando.__init__()=pilas.actores.cooperativista.Caminando-class.html#__init__,Method pilas.actores.cooperativista.Cooperativista.__init__()=pilas.actores.cooperativista.Cooperativista-class.html#__init__,Method pilas.actores.cooperativista.DecirOk.__init__()=pilas.actores.cooperativista.DecirOk-class.html#__init__,Method pilas.actores.cursordisparo.CursorDisparo.__init__()=pilas.actores.cursordisparo.CursorDisparo-class.html#__init__,Method pilas.actores.dialogo.Dialogo.__init__()=pilas.actores.dialogo.Dialogo-class.html#__init__,Method pilas.actores.ejes.Ejes.__init__()=pilas.actores.ejes.Ejes-class.html#__init__,Method pilas.actores.energia.Energia.__init__()=pilas.actores.energia.Energia-class.html#__init__,Method pilas.actores.estrella.Estrella.__init__()=pilas.actores.estrella.Estrella-class.html#__init__,Method pilas.actores.explosion.Explosion.__init__()=pilas.actores.explosion.Explosion-class.html#__init__,Method pilas.actores.fantasma.Fantasma.__init__()=pilas.actores.fantasma.Fantasma-class.html#__init__,Method pilas.actores.globo.Globo.__init__()=pilas.actores.globo.Globo-class.html#__init__,Method pilas.actores.globoelegir.GloboElegir.__init__()=pilas.actores.globoelegir.GloboElegir-class.html#__init__,Method pilas.actores.humo.Humo.__init__()=pilas.actores.humo.Humo-class.html#__init__,Method pilas.actores.mano.CursorMano.__init__()=pilas.actores.mano.CursorMano-class.html#__init__,Method pilas.actores.mapa.Mapa.__init__()=pilas.actores.mapa.Mapa-class.html#__init__,Method pilas.actores.mapatiled.MapaTiled.__init__()=pilas.actores.mapatiled.MapaTiled-class.html#__init__,Method pilas.actores.mapatiled.XmlNode.__init__()=pilas.actores.mapatiled.XmlNode-class.html#__init__,Method pilas.actores.martian.Caminando.__init__()=pilas.actores.martian.Caminando-class.html#__init__,Method pilas.actores.martian.Disparar.__init__()=pilas.actores.martian.Disparar-class.html#__init__,Method pilas.actores.martian.Martian.__init__()=pilas.actores.martian.Martian-class.html#__init__,Method pilas.actores.martian.Saltando.__init__()=pilas.actores.martian.Saltando-class.html#__init__,Method pilas.actores.menu.Menu.__init__()=pilas.actores.menu.Menu-class.html#__init__,Method pilas.actores.moneda.Moneda.__init__()=pilas.actores.moneda.Moneda-class.html#__init__,Method pilas.actores.mono.Mono.__init__()=pilas.actores.mono.Mono-class.html#__init__,Method pilas.actores.nave.Nave.__init__()=pilas.actores.nave.Nave-class.html#__init__,Method pilas.actores.navekids.NaveKids.__init__()=pilas.actores.navekids.NaveKids-class.html#__init__,Method pilas.actores.opcion.Opcion.__init__()=pilas.actores.opcion.Opcion-class.html#__init__,Method pilas.actores.ovni.Ovni.__init__()=pilas.actores.ovni.Ovni-class.html#__init__,Method pilas.actores.ovni.Planeta.__init__()=pilas.actores.ovni.Planeta-class.html#__init__,Method pilas.actores.pacman.Pacman.__init__()=pilas.actores.pacman.Pacman-class.html#__init__,Method pilas.actores.pausa.Pausa.__init__()=pilas.actores.pausa.Pausa-class.html#__init__,Method pilas.actores.pelota.Pelota.__init__()=pilas.actores.pelota.Pelota-class.html#__init__,Method pilas.actores.personajes_rpg.BasePersonajeRPG.__init__()=pilas.actores.personajes_rpg.BasePersonajeRPG-class.html#__init__,Method pilas.actores.personajes_rpg.Calvo.__init__()=pilas.actores.personajes_rpg.Calvo-class.html#__init__,Method pilas.actores.personajes_rpg.Caminando.__init__()=pilas.actores.personajes_rpg.Caminando-class.html#__init__,Method pilas.actores.personajes_rpg.Maton.__init__()=pilas.actores.personajes_rpg.Maton-class.html#__init__,Method pilas.actores.piedra.Piedra.__init__()=pilas.actores.piedra.Piedra-class.html#__init__,Method pilas.actores.pingu.Pingu.__init__()=pilas.actores.pingu.Pingu-class.html#__init__,Method pilas.actores.pizarra.Pizarra.__init__()=pilas.actores.pizarra.Pizarra-class.html#__init__,Method pilas.actores.proyectil.Bala.__init__()=pilas.actores.proyectil.Bala-class.html#__init__,Method pilas.actores.proyectil.Dinamita.__init__()=pilas.actores.proyectil.Dinamita-class.html#__init__,Method pilas.actores.proyectil.EstrellaNinja.__init__()=pilas.actores.proyectil.EstrellaNinja-class.html#__init__,Method pilas.actores.proyectil.Misil.__init__()=pilas.actores.proyectil.Misil-class.html#__init__,Method pilas.actores.puntaje.Puntaje.__init__()=pilas.actores.puntaje.Puntaje-class.html#__init__,Method pilas.actores.sonido.Sonido.__init__()=pilas.actores.sonido.Sonido-class.html#__init__,Method pilas.actores.temporizador.Temporizador.__init__()=pilas.actores.temporizador.Temporizador-class.html#__init__,Method pilas.actores.texto.Texto.__init__()=pilas.actores.texto.Texto-class.html#__init__,Method pilas.actores.texto_inferior.TextoInferior.__init__()=pilas.actores.texto_inferior.TextoInferior-class.html#__init__,Method pilas.actores.torreta.Torreta.__init__()=pilas.actores.torreta.Torreta-class.html#__init__,Method pilas.actores.tortuga.Tortuga.__init__()=pilas.actores.tortuga.Tortuga-class.html#__init__,Method pilas.actores.zanahoria.Zanahoria.__init__()=pilas.actores.zanahoria.Zanahoria-class.html#__init__,Method pilas.asistente.MainWindow.__init__()=pilas.asistente.MainWindow-class.html#__init__,Method pilas.camara.Camara.__init__()=pilas.camara.Camara-class.html#__init__,Method pilas.colisiones.Colisiones.__init__()=pilas.colisiones.Colisiones-class.html#__init__,Method pilas.colores.Color.__init__()=pilas.colores.Color-class.html#__init__,Method pilas.comportamientos.Avanzar.__init__()=pilas.comportamientos.Avanzar-class.html#__init__,Method pilas.comportamientos.Girar.__init__()=pilas.comportamientos.Girar-class.html#__init__,Method pilas.comportamientos.Proyectil.__init__()=pilas.comportamientos.Proyectil-class.html#__init__,Method pilas.comportamientos.Saltar.__init__()=pilas.comportamientos.Saltar-class.html#__init__,Method pilas.control.Control.__init__()=pilas.control.Control-class.html#__init__,Method pilas.demos.piezas.Pieza.__init__()=pilas.demos.piezas.Pieza-class.html#__init__,Method pilas.demos.piezas.Piezas.__init__()=pilas.demos.piezas.Piezas-class.html#__init__,Method pilas.depurador.Depurador.__init__()=pilas.depurador.Depurador-class.html#__init__,Method pilas.depurador.ModoDepurador.__init__()=pilas.depurador.ModoDepurador-class.html#__init__,Method pilas.depurador.ModoInformacionDeSistema.__init__()=pilas.depurador.ModoInformacionDeSistema-class.html#__init__,Method pilas.depurador.ModoPosicion.__init__()=pilas.depurador.ModoPosicion-class.html#__init__,Method pilas.depurador.ModoWidgetLog.__init__()=pilas.depurador.ModoWidgetLog-class.html#__init__,Method pilas.descargar.Descargar.__init__()=pilas.descargar.Descargar-class.html#__init__,Method pilas.ejemplos.syntax.PythonHighlighter.__init__()=pilas.ejemplos.syntax.PythonHighlighter-class.html#__init__,Method pilas.escena.escena_base.Base.__init__()=pilas.escena.escena_base.Base-class.html#__init__,Method pilas.escena.escena_logos.Logos.__init__()=pilas.escena.escena_logos.Logos-class.html#__init__,Method pilas.escena.escena_normal.Aviso.__init__()=pilas.escena.escena_normal.Aviso-class.html#__init__,Method pilas.escena.escena_normal.Normal.__init__()=pilas.escena.escena_normal.Normal-class.html#__init__,Method pilas.escena.gestor.Gestor.__init__()=pilas.escena.gestor.Gestor-class.html#__init__,Method pilas.escenas.Escena.__init__()=pilas.escenas.Escena-class.html#__init__,Method pilas.escenas.Normal.__init__()=pilas.escenas.Normal-class.html#__init__,Method pilas.estudiante.Estudiante.__init__()=pilas.estudiante.Estudiante-class.html#__init__,Method pilas.estudiante.ProxyHabilidades.__init__()=pilas.estudiante.ProxyHabilidades-class.html#__init__,Method pilas.evento.AttrDict.__init__()=pilas.evento.AttrDict-class.html#__init__,Method pilas.evento.Evento.__init__()=pilas.evento.Evento-class.html#__init__,Method pilas.evento.ProxyFuncion.__init__()=pilas.evento.ProxyFuncion-class.html#__init__,Method pilas.evento.ProxyMetodo.__init__()=pilas.evento.ProxyMetodo-class.html#__init__,Method pilas.fisica.Circulo.__init__()=pilas.fisica.Circulo-class.html#__init__,Method pilas.fisica.ConstanteDeDistancia.__init__()=pilas.fisica.ConstanteDeDistancia-class.html#__init__,Method pilas.fisica.ConstanteDeMovimiento.__init__()=pilas.fisica.ConstanteDeMovimiento-class.html#__init__,Method pilas.fisica.Figura.__init__()=pilas.fisica.Figura-class.html#__init__,Method pilas.fisica.Fisica.__init__()=pilas.fisica.Fisica-class.html#__init__,Method pilas.fisica.FisicaDeshabilitada.__init__()=pilas.fisica.FisicaDeshabilitada-class.html#__init__,Method pilas.fisica.ObjetosContactListener.__init__()=pilas.fisica.ObjetosContactListener-class.html#__init__,Method pilas.fisica.Poligono.__init__()=pilas.fisica.Poligono-class.html#__init__,Method pilas.fisica.Rectangulo.__init__()=pilas.fisica.Rectangulo-class.html#__init__,Method pilas.fondos.Color.__init__()=pilas.fondos.Color-class.html#__init__,Method pilas.fondos.Desplazamiento.__init__()=pilas.fondos.Desplazamiento-class.html#__init__,Method pilas.fondos.Espacio.__init__()=pilas.fondos.Espacio-class.html#__init__,Method pilas.fondos.Fondo.__init__()=pilas.fondos.Fondo-class.html#__init__,Method pilas.fondos.Noche.__init__()=pilas.fondos.Noche-class.html#__init__,Method pilas.fondos.Nubes.__init__()=pilas.fondos.Nubes-class.html#__init__,Method pilas.fondos.Pasto.__init__()=pilas.fondos.Pasto-class.html#__init__,Method pilas.fondos.Plano.__init__()=pilas.fondos.Plano-class.html#__init__,Method pilas.fondos.Selva.__init__()=pilas.fondos.Selva-class.html#__init__,Method pilas.fondos.Tarde.__init__()=pilas.fondos.Tarde-class.html#__init__,Method pilas.fondos.Volley.__init__()=pilas.fondos.Volley-class.html#__init__,Method pilas.fps.FPS.__init__()=pilas.fps.FPS-class.html#__init__,Method pilas.habilidades.Arrastrable.__init__()=pilas.habilidades.Arrastrable-class.html#__init__,Method pilas.habilidades.AumentarConRueda.__init__()=pilas.habilidades.AumentarConRueda-class.html#__init__,Method pilas.habilidades.ColisionableComoPelota.__init__()=pilas.habilidades.ColisionableComoPelota-class.html#__init__,Method pilas.habilidades.Disparar.__init__()=pilas.habilidades.Disparar-class.html#__init__,Method pilas.habilidades.DispararConClick.__init__()=pilas.habilidades.DispararConClick-class.html#__init__,Method pilas.habilidades.Habilidad.__init__()=pilas.habilidades.Habilidad-class.html#__init__,Method pilas.habilidades.Imitar.__init__()=pilas.habilidades.Imitar-class.html#__init__,Method pilas.habilidades.MirarAlActor.__init__()=pilas.habilidades.MirarAlActor-class.html#__init__,Method pilas.habilidades.MoverseComoCoche.__init__()=pilas.habilidades.MoverseComoCoche-class.html#__init__,Method pilas.habilidades.MoverseConElTeclado.__init__()=pilas.habilidades.MoverseConElTeclado-class.html#__init__,Method pilas.habilidades.PisaPlataformas.__init__()=pilas.habilidades.PisaPlataformas-class.html#__init__,Method pilas.habilidades.PuedeExplotar.__init__()=pilas.habilidades.PuedeExplotar-class.html#__init__,Method pilas.habilidades.RebotarComoCaja.__init__()=pilas.habilidades.RebotarComoCaja-class.html#__init__,Method pilas.habilidades.RebotarComoPelota.__init__()=pilas.habilidades.RebotarComoPelota-class.html#__init__,Method pilas.habilidades.RotarConMouse.__init__()=pilas.habilidades.RotarConMouse-class.html#__init__,Method pilas.habilidades.SeMantieneEnPantalla.__init__()=pilas.habilidades.SeMantieneEnPantalla-class.html#__init__,Method pilas.habilidades.SeguirAlMouse.__init__()=pilas.habilidades.SeguirAlMouse-class.html#__init__,Method pilas.habilidades.SeguirClicks.__init__()=pilas.habilidades.SeguirClicks-class.html#__init__,Method pilas.habilidades.SiempreEnElCentro.__init__()=pilas.habilidades.SiempreEnElCentro-class.html#__init__,Method pilas.interfaz.base_interfaz.BaseInterfaz.__init__()=pilas.interfaz.base_interfaz.BaseInterfaz-class.html#__init__,Method pilas.interfaz.boton.Boton.__init__()=pilas.interfaz.boton.Boton-class.html#__init__,Method pilas.interfaz.deslizador.Deslizador.__init__()=pilas.interfaz.deslizador.Deslizador-class.html#__init__,Method pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__()=pilas.interfaz.ingreso_de_texto.IngresoDeTexto-class.html#__init__,Method pilas.interfaz.lista_seleccion.ListaSeleccion.__init__()=pilas.interfaz.lista_seleccion.ListaSeleccion-class.html#__init__,Method pilas.interfaz.selector.Selector.__init__()=pilas.interfaz.selector.Selector-class.html#__init__,Method pilas.interpolaciones.AceleracionGradual.__init__()=pilas.interpolaciones.AceleracionGradual-class.html#__init__,Method pilas.interpolaciones.DesaceleracionGradual.__init__()=pilas.interpolaciones.DesaceleracionGradual-class.html#__init__,Method pilas.interpolaciones.ElasticoFinal.__init__()=pilas.interpolaciones.ElasticoFinal-class.html#__init__,Method pilas.interpolaciones.ElasticoInicial.__init__()=pilas.interpolaciones.ElasticoInicial-class.html#__init__,Method pilas.interpolaciones.Interpolacion.__init__()=pilas.interpolaciones.Interpolacion-class.html#__init__,Method pilas.interpolaciones.Lineal.__init__()=pilas.interpolaciones.Lineal-class.html#__init__,Method pilas.interpolaciones.ReboteFinal.__init__()=pilas.interpolaciones.ReboteFinal-class.html#__init__,Method pilas.interpolaciones.ReboteInicial.__init__()=pilas.interpolaciones.ReboteInicial-class.html#__init__,Method pilas.motores.motor_qt.Actor.__init__()=pilas.motores.motor_qt.Actor-class.html#__init__,Method pilas.motores.motor_qt.BaseActor.__init__()=pilas.motores.motor_qt.BaseActor-class.html#__init__,Method pilas.motores.motor_qt.CanvasWidget.__init__()=pilas.motores.motor_qt.CanvasWidget-class.html#__init__,Method pilas.motores.motor_qt.Grilla.__init__()=pilas.motores.motor_qt.Grilla-class.html#__init__,Method pilas.motores.motor_qt.Imagen.__init__()=pilas.motores.motor_qt.Imagen-class.html#__init__,Method pilas.motores.motor_qt.Lienzo.__init__()=pilas.motores.motor_qt.Lienzo-class.html#__init__,Method pilas.motores.motor_qt.Motor.__init__()=pilas.motores.motor_qt.Motor-class.html#__init__,Method pilas.motores.motor_qt.MusicaDeshabilitada.__init__()=pilas.motores.motor_qt.MusicaDeshabilitada-class.html#__init__,Method pilas.motores.motor_qt.MusicaGST.__init__()=pilas.motores.motor_qt.MusicaGST-class.html#__init__,Method pilas.motores.motor_qt.MusicaPhonon.__init__()=pilas.motores.motor_qt.MusicaPhonon-class.html#__init__,Method pilas.motores.motor_qt.SonidoDeshabilitado.__init__()=pilas.motores.motor_qt.SonidoDeshabilitado-class.html#__init__,Method pilas.motores.motor_qt.SonidoGST.__init__()=pilas.motores.motor_qt.SonidoGST-class.html#__init__,Method pilas.motores.motor_qt.SonidoPhonon.__init__()=pilas.motores.motor_qt.SonidoPhonon-class.html#__init__,Method pilas.motores.motor_qt.Superficie.__init__()=pilas.motores.motor_qt.Superficie-class.html#__init__,Method pilas.motores.motor_qt.Texto.__init__()=pilas.motores.motor_qt.Texto-class.html#__init__,Method pilas.motores.motor_qt.Ventana.__init__()=pilas.motores.motor_qt.Ventana-class.html#__init__,Method pilas.mundo.Mundo.__init__()=pilas.mundo.Mundo-class.html#__init__,Method pilas.municion.BalaDoble.__init__()=pilas.municion.BalaDoble-class.html#__init__,Method pilas.municion.BalasDoblesDesviadas.__init__()=pilas.municion.BalasDoblesDesviadas-class.html#__init__,Method pilas.municion.MisilDoble.__init__()=pilas.municion.MisilDoble-class.html#__init__,Method pilas.municion.Municion.__init__()=pilas.municion.Municion-class.html#__init__,Method pilas.pytweener.Tween.__init__()=pilas.pytweener.Tween-class.html#__init__,Method pilas.pytweener.TweenTestObject.__init__()=pilas.pytweener.TweenTestObject-class.html#__init__,Method pilas.pytweener.Tweenable.__init__()=pilas.pytweener.Tweenable-class.html#__init__,Method pilas.pytweener.Tweener.__init__()=pilas.pytweener.Tweener-class.html#__init__,Method pilas.tareas.Tarea.__init__()=pilas.tareas.Tarea-class.html#__init__,Method pilas.tareas.Tareas.__init__()=pilas.tareas.Tareas-class.html#__init__,Method pilas.widget_log.WidgetLog.__init__()=pilas.widget_log.WidgetLog-class.html#__init__"><a title="pilas.actores.aceituna.Aceituna.__init__
+pilas.actores.actor.Actor.__init__
+pilas.actores.animacion.Animacion.__init__
+pilas.actores.animado.Animado.__init__
+pilas.actores.banana.Banana.__init__
+pilas.actores.bomba.Bomba.__init__
+pilas.actores.boton.Boton.__init__
+pilas.actores.caja.Caja.__init__
+pilas.actores.cooperativista.Caminando.__init__
+pilas.actores.cooperativista.Cooperativista.__init__
+pilas.actores.cooperativista.DecirOk.__init__
+pilas.actores.cursordisparo.CursorDisparo.__init__
+pilas.actores.dialogo.Dialogo.__init__
+pilas.actores.ejes.Ejes.__init__
+pilas.actores.energia.Energia.__init__
+pilas.actores.estrella.Estrella.__init__
+pilas.actores.explosion.Explosion.__init__
+pilas.actores.fantasma.Fantasma.__init__
+pilas.actores.globo.Globo.__init__
+pilas.actores.globoelegir.GloboElegir.__init__
+pilas.actores.humo.Humo.__init__
+pilas.actores.mano.CursorMano.__init__
+pilas.actores.mapa.Mapa.__init__
+pilas.actores.mapatiled.MapaTiled.__init__
+pilas.actores.mapatiled.XmlNode.__init__
+pilas.actores.martian.Caminando.__init__
+pilas.actores.martian.Disparar.__init__
+pilas.actores.martian.Martian.__init__
+pilas.actores.martian.Saltando.__init__
+pilas.actores.menu.Menu.__init__
+pilas.actores.moneda.Moneda.__init__
+pilas.actores.mono.Mono.__init__
+pilas.actores.nave.Nave.__init__
+pilas.actores.navekids.NaveKids.__init__
+pilas.actores.opcion.Opcion.__init__
+pilas.actores.ovni.Ovni.__init__
+pilas.actores.ovni.Planeta.__init__
+pilas.actores.pacman.Pacman.__init__
+pilas.actores.pausa.Pausa.__init__
+pilas.actores.pelota.Pelota.__init__
+pilas.actores.personajes_rpg.BasePersonajeRPG.__init__
+pilas.actores.personajes_rpg.Calvo.__init__
+pilas.actores.personajes_rpg.Caminando.__init__
+pilas.actores.personajes_rpg.Maton.__init__
+pilas.actores.piedra.Piedra.__init__
+pilas.actores.pingu.Pingu.__init__
+pilas.actores.pizarra.Pizarra.__init__
+pilas.actores.proyectil.Bala.__init__
+pilas.actores.proyectil.Dinamita.__init__
+pilas.actores.proyectil.EstrellaNinja.__init__
+pilas.actores.proyectil.Misil.__init__
+pilas.actores.puntaje.Puntaje.__init__
+pilas.actores.sonido.Sonido.__init__
+pilas.actores.temporizador.Temporizador.__init__
+pilas.actores.texto.Texto.__init__
+pilas.actores.texto_inferior.TextoInferior.__init__
+pilas.actores.torreta.Torreta.__init__
+pilas.actores.tortuga.Tortuga.__init__
+pilas.actores.zanahoria.Zanahoria.__init__
+pilas.asistente.MainWindow.__init__
+pilas.camara.Camara.__init__
+pilas.colisiones.Colisiones.__init__
+pilas.colores.Color.__init__
+pilas.comportamientos.Avanzar.__init__
+pilas.comportamientos.Girar.__init__
+pilas.comportamientos.Proyectil.__init__
+pilas.comportamientos.Saltar.__init__
+pilas.control.Control.__init__
+pilas.demos.piezas.Pieza.__init__
+pilas.demos.piezas.Piezas.__init__
+pilas.depurador.Depurador.__init__
+pilas.depurador.ModoDepurador.__init__
+pilas.depurador.ModoInformacionDeSistema.__init__
+pilas.depurador.ModoPosicion.__init__
+pilas.depurador.ModoWidgetLog.__init__
+pilas.descargar.Descargar.__init__
+pilas.ejemplos.syntax.PythonHighlighter.__init__
+pilas.escena.escena_base.Base.__init__
+pilas.escena.escena_logos.Logos.__init__
+pilas.escena.escena_normal.Aviso.__init__
+pilas.escena.escena_normal.Normal.__init__
+pilas.escena.gestor.Gestor.__init__
+pilas.escenas.Escena.__init__
+pilas.escenas.Normal.__init__
+pilas.estudiante.Estudiante.__init__
+pilas.estudiante.ProxyHabilidades.__init__
+pilas.evento.AttrDict.__init__
+pilas.evento.Evento.__init__
+pilas.evento.ProxyFuncion.__init__
+pilas.evento.ProxyMetodo.__init__
+pilas.fisica.Circulo.__init__
+pilas.fisica.ConstanteDeDistancia.__init__
+pilas.fisica.ConstanteDeMovimiento.__init__
+pilas.fisica.Figura.__init__
+pilas.fisica.Fisica.__init__
+pilas.fisica.FisicaDeshabilitada.__init__
+pilas.fisica.ObjetosContactListener.__init__
+pilas.fisica.Poligono.__init__
+pilas.fisica.Rectangulo.__init__
+pilas.fondos.Color.__init__
+pilas.fondos.Desplazamiento.__init__
+pilas.fondos.Espacio.__init__
+pilas.fondos.Fondo.__init__
+pilas.fondos.Noche.__init__
+pilas.fondos.Nubes.__init__
+pilas.fondos.Pasto.__init__
+pilas.fondos.Plano.__init__
+pilas.fondos.Selva.__init__
+pilas.fondos.Tarde.__init__
+pilas.fondos.Volley.__init__
+pilas.fps.FPS.__init__
+pilas.habilidades.Arrastrable.__init__
+pilas.habilidades.AumentarConRueda.__init__
+pilas.habilidades.ColisionableComoPelota.__init__
+pilas.habilidades.Disparar.__init__
+pilas.habilidades.DispararConClick.__init__
+pilas.habilidades.Habilidad.__init__
+pilas.habilidades.Imitar.__init__
+pilas.habilidades.MirarAlActor.__init__
+pilas.habilidades.MoverseComoCoche.__init__
+pilas.habilidades.MoverseConElTeclado.__init__
+pilas.habilidades.PisaPlataformas.__init__
+pilas.habilidades.PuedeExplotar.__init__
+pilas.habilidades.RebotarComoCaja.__init__
+pilas.habilidades.RebotarComoPelota.__init__
+pilas.habilidades.RotarConMouse.__init__
+pilas.habilidades.SeMantieneEnPantalla.__init__
+pilas.habilidades.SeguirAlMouse.__init__
+pilas.habilidades.SeguirClicks.__init__
+pilas.habilidades.SiempreEnElCentro.__init__
+pilas.interfaz.base_interfaz.BaseInterfaz.__init__
+pilas.interfaz.boton.Boton.__init__
+pilas.interfaz.deslizador.Deslizador.__init__
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__
+pilas.interfaz.lista_seleccion.ListaSeleccion.__init__
+pilas.interfaz.selector.Selector.__init__
+pilas.interpolaciones.AceleracionGradual.__init__
+pilas.interpolaciones.DesaceleracionGradual.__init__
+pilas.interpolaciones.ElasticoFinal.__init__
+pilas.interpolaciones.ElasticoInicial.__init__
+pilas.interpolaciones.Interpolacion.__init__
+pilas.interpolaciones.Lineal.__init__
+pilas.interpolaciones.ReboteFinal.__init__
+pilas.interpolaciones.ReboteInicial.__init__
+pilas.motores.motor_qt.Actor.__init__
+pilas.motores.motor_qt.BaseActor.__init__
+pilas.motores.motor_qt.CanvasWidget.__init__
+pilas.motores.motor_qt.Grilla.__init__
+pilas.motores.motor_qt.Imagen.__init__
+pilas.motores.motor_qt.Lienzo.__init__
+pilas.motores.motor_qt.Motor.__init__
+pilas.motores.motor_qt.MusicaDeshabilitada.__init__
+pilas.motores.motor_qt.MusicaGST.__init__
+pilas.motores.motor_qt.MusicaPhonon.__init__
+pilas.motores.motor_qt.SonidoDeshabilitado.__init__
+pilas.motores.motor_qt.SonidoGST.__init__
+pilas.motores.motor_qt.SonidoPhonon.__init__
+pilas.motores.motor_qt.Superficie.__init__
+pilas.motores.motor_qt.Texto.__init__
+pilas.motores.motor_qt.Ventana.__init__
+pilas.mundo.Mundo.__init__
+pilas.municion.BalaDoble.__init__
+pilas.municion.BalasDoblesDesviadas.__init__
+pilas.municion.MisilDoble.__init__
+pilas.municion.Municion.__init__
+pilas.pytweener.Tween.__init__
+pilas.pytweener.TweenTestObject.__init__
+pilas.pytweener.Tweenable.__init__
+pilas.pytweener.Tweener.__init__
+pilas.tareas.Tarea.__init__
+pilas.tareas.Tareas.__init__
+pilas.widget_log.WidgetLog.__init__" class="py-name" href="#" onclick="return doclink('link-7', '__init__', 'link-7');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt><tt class="py-op">,</tt> <tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"> </tt>
+<a name="Lineal.__neg__"></a><div id="Lineal.__neg__-def"><a name="L84"></a><tt class="py-lineno"> 84</tt> <a class="py-toggle" href="#" id="Lineal.__neg__-toggle" onclick="return toggle('Lineal.__neg__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.Lineal-class.html#__neg__">__neg__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Lineal.__neg__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Lineal.__neg__-expanded"><a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-docstring">"Retorna la interpolaci&#243;n inversa a la original."</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt> <tt class="py-op">=</tt> <tt class="py-name">list</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt><tt class="py-op">.</tt><tt class="py-name">reverse</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-8" class="py-name" targets="Class pilas.interpolaciones.Lineal=pilas.interpolaciones.Lineal-class.html"><a title="pilas.interpolaciones.Lineal" class="py-name" href="#" onclick="return doclink('link-8', 'Lineal', 'link-8');">Lineal</a></tt><tt class="py-op">(</tt><tt class="py-name">new_values</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="Lineal.apply"></a><div id="Lineal.apply-def"><a name="L90"></a><tt class="py-lineno"> 90</tt> <a class="py-toggle" href="#" id="Lineal.apply-toggle" onclick="return toggle('Lineal.apply');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.Lineal-class.html#apply">apply</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">target</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Lineal.apply-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Lineal.apply-expanded"><a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt id="link-9" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-9', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method pilas.interpolaciones.AceleracionGradual.apply()=pilas.interpolaciones.AceleracionGradual-class.html#apply,Method pilas.interpolaciones.DesaceleracionGradual.apply()=pilas.interpolaciones.DesaceleracionGradual-class.html#apply,Method pilas.interpolaciones.ElasticoFinal.apply()=pilas.interpolaciones.ElasticoFinal-class.html#apply,Method pilas.interpolaciones.ElasticoInicial.apply()=pilas.interpolaciones.ElasticoInicial-class.html#apply,Method pilas.interpolaciones.Interpolacion.apply()=pilas.interpolaciones.Interpolacion-class.html#apply,Method pilas.interpolaciones.Lineal.apply()=pilas.interpolaciones.Lineal-class.html#apply,Method pilas.interpolaciones.ReboteFinal.apply()=pilas.interpolaciones.ReboteFinal-class.html#apply,Method pilas.interpolaciones.ReboteInicial.apply()=pilas.interpolaciones.ReboteInicial-class.html#apply"><a title="pilas.interpolaciones.AceleracionGradual.apply
+pilas.interpolaciones.DesaceleracionGradual.apply
+pilas.interpolaciones.ElasticoFinal.apply
+pilas.interpolaciones.ElasticoInicial.apply
+pilas.interpolaciones.Interpolacion.apply
+pilas.interpolaciones.Lineal.apply
+pilas.interpolaciones.ReboteFinal.apply
+pilas.interpolaciones.ReboteInicial.apply" class="py-name" href="#" onclick="return doclink('link-10', 'apply', 'link-10');">apply</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">target</tt><tt class="py-op">,</tt> <tt class="py-name">function</tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-11', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="pilas.pytweener" class="py-name" href="#" onclick="return doclink('link-12', 'pytweener', 'link-1');">pytweener</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Class pilas.pytweener.Easing=pilas.pytweener.Easing-class.html"><a title="pilas.pytweener.Easing" class="py-name" href="#" onclick="return doclink('link-13', 'Easing', 'link-13');">Easing</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Class pilas.pytweener.Easing.Linear=pilas.pytweener.Easing.Linear-class.html"><a title="pilas.pytweener.Easing.Linear" class="py-name" href="#" onclick="return doclink('link-14', 'Linear', 'link-14');">Linear</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Static Method pilas.pytweener.Easing.Linear.easeNone()=pilas.pytweener.Easing.Linear-class.html#easeNone"><a title="pilas.pytweener.Easing.Linear.easeNone" class="py-name" href="#" onclick="return doclink('link-15', 'easeNone', 'link-15');">easeNone</a></tt><tt class="py-op">)</tt>  </tt>
+</div></div><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="AceleracionGradual"></a><div id="AceleracionGradual-def"><a name="L93"></a><tt class="py-lineno"> 93</tt> <a class="py-toggle" href="#" id="AceleracionGradual-toggle" onclick="return toggle('AceleracionGradual');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.interpolaciones.AceleracionGradual-class.html">AceleracionGradual</a><tt class="py-op">(</tt><tt class="py-base-class">Interpolacion</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AceleracionGradual-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="AceleracionGradual-expanded"><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">    <tt class="py-docstring">"Representa una interpolaci&#243;n con aceleraci&#243;n gradual."</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"> </tt>
+<a name="AceleracionGradual.__init__"></a><div id="AceleracionGradual.__init__-def"><a name="L96"></a><tt class="py-lineno"> 96</tt> <a class="py-toggle" href="#" id="AceleracionGradual.__init__-toggle" onclick="return toggle('AceleracionGradual.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.AceleracionGradual-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">,</tt> <tt class="py-param">duration</tt><tt class="py-op">,</tt> <tt class="py-param">delay</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AceleracionGradual.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="AceleracionGradual.__init__-expanded"><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt id="link-16" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-16', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="pilas.actores.aceituna.Aceituna.__init__
+pilas.actores.actor.Actor.__init__
+pilas.actores.animacion.Animacion.__init__
+pilas.actores.animado.Animado.__init__
+pilas.actores.banana.Banana.__init__
+pilas.actores.bomba.Bomba.__init__
+pilas.actores.boton.Boton.__init__
+pilas.actores.caja.Caja.__init__
+pilas.actores.cooperativista.Caminando.__init__
+pilas.actores.cooperativista.Cooperativista.__init__
+pilas.actores.cooperativista.DecirOk.__init__
+pilas.actores.cursordisparo.CursorDisparo.__init__
+pilas.actores.dialogo.Dialogo.__init__
+pilas.actores.ejes.Ejes.__init__
+pilas.actores.energia.Energia.__init__
+pilas.actores.estrella.Estrella.__init__
+pilas.actores.explosion.Explosion.__init__
+pilas.actores.fantasma.Fantasma.__init__
+pilas.actores.globo.Globo.__init__
+pilas.actores.globoelegir.GloboElegir.__init__
+pilas.actores.humo.Humo.__init__
+pilas.actores.mano.CursorMano.__init__
+pilas.actores.mapa.Mapa.__init__
+pilas.actores.mapatiled.MapaTiled.__init__
+pilas.actores.mapatiled.XmlNode.__init__
+pilas.actores.martian.Caminando.__init__
+pilas.actores.martian.Disparar.__init__
+pilas.actores.martian.Martian.__init__
+pilas.actores.martian.Saltando.__init__
+pilas.actores.menu.Menu.__init__
+pilas.actores.moneda.Moneda.__init__
+pilas.actores.mono.Mono.__init__
+pilas.actores.nave.Nave.__init__
+pilas.actores.navekids.NaveKids.__init__
+pilas.actores.opcion.Opcion.__init__
+pilas.actores.ovni.Ovni.__init__
+pilas.actores.ovni.Planeta.__init__
+pilas.actores.pacman.Pacman.__init__
+pilas.actores.pausa.Pausa.__init__
+pilas.actores.pelota.Pelota.__init__
+pilas.actores.personajes_rpg.BasePersonajeRPG.__init__
+pilas.actores.personajes_rpg.Calvo.__init__
+pilas.actores.personajes_rpg.Caminando.__init__
+pilas.actores.personajes_rpg.Maton.__init__
+pilas.actores.piedra.Piedra.__init__
+pilas.actores.pingu.Pingu.__init__
+pilas.actores.pizarra.Pizarra.__init__
+pilas.actores.proyectil.Bala.__init__
+pilas.actores.proyectil.Dinamita.__init__
+pilas.actores.proyectil.EstrellaNinja.__init__
+pilas.actores.proyectil.Misil.__init__
+pilas.actores.puntaje.Puntaje.__init__
+pilas.actores.sonido.Sonido.__init__
+pilas.actores.temporizador.Temporizador.__init__
+pilas.actores.texto.Texto.__init__
+pilas.actores.texto_inferior.TextoInferior.__init__
+pilas.actores.torreta.Torreta.__init__
+pilas.actores.tortuga.Tortuga.__init__
+pilas.actores.zanahoria.Zanahoria.__init__
+pilas.asistente.MainWindow.__init__
+pilas.camara.Camara.__init__
+pilas.colisiones.Colisiones.__init__
+pilas.colores.Color.__init__
+pilas.comportamientos.Avanzar.__init__
+pilas.comportamientos.Girar.__init__
+pilas.comportamientos.Proyectil.__init__
+pilas.comportamientos.Saltar.__init__
+pilas.control.Control.__init__
+pilas.demos.piezas.Pieza.__init__
+pilas.demos.piezas.Piezas.__init__
+pilas.depurador.Depurador.__init__
+pilas.depurador.ModoDepurador.__init__
+pilas.depurador.ModoInformacionDeSistema.__init__
+pilas.depurador.ModoPosicion.__init__
+pilas.depurador.ModoWidgetLog.__init__
+pilas.descargar.Descargar.__init__
+pilas.ejemplos.syntax.PythonHighlighter.__init__
+pilas.escena.escena_base.Base.__init__
+pilas.escena.escena_logos.Logos.__init__
+pilas.escena.escena_normal.Aviso.__init__
+pilas.escena.escena_normal.Normal.__init__
+pilas.escena.gestor.Gestor.__init__
+pilas.escenas.Escena.__init__
+pilas.escenas.Normal.__init__
+pilas.estudiante.Estudiante.__init__
+pilas.estudiante.ProxyHabilidades.__init__
+pilas.evento.AttrDict.__init__
+pilas.evento.Evento.__init__
+pilas.evento.ProxyFuncion.__init__
+pilas.evento.ProxyMetodo.__init__
+pilas.fisica.Circulo.__init__
+pilas.fisica.ConstanteDeDistancia.__init__
+pilas.fisica.ConstanteDeMovimiento.__init__
+pilas.fisica.Figura.__init__
+pilas.fisica.Fisica.__init__
+pilas.fisica.FisicaDeshabilitada.__init__
+pilas.fisica.ObjetosContactListener.__init__
+pilas.fisica.Poligono.__init__
+pilas.fisica.Rectangulo.__init__
+pilas.fondos.Color.__init__
+pilas.fondos.Desplazamiento.__init__
+pilas.fondos.Espacio.__init__
+pilas.fondos.Fondo.__init__
+pilas.fondos.Noche.__init__
+pilas.fondos.Nubes.__init__
+pilas.fondos.Pasto.__init__
+pilas.fondos.Plano.__init__
+pilas.fondos.Selva.__init__
+pilas.fondos.Tarde.__init__
+pilas.fondos.Volley.__init__
+pilas.fps.FPS.__init__
+pilas.habilidades.Arrastrable.__init__
+pilas.habilidades.AumentarConRueda.__init__
+pilas.habilidades.ColisionableComoPelota.__init__
+pilas.habilidades.Disparar.__init__
+pilas.habilidades.DispararConClick.__init__
+pilas.habilidades.Habilidad.__init__
+pilas.habilidades.Imitar.__init__
+pilas.habilidades.MirarAlActor.__init__
+pilas.habilidades.MoverseComoCoche.__init__
+pilas.habilidades.MoverseConElTeclado.__init__
+pilas.habilidades.PisaPlataformas.__init__
+pilas.habilidades.PuedeExplotar.__init__
+pilas.habilidades.RebotarComoCaja.__init__
+pilas.habilidades.RebotarComoPelota.__init__
+pilas.habilidades.RotarConMouse.__init__
+pilas.habilidades.SeMantieneEnPantalla.__init__
+pilas.habilidades.SeguirAlMouse.__init__
+pilas.habilidades.SeguirClicks.__init__
+pilas.habilidades.SiempreEnElCentro.__init__
+pilas.interfaz.base_interfaz.BaseInterfaz.__init__
+pilas.interfaz.boton.Boton.__init__
+pilas.interfaz.deslizador.Deslizador.__init__
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__
+pilas.interfaz.lista_seleccion.ListaSeleccion.__init__
+pilas.interfaz.selector.Selector.__init__
+pilas.interpolaciones.AceleracionGradual.__init__
+pilas.interpolaciones.DesaceleracionGradual.__init__
+pilas.interpolaciones.ElasticoFinal.__init__
+pilas.interpolaciones.ElasticoInicial.__init__
+pilas.interpolaciones.Interpolacion.__init__
+pilas.interpolaciones.Lineal.__init__
+pilas.interpolaciones.ReboteFinal.__init__
+pilas.interpolaciones.ReboteInicial.__init__
+pilas.motores.motor_qt.Actor.__init__
+pilas.motores.motor_qt.BaseActor.__init__
+pilas.motores.motor_qt.CanvasWidget.__init__
+pilas.motores.motor_qt.Grilla.__init__
+pilas.motores.motor_qt.Imagen.__init__
+pilas.motores.motor_qt.Lienzo.__init__
+pilas.motores.motor_qt.Motor.__init__
+pilas.motores.motor_qt.MusicaDeshabilitada.__init__
+pilas.motores.motor_qt.MusicaGST.__init__
+pilas.motores.motor_qt.MusicaPhonon.__init__
+pilas.motores.motor_qt.SonidoDeshabilitado.__init__
+pilas.motores.motor_qt.SonidoGST.__init__
+pilas.motores.motor_qt.SonidoPhonon.__init__
+pilas.motores.motor_qt.Superficie.__init__
+pilas.motores.motor_qt.Texto.__init__
+pilas.motores.motor_qt.Ventana.__init__
+pilas.mundo.Mundo.__init__
+pilas.municion.BalaDoble.__init__
+pilas.municion.BalasDoblesDesviadas.__init__
+pilas.municion.MisilDoble.__init__
+pilas.municion.Municion.__init__
+pilas.pytweener.Tween.__init__
+pilas.pytweener.TweenTestObject.__init__
+pilas.pytweener.Tweenable.__init__
+pilas.pytweener.Tweener.__init__
+pilas.tareas.Tarea.__init__
+pilas.tareas.Tareas.__init__
+pilas.widget_log.WidgetLog.__init__" class="py-name" href="#" onclick="return doclink('link-17', '__init__', 'link-7');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt><tt class="py-op">,</tt> <tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="AceleracionGradual.__neg__"></a><div id="AceleracionGradual.__neg__-def"><a name="L99"></a><tt class="py-lineno"> 99</tt> <a class="py-toggle" href="#" id="AceleracionGradual.__neg__-toggle" onclick="return toggle('AceleracionGradual.__neg__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.AceleracionGradual-class.html#__neg__">__neg__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AceleracionGradual.__neg__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="AceleracionGradual.__neg__-expanded"><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-docstring">"Retorna la interpolaci&#243;n inversa a la original."</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt> <tt class="py-op">=</tt> <tt class="py-name">list</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt><tt class="py-op">.</tt><tt class="py-name">reverse</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-18" class="py-name" targets="Class pilas.interpolaciones.AceleracionGradual=pilas.interpolaciones.AceleracionGradual-class.html"><a title="pilas.interpolaciones.AceleracionGradual" class="py-name" href="#" onclick="return doclink('link-18', 'AceleracionGradual', 'link-18');">AceleracionGradual</a></tt><tt class="py-op">(</tt><tt class="py-name">new_values</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="AceleracionGradual.apply"></a><div id="AceleracionGradual.apply-def"><a name="L105"></a><tt class="py-lineno">105</tt> <a class="py-toggle" href="#" id="AceleracionGradual.apply-toggle" onclick="return toggle('AceleracionGradual.apply');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.AceleracionGradual-class.html#apply">apply</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">target</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AceleracionGradual.apply-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="AceleracionGradual.apply-expanded"><a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt id="link-19" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-19', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="pilas.interpolaciones.AceleracionGradual.apply
+pilas.interpolaciones.DesaceleracionGradual.apply
+pilas.interpolaciones.ElasticoFinal.apply
+pilas.interpolaciones.ElasticoInicial.apply
+pilas.interpolaciones.Interpolacion.apply
+pilas.interpolaciones.Lineal.apply
+pilas.interpolaciones.ReboteFinal.apply
+pilas.interpolaciones.ReboteInicial.apply" class="py-name" href="#" onclick="return doclink('link-20', 'apply', 'link-10');">apply</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">target</tt><tt class="py-op">,</tt> <tt class="py-name">function</tt><tt class="py-op">,</tt> <tt id="link-21" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-21', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="pilas.pytweener" class="py-name" href="#" onclick="return doclink('link-22', 'pytweener', 'link-1');">pytweener</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="pilas.pytweener.Easing" class="py-name" href="#" onclick="return doclink('link-23', 'Easing', 'link-13');">Easing</a></tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Class pilas.pytweener.Easing.Cubic=pilas.pytweener.Easing.Cubic-class.html"><a title="pilas.pytweener.Easing.Cubic" class="py-name" href="#" onclick="return doclink('link-24', 'Cubic', 'link-24');">Cubic</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Static Method pilas.pytweener.Easing.Back.easeIn()=pilas.pytweener.Easing.Back-class.html#easeIn,Static Method pilas.pytweener.Easing.Bounce.easeIn()=pilas.pytweener.Easing.Bounce-class.html#easeIn,Static Method pilas.pytweener.Easing.Circ.easeIn()=pilas.pytweener.Easing.Circ-class.html#easeIn,Static Method pilas.pytweener.Easing.Cubic.easeIn()=pilas.pytweener.Easing.Cubic-class.html#easeIn,Static Method pilas.pytweener.Easing.Elastic.easeIn()=pilas.pytweener.Easing.Elastic-class.html#easeIn,Static Method pilas.pytweener.Easing.Expo.easeIn()=pilas.pytweener.Easing.Expo-class.html#easeIn,Static Method pilas.pytweener.Easing.Linear.easeIn()=pilas.pytweener.Easing.Linear-class.html#easeIn,Static Method pilas.pytweener.Easing.Quad.easeIn()=pilas.pytweener.Easing.Quad-class.html#easeIn,Static Method pilas.pytweener.Easing.Quart.easeIn()=pilas.pytweener.Easing.Quart-class.html#easeIn,Static Method pilas.pytweener.Easing.Quint.easeIn()=pilas.pytweener.Easing.Quint-class.html#easeIn,Static Method pilas.pytweener.Easing.Sine.easeIn()=pilas.pytweener.Easing.Sine-class.html#easeIn,Static Method pilas.pytweener.Easing.Strong.easeIn()=pilas.pytweener.Easing.Strong-class.html#easeIn"><a title="pilas.pytweener.Easing.Back.easeIn
+pilas.pytweener.Easing.Bounce.easeIn
+pilas.pytweener.Easing.Circ.easeIn
+pilas.pytweener.Easing.Cubic.easeIn
+pilas.pytweener.Easing.Elastic.easeIn
+pilas.pytweener.Easing.Expo.easeIn
+pilas.pytweener.Easing.Linear.easeIn
+pilas.pytweener.Easing.Quad.easeIn
+pilas.pytweener.Easing.Quart.easeIn
+pilas.pytweener.Easing.Quint.easeIn
+pilas.pytweener.Easing.Sine.easeIn
+pilas.pytweener.Easing.Strong.easeIn" class="py-name" href="#" onclick="return doclink('link-25', 'easeIn', 'link-25');">easeIn</a></tt><tt class="py-op">)</tt>  </tt>
+</div></div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="DesaceleracionGradual"></a><div id="DesaceleracionGradual-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="DesaceleracionGradual-toggle" onclick="return toggle('DesaceleracionGradual');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.interpolaciones.DesaceleracionGradual-class.html">DesaceleracionGradual</a><tt class="py-op">(</tt><tt class="py-base-class">Interpolacion</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DesaceleracionGradual-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DesaceleracionGradual-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt class="py-docstring">"Representa una interpolaci&#243;n con aceleraci&#243;n gradual."</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="DesaceleracionGradual.__init__"></a><div id="DesaceleracionGradual.__init__-def"><a name="L111"></a><tt class="py-lineno">111</tt> <a class="py-toggle" href="#" id="DesaceleracionGradual.__init__-toggle" onclick="return toggle('DesaceleracionGradual.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.DesaceleracionGradual-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">,</tt> <tt class="py-param">duration</tt><tt class="py-op">,</tt> <tt class="py-param">delay</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DesaceleracionGradual.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DesaceleracionGradual.__init__-expanded"><a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt id="link-26" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-26', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="pilas.actores.aceituna.Aceituna.__init__
+pilas.actores.actor.Actor.__init__
+pilas.actores.animacion.Animacion.__init__
+pilas.actores.animado.Animado.__init__
+pilas.actores.banana.Banana.__init__
+pilas.actores.bomba.Bomba.__init__
+pilas.actores.boton.Boton.__init__
+pilas.actores.caja.Caja.__init__
+pilas.actores.cooperativista.Caminando.__init__
+pilas.actores.cooperativista.Cooperativista.__init__
+pilas.actores.cooperativista.DecirOk.__init__
+pilas.actores.cursordisparo.CursorDisparo.__init__
+pilas.actores.dialogo.Dialogo.__init__
+pilas.actores.ejes.Ejes.__init__
+pilas.actores.energia.Energia.__init__
+pilas.actores.estrella.Estrella.__init__
+pilas.actores.explosion.Explosion.__init__
+pilas.actores.fantasma.Fantasma.__init__
+pilas.actores.globo.Globo.__init__
+pilas.actores.globoelegir.GloboElegir.__init__
+pilas.actores.humo.Humo.__init__
+pilas.actores.mano.CursorMano.__init__
+pilas.actores.mapa.Mapa.__init__
+pilas.actores.mapatiled.MapaTiled.__init__
+pilas.actores.mapatiled.XmlNode.__init__
+pilas.actores.martian.Caminando.__init__
+pilas.actores.martian.Disparar.__init__
+pilas.actores.martian.Martian.__init__
+pilas.actores.martian.Saltando.__init__
+pilas.actores.menu.Menu.__init__
+pilas.actores.moneda.Moneda.__init__
+pilas.actores.mono.Mono.__init__
+pilas.actores.nave.Nave.__init__
+pilas.actores.navekids.NaveKids.__init__
+pilas.actores.opcion.Opcion.__init__
+pilas.actores.ovni.Ovni.__init__
+pilas.actores.ovni.Planeta.__init__
+pilas.actores.pacman.Pacman.__init__
+pilas.actores.pausa.Pausa.__init__
+pilas.actores.pelota.Pelota.__init__
+pilas.actores.personajes_rpg.BasePersonajeRPG.__init__
+pilas.actores.personajes_rpg.Calvo.__init__
+pilas.actores.personajes_rpg.Caminando.__init__
+pilas.actores.personajes_rpg.Maton.__init__
+pilas.actores.piedra.Piedra.__init__
+pilas.actores.pingu.Pingu.__init__
+pilas.actores.pizarra.Pizarra.__init__
+pilas.actores.proyectil.Bala.__init__
+pilas.actores.proyectil.Dinamita.__init__
+pilas.actores.proyectil.EstrellaNinja.__init__
+pilas.actores.proyectil.Misil.__init__
+pilas.actores.puntaje.Puntaje.__init__
+pilas.actores.sonido.Sonido.__init__
+pilas.actores.temporizador.Temporizador.__init__
+pilas.actores.texto.Texto.__init__
+pilas.actores.texto_inferior.TextoInferior.__init__
+pilas.actores.torreta.Torreta.__init__
+pilas.actores.tortuga.Tortuga.__init__
+pilas.actores.zanahoria.Zanahoria.__init__
+pilas.asistente.MainWindow.__init__
+pilas.camara.Camara.__init__
+pilas.colisiones.Colisiones.__init__
+pilas.colores.Color.__init__
+pilas.comportamientos.Avanzar.__init__
+pilas.comportamientos.Girar.__init__
+pilas.comportamientos.Proyectil.__init__
+pilas.comportamientos.Saltar.__init__
+pilas.control.Control.__init__
+pilas.demos.piezas.Pieza.__init__
+pilas.demos.piezas.Piezas.__init__
+pilas.depurador.Depurador.__init__
+pilas.depurador.ModoDepurador.__init__
+pilas.depurador.ModoInformacionDeSistema.__init__
+pilas.depurador.ModoPosicion.__init__
+pilas.depurador.ModoWidgetLog.__init__
+pilas.descargar.Descargar.__init__
+pilas.ejemplos.syntax.PythonHighlighter.__init__
+pilas.escena.escena_base.Base.__init__
+pilas.escena.escena_logos.Logos.__init__
+pilas.escena.escena_normal.Aviso.__init__
+pilas.escena.escena_normal.Normal.__init__
+pilas.escena.gestor.Gestor.__init__
+pilas.escenas.Escena.__init__
+pilas.escenas.Normal.__init__
+pilas.estudiante.Estudiante.__init__
+pilas.estudiante.ProxyHabilidades.__init__
+pilas.evento.AttrDict.__init__
+pilas.evento.Evento.__init__
+pilas.evento.ProxyFuncion.__init__
+pilas.evento.ProxyMetodo.__init__
+pilas.fisica.Circulo.__init__
+pilas.fisica.ConstanteDeDistancia.__init__
+pilas.fisica.ConstanteDeMovimiento.__init__
+pilas.fisica.Figura.__init__
+pilas.fisica.Fisica.__init__
+pilas.fisica.FisicaDeshabilitada.__init__
+pilas.fisica.ObjetosContactListener.__init__
+pilas.fisica.Poligono.__init__
+pilas.fisica.Rectangulo.__init__
+pilas.fondos.Color.__init__
+pilas.fondos.Desplazamiento.__init__
+pilas.fondos.Espacio.__init__
+pilas.fondos.Fondo.__init__
+pilas.fondos.Noche.__init__
+pilas.fondos.Nubes.__init__
+pilas.fondos.Pasto.__init__
+pilas.fondos.Plano.__init__
+pilas.fondos.Selva.__init__
+pilas.fondos.Tarde.__init__
+pilas.fondos.Volley.__init__
+pilas.fps.FPS.__init__
+pilas.habilidades.Arrastrable.__init__
+pilas.habilidades.AumentarConRueda.__init__
+pilas.habilidades.ColisionableComoPelota.__init__
+pilas.habilidades.Disparar.__init__
+pilas.habilidades.DispararConClick.__init__
+pilas.habilidades.Habilidad.__init__
+pilas.habilidades.Imitar.__init__
+pilas.habilidades.MirarAlActor.__init__
+pilas.habilidades.MoverseComoCoche.__init__
+pilas.habilidades.MoverseConElTeclado.__init__
+pilas.habilidades.PisaPlataformas.__init__
+pilas.habilidades.PuedeExplotar.__init__
+pilas.habilidades.RebotarComoCaja.__init__
+pilas.habilidades.RebotarComoPelota.__init__
+pilas.habilidades.RotarConMouse.__init__
+pilas.habilidades.SeMantieneEnPantalla.__init__
+pilas.habilidades.SeguirAlMouse.__init__
+pilas.habilidades.SeguirClicks.__init__
+pilas.habilidades.SiempreEnElCentro.__init__
+pilas.interfaz.base_interfaz.BaseInterfaz.__init__
+pilas.interfaz.boton.Boton.__init__
+pilas.interfaz.deslizador.Deslizador.__init__
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__
+pilas.interfaz.lista_seleccion.ListaSeleccion.__init__
+pilas.interfaz.selector.Selector.__init__
+pilas.interpolaciones.AceleracionGradual.__init__
+pilas.interpolaciones.DesaceleracionGradual.__init__
+pilas.interpolaciones.ElasticoFinal.__init__
+pilas.interpolaciones.ElasticoInicial.__init__
+pilas.interpolaciones.Interpolacion.__init__
+pilas.interpolaciones.Lineal.__init__
+pilas.interpolaciones.ReboteFinal.__init__
+pilas.interpolaciones.ReboteInicial.__init__
+pilas.motores.motor_qt.Actor.__init__
+pilas.motores.motor_qt.BaseActor.__init__
+pilas.motores.motor_qt.CanvasWidget.__init__
+pilas.motores.motor_qt.Grilla.__init__
+pilas.motores.motor_qt.Imagen.__init__
+pilas.motores.motor_qt.Lienzo.__init__
+pilas.motores.motor_qt.Motor.__init__
+pilas.motores.motor_qt.MusicaDeshabilitada.__init__
+pilas.motores.motor_qt.MusicaGST.__init__
+pilas.motores.motor_qt.MusicaPhonon.__init__
+pilas.motores.motor_qt.SonidoDeshabilitado.__init__
+pilas.motores.motor_qt.SonidoGST.__init__
+pilas.motores.motor_qt.SonidoPhonon.__init__
+pilas.motores.motor_qt.Superficie.__init__
+pilas.motores.motor_qt.Texto.__init__
+pilas.motores.motor_qt.Ventana.__init__
+pilas.mundo.Mundo.__init__
+pilas.municion.BalaDoble.__init__
+pilas.municion.BalasDoblesDesviadas.__init__
+pilas.municion.MisilDoble.__init__
+pilas.municion.Municion.__init__
+pilas.pytweener.Tween.__init__
+pilas.pytweener.TweenTestObject.__init__
+pilas.pytweener.Tweenable.__init__
+pilas.pytweener.Tweener.__init__
+pilas.tareas.Tarea.__init__
+pilas.tareas.Tareas.__init__
+pilas.widget_log.WidgetLog.__init__" class="py-name" href="#" onclick="return doclink('link-27', '__init__', 'link-7');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt><tt class="py-op">,</tt> <tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt>
+<a name="DesaceleracionGradual.__neg__"></a><div id="DesaceleracionGradual.__neg__-def"><a name="L114"></a><tt class="py-lineno">114</tt> <a class="py-toggle" href="#" id="DesaceleracionGradual.__neg__-toggle" onclick="return toggle('DesaceleracionGradual.__neg__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.DesaceleracionGradual-class.html#__neg__">__neg__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DesaceleracionGradual.__neg__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DesaceleracionGradual.__neg__-expanded"><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-docstring">"Retorna la interpolaci&#243;n inversa a la original."</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt> <tt class="py-op">=</tt> <tt class="py-name">list</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt><tt class="py-op">.</tt><tt class="py-name">reverse</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-28" class="py-name" targets="Class pilas.interpolaciones.DesaceleracionGradual=pilas.interpolaciones.DesaceleracionGradual-class.html"><a title="pilas.interpolaciones.DesaceleracionGradual" class="py-name" href="#" onclick="return doclink('link-28', 'DesaceleracionGradual', 'link-28');">DesaceleracionGradual</a></tt><tt class="py-op">(</tt><tt class="py-name">new_values</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="DesaceleracionGradual.apply"></a><div id="DesaceleracionGradual.apply-def"><a name="L120"></a><tt class="py-lineno">120</tt> <a class="py-toggle" href="#" id="DesaceleracionGradual.apply-toggle" onclick="return toggle('DesaceleracionGradual.apply');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.DesaceleracionGradual-class.html#apply">apply</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">target</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DesaceleracionGradual.apply-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DesaceleracionGradual.apply-expanded"><a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt id="link-29" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-29', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="pilas.interpolaciones.AceleracionGradual.apply
+pilas.interpolaciones.DesaceleracionGradual.apply
+pilas.interpolaciones.ElasticoFinal.apply
+pilas.interpolaciones.ElasticoInicial.apply
+pilas.interpolaciones.Interpolacion.apply
+pilas.interpolaciones.Lineal.apply
+pilas.interpolaciones.ReboteFinal.apply
+pilas.interpolaciones.ReboteInicial.apply" class="py-name" href="#" onclick="return doclink('link-30', 'apply', 'link-10');">apply</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">target</tt><tt class="py-op">,</tt> <tt class="py-name">function</tt><tt class="py-op">,</tt> <tt id="link-31" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-31', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="pilas.pytweener" class="py-name" href="#" onclick="return doclink('link-32', 'pytweener', 'link-1');">pytweener</a></tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="pilas.pytweener.Easing" class="py-name" href="#" onclick="return doclink('link-33', 'Easing', 'link-13');">Easing</a></tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="pilas.pytweener.Easing.Cubic" class="py-name" href="#" onclick="return doclink('link-34', 'Cubic', 'link-24');">Cubic</a></tt><tt class="py-op">.</tt><tt id="link-35" class="py-name" targets="Static Method pilas.pytweener.Easing.Back.easeOut()=pilas.pytweener.Easing.Back-class.html#easeOut,Static Method pilas.pytweener.Easing.Bounce.easeOut()=pilas.pytweener.Easing.Bounce-class.html#easeOut,Static Method pilas.pytweener.Easing.Circ.easeOut()=pilas.pytweener.Easing.Circ-class.html#easeOut,Static Method pilas.pytweener.Easing.Cubic.easeOut()=pilas.pytweener.Easing.Cubic-class.html#easeOut,Static Method pilas.pytweener.Easing.Elastic.easeOut()=pilas.pytweener.Easing.Elastic-class.html#easeOut,Static Method pilas.pytweener.Easing.Expo.easeOut()=pilas.pytweener.Easing.Expo-class.html#easeOut,Static Method pilas.pytweener.Easing.Linear.easeOut()=pilas.pytweener.Easing.Linear-class.html#easeOut,Static Method pilas.pytweener.Easing.Quad.easeOut()=pilas.pytweener.Easing.Quad-class.html#easeOut,Static Method pilas.pytweener.Easing.Quart.easeOut()=pilas.pytweener.Easing.Quart-class.html#easeOut,Static Method pilas.pytweener.Easing.Quint.easeOut()=pilas.pytweener.Easing.Quint-class.html#easeOut,Static Method pilas.pytweener.Easing.Sine.easeOut()=pilas.pytweener.Easing.Sine-class.html#easeOut,Static Method pilas.pytweener.Easing.Strong.easeOut()=pilas.pytweener.Easing.Strong-class.html#easeOut"><a title="pilas.pytweener.Easing.Back.easeOut
+pilas.pytweener.Easing.Bounce.easeOut
+pilas.pytweener.Easing.Circ.easeOut
+pilas.pytweener.Easing.Cubic.easeOut
+pilas.pytweener.Easing.Elastic.easeOut
+pilas.pytweener.Easing.Expo.easeOut
+pilas.pytweener.Easing.Linear.easeOut
+pilas.pytweener.Easing.Quad.easeOut
+pilas.pytweener.Easing.Quart.easeOut
+pilas.pytweener.Easing.Quint.easeOut
+pilas.pytweener.Easing.Sine.easeOut
+pilas.pytweener.Easing.Strong.easeOut" class="py-name" href="#" onclick="return doclink('link-35', 'easeOut', 'link-35');">easeOut</a></tt><tt class="py-op">)</tt>  </tt>
+</div></div><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"> </tt>
+<a name="ReboteInicial"></a><div id="ReboteInicial-def"><a name="L123"></a><tt class="py-lineno">123</tt> <a class="py-toggle" href="#" id="ReboteInicial-toggle" onclick="return toggle('ReboteInicial');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.interpolaciones.ReboteInicial-class.html">ReboteInicial</a><tt class="py-op">(</tt><tt class="py-base-class">Interpolacion</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReboteInicial-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ReboteInicial-expanded"><a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">    <tt class="py-docstring">"Representa una interpolaci&#243;n con rebote."</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="ReboteInicial.__init__"></a><div id="ReboteInicial.__init__-def"><a name="L126"></a><tt class="py-lineno">126</tt> <a class="py-toggle" href="#" id="ReboteInicial.__init__-toggle" onclick="return toggle('ReboteInicial.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ReboteInicial-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">,</tt> <tt class="py-param">duration</tt><tt class="py-op">,</tt> <tt class="py-param">delay</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReboteInicial.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReboteInicial.__init__-expanded"><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt id="link-36" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-36', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="pilas.actores.aceituna.Aceituna.__init__
+pilas.actores.actor.Actor.__init__
+pilas.actores.animacion.Animacion.__init__
+pilas.actores.animado.Animado.__init__
+pilas.actores.banana.Banana.__init__
+pilas.actores.bomba.Bomba.__init__
+pilas.actores.boton.Boton.__init__
+pilas.actores.caja.Caja.__init__
+pilas.actores.cooperativista.Caminando.__init__
+pilas.actores.cooperativista.Cooperativista.__init__
+pilas.actores.cooperativista.DecirOk.__init__
+pilas.actores.cursordisparo.CursorDisparo.__init__
+pilas.actores.dialogo.Dialogo.__init__
+pilas.actores.ejes.Ejes.__init__
+pilas.actores.energia.Energia.__init__
+pilas.actores.estrella.Estrella.__init__
+pilas.actores.explosion.Explosion.__init__
+pilas.actores.fantasma.Fantasma.__init__
+pilas.actores.globo.Globo.__init__
+pilas.actores.globoelegir.GloboElegir.__init__
+pilas.actores.humo.Humo.__init__
+pilas.actores.mano.CursorMano.__init__
+pilas.actores.mapa.Mapa.__init__
+pilas.actores.mapatiled.MapaTiled.__init__
+pilas.actores.mapatiled.XmlNode.__init__
+pilas.actores.martian.Caminando.__init__
+pilas.actores.martian.Disparar.__init__
+pilas.actores.martian.Martian.__init__
+pilas.actores.martian.Saltando.__init__
+pilas.actores.menu.Menu.__init__
+pilas.actores.moneda.Moneda.__init__
+pilas.actores.mono.Mono.__init__
+pilas.actores.nave.Nave.__init__
+pilas.actores.navekids.NaveKids.__init__
+pilas.actores.opcion.Opcion.__init__
+pilas.actores.ovni.Ovni.__init__
+pilas.actores.ovni.Planeta.__init__
+pilas.actores.pacman.Pacman.__init__
+pilas.actores.pausa.Pausa.__init__
+pilas.actores.pelota.Pelota.__init__
+pilas.actores.personajes_rpg.BasePersonajeRPG.__init__
+pilas.actores.personajes_rpg.Calvo.__init__
+pilas.actores.personajes_rpg.Caminando.__init__
+pilas.actores.personajes_rpg.Maton.__init__
+pilas.actores.piedra.Piedra.__init__
+pilas.actores.pingu.Pingu.__init__
+pilas.actores.pizarra.Pizarra.__init__
+pilas.actores.proyectil.Bala.__init__
+pilas.actores.proyectil.Dinamita.__init__
+pilas.actores.proyectil.EstrellaNinja.__init__
+pilas.actores.proyectil.Misil.__init__
+pilas.actores.puntaje.Puntaje.__init__
+pilas.actores.sonido.Sonido.__init__
+pilas.actores.temporizador.Temporizador.__init__
+pilas.actores.texto.Texto.__init__
+pilas.actores.texto_inferior.TextoInferior.__init__
+pilas.actores.torreta.Torreta.__init__
+pilas.actores.tortuga.Tortuga.__init__
+pilas.actores.zanahoria.Zanahoria.__init__
+pilas.asistente.MainWindow.__init__
+pilas.camara.Camara.__init__
+pilas.colisiones.Colisiones.__init__
+pilas.colores.Color.__init__
+pilas.comportamientos.Avanzar.__init__
+pilas.comportamientos.Girar.__init__
+pilas.comportamientos.Proyectil.__init__
+pilas.comportamientos.Saltar.__init__
+pilas.control.Control.__init__
+pilas.demos.piezas.Pieza.__init__
+pilas.demos.piezas.Piezas.__init__
+pilas.depurador.Depurador.__init__
+pilas.depurador.ModoDepurador.__init__
+pilas.depurador.ModoInformacionDeSistema.__init__
+pilas.depurador.ModoPosicion.__init__
+pilas.depurador.ModoWidgetLog.__init__
+pilas.descargar.Descargar.__init__
+pilas.ejemplos.syntax.PythonHighlighter.__init__
+pilas.escena.escena_base.Base.__init__
+pilas.escena.escena_logos.Logos.__init__
+pilas.escena.escena_normal.Aviso.__init__
+pilas.escena.escena_normal.Normal.__init__
+pilas.escena.gestor.Gestor.__init__
+pilas.escenas.Escena.__init__
+pilas.escenas.Normal.__init__
+pilas.estudiante.Estudiante.__init__
+pilas.estudiante.ProxyHabilidades.__init__
+pilas.evento.AttrDict.__init__
+pilas.evento.Evento.__init__
+pilas.evento.ProxyFuncion.__init__
+pilas.evento.ProxyMetodo.__init__
+pilas.fisica.Circulo.__init__
+pilas.fisica.ConstanteDeDistancia.__init__
+pilas.fisica.ConstanteDeMovimiento.__init__
+pilas.fisica.Figura.__init__
+pilas.fisica.Fisica.__init__
+pilas.fisica.FisicaDeshabilitada.__init__
+pilas.fisica.ObjetosContactListener.__init__
+pilas.fisica.Poligono.__init__
+pilas.fisica.Rectangulo.__init__
+pilas.fondos.Color.__init__
+pilas.fondos.Desplazamiento.__init__
+pilas.fondos.Espacio.__init__
+pilas.fondos.Fondo.__init__
+pilas.fondos.Noche.__init__
+pilas.fondos.Nubes.__init__
+pilas.fondos.Pasto.__init__
+pilas.fondos.Plano.__init__
+pilas.fondos.Selva.__init__
+pilas.fondos.Tarde.__init__
+pilas.fondos.Volley.__init__
+pilas.fps.FPS.__init__
+pilas.habilidades.Arrastrable.__init__
+pilas.habilidades.AumentarConRueda.__init__
+pilas.habilidades.ColisionableComoPelota.__init__
+pilas.habilidades.Disparar.__init__
+pilas.habilidades.DispararConClick.__init__
+pilas.habilidades.Habilidad.__init__
+pilas.habilidades.Imitar.__init__
+pilas.habilidades.MirarAlActor.__init__
+pilas.habilidades.MoverseComoCoche.__init__
+pilas.habilidades.MoverseConElTeclado.__init__
+pilas.habilidades.PisaPlataformas.__init__
+pilas.habilidades.PuedeExplotar.__init__
+pilas.habilidades.RebotarComoCaja.__init__
+pilas.habilidades.RebotarComoPelota.__init__
+pilas.habilidades.RotarConMouse.__init__
+pilas.habilidades.SeMantieneEnPantalla.__init__
+pilas.habilidades.SeguirAlMouse.__init__
+pilas.habilidades.SeguirClicks.__init__
+pilas.habilidades.SiempreEnElCentro.__init__
+pilas.interfaz.base_interfaz.BaseInterfaz.__init__
+pilas.interfaz.boton.Boton.__init__
+pilas.interfaz.deslizador.Deslizador.__init__
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__
+pilas.interfaz.lista_seleccion.ListaSeleccion.__init__
+pilas.interfaz.selector.Selector.__init__
+pilas.interpolaciones.AceleracionGradual.__init__
+pilas.interpolaciones.DesaceleracionGradual.__init__
+pilas.interpolaciones.ElasticoFinal.__init__
+pilas.interpolaciones.ElasticoInicial.__init__
+pilas.interpolaciones.Interpolacion.__init__
+pilas.interpolaciones.Lineal.__init__
+pilas.interpolaciones.ReboteFinal.__init__
+pilas.interpolaciones.ReboteInicial.__init__
+pilas.motores.motor_qt.Actor.__init__
+pilas.motores.motor_qt.BaseActor.__init__
+pilas.motores.motor_qt.CanvasWidget.__init__
+pilas.motores.motor_qt.Grilla.__init__
+pilas.motores.motor_qt.Imagen.__init__
+pilas.motores.motor_qt.Lienzo.__init__
+pilas.motores.motor_qt.Motor.__init__
+pilas.motores.motor_qt.MusicaDeshabilitada.__init__
+pilas.motores.motor_qt.MusicaGST.__init__
+pilas.motores.motor_qt.MusicaPhonon.__init__
+pilas.motores.motor_qt.SonidoDeshabilitado.__init__
+pilas.motores.motor_qt.SonidoGST.__init__
+pilas.motores.motor_qt.SonidoPhonon.__init__
+pilas.motores.motor_qt.Superficie.__init__
+pilas.motores.motor_qt.Texto.__init__
+pilas.motores.motor_qt.Ventana.__init__
+pilas.mundo.Mundo.__init__
+pilas.municion.BalaDoble.__init__
+pilas.municion.BalasDoblesDesviadas.__init__
+pilas.municion.MisilDoble.__init__
+pilas.municion.Municion.__init__
+pilas.pytweener.Tween.__init__
+pilas.pytweener.TweenTestObject.__init__
+pilas.pytweener.Tweenable.__init__
+pilas.pytweener.Tweener.__init__
+pilas.tareas.Tarea.__init__
+pilas.tareas.Tareas.__init__
+pilas.widget_log.WidgetLog.__init__" class="py-name" href="#" onclick="return doclink('link-37', '__init__', 'link-7');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt><tt class="py-op">,</tt> <tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="ReboteInicial.__neg__"></a><div id="ReboteInicial.__neg__-def"><a name="L129"></a><tt class="py-lineno">129</tt> <a class="py-toggle" href="#" id="ReboteInicial.__neg__-toggle" onclick="return toggle('ReboteInicial.__neg__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ReboteInicial-class.html#__neg__">__neg__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReboteInicial.__neg__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReboteInicial.__neg__-expanded"><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-docstring">"Retorna la interpolaci&#243;n inversa a la original."</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt> <tt class="py-op">=</tt> <tt class="py-name">list</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">)</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt><tt class="py-op">.</tt><tt class="py-name">reverse</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-38" class="py-name" targets="Class pilas.interpolaciones.ReboteInicial=pilas.interpolaciones.ReboteInicial-class.html"><a title="pilas.interpolaciones.ReboteInicial" class="py-name" href="#" onclick="return doclink('link-38', 'ReboteInicial', 'link-38');">ReboteInicial</a></tt><tt class="py-op">(</tt><tt class="py-name">new_values</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="ReboteInicial.apply"></a><div id="ReboteInicial.apply-def"><a name="L135"></a><tt class="py-lineno">135</tt> <a class="py-toggle" href="#" id="ReboteInicial.apply-toggle" onclick="return toggle('ReboteInicial.apply');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ReboteInicial-class.html#apply">apply</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">target</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReboteInicial.apply-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReboteInicial.apply-expanded"><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt id="link-39" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-39', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-40" class="py-name"><a title="pilas.interpolaciones.AceleracionGradual.apply
+pilas.interpolaciones.DesaceleracionGradual.apply
+pilas.interpolaciones.ElasticoFinal.apply
+pilas.interpolaciones.ElasticoInicial.apply
+pilas.interpolaciones.Interpolacion.apply
+pilas.interpolaciones.Lineal.apply
+pilas.interpolaciones.ReboteFinal.apply
+pilas.interpolaciones.ReboteInicial.apply" class="py-name" href="#" onclick="return doclink('link-40', 'apply', 'link-10');">apply</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">target</tt><tt class="py-op">,</tt> <tt class="py-name">function</tt><tt class="py-op">,</tt> <tt id="link-41" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-41', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="pilas.pytweener" class="py-name" href="#" onclick="return doclink('link-42', 'pytweener', 'link-1');">pytweener</a></tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="pilas.pytweener.Easing" class="py-name" href="#" onclick="return doclink('link-43', 'Easing', 'link-13');">Easing</a></tt><tt class="py-op">.</tt><tt id="link-44" class="py-name" targets="Class pilas.pytweener.Easing.Bounce=pilas.pytweener.Easing.Bounce-class.html"><a title="pilas.pytweener.Easing.Bounce" class="py-name" href="#" onclick="return doclink('link-44', 'Bounce', 'link-44');">Bounce</a></tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="pilas.pytweener.Easing.Back.easeIn
+pilas.pytweener.Easing.Bounce.easeIn
+pilas.pytweener.Easing.Circ.easeIn
+pilas.pytweener.Easing.Cubic.easeIn
+pilas.pytweener.Easing.Elastic.easeIn
+pilas.pytweener.Easing.Expo.easeIn
+pilas.pytweener.Easing.Linear.easeIn
+pilas.pytweener.Easing.Quad.easeIn
+pilas.pytweener.Easing.Quart.easeIn
+pilas.pytweener.Easing.Quint.easeIn
+pilas.pytweener.Easing.Sine.easeIn
+pilas.pytweener.Easing.Strong.easeIn" class="py-name" href="#" onclick="return doclink('link-45', 'easeIn', 'link-25');">easeIn</a></tt><tt class="py-op">)</tt>  </tt>
+</div></div><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt>
+<a name="ReboteFinal"></a><div id="ReboteFinal-def"><a name="L138"></a><tt class="py-lineno">138</tt> <a class="py-toggle" href="#" id="ReboteFinal-toggle" onclick="return toggle('ReboteFinal');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.interpolaciones.ReboteFinal-class.html">ReboteFinal</a><tt class="py-op">(</tt><tt class="py-base-class">Interpolacion</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReboteFinal-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ReboteFinal-expanded"><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">    <tt class="py-docstring">"Representa una interpolaci&#243;n con rebote."</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"> </tt>
+<a name="ReboteFinal.__init__"></a><div id="ReboteFinal.__init__-def"><a name="L141"></a><tt class="py-lineno">141</tt> <a class="py-toggle" href="#" id="ReboteFinal.__init__-toggle" onclick="return toggle('ReboteFinal.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ReboteFinal-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">,</tt> <tt class="py-param">duration</tt><tt class="py-op">,</tt> <tt class="py-param">delay</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReboteFinal.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReboteFinal.__init__-expanded"><a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt id="link-46" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-46', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-47" class="py-name"><a title="pilas.actores.aceituna.Aceituna.__init__
+pilas.actores.actor.Actor.__init__
+pilas.actores.animacion.Animacion.__init__
+pilas.actores.animado.Animado.__init__
+pilas.actores.banana.Banana.__init__
+pilas.actores.bomba.Bomba.__init__
+pilas.actores.boton.Boton.__init__
+pilas.actores.caja.Caja.__init__
+pilas.actores.cooperativista.Caminando.__init__
+pilas.actores.cooperativista.Cooperativista.__init__
+pilas.actores.cooperativista.DecirOk.__init__
+pilas.actores.cursordisparo.CursorDisparo.__init__
+pilas.actores.dialogo.Dialogo.__init__
+pilas.actores.ejes.Ejes.__init__
+pilas.actores.energia.Energia.__init__
+pilas.actores.estrella.Estrella.__init__
+pilas.actores.explosion.Explosion.__init__
+pilas.actores.fantasma.Fantasma.__init__
+pilas.actores.globo.Globo.__init__
+pilas.actores.globoelegir.GloboElegir.__init__
+pilas.actores.humo.Humo.__init__
+pilas.actores.mano.CursorMano.__init__
+pilas.actores.mapa.Mapa.__init__
+pilas.actores.mapatiled.MapaTiled.__init__
+pilas.actores.mapatiled.XmlNode.__init__
+pilas.actores.martian.Caminando.__init__
+pilas.actores.martian.Disparar.__init__
+pilas.actores.martian.Martian.__init__
+pilas.actores.martian.Saltando.__init__
+pilas.actores.menu.Menu.__init__
+pilas.actores.moneda.Moneda.__init__
+pilas.actores.mono.Mono.__init__
+pilas.actores.nave.Nave.__init__
+pilas.actores.navekids.NaveKids.__init__
+pilas.actores.opcion.Opcion.__init__
+pilas.actores.ovni.Ovni.__init__
+pilas.actores.ovni.Planeta.__init__
+pilas.actores.pacman.Pacman.__init__
+pilas.actores.pausa.Pausa.__init__
+pilas.actores.pelota.Pelota.__init__
+pilas.actores.personajes_rpg.BasePersonajeRPG.__init__
+pilas.actores.personajes_rpg.Calvo.__init__
+pilas.actores.personajes_rpg.Caminando.__init__
+pilas.actores.personajes_rpg.Maton.__init__
+pilas.actores.piedra.Piedra.__init__
+pilas.actores.pingu.Pingu.__init__
+pilas.actores.pizarra.Pizarra.__init__
+pilas.actores.proyectil.Bala.__init__
+pilas.actores.proyectil.Dinamita.__init__
+pilas.actores.proyectil.EstrellaNinja.__init__
+pilas.actores.proyectil.Misil.__init__
+pilas.actores.puntaje.Puntaje.__init__
+pilas.actores.sonido.Sonido.__init__
+pilas.actores.temporizador.Temporizador.__init__
+pilas.actores.texto.Texto.__init__
+pilas.actores.texto_inferior.TextoInferior.__init__
+pilas.actores.torreta.Torreta.__init__
+pilas.actores.tortuga.Tortuga.__init__
+pilas.actores.zanahoria.Zanahoria.__init__
+pilas.asistente.MainWindow.__init__
+pilas.camara.Camara.__init__
+pilas.colisiones.Colisiones.__init__
+pilas.colores.Color.__init__
+pilas.comportamientos.Avanzar.__init__
+pilas.comportamientos.Girar.__init__
+pilas.comportamientos.Proyectil.__init__
+pilas.comportamientos.Saltar.__init__
+pilas.control.Control.__init__
+pilas.demos.piezas.Pieza.__init__
+pilas.demos.piezas.Piezas.__init__
+pilas.depurador.Depurador.__init__
+pilas.depurador.ModoDepurador.__init__
+pilas.depurador.ModoInformacionDeSistema.__init__
+pilas.depurador.ModoPosicion.__init__
+pilas.depurador.ModoWidgetLog.__init__
+pilas.descargar.Descargar.__init__
+pilas.ejemplos.syntax.PythonHighlighter.__init__
+pilas.escena.escena_base.Base.__init__
+pilas.escena.escena_logos.Logos.__init__
+pilas.escena.escena_normal.Aviso.__init__
+pilas.escena.escena_normal.Normal.__init__
+pilas.escena.gestor.Gestor.__init__
+pilas.escenas.Escena.__init__
+pilas.escenas.Normal.__init__
+pilas.estudiante.Estudiante.__init__
+pilas.estudiante.ProxyHabilidades.__init__
+pilas.evento.AttrDict.__init__
+pilas.evento.Evento.__init__
+pilas.evento.ProxyFuncion.__init__
+pilas.evento.ProxyMetodo.__init__
+pilas.fisica.Circulo.__init__
+pilas.fisica.ConstanteDeDistancia.__init__
+pilas.fisica.ConstanteDeMovimiento.__init__
+pilas.fisica.Figura.__init__
+pilas.fisica.Fisica.__init__
+pilas.fisica.FisicaDeshabilitada.__init__
+pilas.fisica.ObjetosContactListener.__init__
+pilas.fisica.Poligono.__init__
+pilas.fisica.Rectangulo.__init__
+pilas.fondos.Color.__init__
+pilas.fondos.Desplazamiento.__init__
+pilas.fondos.Espacio.__init__
+pilas.fondos.Fondo.__init__
+pilas.fondos.Noche.__init__
+pilas.fondos.Nubes.__init__
+pilas.fondos.Pasto.__init__
+pilas.fondos.Plano.__init__
+pilas.fondos.Selva.__init__
+pilas.fondos.Tarde.__init__
+pilas.fondos.Volley.__init__
+pilas.fps.FPS.__init__
+pilas.habilidades.Arrastrable.__init__
+pilas.habilidades.AumentarConRueda.__init__
+pilas.habilidades.ColisionableComoPelota.__init__
+pilas.habilidades.Disparar.__init__
+pilas.habilidades.DispararConClick.__init__
+pilas.habilidades.Habilidad.__init__
+pilas.habilidades.Imitar.__init__
+pilas.habilidades.MirarAlActor.__init__
+pilas.habilidades.MoverseComoCoche.__init__
+pilas.habilidades.MoverseConElTeclado.__init__
+pilas.habilidades.PisaPlataformas.__init__
+pilas.habilidades.PuedeExplotar.__init__
+pilas.habilidades.RebotarComoCaja.__init__
+pilas.habilidades.RebotarComoPelota.__init__
+pilas.habilidades.RotarConMouse.__init__
+pilas.habilidades.SeMantieneEnPantalla.__init__
+pilas.habilidades.SeguirAlMouse.__init__
+pilas.habilidades.SeguirClicks.__init__
+pilas.habilidades.SiempreEnElCentro.__init__
+pilas.interfaz.base_interfaz.BaseInterfaz.__init__
+pilas.interfaz.boton.Boton.__init__
+pilas.interfaz.deslizador.Deslizador.__init__
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__
+pilas.interfaz.lista_seleccion.ListaSeleccion.__init__
+pilas.interfaz.selector.Selector.__init__
+pilas.interpolaciones.AceleracionGradual.__init__
+pilas.interpolaciones.DesaceleracionGradual.__init__
+pilas.interpolaciones.ElasticoFinal.__init__
+pilas.interpolaciones.ElasticoInicial.__init__
+pilas.interpolaciones.Interpolacion.__init__
+pilas.interpolaciones.Lineal.__init__
+pilas.interpolaciones.ReboteFinal.__init__
+pilas.interpolaciones.ReboteInicial.__init__
+pilas.motores.motor_qt.Actor.__init__
+pilas.motores.motor_qt.BaseActor.__init__
+pilas.motores.motor_qt.CanvasWidget.__init__
+pilas.motores.motor_qt.Grilla.__init__
+pilas.motores.motor_qt.Imagen.__init__
+pilas.motores.motor_qt.Lienzo.__init__
+pilas.motores.motor_qt.Motor.__init__
+pilas.motores.motor_qt.MusicaDeshabilitada.__init__
+pilas.motores.motor_qt.MusicaGST.__init__
+pilas.motores.motor_qt.MusicaPhonon.__init__
+pilas.motores.motor_qt.SonidoDeshabilitado.__init__
+pilas.motores.motor_qt.SonidoGST.__init__
+pilas.motores.motor_qt.SonidoPhonon.__init__
+pilas.motores.motor_qt.Superficie.__init__
+pilas.motores.motor_qt.Texto.__init__
+pilas.motores.motor_qt.Ventana.__init__
+pilas.mundo.Mundo.__init__
+pilas.municion.BalaDoble.__init__
+pilas.municion.BalasDoblesDesviadas.__init__
+pilas.municion.MisilDoble.__init__
+pilas.municion.Municion.__init__
+pilas.pytweener.Tween.__init__
+pilas.pytweener.TweenTestObject.__init__
+pilas.pytweener.Tweenable.__init__
+pilas.pytweener.Tweener.__init__
+pilas.tareas.Tarea.__init__
+pilas.tareas.Tareas.__init__
+pilas.widget_log.WidgetLog.__init__" class="py-name" href="#" onclick="return doclink('link-47', '__init__', 'link-7');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt><tt class="py-op">,</tt> <tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"> </tt>
+<a name="ReboteFinal.__neg__"></a><div id="ReboteFinal.__neg__-def"><a name="L144"></a><tt class="py-lineno">144</tt> <a class="py-toggle" href="#" id="ReboteFinal.__neg__-toggle" onclick="return toggle('ReboteFinal.__neg__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ReboteFinal-class.html#__neg__">__neg__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReboteFinal.__neg__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReboteFinal.__neg__-expanded"><a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-docstring">"Retorna la interpolaci&#243;n inversa a la original."</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt> <tt class="py-op">=</tt> <tt class="py-name">list</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">)</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt><tt class="py-op">.</tt><tt class="py-name">reverse</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-48" class="py-name" targets="Class pilas.interpolaciones.ReboteFinal=pilas.interpolaciones.ReboteFinal-class.html"><a title="pilas.interpolaciones.ReboteFinal" class="py-name" href="#" onclick="return doclink('link-48', 'ReboteFinal', 'link-48');">ReboteFinal</a></tt><tt class="py-op">(</tt><tt class="py-name">new_values</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt>
+<a name="ReboteFinal.apply"></a><div id="ReboteFinal.apply-def"><a name="L150"></a><tt class="py-lineno">150</tt> <a class="py-toggle" href="#" id="ReboteFinal.apply-toggle" onclick="return toggle('ReboteFinal.apply');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ReboteFinal-class.html#apply">apply</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">target</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReboteFinal.apply-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReboteFinal.apply-expanded"><a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt id="link-49" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-49', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="pilas.interpolaciones.AceleracionGradual.apply
+pilas.interpolaciones.DesaceleracionGradual.apply
+pilas.interpolaciones.ElasticoFinal.apply
+pilas.interpolaciones.ElasticoInicial.apply
+pilas.interpolaciones.Interpolacion.apply
+pilas.interpolaciones.Lineal.apply
+pilas.interpolaciones.ReboteFinal.apply
+pilas.interpolaciones.ReboteInicial.apply" class="py-name" href="#" onclick="return doclink('link-50', 'apply', 'link-10');">apply</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">target</tt><tt class="py-op">,</tt> <tt class="py-name">function</tt><tt class="py-op">,</tt> <tt id="link-51" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-51', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="pilas.pytweener" class="py-name" href="#" onclick="return doclink('link-52', 'pytweener', 'link-1');">pytweener</a></tt><tt class="py-op">.</tt><tt id="link-53" class="py-name"><a title="pilas.pytweener.Easing" class="py-name" href="#" onclick="return doclink('link-53', 'Easing', 'link-13');">Easing</a></tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="pilas.pytweener.Easing.Bounce" class="py-name" href="#" onclick="return doclink('link-54', 'Bounce', 'link-44');">Bounce</a></tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="pilas.pytweener.Easing.Back.easeOut
+pilas.pytweener.Easing.Bounce.easeOut
+pilas.pytweener.Easing.Circ.easeOut
+pilas.pytweener.Easing.Cubic.easeOut
+pilas.pytweener.Easing.Elastic.easeOut
+pilas.pytweener.Easing.Expo.easeOut
+pilas.pytweener.Easing.Linear.easeOut
+pilas.pytweener.Easing.Quad.easeOut
+pilas.pytweener.Easing.Quart.easeOut
+pilas.pytweener.Easing.Quint.easeOut
+pilas.pytweener.Easing.Sine.easeOut
+pilas.pytweener.Easing.Strong.easeOut" class="py-name" href="#" onclick="return doclink('link-55', 'easeOut', 'link-35');">easeOut</a></tt><tt class="py-op">)</tt>  </tt>
+</div></div><a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"> </tt>
+<a name="ElasticoInicial"></a><div id="ElasticoInicial-def"><a name="L153"></a><tt class="py-lineno">153</tt> <a class="py-toggle" href="#" id="ElasticoInicial-toggle" onclick="return toggle('ElasticoInicial');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.interpolaciones.ElasticoInicial-class.html">ElasticoInicial</a><tt class="py-op">(</tt><tt class="py-base-class">Interpolacion</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ElasticoInicial-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ElasticoInicial-expanded"><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">    <tt class="py-docstring">"Representa una interpolaci&#243;n con rebote."</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="ElasticoInicial.__init__"></a><div id="ElasticoInicial.__init__-def"><a name="L156"></a><tt class="py-lineno">156</tt> <a class="py-toggle" href="#" id="ElasticoInicial.__init__-toggle" onclick="return toggle('ElasticoInicial.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ElasticoInicial-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">,</tt> <tt class="py-param">duration</tt><tt class="py-op">,</tt> <tt class="py-param">delay</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ElasticoInicial.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ElasticoInicial.__init__-expanded"><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt id="link-56" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-56', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="pilas.actores.aceituna.Aceituna.__init__
+pilas.actores.actor.Actor.__init__
+pilas.actores.animacion.Animacion.__init__
+pilas.actores.animado.Animado.__init__
+pilas.actores.banana.Banana.__init__
+pilas.actores.bomba.Bomba.__init__
+pilas.actores.boton.Boton.__init__
+pilas.actores.caja.Caja.__init__
+pilas.actores.cooperativista.Caminando.__init__
+pilas.actores.cooperativista.Cooperativista.__init__
+pilas.actores.cooperativista.DecirOk.__init__
+pilas.actores.cursordisparo.CursorDisparo.__init__
+pilas.actores.dialogo.Dialogo.__init__
+pilas.actores.ejes.Ejes.__init__
+pilas.actores.energia.Energia.__init__
+pilas.actores.estrella.Estrella.__init__
+pilas.actores.explosion.Explosion.__init__
+pilas.actores.fantasma.Fantasma.__init__
+pilas.actores.globo.Globo.__init__
+pilas.actores.globoelegir.GloboElegir.__init__
+pilas.actores.humo.Humo.__init__
+pilas.actores.mano.CursorMano.__init__
+pilas.actores.mapa.Mapa.__init__
+pilas.actores.mapatiled.MapaTiled.__init__
+pilas.actores.mapatiled.XmlNode.__init__
+pilas.actores.martian.Caminando.__init__
+pilas.actores.martian.Disparar.__init__
+pilas.actores.martian.Martian.__init__
+pilas.actores.martian.Saltando.__init__
+pilas.actores.menu.Menu.__init__
+pilas.actores.moneda.Moneda.__init__
+pilas.actores.mono.Mono.__init__
+pilas.actores.nave.Nave.__init__
+pilas.actores.navekids.NaveKids.__init__
+pilas.actores.opcion.Opcion.__init__
+pilas.actores.ovni.Ovni.__init__
+pilas.actores.ovni.Planeta.__init__
+pilas.actores.pacman.Pacman.__init__
+pilas.actores.pausa.Pausa.__init__
+pilas.actores.pelota.Pelota.__init__
+pilas.actores.personajes_rpg.BasePersonajeRPG.__init__
+pilas.actores.personajes_rpg.Calvo.__init__
+pilas.actores.personajes_rpg.Caminando.__init__
+pilas.actores.personajes_rpg.Maton.__init__
+pilas.actores.piedra.Piedra.__init__
+pilas.actores.pingu.Pingu.__init__
+pilas.actores.pizarra.Pizarra.__init__
+pilas.actores.proyectil.Bala.__init__
+pilas.actores.proyectil.Dinamita.__init__
+pilas.actores.proyectil.EstrellaNinja.__init__
+pilas.actores.proyectil.Misil.__init__
+pilas.actores.puntaje.Puntaje.__init__
+pilas.actores.sonido.Sonido.__init__
+pilas.actores.temporizador.Temporizador.__init__
+pilas.actores.texto.Texto.__init__
+pilas.actores.texto_inferior.TextoInferior.__init__
+pilas.actores.torreta.Torreta.__init__
+pilas.actores.tortuga.Tortuga.__init__
+pilas.actores.zanahoria.Zanahoria.__init__
+pilas.asistente.MainWindow.__init__
+pilas.camara.Camara.__init__
+pilas.colisiones.Colisiones.__init__
+pilas.colores.Color.__init__
+pilas.comportamientos.Avanzar.__init__
+pilas.comportamientos.Girar.__init__
+pilas.comportamientos.Proyectil.__init__
+pilas.comportamientos.Saltar.__init__
+pilas.control.Control.__init__
+pilas.demos.piezas.Pieza.__init__
+pilas.demos.piezas.Piezas.__init__
+pilas.depurador.Depurador.__init__
+pilas.depurador.ModoDepurador.__init__
+pilas.depurador.ModoInformacionDeSistema.__init__
+pilas.depurador.ModoPosicion.__init__
+pilas.depurador.ModoWidgetLog.__init__
+pilas.descargar.Descargar.__init__
+pilas.ejemplos.syntax.PythonHighlighter.__init__
+pilas.escena.escena_base.Base.__init__
+pilas.escena.escena_logos.Logos.__init__
+pilas.escena.escena_normal.Aviso.__init__
+pilas.escena.escena_normal.Normal.__init__
+pilas.escena.gestor.Gestor.__init__
+pilas.escenas.Escena.__init__
+pilas.escenas.Normal.__init__
+pilas.estudiante.Estudiante.__init__
+pilas.estudiante.ProxyHabilidades.__init__
+pilas.evento.AttrDict.__init__
+pilas.evento.Evento.__init__
+pilas.evento.ProxyFuncion.__init__
+pilas.evento.ProxyMetodo.__init__
+pilas.fisica.Circulo.__init__
+pilas.fisica.ConstanteDeDistancia.__init__
+pilas.fisica.ConstanteDeMovimiento.__init__
+pilas.fisica.Figura.__init__
+pilas.fisica.Fisica.__init__
+pilas.fisica.FisicaDeshabilitada.__init__
+pilas.fisica.ObjetosContactListener.__init__
+pilas.fisica.Poligono.__init__
+pilas.fisica.Rectangulo.__init__
+pilas.fondos.Color.__init__
+pilas.fondos.Desplazamiento.__init__
+pilas.fondos.Espacio.__init__
+pilas.fondos.Fondo.__init__
+pilas.fondos.Noche.__init__
+pilas.fondos.Nubes.__init__
+pilas.fondos.Pasto.__init__
+pilas.fondos.Plano.__init__
+pilas.fondos.Selva.__init__
+pilas.fondos.Tarde.__init__
+pilas.fondos.Volley.__init__
+pilas.fps.FPS.__init__
+pilas.habilidades.Arrastrable.__init__
+pilas.habilidades.AumentarConRueda.__init__
+pilas.habilidades.ColisionableComoPelota.__init__
+pilas.habilidades.Disparar.__init__
+pilas.habilidades.DispararConClick.__init__
+pilas.habilidades.Habilidad.__init__
+pilas.habilidades.Imitar.__init__
+pilas.habilidades.MirarAlActor.__init__
+pilas.habilidades.MoverseComoCoche.__init__
+pilas.habilidades.MoverseConElTeclado.__init__
+pilas.habilidades.PisaPlataformas.__init__
+pilas.habilidades.PuedeExplotar.__init__
+pilas.habilidades.RebotarComoCaja.__init__
+pilas.habilidades.RebotarComoPelota.__init__
+pilas.habilidades.RotarConMouse.__init__
+pilas.habilidades.SeMantieneEnPantalla.__init__
+pilas.habilidades.SeguirAlMouse.__init__
+pilas.habilidades.SeguirClicks.__init__
+pilas.habilidades.SiempreEnElCentro.__init__
+pilas.interfaz.base_interfaz.BaseInterfaz.__init__
+pilas.interfaz.boton.Boton.__init__
+pilas.interfaz.deslizador.Deslizador.__init__
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__
+pilas.interfaz.lista_seleccion.ListaSeleccion.__init__
+pilas.interfaz.selector.Selector.__init__
+pilas.interpolaciones.AceleracionGradual.__init__
+pilas.interpolaciones.DesaceleracionGradual.__init__
+pilas.interpolaciones.ElasticoFinal.__init__
+pilas.interpolaciones.ElasticoInicial.__init__
+pilas.interpolaciones.Interpolacion.__init__
+pilas.interpolaciones.Lineal.__init__
+pilas.interpolaciones.ReboteFinal.__init__
+pilas.interpolaciones.ReboteInicial.__init__
+pilas.motores.motor_qt.Actor.__init__
+pilas.motores.motor_qt.BaseActor.__init__
+pilas.motores.motor_qt.CanvasWidget.__init__
+pilas.motores.motor_qt.Grilla.__init__
+pilas.motores.motor_qt.Imagen.__init__
+pilas.motores.motor_qt.Lienzo.__init__
+pilas.motores.motor_qt.Motor.__init__
+pilas.motores.motor_qt.MusicaDeshabilitada.__init__
+pilas.motores.motor_qt.MusicaGST.__init__
+pilas.motores.motor_qt.MusicaPhonon.__init__
+pilas.motores.motor_qt.SonidoDeshabilitado.__init__
+pilas.motores.motor_qt.SonidoGST.__init__
+pilas.motores.motor_qt.SonidoPhonon.__init__
+pilas.motores.motor_qt.Superficie.__init__
+pilas.motores.motor_qt.Texto.__init__
+pilas.motores.motor_qt.Ventana.__init__
+pilas.mundo.Mundo.__init__
+pilas.municion.BalaDoble.__init__
+pilas.municion.BalasDoblesDesviadas.__init__
+pilas.municion.MisilDoble.__init__
+pilas.municion.Municion.__init__
+pilas.pytweener.Tween.__init__
+pilas.pytweener.TweenTestObject.__init__
+pilas.pytweener.Tweenable.__init__
+pilas.pytweener.Tweener.__init__
+pilas.tareas.Tarea.__init__
+pilas.tareas.Tareas.__init__
+pilas.widget_log.WidgetLog.__init__" class="py-name" href="#" onclick="return doclink('link-57', '__init__', 'link-7');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt><tt class="py-op">,</tt> <tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"> </tt>
+<a name="ElasticoInicial.__neg__"></a><div id="ElasticoInicial.__neg__-def"><a name="L159"></a><tt class="py-lineno">159</tt> <a class="py-toggle" href="#" id="ElasticoInicial.__neg__-toggle" onclick="return toggle('ElasticoInicial.__neg__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ElasticoInicial-class.html#__neg__">__neg__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ElasticoInicial.__neg__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ElasticoInicial.__neg__-expanded"><a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">        <tt class="py-docstring">"Retorna la interpolaci&#243;n inversa a la original."</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt> <tt class="py-op">=</tt> <tt class="py-name">list</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">)</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt><tt class="py-op">.</tt><tt class="py-name">reverse</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-58" class="py-name"><a title="pilas.interpolaciones.ReboteInicial" class="py-name" href="#" onclick="return doclink('link-58', 'ReboteInicial', 'link-38');">ReboteInicial</a></tt><tt class="py-op">(</tt><tt class="py-name">new_values</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"> </tt>
+<a name="ElasticoInicial.apply"></a><div id="ElasticoInicial.apply-def"><a name="L165"></a><tt class="py-lineno">165</tt> <a class="py-toggle" href="#" id="ElasticoInicial.apply-toggle" onclick="return toggle('ElasticoInicial.apply');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ElasticoInicial-class.html#apply">apply</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">target</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ElasticoInicial.apply-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ElasticoInicial.apply-expanded"><a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt id="link-59" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-59', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-60" class="py-name"><a title="pilas.interpolaciones.AceleracionGradual.apply
+pilas.interpolaciones.DesaceleracionGradual.apply
+pilas.interpolaciones.ElasticoFinal.apply
+pilas.interpolaciones.ElasticoInicial.apply
+pilas.interpolaciones.Interpolacion.apply
+pilas.interpolaciones.Lineal.apply
+pilas.interpolaciones.ReboteFinal.apply
+pilas.interpolaciones.ReboteInicial.apply" class="py-name" href="#" onclick="return doclink('link-60', 'apply', 'link-10');">apply</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">target</tt><tt class="py-op">,</tt> <tt class="py-name">function</tt><tt class="py-op">,</tt> <tt id="link-61" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-61', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-62" class="py-name"><a title="pilas.pytweener" class="py-name" href="#" onclick="return doclink('link-62', 'pytweener', 'link-1');">pytweener</a></tt><tt class="py-op">.</tt><tt id="link-63" class="py-name"><a title="pilas.pytweener.Easing" class="py-name" href="#" onclick="return doclink('link-63', 'Easing', 'link-13');">Easing</a></tt><tt class="py-op">.</tt><tt id="link-64" class="py-name" targets="Class pilas.pytweener.Easing.Elastic=pilas.pytweener.Easing.Elastic-class.html"><a title="pilas.pytweener.Easing.Elastic" class="py-name" href="#" onclick="return doclink('link-64', 'Elastic', 'link-64');">Elastic</a></tt><tt class="py-op">.</tt><tt id="link-65" class="py-name"><a title="pilas.pytweener.Easing.Back.easeIn
+pilas.pytweener.Easing.Bounce.easeIn
+pilas.pytweener.Easing.Circ.easeIn
+pilas.pytweener.Easing.Cubic.easeIn
+pilas.pytweener.Easing.Elastic.easeIn
+pilas.pytweener.Easing.Expo.easeIn
+pilas.pytweener.Easing.Linear.easeIn
+pilas.pytweener.Easing.Quad.easeIn
+pilas.pytweener.Easing.Quart.easeIn
+pilas.pytweener.Easing.Quint.easeIn
+pilas.pytweener.Easing.Sine.easeIn
+pilas.pytweener.Easing.Strong.easeIn" class="py-name" href="#" onclick="return doclink('link-65', 'easeIn', 'link-25');">easeIn</a></tt><tt class="py-op">)</tt>  </tt>
+</div></div><a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line"> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line"> </tt>
+<a name="ElasticoFinal"></a><div id="ElasticoFinal-def"><a name="L169"></a><tt class="py-lineno">169</tt> <a class="py-toggle" href="#" id="ElasticoFinal-toggle" onclick="return toggle('ElasticoFinal');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.interpolaciones.ElasticoFinal-class.html">ElasticoFinal</a><tt class="py-op">(</tt><tt class="py-base-class">Interpolacion</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ElasticoFinal-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ElasticoFinal-expanded"><a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">    <tt class="py-docstring">"Representa una interpolaci&#243;n con rebote."</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line"> </tt>
+<a name="ElasticoFinal.__init__"></a><div id="ElasticoFinal.__init__-def"><a name="L172"></a><tt class="py-lineno">172</tt> <a class="py-toggle" href="#" id="ElasticoFinal.__init__-toggle" onclick="return toggle('ElasticoFinal.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ElasticoFinal-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">,</tt> <tt class="py-param">duration</tt><tt class="py-op">,</tt> <tt class="py-param">delay</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ElasticoFinal.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ElasticoFinal.__init__-expanded"><a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">        <tt id="link-66" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-66', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-67" class="py-name"><a title="pilas.actores.aceituna.Aceituna.__init__
+pilas.actores.actor.Actor.__init__
+pilas.actores.animacion.Animacion.__init__
+pilas.actores.animado.Animado.__init__
+pilas.actores.banana.Banana.__init__
+pilas.actores.bomba.Bomba.__init__
+pilas.actores.boton.Boton.__init__
+pilas.actores.caja.Caja.__init__
+pilas.actores.cooperativista.Caminando.__init__
+pilas.actores.cooperativista.Cooperativista.__init__
+pilas.actores.cooperativista.DecirOk.__init__
+pilas.actores.cursordisparo.CursorDisparo.__init__
+pilas.actores.dialogo.Dialogo.__init__
+pilas.actores.ejes.Ejes.__init__
+pilas.actores.energia.Energia.__init__
+pilas.actores.estrella.Estrella.__init__
+pilas.actores.explosion.Explosion.__init__
+pilas.actores.fantasma.Fantasma.__init__
+pilas.actores.globo.Globo.__init__
+pilas.actores.globoelegir.GloboElegir.__init__
+pilas.actores.humo.Humo.__init__
+pilas.actores.mano.CursorMano.__init__
+pilas.actores.mapa.Mapa.__init__
+pilas.actores.mapatiled.MapaTiled.__init__
+pilas.actores.mapatiled.XmlNode.__init__
+pilas.actores.martian.Caminando.__init__
+pilas.actores.martian.Disparar.__init__
+pilas.actores.martian.Martian.__init__
+pilas.actores.martian.Saltando.__init__
+pilas.actores.menu.Menu.__init__
+pilas.actores.moneda.Moneda.__init__
+pilas.actores.mono.Mono.__init__
+pilas.actores.nave.Nave.__init__
+pilas.actores.navekids.NaveKids.__init__
+pilas.actores.opcion.Opcion.__init__
+pilas.actores.ovni.Ovni.__init__
+pilas.actores.ovni.Planeta.__init__
+pilas.actores.pacman.Pacman.__init__
+pilas.actores.pausa.Pausa.__init__
+pilas.actores.pelota.Pelota.__init__
+pilas.actores.personajes_rpg.BasePersonajeRPG.__init__
+pilas.actores.personajes_rpg.Calvo.__init__
+pilas.actores.personajes_rpg.Caminando.__init__
+pilas.actores.personajes_rpg.Maton.__init__
+pilas.actores.piedra.Piedra.__init__
+pilas.actores.pingu.Pingu.__init__
+pilas.actores.pizarra.Pizarra.__init__
+pilas.actores.proyectil.Bala.__init__
+pilas.actores.proyectil.Dinamita.__init__
+pilas.actores.proyectil.EstrellaNinja.__init__
+pilas.actores.proyectil.Misil.__init__
+pilas.actores.puntaje.Puntaje.__init__
+pilas.actores.sonido.Sonido.__init__
+pilas.actores.temporizador.Temporizador.__init__
+pilas.actores.texto.Texto.__init__
+pilas.actores.texto_inferior.TextoInferior.__init__
+pilas.actores.torreta.Torreta.__init__
+pilas.actores.tortuga.Tortuga.__init__
+pilas.actores.zanahoria.Zanahoria.__init__
+pilas.asistente.MainWindow.__init__
+pilas.camara.Camara.__init__
+pilas.colisiones.Colisiones.__init__
+pilas.colores.Color.__init__
+pilas.comportamientos.Avanzar.__init__
+pilas.comportamientos.Girar.__init__
+pilas.comportamientos.Proyectil.__init__
+pilas.comportamientos.Saltar.__init__
+pilas.control.Control.__init__
+pilas.demos.piezas.Pieza.__init__
+pilas.demos.piezas.Piezas.__init__
+pilas.depurador.Depurador.__init__
+pilas.depurador.ModoDepurador.__init__
+pilas.depurador.ModoInformacionDeSistema.__init__
+pilas.depurador.ModoPosicion.__init__
+pilas.depurador.ModoWidgetLog.__init__
+pilas.descargar.Descargar.__init__
+pilas.ejemplos.syntax.PythonHighlighter.__init__
+pilas.escena.escena_base.Base.__init__
+pilas.escena.escena_logos.Logos.__init__
+pilas.escena.escena_normal.Aviso.__init__
+pilas.escena.escena_normal.Normal.__init__
+pilas.escena.gestor.Gestor.__init__
+pilas.escenas.Escena.__init__
+pilas.escenas.Normal.__init__
+pilas.estudiante.Estudiante.__init__
+pilas.estudiante.ProxyHabilidades.__init__
+pilas.evento.AttrDict.__init__
+pilas.evento.Evento.__init__
+pilas.evento.ProxyFuncion.__init__
+pilas.evento.ProxyMetodo.__init__
+pilas.fisica.Circulo.__init__
+pilas.fisica.ConstanteDeDistancia.__init__
+pilas.fisica.ConstanteDeMovimiento.__init__
+pilas.fisica.Figura.__init__
+pilas.fisica.Fisica.__init__
+pilas.fisica.FisicaDeshabilitada.__init__
+pilas.fisica.ObjetosContactListener.__init__
+pilas.fisica.Poligono.__init__
+pilas.fisica.Rectangulo.__init__
+pilas.fondos.Color.__init__
+pilas.fondos.Desplazamiento.__init__
+pilas.fondos.Espacio.__init__
+pilas.fondos.Fondo.__init__
+pilas.fondos.Noche.__init__
+pilas.fondos.Nubes.__init__
+pilas.fondos.Pasto.__init__
+pilas.fondos.Plano.__init__
+pilas.fondos.Selva.__init__
+pilas.fondos.Tarde.__init__
+pilas.fondos.Volley.__init__
+pilas.fps.FPS.__init__
+pilas.habilidades.Arrastrable.__init__
+pilas.habilidades.AumentarConRueda.__init__
+pilas.habilidades.ColisionableComoPelota.__init__
+pilas.habilidades.Disparar.__init__
+pilas.habilidades.DispararConClick.__init__
+pilas.habilidades.Habilidad.__init__
+pilas.habilidades.Imitar.__init__
+pilas.habilidades.MirarAlActor.__init__
+pilas.habilidades.MoverseComoCoche.__init__
+pilas.habilidades.MoverseConElTeclado.__init__
+pilas.habilidades.PisaPlataformas.__init__
+pilas.habilidades.PuedeExplotar.__init__
+pilas.habilidades.RebotarComoCaja.__init__
+pilas.habilidades.RebotarComoPelota.__init__
+pilas.habilidades.RotarConMouse.__init__
+pilas.habilidades.SeMantieneEnPantalla.__init__
+pilas.habilidades.SeguirAlMouse.__init__
+pilas.habilidades.SeguirClicks.__init__
+pilas.habilidades.SiempreEnElCentro.__init__
+pilas.interfaz.base_interfaz.BaseInterfaz.__init__
+pilas.interfaz.boton.Boton.__init__
+pilas.interfaz.deslizador.Deslizador.__init__
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__
+pilas.interfaz.lista_seleccion.ListaSeleccion.__init__
+pilas.interfaz.selector.Selector.__init__
+pilas.interpolaciones.AceleracionGradual.__init__
+pilas.interpolaciones.DesaceleracionGradual.__init__
+pilas.interpolaciones.ElasticoFinal.__init__
+pilas.interpolaciones.ElasticoInicial.__init__
+pilas.interpolaciones.Interpolacion.__init__
+pilas.interpolaciones.Lineal.__init__
+pilas.interpolaciones.ReboteFinal.__init__
+pilas.interpolaciones.ReboteInicial.__init__
+pilas.motores.motor_qt.Actor.__init__
+pilas.motores.motor_qt.BaseActor.__init__
+pilas.motores.motor_qt.CanvasWidget.__init__
+pilas.motores.motor_qt.Grilla.__init__
+pilas.motores.motor_qt.Imagen.__init__
+pilas.motores.motor_qt.Lienzo.__init__
+pilas.motores.motor_qt.Motor.__init__
+pilas.motores.motor_qt.MusicaDeshabilitada.__init__
+pilas.motores.motor_qt.MusicaGST.__init__
+pilas.motores.motor_qt.MusicaPhonon.__init__
+pilas.motores.motor_qt.SonidoDeshabilitado.__init__
+pilas.motores.motor_qt.SonidoGST.__init__
+pilas.motores.motor_qt.SonidoPhonon.__init__
+pilas.motores.motor_qt.Superficie.__init__
+pilas.motores.motor_qt.Texto.__init__
+pilas.motores.motor_qt.Ventana.__init__
+pilas.mundo.Mundo.__init__
+pilas.municion.BalaDoble.__init__
+pilas.municion.BalasDoblesDesviadas.__init__
+pilas.municion.MisilDoble.__init__
+pilas.municion.Municion.__init__
+pilas.pytweener.Tween.__init__
+pilas.pytweener.TweenTestObject.__init__
+pilas.pytweener.Tweenable.__init__
+pilas.pytweener.Tweener.__init__
+pilas.tareas.Tarea.__init__
+pilas.tareas.Tareas.__init__
+pilas.widget_log.WidgetLog.__init__" class="py-name" href="#" onclick="return doclink('link-67', '__init__', 'link-7');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt><tt class="py-op">,</tt> <tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"> </tt>
+<a name="ElasticoFinal.__neg__"></a><div id="ElasticoFinal.__neg__-def"><a name="L175"></a><tt class="py-lineno">175</tt> <a class="py-toggle" href="#" id="ElasticoFinal.__neg__-toggle" onclick="return toggle('ElasticoFinal.__neg__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ElasticoFinal-class.html#__neg__">__neg__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ElasticoFinal.__neg__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ElasticoFinal.__neg__-expanded"><a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-docstring">"Retorna la interpolaci&#243;n inversa a la original."</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt> <tt class="py-op">=</tt> <tt class="py-name">list</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">)</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-name">new_values</tt><tt class="py-op">.</tt><tt class="py-name">reverse</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-68" class="py-name"><a title="pilas.interpolaciones.ReboteInicial" class="py-name" href="#" onclick="return doclink('link-68', 'ReboteInicial', 'link-38');">ReboteInicial</a></tt><tt class="py-op">(</tt><tt class="py-name">new_values</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">duration</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line"> </tt>
+<a name="ElasticoFinal.apply"></a><div id="ElasticoFinal.apply-def"><a name="L181"></a><tt class="py-lineno">181</tt> <a class="py-toggle" href="#" id="ElasticoFinal.apply-toggle" onclick="return toggle('ElasticoFinal.apply');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.interpolaciones.ElasticoFinal-class.html#apply">apply</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">target</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ElasticoFinal.apply-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ElasticoFinal.apply-expanded"><a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt id="link-69" class="py-name"><a title="pilas.interpolaciones.Interpolacion" class="py-name" href="#" onclick="return doclink('link-69', 'Interpolacion', 'link-6');">Interpolacion</a></tt><tt class="py-op">.</tt><tt id="link-70" class="py-name"><a title="pilas.interpolaciones.AceleracionGradual.apply
+pilas.interpolaciones.DesaceleracionGradual.apply
+pilas.interpolaciones.ElasticoFinal.apply
+pilas.interpolaciones.ElasticoInicial.apply
+pilas.interpolaciones.Interpolacion.apply
+pilas.interpolaciones.Lineal.apply
+pilas.interpolaciones.ReboteFinal.apply
+pilas.interpolaciones.ReboteInicial.apply" class="py-name" href="#" onclick="return doclink('link-70', 'apply', 'link-10');">apply</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">target</tt><tt class="py-op">,</tt> <tt class="py-name">function</tt><tt class="py-op">,</tt> <tt id="link-71" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-71', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-72" class="py-name"><a title="pilas.pytweener" class="py-name" href="#" onclick="return doclink('link-72', 'pytweener', 'link-1');">pytweener</a></tt><tt class="py-op">.</tt><tt id="link-73" class="py-name"><a title="pilas.pytweener.Easing" class="py-name" href="#" onclick="return doclink('link-73', 'Easing', 'link-13');">Easing</a></tt><tt class="py-op">.</tt><tt id="link-74" class="py-name"><a title="pilas.pytweener.Easing.Elastic" class="py-name" href="#" onclick="return doclink('link-74', 'Elastic', 'link-64');">Elastic</a></tt><tt class="py-op">.</tt><tt id="link-75" class="py-name"><a title="pilas.pytweener.Easing.Back.easeOut
+pilas.pytweener.Easing.Bounce.easeOut
+pilas.pytweener.Easing.Circ.easeOut
+pilas.pytweener.Easing.Cubic.easeOut
+pilas.pytweener.Easing.Elastic.easeOut
+pilas.pytweener.Easing.Expo.easeOut
+pilas.pytweener.Easing.Linear.easeOut
+pilas.pytweener.Easing.Quad.easeOut
+pilas.pytweener.Easing.Quart.easeOut
+pilas.pytweener.Easing.Quint.easeOut
+pilas.pytweener.Easing.Sine.easeOut
+pilas.pytweener.Easing.Strong.easeOut" class="py-name" href="#" onclick="return doclink('link-75', 'easeOut', 'link-35');">easeOut</a></tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:49 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

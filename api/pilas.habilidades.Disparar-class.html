@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.habilidades.Disparar</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        <a href="pilas.habilidades-module.html">Module&nbsp;habilidades</a> ::
+        Class&nbsp;Disparar
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.habilidades.Disparar-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Disparar</h1><p class="nomargin-top"><span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="class_hierarchy_for_disparar_2" name="class_hierarchy_for_disparar_2">
+<area shape="rect" id="node1" href="pilas.habilidades.Disparar-class.html" title="Disparar" alt="" coords="33,65,103,93"/>
+<area shape="rect" id="node2" href="pilas.habilidades.DispararConClick-class.html" title="DispararConClick" alt="" coords="5,123,131,151"/>
+<area shape="rect" id="node3" href="pilas.habilidades.Habilidad-class.html" title="Habilidad" alt="" coords="31,6,105,34"/>
+</map>
+  <img src="class_hierarchy_for_disparar_2.gif" alt='' usemap="#class_hierarchy_for_disparar_2" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+Establece la habilidad de poder disparar un Actor o un objeto de tipo
+pilas.municion.Municion.
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.habilidades.Disparar-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">receptor</span>,
+        <span class="summary-sig-arg">municion</span>=<span class="summary-sig-default">&lt;class 'pilas.actores.proyectil.Bala'&gt;</span>,
+        <span class="summary-sig-arg">parametros_municion</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="summary-sig-arg">grupo_enemigos</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>,
+        <span class="summary-sig-arg">cuando_elimina_enemigo</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">frecuencia_de_disparo</span>=<span class="summary-sig-default">10</span>,
+        <span class="summary-sig-arg">angulo_salida_disparo</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">offset_disparo</span>=<span class="summary-sig-default"><code class="variable-group">(</code>0<code class="variable-op">, </code>0<code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">offset_origen_actor</span>=<span class="summary-sig-default"><code class="variable-group">(</code>0<code class="variable-op">, </code>0<code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">cuando_dispara</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">escala</span>=<span class="summary-sig-default">1</span>)</span><br />
+      Construye la habilidad.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_frecuencia_de_disparo"></a><span class="summary-sig-name">set_frecuencia_de_disparo</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">valor</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.set_frecuencia_de_disparo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_frecuencia_de_disparo"></a><span class="summary-sig-name">get_frecuencia_de_disparo</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.get_frecuencia_de_disparo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_municion"></a><span class="summary-sig-name">set_municion</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">valor</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.set_municion">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_municion"></a><span class="summary-sig-name">get_municion</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.get_municion">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="definir_colision"></a><span class="summary-sig-name">definir_colision</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">grupo_enemigos</span>,
+        <span class="summary-sig-arg">cuando_elimina_enemigo</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.definir_colision">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.habilidades.Disparar-class.html#actualizar" class="summary-sig-name">actualizar</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.actualizar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_agregar_disparo"></a><span class="summary-sig-name">_agregar_disparo</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">proyectil</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar._agregar_disparo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_eliminar_disparos_innecesarios"></a><span class="summary-sig-name">_eliminar_disparos_innecesarios</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar._eliminar_disparos_innecesarios">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_desplazar_proyectil"></a><span class="summary-sig-name">_desplazar_proyectil</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">proyectil</span>,
+        <span class="summary-sig-arg">offset_x</span>,
+        <span class="summary-sig-arg">offset_y</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar._desplazar_proyectil">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="disparar"></a><span class="summary-sig-name">disparar</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.disparar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.habilidades.Disparar-class.html#eliminar" class="summary-sig-name">eliminar</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.eliminar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="pulsa_disparar"></a><span class="summary-sig-name">pulsa_disparar</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.pulsa_disparar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.habilidades.Disparar-class.html#frecuencia_de_disparo" class="summary-name">frecuencia_de_disparo</a><br />
+      N&#250;mero de disparos por segundo.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.habilidades.Disparar-class.html#municion" class="summary-name">municion</a><br />
+      Establece el tipo de municion que dispara.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">receptor</span>,
+        <span class="sig-arg">municion</span>=<span class="sig-default">&lt;class 'pilas.actores.proyectil.Bala'&gt;</span>,
+        <span class="sig-arg">parametros_municion</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="sig-arg">grupo_enemigos</span>=<span class="sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>,
+        <span class="sig-arg">cuando_elimina_enemigo</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">frecuencia_de_disparo</span>=<span class="sig-default">10</span>,
+        <span class="sig-arg">angulo_salida_disparo</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">offset_disparo</span>=<span class="sig-default"><code class="variable-group">(</code>0<code class="variable-op">, </code>0<code class="variable-group">)</code></span>,
+        <span class="sig-arg">offset_origen_actor</span>=<span class="sig-default"><code class="variable-group">(</code>0<code class="variable-op">, </code>0<code class="variable-group">)</code></span>,
+        <span class="sig-arg">cuando_dispara</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">escala</span>=<span class="sig-default">1</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Construye la habilidad.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>mono = pilas.actores.Mono()
+<span class="py-prompt">&gt;&gt;&gt; </span>mono.aprender(pilas.habilidades.Disparar,
+<span class="py-prompt">&gt;&gt;&gt; </span>              municion=pilas.actores.proyectil.Bala,
+<span class="py-prompt">&gt;&gt;&gt; </span>              grupo_enemigos=enemigos,
+<span class="py-prompt">&gt;&gt;&gt; </span>              cuando_elimina_enemigo=eliminar_enemigo)</pre>
+<!--  -->
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>municion</code></strong> - Municion o Actor que se disparar&#225;.</li>
+        <li><strong class="pname"><code>grupo_enemigos</code></strong> - Actores que son considerados enemigos y con los que colisionar&#225; la munici&#243;n disparada.</li>
+        <li><strong class="pname"><code>cuando_elimina_enemigo</code></strong> - M&#233;todo que ser&#225; llamado cuando se produzca un impacto con un enemigo.</li>
+        <li><strong class="pname"><code>frecuencia_de_disparo</code></strong> - El n&#250;mero de disparos por segundo que realizar&#225;.</li>
+        <li><strong class="pname"><code>angulo_salida_disparo</code></strong> - Especifica el angulo por donde saldr&#225; el disparo efectuado por el Actor.</li>
+        <li><strong class="pname"><code>offset_disparo</code></strong> - Separaci&#243;n en pixeles (x,y) del disparo con respecto al centro del Actor.</li>
+        <li><strong class="pname"><code>offset_origen_actor</code></strong> - Si el Actor no tiene su origen en el centro, con este parametro podremos colocar correctamente el disparo.</li>
+        <li><strong class="pname"><code>cuando_dispara</code></strong> - Metodo que ser&#225; llamado cuando se produzca un disparo.</li>
+        <li><strong class="pname"><code>escala</code></strong> - Escala de los actores que ser&#225;n disparados.</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="actualizar"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">actualizar</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.actualizar">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pilas.habilidades.Habilidad-class.html#actualizar">Habilidad.actualizar</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="eliminar"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">eliminar</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.habilidades-pysrc.html#Disparar.eliminar">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="pilas.habilidades.Habilidad-class.html#eliminar">Habilidad.eliminar</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Property Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-PropertyDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="frecuencia_de_disparo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">frecuencia_de_disparo</h3>
+  N&#250;mero de disparos por segundo.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.habilidades.Disparar-class.html#get_frecuencia_de_disparo" class="summary-sig-name">get_frecuencia_de_disparo</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.habilidades.Disparar-class.html#set_frecuencia_de_disparo" class="summary-sig-name">set_frecuencia_de_disparo</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">valor</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="municion"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">municion</h3>
+  Establece el tipo de municion que dispara.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.habilidades.Disparar-class.html#get_municion" class="summary-sig-name">get_municion</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.habilidades.Disparar-class.html#set_municion" class="summary-sig-name">set_municion</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">valor</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:43 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

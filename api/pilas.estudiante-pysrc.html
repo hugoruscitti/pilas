@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.estudiante</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        Module&nbsp;estudiante
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.estudiante-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.estudiante-module.html">Module pilas.estudiante</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># Pilas engine - A video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2010 - Hugo Ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># Website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-0', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module pilas.actores.utils=pilas.actores.utils-module.html,Module pilas.utils=pilas.utils-module.html"><a title="pilas.actores.utils
+pilas.utils" class="py-name" href="#" onclick="return doclink('link-1', 'utils', 'link-1');">utils</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante"></a><div id="Estudiante-def"><a name="L11"></a><tt class="py-lineno"> 11</tt> <a class="py-toggle" href="#" id="Estudiante-toggle" onclick="return toggle('Estudiante');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html">Estudiante</a><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Estudiante-expanded"><a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line">    <tt class="py-docstring">"""Componente que permite a los actores aprender habilidades o realizar comportamientos."""</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.__init__"></a><div id="Estudiante.__init__-def"><a name="L14"></a><tt class="py-lineno"> 14</tt> <a class="py-toggle" href="#" id="Estudiante.__init__-toggle" onclick="return toggle('Estudiante.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.__init__-expanded"><a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">        <tt class="py-docstring">"""Inicializa el componente."""</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_habilidades</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">comportamiento_actual</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Module pilas.comportamientos=pilas.comportamientos-module.html"><a title="pilas.comportamientos" class="py-name" href="#" onclick="return doclink('link-2', 'comportamientos', 'link-2');">comportamientos</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">repetir_comportamientos_por_siempre</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Module pilas.habilidades=pilas.habilidades-module.html"><a title="pilas.habilidades" class="py-name" href="#" onclick="return doclink('link-3', 'habilidades', 'link-3');">habilidades</a></tt> <tt class="py-op">=</tt> <tt id="link-4" class="py-name" targets="Class pilas.estudiante.ProxyHabilidades=pilas.estudiante.ProxyHabilidades-class.html"><a title="pilas.estudiante.ProxyHabilidades" class="py-name" href="#" onclick="return doclink('link-4', 'ProxyHabilidades', 'link-4');">ProxyHabilidades</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_habilidades</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.aprender"></a><div id="Estudiante.aprender-def"><a name="L22"></a><tt class="py-lineno"> 22</tt> <a class="py-toggle" href="#" id="Estudiante.aprender-toggle" onclick="return toggle('Estudiante.aprender');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#aprender">aprender</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">classname</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">k</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">w</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.aprender-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.aprender-expanded"><a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-docstring">"""Comienza a realizar una habilidad indicada por parametros.</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">        :param classname: Referencia a la clase que representa la habilidad.</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method pilas.estudiante.Estudiante.tiene_habilidad()=pilas.estudiante.Estudiante-class.html#tiene_habilidad"><a title="pilas.estudiante.Estudiante.tiene_habilidad" class="py-name" href="#" onclick="return doclink('link-5', 'tiene_habilidad', 'link-5');">tiene_habilidad</a></tt><tt class="py-op">(</tt><tt class="py-name">classname</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method pilas.estudiante.Estudiante.eliminar_habilidad()=pilas.estudiante.Estudiante-class.html#eliminar_habilidad"><a title="pilas.estudiante.Estudiante.eliminar_habilidad" class="py-name" href="#" onclick="return doclink('link-6', 'eliminar_habilidad', 'link-6');">eliminar_habilidad</a></tt><tt class="py-op">(</tt><tt class="py-name">classname</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method pilas.estudiante.Estudiante.agregar_habilidad()=pilas.estudiante.Estudiante-class.html#agregar_habilidad"><a title="pilas.estudiante.Estudiante.agregar_habilidad" class="py-name" href="#" onclick="return doclink('link-7', 'agregar_habilidad', 'link-7');">agregar_habilidad</a></tt><tt class="py-op">(</tt><tt class="py-name">classname</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt id="link-8" class="py-name" targets="Variable pilas.simbolos.k=pilas.simbolos-module.html#k"><a title="pilas.simbolos.k" class="py-name" href="#" onclick="return doclink('link-8', 'k', 'link-8');">k</a></tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt id="link-9" class="py-name" targets="Variable pilas.simbolos.w=pilas.simbolos-module.html#w"><a title="pilas.simbolos.w" class="py-name" href="#" onclick="return doclink('link-9', 'w', 'link-9');">w</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="pilas.estudiante.Estudiante.agregar_habilidad" class="py-name" href="#" onclick="return doclink('link-10', 'agregar_habilidad', 'link-7');">agregar_habilidad</a></tt><tt class="py-op">(</tt><tt class="py-name">classname</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt id="link-11" class="py-name"><a title="pilas.simbolos.k" class="py-name" href="#" onclick="return doclink('link-11', 'k', 'link-8');">k</a></tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt id="link-12" class="py-name"><a title="pilas.simbolos.w" class="py-name" href="#" onclick="return doclink('link-12', 'w', 'link-9');">w</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.agregar_habilidad"></a><div id="Estudiante.agregar_habilidad-def"><a name="L33"></a><tt class="py-lineno"> 33</tt> <a class="py-toggle" href="#" id="Estudiante.agregar_habilidad-toggle" onclick="return toggle('Estudiante.agregar_habilidad');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#agregar_habilidad">agregar_habilidad</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">classname</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">k</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">w</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.agregar_habilidad-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.agregar_habilidad-expanded"><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-docstring">"""Agrega una habilidad a la lista de cosas que puede hacer un actor.</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">        :param classname: Referencia a la clase que representa la habilidad.</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">objeto_habilidad</tt> <tt class="py-op">=</tt> <tt class="py-name">classname</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt id="link-13" class="py-name"><a title="pilas.simbolos.k" class="py-name" href="#" onclick="return doclink('link-13', 'k', 'link-8');">k</a></tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt id="link-14" class="py-name"><a title="pilas.simbolos.w" class="py-name" href="#" onclick="return doclink('link-14', 'w', 'link-9');">w</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_habilidades</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">objeto_habilidad</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.eliminar_habilidad"></a><div id="Estudiante.eliminar_habilidad-def"><a name="L41"></a><tt class="py-lineno"> 41</tt> <a class="py-toggle" href="#" id="Estudiante.eliminar_habilidad-toggle" onclick="return toggle('Estudiante.eliminar_habilidad');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#eliminar_habilidad">eliminar_habilidad</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">classname</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.eliminar_habilidad-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.eliminar_habilidad-expanded"><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-docstring">""" Elimina una habilidad asociada a un Actor.</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">        :param classname: Referencia a la clase que representa la habilidad.</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">habilidad</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method pilas.estudiante.Estudiante.obtener_habilidad()=pilas.estudiante.Estudiante-class.html#obtener_habilidad"><a title="pilas.estudiante.Estudiante.obtener_habilidad" class="py-name" href="#" onclick="return doclink('link-15', 'obtener_habilidad', 'link-15');">obtener_habilidad</a></tt><tt class="py-op">(</tt><tt class="py-name">classname</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">habilidad</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_habilidades</tt><tt class="py-op">.</tt><tt class="py-name">remove</tt><tt class="py-op">(</tt><tt class="py-name">habilidad</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.tiene_habilidad"></a><div id="Estudiante.tiene_habilidad-def"><a name="L51"></a><tt class="py-lineno"> 51</tt> <a class="py-toggle" href="#" id="Estudiante.tiene_habilidad-toggle" onclick="return toggle('Estudiante.tiene_habilidad');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#tiene_habilidad">tiene_habilidad</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">classname</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.tiene_habilidad-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.tiene_habilidad-expanded"><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-docstring">"""Comprueba si el actor ha aprendido la habilidad indicada.</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">        :param classname: Referencia a la clase que representa la habilidad.</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-name">habilidades_actuales</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">habilidad</tt><tt class="py-op">.</tt><tt class="py-name">__class__</tt> <tt class="py-keyword">for</tt> <tt class="py-name">habilidad</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_habilidades</tt><tt class="py-op">]</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">classname</tt> <tt class="py-keyword">in</tt> <tt class="py-name">habilidades_actuales</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.tiene_comportamiento"></a><div id="Estudiante.tiene_comportamiento-def"><a name="L59"></a><tt class="py-lineno"> 59</tt> <a class="py-toggle" href="#" id="Estudiante.tiene_comportamiento-toggle" onclick="return toggle('Estudiante.tiene_comportamiento');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#tiene_comportamiento">tiene_comportamiento</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">classname</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.tiene_comportamiento-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.tiene_comportamiento-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-docstring">"""Comprueba si el actor tiene el comportamiento indicado.</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">        :param classname: Referencia a la clase que representa el comportamiento.</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-name">comportamientos_actuales</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">comportamiento</tt><tt class="py-op">.</tt><tt class="py-name">__class__</tt> <tt class="py-keyword">for</tt> <tt class="py-name">comportamiento</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="pilas.comportamientos" class="py-name" href="#" onclick="return doclink('link-16', 'comportamientos', 'link-2');">comportamientos</a></tt><tt class="py-op">]</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">classname</tt> <tt class="py-keyword">in</tt> <tt class="py-name">comportamientos_actuales</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.obtener_habilidad"></a><div id="Estudiante.obtener_habilidad-def"><a name="L67"></a><tt class="py-lineno"> 67</tt> <a class="py-toggle" href="#" id="Estudiante.obtener_habilidad-toggle" onclick="return toggle('Estudiante.obtener_habilidad');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#obtener_habilidad">obtener_habilidad</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">classname</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.obtener_habilidad-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.obtener_habilidad-expanded"><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-docstring">"""Obtiene la habilidad asociada a un Actor.</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">        :param classname: Referencia a la clase que representa la habilidad.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        :return: Devuelve None si no se encontr&#243;.</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-name">su_habilidad</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">habilidad</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_habilidades</tt><tt class="py-op">:</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">habilidad</tt><tt class="py-op">.</tt><tt class="py-name">__class__</tt> <tt class="py-op">==</tt> <tt class="py-name">classname</tt><tt class="py-op">:</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">                <tt class="py-name">su_habilidad</tt> <tt class="py-op">=</tt> <tt class="py-name">habilidad</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">su_habilidad</tt> </tt>
+</div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.hacer_luego"></a><div id="Estudiante.hacer_luego-def"><a name="L82"></a><tt class="py-lineno"> 82</tt> <a class="py-toggle" href="#" id="Estudiante.hacer_luego-toggle" onclick="return toggle('Estudiante.hacer_luego');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#hacer_luego">hacer_luego</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">comportamiento</tt><tt class="py-op">,</tt> <tt class="py-param">repetir_por_siempre</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.hacer_luego-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.hacer_luego-expanded"><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-docstring">"""Define un nuevo comportamiento para realizar al final.</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">        Los actores pueden tener una cadena de comportamientos, este</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">        metodo agrega el comportamiento al final de la cadena.</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring">        :param comportamiento: Referencia al comportamiento.</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring">        :param repetir_por_siempre: Si el comportamiento se volver&#225; a ejecutar luego de terminar.</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="pilas.comportamientos" class="py-name" href="#" onclick="return doclink('link-17', 'comportamientos', 'link-2');">comportamientos</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">comportamiento</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">repetir_comportamientos_por_siempre</tt> <tt class="py-op">=</tt> <tt class="py-name">repetir_por_siempre</tt> </tt>
+</div><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.hacer"></a><div id="Estudiante.hacer-def"><a name="L95"></a><tt class="py-lineno"> 95</tt> <a class="py-toggle" href="#" id="Estudiante.hacer-toggle" onclick="return toggle('Estudiante.hacer');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#hacer">hacer</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">comportamiento</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.hacer-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.hacer-expanded"><a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-docstring">"""Define el comportamiento para el actor de manera inmediata.</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-docstring">        :param comportamiento: Referencia al comportamiento a realizar.</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="pilas.comportamientos" class="py-name" href="#" onclick="return doclink('link-18', 'comportamientos', 'link-2');">comportamientos</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">comportamiento</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method pilas.estudiante.Estudiante._adoptar_el_siguiente_comportamiento()=pilas.estudiante.Estudiante-class.html#_adoptar_el_siguiente_comportamiento"><a title="pilas.estudiante.Estudiante._adoptar_el_siguiente_comportamiento" class="py-name" href="#" onclick="return doclink('link-19', '_adoptar_el_siguiente_comportamiento', 'link-19');">_adoptar_el_siguiente_comportamiento</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.eliminar_habilidades"></a><div id="Estudiante.eliminar_habilidades-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="Estudiante.eliminar_habilidades-toggle" onclick="return toggle('Estudiante.eliminar_habilidades');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#eliminar_habilidades">eliminar_habilidades</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.eliminar_habilidades-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.eliminar_habilidades-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-docstring">"Elimina todas las habilidades asociadas al actor."</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-20" class="py-name" targets="Variable pilas.simbolos.h=pilas.simbolos-module.html#h"><a title="pilas.simbolos.h" class="py-name" href="#" onclick="return doclink('link-20', 'h', 'link-20');">h</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_habilidades</tt><tt class="py-op">:</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt id="link-21" class="py-name"><a title="pilas.simbolos.h" class="py-name" href="#" onclick="return doclink('link-21', 'h', 'link-20');">h</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method pilas.actores.actor.Actor.eliminar()=pilas.actores.actor.Actor-class.html#eliminar,Method pilas.actores.globo.Globo.eliminar()=pilas.actores.globo.Globo-class.html#eliminar,Method pilas.actores.texto_inferior.TextoInferior.eliminar()=pilas.actores.texto_inferior.TextoInferior-class.html#eliminar,Method pilas.fisica.ConstanteDeDistancia.eliminar()=pilas.fisica.ConstanteDeDistancia-class.html#eliminar,Method pilas.fisica.ConstanteDeMovimiento.eliminar()=pilas.fisica.ConstanteDeMovimiento-class.html#eliminar,Method pilas.fisica.Figura.eliminar()=pilas.fisica.Figura-class.html#eliminar,Method pilas.habilidades.ColisionableComoPelota.eliminar()=pilas.habilidades.ColisionableComoPelota-class.html#eliminar,Method pilas.habilidades.Disparar.eliminar()=pilas.habilidades.Disparar-class.html#eliminar,Method pilas.habilidades.Habilidad.eliminar()=pilas.habilidades.Habilidad-class.html#eliminar,Method pilas.habilidades.Imitar.eliminar()=pilas.habilidades.Imitar-class.html#eliminar,Method pilas.habilidades.PisaPlataformas.eliminar()=pilas.habilidades.PisaPlataformas-class.html#eliminar,Method pilas.habilidades.RebotarComoCaja.eliminar()=pilas.habilidades.RebotarComoCaja-class.html#eliminar,Method pilas.habilidades.RebotarComoPelota.eliminar()=pilas.habilidades.RebotarComoPelota-class.html#eliminar,Method pilas.interfaz.deslizador.Deslizador.eliminar()=pilas.interfaz.deslizador.Deslizador-class.html#eliminar,Method pilas.tareas.Tarea.eliminar()=pilas.tareas.Tarea-class.html#eliminar"><a title="pilas.actores.actor.Actor.eliminar
+pilas.actores.globo.Globo.eliminar
+pilas.actores.texto_inferior.TextoInferior.eliminar
+pilas.fisica.ConstanteDeDistancia.eliminar
+pilas.fisica.ConstanteDeMovimiento.eliminar
+pilas.fisica.Figura.eliminar
+pilas.habilidades.ColisionableComoPelota.eliminar
+pilas.habilidades.Disparar.eliminar
+pilas.habilidades.Habilidad.eliminar
+pilas.habilidades.Imitar.eliminar
+pilas.habilidades.PisaPlataformas.eliminar
+pilas.habilidades.RebotarComoCaja.eliminar
+pilas.habilidades.RebotarComoPelota.eliminar
+pilas.interfaz.deslizador.Deslizador.eliminar
+pilas.tareas.Tarea.eliminar" class="py-name" href="#" onclick="return doclink('link-22', 'eliminar', 'link-22');">eliminar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.eliminar_comportamientos"></a><div id="Estudiante.eliminar_comportamientos-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="Estudiante.eliminar_comportamientos-toggle" onclick="return toggle('Estudiante.eliminar_comportamientos');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#eliminar_comportamientos">eliminar_comportamientos</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.eliminar_comportamientos-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.eliminar_comportamientos-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-docstring">"Elimina todos los comportamientos que tiene que hacer el actor."</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-23" class="py-name" targets="Variable pilas.simbolos.c=pilas.simbolos-module.html#c"><a title="pilas.simbolos.c" class="py-name" href="#" onclick="return doclink('link-23', 'c', 'link-23');">c</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="pilas.comportamientos" class="py-name" href="#" onclick="return doclink('link-24', 'comportamientos', 'link-2');">comportamientos</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">            <tt id="link-25" class="py-name"><a title="pilas.simbolos.c" class="py-name" href="#" onclick="return doclink('link-25', 'c', 'link-23');">c</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="pilas.actores.actor.Actor.eliminar
+pilas.actores.globo.Globo.eliminar
+pilas.actores.texto_inferior.TextoInferior.eliminar
+pilas.fisica.ConstanteDeDistancia.eliminar
+pilas.fisica.ConstanteDeMovimiento.eliminar
+pilas.fisica.Figura.eliminar
+pilas.habilidades.ColisionableComoPelota.eliminar
+pilas.habilidades.Disparar.eliminar
+pilas.habilidades.Habilidad.eliminar
+pilas.habilidades.Imitar.eliminar
+pilas.habilidades.PisaPlataformas.eliminar
+pilas.habilidades.RebotarComoCaja.eliminar
+pilas.habilidades.RebotarComoPelota.eliminar
+pilas.interfaz.deslizador.Deslizador.eliminar
+pilas.tareas.Tarea.eliminar" class="py-name" href="#" onclick="return doclink('link-26', 'eliminar', 'link-22');">eliminar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.actualizar_habilidades"></a><div id="Estudiante.actualizar_habilidades-def"><a name="L113"></a><tt class="py-lineno">113</tt> <a class="py-toggle" href="#" id="Estudiante.actualizar_habilidades-toggle" onclick="return toggle('Estudiante.actualizar_habilidades');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#actualizar_habilidades">actualizar_habilidades</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.actualizar_habilidades-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.actualizar_habilidades-expanded"><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-docstring">"Realiza una actualizaci&#243;n sobre todas las habilidades."</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-27" class="py-name"><a title="pilas.simbolos.h" class="py-name" href="#" onclick="return doclink('link-27', 'h', 'link-20');">h</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_habilidades</tt><tt class="py-op">:</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">            <tt id="link-28" class="py-name"><a title="pilas.simbolos.h" class="py-name" href="#" onclick="return doclink('link-28', 'h', 'link-20');">h</a></tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method pilas.actores.actor.Actor.actualizar()=pilas.actores.actor.Actor-class.html#actualizar,Method pilas.actores.animacion.Animacion.actualizar()=pilas.actores.animacion.Animacion-class.html#actualizar,Method pilas.actores.cooperativista.Caminando.actualizar()=pilas.actores.cooperativista.Caminando-class.html#actualizar,Method pilas.actores.cooperativista.DecirOk.actualizar()=pilas.actores.cooperativista.DecirOk-class.html#actualizar,Method pilas.actores.cooperativista.Esperando.actualizar()=pilas.actores.cooperativista.Esperando-class.html#actualizar,Method pilas.actores.energia.Energia.actualizar()=pilas.actores.energia.Energia-class.html#actualizar,Method pilas.actores.fantasma.Fantasma.actualizar()=pilas.actores.fantasma.Fantasma-class.html#actualizar,Method pilas.actores.martian.Caminando.actualizar()=pilas.actores.martian.Caminando-class.html#actualizar,Method pilas.actores.martian.Disparar.actualizar()=pilas.actores.martian.Disparar-class.html#actualizar,Method pilas.actores.martian.Esperando.actualizar()=pilas.actores.martian.Esperando-class.html#actualizar,Method pilas.actores.martian.Martian.actualizar()=pilas.actores.martian.Martian-class.html#actualizar,Method pilas.actores.martian.Saltando.actualizar()=pilas.actores.martian.Saltando-class.html#actualizar,Method pilas.actores.menu.Menu.actualizar()=pilas.actores.menu.Menu-class.html#actualizar,Method pilas.actores.nave.Nave.actualizar()=pilas.actores.nave.Nave-class.html#actualizar,Method pilas.actores.navekids.NaveKids.actualizar()=pilas.actores.navekids.NaveKids-class.html#actualizar,Method pilas.actores.ovni.Ovni.actualizar()=pilas.actores.ovni.Ovni-class.html#actualizar,Method pilas.actores.ovni.Planeta.actualizar()=pilas.actores.ovni.Planeta-class.html#actualizar,Method pilas.actores.pacman.Pacman.actualizar()=pilas.actores.pacman.Pacman-class.html#actualizar,Method pilas.actores.personajes_rpg.BasePersonajeRPG.actualizar()=pilas.actores.personajes_rpg.BasePersonajeRPG-class.html#actualizar,Method pilas.actores.personajes_rpg.Caminando.actualizar()=pilas.actores.personajes_rpg.Caminando-class.html#actualizar,Method pilas.actores.personajes_rpg.Esperando.actualizar()=pilas.actores.personajes_rpg.Esperando-class.html#actualizar,Method pilas.actores.piedra.Piedra.actualizar()=pilas.actores.piedra.Piedra-class.html#actualizar,Method pilas.actores.pingu.Caminando.actualizar()=pilas.actores.pingu.Caminando-class.html#actualizar,Method pilas.actores.pingu.Esperando.actualizar()=pilas.actores.pingu.Esperando-class.html#actualizar,Method pilas.actores.pingu.Saltando.actualizar()=pilas.actores.pingu.Saltando-class.html#actualizar,Method pilas.actores.proyectil.Dinamita.actualizar()=pilas.actores.proyectil.Dinamita-class.html#actualizar,Method pilas.actores.proyectil.EstrellaNinja.actualizar()=pilas.actores.proyectil.EstrellaNinja-class.html#actualizar,Method pilas.actores.tortuga.Tortuga.actualizar()=pilas.actores.tortuga.Tortuga-class.html#actualizar,Method pilas.comportamientos.Avanzar.actualizar()=pilas.comportamientos.Avanzar-class.html#actualizar,Method pilas.comportamientos.Comportamiento.actualizar()=pilas.comportamientos.Comportamiento-class.html#actualizar,Method pilas.comportamientos.Girar.actualizar()=pilas.comportamientos.Girar-class.html#actualizar,Method pilas.comportamientos.Proyectil.actualizar()=pilas.comportamientos.Proyectil-class.html#actualizar,Method pilas.comportamientos.Saltar.actualizar()=pilas.comportamientos.Saltar-class.html#actualizar,Method pilas.escena.escena_normal.Aviso.actualizar()=pilas.escena.escena_normal.Aviso-class.html#actualizar,Method pilas.escena.gestor.Gestor.actualizar()=pilas.escena.gestor.Gestor-class.html#actualizar,Variable pilas.evento.ProxyEventos.actualizar=pilas.evento.ProxyEventos-class.html#actualizar,Method pilas.fisica.Fisica.actualizar()=pilas.fisica.Fisica-class.html#actualizar,Method pilas.fisica.FisicaDeshabilitada.actualizar()=pilas.fisica.FisicaDeshabilitada-class.html#actualizar,Method pilas.fondos.Desplazamiento.actualizar()=pilas.fondos.Desplazamiento-class.html#actualizar,Method pilas.fps.FPS.actualizar()=pilas.fps.FPS-class.html#actualizar,Method pilas.habilidades.ColisionableComoPelota.actualizar()=pilas.habilidades.ColisionableComoPelota-class.html#actualizar,Method pilas.habilidades.Disparar.actualizar()=pilas.habilidades.Disparar-class.html#actualizar,Method pilas.habilidades.Habilidad.actualizar()=pilas.habilidades.Habilidad-class.html#actualizar,Method pilas.habilidades.Imitar.actualizar()=pilas.habilidades.Imitar-class.html#actualizar,Method pilas.habilidades.PisaPlataformas.actualizar()=pilas.habilidades.PisaPlataformas-class.html#actualizar,Method pilas.habilidades.SeMantieneEnPantalla.actualizar()=pilas.habilidades.SeMantieneEnPantalla-class.html#actualizar,Method pilas.habilidades.SiempreEnElCentro.actualizar()=pilas.habilidades.SiempreEnElCentro-class.html#actualizar,Method pilas.tareas.Tareas.actualizar()=pilas.tareas.Tareas-class.html#actualizar"><a title="pilas.actores.actor.Actor.actualizar
+pilas.actores.animacion.Animacion.actualizar
+pilas.actores.cooperativista.Caminando.actualizar
+pilas.actores.cooperativista.DecirOk.actualizar
+pilas.actores.cooperativista.Esperando.actualizar
+pilas.actores.energia.Energia.actualizar
+pilas.actores.fantasma.Fantasma.actualizar
+pilas.actores.martian.Caminando.actualizar
+pilas.actores.martian.Disparar.actualizar
+pilas.actores.martian.Esperando.actualizar
+pilas.actores.martian.Martian.actualizar
+pilas.actores.martian.Saltando.actualizar
+pilas.actores.menu.Menu.actualizar
+pilas.actores.nave.Nave.actualizar
+pilas.actores.navekids.NaveKids.actualizar
+pilas.actores.ovni.Ovni.actualizar
+pilas.actores.ovni.Planeta.actualizar
+pilas.actores.pacman.Pacman.actualizar
+pilas.actores.personajes_rpg.BasePersonajeRPG.actualizar
+pilas.actores.personajes_rpg.Caminando.actualizar
+pilas.actores.personajes_rpg.Esperando.actualizar
+pilas.actores.piedra.Piedra.actualizar
+pilas.actores.pingu.Caminando.actualizar
+pilas.actores.pingu.Esperando.actualizar
+pilas.actores.pingu.Saltando.actualizar
+pilas.actores.proyectil.Dinamita.actualizar
+pilas.actores.proyectil.EstrellaNinja.actualizar
+pilas.actores.tortuga.Tortuga.actualizar
+pilas.comportamientos.Avanzar.actualizar
+pilas.comportamientos.Comportamiento.actualizar
+pilas.comportamientos.Girar.actualizar
+pilas.comportamientos.Proyectil.actualizar
+pilas.comportamientos.Saltar.actualizar
+pilas.escena.escena_normal.Aviso.actualizar
+pilas.escena.gestor.Gestor.actualizar
+pilas.evento.ProxyEventos.actualizar
+pilas.fisica.Fisica.actualizar
+pilas.fisica.FisicaDeshabilitada.actualizar
+pilas.fondos.Desplazamiento.actualizar
+pilas.fps.FPS.actualizar
+pilas.habilidades.ColisionableComoPelota.actualizar
+pilas.habilidades.Disparar.actualizar
+pilas.habilidades.Habilidad.actualizar
+pilas.habilidades.Imitar.actualizar
+pilas.habilidades.PisaPlataformas.actualizar
+pilas.habilidades.SeMantieneEnPantalla.actualizar
+pilas.habilidades.SiempreEnElCentro.actualizar
+pilas.tareas.Tareas.actualizar" class="py-name" href="#" onclick="return doclink('link-29', 'actualizar', 'link-29');">actualizar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante.actualizar_comportamientos"></a><div id="Estudiante.actualizar_comportamientos-def"><a name="L118"></a><tt class="py-lineno">118</tt> <a class="py-toggle" href="#" id="Estudiante.actualizar_comportamientos-toggle" onclick="return toggle('Estudiante.actualizar_comportamientos');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#actualizar_comportamientos">actualizar_comportamientos</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante.actualizar_comportamientos-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante.actualizar_comportamientos-expanded"><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-docstring">"Actualiza la lista de comportamientos"</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-name">termina</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">comportamiento_actual</tt><tt class="py-op">:</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">            <tt class="py-name">termina</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">comportamiento_actual</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="pilas.actores.actor.Actor.actualizar
+pilas.actores.animacion.Animacion.actualizar
+pilas.actores.cooperativista.Caminando.actualizar
+pilas.actores.cooperativista.DecirOk.actualizar
+pilas.actores.cooperativista.Esperando.actualizar
+pilas.actores.energia.Energia.actualizar
+pilas.actores.fantasma.Fantasma.actualizar
+pilas.actores.martian.Caminando.actualizar
+pilas.actores.martian.Disparar.actualizar
+pilas.actores.martian.Esperando.actualizar
+pilas.actores.martian.Martian.actualizar
+pilas.actores.martian.Saltando.actualizar
+pilas.actores.menu.Menu.actualizar
+pilas.actores.nave.Nave.actualizar
+pilas.actores.navekids.NaveKids.actualizar
+pilas.actores.ovni.Ovni.actualizar
+pilas.actores.ovni.Planeta.actualizar
+pilas.actores.pacman.Pacman.actualizar
+pilas.actores.personajes_rpg.BasePersonajeRPG.actualizar
+pilas.actores.personajes_rpg.Caminando.actualizar
+pilas.actores.personajes_rpg.Esperando.actualizar
+pilas.actores.piedra.Piedra.actualizar
+pilas.actores.pingu.Caminando.actualizar
+pilas.actores.pingu.Esperando.actualizar
+pilas.actores.pingu.Saltando.actualizar
+pilas.actores.proyectil.Dinamita.actualizar
+pilas.actores.proyectil.EstrellaNinja.actualizar
+pilas.actores.tortuga.Tortuga.actualizar
+pilas.comportamientos.Avanzar.actualizar
+pilas.comportamientos.Comportamiento.actualizar
+pilas.comportamientos.Girar.actualizar
+pilas.comportamientos.Proyectil.actualizar
+pilas.comportamientos.Saltar.actualizar
+pilas.escena.escena_normal.Aviso.actualizar
+pilas.escena.gestor.Gestor.actualizar
+pilas.evento.ProxyEventos.actualizar
+pilas.fisica.Fisica.actualizar
+pilas.fisica.FisicaDeshabilitada.actualizar
+pilas.fondos.Desplazamiento.actualizar
+pilas.fps.FPS.actualizar
+pilas.habilidades.ColisionableComoPelota.actualizar
+pilas.habilidades.Disparar.actualizar
+pilas.habilidades.Habilidad.actualizar
+pilas.habilidades.Imitar.actualizar
+pilas.habilidades.PisaPlataformas.actualizar
+pilas.habilidades.SeMantieneEnPantalla.actualizar
+pilas.habilidades.SiempreEnElCentro.actualizar
+pilas.tareas.Tareas.actualizar" class="py-name" href="#" onclick="return doclink('link-30', 'actualizar', 'link-29');">actualizar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">termina</tt><tt class="py-op">:</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">repetir_comportamientos_por_siempre</tt><tt class="py-op">:</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="pilas.comportamientos" class="py-name" href="#" onclick="return doclink('link-31', 'comportamientos', 'link-2');">comportamientos</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">comportamiento_actual</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="pilas.estudiante.Estudiante._adoptar_el_siguiente_comportamiento" class="py-name" href="#" onclick="return doclink('link-32', '_adoptar_el_siguiente_comportamiento', 'link-19');">_adoptar_el_siguiente_comportamiento</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="pilas.estudiante.Estudiante._adoptar_el_siguiente_comportamiento" class="py-name" href="#" onclick="return doclink('link-33', '_adoptar_el_siguiente_comportamiento', 'link-19');">_adoptar_el_siguiente_comportamiento</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="Estudiante._adoptar_el_siguiente_comportamiento"></a><div id="Estudiante._adoptar_el_siguiente_comportamiento-def"><a name="L132"></a><tt class="py-lineno">132</tt> <a class="py-toggle" href="#" id="Estudiante._adoptar_el_siguiente_comportamiento-toggle" onclick="return toggle('Estudiante._adoptar_el_siguiente_comportamiento');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.Estudiante-class.html#_adoptar_el_siguiente_comportamiento">_adoptar_el_siguiente_comportamiento</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Estudiante._adoptar_el_siguiente_comportamiento-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Estudiante._adoptar_el_siguiente_comportamiento-expanded"><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="pilas.comportamientos" class="py-name" href="#" onclick="return doclink('link-34', 'comportamientos', 'link-2');">comportamientos</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">comportamiento_actual</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="pilas.comportamientos" class="py-name" href="#" onclick="return doclink('link-35', 'comportamientos', 'link-2');">comportamientos</a></tt><tt class="py-op">.</tt><tt class="py-name">pop</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">comportamiento_actual</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Method pilas.actores.cooperativista.Caminando.iniciar()=pilas.actores.cooperativista.Caminando-class.html#iniciar,Method pilas.actores.cooperativista.DecirOk.iniciar()=pilas.actores.cooperativista.DecirOk-class.html#iniciar,Method pilas.actores.cooperativista.Esperando.iniciar()=pilas.actores.cooperativista.Esperando-class.html#iniciar,Method pilas.actores.dialogo.Dialogo.iniciar()=pilas.actores.dialogo.Dialogo-class.html#iniciar,Method pilas.actores.martian.Caminando.iniciar()=pilas.actores.martian.Caminando-class.html#iniciar,Method pilas.actores.martian.Esperando.iniciar()=pilas.actores.martian.Esperando-class.html#iniciar,Method pilas.actores.martian.Saltando.iniciar()=pilas.actores.martian.Saltando-class.html#iniciar,Method pilas.actores.personajes_rpg.Caminando.iniciar()=pilas.actores.personajes_rpg.Caminando-class.html#iniciar,Method pilas.actores.personajes_rpg.Esperando.iniciar()=pilas.actores.personajes_rpg.Esperando-class.html#iniciar,Method pilas.actores.pingu.Caminando.iniciar()=pilas.actores.pingu.Caminando-class.html#iniciar,Method pilas.actores.pingu.Esperando.iniciar()=pilas.actores.pingu.Esperando-class.html#iniciar,Method pilas.actores.pingu.Saltando.iniciar()=pilas.actores.pingu.Saltando-class.html#iniciar,Method pilas.actores.temporizador.Temporizador.iniciar()=pilas.actores.temporizador.Temporizador-class.html#iniciar,Method pilas.comportamientos.Avanzar.iniciar()=pilas.comportamientos.Avanzar-class.html#iniciar,Method pilas.comportamientos.Comportamiento.iniciar()=pilas.comportamientos.Comportamiento-class.html#iniciar,Method pilas.comportamientos.Girar.iniciar()=pilas.comportamientos.Girar-class.html#iniciar,Method pilas.comportamientos.Proyectil.iniciar()=pilas.comportamientos.Proyectil-class.html#iniciar,Method pilas.comportamientos.Saltar.iniciar()=pilas.comportamientos.Saltar-class.html#iniciar,Method pilas.demos.piezas.Piezas.iniciar()=pilas.demos.piezas.Piezas-class.html#iniciar,Method pilas.escena.escena_base.Base.iniciar()=pilas.escena.escena_base.Base-class.html#iniciar,Method pilas.escena.escena_logos.Logos.iniciar()=pilas.escena.escena_logos.Logos-class.html#iniciar,Method pilas.escena.escena_normal.Aviso.iniciar()=pilas.escena.escena_normal.Aviso-class.html#iniciar,Method pilas.escena.escena_normal.Normal.iniciar()=pilas.escena.escena_normal.Normal-class.html#iniciar,Method pilas.escenas.Escena.iniciar()=pilas.escenas.Escena-class.html#iniciar,Function pilas.iniciar()=pilas-module.html#iniciar,Function pilas.ventana.iniciar()=pilas.ventana-module.html#iniciar"><a title="pilas.actores.cooperativista.Caminando.iniciar
+pilas.actores.cooperativista.DecirOk.iniciar
+pilas.actores.cooperativista.Esperando.iniciar
+pilas.actores.dialogo.Dialogo.iniciar
+pilas.actores.martian.Caminando.iniciar
+pilas.actores.martian.Esperando.iniciar
+pilas.actores.martian.Saltando.iniciar
+pilas.actores.personajes_rpg.Caminando.iniciar
+pilas.actores.personajes_rpg.Esperando.iniciar
+pilas.actores.pingu.Caminando.iniciar
+pilas.actores.pingu.Esperando.iniciar
+pilas.actores.pingu.Saltando.iniciar
+pilas.actores.temporizador.Temporizador.iniciar
+pilas.comportamientos.Avanzar.iniciar
+pilas.comportamientos.Comportamiento.iniciar
+pilas.comportamientos.Girar.iniciar
+pilas.comportamientos.Proyectil.iniciar
+pilas.comportamientos.Saltar.iniciar
+pilas.demos.piezas.Piezas.iniciar
+pilas.escena.escena_base.Base.iniciar
+pilas.escena.escena_logos.Logos.iniciar
+pilas.escena.escena_normal.Aviso.iniciar
+pilas.escena.escena_normal.Normal.iniciar
+pilas.escenas.Escena.iniciar
+pilas.iniciar
+pilas.ventana.iniciar" class="py-name" href="#" onclick="return doclink('link-36', 'iniciar', 'link-36');">iniciar</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">comportamiento_actual</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div></div><a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt>
+<a name="ProxyHabilidades"></a><div id="ProxyHabilidades-def"><a name="L140"></a><tt class="py-lineno">140</tt> <a class="py-toggle" href="#" id="ProxyHabilidades-toggle" onclick="return toggle('ProxyHabilidades');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.estudiante.ProxyHabilidades-class.html">ProxyHabilidades</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ProxyHabilidades-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ProxyHabilidades-expanded"><a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">    <tt class="py-docstring">"""Implementa un intermediario con todas las habilidades del Actor."""</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"> </tt>
+<a name="ProxyHabilidades.__init__"></a><div id="ProxyHabilidades.__init__-def"><a name="L143"></a><tt class="py-lineno">143</tt> <a class="py-toggle" href="#" id="ProxyHabilidades.__init__-toggle" onclick="return toggle('ProxyHabilidades.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.ProxyHabilidades-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">habilidades</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ProxyHabilidades.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ProxyHabilidades.__init__-expanded"><a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="pilas.habilidades" class="py-name" href="#" onclick="return doclink('link-37', 'habilidades', 'link-3');">habilidades</a></tt> <tt class="py-op">=</tt> <tt id="link-38" class="py-name"><a title="pilas.habilidades" class="py-name" href="#" onclick="return doclink('link-38', 'habilidades', 'link-3');">habilidades</a></tt> </tt>
+</div><a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"> </tt>
+<a name="ProxyHabilidades.__getattr__"></a><div id="ProxyHabilidades.__getattr__-def"><a name="L146"></a><tt class="py-lineno">146</tt> <a class="py-toggle" href="#" id="ProxyHabilidades.__getattr__-toggle" onclick="return toggle('ProxyHabilidades.__getattr__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.estudiante.ProxyHabilidades-class.html#__getattr__">__getattr__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ProxyHabilidades.__getattr__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ProxyHabilidades.__getattr__-expanded"><a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-name">su_habilidad</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">habilidad</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="pilas.habilidades" class="py-name" href="#" onclick="return doclink('link-39', 'habilidades', 'link-3');">habilidades</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">habilidad</tt><tt class="py-op">.</tt><tt class="py-name">__class__</tt><tt class="py-op">.</tt><tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-name">name</tt><tt class="py-op">:</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">                <tt class="py-name">su_habilidad</tt> <tt class="py-op">=</tt> <tt class="py-name">habilidad</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line"> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">su_habilidad</tt><tt class="py-op">:</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"El actor no tiene asignada la habilidad "</tt> <tt class="py-op">+</tt> <tt class="py-name">name</tt> <tt class="py-op">+</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">                            <tt class="py-string">".\n No puede acceder mediante actor.habilidades."</tt> <tt class="py-op">+</tt> <tt class="py-name">name</tt><tt class="py-op">)</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">su_habilidad</tt> </tt>
+</div></div><a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:47 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

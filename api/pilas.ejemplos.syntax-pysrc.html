@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.ejemplos.syntax</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        <a href="pilas.ejemplos-module.html">Package&nbsp;ejemplos</a> ::
+        Module&nbsp;syntax
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.ejemplos.syntax-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.ejemplos.syntax-module.html">Module pilas.ejemplos.syntax</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Ejemplo tomado desde la siguiente web:</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment">#     http://diotavelli.net/PyQtWiki/Python%20syntax%20highlighting</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">PyQt4</tt><tt class="py-op">.</tt><tt class="py-name">QtCore</tt> <tt class="py-keyword">import</tt> <tt class="py-name">QRegExp</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">PyQt4</tt><tt class="py-op">.</tt><tt class="py-name">QtGui</tt> <tt class="py-keyword">import</tt> <tt class="py-name">QColor</tt><tt class="py-op">,</tt> <tt class="py-name">QTextCharFormat</tt><tt class="py-op">,</tt> <tt class="py-name">QFont</tt><tt class="py-op">,</tt> <tt class="py-name">QSyntaxHighlighter</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="format"></a><div id="format-def"><a name="L8"></a><tt class="py-lineno">  8</tt> <a class="py-toggle" href="#" id="format-toggle" onclick="return toggle('format');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.ejemplos.syntax-module.html#format">format</a><tt class="py-op">(</tt><tt class="py-param">color</tt><tt class="py-op">,</tt> <tt class="py-param">style</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="format-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="format-expanded"><a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line">    <tt class="py-docstring">"""Return a QTextCharFormat with the given attributes.</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line">    <tt class="py-name">_color</tt> <tt class="py-op">=</tt> <tt class="py-name">QColor</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line">    <tt class="py-name">_color</tt><tt class="py-op">.</tt><tt class="py-name">setNamedColor</tt><tt class="py-op">(</tt><tt id="link-0" class="py-name" targets="Variable pilas.actores.texto.Texto.color=pilas.actores.texto.Texto-class.html#color,Variable pilas.actores.tortuga.Tortuga.color=pilas.actores.tortuga.Tortuga-class.html#color"><a title="pilas.actores.texto.Texto.color
+pilas.actores.tortuga.Tortuga.color" class="py-name" href="#" onclick="return doclink('link-0', 'color', 'link-0');">color</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line">    <tt class="py-name">_format</tt> <tt class="py-op">=</tt> <tt class="py-name">QTextCharFormat</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">    <tt class="py-name">_format</tt><tt class="py-op">.</tt><tt class="py-name">setForeground</tt><tt class="py-op">(</tt><tt class="py-name">_color</tt><tt class="py-op">)</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-string">'bold'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">style</tt><tt class="py-op">:</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line">        <tt class="py-name">_format</tt><tt class="py-op">.</tt><tt class="py-name">setFontWeight</tt><tt class="py-op">(</tt><tt class="py-name">QFont</tt><tt class="py-op">.</tt><tt class="py-name">Bold</tt><tt class="py-op">)</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-string">'italic'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">style</tt><tt class="py-op">:</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">        <tt class="py-name">_format</tt><tt class="py-op">.</tt><tt class="py-name">setFontItalic</tt><tt class="py-op">(</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">_format</tt> </tt>
+</div><a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># Syntax styles that can be shared by all languages</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable pilas.ejemplos.syntax.STYLES=pilas.ejemplos.syntax-module.html#STYLES"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-1', 'STYLES', 'link-1');">STYLES</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">    <tt class="py-string">'keyword'</tt><tt class="py-op">:</tt> <tt id="link-2" class="py-name" targets="Function pilas.ejemplos.syntax.format()=pilas.ejemplos.syntax-module.html#format"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-2', 'format', 'link-2');">format</a></tt><tt class="py-op">(</tt><tt class="py-string">'blue'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">    <tt class="py-string">'operator'</tt><tt class="py-op">:</tt> <tt id="link-3" class="py-name"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-3', 'format', 'link-2');">format</a></tt><tt class="py-op">(</tt><tt class="py-string">'red'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">    <tt class="py-string">'brace'</tt><tt class="py-op">:</tt> <tt id="link-4" class="py-name"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-4', 'format', 'link-2');">format</a></tt><tt class="py-op">(</tt><tt class="py-string">'darkGray'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">    <tt class="py-string">'defclass'</tt><tt class="py-op">:</tt> <tt id="link-5" class="py-name"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-5', 'format', 'link-2');">format</a></tt><tt class="py-op">(</tt><tt class="py-string">'black'</tt><tt class="py-op">,</tt> <tt class="py-string">'bold'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt class="py-string">'string'</tt><tt class="py-op">:</tt> <tt id="link-6" class="py-name"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-6', 'format', 'link-2');">format</a></tt><tt class="py-op">(</tt><tt class="py-string">'magenta'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">    <tt class="py-string">'string2'</tt><tt class="py-op">:</tt> <tt id="link-7" class="py-name"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-7', 'format', 'link-2');">format</a></tt><tt class="py-op">(</tt><tt class="py-string">'darkMagenta'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">    <tt class="py-string">'comment'</tt><tt class="py-op">:</tt> <tt id="link-8" class="py-name"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-8', 'format', 'link-2');">format</a></tt><tt class="py-op">(</tt><tt class="py-string">'darkGreen'</tt><tt class="py-op">,</tt> <tt class="py-string">'italic'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">    <tt class="py-string">'self'</tt><tt class="py-op">:</tt> <tt id="link-9" class="py-name"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-9', 'format', 'link-2');">format</a></tt><tt class="py-op">(</tt><tt class="py-string">'black'</tt><tt class="py-op">,</tt> <tt class="py-string">'italic'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">    <tt class="py-string">'numbers'</tt><tt class="py-op">:</tt> <tt id="link-10" class="py-name"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-10', 'format', 'link-2');">format</a></tt><tt class="py-op">(</tt><tt class="py-string">'brown'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-op">}</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"> </tt>
+<a name="PythonHighlighter"></a><div id="PythonHighlighter-def"><a name="L38"></a><tt class="py-lineno"> 38</tt> <a class="py-toggle" href="#" id="PythonHighlighter-toggle" onclick="return toggle('PythonHighlighter');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.ejemplos.syntax.PythonHighlighter-class.html">PythonHighlighter</a> <tt class="py-op">(</tt><tt class="py-base-class">QSyntaxHighlighter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PythonHighlighter-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="PythonHighlighter-expanded"><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">    <tt class="py-docstring">"""Syntax highlighter for the Python language.</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">    <tt class="py-comment"># Python keywords</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">    <tt id="link-11" class="py-name" targets="Variable pilas.ejemplos.syntax.PythonHighlighter.keywords=pilas.ejemplos.syntax.PythonHighlighter-class.html#keywords"><a title="pilas.ejemplos.syntax.PythonHighlighter.keywords" class="py-name" href="#" onclick="return doclink('link-11', 'keywords', 'link-11');">keywords</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-string">'and'</tt><tt class="py-op">,</tt> <tt class="py-string">'assert'</tt><tt class="py-op">,</tt> <tt class="py-string">'break'</tt><tt class="py-op">,</tt> <tt class="py-string">'class'</tt><tt class="py-op">,</tt> <tt class="py-string">'continue'</tt><tt class="py-op">,</tt> <tt class="py-string">'def'</tt><tt class="py-op">,</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-string">'del'</tt><tt class="py-op">,</tt> <tt class="py-string">'elif'</tt><tt class="py-op">,</tt> <tt class="py-string">'else'</tt><tt class="py-op">,</tt> <tt class="py-string">'except'</tt><tt class="py-op">,</tt> <tt class="py-string">'exec'</tt><tt class="py-op">,</tt> <tt class="py-string">'finally'</tt><tt class="py-op">,</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-string">'for'</tt><tt class="py-op">,</tt> <tt class="py-string">'from'</tt><tt class="py-op">,</tt> <tt class="py-string">'global'</tt><tt class="py-op">,</tt> <tt class="py-string">'if'</tt><tt class="py-op">,</tt> <tt class="py-string">'import'</tt><tt class="py-op">,</tt> <tt class="py-string">'in'</tt><tt class="py-op">,</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-string">'is'</tt><tt class="py-op">,</tt> <tt class="py-string">'lambda'</tt><tt class="py-op">,</tt> <tt class="py-string">'not'</tt><tt class="py-op">,</tt> <tt class="py-string">'or'</tt><tt class="py-op">,</tt> <tt class="py-string">'pass'</tt><tt class="py-op">,</tt> <tt class="py-string">'print'</tt><tt class="py-op">,</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-string">'raise'</tt><tt class="py-op">,</tt> <tt class="py-string">'return'</tt><tt class="py-op">,</tt> <tt class="py-string">'try'</tt><tt class="py-op">,</tt> <tt class="py-string">'while'</tt><tt class="py-op">,</tt> <tt class="py-string">'yield'</tt><tt class="py-op">,</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-string">'None'</tt><tt class="py-op">,</tt> <tt class="py-string">'True'</tt><tt class="py-op">,</tt> <tt class="py-string">'False'</tt><tt class="py-op">,</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">    <tt class="py-op">]</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">    <tt class="py-comment"># Python operators</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">    <tt id="link-12" class="py-name" targets="Variable pilas.ejemplos.syntax.PythonHighlighter.operators=pilas.ejemplos.syntax.PythonHighlighter-class.html#operators"><a title="pilas.ejemplos.syntax.PythonHighlighter.operators" class="py-name" href="#" onclick="return doclink('link-12', 'operators', 'link-12');">operators</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-string">'='</tt><tt class="py-op">,</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-comment"># Comparison</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-string">'=='</tt><tt class="py-op">,</tt> <tt class="py-string">'!='</tt><tt class="py-op">,</tt> <tt class="py-string">'&lt;'</tt><tt class="py-op">,</tt> <tt class="py-string">'&lt;='</tt><tt class="py-op">,</tt> <tt class="py-string">'&gt;'</tt><tt class="py-op">,</tt> <tt class="py-string">'&gt;='</tt><tt class="py-op">,</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-comment"># Arithmetic</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-string">'\+'</tt><tt class="py-op">,</tt> <tt class="py-string">'-'</tt><tt class="py-op">,</tt> <tt class="py-string">'\*'</tt><tt class="py-op">,</tt> <tt class="py-string">'/'</tt><tt class="py-op">,</tt> <tt class="py-string">'//'</tt><tt class="py-op">,</tt> <tt class="py-string">'\%'</tt><tt class="py-op">,</tt> <tt class="py-string">'\*\*'</tt><tt class="py-op">,</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-comment"># In-place</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-string">'\+='</tt><tt class="py-op">,</tt> <tt class="py-string">'-='</tt><tt class="py-op">,</tt> <tt class="py-string">'\*='</tt><tt class="py-op">,</tt> <tt class="py-string">'/='</tt><tt class="py-op">,</tt> <tt class="py-string">'\%='</tt><tt class="py-op">,</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-comment"># Bitwise</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-string">'\^'</tt><tt class="py-op">,</tt> <tt class="py-string">'\|'</tt><tt class="py-op">,</tt> <tt class="py-string">'\&amp;'</tt><tt class="py-op">,</tt> <tt class="py-string">'\~'</tt><tt class="py-op">,</tt> <tt class="py-string">'&gt;&gt;'</tt><tt class="py-op">,</tt> <tt class="py-string">'&lt;&lt;'</tt><tt class="py-op">,</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">    <tt class="py-op">]</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    <tt class="py-comment"># Python braces</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">    <tt id="link-13" class="py-name" targets="Variable pilas.ejemplos.syntax.PythonHighlighter.braces=pilas.ejemplos.syntax.PythonHighlighter-class.html#braces"><a title="pilas.ejemplos.syntax.PythonHighlighter.braces" class="py-name" href="#" onclick="return doclink('link-13', 'braces', 'link-13');">braces</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-string">'\{'</tt><tt class="py-op">,</tt> <tt class="py-string">'\}'</tt><tt class="py-op">,</tt> <tt class="py-string">'\('</tt><tt class="py-op">,</tt> <tt class="py-string">'\)'</tt><tt class="py-op">,</tt> <tt class="py-string">'\['</tt><tt class="py-op">,</tt> <tt class="py-string">'\]'</tt><tt class="py-op">,</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">    <tt class="py-op">]</tt> </tt>
+<a name="PythonHighlighter.__init__"></a><div id="PythonHighlighter.__init__-def"><a name="L68"></a><tt class="py-lineno"> 68</tt> <a class="py-toggle" href="#" id="PythonHighlighter.__init__-toggle" onclick="return toggle('PythonHighlighter.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.ejemplos.syntax.PythonHighlighter-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">document</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PythonHighlighter.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PythonHighlighter.__init__-expanded"><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-name">QSyntaxHighlighter</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method pilas.actores.aceituna.Aceituna.__init__()=pilas.actores.aceituna.Aceituna-class.html#__init__,Method pilas.actores.actor.Actor.__init__()=pilas.actores.actor.Actor-class.html#__init__,Method pilas.actores.animacion.Animacion.__init__()=pilas.actores.animacion.Animacion-class.html#__init__,Method pilas.actores.animado.Animado.__init__()=pilas.actores.animado.Animado-class.html#__init__,Method pilas.actores.banana.Banana.__init__()=pilas.actores.banana.Banana-class.html#__init__,Method pilas.actores.bomba.Bomba.__init__()=pilas.actores.bomba.Bomba-class.html#__init__,Method pilas.actores.boton.Boton.__init__()=pilas.actores.boton.Boton-class.html#__init__,Method pilas.actores.caja.Caja.__init__()=pilas.actores.caja.Caja-class.html#__init__,Method pilas.actores.cooperativista.Caminando.__init__()=pilas.actores.cooperativista.Caminando-class.html#__init__,Method pilas.actores.cooperativista.Cooperativista.__init__()=pilas.actores.cooperativista.Cooperativista-class.html#__init__,Method pilas.actores.cooperativista.DecirOk.__init__()=pilas.actores.cooperativista.DecirOk-class.html#__init__,Method pilas.actores.cursordisparo.CursorDisparo.__init__()=pilas.actores.cursordisparo.CursorDisparo-class.html#__init__,Method pilas.actores.dialogo.Dialogo.__init__()=pilas.actores.dialogo.Dialogo-class.html#__init__,Method pilas.actores.ejes.Ejes.__init__()=pilas.actores.ejes.Ejes-class.html#__init__,Method pilas.actores.energia.Energia.__init__()=pilas.actores.energia.Energia-class.html#__init__,Method pilas.actores.estrella.Estrella.__init__()=pilas.actores.estrella.Estrella-class.html#__init__,Method pilas.actores.explosion.Explosion.__init__()=pilas.actores.explosion.Explosion-class.html#__init__,Method pilas.actores.fantasma.Fantasma.__init__()=pilas.actores.fantasma.Fantasma-class.html#__init__,Method pilas.actores.globo.Globo.__init__()=pilas.actores.globo.Globo-class.html#__init__,Method pilas.actores.globoelegir.GloboElegir.__init__()=pilas.actores.globoelegir.GloboElegir-class.html#__init__,Method pilas.actores.humo.Humo.__init__()=pilas.actores.humo.Humo-class.html#__init__,Method pilas.actores.mano.CursorMano.__init__()=pilas.actores.mano.CursorMano-class.html#__init__,Method pilas.actores.mapa.Mapa.__init__()=pilas.actores.mapa.Mapa-class.html#__init__,Method pilas.actores.mapatiled.MapaTiled.__init__()=pilas.actores.mapatiled.MapaTiled-class.html#__init__,Method pilas.actores.mapatiled.XmlNode.__init__()=pilas.actores.mapatiled.XmlNode-class.html#__init__,Method pilas.actores.martian.Caminando.__init__()=pilas.actores.martian.Caminando-class.html#__init__,Method pilas.actores.martian.Disparar.__init__()=pilas.actores.martian.Disparar-class.html#__init__,Method pilas.actores.martian.Martian.__init__()=pilas.actores.martian.Martian-class.html#__init__,Method pilas.actores.martian.Saltando.__init__()=pilas.actores.martian.Saltando-class.html#__init__,Method pilas.actores.menu.Menu.__init__()=pilas.actores.menu.Menu-class.html#__init__,Method pilas.actores.moneda.Moneda.__init__()=pilas.actores.moneda.Moneda-class.html#__init__,Method pilas.actores.mono.Mono.__init__()=pilas.actores.mono.Mono-class.html#__init__,Method pilas.actores.nave.Nave.__init__()=pilas.actores.nave.Nave-class.html#__init__,Method pilas.actores.navekids.NaveKids.__init__()=pilas.actores.navekids.NaveKids-class.html#__init__,Method pilas.actores.opcion.Opcion.__init__()=pilas.actores.opcion.Opcion-class.html#__init__,Method pilas.actores.ovni.Ovni.__init__()=pilas.actores.ovni.Ovni-class.html#__init__,Method pilas.actores.ovni.Planeta.__init__()=pilas.actores.ovni.Planeta-class.html#__init__,Method pilas.actores.pacman.Pacman.__init__()=pilas.actores.pacman.Pacman-class.html#__init__,Method pilas.actores.pausa.Pausa.__init__()=pilas.actores.pausa.Pausa-class.html#__init__,Method pilas.actores.pelota.Pelota.__init__()=pilas.actores.pelota.Pelota-class.html#__init__,Method pilas.actores.personajes_rpg.BasePersonajeRPG.__init__()=pilas.actores.personajes_rpg.BasePersonajeRPG-class.html#__init__,Method pilas.actores.personajes_rpg.Calvo.__init__()=pilas.actores.personajes_rpg.Calvo-class.html#__init__,Method pilas.actores.personajes_rpg.Caminando.__init__()=pilas.actores.personajes_rpg.Caminando-class.html#__init__,Method pilas.actores.personajes_rpg.Maton.__init__()=pilas.actores.personajes_rpg.Maton-class.html#__init__,Method pilas.actores.piedra.Piedra.__init__()=pilas.actores.piedra.Piedra-class.html#__init__,Method pilas.actores.pingu.Pingu.__init__()=pilas.actores.pingu.Pingu-class.html#__init__,Method pilas.actores.pizarra.Pizarra.__init__()=pilas.actores.pizarra.Pizarra-class.html#__init__,Method pilas.actores.proyectil.Bala.__init__()=pilas.actores.proyectil.Bala-class.html#__init__,Method pilas.actores.proyectil.Dinamita.__init__()=pilas.actores.proyectil.Dinamita-class.html#__init__,Method pilas.actores.proyectil.EstrellaNinja.__init__()=pilas.actores.proyectil.EstrellaNinja-class.html#__init__,Method pilas.actores.proyectil.Misil.__init__()=pilas.actores.proyectil.Misil-class.html#__init__,Method pilas.actores.puntaje.Puntaje.__init__()=pilas.actores.puntaje.Puntaje-class.html#__init__,Method pilas.actores.sonido.Sonido.__init__()=pilas.actores.sonido.Sonido-class.html#__init__,Method pilas.actores.temporizador.Temporizador.__init__()=pilas.actores.temporizador.Temporizador-class.html#__init__,Method pilas.actores.texto.Texto.__init__()=pilas.actores.texto.Texto-class.html#__init__,Method pilas.actores.texto_inferior.TextoInferior.__init__()=pilas.actores.texto_inferior.TextoInferior-class.html#__init__,Method pilas.actores.torreta.Torreta.__init__()=pilas.actores.torreta.Torreta-class.html#__init__,Method pilas.actores.tortuga.Tortuga.__init__()=pilas.actores.tortuga.Tortuga-class.html#__init__,Method pilas.actores.zanahoria.Zanahoria.__init__()=pilas.actores.zanahoria.Zanahoria-class.html#__init__,Method pilas.asistente.MainWindow.__init__()=pilas.asistente.MainWindow-class.html#__init__,Method pilas.camara.Camara.__init__()=pilas.camara.Camara-class.html#__init__,Method pilas.colisiones.Colisiones.__init__()=pilas.colisiones.Colisiones-class.html#__init__,Method pilas.colores.Color.__init__()=pilas.colores.Color-class.html#__init__,Method pilas.comportamientos.Avanzar.__init__()=pilas.comportamientos.Avanzar-class.html#__init__,Method pilas.comportamientos.Girar.__init__()=pilas.comportamientos.Girar-class.html#__init__,Method pilas.comportamientos.Proyectil.__init__()=pilas.comportamientos.Proyectil-class.html#__init__,Method pilas.comportamientos.Saltar.__init__()=pilas.comportamientos.Saltar-class.html#__init__,Method pilas.control.Control.__init__()=pilas.control.Control-class.html#__init__,Method pilas.demos.piezas.Pieza.__init__()=pilas.demos.piezas.Pieza-class.html#__init__,Method pilas.demos.piezas.Piezas.__init__()=pilas.demos.piezas.Piezas-class.html#__init__,Method pilas.depurador.Depurador.__init__()=pilas.depurador.Depurador-class.html#__init__,Method pilas.depurador.ModoDepurador.__init__()=pilas.depurador.ModoDepurador-class.html#__init__,Method pilas.depurador.ModoInformacionDeSistema.__init__()=pilas.depurador.ModoInformacionDeSistema-class.html#__init__,Method pilas.depurador.ModoPosicion.__init__()=pilas.depurador.ModoPosicion-class.html#__init__,Method pilas.depurador.ModoWidgetLog.__init__()=pilas.depurador.ModoWidgetLog-class.html#__init__,Method pilas.descargar.Descargar.__init__()=pilas.descargar.Descargar-class.html#__init__,Method pilas.ejemplos.syntax.PythonHighlighter.__init__()=pilas.ejemplos.syntax.PythonHighlighter-class.html#__init__,Method pilas.escena.escena_base.Base.__init__()=pilas.escena.escena_base.Base-class.html#__init__,Method pilas.escena.escena_logos.Logos.__init__()=pilas.escena.escena_logos.Logos-class.html#__init__,Method pilas.escena.escena_normal.Aviso.__init__()=pilas.escena.escena_normal.Aviso-class.html#__init__,Method pilas.escena.escena_normal.Normal.__init__()=pilas.escena.escena_normal.Normal-class.html#__init__,Method pilas.escena.gestor.Gestor.__init__()=pilas.escena.gestor.Gestor-class.html#__init__,Method pilas.escenas.Escena.__init__()=pilas.escenas.Escena-class.html#__init__,Method pilas.escenas.Normal.__init__()=pilas.escenas.Normal-class.html#__init__,Method pilas.estudiante.Estudiante.__init__()=pilas.estudiante.Estudiante-class.html#__init__,Method pilas.estudiante.ProxyHabilidades.__init__()=pilas.estudiante.ProxyHabilidades-class.html#__init__,Method pilas.evento.AttrDict.__init__()=pilas.evento.AttrDict-class.html#__init__,Method pilas.evento.Evento.__init__()=pilas.evento.Evento-class.html#__init__,Method pilas.evento.ProxyFuncion.__init__()=pilas.evento.ProxyFuncion-class.html#__init__,Method pilas.evento.ProxyMetodo.__init__()=pilas.evento.ProxyMetodo-class.html#__init__,Method pilas.fisica.Circulo.__init__()=pilas.fisica.Circulo-class.html#__init__,Method pilas.fisica.ConstanteDeDistancia.__init__()=pilas.fisica.ConstanteDeDistancia-class.html#__init__,Method pilas.fisica.ConstanteDeMovimiento.__init__()=pilas.fisica.ConstanteDeMovimiento-class.html#__init__,Method pilas.fisica.Figura.__init__()=pilas.fisica.Figura-class.html#__init__,Method pilas.fisica.Fisica.__init__()=pilas.fisica.Fisica-class.html#__init__,Method pilas.fisica.FisicaDeshabilitada.__init__()=pilas.fisica.FisicaDeshabilitada-class.html#__init__,Method pilas.fisica.ObjetosContactListener.__init__()=pilas.fisica.ObjetosContactListener-class.html#__init__,Method pilas.fisica.Poligono.__init__()=pilas.fisica.Poligono-class.html#__init__,Method pilas.fisica.Rectangulo.__init__()=pilas.fisica.Rectangulo-class.html#__init__,Method pilas.fondos.Color.__init__()=pilas.fondos.Color-class.html#__init__,Method pilas.fondos.Desplazamiento.__init__()=pilas.fondos.Desplazamiento-class.html#__init__,Method pilas.fondos.Espacio.__init__()=pilas.fondos.Espacio-class.html#__init__,Method pilas.fondos.Fondo.__init__()=pilas.fondos.Fondo-class.html#__init__,Method pilas.fondos.Noche.__init__()=pilas.fondos.Noche-class.html#__init__,Method pilas.fondos.Nubes.__init__()=pilas.fondos.Nubes-class.html#__init__,Method pilas.fondos.Pasto.__init__()=pilas.fondos.Pasto-class.html#__init__,Method pilas.fondos.Plano.__init__()=pilas.fondos.Plano-class.html#__init__,Method pilas.fondos.Selva.__init__()=pilas.fondos.Selva-class.html#__init__,Method pilas.fondos.Tarde.__init__()=pilas.fondos.Tarde-class.html#__init__,Method pilas.fondos.Volley.__init__()=pilas.fondos.Volley-class.html#__init__,Method pilas.fps.FPS.__init__()=pilas.fps.FPS-class.html#__init__,Method pilas.habilidades.Arrastrable.__init__()=pilas.habilidades.Arrastrable-class.html#__init__,Method pilas.habilidades.AumentarConRueda.__init__()=pilas.habilidades.AumentarConRueda-class.html#__init__,Method pilas.habilidades.ColisionableComoPelota.__init__()=pilas.habilidades.ColisionableComoPelota-class.html#__init__,Method pilas.habilidades.Disparar.__init__()=pilas.habilidades.Disparar-class.html#__init__,Method pilas.habilidades.DispararConClick.__init__()=pilas.habilidades.DispararConClick-class.html#__init__,Method pilas.habilidades.Habilidad.__init__()=pilas.habilidades.Habilidad-class.html#__init__,Method pilas.habilidades.Imitar.__init__()=pilas.habilidades.Imitar-class.html#__init__,Method pilas.habilidades.MirarAlActor.__init__()=pilas.habilidades.MirarAlActor-class.html#__init__,Method pilas.habilidades.MoverseComoCoche.__init__()=pilas.habilidades.MoverseComoCoche-class.html#__init__,Method pilas.habilidades.MoverseConElTeclado.__init__()=pilas.habilidades.MoverseConElTeclado-class.html#__init__,Method pilas.habilidades.PisaPlataformas.__init__()=pilas.habilidades.PisaPlataformas-class.html#__init__,Method pilas.habilidades.PuedeExplotar.__init__()=pilas.habilidades.PuedeExplotar-class.html#__init__,Method pilas.habilidades.RebotarComoCaja.__init__()=pilas.habilidades.RebotarComoCaja-class.html#__init__,Method pilas.habilidades.RebotarComoPelota.__init__()=pilas.habilidades.RebotarComoPelota-class.html#__init__,Method pilas.habilidades.RotarConMouse.__init__()=pilas.habilidades.RotarConMouse-class.html#__init__,Method pilas.habilidades.SeMantieneEnPantalla.__init__()=pilas.habilidades.SeMantieneEnPantalla-class.html#__init__,Method pilas.habilidades.SeguirAlMouse.__init__()=pilas.habilidades.SeguirAlMouse-class.html#__init__,Method pilas.habilidades.SeguirClicks.__init__()=pilas.habilidades.SeguirClicks-class.html#__init__,Method pilas.habilidades.SiempreEnElCentro.__init__()=pilas.habilidades.SiempreEnElCentro-class.html#__init__,Method pilas.interfaz.base_interfaz.BaseInterfaz.__init__()=pilas.interfaz.base_interfaz.BaseInterfaz-class.html#__init__,Method pilas.interfaz.boton.Boton.__init__()=pilas.interfaz.boton.Boton-class.html#__init__,Method pilas.interfaz.deslizador.Deslizador.__init__()=pilas.interfaz.deslizador.Deslizador-class.html#__init__,Method pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__()=pilas.interfaz.ingreso_de_texto.IngresoDeTexto-class.html#__init__,Method pilas.interfaz.lista_seleccion.ListaSeleccion.__init__()=pilas.interfaz.lista_seleccion.ListaSeleccion-class.html#__init__,Method pilas.interfaz.selector.Selector.__init__()=pilas.interfaz.selector.Selector-class.html#__init__,Method pilas.interpolaciones.AceleracionGradual.__init__()=pilas.interpolaciones.AceleracionGradual-class.html#__init__,Method pilas.interpolaciones.DesaceleracionGradual.__init__()=pilas.interpolaciones.DesaceleracionGradual-class.html#__init__,Method pilas.interpolaciones.ElasticoFinal.__init__()=pilas.interpolaciones.ElasticoFinal-class.html#__init__,Method pilas.interpolaciones.ElasticoInicial.__init__()=pilas.interpolaciones.ElasticoInicial-class.html#__init__,Method pilas.interpolaciones.Interpolacion.__init__()=pilas.interpolaciones.Interpolacion-class.html#__init__,Method pilas.interpolaciones.Lineal.__init__()=pilas.interpolaciones.Lineal-class.html#__init__,Method pilas.interpolaciones.ReboteFinal.__init__()=pilas.interpolaciones.ReboteFinal-class.html#__init__,Method pilas.interpolaciones.ReboteInicial.__init__()=pilas.interpolaciones.ReboteInicial-class.html#__init__,Method pilas.motores.motor_qt.Actor.__init__()=pilas.motores.motor_qt.Actor-class.html#__init__,Method pilas.motores.motor_qt.BaseActor.__init__()=pilas.motores.motor_qt.BaseActor-class.html#__init__,Method pilas.motores.motor_qt.CanvasWidget.__init__()=pilas.motores.motor_qt.CanvasWidget-class.html#__init__,Method pilas.motores.motor_qt.Grilla.__init__()=pilas.motores.motor_qt.Grilla-class.html#__init__,Method pilas.motores.motor_qt.Imagen.__init__()=pilas.motores.motor_qt.Imagen-class.html#__init__,Method pilas.motores.motor_qt.Lienzo.__init__()=pilas.motores.motor_qt.Lienzo-class.html#__init__,Method pilas.motores.motor_qt.Motor.__init__()=pilas.motores.motor_qt.Motor-class.html#__init__,Method pilas.motores.motor_qt.MusicaDeshabilitada.__init__()=pilas.motores.motor_qt.MusicaDeshabilitada-class.html#__init__,Method pilas.motores.motor_qt.MusicaGST.__init__()=pilas.motores.motor_qt.MusicaGST-class.html#__init__,Method pilas.motores.motor_qt.MusicaPhonon.__init__()=pilas.motores.motor_qt.MusicaPhonon-class.html#__init__,Method pilas.motores.motor_qt.SonidoDeshabilitado.__init__()=pilas.motores.motor_qt.SonidoDeshabilitado-class.html#__init__,Method pilas.motores.motor_qt.SonidoGST.__init__()=pilas.motores.motor_qt.SonidoGST-class.html#__init__,Method pilas.motores.motor_qt.SonidoPhonon.__init__()=pilas.motores.motor_qt.SonidoPhonon-class.html#__init__,Method pilas.motores.motor_qt.Superficie.__init__()=pilas.motores.motor_qt.Superficie-class.html#__init__,Method pilas.motores.motor_qt.Texto.__init__()=pilas.motores.motor_qt.Texto-class.html#__init__,Method pilas.motores.motor_qt.Ventana.__init__()=pilas.motores.motor_qt.Ventana-class.html#__init__,Method pilas.mundo.Mundo.__init__()=pilas.mundo.Mundo-class.html#__init__,Method pilas.municion.BalaDoble.__init__()=pilas.municion.BalaDoble-class.html#__init__,Method pilas.municion.BalasDoblesDesviadas.__init__()=pilas.municion.BalasDoblesDesviadas-class.html#__init__,Method pilas.municion.MisilDoble.__init__()=pilas.municion.MisilDoble-class.html#__init__,Method pilas.municion.Municion.__init__()=pilas.municion.Municion-class.html#__init__,Method pilas.pytweener.Tween.__init__()=pilas.pytweener.Tween-class.html#__init__,Method pilas.pytweener.TweenTestObject.__init__()=pilas.pytweener.TweenTestObject-class.html#__init__,Method pilas.pytweener.Tweenable.__init__()=pilas.pytweener.Tweenable-class.html#__init__,Method pilas.pytweener.Tweener.__init__()=pilas.pytweener.Tweener-class.html#__init__,Method pilas.tareas.Tarea.__init__()=pilas.tareas.Tarea-class.html#__init__,Method pilas.tareas.Tareas.__init__()=pilas.tareas.Tareas-class.html#__init__,Method pilas.widget_log.WidgetLog.__init__()=pilas.widget_log.WidgetLog-class.html#__init__"><a title="pilas.actores.aceituna.Aceituna.__init__
+pilas.actores.actor.Actor.__init__
+pilas.actores.animacion.Animacion.__init__
+pilas.actores.animado.Animado.__init__
+pilas.actores.banana.Banana.__init__
+pilas.actores.bomba.Bomba.__init__
+pilas.actores.boton.Boton.__init__
+pilas.actores.caja.Caja.__init__
+pilas.actores.cooperativista.Caminando.__init__
+pilas.actores.cooperativista.Cooperativista.__init__
+pilas.actores.cooperativista.DecirOk.__init__
+pilas.actores.cursordisparo.CursorDisparo.__init__
+pilas.actores.dialogo.Dialogo.__init__
+pilas.actores.ejes.Ejes.__init__
+pilas.actores.energia.Energia.__init__
+pilas.actores.estrella.Estrella.__init__
+pilas.actores.explosion.Explosion.__init__
+pilas.actores.fantasma.Fantasma.__init__
+pilas.actores.globo.Globo.__init__
+pilas.actores.globoelegir.GloboElegir.__init__
+pilas.actores.humo.Humo.__init__
+pilas.actores.mano.CursorMano.__init__
+pilas.actores.mapa.Mapa.__init__
+pilas.actores.mapatiled.MapaTiled.__init__
+pilas.actores.mapatiled.XmlNode.__init__
+pilas.actores.martian.Caminando.__init__
+pilas.actores.martian.Disparar.__init__
+pilas.actores.martian.Martian.__init__
+pilas.actores.martian.Saltando.__init__
+pilas.actores.menu.Menu.__init__
+pilas.actores.moneda.Moneda.__init__
+pilas.actores.mono.Mono.__init__
+pilas.actores.nave.Nave.__init__
+pilas.actores.navekids.NaveKids.__init__
+pilas.actores.opcion.Opcion.__init__
+pilas.actores.ovni.Ovni.__init__
+pilas.actores.ovni.Planeta.__init__
+pilas.actores.pacman.Pacman.__init__
+pilas.actores.pausa.Pausa.__init__
+pilas.actores.pelota.Pelota.__init__
+pilas.actores.personajes_rpg.BasePersonajeRPG.__init__
+pilas.actores.personajes_rpg.Calvo.__init__
+pilas.actores.personajes_rpg.Caminando.__init__
+pilas.actores.personajes_rpg.Maton.__init__
+pilas.actores.piedra.Piedra.__init__
+pilas.actores.pingu.Pingu.__init__
+pilas.actores.pizarra.Pizarra.__init__
+pilas.actores.proyectil.Bala.__init__
+pilas.actores.proyectil.Dinamita.__init__
+pilas.actores.proyectil.EstrellaNinja.__init__
+pilas.actores.proyectil.Misil.__init__
+pilas.actores.puntaje.Puntaje.__init__
+pilas.actores.sonido.Sonido.__init__
+pilas.actores.temporizador.Temporizador.__init__
+pilas.actores.texto.Texto.__init__
+pilas.actores.texto_inferior.TextoInferior.__init__
+pilas.actores.torreta.Torreta.__init__
+pilas.actores.tortuga.Tortuga.__init__
+pilas.actores.zanahoria.Zanahoria.__init__
+pilas.asistente.MainWindow.__init__
+pilas.camara.Camara.__init__
+pilas.colisiones.Colisiones.__init__
+pilas.colores.Color.__init__
+pilas.comportamientos.Avanzar.__init__
+pilas.comportamientos.Girar.__init__
+pilas.comportamientos.Proyectil.__init__
+pilas.comportamientos.Saltar.__init__
+pilas.control.Control.__init__
+pilas.demos.piezas.Pieza.__init__
+pilas.demos.piezas.Piezas.__init__
+pilas.depurador.Depurador.__init__
+pilas.depurador.ModoDepurador.__init__
+pilas.depurador.ModoInformacionDeSistema.__init__
+pilas.depurador.ModoPosicion.__init__
+pilas.depurador.ModoWidgetLog.__init__
+pilas.descargar.Descargar.__init__
+pilas.ejemplos.syntax.PythonHighlighter.__init__
+pilas.escena.escena_base.Base.__init__
+pilas.escena.escena_logos.Logos.__init__
+pilas.escena.escena_normal.Aviso.__init__
+pilas.escena.escena_normal.Normal.__init__
+pilas.escena.gestor.Gestor.__init__
+pilas.escenas.Escena.__init__
+pilas.escenas.Normal.__init__
+pilas.estudiante.Estudiante.__init__
+pilas.estudiante.ProxyHabilidades.__init__
+pilas.evento.AttrDict.__init__
+pilas.evento.Evento.__init__
+pilas.evento.ProxyFuncion.__init__
+pilas.evento.ProxyMetodo.__init__
+pilas.fisica.Circulo.__init__
+pilas.fisica.ConstanteDeDistancia.__init__
+pilas.fisica.ConstanteDeMovimiento.__init__
+pilas.fisica.Figura.__init__
+pilas.fisica.Fisica.__init__
+pilas.fisica.FisicaDeshabilitada.__init__
+pilas.fisica.ObjetosContactListener.__init__
+pilas.fisica.Poligono.__init__
+pilas.fisica.Rectangulo.__init__
+pilas.fondos.Color.__init__
+pilas.fondos.Desplazamiento.__init__
+pilas.fondos.Espacio.__init__
+pilas.fondos.Fondo.__init__
+pilas.fondos.Noche.__init__
+pilas.fondos.Nubes.__init__
+pilas.fondos.Pasto.__init__
+pilas.fondos.Plano.__init__
+pilas.fondos.Selva.__init__
+pilas.fondos.Tarde.__init__
+pilas.fondos.Volley.__init__
+pilas.fps.FPS.__init__
+pilas.habilidades.Arrastrable.__init__
+pilas.habilidades.AumentarConRueda.__init__
+pilas.habilidades.ColisionableComoPelota.__init__
+pilas.habilidades.Disparar.__init__
+pilas.habilidades.DispararConClick.__init__
+pilas.habilidades.Habilidad.__init__
+pilas.habilidades.Imitar.__init__
+pilas.habilidades.MirarAlActor.__init__
+pilas.habilidades.MoverseComoCoche.__init__
+pilas.habilidades.MoverseConElTeclado.__init__
+pilas.habilidades.PisaPlataformas.__init__
+pilas.habilidades.PuedeExplotar.__init__
+pilas.habilidades.RebotarComoCaja.__init__
+pilas.habilidades.RebotarComoPelota.__init__
+pilas.habilidades.RotarConMouse.__init__
+pilas.habilidades.SeMantieneEnPantalla.__init__
+pilas.habilidades.SeguirAlMouse.__init__
+pilas.habilidades.SeguirClicks.__init__
+pilas.habilidades.SiempreEnElCentro.__init__
+pilas.interfaz.base_interfaz.BaseInterfaz.__init__
+pilas.interfaz.boton.Boton.__init__
+pilas.interfaz.deslizador.Deslizador.__init__
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.__init__
+pilas.interfaz.lista_seleccion.ListaSeleccion.__init__
+pilas.interfaz.selector.Selector.__init__
+pilas.interpolaciones.AceleracionGradual.__init__
+pilas.interpolaciones.DesaceleracionGradual.__init__
+pilas.interpolaciones.ElasticoFinal.__init__
+pilas.interpolaciones.ElasticoInicial.__init__
+pilas.interpolaciones.Interpolacion.__init__
+pilas.interpolaciones.Lineal.__init__
+pilas.interpolaciones.ReboteFinal.__init__
+pilas.interpolaciones.ReboteInicial.__init__
+pilas.motores.motor_qt.Actor.__init__
+pilas.motores.motor_qt.BaseActor.__init__
+pilas.motores.motor_qt.CanvasWidget.__init__
+pilas.motores.motor_qt.Grilla.__init__
+pilas.motores.motor_qt.Imagen.__init__
+pilas.motores.motor_qt.Lienzo.__init__
+pilas.motores.motor_qt.Motor.__init__
+pilas.motores.motor_qt.MusicaDeshabilitada.__init__
+pilas.motores.motor_qt.MusicaGST.__init__
+pilas.motores.motor_qt.MusicaPhonon.__init__
+pilas.motores.motor_qt.SonidoDeshabilitado.__init__
+pilas.motores.motor_qt.SonidoGST.__init__
+pilas.motores.motor_qt.SonidoPhonon.__init__
+pilas.motores.motor_qt.Superficie.__init__
+pilas.motores.motor_qt.Texto.__init__
+pilas.motores.motor_qt.Ventana.__init__
+pilas.mundo.Mundo.__init__
+pilas.municion.BalaDoble.__init__
+pilas.municion.BalasDoblesDesviadas.__init__
+pilas.municion.MisilDoble.__init__
+pilas.municion.Municion.__init__
+pilas.pytweener.Tween.__init__
+pilas.pytweener.TweenTestObject.__init__
+pilas.pytweener.Tweenable.__init__
+pilas.pytweener.Tweener.__init__
+pilas.tareas.Tarea.__init__
+pilas.tareas.Tareas.__init__
+pilas.widget_log.WidgetLog.__init__" class="py-name" href="#" onclick="return doclink('link-14', '__init__', 'link-14');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">document</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-comment"># Multi-line strings (expression, flag, style)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-comment"># FIXME: The triple-quotes in these two lines will mess up the</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-comment"># syntax highlighting from this point onward</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tri_single</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">QRegExp</tt><tt class="py-op">(</tt><tt class="py-string">"'''"</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt id="link-15" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-15', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'string2'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tri_double</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">QRegExp</tt><tt class="py-op">(</tt><tt class="py-string">'"""'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">2</tt><tt class="py-op">,</tt> <tt id="link-16" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-16', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'string2'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-name">rules</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-comment"># Keyword, operator, and brace rules</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-name">rules</tt> <tt class="py-op">+=</tt> <tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-string">r'\b%s\b'</tt> <tt class="py-op">%</tt> <tt id="link-17" class="py-name" targets="Variable pilas.simbolos.w=pilas.simbolos-module.html#w"><a title="pilas.simbolos.w" class="py-name" href="#" onclick="return doclink('link-17', 'w', 'link-17');">w</a></tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt id="link-18" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-18', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'keyword'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt id="link-19" class="py-name"><a title="pilas.simbolos.w" class="py-name" href="#" onclick="return doclink('link-19', 'w', 'link-17');">w</a></tt> <tt class="py-keyword">in</tt> <tt id="link-20" class="py-name" targets="Class pilas.ejemplos.syntax.PythonHighlighter=pilas.ejemplos.syntax.PythonHighlighter-class.html"><a title="pilas.ejemplos.syntax.PythonHighlighter" class="py-name" href="#" onclick="return doclink('link-20', 'PythonHighlighter', 'link-20');">PythonHighlighter</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="pilas.ejemplos.syntax.PythonHighlighter.keywords" class="py-name" href="#" onclick="return doclink('link-21', 'keywords', 'link-11');">keywords</a></tt><tt class="py-op">]</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-name">rules</tt> <tt class="py-op">+=</tt> <tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-string">r'%s'</tt> <tt class="py-op">%</tt> <tt id="link-22" class="py-name" targets="Variable pilas.simbolos.o=pilas.simbolos-module.html#o"><a title="pilas.simbolos.o" class="py-name" href="#" onclick="return doclink('link-22', 'o', 'link-22');">o</a></tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt id="link-23" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-23', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'operator'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt id="link-24" class="py-name"><a title="pilas.simbolos.o" class="py-name" href="#" onclick="return doclink('link-24', 'o', 'link-22');">o</a></tt> <tt class="py-keyword">in</tt> <tt id="link-25" class="py-name"><a title="pilas.ejemplos.syntax.PythonHighlighter" class="py-name" href="#" onclick="return doclink('link-25', 'PythonHighlighter', 'link-20');">PythonHighlighter</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="pilas.ejemplos.syntax.PythonHighlighter.operators" class="py-name" href="#" onclick="return doclink('link-26', 'operators', 'link-12');">operators</a></tt><tt class="py-op">]</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-name">rules</tt> <tt class="py-op">+=</tt> <tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-string">r'%s'</tt> <tt class="py-op">%</tt> <tt id="link-27" class="py-name" targets="Variable pilas.simbolos.b=pilas.simbolos-module.html#b"><a title="pilas.simbolos.b" class="py-name" href="#" onclick="return doclink('link-27', 'b', 'link-27');">b</a></tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt id="link-28" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-28', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'brace'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt id="link-29" class="py-name"><a title="pilas.simbolos.b" class="py-name" href="#" onclick="return doclink('link-29', 'b', 'link-27');">b</a></tt> <tt class="py-keyword">in</tt> <tt id="link-30" class="py-name"><a title="pilas.ejemplos.syntax.PythonHighlighter" class="py-name" href="#" onclick="return doclink('link-30', 'PythonHighlighter', 'link-20');">PythonHighlighter</a></tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="pilas.ejemplos.syntax.PythonHighlighter.braces" class="py-name" href="#" onclick="return doclink('link-31', 'braces', 'link-13');">braces</a></tt><tt class="py-op">]</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-comment"># All other rules</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-name">rules</tt> <tt class="py-op">+=</tt> <tt class="py-op">[</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">            <tt class="py-comment"># 'self'</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">r'\bself\b'</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt id="link-32" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-32', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'self'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">            <tt class="py-comment"># Double-quoted string, possibly containing escape sequences</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">r'"[^"\\]*(\\.[^"\\]*)*"'</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt id="link-33" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-33', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'string'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">            <tt class="py-comment"># Single-quoted string, possibly containing escape sequences</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">r"'[^'\\]*(\\.[^'\\]*)*'"</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt id="link-34" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-34', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'string'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-comment"># 'def' followed by an identifier</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">r'\bdef\b\s*(\w+)'</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt id="link-35" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-35', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'defclass'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">            <tt class="py-comment"># 'class' followed by an identifier</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">r'\bclass\b\s*(\w+)'</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt id="link-36" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-36', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'defclass'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">            <tt class="py-comment"># From '#' until a newline</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">r'#[^\n]*'</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt id="link-37" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-37', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'comment'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">            <tt class="py-comment"># Numeric literals</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">r'\b[+-]?[0-9]+[lL]?\b'</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt id="link-38" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-38', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'numbers'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">r'\b[+-]?0[xX][0-9A-Fa-f]+[lL]?\b'</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt id="link-39" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-39', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'numbers'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-string">r'\b[+-]?[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\b'</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt id="link-40" class="py-name"><a title="pilas.ejemplos.syntax.STYLES" class="py-name" href="#" onclick="return doclink('link-40', 'STYLES', 'link-1');">STYLES</a></tt><tt class="py-op">[</tt><tt class="py-string">'numbers'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-op">]</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-comment"># Build a QRegExp for each pattern</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">rules</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-name">QRegExp</tt><tt class="py-op">(</tt><tt class="py-name">pat</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">index</tt><tt class="py-op">,</tt> <tt class="py-name">fmt</tt><tt class="py-op">)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-op">(</tt><tt class="py-name">pat</tt><tt class="py-op">,</tt> <tt class="py-name">index</tt><tt class="py-op">,</tt> <tt class="py-name">fmt</tt><tt class="py-op">)</tt> <tt class="py-keyword">in</tt> <tt class="py-name">rules</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"> </tt>
+<a name="PythonHighlighter.highlightBlock"></a><div id="PythonHighlighter.highlightBlock-def"><a name="L116"></a><tt class="py-lineno">116</tt> <a class="py-toggle" href="#" id="PythonHighlighter.highlightBlock-toggle" onclick="return toggle('PythonHighlighter.highlightBlock');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.ejemplos.syntax.PythonHighlighter-class.html#highlightBlock">highlightBlock</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">text</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PythonHighlighter.highlightBlock-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PythonHighlighter.highlightBlock-expanded"><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt class="py-docstring">"""Apply syntax highlighting to the given block of text.</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-comment"># Do other syntax formatting</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">expression</tt><tt class="py-op">,</tt> <tt class="py-name">nth</tt><tt class="py-op">,</tt> <tt id="link-41" class="py-name"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-41', 'format', 'link-2');">format</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">rules</tt><tt class="py-op">:</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">            <tt class="py-name">index</tt> <tt class="py-op">=</tt> <tt class="py-name">expression</tt><tt class="py-op">.</tt><tt class="py-name">indexIn</tt><tt class="py-op">(</tt><tt class="py-name">text</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">            <tt class="py-keyword">while</tt> <tt class="py-name">index</tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">                <tt class="py-comment"># We actually want the index of the nth match</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">                <tt class="py-name">index</tt> <tt class="py-op">=</tt> <tt class="py-name">expression</tt><tt class="py-op">.</tt><tt class="py-name">pos</tt><tt class="py-op">(</tt><tt class="py-name">nth</tt><tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">                <tt class="py-name">length</tt> <tt class="py-op">=</tt> <tt class="py-name">expression</tt><tt class="py-op">.</tt><tt class="py-name">cap</tt><tt class="py-op">(</tt><tt class="py-name">nth</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">length</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">setFormat</tt><tt class="py-op">(</tt><tt class="py-name">index</tt><tt class="py-op">,</tt> <tt class="py-name">length</tt><tt class="py-op">,</tt> <tt id="link-42" class="py-name"><a title="pilas.ejemplos.syntax.format" class="py-name" href="#" onclick="return doclink('link-42', 'format', 'link-2');">format</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                <tt class="py-name">index</tt> <tt class="py-op">=</tt> <tt class="py-name">expression</tt><tt class="py-op">.</tt><tt class="py-name">indexIn</tt><tt class="py-op">(</tt><tt class="py-name">text</tt><tt class="py-op">,</tt> <tt class="py-name">index</tt> <tt class="py-op">+</tt> <tt class="py-name">length</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">setCurrentBlockState</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-comment"># Do multi-line strings</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-name">in_multiline</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name" targets="Method pilas.ejemplos.syntax.PythonHighlighter.match_multiline()=pilas.ejemplos.syntax.PythonHighlighter-class.html#match_multiline"><a title="pilas.ejemplos.syntax.PythonHighlighter.match_multiline" class="py-name" href="#" onclick="return doclink('link-43', 'match_multiline', 'link-43');">match_multiline</a></tt><tt class="py-op">(</tt><tt class="py-name">text</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tri_single</tt><tt class="py-op">)</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">in_multiline</tt><tt class="py-op">:</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">            <tt class="py-name">in_multiline</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="pilas.ejemplos.syntax.PythonHighlighter.match_multiline" class="py-name" href="#" onclick="return doclink('link-44', 'match_multiline', 'link-43');">match_multiline</a></tt><tt class="py-op">(</tt><tt class="py-name">text</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tri_double</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt>
+<a name="PythonHighlighter.match_multiline"></a><div id="PythonHighlighter.match_multiline-def"><a name="L138"></a><tt class="py-lineno">138</tt> <a class="py-toggle" href="#" id="PythonHighlighter.match_multiline-toggle" onclick="return toggle('PythonHighlighter.match_multiline');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.ejemplos.syntax.PythonHighlighter-class.html#match_multiline">match_multiline</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">text</tt><tt class="py-op">,</tt> <tt class="py-param">delimiter</tt><tt class="py-op">,</tt> <tt class="py-param">in_state</tt><tt class="py-op">,</tt> <tt class="py-param">style</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PythonHighlighter.match_multiline-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PythonHighlighter.match_multiline-expanded"><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-docstring">"""Do highlighting of multi-line strings. ``delimiter`` should be a</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"><tt class="py-docstring">        ``QRegExp`` for triple-single-quotes or triple-double-quotes, and</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"><tt class="py-docstring">        ``in_state`` should be a unique integer to represent the corresponding</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"><tt class="py-docstring">        state changes when inside those strings. Returns True if we're still</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"><tt class="py-docstring">        inside a multi-line string when this function is finished.</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-comment"># If inside triple-single quotes, start at 0</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">previousBlockState</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">in_state</tt><tt class="py-op">:</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">            <tt class="py-name">start</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">            <tt class="py-name">add</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-comment"># Otherwise, look for the delimiter on this line</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">            <tt class="py-name">start</tt> <tt class="py-op">=</tt> <tt class="py-name">delimiter</tt><tt class="py-op">.</tt><tt class="py-name">indexIn</tt><tt class="py-op">(</tt><tt class="py-name">text</tt><tt class="py-op">)</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">            <tt class="py-comment"># Move past this match</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">            <tt class="py-name">add</tt> <tt class="py-op">=</tt> <tt class="py-name">delimiter</tt><tt class="py-op">.</tt><tt class="py-name">matchedLength</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt class="py-comment"># As long as there's a delimiter match on this line...</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">start</tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">            <tt class="py-comment"># Look for the ending delimiter</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">            <tt class="py-name">end</tt> <tt class="py-op">=</tt> <tt class="py-name">delimiter</tt><tt class="py-op">.</tt><tt class="py-name">indexIn</tt><tt class="py-op">(</tt><tt class="py-name">text</tt><tt class="py-op">,</tt> <tt class="py-name">start</tt> <tt class="py-op">+</tt> <tt class="py-name">add</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">            <tt class="py-comment"># Ending delimiter on this line?</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">end</tt> <tt class="py-op">&gt;=</tt> <tt class="py-name">add</tt><tt class="py-op">:</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">                <tt class="py-name">length</tt> <tt class="py-op">=</tt> <tt class="py-name">end</tt> <tt class="py-op">-</tt> <tt class="py-name">start</tt> <tt class="py-op">+</tt> <tt class="py-name">add</tt> <tt class="py-op">+</tt> <tt class="py-name">delimiter</tt><tt class="py-op">.</tt><tt class="py-name">matchedLength</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">setCurrentBlockState</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">            <tt class="py-comment"># No; multi-line string</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">setCurrentBlockState</tt><tt class="py-op">(</tt><tt class="py-name">in_state</tt><tt class="py-op">)</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">                <tt class="py-name">length</tt> <tt class="py-op">=</tt> <tt class="py-name">text</tt><tt class="py-op">.</tt><tt class="py-name">length</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-name">start</tt> <tt class="py-op">+</tt> <tt class="py-name">add</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">            <tt class="py-comment"># Apply formatting</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">setFormat</tt><tt class="py-op">(</tt><tt class="py-name">start</tt><tt class="py-op">,</tt> <tt class="py-name">length</tt><tt class="py-op">,</tt> <tt class="py-name">style</tt><tt class="py-op">)</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">            <tt class="py-comment"># Look for the next match</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">            <tt class="py-name">start</tt> <tt class="py-op">=</tt> <tt class="py-name">delimiter</tt><tt class="py-op">.</tt><tt class="py-name">indexIn</tt><tt class="py-op">(</tt><tt class="py-name">text</tt><tt class="py-op">,</tt> <tt class="py-name">start</tt> <tt class="py-op">+</tt> <tt class="py-name">length</tt><tt class="py-op">)</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line"> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">        <tt class="py-comment"># Return True if still inside a multi-line string, False otherwise</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currentBlockState</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">in_state</tt><tt class="py-op">:</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+</div></div><a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:47 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

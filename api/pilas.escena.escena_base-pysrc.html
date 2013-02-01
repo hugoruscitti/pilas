@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.escena.escena_base</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        <a href="pilas.escena-module.html">Package&nbsp;escena</a> ::
+        Module&nbsp;escena_base
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.escena.escena_base-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.escena.escena_base-module.html">Module pilas.escena.escena_base</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># pilas engine - a video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># copyright 2010 - hugo ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-0', 'pilas', 'link-0');">pilas</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-1', 'pilas', 'link-0');">pilas</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Variable pilas.mundo.Mundo.tareas=pilas.mundo.Mundo-class.html#tareas,Module pilas.tareas=pilas.tareas-module.html"><a title="pilas.mundo.Mundo.tareas
+pilas.tareas" class="py-name" href="#" onclick="return doclink('link-2', 'tareas', 'link-2');">tareas</a></tt><tt class="py-op">,</tt> <tt id="link-3" class="py-name" targets="Module pilas.colisiones=pilas.colisiones-module.html,Variable pilas.mundo.Mundo.colisiones=pilas.mundo.Mundo-class.html#colisiones"><a title="pilas.colisiones
+pilas.mundo.Mundo.colisiones" class="py-name" href="#" onclick="return doclink('link-3', 'colisiones', 'link-3');">colisiones</a></tt><tt class="py-op">,</tt> <tt id="link-4" class="py-name" targets="Module pilas.pytweener=pilas.pytweener-module.html"><a title="pilas.pytweener" class="py-name" href="#" onclick="return doclink('link-4', 'pytweener', 'link-4');">pytweener</a></tt><tt class="py-op">,</tt> <tt id="link-5" class="py-name" targets="Module pilas.camara=pilas.camara-module.html,Variable pilas.mundo.Mundo.camara=pilas.mundo.Mundo-class.html#camara"><a title="pilas.camara
+pilas.mundo.Mundo.camara" class="py-name" href="#" onclick="return doclink('link-5', 'camara', 'link-5');">camara</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-6" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-6', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Module pilas.evento=pilas.evento-module.html"><a title="pilas.evento" class="py-name" href="#" onclick="return doclink('link-7', 'evento', 'link-7');">evento</a></tt> <tt class="py-keyword">import</tt> <tt id="link-8" class="py-name" targets="Class pilas.evento.Evento=pilas.evento.Evento-class.html,Variable pilas.evento.ProxyEventos.Evento=pilas.evento.ProxyEventos-class.html#Evento"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-8', 'Evento', 'link-8');">Evento</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"> </tt>
+<a name="Base"></a><div id="Base-def"><a name="L14"></a><tt class="py-lineno"> 14</tt> <a class="py-toggle" href="#" id="Base-toggle" onclick="return toggle('Base');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.escena.escena_base.Base-class.html">Base</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Base-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Base-expanded"><a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">    <tt class="py-docstring">""" Escena base abstracta de la que deben heredar el resto de escenas.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; class MiEscena(Base):</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;    def __init__(self):</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;        Base.__init__(self)</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;    def iniciar(self):</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;        fondo = pilas.fondos.Color(pilas.colores.grisclaro)</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">        Si heredas de esta clase DEBES redefinir el m&#233;todo "iniciar".</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">        Como se muestra en el ejemplo anterior.</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="Base.__init__"></a><div id="Base.__init__-def"><a name="L28"></a><tt class="py-lineno"> 28</tt> <a class="py-toggle" href="#" id="Base.__init__-toggle" onclick="return toggle('Base.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.escena.escena_base.Base-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Base.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Base.__init__-expanded"><a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-comment"># Identificador de la escena. S&#243;lo util para efectuar alg&#250;n debug.</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-comment"># Actores que participan en la escena.</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Package pilas.actores=pilas.actores-module.html"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-9', 'actores', 'link-9');">actores</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-comment"># Camara de la escena.</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="pilas.camara
+pilas.mundo.Mundo.camara" class="py-name" href="#" onclick="return doclink('link-10', 'camara', 'link-5');">camara</a></tt> <tt class="py-op">=</tt> <tt id="link-11" class="py-name"><a title="pilas.camara
+pilas.mundo.Mundo.camara" class="py-name" href="#" onclick="return doclink('link-11', 'camara', 'link-5');">camara</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Class pilas.camara.Camara=pilas.camara.Camara-class.html"><a title="pilas.camara.Camara" class="py-name" href="#" onclick="return doclink('link-12', 'Camara', 'link-12');">Camara</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-comment"># Eventos asociados a la escena.</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Variable pilas.evento.ProxyEventos.mueve_camara=pilas.evento.ProxyEventos-class.html#mueve_camara"><a title="pilas.evento.ProxyEventos.mueve_camara" class="py-name" href="#" onclick="return doclink('link-13', 'mueve_camara', 'link-13');">mueve_camara</a></tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-14', 'Evento', 'link-8');">Evento</a></tt><tt class="py-op">(</tt><tt class="py-string">'mueve_camara'</tt><tt class="py-op">)</tt>               <tt class="py-comment"># ['x', 'y', 'dx', 'dy']</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Variable pilas.evento.ProxyEventos.mueve_mouse=pilas.evento.ProxyEventos-class.html#mueve_mouse"><a title="pilas.evento.ProxyEventos.mueve_mouse" class="py-name" href="#" onclick="return doclink('link-15', 'mueve_mouse', 'link-15');">mueve_mouse</a></tt> <tt class="py-op">=</tt> <tt id="link-16" class="py-name"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-16', 'Evento', 'link-8');">Evento</a></tt><tt class="py-op">(</tt><tt class="py-string">'mueve_mouse'</tt><tt class="py-op">)</tt>                 <tt class="py-comment"># ['x', 'y', 'dx', 'dy']</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Variable pilas.evento.ProxyEventos.click_de_mouse=pilas.evento.ProxyEventos-class.html#click_de_mouse"><a title="pilas.evento.ProxyEventos.click_de_mouse" class="py-name" href="#" onclick="return doclink('link-17', 'click_de_mouse', 'link-17');">click_de_mouse</a></tt> <tt class="py-op">=</tt> <tt id="link-18" class="py-name"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-18', 'Evento', 'link-8');">Evento</a></tt><tt class="py-op">(</tt><tt class="py-string">'click_de_mouse'</tt><tt class="py-op">)</tt>           <tt class="py-comment"># ['button', 'x', 'y']</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Variable pilas.evento.ProxyEventos.termina_click=pilas.evento.ProxyEventos-class.html#termina_click"><a title="pilas.evento.ProxyEventos.termina_click" class="py-name" href="#" onclick="return doclink('link-19', 'termina_click', 'link-19');">termina_click</a></tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-20', 'Evento', 'link-8');">Evento</a></tt><tt class="py-op">(</tt><tt class="py-string">'termina_click'</tt><tt class="py-op">)</tt>             <tt class="py-comment"># ['button', 'x', 'y']</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Variable pilas.evento.ProxyEventos.mueve_rueda=pilas.evento.ProxyEventos-class.html#mueve_rueda"><a title="pilas.evento.ProxyEventos.mueve_rueda" class="py-name" href="#" onclick="return doclink('link-21', 'mueve_rueda', 'link-21');">mueve_rueda</a></tt> <tt class="py-op">=</tt> <tt id="link-22" class="py-name"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-22', 'Evento', 'link-8');">Evento</a></tt><tt class="py-op">(</tt><tt class="py-string">'mueve_rueda'</tt><tt class="py-op">)</tt>                 <tt class="py-comment"># ['delta']</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Variable pilas.evento.ProxyEventos.pulsa_tecla=pilas.evento.ProxyEventos-class.html#pulsa_tecla"><a title="pilas.evento.ProxyEventos.pulsa_tecla" class="py-name" href="#" onclick="return doclink('link-23', 'pulsa_tecla', 'link-23');">pulsa_tecla</a></tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-24', 'Evento', 'link-8');">Evento</a></tt><tt class="py-op">(</tt><tt class="py-string">'pulsa_tecla'</tt><tt class="py-op">)</tt>                 <tt class="py-comment"># ['codigo', 'texto']</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Variable pilas.evento.ProxyEventos.suelta_tecla=pilas.evento.ProxyEventos-class.html#suelta_tecla"><a title="pilas.evento.ProxyEventos.suelta_tecla" class="py-name" href="#" onclick="return doclink('link-25', 'suelta_tecla', 'link-25');">suelta_tecla</a></tt> <tt class="py-op">=</tt> <tt id="link-26" class="py-name"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-26', 'Evento', 'link-8');">Evento</a></tt><tt class="py-op">(</tt><tt class="py-string">'suelta_tecla'</tt><tt class="py-op">)</tt>               <tt class="py-comment"># ['codigo', 'texto']</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Variable pilas.evento.ProxyEventos.pulsa_tecla_escape=pilas.evento.ProxyEventos-class.html#pulsa_tecla_escape"><a title="pilas.evento.ProxyEventos.pulsa_tecla_escape" class="py-name" href="#" onclick="return doclink('link-27', 'pulsa_tecla_escape', 'link-27');">pulsa_tecla_escape</a></tt> <tt class="py-op">=</tt> <tt id="link-28" class="py-name"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-28', 'Evento', 'link-8');">Evento</a></tt><tt class="py-op">(</tt><tt class="py-string">'pulsa_tecla_escape'</tt><tt class="py-op">)</tt>   <tt class="py-comment"># []</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method pilas.actores.actor.Actor.actualizar()=pilas.actores.actor.Actor-class.html#actualizar,Method pilas.actores.animacion.Animacion.actualizar()=pilas.actores.animacion.Animacion-class.html#actualizar,Method pilas.actores.cooperativista.Caminando.actualizar()=pilas.actores.cooperativista.Caminando-class.html#actualizar,Method pilas.actores.cooperativista.DecirOk.actualizar()=pilas.actores.cooperativista.DecirOk-class.html#actualizar,Method pilas.actores.cooperativista.Esperando.actualizar()=pilas.actores.cooperativista.Esperando-class.html#actualizar,Method pilas.actores.energia.Energia.actualizar()=pilas.actores.energia.Energia-class.html#actualizar,Method pilas.actores.fantasma.Fantasma.actualizar()=pilas.actores.fantasma.Fantasma-class.html#actualizar,Method pilas.actores.martian.Caminando.actualizar()=pilas.actores.martian.Caminando-class.html#actualizar,Method pilas.actores.martian.Disparar.actualizar()=pilas.actores.martian.Disparar-class.html#actualizar,Method pilas.actores.martian.Esperando.actualizar()=pilas.actores.martian.Esperando-class.html#actualizar,Method pilas.actores.martian.Martian.actualizar()=pilas.actores.martian.Martian-class.html#actualizar,Method pilas.actores.martian.Saltando.actualizar()=pilas.actores.martian.Saltando-class.html#actualizar,Method pilas.actores.menu.Menu.actualizar()=pilas.actores.menu.Menu-class.html#actualizar,Method pilas.actores.nave.Nave.actualizar()=pilas.actores.nave.Nave-class.html#actualizar,Method pilas.actores.navekids.NaveKids.actualizar()=pilas.actores.navekids.NaveKids-class.html#actualizar,Method pilas.actores.ovni.Ovni.actualizar()=pilas.actores.ovni.Ovni-class.html#actualizar,Method pilas.actores.ovni.Planeta.actualizar()=pilas.actores.ovni.Planeta-class.html#actualizar,Method pilas.actores.pacman.Pacman.actualizar()=pilas.actores.pacman.Pacman-class.html#actualizar,Method pilas.actores.personajes_rpg.BasePersonajeRPG.actualizar()=pilas.actores.personajes_rpg.BasePersonajeRPG-class.html#actualizar,Method pilas.actores.personajes_rpg.Caminando.actualizar()=pilas.actores.personajes_rpg.Caminando-class.html#actualizar,Method pilas.actores.personajes_rpg.Esperando.actualizar()=pilas.actores.personajes_rpg.Esperando-class.html#actualizar,Method pilas.actores.piedra.Piedra.actualizar()=pilas.actores.piedra.Piedra-class.html#actualizar,Method pilas.actores.pingu.Caminando.actualizar()=pilas.actores.pingu.Caminando-class.html#actualizar,Method pilas.actores.pingu.Esperando.actualizar()=pilas.actores.pingu.Esperando-class.html#actualizar,Method pilas.actores.pingu.Saltando.actualizar()=pilas.actores.pingu.Saltando-class.html#actualizar,Method pilas.actores.proyectil.Dinamita.actualizar()=pilas.actores.proyectil.Dinamita-class.html#actualizar,Method pilas.actores.proyectil.EstrellaNinja.actualizar()=pilas.actores.proyectil.EstrellaNinja-class.html#actualizar,Method pilas.actores.tortuga.Tortuga.actualizar()=pilas.actores.tortuga.Tortuga-class.html#actualizar,Method pilas.comportamientos.Avanzar.actualizar()=pilas.comportamientos.Avanzar-class.html#actualizar,Method pilas.comportamientos.Comportamiento.actualizar()=pilas.comportamientos.Comportamiento-class.html#actualizar,Method pilas.comportamientos.Girar.actualizar()=pilas.comportamientos.Girar-class.html#actualizar,Method pilas.comportamientos.Proyectil.actualizar()=pilas.comportamientos.Proyectil-class.html#actualizar,Method pilas.comportamientos.Saltar.actualizar()=pilas.comportamientos.Saltar-class.html#actualizar,Method pilas.escena.escena_normal.Aviso.actualizar()=pilas.escena.escena_normal.Aviso-class.html#actualizar,Method pilas.escena.gestor.Gestor.actualizar()=pilas.escena.gestor.Gestor-class.html#actualizar,Variable pilas.evento.ProxyEventos.actualizar=pilas.evento.ProxyEventos-class.html#actualizar,Method pilas.fisica.Fisica.actualizar()=pilas.fisica.Fisica-class.html#actualizar,Method pilas.fisica.FisicaDeshabilitada.actualizar()=pilas.fisica.FisicaDeshabilitada-class.html#actualizar,Method pilas.fondos.Desplazamiento.actualizar()=pilas.fondos.Desplazamiento-class.html#actualizar,Method pilas.fps.FPS.actualizar()=pilas.fps.FPS-class.html#actualizar,Method pilas.habilidades.ColisionableComoPelota.actualizar()=pilas.habilidades.ColisionableComoPelota-class.html#actualizar,Method pilas.habilidades.Disparar.actualizar()=pilas.habilidades.Disparar-class.html#actualizar,Method pilas.habilidades.Habilidad.actualizar()=pilas.habilidades.Habilidad-class.html#actualizar,Method pilas.habilidades.Imitar.actualizar()=pilas.habilidades.Imitar-class.html#actualizar,Method pilas.habilidades.PisaPlataformas.actualizar()=pilas.habilidades.PisaPlataformas-class.html#actualizar,Method pilas.habilidades.SeMantieneEnPantalla.actualizar()=pilas.habilidades.SeMantieneEnPantalla-class.html#actualizar,Method pilas.habilidades.SiempreEnElCentro.actualizar()=pilas.habilidades.SiempreEnElCentro-class.html#actualizar,Method pilas.tareas.Tareas.actualizar()=pilas.tareas.Tareas-class.html#actualizar"><a title="pilas.actores.actor.Actor.actualizar
+pilas.actores.animacion.Animacion.actualizar
+pilas.actores.cooperativista.Caminando.actualizar
+pilas.actores.cooperativista.DecirOk.actualizar
+pilas.actores.cooperativista.Esperando.actualizar
+pilas.actores.energia.Energia.actualizar
+pilas.actores.fantasma.Fantasma.actualizar
+pilas.actores.martian.Caminando.actualizar
+pilas.actores.martian.Disparar.actualizar
+pilas.actores.martian.Esperando.actualizar
+pilas.actores.martian.Martian.actualizar
+pilas.actores.martian.Saltando.actualizar
+pilas.actores.menu.Menu.actualizar
+pilas.actores.nave.Nave.actualizar
+pilas.actores.navekids.NaveKids.actualizar
+pilas.actores.ovni.Ovni.actualizar
+pilas.actores.ovni.Planeta.actualizar
+pilas.actores.pacman.Pacman.actualizar
+pilas.actores.personajes_rpg.BasePersonajeRPG.actualizar
+pilas.actores.personajes_rpg.Caminando.actualizar
+pilas.actores.personajes_rpg.Esperando.actualizar
+pilas.actores.piedra.Piedra.actualizar
+pilas.actores.pingu.Caminando.actualizar
+pilas.actores.pingu.Esperando.actualizar
+pilas.actores.pingu.Saltando.actualizar
+pilas.actores.proyectil.Dinamita.actualizar
+pilas.actores.proyectil.EstrellaNinja.actualizar
+pilas.actores.tortuga.Tortuga.actualizar
+pilas.comportamientos.Avanzar.actualizar
+pilas.comportamientos.Comportamiento.actualizar
+pilas.comportamientos.Girar.actualizar
+pilas.comportamientos.Proyectil.actualizar
+pilas.comportamientos.Saltar.actualizar
+pilas.escena.escena_normal.Aviso.actualizar
+pilas.escena.gestor.Gestor.actualizar
+pilas.evento.ProxyEventos.actualizar
+pilas.fisica.Fisica.actualizar
+pilas.fisica.FisicaDeshabilitada.actualizar
+pilas.fondos.Desplazamiento.actualizar
+pilas.fps.FPS.actualizar
+pilas.habilidades.ColisionableComoPelota.actualizar
+pilas.habilidades.Disparar.actualizar
+pilas.habilidades.Habilidad.actualizar
+pilas.habilidades.Imitar.actualizar
+pilas.habilidades.PisaPlataformas.actualizar
+pilas.habilidades.SeMantieneEnPantalla.actualizar
+pilas.habilidades.SiempreEnElCentro.actualizar
+pilas.tareas.Tareas.actualizar" class="py-name" href="#" onclick="return doclink('link-29', 'actualizar', 'link-29');">actualizar</a></tt> <tt class="py-op">=</tt> <tt id="link-30" class="py-name"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-30', 'Evento', 'link-8');">Evento</a></tt><tt class="py-op">(</tt><tt class="py-string">'actualizar'</tt><tt class="py-op">)</tt>                   <tt class="py-comment"># []</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Variable pilas.evento.ProxyEventos.log=pilas.evento.ProxyEventos-class.html#log,Function pilas.log()=pilas-module.html#log"><a title="pilas.evento.ProxyEventos.log
+pilas.log" class="py-name" href="#" onclick="return doclink('link-31', 'log', 'link-31');">log</a></tt> <tt class="py-op">=</tt> <tt id="link-32" class="py-name"><a title="pilas.evento.Evento
+pilas.evento.ProxyEventos.Evento" class="py-name" href="#" onclick="return doclink('link-32', 'Evento', 'link-8');">Evento</a></tt><tt class="py-op">(</tt><tt class="py-string">'log'</tt><tt class="py-op">)</tt>                                 <tt class="py-comment"># ['data']</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Module pilas.control=pilas.control-module.html,Variable pilas.mundo.Mundo.control=pilas.mundo.Mundo-class.html#control"><a title="pilas.control
+pilas.mundo.Mundo.control" class="py-name" href="#" onclick="return doclink('link-33', 'control', 'link-33');">control</a></tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-34', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="pilas.control
+pilas.mundo.Mundo.control" class="py-name" href="#" onclick="return doclink('link-35', 'control', 'link-33');">control</a></tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Class pilas.control.Control=pilas.control.Control-class.html"><a title="pilas.control.Control" class="py-name" href="#" onclick="return doclink('link-36', 'Control', 'link-36');">Control</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-comment"># Gestor de tareas</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="pilas.mundo.Mundo.tareas
+pilas.tareas" class="py-name" href="#" onclick="return doclink('link-37', 'tareas', 'link-2');">tareas</a></tt> <tt class="py-op">=</tt> <tt id="link-38" class="py-name"><a title="pilas.mundo.Mundo.tareas
+pilas.tareas" class="py-name" href="#" onclick="return doclink('link-38', 'tareas', 'link-2');">tareas</a></tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Class pilas.tareas.Tareas=pilas.tareas.Tareas-class.html"><a title="pilas.tareas.Tareas" class="py-name" href="#" onclick="return doclink('link-39', 'Tareas', 'link-39');">Tareas</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-comment"># Gestor de colisiones</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name"><a title="pilas.colisiones
+pilas.mundo.Mundo.colisiones" class="py-name" href="#" onclick="return doclink('link-40', 'colisiones', 'link-3');">colisiones</a></tt> <tt class="py-op">=</tt> <tt id="link-41" class="py-name"><a title="pilas.colisiones
+pilas.mundo.Mundo.colisiones" class="py-name" href="#" onclick="return doclink('link-41', 'colisiones', 'link-3');">colisiones</a></tt><tt class="py-op">.</tt><tt id="link-42" class="py-name" targets="Class pilas.colisiones.Colisiones=pilas.colisiones.Colisiones-class.html"><a title="pilas.colisiones.Colisiones" class="py-name" href="#" onclick="return doclink('link-42', 'Colisiones', 'link-42');">Colisiones</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-comment"># Generador de interpolaciones</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tweener</tt> <tt class="py-op">=</tt> <tt id="link-43" class="py-name"><a title="pilas.pytweener" class="py-name" href="#" onclick="return doclink('link-43', 'pytweener', 'link-4');">pytweener</a></tt><tt class="py-op">.</tt><tt id="link-44" class="py-name" targets="Class pilas.pytweener.Tweener=pilas.pytweener.Tweener-class.html"><a title="pilas.pytweener.Tweener" class="py-name" href="#" onclick="return doclink('link-44', 'Tweener', 'link-44');">Tweener</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-comment"># Administrador de la fisica de la escena.</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name" targets="Module pilas.fisica=pilas.fisica-module.html"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-45', 'fisica', 'link-45');">fisica</a></tt> <tt class="py-op">=</tt> <tt id="link-46" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-46', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-47" class="py-name" targets="Module pilas.mundo=pilas.mundo-module.html"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-47', 'mundo', 'link-47');">mundo</a></tt><tt class="py-op">.</tt><tt id="link-48" class="py-name" targets="Function pilas.fisica.crear_motor_fisica()=pilas.fisica-module.html#crear_motor_fisica,Method pilas.mundo.Mundo.crear_motor_fisica()=pilas.mundo.Mundo-class.html#crear_motor_fisica"><a title="pilas.fisica.crear_motor_fisica
+pilas.mundo.Mundo.crear_motor_fisica" class="py-name" href="#" onclick="return doclink('link-48', 'crear_motor_fisica', 'link-48');">crear_motor_fisica</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-comment"># Control para saber si se ha iniciado la escena y poder actualizarla.</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">iniciada</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="Base.iniciar"></a><div id="Base.iniciar-def"><a name="L68"></a><tt class="py-lineno"> 68</tt> <a class="py-toggle" href="#" id="Base.iniciar-toggle" onclick="return toggle('Base.iniciar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.escena.escena_base.Base-class.html#iniciar">iniciar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Base.iniciar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Base.iniciar-expanded"><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-docstring">""" Este m&#233;todo debe ser reimplementado en todas las clases que</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">        hereden de ella.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;    def iniciar(self):</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;        fondo = pilas.fondos.Color(pilas.colores.grisclaro)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Debes de re-definir el metodo iniciar."</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="Base.pausar"></a><div id="Base.pausar-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="Base.pausar-toggle" onclick="return toggle('Base.pausar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.escena.escena_base.Base-class.html#pausar">pausar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Base.pausar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Base.pausar-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-docstring">""" Este m&#233;todo es llamado por el gestor de escenas cuando se</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring">        ::almacena:: una escena para llamar a otra nueva.</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; pilas.almacenar_escena(EscenaDeOpciones())</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">        Al efectuar esta instrucci&#243;n el gestor llamar&#225; primero a nuestro</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">        m&#233;todo ::pausar:: antes de cambiar a la escena que le hemos indicado.</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="Base.reanudar"></a><div id="Base.reanudar-def"><a name="L89"></a><tt class="py-lineno"> 89</tt> <a class="py-toggle" href="#" id="Base.reanudar-toggle" onclick="return toggle('Base.reanudar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.escena.escena_base.Base-class.html#reanudar">reanudar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Base.reanudar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Base.reanudar-expanded"><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-docstring">""" Este m&#233;todo es llamado por el gestor de escenas cuando se</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">        ::recupera:: una escena que habia sido almacenada anteriormente.</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; pilas.recuperar_escena()</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">        Al efectuar esta instrucci&#243;n el gestor llamar&#225; primero a nuestro</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">        m&#233;todo ::reanudar:: antes de cambiar a la escena que habiamos</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-docstring">        almacenado.</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">    <tt class="py-comment"># Estos metodos no deben ser sobreescritos en las clases que</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">    <tt class="py-comment"># hereden de ella.</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"> </tt>
+<a name="Base._pausar_fisica"></a><div id="Base._pausar_fisica-def"><a name="L104"></a><tt class="py-lineno">104</tt> <a class="py-toggle" href="#" id="Base._pausar_fisica-toggle" onclick="return toggle('Base._pausar_fisica');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.escena.escena_base.Base-class.html#_pausar_fisica">_pausar_fisica</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Base._pausar_fisica-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Base._pausar_fisica-expanded"><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-49', 'fisica', 'link-45');">fisica</a></tt><tt class="py-op">.</tt><tt id="link-50" class="py-name" targets="Method pilas.fisica.Fisica.pausar_mundo()=pilas.fisica.Fisica-class.html#pausar_mundo,Method pilas.fisica.FisicaDeshabilitada.pausar_mundo()=pilas.fisica.FisicaDeshabilitada-class.html#pausar_mundo"><a title="pilas.fisica.Fisica.pausar_mundo
+pilas.fisica.FisicaDeshabilitada.pausar_mundo" class="py-name" href="#" onclick="return doclink('link-50', 'pausar_mundo', 'link-50');">pausar_mundo</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="Base._reanudar_fisica"></a><div id="Base._reanudar_fisica-def"><a name="L107"></a><tt class="py-lineno">107</tt> <a class="py-toggle" href="#" id="Base._reanudar_fisica-toggle" onclick="return toggle('Base._reanudar_fisica');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.escena.escena_base.Base-class.html#_reanudar_fisica">_reanudar_fisica</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Base._reanudar_fisica-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Base._reanudar_fisica-expanded"><a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-51" class="py-name"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-51', 'fisica', 'link-45');">fisica</a></tt><tt class="py-op">.</tt><tt id="link-52" class="py-name" targets="Method pilas.fisica.Fisica.reanudar_mundo()=pilas.fisica.Fisica-class.html#reanudar_mundo,Method pilas.fisica.FisicaDeshabilitada.reanudar_mundo()=pilas.fisica.FisicaDeshabilitada-class.html#reanudar_mundo"><a title="pilas.fisica.Fisica.reanudar_mundo
+pilas.fisica.FisicaDeshabilitada.reanudar_mundo" class="py-name" href="#" onclick="return doclink('link-52', 'reanudar_mundo', 'link-52');">reanudar_mundo</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="Base._actualizar_eventos"></a><div id="Base._actualizar_eventos-def"><a name="L110"></a><tt class="py-lineno">110</tt> <a class="py-toggle" href="#" id="Base._actualizar_eventos-toggle" onclick="return toggle('Base._actualizar_eventos');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.escena.escena_base.Base-class.html#_actualizar_eventos">_actualizar_eventos</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Base._actualizar_eventos-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Base._actualizar_eventos-expanded"><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tweener</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name" targets="Method pilas.pytweener.Tween.update()=pilas.pytweener.Tween-class.html#update,Method pilas.pytweener.TweenTestObject.update()=pilas.pytweener.TweenTestObject-class.html#update,Method pilas.pytweener.Tweener.update()=pilas.pytweener.Tweener-class.html#update"><a title="pilas.pytweener.Tween.update
+pilas.pytweener.TweenTestObject.update
+pilas.pytweener.Tweener.update" class="py-name" href="#" onclick="return doclink('link-53', 'update', 'link-53');">update</a></tt><tt class="py-op">(</tt><tt class="py-number">16</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="pilas.mundo.Mundo.tareas
+pilas.tareas" class="py-name" href="#" onclick="return doclink('link-54', 'tareas', 'link-2');">tareas</a></tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="pilas.actores.actor.Actor.actualizar
+pilas.actores.animacion.Animacion.actualizar
+pilas.actores.cooperativista.Caminando.actualizar
+pilas.actores.cooperativista.DecirOk.actualizar
+pilas.actores.cooperativista.Esperando.actualizar
+pilas.actores.energia.Energia.actualizar
+pilas.actores.fantasma.Fantasma.actualizar
+pilas.actores.martian.Caminando.actualizar
+pilas.actores.martian.Disparar.actualizar
+pilas.actores.martian.Esperando.actualizar
+pilas.actores.martian.Martian.actualizar
+pilas.actores.martian.Saltando.actualizar
+pilas.actores.menu.Menu.actualizar
+pilas.actores.nave.Nave.actualizar
+pilas.actores.navekids.NaveKids.actualizar
+pilas.actores.ovni.Ovni.actualizar
+pilas.actores.ovni.Planeta.actualizar
+pilas.actores.pacman.Pacman.actualizar
+pilas.actores.personajes_rpg.BasePersonajeRPG.actualizar
+pilas.actores.personajes_rpg.Caminando.actualizar
+pilas.actores.personajes_rpg.Esperando.actualizar
+pilas.actores.piedra.Piedra.actualizar
+pilas.actores.pingu.Caminando.actualizar
+pilas.actores.pingu.Esperando.actualizar
+pilas.actores.pingu.Saltando.actualizar
+pilas.actores.proyectil.Dinamita.actualizar
+pilas.actores.proyectil.EstrellaNinja.actualizar
+pilas.actores.tortuga.Tortuga.actualizar
+pilas.comportamientos.Avanzar.actualizar
+pilas.comportamientos.Comportamiento.actualizar
+pilas.comportamientos.Girar.actualizar
+pilas.comportamientos.Proyectil.actualizar
+pilas.comportamientos.Saltar.actualizar
+pilas.escena.escena_normal.Aviso.actualizar
+pilas.escena.gestor.Gestor.actualizar
+pilas.evento.ProxyEventos.actualizar
+pilas.fisica.Fisica.actualizar
+pilas.fisica.FisicaDeshabilitada.actualizar
+pilas.fondos.Desplazamiento.actualizar
+pilas.fps.FPS.actualizar
+pilas.habilidades.ColisionableComoPelota.actualizar
+pilas.habilidades.Disparar.actualizar
+pilas.habilidades.Habilidad.actualizar
+pilas.habilidades.Imitar.actualizar
+pilas.habilidades.PisaPlataformas.actualizar
+pilas.habilidades.SeMantieneEnPantalla.actualizar
+pilas.habilidades.SiempreEnElCentro.actualizar
+pilas.tareas.Tareas.actualizar" class="py-name" href="#" onclick="return doclink('link-55', 'actualizar', 'link-29');">actualizar</a></tt><tt class="py-op">(</tt><tt class="py-number">1</tt> <tt class="py-op">/</tt> <tt class="py-number">60.0</tt><tt class="py-op">)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="pilas.colisiones
+pilas.mundo.Mundo.colisiones" class="py-name" href="#" onclick="return doclink('link-56', 'colisiones', 'link-3');">colisiones</a></tt><tt class="py-op">.</tt><tt id="link-57" class="py-name" targets="Method pilas.colisiones.Colisiones.verificar_colisiones()=pilas.colisiones.Colisiones-class.html#verificar_colisiones"><a title="pilas.colisiones.Colisiones.verificar_colisiones" class="py-name" href="#" onclick="return doclink('link-57', 'verificar_colisiones', 'link-57');">verificar_colisiones</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="Base._actualizar_fisica"></a><div id="Base._actualizar_fisica-def"><a name="L115"></a><tt class="py-lineno">115</tt> <a class="py-toggle" href="#" id="Base._actualizar_fisica-toggle" onclick="return toggle('Base._actualizar_fisica');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.escena.escena_base.Base-class.html#_actualizar_fisica">_actualizar_fisica</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Base._actualizar_fisica-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Base._actualizar_fisica-expanded"><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-58', 'fisica', 'link-45');">fisica</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">            <tt class="py-comment"># Solo actualizamos la fisica si existen m&#225;s de 4 bodies.</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">            <tt class="py-comment"># Ya que las paredes ya vienen definidas al crear la fisica.</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-59', 'fisica', 'link-45');">fisica</a></tt><tt class="py-op">.</tt><tt id="link-60" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-60', 'mundo', 'link-47');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">bodies</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">4</tt><tt class="py-op">:</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-61" class="py-name"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-61', 'fisica', 'link-45');">fisica</a></tt><tt class="py-op">.</tt><tt id="link-62" class="py-name"><a title="pilas.actores.actor.Actor.actualizar
+pilas.actores.animacion.Animacion.actualizar
+pilas.actores.cooperativista.Caminando.actualizar
+pilas.actores.cooperativista.DecirOk.actualizar
+pilas.actores.cooperativista.Esperando.actualizar
+pilas.actores.energia.Energia.actualizar
+pilas.actores.fantasma.Fantasma.actualizar
+pilas.actores.martian.Caminando.actualizar
+pilas.actores.martian.Disparar.actualizar
+pilas.actores.martian.Esperando.actualizar
+pilas.actores.martian.Martian.actualizar
+pilas.actores.martian.Saltando.actualizar
+pilas.actores.menu.Menu.actualizar
+pilas.actores.nave.Nave.actualizar
+pilas.actores.navekids.NaveKids.actualizar
+pilas.actores.ovni.Ovni.actualizar
+pilas.actores.ovni.Planeta.actualizar
+pilas.actores.pacman.Pacman.actualizar
+pilas.actores.personajes_rpg.BasePersonajeRPG.actualizar
+pilas.actores.personajes_rpg.Caminando.actualizar
+pilas.actores.personajes_rpg.Esperando.actualizar
+pilas.actores.piedra.Piedra.actualizar
+pilas.actores.pingu.Caminando.actualizar
+pilas.actores.pingu.Esperando.actualizar
+pilas.actores.pingu.Saltando.actualizar
+pilas.actores.proyectil.Dinamita.actualizar
+pilas.actores.proyectil.EstrellaNinja.actualizar
+pilas.actores.tortuga.Tortuga.actualizar
+pilas.comportamientos.Avanzar.actualizar
+pilas.comportamientos.Comportamiento.actualizar
+pilas.comportamientos.Girar.actualizar
+pilas.comportamientos.Proyectil.actualizar
+pilas.comportamientos.Saltar.actualizar
+pilas.escena.escena_normal.Aviso.actualizar
+pilas.escena.gestor.Gestor.actualizar
+pilas.evento.ProxyEventos.actualizar
+pilas.fisica.Fisica.actualizar
+pilas.fisica.FisicaDeshabilitada.actualizar
+pilas.fondos.Desplazamiento.actualizar
+pilas.fps.FPS.actualizar
+pilas.habilidades.ColisionableComoPelota.actualizar
+pilas.habilidades.Disparar.actualizar
+pilas.habilidades.Habilidad.actualizar
+pilas.habilidades.Imitar.actualizar
+pilas.habilidades.PisaPlataformas.actualizar
+pilas.habilidades.SeMantieneEnPantalla.actualizar
+pilas.habilidades.SiempreEnElCentro.actualizar
+pilas.tareas.Tareas.actualizar" class="py-name" href="#" onclick="return doclink('link-62', 'actualizar', 'link-29');">actualizar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="Base._limpiar"></a><div id="Base._limpiar-def"><a name="L122"></a><tt class="py-lineno">122</tt> <a class="py-toggle" href="#" id="Base._limpiar-toggle" onclick="return toggle('Base._limpiar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.escena.escena_base.Base-class.html#_limpiar">_limpiar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Base._limpiar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Base._limpiar-expanded"><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-63" class="py-name" targets="Module pilas.actores.actor=pilas.actores.actor-module.html"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-63', 'actor', 'link-63');">actor</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-64" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-64', 'actores', 'link-9');">actores</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">            <tt id="link-65" class="py-name"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-65', 'actor', 'link-63');">actor</a></tt><tt class="py-op">.</tt><tt id="link-66" class="py-name" targets="Method pilas.actores.actor.Actor.destruir()=pilas.actores.actor.Actor-class.html#destruir"><a title="pilas.actores.actor.Actor.destruir" class="py-name" href="#" onclick="return doclink('link-66', 'destruir', 'link-66');">destruir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-67" class="py-name"><a title="pilas.mundo.Mundo.tareas
+pilas.tareas" class="py-name" href="#" onclick="return doclink('link-67', 'tareas', 'link-2');">tareas</a></tt><tt class="py-op">.</tt><tt id="link-68" class="py-name" targets="Method pilas.pytweener.Tweener.eliminar_todas()=pilas.pytweener.Tweener-class.html#eliminar_todas,Method pilas.tareas.Tareas.eliminar_todas()=pilas.tareas.Tareas-class.html#eliminar_todas"><a title="pilas.pytweener.Tweener.eliminar_todas
+pilas.tareas.Tareas.eliminar_todas" class="py-name" href="#" onclick="return doclink('link-68', 'eliminar_todas', 'link-68');">eliminar_todas</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tweener</tt><tt class="py-op">.</tt><tt id="link-69" class="py-name"><a title="pilas.pytweener.Tweener.eliminar_todas
+pilas.tareas.Tareas.eliminar_todas" class="py-name" href="#" onclick="return doclink('link-69', 'eliminar_todas', 'link-68');">eliminar_todas</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-70" class="py-name"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-70', 'fisica', 'link-45');">fisica</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-71', 'fisica', 'link-45');">fisica</a></tt><tt class="py-op">.</tt><tt id="link-72" class="py-name" targets="Method pilas.fisica.Fisica.reiniciar()=pilas.fisica.Fisica-class.html#reiniciar,Method pilas.fisica.FisicaDeshabilitada.reiniciar()=pilas.fisica.FisicaDeshabilitada-class.html#reiniciar,Method pilas.mundo.Mundo.reiniciar()=pilas.mundo.Mundo-class.html#reiniciar,Function pilas.reiniciar()=pilas-module.html#reiniciar"><a title="pilas.fisica.Fisica.reiniciar
+pilas.fisica.FisicaDeshabilitada.reiniciar
+pilas.mundo.Mundo.reiniciar
+pilas.reiniciar" class="py-name" href="#" onclick="return doclink('link-72', 'reiniciar', 'link-72');">reiniciar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:46 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

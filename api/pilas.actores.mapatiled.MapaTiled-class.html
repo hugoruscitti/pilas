@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.actores.mapatiled.MapaTiled</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        <a href="pilas.actores-module.html">Package&nbsp;actores</a> ::
+        <a href="pilas.actores.mapatiled-module.html">Module&nbsp;mapatiled</a> ::
+        Class&nbsp;MapaTiled
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.actores.mapatiled.MapaTiled-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class MapaTiled</h1><p class="nomargin-top"><span class="codelink"><a href="pilas.actores.mapatiled-pysrc.html#MapaTiled">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="class_hierarchy_for_mapatiled" name="class_hierarchy_for_mapatiled">
+<area shape="rect" id="node1" href="pilas.actores.actor.Actor-class.html" title="actor.Actor" alt="" coords="36,65,121,93"/>
+<area shape="rect" id="node2" href="pilas.actores.mapa.Mapa-class.html" title="mapa.Mapa" alt="" coords="33,123,124,151"/>
+<area shape="rect" id="node3" href="pilas.actores.mapatiled.MapaTiled-class.html" title="MapaTiled" alt="" coords="37,182,120,210"/>
+<area shape="rect" id="node4" href="pilas.estudiante.Estudiante-class.html" title="estudiante.Estudiante" alt="" coords="5,6,152,34"/>
+</map>
+  <img src="class_hierarchy_for_mapatiled.gif" alt='' usemap="#class_hierarchy_for_mapatiled" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Representa mapas creados a partir de imagenes mas peque&#241;as.</p>
+<p>Este actor te permite crear escenarios tipo <tt class="rst-docutils literal">tiles</tt>, a partir
+de archivos .tmx, creados con el programa <strong>tiled</strong> (ver <a class="rst-reference external" href="http://www.mapeditor.org" target="_top">http://www.mapeditor.org</a>).</p>
+<p>Por ejemplo, para crear un mapa desde un archivo del programa
+<strong>tiled</strong> puedes escribir:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>mapa = pilas.actores.MapaTiled(<span class="py-string">'untitled2.tmx'</span>)</pre>
+</blockquote>
+<p>Tiled trabaja con capas, as&#237; que cuando pilas carga las capas las interpreta
+de la siguiente manera:</p>
+<blockquote>
+<ul class="rst-simple">
+<li>La capa 0 define los bloques no s&#243;lidos, generalmente fondos o decoraci&#243;n.</li>
+<li>La capa 1 define bloques s&#243;lidos, &#250;tiles para hacer suelos o paredes.</li>
+<li>Las siguientes capas solo se almacenan, pero no se dibujan. Se pueden acceder con <tt class="rst-docutils literal">mapa.capas</tt>.</li>
+</ul>
+</blockquote>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.mapatiled.MapaTiled-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ruta_mapa</span>,
+        <span class="summary-sig-arg">x</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">y</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">restitucion</span>=<span class="summary-sig-default">0.56</span>)</span><br />
+      Inicializa el mapa.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.mapatiled-pysrc.html#MapaTiled.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="cuadro_ancho"></a><span class="summary-sig-name">cuadro_ancho</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Retorna el ancho de un bloque del mapa</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.mapatiled-pysrc.html#MapaTiled.cuadro_ancho">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="cuadro_alto"></a><span class="summary-sig-name">cuadro_alto</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Retorna el alto de un bloque del mapa</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.mapatiled-pysrc.html#MapaTiled.cuadro_alto">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_cargar_datos_basicos_del_mapa"></a><span class="summary-sig-name">_cargar_datos_basicos_del_mapa</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">archivo</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.mapatiled-pysrc.html#MapaTiled._cargar_datos_basicos_del_mapa">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_dibujar_mapa"></a><span class="summary-sig-name">_dibujar_mapa</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">archivo</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.mapatiled-pysrc.html#MapaTiled._dibujar_mapa">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.mapatiled.MapaTiled-class.html#_pintar_bloques" class="summary-sig-name" onclick="show_private();">_pintar_bloques</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">capa</span>,
+        <span class="summary-sig-arg">solidos</span>)</span><br />
+      Genera actores que representan los bloques del escenario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.mapatiled-pysrc.html#MapaTiled._pintar_bloques">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_convertir_capa_en_bloques_enteros"></a><span class="summary-sig-name">_convertir_capa_en_bloques_enteros</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">capa</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.mapatiled-pysrc.html#MapaTiled._convertir_capa_en_bloques_enteros">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pilas.actores.mapa.Mapa-class.html">mapa.Mapa</a></code></b>:
+      <code><a href="pilas.actores.mapa.Mapa-class.html#convertir_de_coordenada_absoluta_a_coordenada_mapa">convertir_de_coordenada_absoluta_a_coordenada_mapa</a></code>,
+      <code><a href="pilas.actores.mapa.Mapa-class.html#es_bloque_solido">es_bloque_solido</a></code>,
+      <code><a href="pilas.actores.mapa.Mapa-class.html#es_punto_solido">es_punto_solido</a></code>,
+      <code><a href="pilas.actores.mapa.Mapa-class.html#es_punto_solido_coordenada_mapa">es_punto_solido_coordenada_mapa</a></code>,
+      <code><a href="pilas.actores.mapa.Mapa-class.html#obtener_distancia_al_suelo">obtener_distancia_al_suelo</a></code>,
+      <code><a href="pilas.actores.mapa.Mapa-class.html#obtener_numero_de_columna">obtener_numero_de_columna</a></code>,
+      <code><a href="pilas.actores.mapa.Mapa-class.html#obtener_numero_de_fila">obtener_numero_de_fila</a></code>,
+      <code><a href="pilas.actores.mapa.Mapa-class.html#pintar_bloque">pintar_bloque</a></code>,
+      <code><a href="pilas.actores.mapa.Mapa-class.html#pintar_limite_de_bloques">pintar_limite_de_bloques</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pilas.actores.mapa.Mapa-class.html">mapa.Mapa</a></code></b> (private):
+      <code><a href="pilas.actores.mapa.Mapa-class.html#_convertir_en_int" onclick="show_private();">_convertir_en_int</a></code>,
+      <code><a href="pilas.actores.mapa.Mapa-class.html#_generar_matriz_de_bloques" onclick="show_private();">_generar_matriz_de_bloques</a></code>,
+      <code><a href="pilas.actores.mapa.Mapa-class.html#_pintar_borde_de_grilla" onclick="show_private();">_pintar_borde_de_grilla</a></code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pilas.actores.actor.Actor-class.html">actor.Actor</a></code></b>:
+      <code><a href="pilas.actores.actor.Actor-class.html#__cmp__">__cmp__</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#__mul__">__mul__</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#__str__">__str__</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#actor_mas_cercano">actor_mas_cercano</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#actualizar">actualizar</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#anexar">anexar</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#colisiona_con">colisiona_con</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#colisiona_con_un_punto">colisiona_con_un_punto</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#decir">decir</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#definir_centro">definir_centro</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#definir_color">definir_color</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#definir_escala">definir_escala</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#definir_imagen">definir_imagen</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#definir_posicion">definir_posicion</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#definir_rotacion">definir_rotacion</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#definir_transparencia">definir_transparencia</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#destruir">destruir</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#dibujar">dibujar</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#distancia_al_punto">distancia_al_punto</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#distancia_con">distancia_con</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#duplicar">duplicar</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#eliminar">eliminar</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#es_fondo">es_fondo</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#esta_fuera_de_la_pantalla">esta_fuera_de_la_pantalla</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_abajo">get_abajo</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_arriba">get_arriba</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_derecha">get_derecha</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_espejado">get_espejado</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_fijo">get_fijo</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_imagen">get_imagen</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_izquierda">get_izquierda</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_rotation">get_rotation</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_scale">get_scale</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_scale_x">get_scale_x</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_scale_y">get_scale_y</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_transparencia">get_transparencia</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_vx">get_vx</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_vy">get_vy</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_x">get_x</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_y">get_y</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#get_z">get_z</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#imitar">imitar</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#obtener_alto">obtener_alto</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#obtener_ancho">obtener_ancho</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#obtener_centro">obtener_centro</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#obtener_escala">obtener_escala</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#obtener_imagen">obtener_imagen</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#obtener_posicion">obtener_posicion</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#obtener_rotacion">obtener_rotacion</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#obtener_velocidad">obtener_velocidad</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#pre_actualizar">pre_actualizar</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_abajo">set_abajo</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_arriba">set_arriba</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_derecha">set_derecha</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_espejado">set_espejado</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_fijo">set_fijo</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_imagen">set_imagen</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_izquierda">set_izquierda</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_rotation">set_rotation</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_scale">set_scale</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_scale_x">set_scale_x</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_scale_y">set_scale_y</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_transparencia">set_transparencia</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_x">set_x</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_y">set_y</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#set_z">set_z</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pilas.actores.actor.Actor-class.html">actor.Actor</a></code></b> (private):
+      <code><a href="pilas.actores.actor.Actor-class.html#_eliminar_anexados" onclick="show_private();">_eliminar_anexados</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#_interpretar_y_convertir_posicion" onclick="show_private();">_interpretar_y_convertir_posicion</a></code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pilas.estudiante.Estudiante-class.html">estudiante.Estudiante</a></code></b>:
+      <code><a href="pilas.estudiante.Estudiante-class.html#actualizar_comportamientos">actualizar_comportamientos</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#actualizar_habilidades">actualizar_habilidades</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#agregar_habilidad">agregar_habilidad</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#aprender">aprender</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#eliminar_comportamientos">eliminar_comportamientos</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#eliminar_habilidad">eliminar_habilidad</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#eliminar_habilidades">eliminar_habilidades</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#hacer">hacer</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#hacer_luego">hacer_luego</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#obtener_habilidad">obtener_habilidad</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#tiene_comportamiento">tiene_comportamiento</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#tiene_habilidad">tiene_habilidad</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pilas.estudiante.Estudiante-class.html">estudiante.Estudiante</a></code></b> (private):
+      <code><a href="pilas.estudiante.Estudiante-class.html#_adoptar_el_siguiente_comportamiento" onclick="show_private();">_adoptar_el_siguiente_comportamiento</a></code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pilas.actores.actor.Actor-class.html">actor.Actor</a></code></b>:
+      <code><a href="pilas.actores.actor.Actor-class.html#abajo">abajo</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#alto">alto</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#ancho">ancho</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#arriba">arriba</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#centro">centro</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#derecha">derecha</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#escala">escala</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#escala_x">escala_x</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#escala_y">escala_y</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#espejado">espejado</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#fijo">fijo</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#imagen">imagen</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#izquierda">izquierda</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#rotacion">rotacion</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#transparencia">transparencia</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#vx">vx</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#vy">vy</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#x">x</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#y">y</a></code>,
+      <code><a href="pilas.actores.actor.Actor-class.html#z">z</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ruta_mapa</span>,
+        <span class="sig-arg">x</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">y</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">restitucion</span>=<span class="sig-default">0.56</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.mapatiled-pysrc.html#MapaTiled.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Inicializa el mapa.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>grilla</code></strong> - La imagen a utilizar c&#243;mo grilla con los bloques del escenario.</li>
+        <li><strong class="pname"><code>x</code></strong> - Posici&#243;n horizontal del mapa.</li>
+        <li><strong class="pname"><code>y</code></strong> - Posici&#243;n vertical del mapa.</li>
+        <li><strong class="pname"><code>filas</code></strong> - Cantidad de filas que tendr&#225; el mapa.</li>
+        <li><strong class="pname"><code>columnas</code></strong> - Cantidad de columnas que tendr&#225; el mapa.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="pilas.estudiante.Estudiante-class.html#__init__">estudiante.Estudiante.__init__</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_pintar_bloques"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_pintar_bloques</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">capa</span>,
+        <span class="sig-arg">solidos</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.mapatiled-pysrc.html#MapaTiled._pintar_bloques">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Genera actores que representan los bloques del escenario.</p>
+<p>Retorna una lista de los bloques convertidos a numeros.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:39 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
