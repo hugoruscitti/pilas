@@ -46,7 +46,7 @@ para iniciar y ejecutar la biblioteca.
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False,
-            permitir_depuracion=True, audio='phonon'):
+            permitir_depuracion=True, audio='phonon', centrado=True):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -67,7 +67,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :gravedad: el vector de aceleracion para la simulacion de fisica.
     :pantalla_completa: si debe usar pantalla completa o no.
     :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12
-
+    :centrado: Indica si se desea centrar la ventana de pilas.
     """
 
     global mundo
@@ -76,7 +76,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
         motor = _crear_motor(usar_motor, permitir_depuracion, audio)
 
         if motor:
-            mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
+            mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa, centrado)
             mundo.gestor_escenas.cambiar_escena(Normal())
 
             if _usa_interprete_lanas():
