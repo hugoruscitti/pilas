@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.control</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        Module&nbsp;control
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.control-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.control-module.html">Module pilas.control</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># Pilas engine - A video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2010 - Hugo Ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># Website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-0', 'pilas', 'link-0');">pilas</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-1', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Module pilas.simbolos=pilas.simbolos-module.html"><a title="pilas.simbolos" class="py-name" href="#" onclick="return doclink('link-2', 'simbolos', 'link-2');">simbolos</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable pilas.__doc__=pilas-module.html#__doc__,Variable pilas.actores.__doc__=pilas.actores-module.html#__doc__,Variable pilas.control.__doc__=pilas.control-module.html#__doc__,Variable pilas.evento.__doc__=pilas.evento-module.html#__doc__"><a title="pilas.__doc__
+pilas.actores.__doc__
+pilas.control.__doc__
+pilas.evento.__doc__" class="py-name" href="#" onclick="return doclink('link-3', '__doc__', 'link-3');">__doc__</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"""</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-string">M&#243;dulo pilas.control</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-string">====================</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="Control"></a><div id="Control-def"><a name="L18"></a><tt class="py-lineno"> 18</tt> <a class="py-toggle" href="#" id="Control-toggle" onclick="return toggle('Control');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.control.Control-class.html">Control</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Control-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Control-expanded"><a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">    <tt class="py-docstring">"""Representa un control de teclado sencillo.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">    Este objeto permite acceder al estado del teclado usando</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring">    atributos.</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">    Por ejemplo, con este objeto, para saber si el usuario</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">    est&#225; pulsando el direccional hacia la izquierda de</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">    puedes ejecutar::</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">        if pilas.escena_actual().control.izquierda:</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">            print 'Ha pulsado hacia la izquierda'</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">    Es decir, si bien Control es una clase, no hace falta</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">    instanciarla. Ya existe un objeto que se puede consultar</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">    bajo el nombre ``pilas.escena_actual().control``.</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">    Entonces, una vez que tienes la referencia para consultar, los</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">    atributos que tiene este objeto control son::</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">        izquierda</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">        derecha</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">        arriba</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">        abajo</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">        boton</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">    Cada uno de estos atributos te pueden devolver True, o False, indicando</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">    si el control est&#225; pulsado o no.</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">    Ten en cuenta que este objeto tambi&#233;n se puede imprimir usando</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">    la sentencia ``print``. Esto es &#250;til para ver el estado completo</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">    del control de una sola vez:</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; print pilas.mundo.control</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">        &lt;Control izquierda: False derecha: False arriba: False abajo: False boton: False&gt;</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">    Tambi&#233;n tienes la posibilidad de crearte un control estableciendo las teclas</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">    personalizadas.</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">    Para ello debes crearte un diccionario con las claves izquierda, derecha,</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">    arriba, abajo y boton.</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">    Con las constantes de pilas.simbolos, puedes asignar una tecla a cada una</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">    de las entradas del diccionario.</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">    &gt;&gt;&gt;    teclas = {pilas.simbolos.a: 'izquierda',</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">                              pilas.simbolos.d: 'derecha',</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">                              pilas.simbolos.w: 'arriba',</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">                              pilas.simbolos.s: 'abajo',</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">                              pilas.simbolos.ESPACIO: 'boton'}</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">                </tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">    &gt;&gt;&gt;    mi_control = pilas.control.Control(pilas.escena_actual(), teclas)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">    Consultando controles desde un actor:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">    Una forma habitual de usar los controles, es consultarlos</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">    directamente desde el codigo de un actor.</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">    Para consultar los controles para cambiar la posicion horizontal de</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">    un actor podr&#237;as implementar el m&#233;todo ``actualizar``::</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-docstring">        class Patito(pilas.actores.Actor):</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-docstring">            def __init__(self):</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">                pilas.actores.Actor.__init__(self)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">                self.imagen = "patito.png"</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">            def actualizar(self):</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">                if pilas.escena_actual().control.izquierda:</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring">                    self.x -= 5</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring">                    self.espejado = True</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring">                elif pilas.escena_actual().control.derecha:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">                    self.x += 5</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">                    self.espejado = False</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">    .. image:: ../../pilas/data/patito.png</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"> </tt>
+<a name="Control.__init__"></a><div id="Control.__init__-def"><a name="L96"></a><tt class="py-lineno"> 96</tt> <a class="py-toggle" href="#" id="Control.__init__-toggle" onclick="return toggle('Control.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.control.Control-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">escena</tt><tt class="py-op">,</tt> <tt class="py-param">mapa_teclado</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Control.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Control.__init__-expanded"><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Variable pilas.actores.actor.Actor.izquierda=pilas.actores.actor.Actor-class.html#izquierda"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-4', 'izquierda', 'link-4');">izquierda</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Variable pilas.actores.actor.Actor.derecha=pilas.actores.actor.Actor-class.html#derecha"><a title="pilas.actores.actor.Actor.derecha" class="py-name" href="#" onclick="return doclink('link-5', 'derecha', 'link-5');">derecha</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Variable pilas.actores.actor.Actor.arriba=pilas.actores.actor.Actor-class.html#arriba"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-6', 'arriba', 'link-6');">arriba</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Variable pilas.actores.actor.Actor.abajo=pilas.actores.actor.Actor-class.html#abajo"><a title="pilas.actores.actor.Actor.abajo" class="py-name" href="#" onclick="return doclink('link-7', 'abajo', 'link-7');">abajo</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Module pilas.actores.boton=pilas.actores.boton-module.html,Module pilas.interfaz.boton=pilas.interfaz.boton-module.html"><a title="pilas.actores.boton
+pilas.interfaz.boton" class="py-name" href="#" onclick="return doclink('link-8', 'boton', 'link-8');">boton</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt id="link-9" class="py-name" targets="Package pilas.escena=pilas.escena-module.html"><a title="pilas.escena" class="py-name" href="#" onclick="return doclink('link-9', 'escena', 'link-9');">escena</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Variable pilas.evento.ProxyEventos.pulsa_tecla=pilas.evento.ProxyEventos-class.html#pulsa_tecla"><a title="pilas.evento.ProxyEventos.pulsa_tecla" class="py-name" href="#" onclick="return doclink('link-10', 'pulsa_tecla', 'link-10');">pulsa_tecla</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method pilas.demos.piezas.Piezas.conectar()=pilas.demos.piezas.Piezas-class.html#conectar,Method pilas.evento.Evento.conectar()=pilas.evento.Evento-class.html#conectar,Method pilas.interfaz.boton.Boton.conectar()=pilas.interfaz.boton.Boton-class.html#conectar,Method pilas.interfaz.deslizador.Deslizador.conectar()=pilas.interfaz.deslizador.Deslizador-class.html#conectar"><a title="pilas.demos.piezas.Piezas.conectar
+pilas.evento.Evento.conectar
+pilas.interfaz.boton.Boton.conectar
+pilas.interfaz.deslizador.Deslizador.conectar" class="py-name" href="#" onclick="return doclink('link-11', 'conectar', 'link-11');">conectar</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method pilas.control.Control.cuando_pulsa_una_tecla()=pilas.control.Control-class.html#cuando_pulsa_una_tecla,Method pilas.interfaz.ingreso_de_texto.IngresoDeTexto.cuando_pulsa_una_tecla()=pilas.interfaz.ingreso_de_texto.IngresoDeTexto-class.html#cuando_pulsa_una_tecla"><a title="pilas.control.Control.cuando_pulsa_una_tecla
+pilas.interfaz.ingreso_de_texto.IngresoDeTexto.cuando_pulsa_una_tecla" class="py-name" href="#" onclick="return doclink('link-12', 'cuando_pulsa_una_tecla', 'link-12');">cuando_pulsa_una_tecla</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt id="link-13" class="py-name"><a title="pilas.escena" class="py-name" href="#" onclick="return doclink('link-13', 'escena', 'link-9');">escena</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Variable pilas.evento.ProxyEventos.suelta_tecla=pilas.evento.ProxyEventos-class.html#suelta_tecla"><a title="pilas.evento.ProxyEventos.suelta_tecla" class="py-name" href="#" onclick="return doclink('link-14', 'suelta_tecla', 'link-14');">suelta_tecla</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="pilas.demos.piezas.Piezas.conectar
+pilas.evento.Evento.conectar
+pilas.interfaz.boton.Boton.conectar
+pilas.interfaz.deslizador.Deslizador.conectar" class="py-name" href="#" onclick="return doclink('link-15', 'conectar', 'link-11');">conectar</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method pilas.control.Control.cuando_suelta_una_tecla()=pilas.control.Control-class.html#cuando_suelta_una_tecla"><a title="pilas.control.Control.cuando_suelta_una_tecla" class="py-name" href="#" onclick="return doclink('link-16', 'cuando_suelta_una_tecla', 'link-16');">cuando_suelta_una_tecla</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">         </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">mapa_teclado</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">mapa_teclado</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt id="link-17" class="py-name" targets="Variable pilas.actores.actor.IZQUIERDA=pilas.actores.actor-module.html#IZQUIERDA,Variable pilas.habilidades.MirarAlActor.IZQUIERDA=pilas.habilidades.MirarAlActor-class.html#IZQUIERDA,Variable pilas.habilidades.RotarConMouse.IZQUIERDA=pilas.habilidades.RotarConMouse-class.html#IZQUIERDA,Variable pilas.simbolos.IZQUIERDA=pilas.simbolos-module.html#IZQUIERDA"><a title="pilas.actores.actor.IZQUIERDA
+pilas.habilidades.MirarAlActor.IZQUIERDA
+pilas.habilidades.RotarConMouse.IZQUIERDA
+pilas.simbolos.IZQUIERDA" class="py-name" href="#" onclick="return doclink('link-17', 'IZQUIERDA', 'link-17');">IZQUIERDA</a></tt><tt class="py-op">:</tt> <tt class="py-string">'izquierda'</tt><tt class="py-op">,</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">                                  <tt id="link-18" class="py-name" targets="Variable pilas.actores.actor.DERECHA=pilas.actores.actor-module.html#DERECHA,Variable pilas.habilidades.MirarAlActor.DERECHA=pilas.habilidades.MirarAlActor-class.html#DERECHA,Variable pilas.habilidades.RotarConMouse.DERECHA=pilas.habilidades.RotarConMouse-class.html#DERECHA,Variable pilas.simbolos.DERECHA=pilas.simbolos-module.html#DERECHA"><a title="pilas.actores.actor.DERECHA
+pilas.habilidades.MirarAlActor.DERECHA
+pilas.habilidades.RotarConMouse.DERECHA
+pilas.simbolos.DERECHA" class="py-name" href="#" onclick="return doclink('link-18', 'DERECHA', 'link-18');">DERECHA</a></tt><tt class="py-op">:</tt> <tt class="py-string">'derecha'</tt><tt class="py-op">,</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">                                  <tt id="link-19" class="py-name" targets="Variable pilas.actores.actor.ARRIBA=pilas.actores.actor-module.html#ARRIBA,Variable pilas.habilidades.MirarAlActor.ARRIBA=pilas.habilidades.MirarAlActor-class.html#ARRIBA,Variable pilas.habilidades.RotarConMouse.ARRIBA=pilas.habilidades.RotarConMouse-class.html#ARRIBA,Variable pilas.simbolos.ARRIBA=pilas.simbolos-module.html#ARRIBA"><a title="pilas.actores.actor.ARRIBA
+pilas.habilidades.MirarAlActor.ARRIBA
+pilas.habilidades.RotarConMouse.ARRIBA
+pilas.simbolos.ARRIBA" class="py-name" href="#" onclick="return doclink('link-19', 'ARRIBA', 'link-19');">ARRIBA</a></tt><tt class="py-op">:</tt> <tt class="py-string">'arriba'</tt><tt class="py-op">,</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">                                  <tt id="link-20" class="py-name" targets="Variable pilas.actores.actor.ABAJO=pilas.actores.actor-module.html#ABAJO,Variable pilas.habilidades.MirarAlActor.ABAJO=pilas.habilidades.MirarAlActor-class.html#ABAJO,Variable pilas.habilidades.RotarConMouse.ABAJO=pilas.habilidades.RotarConMouse-class.html#ABAJO,Variable pilas.simbolos.ABAJO=pilas.simbolos-module.html#ABAJO"><a title="pilas.actores.actor.ABAJO
+pilas.habilidades.MirarAlActor.ABAJO
+pilas.habilidades.RotarConMouse.ABAJO
+pilas.simbolos.ABAJO" class="py-name" href="#" onclick="return doclink('link-20', 'ABAJO', 'link-20');">ABAJO</a></tt><tt class="py-op">:</tt> <tt class="py-string">'abajo'</tt><tt class="py-op">,</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                                  <tt id="link-21" class="py-name" targets="Variable pilas.simbolos.ESPACIO=pilas.simbolos-module.html#ESPACIO"><a title="pilas.simbolos.ESPACIO" class="py-name" href="#" onclick="return doclink('link-21', 'ESPACIO', 'link-21');">ESPACIO</a></tt><tt class="py-op">:</tt> <tt class="py-string">'boton'</tt><tt class="py-op">}</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">mapa_teclado</tt> <tt class="py-op">=</tt> <tt class="py-name">mapa_teclado</tt> </tt>
+</div><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="Control.cuando_pulsa_una_tecla"></a><div id="Control.cuando_pulsa_una_tecla-def"><a name="L115"></a><tt class="py-lineno">115</tt> <a class="py-toggle" href="#" id="Control.cuando_pulsa_una_tecla-toggle" onclick="return toggle('Control.cuando_pulsa_una_tecla');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.control.Control-class.html#cuando_pulsa_una_tecla">cuando_pulsa_una_tecla</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">evento</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Control.cuando_pulsa_una_tecla-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Control.cuando_pulsa_una_tecla-expanded"><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method pilas.control.Control.procesar_cambio_de_estado_en_la_tecla()=pilas.control.Control-class.html#procesar_cambio_de_estado_en_la_tecla"><a title="pilas.control.Control.procesar_cambio_de_estado_en_la_tecla" class="py-name" href="#" onclick="return doclink('link-22', 'procesar_cambio_de_estado_en_la_tecla', 'link-22');">procesar_cambio_de_estado_en_la_tecla</a></tt><tt class="py-op">(</tt><tt id="link-23" class="py-name" targets="Module pilas.evento=pilas.evento-module.html"><a title="pilas.evento" class="py-name" href="#" onclick="return doclink('link-23', 'evento', 'link-23');">evento</a></tt><tt class="py-op">.</tt><tt class="py-name">codigo</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"> </tt>
+<a name="Control.cuando_suelta_una_tecla"></a><div id="Control.cuando_suelta_una_tecla-def"><a name="L118"></a><tt class="py-lineno">118</tt> <a class="py-toggle" href="#" id="Control.cuando_suelta_una_tecla-toggle" onclick="return toggle('Control.cuando_suelta_una_tecla');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.control.Control-class.html#cuando_suelta_una_tecla">cuando_suelta_una_tecla</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">evento</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Control.cuando_suelta_una_tecla-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Control.cuando_suelta_una_tecla-expanded"><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="pilas.control.Control.procesar_cambio_de_estado_en_la_tecla" class="py-name" href="#" onclick="return doclink('link-24', 'procesar_cambio_de_estado_en_la_tecla', 'link-22');">procesar_cambio_de_estado_en_la_tecla</a></tt><tt class="py-op">(</tt><tt id="link-25" class="py-name"><a title="pilas.evento" class="py-name" href="#" onclick="return doclink('link-25', 'evento', 'link-23');">evento</a></tt><tt class="py-op">.</tt><tt class="py-name">codigo</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"> </tt>
+<a name="Control.procesar_cambio_de_estado_en_la_tecla"></a><div id="Control.procesar_cambio_de_estado_en_la_tecla-def"><a name="L121"></a><tt class="py-lineno">121</tt> <a class="py-toggle" href="#" id="Control.procesar_cambio_de_estado_en_la_tecla-toggle" onclick="return toggle('Control.procesar_cambio_de_estado_en_la_tecla');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.control.Control-class.html#procesar_cambio_de_estado_en_la_tecla">procesar_cambio_de_estado_en_la_tecla</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">codigo</tt><tt class="py-op">,</tt> <tt class="py-param">estado</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Control.procesar_cambio_de_estado_en_la_tecla-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Control.procesar_cambio_de_estado_en_la_tecla-expanded"><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt> <tt class="py-name">mapa_teclado</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-name">codigo</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">            <tt class="py-name">setattr</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt> <tt class="py-name">mapa_teclado</tt><tt class="py-op">[</tt><tt class="py-name">codigo</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">estado</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="Control.__str__"></a><div id="Control.__str__-def"><a name="L125"></a><tt class="py-lineno">125</tt> <a class="py-toggle" href="#" id="Control.__str__-toggle" onclick="return toggle('Control.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.control.Control-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Control.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Control.__str__-expanded"><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-string">"&lt;Control izquierda: %s derecha: %s arriba: %s abajo: %s boton: %s&gt;"</tt> <tt class="py-op">%</tt><tt class="py-op">(</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-26', 'izquierda', 'link-4');">izquierda</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="pilas.actores.actor.Actor.derecha" class="py-name" href="#" onclick="return doclink('link-27', 'derecha', 'link-5');">derecha</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-28', 'arriba', 'link-6');">arriba</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="pilas.actores.actor.Actor.abajo" class="py-name" href="#" onclick="return doclink('link-29', 'abajo', 'link-7');">abajo</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="pilas.actores.boton
+pilas.interfaz.boton" class="py-name" href="#" onclick="return doclink('link-30', 'boton', 'link-8');">boton</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"> </tt>
+<a name="Control.limpiar"></a><div id="Control.limpiar-def"><a name="L130"></a><tt class="py-lineno">130</tt> <a class="py-toggle" href="#" id="Control.limpiar-toggle" onclick="return toggle('Control.limpiar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.control.Control-class.html#limpiar">limpiar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Control.limpiar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Control.limpiar-expanded"><a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="pilas.actores.actor.Actor.izquierda" class="py-name" href="#" onclick="return doclink('link-31', 'izquierda', 'link-4');">izquierda</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="pilas.actores.actor.Actor.derecha" class="py-name" href="#" onclick="return doclink('link-32', 'derecha', 'link-5');">derecha</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-33', 'arriba', 'link-6');">arriba</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="pilas.actores.actor.Actor.abajo" class="py-name" href="#" onclick="return doclink('link-34', 'abajo', 'link-7');">abajo</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="pilas.actores.boton
+pilas.interfaz.boton" class="py-name" href="#" onclick="return doclink('link-35', 'boton', 'link-8');">boton</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+</div></div><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:47 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

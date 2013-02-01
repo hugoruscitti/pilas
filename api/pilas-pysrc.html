@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;pilas
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas-module.html">Package pilas</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># pilas engine - a video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># copyright 2010 - hugo ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Module pilas.mundo=pilas.mundo-module.html"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-0', 'mundo', 'link-0');">mundo</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable pilas.bg=pilas-module.html#bg"><a title="pilas.bg" class="py-name" href="#" onclick="return doclink('link-1', 'bg', 'link-1');">bg</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Module pilas.actores.utils=pilas.actores.utils-module.html,Module pilas.utils=pilas.utils-module.html"><a title="pilas.actores.utils
+pilas.utils" class="py-name" href="#" onclick="return doclink('link-2', 'utils', 'link-2');">utils</a></tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-3', 'mundo', 'link-0');">mundo</a></tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Class pilas.mundo.Mundo=pilas.mundo.Mundo-class.html"><a title="pilas.mundo.Mundo" class="py-name" href="#" onclick="return doclink('link-4', 'Mundo', 'link-4');">Mundo</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-5" class="py-name" targets="Package pilas.actores=pilas.actores-module.html"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-5', 'actores', 'link-5');">actores</a></tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-6" class="py-name" targets="Module pilas.grupo=pilas.grupo-module.html"><a title="pilas.grupo" class="py-name" href="#" onclick="return doclink('link-6', 'grupo', 'link-6');">grupo</a></tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-7" class="py-name" targets="Package pilas.escena=pilas.escena-module.html"><a title="pilas.escena" class="py-name" href="#" onclick="return doclink('link-7', 'escena', 'link-7');">escena</a></tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-8" class="py-name" targets="Module pilas.escenas=pilas.escenas-module.html"><a title="pilas.escenas" class="py-name" href="#" onclick="return doclink('link-8', 'escenas', 'link-8');">escenas</a></tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-9" class="py-name" targets="Module pilas.fondos=pilas.fondos-module.html"><a title="pilas.fondos" class="py-name" href="#" onclick="return doclink('link-9', 'fondos', 'link-9');">fondos</a></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-10" class="py-name" targets="Module pilas.habilidades=pilas.habilidades-module.html"><a title="pilas.habilidades" class="py-name" href="#" onclick="return doclink('link-10', 'habilidades', 'link-10');">habilidades</a></tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-11" class="py-name" targets="Module pilas.sonidos=pilas.sonidos-module.html"><a title="pilas.sonidos" class="py-name" href="#" onclick="return doclink('link-11', 'sonidos', 'link-11');">sonidos</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-12" class="py-name" targets="Module pilas.musica=pilas.musica-module.html"><a title="pilas.musica" class="py-name" href="#" onclick="return doclink('link-12', 'musica', 'link-12');">musica</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-13" class="py-name" targets="Module pilas.colores=pilas.colores-module.html"><a title="pilas.colores" class="py-name" href="#" onclick="return doclink('link-13', 'colores', 'link-13');">colores</a></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-14" class="py-name" targets="Package pilas.demos=pilas.demos-module.html"><a title="pilas.demos" class="py-name" href="#" onclick="return doclink('link-14', 'demos', 'link-14');">demos</a></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-15" class="py-name" targets="Module pilas.atajos=pilas.atajos-module.html"><a title="pilas.atajos" class="py-name" href="#" onclick="return doclink('link-15', 'atajos', 'link-15');">atajos</a></tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-16" class="py-name" targets="Package pilas.interfaz=pilas.interfaz-module.html"><a title="pilas.interfaz" class="py-name" href="#" onclick="return doclink('link-16', 'interfaz', 'link-16');">interfaz</a></tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-17" class="py-name" targets="Module pilas.interprete=pilas.interprete-module.html"><a title="pilas.interprete" class="py-name" href="#" onclick="return doclink('link-17', 'interprete', 'link-17');">interprete</a></tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-18" class="py-name" targets="Variable pilas.actores.torreta.Torreta.municion=pilas.actores.torreta.Torreta-class.html#municion,Variable pilas.habilidades.Disparar.municion=pilas.habilidades.Disparar-class.html#municion,Module pilas.municion=pilas.municion-module.html"><a title="pilas.actores.torreta.Torreta.municion
+pilas.habilidades.Disparar.municion
+pilas.municion" class="py-name" href="#" onclick="return doclink('link-18', 'municion', 'link-18');">municion</a></tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-19" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-19', 'pilas', 'link-19');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="pilas.escena" class="py-name" href="#" onclick="return doclink('link-20', 'escena', 'link-7');">escena</a></tt> <tt class="py-keyword">import</tt> <tt id="link-21" class="py-name" targets="Class pilas.escena.escena_normal.Normal=pilas.escena.escena_normal.Normal-class.html,Class pilas.escenas.Normal=pilas.escenas.Normal-class.html"><a title="pilas.escena.escena_normal.Normal
+pilas.escenas.Normal" class="py-name" href="#" onclick="return doclink('link-21', 'Normal', 'link-21');">Normal</a></tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-comment"># Permite cerrar el programa usando CTRL+C</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">signal</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-name">signal</tt><tt class="py-op">.</tt><tt class="py-name">signal</tt><tt class="py-op">(</tt><tt class="py-name">signal</tt><tt class="py-op">.</tt><tt class="py-name">SIGINT</tt><tt class="py-op">,</tt> <tt class="py-name">signal</tt><tt class="py-op">.</tt><tt class="py-name">SIG_DFL</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt id="link-22" class="py-name" targets="Variable pilas.__doc__=pilas-module.html#__doc__,Variable pilas.actores.__doc__=pilas.actores-module.html#__doc__,Variable pilas.control.__doc__=pilas.control-module.html#__doc__,Variable pilas.evento.__doc__=pilas.evento-module.html#__doc__"><a title="pilas.__doc__
+pilas.actores.__doc__
+pilas.control.__doc__
+pilas.evento.__doc__" class="py-name" href="#" onclick="return doclink('link-22', '__doc__', 'link-22');">__doc__</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"""</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-string">M&#243;dulo pilas</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-string">============</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-string">Pilas es una biblioteca para facilitar el desarrollo</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-string">de videojuegos. Es &#250;til para programadores</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-string">principiantes o para el desarrollo de juegos casuales.</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-string">Este m&#243;dulo contiene las funciones principales</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-string">para iniciar y ejecutar la biblioteca.</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="iniciar"></a><div id="iniciar-def"><a name="L47"></a><tt class="py-lineno"> 47</tt> <a class="py-toggle" href="#" id="iniciar-toggle" onclick="return toggle('iniciar');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#iniciar">iniciar</a><tt class="py-op">(</tt><tt class="py-param">ancho</tt><tt class="py-op">=</tt><tt class="py-number">640</tt><tt class="py-op">,</tt> <tt class="py-param">alto</tt><tt class="py-op">=</tt><tt class="py-number">480</tt><tt class="py-op">,</tt> <tt class="py-param">titulo</tt><tt class="py-op">=</tt><tt class="py-string">'Pilas'</tt><tt class="py-op">,</tt> <tt class="py-param">usar_motor</tt><tt class="py-op">=</tt><tt class="py-string">'qtgl'</tt><tt class="py-op">,</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">            <tt class="py-param">rendimiento</tt><tt class="py-op">=</tt><tt class="py-number">60</tt><tt class="py-op">,</tt> <tt class="py-param">modo</tt><tt class="py-op">=</tt><tt class="py-string">'detectar'</tt><tt class="py-op">,</tt> <tt class="py-param">gravedad</tt><tt class="py-op">=</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">90</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-param">pantalla_completa</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-param">permitir_depuracion</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-param">audio</tt><tt class="py-op">=</tt><tt class="py-string">'phonon'</tt><tt class="py-op">,</tt> <tt class="py-param">centrado</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="iniciar-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="iniciar-expanded"><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">    Inicia la ventana principal del juego con algunos detalles de funcionamiento.</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring">    Ejemplo de invocaci&#243;n:</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; pilas.iniciar(ancho=320, alto=240)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">    .. image:: images/iniciar_320_240.png</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">    Par&#225;metros:</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">    :ancho: el tama&#241;o en pixels para la ventana.</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">    :alto: el tama&#241;o en pixels para la ventana.</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">    :titulo: el titulo a mostrar en la ventana.</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">    :usar_motor: el motor multimedia a utilizar, puede ser 'qt', 'qtgl', 'qtsugar' o 'qtsugargl'.</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">    :rendimiento: cantidad de cuadros por segundo a mostrar.</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">    :modo: si se utiliza modo interactivo o no.</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">    :gravedad: el vector de aceleracion para la simulacion de fisica.</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">    :pantalla_completa: si debe usar pantalla completa o no.</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">    :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">    :centrado: Indica si se desea centrar la ventana de pilas.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt id="link-23" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-23', 'mundo', 'link-0');">mundo</a></tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt id="link-24" class="py-name" targets="Function pilas.esta_inicializada()=pilas-module.html#esta_inicializada"><a title="pilas.esta_inicializada" class="py-name" href="#" onclick="return doclink('link-24', 'esta_inicializada', 'link-24');">esta_inicializada</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-name">motor</tt> <tt class="py-op">=</tt> <tt id="link-25" class="py-name" targets="Function pilas._crear_motor()=pilas-module.html#_crear_motor"><a title="pilas._crear_motor" class="py-name" href="#" onclick="return doclink('link-25', '_crear_motor', 'link-25');">_crear_motor</a></tt><tt class="py-op">(</tt><tt class="py-name">usar_motor</tt><tt class="py-op">,</tt> <tt class="py-name">permitir_depuracion</tt><tt class="py-op">,</tt> <tt class="py-name">audio</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">motor</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">            <tt id="link-26" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-26', 'mundo', 'link-0');">mundo</a></tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="pilas.mundo.Mundo" class="py-name" href="#" onclick="return doclink('link-27', 'Mundo', 'link-4');">Mundo</a></tt><tt class="py-op">(</tt><tt class="py-name">motor</tt><tt class="py-op">,</tt> <tt id="link-28" class="py-name" targets="Variable pilas.actores.actor.Actor.ancho=pilas.actores.actor.Actor-class.html#ancho,Method pilas.motores.motor_qt.Grilla.ancho()=pilas.motores.motor_qt.Grilla-class.html#ancho,Method pilas.motores.motor_qt.Imagen.ancho()=pilas.motores.motor_qt.Imagen-class.html#ancho,Method pilas.motores.motor_qt.Texto.ancho()=pilas.motores.motor_qt.Texto-class.html#ancho"><a title="pilas.actores.actor.Actor.ancho
+pilas.motores.motor_qt.Grilla.ancho
+pilas.motores.motor_qt.Imagen.ancho
+pilas.motores.motor_qt.Texto.ancho" class="py-name" href="#" onclick="return doclink('link-28', 'ancho', 'link-28');">ancho</a></tt><tt class="py-op">,</tt> <tt id="link-29" class="py-name" targets="Variable pilas.actores.actor.Actor.alto=pilas.actores.actor.Actor-class.html#alto,Method pilas.motores.motor_qt.Grilla.alto()=pilas.motores.motor_qt.Grilla-class.html#alto,Method pilas.motores.motor_qt.Imagen.alto()=pilas.motores.motor_qt.Imagen-class.html#alto,Method pilas.motores.motor_qt.Texto.alto()=pilas.motores.motor_qt.Texto-class.html#alto"><a title="pilas.actores.actor.Actor.alto
+pilas.motores.motor_qt.Grilla.alto
+pilas.motores.motor_qt.Imagen.alto
+pilas.motores.motor_qt.Texto.alto" class="py-name" href="#" onclick="return doclink('link-29', 'alto', 'link-29');">alto</a></tt><tt class="py-op">,</tt> <tt class="py-name">titulo</tt><tt class="py-op">,</tt> <tt class="py-name">rendimiento</tt><tt class="py-op">,</tt> <tt class="py-name">gravedad</tt><tt class="py-op">,</tt> <tt id="link-30" class="py-name" targets="Method pilas.motores.motor_qt.CanvasWidget.pantalla_completa()=pilas.motores.motor_qt.CanvasWidget-class.html#pantalla_completa"><a title="pilas.motores.motor_qt.CanvasWidget.pantalla_completa" class="py-name" href="#" onclick="return doclink('link-30', 'pantalla_completa', 'link-30');">pantalla_completa</a></tt><tt class="py-op">,</tt> <tt class="py-name">centrado</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">            <tt id="link-31" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-31', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Function pilas.cambiar_escena()=pilas-module.html#cambiar_escena,Method pilas.escena.gestor.Gestor.cambiar_escena()=pilas.escena.gestor.Gestor-class.html#cambiar_escena"><a title="pilas.cambiar_escena
+pilas.escena.gestor.Gestor.cambiar_escena" class="py-name" href="#" onclick="return doclink('link-32', 'cambiar_escena', 'link-32');">cambiar_escena</a></tt><tt class="py-op">(</tt><tt id="link-33" class="py-name"><a title="pilas.escena.escena_normal.Normal
+pilas.escenas.Normal" class="py-name" href="#" onclick="return doclink('link-33', 'Normal', 'link-21');">Normal</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt id="link-34" class="py-name" targets="Function pilas._usa_interprete_lanas()=pilas-module.html#_usa_interprete_lanas"><a title="pilas._usa_interprete_lanas" class="py-name" href="#" onclick="return doclink('link-34', '_usa_interprete_lanas', 'link-34');">_usa_interprete_lanas</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">                <tt id="link-35" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-35', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Module pilas.ventana=pilas.ventana-module.html"><a title="pilas.ventana" class="py-name" href="#" onclick="return doclink('link-36', 'ventana', 'link-36');">ventana</a></tt><tt class="py-op">.</tt><tt class="py-name">show</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt id="link-37" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-37', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name" targets="Method pilas.motores.motor_qt.Motor.modificar_ventana()=pilas.motores.motor_qt.Motor-class.html#modificar_ventana"><a title="pilas.motores.motor_qt.Motor.modificar_ventana" class="py-name" href="#" onclick="return doclink('link-38', 'modificar_ventana', 'link-38');">modificar_ventana</a></tt><tt class="py-op">(</tt><tt id="link-39" class="py-name"><a title="pilas.actores.actor.Actor.ancho
+pilas.motores.motor_qt.Grilla.ancho
+pilas.motores.motor_qt.Imagen.ancho
+pilas.motores.motor_qt.Texto.ancho" class="py-name" href="#" onclick="return doclink('link-39', 'ancho', 'link-28');">ancho</a></tt><tt class="py-op">,</tt> <tt id="link-40" class="py-name"><a title="pilas.actores.actor.Actor.alto
+pilas.motores.motor_qt.Grilla.alto
+pilas.motores.motor_qt.Imagen.alto
+pilas.motores.motor_qt.Texto.alto" class="py-name" href="#" onclick="return doclink('link-40', 'alto', 'link-29');">alto</a></tt><tt class="py-op">,</tt> <tt class="py-name">titulo</tt><tt class="py-op">,</tt> <tt id="link-41" class="py-name"><a title="pilas.motores.motor_qt.CanvasWidget.pantalla_completa" class="py-name" href="#" onclick="return doclink('link-41', 'pantalla_completa', 'link-30');">pantalla_completa</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt id="link-42" class="py-name" targets="Method pilas.escena.gestor.Gestor.escena_actual()=pilas.escena.gestor.Gestor-class.html#escena_actual,Function pilas.escena_actual()=pilas-module.html#escena_actual"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-42', 'escena_actual', 'link-42');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name" targets="Module pilas.fisica=pilas.fisica-module.html"><a title="pilas.fisica" class="py-name" href="#" onclick="return doclink('link-43', 'fisica', 'link-43');">fisica</a></tt><tt class="py-op">.</tt><tt id="link-44" class="py-name" targets="Function pilas.atajos.definir_gravedad()=pilas.atajos-module.html#definir_gravedad,Method pilas.fisica.Fisica.definir_gravedad()=pilas.fisica.Fisica-class.html#definir_gravedad,Method pilas.fisica.FisicaDeshabilitada.definir_gravedad()=pilas.fisica.FisicaDeshabilitada-class.html#definir_gravedad,Function pilas.fisica.definir_gravedad()=pilas.fisica-module.html#definir_gravedad"><a title="pilas.atajos.definir_gravedad
+pilas.fisica.Fisica.definir_gravedad
+pilas.fisica.FisicaDeshabilitada.definir_gravedad
+pilas.fisica.definir_gravedad" class="py-name" href="#" onclick="return doclink('link-44', 'definir_gravedad', 'link-44');">definir_gravedad</a></tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">gravedad</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="esta_inicializada"></a><div id="esta_inicializada-def"><a name="L89"></a><tt class="py-lineno"> 89</tt> <a class="py-toggle" href="#" id="esta_inicializada-toggle" onclick="return toggle('esta_inicializada');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#esta_inicializada">esta_inicializada</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="esta_inicializada-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="esta_inicializada-expanded"><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">    <tt class="py-docstring">"Indica si la biblioteca pilas ha sido inicializada con pilas.iniciar()"</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt id="link-45" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-45', 'mundo', 'link-0');">mundo</a></tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt id="link-46" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-46', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">,</tt> <tt id="link-47" class="py-name"><a title="pilas.mundo.Mundo" class="py-name" href="#" onclick="return doclink('link-47', 'Mundo', 'link-4');">Mundo</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"> </tt>
+<a name="iniciar_con_lanzador"></a><div id="iniciar_con_lanzador-def"><a name="L95"></a><tt class="py-lineno"> 95</tt> <a class="py-toggle" href="#" id="iniciar_con_lanzador-toggle" onclick="return toggle('iniciar_con_lanzador');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#iniciar_con_lanzador">iniciar_con_lanzador</a><tt class="py-op">(</tt><tt class="py-param">ancho</tt><tt class="py-op">=</tt><tt class="py-number">640</tt><tt class="py-op">,</tt> <tt class="py-param">alto</tt><tt class="py-op">=</tt><tt class="py-number">480</tt><tt class="py-op">,</tt> <tt class="py-param">titulo</tt><tt class="py-op">=</tt><tt class="py-string">'Pilas'</tt><tt class="py-op">,</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">            <tt class="py-param">rendimiento</tt><tt class="py-op">=</tt><tt class="py-number">60</tt><tt class="py-op">,</tt> <tt class="py-param">modo</tt><tt class="py-op">=</tt><tt class="py-string">'detectar'</tt><tt class="py-op">,</tt> <tt class="py-param">gravedad</tt><tt class="py-op">=</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">90</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-param">imagen</tt><tt class="py-op">=</tt><tt class="py-string">"asistente.png"</tt><tt class="py-op">,</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-param">permitir_depuracion</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="iniciar_con_lanzador-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="iniciar_con_lanzador-expanded"><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt class="py-docstring">"""Identica a la funci&#243;n iniciar, solo que permite al usuario seleccionar</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-docstring">    el motor multimedia y el modo de video a utilizar.</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">    Esta funci&#243;n es &#250;til cuando se quiere distribuir un juego y no se conoce</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">    ex&#225;ctamente el equipo del usuario.</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">    <tt class="py-keyword">import</tt> <tt id="link-48" class="py-name" targets="Module pilas.lanzador=pilas.lanzador-module.html"><a title="pilas.lanzador" class="py-name" href="#" onclick="return doclink('link-48', 'lanzador', 'link-48');">lanzador</a></tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">    <tt class="py-name">usar_motor</tt><tt class="py-op">,</tt> <tt id="link-49" class="py-name"><a title="pilas.motores.motor_qt.CanvasWidget.pantalla_completa" class="py-name" href="#" onclick="return doclink('link-49', 'pantalla_completa', 'link-30');">pantalla_completa</a></tt><tt class="py-op">,</tt> <tt class="py-name">audio</tt> <tt class="py-op">=</tt> <tt id="link-50" class="py-name"><a title="pilas.lanzador" class="py-name" href="#" onclick="return doclink('link-50', 'lanzador', 'link-48');">lanzador</a></tt><tt class="py-op">.</tt><tt id="link-51" class="py-name" targets="Method pilas.actores.dialogo.Dialogo.ejecutar()=pilas.actores.dialogo.Dialogo-class.html#ejecutar,Function pilas.asistente.ejecutar()=pilas.asistente-module.html#ejecutar,Function pilas.ejecutar()=pilas-module.html#ejecutar,Function pilas.ejemplos.ejecutar()=pilas.ejemplos-module.html#ejecutar,Function pilas.lanzador.ejecutar()=pilas.lanzador-module.html#ejecutar,Method pilas.tareas.Tarea.ejecutar()=pilas.tareas.Tarea-class.html#ejecutar,Method pilas.tareas.TareaCondicional.ejecutar()=pilas.tareas.TareaCondicional-class.html#ejecutar"><a title="pilas.actores.dialogo.Dialogo.ejecutar
+pilas.asistente.ejecutar
+pilas.ejecutar
+pilas.ejemplos.ejecutar
+pilas.lanzador.ejecutar
+pilas.tareas.Tarea.ejecutar
+pilas.tareas.TareaCondicional.ejecutar" class="py-name" href="#" onclick="return doclink('link-51', 'ejecutar', 'link-51');">ejecutar</a></tt><tt class="py-op">(</tt><tt id="link-52" class="py-name" targets="Variable pilas.actores.actor.Actor.imagen=pilas.actores.actor.Actor-class.html#imagen"><a title="pilas.actores.actor.Actor.imagen" class="py-name" href="#" onclick="return doclink('link-52', 'imagen', 'link-52');">imagen</a></tt><tt class="py-op">,</tt> <tt class="py-name">titulo</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">    <tt id="link-53" class="py-name" targets="Method pilas.actores.cooperativista.Caminando.iniciar()=pilas.actores.cooperativista.Caminando-class.html#iniciar,Method pilas.actores.cooperativista.DecirOk.iniciar()=pilas.actores.cooperativista.DecirOk-class.html#iniciar,Method pilas.actores.cooperativista.Esperando.iniciar()=pilas.actores.cooperativista.Esperando-class.html#iniciar,Method pilas.actores.dialogo.Dialogo.iniciar()=pilas.actores.dialogo.Dialogo-class.html#iniciar,Method pilas.actores.martian.Caminando.iniciar()=pilas.actores.martian.Caminando-class.html#iniciar,Method pilas.actores.martian.Esperando.iniciar()=pilas.actores.martian.Esperando-class.html#iniciar,Method pilas.actores.martian.Saltando.iniciar()=pilas.actores.martian.Saltando-class.html#iniciar,Method pilas.actores.personajes_rpg.Caminando.iniciar()=pilas.actores.personajes_rpg.Caminando-class.html#iniciar,Method pilas.actores.personajes_rpg.Esperando.iniciar()=pilas.actores.personajes_rpg.Esperando-class.html#iniciar,Method pilas.actores.pingu.Caminando.iniciar()=pilas.actores.pingu.Caminando-class.html#iniciar,Method pilas.actores.pingu.Esperando.iniciar()=pilas.actores.pingu.Esperando-class.html#iniciar,Method pilas.actores.pingu.Saltando.iniciar()=pilas.actores.pingu.Saltando-class.html#iniciar,Method pilas.actores.temporizador.Temporizador.iniciar()=pilas.actores.temporizador.Temporizador-class.html#iniciar,Method pilas.comportamientos.Avanzar.iniciar()=pilas.comportamientos.Avanzar-class.html#iniciar,Method pilas.comportamientos.Comportamiento.iniciar()=pilas.comportamientos.Comportamiento-class.html#iniciar,Method pilas.comportamientos.Girar.iniciar()=pilas.comportamientos.Girar-class.html#iniciar,Method pilas.comportamientos.Proyectil.iniciar()=pilas.comportamientos.Proyectil-class.html#iniciar,Method pilas.comportamientos.Saltar.iniciar()=pilas.comportamientos.Saltar-class.html#iniciar,Method pilas.demos.piezas.Piezas.iniciar()=pilas.demos.piezas.Piezas-class.html#iniciar,Method pilas.escena.escena_base.Base.iniciar()=pilas.escena.escena_base.Base-class.html#iniciar,Method pilas.escena.escena_logos.Logos.iniciar()=pilas.escena.escena_logos.Logos-class.html#iniciar,Method pilas.escena.escena_normal.Aviso.iniciar()=pilas.escena.escena_normal.Aviso-class.html#iniciar,Method pilas.escena.escena_normal.Normal.iniciar()=pilas.escena.escena_normal.Normal-class.html#iniciar,Method pilas.escenas.Escena.iniciar()=pilas.escenas.Escena-class.html#iniciar,Function pilas.iniciar()=pilas-module.html#iniciar,Function pilas.ventana.iniciar()=pilas.ventana-module.html#iniciar"><a title="pilas.actores.cooperativista.Caminando.iniciar
+pilas.actores.cooperativista.DecirOk.iniciar
+pilas.actores.cooperativista.Esperando.iniciar
+pilas.actores.dialogo.Dialogo.iniciar
+pilas.actores.martian.Caminando.iniciar
+pilas.actores.martian.Esperando.iniciar
+pilas.actores.martian.Saltando.iniciar
+pilas.actores.personajes_rpg.Caminando.iniciar
+pilas.actores.personajes_rpg.Esperando.iniciar
+pilas.actores.pingu.Caminando.iniciar
+pilas.actores.pingu.Esperando.iniciar
+pilas.actores.pingu.Saltando.iniciar
+pilas.actores.temporizador.Temporizador.iniciar
+pilas.comportamientos.Avanzar.iniciar
+pilas.comportamientos.Comportamiento.iniciar
+pilas.comportamientos.Girar.iniciar
+pilas.comportamientos.Proyectil.iniciar
+pilas.comportamientos.Saltar.iniciar
+pilas.demos.piezas.Piezas.iniciar
+pilas.escena.escena_base.Base.iniciar
+pilas.escena.escena_logos.Logos.iniciar
+pilas.escena.escena_normal.Aviso.iniciar
+pilas.escena.escena_normal.Normal.iniciar
+pilas.escenas.Escena.iniciar
+pilas.iniciar
+pilas.ventana.iniciar" class="py-name" href="#" onclick="return doclink('link-53', 'iniciar', 'link-53');">iniciar</a></tt><tt class="py-op">(</tt><tt id="link-54" class="py-name"><a title="pilas.actores.actor.Actor.ancho
+pilas.motores.motor_qt.Grilla.ancho
+pilas.motores.motor_qt.Imagen.ancho
+pilas.motores.motor_qt.Texto.ancho" class="py-name" href="#" onclick="return doclink('link-54', 'ancho', 'link-28');">ancho</a></tt><tt class="py-op">,</tt> <tt id="link-55" class="py-name"><a title="pilas.actores.actor.Actor.alto
+pilas.motores.motor_qt.Grilla.alto
+pilas.motores.motor_qt.Imagen.alto
+pilas.motores.motor_qt.Texto.alto" class="py-name" href="#" onclick="return doclink('link-55', 'alto', 'link-29');">alto</a></tt><tt class="py-op">,</tt> <tt class="py-name">titulo</tt><tt class="py-op">,</tt> <tt class="py-name">usar_motor</tt><tt class="py-op">,</tt> <tt class="py-name">rendimiento</tt><tt class="py-op">,</tt> <tt class="py-name">modo</tt><tt class="py-op">,</tt> <tt class="py-name">gravedad</tt><tt class="py-op">,</tt> <tt id="link-56" class="py-name"><a title="pilas.motores.motor_qt.CanvasWidget.pantalla_completa" class="py-name" href="#" onclick="return doclink('link-56', 'pantalla_completa', 'link-30');">pantalla_completa</a></tt><tt class="py-op">,</tt> <tt class="py-name">permitir_depuracion</tt><tt class="py-op">,</tt> <tt class="py-name">audio</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="abrir_asistente"></a><div id="abrir_asistente-def"><a name="L110"></a><tt class="py-lineno">110</tt> <a class="py-toggle" href="#" id="abrir_asistente-toggle" onclick="return toggle('abrir_asistente');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#abrir_asistente">abrir_asistente</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="abrir_asistente-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="abrir_asistente-expanded"><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">    <tt class="py-docstring">"""Abre una ventana que permite iniciar pilas graficamente.</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"><tt class="py-docstring">    Las opciones que ofrece son "leer el manual" (si esta disponible),</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-docstring">    "abrir un interprete", "explorar los ejemplos" etc.</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt class="py-docstring">    Esta ventana se ha dise&#241;ado para mostrarse a los nuevos usuarios</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">    de pilas, por ejemplo cuando eligen abrir pilas desde el icono principal.</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">    <tt class="py-keyword">import</tt> <tt id="link-57" class="py-name" targets="Module pilas.asistente=pilas.asistente-module.html"><a title="pilas.asistente" class="py-name" href="#" onclick="return doclink('link-57', 'asistente', 'link-57');">asistente</a></tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt id="link-58" class="py-name"><a title="pilas.asistente" class="py-name" href="#" onclick="return doclink('link-58', 'asistente', 'link-57');">asistente</a></tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="pilas.actores.dialogo.Dialogo.ejecutar
+pilas.asistente.ejecutar
+pilas.ejecutar
+pilas.ejemplos.ejecutar
+pilas.lanzador.ejecutar
+pilas.tareas.Tarea.ejecutar
+pilas.tareas.TareaCondicional.ejecutar" class="py-name" href="#" onclick="return doclink('link-59', 'ejecutar', 'link-51');">ejecutar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="ejecutar"></a><div id="ejecutar-def"><a name="L122"></a><tt class="py-lineno">122</tt> <a class="py-toggle" href="#" id="ejecutar-toggle" onclick="return toggle('ejecutar');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#ejecutar">ejecutar</a><tt class="py-op">(</tt><tt class="py-param">ignorar_errores</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ejecutar-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ejecutar-expanded"><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">    <tt class="py-docstring">"""Pone en funcionamiento las actualizaciones y dibujado.</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"><tt class="py-docstring">    Esta funci&#243;n es necesaria cuando se crea un juego</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt class="py-docstring">    en modo ``no-interactivo``."""</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">    <tt id="link-60" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-60', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">.</tt><tt id="link-61" class="py-name" targets="Method pilas.motores.motor_qt.Motor.ejecutar_bucle_principal()=pilas.motores.motor_qt.Motor-class.html#ejecutar_bucle_principal,Method pilas.mundo.Mundo.ejecutar_bucle_principal()=pilas.mundo.Mundo-class.html#ejecutar_bucle_principal"><a title="pilas.motores.motor_qt.Motor.ejecutar_bucle_principal
+pilas.mundo.Mundo.ejecutar_bucle_principal" class="py-name" href="#" onclick="return doclink('link-61', 'ejecutar_bucle_principal', 'link-61');">ejecutar_bucle_principal</a></tt><tt class="py-op">(</tt><tt class="py-name">ignorar_errores</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="terminar"></a><div id="terminar-def"><a name="L129"></a><tt class="py-lineno">129</tt> <a class="py-toggle" href="#" id="terminar-toggle" onclick="return toggle('terminar');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#terminar">terminar</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="terminar-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="terminar-expanded"><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">    <tt class="py-docstring">"""Finaliza la ejecuci&#243;n de pilas y cierra la ventana principal."""</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">    <tt id="link-62" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-62', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">.</tt><tt id="link-63" class="py-name" targets="Method pilas.comportamientos.Comportamiento.terminar()=pilas.comportamientos.Comportamiento-class.html#terminar,Method pilas.escenas.Escena.terminar()=pilas.escenas.Escena-class.html#terminar,Method pilas.motores.motor_qt.Motor.terminar()=pilas.motores.motor_qt.Motor-class.html#terminar,Method pilas.mundo.Mundo.terminar()=pilas.mundo.Mundo-class.html#terminar,Method pilas.tareas.Tarea.terminar()=pilas.tareas.Tarea-class.html#terminar,Function pilas.terminar()=pilas-module.html#terminar"><a title="pilas.comportamientos.Comportamiento.terminar
+pilas.escenas.Escena.terminar
+pilas.motores.motor_qt.Motor.terminar
+pilas.mundo.Mundo.terminar
+pilas.tareas.Tarea.terminar
+pilas.terminar" class="py-name" href="#" onclick="return doclink('link-63', 'terminar', 'link-63');">terminar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"> </tt>
+<a name="ver"></a><div id="ver-def"><a name="L133"></a><tt class="py-lineno">133</tt> <a class="py-toggle" href="#" id="ver-toggle" onclick="return toggle('ver');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#ver">ver</a><tt class="py-op">(</tt><tt class="py-param">objeto</tt><tt class="py-op">,</tt> <tt class="py-param">imprimir</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-param">retornar</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ver-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ver-expanded"><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">    <tt class="py-docstring">"""Imprime en pantalla el codigo fuente asociado a un objeto."""</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-64" class="py-name"><a title="pilas.actores.utils
+pilas.utils" class="py-name" href="#" onclick="return doclink('link-64', 'utils', 'link-2');">utils</a></tt><tt class="py-op">.</tt><tt id="link-65" class="py-name" targets="Function pilas.utils.ver_codigo()=pilas.utils-module.html#ver_codigo"><a title="pilas.utils.ver_codigo" class="py-name" href="#" onclick="return doclink('link-65', 'ver_codigo', 'link-65');">ver_codigo</a></tt><tt class="py-op">(</tt><tt class="py-name">objeto</tt><tt class="py-op">,</tt> <tt id="link-66" class="py-name" targets="Method pilas.widget_log.WidgetLog.imprimir()=pilas.widget_log.WidgetLog-class.html#imprimir"><a title="pilas.widget_log.WidgetLog.imprimir" class="py-name" href="#" onclick="return doclink('link-66', 'imprimir', 'link-66');">imprimir</a></tt><tt class="py-op">,</tt> <tt class="py-name">retornar</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="version"></a><div id="version-def"><a name="L137"></a><tt class="py-lineno">137</tt> <a class="py-toggle" href="#" id="version-toggle" onclick="return toggle('version');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#version">version</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="version-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="version-expanded"><a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-docstring">"""Retorna el n&#250;mero de version de pilas."""</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">    <tt class="py-keyword">import</tt> <tt id="link-67" class="py-name" targets="Module pilas.pilasversion=pilas.pilasversion-module.html"><a title="pilas.pilasversion" class="py-name" href="#" onclick="return doclink('link-67', 'pilasversion', 'link-67');">pilasversion</a></tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-68" class="py-name"><a title="pilas.pilasversion" class="py-name" href="#" onclick="return doclink('link-68', 'pilasversion', 'link-67');">pilasversion</a></tt><tt class="py-op">.</tt><tt id="link-69" class="py-name" targets="Variable pilas.pilasversion.VERSION=pilas.pilasversion-module.html#VERSION"><a title="pilas.pilasversion.VERSION" class="py-name" href="#" onclick="return doclink('link-69', 'VERSION', 'link-69');">VERSION</a></tt> </tt>
+</div><a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"> </tt>
+<a name="_crear_motor"></a><div id="_crear_motor-def"><a name="L142"></a><tt class="py-lineno">142</tt> <a class="py-toggle" href="#" id="_crear_motor-toggle" onclick="return toggle('_crear_motor');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#_crear_motor">_crear_motor</a><tt class="py-op">(</tt><tt class="py-param">usar_motor</tt><tt class="py-op">,</tt> <tt class="py-param">permitir_depuracion</tt><tt class="py-op">,</tt> <tt class="py-param">audio</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_crear_motor-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_crear_motor-expanded"><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">    <tt class="py-docstring">"""Genera instancia del motor multimedia en base a un nombre.</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"><tt class="py-docstring">    Esta es una funci&#243;n interna y no debe ser ejecutada</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt class="py-docstring">    excepto por el mismo motor pilas."""</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">usar_motor</tt> <tt class="py-keyword">in</tt> <tt class="py-op">[</tt><tt class="py-string">'qt'</tt><tt class="py-op">,</tt> <tt class="py-string">'qtgl'</tt><tt class="py-op">,</tt> <tt class="py-string">'qtwidget'</tt><tt class="py-op">,</tt> <tt class="py-string">'qtsugar'</tt><tt class="py-op">,</tt> <tt class="py-string">'qtsugargl'</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-keyword">from</tt> <tt id="link-70" class="py-name" targets="Package pilas.motores=pilas.motores-module.html"><a title="pilas.motores" class="py-name" href="#" onclick="return doclink('link-70', 'motores', 'link-70');">motores</a></tt> <tt class="py-keyword">import</tt> <tt id="link-71" class="py-name" targets="Module pilas.motores.motor_qt=pilas.motores.motor_qt-module.html"><a title="pilas.motores.motor_qt" class="py-name" href="#" onclick="return doclink('link-71', 'motor_qt', 'link-71');">motor_qt</a></tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line"> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-72" class="py-name"><a title="pilas._usa_interprete_lanas" class="py-name" href="#" onclick="return doclink('link-72', '_usa_interprete_lanas', 'link-34');">_usa_interprete_lanas</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">            <tt class="py-name">usar_motor</tt> <tt class="py-op">=</tt> <tt class="py-string">'qtsugar'</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line"> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-name">motor</tt> <tt class="py-op">=</tt> <tt id="link-73" class="py-name"><a title="pilas.motores.motor_qt" class="py-name" href="#" onclick="return doclink('link-73', 'motor_qt', 'link-71');">motor_qt</a></tt><tt class="py-op">.</tt><tt id="link-74" class="py-name" targets="Class pilas.motores.motor_qt.Motor=pilas.motores.motor_qt.Motor-class.html"><a title="pilas.motores.motor_qt.Motor" class="py-name" href="#" onclick="return doclink('link-74', 'Motor', 'link-74');">Motor</a></tt><tt class="py-op">(</tt><tt class="py-name">usar_motor</tt><tt class="py-op">,</tt> <tt class="py-name">permitir_depuracion</tt><tt class="py-op">,</tt> <tt class="py-name">audio</tt><tt class="py-op">)</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"El motor multimedia seleccionado (%s) no esta disponible"</tt> <tt class="py-op">%</tt><tt class="py-op">(</tt><tt class="py-name">usar_motor</tt><tt class="py-op">)</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"Las opciones de motores que puedes probar son 'qt', 'qtgl', 'qtwidget', 'qtsugar' y 'qtsugargl'."</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt class="py-name">motor</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">motor</tt> </tt>
+</div><a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"> </tt>
+<a name="_usa_interprete_lanas"></a><div id="_usa_interprete_lanas-def"><a name="L162"></a><tt class="py-lineno">162</tt> <a class="py-toggle" href="#" id="_usa_interprete_lanas-toggle" onclick="return toggle('_usa_interprete_lanas');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#_usa_interprete_lanas">_usa_interprete_lanas</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_usa_interprete_lanas-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_usa_interprete_lanas-expanded"><a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">    <tt class="py-docstring">"Retorna True si se ha iniciado pilas desde lanas"</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">    <tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-string">'lanas'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"> </tt>
+<a name="reiniciar"></a><div id="reiniciar-def"><a name="L167"></a><tt class="py-lineno">167</tt> <a class="py-toggle" href="#" id="reiniciar-toggle" onclick="return toggle('reiniciar');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#reiniciar">reiniciar</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="reiniciar-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="reiniciar-expanded"><a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">    <tt class="py-docstring">"""Elimina todos los actores y vuelve al estado inicial."""</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">    <tt id="link-75" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-75', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">.</tt><tt id="link-76" class="py-name" targets="Method pilas.fisica.Fisica.reiniciar()=pilas.fisica.Fisica-class.html#reiniciar,Method pilas.fisica.FisicaDeshabilitada.reiniciar()=pilas.fisica.FisicaDeshabilitada-class.html#reiniciar,Method pilas.mundo.Mundo.reiniciar()=pilas.mundo.Mundo-class.html#reiniciar,Function pilas.reiniciar()=pilas-module.html#reiniciar"><a title="pilas.fisica.Fisica.reiniciar
+pilas.fisica.FisicaDeshabilitada.reiniciar
+pilas.mundo.Mundo.reiniciar
+pilas.reiniciar" class="py-name" href="#" onclick="return doclink('link-76', 'reiniciar', 'link-76');">reiniciar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="avisar"></a><div id="avisar-def"><a name="L171"></a><tt class="py-lineno">171</tt> <a class="py-toggle" href="#" id="avisar-toggle" onclick="return toggle('avisar');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#avisar">avisar</a><tt class="py-op">(</tt><tt class="py-param">mensaje</tt><tt class="py-op">,</tt> <tt class="py-param">retraso</tt><tt class="py-op">=</tt><tt class="py-number">5</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="avisar-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="avisar-expanded"><a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">    <tt class="py-docstring">"""Emite un mensaje en la ventana principal.</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"><tt class="py-docstring">    Este mensaje aparecer&#225; en la parte inferior de la pantalla durante</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"><tt class="py-docstring">    5 segundo, por ejemplo:</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; pilas.avisar("Use la tecla &lt;esc&gt; para terminar el programa")</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">    <tt id="link-77" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-77', 'actores', 'link-5');">actores</a></tt><tt class="py-op">.</tt><tt id="link-78" class="py-name" targets="Class pilas.actores.texto_inferior.TextoInferior=pilas.actores.texto_inferior.TextoInferior-class.html"><a title="pilas.actores.texto_inferior.TextoInferior" class="py-name" href="#" onclick="return doclink('link-78', 'TextoInferior', 'link-78');">TextoInferior</a></tt><tt class="py-op">(</tt><tt class="py-name">mensaje</tt><tt class="py-op">,</tt> <tt class="py-name">autoeliminar</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">retraso</tt><tt class="py-op">=</tt><tt class="py-name">retraso</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line"> </tt>
+<a name="abrir_cargador"></a><div id="abrir_cargador-def"><a name="L181"></a><tt class="py-lineno">181</tt> <a class="py-toggle" href="#" id="abrir_cargador-toggle" onclick="return toggle('abrir_cargador');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#abrir_cargador">abrir_cargador</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="abrir_cargador-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="abrir_cargador-expanded"><a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">    <tt class="py-docstring">"""Abre un cargador de ejemplos con varios c&#243;digos de prueba.</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line"><tt class="py-docstring">    Ejemplo:</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; pilas.abrir_cargador()</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line"><tt class="py-docstring">    El cargador de ejemplos se ve de esta forma:</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"><tt class="py-docstring">    .. image:: images/cargador.png</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">        <tt class="py-keyword">import</tt> <tt id="link-79" class="py-name" targets="Package pilas.ejemplos=pilas.ejemplos-module.html"><a title="pilas.ejemplos" class="py-name" href="#" onclick="return doclink('link-79', 'ejemplos', 'link-79');">ejemplos</a></tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">        <tt id="link-80" class="py-name"><a title="pilas.ejemplos" class="py-name" href="#" onclick="return doclink('link-80', 'ejemplos', 'link-79');">ejemplos</a></tt><tt class="py-op">.</tt><tt id="link-81" class="py-name"><a title="pilas.actores.dialogo.Dialogo.ejecutar
+pilas.asistente.ejecutar
+pilas.ejecutar
+pilas.ejemplos.ejecutar
+pilas.lanzador.ejecutar
+pilas.tareas.Tarea.ejecutar
+pilas.tareas.TareaCondicional.ejecutar" class="py-name" href="#" onclick="return doclink('link-81', 'ejecutar', 'link-51');">ejecutar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">ImportError</tt><tt class="py-op">:</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"Lo siento, no tienes instalada la extesion de ejemplos."</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"Instale el paquete 'pilas-examples' para continuar."</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line"> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line"> </tt>
+<a name="abrir_interprete"></a><div id="abrir_interprete-def"><a name="L202"></a><tt class="py-lineno">202</tt> <a class="py-toggle" href="#" id="abrir_interprete-toggle" onclick="return toggle('abrir_interprete');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#abrir_interprete">abrir_interprete</a><tt class="py-op">(</tt><tt class="py-param">parent</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">do_raise</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="abrir_interprete-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="abrir_interprete-expanded"><a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">    <tt class="py-docstring">"""Abre un int&#233;rprete interactivo de python con una ventana.</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line"><tt class="py-docstring">    Esta funci&#243;n se ejecuta cuando un usuario escribe::</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line"><tt class="py-docstring">        pilas -i</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line"><tt class="py-docstring">    en una consola del sistema.</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">    <tt id="link-82" class="py-name"><a title="pilas.interprete" class="py-name" href="#" onclick="return doclink('link-82', 'interprete', 'link-17');">interprete</a></tt><tt class="py-op">.</tt><tt id="link-83" class="py-name" targets="Function pilas.ejemplos.cargador.main()=pilas.ejemplos.cargador-module.html#main,Function pilas.interprete.main()=pilas.interprete-module.html#main"><a title="pilas.ejemplos.cargador.main
+pilas.interprete.main" class="py-name" href="#" onclick="return doclink('link-83', 'main', 'link-83');">main</a></tt><tt class="py-op">(</tt><tt class="py-name">parent</tt><tt class="py-op">,</tt> <tt class="py-name">do_raise</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line"> </tt>
+<a name="log"></a><div id="log-def"><a name="L213"></a><tt class="py-lineno">213</tt> <a class="py-toggle" href="#" id="log-toggle" onclick="return toggle('log');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#log">log</a><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-param">parametros</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="log-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="log-expanded"><a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">    <tt id="link-84" class="py-name" targets="Variable pilas.eventos=pilas-module.html#eventos"><a title="pilas.eventos" class="py-name" href="#" onclick="return doclink('link-84', 'eventos', 'link-84');">eventos</a></tt><tt class="py-op">.</tt><tt id="link-85" class="py-name" targets="Variable pilas.evento.ProxyEventos.log=pilas.evento.ProxyEventos-class.html#log,Function pilas.log()=pilas-module.html#log"><a title="pilas.evento.ProxyEventos.log
+pilas.log" class="py-name" href="#" onclick="return doclink('link-85', 'log', 'link-85');">log</a></tt><tt class="py-op">.</tt><tt id="link-86" class="py-name" targets="Method pilas.evento.Evento.emitir()=pilas.evento.Evento-class.html#emitir"><a title="pilas.evento.Evento.emitir" class="py-name" href="#" onclick="return doclink('link-86', 'emitir', 'link-86');">emitir</a></tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">=</tt><tt class="py-name">parametros</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line"> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line"><tt id="link-87" class="py-name" targets="Function pilas.utils.interpolar()=pilas.utils-module.html#interpolar"><a title="pilas.utils.interpolar" class="py-name" href="#" onclick="return doclink('link-87', 'interpolar', 'link-87');">interpolar</a></tt> <tt class="py-op">=</tt> <tt id="link-88" class="py-name"><a title="pilas.actores.utils
+pilas.utils" class="py-name" href="#" onclick="return doclink('link-88', 'utils', 'link-2');">utils</a></tt><tt class="py-op">.</tt><tt id="link-89" class="py-name"><a title="pilas.utils.interpolar" class="py-name" href="#" onclick="return doclink('link-89', 'interpolar', 'link-87');">interpolar</a></tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line"> </tt>
+<a name="escena_actual"></a><div id="escena_actual-def"><a name="L218"></a><tt class="py-lineno">218</tt> <a class="py-toggle" href="#" id="escena_actual-toggle" onclick="return toggle('escena_actual');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#escena_actual">escena_actual</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="escena_actual-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="escena_actual-expanded"><a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-90" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-90', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-91" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-91', 'escena_actual', 'link-42');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line"> </tt>
+<a name="cambiar_escena"></a><div id="cambiar_escena-def"><a name="L221"></a><tt class="py-lineno">221</tt> <a class="py-toggle" href="#" id="cambiar_escena-toggle" onclick="return toggle('cambiar_escena');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#cambiar_escena">cambiar_escena</a><tt class="py-op">(</tt><tt class="py-param">escena</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cambiar_escena-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="cambiar_escena-expanded"><a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">    <tt id="link-92" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-92', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-93" class="py-name"><a title="pilas.cambiar_escena
+pilas.escena.gestor.Gestor.cambiar_escena" class="py-name" href="#" onclick="return doclink('link-93', 'cambiar_escena', 'link-32');">cambiar_escena</a></tt><tt class="py-op">(</tt><tt id="link-94" class="py-name"><a title="pilas.escena" class="py-name" href="#" onclick="return doclink('link-94', 'escena', 'link-7');">escena</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line"> </tt>
+<a name="almacenar_escena"></a><div id="almacenar_escena-def"><a name="L224"></a><tt class="py-lineno">224</tt> <a class="py-toggle" href="#" id="almacenar_escena-toggle" onclick="return toggle('almacenar_escena');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#almacenar_escena">almacenar_escena</a><tt class="py-op">(</tt><tt class="py-param">escena</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="almacenar_escena-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="almacenar_escena-expanded"><a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">    <tt id="link-95" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-95', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-96" class="py-name" targets="Function pilas.almacenar_escena()=pilas-module.html#almacenar_escena,Method pilas.escena.gestor.Gestor.almacenar_escena()=pilas.escena.gestor.Gestor-class.html#almacenar_escena"><a title="pilas.almacenar_escena
+pilas.escena.gestor.Gestor.almacenar_escena" class="py-name" href="#" onclick="return doclink('link-96', 'almacenar_escena', 'link-96');">almacenar_escena</a></tt><tt class="py-op">(</tt><tt id="link-97" class="py-name"><a title="pilas.escena" class="py-name" href="#" onclick="return doclink('link-97', 'escena', 'link-7');">escena</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line"> </tt>
+<a name="recuperar_escena"></a><div id="recuperar_escena-def"><a name="L227"></a><tt class="py-lineno">227</tt> <a class="py-toggle" href="#" id="recuperar_escena-toggle" onclick="return toggle('recuperar_escena');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas-module.html#recuperar_escena">recuperar_escena</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="recuperar_escena-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="recuperar_escena-expanded"><a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">    <tt id="link-98" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-98', 'mundo', 'link-0');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">gestor_escenas</tt><tt class="py-op">.</tt><tt id="link-99" class="py-name" targets="Method pilas.escena.gestor.Gestor.recuperar_escena()=pilas.escena.gestor.Gestor-class.html#recuperar_escena,Function pilas.recuperar_escena()=pilas-module.html#recuperar_escena"><a title="pilas.escena.gestor.Gestor.recuperar_escena
+pilas.recuperar_escena" class="py-name" href="#" onclick="return doclink('link-99', 'recuperar_escena', 'link-99');">recuperar_escena</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line"> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line"><tt class="py-comment"># Representa el viejo acceso al modulo eventos, pero convierte cada uno</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line"><tt class="py-comment"># de los eventos en una referencia al evento dentro de la escena actual.</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-100" class="py-name" targets="Module pilas.evento=pilas.evento-module.html"><a title="pilas.evento" class="py-name" href="#" onclick="return doclink('link-100', 'evento', 'link-100');">evento</a></tt> <tt class="py-keyword">import</tt> <tt id="link-101" class="py-name" targets="Class pilas.evento.ProxyEventos=pilas.evento.ProxyEventos-class.html"><a title="pilas.evento.ProxyEventos" class="py-name" href="#" onclick="return doclink('link-101', 'ProxyEventos', 'link-101');">ProxyEventos</a></tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line"><tt id="link-102" class="py-name"><a title="pilas.eventos" class="py-name" href="#" onclick="return doclink('link-102', 'eventos', 'link-84');">eventos</a></tt> <tt class="py-op">=</tt> <tt id="link-103" class="py-name"><a title="pilas.evento.ProxyEventos" class="py-name" href="#" onclick="return doclink('link-103', 'ProxyEventos', 'link-101');">ProxyEventos</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:47 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.fisica.Fisica</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        <a href="pilas.fisica-module.html">Module&nbsp;fisica</a> ::
+        Class&nbsp;Fisica
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.fisica.Fisica-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Fisica</h1><p class="nomargin-top"><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="class_hierarchy_for_fisica" name="class_hierarchy_for_fisica">
+<area shape="rect" id="node1" href="pilas.fisica.Fisica-class.html" title="Fisica" alt="" coords="5,6,61,34"/>
+</map>
+  <img src="class_hierarchy_for_fisica.gif" alt='' usemap="#class_hierarchy_for_fisica" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+Representa un simulador de mundo fisico, usando la biblioteca Box2D (version 2.1).
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">area</span>,
+        <span class="summary-sig-arg">gravedad</span>)</span><br />
+      Inicializa el motor de f&#237;sica.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="crear_bordes_del_escenario"></a><span class="summary-sig-name">crear_bordes_del_escenario</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Genera las paredes, el techo y el suelo.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.crear_bordes_del_escenario">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="reiniciar"></a><span class="summary-sig-name">reiniciar</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Elimina todos los objetos f&#237;sicos y vuelve a crear el entorno.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.reiniciar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#capturar_figura_con_el_mouse" class="summary-sig-name">capturar_figura_con_el_mouse</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">figura</span>)</span><br />
+      Comienza a capturar una figura con el mouse.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.capturar_figura_con_el_mouse">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#cuando_mueve_el_mouse" class="summary-sig-name">cuando_mueve_el_mouse</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>)</span><br />
+      Gestiona el evento de movimiento del mouse.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.cuando_mueve_el_mouse">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="cuando_suelta_el_mouse"></a><span class="summary-sig-name">cuando_suelta_el_mouse</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Se ejecuta cuando se suelta el bot&#243;n de mouse.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.cuando_suelta_el_mouse">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="actualizar"></a><span class="summary-sig-name">actualizar</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">velocidad</span>=<span class="summary-sig-default">1.0</span>)</span><br />
+      Realiza la actualizaci&#243;n l&#243;gica del escenario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.actualizar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="pausar_mundo"></a><span class="summary-sig-name">pausar_mundo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Detiene la simulaci&#243;n f&#237;sica.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.pausar_mundo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="reanudar_mundo"></a><span class="summary-sig-name">reanudar_mundo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Restaura la simulaci&#243;n f&#237;sica.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.reanudar_mundo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_procesar_figuras_a_eliminar"></a><span class="summary-sig-name">_procesar_figuras_a_eliminar</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Elimina las figuras que han sido marcadas para quitar.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica._procesar_figuras_a_eliminar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#dibujar_figuras_sobre_lienzo" class="summary-sig-name">dibujar_figuras_sobre_lienzo</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">motor</span>,
+        <span class="summary-sig-arg">lienzo</span>,
+        <span class="summary-sig-arg">grosor</span>=<span class="summary-sig-default">1</span>)</span><br />
+      Dibuja todas las figuras en una pizarra. Indicado para depuracion.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.dibujar_figuras_sobre_lienzo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#crear_cuerpo" class="summary-sig-name">crear_cuerpo</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">definicion_de_cuerpo</span>)</span><br />
+      Genera un Body de box2d.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.crear_cuerpo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#crear_suelo" class="summary-sig-name">crear_suelo</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">(ancho, alto)</span>,
+        <span class="summary-sig-arg">restitucion</span>=<span class="summary-sig-default">0</span>)</span><br />
+      Genera un suelo s&#243;lido para el escenario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.crear_suelo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#crear_techo" class="summary-sig-name">crear_techo</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">(ancho, alto)</span>,
+        <span class="summary-sig-arg">restitucion</span>=<span class="summary-sig-default">0</span>)</span><br />
+      Genera un techo s&#243;lido para el escenario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.crear_techo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#crear_paredes" class="summary-sig-name">crear_paredes</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">(ancho, alto)</span>,
+        <span class="summary-sig-arg">restitucion</span>=<span class="summary-sig-default">0</span>)</span><br />
+      Genera dos paredes para el escenario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.crear_paredes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="eliminar_suelo"></a><span class="summary-sig-name">eliminar_suelo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Elimina el suelo del escenario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.eliminar_suelo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="eliminar_techo"></a><span class="summary-sig-name">eliminar_techo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Elimina el techo del escenario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.eliminar_techo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="eliminar_paredes"></a><span class="summary-sig-name">eliminar_paredes</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Elimina las dos paredes del escenario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.eliminar_paredes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#eliminar_figura" class="summary-sig-name">eliminar_figura</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">figura</span>)</span><br />
+      Elimina una figura del escenario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.eliminar_figura">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#obtener_distancia_al_suelo" class="summary-sig-name">obtener_distancia_al_suelo</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>,
+        <span class="summary-sig-arg">dy</span>)</span><br />
+      Obtiene la distancia hacia abajo desde el punto (x,y).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.obtener_distancia_al_suelo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#obtener_cuerpos_en" class="summary-sig-name">obtener_cuerpos_en</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>)</span><br />
+      Retorna una lista de cuerpos que se encuentran en la posicion (x, y) o retorna una lista vacia [].</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.obtener_cuerpos_en">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.fisica.Fisica-class.html#definir_gravedad" class="summary-sig-name">definir_gravedad</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>)</span><br />
+      Define la gravedad del motor de f&#237;sica.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.definir_gravedad">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">area</span>,
+        <span class="sig-arg">gravedad</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Inicializa el motor de f&#237;sica.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>area</code></strong> - El area del escenario, en forma de tupla.</li>
+        <li><strong class="pname"><code>gravedad</code></strong> - La aceleraci&#243;n del escenario.</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="capturar_figura_con_el_mouse"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">capturar_figura_con_el_mouse</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">figura</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.capturar_figura_con_el_mouse">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Comienza a capturar una figura con el mouse.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>figura</code></strong> - La figura a controlar con el mouse.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="cuando_mueve_el_mouse"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">cuando_mueve_el_mouse</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.cuando_mueve_el_mouse">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Gestiona el evento de movimiento del mouse.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>x</code></strong> - Coordenada horizontal del mouse.</li>
+        <li><strong class="pname"><code>y</code></strong> - Coordenada vertical del mouse.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dibujar_figuras_sobre_lienzo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dibujar_figuras_sobre_lienzo</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">motor</span>,
+        <span class="sig-arg">lienzo</span>,
+        <span class="sig-arg">grosor</span>=<span class="sig-default">1</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.dibujar_figuras_sobre_lienzo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Dibuja todas las figuras en una pizarra. Indicado para depuracion.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>motor</code></strong> - Referencia al motor de pilas.</li>
+        <li><strong class="pname"><code>lienzo</code></strong> - Un actor lienzo sobre el que se dibujar&#225;.</li>
+        <li><strong class="pname"><code>grosor</code></strong> - El grosor de la linea medida en pixels.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="crear_cuerpo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">crear_cuerpo</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">definicion_de_cuerpo</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.crear_cuerpo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Genera un Body de box2d.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>definicion_de_cuerpo</code></strong> - Los par&#225;metros de configuraci&#243;n de un cuerpo para Box2d.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="crear_suelo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">crear_suelo</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">(ancho, alto)</span>,
+        <span class="sig-arg">restitucion</span>=<span class="sig-default">0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.crear_suelo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Genera un suelo s&#243;lido para el escenario.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ancho</code></strong> - El ancho del suelo.</li>
+        <li><strong class="pname"><code>alto</code></strong> - Alto del suelo.</li>
+        <li><strong class="pname"><code>restitucion</code></strong> - El grado de conservaci&#243;n de energ&#237;a ante una colisi&#243;n.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="crear_techo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">crear_techo</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">(ancho, alto)</span>,
+        <span class="sig-arg">restitucion</span>=<span class="sig-default">0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.crear_techo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Genera un techo s&#243;lido para el escenario.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ancho</code></strong> - El ancho del techo.</li>
+        <li><strong class="pname"><code>alto</code></strong> - Alto del techo.</li>
+        <li><strong class="pname"><code>restitucion</code></strong> - El grado de conservaci&#243;n de energ&#237;a ante una colisi&#243;n.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="crear_paredes"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">crear_paredes</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">(ancho, alto)</span>,
+        <span class="sig-arg">restitucion</span>=<span class="sig-default">0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.crear_paredes">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Genera dos paredes para el escenario.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ancho</code></strong> - El ancho de las paredes.</li>
+        <li><strong class="pname"><code>alto</code></strong> - El alto de las paredes.</li>
+        <li><strong class="pname"><code>restitucion</code></strong> - El grado de conservaci&#243;n de energ&#237;a ante una colisi&#243;n.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="eliminar_figura"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">eliminar_figura</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">figura</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.eliminar_figura">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Elimina una figura del escenario.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>figura</code></strong> - Figura a eliminar.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="obtener_distancia_al_suelo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">obtener_distancia_al_suelo</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>,
+        <span class="sig-arg">dy</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.obtener_distancia_al_suelo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Obtiene la distancia hacia abajo desde el punto (x,y).</p>
+<p>El valor de 'dy' tiene que ser positivo.</p>
+<p>Si la funcion no encuentra obstaculos retornara
+dy, pero en paso contrario retornara un valor menor
+a dy.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>x</code></strong> - posici&#243;n horizontal del punto a analizar.</li>
+        <li><strong class="pname"><code>y</code></strong> - posici&#243;n vertical del punto a analizar.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="obtener_cuerpos_en"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">obtener_cuerpos_en</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.obtener_cuerpos_en">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Retorna una lista de cuerpos que se encuentran en la posicion (x, y) o retorna una lista vacia [].
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>x</code></strong> - posici&#243;n horizontal del punto a analizar.</li>
+        <li><strong class="pname"><code>y</code></strong> - posici&#243;n vertical del punto a analizar.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="definir_gravedad"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">definir_gravedad</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.fisica-pysrc.html#Fisica.definir_gravedad">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Define la gravedad del motor de f&#237;sica.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>x</code></strong> - Aceleraci&#243;n horizontal.</li>
+        <li><strong class="pname"><code>y</code></strong> - Aceleraci&#243;n vertical.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:43 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

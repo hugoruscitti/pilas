@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.actores.dialogo</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        <a href="pilas.actores-module.html">Package&nbsp;actores</a> ::
+        Module&nbsp;dialogo
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.actores.dialogo-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.actores.dialogo-module.html">Module pilas.actores.dialogo</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># Pilas engine - A video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2010 - Hugo Ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># Website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-0', 'pilas', 'link-0');">pilas</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo"></a><div id="Dialogo-def"><a name="L11"></a><tt class="py-lineno"> 11</tt> <a class="py-toggle" href="#" id="Dialogo-toggle" onclick="return toggle('Dialogo');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html">Dialogo</a><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Dialogo-expanded"><a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">        Representa una secuencia de mensajes entre varios actores.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; mono = pilas.actores.Mono()</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; mono2 = pilas.actores.Mono()</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; dialogo = pilas.actores.Dialogo()</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; dialogo.decir(mono, "Hola Mundo")</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; dialogo.decir(mono2, "Estoy diciendo algo")</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; dialogo.iniciar()</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring">        .. image:: images/actores/mono_dice.png</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo.__init__"></a><div id="Dialogo.__init__-def"><a name="L27"></a><tt class="py-lineno"> 27</tt> <a class="py-toggle" href="#" id="Dialogo.__init__-toggle" onclick="return toggle('Dialogo.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">modo_automatico</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dialogo.__init__-expanded"><a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt class="py-docstring">""" Constructor del Di&#225;logo</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">        :param modo_automatico: Establece si el dialogo ira cambiando automatiamente.</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">        :type modo_automatico: boolean</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module pilas.actores.dialogo=pilas.actores.dialogo-module.html"><a title="pilas.actores.dialogo" class="py-name" href="#" onclick="return doclink('link-1', 'dialogo', 'link-1');">dialogo</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dialogo_actual</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">modo_automatico</tt> <tt class="py-op">=</tt> <tt class="py-name">modo_automatico</tt> </tt>
+</div><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo.decir"></a><div id="Dialogo.decir-def"><a name="L37"></a><tt class="py-lineno"> 37</tt> <a class="py-toggle" href="#" id="Dialogo.decir-toggle" onclick="return toggle('Dialogo.decir');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html#decir">decir</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">actor</tt><tt class="py-op">,</tt> <tt class="py-param">texto</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo.decir-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dialogo.decir-expanded"><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-docstring">""" A&#241;ade un texto a la conversaci&#243;n y establece el actor que lo dice.</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">        :param actor: Actor que dir&#225; el texto.</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">        :type actor: Actor</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">        :param texto: Texto que dir&#225; el actor.</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">        :type texto: string</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name"><a title="pilas.actores.dialogo" class="py-name" href="#" onclick="return doclink('link-2', 'dialogo', 'link-1');">dialogo</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt id="link-3" class="py-name" targets="Module pilas.actores.actor=pilas.actores.actor-module.html"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-3', 'actor', 'link-3');">actor</a></tt><tt class="py-op">,</tt> <tt id="link-4" class="py-name" targets="Method pilas.actores.pizarra.Pizarra.texto()=pilas.actores.pizarra.Pizarra-class.html#texto,Module pilas.actores.texto=pilas.actores.texto-module.html,Variable pilas.actores.texto.Texto.texto=pilas.actores.texto.Texto-class.html#texto,Method pilas.motores.motor_qt.Lienzo.texto()=pilas.motores.motor_qt.Lienzo-class.html#texto,Method pilas.motores.motor_qt.Superficie.texto()=pilas.motores.motor_qt.Superficie-class.html#texto"><a title="pilas.actores.pizarra.Pizarra.texto
+pilas.actores.texto
+pilas.actores.texto.Texto.texto
+pilas.motores.motor_qt.Lienzo.texto
+pilas.motores.motor_qt.Superficie.texto" class="py-name" href="#" onclick="return doclink('link-4', 'texto', 'link-4');">texto</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo.decir_inmediatamente"></a><div id="Dialogo.decir_inmediatamente-def"><a name="L47"></a><tt class="py-lineno"> 47</tt> <a class="py-toggle" href="#" id="Dialogo.decir_inmediatamente-toggle" onclick="return toggle('Dialogo.decir_inmediatamente');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html#decir_inmediatamente">decir_inmediatamente</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">actor</tt><tt class="py-op">,</tt> <tt class="py-param">texto</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo.decir_inmediatamente-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dialogo.decir_inmediatamente-expanded"><a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-docstring">""" Muestra un texto de dialogo inmediatamente sin seguir una secuencia de dialogo.</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">        :param actor: Actor que dir&#225; el texto.</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">        :type actor: Actor</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">        :param texto: Texto que dir&#225; el actor.</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring">        :type texto: string</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="pilas.actores.dialogo" class="py-name" href="#" onclick="return doclink('link-5', 'dialogo', 'link-1');">dialogo</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method pilas.actores.dialogo.Dialogo._eliminar_dialogo_actual()=pilas.actores.dialogo.Dialogo-class.html#_eliminar_dialogo_actual"><a title="pilas.actores.dialogo.Dialogo._eliminar_dialogo_actual" class="py-name" href="#" onclick="return doclink('link-6', '_eliminar_dialogo_actual', 'link-6');">_eliminar_dialogo_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method pilas.actores.actor.Actor.decir()=pilas.actores.actor.Actor-class.html#decir,Method pilas.actores.dialogo.Dialogo.decir()=pilas.actores.dialogo.Dialogo-class.html#decir,Method pilas.actores.mono.Mono.decir()=pilas.actores.mono.Mono-class.html#decir,Method pilas.actores.zanahoria.Zanahoria.decir()=pilas.actores.zanahoria.Zanahoria-class.html#decir"><a title="pilas.actores.actor.Actor.decir
+pilas.actores.dialogo.Dialogo.decir
+pilas.actores.mono.Mono.decir
+pilas.actores.zanahoria.Zanahoria.decir" class="py-name" href="#" onclick="return doclink('link-7', 'decir', 'link-7');">decir</a></tt><tt class="py-op">(</tt><tt id="link-8" class="py-name"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-8', 'actor', 'link-3');">actor</a></tt><tt class="py-op">,</tt> <tt id="link-9" class="py-name"><a title="pilas.actores.pizarra.Pizarra.texto
+pilas.actores.texto
+pilas.actores.texto.Texto.texto
+pilas.motores.motor_qt.Lienzo.texto
+pilas.motores.motor_qt.Superficie.texto" class="py-name" href="#" onclick="return doclink('link-9', 'texto', 'link-4');">texto</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-name">siguiente</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method pilas.actores.dialogo.Dialogo.obtener_siguiente_dialogo_o_funcion()=pilas.actores.dialogo.Dialogo-class.html#obtener_siguiente_dialogo_o_funcion"><a title="pilas.actores.dialogo.Dialogo.obtener_siguiente_dialogo_o_funcion" class="py-name" href="#" onclick="return doclink('link-10', 'obtener_siguiente_dialogo_o_funcion', 'link-10');">obtener_siguiente_dialogo_o_funcion</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method pilas.actores.dialogo.Dialogo._mostrar_o_ejecutar_siguiente()=pilas.actores.dialogo.Dialogo-class.html#_mostrar_o_ejecutar_siguiente"><a title="pilas.actores.dialogo.Dialogo._mostrar_o_ejecutar_siguiente" class="py-name" href="#" onclick="return doclink('link-11', '_mostrar_o_ejecutar_siguiente', 'link-11');">_mostrar_o_ejecutar_siguiente</a></tt><tt class="py-op">(</tt><tt class="py-name">siguiente</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo.elegir"></a><div id="Dialogo.elegir-def"><a name="L61"></a><tt class="py-lineno"> 61</tt> <a class="py-toggle" href="#" id="Dialogo.elegir-toggle" onclick="return toggle('Dialogo.elegir');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html#elegir">elegir</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">actor</tt><tt class="py-op">,</tt> <tt class="py-param">texto</tt><tt class="py-op">,</tt> <tt class="py-param">opciones</tt><tt class="py-op">,</tt> <tt class="py-param">funcion_a_invocar</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo.elegir-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dialogo.elegir-expanded"><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-docstring">""" Muestra un texto de dialogo con una lista de opciones para poder seleccionar y ejecutar una accion cuando se seleccione una de las opciones del cuadro de dialogo.</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">        :param actor: Actor que dir&#225; el texto.</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">        :type actor: Actor</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">        :param texto: Texto que aparecer&#225; en la parte superior del dialogo de opciones.</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">        :type texto: string</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">        :param opciones: Array de posibles opciones que mostrar&#225; el cuadrio de dialogo.</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        :type opciones: Array</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">        :param funcion_a_invocar: M&#233;todo al que se llamar&#225; cuando se seleccione una de las opciones del listado. Este metodo recibir&#225; como par&#225;metro la opci&#243;n que se haya seleccinado.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; def cuando_responde_color_favorito(respuesta):</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;    colores = {</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;               'rojo': pilas.colores.rojo,</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;               'verde': pilas.colores.verde,</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;               'azul': pilas.colores.azul,</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;              }</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;    pilas.fondos.Color(colores[respuesta])</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;    mono.sonreir()</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;    d.decir(mono, '&#161;mira!')</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt;</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; d.elegir(mono_chiquito, 'Mi color favorito es el...', ['rojo', 'verde', 'azul'], cuando_responde_color_favorito)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="pilas.actores.dialogo" class="py-name" href="#" onclick="return doclink('link-12', 'dialogo', 'link-1');">dialogo</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt id="link-13" class="py-name"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-13', 'actor', 'link-3');">actor</a></tt><tt class="py-op">,</tt> <tt id="link-14" class="py-name"><a title="pilas.actores.pizarra.Pizarra.texto
+pilas.actores.texto
+pilas.actores.texto.Texto.texto
+pilas.motores.motor_qt.Lienzo.texto
+pilas.motores.motor_qt.Superficie.texto" class="py-name" href="#" onclick="return doclink('link-14', 'texto', 'link-4');">texto</a></tt><tt class="py-op">,</tt> <tt class="py-name">opciones</tt><tt class="py-op">,</tt> <tt class="py-name">funcion_a_invocar</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo.ejecutar"></a><div id="Dialogo.ejecutar-def"><a name="L88"></a><tt class="py-lineno"> 88</tt> <a class="py-toggle" href="#" id="Dialogo.ejecutar-toggle" onclick="return toggle('Dialogo.ejecutar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html#ejecutar">ejecutar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">funcion</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo.ejecutar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dialogo.ejecutar-expanded"><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="pilas.actores.dialogo" class="py-name" href="#" onclick="return doclink('link-15', 'dialogo', 'link-1');">dialogo</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">funcion</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo.iniciar"></a><div id="Dialogo.iniciar-def"><a name="L91"></a><tt class="py-lineno"> 91</tt> <a class="py-toggle" href="#" id="Dialogo.iniciar-toggle" onclick="return toggle('Dialogo.iniciar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html#iniciar">iniciar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo.iniciar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dialogo.iniciar-expanded"><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-docstring">""" Inicia el dialogo que se haya definido.</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">            &gt;&gt;&gt; d = pilas.actores.Dialogo()</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">            &gt;&gt;&gt; d.decir(mono, "&#191;Cual es tu color favorito?")</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">            &gt;&gt;&gt; d.iniciar()</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method pilas.actores.dialogo.Dialogo.avanzar_al_siguiente_dialogo()=pilas.actores.dialogo.Dialogo-class.html#avanzar_al_siguiente_dialogo"><a title="pilas.actores.dialogo.Dialogo.avanzar_al_siguiente_dialogo" class="py-name" href="#" onclick="return doclink('link-16', 'avanzar_al_siguiente_dialogo', 'link-16');">avanzar_al_siguiente_dialogo</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo.obtener_siguiente_dialogo_o_funcion"></a><div id="Dialogo.obtener_siguiente_dialogo_o_funcion-def"><a name="L101"></a><tt class="py-lineno">101</tt> <a class="py-toggle" href="#" id="Dialogo.obtener_siguiente_dialogo_o_funcion-toggle" onclick="return toggle('Dialogo.obtener_siguiente_dialogo_o_funcion');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html#obtener_siguiente_dialogo_o_funcion">obtener_siguiente_dialogo_o_funcion</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo.obtener_siguiente_dialogo_o_funcion-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dialogo.obtener_siguiente_dialogo_o_funcion-expanded"><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="pilas.actores.dialogo" class="py-name" href="#" onclick="return doclink('link-17', 'dialogo', 'link-1');">dialogo</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="pilas.actores.dialogo" class="py-name" href="#" onclick="return doclink('link-18', 'dialogo', 'link-1');">dialogo</a></tt><tt class="py-op">.</tt><tt class="py-name">pop</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo._eliminar_dialogo_actual"></a><div id="Dialogo._eliminar_dialogo_actual-def"><a name="L105"></a><tt class="py-lineno">105</tt> <a class="py-toggle" href="#" id="Dialogo._eliminar_dialogo_actual-toggle" onclick="return toggle('Dialogo._eliminar_dialogo_actual');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html#_eliminar_dialogo_actual">_eliminar_dialogo_actual</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo._eliminar_dialogo_actual-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dialogo._eliminar_dialogo_actual-expanded"><a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dialogo_actual</tt><tt class="py-op">:</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dialogo_actual</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method pilas.actores.actor.Actor.eliminar()=pilas.actores.actor.Actor-class.html#eliminar,Method pilas.actores.globo.Globo.eliminar()=pilas.actores.globo.Globo-class.html#eliminar,Method pilas.actores.texto_inferior.TextoInferior.eliminar()=pilas.actores.texto_inferior.TextoInferior-class.html#eliminar,Method pilas.fisica.ConstanteDeDistancia.eliminar()=pilas.fisica.ConstanteDeDistancia-class.html#eliminar,Method pilas.fisica.ConstanteDeMovimiento.eliminar()=pilas.fisica.ConstanteDeMovimiento-class.html#eliminar,Method pilas.fisica.Figura.eliminar()=pilas.fisica.Figura-class.html#eliminar,Method pilas.habilidades.ColisionableComoPelota.eliminar()=pilas.habilidades.ColisionableComoPelota-class.html#eliminar,Method pilas.habilidades.Disparar.eliminar()=pilas.habilidades.Disparar-class.html#eliminar,Method pilas.habilidades.Habilidad.eliminar()=pilas.habilidades.Habilidad-class.html#eliminar,Method pilas.habilidades.Imitar.eliminar()=pilas.habilidades.Imitar-class.html#eliminar,Method pilas.habilidades.PisaPlataformas.eliminar()=pilas.habilidades.PisaPlataformas-class.html#eliminar,Method pilas.habilidades.RebotarComoCaja.eliminar()=pilas.habilidades.RebotarComoCaja-class.html#eliminar,Method pilas.habilidades.RebotarComoPelota.eliminar()=pilas.habilidades.RebotarComoPelota-class.html#eliminar,Method pilas.interfaz.deslizador.Deslizador.eliminar()=pilas.interfaz.deslizador.Deslizador-class.html#eliminar,Method pilas.tareas.Tarea.eliminar()=pilas.tareas.Tarea-class.html#eliminar"><a title="pilas.actores.actor.Actor.eliminar
+pilas.actores.globo.Globo.eliminar
+pilas.actores.texto_inferior.TextoInferior.eliminar
+pilas.fisica.ConstanteDeDistancia.eliminar
+pilas.fisica.ConstanteDeMovimiento.eliminar
+pilas.fisica.Figura.eliminar
+pilas.habilidades.ColisionableComoPelota.eliminar
+pilas.habilidades.Disparar.eliminar
+pilas.habilidades.Habilidad.eliminar
+pilas.habilidades.Imitar.eliminar
+pilas.habilidades.PisaPlataformas.eliminar
+pilas.habilidades.RebotarComoCaja.eliminar
+pilas.habilidades.RebotarComoPelota.eliminar
+pilas.interfaz.deslizador.Deslizador.eliminar
+pilas.tareas.Tarea.eliminar" class="py-name" href="#" onclick="return doclink('link-19', 'eliminar', 'link-19');">eliminar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dialogo_actual</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo._mostrar_o_ejecutar_siguiente"></a><div id="Dialogo._mostrar_o_ejecutar_siguiente-def"><a name="L110"></a><tt class="py-lineno">110</tt> <a class="py-toggle" href="#" id="Dialogo._mostrar_o_ejecutar_siguiente-toggle" onclick="return toggle('Dialogo._mostrar_o_ejecutar_siguiente');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html#_mostrar_o_ejecutar_siguiente">_mostrar_o_ejecutar_siguiente</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">siguiente</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo._mostrar_o_ejecutar_siguiente-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dialogo._mostrar_o_ejecutar_siguiente-expanded"><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">siguiente</tt><tt class="py-op">,</tt> <tt class="py-name">tuple</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">            <tt class="py-comment"># Es un mensaje de dialogo simple</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">siguiente</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">2</tt><tt class="py-op">:</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">                <tt id="link-20" class="py-name"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-20', 'actor', 'link-3');">actor</a></tt><tt class="py-op">,</tt> <tt id="link-21" class="py-name"><a title="pilas.actores.pizarra.Pizarra.texto
+pilas.actores.texto
+pilas.actores.texto.Texto.texto
+pilas.motores.motor_qt.Lienzo.texto
+pilas.motores.motor_qt.Superficie.texto" class="py-name" href="#" onclick="return doclink('link-21', 'texto', 'link-4');">texto</a></tt> <tt class="py-op">=</tt> <tt class="py-name">siguiente</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dialogo_actual</tt> <tt class="py-op">=</tt> <tt id="link-22" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-22', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Package pilas.actores=pilas.actores-module.html"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-23', 'actores', 'link-23');">actores</a></tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Class pilas.actores.globo.Globo=pilas.actores.globo.Globo-class.html"><a title="pilas.actores.globo.Globo" class="py-name" href="#" onclick="return doclink('link-24', 'Globo', 'link-24');">Globo</a></tt><tt class="py-op">(</tt><tt id="link-25" class="py-name"><a title="pilas.actores.pizarra.Pizarra.texto
+pilas.actores.texto
+pilas.actores.texto.Texto.texto
+pilas.motores.motor_qt.Lienzo.texto
+pilas.motores.motor_qt.Superficie.texto" class="py-name" href="#" onclick="return doclink('link-25', 'texto', 'link-4');">texto</a></tt><tt class="py-op">,</tt> <tt id="link-26" class="py-name"><a title="pilas.actores.dialogo" class="py-name" href="#" onclick="return doclink('link-26', 'dialogo', 'link-1');">dialogo</a></tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">avance_con_clicks</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">modo_automatico</tt><tt class="py-op">)</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">                <tt class="py-comment"># Es un mensaje con seleccion.</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">                <tt id="link-27" class="py-name"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-27', 'actor', 'link-3');">actor</a></tt><tt class="py-op">,</tt> <tt id="link-28" class="py-name"><a title="pilas.actores.pizarra.Pizarra.texto
+pilas.actores.texto
+pilas.actores.texto.Texto.texto
+pilas.motores.motor_qt.Lienzo.texto
+pilas.motores.motor_qt.Superficie.texto" class="py-name" href="#" onclick="return doclink('link-28', 'texto', 'link-4');">texto</a></tt><tt class="py-op">,</tt> <tt class="py-name">opciones</tt><tt class="py-op">,</tt> <tt class="py-name">funcion_a_invocar</tt> <tt class="py-op">=</tt> <tt class="py-name">siguiente</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dialogo_actual</tt> <tt class="py-op">=</tt> <tt id="link-29" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-29', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-30', 'actores', 'link-23');">actores</a></tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Class pilas.actores.globoelegir.GloboElegir=pilas.actores.globoelegir.GloboElegir-class.html"><a title="pilas.actores.globoelegir.GloboElegir" class="py-name" href="#" onclick="return doclink('link-31', 'GloboElegir', 'link-31');">GloboElegir</a></tt><tt class="py-op">(</tt><tt id="link-32" class="py-name"><a title="pilas.actores.pizarra.Pizarra.texto
+pilas.actores.texto
+pilas.actores.texto.Texto.texto
+pilas.motores.motor_qt.Lienzo.texto
+pilas.motores.motor_qt.Superficie.texto" class="py-name" href="#" onclick="return doclink('link-32', 'texto', 'link-4');">texto</a></tt><tt class="py-op">,</tt> <tt class="py-name">opciones</tt><tt class="py-op">,</tt> <tt class="py-name">funcion_a_invocar</tt><tt class="py-op">,</tt> <tt id="link-33" class="py-name"><a title="pilas.actores.dialogo" class="py-name" href="#" onclick="return doclink('link-33', 'dialogo', 'link-1');">dialogo</a></tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dialogo_actual</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name" targets="Method pilas.actores.globo.Globo.colocar_origen_del_globo()=pilas.actores.globo.Globo-class.html#colocar_origen_del_globo,Method pilas.actores.globoelegir.GloboElegir.colocar_origen_del_globo()=pilas.actores.globoelegir.GloboElegir-class.html#colocar_origen_del_globo"><a title="pilas.actores.globo.Globo.colocar_origen_del_globo
+pilas.actores.globoelegir.GloboElegir.colocar_origen_del_globo" class="py-name" href="#" onclick="return doclink('link-34', 'colocar_origen_del_globo', 'link-34');">colocar_origen_del_globo</a></tt><tt class="py-op">(</tt><tt id="link-35" class="py-name"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-35', 'actor', 'link-3');">actor</a></tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Variable pilas.actores.actor.Actor.x=pilas.actores.actor.Actor-class.html#x,Variable pilas.camara.Camara.x=pilas.camara.Camara-class.html#x,Variable pilas.demos.piezas.Pieza.x=pilas.demos.piezas.Pieza-class.html#x,Variable pilas.fisica.Figura.x=pilas.fisica.Figura-class.html#x,Variable pilas.simbolos.x=pilas.simbolos-module.html#x"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-36', 'x', 'link-36');">x</a></tt><tt class="py-op">,</tt> <tt id="link-37" class="py-name"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-37', 'actor', 'link-3');">actor</a></tt><tt class="py-op">.</tt><tt id="link-38" class="py-name" targets="Variable pilas.actores.actor.Actor.arriba=pilas.actores.actor.Actor-class.html#arriba"><a title="pilas.actores.actor.Actor.arriba" class="py-name" href="#" onclick="return doclink('link-38', 'arriba', 'link-38');">arriba</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">            <tt class="py-name">siguiente</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="pilas.actores.dialogo.Dialogo.avanzar_al_siguiente_dialogo" class="py-name" href="#" onclick="return doclink('link-39', 'avanzar_al_siguiente_dialogo', 'link-16');">avanzar_al_siguiente_dialogo</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="Dialogo.avanzar_al_siguiente_dialogo"></a><div id="Dialogo.avanzar_al_siguiente_dialogo-def"><a name="L126"></a><tt class="py-lineno">126</tt> <a class="py-toggle" href="#" id="Dialogo.avanzar_al_siguiente_dialogo-toggle" onclick="return toggle('Dialogo.avanzar_al_siguiente_dialogo');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.dialogo.Dialogo-class.html#avanzar_al_siguiente_dialogo">avanzar_al_siguiente_dialogo</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">evento</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dialogo.avanzar_al_siguiente_dialogo-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dialogo.avanzar_al_siguiente_dialogo-expanded"><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name"><a title="pilas.actores.dialogo.Dialogo._eliminar_dialogo_actual" class="py-name" href="#" onclick="return doclink('link-40', '_eliminar_dialogo_actual', 'link-6');">_eliminar_dialogo_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-name">siguiente</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="pilas.actores.dialogo.Dialogo.obtener_siguiente_dialogo_o_funcion" class="py-name" href="#" onclick="return doclink('link-41', 'obtener_siguiente_dialogo_o_funcion', 'link-10');">obtener_siguiente_dialogo_o_funcion</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">siguiente</tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="pilas.actores.dialogo.Dialogo._mostrar_o_ejecutar_siguiente" class="py-name" href="#" onclick="return doclink('link-42', '_mostrar_o_ejecutar_siguiente', 'link-11');">_mostrar_o_ejecutar_siguiente</a></tt><tt class="py-op">(</tt><tt class="py-name">siguiente</tt><tt class="py-op">)</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div></div><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:48 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.comportamientos.Comportamiento</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        <a href="pilas.comportamientos-module.html">Module&nbsp;comportamientos</a> ::
+        Class&nbsp;Comportamiento
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.comportamientos.Comportamiento-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Comportamiento</h1><p class="nomargin-top"><span class="codelink"><a href="pilas.comportamientos-pysrc.html#Comportamiento">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="class_hierarchy_for_comportami" name="class_hierarchy_for_comportami">
+<area shape="rect" id="node1" href="pilas.actores.cooperativista.Caminando-class.html" title="actores.cooperativista.Caminando" alt="" coords="5,65,224,93"/>
+<area shape="rect" id="node2" href="pilas.actores.cooperativista.DecirOk-class.html" title="actores.cooperativista.DecirOk" alt="" coords="248,65,451,93"/>
+<area shape="rect" id="node3" href="pilas.actores.cooperativista.Esperando-class.html" title="actores.cooperativista.Esperando" alt="" coords="475,65,691,93"/>
+<area shape="rect" id="node4" href="pilas.actores.martian.Caminando-class.html" title="actores.martian.Caminando" alt="" coords="903,123,1084,151"/>
+<area shape="rect" id="node5" href="pilas.actores.martian.Disparar-class.html" title="actores.martian.Disparar" alt="" coords="715,65,880,93"/>
+<area shape="rect" id="node6" href="pilas.actores.martian.Esperando-class.html" title="actores.martian.Esperando" alt="" coords="904,65,1083,93"/>
+<area shape="rect" id="node7" href="pilas.actores.martian.Saltando-class.html" title="actores.martian.Saltando" alt="" coords="1107,65,1272,93"/>
+<area shape="rect" id="node8" href="pilas.actores.personajes_rpg.Caminando-class.html" title="actores.personajes_rpg.Caminando" alt="" coords="1293,123,1520,151"/>
+<area shape="rect" id="node9" href="pilas.actores.personajes_rpg.Esperando-class.html" title="actores.personajes_rpg.Esperando" alt="" coords="1296,65,1517,93"/>
+<area shape="rect" id="node10" href="pilas.actores.pingu.Caminando-class.html" title="actores.pingu.Caminando" alt="" coords="1541,65,1712,93"/>
+<area shape="rect" id="node11" href="pilas.actores.pingu.Esperando-class.html" title="actores.pingu.Esperando" alt="" coords="1736,65,1901,93"/>
+<area shape="rect" id="node12" href="pilas.actores.pingu.Saltando-class.html" title="actores.pingu.Saltando" alt="" coords="1925,65,2080,93"/>
+<area shape="rect" id="node13" href="pilas.comportamientos.Avanzar-class.html" title="Avanzar" alt="" coords="2104,65,2173,93"/>
+<area shape="rect" id="node14" href="pilas.comportamientos.Comportamiento-class.html" title="Comportamiento" alt="" coords="1457,6,1575,34"/>
+<area shape="rect" id="node15" href="pilas.comportamientos.Girar-class.html" title="Girar" alt="" coords="2197,65,2248,93"/>
+<area shape="rect" id="node16" href="pilas.comportamientos.Proyectil-class.html" title="Proyectil" alt="" coords="2272,65,2344,93"/>
+<area shape="rect" id="node17" href="pilas.comportamientos.Saltar-class.html" title="Saltar" alt="" coords="2368,65,2424,93"/>
+</map>
+  <img src="class_hierarchy_for_comportami.gif" alt='' usemap="#class_hierarchy_for_comportami" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+Representa un comportamiento (estrategia) que se puede anexar a un actor.
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.comportamientos.Comportamiento-class.html#iniciar" class="summary-sig-name">iniciar</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">receptor</span>)</span><br />
+      Se invoca cuando se anexa el comportamiento a un actor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.comportamientos-pysrc.html#Comportamiento.iniciar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.comportamientos.Comportamiento-class.html#actualizar" class="summary-sig-name">actualizar</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Actualiza el comportamiento en un instante dado.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.comportamientos-pysrc.html#Comportamiento.actualizar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="terminar"></a><span class="summary-sig-name">terminar</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.comportamientos-pysrc.html#Comportamiento.terminar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__init__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="iniciar"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">iniciar</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">receptor</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.comportamientos-pysrc.html#Comportamiento.iniciar">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Se invoca cuando se anexa el comportamiento a un actor.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>receptor</code></strong> - El actor que comenzar&#225; a ejecutar este comportamiento.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="actualizar"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">actualizar</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.comportamientos-pysrc.html#Comportamiento.actualizar">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Actualiza el comportamiento en un instante dado.</p>
+<p>Si este metodo retorna True entonces el actor dejar&#225;
+de ejecutar este comportamiento.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:41 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

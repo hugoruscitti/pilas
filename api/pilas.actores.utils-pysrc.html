@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.actores.utils</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        <a href="pilas.actores-module.html">Package&nbsp;actores</a> ::
+        Module&nbsp;utils
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.actores.utils-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.actores.utils-module.html">Module pilas.actores.utils</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"># Pilas engine - A video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2010 - Hugo Ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"># Website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">random</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-0', 'pilas', 'link-0');">pilas</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"> </tt>
+<a name="ordenar_actores_por_valor_z"></a><div id="ordenar_actores_por_valor_z-def"><a name="L12"></a><tt class="py-lineno">12</tt> <a class="py-toggle" href="#" id="ordenar_actores_por_valor_z-toggle" onclick="return toggle('ordenar_actores_por_valor_z');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.utils-module.html#ordenar_actores_por_valor_z">ordenar_actores_por_valor_z</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ordenar_actores_por_valor_z-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="ordenar_actores_por_valor_z-expanded"><a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line">    <tt class="py-docstring">"Ordena todos los actores para que se impriman con 'z' como criterio de orden."</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line">    <tt id="link-1" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-1', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method pilas.escena.gestor.Gestor.escena_actual()=pilas.escena.gestor.Gestor-class.html#escena_actual,Function pilas.escena_actual()=pilas-module.html#escena_actual"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-2', 'escena_actual', 'link-2');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Package pilas.actores=pilas.actores-module.html"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-3', 'actores', 'link-3');">actores</a></tt><tt class="py-op">.</tt><tt class="py-name">sort</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
+<a name="insertar_como_nuevo_actor"></a><div id="insertar_como_nuevo_actor-def"><a name="L16"></a><tt class="py-lineno">16</tt> <a class="py-toggle" href="#" id="insertar_como_nuevo_actor-toggle" onclick="return toggle('insertar_como_nuevo_actor');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.utils-module.html#insertar_como_nuevo_actor">insertar_como_nuevo_actor</a><tt class="py-op">(</tt><tt class="py-param">actor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="insertar_como_nuevo_actor-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="insertar_como_nuevo_actor-expanded"><a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line">    <tt class="py-docstring">"""Coloca a un actor en la lista de actores a imprimir en pantalla.</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring">    :param actor: Actor que se quiere comenzar a mostrar en pantalla.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">    <tt id="link-4" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-4', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-5', 'escena_actual', 'link-2');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-6', 'actores', 'link-3');">actores</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt id="link-7" class="py-name" targets="Module pilas.actores.actor=pilas.actores.actor-module.html"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-7', 'actor', 'link-7');">actor</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">    <tt id="link-8" class="py-name"><a title="pilas.actores.actor" class="py-name" href="#" onclick="return doclink('link-8', 'actor', 'link-7');">actor</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Package pilas.escena=pilas.escena-module.html"><a title="pilas.escena" class="py-name" href="#" onclick="return doclink('link-9', 'escena', 'link-9');">escena</a></tt> <tt class="py-op">=</tt> <tt id="link-10" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-10', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-11', 'escena_actual', 'link-2');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"> </tt>
+<a name="eliminar_a_todos"></a><div id="eliminar_a_todos-def"><a name="L24"></a><tt class="py-lineno">24</tt> <a class="py-toggle" href="#" id="eliminar_a_todos-toggle" onclick="return toggle('eliminar_a_todos');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.utils-module.html#eliminar_a_todos">eliminar_a_todos</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="eliminar_a_todos-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="eliminar_a_todos-expanded"><a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">    <tt class="py-docstring">"""Elimina a todos los actores de la escena."""</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">    <tt class="py-name">a_eliminar</tt> <tt class="py-op">=</tt> <tt id="link-12" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-12', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-13', 'escena_actual', 'link-2');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-14', 'actores', 'link-3');">actores</a></tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt>    <tt class="py-comment"># evita borrar el fondo.</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt id="link-15" class="py-name" targets="Variable pilas.actores.actor.Actor.x=pilas.actores.actor.Actor-class.html#x,Variable pilas.camara.Camara.x=pilas.camara.Camara-class.html#x,Variable pilas.demos.piezas.Pieza.x=pilas.demos.piezas.Pieza-class.html#x,Variable pilas.fisica.Figura.x=pilas.fisica.Figura-class.html#x,Variable pilas.simbolos.x=pilas.simbolos-module.html#x"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-15', 'x', 'link-15');">x</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">a_eliminar</tt><tt class="py-op">:</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">        <tt id="link-16" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-16', 'x', 'link-15');">x</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method pilas.actores.actor.Actor.eliminar()=pilas.actores.actor.Actor-class.html#eliminar,Method pilas.actores.globo.Globo.eliminar()=pilas.actores.globo.Globo-class.html#eliminar,Method pilas.actores.texto_inferior.TextoInferior.eliminar()=pilas.actores.texto_inferior.TextoInferior-class.html#eliminar,Method pilas.fisica.ConstanteDeDistancia.eliminar()=pilas.fisica.ConstanteDeDistancia-class.html#eliminar,Method pilas.fisica.ConstanteDeMovimiento.eliminar()=pilas.fisica.ConstanteDeMovimiento-class.html#eliminar,Method pilas.fisica.Figura.eliminar()=pilas.fisica.Figura-class.html#eliminar,Method pilas.habilidades.ColisionableComoPelota.eliminar()=pilas.habilidades.ColisionableComoPelota-class.html#eliminar,Method pilas.habilidades.Disparar.eliminar()=pilas.habilidades.Disparar-class.html#eliminar,Method pilas.habilidades.Habilidad.eliminar()=pilas.habilidades.Habilidad-class.html#eliminar,Method pilas.habilidades.Imitar.eliminar()=pilas.habilidades.Imitar-class.html#eliminar,Method pilas.habilidades.PisaPlataformas.eliminar()=pilas.habilidades.PisaPlataformas-class.html#eliminar,Method pilas.habilidades.RebotarComoCaja.eliminar()=pilas.habilidades.RebotarComoCaja-class.html#eliminar,Method pilas.habilidades.RebotarComoPelota.eliminar()=pilas.habilidades.RebotarComoPelota-class.html#eliminar,Method pilas.interfaz.deslizador.Deslizador.eliminar()=pilas.interfaz.deslizador.Deslizador-class.html#eliminar,Method pilas.tareas.Tarea.eliminar()=pilas.tareas.Tarea-class.html#eliminar"><a title="pilas.actores.actor.Actor.eliminar
+pilas.actores.globo.Globo.eliminar
+pilas.actores.texto_inferior.TextoInferior.eliminar
+pilas.fisica.ConstanteDeDistancia.eliminar
+pilas.fisica.ConstanteDeMovimiento.eliminar
+pilas.fisica.Figura.eliminar
+pilas.habilidades.ColisionableComoPelota.eliminar
+pilas.habilidades.Disparar.eliminar
+pilas.habilidades.Habilidad.eliminar
+pilas.habilidades.Imitar.eliminar
+pilas.habilidades.PisaPlataformas.eliminar
+pilas.habilidades.RebotarComoCaja.eliminar
+pilas.habilidades.RebotarComoPelota.eliminar
+pilas.interfaz.deslizador.Deslizador.eliminar
+pilas.tareas.Tarea.eliminar" class="py-name" href="#" onclick="return doclink('link-17', 'eliminar', 'link-17');">eliminar</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">    <tt id="link-18" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-18', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-19', 'escena_actual', 'link-2');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-20', 'actores', 'link-3');">actores</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"> </tt>
+<a name="destruir_a_todos"></a><div id="destruir_a_todos-def"><a name="L33"></a><tt class="py-lineno">33</tt> <a class="py-toggle" href="#" id="destruir_a_todos-toggle" onclick="return toggle('destruir_a_todos');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.utils-module.html#destruir_a_todos">destruir_a_todos</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="destruir_a_todos-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="destruir_a_todos-expanded"><a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">    <tt class="py-docstring">"""Elimina a los actores inmediatamente (evita que exploten o hagan algo)."""</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">    <tt class="py-name">a_eliminar</tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-21', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-22', 'escena_actual', 'link-2');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-23', 'actores', 'link-3');">actores</a></tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt id="link-24" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-24', 'x', 'link-15');">x</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">a_eliminar</tt><tt class="py-op">:</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">        <tt id="link-25" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-25', 'x', 'link-15');">x</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Method pilas.actores.actor.Actor.destruir()=pilas.actores.actor.Actor-class.html#destruir"><a title="pilas.actores.actor.Actor.destruir" class="py-name" href="#" onclick="return doclink('link-26', 'destruir', 'link-26');">destruir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">    <tt id="link-27" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-27', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-28', 'escena_actual', 'link-2');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-29', 'actores', 'link-3');">actores</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"> </tt>
+<a name="obtener_actor_en"></a><div id="obtener_actor_en-def"><a name="L42"></a><tt class="py-lineno">42</tt> <a class="py-toggle" href="#" id="obtener_actor_en-toggle" onclick="return toggle('obtener_actor_en');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.utils-module.html#obtener_actor_en">obtener_actor_en</a><tt class="py-op">(</tt><tt class="py-param">x</tt><tt class="py-op">,</tt> <tt class="py-param">y</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="obtener_actor_en-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="obtener_actor_en-expanded"><a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">    <tt class="py-docstring">"""Intenta obtener el actor mas cerca de la pantalla (z mas peque&#241;o) en la posici&#243;n (x, y)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"><tt class="py-docstring">    :param x: Posici&#243;n horizontal del punto selecci&#243;n.</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt class="py-docstring">    :param y: Posici&#243;n vertical del punto selecci&#243;n.</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">    <tt class="py-comment"># Busca el objeto que colisiones ordenando en sentido inverso.</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">sprite</tt> <tt class="py-keyword">in</tt> <tt id="link-30" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-30', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-31', 'escena_actual', 'link-2');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="pilas.actores" class="py-name" href="#" onclick="return doclink('link-32', 'actores', 'link-3');">actores</a></tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">:</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">sprite</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Method pilas.actores.actor.Actor.colisiona_con_un_punto()=pilas.actores.actor.Actor-class.html#colisiona_con_un_punto"><a title="pilas.actores.actor.Actor.colisiona_con_un_punto" class="py-name" href="#" onclick="return doclink('link-33', 'colisiona_con_un_punto', 'link-33');">colisiona_con_un_punto</a></tt><tt class="py-op">(</tt><tt id="link-34" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-34', 'x', 'link-15');">x</a></tt><tt class="py-op">,</tt> <tt id="link-35" class="py-name" targets="Variable pilas.actores.actor.Actor.y=pilas.actores.actor.Actor-class.html#y,Variable pilas.camara.Camara.y=pilas.camara.Camara-class.html#y,Variable pilas.demos.piezas.Pieza.y=pilas.demos.piezas.Pieza-class.html#y,Variable pilas.fisica.Figura.y=pilas.fisica.Figura-class.html#y,Variable pilas.simbolos.y=pilas.simbolos-module.html#y"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-35', 'y', 'link-35');">y</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">sprite</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"> </tt>
+<a name="fabricar"></a><div id="fabricar-def"><a name="L57"></a><tt class="py-lineno">57</tt> <a class="py-toggle" href="#" id="fabricar-toggle" onclick="return toggle('fabricar');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.actores.utils-module.html#fabricar">fabricar</a><tt class="py-op">(</tt><tt class="py-param">clase</tt><tt class="py-op">,</tt> <tt class="py-param">cantidad</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-param">posiciones_al_azar</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">k</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kv</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="fabricar-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="fabricar-expanded"><a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">    <tt class="py-docstring">"""Genera muchas instancias de una clase particular asignando posiciones aleatorias.</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; pilas.utils.fabricar(pilas.actores.Caja, 30)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line"><tt class="py-docstring">    :param clase: Clase del objeto a generar.</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"><tt class="py-docstring">    :param cantidad: Cantidad de objetos que se van a crear de esa clase.</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line"><tt class="py-docstring">    :param posiciones_al_azar: True o False indicando si se tienen que dar posiciones al azar.</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">    <tt class="py-name">objetos_creados</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line"> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt id="link-36" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-36', 'x', 'link-15');">x</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">cantidad</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">posiciones_al_azar</tt><tt class="py-op">:</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">            <tt id="link-37" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-37', 'x', 'link-15');">x</a></tt> <tt class="py-op">=</tt> <tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">randint</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">300</tt><tt class="py-op">,</tt> <tt class="py-number">300</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">            <tt id="link-38" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-38', 'y', 'link-35');">y</a></tt> <tt class="py-op">=</tt> <tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">randint</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">200</tt><tt class="py-op">,</tt> <tt class="py-number">200</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">            <tt id="link-39" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-39', 'x', 'link-15');">x</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">            <tt id="link-40" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-40', 'y', 'link-35');">y</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line"> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">        <tt class="py-name">kv</tt><tt class="py-op">[</tt><tt class="py-string">'x'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-41" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-41', 'x', 'link-15');">x</a></tt> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">        <tt class="py-name">kv</tt><tt class="py-op">[</tt><tt class="py-string">'y'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-42" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-42', 'y', 'link-35');">y</a></tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">        <tt class="py-name">nuevo</tt> <tt class="py-op">=</tt> <tt class="py-name">clase</tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt id="link-43" class="py-name" targets="Variable pilas.simbolos.k=pilas.simbolos-module.html#k"><a title="pilas.simbolos.k" class="py-name" href="#" onclick="return doclink('link-43', 'k', 'link-43');">k</a></tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kv</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">        <tt class="py-name">objetos_creados</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">nuevo</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line"> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-44" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-44', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-45" class="py-name" targets="Module pilas.grupo=pilas.grupo-module.html"><a title="pilas.grupo" class="py-name" href="#" onclick="return doclink('link-45', 'grupo', 'link-45');">grupo</a></tt><tt class="py-op">.</tt><tt id="link-46" class="py-name" targets="Class pilas.grupo.Grupo=pilas.grupo.Grupo-class.html"><a title="pilas.grupo.Grupo" class="py-name" href="#" onclick="return doclink('link-46', 'Grupo', 'link-46');">Grupo</a></tt><tt class="py-op">(</tt><tt class="py-name">objetos_creados</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:46 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

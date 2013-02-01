@@ -1,0 +1,2782 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.actores.actor.Actor</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        <a href="pilas.actores-module.html">Package&nbsp;actores</a> ::
+        <a href="pilas.actores.actor-module.html">Module&nbsp;actor</a> ::
+        Class&nbsp;Actor
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.actores.actor.Actor-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Actor</h1><p class="nomargin-top"><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="class_hierarchy_for_actor" name="class_hierarchy_for_actor">
+<area shape="rect" id="node1" href="pilas.actores.aceituna.Aceituna-class.html" title="aceituna.Aceituna" alt="" coords="431,123,556,151"/>
+<area shape="rect" id="node2" href="pilas.actores.actor.Actor-class.html" title="Actor" alt="" coords="2743,65,2796,93"/>
+<area shape="rect" id="node4" href="pilas.actores.animado.Animado-class.html" title="animado.Animado" alt="" coords="580,123,705,151"/>
+<area shape="rect" id="node5" href="pilas.actores.banana.Banana-class.html" title="banana.Banana" alt="" coords="729,123,841,151"/>
+<area shape="rect" id="node7" href="pilas.actores.boton.Boton-class.html" title="boton.Boton" alt="" coords="865,123,956,151"/>
+<area shape="rect" id="node8" href="pilas.actores.caja.Caja-class.html" title="caja.Caja" alt="" coords="980,123,1057,151"/>
+<area shape="rect" id="node9" href="pilas.actores.cooperativista.Cooperativista-class.html" title="cooperativista.Cooperativista" alt="" coords="1081,123,1271,151"/>
+<area shape="rect" id="node10" href="pilas.actores.cursordisparo.CursorDisparo-class.html" title="cursordisparo.CursorDisparo" alt="" coords="1295,123,1481,151"/>
+<area shape="rect" id="node11" href="pilas.actores.ejes.Ejes-class.html" title="ejes.Ejes" alt="" coords="1505,123,1580,151"/>
+<area shape="rect" id="node12" href="pilas.actores.energia.Energia-class.html" title="energia.Energia" alt="" coords="1604,123,1716,151"/>
+<area shape="rect" id="node13" href="pilas.actores.estrella.Estrella-class.html" title="estrella.Estrella" alt="" coords="1740,123,1852,151"/>
+<area shape="rect" id="node15" href="pilas.actores.fantasma.Fantasma-class.html" title="fantasma.Fantasma" alt="" coords="1876,123,2015,151"/>
+<area shape="rect" id="node16" href="pilas.actores.globo.Globo-class.html" title="globo.Globo" alt="" coords="2039,123,2129,151"/>
+<area shape="rect" id="node19" href="pilas.actores.mano.CursorMano-class.html" title="mano.CursorMano" alt="" coords="2153,123,2281,151"/>
+<area shape="rect" id="node20" href="pilas.actores.mapa.Mapa-class.html" title="mapa.Mapa" alt="" coords="2305,123,2396,151"/>
+<area shape="rect" id="node22" href="pilas.actores.martian.Martian-class.html" title="martian.Martian" alt="" coords="2420,123,2532,151"/>
+<area shape="rect" id="node23" href="pilas.actores.menu.Menu-class.html" title="menu.Menu" alt="" coords="2556,123,2647,151"/>
+<area shape="rect" id="node25" href="pilas.actores.mono.Mono-class.html" title="mono.Mono" alt="" coords="2671,123,2761,151"/>
+<area shape="rect" id="node29" href="pilas.actores.ovni.Ovni-class.html" title="ovni.Ovni" alt="" coords="2785,123,2863,151"/>
+<area shape="rect" id="node30" href="pilas.actores.ovni.Planeta-class.html" title="ovni.Planeta" alt="" coords="2887,123,2980,151"/>
+<area shape="rect" id="node31" href="pilas.actores.pacman.Pacman-class.html" title="pacman.Pacman" alt="" coords="3004,123,3124,151"/>
+<area shape="rect" id="node32" href="pilas.actores.pausa.Pausa-class.html" title="pausa.Pausa" alt="" coords="3148,123,3247,151"/>
+<area shape="rect" id="node33" href="pilas.actores.pelota.Pelota-class.html" title="pelota.Pelota" alt="" coords="3271,123,3369,151"/>
+<area shape="rect" id="node34" href="pilas.actores.personajes_rpg.BasePersonajeRPG-class.html" title="personajes_rpg.BasePersonajeRPG" alt="" coords="3393,123,3623,151"/>
+<area shape="rect" id="node37" href="pilas.actores.piedra.Piedra-class.html" title="piedra.Piedra" alt="" coords="3647,123,3745,151"/>
+<area shape="rect" id="node38" href="pilas.actores.pingu.Pingu-class.html" title="pingu.Pingu" alt="" coords="3769,123,3860,151"/>
+<area shape="rect" id="node39" href="pilas.actores.pizarra.Pizarra-class.html" title="pizarra.Pizarra" alt="" coords="3884,123,3991,151"/>
+<area shape="rect" id="node40" href="pilas.actores.proyectil.Bala-class.html" title="proyectil.Bala" alt="" coords="4015,123,4116,151"/>
+<area shape="rect" id="node42" href="pilas.actores.proyectil.EstrellaNinja-class.html" title="proyectil.EstrellaNinja" alt="" coords="4140,123,4289,151"/>
+<area shape="rect" id="node47" href="pilas.actores.texto.Texto-class.html" title="texto.Texto" alt="" coords="4313,123,4401,151"/>
+<area shape="rect" id="node49" href="pilas.actores.torreta.Torreta-class.html" title="torreta.Torreta" alt="" coords="4425,123,4529,151"/>
+<area shape="rect" id="node50" href="pilas.actores.tortuga.Tortuga-class.html" title="tortuga.Tortuga" alt="" coords="4553,123,4663,151"/>
+<area shape="rect" id="node51" href="pilas.actores.zanahoria.Zanahoria-class.html" title="zanahoria.Zanahoria" alt="" coords="4687,123,4825,151"/>
+<area shape="rect" id="node57" href="pilas.fondos.Fondo-class.html" title="fondos.Fondo" alt="" coords="5131,123,5232,151"/>
+<area shape="rect" id="node65" href="pilas.interfaz.base_interfaz.BaseInterfaz-class.html" title="interfaz.base_interfaz.BaseInterfaz" alt="" coords="6147,123,6371,151"/>
+<area shape="rect" id="node3" href="pilas.actores.animacion.Animacion-class.html" title="animacion.Animacion" alt="" coords="464,182,611,210"/>
+<area shape="rect" id="node6" href="pilas.actores.bomba.Bomba-class.html" title="bomba.Bomba" alt="" coords="5,241,112,269"/>
+<area shape="rect" id="node14" href="pilas.actores.explosion.Explosion-class.html" title="explosion.Explosion" alt="" coords="136,241,275,269"/>
+<area shape="rect" id="node18" href="pilas.actores.humo.Humo-class.html" title="humo.Humo" alt="" coords="299,241,392,269"/>
+<area shape="rect" id="node24" href="pilas.actores.moneda.Moneda-class.html" title="moneda.Moneda" alt="" coords="416,241,533,269"/>
+<area shape="rect" id="node26" href="pilas.actores.nave.Nave-class.html" title="nave.Nave" alt="" coords="557,241,643,269"/>
+<area shape="rect" id="node27" href="pilas.actores.navekids.NaveKids-class.html" title="navekids.NaveKids" alt="" coords="667,241,800,269"/>
+<area shape="rect" id="node41" href="pilas.actores.proyectil.Dinamita-class.html" title="proyectil.Dinamita" alt="" coords="824,241,949,269"/>
+<area shape="rect" id="node43" href="pilas.actores.proyectil.Misil-class.html" title="proyectil.Misil" alt="" coords="973,241,1075,269"/>
+<area shape="rect" id="node52" href="pilas.demos.piezas.Pieza-class.html" title="demos.piezas.Pieza" alt="" coords="635,182,773,210"/>
+<area shape="rect" id="node45" href="pilas.actores.sonido.Sonido-class.html" title="sonido.Sonido" alt="" coords="859,182,963,210"/>
+<area shape="rect" id="node17" href="pilas.actores.globoelegir.GloboElegir-class.html" title="globoelegir.GloboElegir" alt="" coords="2007,182,2161,210"/>
+<area shape="rect" id="node21" href="pilas.actores.mapatiled.MapaTiled-class.html" title="mapatiled.MapaTiled" alt="" coords="2280,182,2421,210"/>
+<area shape="rect" id="node28" href="pilas.actores.opcion.Opcion-class.html" title="opcion.Opcion" alt="" coords="3904,182,4008,210"/>
+<area shape="rect" id="node35" href="pilas.actores.personajes_rpg.Calvo-class.html" title="personajes_rpg.Calvo" alt="" coords="3348,182,3495,210"/>
+<area shape="rect" id="node36" href="pilas.actores.personajes_rpg.Maton-class.html" title="personajes_rpg.Maton" alt="" coords="3519,182,3668,210"/>
+<area shape="rect" id="node44" href="pilas.actores.puntaje.Puntaje-class.html" title="puntaje.Puntaje" alt="" coords="4032,182,4144,210"/>
+<area shape="rect" id="node46" href="pilas.actores.temporizador.Temporizador-class.html" title="temporizador.Temporizador" alt="" coords="4168,182,4347,210"/>
+<area shape="rect" id="node48" href="pilas.actores.texto_inferior.TextoInferior-class.html" title="texto_inferior.TextoInferior" alt="" coords="4371,182,4544,210"/>
+<area shape="rect" id="node53" href="pilas.estudiante.Estudiante-class.html" title="estudiante.Estudiante" alt="" coords="2696,6,2843,34"/>
+<area shape="rect" id="node54" href="pilas.fondos.Color-class.html" title="fondos.Color" alt="" coords="4568,182,4664,210"/>
+<area shape="rect" id="node55" href="pilas.fondos.Desplazamiento-class.html" title="fondos.Desplazamiento" alt="" coords="4688,182,4845,210"/>
+<area shape="rect" id="node56" href="pilas.fondos.Espacio-class.html" title="fondos.Espacio" alt="" coords="4869,182,4981,210"/>
+<area shape="rect" id="node58" href="pilas.fondos.Noche-class.html" title="fondos.Noche" alt="" coords="5005,182,5107,210"/>
+<area shape="rect" id="node59" href="pilas.fondos.Nubes-class.html" title="fondos.Nubes" alt="" coords="5131,182,5232,210"/>
+<area shape="rect" id="node60" href="pilas.fondos.Pasto-class.html" title="fondos.Pasto" alt="" coords="5256,182,5355,210"/>
+<area shape="rect" id="node61" href="pilas.fondos.Plano-class.html" title="fondos.Plano" alt="" coords="5379,182,5477,210"/>
+<area shape="rect" id="node62" href="pilas.fondos.Selva-class.html" title="fondos.Selva" alt="" coords="5501,182,5600,210"/>
+<area shape="rect" id="node63" href="pilas.fondos.Tarde-class.html" title="fondos.Tarde" alt="" coords="5624,182,5723,210"/>
+<area shape="rect" id="node64" href="pilas.fondos.Volley-class.html" title="fondos.Volley" alt="" coords="5747,182,5848,210"/>
+<area shape="rect" id="node66" href="pilas.interfaz.boton.Boton-class.html" title="interfaz.boton.Boton" alt="" coords="5872,182,6011,210"/>
+<area shape="rect" id="node67" href="pilas.interfaz.deslizador.Deslizador-class.html" title="interfaz.deslizador.Deslizador" alt="" coords="6035,182,6229,210"/>
+<area shape="rect" id="node68" href="pilas.interfaz.ingreso_de_texto.IngresoDeTexto-class.html" title="interfaz.ingreso_de_texto.IngresoDeTexto" alt="" coords="6253,182,6517,210"/>
+<area shape="rect" id="node69" href="pilas.interfaz.lista_seleccion.ListaSeleccion-class.html" title="interfaz.lista_seleccion.ListaSeleccion" alt="" coords="6541,182,6784,210"/>
+<area shape="rect" id="node70" href="pilas.interfaz.selector.Selector-class.html" title="interfaz.selector.Selector" alt="" coords="6808,182,6973,210"/>
+</map>
+  <img src="class_hierarchy_for_actor.gif" alt='' usemap="#class_hierarchy_for_actor" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Representa un objeto visible en pantalla, algo que se ve y tiene
+posicion.</p>
+<img alt="images/actores/actor.png" src="images/actores/actor.png" />
+<p>Un objeto Actor se tiene que crear siempre indicando una imagen. Si no
+se especifica una imagen, se ver&#225; una pila de color gris c&#243;mo la que
+est&#225; mas arriba.</p>
+<p>Una forma de crear el actor con una imagen es:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>protagonista = Actor(<span class="py-string">&quot;protagonista_de_frente.png&quot;</span>)</pre>
+</blockquote>
+<p>incluso, es equivalente hacer lo siguiente:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>imagen = pilas.imagenes.cargar(<span class="py-string">&quot;protagonista_de_frente.png&quot;</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>protagonista = Actor(imagen)</pre>
+</blockquote>
+<p>Luego, una vez que ha sido ejecutada la sentencia aparecer&#225;
+el nuevo actor para que puedas manipularlo. Por ejemplo
+alterando sus propiedades:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>protagonista.x = 100
+<span class="py-prompt">&gt;&gt;&gt; </span>protagonista.escala = 2
+<span class="py-prompt">&gt;&gt;&gt; </span>protagonista.rotacion = 30</pre>
+</blockquote>
+<p>Estas propiedades tambi&#233;n se pueden manipular mediante
+interpolaciones. Por ejemplo, para aumentar el tama&#241;o del
+personaje de 1 a 5 en 7 segundos:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>protagonista.escala = 1
+<span class="py-prompt">&gt;&gt;&gt; </span>protagonista.escala = [5], 7</pre>
+</blockquote>
+<p>Si quieres que el actor sea invisible, un truco es crearlo
+con la imagen <tt class="rst-docutils literal">invisible.png</tt>:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>invisible = pilas.actores.Actor(<span class="py-string">'invisible.png'</span>)</pre>
+</blockquote>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__actualizar_velocidad"></a><span class="summary-sig-name">__actualizar_velocidad</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Calcula la velocidad horizontal y vertical del actor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.__actualizar_velocidad">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#__cmp__" class="summary-sig-name">__cmp__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">otro_actor</span>)</span><br />
+      Compara dos actores para determinar cual esta mas cerca de la camara.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.__cmp__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">imagen</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">sin_imagen.png</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">x</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">y</span>=<span class="summary-sig-default">0</span>)</span><br />
+      Constructor del Actor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__mul__"></a><span class="summary-sig-name">__mul__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">cantidad</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.__mul__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      str(x)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.__str__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_eliminar_anexados"></a><span class="summary-sig-name">_eliminar_anexados</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor._eliminar_anexados">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_interpretar_y_convertir_posicion"></a><span class="summary-sig-name">_interpretar_y_convertir_posicion</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">posicion</span>,
+        <span class="summary-sig-arg">maximo_valor</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor._interpretar_y_convertir_posicion">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="actor_mas_cercano"></a><span class="summary-sig-name">actor_mas_cercano</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Retorna otro actor mas cercano a este actor</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.actor_mas_cercano">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#actualizar" class="summary-sig-name">actualizar</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Actualiza el estado del actor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.actualizar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#anexar" class="summary-sig-name">anexar</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">otro_actor</span>)</span><br />
+      Agrega un Actor a la lista de actores anexados al Actor actual.
+Cuando se elimina un Actor, se eliminan los actores anexados.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.anexar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#colisiona_con" class="summary-sig-name">colisiona_con</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">otro_actor</span>)</span><br />
+      Determina si este actor colisiona con <tt class="rst-docutils literal">otro_actor</tt></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.colisiona_con">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#colisiona_con_un_punto" class="summary-sig-name">colisiona_con_un_punto</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>)</span><br />
+      Determina si un punto colisiona con el area del actor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.colisiona_con_un_punto">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#decir" class="summary-sig-name">decir</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">mensaje</span>,
+        <span class="summary-sig-arg">autoeliminar</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Emite un mensaje usando un globo similar al de los comics.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.decir">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#definir_centro" class="summary-sig-name">definir_centro</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">(x, y)</span>)</span><br />
+      Define en que posici&#243;n estar&#225; el centro del Actor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.definir_centro">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="definir_color"></a><span class="summary-sig-name">definir_color</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">c</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.definir_color">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="definir_escala"></a><span class="summary-sig-name">definir_escala</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">escala</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.definir_escala">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#definir_imagen" class="summary-sig-name">definir_imagen</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">imagen</span>)</span><br />
+      Define la imagen del Actor y establece el centro del mismo a
+('centro,'centro').</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.definir_imagen">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#definir_posicion" class="summary-sig-name">definir_posicion</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>)</span><br />
+      Define la posici&#243;n del Actor en el mundo.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.definir_posicion">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="definir_rotacion"></a><span class="summary-sig-name">definir_rotacion</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">r</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.definir_rotacion">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="definir_transparencia"></a><span class="summary-sig-name">definir_transparencia</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">valor</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.definir_transparencia">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="destruir"></a><span class="summary-sig-name">destruir</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Elimina a un actor pero de manera inmediata.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.destruir">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="dibujar"></a><span class="summary-sig-name">dibujar</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">aplicacion</span>)</span><br />
+      Metodo interno para el dibujado del Actor en pantalla.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.dibujar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#distancia_al_punto" class="summary-sig-name">distancia_al_punto</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>)</span><br />
+      Determina la distancia desde el centro del actor hasta el punto
+determinado</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.distancia_al_punto">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#distancia_con" class="summary-sig-name">distancia_con</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">otro_actor</span>)</span><br />
+      Determina la distancia con el <tt class="rst-docutils literal">otro_actor</tt></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.distancia_con">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#duplicar" class="summary-sig-name">duplicar</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">**kv</span>)</span><br />
+      Duplica un Actor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.duplicar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="eliminar"></a><span class="summary-sig-name">eliminar</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Elimina el actor de la lista de actores que se imprimen en pantalla.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.eliminar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#es_fondo" class="summary-sig-name">es_fondo</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Comprueba si el actor es un fondo del juego.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.es_fondo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#esta_fuera_de_la_pantalla" class="summary-sig-name">esta_fuera_de_la_pantalla</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Indica si el actor est&#225; fuera del area visible de la pantalla.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.esta_fuera_de_la_pantalla">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_abajo"></a><span class="summary-sig-name">get_abajo</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_abajo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_arriba"></a><span class="summary-sig-name">get_arriba</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_arriba">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_derecha"></a><span class="summary-sig-name">get_derecha</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_derecha">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_espejado"></a><span class="summary-sig-name">get_espejado</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_espejado">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_fijo"></a><span class="summary-sig-name">get_fijo</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_fijo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_imagen"></a><span class="summary-sig-name">get_imagen</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_imagen">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_izquierda"></a><span class="summary-sig-name">get_izquierda</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_izquierda">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_rotation"></a><span class="summary-sig-name">get_rotation</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_rotation">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_scale"></a><span class="summary-sig-name">get_scale</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_scale">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_scale_x"></a><span class="summary-sig-name">get_scale_x</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_scale_x">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_scale_y"></a><span class="summary-sig-name">get_scale_y</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_scale_y">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_transparencia"></a><span class="summary-sig-name">get_transparencia</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_transparencia">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_vx"></a><span class="summary-sig-name">get_vx</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_vx">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_vy"></a><span class="summary-sig-name">get_vy</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_vy">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_x"></a><span class="summary-sig-name">get_x</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_x">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_y"></a><span class="summary-sig-name">get_y</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_y">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_z"></a><span class="summary-sig-name">get_z</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.get_z">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#imitar" class="summary-sig-name">imitar</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">otro_actor_o_figura</span>)</span><br />
+      Hace que un Actor copie la posici&#243;n y la rotaci&#243;n de otro Actor o
+Figura fisica.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.imitar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="obtener_alto"></a><span class="summary-sig-name">obtener_alto</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.obtener_alto">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="obtener_ancho"></a><span class="summary-sig-name">obtener_ancho</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.obtener_ancho">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="obtener_centro"></a><span class="summary-sig-name">obtener_centro</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Obtiene las coordenadas del centro del Actor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.obtener_centro">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="obtener_escala"></a><span class="summary-sig-name">obtener_escala</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.obtener_escala">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="obtener_imagen"></a><span class="summary-sig-name">obtener_imagen</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Obtinene la imagen del Actor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.obtener_imagen">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="obtener_posicion"></a><span class="summary-sig-name">obtener_posicion</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Obtiene la posici&#243;n del Actor en el mundo.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.obtener_posicion">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="obtener_rotacion"></a><span class="summary-sig-name">obtener_rotacion</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.obtener_rotacion">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="obtener_velocidad"></a><span class="summary-sig-name">obtener_velocidad</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Obtiene la velocidad que lleva el actor</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="pre_actualizar"></a><span class="summary-sig-name">pre_actualizar</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Actualiza comportamiento y habilidades antes de la actualizaci&#243;n.
+Tambi&#233;n actualiza la velocidad horizontal y vertical que lleva el actor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.pre_actualizar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_abajo" class="summary-sig-name">set_abajo</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_arriba" class="summary-sig-name">set_arriba</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_derecha" class="summary-sig-name">set_derecha</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_espejado"></a><span class="summary-sig-name">set_espejado</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">nuevo_valor</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.set_espejado">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_fijo"></a><span class="summary-sig-name">set_fijo</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fijo</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.set_fijo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_imagen"></a><span class="summary-sig-name">set_imagen</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">imagen</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.set_imagen">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_izquierda" class="summary-sig-name">set_izquierda</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_rotation" class="summary-sig-name">set_rotation</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_scale" class="summary-sig-name">set_scale</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_scale_x" class="summary-sig-name">set_scale_x</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_scale_y" class="summary-sig-name">set_scale_y</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_transparencia" class="summary-sig-name">set_transparencia</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_x" class="summary-sig-name">set_x</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_y" class="summary-sig-name">set_y</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_z" class="summary-sig-name">set_z</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pilas.estudiante.Estudiante-class.html">estudiante.Estudiante</a></code></b>:
+      <code><a href="pilas.estudiante.Estudiante-class.html#actualizar_comportamientos">actualizar_comportamientos</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#actualizar_habilidades">actualizar_habilidades</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#agregar_habilidad">agregar_habilidad</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#aprender">aprender</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#eliminar_comportamientos">eliminar_comportamientos</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#eliminar_habilidad">eliminar_habilidad</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#eliminar_habilidades">eliminar_habilidades</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#hacer">hacer</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#hacer_luego">hacer_luego</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#obtener_habilidad">obtener_habilidad</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#tiene_comportamiento">tiene_comportamiento</a></code>,
+      <code><a href="pilas.estudiante.Estudiante-class.html#tiene_habilidad">tiene_habilidad</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pilas.estudiante.Estudiante-class.html">estudiante.Estudiante</a></code></b> (private):
+      <code><a href="pilas.estudiante.Estudiante-class.html#_adoptar_el_siguiente_comportamiento" onclick="show_private();">_adoptar_el_siguiente_comportamiento</a></code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#abajo" class="summary-name">abajo</a><br />
+      Establece el espacio entre la parte inferior del actor y el centro de coordenadas del mundo.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#alto" class="summary-name">alto</a><br />
+      Obtiene el alto del Actor.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#ancho" class="summary-name">ancho</a><br />
+      Obtiene el ancho del Actor.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#arriba" class="summary-name">arriba</a><br />
+      Establece el espacio entre la parte superior del actor y el centro de coordenadas del mundo.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#centro" class="summary-name">centro</a><br />
+      Cambia la posici&#243;n del punto (x, y) dentro de actor.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#derecha" class="summary-name">derecha</a><br />
+      Establece el espacio entre la derecha del actor y el centro de coordenadas del mundo.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#escala" class="summary-name">escala</a><br />
+      Escala de tama&#241;o, 1 es normal, 2 al doble de tama&#241;o etc...)
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#escala_x" class="summary-name">escala_x</a><br />
+      Escala de tama&#241;o horizontal, 1 es normal, 2 al doble de tama&#241;o etc...)
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#escala_y" class="summary-name">escala_y</a><br />
+      Escala de tama&#241;o vertical, 1 es normal, 2 al doble de tama&#241;o etc...)
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#espejado" class="summary-name">espejado</a><br />
+      Indica si se tiene que invertir horizonaltamente la imagen del actor.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#fijo" class="summary-name">fijo</a><br />
+      Indica si el actor debe ser independiente a la camara.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#imagen" class="summary-name">imagen</a><br />
+      Define la imagen a mostrar.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#izquierda" class="summary-name">izquierda</a><br />
+      Establece el espacio entre la izquierda del actor y el centro de coordenadas del mundo.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#rotacion" class="summary-name">rotacion</a><br />
+      Angulo de rotaci&#243;n (en grados, de 0 a 360)
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#transparencia" class="summary-name">transparencia</a><br />
+      Define el nivel de transparencia, 0 indica opaco y 100 la maxima transparencia.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#vx" class="summary-name">vx</a><br />
+      Obtiene la velocidad horizontal del actor.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#vy" class="summary-name">vy</a><br />
+      Obtiene la velocidad vertical del actor.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#x" class="summary-name">x</a><br />
+      Define la posici&#243;n horizontal.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#y" class="summary-name">y</a><br />
+      Define la posici&#243;n vertical.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pilas.actores.actor.Actor-class.html#z" class="summary-name">z</a><br />
+      Define lejania respecto del observador.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__cmp__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__cmp__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">otro_actor</span>)</span>
+    <br /><em class="fname">(Comparison operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.__cmp__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Compara dos actores para determinar cual esta mas cerca de la camara.</p>
+<p>Este metodo se utiliza para ordenar los actores antes de imprimirlos
+en pantalla. De modo tal que un usuario pueda seleccionar que
+actores se ven mas arriba de otros cambiando los valores de
+los atributos <a href="pilas.actores.actor.Actor-class.html#z" class="link">z</a>.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">imagen</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">sin_imagen.png</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">x</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">y</span>=<span class="sig-default">0</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Constructor del Actor.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>imagen</code></strong> (string) - Ruta de la imagen del Actor.</li>
+        <li><strong class="pname"><code>x</code></strong> (int) - Posici&#243;n horizontal del Actor.</li>
+        <li><strong class="pname"><code>y</code></strong> (int) - Posici&#243;n vertical del Actor.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="pilas.estudiante.Estudiante-class.html#__init__">estudiante.Estudiante.__init__</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__str__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__str__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Informal representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.__str__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  str(x)
+  <dl class="fields">
+    <dt>Overrides:
+        object.__str__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="actualizar"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">actualizar</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.actualizar">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Actualiza el estado del actor.</p>
+<p>Este metodo se llama una vez por frame, y generalmente se suele
+usar para implementar el comportamiento del actor.</p>
+<p>Si est&#225;s haciendo una subclase de Actor, es aconsejable que re-definas
+este m&#233;todo.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="anexar"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">anexar</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">otro_actor</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.anexar">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Agrega un Actor a la lista de actores anexados al Actor actual.
+Cuando se elimina un Actor, se eliminan los actores anexados.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>otro_actor</code></strong> (<a href="pilas.actores.actor.Actor-class.html" class="link">Actor</a>) - Actor a anexar.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="colisiona_con"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">colisiona_con</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">otro_actor</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.colisiona_con">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Determina si este actor colisiona con <tt class="rst-rst-docutils literal rst-docutils literal">otro_actor</tt>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>otro_actor</code></strong> (pilas.actores.Actor) - El otro actor para verificar si colisiona.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="colisiona_con_un_punto"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">colisiona_con_un_punto</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.colisiona_con_un_punto">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Determina si un punto colisiona con el area del actor.</p>
+<p>Todos los actores tienen un area rectangular, pulsa la
+tecla <strong>F10</strong> para ver el area de colision.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>x</code></strong> (int) - Posici&#243;n horizontal del punto.</li>
+        <li><strong class="pname"><code>y</code></strong> (int) - Posici&#243;n vertical del punto.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="decir"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">decir</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">mensaje</span>,
+        <span class="sig-arg">autoeliminar</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.decir">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Emite un mensaje usando un globo similar al de los comics.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>mensaje</code></strong> (string) - Texto a mostrar en el mensaje.</li>
+        <li><strong class="pname"><code>autoeliminar</code></strong> (boolean) - Establece si se eliminar&#225; el globo al cabo de unos segundos.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="definir_centro"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">definir_centro</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">(x, y)</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.definir_centro">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Define en que posici&#243;n estar&#225; el centro del Actor.</p>
+<p>Se puede definir la posici&#243;n mediante unas coordenadas num&#233;ricas o
+mediante texto.</p>
+<p>La forma de definirlo mediante coordenadas num&#233;ricas seria as&#237;:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>mi_actor.definir_centro((10,50))</pre>
+<p>La otra forma de definirlo mediante texto ser&#237;a:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>mi_actor.definir_centro((<span class="py-string">'centro'</span>,<span class="py-string">'derecha'</span>))</pre>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>x</code></strong> (int) - Coordenadas horizontal en la que se establecer&#225; el centro del Actor.</li>
+        <li><strong class="pname"><code>y</code></strong> (int) - Coordenadas vertical en la que se establecer&#225; el centro del Actor.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="definir_imagen"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">definir_imagen</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">imagen</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.definir_imagen">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Define la imagen del Actor y establece el centro del mismo a
+('centro,'centro').
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>imagen</code></strong> (string) - Ruta de la imagen del Actor.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="definir_posicion"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">definir_posicion</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.definir_posicion">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Define la posici&#243;n del Actor en el mundo.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>x</code></strong> (int) - Posici&#243;n horizontal del Actor en el mundo.</li>
+        <li><strong class="pname"><code>y</code></strong> (int) - Posici&#243;n vertical del Actor en el mundo.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="distancia_al_punto"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">distancia_al_punto</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.distancia_al_punto">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Determina la distancia desde el centro del actor hasta el punto
+determinado</p>
+<p>Todos los actores tienen un area rectangular, pulsa la
+tecla <strong>F10</strong> para ver el area de colision.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>x</code></strong> (int) - Posici&#243;n horizontal del punto.</li>
+        <li><strong class="pname"><code>y</code></strong> (int) - Posici&#243;n vertical del punto.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="distancia_con"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">distancia_con</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">otro_actor</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.distancia_con">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Determina la distancia con el <tt class="rst-rst-docutils literal rst-docutils literal">otro_actor</tt>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>otro_actor</code></strong> (pilas.actores.Actor) - El otro actor para ver la distancia</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="duplicar"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">duplicar</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">**kv</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.duplicar">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Duplica un Actor.
+  <dl class="fields">
+    <dt>Returns:</dt>
+        <dd><a href="pilas.actores.actor.Actor-class.html" class="link">Actor</a>.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="es_fondo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">es_fondo</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.es_fondo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Comprueba si el actor es un fondo del juego.
+  <dl class="fields">
+    <dt>Returns:</dt>
+        <dd>boolean</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="esta_fuera_de_la_pantalla"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">esta_fuera_de_la_pantalla</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.esta_fuera_de_la_pantalla">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  Indica si el actor est&#225; fuera del area visible de la pantalla.
+  <dl class="fields">
+    <dt>Returns:</dt>
+        <dd>boolean</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="imitar"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">imitar</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">otro_actor_o_figura</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.actores.actor-pysrc.html#Actor.imitar">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Hace que un Actor copie la posici&#243;n y la rotaci&#243;n de otro Actor o
+Figura fisica.</p>
+<p>Por ejemplo:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>circulo_dinamico = pilas.fisica.Circulo(10, 200, 50)
+<span class="py-prompt">&gt;&gt;&gt; </span>mi_actor.imitar(circulo_dinamico)</pre>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>otro_actor_o_figura</code></strong> (<a href="pilas.actores.actor.Actor-class.html" class="link">Actor</a>, <a href="pilas.fisica.Figura-class.html" class="link">Figura</a>) - Actor o Figura f&#237;sica a imitar.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_abajo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_abajo</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_arriba"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_arriba</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_derecha"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_derecha</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_izquierda"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_izquierda</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_rotation"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_rotation</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_scale"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_scale</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_scale_x"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_scale_x</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_scale_y"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_scale_y</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_transparencia"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_transparencia</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_x"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_x</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_y"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_y</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_z"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_z</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pilas.utils-pysrc.html">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@pilas.utils.interpolable</code></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Property Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-PropertyDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="abajo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">abajo</h3>
+  Establece el espacio entre la parte inferior del actor y el centro de coordenadas del mundo.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_abajo" class="summary-sig-name">get_abajo</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_abajo" class="summary-sig-name">set_abajo</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="alto"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">alto</h3>
+  Obtiene el alto del Actor.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#obtener_alto" class="summary-sig-name">obtener_alto</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ancho"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">ancho</h3>
+  Obtiene el ancho del Actor.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#obtener_ancho" class="summary-sig-name">obtener_ancho</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="arriba"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">arriba</h3>
+  Establece el espacio entre la parte superior del actor y el centro de coordenadas del mundo.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_arriba" class="summary-sig-name">get_arriba</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_arriba" class="summary-sig-name">set_arriba</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="centro"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">centro</h3>
+  <p>Cambia la posici&#243;n del punto (x, y) dentro de actor.</p>
+<p>Inicialmente, cuando tomamos un actor y definimos sus
+atributos (x, y). Ese punto, ser&#225; el que representa el centro
+del personaje.</p>
+<p>Eso hace que las rotaciones sean siempre sobre el centro
+del personajes, igual que los cambios de escala y la posici&#243;n.</p>
+<p>En algunas ocasiones, queremos que el punto (x, y) sea otra
+parte del actor. Por ejemplo sus pies. En esos casos
+es &#250;til definir el centro del actor.</p>
+<p>Por ejemplo, si queremos mover el centro del actor podemos
+usar sentencias c&#243;mo estas:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>actor.centro = (<span class="py-string">&quot;izquierda&quot;</span>, <span class="py-string">&quot;abajo&quot;</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>actor.centro = (<span class="py-string">&quot;centro&quot;</span>, <span class="py-string">&quot;arriba&quot;</span>)</pre>
+</blockquote>
+<p>Pulsa la tecla <strong>F8</strong> para ver el centro del los actores
+dentro de pilas. Es aconsejable pulsar la tecla <strong>+</strong> para
+que el punto del modo <strong>F8</strong> se vea bien.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#obtener_centro" class="summary-sig-name">obtener_centro</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Obtiene las coordenadas del centro del Actor.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#definir_centro" class="summary-sig-name">definir_centro</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">(x, y)</span>)</span>
+        - Define en que posici&#243;n estar&#225; el centro del Actor.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="derecha"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">derecha</h3>
+  Establece el espacio entre la derecha del actor y el centro de coordenadas del mundo.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_derecha" class="summary-sig-name">get_derecha</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_derecha" class="summary-sig-name">set_derecha</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="escala"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">escala</h3>
+  Escala de tama&#241;o, 1 es normal, 2 al doble de tama&#241;o etc...)
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_scale" class="summary-sig-name">get_scale</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_scale" class="summary-sig-name">set_scale</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="escala_x"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">escala_x</h3>
+  Escala de tama&#241;o horizontal, 1 es normal, 2 al doble de tama&#241;o etc...)
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_scale_x" class="summary-sig-name">get_scale_x</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_scale_x" class="summary-sig-name">set_scale_x</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="escala_y"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">escala_y</h3>
+  Escala de tama&#241;o vertical, 1 es normal, 2 al doble de tama&#241;o etc...)
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_scale_y" class="summary-sig-name">get_scale_y</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_scale_y" class="summary-sig-name">set_scale_y</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="espejado"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">espejado</h3>
+  Indica si se tiene que invertir horizonaltamente la imagen del actor.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_espejado" class="summary-sig-name">get_espejado</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_espejado" class="summary-sig-name">set_espejado</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">nuevo_valor</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fijo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">fijo</h3>
+  Indica si el actor debe ser independiente a la camara.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_fijo" class="summary-sig-name">get_fijo</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_fijo" class="summary-sig-name">set_fijo</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fijo</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="imagen"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">imagen</h3>
+  Define la imagen a mostrar.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_imagen" class="summary-sig-name">get_imagen</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_imagen" class="summary-sig-name">set_imagen</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">imagen</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="izquierda"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">izquierda</h3>
+  Establece el espacio entre la izquierda del actor y el centro de coordenadas del mundo.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_izquierda" class="summary-sig-name">get_izquierda</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_izquierda" class="summary-sig-name">set_izquierda</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="rotacion"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">rotacion</h3>
+  Angulo de rotaci&#243;n (en grados, de 0 a 360)
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_rotation" class="summary-sig-name">get_rotation</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_rotation" class="summary-sig-name">set_rotation</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="transparencia"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">transparencia</h3>
+  Define el nivel de transparencia, 0 indica opaco y 100 la maxima transparencia.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_transparencia" class="summary-sig-name">get_transparencia</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_transparencia" class="summary-sig-name">set_transparencia</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="vx"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">vx</h3>
+  Obtiene la velocidad horizontal del actor.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_vx" class="summary-sig-name">get_vx</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="vy"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">vy</h3>
+  Obtiene la velocidad vertical del actor.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_vy" class="summary-sig-name">get_vy</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="x"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">x</h3>
+  Define la posici&#243;n horizontal.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_x" class="summary-sig-name">get_x</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_x" class="summary-sig-name">set_x</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="y"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">y</h3>
+  Define la posici&#243;n vertical.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_y" class="summary-sig-name">get_y</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_y" class="summary-sig-name">set_y</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="z"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">z</h3>
+  Define lejania respecto del observador.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#get_z" class="summary-sig-name">get_z</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="pilas.actores.actor.Actor-class.html#set_z" class="summary-sig-name">set_z</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:37 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

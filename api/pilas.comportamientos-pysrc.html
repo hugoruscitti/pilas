@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.comportamientos</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        Module&nbsp;comportamientos
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.comportamientos-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.comportamientos-module.html">Module pilas.comportamientos</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># Pilas engine - A video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2010 - Hugo Ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># Website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">math</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-0', 'pilas', 'link-0');">pilas</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="Comportamiento"></a><div id="Comportamiento-def"><a name="L12"></a><tt class="py-lineno"> 12</tt> <a class="py-toggle" href="#" id="Comportamiento-toggle" onclick="return toggle('Comportamiento');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.comportamientos.Comportamiento-class.html">Comportamiento</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Comportamiento-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Comportamiento-expanded"><a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line">    <tt class="py-docstring">"Representa un comportamiento (estrategia) que se puede anexar a un actor."</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="Comportamiento.iniciar"></a><div id="Comportamiento.iniciar-def"><a name="L15"></a><tt class="py-lineno"> 15</tt> <a class="py-toggle" href="#" id="Comportamiento.iniciar-toggle" onclick="return toggle('Comportamiento.iniciar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Comportamiento-class.html#iniciar">iniciar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">receptor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Comportamiento.iniciar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Comportamiento.iniciar-expanded"><a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line">        <tt class="py-docstring">"""Se invoca cuando se anexa el comportamiento a un actor.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">        :param receptor: El actor que comenzar&#225; a ejecutar este comportamiento.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt> <tt class="py-op">=</tt> <tt class="py-name">receptor</tt> </tt>
+</div><a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"> </tt>
+<a name="Comportamiento.actualizar"></a><div id="Comportamiento.actualizar-def"><a name="L22"></a><tt class="py-lineno"> 22</tt> <a class="py-toggle" href="#" id="Comportamiento.actualizar-toggle" onclick="return toggle('Comportamiento.actualizar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Comportamiento-class.html#actualizar">actualizar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Comportamiento.actualizar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Comportamiento.actualizar-expanded"><a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-docstring">"""Actualiza el comportamiento en un instante dado.</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">        Si este metodo retorna True entonces el actor dejar&#225;</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">        de ejecutar este comportamiento."""</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="Comportamiento.terminar"></a><div id="Comportamiento.terminar-def"><a name="L29"></a><tt class="py-lineno"> 29</tt> <a class="py-toggle" href="#" id="Comportamiento.terminar-toggle" onclick="return toggle('Comportamiento.terminar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Comportamiento-class.html#terminar">terminar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Comportamiento.terminar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Comportamiento.terminar-expanded"><a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div></div><a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="Girar"></a><div id="Girar-def"><a name="L33"></a><tt class="py-lineno"> 33</tt> <a class="py-toggle" href="#" id="Girar-toggle" onclick="return toggle('Girar');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.comportamientos.Girar-class.html">Girar</a><tt class="py-op">(</tt><tt class="py-base-class">Comportamiento</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Girar-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Girar-expanded"><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">    <tt class="py-docstring">"Hace girar constantemente al actor respecto de su eje de forma relativa."</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="Girar.__init__"></a><div id="Girar.__init__-def"><a name="L36"></a><tt class="py-lineno"> 36</tt> <a class="py-toggle" href="#" id="Girar.__init__-toggle" onclick="return toggle('Girar.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Girar-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">delta</tt><tt class="py-op">,</tt> <tt class="py-param">velocidad</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Girar.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Girar.__init__-expanded"><a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delta</tt> <tt class="py-op">=</tt> <tt class="py-name">delta</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">delta</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt> <tt class="py-op">=</tt> <tt class="py-name">velocidad</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-name">velocidad</tt> </tt>
+</div><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="Girar.iniciar"></a><div id="Girar.iniciar-def"><a name="L44"></a><tt class="py-lineno"> 44</tt> <a class="py-toggle" href="#" id="Girar.iniciar-toggle" onclick="return toggle('Girar.iniciar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Girar-class.html#iniciar">iniciar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">receptor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Girar.iniciar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Girar.iniciar-expanded"><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-docstring">"""Se invoca cuando se anexa el comportamiento a un actor.</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">        :param receptor: El actor que comenzar&#225; a ejecutar este comportamiento.</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt> <tt class="py-op">=</tt> <tt class="py-name">receptor</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">angulo_final</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Variable pilas.actores.actor.Actor.rotacion=pilas.actores.actor.Actor-class.html#rotacion,Variable pilas.fisica.Figura.rotacion=pilas.fisica.Figura-class.html#rotacion"><a title="pilas.actores.actor.Actor.rotacion
+pilas.fisica.Figura.rotacion" class="py-name" href="#" onclick="return doclink('link-1', 'rotacion', 'link-1');">rotacion</a></tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delta</tt><tt class="py-op">)</tt> <tt class="py-op">%</tt> <tt class="py-number">360</tt> </tt>
+</div><a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="Girar.actualizar"></a><div id="Girar.actualizar-def"><a name="L52"></a><tt class="py-lineno"> 52</tt> <a class="py-toggle" href="#" id="Girar.actualizar-toggle" onclick="return toggle('Girar.actualizar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Girar-class.html#actualizar">actualizar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Girar.actualizar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Girar.actualizar-expanded"><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name"><a title="pilas.actores.actor.Actor.rotacion
+pilas.fisica.Figura.rotacion" class="py-name" href="#" onclick="return doclink('link-2', 'rotacion', 'link-1');">rotacion</a></tt> <tt class="py-op">+=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-name">delta</tt> <tt class="py-op">=</tt> <tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name"><a title="pilas.actores.actor.Actor.rotacion
+pilas.fisica.Figura.rotacion" class="py-name" href="#" onclick="return doclink('link-3', 'rotacion', 'link-1');">rotacion</a></tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">angulo_final</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">delta</tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="pilas.actores.actor.Actor.rotacion
+pilas.fisica.Figura.rotacion" class="py-name" href="#" onclick="return doclink('link-4', 'rotacion', 'link-1');">rotacion</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">angulo_final</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div></div><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="Saltar"></a><div id="Saltar-def"><a name="L61"></a><tt class="py-lineno"> 61</tt> <a class="py-toggle" href="#" id="Saltar-toggle" onclick="return toggle('Saltar');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.comportamientos.Saltar-class.html">Saltar</a><tt class="py-op">(</tt><tt class="py-base-class">Comportamiento</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Saltar-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Saltar-expanded"><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">    <tt class="py-docstring">"""Realiza un salto, cambiando los atributos 'y'."""</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="Saltar.__init__"></a><div id="Saltar.__init__-def"><a name="L64"></a><tt class="py-lineno"> 64</tt> <a class="py-toggle" href="#" id="Saltar.__init__-toggle" onclick="return toggle('Saltar.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Saltar-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">velocidad_inicial</tt><tt class="py-op">=</tt><tt class="py-number">10</tt><tt class="py-op">,</tt> <tt class="py-param">cuando_termina</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Saltar.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Saltar.__init__-expanded"><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad_inicial</tt> <tt class="py-op">=</tt> <tt class="py-name">velocidad_inicial</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cuando_termina</tt> <tt class="py-op">=</tt> <tt class="py-name">cuando_termina</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sonido_saltar</tt> <tt class="py-op">=</tt> <tt id="link-5" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-5', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Module pilas.sonidos=pilas.sonidos-module.html"><a title="pilas.sonidos" class="py-name" href="#" onclick="return doclink('link-6', 'sonidos', 'link-6');">sonidos</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Function pilas.imagenes.cargar()=pilas.imagenes-module.html#cargar,Function pilas.musica.cargar()=pilas.musica-module.html#cargar,Function pilas.sonidos.cargar()=pilas.sonidos-module.html#cargar"><a title="pilas.imagenes.cargar
+pilas.musica.cargar
+pilas.sonidos.cargar" class="py-name" href="#" onclick="return doclink('link-7', 'cargar', 'link-7');">cargar</a></tt><tt class="py-op">(</tt><tt class="py-string">"saltar.wav"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="Saltar.iniciar"></a><div id="Saltar.iniciar-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="Saltar.iniciar-toggle" onclick="return toggle('Saltar.iniciar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Saltar-class.html#iniciar">iniciar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">receptor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Saltar.iniciar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Saltar.iniciar-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-docstring">"""Se invoca cuando se anexa el comportamiento a un actor.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">        :param receptor: El actor que comenzar&#225; a ejecutar este comportamiento.</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt> <tt class="py-op">=</tt> <tt class="py-name">receptor</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">suelo</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Variable pilas.actores.actor.Actor.y=pilas.actores.actor.Actor-class.html#y,Variable pilas.camara.Camara.y=pilas.camara.Camara-class.html#y,Variable pilas.demos.piezas.Pieza.y=pilas.demos.piezas.Pieza-class.html#y,Variable pilas.fisica.Figura.y=pilas.fisica.Figura-class.html#y,Variable pilas.simbolos.y=pilas.simbolos-module.html#y"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-8', 'y', 'link-8');">y</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad_inicial</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sonido_saltar</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method pilas.motores.motor_qt.SonidoDeshabilitado.reproducir()=pilas.motores.motor_qt.SonidoDeshabilitado-class.html#reproducir,Method pilas.motores.motor_qt.SonidoGST.reproducir()=pilas.motores.motor_qt.SonidoGST-class.html#reproducir,Method pilas.motores.motor_qt.SonidoPhonon.reproducir()=pilas.motores.motor_qt.SonidoPhonon-class.html#reproducir"><a title="pilas.motores.motor_qt.SonidoDeshabilitado.reproducir
+pilas.motores.motor_qt.SonidoGST.reproducir
+pilas.motores.motor_qt.SonidoPhonon.reproducir" class="py-name" href="#" onclick="return doclink('link-9', 'reproducir', 'link-9');">reproducir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="Saltar.actualizar"></a><div id="Saltar.actualizar-def"><a name="L79"></a><tt class="py-lineno"> 79</tt> <a class="py-toggle" href="#" id="Saltar.actualizar-toggle" onclick="return toggle('Saltar.actualizar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Saltar-class.html#actualizar">actualizar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Saltar.actualizar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Saltar.actualizar-expanded"><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-10', 'y', 'link-8');">y</a></tt> <tt class="py-op">+=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt> <tt class="py-op">-=</tt> <tt class="py-number">0.3</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-11', 'y', 'link-8');">y</a></tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">suelo</tt><tt class="py-op">:</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad_inicial</tt> <tt class="py-op">/=</tt> <tt class="py-number">2.0</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad_inicial</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad_inicial</tt> <tt class="py-op">&lt;=</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                <tt class="py-comment"># Si toca el suelo</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-12', 'y', 'link-8');">y</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">suelo</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cuando_termina</tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cuando_termina</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div></div><a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"> </tt>
+<a name="Avanzar"></a><div id="Avanzar-def"><a name="L95"></a><tt class="py-lineno"> 95</tt> <a class="py-toggle" href="#" id="Avanzar-toggle" onclick="return toggle('Avanzar');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.comportamientos.Avanzar-class.html">Avanzar</a><tt class="py-op">(</tt><tt class="py-base-class">Comportamiento</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Avanzar-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Avanzar-expanded"><a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">    <tt class="py-docstring">"Desplaza al actor en la direcci&#243;n y sentido indicado por una rotaci&#243;n."</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="Avanzar.__init__"></a><div id="Avanzar.__init__-def"><a name="L98"></a><tt class="py-lineno"> 98</tt> <a class="py-toggle" href="#" id="Avanzar.__init__-toggle" onclick="return toggle('Avanzar.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Avanzar-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">pasos</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-param">velocidad</tt><tt class="py-op">=</tt><tt class="py-number">5</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Avanzar.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Avanzar.__init__-expanded"><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">pasos</tt> <tt class="py-op">&lt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pasos</tt> <tt class="py-op">=</tt> <tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">pasos</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pasos</tt> <tt class="py-op">=</tt> <tt class="py-name">pasos</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt> <tt class="py-op">=</tt> <tt class="py-name">velocidad</tt> </tt>
+</div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="Avanzar.iniciar"></a><div id="Avanzar.iniciar-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="Avanzar.iniciar-toggle" onclick="return toggle('Avanzar.iniciar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Avanzar-class.html#iniciar">iniciar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">receptor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Avanzar.iniciar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Avanzar.iniciar-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-docstring">"""Se invoca cuando se anexa el comportamiento a un actor.</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt class="py-docstring">        :param receptor: El actor que comenzar&#225; a ejecutar este comportamiento.</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt> <tt class="py-op">=</tt> <tt class="py-name">receptor</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">rotacion_en_radianes</tt> <tt class="py-op">=</tt> <tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">radians</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="pilas.actores.actor.Actor.rotacion
+pilas.fisica.Figura.rotacion" class="py-name" href="#" onclick="return doclink('link-13', 'rotacion', 'link-1');">rotacion</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dx</tt> <tt class="py-op">=</tt> <tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">cos</tt><tt class="py-op">(</tt><tt class="py-name">rotacion_en_radianes</tt><tt class="py-op">)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dy</tt> <tt class="py-op">=</tt> <tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">sin</tt><tt class="py-op">(</tt><tt class="py-name">rotacion_en_radianes</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"> </tt>
+<a name="Avanzar.actualizar"></a><div id="Avanzar.actualizar-def"><a name="L116"></a><tt class="py-lineno">116</tt> <a class="py-toggle" href="#" id="Avanzar.actualizar-toggle" onclick="return toggle('Avanzar.actualizar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Avanzar-class.html#actualizar">actualizar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Avanzar.actualizar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Avanzar.actualizar-expanded"><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt id="link-14" class="py-name" targets="Method pilas.asistente.VentanaAsistente.salir()=pilas.asistente.VentanaAsistente-class.html#salir,Method pilas.escena.escena_normal.Aviso.salir()=pilas.escena.escena_normal.Aviso-class.html#salir"><a title="pilas.asistente.VentanaAsistente.salir
+pilas.escena.escena_normal.Aviso.salir" class="py-name" href="#" onclick="return doclink('link-14', 'salir', 'link-14');">salir</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pasos</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pasos</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt> <tt class="py-op">&lt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">                <tt class="py-name">avance</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pasos</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                <tt class="py-name">avance</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">velocidad</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pasos</tt> <tt class="py-op">-=</tt> <tt class="py-name">avance</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Variable pilas.actores.actor.Actor.x=pilas.actores.actor.Actor-class.html#x,Variable pilas.camara.Camara.x=pilas.camara.Camara-class.html#x,Variable pilas.demos.piezas.Pieza.x=pilas.demos.piezas.Pieza-class.html#x,Variable pilas.fisica.Figura.x=pilas.fisica.Figura-class.html#x,Variable pilas.simbolos.x=pilas.simbolos-module.html#x"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-15', 'x', 'link-15');">x</a></tt> <tt class="py-op">+=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dx</tt> <tt class="py-op">*</tt> <tt class="py-name">avance</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-16', 'y', 'link-8');">y</a></tt> <tt class="py-op">+=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dy</tt> <tt class="py-op">*</tt> <tt class="py-name">avance</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">            <tt id="link-17" class="py-name"><a title="pilas.asistente.VentanaAsistente.salir
+pilas.escena.escena_normal.Aviso.salir" class="py-name" href="#" onclick="return doclink('link-17', 'salir', 'link-14');">salir</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-18" class="py-name"><a title="pilas.asistente.VentanaAsistente.salir
+pilas.escena.escena_normal.Aviso.salir" class="py-name" href="#" onclick="return doclink('link-18', 'salir', 'link-14');">salir</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div></div><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"> </tt>
+<a name="Proyectil"></a><div id="Proyectil-def"><a name="L133"></a><tt class="py-lineno">133</tt> <a class="py-toggle" href="#" id="Proyectil-toggle" onclick="return toggle('Proyectil');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.comportamientos.Proyectil-class.html">Proyectil</a><tt class="py-op">(</tt><tt class="py-base-class">Comportamiento</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Proyectil-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Proyectil-expanded"><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">    <tt class="py-docstring">"Hace que un actor se comporte como un proyectil."</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"> </tt>
+<a name="Proyectil.__init__"></a><div id="Proyectil.__init__-def"><a name="L136"></a><tt class="py-lineno">136</tt> <a class="py-toggle" href="#" id="Proyectil.__init__-toggle" onclick="return toggle('Proyectil.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Proyectil-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">velocidad_maxima</tt><tt class="py-op">=</tt><tt class="py-number">5</tt><tt class="py-op">,</tt> <tt class="py-param">aceleracion</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">                 <tt class="py-param">angulo_de_movimiento</tt><tt class="py-op">=</tt><tt class="py-number">90</tt><tt class="py-op">,</tt> <tt class="py-param">gravedad</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Proyectil.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Proyectil.__init__-expanded"><a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"><tt class="py-docstring">        Construye el comportamiento.</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"><tt class="py-docstring">        :param velocidad_maxima: Velocidad m&#225;xima que alcanzar&#225; el proyectil.</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"><tt class="py-docstring">        :param aceleracion: Valor entre 0 y 1 para indicar lo r&#225;pido que acelerar&#225; el actor.</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"><tt class="py-docstring">        :param angulo_de_movimiento: Angulo en que se mover&#225; el Actor.</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring">        :param gravedad: La velocidad vertical con la que caer&#225; el actor.</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad_maxima</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name" targets="Variable pilas.habilidades.MoverseConElTeclado.velocidad_maxima=pilas.habilidades.MoverseConElTeclado-class.html#velocidad_maxima"><a title="pilas.habilidades.MoverseConElTeclado.velocidad_maxima" class="py-name" href="#" onclick="return doclink('link-19', 'velocidad_maxima', 'link-19');">velocidad_maxima</a></tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_aceleracion</tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name" targets="Variable pilas.habilidades.MoverseConElTeclado.aceleracion=pilas.habilidades.MoverseConElTeclado-class.html#aceleracion"><a title="pilas.habilidades.MoverseConElTeclado.aceleracion" class="py-name" href="#" onclick="return doclink('link-20', 'aceleracion', 'link-20');">aceleracion</a></tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_angulo_de_movimiento</tt> <tt class="py-op">=</tt> <tt class="py-name">angulo_de_movimiento</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_gravedad</tt> <tt class="py-op">=</tt> <tt class="py-name">gravedad</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_vy</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_gravedad</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_aceleracion</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad_maxima</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+</div><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"> </tt>
+<a name="Proyectil.iniciar"></a><div id="Proyectil.iniciar-def"><a name="L158"></a><tt class="py-lineno">158</tt> <a class="py-toggle" href="#" id="Proyectil.iniciar-toggle" onclick="return toggle('Proyectil.iniciar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Proyectil-class.html#iniciar">iniciar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">receptor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Proyectil.iniciar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Proyectil.iniciar-expanded"><a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">        <tt class="py-docstring">"""Se invoca cuando se anexa el comportamiento a un actor.</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"><tt class="py-docstring">        :param receptor: El actor que comenzar&#225; a ejecutar este comportamiento.</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt> <tt class="py-op">=</tt> <tt class="py-name">receptor</tt> </tt>
+</div><a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"> </tt>
+<a name="Proyectil.actualizar"></a><div id="Proyectil.actualizar-def"><a name="L165"></a><tt class="py-lineno">165</tt> <a class="py-toggle" href="#" id="Proyectil.actualizar-toggle" onclick="return toggle('Proyectil.actualizar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Proyectil-class.html#actualizar">actualizar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Proyectil.actualizar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Proyectil.actualizar-expanded"><a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad</tt> <tt class="py-op">+=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_aceleracion</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line"> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad</tt> <tt class="py-op">&gt;</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad_maxima</tt><tt class="py-op">:</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad_maxima</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method pilas.comportamientos.Proyectil.mover_respecto_angulo_movimiento()=pilas.comportamientos.Proyectil-class.html#mover_respecto_angulo_movimiento"><a title="pilas.comportamientos.Proyectil.mover_respecto_angulo_movimiento" class="py-name" href="#" onclick="return doclink('link-21', 'mover_respecto_angulo_movimiento', 'link-21');">mover_respecto_angulo_movimiento</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"> </tt>
+<a name="Proyectil.mover_respecto_angulo_movimiento"></a><div id="Proyectil.mover_respecto_angulo_movimiento-def"><a name="L173"></a><tt class="py-lineno">173</tt> <a class="py-toggle" href="#" id="Proyectil.mover_respecto_angulo_movimiento-toggle" onclick="return toggle('Proyectil.mover_respecto_angulo_movimiento');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.comportamientos.Proyectil-class.html#mover_respecto_angulo_movimiento">mover_respecto_angulo_movimiento</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Proyectil.mover_respecto_angulo_movimiento-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Proyectil.mover_respecto_angulo_movimiento-expanded"><a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-docstring">"""Mueve el actor hacia adelante respecto a su angulo de movimiento."""</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">        <tt class="py-name">rotacion_en_radianes</tt> <tt class="py-op">=</tt> <tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">radians</tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_angulo_de_movimiento</tt> <tt class="py-op">+</tt> <tt class="py-number">90</tt><tt class="py-op">)</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-name">dx</tt> <tt class="py-op">=</tt> <tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">cos</tt><tt class="py-op">(</tt><tt class="py-name">rotacion_en_radianes</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">        <tt class="py-name">dy</tt> <tt class="py-op">=</tt> <tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">sin</tt><tt class="py-op">(</tt><tt class="py-name">rotacion_en_radianes</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_velocidad</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-22', 'x', 'link-15');">x</a></tt> <tt class="py-op">+=</tt> <tt class="py-name">dx</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line"> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_gravedad</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-23', 'y', 'link-8');">y</a></tt> <tt class="py-op">+=</tt> <tt class="py-name">dy</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_vy</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_vy</tt> <tt class="py-op">-=</tt> <tt class="py-number">0.1</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">receptor</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-24', 'y', 'link-8');">y</a></tt> <tt class="py-op">+=</tt> <tt class="py-name">dy</tt> </tt>
+</div></div><a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:47 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

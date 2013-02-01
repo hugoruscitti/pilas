@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pilas.camara</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pilas-module.html">Package&nbsp;pilas</a> ::
+        Module&nbsp;camara
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pilas.camara-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pilas.camara-module.html">Module pilas.camara</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- encoding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># Pilas engine - A video game framework.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2010 - Hugo Ruscitti</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># Website - http://www.pilas-engine.com.ar</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package pilas=pilas-module.html"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-0', 'pilas', 'link-0');">pilas</a></tt> </tt>
+<a name="Camara"></a><div id="Camara-def"><a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt> <a class="py-toggle" href="#" id="Camara-toggle" onclick="return toggle('Camara');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pilas.camara.Camara-class.html">Camara</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camara-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Camara-expanded"><a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line">    <tt class="py-docstring">"""Representa el punto de vista de la ventana.</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">    Los atributos ``x`` e ``y`` indican cual debe ser el</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring">    punto central de la pantalla. Por defecto estos</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">    valores con (0, 0)."""</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="Camara.__init__"></a><div id="Camara.__init__-def"><a name="L18"></a><tt class="py-lineno"> 18</tt> <a class="py-toggle" href="#" id="Camara.__init__-toggle" onclick="return toggle('Camara.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.camara.Camara-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">motor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camara.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camara.__init__-expanded"><a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">        <tt class="py-docstring">"""Inicializa la c&#225;mara.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">        :param motor: Referencia al motor de pilas.</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">motor</tt> <tt class="py-op">=</tt> <tt class="py-name">motor</tt> </tt>
+</div><a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">pilas</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module pilas.actores.utils=pilas.actores.utils-module.html,Module pilas.utils=pilas.utils-module.html"><a title="pilas.actores.utils
+pilas.utils" class="py-name" href="#" onclick="return doclink('link-1', 'utils', 'link-1');">utils</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Function pilas.utils.interpolable()=pilas.utils-module.html#interpolable"><a title="pilas.utils.interpolable" class="py-name" href="#" onclick="return doclink('link-2', 'interpolable', 'link-2');">interpolable</a></tt> </tt>
+<a name="Camara._set_x"></a><div id="Camara._set_x-def"><a name="L26"></a><tt class="py-lineno"> 26</tt> <a class="py-toggle" href="#" id="Camara._set_x-toggle" onclick="return toggle('Camara._set_x');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.camara.Camara-class.html#_set_x">_set_x</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camara._set_x-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camara._set_x-expanded"><a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-docstring">"""Define la posici&#243;n horizontal de la c&#225;mara.</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">        :param x: Posici&#243;n horizontal.</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt id="link-3" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-3', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method pilas.escena.gestor.Gestor.escena_actual()=pilas.escena.gestor.Gestor-class.html#escena_actual,Function pilas.escena_actual()=pilas-module.html#escena_actual"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-4', 'escena_actual', 'link-4');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Variable pilas.evento.ProxyEventos.mueve_camara=pilas.evento.ProxyEventos-class.html#mueve_camara"><a title="pilas.evento.ProxyEventos.mueve_camara" class="py-name" href="#" onclick="return doclink('link-5', 'mueve_camara', 'link-5');">mueve_camara</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method pilas.evento.Evento.emitir()=pilas.evento.Evento-class.html#emitir"><a title="pilas.evento.Evento.emitir" class="py-name" href="#" onclick="return doclink('link-6', 'emitir', 'link-6');">emitir</a></tt><tt class="py-op">(</tt><tt id="link-7" class="py-name" targets="Variable pilas.actores.actor.Actor.x=pilas.actores.actor.Actor-class.html#x,Variable pilas.camara.Camara.x=pilas.camara.Camara-class.html#x,Variable pilas.demos.piezas.Pieza.x=pilas.demos.piezas.Pieza-class.html#x,Variable pilas.fisica.Figura.x=pilas.fisica.Figura-class.html#x,Variable pilas.simbolos.x=pilas.simbolos-module.html#x"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-7', 'x', 'link-7');">x</a></tt><tt class="py-op">=</tt><tt id="link-8" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-8', 'x', 'link-7');">x</a></tt><tt class="py-op">,</tt> <tt id="link-9" class="py-name" targets="Variable pilas.actores.actor.Actor.y=pilas.actores.actor.Actor-class.html#y,Variable pilas.camara.Camara.y=pilas.camara.Camara-class.html#y,Variable pilas.demos.piezas.Pieza.y=pilas.demos.piezas.Pieza-class.html#y,Variable pilas.fisica.Figura.y=pilas.fisica.Figura-class.html#y,Variable pilas.simbolos.y=pilas.simbolos-module.html#y"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-9', 'y', 'link-9');">y</a></tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-10', 'y', 'link-9');">y</a></tt><tt class="py-op">,</tt> <tt class="py-name">dx</tt><tt class="py-op">=</tt><tt id="link-11" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-11', 'x', 'link-7');">x</a></tt><tt class="py-op">-</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-12', 'x', 'link-7');">x</a></tt><tt class="py-op">,</tt> <tt class="py-name">dy</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt id="link-13" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-13', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Module pilas.mundo=pilas.mundo-module.html"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-14', 'mundo', 'link-14');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method pilas.motores.motor_qt.Motor.definir_centro_de_la_camara()=pilas.motores.motor_qt.Motor-class.html#definir_centro_de_la_camara"><a title="pilas.motores.motor_qt.Motor.definir_centro_de_la_camara" class="py-name" href="#" onclick="return doclink('link-15', 'definir_centro_de_la_camara', 'link-15');">definir_centro_de_la_camara</a></tt><tt class="py-op">(</tt><tt id="link-16" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-16', 'x', 'link-7');">x</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-17', 'y', 'link-9');">y</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="Camara._get_x"></a><div id="Camara._get_x-def"><a name="L34"></a><tt class="py-lineno"> 34</tt> <a class="py-toggle" href="#" id="Camara._get_x-toggle" onclick="return toggle('Camara._get_x');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.camara.Camara-class.html#_get_x">_get_x</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camara._get_x-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camara._get_x-expanded"><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-docstring">"""Retorna la posici&#243;n horizontal."""</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt id="link-18" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-18', 'x', 'link-7');">x</a></tt><tt class="py-op">,</tt> <tt id="link-19" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-19', 'y', 'link-9');">y</a></tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-20', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-21', 'mundo', 'link-14');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method pilas.motores.motor_qt.Motor.obtener_centro_de_la_camara()=pilas.motores.motor_qt.Motor-class.html#obtener_centro_de_la_camara"><a title="pilas.motores.motor_qt.Motor.obtener_centro_de_la_camara" class="py-name" href="#" onclick="return doclink('link-22', 'obtener_centro_de_la_camara', 'link-22');">obtener_centro_de_la_camara</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-23" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-23', 'x', 'link-7');">x</a></tt> </tt>
+</div><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">pilas</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="pilas.actores.utils
+pilas.utils" class="py-name" href="#" onclick="return doclink('link-24', 'utils', 'link-1');">utils</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="pilas.utils.interpolable" class="py-name" href="#" onclick="return doclink('link-25', 'interpolable', 'link-2');">interpolable</a></tt> </tt>
+<a name="Camara._set_y"></a><div id="Camara._set_y-def"><a name="L40"></a><tt class="py-lineno"> 40</tt> <a class="py-toggle" href="#" id="Camara._set_y-toggle" onclick="return toggle('Camara._set_y');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.camara.Camara-class.html#_set_y">_set_y</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">y</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camara._set_y-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camara._set_y-expanded"><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-docstring">"""Define la posici&#243;n vertical de la c&#225;mara.</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">        :param y: Posici&#243;n vertical.</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt id="link-26" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-26', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="pilas.escena.gestor.Gestor.escena_actual
+pilas.escena_actual" class="py-name" href="#" onclick="return doclink('link-27', 'escena_actual', 'link-4');">escena_actual</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="pilas.evento.ProxyEventos.mueve_camara" class="py-name" href="#" onclick="return doclink('link-28', 'mueve_camara', 'link-5');">mueve_camara</a></tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="pilas.evento.Evento.emitir" class="py-name" href="#" onclick="return doclink('link-29', 'emitir', 'link-6');">emitir</a></tt><tt class="py-op">(</tt><tt id="link-30" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-30', 'x', 'link-7');">x</a></tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-31', 'x', 'link-7');">x</a></tt><tt class="py-op">,</tt> <tt id="link-32" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-32', 'y', 'link-9');">y</a></tt><tt class="py-op">=</tt><tt id="link-33" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-33', 'y', 'link-9');">y</a></tt><tt class="py-op">,</tt> <tt class="py-name">dx</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">dy</tt><tt class="py-op">=</tt><tt id="link-34" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-34', 'y', 'link-9');">y</a></tt><tt class="py-op">-</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-35', 'y', 'link-9');">y</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt id="link-36" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-36', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-37', 'mundo', 'link-14');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="pilas.motores.motor_qt.Motor.definir_centro_de_la_camara" class="py-name" href="#" onclick="return doclink('link-38', 'definir_centro_de_la_camara', 'link-15');">definir_centro_de_la_camara</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-39', 'x', 'link-7');">x</a></tt><tt class="py-op">,</tt> <tt id="link-40" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-40', 'y', 'link-9');">y</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="Camara._get_y"></a><div id="Camara._get_y-def"><a name="L48"></a><tt class="py-lineno"> 48</tt> <a class="py-toggle" href="#" id="Camara._get_y-toggle" onclick="return toggle('Camara._get_y');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.camara.Camara-class.html#_get_y">_get_y</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camara._get_y-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camara._get_y-expanded"><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-docstring">"""Retorna la posici&#243;n vertical."""</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt id="link-41" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-41', 'x', 'link-7');">x</a></tt><tt class="py-op">,</tt> <tt id="link-42" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-42', 'y', 'link-9');">y</a></tt> <tt class="py-op">=</tt> <tt id="link-43" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-43', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-44', 'mundo', 'link-14');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="pilas.motores.motor_qt.Motor.obtener_centro_de_la_camara" class="py-name" href="#" onclick="return doclink('link-45', 'obtener_centro_de_la_camara', 'link-22');">obtener_centro_de_la_camara</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-46" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-46', 'y', 'link-9');">y</a></tt> </tt>
+</div><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">    <tt id="link-47" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-47', 'x', 'link-7');">x</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-48" class="py-name" targets="Method pilas.camara.Camara._get_x()=pilas.camara.Camara-class.html#_get_x"><a title="pilas.camara.Camara._get_x" class="py-name" href="#" onclick="return doclink('link-48', '_get_x', 'link-48');">_get_x</a></tt><tt class="py-op">,</tt> <tt id="link-49" class="py-name" targets="Method pilas.camara.Camara._set_x()=pilas.camara.Camara-class.html#_set_x"><a title="pilas.camara.Camara._set_x" class="py-name" href="#" onclick="return doclink('link-49', '_set_x', 'link-49');">_set_x</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">    <tt id="link-50" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-50', 'y', 'link-9');">y</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-51" class="py-name" targets="Method pilas.camara.Camara._get_y()=pilas.camara.Camara-class.html#_get_y"><a title="pilas.camara.Camara._get_y" class="py-name" href="#" onclick="return doclink('link-51', '_get_y', 'link-51');">_get_y</a></tt><tt class="py-op">,</tt> <tt id="link-52" class="py-name" targets="Method pilas.camara.Camara._set_y()=pilas.camara.Camara-class.html#_set_y"><a title="pilas.camara.Camara._set_y" class="py-name" href="#" onclick="return doclink('link-52', '_set_y', 'link-52');">_set_y</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="Camara.obtener_area_visible"></a><div id="Camara.obtener_area_visible-def"><a name="L57"></a><tt class="py-lineno"> 57</tt> <a class="py-toggle" href="#" id="Camara.obtener_area_visible-toggle" onclick="return toggle('Camara.obtener_area_visible');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.camara.Camara-class.html#obtener_area_visible">obtener_area_visible</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camara.obtener_area_visible-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camara.obtener_area_visible-expanded"><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-docstring">"""Retorna el area del escenario que est&#225; visible por la c&#225;mara.</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">        Por ejemplo, si la c&#225;mara est&#225; en posici&#243;n inicial, esta</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">        funci&#243;n podr&#237;a retornar:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">            &gt;&gt;&gt; pilas.escena_actual().camara.obtener_area_visible()</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">            (0, 640, 240, -240)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">        y si movemos la c&#225;mara un poco para la derecha:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">            &gt;&gt;&gt; pilas.escena_actual().camara.x = 100</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">            &gt;&gt;&gt; pilas.escena_actual().camara.obtener_area_visible()</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">            (100, 740, 240, -240)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">        Es decir, la tupla representa un rect&#225;ngulo de la forma::</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">            (izquierda, derecha, arriba, abajo)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">        En nuestro caso, el &#250;ltimo ejemplo muestra que cuando</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">        la c&#225;mara se mueve a ``x = 100`` el area de pantalla</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">        visible es ``(izquierda=100, derecha=740, arriba=240, abajo=-240)``.</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-docstring">        &#161; ha quedado invisible todo lo que est&#225; a la izquierda de ``x=100`` !</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-docstring">        Esta funci&#243;n es &#250;til para ``despetar`` actores o simplemente</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">        Si quieres saber si un actor est&#225; fuera de la pantalla hay un</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">        atajo, existe un m&#233;todo llamado ``esta_fuera_de_la_pantalla`` en</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">        los propios actores:</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring">            &gt;&gt;&gt; mi_actor = pilas.actores.Mono(x=0, y=0)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring">            &gt;&gt;&gt; mi_actor.esta_fuera_de_la_pantalla()</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">            False</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">            &gt;&gt;&gt; pilas.escena_actual().camara.x == 900</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring">            &gt;&gt;&gt; mi_actor.esta_fuera_de_la_pantalla()</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">            True</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt id="link-53" class="py-name" targets="Variable pilas.actores.actor.Actor.ancho=pilas.actores.actor.Actor-class.html#ancho,Method pilas.motores.motor_qt.Grilla.ancho()=pilas.motores.motor_qt.Grilla-class.html#ancho,Method pilas.motores.motor_qt.Imagen.ancho()=pilas.motores.motor_qt.Imagen-class.html#ancho,Method pilas.motores.motor_qt.Texto.ancho()=pilas.motores.motor_qt.Texto-class.html#ancho"><a title="pilas.actores.actor.Actor.ancho
+pilas.motores.motor_qt.Grilla.ancho
+pilas.motores.motor_qt.Imagen.ancho
+pilas.motores.motor_qt.Texto.ancho" class="py-name" href="#" onclick="return doclink('link-53', 'ancho', 'link-53');">ancho</a></tt><tt class="py-op">,</tt> <tt id="link-54" class="py-name" targets="Variable pilas.actores.actor.Actor.alto=pilas.actores.actor.Actor-class.html#alto,Method pilas.motores.motor_qt.Grilla.alto()=pilas.motores.motor_qt.Grilla-class.html#alto,Method pilas.motores.motor_qt.Imagen.alto()=pilas.motores.motor_qt.Imagen-class.html#alto,Method pilas.motores.motor_qt.Texto.alto()=pilas.motores.motor_qt.Texto-class.html#alto"><a title="pilas.actores.actor.Actor.alto
+pilas.motores.motor_qt.Grilla.alto
+pilas.motores.motor_qt.Imagen.alto
+pilas.motores.motor_qt.Texto.alto" class="py-name" href="#" onclick="return doclink('link-54', 'alto', 'link-54');">alto</a></tt> <tt class="py-op">=</tt> <tt id="link-55" class="py-name"><a title="pilas" class="py-name" href="#" onclick="return doclink('link-55', 'pilas', 'link-0');">pilas</a></tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="pilas.mundo" class="py-name" href="#" onclick="return doclink('link-56', 'mundo', 'link-14');">mundo</a></tt><tt class="py-op">.</tt><tt class="py-name">motor</tt><tt class="py-op">.</tt><tt id="link-57" class="py-name" targets="Method pilas.motores.motor_qt.Motor.obtener_area()=pilas.motores.motor_qt.Motor-class.html#obtener_area,Function pilas.utils.obtener_area()=pilas.utils-module.html#obtener_area"><a title="pilas.motores.motor_qt.Motor.obtener_area
+pilas.utils.obtener_area" class="py-name" href="#" onclick="return doclink('link-57', 'obtener_area', 'link-57');">obtener_area</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-58', 'x', 'link-7');">x</a></tt> <tt class="py-op">-</tt> <tt id="link-59" class="py-name"><a title="pilas.actores.actor.Actor.ancho
+pilas.motores.motor_qt.Grilla.ancho
+pilas.motores.motor_qt.Imagen.ancho
+pilas.motores.motor_qt.Texto.ancho" class="py-name" href="#" onclick="return doclink('link-59', 'ancho', 'link-53');">ancho</a></tt><tt class="py-op">/</tt><tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-60" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-60', 'x', 'link-7');">x</a></tt> <tt class="py-op">+</tt> <tt id="link-61" class="py-name"><a title="pilas.actores.actor.Actor.ancho
+pilas.motores.motor_qt.Grilla.ancho
+pilas.motores.motor_qt.Imagen.ancho
+pilas.motores.motor_qt.Texto.ancho" class="py-name" href="#" onclick="return doclink('link-61', 'ancho', 'link-53');">ancho</a></tt><tt class="py-op">/</tt><tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-62" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-62', 'y', 'link-9');">y</a></tt> <tt class="py-op">+</tt> <tt id="link-63" class="py-name"><a title="pilas.actores.actor.Actor.alto
+pilas.motores.motor_qt.Grilla.alto
+pilas.motores.motor_qt.Imagen.alto
+pilas.motores.motor_qt.Texto.alto" class="py-name" href="#" onclick="return doclink('link-63', 'alto', 'link-54');">alto</a></tt><tt class="py-op">/</tt><tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-64" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-64', 'y', 'link-9');">y</a></tt> <tt class="py-op">-</tt> <tt id="link-65" class="py-name"><a title="pilas.actores.actor.Actor.alto
+pilas.motores.motor_qt.Grilla.alto
+pilas.motores.motor_qt.Imagen.alto
+pilas.motores.motor_qt.Texto.alto" class="py-name" href="#" onclick="return doclink('link-65', 'alto', 'link-54');">alto</a></tt><tt class="py-op">/</tt><tt class="py-number">2</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="Camara.desplazar"></a><div id="Camara.desplazar-def"><a name="L98"></a><tt class="py-lineno"> 98</tt> <a class="py-toggle" href="#" id="Camara.desplazar-toggle" onclick="return toggle('Camara.desplazar');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pilas.camara.Camara-class.html#desplazar">desplazar</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">posicion</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camara.desplazar-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camara.desplazar-expanded"><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-docstring">"""Mueve la c&#225;mara hacia una posici&#243;n en particular.</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">        :param posicion: La posici&#243;n destino, a donde enfocar.</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt id="link-66" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-66', 'x', 'link-7');">x</a></tt><tt class="py-op">,</tt> <tt id="link-67" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-67', 'y', 'link-9');">y</a></tt> <tt class="py-op">=</tt> <tt class="py-name">posicion</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt id="link-68" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-68', 'x', 'link-7');">x</a></tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-69" class="py-name"><a title="pilas.actores.actor.Actor.x
+pilas.camara.Camara.x
+pilas.demos.piezas.Pieza.x
+pilas.fisica.Figura.x
+pilas.simbolos.x" class="py-name" href="#" onclick="return doclink('link-69', 'x', 'link-7');">x</a></tt><tt class="py-op">,</tt> <tt id="link-70" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-70', 'y', 'link-9');">y</a></tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="pilas.actores.actor.Actor.y
+pilas.camara.Camara.y
+pilas.demos.piezas.Pieza.y
+pilas.fisica.Figura.y
+pilas.simbolos.y" class="py-name" href="#" onclick="return doclink('link-71', 'y', 'link-9');">y</a></tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pilas-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Feb  1 17:31:48 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
