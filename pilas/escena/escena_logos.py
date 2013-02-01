@@ -91,7 +91,7 @@ class Logos(Normal):
         :type sonido: str
 
         """
-        timer = timer if timer is None else self.mostrar_almenos
+        timer = self.mostrar_almenos if timer is None else timer
         self._logos_futuros[imagen] = (timer, sonido)
 
     def iniciar(self):
