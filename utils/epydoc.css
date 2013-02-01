@@ -117,9 +117,10 @@ h1, h2 {
     border-bottom: 1px solid #CCC;
     padding: 10px;
 }
+
 center {
-    display: none;
 }
+
 code {
     font-size: 100%;
 }
