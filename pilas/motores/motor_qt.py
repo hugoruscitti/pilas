@@ -8,8 +8,8 @@
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import Qt
-#from PyQt4.QtOpenGL import QGLWidget
-from PyQt4.QtGui import QWidget as QGLWidget
+from PyQt4.QtOpenGL import QGLWidget
+from PyQt4.QtGui import QWidget
 from pilas import actores, colores, depurador, eventos, fps
 from pilas import imagenes, simbolos, utils
 import copy
@@ -33,7 +33,7 @@ class Ventana(QtGui.QMainWindow):
         self.canvas.resize_to(self.width(), self.height())
 
 
-class CanvasWidget(QGLWidget):
+class CanvasWidgetAbstracto(object):
 
     def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas, permitir_depuracion, rendimiento):
         QGLWidget.__init__(self, None)
@@ -403,6 +403,11 @@ class Imagen(object):
         nombre_imagen = os.path.basename(self.ruta_original)
         return "<Imagen del archivo '%s'>" %(nombre_imagen)
 
+class CanvasOpenGlWidget(CanvasWidgetAbstracto, QGLWidget):
+    pass
+
+class CanvasNormalWidget(CanvasWidgetAbstracto, QWidget):
+    pass
 
 class Grilla(Imagen):
 
@@ -891,7 +896,11 @@ class Motor(object):
             self.ventana.move((resolucion_pantalla.width() - ancho)/2, (resolucion_pantalla.height() - alto)/2)
 
         mostrar_ventana = True
-        self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
+
+        if self.usar_motor == 'qtgl':
+            self.canvas = CanvasOpenGlWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
+        else:
+            self.canvas = CanvasNormalWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
 
         self.ventana.set_canvas(self.canvas)
         self.canvas.setFocus()
