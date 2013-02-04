@@ -18,7 +18,7 @@ class Texto(Actor):
         >>> saludo = pilas.actores.Texto("Hola mundo!")
     """
 
-    def __init__(self, texto="None", x=0, y=0, magnitud=20, vertical=False, fuente=None):
+    def __init__(self, texto="None", x=0, y=0, magnitud=20, vertical=False, fuente=None, fijo=True):
         """Inicializa el actor.
 
         :param texto: Texto a mostrar.
@@ -27,6 +27,7 @@ class Texto(Actor):
         :param magnitud: Tamaño del texto.
         :param vertical: Si el texto será vertical u horizontal, como True o False.
         :param fuente: Nombre de la fuente a utilizar.
+        :param fijo: Determina si el texto se queda fijo aunque se mueva la camara. Por defecto está fijo.
         """
         imagen = pilas.mundo.motor.obtener_texto(texto, magnitud, vertical, fuente)
         self._definir_area_de_texto(texto, magnitud)
@@ -35,7 +36,7 @@ class Texto(Actor):
         self.texto = texto
         self.color = pilas.colores.blanco
         self.centro = ("centro", "centro")
-        self.fijo = True
+        self.fijo = fijo
 
     def obtener_texto(self):
         """Retorna el texto definido."""
