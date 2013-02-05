@@ -409,11 +409,70 @@ def mostrar_mensaje_de_error_y_salir(motivo):
 
 def obtener_archivo_a_ejecutar_desde_argv():
     """Obtiene la ruta del archivo a ejecutar desde la linea de argumentos del programa."""
-    import sys, copy
+    import sys
 
-    argv = copy.copy(sys.argv)
+    argv = sys.argv[:]
 
     if '-i' in argv:
         argv.remove('-i')
 
-    return " ".join(sys.argv[1:])
+    return " ".join(argv[1:])
+
+def procesar_argumentos_desde_command_line():
+    from optparse import OptionParser
+
+    analizador = OptionParser()
+
+    analizador.add_option("-t", "--test", dest="test",
+            action="store_true", default=False,
+            help="Invoca varias pruebas verificar el funcionamiento de pilas")
+
+    analizador.add_option("-v", "--version", dest="version",
+            action="store_true", default=False,
+            help="Consulta la version instalada")
+
+    analizador.add_option("-i", "--interprete", dest="interprete",
+            action="store_true", default=False,
+            help="Abre el interprete interactivo")
+
+    (opciones, argumentos) = analizador.parse_args()
+    return (opciones, argumentos)
+
+
+def iniciar_asistente_desde_argumentos():
+    import sys
+    import mimetypes
+
+    (opciones, argumentos) = procesar_argumentos_desde_command_line()
+
+    if argumentos:
+        archivo_a_ejecutar = obtener_archivo_a_ejecutar_desde_argv()
+
+        if not os.path.exists(archivo_a_ejecutar):
+            mostrar_mensaje_de_error_y_salir("El archivo '%s' no existe o no se puede leer." %(archivo_a_ejecutar))
+
+        if not 'text/x-python' in mimetypes.guess_type(archivo_a_ejecutar):
+            mostrar_mensaje_de_error_y_salir("El archivo '%s' no parece un script python. Intenta con un archivo .py" %(archivo_a_ejecutar))
+
+        ## Intenta ejecutar el script como un programa de pilas.
+        try:
+            directorio_juego = os.path.dirname(archivo_a_ejecutar)
+
+            if directorio_juego:
+                os.chdir(directorio_juego)
+
+            sys.exit(execfile(archivo_a_ejecutar))
+        except Exception, e:
+            mostrar_mensaje_de_error_y_salir(str(e))
+
+    if opciones.test:
+        realizar_pruebas()
+    elif opciones.interprete:
+        import pilas
+        pilas.abrir_interprete(do_raise=True, con_aplicacion=True)
+    elif opciones.version:
+        from pilas import pilasversion
+        print pilasversion.VERSION
+    else:
+        import pilas
+        pilas.abrir_asistente()
