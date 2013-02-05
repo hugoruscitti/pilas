@@ -286,8 +286,8 @@ def realizar_pruebas():
     print ""
 
     print "Box 2D:",
-
-    if pilas.fisica.obtener_version().startswith("2.1"):
+    ver = pilas.fisica.obtener_version_en_tupla()
+    if ver[0] == 2 and ver[1] >= 1:
         print "OK, versión", pilas.fisica.obtener_version()
     else:
         print "Error -> la versión está obsoleta, instale una versión de la serie 2.1"

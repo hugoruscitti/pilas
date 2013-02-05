@@ -52,6 +52,9 @@ def obtener_version():
     """Obtiene la versión de la biblioteca Box2D"""
     return box2d.__version__
 
+def obtener_version_en_tupla():
+    """Obtiene la versión de la biblioteca Box2D"""
+    return box2d.__version_info__
 
 class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca Box2D (version 2.1)."""
