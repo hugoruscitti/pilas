@@ -8,8 +8,8 @@
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import Qt
-#from PyQt4.QtOpenGL import QGLWidget
-from PyQt4.QtGui import QWidget as QGLWidget
+from PyQt4.QtOpenGL import QGLWidget
+from PyQt4.QtGui import QWidget
 from pilas import actores, colores, depurador, eventos, fps
 from pilas import imagenes, simbolos, utils
 import copy
@@ -33,7 +33,7 @@ class Ventana(QtGui.QMainWindow):
         self.canvas.resize_to(self.width(), self.height())
 
 
-class CanvasWidget(QGLWidget):
+class CanvasWidgetAbstracto(object):
 
     def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas, permitir_depuracion, rendimiento):
         QGLWidget.__init__(self, None)
@@ -141,8 +141,6 @@ class CanvasWidget(QGLWidget):
         escala = self.escala
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
 
-        dx, dy = x - self.mouse_x, y - self.mouse_y
-
         izquierda, derecha, arriba, abajo = utils.obtener_bordes()
 
         #x = max(min(derecha, x), izquierda)
@@ -150,6 +148,8 @@ class CanvasWidget(QGLWidget):
 
         x += pilas.mundo.motor.camara_x
         y += pilas.mundo.motor.camara_y
+
+        dx, dy = x - self.mouse_x, y - self.mouse_y
 
         self.gestor_escenas.escena_actual().mueve_mouse.emitir(x=x, y=y, dx=dx, dy=dy)
 
@@ -285,14 +285,6 @@ class CanvasWidget(QGLWidget):
         else:
             self.pantalla_completa()
 
-class CanvasWidgetSugar(CanvasWidget):
-
-    def _iniciar_aplicacion(self):
-        self.app = None
-
-    def ejecutar_bucle_principal(self, mundo, ignorar_errores):
-        pass
-
 class BaseActor(object):
 
     def __init__(self):
@@ -411,6 +403,11 @@ class Imagen(object):
         nombre_imagen = os.path.basename(self.ruta_original)
         return "<Imagen del archivo '%s'>" %(nombre_imagen)
 
+class CanvasOpenGlWidget(CanvasWidgetAbstracto, QGLWidget):
+    pass
+
+class CanvasNormalWidget(CanvasWidgetAbstracto, QWidget):
+    pass
 
 class Grilla(Imagen):
 
@@ -724,12 +721,8 @@ class Actor(BaseActor):
         if self._espejado:
             escala_x *= -1
 
-        if not self.fijo:
-            x = self.x - pilas.mundo.motor.camara_x
-            y = self.y - pilas.mundo.motor.camara_y
-        else:
-            x = self.x
-            y = self.y
+        x = self.x - pilas.mundo.motor.camara_x
+        y = self.y - pilas.mundo.motor.camara_y
 
         self.imagen.dibujar(painter, x, y, self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion, self._transparencia)
@@ -851,8 +844,7 @@ class Motor(object):
     """
 
     def __init__(self, usar_motor, permitir_depuracion, audio):
-        if usar_motor not in ['qtwidget', 'qtsugar']:
-            self._iniciar_aplicacion()
+        self._iniciar_aplicacion()
 
         self.usar_motor = usar_motor
 
@@ -906,16 +898,20 @@ class Motor(object):
     def terminar(self):
         self.ventana.close()
 
-    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas, rendimiento):
+    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas, rendimiento, centrado):
         self.ventana = Ventana()
         self.ventana.resize(ancho, alto)
 
-        if self.usar_motor in ['qtwidget', 'qtsugar']:
-            mostrar_ventana = False
-            self.canvas = CanvasWidgetSugar(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
+        if centrado:
+            resolucion_pantalla = QtGui.QDesktopWidget().screenGeometry()
+            self.ventana.move((resolucion_pantalla.width() - ancho)/2, (resolucion_pantalla.height() - alto)/2)
+
+        mostrar_ventana = True
+
+        if self.usar_motor == 'qtgl':
+            self.canvas = CanvasOpenGlWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
         else:
-            mostrar_ventana = True
-            self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
+            self.canvas = CanvasNormalWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
 
         self.ventana.set_canvas(self.canvas)
         self.canvas.setFocus()
