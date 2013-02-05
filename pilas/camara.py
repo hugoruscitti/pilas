@@ -32,7 +32,7 @@ class Camara(object):
 
         for actor in pilas.escena_actual().actores:
             if actor.fijo:
-                actor.x = actor.x - x
+                actor.x = actor.x + x
 
         pilas.mundo.motor.definir_centro_de_la_camara(x, self.y)
 
@@ -51,7 +51,7 @@ class Camara(object):
 
         for actor in pilas.escena_actual().actores:
             if actor.fijo:
-                actor.y = actor.y - y
+                actor.y = actor.y + y
 
         pilas.mundo.motor.definir_centro_de_la_camara(self.x, y)
 
