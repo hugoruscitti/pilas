@@ -736,7 +736,7 @@ class SonidoDeshabilitado:
     def __init__(self, player, ruta):
         pass
 
-    def reproducir(self):
+    def reproducir(self, repetir=False):
         pass
 
     def detener(self):
@@ -761,16 +761,32 @@ class SonidoGST:
     def __init__(self, player, ruta):
         self.ruta = ruta
         self.sonido = player
-        self.sonido.set_property('uri','file://'+ruta)
+        self.sonido.set_property('uri', 'file://{}'.format(self.ruta))
+        self._repetir = None
 
-    def reproducir(self):
+    def _play(self):
         import gst
+        self.sonido.set_state(gst.STATE_NULL)
+        self.sonido.set_state(gst.STATE_PLAYING)
+
+    def reproducir(self, repetir=False):
+        import gst
+        import pilas
         if not self.deshabilitado:
-            self.sonido.set_state(gst.STATE_NULL)
-            self.sonido.set_state(gst.STATE_PLAYING)
+            self.detener()
+            self._play()
+            if repetir:
+                self.sonido.get_state()
+                nanosecs = float(self.sonido.query_duration(gst.FORMAT_TIME)[0])
+                duracion =  (nanosecs + 10) / gst.SECOND
+                self._repetir = pilas.mundo.agregar_tarea_siempre(duracion,
+                                                                  self._play)
 
     def detener(self):
         import gst
+        if self._repetir:
+            self._repetir.terminar()
+            self._repetir = None
         self.sonido.set_state(gst.STATE_NULL)
 
 
@@ -792,10 +808,25 @@ class SonidoPhonon:
         self.source = phonon.Phonon.MediaSource(ruta)
         self.sonido = phonon.Phonon.createPlayer(phonon.Phonon.GameCategory, self.source)
 
-    def reproducir(self):
+    def _play(self):
         if not self.deshabilitado:
             self.sonido.seek(0)
             self.sonido.play()
+
+    def reproducir(self, repetir=False):
+        if not self.deshabilitado:
+            if repetir:
+                try:
+                    self.sonido.finished.disconnect(self._play)
+                except TypeError:
+                    pass
+                self.sonido.finished.connect(self._play)
+            else:
+                try:
+                    self.sonido.finished.disconnect(self._play)
+                except TypeError:
+                    pass
+            self._play()
 
     def detener(self):
         "Detiene el audio."
@@ -876,7 +907,7 @@ class Motor(object):
             self.clase_musica = MusicaPhonon
         elif audio == 'gst':
             import gst
-            self.player = gst.element_factory_make("playbin", "player")
+            self.player = gst.element_factory_make("playbin2", "player")
             self.clase_sonido = SonidoGST
             self.clase_musica = MusicaGST
 

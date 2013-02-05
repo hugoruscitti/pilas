@@ -22,7 +22,7 @@ def cargar(ruta):
     En caso de éxito retorna el objeto Sound, que se puede
     reproducir usando el método ``reproducir()``, por ejemplo::
 
-        risa.reproducir()
+        risa.reproducir(repetir=True)
 
     El directorio de búsqueda del sonido sigue el siguiente orden:
 
