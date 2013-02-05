@@ -141,8 +141,6 @@ class CanvasWidgetAbstracto(object):
         escala = self.escala
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
 
-        dx, dy = x - self.mouse_x, y - self.mouse_y
-
         izquierda, derecha, arriba, abajo = utils.obtener_bordes()
 
         #x = max(min(derecha, x), izquierda)
@@ -150,6 +148,8 @@ class CanvasWidgetAbstracto(object):
 
         x += pilas.mundo.motor.camara_x
         y += pilas.mundo.motor.camara_y
+
+        dx, dy = x - self.mouse_x, y - self.mouse_y
 
         self.gestor_escenas.escena_actual().mueve_mouse.emitir(x=x, y=y, dx=dx, dy=dy)
 
@@ -721,12 +721,8 @@ class Actor(BaseActor):
         if self._espejado:
             escala_x *= -1
 
-        if not self.fijo:
-            x = self.x - pilas.mundo.motor.camara_x
-            y = self.y - pilas.mundo.motor.camara_y
-        else:
-            x = self.x
-            y = self.y
+        x = self.x - pilas.mundo.motor.camara_x
+        y = self.y - pilas.mundo.motor.camara_y
 
         self.imagen.dibujar(painter, x, y, self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion, self._transparencia)

@@ -29,6 +29,11 @@ class Camara(object):
         :param x: Posición horizontal.
         """
         pilas.escena_actual().mueve_camara.emitir(x=x, y=self.y, dx=x-self.x, dy=0)
+
+        for actor in pilas.escena_actual().actores:
+            if actor.fijo:
+                actor.x = actor.x - x
+
         pilas.mundo.motor.definir_centro_de_la_camara(x, self.y)
 
     def _get_x(self):
@@ -43,6 +48,11 @@ class Camara(object):
         :param y: Posición vertical.
         """
         pilas.escena_actual().mueve_camara.emitir(x=self.x, y=y, dx=0, dy=y-self.y)
+
+        for actor in pilas.escena_actual().actores:
+            if actor.fijo:
+                actor.y = actor.y - y
+
         pilas.mundo.motor.definir_centro_de_la_camara(self.x, y)
 
     def _get_y(self):
