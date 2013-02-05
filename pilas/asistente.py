@@ -20,6 +20,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
     def setupUi(self, main):
         self.main = main
         Ui_AsistenteWindow.setupUi(self, main)
+        main.resize(550, 342)
 
         self.webView.setAcceptDrops(False)
         self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)

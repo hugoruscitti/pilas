@@ -66,7 +66,6 @@ div.version {
 }
 
 div.tip {
-    margin-top: 5em;
     font-size: small; 
     color: gray;
 }
@@ -91,3 +90,30 @@ span.progresando {
     display: none;
 }
 
+.un_container {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+div.fila {
+    display: block;
+    max-width: 500px;
+    clear: both;
+    margin: auto;
+}
+
+
+
+
+
+
+html, body {height: 100%; padding-left: 1em; padding-right: 1em}
+
+#wrap {min-height: 100%;}
+
+#main {overflow:auto;
+	padding-bottom: 130;}  /* must be same height as the footer */
+
+#footer {position: relative;
+	margin-top: -130px; /* negative value of footer height */
+	height: 130px;

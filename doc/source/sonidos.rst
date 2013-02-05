@@ -1,5 +1,8 @@
-Cargar sonidos
-==============
+Cargar sonidos y música
+=======================
+
+Si bien a continuación ejemplificamos todo con el modulo ``pilas.sonidos``
+todos los ejemplos funcionan para el modulo ``pilas.musica``
 
 Los sonidos se pueden cargar usando el módulo
 ``sonidos`` de la siguiente manera:
@@ -12,7 +15,7 @@ donde ``explosion.wav`` es el nombre del archivo de audio.
 
 Ten en cuenta que esta función para cargar sonidos
 se comporta muy parecido a la función que nos permite
-cargar imagenes o grillas. El archivo se buscará en
+cargar imágenes o grillas. El archivo se buscará en
 el directorio principal de nuestro juego, luego en el
 directorio ``data`` y por último en la biblioteca de
 sonidos que trae pilas.
@@ -31,3 +34,11 @@ que llamar al método ``reproducir``:
 .. code-block:: python
 
     sonido_de_explosion.reproducir()
+
+
+Si deseas que un sonido se repita indefinidamente debes utilizar el parámetro
+*repetir=True*. Por ejemplo:
+
+.. code-block:: python
+
+    sonido_de_explosion.reproducir(repetir=True)

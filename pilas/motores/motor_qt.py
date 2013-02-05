@@ -8,8 +8,8 @@
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import Qt
-#from PyQt4.QtOpenGL import QGLWidget
-from PyQt4.QtGui import QWidget as QGLWidget
+from PyQt4.QtOpenGL import QGLWidget
+from PyQt4.QtGui import QWidget
 from pilas import actores, colores, depurador, eventos, fps
 from pilas import imagenes, simbolos, utils
 import copy
@@ -33,7 +33,7 @@ class Ventana(QtGui.QMainWindow):
         self.canvas.resize_to(self.width(), self.height())
 
 
-class CanvasWidget(QGLWidget):
+class CanvasWidgetAbstracto(object):
 
     def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas, permitir_depuracion, rendimiento):
         QGLWidget.__init__(self, None)
@@ -403,6 +403,11 @@ class Imagen(object):
         nombre_imagen = os.path.basename(self.ruta_original)
         return "<Imagen del archivo '%s'>" %(nombre_imagen)
 
+class CanvasOpenGlWidget(CanvasWidgetAbstracto, QGLWidget):
+    pass
+
+class CanvasNormalWidget(CanvasWidgetAbstracto, QWidget):
+    pass
 
 class Grilla(Imagen):
 
@@ -731,7 +736,7 @@ class SonidoDeshabilitado:
     def __init__(self, player, ruta):
         pass
 
-    def reproducir(self):
+    def reproducir(self, repetir=False):
         pass
 
     def detener(self):
@@ -756,16 +761,32 @@ class SonidoGST:
     def __init__(self, player, ruta):
         self.ruta = ruta
         self.sonido = player
-        self.sonido.set_property('uri','file://'+ruta)
+        self.sonido.set_property('uri', 'file://{}'.format(self.ruta))
+        self._repetir = None
 
-    def reproducir(self):
+    def _play(self):
         import gst
+        self.sonido.set_state(gst.STATE_NULL)
+        self.sonido.set_state(gst.STATE_PLAYING)
+
+    def reproducir(self, repetir=False):
+        import gst
+        import pilas
         if not self.deshabilitado:
-            self.sonido.set_state(gst.STATE_NULL)
-            self.sonido.set_state(gst.STATE_PLAYING)
+            self.detener()
+            self._play()
+            if repetir:
+                self.sonido.get_state()
+                nanosecs = float(self.sonido.query_duration(gst.FORMAT_TIME)[0])
+                duracion =  (nanosecs + 10) / gst.SECOND
+                self._repetir = pilas.mundo.agregar_tarea_siempre(duracion,
+                                                                  self._play)
 
     def detener(self):
         import gst
+        if self._repetir:
+            self._repetir.terminar()
+            self._repetir = None
         self.sonido.set_state(gst.STATE_NULL)
 
 
@@ -787,10 +808,25 @@ class SonidoPhonon:
         self.source = phonon.Phonon.MediaSource(ruta)
         self.sonido = phonon.Phonon.createPlayer(phonon.Phonon.GameCategory, self.source)
 
-    def reproducir(self):
+    def _play(self):
         if not self.deshabilitado:
             self.sonido.seek(0)
             self.sonido.play()
+
+    def reproducir(self, repetir=False):
+        if not self.deshabilitado:
+            if repetir:
+                try:
+                    self.sonido.finished.disconnect(self._play)
+                except TypeError:
+                    pass
+                self.sonido.finished.connect(self._play)
+            else:
+                try:
+                    self.sonido.finished.disconnect(self._play)
+                except TypeError:
+                    pass
+            self._play()
 
     def detener(self):
         "Detiene el audio."
@@ -871,7 +907,7 @@ class Motor(object):
             self.clase_musica = MusicaPhonon
         elif audio == 'gst':
             import gst
-            self.player = gst.element_factory_make("playbin", "player")
+            self.player = gst.element_factory_make("playbin2", "player")
             self.clase_sonido = SonidoGST
             self.clase_musica = MusicaGST
 
@@ -887,7 +923,11 @@ class Motor(object):
             self.ventana.move((resolucion_pantalla.width() - ancho)/2, (resolucion_pantalla.height() - alto)/2)
 
         mostrar_ventana = True
-        self.canvas = CanvasWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
+
+        if self.usar_motor == 'qtgl':
+            self.canvas = CanvasOpenGlWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
+        else:
+            self.canvas = CanvasNormalWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
 
         self.ventana.set_canvas(self.canvas)
         self.canvas.setFocus()
