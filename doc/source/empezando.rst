@@ -72,6 +72,10 @@ Para agilizar el desarrollo de juegos se incluyen varios
 actores dentro del motor, uno de ellos es ``Mono``, un
 simpático chimpancé.
 
+.. note::
+    Puedes ver todos los actores disponibles en :mod:`pilas`
+    ejecutando ``pilas.actores.listar_actores``.
+
 Tenemos al actor ``mono``. Para indicarle
 acciones solo tenemos que utilizar su nombre y sentencias
 simples.
@@ -113,7 +117,7 @@ personaje de comic:
 A partir de ahora, comenzaremos a escribir algunos
 ejemplos. Ten en cuenta que no es necesario que
 escribas todo el código de los ejemplos, el intérprete de pilas
-te permite autocompletar sentencias mientras escribes. 
+te permite autocompletar sentencias mientras escribes.
 
 Cosas en común para los actores
 -------------------------------

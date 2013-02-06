@@ -26,4 +26,5 @@ y conocer las posibilidades que ofrece.
              Banana, Texto, Temporizador, Moneda, Pizarra, Pelota, Puntaje,
              Estrella, Caja, Nave, Disparo, CursorDisparo, Piedra, Menu,
              Opcion, Tortuga, Mapa, Martian, Boton, EntradaDeTexto, Aceituna,
-             Globo, Dialogo, GloboElegir, Pausa, CursorMano, Pacman, Ovni
+             Globo, Dialogo, GloboElegir, Pausa, CursorMano, Pacman, Ovni,
+             listar_actores
