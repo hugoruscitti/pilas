@@ -74,7 +74,7 @@ simpático chimpancé.
 
 .. note::
     Puedes ver todos los actores disponibles en :mod:`pilas`
-    ejecutando ``pilas.actores.listar_actores``.
+    ejecutando ``pilas.actores.listar_actores()``.
 
 Tenemos al actor ``mono``. Para indicarle
 acciones solo tenemos que utilizar su nombre y sentencias
