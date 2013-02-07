@@ -52,7 +52,7 @@ pantalla colorido y mas divertido:
 
 .. image:: images/paisaje.jpg
 
-o podrías usar un fondo de atardecer: 
+o podrías usar un fondo de atardecer:
 
 .. code-block:: python
 
@@ -80,7 +80,7 @@ así:
 
         def __init__(self):
             pilas.escena.Normal.__init__(self)
-        
+
         def iniciar(self):
             pilas.fondos.Pasto()
             texto = pilas.actores.Texto("Bienvenido a pilas!!!")
@@ -105,8 +105,8 @@ que hacer un objeto de otra clase que represente otra escena y llamar a uno de
 estos tres metodos:
 
 - pilas.cambiar_escena(mi_escena)
-
 - pilas.almacenar_escena(mi_escena)
+- pilas.recuperar_escena()
 
 
 Método sobreescribibles
@@ -120,9 +120,9 @@ Dentro de cada escena existen 2 métodos que pueden ser sobreescritos.
         pass
 
     def reanudar(self):
-        pass       
-        
-Si quieres tener el control de cuando una escena se queda apilada, deberás 
+        pass
+
+Si quieres tener el control de cuando una escena se queda apilada, deberás
 sobreescritir el método:
 
 .. code-block:: python
@@ -130,7 +130,7 @@ sobreescritir el método:
     def pausar(self):
         pass
 
-Si quieres sabes cuando una escena apilada vuelve a ser la escena activa, 
+Si quieres sabes cuando una escena apilada vuelve a ser la escena activa,
 deberás sobreescribir el método:
 
 .. code-block:: python

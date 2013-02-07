@@ -4,12 +4,12 @@
         "width": "29.70cm",
         "height": "21.00cm",
 
-        "margin-top": "1cm", 
-        "margin-bottom": "1cm", 
-        "margin-left": "1cm", 
-        "margin-right": "1cm", 
-        "spacing-header": "5mm", 
-        "spacing-footer": "5mm", 
+        "margin-top": "0.5cm",
+        "margin-bottom": "0.5cm",
+        "margin-left": "0.5cm",
+        "margin-right": "0.5cm",
+        "spacing-header": "5mm",
+        "spacing-footer": "5mm",
         "margin-gutter": "0cm",
 
         "firstTemplate": "Columns"
@@ -26,41 +26,34 @@
         "stdSerif": "Times-Roman"
     },
 
-  "pageTemplates" : {
-    "Columns": {
-        "frames": [
-            ["0cm", "0cm",  "9cm", "100%"],
-            ["9cm", "0cm",  "9cm", "100%"],
-            ["18cm", "0cm", "9cm", "100%"]
-        ]
-    }
-  }
-,
-
-
+    "pageTemplates" : {
+        "Columns": {
+            "frames": [
+                ["0cm", "0cm",  "9cm", "100%"],
+                ["9cm", "0cm",  "9cm", "100%"],
+                ["18cm", "0cm", "9cm", "100%"]
+            ]
+        }
+    },
 
     "styles" : [
         ["normal" , {
-        "fontSize": 8
+            "fontSize": 8
         }],
 
-
         ["code" , {
-      "parent": "literal",
-      "fontSize": 8,
-      "leftIndent": 0,
-      "spaceBefore": 8,
-      "spaceAfter": 8,
-      "backColor": "beige",
-      "borderColor": "gray",
-      "backColor": "white",
-      "borderWidth": 0.5,
-      "borderRadius": 4,
-      "borderPadding": 6
+            "parent": "literal",
+            "fontSize": 8,
+            "leftIndent": 0,
+            "spaceBefore": 8,
+            "spaceAfter": 8,
+            "backColor": "#e1eabd",
+            "borderColor": "gray",
+            "borderWidth": 0.5,
+            "borderRadius": 4,
+            "borderPadding": 6
         }]
     ]
-
-
 
 }
 

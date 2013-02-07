@@ -8,6 +8,7 @@
 
 
 import math
+import inspect
 
 import pilas
 import utils
@@ -84,3 +85,12 @@ from proyectil import Dinamita
 from proyectil import EstrellaNinja
 from torreta import Torreta
 from ovni import Ovni
+
+
+def listar_actores():
+    """Devuelve una lista con todos los actores disponibles para crear en pilas
+
+    """
+    return [k for k, v in vars(pilas.actores).items()
+             if inspect.isclass(v) and issubclass(v, Actor)]
+
