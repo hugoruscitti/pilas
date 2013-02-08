@@ -480,3 +480,9 @@ img.debajo {
     z-index: -200;
 }
 
+
+
+div.cuenta {
+    width: 50%;
+    margin: auto;
+}

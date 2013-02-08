@@ -34,5 +34,19 @@ title: Donaciones
 </div>
 
 
+<p>También puedes hacer una donación en efectivo (del monto que puedas) haciendo un
+depósito en la siguiente cuenta bancaria:
 
-<p class="center">El equipo de pilas-engine agradece mucho tu colaboración. :)</p>
+
+<p class="center">
+<div class='cuenta'>
+<small>Banco:</small> Banco Credicoop<br/>
+<small>Titular: </small> Hugo Luis Ruscitti<br/>
+<small>Cuenta corriente:</small> 342/?????/1<br/>
+<small>CBU:</small> ????? ???????<br/>
+<small>CUIT:</small> ?? - 30428502 - ?<br/>
+</div>
+</p>
+
+
+<p>El equipo de pilas-engine agradece mucho tu colaboración. :)</p>
