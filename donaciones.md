@@ -48,5 +48,11 @@ depósito en la siguiente cuenta bancaria:
 </div>
 </p>
 
+<p>o bien, mediante gittips:
+
+<iframe style="border: 0; margin: 0; padding: 0;"
+        src="https://www.gittip.com/hugoruscitti/widget.html"
+        width="48pt" height="22pt"></iframe>
+
 
 <p>El equipo de pilas-engine agradece mucho tu colaboración. :)</p>
