@@ -721,8 +721,15 @@ class Actor(BaseActor):
         if self._espejado:
             escala_x *= -1
 
-        x = self.x - pilas.mundo.motor.camara_x
-        y = self.y - pilas.mundo.motor.camara_y
+        if not self.fijo:
+            dx = pilas.mundo.motor.camara_x
+            dy = pilas.mundo.motor.camara_y
+        else:
+            dx = 0
+            dy = 0
+
+        x = self.x - dx
+        y = self.y - dy
 
         self.imagen.dibujar(painter, x, y, self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion, self._transparencia)
