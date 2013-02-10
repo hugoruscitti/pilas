@@ -1,5 +1,14 @@
 #!/usr/bin/python
 # -*- encoding: utf-8
+import sys
+sys.path.append('..')
+
+import pilas
+pilas.utils.iniciar_asistente_desde_argumentos()
+
+"""
+#!/usr/bin/python
+# -*- encoding: utf-8
 #
 # Este script permite crear una aplicación para Mac OS X con
 # el siguiente comando:
@@ -42,3 +51,4 @@ if opciones.interprete or '-i' in sys.argv:
     pilas.abrir_interprete(do_raise=True)
 else:
     pilas.abrir_asistente()
+"""
