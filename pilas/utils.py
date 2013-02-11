@@ -445,15 +445,23 @@ def iniciar_asistente_desde_argumentos():
     (opciones, argumentos) = procesar_argumentos_desde_command_line()
 
     if argumentos:
+        alert("tiene argumentos")
+        alert(str(argumentos))
 
         if opciones.interprete:
+            alert("iniciando interprete.")
             import pilas
             pilas.abrir_interprete(do_raise=True, con_aplicacion=True)
+            alert("saliendo del interprete.")
             return
 
         archivo_a_ejecutar = obtener_archivo_a_ejecutar_desde_argv()
 
+        alert("El archivo a ejecutar es:")
+        alert(str(archivo_a_ejecutar))
+
         if not os.path.exists(archivo_a_ejecutar):
+            alert("hay un error!!!")
             mostrar_mensaje_de_error_y_salir("El archivo '%s' no existe o no se puede leer." %(archivo_a_ejecutar))
 
         if not 'text/x-python' in mimetypes.guess_type(archivo_a_ejecutar):
@@ -468,9 +476,9 @@ def iniciar_asistente_desde_argumentos():
 
             sys.exit(execfile(archivo_a_ejecutar))
         except Exception, e:
-            mostrar_mensaje_de_error_y_salir(str(e))
-
-        return
+            alert("un error antes de salir.")
+            mostrar_mensaje_de_error_y_salir(e.__class__.name + ": " + e.message)
+            return
 
     if opciones.test:
         realizar_pruebas()
@@ -481,5 +489,16 @@ def iniciar_asistente_desde_argumentos():
         from pilas import pilasversion
         print pilasversion.VERSION
     else:
+        alert("sasadspasasdapsd")
         import pilas
         pilas.abrir_asistente()
+
+
+def alert(texto):
+    from PyQt4 import QtGui
+    app = QtGui.QApplication(sys.argv[:1])
+    app.setApplicationName("pilas-engine error")
+    main_window = QtGui.QMainWindow()
+    #main_window.show()
+    main_window.raise_()
+    QtGui.QMessageBox.critical(main_window, "Error", texto)
