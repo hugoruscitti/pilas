@@ -445,6 +445,12 @@ def iniciar_asistente_desde_argumentos():
     (opciones, argumentos) = procesar_argumentos_desde_command_line()
 
     if argumentos:
+
+        if opciones.interprete:
+            import pilas
+            pilas.abrir_interprete(do_raise=True, con_aplicacion=True)
+            return
+
         archivo_a_ejecutar = obtener_archivo_a_ejecutar_desde_argv()
 
         if not os.path.exists(archivo_a_ejecutar):
