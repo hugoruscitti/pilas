@@ -168,7 +168,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self._ejecutar_comando(comando)
 
     def ejecutar_script(self, nombre_archivo_script):
-        comando = " ".join([sys.executable, sys.argv[0], '-i', str(nombre_archivo_script)])
+        comando = " ".join([sys.executable, sys.argv[0], str(nombre_archivo_script)])
         self._ejecutar_comando(comando)
 
     def _ejecutar_comando(self, comando):

@@ -13,6 +13,8 @@ import subprocess
 import math
 import uuid
 import pilas
+import mimetypes
+
 
 
 PATH = os.path.dirname(os.path.abspath(__file__))
@@ -440,9 +442,6 @@ def procesar_argumentos_desde_command_line():
 
 
 def iniciar_asistente_desde_argumentos():
-    import sys
-    import mimetypes
-
     (opciones, argumentos) = procesar_argumentos_desde_command_line()
 
     if argumentos:
@@ -464,6 +463,8 @@ def iniciar_asistente_desde_argumentos():
             sys.exit(execfile(archivo_a_ejecutar))
         except Exception, e:
             mostrar_mensaje_de_error_y_salir(str(e))
+
+        return
 
     if opciones.test:
         realizar_pruebas()
