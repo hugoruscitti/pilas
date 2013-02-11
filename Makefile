@@ -1,10 +1,15 @@
+VERSION=0.57
+
+
 all:
 	@echo "Por favor especifica el comando de make:"
 	@echo ""
-	@echo "test \t Ejecuta todas las pruebas unitarias con nosetest."
-	@echo "html \t Genera toda la documentacion en formato HTML."
-	@echo "api \t Genera la referencia de clases, metodos y funciones."
-	@echo "mac \t Genera el paquete de aplicacion para MacOSX."
+	@echo "  test \t Ejecuta todas las pruebas unitarias con nosetest."
+	@echo "  html \t Genera toda la documentacion en formato HTML."
+	@echo "  api \t Genera la referencia de clases, metodos y funciones."
+	@echo "  mac \t Genera el paquete de aplicacion para MacOSX."
+	@echo "  ubuntu \t Genera el paquete de aplicacion para Ubuntu GNU/Linux."
+	@echo ""
 
 
 test:
@@ -30,7 +35,12 @@ mac:
 	rm -r -f dist build; python setup-mac.py py2app;
 	rm dist/pilas-engine.app/Contents/Resources/qt.conf
 	macdeployqt dist/pilas-engine.app
-	hdiutil create pilas-engine-0.72.dmg -srcfolder ./dist/pilas-engine.app
+	hdiutil create pilas-engine-${VERSION}.dmg -srcfolder ./dist/pilas-engine.app
 	@echo ""
 	@echo "Para probar el programa generado ejecuta o utiliza el dmg:"
 	@echo "  ./dist/pilas-engine.app/Contents/MacOS/pilas-engine"
+
+ubuntu:
+	@echo "Limpiando los paquetes de pilas .deb antiguos"
+	rm -rf utils/paquete-ubuntu/*.deb
+	cd utils/paquete-ubuntu/; sh generar_paquete.sh ${VERSION}; mv *.deb ../../

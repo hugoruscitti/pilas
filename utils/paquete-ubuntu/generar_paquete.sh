@@ -1,8 +1,9 @@
 #!/bin/bash
 
-VERSION='0.72'
 
-echo "Creando o reiniciando el directorio 'resultado'"
+VERSION=$1
+
+echo "Creando o reiniciando el directorio 'resultado' para la version ${VERSION}"
 rm -r -f resultado
 mkdir resultado
 cd resultado
