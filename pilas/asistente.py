@@ -166,7 +166,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         if sys.platform == "win32":
             self._ejecutar_comando(sys.executable, ['-i'], '.')
         else:
-            self._ejecutar_comando(sys.executable, sys.argv + ['-i'], '.')
+            self._ejecutar_comando(sys.executable, [sys.argv[0], '-i'], '.')
 
     def ejecutar_script(self, nombre_archivo_script, directorio_trabajo):
         self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)

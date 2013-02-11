@@ -495,9 +495,4 @@ def iniciar_asistente_desde_argumentos():
 
 
 def alert(texto):
-    from PyQt4 import QtGui
-    app = QtGui.QApplication(sys.argv[:1])
-    app.setApplicationName("pilas-engine error")
-    main_window = QtGui.QMainWindow()
-    main_window.raise_()
-    QtGui.QMessageBox.critical(main_window, "Error", texto)
+    print "ALERT", texto
