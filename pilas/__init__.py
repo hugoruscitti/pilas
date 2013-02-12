@@ -15,7 +15,6 @@ from mundo import Mundo
 import actores
 import grupo
 import escena
-import escenas
 import fondos
 import habilidades
 import sonidos
@@ -46,7 +45,7 @@ para iniciar y ejecutar la biblioteca.
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False,
-            permitir_depuracion=True, audio='phonon'):
+            permitir_depuracion=True, audio='phonon', centrado=True):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -67,7 +66,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :gravedad: el vector de aceleracion para la simulacion de fisica.
     :pantalla_completa: si debe usar pantalla completa o no.
     :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12
-
+    :centrado: Indica si se desea centrar la ventana de pilas.
     """
 
     global mundo
@@ -76,7 +75,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
         motor = _crear_motor(usar_motor, permitir_depuracion, audio)
 
         if motor:
-            mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa)
+            mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa, centrado)
             mundo.gestor_escenas.cambiar_escena(Normal())
 
             if _usa_interprete_lanas():
@@ -199,7 +198,7 @@ def abrir_cargador():
 
     return []
 
-def abrir_interprete(parent=None, do_raise=False):
+def abrir_interprete(parent=None, do_raise=False, con_aplicacion=False):
     """Abre un intérprete interactivo de python con una ventana.
 
     Esta función se ejecuta cuando un usuario escribe::
@@ -208,6 +207,11 @@ def abrir_interprete(parent=None, do_raise=False):
 
     en una consola del sistema.
     """
+    if con_aplicacion:
+        from PyQt4 import QtGui
+        app = QtGui.QApplication(sys.argv)
+        app.setApplicationName("pilas-engine")
+
     interprete.main(parent, do_raise)
 
 def log(*parametros):

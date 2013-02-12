@@ -203,6 +203,12 @@ class ModoDepurador(object):
     def sale_del_modo(self):
         pass
 
+    def _obtener_posicion_relativa_a_camara(self, actor):
+        if actor.fijo:
+            return (actor.x, actor.y)
+        else:
+            return (actor.x - pilas.escena_actual().camara.x, actor.y - pilas.escena_actual().camara.y)
+
 class ModoWidgetLog(ModoDepurador):
     tecla = "F5"
 
@@ -243,14 +249,16 @@ class ModoPuntosDeControl(ModoDepurador):
     tecla = "F8"
 
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
-        lienzo.cruz(painter, actor.x - pilas.escena_actual().camara.x, actor.y - pilas.escena_actual().camara.y, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
+        x, y = self._obtener_posicion_relativa_a_camara(actor)
+        lienzo.cruz(painter, x, y, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
 
 
 class ModoRadiosDeColision(ModoDepurador):
     tecla = "F9"
 
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
-        lienzo.circulo(painter, actor.x - pilas.escena_actual().camara.x, actor.y - pilas.escena_actual().camara.y, actor.radio_de_colision, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
+        x, y = self._obtener_posicion_relativa_a_camara(actor)
+        lienzo.circulo(painter, x, y, actor.radio_de_colision, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
 
 
 class ModoArea(ModoDepurador):
@@ -258,7 +266,8 @@ class ModoArea(ModoDepurador):
 
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         dx, dy = actor.centro
-        lienzo.rectangulo(painter, actor.x - dx - pilas.escena_actual().camara.x, actor.y + dy - pilas.escena_actual().camara.y, actor.ancho, actor.alto, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
+        x, y = self._obtener_posicion_relativa_a_camara(actor)
+        lienzo.rectangulo(painter, x - dx, y + dy, actor.ancho, actor.alto, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
 
 
 class ModoFisica(ModoDepurador):
@@ -279,10 +288,9 @@ class ModoPosicion(ModoDepurador):
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         if not isinstance(actor, pilas.fondos.Fondo):
             texto = "(%d, %d)" %(actor.x, actor.y)
-            lienzo.texto(painter, texto, actor.derecha - pilas.escena_actual().camara.x, actor.abajo - pilas.escena_actual().camara.y, color=pilas.colores.blanco)
+            dx, dy = actor.x - actor.derecha, actor.y - actor.abajo + 10
+            x, y = self._obtener_posicion_relativa_a_camara(actor)
+            lienzo.texto(painter, texto, x - dx, y -dy, color=pilas.colores.blanco)
 
     def sale_del_modo(self):
         self.eje.eliminar()
-
-
-

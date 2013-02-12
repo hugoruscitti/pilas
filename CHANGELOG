@@ -1,3 +1,21 @@
+Pilas engine - 0.76 (2013-02-12)
+--------------------------------
+
+- Reparando el asistente en macosx, windows y ubuntu.
+- Modificando el lanzamiento del intérprete.
+- Reparando el arrastrar y soltar sobre el asistente.
+- Arreglos de la camara y los actores fijos. Ref #151
+- Mejorada la documentación de sonidos.
+- Volviendo a habilitar el soporte para opengl.
+- Incorporando documentación de api con epydoc.
+- Mejoras en la documentación.
+- Eliminados los widgets sugar y sugargl.
+- Agregado soporte para reproduccion sonidos con repetición.
+- Agregada escena logos utilizada en el gamejam 2013.
+- Agregando archivo Makefile para automatizar tareas.
+- Agregando métodos para pausar y continuar sonidos y música.
+- Agregando posibilidad de cambiar la fuente del actor Texto.
+
 Pilas engine - 0.75 (2013-01-25)
 --------------------------------
 

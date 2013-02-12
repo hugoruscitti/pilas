@@ -20,6 +20,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
     def setupUi(self, main):
         self.main = main
         Ui_AsistenteWindow.setupUi(self, main)
+        main.resize(550, 342)
 
         self.webView.setAcceptDrops(False)
         self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
@@ -154,7 +155,6 @@ class VentanaAsistente(Ui_AsistenteWindow):
         recurso = "../ejemplos/ejemplos/" + categoria + "/" + nombre + ".py"
         return pilas.utils.obtener_ruta_al_recurso(recurso)
 
-
     def _cuando_termina_la_ejecucion_del_ejemplo(self, codigo, estado):
         "Vuelve a permitir que se usen todos los botone de la interfaz."
         salida = str(self.process.readAll())
@@ -163,17 +163,20 @@ class VentanaAsistente(Ui_AsistenteWindow):
             QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
     def _cuando_selecciona_interprete(self):
-        comando = " ".join([sys.executable, sys.argv[0], '-i'])
-        self._ejecutar_comando(comando)
+        if sys.platform == "win32":
+            self._ejecutar_comando(sys.executable, ['-i'], '.')
+        else:
+            self._ejecutar_comando(sys.executable, [sys.argv[0], '-i'], '.')
 
-    def ejecutar_script(self, nombre_archivo_script):
-        comando = " ".join([sys.executable, sys.argv[0], '-i', str(nombre_archivo_script)])
-        self._ejecutar_comando(comando)
+    def ejecutar_script(self, nombre_archivo_script, directorio_trabajo):
+        self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
 
-    def _ejecutar_comando(self, comando):
+    def _ejecutar_comando(self, comando, argumentos, directorio_trabajo):
         "Ejecuta un comando en segundo plano."
-        self.proceso = QtCore.QProcess()
-        self.proceso.startDetached(comando)
+        self.process = QtCore.QProcess(self.main)
+        self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
+        self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
+        self.process.startDetached(comando, argumentos, directorio_trabajo)
 
     def _cuando_selecciona_abrir_manual(self):
         base_dir = '/usr/share/pilas'
@@ -227,7 +230,9 @@ class MainWindow(QtGui.QMainWindow):
     def dropEvent(self, event):
         if event.mimeData().hasUrls():
             for url in event.mimeData().urls():
-                self.ui.ejecutar_script(url.path())
+                archivo = url.toLocalFile()
+                path = os.path.dirname(str(archivo))
+                self.ui.ejecutar_script(archivo, path)
             event.acceptProposedAction()
         else:
             super(MainWindow,self).dropEvent(event)

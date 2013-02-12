@@ -24,14 +24,14 @@ class Temporizador(Texto):
         >>> t.iniciar()
 
     """
-    def __init__(self, x=0, y=0, color=colores.negro):
+    def __init__(self, x=0, y=0, color=colores.negro, fuente=None):
         """Inicializa el temporizador.
 
         :param x: Posición horizontal.
         :param y: Posición vertical.
         :param color: El color que tendrá el texto.
         """
-        Texto.__init__(self, '0', x=x, y=y)
+        Texto.__init__(self, '0', x=x, y=y, fuente=fuente)
         self.ajustar(1, self.funcion_vacia)
         self.color = color
 
