@@ -4,11 +4,12 @@ VERSION=0.76
 all:
 	@echo "Por favor especifica el comando de make:"
 	@echo ""
-	@echo "  test \t Ejecuta todas las pruebas unitarias con nosetest."
-	@echo "  html \t Genera toda la documentacion en formato HTML."
-	@echo "  api \t Genera la referencia de clases, metodos y funciones."
-	@echo "  mac \t Genera el paquete de aplicacion para MacOSX."
-	@echo "  ubuntu \t Genera el paquete de aplicacion para Ubuntu GNU/Linux."
+	@echo "  test     Ejecuta todas las pruebas unitarias con nosetest."
+	@echo "  html     Genera toda la documentacion en formato HTML."
+	@echo "  api      Genera la referencia de clases, metodos y funciones."
+	@echo "  mac      Genera el paquete de aplicacion para MacOSX."
+	@echo "  ubuntu   Genera el paquete de aplicacion para Ubuntu GNU/Linux."
+	@echo "  pypi     Genera y sube el paquete de código a pypi.org"
 	@echo ""
 
 
@@ -44,3 +45,6 @@ ubuntu:
 	@echo "Limpiando los paquetes de pilas .deb antiguos"
 	rm -rf utils/paquete-ubuntu/*.deb
 	cd utils/paquete-ubuntu/; sh generar_paquete.sh ${VERSION}; mv *.deb ../../
+
+pypi:
+	python utils/actualizar_pypi.py
