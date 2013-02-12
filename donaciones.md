@@ -39,13 +39,13 @@ depósito en la siguiente cuenta bancaria:
 
 
 <p class="center">
-<div class='cuenta'>
-<small>Banco:</small> Banco Credicoop<br/>
-<small>Titular: </small> Hugo Luis Ruscitti<br/>
-<small>Cuenta corriente:</small> 342/?????/1<br/>
-<small>CBU:</small> ????? ???????<br/>
-<small>CUIT:</small> ?? - 30428502 - ?<br/>
-</div>
+ <div class='cuenta'>
+  <small>Banco:</small> Banco Credicoop<br/>
+  <small>Titular: </small> Hugo Luis Ruscitti<br/>
+  <small>Cuenta corriente pesos:</small> 191-006-551049/8<br/>
+  <small>CBU:</small> 19100063 55000655104982<br/>
+  <small>CUIT:</small> 20-30428502-9<br/>
+ </div>
 </p>
 
 <p>o bien, mediante gittips:
