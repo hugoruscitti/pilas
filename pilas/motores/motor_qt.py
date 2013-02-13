@@ -867,7 +867,10 @@ class Motor(object):
     """
 
     def __init__(self, usar_motor, permitir_depuracion, audio):
-        self._iniciar_aplicacion()
+        import sys
+
+	if not '-i' in sys.argv:
+            self._iniciar_aplicacion()
 
         self.usar_motor = usar_motor
 
@@ -876,6 +879,7 @@ class Motor(object):
 
         self._inicializar_variables()
         self._inicializar_sistema_de_audio(audio)
+
 
     def _iniciar_aplicacion(self):
         self.app = QtGui.QApplication([])
