@@ -66,9 +66,13 @@ window.onload = function() {
 </script>
 
 
+Estamos modificando nuestro foro, nos llevará unas horas. Por favor
+regresa luego ...
 
 
 
+<!--
 <div id='contenedor-iframe' style='width: 100%'>
     <iframe id="ifrm" src="http://foro-pilasengine.com.ar" width='100%' height="100%" frameborder="0">&nbsp;</iframe>
 </div>
+-->
