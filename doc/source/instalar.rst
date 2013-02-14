@@ -11,7 +11,7 @@ La forma mas sencilla de instalar pilas es
 siguiendo alguno de los tutoriales del sitio
 web de pilas:
 
-http://www.pilas-engine.com.ar/documentacion
+http://www.pilas-engine.com.ar/docs.html
 
 
 Opción 2 - Avanzada, desde repositorios
