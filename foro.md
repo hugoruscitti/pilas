@@ -66,8 +66,9 @@ window.onload = function() {
 </script>
 
 
-Estamos modificando nuestro foro, nos llevará unas horas. Por favor
-regresa luego ...
+<p>
+Estamos modificando nuestro foro, mientras tanto te recomendamos
+usar el foro de losersjuegos, en donde hay una <a href='http://www.losersjuegos.com.ar/foro/viewforum.php?f=22&sid=70eddb40e56ff06a3a9b6642336f1a46'>sección dedicada a pilas-engine.</a>
 
 
 
