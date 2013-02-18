@@ -53,6 +53,15 @@ class Martian(Actor):
                        offset_disparo=(25,0),
                        offset_origen_actor=(25,23))
 
+        self.velocidad = 3
+
+        self.colisiona_arriba_izquierda = False
+        self.colisiona_arriba_derecha = False
+        self.colisiona_abajo_izquierda = False
+        self.colisiona_abajo_derecha = False
+
+        self.obtener_colisiones()
+
 
     def definir_cuadro(self, indice):
         """Define el cuadro de animación a mostrar.
@@ -60,7 +69,7 @@ class Martian(Actor):
         :param indice: El número de cuadro comenzando desde 0.
         """
         self.imagen.definir_cuadro(indice)
-        self.definir_centro((32, 123))
+        self.definir_centro((32, 68))
 
     def actualizar(self):
         "Sigue el movimiento de la figura."
@@ -73,6 +82,12 @@ class Martian(Actor):
     def obtener_distancia_al_suelo(self):
         "Retorna la distancia en pixels al suelo."
         return self.mapa.obtener_distancia_al_suelo(self.x, self.y, 100)
+
+    def obtener_colisiones(self):
+        self.colisiona_arriba_izquierda = self.mapa.es_punto_solido(self.izquierda, self.arriba)
+        self.colisiona_arriba_derecha = self.mapa.es_punto_solido(self.derecha, self.arriba)
+        self.colisiona_abajo_izquierda = self.mapa.es_punto_solido(self.izquierda, self.abajo)
+        self.colisiona_abajo_derecha = self.mapa.es_punto_solido(self.derecha, self.abajo)
 
 
 class Esperando(Comportamiento):
@@ -124,16 +139,26 @@ class Caminando(Esperando):
     def actualizar(self):
         self.avanzar_animacion()
 
+        vx = 0
+
         if pilas.escena_actual().control.izquierda:
-            self.receptor.x -= 3
+            vx = -(self.receptor.velocidad)
             self.receptor.espejado = True
             self.receptor.habilidades.Disparar.angulo_salida_disparo = 90
+            self.receptor.obtener_colisiones()
+            if not(self.receptor.colisiona_arriba_izquierda or self.receptor.colisiona_abajo_izquierda):
+                self.receptor.x += vx
+
         elif pilas.escena_actual().control.derecha:
-            self.receptor.x += 3
+            vx = self.receptor.velocidad
             self.receptor.espejado = False
             self.receptor.habilidades.Disparar.angulo_salida_disparo = -90
+            self.receptor.obtener_colisiones()
+            if not(self.receptor.colisiona_arriba_derecha or self.receptor.colisiona_abajo_derecha):
+                self.receptor.x += vx
         else:
             self.receptor.hacer(Esperando())
+
 
         if pilas.escena_actual().control.arriba:
             self.receptor.hacer(Saltando(-8))
@@ -180,13 +205,20 @@ class Saltando(Comportamiento):
         vx, vy = 0, 0 #self.receptor.figura.obtener_velocidad_lineal()
 
         if pilas.escena_actual().control.izquierda:
+            vx = -(self.receptor.velocidad)
             self.receptor.espejado = True
             self.receptor.habilidades.Disparar.angulo_salida_disparo = 90
-            self.receptor.x -= 3
+            self.receptor.obtener_colisiones()
+            if not(self.receptor.colisiona_arriba_izquierda or self.receptor.colisiona_abajo_izquierda):
+                self.receptor.x += vx
+
         elif pilas.escena_actual().control.derecha:
+            vx = self.receptor.velocidad
             self.receptor.espejado = False
             self.receptor.habilidades.Disparar.angulo_salida_disparo = -90
-            self.receptor.x += 3
+            self.receptor.obtener_colisiones()
+            if not(self.receptor.colisiona_arriba_derecha or self.receptor.colisiona_abajo_derecha):
+                self.receptor.x += vx
 
 class Disparar(Comportamiento):
     """Representa al actor disparando un proyectil."""
