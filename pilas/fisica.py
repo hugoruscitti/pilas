@@ -94,6 +94,9 @@ class Fisica(object):
 
         self.crear_bordes_del_escenario()
 
+    def cantidad_de_cuerpos(self):
+        return len(self.mundo.bodies)
+
     def capturar_figura_con_el_mouse(self, figura):
         """Comienza a capturar una figura con el mouse.
 
@@ -374,6 +377,8 @@ class FisicaDeshabilitada(object):
     def definir_gravedad(self, x, y):
         pass
 
+    def cantidad_de_cuerpos(self):
+        return 0
 
 class Figura(object):
     """Representa un figura que simula un cuerpo fisico.
