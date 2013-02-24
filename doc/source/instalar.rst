@@ -7,17 +7,17 @@ que veremos cada una por separado.
 Opción 1 - Instalación fácil, para cada sistema operativo
 ---------------------------------------------------------
 
-La forma mas sencilla de instalar pilas es
-siguiendo alguno de los tutoriales del sitio
-web de pilas:
+La forma mas sencilla de instalar pilas es descargando
+alguna de las versiones empaquetadas desde nuestro sitio web:
 
-http://www.pilas-engine.com.ar/documentacion
+http://www.pilas-engine.com.ar/descargas.html
 
 
 Opción 2 - Avanzada, desde repositorios
 ---------------------------------------
 
-Si ya eres un programador avanzado con algo
-de experiencia en el lenguaje python, podrías ir directamente
-a :ref:`ref_desarrolladores`, en donde encontrarás instrucciones
-para acceder directamente al repositorio de pilas.
+Otra opción es descargar pilas e instalarlo directamente desde
+nuestro respositio git.
+
+Hay mas información sobre esta forma de instalación en nuestra
+sección :ref:`ref_desarrolladores`.
