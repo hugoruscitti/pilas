@@ -34,7 +34,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self._consultar_ultima_version_del_servidor()
 
     def _consultar_ultima_version_del_servidor(self):
-        direccion = QtCore.QUrl("http://www.pilas-engine.com.ar/version.json")
+        direccion = QtCore.QUrl("https://raw.github.com/hugoruscitti/pilas/gh-pages/version.json")
         self.manager = QtNetwork.QNetworkAccessManager(self.main)
         self.manager.get(QtNetwork.QNetworkRequest(direccion))
 
