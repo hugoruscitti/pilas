@@ -66,14 +66,6 @@ window.onload = function() {
 </script>
 
 
-<p>
-Estamos modificando nuestro foro, mientras tanto te recomendamos
-usar el foro de losersjuegos, en donde hay una <a href='http://www.losersjuegos.com.ar/foro/viewforum.php?f=22&sid=70eddb40e56ff06a3a9b6642336f1a46'>sección dedicada a pilas-engine.</a>
-
-
-
-<!--
-<div id='contenedor-iframe' style='width: 100%'>
-    <iframe id="ifrm" src="http://foro-pilasengine.com.ar" width='100%' height="100%" frameborder="0">&nbsp;</iframe>
+<div id='contenedor-iframe' style='width: 110%'>
+    <iframe id="ifrm" src="http://foro-pilasengine.com.ar" width='110%' height="900px" frameborder="0">&nbsp;</iframe>
 </div>
--->
