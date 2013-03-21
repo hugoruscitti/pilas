@@ -209,11 +209,10 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
 
     def _cuando_selecciona_abrir_manual(self):
-        base_dir = '/usr/share/pilas'
-        ruta_al_manual = os.path.join(base_dir, 'pilas-%s.pdf' %(pilas.version()))
-
         try:
-            # BUSCA el archivo: /usr/share/pilas/pilas-VERSION.pdf
+            base_dir = '/usr/share/python-pilas'
+            ruta_al_manual = os.path.join(base_dir, 'manual.pdf')
+            # BUSCA el archivo: /usr/share/python-pilas/manual.pdf
             ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
             pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
         except IOError:
