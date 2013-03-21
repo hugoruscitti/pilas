@@ -1,3 +1,13 @@
+Pilas engine - 0.77 (2013-03-21)
+--------------------------------
+
+- Mostrando errores en los scripts lanzados sobre la ventana principal.
+- Haciendo que los juegos se recarguen automáticamente cuando se cambian.
+- Arreglando la barra inferior del asistente que muestra si pilas está actualizado #log.
+- Haciendo que el fondo no desaparezca cuando sale del area visible de la cámara.
+- Agregando un contador de cuerpos dentro del motor de física.
+- Primera aproximacion a la colision lateral de las plataformas
+
 Pilas engine - 0.76 (2013-02-12)
 --------------------------------
 

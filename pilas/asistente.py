@@ -182,11 +182,9 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _ejecutar_comando(self, comando, argumentos, directorio_trabajo):
         "Ejecuta un comando en segundo plano."
-        #self.watcher = QFileSystemWatcher([logfile], parent=None)
-        #self.connect(self.watcher, SIGNAL('fileChanged(const QString&)'), self.update_log)
 
-        print "El archivo existe: ", os.path.exists(argumentos[0])
-        self.observar_cambios_de_archivos(argumentos[0], directorio_trabajo)
+        if os.path.exists(argumentos[0]):
+            self.observar_cambios_de_archivos(argumentos[0], directorio_trabajo)
 
         self.process = QtCore.QProcess(self.main)
         self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
@@ -194,13 +192,9 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
         self.process.setWorkingDirectory(directorio_trabajo)
         self.process.start(comando, argumentos)
-        print "Iniciando..."
-        #self.process.waitForStarted()
-        print "ARRANCO!!!"
+        self.process.waitForStarted()
 
     def observar_cambios_de_archivos(self, nombre_archivo_script, directorio_trabajo):
-        print "Observando archivo"
-
         for f in self.watcher.files():
             self.watcher.removePath(f)
 
@@ -210,12 +204,8 @@ class VentanaAsistente(Ui_AsistenteWindow):
     def _reiniciar_proceso(self):
         nombre_archivo_script = self.nombre_archivo_script
         directorio_trabajo = self.directorio_trabajo
-
-        print "Termiando el proceso anterior..."
         self.process.terminate()
-        print "Esperando"
         self.process.waitForFinished(3000)
-        print "Ejecutando nuevamente"
         self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
 
     def _cuando_selecciona_abrir_manual(self):
@@ -274,10 +264,6 @@ class MainWindow(QtGui.QMainWindow):
                 path = os.path.dirname(str(archivo))
 
                 self.ui.ejecutar_script(archivo, path)
-
-                #if os.path.exists(archivo):
-                #    self.ui.observar_cambios_de_archivos(archivo, path)
-
                 event.acceptProposedAction()
         else:
             super(MainWindow,self).dropEvent(event)
