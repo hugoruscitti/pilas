@@ -277,9 +277,6 @@ class Actor(object, Estudiante):
         return self.obtener_imagen()
 
     def set_imagen(self, imagen):
-        if isinstance(imagen, str):
-            imagen = pilas.imagenes.cargar(imagen)
-
         self.definir_imagen(imagen)
 
     def get_fijo(self):
