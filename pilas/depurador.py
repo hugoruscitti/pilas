@@ -66,7 +66,7 @@ class Depurador(DepuradorDeshabilitado):
             self._mostrar_cuadros_por_segundo(painter)
             self._mostrar_posicion_del_mouse(painter)
             self._mostrar_nombres_de_modos(painter)
-            #self._mostrar_cantidad_de_imagenes_cacheadas(painter)
+            self._mostrar_cantidad_de_imagenes_cacheadas(painter)
 
             for m in self.modos:
                 m.termina_dibujado(motor, painter, self.lienzo)
