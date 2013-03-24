@@ -18,6 +18,46 @@ import pilas
 import sys
 import traceback
 
+class LibreriaImagenes(object):
+    """ Clase que permite cachear las imagenes cargadas en el juego."""
+    def __init__(self):
+        # Diccionario donde se guardaran las imagenes y sus referencias.
+        self._imagenes = dict()
+
+    def agregar_imagen(self, imagen):
+        """ Permite agregar una imagen a la cache.
+
+        :param imagen: Objeto Imagen a almacenar.
+        :type imagen: Imagen
+        """
+
+        # Si la imagen no se encuentra cacheada se almacena.
+        # El campo ruta_original del objeto Imagen es el indice por el que se
+        # buscará en la caché de imágenes.
+        if not(imagen.ruta_original in self._imagenes):
+            self._imagenes[imagen.ruta_original] = imagen
+
+        return imagen.ruta_original
+
+    def obtener_imagen(self, indice):
+        """ Obtiene una imagen de la cache.
+        De no encontrarse, devuelve una imagen estandar. """
+        try:
+            return self._imagenes[indice]
+        except:
+            return imagenes.cargar("sin_imagen.png")
+
+    def tiene(self, indice):
+        """ Comprueba si una imagen está cacheada.
+
+        :param indice: Nombre del indice de la imagen a buscar.
+        :type indice: string
+
+        """
+        return self._imagenes.has_key(indice)
+
+    def obtener_cantidad(self):
+        return len(self._imagenes)
 
 class Ventana(QtGui.QMainWindow):
 
@@ -349,6 +389,8 @@ class Imagen(object):
         else:
             self._imagen = QtGui.QPixmap(ruta)
 
+        pilas.mundo.motor.libreria_imagenes.agregar_imagen(self)
+
     def cargar_jpeg(self, ruta):
         from PIL import Image
         import StringIO
@@ -471,6 +513,7 @@ class Texto(Imagen):
         self.vertical = vertical
         self.fuente = fuente
         self._ancho, self._alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente)
+        self.ruta_original = texto
 
     def _dibujar_pixmap(self, painter, dx, dy):
         if self.fuente:
@@ -602,6 +645,7 @@ class Superficie(Imagen):
         self._imagen = QtGui.QPixmap(ancho, alto)
         self._imagen.fill(QtGui.QColor(255, 255, 255, 0))
         self.canvas = QtGui.QPainter()
+        self.ruta_original = os.urandom(25)
 
     def pintar(self, color):
         r, g, b, a = color.obtener_componentes()
@@ -696,24 +740,52 @@ class Actor(BaseActor):
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
 
+        # Si la imagen es una cadena, cargamos la imagen y la cacheamos.
         if isinstance(imagen, str):
-            self.imagen = imagenes.cargar(imagen)
+            self.indice_imagen = pilas.mundo.motor.libreria_imagenes.agregar_imagen(imagenes.cargar(imagen))
         else:
-            self.imagen = imagen
+            # Si en un objeto Imagen lo almacenamos directamente.
+            self.indice_imagen = pilas.mundo.motor.libreria_imagenes.agregar_imagen(imagen)
 
         self.x = x
         self.y = y
         BaseActor.__init__(self)
 
-    def definir_imagen(self, imagen):
-        # permite que varios actores usen la misma grilla.
-        if isinstance(imagen, Grilla):
-            self.imagen = copy.copy(imagen)
+
+    def get_imagen(self):
+        """ Obtinene la imagen del Actor. """
+        return self.obtener_imagen()
+
+    def set_imagen(self, imagen):
+        """ Establece la imagen del actor.
+
+        :param imagen: Imagen que definirá al actor.
+        ;type imagen: Imagen, Grilla,
+        """
+
+        # Comprobamos si el parametro imagen es un objeto Imagen o Grilla.
+        if isinstance(imagen, Imagen) or isinstance(imagen, Grilla):
+            # Comprobamos si ya está cacheada esa imagen.
+            if pilas.mundo.motor.libreria_imagenes.tiene(imagen.ruta_original):
+                # Si es así nos guardamos el indice de la imagen en la caché, que corresponde
+                # con la ruta de la imagen.
+                self.indice_imagen = imagen.ruta_original
+            else:
+                # Si la imagen no estaba cacheada la guardamos.
+                self.indice_imagen = pilas.mundo.motor.libreria_imagenes.agregar_imagen(imagen)
         else:
-            self.imagen = imagen
+            # Si el parámetro imagen es un string.
+            if isinstance(imagen, str):
+                # Nos guardamos directamente ese string como indice de la imagen.
+                self.indice_imagen = imagen
+
+    imagen = property(get_imagen, set_imagen, doc="")
+
+    def definir_imagen(self, imagen):
+        self.imagen = imagen
 
     def obtener_imagen(self):
-        return self.imagen
+        return pilas.mundo.motor.libreria_imagenes.obtener_imagen(self.indice_imagen)
 
     def dibujar(self, painter):
         escala_x, escala_y = self._escala_x, self._escala_y
@@ -731,7 +803,7 @@ class Actor(BaseActor):
         x = self.x - dx
         y = self.y - dy
 
-        self.imagen.dibujar(painter, x, y, self.centro_x, self.centro_y,
+        pilas.mundo.motor.libreria_imagenes.obtener_imagen(self.indice_imagen).dibujar(painter, x, y, self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion, self._transparencia)
 
 
@@ -888,6 +960,7 @@ class Motor(object):
     def _inicializar_variables(self):
         self.camara_x = 0
         self.camara_y = 0
+        self.libreria_imagenes = LibreriaImagenes()
 
     def _inicializar_sistema_de_audio(self, audio):
         sistemas_de_sonido = ['deshabilitado', 'phonon', 'gst']
@@ -1036,7 +1109,10 @@ class Motor(object):
         self.clase_musica.deshabilitado = estado
 
     def cargar_imagen(self, ruta):
-        return Imagen(ruta)
+        if pilas.mundo.motor.libreria_imagenes.tiene(ruta):
+            return pilas.mundo.motor.libreria_imagenes.obtener_imagen(ruta)
+        else:
+            return Imagen(ruta)
 
     def obtener_lienzo(self):
         return Lienzo()
