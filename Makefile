@@ -36,6 +36,12 @@ mac:
 	rm -r -f dist build; python setup-mac.py py2app;
 	rm dist/pilas-engine.app/Contents/Resources/qt.conf
 	macdeployqt dist/pilas-engine.app
+	rm -r -f macbins.tar.gz
+	cp /Users/hugoruscitti/Dropbox/macbins.tar.gz ./
+	tar xzvf macbins.tar.gz
+	cp -r -f macbins/Frameworks dist/pilas-engine.app/Contents/
+	cp -r -f macbins/PlugIns dist/pilas-engine.app/Contents/
+	cp -r -f macbins/Resources/lib/python2.7/lib-dynload dist/pilas-engine.app/Contents/Resources/lib/python2.7/
 	hdiutil create pilas-engine-${VERSION}.dmg -srcfolder ./dist/pilas-engine.app
 	@echo ""
 	@echo "Para probar el programa generado ejecuta o utiliza el dmg:"

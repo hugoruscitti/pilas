@@ -24,7 +24,7 @@ setup(
     data_files = [
                     ('../lanas', ['lanas']),
                     ('bin/pilas-mac.py', ['bin/pilas-mac.py']),
-                    ('../PlugIns/phonon_backend', ['/usr/local/Cellar/qt/4.8.0/plugins/phonon_backend/libphonon_qt7.dylib']),
+                    ('../PlugIns/phonon_backend', ['/usr/local/Cellar/qt/4.8.4/plugins/phonon_backend/libphonon_qt7.dylib']),
                  ],
         options={
                     "py2app":
