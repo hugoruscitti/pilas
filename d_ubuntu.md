@@ -4,7 +4,7 @@ title: Descargando versión Ubuntu
 active: /descargas.html
 ---
 
-{% assign download_url = "http://dev-losersjuegos.com.ar/pilas-0.76.deb" %}
+{% assign download_url = "http://dev-losersjuegos.com.ar/pilas-0.78.deb" %}
 
 ## Descargando ...
 
