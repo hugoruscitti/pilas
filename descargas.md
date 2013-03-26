@@ -5,7 +5,7 @@ title: Descargas
 
 # Descargas
 
-Elige tu sabor favorito:
+Elige tu sabor favorito de la versión 0.78:
 
 <ul id='descargas'>
  <li><a href='d_windows.html'><img width=16 height=16 src='images/windows.png'> Windows</a></li>
