@@ -164,3 +164,6 @@ class Plano(Fondo):
         painter.drawTiledPixmap(0, 0, ancho, alto, self.imagen._imagen, x % 30, y % 30)
 
         painter.restore()
+
+    def esta_fuera_de_la_pantalla(self):
+        return False

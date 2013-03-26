@@ -17,7 +17,16 @@ Una buena forma de comenzar con pilas es instalar todo el kit de desarrollo sigu
 Y una vez instalada la biblioteca, se puede invocar al comando ``pilas -e`` para ver una lista completa de ejemplos y minijuegos.
 
 
-## Instalación en ubuntu 12.04
+## Instalación
+
+La forma mas sencilla de instalar pilas en mediante los instaladores
+del sitio web:
+
+- http://www.pilas-engine.com.ar/descargas.html
+
+
+
+### Instalación en Ubuntu 12.04
 
     sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion
 
@@ -26,17 +35,24 @@ Obtener desde repositorio
     git clone http://github.com/hugoruscitti/pilas
     
     cd pilas
-    git submodule init
-    git submodule update
-    
-    cd lanas
-    git submodule init
-    git submodule update
-    cd ..
-    
+    git submodule update --init 
+
     sudo python setup.py install
     pilas
     
+### Instalación en Open Suse 12.2
+
+    sudo zypper install git gcc python-devel swig python-qt4 python-setuptools gcc-c++
+    sudo easy_install -U distribute 
+    sudo easy_install -U box2d
+
+    git clone http://github.com/hugoruscitti/pilas.git
+
+    cd pilas
+    git submodule update --init
+
+    sudo python setup.py install
+    pilas
     
 ## Tests
 

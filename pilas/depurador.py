@@ -61,10 +61,12 @@ class Depurador(DepuradorDeshabilitado):
 
     def termina_dibujado(self, motor, painter):
         if self.modos:
+            self._mostrar_cantidad_de_cuerpos(painter)
             self._mostrar_cantidad_de_actores(painter)
             self._mostrar_cuadros_por_segundo(painter)
             self._mostrar_posicion_del_mouse(painter)
             self._mostrar_nombres_de_modos(painter)
+            self._mostrar_cantidad_de_imagenes_cacheadas(painter)
 
             for m in self.modos:
                 m.termina_dibujado(motor, painter, self.lienzo)
@@ -137,6 +139,18 @@ class Depurador(DepuradorDeshabilitado):
         rendimiento = self.fps.obtener_cuadros_por_segundo()
         texto = "Cuadros por segundo: %s" %(rendimiento)
         self.lienzo.texto_absoluto(painter, texto, izquierda + 10, abajo + 10, color=pilas.colores.blanco)
+
+    def _mostrar_cantidad_de_imagenes_cacheadas(self, painter):
+        izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
+        total_de_imagenes_cacheadas = pilas.mundo.motor.libreria_imagenes.obtener_cantidad()
+        texto = "Cantidad de imagenes cacheadas: %s" %(total_de_imagenes_cacheadas)
+        self.lienzo.texto_absoluto(painter, texto, izquierda + 10, abajo + 70, color=pilas.colores.blanco)
+
+    def _mostrar_cantidad_de_cuerpos(self, painter):
+        izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
+        total_de_cuerpos = pilas.escena_actual().fisica.cantidad_de_cuerpos()
+        texto = "Cantidad de cuerpos fisicos: %s" %(total_de_cuerpos)
+        self.lienzo.texto_absoluto(painter, texto, izquierda + 10, abajo + 50, color=pilas.colores.blanco)
 
     def _mostrar_cantidad_de_actores(self, painter):
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
@@ -241,7 +255,7 @@ class ModoInformacionDeSistema(ModoDepurador):
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
 
         for (i, texto) in enumerate(self.informacion):
-            posicion_y = abajo + 50 + i * 20
+            posicion_y = abajo + 70 + i * 20
             lienzo.texto(painter, texto, izquierda + 10, posicion_y, color=pilas.colores.blanco)
 
 

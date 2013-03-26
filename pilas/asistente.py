@@ -32,9 +32,12 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self._habilitar_inspector_web()
         self.salir_action.connect(self.salir_action, QtCore.SIGNAL("triggered()"), self.salir)
         self._consultar_ultima_version_del_servidor()
+        self.process = None
+        self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
+        self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_proceso)
 
     def _consultar_ultima_version_del_servidor(self):
-        direccion = QtCore.QUrl("http://www.pilas-engine.com.ar/version.json")
+        direccion = QtCore.QUrl("https://raw.github.com/hugoruscitti/pilas/gh-pages/version.json")
         self.manager = QtNetwork.QNetworkAccessManager(self.main)
         self.manager.get(QtNetwork.QNetworkRequest(direccion))
 
@@ -127,7 +130,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
             self.process = QtCore.QProcess(self.main)
             self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
             self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
-            self.process.start(sys.executable, [ruta])
+            self.process.start(sys.executable, [ruta], QtCore.QIODevice.ReadWrite)
         except Exception, name:
             QtGui.QMessageBox.critical(self.main, "Error", str(name))
 
@@ -155,7 +158,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         recurso = "../ejemplos/ejemplos/" + categoria + "/" + nombre + ".py"
         return pilas.utils.obtener_ruta_al_recurso(recurso)
 
-    def _cuando_termina_la_ejecucion_del_ejemplo(self, codigo, estado):
+    def _cuando_termina_la_ejecucion_del_ejemplo(self, codigo=0, estado=0):
         "Vuelve a permitir que se usen todos los botone de la interfaz."
         salida = str(self.process.readAll())
 
@@ -169,14 +172,41 @@ class VentanaAsistente(Ui_AsistenteWindow):
             self._ejecutar_comando(sys.executable, [sys.argv[0], '-i'], '.')
 
     def ejecutar_script(self, nombre_archivo_script, directorio_trabajo):
-        self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
+        self.nombre_archivo_script = nombre_archivo_script
+        self.directorio_trabajo = directorio_trabajo
+
+        try:
+            self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
+        except Exception, e:
+            QtGui.QMessageBox.critical(self.main, "Error", str(e))
 
     def _ejecutar_comando(self, comando, argumentos, directorio_trabajo):
         "Ejecuta un comando en segundo plano."
+
+        if os.path.exists(argumentos[0]):
+            self.observar_cambios_de_archivos(argumentos[0], directorio_trabajo)
+
         self.process = QtCore.QProcess(self.main)
         self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
+        #self.process.error.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
         self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
-        self.process.startDetached(comando, argumentos, directorio_trabajo)
+        self.process.setWorkingDirectory(directorio_trabajo)
+        self.process.start(comando, argumentos)
+        self.process.waitForStarted()
+
+    def observar_cambios_de_archivos(self, nombre_archivo_script, directorio_trabajo):
+        for f in self.watcher.files():
+            self.watcher.removePath(f)
+
+        self.watcher.addPath(nombre_archivo_script)
+        #(nombre_archivo_script, directorio_trabajo))
+
+    def _reiniciar_proceso(self):
+        nombre_archivo_script = self.nombre_archivo_script
+        directorio_trabajo = self.directorio_trabajo
+        self.process.terminate()
+        self.process.waitForFinished(3000)
+        self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
 
     def _cuando_selecciona_abrir_manual(self):
         try:
@@ -231,8 +261,9 @@ class MainWindow(QtGui.QMainWindow):
             for url in event.mimeData().urls():
                 archivo = url.toLocalFile()
                 path = os.path.dirname(str(archivo))
+
                 self.ui.ejecutar_script(archivo, path)
-            event.acceptProposedAction()
+                event.acceptProposedAction()
         else:
             super(MainWindow,self).dropEvent(event)
 
