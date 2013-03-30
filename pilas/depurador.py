@@ -255,7 +255,7 @@ class ModoInformacionDeSistema(ModoDepurador):
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
 
         for (i, texto) in enumerate(self.informacion):
-            posicion_y = abajo + 70 + i * 20
+            posicion_y = abajo + 90 + i * 20
             lienzo.texto(painter, texto, izquierda + 10, posicion_y, color=pilas.colores.blanco)
 
 
