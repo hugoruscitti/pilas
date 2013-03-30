@@ -522,10 +522,12 @@ class Lienzo(Imagen):
         r, g, b, a = color.obtener_componentes()
         painter.setPen(QtGui.QColor(r, g, b))
 
-        if not fuente:
-            fuente = painter.font().family()
+        if fuente:
+            nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
+        else:
+            nombre_de_fuente = painter.font().family()
 
-        font = QtGui.QFont(fuente, magnitud)
+        font = QtGui.QFont(nombre_de_fuente, magnitud)
         painter.setFont(font)
         painter.drawText(x, y, cadena)
 
@@ -605,10 +607,12 @@ class Superficie(Imagen):
         dx = x
         dy = y
 
-        if not fuente:
-            fuente = self.canvas.font().family()
+        if fuente:
+            nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
+        else:
+            nombre_de_fuente = self.canvas.font().family()
 
-        font = QtGui.QFont(fuente, magnitud)
+        font = QtGui.QFont(nombre_de_fuente, magnitud)
         self.canvas.setFont(font)
         metrica = QtGui.QFontMetrics(font)
 
