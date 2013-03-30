@@ -85,5 +85,5 @@ class Boton(BaseInterfaz):
             imagen.pintar_parte_de_imagen(tema, dx + 5, 0, 5, 25, x, 0)
 
         imagen.pintar_parte_de_imagen(tema, dx + 75, 0, 5, 25, ancho + 15, 0)
-        imagen.texto(texto, 10, 17)
+        imagen.texto(texto, 10, 7)
         return imagen

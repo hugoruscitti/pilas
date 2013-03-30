@@ -29,14 +29,14 @@ class Texto(Actor):
         :param fuente: Nombre de la fuente a utilizar.
         :param fijo: Determina si el texto se queda fijo aunque se mueva la camara. Por defecto está fijo.
         """
-        imagen = pilas.mundo.motor.obtener_texto(texto, magnitud, vertical, fuente)
-        self._definir_area_de_texto(texto, magnitud)
-        Actor.__init__(self, imagen, x=x, y=y)
-        self.magnitud = magnitud
-        self.texto = texto
-        self.color = pilas.colores.blanco
+        self.__magnitud = magnitud
+        self.__vertical = vertical
+        self.__fuente = fuente
+        self.__color = pilas.colores.blanco
+        Actor.__init__(self, x=x, y=y)
         self.centro = ("centro", "centro")
         self.fijo = fijo
+        self.texto = texto
 
     def obtener_texto(self):
         """Retorna el texto definido."""
@@ -44,31 +44,31 @@ class Texto(Actor):
 
     def definir_texto(self, texto):
         """Define el texto a mostrar."""
-        self.imagen.texto = texto
-        self._definir_area_de_texto(texto, self.magnitud)
+        imagen = pilas.mundo.motor.obtener_texto(texto, self.__magnitud, self.__vertical, self.__fuente, color=self.__color)
+        self.imagen = imagen
+        self.centro = ("centro", "centro")
+        self.__texto = texto
 
     texto = property(obtener_texto, definir_texto, doc="El texto que se tiene que mostrar.")
 
     def obtener_magnitud(self):
         """Devuelve el tamaño del texto."""
-        return self.imagen.magnitud
+        return self.__magnitud
 
     def definir_magnitud(self, magnitud):
         """Define el tamaño del texto a mostrar."""
-        self._magnitud = magnitud
-        self.imagen.magnitud = magnitud
+        self.__magnitud = magnitud
+        self.definir_texto(self.__texto)
 
     magnitud = property(obtener_magnitud, definir_magnitud, doc="El tamaño del texto.")
 
     def obtener_color(self):
         """Devuelve el color que tiene asignado el texto."""
-        return self.imagen.color
+        return self.__color
 
     def definir_color(self, color):
         """Define el color del texto."""
-        self.imagen.color = color
+        self.__color = color
+        self.definir_texto(self.__texto)
 
     color = property(obtener_color, definir_color, doc="Color del texto.")
-
-    def _definir_area_de_texto(self, texto, magnitud):
-        self._ancho, self._alto = pilas.mundo.motor.obtener_area_de_texto(texto, magnitud)
