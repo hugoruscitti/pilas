@@ -66,6 +66,6 @@ window.onload = function() {
 </script>
 
 
-<div id='contenedor-iframe' style='width: 110%'>
+<div id='contenedor-iframe' style="width: 886px;">
     <iframe id="ifrm" src="http://foro-pilasengine.com.ar" width='110%' height="900px" frameborder="0">&nbsp;</iframe>
 </div>
