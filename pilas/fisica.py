@@ -312,73 +312,14 @@ class FisicaDeshabilitada(object):
     no funciona en el equipo.
     """
 
-    def __init__(self, area, gravedad=None):
+    def __init__(self, *args, **kwargs):
         pass
 
-    def actualizar(self):
+    def call(self, *args, **kwargs):
         pass
 
-    def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
-        pass
-    def crear_bordes_del_escenario(self):
-        pass
-
-    def reiniciar(self):
-        pass
-
-    def capturar_figura_con_el_mouse(self, figura):
-        pass
-
-    def cuando_mueve_el_mouse(self, x, y):
-        pass
-
-    def cuando_suelta_el_mouse(self):
-        pass
-
-    def pausar_mundo(self):
-        pass
-
-    def reanudar_mundo(self):
-        pass
-
-    def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
-        pass
-
-    def crear_cuerpo(self, definicion_de_cuerpo):
-        pass
-
-    def crear_suelo(self, (ancho, alto), restitucion=0):
-        pass
-
-    def crear_techo(self, (ancho, alto), restitucion=0):
-        pass
-
-    def crear_paredes(self, (ancho, alto), restitucion=0):
-        pass
-
-    def eliminar_suelo(self):
-        pass
-
-    def eliminar_techo(self):
-        pass
-
-    def eliminar_paredes(self):
-        pass
-
-    def obtener_distancia_al_suelo(self, x, y, dy):
-        pass
-
-    def eliminar_figura(self, figura):
-        pass
-
-    def obtener_cuerpos_en(self, x, y):
-        pass
-
-    def definir_gravedad(self, x, y):
-        pass
-
-    def cantidad_de_cuerpos(self):
-        return 0
+    def __getattr__(self, name):
+        return self.call
 
 class Figura(object):
     """Representa un figura que simula un cuerpo fisico.
