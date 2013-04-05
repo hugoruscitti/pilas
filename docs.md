@@ -32,7 +32,7 @@ sobre pilas haciendo juegos:
 
  <p>Una introducción a pilas-engine utilizando un juego de disparos.
  <ul style='margin-left: 1em; list-style-type: disc'>
-  <li><a href="tutoriales/disparar_a_monos.pdf.pdf">Abrir PDF</a></li>
+  <li><a href="tutoriales/disparar_a_monos.pdf">Abrir PDF</a></li>
  </ul>
  </div>
 </div>
