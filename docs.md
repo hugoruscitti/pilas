@@ -24,6 +24,22 @@ sobre pilas haciendo juegos:
 
 <div class='grid_12 alpha borde' style='margin-top: 2em'>
  <div class='grid_2 alpha'>
+ <img style='border: 1px solid #A8A8A8;' src='./images/tutoriales/disparar_a_monos.png'>
+ </div>
+
+ <div class="grid_10 omega">
+ <h4>Disparar a Monos</h4>
+
+ <p>Una introducción a pilas-engine utilizando un juego de disparos.
+ <ul style='margin-left: 1em; list-style-type: disc'>
+  <li><a href="tutoriales/disparar_a_monos.pdf.pdf">Abrir PDF</a></li>
+ </ul>
+ </div>
+</div>
+
+
+<div class='grid_12 alpha borde' style='margin-top: 2em'>
+ <div class='grid_2 alpha'>
  <img style='border: 1px solid #A8A8A8;' src='./images/tutoriales/asteroides.png'>
  </div>
 
