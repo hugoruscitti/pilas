@@ -102,7 +102,7 @@ class Desplazamiento(Fondo):
         self.capas = []
         self.velocidades = {}
         self.escena.mueve_camara.conectar(self.cuando_mueve_camara)
-        self.ciclico = True
+        self.ciclico = ciclico
 
         if ciclico:
             self.capas_auxiliares = []
