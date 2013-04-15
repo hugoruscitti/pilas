@@ -102,7 +102,7 @@ class Desplazamiento(Fondo):
         self.capas = []
         self.velocidades = {}
         self.escena.mueve_camara.conectar(self.cuando_mueve_camara)
-        self.ciclico = True
+        self.ciclico = ciclico
 
         if ciclico:
             self.capas_auxiliares = []
@@ -149,6 +149,18 @@ class Desplazamiento(Fondo):
         if self.ciclico:
             for capa in self.capas_auxiliares:
                 capa.x -= dx * self.velocidades[capa]
+
+        # Resituar capa cuando se sale del todo de la ventana
+        ancho = pilas.mundo.motor.ventana.width()
+        if self.ciclico:
+            for capa in self.capas:
+                if capa.derecha < -ancho / 2:
+                    capa.izquierda = \
+                        self.capas_auxiliares[self.capas.index(capa)].derecha
+            for capa in self.capas_auxiliares:
+                if capa.derecha < -ancho / 2:
+                    capa.izquierda = \
+                        self.capas[self.capas_auxiliares.index(capa)].derecha
 
 class Plano(Fondo):
 
