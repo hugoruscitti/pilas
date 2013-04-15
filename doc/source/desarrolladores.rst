@@ -88,3 +88,13 @@ Usamos el modelo de trabajo de github_, haciendo ``forks`` y ``pull requests``.
 Si quieres obtener mas detalles te recomiendo ver el siguiente artículo:
 
 - http://www.cocoanetics.com/2012/01/github-fork-fix-pull-request/
+
+
+Referencias para desarrolladores
+--------------------------------
+
+.. automodule:: pilas.pilasversion
+   :members:
+
+.. automodule:: pilas.dev
+   :members:

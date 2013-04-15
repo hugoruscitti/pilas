@@ -8,11 +8,13 @@
 
 
 '''
-pilas.dev -- funciones de desarrollo para pilas
+pilas.dev
+=========
 
+Utilidades de desarrollo para Pilas.
 
-Atributos Desaconsejados
-------------------------
+Sobre Atributos Desaconsejados
+------------------------------
 
 Por defecto la ``PendingDeprecationWarning`` en pilas esta en modo *once* y 
 ``DeprecationWarning`` en *error*. 
@@ -41,7 +43,7 @@ warnings.simplefilter("error", DeprecationWarning)
 warnings.simplefilter("once", PendingDeprecationWarning)
 
 
-def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None):
+def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None, nombre=None):
     """Decorador utilizado para marcar una función como deprecada
     
     Las excepciones que puede lanzar este decorador son:
@@ -54,8 +56,6 @@ def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None):
     - Si la versión actual de pilas es menor que ``se_desactiva_en``
       se emite un ``PendingDeprecationWarning``.
     
-    **Parámetros**
-    
     :param elemento_deprecado: Cual el nombre del elemento desaconsejado.
     :type elemento_deprecado: str
     :param se_desactiva_en: Indica en que versiṕn de pilas el atributo
@@ -69,21 +69,27 @@ def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None):
     :param reemplazo: Indica cuales son las  alternativas a este 
                       atributo
     :type reemplazo: str
+    :param nombre: Si se desea cambiar el nombre de la función
+                   desaconsejada.
+    :type nombre: str
 
     """
     def outer(func):
         
         @functools.wraps(func)
         def _wraps(*args, **kwargs):
-            deprecated_warning(func.__name__, se_desactiva_en, 
-                               se_elimina_en, reemplazo)
+            deprecated_warning(nombre or func.__name__, 
+                               se_desactiva_en, 
+                               se_elimina_en, 
+                               reemplazo)
             return func(*args, **kwargs)
         return _wraps
     
     return outer
 
 
-def deprecated_warning(elemento_deprecado, se_desactiva_en, se_elimina_en, reemplazo=None):
+def deprecated_warning(elemento_deprecado, se_desactiva_en, 
+                       se_elimina_en, reemplazo=None):
     """Lanza la correcta exception/warning de anuncio de que *algo* está en desuso.
     
     Las excepción/warning que puede lanzar esta función son:
@@ -96,8 +102,6 @@ def deprecated_warning(elemento_deprecado, se_desactiva_en, se_elimina_en, reemp
     - Si la versión actual de pilas es menor que ``se_desactiva_en``
       se emite un ``PendingDeprecationWarning``.
     
-    **Parámetros**
-    
     :param elemento_deprecado: Cual el nombre del elemento desaconsejado.
     :type elemento_deprecado: str
     :param se_desactiva_en: Indica en que versiṕn de pilas el atributo
@@ -113,17 +117,17 @@ def deprecated_warning(elemento_deprecado, se_desactiva_en, se_elimina_en, reemp
     :type reemplazo: str
         
     """
-    if pilasversion.compareactual(se_elimina_en) == -1:
-        msg = "Esta funcion no puede utilizarse mas desde la version {}"
-        msg = msg.format(se_elimina_en)
+    if pilasversion.compareactual(se_elimina_en) >= 0:
+        msg = u"El atributo '{}' no puede utilizarse desde la version {}"
+        msg = msg.format(elemento_deprecado, se_elimina_en)
         raise AttributeError(msg)
     
-    msg = "CUIDADO: Utilizar {} esta desaconcejado"
+    msg = "CUIDADO: Utilizar '{}' esta desaconcejado"
     msg = msg.format(elemento_deprecado)
     if reemplazo is not None:
-        msg += "\t; utilice en su lugar: {}".format(reemplazo)
+        msg += "; utilice en su lugar: {}".format(reemplazo)
     
-    if pilasversion.compareactual(se_desactiva_en) == -1:
+    if pilasversion.compareactual(se_desactiva_en) >= 0:
         warnings.warn(msg, DeprecationWarning, stacklevel=2)
     else:
         warnings.warn(msg, PendingDeprecationWarning, stacklevel=2)
@@ -133,7 +137,9 @@ def utilizar_desaconsejados(usar):
     """Permite que se utilicen atributos, métodos y funciones que estan
     desaconsejados en esta versión.
     
-    **Parámetros**
+    NOTA: si usted habilita los desaconsejados, los utiliza y luego los
+    deshabilita; estos ya estaran disponibles. Esta función debería
+    llamarse lo mas temprano posible es un juego y una sola ves.
     
     :param usar: Si se debe o no permitir que los atributos deprecados
                  puedan utilizarse. Si el *usar* es ``False``, todo lo 
@@ -142,6 +148,6 @@ def utilizar_desaconsejados(usar):
     :type usar: bool
     
     """
-    action = "one" if usar else "error"
+    action = "once" if usar else "error"
     warnings.simplefilter(action, DeprecationWarning)
     
