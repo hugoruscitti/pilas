@@ -1,5 +1,6 @@
 .. _ref_desarrolladores:
 
+
 Guía para desarrolladores
 =========================
 
@@ -9,6 +10,7 @@ las herramientas de desarrollo y dando algunas recomendaciones.
 Actualmente utilizamos Git junto a los servicios de github_.
 
 .. _github: http://github.com
+
 
 Repositorio
 -----------
@@ -47,6 +49,7 @@ Ingresa en el directorio ``pilas``, ejecuta el comando::
 
 
 debería aparecer en pantalla el asistente de primer inicio.
+
 
 Instalación en modo desarrollo
 ------------------------------

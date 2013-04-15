@@ -25,11 +25,13 @@ import atajos
 import interfaz
 import interprete
 import municion
+import dev
 from pilas.escena import Normal
 
 # Permite cerrar el programa usando CTRL+C
 import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
+
 
 __doc__ = """
 Módulo pilas

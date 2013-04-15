@@ -6,9 +6,11 @@
 #
 # website - http://www.pilas-engine.com.ar
 
+
 from pilas import control
 from pilas import fisica
 from pilas.escena import Gestor, Normal
+from pilas import dev
 
 
 class Mundo(object):
@@ -54,25 +56,25 @@ class Mundo(object):
 
     def deshabilitar_musica(self, estado=True):
         self.motor.deshabilitar_musica(estado)
-
+    
+    @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
+                    reemplazo="pilas.utils.agregar_tarea, agregar_tarea_una_vez o agregar_tarea_siempre")
     def get_tareas_deprecated(self):
-        print "CUIDADO: Acceder al atributo 'tareas' esta desaconsejado."
-        print "\t utilice en su lugar: pilas.utils.agregar_tarea, agregar_tarea_una_vez o agregar_tarea_siempre"
         return self.gestor_escenas.escena_actual().tareas
 
+    @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
+                    reemplazo="pilas.escena_actual().camara")
     def get_camara_deprecated(self):
-        print "CUIDADO: Acceder al atributo 'camara' esta desaconsejado."
-        print "\t utilice en su lugar: pilas.escena_actual().camara"
         return self.gestor_escenas.escena_actual().camara
 
+    @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
+                    reemplazo="pilas.escena_actual().colisiones")
     def get_colisiones_deprecated(self):
-        print "CUIDADO: Acceder al atributo 'colisiones' esta desaconsejado."
-        print "\t utilice en su lugar: pilas.escena_actual().colisiones"
         return self.gestor_escenas.escena_actual().colisiones
 
+    @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
+                    reemplazo="pilas.escena_actual().control")
     def get_control_deprecated(self):
-        print "CUIDADO: Acceder al atributo 'control' esta desaconsejado."
-        print "\t utilice en su lugar: pilas.escena_actual().control"
         return self.gestor_escenas.escena_actual().control
 
     tareas = property(get_tareas_deprecated)
