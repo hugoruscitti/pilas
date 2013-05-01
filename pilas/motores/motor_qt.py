@@ -737,7 +737,7 @@ class Actor(BaseActor):
         """ Establece la imagen del actor.
 
         :param imagen: Imagen que definirá al actor.
-        ;type imagen: Imagen, Grilla,
+        :type imagen: Imagen, Grilla,
         """
 
         # Comprobamos si el parametro imagen es un objeto Imagen o Grilla.
@@ -753,8 +753,12 @@ class Actor(BaseActor):
         else:
             # Si el parámetro imagen es un string.
             if isinstance(imagen, str):
-                # Nos guardamos directamente ese string como indice de la imagen.
-                self.indice_imagen = imagen
+                if pilas.mundo.motor.libreria_imagenes.tiene(imagen):
+                    self.indice_imagen = imagen
+                else:
+                    self.indice_imagen = pilas.mundo.motor.libreria_imagenes.agregar_imagen(imagenes.cargar(imagen))
+            else:
+                raise Exception("Lo siento, solo se admiten rutas a archivos o imagenes.")
 
     imagen = property(get_imagen, set_imagen, doc="")
 
