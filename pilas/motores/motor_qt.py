@@ -12,7 +12,6 @@ from PyQt4.QtOpenGL import QGLWidget
 from PyQt4.QtGui import QWidget
 from pilas import actores, colores, depurador, eventos, fps
 from pilas import imagenes, simbolos, utils
-import copy
 import os
 import pilas
 import sys
@@ -506,67 +505,6 @@ class Grilla(Imagen):
         pizarra.pintar_parte_de_imagen(self, self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto, x, y)
 
 
-class Texto(Imagen):
-    CACHE_FUENTES = {}
-
-    def __init__(self, texto, magnitud, motor, vertical=False, fuente=None):
-        self.vertical = vertical
-        self.fuente = fuente
-        self._ancho, self._alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente)
-        self.ruta_original = texto
-
-    def _dibujar_pixmap(self, painter, dx, dy):
-        if self.fuente:
-            nombre_de_fuente = Texto.cargar_fuente_desde_cache(self.fuente)
-        else:
-            nombre_de_fuente = painter.font().family()
-
-        fuente = QtGui.QFont(nombre_de_fuente, self.magnitud)
-        metrica = QtGui.QFontMetrics(fuente)
-
-        r, g, b, a = self.color.obtener_componentes()
-        painter.setPen(QtGui.QColor(r, g, b))
-        painter.setFont(fuente)
-
-        if self.vertical:
-            lines = [t for t in self.texto]
-        else:
-            lines = self.texto.split('\n')
-
-        for line in lines:
-            painter.drawText(dx, dy + self._alto, line)
-            dy += metrica.height()
-
-    @classmethod
-    def cargar_fuente_desde_cache(kclass, fuente_como_ruta):
-        """Carga o convierte una fuente para ser utilizada dentro del motor.
-
-        Permite a los usuarios referirse a las fuentes como ruta a archivos, sin
-        tener que preocuparse por el font-family.
-
-        :param fuente_como_ruta: Ruta al archivo TTF que se quiere utilizar.
-
-        Ejemplo:
-
-            >>> Texto.cargar_fuente_desde_cache('myttffile.ttf')
-            'Visitor TTF1'
-        """
-
-        if not fuente_como_ruta in Texto.CACHE_FUENTES.keys():
-            ruta_a_la_fuente = pilas.utils.obtener_ruta_al_recurso(fuente_como_ruta)
-            fuente_id = QtGui.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
-            Texto.CACHE_FUENTES[fuente_como_ruta] = fuente_id
-        else:
-            fuente_id = Texto.CACHE_FUENTES[fuente_como_ruta]
-
-        return str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
-
-    def ancho(self):
-        return self._ancho
-
-    def alto(self):
-        return self._alto
-
 
 class Lienzo(Imagen):
 
@@ -584,10 +522,13 @@ class Lienzo(Imagen):
         r, g, b, a = color.obtener_componentes()
         painter.setPen(QtGui.QColor(r, g, b))
 
-        if not fuente:
-            fuente = painter.font().family()
+        if fuente:
+            nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
+        else:
+            nombre_de_fuente = painter.font().family()
 
-        painter.setFont(QtGui.QFont(fuente, magnitud))
+        font = QtGui.QFont(nombre_de_fuente, magnitud)
+        painter.setFont(font)
         painter.drawText(x, y, cadena)
 
     def pintar(self, painter, color):
@@ -666,15 +607,17 @@ class Superficie(Imagen):
         dx = x
         dy = y
 
-        if not fuente:
-            fuente = self.canvas.font().family()
+        if fuente:
+            nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
+        else:
+            nombre_de_fuente = self.canvas.font().family()
 
-        font = QtGui.QFont(fuente, magnitud)
+        font = QtGui.QFont(nombre_de_fuente, magnitud)
         self.canvas.setFont(font)
         metrica = QtGui.QFontMetrics(font)
 
         for line in cadena.split('\n'):
-            self.canvas.drawText(dx, dy, line)
+            self.canvas.drawText(QtCore.QRect(dx, dy, self._imagen.width(), self._imagen.height()), QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop, line)
             dy += metrica.height()
 
         self.canvas.end()
@@ -735,6 +678,40 @@ class Superficie(Imagen):
     def limpiar(self):
         self._imagen.fill(QtGui.QColor(0, 0, 0, 0))
 
+class Texto(Superficie):
+    CACHE_FUENTES = {}
+
+    def __init__(self, texto, magnitud, motor, vertical=False, fuente=None, color=pilas.colores.negro):
+        ancho, alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente)
+        Superficie.__init__(self, ancho, alto)
+        self.texto(texto, magnitud=magnitud, fuente=fuente, color=color)
+        self.ruta_original = texto.encode('ascii','xmlcharrefreplace') + str(os.urandom(25))
+
+    @classmethod
+    def cargar_fuente_desde_cache(kclass, fuente_como_ruta):
+        """Carga o convierte una fuente para ser utilizada dentro del motor.
+
+        Permite a los usuarios referirse a las fuentes como ruta a archivos, sin
+        tener que preocuparse por el font-family.
+
+        :param fuente_como_ruta: Ruta al archivo TTF que se quiere utilizar.
+
+        Ejemplo:
+
+            >>> Texto.cargar_fuente_desde_cache('myttffile.ttf')
+            'Visitor TTF1'
+        """
+
+        if not fuente_como_ruta in Texto.CACHE_FUENTES.keys():
+            ruta_a_la_fuente = pilas.utils.obtener_ruta_al_recurso(fuente_como_ruta)
+            fuente_id = QtGui.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
+            Texto.CACHE_FUENTES[fuente_como_ruta] = fuente_id
+        else:
+            fuente_id = Texto.CACHE_FUENTES[fuente_como_ruta]
+
+        return str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
+
+
 
 class Actor(BaseActor):
 
@@ -760,7 +737,7 @@ class Actor(BaseActor):
         """ Establece la imagen del actor.
 
         :param imagen: Imagen que definirá al actor.
-        ;type imagen: Imagen, Grilla,
+        :type imagen: Imagen, Grilla,
         """
 
         # Comprobamos si el parametro imagen es un objeto Imagen o Grilla.
@@ -776,8 +753,12 @@ class Actor(BaseActor):
         else:
             # Si el parámetro imagen es un string.
             if isinstance(imagen, str):
-                # Nos guardamos directamente ese string como indice de la imagen.
-                self.indice_imagen = imagen
+                if pilas.mundo.motor.libreria_imagenes.tiene(imagen):
+                    self.indice_imagen = imagen
+                else:
+                    self.indice_imagen = pilas.mundo.motor.libreria_imagenes.agregar_imagen(imagenes.cargar(imagen))
+            else:
+                raise Exception("Lo siento, solo se admiten rutas a archivos o imagenes.")
 
     imagen = property(get_imagen, set_imagen, doc="")
 
@@ -1064,34 +1045,39 @@ class Motor(object):
     def obtener_area(self):
         return (self.ancho_original, self.alto_original)
 
-    def obtener_area_de_texto(self, texto, magnitud=10, vertical=False, fuente=None):
-        ancho = 0
-        alto = 0
+    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None):
+        pic = QtGui.QPicture()
+        p = QtGui.QPainter(pic)
 
         if fuente:
             nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
         else:
-            nombre_de_fuente = ''
+            nombre_de_fuente = p.font().family()
 
-        fuente = QtGui.QFont(nombre_de_fuente, magnitud)
-        metrica = QtGui.QFontMetrics(fuente)
+        font = QtGui.QFont(nombre_de_fuente, magnitud)
+        p.setFont(font)
+
+        ancho = 0
+        alto = 0
 
         if vertical:
-            lineas = [t for t in texto]
+            lineas = [t for t in cadena]
         else:
-            lineas = texto.split('\n')
+            lineas = cadena.split('\n')
 
-        for linea in lineas:
-            ancho = max(ancho, metrica.width(linea))
-            alto += metrica.height()
+        for line in lineas:
+            brect = p.drawText(QtCore.QRect(0,0, 1024, 768), QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop, line)
+            ancho = max(ancho, brect.size().width())
+            alto += brect.size().height()
 
-        return ancho, alto
+        p.end()
+        return (ancho, alto)
 
     def obtener_actor(self, imagen, x, y):
         return Actor(imagen, x, y)
 
-    def obtener_texto(self, texto, magnitud, vertical=False, fuente=None):
-        return Texto(texto, magnitud, self, vertical, fuente)
+    def obtener_texto(self, texto, magnitud, vertical=False, fuente=None, color=pilas.colores.negro):
+        return Texto(texto, magnitud, self, vertical, fuente, color=color)
 
     def obtener_grilla(self, ruta, columnas, filas):
         return Grilla(ruta, columnas, filas)

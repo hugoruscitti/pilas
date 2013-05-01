@@ -41,7 +41,7 @@ class ListaSeleccion(BaseInterfaz):
             self.imagen.rectangulo(0, pinta_indice_opcion * (self.alto_opcion + (self.separacion_entre_opciones * 2)), self.imagen.ancho(), self.alto_opcion + (self.separacion_entre_opciones * 2), relleno=True, color=pilas.colores.naranja)
 
         for indice, opcion in enumerate(self.opciones):
-            self.imagen.texto(opcion, 15, y=self.alto_opcion * indice + self.alto_opcion + (self.separacion_entre_opciones * 2 * indice), color=pilas.colores.negro)
+            self.imagen.texto(opcion, 15, y=self.alto_opcion * indice + 1 +(self.separacion_entre_opciones * 2 * indice), color=pilas.colores.negro)
 
     def cuando_mueve_el_mouse(self, evento):
         if (self.activo):

@@ -1,5 +1,6 @@
 .. _ref_desarrolladores:
 
+
 Guía para desarrolladores
 =========================
 
@@ -9,6 +10,7 @@ las herramientas de desarrollo y dando algunas recomendaciones.
 Actualmente utilizamos Git junto a los servicios de github_.
 
 .. _github: http://github.com
+
 
 Repositorio
 -----------
@@ -48,6 +50,7 @@ Ingresa en el directorio ``pilas``, ejecuta el comando::
 
 debería aparecer en pantalla el asistente de primer inicio.
 
+
 Instalación en modo desarrollo
 ------------------------------
 
@@ -85,3 +88,13 @@ Usamos el modelo de trabajo de github_, haciendo ``forks`` y ``pull requests``.
 Si quieres obtener mas detalles te recomiendo ver el siguiente artículo:
 
 - http://www.cocoanetics.com/2012/01/github-fork-fix-pull-request/
+
+
+Referencias para desarrolladores
+--------------------------------
+
+.. automodule:: pilas.pilasversion
+   :members:
+
+.. automodule:: pilas.dev
+   :members:
