@@ -1,3 +1,19 @@
+Pilas engine - 0.79 (2013-05-01)
+--------------------------------
+
+- Reparando setter de imagenes de los actores.
+- Haciendo que se pueda acceder al control principal nuevamente.
+- Reparando la posicion vertical del texto sobre información de sistema.
+- Tomando el valor ciclico para el fondo desde los argumentos de la clase.
+- Fijando los fondos de desplazamiento infinitos
+- haciendo que pilas funcione de todas formas aunque no este habilitado el motor de fisica.
+- Reparando el problema de las tipografías TTF que no se cargaban. refs #157
+- Mejorando el cálculo de tamaño para textos sobre superficies fix #157
+- Arreglo la posición del modo depuración para que se vea el contador de imagenes en cache.
+- Añadidos atajos para entrar y salir de pantalla completa
+
+
+
 Pilas engine - 0.78 (2013-03-21)
 --------------------------------
 

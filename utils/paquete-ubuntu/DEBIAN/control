@@ -1,9 +1,9 @@
 Package: pilas
-Version: 0.71
+Version: 0.79
 Architecture: all
 Maintainer: Hugo Ruscitti <hugoruscitti@gmail.com>
 Installed-Size: 4000
-Depends: python-qt4 (>= 4.9), python-qt4-gl (>= 4.9), python-qt4-phonon (>= 4.9)
+Depends: python-qt4 (>= 4.5), python-qt4-gl (>= 4.5), python-qt4-phonon (>= 4.5)
 Section: education
 Priority: optional
 Homepage: http://www.pilas-engine.com.ar
