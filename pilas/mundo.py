@@ -56,7 +56,7 @@ class Mundo(object):
 
     def deshabilitar_musica(self, estado=True):
         self.motor.deshabilitar_musica(estado)
-    
+
     @property
     @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
                     reemplazo="pilas.utils.agregar_tarea, agregar_tarea_una_vez o agregar_tarea_siempre")
@@ -68,16 +68,13 @@ class Mundo(object):
                     reemplazo="pilas.escena_actual().camara")
     def camara(self):
         return self.gestor_escenas.escena_actual().camara
-    
+
     @property
     @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
                     reemplazo="pilas.escena_actual().colisiones")
     def colisiones(self):
         return self.gestor_escenas.escena_actual().colisiones
 
-    @property
-    @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
-                    reemplazo="pilas.escena_actual().control")
     def control(self):
         return self.gestor_escenas.escena_actual().control
 
