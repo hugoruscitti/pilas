@@ -75,6 +75,7 @@ class Mundo(object):
     def colisiones(self):
         return self.gestor_escenas.escena_actual().colisiones
 
+    @property
     def control(self):
         return self.gestor_escenas.escena_actual().control
 
