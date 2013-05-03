@@ -70,8 +70,6 @@ class Mundo(object):
         return self.gestor_escenas.escena_actual().camara
 
     @property
-    @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
-                    reemplazo="pilas.escena_actual().colisiones")
     def colisiones(self):
         return self.gestor_escenas.escena_actual().colisiones
 
