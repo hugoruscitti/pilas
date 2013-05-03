@@ -22,24 +22,25 @@ class Puntaje(Texto):
         :param y: Posición vertical para el puntaje.
         :param color: Color que tendrá el texto de puntaje.
         """
-        Texto.__init__(self, texto, x=x, y=y)
+        Texto.__init__(self, str(texto), x=x, y=y)
         self.color = color
+        self.valor = int(texto)
 
     def definir(self, puntaje_variable = '0'):
         """Cambia el texto que se mostrará cómo puntaje.
 
         :param puntaje_variable: Texto a definir.
         """
-        self.puntaje_texto = str(puntaje_variable)
-        self.texto = self.puntaje_texto
+        self.valor = int(puntaje_variable)
+        self.texto = str(self.valor)
 
     def aumentar(self, cantidad=1):
         """Incrementa el puntaje.
 
         :param cantidad: La cantidad de puntaje que se aumentará.
         """
-        self.definir(int(self.texto) + int(cantidad))
+        self.definir(self.valor + int(cantidad))
 
     def obtener(self):
         """Retorna el puntaje en forma de número."""
-        return int(self.texto)
+        return self.valor
