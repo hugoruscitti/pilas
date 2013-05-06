@@ -50,6 +50,9 @@ class Output:
         self.destino.insertar_error(linea)
         self.destino.ensureCursorVisible()
 
+class NormalOutput(Output):
+    pass
+
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
     def __init__(self,  parent, codigo_inicial):
@@ -217,12 +220,17 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             return None
 
         if event.key() in [Qt.Key_Left, Qt.Key_Backspace]:
-            if self.textCursor().positionInBlock() < 3:
-                return None
+            if self.textCursor().positionInBlock() >= 3:
+                super(InterpreteTextEdit, self).keyPressEvent(event)
+            return
 
-        line = self._get_entered_line()
-        if self.autocomplete(event):
-            return None
+
+        try:
+            if self.autocomplete(event):
+                return None
+        except UnicodeEncodeError:
+            pass
+
 
         if event.key() in [Qt.Key_Return, Qt.Key_Enter]:
             line = self._get_entered_line()

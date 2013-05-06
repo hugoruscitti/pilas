@@ -80,10 +80,11 @@ class CompletionTextEdit(QtGui.QTextEdit):
     def autocomplete(self, event):
         current_char = event.text()
         word = self._get_current_word() + current_char
+        is_shift_pressed = (event.modifiers() & QtCore.Qt.ShiftModifier)
 
-        #if not event.text() or event.text() == '.':
-        #    self.completer.popup().hide()
-        #    return False
+        if not event.text() and not is_shift_pressed:
+            self.completer.popup().hide()
+            return False
 
         if self.completer and self.completer.popup().isVisible():
             if event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return, QtCore.Qt.Key_Escape):
@@ -93,17 +94,18 @@ class CompletionTextEdit(QtGui.QTextEdit):
                 self.completer.popup().hide()
                 return False
 
+        if is_shift_pressed:
+            return
+
         codigo_completo = str(self._get_current_line() + event.text())
         values = autocompletar(self.interpreterLocals, codigo_completo)
-        print [word], [codigo_completo], [values]
 
-        #print word != self.completer.completionPrefix()
         if str(word).endswith('.'):
             word = ''
 
         # Previene que pilas autocomplete nombre de modulos en los actores.
         # (solo mostrara el nombre de las clases).
-        if codigo_completo == 'pilas.actores.':
+        if codigo_completo.startswith('pilas.actores.'):
             values = [v for v in values if v.istitle()]
 
         if '__builtins__' in values:
