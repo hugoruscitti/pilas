@@ -220,6 +220,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             if self.textCursor().positionInBlock() < 3:
                 return None
 
+        line = self._get_entered_line()
         if self.autocomplete(event):
             return None
 

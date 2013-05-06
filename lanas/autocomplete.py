@@ -78,7 +78,8 @@ class CompletionTextEdit(QtGui.QTextEdit):
         QtGui.QTextEdit.focusInEvent(self, event)
 
     def autocomplete(self, event):
-        word = self._get_current_word() + event.text()
+        current_char = event.text()
+        word = self._get_current_word() + current_char
 
         #if not event.text() or event.text() == '.':
         #    self.completer.popup().hide()
@@ -91,28 +92,32 @@ class CompletionTextEdit(QtGui.QTextEdit):
             elif event.key() in (QtCore.Qt.Key_Backspace, QtCore.Qt.Key_Space):
                 self.completer.popup().hide()
                 return False
-        else:
-            codigo_completo = str(self._get_current_line() + event.text())
-            values = autocompletar(self.interpreterLocals, codigo_completo)
-            self.set_dictionary(values)
+
+        codigo_completo = str(self._get_current_line() + event.text())
+        values = autocompletar(self.interpreterLocals, codigo_completo)
+        print [word], [codigo_completo], [values]
+
+        #print word != self.completer.completionPrefix()
+        if str(word).endswith('.'):
+            word = ''
 
 
-        if word != self.completer.completionPrefix():
-            self.completer.setCompletionPrefix(word)
-            if self.completer.completionCount() > 0:
+        self.set_dictionary(values)
+        self.completer.setCompletionPrefix(word)
 
-                popup = self.completer.popup()
-                popup.setFont(self.font())
-                popup.setCurrentIndex(self.completer.completionModel().index(0,0))
 
-                if self.completer and not self.completer.popup().isVisible():
-                    cr = self.cursorRect()
-                    column_width = self.completer.popup().sizeHintForColumn(0)
-                    scroll_width = self.completer.popup().verticalScrollBar().sizeHint().width()
-                    cr.setWidth(column_width + scroll_width)
-                    self.completer.complete(cr)
-            else:
-                self.completer.popup().hide()
+        if values:
+            #self.completer.completionCount() > -1:
 
+            popup = self.completer.popup()
+            popup.setFont(self.font())
+            popup.setCurrentIndex(self.completer.completionModel().index(0,0))
+
+            if self.completer and not self.completer.popup().isVisible():
+                cr = self.cursorRect()
+                column_width = self.completer.popup().sizeHintForColumn(0)
+                scroll_width = self.completer.popup().verticalScrollBar().sizeHint().width()
+                cr.setWidth(column_width + scroll_width)
+                self.completer.complete(cr)
         else:
             self.completer.popup().hide()
