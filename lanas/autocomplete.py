@@ -101,6 +101,13 @@ class CompletionTextEdit(QtGui.QTextEdit):
         if str(word).endswith('.'):
             word = ''
 
+        # Previene que pilas autocomplete nombre de modulos en los actores.
+        # (solo mostrara el nombre de las clases).
+        if codigo_completo == 'pilas.actores.':
+            values = [v for v in values if v.istitle()]
+
+        if '__builtins__' in values:
+            values.remove('__builtins__')
 
         self.set_dictionary(values)
         self.completer.setCompletionPrefix(word)
