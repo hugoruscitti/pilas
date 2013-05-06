@@ -12,9 +12,7 @@ class BombaConMovimiento(Bomba):
         self._empujar()
 
     def _empujar(self):
-        dx = 1
-        dy = 1
-        self.circulo.impulsar(dx * 10, dy * 10)
+        self.circulo.impulsar(2, 2)
 
 class Aceituna(pilas.actores.Aceituna):
 

@@ -42,7 +42,7 @@ def hacer_explotar_una_bomba(mono, bomba):
 
 # Le indicamos a pilas que funcion tiene que ejecutar cuando
 # se produzca una colision.
-pilas.mundo.colisiones.agregar(mono, bananas, comer_banana)
-pilas.mundo.colisiones.agregar(mono, bombas, hacer_explotar_una_bomba)
+pilas.escena_actual().colisiones.agregar(mono, bananas, comer_banana)
+pilas.escena_actual().colisiones.agregar(mono, bombas, hacer_explotar_una_bomba)
 
 pilas.ejecutar()

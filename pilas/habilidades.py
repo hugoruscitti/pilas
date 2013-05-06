@@ -667,6 +667,7 @@ class Disparar(Habilidad):
 
             for disparo in objeto_a_disparar.proyectiles:
                 self._agregar_disparo(disparo)
+                disparo.fijo = self.receptor.fijo
 
         elif issubclass(self.municion, pilas.actores.Actor):
 
@@ -676,7 +677,7 @@ class Disparar(Habilidad):
                                               angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo))
 
             self._agregar_disparo(objeto_a_disparar)
-
+            objeto_a_disparar.fijo = self.receptor.fijo
         else:
             raise "No se puede disparar este objeto."
 

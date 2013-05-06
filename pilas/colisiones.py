@@ -40,7 +40,7 @@ class Colisiones:
                 except Exception as e:
                     list.remove(grupo_a, a)
                     raise e
-        
+
     def verificar_colisiones_fisicas(self, id_actor_a, id_actor_b):
         for x in self.colisiones:
             self._verificar_colisiones_fisicas_en_tupla(x, id_actor_a, id_actor_b)
@@ -103,7 +103,7 @@ class Colisiones:
 
             grupo_a = x[0]
             grupo_b = x[1]
-            fucion_a_llamar = x[2]
+            #funcion_a_llamar = x[2]
 
             if actor in grupo_a:
                 # Si solo estaba el actor en este grupo eliminamos la colision.
