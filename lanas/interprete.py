@@ -59,6 +59,15 @@ class Ventana(QWidget):
         else:
             self.log_widget.hide()
 
+    def raw_input(self, mensaje):
+        text, state = QInputDialog.getText(self, "raw_input", mensaje)
+        return str(text)
+
+    def input(self, mensaje):
+        text, state = QInputDialog.getText(self, "raw_input", mensaje)
+        return eval(str(text))
+
+
 class Output:
 
     def __init__(self, destino):
@@ -131,6 +140,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
     def init(self, interpreter_locals):
         if interpreter_locals:
             self.interpreter = code.InteractiveInterpreter(interpreter_locals)
+            self.interpreter.runsource('raw_input = self.raw_input')
+            self.interpreter.runsource('input = self.input')
             self.interpreterLocals = interpreter_locals
 
     def updateInterpreterLocals(self, newLocals):
