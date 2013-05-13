@@ -13,9 +13,9 @@ import autocomplete
 
 class Ventana(QWidget):
 
-    def __init__(self, parent=None, scope=None, codigo_inicial=""):
+    def __init__(self, parent=None, scope=None, codigo_inicial="", with_log=False):
         super(Ventana, self).__init__(parent)
-        box = QHBoxLayout()
+        box = QVBoxLayout()
         box.setMargin(0)
         box.setSpacing(0)
 
@@ -27,10 +27,17 @@ class Ventana(QWidget):
         self.text_edit = InterpreteTextEdit(self, codigo_inicial)
         self.text_edit.init(scope)
 
-        self.resize(650, 300)
-        self.center_on_screen()
+
+        self.log_widget = QListWidget(self)
+
+        if not with_log:
+            self.log_widget.hide()
 
         box.addWidget(self.text_edit)
+        box.addWidget(self.log_widget)
+
+        self.resize(650, 300)
+        self.center_on_screen()
         self.raise_()
 
     def center_on_screen(self):
@@ -40,6 +47,10 @@ class Ventana(QWidget):
 
     def closeEvent(self, event):
         sys.exit(0)
+
+    def log(self, mensaje):
+        item = QListWidgetItem(mensaje)
+        self.log_widget.addItem(item)
 
 class Output:
 
