@@ -24,3 +24,13 @@ Instalación en Mac OSX
 Similar a los pasos en ubuntu, solo que hay que usar homebrew_ para instalar pyqt4.
 
 .. _homebrew: http://mxcl.github.com/homebrew/
+
+
+Atajos de teclado
+-----------------
+
+    alt +           Aumenta el tamaño de tipografia.
+    alt -           Disminuye el tamaño de tipografia.
+    alt i           Alterna el panel log.
+    alt s           Guarda todo el contenido de la consola en un archivo externo.
+

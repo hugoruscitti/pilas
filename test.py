@@ -1,3 +1,3 @@
 import lanas
 
-lanas.main()
+lanas.main(with_log=False)

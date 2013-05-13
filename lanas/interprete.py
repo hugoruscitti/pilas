@@ -10,6 +10,7 @@ from PyQt4.QtCore import *
 
 import highlighter
 import autocomplete
+import version
 
 class Ventana(QWidget):
 
@@ -27,7 +28,6 @@ class Ventana(QWidget):
         self.text_edit = InterpreteTextEdit(self, codigo_inicial)
         self.text_edit.init(scope)
 
-
         self.log_widget = QListWidget(self)
 
         if not with_log:
@@ -39,6 +39,7 @@ class Ventana(QWidget):
         self.resize(650, 300)
         self.center_on_screen()
         self.raise_()
+        self.log("Iniciando lanas ver " + version.VERSION)
 
     def center_on_screen(self):
         resolution = QDesktopWidget().screenGeometry()
@@ -51,6 +52,12 @@ class Ventana(QWidget):
     def log(self, mensaje):
         item = QListWidgetItem(mensaje)
         self.log_widget.addItem(item)
+
+    def alternar_log(self):
+        if self.log_widget.isHidden():
+            self.log_widget.show()
+        else:
+            self.log_widget.hide()
 
 class Output:
 
@@ -69,6 +76,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
     def __init__(self,  parent, codigo_inicial):
         super(InterpreteTextEdit,  self).__init__(parent)
 
+        self.ventana = parent
         sys.stdout = self
         sys.stderr = Output(self)
         self.refreshMarker = False
@@ -193,6 +201,12 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 self._change_font_size(+2)
                 event.ignore()
                 return
+            elif event.key() == Qt.Key_I:
+                self.ventana.alternar_log()
+                return
+            elif event.key() == Qt.Key_S:
+                self.guardar_contenido_con_dialogo()
+                return
 
         # navegar por el historial
         if event.key() == Qt.Key_Down:
@@ -294,11 +308,23 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         super(InterpreteTextEdit, self).keyPressEvent(event)
 
+    def guardar_contenido_con_dialogo(self):
+        filename = QFileDialog.getSaveFileName(self, 'Guardar archivo', 'programa.py', 'Python (*.py)')
+
+        if filename:
+            fname = open(filename, 'w')
+            texto = self.obtener_contenido_completo()
+            fname.write(texto)
+            fname.close()
+
     def _ha_ingresado_solo_espacios(self, linea):
         # TODO: Reemplazar por una expresion regular para
         #       detectar lineas donde solo hay espacios en blanco.
         if linea == "    ":
             return True
 
-    def log(self, mensaje):
-        sys.stderr.write(mensaje + "\n")
+    def obtener_contenido_completo(self):
+        texto = self.document().toPlainText()
+        texto = texto.replace(u'‥ ', '')
+        texto = texto.replace(u'» ', '')
+        return texto
