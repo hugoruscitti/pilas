@@ -16,6 +16,7 @@ import os
 import pilas
 import sys
 import traceback
+import copy
 
 class LibreriaImagenes(object):
     """ Clase que permite cachear las imagenes cargadas en el juego."""
@@ -388,7 +389,7 @@ class Imagen(object):
         else:
             self._imagen = QtGui.QPixmap(ruta)
 
-        pilas.mundo.motor.libreria_imagenes.agregar_imagen(self)
+        #pilas.mundo.motor.libreria_imagenes.agregar_imagen(self)
 
     def cargar_jpeg(self, ruta):
         from PIL import Image
@@ -718,11 +719,12 @@ class Actor(BaseActor):
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
 
         # Si la imagen es una cadena, cargamos la imagen y la cacheamos.
-        if isinstance(imagen, str):
-            self.indice_imagen = pilas.mundo.motor.libreria_imagenes.agregar_imagen(imagenes.cargar(imagen))
-        else:
-            # Si en un objeto Imagen lo almacenamos directamente.
-            self.indice_imagen = pilas.mundo.motor.libreria_imagenes.agregar_imagen(imagen)
+        #if isinstance(imagen, str):
+        #    self.indice_imagen = pilas.mundo.motor.libreria_imagenes.agregar_imagen(imagenes.cargar(imagen))
+        #else:
+        #    # Si en un objeto Imagen lo almacenamos directamente.
+        #    self.indice_imagen = pilas.mundo.motor.libreria_imagenes.agregar_imagen(imagen)
+        self.imagen = imagen
 
         self.x = x
         self.y = y
@@ -739,7 +741,16 @@ class Actor(BaseActor):
         :param imagen: Imagen que definirá al actor.
         :type imagen: Imagen, Grilla,
         """
+        if isinstance(imagen, Grilla):
+            self._imagen = copy.copy(imagen)
+        elif isinstance(imagen, str):
+            self._imagen = pilas.imagenes.cargar(imagen)
+        else:
+            self._imagen = imagen
 
+        print "definiendo imagen", imagen
+
+        """
         # Comprobamos si el parametro imagen es un objeto Imagen o Grilla.
         if isinstance(imagen, Imagen) or isinstance(imagen, Grilla):
             # Comprobamos si ya está cacheada esa imagen.
@@ -759,6 +770,7 @@ class Actor(BaseActor):
                     self.indice_imagen = pilas.mundo.motor.libreria_imagenes.agregar_imagen(imagenes.cargar(imagen))
             else:
                 raise Exception("Lo siento, solo se admiten rutas a archivos o imagenes.")
+        """
 
     imagen = property(get_imagen, set_imagen, doc="")
 
@@ -766,7 +778,8 @@ class Actor(BaseActor):
         self.imagen = imagen
 
     def obtener_imagen(self):
-        return pilas.mundo.motor.libreria_imagenes.obtener_imagen(self.indice_imagen)
+        #return pilas.mundo.motor.libreria_imagenes.obtener_imagen(self.indice_imagen)
+        return self._imagen
 
     def dibujar(self, painter):
         escala_x, escala_y = self._escala_x, self._escala_y
@@ -784,7 +797,10 @@ class Actor(BaseActor):
         x = self.x - dx
         y = self.y - dy
 
-        pilas.mundo.motor.libreria_imagenes.obtener_imagen(self.indice_imagen).dibujar(painter, x, y, self.centro_x, self.centro_y,
+        #pilas.mundo.motor.libreria_imagenes.obtener_imagen(self.indice_imagen).dibujar(painter, x, y, self.centro_x, self.centro_y,
+        #        escala_x, escala_y, self._rotacion, self._transparencia)
+        #self.imagen.dibujar(painter, x, y, self.centro_x, self.centro_y)
+        self.imagen.dibujar(painter, x, y, self.centro_x, self.centro_y,
                 escala_x, escala_y, self._rotacion, self._transparencia)
 
 
@@ -1095,10 +1111,11 @@ class Motor(object):
         self.clase_musica.deshabilitado = estado
 
     def cargar_imagen(self, ruta):
-        if pilas.mundo.motor.libreria_imagenes.tiene(ruta):
-            return pilas.mundo.motor.libreria_imagenes.obtener_imagen(ruta)
-        else:
-            return Imagen(ruta)
+        #if pilas.mundo.motor.libreria_imagenes.tiene(ruta):
+        #    return pilas.mundo.motor.libreria_imagenes.obtener_imagen(ruta)
+        #else:
+        #  return Imagen(ruta)
+        return Imagen(ruta)
 
     def obtener_lienzo(self):
         return Lienzo()
