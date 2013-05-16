@@ -748,8 +748,6 @@ class Actor(BaseActor):
         else:
             self._imagen = imagen
 
-        print "definiendo imagen", imagen
-
         """
         # Comprobamos si el parametro imagen es un objeto Imagen o Grilla.
         if isinstance(imagen, Imagen) or isinstance(imagen, Grilla):
