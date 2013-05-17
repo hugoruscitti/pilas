@@ -18,6 +18,7 @@ import sys
 import traceback
 import copy
 
+
 class LibreriaImagenes(object):
     """ Clase que permite cachear las imagenes cargadas en el juego."""
     def __init__(self):
@@ -54,10 +55,11 @@ class LibreriaImagenes(object):
         :type indice: string
 
         """
-        return self._imagenes.has_key(indice)
+        return indice in self._imagenes
 
     def obtener_cantidad(self):
         return len(self._imagenes)
+
 
 class Ventana(QtGui.QMainWindow):
 
@@ -75,16 +77,20 @@ class Ventana(QtGui.QMainWindow):
 
 class CanvasWidgetAbstracto(object):
 
-    def __init__(self, motor, lista_actores, ancho, alto, gestor_escenas, permitir_depuracion, rendimiento):
+    def __init__(self, motor, ancho, alto, gestor_escenas, permitir_depuracion,
+                 rendimiento):
         QGLWidget.__init__(self, None)
+
         self.painter = QtGui.QPainter()
-        self.setMouseTracking(True)
 
         self.pausa_habilitada = False
+
+        self.setMouseTracking(True)
         self.mouse_x = 0
         self.mouse_y = 0
+
         self.motor = motor
-        self.lista_actores = lista_actores
+
         self.fps = fps.FPS(rendimiento, True)
 
         if permitir_depuracion:
@@ -94,7 +100,9 @@ class CanvasWidgetAbstracto(object):
 
         self.original_width = ancho
         self.original_height = alto
+
         self.escala = 1
+
         self.startTimer(1000/100.0)
 
         self.gestor_escenas = gestor_escenas
@@ -124,12 +132,9 @@ class CanvasWidgetAbstracto(object):
         self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
-        actores_a_eliminar = []
-
         if self.gestor_escenas.escena_actual():
             actores_de_la_escena = self.gestor_escenas.escena_actual().actores
             for actor in actores_de_la_escena:
-                #if actor._vivo:
                 try:
                     if not actor.esta_fuera_de_la_pantalla():
                         actor.dibujar(self.painter)
@@ -139,11 +144,6 @@ class CanvasWidgetAbstracto(object):
                     actor.eliminar()
 
                 self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
-                #else:
-                #    actores_a_eliminar.append(actor)
-
-                #for x in actores_a_eliminar:
-                #    actores_de_la_escena.remove(x)
 
         self.depurador.termina_dibujado(self.motor, self.painter)
         self.painter.end()
@@ -182,9 +182,6 @@ class CanvasWidgetAbstracto(object):
         x, y = utils.convertir_de_posicion_fisica_relativa(e.pos().x()/escala, e.pos().y()/escala)
 
         izquierda, derecha, arriba, abajo = utils.obtener_bordes()
-
-        #x = max(min(derecha, x), izquierda)
-        #y = max(min(arriba, y), abajo)
 
         x += pilas.mundo.motor.camara_x
         y += pilas.mundo.motor.camara_y
@@ -325,6 +322,7 @@ class CanvasWidgetAbstracto(object):
         else:
             self.pantalla_completa()
 
+
 class BaseActor(object):
 
     def __init__(self):
@@ -443,13 +441,16 @@ class Imagen(object):
 
     def __str__(self):
         nombre_imagen = os.path.basename(self.ruta_original)
-        return "<Imagen del archivo '%s'>" %(nombre_imagen)
+        return "<Imagen del archivo '%s'>" % (nombre_imagen)
+
 
 class CanvasOpenGlWidget(CanvasWidgetAbstracto, QGLWidget):
     pass
 
+
 class CanvasNormalWidget(CanvasWidgetAbstracto, QWidget):
     pass
+
 
 class Grilla(Imagen):
 
@@ -504,7 +505,6 @@ class Grilla(Imagen):
 
     def dibujarse_sobre_una_pizarra(self, pizarra, x, y):
         pizarra.pintar_parte_de_imagen(self, self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto, x, y)
-
 
 
 class Lienzo(Imagen):
@@ -569,7 +569,7 @@ class Lienzo(Imagen):
         color = QtGui.QColor(r, g, b)
         pen = QtGui.QPen(color, grosor)
         painter.setPen(pen)
-        painter.drawEllipse(x -radio, y-radio, radio*2, radio*2)
+        painter.drawEllipse(x-radio, y-radio, radio*2, radio*2)
 
     def rectangulo(self, painter, x, y, ancho, alto, color=colores.negro, grosor=1):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
@@ -634,7 +634,7 @@ class Superficie(Imagen):
         if relleno:
             self.canvas.setBrush(color)
 
-        self.canvas.drawEllipse(x -radio, y-radio, radio*2, radio*2)
+        self.canvas.drawEllipse(x-radio, y-radio, radio*2, radio*2)
         self.canvas.end()
 
     def rectangulo(self, x, y, ancho, alto, color=colores.negro, relleno=False, grosor=1):
@@ -679,6 +679,7 @@ class Superficie(Imagen):
     def limpiar(self):
         self._imagen.fill(QtGui.QColor(0, 0, 0, 0))
 
+
 class Texto(Superficie):
     CACHE_FUENTES = {}
 
@@ -686,7 +687,7 @@ class Texto(Superficie):
         ancho, alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente)
         Superficie.__init__(self, ancho, alto)
         self.texto(texto, magnitud=magnitud, fuente=fuente, color=color)
-        self.ruta_original = texto.encode('ascii','xmlcharrefreplace') + str(os.urandom(25))
+        self.ruta_original = texto.encode('ascii', 'xmlcharrefreplace') + str(os.urandom(25))
 
     @classmethod
     def cargar_fuente_desde_cache(kclass, fuente_como_ruta):
@@ -713,7 +714,6 @@ class Texto(Superficie):
         return str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
 
 
-
 class Actor(BaseActor):
 
     def __init__(self, imagen="sin_imagen.png", x=0, y=0):
@@ -729,7 +729,6 @@ class Actor(BaseActor):
         self.x = x
         self.y = y
         BaseActor.__init__(self)
-
 
     def get_imagen(self):
         """ Obtinene la imagen del Actor. """
@@ -799,7 +798,7 @@ class Actor(BaseActor):
         #        escala_x, escala_y, self._rotacion, self._transparencia)
         #self.imagen.dibujar(painter, x, y, self.centro_x, self.centro_y)
         self.imagen.dibujar(painter, x, y, self.centro_x, self.centro_y,
-                escala_x, escala_y, self._rotacion, self._transparencia)
+                            escala_x, escala_y, self._rotacion, self._transparencia)
 
 
 ## Backend: audio deshabilitado
@@ -822,12 +821,14 @@ class SonidoDeshabilitado:
     def continuar(self):
         pass
 
+
 class MusicaDeshabilitada(SonidoDeshabilitado):
 
     def __init__(self, media, ruta):
         SonidoDeshabilitado.__init__(self, media, ruta)
 
 ## Backend: gstreamer
+
 
 class SonidoGST:
     deshabilitado = False
@@ -852,7 +853,7 @@ class SonidoGST:
             if repetir:
                 self.sonido.get_state()
                 nanosecs = float(self.sonido.query_duration(gst.FORMAT_TIME)[0])
-                duracion =  (nanosecs + 10) / gst.SECOND
+                duracion = (nanosecs + 10) / gst.SECOND
                 self._repetir = pilas.mundo.agregar_tarea_siempre(duracion,
                                                                   self._play)
 
@@ -870,6 +871,7 @@ class MusicaGST(SonidoGST):
         SonidoGST.__init__(self, media, ruta)
 
 ## Backend: audio phonon
+
 
 class SonidoPhonon:
     deshabilitado = False
@@ -936,7 +938,7 @@ class Motor(object):
     def __init__(self, usar_motor, permitir_depuracion, audio):
         import sys
 
-	if not '-i' in sys.argv:
+        if not '-i' in sys.argv:
             self._iniciar_aplicacion()
 
         self.usar_motor = usar_motor
@@ -946,7 +948,6 @@ class Motor(object):
 
         self._inicializar_variables()
         self._inicializar_sistema_de_audio(audio)
-
 
     def _iniciar_aplicacion(self):
         self.app = QtGui.QApplication([])
@@ -961,8 +962,8 @@ class Motor(object):
         sistemas_de_sonido = ['deshabilitado', 'phonon', 'gst']
 
         if audio not in sistemas_de_sonido:
-            error = "El sistema de audio '%s' es invalido" %(audio)
-            sugerencia = ". Use alguno de los siguientes: %s" %(str(sistemas_de_sonido))
+            error = "El sistema de audio '%s' es invalido" % (audio)
+            sugerencia = ". Use alguno de los siguientes: %s" % (str(sistemas_de_sonido))
             raise Exception(error + sugerencia)
 
         if audio == 'gst':
@@ -985,7 +986,6 @@ class Motor(object):
             self.clase_sonido = SonidoPhonon
             self.clase_musica = MusicaPhonon
         elif audio == 'gst':
-            import gst
             self.player = gst.element_factory_make("playbin2", "player")
             self.clase_sonido = SonidoGST
             self.clase_musica = MusicaGST
@@ -993,7 +993,8 @@ class Motor(object):
     def terminar(self):
         self.ventana.close()
 
-    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa, gestor_escenas, rendimiento, centrado):
+    def iniciar_ventana(self, ancho, alto, titulo, pantalla_completa,
+                        gestor_escenas, rendimiento, centrado):
         self.ventana = Ventana()
         self.ventana.resize(ancho, alto)
 
@@ -1004,9 +1005,11 @@ class Motor(object):
         mostrar_ventana = True
 
         if self.usar_motor == 'qtgl':
-            self.canvas = CanvasOpenGlWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
+            self.canvas = CanvasOpenGlWidget(self, ancho, alto, gestor_escenas,
+                                             self.permitir_depuracion, rendimiento)
         else:
-            self.canvas = CanvasNormalWidget(self, actores.todos, ancho, alto, gestor_escenas, self.permitir_depuracion, rendimiento)
+            self.canvas = CanvasNormalWidget(self, ancho, alto, gestor_escenas,
+                                             self.permitir_depuracion, rendimiento)
 
         self.ventana.set_canvas(self.canvas)
         self.canvas.setFocus()
@@ -1080,7 +1083,8 @@ class Motor(object):
             lineas = cadena.split('\n')
 
         for line in lineas:
-            brect = p.drawText(QtCore.QRect(0,0, 1024, 768), QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop, line)
+            brect = p.drawText(QtCore.QRect(0, 0, 1024, 768),
+                               QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop, line)
             ancho = max(ancho, brect.size().width())
             alto += brect.size().height()
 
