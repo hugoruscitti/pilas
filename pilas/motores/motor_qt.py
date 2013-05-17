@@ -1041,7 +1041,7 @@ class Motor(object):
     def mostrar_puntero_del_mouse(self):
         self.canvas.setCursor(QtGui.QCursor(Qt.ArrowCursor))
 
-    def ejecutar_bucle_principal(self, mundo, ignorar_errores):
+    def ejecutar_bucle_principal(self):
         if getattr(self, 'app', None):
             sys.exit(self.app.exec_())
 
