@@ -127,7 +127,7 @@ def ejecutar(ignorar_errores=False):
 
     Esta función es necesaria cuando se crea un juego
     en modo ``no-interactivo``."""
-    mundo.ejecutar_bucle_principal(ignorar_errores)
+    mundo.ejecutar_bucle_principal()
 
 
 def terminar():
