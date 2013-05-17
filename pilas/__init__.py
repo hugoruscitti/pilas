@@ -45,6 +45,7 @@ Este módulo contiene las funciones principales
 para iniciar y ejecutar la biblioteca.
 """
 
+
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False,
             permitir_depuracion=True, audio='phonon', centrado=True):
@@ -93,9 +94,9 @@ def esta_inicializada():
     return isinstance(mundo, Mundo)
 
 
-def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas',
-            rendimiento=60, modo='detectar', gravedad=(0, -90), imagen="asistente.png",
-            permitir_depuracion=True):
+def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas', rendimiento=60,
+                         modo='detectar', gravedad=(0, -90), imagen="asistente.png",
+                         permitir_depuracion=True):
     """Identica a la función iniciar, solo que permite al usuario seleccionar
     el motor multimedia y el modo de video a utilizar.
 
@@ -120,6 +121,7 @@ def abrir_asistente():
     import asistente
     asistente.ejecutar()
 
+
 def ejecutar(ignorar_errores=False):
     """Pone en funcionamiento las actualizaciones y dibujado.
 
@@ -127,18 +129,22 @@ def ejecutar(ignorar_errores=False):
     en modo ``no-interactivo``."""
     mundo.ejecutar_bucle_principal(ignorar_errores)
 
+
 def terminar():
     """Finaliza la ejecución de pilas y cierra la ventana principal."""
     mundo.terminar()
+
 
 def ver(objeto, imprimir=True, retornar=False):
     """Imprime en pantalla el codigo fuente asociado a un objeto."""
     return utils.ver_codigo(objeto, imprimir, retornar)
 
+
 def version():
     """Retorna el número de version de pilas."""
     import pilasversion
     return pilasversion.VERSION
+
 
 def _crear_motor(usar_motor, permitir_depuracion, audio):
     """Genera instancia del motor multimedia en base a un nombre.
@@ -154,20 +160,23 @@ def _crear_motor(usar_motor, permitir_depuracion, audio):
 
         motor = motor_qt.Motor(usar_motor, permitir_depuracion, audio)
     else:
-        print "El motor multimedia seleccionado (%s) no esta disponible" %(usar_motor)
+        print "El motor multimedia seleccionado (%s) no esta disponible" % (usar_motor)
         print "Las opciones de motores que puedes probar son 'qt', 'qtgl', 'qtwidget', 'qtsugar' y 'qtsugargl'."
         motor = None
 
     return motor
 
+
 def _usa_interprete_lanas():
     "Retorna True si se ha iniciado pilas desde lanas"
     import os
-    return os.environ.has_key('lanas')
+    return 'lanas' in os.environ
+
 
 def reiniciar():
     """Elimina todos los actores y vuelve al estado inicial."""
     mundo.reiniciar()
+
 
 def avisar(mensaje, retraso=5):
     """Emite un mensaje en la ventana principal.
@@ -178,6 +187,7 @@ def avisar(mensaje, retraso=5):
         >>> pilas.avisar("Use la tecla <esc> para terminar el programa")
     """
     actores.TextoInferior(mensaje, autoeliminar=True, retraso=retraso)
+
 
 def abrir_cargador():
     """Abre un cargador de ejemplos con varios códigos de prueba.
@@ -200,6 +210,7 @@ def abrir_cargador():
 
     return []
 
+
 def abrir_interprete(parent=None, do_raise=False, con_aplicacion=False):
     """Abre un intérprete interactivo de python con una ventana.
 
@@ -216,19 +227,24 @@ def abrir_interprete(parent=None, do_raise=False, con_aplicacion=False):
 
     interprete.main(parent, do_raise)
 
+
 def log(*parametros):
     eventos.log.emitir(data=parametros)
 
 interpolar = utils.interpolar
 
+
 def escena_actual():
     return mundo.gestor_escenas.escena_actual()
+
 
 def cambiar_escena(escena):
     mundo.gestor_escenas.cambiar_escena(escena)
 
+
 def almacenar_escena(escena):
     mundo.gestor_escenas.almacenar_escena(escena)
+
 
 def recuperar_escena():
     mundo.gestor_escenas.recuperar_escena()
