@@ -34,7 +34,7 @@ class Base(object):
         self.actores = []
 
         # Camara de la escena.
-        self.camara = camara.Camara(self)
+        self.camara = camara.Camara()
 
         # Eventos asociados a la escena.
         self.mueve_camara = Evento('mueve_camara')               # ['x', 'y', 'dx', 'dy']

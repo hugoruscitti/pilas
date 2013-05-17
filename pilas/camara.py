@@ -8,6 +8,7 @@
 
 import pilas
 
+
 class Camara(object):
     """Representa el punto de vista de la ventana.
 
@@ -15,12 +16,10 @@ class Camara(object):
     punto central de la pantalla. Por defecto estos
     valores con (0, 0)."""
 
-    def __init__(self, motor):
+    def __init__(self):
         """Inicializa la cámara.
-
-        :param motor: Referencia al motor de pilas.
         """
-        self.motor = motor
+        pass
 
     @pilas.utils.interpolable
     def _set_x(self, x):
@@ -52,7 +51,6 @@ class Camara(object):
 
     x = property(_get_x, _set_x)
     y = property(_get_y, _set_y)
-
 
     def obtener_area_visible(self):
         """Retorna el area del escenario que está visible por la cámara.
@@ -102,4 +100,3 @@ class Camara(object):
         """
         x, y = posicion
         return (x - self.x, y - self.y)
-
