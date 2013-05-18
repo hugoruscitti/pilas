@@ -90,6 +90,9 @@ class CompletionTextEdit(QtGui.QTextEdit):
             if event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return, QtCore.Qt.Key_Escape):
                 event.ignore()
                 return True
+            elif event.text() in ['(', ')']:
+                self.completer.popup().hide()
+                return False
             elif event.key() in (QtCore.Qt.Key_Backspace, QtCore.Qt.Key_Space):
                 self.completer.popup().hide()
                 return False
@@ -103,6 +106,9 @@ class CompletionTextEdit(QtGui.QTextEdit):
         if str(word).endswith('.'):
             word = ''
 
+        # Evita todos los metodos privados si no se escribe un _
+        values = [v for v in values if not v.startswith('_')]
+
         # Previene que pilas autocomplete nombre de modulos en los actores.
         # (solo mostrara el nombre de las clases).
         if codigo_completo.startswith('pilas.actores.'):
@@ -113,7 +119,6 @@ class CompletionTextEdit(QtGui.QTextEdit):
 
         self.set_dictionary(values)
         self.completer.setCompletionPrefix(word)
-
 
         if values:
             #self.completer.completionCount() > -1:
