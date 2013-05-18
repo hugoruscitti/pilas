@@ -301,6 +301,11 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 self.marker()
                 return None
 
+            # Permite escribir lineas terminas con '?' para consultar la documentacion
+            # de manera similar a como lo hace ipython.
+            if line.endswith('?'):
+                line = 'print ' + line[:-1] + '.__doc__.decode("utf-8")'
+
             if self.haveLine and not self.multiline: # one line command
                 self.command = line # line is the command
                 self.append('') # move down one line

@@ -90,7 +90,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
             if event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return, QtCore.Qt.Key_Escape):
                 event.ignore()
                 return True
-            elif event.text() in ['(', ')']:
+            elif event.text() in ['(', ')', '?']:
                 self.completer.popup().hide()
                 return False
             elif event.key() in (QtCore.Qt.Key_Backspace, QtCore.Qt.Key_Space):
