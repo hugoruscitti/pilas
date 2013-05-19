@@ -18,7 +18,7 @@ def crear_grupo(*k):
     return pilas.grupos.Grupo(k)
 
 
-@dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
+@dev.deprecated(se_desactiva_en="0.80", se_elimina_en="0.81",
                 reemplazo="pilas.mundo.definir_gravedad")
 def definir_gravedad(x, y):
     """Define la gravedad del motor de física.

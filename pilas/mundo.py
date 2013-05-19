@@ -67,6 +67,9 @@ class Mundo(object):
         """
         self.gestor_escenas.escena_actual().fisica.definir_gravedad(x, y)
 
+    def obtener_area(self):
+        return (self.motor.ancho_original, self.motor.alto_original)
+
     @property
     @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
                     reemplazo="pilas.utils.agregar_tarea, agregar_tarea_una_vez o agregar_tarea_siempre")

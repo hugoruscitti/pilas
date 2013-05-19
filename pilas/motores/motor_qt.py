@@ -12,6 +12,7 @@ from PyQt4.QtOpenGL import QGLWidget
 from PyQt4.QtGui import QWidget
 from pilas import actores, colores, depurador, eventos, fps
 from pilas import imagenes, simbolos, utils
+from pilas import dev
 import os
 import pilas
 import sys
@@ -1059,6 +1060,8 @@ class Motor(object):
         "Centro de la ventana para situar el punto (0, 0)"
         return self.ancho_original/2, self.alto_original/2
 
+    @dev.deprecated(se_desactiva_en="0.80", se_elimina_en="0.81",
+                    reemplazo="pilas.mundo.obtener_area")
     def obtener_area(self):
         return (self.ancho_original, self.alto_original)
 
