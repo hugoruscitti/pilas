@@ -59,6 +59,14 @@ class Mundo(object):
     def deshabilitar_musica(self, estado=True):
         self.motor.deshabilitar_musica(estado)
 
+    def definir_gravedad(self, x, y):
+        """Define la gravedad del motor de física.
+
+        :param x: Aceleración horizontal.
+        :param y: Aceleración vertical.
+        """
+        self.gestor_escenas.escena_actual().fisica.definir_gravedad(x, y)
+
     @property
     @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
                     reemplazo="pilas.utils.agregar_tarea, agregar_tarea_una_vez o agregar_tarea_siempre")
