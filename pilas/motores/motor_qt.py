@@ -380,13 +380,16 @@ class Imagen(object):
     def __init__(self, ruta):
         self.ruta_original = ruta
 
-        if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
-            try:
-                self._imagen = self.cargar_jpeg(ruta)
-            except:
-                self._imagen = QtGui.QPixmap(ruta)
+        if isinstance(ruta, QtGui.QPixmap):
+            self._imagen = ruta
         else:
-            self._imagen = QtGui.QPixmap(ruta)
+            if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
+                try:
+                    self._imagen = self.cargar_jpeg(ruta)
+                except:
+                    self._imagen = QtGui.QPixmap(ruta)
+            else:
+                self._imagen = QtGui.QPixmap(ruta)
 
         #pilas.mundo.motor.libreria_imagenes.agregar_imagen(self)
 
@@ -503,6 +506,9 @@ class Grilla(Imagen):
 
     def obtener_cuadro(self):
         return self._cuadro
+
+    def obtener_imagen_cuadro(self):
+        return Imagen(ruta=self._imagen.copy(self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto))
 
     def dibujarse_sobre_una_pizarra(self, pizarra, x, y):
         pizarra.pintar_parte_de_imagen(self, self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto, x, y)

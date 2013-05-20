@@ -39,8 +39,8 @@ class Mapa(Actor):
             grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
 
         self.grilla = grilla
-        self.superficie = pilas.imagenes.cargar_superficie(columnas * self.grilla.cuadro_ancho, filas * self.grilla.cuadro_alto)
-        self.imagen = self.superficie
+        #self.superficie = pilas.imagenes.cargar_superficie(columnas * self.grilla.cuadro_ancho, filas * self.grilla.cuadro_alto)
+        #self.imagen = self.superficie
 
     def _generar_matriz_de_bloques(self, filas, columnas):
         cols = copy.copy([False] * columnas)
@@ -72,7 +72,11 @@ class Mapa(Actor):
         x = columna * ancho
         y = fila * alto
 
-        self.grilla.dibujarse_sobre_una_pizarra(self.superficie, x, y)
+        (dx, dy) = pilas.mundo.motor.centro_fisico()
+        actor = pilas.actores.Actor(x=x-dx+(ancho/2), y=dy-y-(alto/2))
+
+        actor.imagen = self.grilla.obtener_imagen_cuadro()
+        #self.grilla.dibujarse_sobre_una_pizarra(self.superficie, x, y)
 
     def pintar_limite_de_bloques(self):
         """Dibuja los bordes de cada bloque."""
@@ -150,6 +154,7 @@ class Mapa(Actor):
         :param columna: La columna que se observará.
         """
         if not 0 <= fila < self.filas or not 0 <= columna < self.columnas:
+            return True
             raise Exception("La fila y columna consultadas estan fuera del area del mapa.")
 
         return self.matriz_de_bloques[fila][columna]
@@ -176,7 +181,7 @@ class Mapa(Actor):
         :param x: Coordenada horizontal de pantalla.
         :param y: Coordenada vertical de pantalla.
         """
-        dx, dy = self.centro
+        dx, dy = pilas.mundo.motor.centro_fisico()#self.centro
         x = x + dx - self.x
         y = -y + dy + self.y
         return x, y
