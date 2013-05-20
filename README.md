@@ -24,13 +24,21 @@ del sitio web:
 
 - http://www.pilas-engine.com.ar/descargas.html
 
+Los instaladores se generan pediodicamente y se distrubuyen para
+los sistemas mas utilizados.
 
+### Instalación desde repositorios (Ubuntu y Mint)
 
-### Instalación en Ubuntu 12.04
+En distribuciones como Ubuntu 12.04 o Linux mint, necesitas instalar
+una serie de dependencias:
 
     sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion
 
-Obtener desde repositorio
+Luego, instalar box2d:
+
+    sudo easy_install -U box2d
+
+y por último, obtener e instalar pilas desde el respositorio:
 
     git clone http://github.com/hugoruscitti/pilas
     
@@ -43,6 +51,7 @@ Obtener desde repositorio
 ### Instalación en Open Suse 12.2
 
     sudo zypper install git gcc python-devel swig python-qt4 python-setuptools gcc-c++
+
     sudo easy_install -U distribute 
     sudo easy_install -U box2d
 
@@ -64,3 +73,7 @@ si quieres los puedes ejecutar manualmente en tu equipo con el siguiente comando
 ## Licencia
 
 Pilas es software libre, y se distribuye bajo la licencia LGPLv3.
+
+Visita nuestro sitio web para obtener mas detalles:
+
+    - http://www.pilas-engine.com.ar
