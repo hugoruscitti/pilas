@@ -9,7 +9,6 @@
 import pilas
 from pilas import utils
 from pilas.estudiante import Estudiante
-import uuid
 
 IZQUIERDA = ["izquierda"]
 DERECHA = ["derecha"]
@@ -79,7 +78,7 @@ class Actor(object, Estudiante):
         self._actor = pilas.mundo.motor.obtener_actor(imagen, x=x, y=y)
         self.centro = ('centro', 'centro')
 
-        self.id = uuid.uuid4()
+        self.id = utils.obtener_uuid()
 
         self.x = x
         self.y = y
