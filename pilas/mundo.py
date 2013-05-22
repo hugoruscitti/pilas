@@ -20,7 +20,9 @@ class Mundo(object):
     motor y mantener el bucle de juego.
     """
 
-    def __init__(self, motor, ancho, alto, titulo, rendimiento=60, gravedad=(0, -10), pantalla_completa=False, centrado=True):
+    def __init__(self, motor, ancho, alto, titulo, rendimiento=60,
+                 gravedad=(0, -10), pantalla_completa=False, centrado=True):
+
         self.gestor_escenas = Gestor()
 
         self.motor = motor
@@ -38,9 +40,9 @@ class Mundo(object):
     def terminar(self):
         self.motor.terminar()
 
-    def ejecutar_bucle_principal(self, ignorar_errores=False):
+    def ejecutar_bucle_principal(self):
         "Mantiene en funcionamiento el motor completo."
-        self.motor.ejecutar_bucle_principal(self, ignorar_errores)
+        self.motor.ejecutar_bucle_principal()
 
     def agregar_tarea_una_vez(self, time_out, function, *params):
         return self.gestor_escenas.escena_actual().tareas.una_vez(time_out, function, params)
@@ -56,6 +58,17 @@ class Mundo(object):
 
     def deshabilitar_musica(self, estado=True):
         self.motor.deshabilitar_musica(estado)
+
+    def definir_gravedad(self, x, y):
+        """Define la gravedad del motor de física.
+
+        :param x: Aceleración horizontal.
+        :param y: Aceleración vertical.
+        """
+        self.gestor_escenas.escena_actual().fisica.definir_gravedad(x, y)
+
+    def obtener_area(self):
+        return (self.motor.ancho_original, self.motor.alto_original)
 
     @property
     @dev.deprecated(se_desactiva_en="0.79", se_elimina_en="0.8",
@@ -76,4 +89,3 @@ class Mundo(object):
     @property
     def control(self):
         return self.gestor_escenas.escena_actual().control
-
