@@ -18,6 +18,7 @@ import utils
 class VentanaAsistente(Ui_AsistenteWindow):
 
     def setupUi(self, main):
+        self.nombre_archivo_script = ""
         self.main = main
         Ui_AsistenteWindow.setupUi(self, main)
         main.resize(550, 342)
@@ -203,10 +204,11 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _reiniciar_proceso(self):
         nombre_archivo_script = self.nombre_archivo_script
-        directorio_trabajo = self.directorio_trabajo
-        self.process.terminate()
-        self.process.waitForFinished(3000)
-        self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
+        if nombre_archivo_script:
+            directorio_trabajo = self.directorio_trabajo
+            self.process.terminate()
+            self.process.waitForFinished(3000)
+            self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
 
     def _cuando_selecciona_abrir_manual(self):
         try:
@@ -239,6 +241,8 @@ class VentanaAsistente(Ui_AsistenteWindow):
     def salir(self, *_):
         self.main.close()
 
+    def evaluar_javascript(self, codigo):
+        self.webView.page().mainFrame().evaluateJavaScript(codigo)
 
 class MainWindow(QtGui.QMainWindow):
 
@@ -252,6 +256,10 @@ class MainWindow(QtGui.QMainWindow):
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
             event.acceptProposedAction()
+            self.ui.evaluar_javascript("resaltar_caja_destino_para_soltar(true);")
+
+    def dragLeaveEvent(self, event):
+        self.ui.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
 
     def dragMoveEvent(self, event):
         super(MainWindow, self).dragMoveEvent(event)
@@ -266,6 +274,7 @@ class MainWindow(QtGui.QMainWindow):
                 event.acceptProposedAction()
         else:
             super(MainWindow,self).dropEvent(event)
+        self.ui.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
 
 def ejecutar():
     app = QtGui.QApplication(sys.argv)
@@ -273,8 +282,8 @@ def ejecutar():
 
     main = MainWindow()
     ui = VentanaAsistente()
-    main.definir_receptor_de_comandos(ui)
     ui.setupUi(main)
+    main.definir_receptor_de_comandos(ui)
 
     main.show()
     main.raise_()

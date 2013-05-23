@@ -37,7 +37,7 @@ def obtener_ruta_al_recurso(ruta):
     :param ruta: Ruta al archivo (recurso) a inspeccionar.
     """
 
-    dirs = ['./', os.path.dirname(sys.argv[0]), 'data', PATH, PATH + '/data']
+    dirs = ['./', os.path.dirname(sys.argv[0]), os.path.dirname(sys.argv[0])  + '/data', 'data', PATH, PATH + '/data']
 
     for x in dirs:
         full_path = os.path.join(x, ruta)
