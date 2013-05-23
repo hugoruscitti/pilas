@@ -18,6 +18,7 @@ import utils
 class VentanaAsistente(Ui_AsistenteWindow):
 
     def setupUi(self, main):
+        self.nombre_archivo_script = ""
         self.main = main
         Ui_AsistenteWindow.setupUi(self, main)
         main.resize(550, 342)
@@ -203,10 +204,11 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _reiniciar_proceso(self):
         nombre_archivo_script = self.nombre_archivo_script
-        directorio_trabajo = self.directorio_trabajo
-        self.process.terminate()
-        self.process.waitForFinished(3000)
-        self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
+        if nombre_archivo_script:
+            directorio_trabajo = self.directorio_trabajo
+            self.process.terminate()
+            self.process.waitForFinished(3000)
+            self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
 
     def _cuando_selecciona_abrir_manual(self):
         try:
