@@ -8,13 +8,18 @@
 
 import pilas
 import subprocess
+from pilas import dev
 
 fabricar = pilas.actores.utils.fabricar
+
 
 def crear_grupo(*k):
     """Genera un grupo."""
     return pilas.grupos.Grupo(k)
 
+
+@dev.deprecated(se_desactiva_en="0.80", se_elimina_en="0.81",
+                reemplazo="pilas.mundo.definir_gravedad")
 def definir_gravedad(x, y):
     """Define la gravedad del motor de física.
 
@@ -22,6 +27,7 @@ def definir_gravedad(x, y):
     :param y: Aceleración vertical.
     """
     pilas.escena_actual().fisica.definir_gravedad(x, y)
+
 
 def leer(texto):
     """Utiliza el comando speak para 'leer' un texto como sonido.
@@ -31,27 +37,32 @@ def leer(texto):
     # TODO: usar speak binding en lugar de subprocess.
     try:
         comando = subprocess.Popen(["espeak",  texto, "-v", "es-la"],
-                stdout=subprocess.PIPE,
-                stdin=subprocess.PIPE,
-                stderr=subprocess.PIPE)
+                                   stdout=subprocess.PIPE,
+                                   stdin=subprocess.PIPE,
+                                   stderr=subprocess.PIPE)
     except OSError:
         pass
+
 
 def ocultar_puntero_del_mouse():
     """Oculta el puntero del mouse."""
     pilas.mundo.motor.ocultar_puntero_del_mouse()
 
+
 def mostrar_puntero_del_mouse():
     """Muestra el puntero del mouse."""
     pilas.mundo.motor.mostrar_puntero_del_mouse()
+
 
 def modo_pantalla_completa():
     """Pone Pilas a pantalla completa"""
     pilas.mundo.motor.ventana.canvas.pantalla_completa()
 
+
 def modo_ventana():
     """Pone Pilas en modo ventana"""
     pilas.mundo.motor.ventana.canvas.pantalla_modo_ventana()
+
 
 def definir_modos(*k, **kv):
     """Define los modos de depuración."""

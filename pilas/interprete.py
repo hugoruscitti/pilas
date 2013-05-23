@@ -33,6 +33,15 @@ class VentanaInterprete(Ui_InterpreteDialog):
         pilas.utils.centrar_ventana(main)
         pilas.utils.centrar_ventana(main)
 
+
+    def raw_input(self, mensaje):
+        text, state = QtGui.QInputDialog.getText(self, "raw_input", mensaje)
+        return str(text)
+
+    def input(self, mensaje):
+        text, state = QtGui.QInputDialog.getText(self, "raw_input", mensaje)
+        return eval(str(text))
+
     def _insertar_ventana_principal_de_pilas(self):
         pilas.iniciar(usar_motor='qtsugar', ancho=640, alto=400)
 
@@ -45,7 +54,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
         self.canvas.addWidget(ventana)
         self.canvas.setCurrentWidget(ventana)
-        return {'pilas': pilas, 'mono': mono}
+        return {'pilas': pilas, 'mono': mono, 'self': self}
 
     def _insertar_consola_interactiva(self, scope):
         codigo_inicial = [

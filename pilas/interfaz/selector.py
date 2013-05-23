@@ -42,7 +42,7 @@ class Selector(BaseInterfaz):
 
     def pintar_texto(self):
         "Dibuja el texto sobre el selector."
-        self.imagen.texto(self.texto, 35, 20)
+        self.imagen.texto(self.texto, 35, 10)
 
     def deseleccionar(self):
         "Destilda el selector."

@@ -27,8 +27,8 @@
             var opciones = {
                 nombre: nombre,
                 categoria: categoria,
-                run: "<img class='boton' src='imagenes/ejecutar.png'>",
-                codigo: "<img class='boton' src='imagenes/codigo.png'>",
+                run: "Ejecutar",
+                codigo: "Código",
             };
 
             var elemento_template = $('.elemento_template').html();
@@ -232,7 +232,9 @@
         <div class='contenedor_ejemplo'>
             <a href='http://pilas/ejecutar/{categoria}/{nombre}'><img src='../../ejemplos/ejemplos/{categoria}/{nombre}.png'></a>
             <br/>
-            <a href='http://pilas/ejecutar/{categoria}/{nombre}'>{run}</a> 
+            <a href='http://pilas/ejecutar/{categoria}/{nombre}'>{run}</a>  &nbsp; &nbsp; &nbsp;
+
+
             <a href='http://pilas/codigo/{categoria}/{nombre}'>{codigo}</a>
             <br/>
 

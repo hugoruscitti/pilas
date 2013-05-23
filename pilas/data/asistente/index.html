@@ -25,6 +25,18 @@
         setTimeout(function() {self.attr('id', id)}, 3000);
       });
     });
+
+    function resaltar_caja_destino_para_soltar(resaltar) {
+      var color;
+
+      if (resaltar)
+        color = 'yellow';
+      else
+        color = '';
+
+      $("#footer .tip").css('background-color', color);
+    }
+
   </script>
 </head>
 

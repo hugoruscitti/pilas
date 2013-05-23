@@ -99,4 +99,4 @@ class IngresoDeTexto(BaseInterfaz):
         for x in range(40, self.imagen.ancho() - 40):
             self.imagen.pintar_parte_de_imagen(self.imagen_caja, ancho - 40, 0, 40, alto, x, 0)
 
-        self.imagen.texto(self.texto + self.cursor, 15 + dx, 20)
+        self.imagen.texto(self.texto + self.cursor, 15 + dx, 10)

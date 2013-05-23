@@ -9,9 +9,11 @@
 import random
 import pilas
 
+
 def ordenar_actores_por_valor_z():
     "Ordena todos los actores para que se impriman con 'z' como criterio de orden."
     pilas.escena_actual().actores.sort()
+
 
 def insertar_como_nuevo_actor(actor):
     """Coloca a un actor en la lista de actores a imprimir en pantalla.
@@ -21,23 +23,22 @@ def insertar_como_nuevo_actor(actor):
     pilas.escena_actual().actores.append(actor)
     actor.escena = pilas.escena_actual()
 
+
 def eliminar_a_todos():
     """Elimina a todos los actores de la escena."""
-    a_eliminar = pilas.escena_actual().actores[1:]    # evita borrar el fondo.
+    a_eliminar = pilas.escena_actual().actores[1:]  # evita borrar el fondo.
 
     for x in a_eliminar:
         x.eliminar()
 
-    pilas.escena_actual().actores = []
 
 def destruir_a_todos():
     """Elimina a los actores inmediatamente (evita que exploten o hagan algo)."""
-    a_eliminar = pilas.escena_actual().actores
+    a_eliminar = pilas.escena_actual().actores[1:]  # evita borrar el fondo.
 
     for x in a_eliminar:
         x.destruir()
 
-    pilas.escena_actual().actores = []
 
 def obtener_actor_en(x, y):
     """Intenta obtener el actor mas cerca de la pantalla (z mas pequeño) en la posición (x, y)
@@ -67,8 +68,11 @@ def fabricar(clase, cantidad=1, posiciones_al_azar=True, *k, **kv):
 
     for x in range(cantidad):
         if posiciones_al_azar:
-            x = random.randint(-300, 300)
-            y = random.randint(-200, 200)
+            ancho, alto = pilas.mundo.motor.obtener_area()
+            mitad_ancho = ancho/2
+            mitad_alto = alto/2
+            x = random.randint(-mitad_ancho, mitad_ancho)
+            y = random.randint(-mitad_alto, mitad_alto)
         else:
             x = 0
             y = 0

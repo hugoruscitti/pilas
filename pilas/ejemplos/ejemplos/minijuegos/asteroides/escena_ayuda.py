@@ -1,7 +1,6 @@
 import pilas
 
-MENSAJE_AYUDA = """
-En Asteroides, tienes que controlar una
+MENSAJE_AYUDA = """En Asteroides, tienes que controlar una
 nave usando el teclado. El objetivo
 del juego es destruir todas las piedras
 del espacio disparando.
@@ -16,7 +15,7 @@ class Ayuda(pilas.escena.Base):
 
     def __init__(self):
         pilas.escena.Base.__init__(self)
-    
+
     def iniciar(self):
         pilas.fondos.Fondo("data/ayuda.png")
         self.crear_texto_ayuda()
@@ -24,7 +23,7 @@ class Ayuda(pilas.escena.Base):
 
     def crear_texto_ayuda(self):
         titulo = pilas.actores.Texto("Ayuda", y=200)
-        texto = pilas.actores.Texto(MENSAJE_AYUDA, y=275)
+        texto = pilas.actores.Texto(MENSAJE_AYUDA, y=0)
         pilas.avisar("Pulsa ESC para regresar")
 
     def cuando_pulsa_tecla(self, *k, **kv):
