@@ -1086,10 +1086,14 @@ class Motor(object):
             lineas = cadena.split('\n')
 
         for line in lineas:
+            if line == '':
+                line = ' '
+
             brect = p.drawText(QtCore.QRect(0, 0, 1024, 768),
                                QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop, line)
             ancho = max(ancho, brect.size().width())
             alto += brect.size().height()
+
 
         p.end()
         return (ancho, alto)

@@ -57,7 +57,7 @@ class Globo(Actor):
         self.imagen = pilas.imagenes.cargar_superficie(ancho + 36, alto + 24 + 35)
 
         self._pintar_globo(ancho, alto)
-        self.imagen.texto(texto, 17, 30)
+        self.imagen.texto(texto, 17, 20)
         self.centro = ("derecha", "abajo")
         self.escala = 0.1
         self.escala = [1], 0.2
