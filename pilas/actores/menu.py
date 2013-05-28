@@ -14,7 +14,9 @@ DEMORA = 14
 class Menu(Actor):
     """Un actor que puede mostrar una lista de opciones a seleccionar."""
 
-    def __init__(self, opciones, x=0, y=0, fuente=None):
+    def __init__(self, opciones, x=0, y=0, fuente=None,
+                    color_normal=pilas.colores.gris,
+                    color_resaltado=pilas.colores.blanco):
         """Inicializa el menú.
 
         :param opciones: Tupla con al menos dos elementos obligatorios (:texto:, :funcion:) y :argumentos: opcionales
@@ -25,7 +27,7 @@ class Menu(Actor):
         self.demora_al_responder = 0
         Actor.__init__(self, "invisible.png", x=x, y=y)
         self._verificar_opciones(opciones)
-        self.crear_texto_de_las_opciones(opciones, fuente)
+        self.crear_texto_de_las_opciones(opciones, fuente, color_normal, color_resaltado)
         self.opciones = opciones
         self.seleccionar_primer_opcion()
         self.opcion_actual = 0
@@ -53,7 +55,7 @@ class Menu(Actor):
         self.escena.mueve_mouse.desconectar(self.cuando_mueve_el_mouse)
         self.escena.click_de_mouse.desconectar(self.cuando_hace_click_con_el_mouse)
 
-    def crear_texto_de_las_opciones(self, opciones, fuente):
+    def crear_texto_de_las_opciones(self, opciones, fuente, color_normal, color_resaltado):
         """Genera un actor por cada opcion del menu.
 
         :param opciones: Una lista con todas las opciones que tendrá el menú.
@@ -62,7 +64,8 @@ class Menu(Actor):
         for indice, opcion in enumerate(opciones):
             y = self.y - indice * 50
             texto, funcion, argumentos = opcion[0],opcion[1],opcion[2:]
-            opciones = pilas.actores.Opcion(texto, x=0, y=y, funcion_a_invocar=funcion, argumentos=argumentos, fuente=fuente)
+            opciones = pilas.actores.Opcion(texto, x=0, y=y, funcion_a_invocar=funcion, argumentos=argumentos, fuente=fuente,
+                                            color_normal=color_normal, color_resaltado=color_resaltado)
 
             self.opciones_como_actores.append(opciones)
 
