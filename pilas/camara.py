@@ -100,3 +100,7 @@ class Camara(object):
         """
         x, y = posicion
         return (x - self.x, y - self.y)
+
+    def reiniciar(self):
+        """Mueve la cámara a la posicion inicial (0,0). """
+        pilas.mundo.motor.definir_centro_de_la_camara(0, 0)
