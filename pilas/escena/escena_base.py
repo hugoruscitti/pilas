@@ -118,13 +118,7 @@ class Base(object):
 
     def _actualizar_fisica(self):
         if self.fisica:
-            # Solo actualizamos la fisica si existen más de 4 bodies.
-            # Ya que las paredes ya vienen definidas al crear la fisica.
-            try:
-                if len(self.fisica.mundo.bodies) > 4:
-                    self.fisica.actualizar()
-            except:
-                pass
+            self.fisica.actualizar()
 
     def _limpiar(self):
         for actor in self.actores:
