@@ -50,11 +50,18 @@ def crear_motor_fisica(area, gravedad):
 
 def obtener_version():
     """Obtiene la versión de la biblioteca Box2D"""
-    return box2d.__version__
+    if __enabled__:
+        return box2d.__version__
+    else:
+        '0.0_error'
+
 
 def obtener_version_en_tupla():
     """Obtiene la versión de la biblioteca Box2D"""
-    return box2d.__version_info__
+    if __enabled__:
+        return box2d.__version_info__
+    else:
+        return (0, 0, 0)
 
 class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca Box2D (version 2.1)."""

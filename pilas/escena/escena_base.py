@@ -65,6 +65,10 @@ class Base(object):
         # Control para saber si se ha iniciado la escena y poder actualizarla.
         self.iniciada = False
 
+        # Para resetear la posición de la camara
+        self.camara_x = 0
+        self.camara_y = 0
+
     def iniciar(self):
         """ Este método debe ser reimplementado en todas las clases que
         hereden de ella.
@@ -114,13 +118,7 @@ class Base(object):
 
     def _actualizar_fisica(self):
         if self.fisica:
-            # Solo actualizamos la fisica si existen más de 4 bodies.
-            # Ya que las paredes ya vienen definidas al crear la fisica.
-            try:
-                if len(self.fisica.mundo.bodies) > 4:
-                    self.fisica.actualizar()
-            except:
-                pass
+            self.fisica.actualizar()
 
     def _limpiar(self):
         for actor in self.actores:
@@ -130,3 +128,14 @@ class Base(object):
         self.tweener.eliminar_todas()
         if self.fisica:
             self.fisica.reiniciar()
+
+    def guardar_posicion_camara(self):
+        """ Este método se llama cuando se cambia de escena y así poder
+        recuperar la ubicación de la cámara en la escena actual
+        """
+        self.camara_x = self.camara.x
+        self.camara_y = self.camara.y
+
+    def recuperar_posicion_camara(self):
+        self.camara.x = self.camara_x
+        self.camara.y = self.camara_y

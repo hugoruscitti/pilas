@@ -30,6 +30,7 @@ class Gestor(object):
         self.limpiar()
         self.escenas.append(escena)
         escena.iniciar()
+        escena.camara.reiniciar()
         escena.iniciada = True
 
     def almacenar_escena(self, escena):
@@ -40,10 +41,12 @@ class Gestor(object):
         """
         if self.escena_actual():
             self.escena_actual()._pausar_fisica()
+            self.escena_actual().guardar_posicion_camara()
             self.escena_actual().pausar()
 
         self.escenas.append(escena)
         escena.iniciar()
+        escena.camara.reiniciar()
         escena.iniciada = True
 
     def recuperar_escena(self):
@@ -54,6 +57,7 @@ class Gestor(object):
             escena_actual = self.escenas.pop()
             escena_anterior = self.escenas[-1]
             escena_anterior._reanudar_fisica()
+            escena_anterior.recuperar_posicion_camara()
             escena_anterior.control.limpiar()
             escena_anterior.reanudar()
         else:
