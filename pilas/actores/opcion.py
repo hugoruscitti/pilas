@@ -13,7 +13,9 @@ class Opcion(Texto):
     """Un item discreto, dispara una funcion al seleccionares.
     """
 
-    def __init__(self, texto, x=0, y=0, funcion_a_invocar=None, argumentos=None, fuente=None):
+    def __init__(self, texto, x=0, y=0, funcion_a_invocar=None,argumentos=None,fuente=None,
+                        color_normal=pilas.colores.gris,
+                        color_resaltado=pilas.colores.blanco):
         """Inicializa el actor.
 
         :param texto: Etiqueta a mostrar
@@ -27,7 +29,9 @@ class Opcion(Texto):
         self.magnitud = 20
         self.funcion_a_invocar = funcion_a_invocar
         self.argumentos = argumentos
-        self.color = pilas.colores.gris
+        self.color_normal = color_normal
+        self.color_resaltado = color_resaltado
+        self.color = self.color_normal
         self.z = -300
         self.centro = ("centro", "centro")
 
@@ -37,9 +41,9 @@ class Opcion(Texto):
         :param estado: True o False indicando si se tiene que resaltar o deseleccionar la opción.
         """
         if estado:
-            self.color = pilas.colores.blanco
+            self.color = self.color_resaltado
         else:
-            self.color = pilas.colores.gris
+            self.color = self.color_normal
 
     def seleccionar(self):
         """Invoca a la funcion que tiene asociada para ejecutar."""
