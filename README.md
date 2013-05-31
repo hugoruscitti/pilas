@@ -62,6 +62,18 @@ y por último, obtener e instalar pilas desde el respositorio:
 
     sudo python setup.py install
     pilas
+
+### Instalación desde Pypi
+
+Primero se deben instalar los siguientes paquetes:
+
+    sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion
+
+Luego, instalar box2d y pilas usando el comando ``easy_install``:
+
+    sudo easy_install -U box2d
+    sudo easy_install -U pilas
+
     
 ## Tests
 
