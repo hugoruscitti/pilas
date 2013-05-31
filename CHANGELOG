@@ -1,3 +1,34 @@
+Pilas engine - 0.80 (2013-05-31)
+--------------------------------
+
+- actualizando lanas.
+- Corrigiendo el modulo de fisica para notificar errores en caso de que falle la instalación de box2d.
+- Arreglado el desplazamiento de la camara al cambiar de escena. close #169
+- fixes #170 - menus con colores personalizables
+- Reparando la pantalla "acerca de" del juego asteroides.
+- Alineando correctamente los textos del componente IngresoDeTexto y Selector.
+- haciendo que las rutas a los recursos sean aún mas flexibles.
+- Reparando el problema de raw-input en lanas para mac.
+- Mejorando el efecto de arrastrar y soltar archivos sobre el asistente.
+- actualizando docstring para la funcion iniciar de pilas
+- Actualizando las instrucciones de instalacion para linux mint
+- Movido el metodo obtener_area ref #164 #log
+- Movido el metodo definir_gravedad close #167 #log
+- Optimizado el método para fabricar Actores aleatorios dependiendo del tamaño de la ventana
+- Limpiez de motor y cámara
+- Deshabilitando el error de box2d cuando no está correctamente instalado.
+- Eliminado el parametro ignorar_errores que nunca se utiliza
+- Deshabilitando temporalmente el cache de imagenes para reparar el uso de grillas.
+- Mostrando texto en el asistente de ejemplos en lugar de iconos.
+- fixes #162
+- Haciendo que el autocompletado se muestre directamente al pulsar '.' y que solo muestre las clases dentro de 'pilas.actores'  fix #161
+- Reparando los ejemplos de tutorial (aceituna vs bombas) ref  #160
+- Reparando el ejemplo de colisiones #160
+- Reparando el método "aumentar" del puntaje. fix #160
+- convirtiendo pilas.mundo.control en un property
+- Reparando problema de tilde en box2d dentro del paquete ubuntu.
+
+
 Pilas engine - 0.79 (2013-05-01)
 --------------------------------
 

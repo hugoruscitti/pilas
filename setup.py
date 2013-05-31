@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- encoding: utf-8
+# -*- encoding: utf-8 -*-
 import sys
 from setuptools import setup
 from pilas import pilasversion
@@ -30,21 +30,13 @@ Es una herramienta orientada a programadores casuales
 o principiantes, que quiera comenzar a realizar sus
 primeros videojuegos.
 
-
-¿Cómo empezar?
-==============
-
-Una buena forma de comenzar con pilas es instalar todo
-el kit de desarrollo siguiendo las intrucciones de
-nuestra web: http://www.pilas-engine.com.ar
-
-Y una vez instalada la biblioteca, se puede invocar
-al comando ``pilas``.
+http://www.pilas-engine.com.ar
 """,
         author='Hugo Ruscitti',
         author_email='hugoruscitti@gmail.com',
         install_requires=[
             'setuptools',
+            'box2d',
             ],
         packages=['pilas',
                   'pilas.actores',
@@ -77,8 +69,6 @@ al comando ``pilas``.
             'Operating System :: OS Independent',
             'Programming Language :: Python',
             'Topic :: Games/Entertainment',
-            'Topic :: Education',
-            'Topic :: Software Development :: Libraries',
           ],
     )
 
