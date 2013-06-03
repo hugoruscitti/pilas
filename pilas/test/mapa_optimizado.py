@@ -25,10 +25,6 @@ def crear_mapa():
     mapa.pintar_bloque(13, 14, 9, False)
     mapa.pintar_bloque(13, 15, 10, False)
 
-    mapa.pintar_bloque(13, 0, 7, True)
-    mapa.pintar_bloque(12, 0, 7, True)
-    mapa.pintar_bloque(11, 0, 7, True)
-    mapa.pintar_bloque(10, 0, 7, True)
 
     mapa.pintar_bloque(13, 19, 7, True)
     mapa.pintar_bloque(12, 19, 7, True)
@@ -38,6 +34,10 @@ def crear_mapa():
     # Pinta todo el suelo
     for columna in range(0, 200):
         mapa.pintar_bloque(14, columna, 1)
+    for columna in range(0, 200):
+        mapa.pintar_bloque(5, columna, 1)
+    for columna in range(0, 200):
+        mapa.pintar_bloque(2, columna, 1)
 
     return mapa
 

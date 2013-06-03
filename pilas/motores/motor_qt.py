@@ -392,6 +392,10 @@ class Imagen(object):
                 self._imagen = QtGui.QPixmap(ruta)
 
         #pilas.mundo.motor.libreria_imagenes.agregar_imagen(self)
+        #
+
+    def obtener_imagen_cuadro(self, dx, dy, ancho, alto):
+        return Imagen(ruta=self._imagen.copy(dx, dy, ancho, alto))
 
     def cargar_jpeg(self, ruta):
         from PIL import Image
@@ -506,9 +510,6 @@ class Grilla(Imagen):
 
     def obtener_cuadro(self):
         return self._cuadro
-
-    def obtener_imagen_cuadro(self):
-        return Imagen(ruta=self._imagen.copy(self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto))
 
     def dibujarse_sobre_una_pizarra(self, pizarra, x, y):
         pizarra.pintar_parte_de_imagen(self, self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto, x, y)

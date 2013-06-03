@@ -39,8 +39,17 @@ class Mapa(Actor):
             grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
 
         self.grilla = grilla
-        #self.superficie = pilas.imagenes.cargar_superficie(columnas * self.grilla.cuadro_ancho, filas * self.grilla.cuadro_alto)
+        self.superficie = pilas.imagenes.cargar_superficie(columnas * self.grilla.cuadro_ancho, filas * self.grilla.cuadro_alto)
         #self.imagen = self.superficie
+        self.centro_mapa_x, self.centro_mapa_y = self.superficie.centro()
+
+        pilas.escena_actual().mueve_camara.conectar(self._actualizar_imagen)
+        self.fijo = True
+
+    def _actualizar_imagen(self, evento):
+        ancho, alto = pilas.mundo.obtener_area()
+        izquierda, derecha, arriba, abajo = pilas.escena_actual().camara.obtener_area_visible()
+        self.imagen = self.superficie.obtener_imagen_cuadro((ancho / 2) + izquierda, (alto / 2) - arriba + 32, ancho, alto)
 
     def _generar_matriz_de_bloques(self, filas, columnas):
         cols = copy.copy([False] * columnas)
@@ -72,11 +81,11 @@ class Mapa(Actor):
         x = columna * ancho
         y = fila * alto
 
-        (dx, dy) = pilas.mundo.motor.centro_fisico()
-        actor = pilas.actores.Actor(x=x-dx+(ancho/2), y=dy-y-(alto/2))
+        #(dx, dy) = pilas.mundo.motor.centro_fisico()
+        #actor = pilas.actores.Actor(x=x-dx+(ancho/2), y=dy-y-(alto/2))
 
-        actor.imagen = self.grilla.obtener_imagen_cuadro()
-        #self.grilla.dibujarse_sobre_una_pizarra(self.superficie, x, y)
+        #actor.imagen = self.grilla.obtener_imagen_cuadro()
+        self.grilla.dibujarse_sobre_una_pizarra(self.superficie, x, y)
 
     def pintar_limite_de_bloques(self):
         """Dibuja los bordes de cada bloque."""
