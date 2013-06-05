@@ -164,7 +164,7 @@ class Desplazamiento(Fondo):
 
 class Plano(Fondo):
 
-    def __init__(self, ciclico=True):
+    def __init__(self):
         Fondo.__init__(self, "plano.png")
 
     def dibujar(self, painter):
