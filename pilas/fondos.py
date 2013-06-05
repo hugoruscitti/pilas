@@ -179,3 +179,42 @@ class Plano(Fondo):
 
     def esta_fuera_de_la_pantalla(self):
         return False
+
+class Capa():
+
+    def __init__(self, imagen, x, y, velocidad):
+        self.imagen = pilas.imagenes.cargar(imagen)
+        self.x = x
+        self.y = y
+        self.velocidad = velocidad
+
+    def dibujar_tiled_horizontal(self, painter, ancho, alto, camara_x, camara_y):
+        dx = (self.x + camara_x)
+        dy = (self.y + camara_y)
+        painter.drawTiledPixmap(0, self.y, ancho, self.imagen.alto(), self.imagen._imagen,
+                                dx % self.imagen.ancho(), dy % self.imagen.alto())
+        pass
+
+class DesplazamientoHorizontal(Fondo):
+
+    def __init__(self):
+        self.capas = []
+        pilas.actores.Actor.__init__(self, "invisible.png")
+        self.z = 1000
+
+    def dibujar(self, painter):
+        painter.save()
+
+        camara_x = pilas.mundo.motor.camara_x
+        camara_y = -pilas.mundo.motor.camara_y
+
+        ancho, alto = pilas.mundo.motor.obtener_area()
+
+        for capa in self.capas:
+            capa.dibujar_tiled_horizontal(painter, ancho, alto, camara_x, camara_y)
+
+        painter.restore()
+
+    def agregar(self, imagen, x, y, velocidad):
+        nueva_capa = Capa(imagen, x, y, velocidad)
+        self.capas.append(nueva_capa)
