@@ -116,4 +116,4 @@ html, body {height: 100%; padding-left: 1em; padding-right: 1em}
 
 #footer {position: relative;
 	margin-top: -130px; /* negative value of footer height */
-	height: 130px;
+}
