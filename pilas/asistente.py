@@ -163,7 +163,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         "Vuelve a permitir que se usen todos los botone de la interfaz."
         salida = str(self.process.readAll())
 
-        if codigo:
+        if codigo and salida:
             QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
     def _cuando_selecciona_interprete(self):
