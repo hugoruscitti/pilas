@@ -31,9 +31,9 @@ def crear_mapa():
     # Pinta todo el suelo
     for columna in range(0, 200):
         mapa.pintar_bloque(14, columna, 1)
-    for columna in range(0, 200):
-        mapa.pintar_bloque(5, columna, 1)
-    for columna in range(0, 200):
+        mapa.pintar_bloque(4, columna, 1)
+        mapa.pintar_bloque(1, columna, 1)
+        mapa.pintar_bloque(3, columna, 1)
         mapa.pintar_bloque(2, columna, 1)
 
     return mapa

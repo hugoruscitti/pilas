@@ -400,7 +400,7 @@ class Imagen(object):
         size = qi.size()
 
         rect = QtCore.QRect(dx, dy, ancho, alto)
-        print rect
+
         qi = qi.copy(rect)
 
         return Imagen(QtGui.QPixmap.fromImage(qi))
