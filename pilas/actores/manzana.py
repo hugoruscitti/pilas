@@ -31,6 +31,7 @@ class Manzana(Actor):
         """
         imagen = pilas.imagenes.cargar("manzana.png")
         Actor.__init__(self, imagen, x=x, y=y)
+        self.radio_de_colision = 50
 
     def actualizar(self):
         pass
