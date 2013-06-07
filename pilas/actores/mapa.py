@@ -49,7 +49,8 @@ class Mapa(Actor):
     def _actualizar_imagen(self, evento):
         ancho, alto = pilas.mundo.obtener_area()
         izquierda, derecha, arriba, abajo = pilas.escena_actual().camara.obtener_area_visible()
-        self.imagen = self.superficie.obtener_imagen_cuadro((ancho / 2) + izquierda, (alto / 2) - arriba + 32, ancho, alto)
+        x,y = self.convertir_de_coordenada_absoluta_a_coordenada_mapa(izquierda, arriba)
+        self.imagen = self.superficie.obtener_recuadro(x, y, ancho, alto)
 
     def _generar_matriz_de_bloques(self, filas, columnas):
         cols = copy.copy([False] * columnas)
