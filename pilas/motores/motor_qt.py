@@ -395,14 +395,9 @@ class Imagen(object):
         #
 
     def obtener_recuadro(self, dx, dy, ancho, alto):
-        #crop_image=self._imagen.copy(dx, dy, ancho, alto)
         qi = self._imagen.toImage()
-        size = qi.size()
-
         rect = QtCore.QRect(dx, dy, ancho, alto)
-
         qi = qi.copy(rect)
-
         return Imagen(QtGui.QPixmap.fromImage(qi))
 
     def cargar_jpeg(self, ruta):
