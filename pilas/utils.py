@@ -17,6 +17,7 @@ import mimetypes
 
 
 PATH = os.path.dirname(os.path.abspath(__file__))
+INTERPRETE_PATH = os.path.dirname(sys.argv[0])
 
 
 def es_interpolacion(an_object):
@@ -37,11 +38,10 @@ def obtener_ruta_al_recurso(ruta):
     :param ruta: Ruta al archivo (recurso) a inspeccionar.
     """
 
-    dirs = ['./', os.path.dirname(sys.argv[0]), os.path.dirname(sys.argv[0])  + '/data', 'data', PATH, PATH + '/data']
+    dirs = ['./', INTERPRETE_PATH, INTERPRETE_PATH + '/data', 'data', PATH, PATH + '/data']
 
     for x in dirs:
         full_path = os.path.join(x, ruta)
-        #DEBUG: print "buscando en: '%s'" %(full_path)
 
         if os.path.exists(full_path):
             return full_path
