@@ -281,12 +281,12 @@ def deneter_interpolacion(objeto, propiedad):
 
 def obtener_area():
     """Retorna el area que ocupa la ventana"""
-    return pilas.mundo.motor.obtener_area()
+    return pilas.mundo.obtener_area()
 
 
 def obtener_bordes():
     """Retorna los bordes de la pantalla en forma de tupla."""
-    ancho, alto = pilas.mundo.motor.obtener_area()
+    ancho, alto = pilas.mundo.obtener_area()
     return -ancho/2, ancho/2, alto/2, -alto/2
 
 

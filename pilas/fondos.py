@@ -172,7 +172,7 @@ class Plano(Fondo):
         x = pilas.mundo.motor.camara_x
         y = -pilas.mundo.motor.camara_y
 
-        ancho, alto = pilas.mundo.motor.obtener_area()
+        ancho, alto = pilas.mundo.obtener_area()
         painter.drawTiledPixmap(0, 0, ancho, alto, self.imagen._imagen, x % 30, y % 30)
 
         painter.restore()
@@ -239,7 +239,7 @@ class DesplazamientoHorizontal(Fondo):
 
     def dibujar(self, painter):
         painter.save()
-        ancho, alto = pilas.mundo.motor.obtener_area()
+        ancho, alto = pilas.mundo.obtener_area()
 
         for capa in self.capas:
             capa.dibujar_tiled_horizontal(painter, ancho, alto)

@@ -25,7 +25,7 @@ class Sonido(Boton):
         self.conectar_presionado(self.deshabilitar_sonido)
 
         # Colocamos el boton en la esquina inferior derecha de la pantalla.
-        self._ancho_mundo, self._alto_mundo = pilas.mundo.motor.obtener_area()
+        self._ancho_mundo, self._alto_mundo = pilas.mundo.obtener_area()
         self.x = (self._ancho_mundo / 2) - self.ancho
         self.y = -1 * (self._alto_mundo / 2) + self.alto
 

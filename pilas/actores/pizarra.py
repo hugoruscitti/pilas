@@ -27,7 +27,7 @@ class Pizarra(Actor):
         """
         # Si no define area de la pizarra toma el tamano de la ventana.
         if not ancho or not alto:
-            ancho, alto = pilas.mundo.motor.obtener_area()
+            ancho, alto = pilas.mundo.obtener_area()
 
         Actor.__init__(self, x=x, y=y)
         self.imagen = pilas.imagenes.cargar_superficie(ancho, alto)

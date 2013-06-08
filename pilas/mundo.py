@@ -31,7 +31,7 @@ class Mundo(object):
         self.gravedad = gravedad
 
     def crear_motor_fisica(self):
-        return fisica.crear_motor_fisica(self.motor.obtener_area(), gravedad=self.gravedad)
+        return fisica.crear_motor_fisica(self.obtener_area(), gravedad=self.gravedad)
 
     def reiniciar(self):
         self.gestor_escenas.limpiar()

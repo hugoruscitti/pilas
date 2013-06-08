@@ -90,7 +90,7 @@ class Camara(object):
             >>> mi_actor.esta_fuera_de_la_pantalla()
             True
         """
-        ancho, alto = pilas.mundo.motor.obtener_area()
+        ancho, alto = pilas.mundo.obtener_area()
         return (self.x - ancho/2, self.x + ancho/2, self.y + alto/2, self.y - alto/2)
 
     def desplazar(self, posicion):
