@@ -79,15 +79,20 @@ def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None, nombre=None):
 
         @functools.wraps(func)
         def _wraps(*args, **kwargs):
+
+            frame, filename, line_number, function_name, lines, index = inspect.getouterframes(inspect.currentframe())[1]
+
+            msg_line = "\n\n+------------------------------------------------+\n"
+            msg_line += "La excepcion se produjo en la siguiente llamada:\n"
+            msg_line += "Archivo:  %s\nNº Linea: %s\nMetodo:   %s\nLinea:    %s" % (filename, line_number, function_name, lines[index].strip())
+            msg_line += "\n+------------------------------------------------+"
+
             deprecated_warning(nombre or func.__name__,
                                se_desactiva_en,
                                se_elimina_en,
-                               reemplazo)
-            frame, filename, line_number, function_name, lines, index = inspect.getouterframes(inspect.currentframe())[1]
-            print "\n+------------------------------------------------+"
-            print "La excepción se produjo en la siguiente llamada:\n"
-            print "Archivo:  %s\nNº Linea: %s\nMetodo:   %s\nLinea:    %s" % (filename, line_number, function_name, lines[index].strip())
-            print "\n+------------------------------------------------+"
+                               reemplazo,
+                               msg_line)
+
             return func(*args, **kwargs)
         return _wraps
 
@@ -95,7 +100,7 @@ def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None, nombre=None):
 
 
 def deprecated_warning(elemento_deprecado, se_desactiva_en,
-                       se_elimina_en, reemplazo=None):
+                       se_elimina_en, reemplazo=None, linea_de_excepcion=""):
     """Lanza la correcta exception/warning de anuncio de que *algo* está en desuso.
 
     Las excepción/warning que puede lanzar esta función son:
@@ -133,6 +138,8 @@ def deprecated_warning(elemento_deprecado, se_desactiva_en,
 
     if reemplazo is not None:
         msg += "; utilice en su lugar: {}".format(reemplazo)
+
+    msg += linea_de_excepcion
 
     if pilasversion.compareactual(se_desactiva_en) >= 0:
         warnings.warn(msg, DeprecationWarning, stacklevel=2)
