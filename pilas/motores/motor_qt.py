@@ -687,8 +687,10 @@ class Texto(Superficie):
     def __init__(self, texto, magnitud, motor, vertical=False, fuente=None, color=pilas.colores.negro):
         ancho, alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente)
         Superficie.__init__(self, ancho, alto)
-        self.texto(texto, magnitud=magnitud, fuente=fuente, color=color)
+        self.dibujar_texto = self.texto
+        self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente, color=color)
         self.ruta_original = texto.encode('ascii', 'xmlcharrefreplace') + str(os.urandom(25))
+        self.texto = texto
 
     @classmethod
     def cargar_fuente_desde_cache(kclass, fuente_como_ruta):
