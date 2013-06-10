@@ -32,6 +32,7 @@ del módulo  `warnings <http://docs.python.org/2/library/warnings.html>`_
 
 import functools
 import warnings
+import inspect
 
 from pilas import pilasversion
 
@@ -82,6 +83,11 @@ def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None, nombre=None):
                                se_desactiva_en,
                                se_elimina_en,
                                reemplazo)
+            frame, filename, line_number, function_name, lines, index = inspect.getouterframes(inspect.currentframe())[1]
+            print "\n+------------------------------------------------+"
+            print "La excepción se produjo en la siguiente llamada:\n"
+            print "Archivo:  %s\nNº Linea: %s\nMetodo:   %s\nLinea:    %s" % (filename, line_number, function_name, lines[index].strip())
+            print "\n+------------------------------------------------+"
             return func(*args, **kwargs)
         return _wraps
 
