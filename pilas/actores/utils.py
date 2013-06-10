@@ -68,7 +68,7 @@ def fabricar(clase, cantidad=1, posiciones_al_azar=True, *k, **kv):
 
     for x in range(cantidad):
         if posiciones_al_azar:
-            ancho, alto = pilas.mundo.motor.obtener_area()
+            ancho, alto = pilas.mundo.obtener_area()
             mitad_ancho = ancho/2
             mitad_alto = alto/2
             x = random.randint(-mitad_ancho, mitad_ancho)

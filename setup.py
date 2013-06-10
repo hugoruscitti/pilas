@@ -18,6 +18,7 @@ except ImportError:
 
 setup(
         name='pilas',
+	zip_safe=False,
         version=pilasversion.VERSION,
         description="""============
 Pilas Engine

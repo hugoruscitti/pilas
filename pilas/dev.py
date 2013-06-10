@@ -78,10 +78,10 @@ def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None, nombre=None):
 
         @functools.wraps(func)
         def _wraps(*args, **kwargs):
-            #deprecated_warning(nombre or func.__name__,
-            #                   se_desactiva_en,
-            #                   se_elimina_en,
-            #                   reemplazo)
+            deprecated_warning(nombre or func.__name__,
+                               se_desactiva_en,
+                               se_elimina_en,
+                               reemplazo)
             return func(*args, **kwargs)
         return _wraps
 
@@ -122,8 +122,9 @@ def deprecated_warning(elemento_deprecado, se_desactiva_en,
         msg = msg.format(elemento_deprecado, se_elimina_en)
         raise AttributeError(msg)
 
-    msg = "CUIDADO: Utilizar '{}' esta desaconcejado"
+    msg = "CUIDADO: Utilizar '{}' esta desaconsejado"
     msg = msg.format(elemento_deprecado)
+
     if reemplazo is not None:
         msg += "; utilice en su lugar: {}".format(reemplazo)
 

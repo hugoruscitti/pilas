@@ -445,7 +445,7 @@ class SeMantieneEnPantalla(Habilidad):
         :param permitir_salida: Valor booleano que establece si el actor puede salir por los lados de la ventana y regresar por el lado opuesto. Si se establece a False, el actor no puede salir de la ventana en ningún momento.
         """
         Habilidad.__init__(self, receptor)
-        self.ancho, self.alto = pilas.mundo.motor.obtener_area()
+        self.ancho, self.alto = pilas.mundo.obtener_area()
         self.permitir_salida = permitir_salida
 
     def actualizar(self):

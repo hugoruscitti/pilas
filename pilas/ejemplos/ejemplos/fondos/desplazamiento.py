@@ -1,23 +1,19 @@
 import pilas
 pilas.iniciar(usar_motor='qtgl')
 
-cielo = pilas.actores.Actor("cielo.png")
-montes = pilas.actores.Actor("montes.png")
-arboles = pilas.actores.Actor("arboles.png")
-pasto = pilas.actores.Actor("pasto.png", y=-179)
+fondo = pilas.fondos.DesplazamientoHorizontal()
 
-cielo.z = 10
-montes.z = 5
-arboles.z = 0
-pasto.z = -10
+fondo.agregar("cielo.png", velocidad=0)
+fondo.agregar("montes.png", y=100, velocidad=0.5)
+fondo.agregar("arboles.png", y=100, velocidad=0.9)
+fondo.agregar("pasto.png", y=375, velocidad=2)
 
-fondo = pilas.fondos.Desplazamiento()
+p = pilas.actores.Pingu(y=-130)
 
-fondo.agregar(cielo, 0)
-fondo.agregar(montes, 0.5)
-fondo.agregar(arboles, 0.9)
-fondo.agregar(pasto, 2)
+def cambiar_posicion_camara():
+    pilas.escena_actual().camara.x = [p.x], 0.1
+    return True
 
-pilas.escena_actual().camara.x = [200], 10
-
+pilas.mundo.agregar_tarea(1/10.0, cambiar_posicion_camara)
+pilas.avisar("Utiliza el teclado para mover al personaje.")
 pilas.ejecutar()

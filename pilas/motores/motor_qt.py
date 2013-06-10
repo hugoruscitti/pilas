@@ -535,7 +535,7 @@ class Lienzo(Imagen):
 
     def pintar(self, painter, color):
         r, g, b, a = color.obtener_componentes()
-        ancho, alto = pilas.mundo.motor.obtener_area()
+        ancho, alto = pilas.mundo.obtener_area()
         painter.fillRect(0, 0, ancho, alto, QtGui.QColor(r, g, b))
 
     def linea(self, painter, x0, y0, x1, y1, color=colores.negro, grosor=1):
