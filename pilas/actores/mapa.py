@@ -88,6 +88,8 @@ class Mapa(Actor):
         #actor.imagen = self.grilla.obtener_imagen_cuadro()
         self.grilla.dibujarse_sobre_una_pizarra(self.superficie, x, y)
 
+        self._actualizar_imagen(None)
+
     def pintar_limite_de_bloques(self):
         """Dibuja los bordes de cada bloque."""
         ancho = self.grilla.cuadro_ancho
