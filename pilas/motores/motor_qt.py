@@ -380,15 +380,25 @@ class Imagen(object):
     def __init__(self, ruta):
         self.ruta_original = ruta
 
-        if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
-            try:
-                self._imagen = self.cargar_jpeg(ruta)
-            except:
-                self._imagen = QtGui.QPixmap(ruta)
+        if isinstance(ruta, QtGui.QPixmap):
+            self._imagen = ruta
         else:
-            self._imagen = QtGui.QPixmap(ruta)
+            if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
+                try:
+                    self._imagen = self.cargar_jpeg(ruta)
+                except:
+                    self._imagen = QtGui.QPixmap(ruta)
+            else:
+                self._imagen = QtGui.QPixmap(ruta)
 
         #pilas.mundo.motor.libreria_imagenes.agregar_imagen(self)
+        #
+
+    def obtener_recuadro(self, dx, dy, ancho, alto):
+        qi = self._imagen.toImage()
+        rect = QtCore.QRect(dx, dy, ancho, alto)
+        qi = qi.copy(rect)
+        return Imagen(QtGui.QPixmap.fromImage(qi))
 
     def cargar_jpeg(self, ruta):
         from PIL import Image
