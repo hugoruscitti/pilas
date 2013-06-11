@@ -80,18 +80,10 @@ def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None, nombre=None):
         @functools.wraps(func)
         def _wraps(*args, **kwargs):
 
-            frame, filename, line_number, function_name, lines, index = inspect.getouterframes(inspect.currentframe())[1]
-
-            msg_line = "\n\n+------------------------------------------------+\n"
-            msg_line += "La excepcion se produjo en la siguiente llamada:\n"
-            msg_line += "Archivo:  %s\nNº Linea: %s\nMetodo:   %s\nLinea:    %s" % (filename, line_number, function_name, lines[index].strip())
-            msg_line += "\n+------------------------------------------------+"
-
             deprecated_warning(nombre or func.__name__,
                                se_desactiva_en,
                                se_elimina_en,
-                               reemplazo,
-                               msg_line)
+                               reemplazo)
 
             return func(*args, **kwargs)
         return _wraps
@@ -128,6 +120,15 @@ def deprecated_warning(elemento_deprecado, se_desactiva_en,
     :type reemplazo: str
 
     """
+
+    frame, filename, line_number, function_name, lines, index = inspect.getouterframes(inspect.currentframe())[2] if 'deprecated_warning' in inspect.getouterframes(inspect.currentframe())[0][3] else inspect.getouterframes(inspect.currentframe())[1]
+
+    msg_line = "\n+------------------------------------------------+\n"
+    msg_line += "La excepcion se produjo en la siguiente llamada:\n"
+    msg_line += "Archivo:  %s\nNº Linea: %s\nMetodo:   %s\nLinea:    %s" % (filename, line_number, function_name, lines[index].strip())
+    msg_line += "\n+------------------------------------------------+\n\n"
+
+
     if pilasversion.compareactual(se_elimina_en) >= 0:
         msg = u"El atributo '{}' no puede utilizarse desde la version {}"
         msg = msg.format(elemento_deprecado, se_elimina_en)
@@ -139,7 +140,7 @@ def deprecated_warning(elemento_deprecado, se_desactiva_en,
     if reemplazo is not None:
         msg += "; utilice en su lugar: {}".format(reemplazo)
 
-    msg += linea_de_excepcion
+    msg += msg_line
 
     if pilasversion.compareactual(se_desactiva_en) >= 0:
         warnings.warn(msg, DeprecationWarning, stacklevel=2)
