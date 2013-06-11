@@ -380,15 +380,25 @@ class Imagen(object):
     def __init__(self, ruta):
         self.ruta_original = ruta
 
-        if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
-            try:
-                self._imagen = self.cargar_jpeg(ruta)
-            except:
-                self._imagen = QtGui.QPixmap(ruta)
+        if isinstance(ruta, QtGui.QPixmap):
+            self._imagen = ruta
         else:
-            self._imagen = QtGui.QPixmap(ruta)
+            if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
+                try:
+                    self._imagen = self.cargar_jpeg(ruta)
+                except:
+                    self._imagen = QtGui.QPixmap(ruta)
+            else:
+                self._imagen = QtGui.QPixmap(ruta)
 
         #pilas.mundo.motor.libreria_imagenes.agregar_imagen(self)
+        #
+
+    def obtener_recuadro(self, dx, dy, ancho, alto):
+        qi = self._imagen.toImage()
+        rect = QtCore.QRect(dx, dy, ancho, alto)
+        qi = qi.copy(rect)
+        return Imagen(QtGui.QPixmap.fromImage(qi))
 
     def cargar_jpeg(self, ruta):
         from PIL import Image
@@ -687,8 +697,10 @@ class Texto(Superficie):
     def __init__(self, texto, magnitud, motor, vertical=False, fuente=None, color=pilas.colores.negro):
         ancho, alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente)
         Superficie.__init__(self, ancho, alto)
-        self.texto(texto, magnitud=magnitud, fuente=fuente, color=color)
+        self.dibujar_texto = self.texto
+        self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente, color=color)
         self.ruta_original = texto.encode('ascii', 'xmlcharrefreplace') + str(os.urandom(25))
+        self.texto = texto
 
     @classmethod
     def cargar_fuente_desde_cache(kclass, fuente_como_ruta):
