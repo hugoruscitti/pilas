@@ -92,7 +92,7 @@ def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None, nombre=None):
 
 
 def deprecated_warning(elemento_deprecado, se_desactiva_en,
-                       se_elimina_en, reemplazo=None, linea_de_excepcion=""):
+                       se_elimina_en, reemplazo=None):
     """Lanza la correcta exception/warning de anuncio de que *algo* está en desuso.
 
     Las excepción/warning que puede lanzar esta función son:
