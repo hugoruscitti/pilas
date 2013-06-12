@@ -40,27 +40,27 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
-        self.pushButton_6.connect(self.pushButton_6, QtCore.SIGNAL("clicked()"), self.cambia_boton_f7)
+        self.pushButton_6.connect(self.pushButton_6, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
         # F8 Modo puntos de control
         self.definir_icono(self.pushButton_5, 'iconos/f08.png')
-        self.pushButton_5.connect(self.pushButton_5, QtCore.SIGNAL("clicked()"), self.cambia_boton_f8)
+        self.pushButton_5.connect(self.pushButton_5, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
         # F9 Modo radios de colision
         self.definir_icono(self.pushButton_4, 'iconos/f09.png')
-        self.pushButton_4.connect(self.pushButton_4, QtCore.SIGNAL("clicked()"), self.cambia_boton_f9)
+        self.pushButton_4.connect(self.pushButton_4, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
         # F10 Modo areas de colision
         self.definir_icono(self.pushButton_3, 'iconos/f10.png')
-        self.pushButton_3.connect(self.pushButton_3, QtCore.SIGNAL("clicked()"), self.cambia_boton_f10)
+        self.pushButton_3.connect(self.pushButton_3, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
         # F11 Modo fisica
         self.definir_icono(self.pushButton_2, 'iconos/f11.png')
-        self.pushButton_2.connect(self.pushButton_2, QtCore.SIGNAL("clicked()"), self.cambia_boton_f11)
+        self.pushButton_2.connect(self.pushButton_2, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
         # F12 Modo depuracion de posicion
         self.definir_icono(self.pushButton, 'iconos/f12.png')
-        self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.cambia_boton_f12)
+        self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
     def definir_icono(self, boton, ruta):
         icon = QtGui.QIcon();
@@ -68,29 +68,15 @@ class VentanaInterprete(Ui_InterpreteDialog):
         boton.setIcon(icon)
         boton.setText('')
 
-    def cambia_boton_f7(self):
-        status = self.pushButton_6.isChecked()
-        pilas.atajos.definir_modos(info=status)
-
-    def cambia_boton_f8(self):
-        status = self.pushButton_5.isChecked()
-        pilas.atajos.definir_modos(puntos_de_control=status)
-
-    def cambia_boton_f9(self):
-        status = self.pushButton_4.isChecked()
-        pilas.atajos.definir_modos(radios=status)
-
-    def cambia_boton_f10(self):
-        status = self.pushButton_3.isChecked()
-        pilas.atajos.definir_modos(areas=status)
-
-    def cambia_boton_f11(self):
-        status = self.pushButton_2.isChecked()
-        pilas.atajos.definir_modos(fisica=status)
-
-    def cambia_boton_f12(self):
-        status = self.pushButton.isChecked()
-        pilas.atajos.definir_modos(posiciones=status)
+    def pulsa_boton_depuracion(self):
+        pilas.atajos.definir_modos(
+                            info=self.pushButton_6.isChecked(),              # F07
+                            puntos_de_control=self.pushButton_5.isChecked(), # F08
+                            radios=self.pushButton_4.isChecked(),            # F09
+                            areas=self.pushButton_3.isChecked(),             # F10
+                            fisica=self.pushButton_2.isChecked(),
+                            posiciones=self.pushButton.isChecked(),
+                )
 
     def raw_input(self, mensaje):
         text, state = QtGui.QInputDialog.getText(self, "raw_input", mensaje)
