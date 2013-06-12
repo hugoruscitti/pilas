@@ -83,7 +83,7 @@ class WidgetLog(QtGui.QMainWindow):
         self._ejecutar()
 
     def _ruta_icono(self, icono):
-        return os.path.join('..', '..', '..', 'data' , 'iconos', icono)
+        return os.path.join('data' , 'iconos', icono)
 
     def imprimir(self, params):
         if (self._ejecutando):
@@ -104,10 +104,11 @@ class WidgetLog(QtGui.QMainWindow):
                 padre = None
 
             for key, value in self._obtener_diccionario(elemento):
-                if self._contiene_diccionario(value):
-                    self._insertar_elemento(value, self._insertar_texto_en_lista(key, padre))
-                else:
-                    self._insertar_diccionario_en_lista(key, value, padre)
+                if (key != "escena"):
+                    if self._contiene_diccionario(value):
+                        self._insertar_elemento(value, self._insertar_texto_en_lista(key, padre))
+                    else:
+                        self._insertar_diccionario_en_lista(key, value, padre)
         else:
             self._insertar_texto_en_lista(str(elemento))
 
@@ -138,7 +139,7 @@ class WidgetLog(QtGui.QMainWindow):
             item = QtGui.QTreeWidgetItem(self.treeView)
         else:
             item = QtGui.QTreeWidgetItem(itemPadre)
-        item.setText(0, clave)
+        item.setText(0, str(clave))
         item.setText(1, str(valor))
         return item
 
