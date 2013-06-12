@@ -36,8 +36,11 @@ class VentanaInterprete(Ui_InterpreteDialog):
         scope = self._insertar_ventana_principal_de_pilas()
         self._insertar_consola_interactiva(scope)
         pilas.utils.centrar_ventana(main)
-        pilas.utils.centrar_ventana(main)
 
+        icon = QtGui.QIcon();
+        icon.addFile(pilas.utils.obtener_ruta_al_recurso('iconos/f12.png'), QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off);
+        self.pushButton.setIcon(icon)
+        self.pushButton.setText('')
 
     def raw_input(self, mensaje):
         text, state = QtGui.QInputDialog.getText(self, "raw_input", mensaje)
