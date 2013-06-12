@@ -165,4 +165,3 @@ def utilizar_desaconsejados(usar):
     """
     action = "once" if usar else "error"
     warnings.simplefilter(action, DeprecationWarning)
-
