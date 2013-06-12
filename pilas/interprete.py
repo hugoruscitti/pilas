@@ -39,26 +39,34 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
 
         # F7 Modo informacion de sistema
+        self.definir_icono(self.pushButton_6, 'iconos/f07.png')
         self.pushButton_6.connect(self.pushButton_6, QtCore.SIGNAL("clicked()"), self.cambia_boton_f7)
 
         # F8 Modo puntos de control
+        self.definir_icono(self.pushButton_5, 'iconos/f08.png')
         self.pushButton_5.connect(self.pushButton_5, QtCore.SIGNAL("clicked()"), self.cambia_boton_f8)
 
         # F9 Modo radios de colision
+        self.definir_icono(self.pushButton_4, 'iconos/f09.png')
         self.pushButton_4.connect(self.pushButton_4, QtCore.SIGNAL("clicked()"), self.cambia_boton_f9)
 
         # F10 Modo areas de colision
+        self.definir_icono(self.pushButton_3, 'iconos/f10.png')
         self.pushButton_3.connect(self.pushButton_3, QtCore.SIGNAL("clicked()"), self.cambia_boton_f10)
 
         # F11 Modo fisica
+        self.definir_icono(self.pushButton_2, 'iconos/f11.png')
         self.pushButton_2.connect(self.pushButton_2, QtCore.SIGNAL("clicked()"), self.cambia_boton_f11)
 
         # F12 Modo depuracion de posicion
-        icon = QtGui.QIcon();
-        icon.addFile(pilas.utils.obtener_ruta_al_recurso('iconos/f12.png'), QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off);
-        self.pushButton.setIcon(icon)
-        self.pushButton.setText('')
+        self.definir_icono(self.pushButton, 'iconos/f12.png')
         self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.cambia_boton_f12)
+
+    def definir_icono(self, boton, ruta):
+        icon = QtGui.QIcon();
+        icon.addFile(pilas.utils.obtener_ruta_al_recurso(ruta), QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        boton.setIcon(icon)
+        boton.setText('')
 
     def cambia_boton_f7(self):
         status = self.pushButton_6.isChecked()
