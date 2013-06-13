@@ -230,7 +230,9 @@ def abrir_interprete(parent=None, do_raise=False, con_aplicacion=False):
 
 
 def log(*parametros):
-    eventos.log.emitir(data=parametros)
+    #eventos.log.emitir(data=parametros)
+    global mundo
+    mundo.motor.log(parametros)
 
 interpolar = utils.interpolar
 

@@ -13,6 +13,7 @@ from PyQt4.QtGui import QWidget
 from pilas import actores, colores, depurador, eventos, fps
 from pilas import imagenes, simbolos, utils
 from pilas import dev
+from pilas.widget_log import WidgetLog
 import os
 import pilas
 import sys
@@ -962,6 +963,9 @@ class Motor(object):
         self._inicializar_variables()
         self._inicializar_sistema_de_audio(audio)
 
+        # Creamos la variable para controlar la ventana de log
+        self._widgetlog = None
+
     def _iniciar_aplicacion(self):
         self.app = QtGui.QApplication([])
         self.app.setApplicationName("pilas")
@@ -1143,3 +1147,12 @@ class Motor(object):
 
     def obtener_superficie(self, ancho, alto):
         return Superficie(ancho, alto)
+
+    def log(self, params):
+        if (self._widgetlog == None):
+            self._widgetlog = WidgetLog()
+        else:
+            self._widgetlog.show()
+        
+        self._widgetlog.imprimir(params)
+
