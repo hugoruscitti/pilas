@@ -1,3 +1,19 @@
+Pilas engine - 0.81 (2013-13-31)
+--------------------------------
+
+- agregando el ejemplo de la vaca voladora.
+- reparando la funcion interna de fisica que hacia fallar el ejemplo de aceitunas vs bombas
+- mejorando la barra de botones closes #177.
+- Implementando una barra de botones de depuracion en el interprete #177
+- Arreglada la ventana de log. Ref #56
+- Mejorado el metodo para detectar desde donde se llamó a un método decrecated. Ref #173
+- Realizando mejoras en el rendimiento del actor Mapa (branch 'feature_map')
+- Reparando el problema de las rutas relativas fix #174
+- Añadido un nuevo actor llamado Manzana
+- Creando un nuevo actor DesplazamientoHorizontal y sustituyendo el ejemplo desplazamiento para que use este actor.
+- Haciendo clip del mapa
+
+
 Pilas engine - 0.80 (2013-05-31)
 --------------------------------
 
