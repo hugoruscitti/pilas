@@ -72,7 +72,9 @@ class Depurador(DepuradorDeshabilitado):
                 m.termina_dibujado(motor, painter, self.lienzo)
 
     def cuando_pulsa_tecla(self, codigo_tecla, texto_tecla):
-        if codigo_tecla == 'F5':
+        if codigo_tecla == 'F2':
+            pilas.mundo.motor.capturar_pantalla("captura_pantalla.png")
+        elif codigo_tecla == 'F5':
             self._alternar_modo(ModoWidgetLog)
         elif codigo_tecla == 'F6':
             pilas.utils.imprimir_todos_los_eventos()

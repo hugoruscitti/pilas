@@ -150,6 +150,16 @@ class CanvasWidgetAbstracto(object):
         self.depurador.termina_dibujado(self.motor, self.painter)
         self.painter.end()
 
+    def save_to_disk(self, filename):
+        try:
+            image =  QtGui.QPixmap(self.width(), self.height())
+            image = QtGui.QPixmap.grabWidget(self, 0, 0, self.width(), self.height())
+            if not image.save(filename, "PNG", -1):
+                print "Imposible guardar la captura de pantalla."
+        except Exception:
+            print traceback.format_exc()
+            print sys.exc_info()[0]
+
     def timerEvent(self, event):
         try:
             self._realizar_actualizacion_logica()
@@ -1156,3 +1166,5 @@ class Motor(object):
         
         self._widgetlog.imprimir(params)
 
+    def capturar_pantalla(self, nombre_archivo):
+        self.canvas.save_to_disk(nombre_archivo)
