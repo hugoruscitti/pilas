@@ -3,6 +3,7 @@ layout: base
 title: Home
 ---
 
+
 <h2 class="tagline">Crea videojuegos de manera didáctica y divertida.</h2>
 
 <div class="clearfix center">
