@@ -59,7 +59,7 @@ def deprecated(se_desactiva_en, se_elimina_en, reemplazo=None, nombre=None):
 
     :param elemento_deprecado: Cual el nombre del elemento desaconsejado.
     :type elemento_deprecado: str
-    :param se_desactiva_en: Indica en que versiṕn de pilas el atributo
+    :param se_desactiva_en: Indica en que versión de pilas el atributo
                             estará desactivado por defecto. De todas
                             maneras se podran activar con
                             ``pilas.dev.utilizar_desaconsejados(True)``
@@ -107,7 +107,7 @@ def deprecated_warning(elemento_deprecado, se_desactiva_en,
 
     :param elemento_deprecado: Cual el nombre del elemento desaconsejado.
     :type elemento_deprecado: str
-    :param se_desactiva_en: Indica en que versiṕn de pilas el atributo
+    :param se_desactiva_en: Indica en que versión de pilas el atributo
                             estará desactivado por defecto. De todas
                             maneras se podran activar con
                             ``pilas.dev.utilizar_desaconsejados(True)``
