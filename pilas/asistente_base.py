@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'asistente.ui'
 #
-# Created: Mon Jul 29 16:18:52 2013
+# Created: Mon Jul 29 18:13:10 2013
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
