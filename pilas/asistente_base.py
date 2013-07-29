@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'asistente.ui'
 #
-# Created: Fri Nov  2 01:12:59 2012
-#      by: PyQt4 UI code generator 4.9.1
+# Created: Mon Jul 29 16:18:52 2013
+#      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,16 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    _fromUtf8 = lambda s: s
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_AsistenteWindow(object):
     def setupUi(self, AsistenteWindow):
@@ -50,9 +59,9 @@ class Ui_AsistenteWindow(object):
         QtCore.QMetaObject.connectSlotsByName(AsistenteWindow)
 
     def retranslateUi(self, AsistenteWindow):
-        AsistenteWindow.setWindowTitle(QtGui.QApplication.translate("AsistenteWindow", "pilas-engine", None, QtGui.QApplication.UnicodeUTF8))
-        self.menu_Archivo.setTitle(QtGui.QApplication.translate("AsistenteWindow", "&Archivo", None, QtGui.QApplication.UnicodeUTF8))
-        self.salir_action.setText(QtGui.QApplication.translate("AsistenteWindow", "Salir", None, QtGui.QApplication.UnicodeUTF8))
+        AsistenteWindow.setWindowTitle(_translate("AsistenteWindow", "pilas-engine", None))
+        self.menu_Archivo.setTitle(_translate("AsistenteWindow", "&Archivo", None))
+        self.salir_action.setText(_translate("AsistenteWindow", "Salir", None))
 
 from PyQt4 import QtWebKit
 
