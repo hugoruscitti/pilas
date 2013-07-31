@@ -32,6 +32,8 @@ los sistemas mas utilizados.
 En distribuciones como Ubuntu 12.04 o Linux mint, necesitas instalar
 una serie de dependencias:
 
+(en ubuntu 10.04 habilitar la fuente de software "universe" antes)
+
     sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion
 
 Luego, instalar box2d:
