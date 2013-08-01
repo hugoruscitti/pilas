@@ -37,6 +37,18 @@ class VentanaInterprete(Ui_InterpreteDialog):
         self._insertar_consola_interactiva(scope)
         pilas.utils.centrar_ventana(main)
 
+        # Haciendo que el panel de pilas y el interprete no se puedan
+        # ocultar completamente.
+        self.splitter_vertical.setCollapsible(1, False)
+
+        self.colapsar_ayuda()
+        self.cargar_ayuda()
+
+        # Observa el deslizador vertical para mostrar el boton de ayuda
+        # pulsado o despulsado.
+        self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador)
+
+        self.ayuda_button.connect(self.ayuda_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_ayuda)
 
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
@@ -62,11 +74,35 @@ class VentanaInterprete(Ui_InterpreteDialog):
         self.definir_icono(self.pushButton, 'iconos/f12.png')
         self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
+    def colapsar_ayuda(self):
+        self.splitter_vertical.setSizes([0])
+        self.ayuda_button.setChecked(False)
+
+    def cargar_ayuda(self):
+        file_path = utils.obtener_ruta_al_recurso('asistente/ayuda.html')
+        file_path = os.path.abspath(file_path)
+
+        archivo = open(file_path, "rt")
+        contenido = archivo.read().decode('utf8')
+        archivo.close()
+
+        base_dir =  QtCore.QUrl.fromLocalFile(file_path)
+        self.navegador.setHtml(contenido, base_dir)
+
     def definir_icono(self, boton, ruta):
         icon = QtGui.QIcon();
         icon.addFile(pilas.utils.obtener_ruta_al_recurso(ruta), QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         boton.setIcon(icon)
         boton.setText('')
+
+    def cuando_mueve_deslizador(self, a1, a2):
+        self.ayuda_button.setChecked(a1 != 0)
+
+    def cuando_pulsa_el_boton_ayuda(self):
+        if self.ayuda_button.isChecked():
+            self.splitter_vertical.setSizes([300])
+        else:
+            self.splitter_vertical.setSizes([0])
 
     def pulsa_boton_depuracion(self):
         pilas.atajos.definir_modos(
