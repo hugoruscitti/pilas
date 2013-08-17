@@ -27,7 +27,7 @@ del sitio web:
 Los instaladores se generan pediodicamente y se distrubuyen para
 los sistemas mas utilizados.
 
-### Instalación desde repositorios (Ubuntu y Mint)
+### Instalación desde repositorios (Ubuntu, Debian y Mint)
 
 En distribuciones como Ubuntu 12.04 o Linux mint, necesitas instalar
 una serie de dependencias:
