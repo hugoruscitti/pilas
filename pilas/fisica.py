@@ -347,7 +347,7 @@ class Figura(object):
 
         :param x: El valor horizontal a definir.
         """
-        self._cuerpo.position.x = convertir_a_metros(x)
+        self._cuerpo.position = convertir_a_metros(x), self._cuerpo.position.y
 
     def obtener_y(self):
         "Retorna la posición vertical del cuerpo."
@@ -358,7 +358,7 @@ class Figura(object):
 
         :param y: El valor vertical a definir.
         """
-        self._cuerpo.position.y = convertir_a_metros(y)
+        self._cuerpo.position = self._cuerpo.position.x, convertir_a_metros(y)
 
     def definir_posicion(self, x, y):
         """Define la posición para el cuerpo.
@@ -420,6 +420,7 @@ class Figura(object):
     x = property(obtener_x, definir_x, doc="define la posición horizontal.")
     y = property(obtener_y, definir_y, doc="define la posición vertical.")
     rotacion = property(obtener_rotacion, definir_rotacion, doc="define la rotacion.")
+
 
 class Circulo(Figura):
     """Representa un cuerpo de circulo.

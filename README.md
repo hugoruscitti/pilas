@@ -27,10 +27,12 @@ del sitio web:
 Los instaladores se generan pediodicamente y se distrubuyen para
 los sistemas mas utilizados.
 
-### Instalación desde repositorios (Ubuntu y Mint)
+### Instalación desde repositorios (Ubuntu, Debian y Mint)
 
 En distribuciones como Ubuntu 12.04 o Linux mint, necesitas instalar
 una serie de dependencias:
+
+(en ubuntu 10.04 habilitar la fuente de software "universe" antes)
 
     sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion
 

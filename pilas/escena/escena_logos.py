@@ -5,7 +5,6 @@
 # license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # website - http://www.pilas-engine.com.ar
-from collections import OrderedDict
 
 import pilas.actores
 from pilas.escena import Base
@@ -66,6 +65,7 @@ class Logos(Normal):
         :type pasar_con_teclado: bool
 
         """
+        from collections import OrderedDict
         super(Logos, self).__init__()
 
         self._logos_futuros = OrderedDict()

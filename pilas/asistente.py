@@ -69,7 +69,10 @@ class VentanaAsistente(Ui_AsistenteWindow):
         QtWebKit.QWebSettings.globalSettings()
         settings = QtWebKit.QWebSettings.globalSettings()
         settings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
-        settings.setAttribute(QtWebKit.QWebSettings.LocalContentCanAccessFileUrls, True)
+        try:
+            settings.setAttribute(QtWebKit.QWebSettings.LocalContentCanAccessFileUrls, True)
+        except AttributeError:
+            pass  # Arreglo para funcionar en ubuntu 10.04
 
     def _deshabilitar_barras_de_scroll(self):
         self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Horizontal, QtCore.Qt.ScrollBarAlwaysOff)
