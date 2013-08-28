@@ -39,3 +39,10 @@ span.error {
 img {
     max-width: 100%;
 }
+
+
+a:hover {
+    color: black;
+    text-decoration: none;
+    background-color: yellow;
+}
