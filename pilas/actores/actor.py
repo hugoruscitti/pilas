@@ -306,7 +306,7 @@ class Actor(object, Estudiante):
     escala_y = property(get_scale_y, set_scale_y, doc="Escala de tamaño vertical, 1 es normal, 2 al doble de tamaño etc...)")
     transparencia = property(get_transparencia, set_transparencia, doc="Define el nivel de transparencia, 0 indica opaco y 100 la maxima transparencia.")
     imagen = property(get_imagen, set_imagen, doc="Define la imagen a mostrar.")
-    fijo = property(get_fijo, set_fijo, doc="Indica si el actor debe ser independiente a la camara.")
+    fijo = property(get_fijo, set_fijo, doc="Indica si el actor debe ser independiente a la cámara.")
 
     def eliminar(self):
         """Elimina el actor de la lista de actores que se imprimen en pantalla."""
@@ -417,12 +417,17 @@ class Actor(object, Estudiante):
 
         Todos los actores tienen un area rectangular, pulsa la
         tecla **F10** para ver el area de colision.
+        Si el actor tiene la propiedad fijo en True, el cálculo
+        se hace independientemente de la cámara.
 
         :param x: Posición horizontal del punto.
         :type x: int
         :param y: Posición vertical del punto.
         :type y: int
         """
+        if self.fijo:
+            x = x - pilas.escena_actual().camara.x
+            y = y - pilas.escena_actual().camara.y
         return self.izquierda <= x <= self.derecha and self.abajo <= y <= self.arriba
 
     def distancia_con(self, otro_actor):
