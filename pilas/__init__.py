@@ -48,7 +48,7 @@ para iniciar y ejecutar la biblioteca.
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False,
-            permitir_depuracion=True, audio='phonon', centrado=True):
+            permitir_depuracion=True, audio='pygame', centrado=True):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -69,7 +69,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :gravedad: el vector de aceleracion para la simulacion de fisica.
     :pantalla_completa: si debe usar pantalla completa o no.
     :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12
-    :audio: selecciona el motor de sonido a utilizar, los valores permitidos son 'deshabilitado', 'phonon' o 'gst'.
+    :audio: selecciona el motor de sonido a utilizar, los valores permitidos son 'deshabilitado', 'pygame', 'phonon' o 'gst'.
     :centrado: Indica si se desea centrar la ventana de pilas.
     """
 

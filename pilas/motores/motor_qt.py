@@ -948,6 +948,45 @@ class MusicaPhonon(SonidoPhonon):
         SonidoPhonon.__init__(self, media, ruta)
 
 
+class SonidoPygame:
+    deshabilitado = False
+
+    def __init__(self, media, ruta):
+        import pygame
+        self.media = media
+        self.ruta = ruta
+        self.sonido = pygame.mixer.Sound(ruta)
+
+    def _play(self):
+        if not self.deshabilitado:
+            self.sonido.play()
+
+    def reproducir(self, repetir=False):
+        if not self.deshabilitado:
+            if repetir:
+                self.sonido.play(-1)
+            else:
+                self.sonido.play()
+
+    def detener(self):
+        "Detiene el audio."
+        self.sonido.stop()
+
+    def pausar(self):
+        "Hace una pausa del audio."
+        self.sonido.stop()
+
+    def continuar(self):
+        "Continúa reproduciendo el audio."
+        if not self.deshabilitado:
+            self.sonido.play()
+
+class MusicaPygame(SonidoPygame):
+
+    def __init__(self, media, ruta):
+        SonidoPygame.__init__(self, media, ruta)
+
+
 class Motor(object):
     """Representa la ventana principal de pilas.
 
@@ -986,7 +1025,7 @@ class Motor(object):
         self.libreria_imagenes = LibreriaImagenes()
 
     def _inicializar_sistema_de_audio(self, audio):
-        sistemas_de_sonido = ['deshabilitado', 'phonon', 'gst']
+        sistemas_de_sonido = ['deshabilitado', 'pygame', 'phonon', 'gst']
 
         if audio not in sistemas_de_sonido:
             error = "El sistema de audio '%s' es invalido" % (audio)
@@ -997,13 +1036,7 @@ class Motor(object):
             try:
                 import gst
             except ImportError:
-                print "Nota: El sistema de audio gstreamer no está disponible, usando phonon en su lugar."
-                audio = 'phonon'
-
-        if audio == 'deshabilitado':
-            self.player = None
-            self.clase_sonido = SonidoDeshabilitado
-            self.clase_musica = MusicaDeshabilitada
+                raise Exception("Error, el sistema de audio GST (gstreamer) no esta disponible.")
         elif audio == 'phonon':
             from PyQt4 import phonon
             self.media = phonon.Phonon.MediaObject()
@@ -1012,10 +1045,26 @@ class Motor(object):
             self.player = self.media
             self.clase_sonido = SonidoPhonon
             self.clase_musica = MusicaPhonon
+        elif audio == 'pygame':
+            try:
+                import pygame
+                pygame.mixer.init()
+                self.player = None
+                self.clase_sonido = SonidoPygame
+                self.clase_musica = MusicaPygame
+            except ImportError:
+                raise Exception("Error, el sistema de audio pygame no esta disponible")
+                audio = "deshabilitado"
         elif audio == 'gst':
             self.player = gst.element_factory_make("playbin2", "player")
             self.clase_sonido = SonidoGST
             self.clase_musica = MusicaGST
+
+        # Si se deshabilita el sistema de sonido completo.
+        if audio == 'deshabilitado':
+            self.player = None
+            self.clase_sonido = SonidoDeshabilitado
+            self.clase_musica = MusicaDeshabilitada
 
     def terminar(self):
         self.ventana.close()
