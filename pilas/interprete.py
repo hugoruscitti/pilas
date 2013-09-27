@@ -48,7 +48,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
         # pulsado o despulsado.
         self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador)
 
-        self.ayuda_button.connect(self.ayuda_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_ayuda)
+        self.manual_button.connect(self.manual_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_ayuda)
 
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
@@ -76,7 +76,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
     def colapsar_ayuda(self):
         self.splitter_vertical.setSizes([0])
-        self.ayuda_button.setChecked(False)
+        self.manual_button.setChecked(False)
 
     def cargar_ayuda(self):
         file_path = utils.obtener_ruta_al_recurso('asistente/ayuda.html')
@@ -96,10 +96,10 @@ class VentanaInterprete(Ui_InterpreteDialog):
         boton.setText('')
 
     def cuando_mueve_deslizador(self, a1, a2):
-        self.ayuda_button.setChecked(a1 != 0)
+        self.manual_button.setChecked(a1 != 0)
 
     def cuando_pulsa_el_boton_ayuda(self):
-        if self.ayuda_button.isChecked():
+        if self.manual_button.isChecked():
             self.splitter_vertical.setSizes([300])
         else:
             self.splitter_vertical.setSizes([0])
@@ -123,7 +123,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
         return eval(str(text))
 
     def _insertar_ventana_principal_de_pilas(self):
-        pilas.iniciar(usar_motor='qtsugar', ancho=640, alto=400)
+        pilas.iniciar(usar_motor='qtsugargl', ancho=640, alto=400)
 
         mono = pilas.actores.Mono()
 

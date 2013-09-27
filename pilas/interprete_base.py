@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'interprete.ui'
+# Form implementation generated from reading ui file 'pilas/data/interprete.ui'
 #
-# Created: Mon Jul 29 16:18:52 2013
-#      by: PyQt4 UI code generator 4.10
+# Created: Fri Sep 27 16:36:32 2013
+#      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -33,7 +33,7 @@ class Ui_InterpreteDialog(object):
         self.splitter_vertical.setOrientation(QtCore.Qt.Horizontal)
         self.splitter_vertical.setObjectName(_fromUtf8("splitter_vertical"))
         self.navegador = QtWebKit.QWebView(self.splitter_vertical)
-        self.navegador.setProperty("url", QtCore.QUrl(_fromUtf8("about:blank")))
+        self.navegador.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.navegador.setObjectName(_fromUtf8("navegador"))
         self.splitter = QtGui.QSplitter(self.splitter_vertical)
         self.splitter.setOrientation(QtCore.Qt.Vertical)
@@ -54,11 +54,11 @@ class Ui_InterpreteDialog(object):
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
-        self.ayuda_button = QtGui.QPushButton(self.layoutWidget)
-        self.ayuda_button.setCheckable(True)
-        self.ayuda_button.setFlat(True)
-        self.ayuda_button.setObjectName(_fromUtf8("ayuda_button"))
-        self.horizontalLayout_2.addWidget(self.ayuda_button)
+        self.manual_button = QtGui.QPushButton(self.layoutWidget)
+        self.manual_button.setCheckable(True)
+        self.manual_button.setFlat(True)
+        self.manual_button.setObjectName(_fromUtf8("manual_button"))
+        self.horizontalLayout_2.addWidget(self.manual_button)
         spacerItem = QtGui.QSpacerItem(37, 13, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
         self.pushButton_6 = QtGui.QPushButton(self.layoutWidget)
@@ -128,7 +128,7 @@ class Ui_InterpreteDialog(object):
 
     def retranslateUi(self, InterpreteDialog):
         InterpreteDialog.setWindowTitle(_translate("InterpreteDialog", "pilas-engine interprete", None))
-        self.ayuda_button.setText(_translate("InterpreteDialog", "Ayuda", None))
+        self.manual_button.setText(_translate("InterpreteDialog", "Manual", None))
         self.pushButton_6.setText(_translate("InterpreteDialog", "F7", None))
         self.pushButton_5.setText(_translate("InterpreteDialog", "F8", None))
         self.pushButton_4.setText(_translate("InterpreteDialog", "F9", None))
