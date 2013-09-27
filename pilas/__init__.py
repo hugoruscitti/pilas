@@ -24,6 +24,7 @@ import demos
 import atajos
 import interfaz
 import interprete
+import manual
 import municion
 import dev
 from pilas.escena import Normal

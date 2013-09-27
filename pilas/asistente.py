@@ -214,27 +214,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
             self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
 
     def _cuando_selecciona_abrir_manual(self):
-        try:
-            base_dir = '/usr/share/python-pilas'
-            ruta_al_manual = os.path.join(base_dir, 'manual.pdf')
-            # BUSCA el archivo: /usr/share/python-pilas/manual.pdf
-            ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
-            pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
-        except IOError:
-            try:
-                # BUSCA el archivo: /home/mi_usuario/.pilas/pilas-VERSION.pdf
-                base_dir = str(QtCore.QDir.homePath())
-                ruta_al_manual = os.path.join(base_dir, '.pilas', 'pilas-%s.pdf' %(pilas.version()))
-                ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
-                pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
-            except IOError:
-                titulo = "Error, no se encuentra el manual"
-                mensaje = u"Lo siento, no se encuentra el manual en tu equipo. ¿Quieres descargarlo?"
-                respuesta = self._consultar(self.main, titulo, mensaje)
-
-                if respuesta == QtGui.QMessageBox.Yes:
-                    url = "http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf"
-                    pilas.utils.descargar_archivo_desde_internet(self.main, url, ruta_al_manual)
+        pilas.manual.main()
 
     def _consultar(self, parent, titulo, mensaje):
         "Realizar una consulta usando un cuadro de dialogo."

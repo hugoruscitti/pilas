@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'asistente.ui'
+# Form implementation generated from reading ui file 'pilas/data/asistente.ui'
 #
-# Created: Mon Jul 29 18:13:10 2013
-#      by: PyQt4 UI code generator 4.10
+# Created: Fri Sep 27 16:36:32 2013
+#      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
 
