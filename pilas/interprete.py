@@ -79,7 +79,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
         self.manual_button.setChecked(False)
 
     def cargar_ayuda(self):
-        file_path = utils.obtener_ruta_al_recurso('asistente/ayuda.html')
+        file_path = utils.obtener_ruta_al_recurso('manual/index.html')
         file_path = os.path.abspath(file_path)
 
         archivo = open(file_path, "rt")
