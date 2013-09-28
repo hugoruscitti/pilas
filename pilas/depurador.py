@@ -47,7 +47,7 @@ class Depurador(DepuradorDeshabilitado):
     def __init__(self, lienzo, fps):
         self.modos = []
         self.lienzo = lienzo
-        ModoDepurador.grosor_de_lineas = 1
+        ModoDepurador.grosor_de_lineas = 4
         self.fps = fps
         self.posicion_del_mouse = (0, 0)
 
@@ -100,7 +100,7 @@ class Depurador(DepuradorDeshabilitado):
         return True
 
     def _cambiar_grosor_de_bordes(self, cambio):
-        ModoDepurador.grosor_de_lineas = max(1, ModoDepurador.grosor_de_lineas + cambio)
+        ModoDepurador.grosor_de_lineas = min(max(1, ModoDepurador.grosor_de_lineas + cambio), 8)
 
     def _alternar_modo(self, clase_del_modo):
         clases_activas = [x.__class__ for x in self.modos]
@@ -266,6 +266,7 @@ class ModoPuntosDeControl(ModoDepurador):
 
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         x, y = self._obtener_posicion_relativa_a_camara(actor)
+        lienzo.cruz(painter, x, y, color=pilas.colores.negro, grosor=ModoDepurador.grosor_de_lineas+2)
         lienzo.cruz(painter, x, y, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
 
 
@@ -274,6 +275,7 @@ class ModoRadiosDeColision(ModoDepurador):
 
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         x, y = self._obtener_posicion_relativa_a_camara(actor)
+        lienzo.circulo(painter, x, y, actor.radio_de_colision, color=pilas.colores.negro, grosor=ModoDepurador.grosor_de_lineas+2)
         lienzo.circulo(painter, x, y, actor.radio_de_colision, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
 
 
@@ -283,6 +285,7 @@ class ModoArea(ModoDepurador):
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         dx, dy = actor.centro
         x, y = self._obtener_posicion_relativa_a_camara(actor)
+        lienzo.rectangulo(painter, x - dx, y + dy, actor.ancho, actor.alto, color=pilas.colores.negro, grosor=ModoDepurador.grosor_de_lineas+2)
         lienzo.rectangulo(painter, x - dx, y + dy, actor.ancho, actor.alto, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
 
 
