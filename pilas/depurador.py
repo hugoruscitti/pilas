@@ -307,9 +307,9 @@ class ModoPosicion(ModoDepurador):
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         if not isinstance(actor, pilas.fondos.Fondo):
             texto = "(%d, %d)" %(actor.x, actor.y)
-            dx, dy = actor.x - actor.derecha, actor.y - actor.abajo + 10
+            dx, dy = 30, - 30
             x, y = self._obtener_posicion_relativa_a_camara(actor)
-            lienzo.texto(painter, texto, x - dx, y -dy, color=pilas.colores.blanco)
+            lienzo.texto(painter, texto, x + dx, y + dy, color=pilas.colores.blanco)
 
     def sale_del_modo(self):
         self.eje.eliminar()
