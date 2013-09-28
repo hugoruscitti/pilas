@@ -10,6 +10,7 @@ PPM = 30
 
 import math
 import pilas
+import random
 
 try:
     import Box2D as box2d
@@ -640,6 +641,12 @@ def definir_gravedad(x, y):
     :param y: Aceleración vertical.
     """
     pilas.escena_actual().fisica.mundo.gravity = (x, y)
+
+    for actor in pilas.escena_actual().actores:
+        if getattr(actor, 'empujar', None):
+            dx, dy = random.choice([-1, 1]), random.choice([-1, 1])
+            actor.empujar(dx, dy)
+
 
 class ObjetosContactListener(contact_listener):
     """Gestiona las colisiones de los objetos para ejecutar funcionés."""
