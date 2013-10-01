@@ -36,9 +36,5 @@ def main(parent=None, do_raise=False):
     dialog.setWindowFlags(dialog.windowFlags() | QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowMinMaxButtonsHint)
     ui = VentanaManual()
     ui.setupUi(dialog)
-
-    if do_raise:
-        dialog.show()
-        dialog.raise_()
-
-    dialog.exec_()
+    dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+    dialog.show()

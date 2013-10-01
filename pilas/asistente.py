@@ -214,7 +214,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
             self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
 
     def _cuando_selecciona_abrir_manual(self):
-        pilas.manual.main()
+        pilas.manual.main(self.main)
 
     def _consultar(self, parent, titulo, mensaje):
         "Realizar una consulta usando un cuadro de dialogo."
