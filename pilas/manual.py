@@ -6,7 +6,7 @@ try:
     from manual_base import Ui_ManualDialog
 except:
     print "ERROR: No se encuentra pyqt"
-    Ui_InterpreteDialog = object
+    Ui_ManualDialog = object
     pass
 
 import os
