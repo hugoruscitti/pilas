@@ -31,6 +31,7 @@ class Ui_ManualDialog(object):
         self.horizontalLayout.setMargin(0)
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.webView = QtWebKit.QWebView(ManualDialog)
+        self.webView.history().setMaximumItemCount(0)
         self.webView.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.webView.setStatusTip(_fromUtf8(""))
         self.webView.setAccessibleDescription(_fromUtf8(""))
