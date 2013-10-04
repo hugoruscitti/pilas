@@ -68,6 +68,10 @@ esto:
 
     pilas.eventos.mueve_mouse.conectar(mover_mono_a_la_posicion_del_mouse)
 
+    # O puedes utilizar el método abreviado del actor.
+    mono.mueve_mouse(mover_mono_a_la_posicion_del_mouse)
+
+
 
 Es decir, la señal de evento que nos interesa es ``mueve_mouse`` (que se emite
 cada vez que el usuario mueve el mouse). Y a esta señal le conectamos
