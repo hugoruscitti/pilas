@@ -342,42 +342,42 @@ class Actor(object, Estudiante):
 
     def click_de_mouse(self, callback):
         """Acceso directo para conectar el actor al evento de click_de_mouse.
-        No se debe redefinir este métido."""        
+        No se debe redefinir este método."""        
         pilas.eventos.click_de_mouse.conectar(callback)
 
     def mueve_camara(self, callback):
         """Acceso directo para conectar el actor al evento de mueve_camara.
-        No se debe redefinir este métido."""        
+        No se debe redefinir este método."""        
         pilas.eventos.mueve_camara.conectar(callback)
 
     def mueve_mouse(self, callback):
         """Acceso directo para conectar el actor al evento de mueve_mouse.
-        No se debe redefinir este métido."""        
+        No se debe redefinir este método."""        
         pilas.eventos.mueve_mouse.conectar(callback)
 
     def termina_click(self, callback):
         """Acceso directo para conectar el actor al evento de termina_click.
-        No se debe redefinir este métido."""        
+        No se debe redefinir este método."""        
         pilas.eventos.termina_click.conectar(callback)
 
     def mueve_rueda(self, callback):
         """Acceso directo para conectar el actor al evento de mueve_rueda.
-        No se debe redefinir este métido."""        
+        No se debe redefinir este método."""        
         pilas.eventos.mueve_rueda.conectar(callback)
 
     def pulsa_tecla(self, callback):
         """Acceso directo para conectar el actor al evento de pulsa_tecla.
-        No se debe redefinir este métido."""        
+        No se debe redefinir este método."""        
         pilas.eventos.pulsa_tecla.conectar(callback)
 
     def suelta_tecla(self, callback):
         """Acceso directo para conectar el actor al evento de suelta_tecla.
-        No se debe redefinir este métido."""        
+        No se debe redefinir este método."""        
         pilas.eventos.suelta_tecla.conectar(callback)
 
     def pulsa_tecla_escape(self, callback):
         """Acceso directo para conectar el actor al evento de pulsa_tecla_escape.
-        No se debe redefinir este métido."""    
+        No se debe redefinir este método."""    
         pilas.eventos.pulsa_tecla_escape.conectar(callback)
 
     def __actualizar_velocidad(self):
