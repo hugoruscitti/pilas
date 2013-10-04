@@ -67,7 +67,12 @@ class Ventana(QWidget):
         text, state = QInputDialog.getText(self, "raw_input", mensaje)
         return eval(str(text))
 
-
+    def help(self, objeto=None):
+        if objeto:
+            print help(objeto)
+        else:
+            print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
+            
 class Output:
 
     def __init__(self, destino):
@@ -142,6 +147,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             self.interpreter = code.InteractiveInterpreter(interpreter_locals)
             self.interpreter.runsource('raw_input = self.raw_input')
             self.interpreter.runsource('input = self.input')
+            self.interpreter.runsource('help = self.help')
             self.interpreterLocals = interpreter_locals
 
     def updateInterpreterLocals(self, newLocals):
