@@ -1,41 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ManualDialog</class>
- <widget class="QDialog" name="ManualDialog">
+ <class>ManualWindow</class>
+ <widget class="QMainWindow" name="ManualWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>783</width>
-    <height>507</height>
+    <width>844</width>
+    <height>508</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Manual de pilas-engine</string>
+  <property name="minimumSize">
+   <size>
+    <width>500</width>
+    <height>400</height>
+   </size>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="margin">
-    <number>0</number>
+  <property name="windowTitle">
+   <string>manual de pilas-engine</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="margin">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QWebView" name="webView" native="true">
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
+      </property>
+      <property name="statusTip">
+       <string notr="true"/>
+      </property>
+      <property name="accessibleDescription">
+       <string notr="true"/>
+      </property>
+      <property name="url" stdset="0">
+       <url>
+        <string>about:blank</string>
+       </url>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>844</width>
+     <height>19</height>
+    </rect>
    </property>
-   <item>
-    <widget class="QWebView" name="webView">
-     <property name="contextMenuPolicy">
-      <enum>Qt::NoContextMenu</enum>
-     </property>
-     <property name="statusTip">
-      <string notr="true"/>
-     </property>
-     <property name="accessibleDescription">
-      <string notr="true"/>
-     </property>
-     <property name="url">
-      <url>
-       <string>about:blank</string>
-      </url>
-     </property>
-    </widget>
-   </item>
-  </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>

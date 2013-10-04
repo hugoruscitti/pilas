@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pilas/data/interprete.ui'
 #
-# Created: Fri Sep 27 16:36:32 2013
-#      by: PyQt4 UI code generator 4.10.2
+# Created: Fri Oct  4 10:28:17 2013
+#      by: PyQt4 UI code generator 4.9.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,16 +12,7 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+    _fromUtf8 = lambda s: s
 
 class Ui_InterpreteDialog(object):
     def setupUi(self, InterpreteDialog):
@@ -127,14 +118,14 @@ class Ui_InterpreteDialog(object):
         QtCore.QMetaObject.connectSlotsByName(InterpreteDialog)
 
     def retranslateUi(self, InterpreteDialog):
-        InterpreteDialog.setWindowTitle(_translate("InterpreteDialog", "pilas-engine interprete", None))
-        self.manual_button.setText(_translate("InterpreteDialog", "Manual", None))
-        self.pushButton_6.setText(_translate("InterpreteDialog", "F7", None))
-        self.pushButton_5.setText(_translate("InterpreteDialog", "F8", None))
-        self.pushButton_4.setText(_translate("InterpreteDialog", "F9", None))
-        self.pushButton_3.setText(_translate("InterpreteDialog", "F10", None))
-        self.pushButton_2.setText(_translate("InterpreteDialog", "F11", None))
-        self.pushButton.setText(_translate("InterpreteDialog", "F12", None))
+        InterpreteDialog.setWindowTitle(QtGui.QApplication.translate("InterpreteDialog", "pilas-engine interprete", None, QtGui.QApplication.UnicodeUTF8))
+        self.manual_button.setText(QtGui.QApplication.translate("InterpreteDialog", "Manual", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton_6.setText(QtGui.QApplication.translate("InterpreteDialog", "F7", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton_5.setText(QtGui.QApplication.translate("InterpreteDialog", "F8", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton_4.setText(QtGui.QApplication.translate("InterpreteDialog", "F9", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton_3.setText(QtGui.QApplication.translate("InterpreteDialog", "F10", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton_2.setText(QtGui.QApplication.translate("InterpreteDialog", "F11", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton.setText(QtGui.QApplication.translate("InterpreteDialog", "F12", None, QtGui.QApplication.UnicodeUTF8))
 
 from PyQt4 import QtWebKit
 

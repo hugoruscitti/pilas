@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pilas/data/manual.ui'
 #
-# Created: Fri Sep 27 16:36:32 2013
-#      by: PyQt4 UI code generator 4.10.2
+# Created: Fri Oct  4 10:28:17 2013
+#      by: PyQt4 UI code generator 4.9.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,47 +12,48 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    def _fromUtf8(s):
-        return s
+    _fromUtf8 = lambda s: s
 
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
-
-class Ui_ManualDialog(object):
-    def setupUi(self, ManualDialog):
-        ManualDialog.setObjectName(_fromUtf8("ManualDialog"))
-        ManualDialog.resize(783, 507)
-        self.horizontalLayout = QtGui.QHBoxLayout(ManualDialog)
-        self.horizontalLayout.setMargin(0)
-        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.webView = QtWebKit.QWebView(ManualDialog)
-        self.webView.history().setMaximumItemCount(0)
+class Ui_ManualWindow(object):
+    def setupUi(self, ManualWindow):
+        ManualWindow.setObjectName(_fromUtf8("ManualWindow"))
+        ManualWindow.resize(844, 508)
+        ManualWindow.setMinimumSize(QtCore.QSize(500, 400))
+        self.centralwidget = QtGui.QWidget(ManualWindow)
+        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+        self.gridLayout.setMargin(0)
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.webView = QtWebKit.QWebView(self.centralwidget)
         self.webView.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.webView.setStatusTip(_fromUtf8(""))
         self.webView.setAccessibleDescription(_fromUtf8(""))
-        self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
+        self.webView.setProperty("url", QtCore.QUrl(_fromUtf8("about:blank")))
         self.webView.setObjectName(_fromUtf8("webView"))
-        self.horizontalLayout.addWidget(self.webView)
+        self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)
+        ManualWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtGui.QMenuBar(ManualWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 844, 19))
+        self.menubar.setObjectName(_fromUtf8("menubar"))
+        ManualWindow.setMenuBar(self.menubar)
+        self.statusbar = QtGui.QStatusBar(ManualWindow)
+        self.statusbar.setObjectName(_fromUtf8("statusbar"))
+        ManualWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(ManualDialog)
-        QtCore.QMetaObject.connectSlotsByName(ManualDialog)
+        self.retranslateUi(ManualWindow)
+        QtCore.QMetaObject.connectSlotsByName(ManualWindow)
 
-    def retranslateUi(self, ManualDialog):
-        ManualDialog.setWindowTitle(_translate("ManualDialog", "Manual de pilas-engine", None))
+    def retranslateUi(self, ManualWindow):
+        ManualWindow.setWindowTitle(QtGui.QApplication.translate("ManualWindow", "manual de pilas-engine", None, QtGui.QApplication.UnicodeUTF8))
 
 from PyQt4 import QtWebKit
 
 if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
-    ManualDialog = QtGui.QDialog()
-    ui = Ui_ManualDialog()
-    ui.setupUi(ManualDialog)
-    ManualDialog.show()
+    ManualWindow = QtGui.QMainWindow()
+    ui = Ui_ManualWindow()
+    ui.setupUi(ManualWindow)
+    ManualWindow.show()
     sys.exit(app.exec_())
 

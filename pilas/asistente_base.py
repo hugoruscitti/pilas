@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pilas/data/asistente.ui'
 #
-# Created: Fri Sep 27 16:36:32 2013
-#      by: PyQt4 UI code generator 4.10.2
+# Created: Fri Oct  4 10:28:17 2013
+#      by: PyQt4 UI code generator 4.9.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,16 +12,7 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+    _fromUtf8 = lambda s: s
 
 class Ui_AsistenteWindow(object):
     def setupUi(self, AsistenteWindow):
@@ -36,7 +27,6 @@ class Ui_AsistenteWindow(object):
         self.gridLayout.setMargin(0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.webView = QtWebKit.QWebView(self.centralwidget)
-        self.webView.history().setMaximumItemCount(0)
         self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.webView.setObjectName(_fromUtf8("webView"))
         self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)
@@ -60,9 +50,9 @@ class Ui_AsistenteWindow(object):
         QtCore.QMetaObject.connectSlotsByName(AsistenteWindow)
 
     def retranslateUi(self, AsistenteWindow):
-        AsistenteWindow.setWindowTitle(_translate("AsistenteWindow", "pilas-engine", None))
-        self.menu_Archivo.setTitle(_translate("AsistenteWindow", "&Archivo", None))
-        self.salir_action.setText(_translate("AsistenteWindow", "Salir", None))
+        AsistenteWindow.setWindowTitle(QtGui.QApplication.translate("AsistenteWindow", "pilas-engine", None, QtGui.QApplication.UnicodeUTF8))
+        self.menu_Archivo.setTitle(QtGui.QApplication.translate("AsistenteWindow", "&Archivo", None, QtGui.QApplication.UnicodeUTF8))
+        self.salir_action.setText(QtGui.QApplication.translate("AsistenteWindow", "Salir", None, QtGui.QApplication.UnicodeUTF8))
 
 from PyQt4 import QtWebKit
 

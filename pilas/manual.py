@@ -3,20 +3,20 @@ import sys
 
 try:
     from PyQt4 import QtCore, QtGui
-    from manual_base import Ui_ManualDialog
+    from manual_base import Ui_ManualWindow
 except:
     print "ERROR: No se encuentra pyqt"
-    Ui_ManualDialog = object
+    Ui_ManualWindow = object
     pass
 
 import os
 import pilas
 
-class VentanaManual(Ui_ManualDialog):
+class VentanaManual(Ui_ManualWindow):
 
     def setupUi(self, main):
         self.main = main
-        Ui_ManualDialog.setupUi(self, main)
+        Ui_ManualWindow.setupUi(self, main)
         pilas.utils.centrar_ventana(main)
         self.cargar_manual()
 
@@ -32,9 +32,14 @@ class VentanaManual(Ui_ManualDialog):
         self.webView.setHtml(contenido, base_dir)
 
 def main(parent=None, do_raise=False):
-    dialog = QtGui.QDialog(parent)
+    dialog = QtGui.QMainWindow(parent)
     dialog.setWindowFlags(dialog.windowFlags() | QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowMinMaxButtonsHint)
     ui = VentanaManual()
     ui.setupUi(dialog)
     dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
     dialog.show()
+    
+if __name__ == '__main__':
+    app = QtGui.QApplication(sys.argv)
+    app.setApplicationName("pilas-engine")
+    main()
