@@ -122,6 +122,12 @@ class VentanaInterprete(Ui_InterpreteDialog):
         text, state = QtGui.QInputDialog.getText(self, "raw_input", mensaje)
         return eval(str(text))
 
+    def help(self, objeto=None):
+        if objeto:
+            print help(objeto)
+        else:
+            print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
+
     def _insertar_ventana_principal_de_pilas(self):
         pilas.iniciar(usar_motor='qtsugargl', ancho=640, alto=400)
 
