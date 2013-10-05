@@ -102,6 +102,10 @@ class Actor(object, Estudiante):
         self._dx = self.x
         self._dy = self.y
 
+        # Listas para definir los callbacks de los eventos
+        self.callback_click_de_mouse = set()
+        self.callback_mueve_mouse = set()
+
     def definir_centro(self, (x, y)):
         """ Define en que posición estará el centro del Actor.
 
@@ -341,52 +345,91 @@ class Actor(object, Estudiante):
         self.__actualizar_velocidad()
 
     def set_click_de_mouse(self, callback):
-        pilas.eventos.click_de_mouse.conectar(self._click_de_mouse)
-        self.callback_click_de_mouse = callback
-        print "callback"
+        if (callback is None):
+            self.callback_click_de_mouse.clear()
+        else:
+            pilas.eventos.click_de_mouse.conectar(self._click_de_mouse)
+            self.callback_click_de_mouse.add(callback)
 
     def get_click_de_mouse(self):
         return self.callback_click_de_mouse
 
     def _click_de_mouse(self, evento):
         if self.colisiona_con_un_punto(evento.x, evento.y):
-            self.callback_click_de_mouse()
+            a_eliminar = []
+            for callback in set(self.callback_click_de_mouse):
+                try:
+                    callback()
+                except ReferenceError:
+                    a_eliminar.append(callback)
+
+            if a_eliminar:
+                for x in a_eliminar:
+                    try:
+                        self.callback_click_de_mouse.remove(x)
+                    except:
+                        raise ValueError("La funcion no está agregada en el callback de click_de_mouse")
 
     click_de_mouse = property(get_click_de_mouse, set_click_de_mouse, doc="")
 
+
+    def set_mueve_mouse(self, callback):
+        if (callback is None):
+            self.callback_mueve_mouse.clear()
+        else:
+            pilas.eventos.mueve_mouse.conectar(self._mueve_mouse)
+            self.callback_mueve_mouse.add(callback)
+
+    def get_mueve_mouse(self):
+        return self.callback_mueve_mouse
+
+    def _mueve_mouse(self, evento):
+        if self.colisiona_con_un_punto(evento.x, evento.y):
+            a_eliminar = []
+            for callback in set(self.callback_mueve_mouse):
+                try:
+                    callback()
+                except ReferenceError:
+                    a_eliminar.append(callback)
+
+            if a_eliminar:
+                for x in a_eliminar:
+                    try:
+                        self.callback_mueve_mouse.remove(x)
+                    except:
+                        raise ValueError("La funcion no está agregada en el callback de mueve el mouse")
+
+    mueve_mouse = property(get_mueve_mouse, set_mueve_mouse, doc="")
+
+
     def mueve_camara(self, callback):
         """Acceso directo para conectar el actor al evento de mueve_camara.
-        No se debe redefinir este método."""        
+        No se debe redefinir este método."""
         pilas.eventos.mueve_camara.conectar(callback)
-
-    def mueve_mouse(self, callback):
-        """Acceso directo para conectar el actor al evento de mueve_mouse.
-        No se debe redefinir este método."""        
-        pilas.eventos.mueve_mouse.conectar(callback)
 
     def termina_click(self, callback):
         """Acceso directo para conectar el actor al evento de termina_click.
-        No se debe redefinir este método."""        
+        No se debe redefinir este método."""
         pilas.eventos.termina_click.conectar(callback)
 
     def mueve_rueda(self, callback):
         """Acceso directo para conectar el actor al evento de mueve_rueda.
-        No se debe redefinir este método."""        
+        No se debe redefinir este método."""
         pilas.eventos.mueve_rueda.conectar(callback)
 
     def pulsa_tecla(self, callback):
         """Acceso directo para conectar el actor al evento de pulsa_tecla.
-        No se debe redefinir este método."""        
+        No se debe redefinir este método."""
         pilas.eventos.pulsa_tecla.conectar(callback)
 
     def suelta_tecla(self, callback):
         """Acceso directo para conectar el actor al evento de suelta_tecla.
-        No se debe redefinir este método."""        
+        No se debe redefinir este método."""
         pilas.eventos.suelta_tecla.conectar(callback)
 
     def pulsa_tecla_escape(self, callback):
         """Acceso directo para conectar el actor al evento de pulsa_tecla_escape.
-        No se debe redefinir este método."""    
+        No se debe redefinir este método."""
         pilas.eventos.pulsa_tecla_escape.conectar(callback)
 
     def __actualizar_velocidad(self):
