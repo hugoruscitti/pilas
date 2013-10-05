@@ -340,10 +340,19 @@ class Actor(object, Estudiante):
         self.actualizar_habilidades()
         self.__actualizar_velocidad()
 
-    def click_de_mouse(self, callback):
-        """Acceso directo para conectar el actor al evento de click_de_mouse.
-        No se debe redefinir este método."""        
-        pilas.eventos.click_de_mouse.conectar(callback)
+    def set_click_de_mouse(self, callback):
+        pilas.eventos.click_de_mouse.conectar(self._click_de_mouse)
+        self.callback_click_de_mouse = callback
+        print "callback"
+
+    def get_click_de_mouse(self):
+        return self.callback_click_de_mouse
+
+    def _click_de_mouse(self, evento):
+        if self.colisiona_con_un_punto(evento.x, evento.y):
+            self.callback_click_de_mouse()
+
+    click_de_mouse = property(get_click_de_mouse, set_click_de_mouse, doc="")
 
     def mueve_camara(self, callback):
         """Acceso directo para conectar el actor al evento de mueve_camara.
