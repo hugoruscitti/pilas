@@ -1212,7 +1212,7 @@ class Motor(object):
             self._widgetlog = WidgetLog()
         else:
             self._widgetlog.show()
-        
+
         self._widgetlog.imprimir(params)
 
     def capturar_pantalla(self, nombre_archivo):

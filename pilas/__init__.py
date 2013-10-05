@@ -48,8 +48,8 @@ para iniciar y ejecutar la biblioteca.
 
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
-            rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False,
-            permitir_depuracion=True, audio='pygame', centrado=True):
+            rendimiento=60, modo=None, gravedad=(0, -90), pantalla_completa=False,
+            permitir_depuracion=True, audio=None, centrado=True):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -77,6 +77,14 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     global mundo
 
     if not esta_inicializada():
+        configuracion = obtener_configuracion()
+
+        if not usar_motor:
+            usar_motor = configuracion['usar_motor']
+
+        if not audio:
+            audio = configuracion['audio']
+
         motor = _crear_motor(usar_motor, permitir_depuracion, audio)
 
         if motor:
@@ -231,7 +239,6 @@ def abrir_interprete(parent=None, do_raise=False, con_aplicacion=False):
 
 
 def log(*parametros):
-    #eventos.log.emitir(data=parametros)
     global mundo
     mundo.motor.log(parametros)
 
@@ -253,7 +260,22 @@ def almacenar_escena(escena):
 def recuperar_escena():
     mundo.gestor_escenas.recuperar_escena()
 
+
+def obtener_configuracion():
+    """Retorna la configuración del usuario almacenada en su directorio HOME.
+
+    La configuración permite definir los valores por omisión cuando
+    se abre la ventana de pilas. Por ejemplo, si se llama a ``pilas.iniciar()``
+    sin argumentos, los valores de 'motor' o 'sistema de sonido' a utilizar
+    se cargarán desde esa configuración.
+    """
+    opciones = {}
+    opciones['usar_motor'] = 'qtgl'
+    opciones['audio'] = 'deshabilitado'
+    return opciones
+
 # Representa el viejo acceso al modulo eventos, pero convierte cada uno
 # de los eventos en una referencia al evento dentro de la escena actual.
 from evento import ProxyEventos
 eventos = ProxyEventos()
+
