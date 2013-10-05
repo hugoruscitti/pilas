@@ -30,6 +30,7 @@ class VentanaManual(Ui_ManualWindow):
 
         base_dir =  QtCore.QUrl.fromLocalFile(file_path)
         self.webView.setHtml(contenido, base_dir)
+        self.webView.history().setMaximumItemCount(0)
 
 def main(parent=None, do_raise=False):
     dialog = QtGui.QMainWindow(parent)

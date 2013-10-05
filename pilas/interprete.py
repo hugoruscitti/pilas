@@ -73,6 +73,8 @@ class VentanaInterprete(Ui_InterpreteDialog):
         # F12 Modo depuracion de posicion
         self.definir_icono(self.pushButton, 'iconos/f12.png')
         self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
+        
+        self.navegador.history().setMaximumItemCount(0)
 
     def colapsar_ayuda(self):
         self.splitter_vertical.setSizes([0])

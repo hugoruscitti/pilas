@@ -36,6 +36,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.process = None
         self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
         self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_proceso)
+        self.webView.history().setMaximumItemCount(0)
 
     def _consultar_ultima_version_del_servidor(self):
         direccion = QtCore.QUrl("https://raw.github.com/hugoruscitti/pilas/gh-pages/version.json")
