@@ -171,10 +171,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
             QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
     def _cuando_selecciona_interprete(self):
-        if sys.platform == "win32":
-            self._ejecutar_comando(sys.executable, ['-i'], '.')
-        else:
-            self._ejecutar_comando(sys.executable, [sys.argv[0], '-i'], '.')
+        pilas.interprete.main(self.main)
 
     def ejecutar_script(self, nombre_archivo_script, directorio_trabajo):
         self.nombre_archivo_script = nombre_archivo_script

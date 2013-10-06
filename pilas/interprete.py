@@ -3,10 +3,10 @@ import sys
 
 try:
     from PyQt4 import QtCore, QtGui
-    from interprete_base import Ui_InterpreteDialog
+    from interprete_base import Ui_InterpreteWindow
 except:
     print "ERROR: No se encuentra pyqt"
-    Ui_InterpreteDialog = object
+    Ui_InterpreteWindow = object
     pass
 
 import pilas
@@ -28,11 +28,11 @@ import os
 if os.environ.has_key('lanas'):
     del os.environ['lanas']
 
-class VentanaInterprete(Ui_InterpreteDialog):
+class VentanaInterprete(Ui_InterpreteWindow):
 
     def setupUi(self, main):
         self.main = main
-        Ui_InterpreteDialog.setupUi(self, main)
+        Ui_InterpreteWindow.setupUi(self, main)
         scope = self._insertar_ventana_principal_de_pilas()
         self._insertar_consola_interactiva(scope)
         pilas.utils.centrar_ventana(main)
@@ -43,6 +43,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
 
         self.colapsar_ayuda()
         self.cargar_ayuda()
+
 
         # Observa el deslizador vertical para mostrar el boton de ayuda
         # pulsado o despulsado.
@@ -94,7 +95,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
         self.navegador.setHtml(contenido, base_dir)
 
     def definir_icono(self, boton, ruta):
-        icon = QtGui.QIcon()
+        icon = QtGui.QIcon();
         icon.addFile(pilas.utils.obtener_ruta_al_recurso(ruta), QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         boton.setIcon(icon)
         boton.setText('')
@@ -159,19 +160,15 @@ class VentanaInterprete(Ui_InterpreteDialog):
         self.console.setCurrentWidget(consola)
 
 def main(parent=None, do_raise=False):
-    dialog = QtGui.QDialog(parent)
-    dialog.setWindowFlags(dialog.windowFlags() | QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowMinMaxButtonsHint)
+    main = QtGui.QMainWindow(parent)
+    #main.setAttribute(QtCorIe.Qt.WA_DeleteOnClose)
     ui = VentanaInterprete()
-    ui.setupUi(dialog)
-
-    if do_raise:
-        dialog.show()
-        dialog.raise_()
-
-    dialog.exec_()
+    ui.setupUi(main)
+    main.show()
+    main.raise_()
 
 if __name__ == '__main__':
-    from PyQt4 import QtGui
     app = QtGui.QApplication(sys.argv)
     app.setApplicationName("pilas-engine")
     main()
+    app.exec_()

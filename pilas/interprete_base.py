@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilas/data/interprete.ui'
 #
-# Created: Sat Oct  5 23:29:03 2013
+# Created: Sun Oct  6 19:30:02 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,19 +23,26 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_InterpreteDialog(object):
-    def setupUi(self, InterpreteDialog):
-        InterpreteDialog.setObjectName(_fromUtf8("InterpreteDialog"))
-        InterpreteDialog.resize(770, 681)
-        self.gridLayout = QtGui.QGridLayout(InterpreteDialog)
+class Ui_InterpreteWindow(object):
+    def setupUi(self, InterpreteWindow):
+        InterpreteWindow.setObjectName(_fromUtf8("InterpreteWindow"))
+        InterpreteWindow.resize(774, 586)
+        InterpreteWindow.setMinimumSize(QtCore.QSize(660, 530))
+        self.centralwidget = QtGui.QWidget(InterpreteWindow)
+        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.splitter_vertical = QtGui.QSplitter(InterpreteDialog)
+        self.splitter_vertical = QtGui.QSplitter(self.centralwidget)
+        self.splitter_vertical.setCursor(QtGui.QCursor(QtCore.Qt.SizeHorCursor))
+        self.splitter_vertical.setFrameShape(QtGui.QFrame.NoFrame)
+        self.splitter_vertical.setFrameShadow(QtGui.QFrame.Plain)
         self.splitter_vertical.setOrientation(QtCore.Qt.Horizontal)
         self.splitter_vertical.setObjectName(_fromUtf8("splitter_vertical"))
         self.navegador = QtWebKit.QWebView(self.splitter_vertical)
         self.navegador.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.navegador.setObjectName(_fromUtf8("navegador"))
         self.splitter = QtGui.QSplitter(self.splitter_vertical)
+        self.splitter.setCursor(QtGui.QCursor(QtCore.Qt.SizeVerCursor))
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName(_fromUtf8("splitter"))
         self.canvas = QtGui.QStackedWidget(self.splitter)
@@ -122,36 +129,47 @@ class Ui_InterpreteDialog(object):
         self.console.addWidget(self.page_4)
         self.verticalLayout.addWidget(self.console)
         self.gridLayout.addWidget(self.splitter_vertical, 0, 0, 1, 1)
+        InterpreteWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtGui.QMenuBar(InterpreteWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 774, 22))
+        self.menubar.setObjectName(_fromUtf8("menubar"))
+        InterpreteWindow.setMenuBar(self.menubar)
+        self.statusbar = QtGui.QStatusBar(InterpreteWindow)
+        self.statusbar.setObjectName(_fromUtf8("statusbar"))
+        InterpreteWindow.setStatusBar(self.statusbar)
+        self.actionSalir = QtGui.QAction(InterpreteWindow)
+        self.actionSalir.setObjectName(_fromUtf8("actionSalir"))
 
-        self.retranslateUi(InterpreteDialog)
+        self.retranslateUi(InterpreteWindow)
         self.console.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(InterpreteDialog)
+        QtCore.QMetaObject.connectSlotsByName(InterpreteWindow)
 
-    def retranslateUi(self, InterpreteDialog):
-        InterpreteDialog.setWindowTitle(_translate("InterpreteDialog", "pilas-engine interprete", None))
-        self.manual_button.setToolTip(_translate("InterpreteDialog", "Mostrar el manual de pilas", None))
-        self.manual_button.setText(_translate("InterpreteDialog", "M", None))
-        self.pushButton_6.setToolTip(_translate("InterpreteDialog", "Mostrar información del sistema", None))
-        self.pushButton_6.setText(_translate("InterpreteDialog", "F7", None))
-        self.pushButton_5.setToolTip(_translate("InterpreteDialog", "Mostrar puntos de control", None))
-        self.pushButton_5.setText(_translate("InterpreteDialog", "F8", None))
-        self.pushButton_4.setToolTip(_translate("InterpreteDialog", "Mostrar radios de colisión", None))
-        self.pushButton_4.setText(_translate("InterpreteDialog", "F9", None))
-        self.pushButton_3.setToolTip(_translate("InterpreteDialog", "Mostrar areas", None))
-        self.pushButton_3.setText(_translate("InterpreteDialog", "F10", None))
-        self.pushButton_2.setToolTip(_translate("InterpreteDialog", "Mostrar figuras físicas", None))
-        self.pushButton_2.setText(_translate("InterpreteDialog", "F11", None))
-        self.pushButton.setToolTip(_translate("InterpreteDialog", "Mostrar posiciones", None))
-        self.pushButton.setText(_translate("InterpreteDialog", "F12", None))
+    def retranslateUi(self, InterpreteWindow):
+        InterpreteWindow.setWindowTitle(_translate("InterpreteWindow", "pilas-engine", None))
+        self.manual_button.setToolTip(_translate("InterpreteWindow", "Mostrar el manual de pilas", None))
+        self.manual_button.setText(_translate("InterpreteWindow", "M", None))
+        self.pushButton_6.setToolTip(_translate("InterpreteWindow", "Mostrar información del sistema", None))
+        self.pushButton_6.setText(_translate("InterpreteWindow", "F7", None))
+        self.pushButton_5.setToolTip(_translate("InterpreteWindow", "Mostrar puntos de control", None))
+        self.pushButton_5.setText(_translate("InterpreteWindow", "F8", None))
+        self.pushButton_4.setToolTip(_translate("InterpreteWindow", "Mostrar radios de colisión", None))
+        self.pushButton_4.setText(_translate("InterpreteWindow", "F9", None))
+        self.pushButton_3.setToolTip(_translate("InterpreteWindow", "Mostrar areas", None))
+        self.pushButton_3.setText(_translate("InterpreteWindow", "F10", None))
+        self.pushButton_2.setToolTip(_translate("InterpreteWindow", "Mostrar figuras físicas", None))
+        self.pushButton_2.setText(_translate("InterpreteWindow", "F11", None))
+        self.pushButton.setToolTip(_translate("InterpreteWindow", "Mostrar posiciones", None))
+        self.pushButton.setText(_translate("InterpreteWindow", "F12", None))
+        self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
 from PyQt4 import QtWebKit
 
 if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
-    InterpreteDialog = QtGui.QDialog()
-    ui = Ui_InterpreteDialog()
-    ui.setupUi(InterpreteDialog)
-    InterpreteDialog.show()
+    InterpreteWindow = QtGui.QMainWindow()
+    ui = Ui_InterpreteWindow()
+    ui.setupUi(InterpreteWindow)
+    InterpreteWindow.show()
     sys.exit(app.exec_())
 
