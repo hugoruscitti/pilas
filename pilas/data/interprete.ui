@@ -55,6 +55,9 @@
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="toolTip">
+             <string>Mostrar el manual de pilas</string>
+            </property>
             <property name="text">
              <string>M</string>
             </property>
@@ -90,6 +93,9 @@
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="toolTip">
+             <string>Mostrar información del sistema</string>
+            </property>
             <property name="text">
              <string>F7</string>
             </property>
@@ -111,6 +117,9 @@
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Mostrar puntos de control</string>
             </property>
             <property name="text">
              <string>F8</string>
@@ -134,6 +143,9 @@
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="toolTip">
+             <string>Mostrar radios de colisión</string>
+            </property>
             <property name="text">
              <string>F9</string>
             </property>
@@ -156,6 +168,9 @@
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="toolTip">
+             <string>Mostrar areas</string>
+            </property>
             <property name="text">
              <string>F10</string>
             </property>
@@ -177,6 +192,9 @@
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Mostrar figuras físicas</string>
             </property>
             <property name="text">
              <string>F11</string>
@@ -207,7 +225,7 @@
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="toolTip">
-             <string extracomment="Modo posición (tecla F12)"/>
+             <string extracomment="Modo posición (tecla F12)">Mostrar posiciones</string>
             </property>
             <property name="text">
              <string extracomment="Modo posición (tecla F12)">F12</string>

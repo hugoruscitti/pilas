@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilas/data/interprete.ui'
 #
-# Created: Sat Oct  5 23:16:54 2013
+# Created: Sat Oct  5 23:29:03 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -106,7 +106,6 @@ class Ui_InterpreteDialog(object):
         self.pushButton.setSizePolicy(sizePolicy)
         self.pushButton.setMaximumSize(QtCore.QSize(20, 20))
         self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setToolTip(_fromUtf8(""))
         self.pushButton.setCheckable(True)
         self.pushButton.setChecked(False)
         self.pushButton.setFlat(True)
@@ -130,12 +129,19 @@ class Ui_InterpreteDialog(object):
 
     def retranslateUi(self, InterpreteDialog):
         InterpreteDialog.setWindowTitle(_translate("InterpreteDialog", "pilas-engine interprete", None))
+        self.manual_button.setToolTip(_translate("InterpreteDialog", "Mostrar el manual de pilas", None))
         self.manual_button.setText(_translate("InterpreteDialog", "M", None))
+        self.pushButton_6.setToolTip(_translate("InterpreteDialog", "Mostrar información del sistema", None))
         self.pushButton_6.setText(_translate("InterpreteDialog", "F7", None))
+        self.pushButton_5.setToolTip(_translate("InterpreteDialog", "Mostrar puntos de control", None))
         self.pushButton_5.setText(_translate("InterpreteDialog", "F8", None))
+        self.pushButton_4.setToolTip(_translate("InterpreteDialog", "Mostrar radios de colisión", None))
         self.pushButton_4.setText(_translate("InterpreteDialog", "F9", None))
+        self.pushButton_3.setToolTip(_translate("InterpreteDialog", "Mostrar areas", None))
         self.pushButton_3.setText(_translate("InterpreteDialog", "F10", None))
+        self.pushButton_2.setToolTip(_translate("InterpreteDialog", "Mostrar figuras físicas", None))
         self.pushButton_2.setText(_translate("InterpreteDialog", "F11", None))
+        self.pushButton.setToolTip(_translate("InterpreteDialog", "Mostrar posiciones", None))
         self.pushButton.setText(_translate("InterpreteDialog", "F12", None))
 
 from PyQt4 import QtWebKit
