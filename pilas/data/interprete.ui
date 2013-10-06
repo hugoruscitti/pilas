@@ -24,7 +24,7 @@
     <item row="0" column="0">
      <widget class="QSplitter" name="splitter_vertical">
       <property name="cursor">
-       <cursorShape>SizeHorCursor</cursorShape>
+       <cursorShape>ArrowCursor</cursorShape>
       </property>
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
@@ -44,7 +44,7 @@
       </widget>
       <widget class="QSplitter" name="splitter">
        <property name="cursor">
-        <cursorShape>SizeVerCursor</cursorShape>
+        <cursorShape>ArrowCursor</cursorShape>
        </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>

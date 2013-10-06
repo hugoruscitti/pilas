@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilas/data/interprete.ui'
 #
-# Created: Sun Oct  6 19:30:02 2013
+# Created: Sun Oct  6 20:11:51 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -33,7 +33,7 @@ class Ui_InterpreteWindow(object):
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.splitter_vertical = QtGui.QSplitter(self.centralwidget)
-        self.splitter_vertical.setCursor(QtGui.QCursor(QtCore.Qt.SizeHorCursor))
+        self.splitter_vertical.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.splitter_vertical.setFrameShape(QtGui.QFrame.NoFrame)
         self.splitter_vertical.setFrameShadow(QtGui.QFrame.Plain)
         self.splitter_vertical.setOrientation(QtCore.Qt.Horizontal)
@@ -42,7 +42,7 @@ class Ui_InterpreteWindow(object):
         self.navegador.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.navegador.setObjectName(_fromUtf8("navegador"))
         self.splitter = QtGui.QSplitter(self.splitter_vertical)
-        self.splitter.setCursor(QtGui.QCursor(QtCore.Qt.SizeVerCursor))
+        self.splitter.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName(_fromUtf8("splitter"))
         self.canvas = QtGui.QStackedWidget(self.splitter)
