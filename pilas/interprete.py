@@ -48,7 +48,9 @@ class VentanaInterprete(Ui_InterpreteDialog):
         # pulsado o despulsado.
         self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador)
 
-        self.manual_button.connect(self.manual_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_ayuda)
+        # Botón del manual
+        self.definir_icono(self.manual_button, 'iconos/manual.png')
+        self.manual_button.connect(self.manual_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_manual)
 
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
@@ -73,7 +75,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
         # F12 Modo depuracion de posicion
         self.definir_icono(self.pushButton, 'iconos/f12.png')
         self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
-        
+
         self.navegador.history().setMaximumItemCount(0)
 
     def colapsar_ayuda(self):
@@ -92,7 +94,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
         self.navegador.setHtml(contenido, base_dir)
 
     def definir_icono(self, boton, ruta):
-        icon = QtGui.QIcon();
+        icon = QtGui.QIcon()
         icon.addFile(pilas.utils.obtener_ruta_al_recurso(ruta), QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         boton.setIcon(icon)
         boton.setText('')
@@ -100,7 +102,7 @@ class VentanaInterprete(Ui_InterpreteDialog):
     def cuando_mueve_deslizador(self, a1, a2):
         self.manual_button.setChecked(a1 != 0)
 
-    def cuando_pulsa_el_boton_ayuda(self):
+    def cuando_pulsa_el_boton_manual(self):
         if self.manual_button.isChecked():
             self.splitter_vertical.setSizes([300])
         else:
@@ -167,3 +169,9 @@ def main(parent=None, do_raise=False):
         dialog.raise_()
 
     dialog.exec_()
+
+if __name__ == '__main__':
+    from PyQt4 import QtGui
+    app = QtGui.QApplication(sys.argv)
+    app.setApplicationName("pilas-engine")
+    main()

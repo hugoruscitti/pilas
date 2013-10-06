@@ -46,8 +46,17 @@
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <widget class="QPushButton" name="manual_button">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="text">
-             <string>Manual</string>
+             <string>M</string>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -74,8 +83,8 @@
            <widget class="QPushButton" name="pushButton_6">
             <property name="maximumSize">
              <size>
-              <width>26</width>
-              <height>26</height>
+              <width>20</width>
+              <height>20</height>
              </size>
             </property>
             <property name="cursor">
@@ -96,8 +105,8 @@
            <widget class="QPushButton" name="pushButton_5">
             <property name="maximumSize">
              <size>
-              <width>26</width>
-              <height>26</height>
+              <width>20</width>
+              <height>20</height>
              </size>
             </property>
             <property name="cursor">
@@ -118,8 +127,8 @@
            <widget class="QPushButton" name="pushButton_4">
             <property name="maximumSize">
              <size>
-              <width>26</width>
-              <height>26</height>
+              <width>20</width>
+              <height>20</height>
              </size>
             </property>
             <property name="cursor">
@@ -140,8 +149,8 @@
            <widget class="QPushButton" name="pushButton_3">
             <property name="maximumSize">
              <size>
-              <width>26</width>
-              <height>26</height>
+              <width>20</width>
+              <height>20</height>
              </size>
             </property>
             <property name="cursor">
@@ -162,8 +171,8 @@
            <widget class="QPushButton" name="pushButton_2">
             <property name="maximumSize">
              <size>
-              <width>26</width>
-              <height>26</height>
+              <width>20</width>
+              <height>20</height>
              </size>
             </property>
             <property name="cursor">
@@ -190,8 +199,8 @@
             </property>
             <property name="maximumSize">
              <size>
-              <width>26</width>
-              <height>26</height>
+              <width>20</width>
+              <height>20</height>
              </size>
             </property>
             <property name="cursor">

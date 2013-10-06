@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pilas/data/interprete.ui'
 #
-# Created: Fri Oct  4 10:28:17 2013
-#      by: PyQt4 UI code generator 4.9.3
+# Created: Sat Oct  5 23:16:54 2013
+#      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,16 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    _fromUtf8 = lambda s: s
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_InterpreteDialog(object):
     def setupUi(self, InterpreteDialog):
@@ -46,6 +55,8 @@ class Ui_InterpreteDialog(object):
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.manual_button = QtGui.QPushButton(self.layoutWidget)
+        self.manual_button.setMaximumSize(QtCore.QSize(20, 20))
+        self.manual_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.manual_button.setCheckable(True)
         self.manual_button.setFlat(True)
         self.manual_button.setObjectName(_fromUtf8("manual_button"))
@@ -53,35 +64,35 @@ class Ui_InterpreteDialog(object):
         spacerItem = QtGui.QSpacerItem(37, 13, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
         self.pushButton_6 = QtGui.QPushButton(self.layoutWidget)
-        self.pushButton_6.setMaximumSize(QtCore.QSize(26, 26))
+        self.pushButton_6.setMaximumSize(QtCore.QSize(20, 20))
         self.pushButton_6.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_6.setCheckable(True)
         self.pushButton_6.setFlat(True)
         self.pushButton_6.setObjectName(_fromUtf8("pushButton_6"))
         self.horizontalLayout_2.addWidget(self.pushButton_6)
         self.pushButton_5 = QtGui.QPushButton(self.layoutWidget)
-        self.pushButton_5.setMaximumSize(QtCore.QSize(26, 26))
+        self.pushButton_5.setMaximumSize(QtCore.QSize(20, 20))
         self.pushButton_5.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_5.setCheckable(True)
         self.pushButton_5.setFlat(True)
         self.pushButton_5.setObjectName(_fromUtf8("pushButton_5"))
         self.horizontalLayout_2.addWidget(self.pushButton_5)
         self.pushButton_4 = QtGui.QPushButton(self.layoutWidget)
-        self.pushButton_4.setMaximumSize(QtCore.QSize(26, 26))
+        self.pushButton_4.setMaximumSize(QtCore.QSize(20, 20))
         self.pushButton_4.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_4.setCheckable(True)
         self.pushButton_4.setFlat(True)
         self.pushButton_4.setObjectName(_fromUtf8("pushButton_4"))
         self.horizontalLayout_2.addWidget(self.pushButton_4)
         self.pushButton_3 = QtGui.QPushButton(self.layoutWidget)
-        self.pushButton_3.setMaximumSize(QtCore.QSize(26, 26))
+        self.pushButton_3.setMaximumSize(QtCore.QSize(20, 20))
         self.pushButton_3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_3.setCheckable(True)
         self.pushButton_3.setFlat(True)
         self.pushButton_3.setObjectName(_fromUtf8("pushButton_3"))
         self.horizontalLayout_2.addWidget(self.pushButton_3)
         self.pushButton_2 = QtGui.QPushButton(self.layoutWidget)
-        self.pushButton_2.setMaximumSize(QtCore.QSize(26, 26))
+        self.pushButton_2.setMaximumSize(QtCore.QSize(20, 20))
         self.pushButton_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_2.setCheckable(True)
         self.pushButton_2.setFlat(True)
@@ -93,7 +104,7 @@ class Ui_InterpreteDialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
         self.pushButton.setSizePolicy(sizePolicy)
-        self.pushButton.setMaximumSize(QtCore.QSize(26, 26))
+        self.pushButton.setMaximumSize(QtCore.QSize(20, 20))
         self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton.setToolTip(_fromUtf8(""))
         self.pushButton.setCheckable(True)
@@ -118,14 +129,14 @@ class Ui_InterpreteDialog(object):
         QtCore.QMetaObject.connectSlotsByName(InterpreteDialog)
 
     def retranslateUi(self, InterpreteDialog):
-        InterpreteDialog.setWindowTitle(QtGui.QApplication.translate("InterpreteDialog", "pilas-engine interprete", None, QtGui.QApplication.UnicodeUTF8))
-        self.manual_button.setText(QtGui.QApplication.translate("InterpreteDialog", "Manual", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_6.setText(QtGui.QApplication.translate("InterpreteDialog", "F7", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_5.setText(QtGui.QApplication.translate("InterpreteDialog", "F8", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_4.setText(QtGui.QApplication.translate("InterpreteDialog", "F9", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_3.setText(QtGui.QApplication.translate("InterpreteDialog", "F10", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_2.setText(QtGui.QApplication.translate("InterpreteDialog", "F11", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("InterpreteDialog", "F12", None, QtGui.QApplication.UnicodeUTF8))
+        InterpreteDialog.setWindowTitle(_translate("InterpreteDialog", "pilas-engine interprete", None))
+        self.manual_button.setText(_translate("InterpreteDialog", "M", None))
+        self.pushButton_6.setText(_translate("InterpreteDialog", "F7", None))
+        self.pushButton_5.setText(_translate("InterpreteDialog", "F8", None))
+        self.pushButton_4.setText(_translate("InterpreteDialog", "F9", None))
+        self.pushButton_3.setText(_translate("InterpreteDialog", "F10", None))
+        self.pushButton_2.setText(_translate("InterpreteDialog", "F11", None))
+        self.pushButton.setText(_translate("InterpreteDialog", "F12", None))
 
 from PyQt4 import QtWebKit
 
