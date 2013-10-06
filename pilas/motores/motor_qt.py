@@ -623,7 +623,7 @@ class Superficie(Imagen):
     def pintar_imagen(self, imagen, x=0, y=0):
         self.pintar_parte_de_imagen(imagen, 0, 0, imagen.ancho(), imagen.alto(), x, y)
 
-    def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro):
+    def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro, ancho=0):
         self.canvas.begin(self._imagen)
         r, g, b, a = color.obtener_componentes()
         self.canvas.setPen(QtGui.QColor(r, g, b))
@@ -634,14 +634,21 @@ class Superficie(Imagen):
             nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
         else:
             nombre_de_fuente = self.canvas.font().family()
+            
+        if not ancho:
+            flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop
+            ancho = self._imagen.width()
+        else:
+            flags = QtCore.Qt.AlignLeft | QtCore.Qt.TextWordWrap | QtCore.Qt.AlignTop
 
         font = QtGui.QFont(nombre_de_fuente, magnitud)
         self.canvas.setFont(font)
         metrica = QtGui.QFontMetrics(font)
 
         for line in cadena.split('\n'):
-            self.canvas.drawText(QtCore.QRect(dx, dy, self._imagen.width(), self._imagen.height()), QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop, line)
-            dy += metrica.height()
+            r = QtCore.QRect(dx, dy, ancho, 2000)
+            rect = self.canvas.drawText(r, flags, line)
+            dy += rect.height()
 
         self.canvas.end()
 
@@ -705,11 +712,12 @@ class Superficie(Imagen):
 class Texto(Superficie):
     CACHE_FUENTES = {}
 
-    def __init__(self, texto, magnitud, motor, vertical=False, fuente=None, color=pilas.colores.negro):
-        ancho, alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente)
+    def __init__(self, texto, magnitud, motor, vertical=False, fuente=None, color=pilas.colores.negro, ancho=None):
+        ancho, alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente, ancho)
         Superficie.__init__(self, ancho, alto)
+        self._ancho_del_texto = ancho
         self.dibujar_texto = self.texto
-        self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente, color=color)
+        self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente, color=color, ancho=ancho)
         self.ruta_original = texto.encode('ascii', 'xmlcharrefreplace') + str(os.urandom(25))
         self.texto = texto
 
@@ -1140,7 +1148,7 @@ class Motor(object):
     def obtener_area(self):
         return (self.ancho_original, self.alto_original)
 
-    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None):
+    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None, ancho=0):
         pic = QtGui.QPicture()
         p = QtGui.QPainter(pic)
 
@@ -1152,23 +1160,25 @@ class Motor(object):
         font = QtGui.QFont(nombre_de_fuente, magnitud)
         p.setFont(font)
 
-        ancho = 0
         alto = 0
 
         if vertical:
             lineas = [t for t in cadena]
         else:
             lineas = cadena.split('\n')
+            
+        if not ancho:
+            flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop
+        else:
+            flags = QtCore.Qt.AlignLeft | QtCore.Qt.TextWordWrap | QtCore.Qt.AlignTop
 
         for line in lineas:
             if line == '':
                 line = ' '
-
-            brect = p.drawText(QtCore.QRect(0, 0, 1024, 768),
-                               QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop, line)
-            ancho = max(ancho, brect.size().width())
-            alto += brect.size().height()
-
+            
+            brect = p.drawText(QtCore.QRect(0, 0, ancho, 2000), flags, line)
+            ancho = max(ancho, brect.width())
+            alto += brect.height()
 
         p.end()
         return (ancho, alto)
@@ -1176,8 +1186,8 @@ class Motor(object):
     def obtener_actor(self, imagen, x, y):
         return Actor(imagen, x, y)
 
-    def obtener_texto(self, texto, magnitud, vertical=False, fuente=None, color=pilas.colores.negro):
-        return Texto(texto, magnitud, self, vertical, fuente, color=color)
+    def obtener_texto(self, texto, magnitud, vertical=False, fuente=None, color=pilas.colores.negro, ancho=None):
+        return Texto(texto, magnitud, self, vertical, fuente, color=color, ancho=ancho)
 
     def obtener_grilla(self, ruta, columnas, filas):
         return Grilla(ruta, columnas, filas)
