@@ -6,6 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import inspect
+
 import pilas
 from pilas import utils
 from pilas.estudiante import Estudiante
@@ -343,13 +345,42 @@ class Actor(object, Estudiante):
         self.actualizar_comportamientos()
         self.actualizar_habilidades()
         self.__actualizar_velocidad()
+        
+    def _agregar_callback(self, grupo_de_callbacks, callback):
+        """Agrega una función para invocar en una colección.
+        
+        Este método se asegura de agregar funciones que no esperen
+        argumentos, o bien, solamente esperen un argumento.
+        
+        Si la función a agregar espera un argumento, este método se
+        asegura de enviarle el actor receptor del evento.
+        """
+        cantidad_de_argumentos = len(inspect.getargspec(callback).args)
+        
+        if inspect.ismethod(callback):
+            cantidad_de_argumentos -= 1
+        
+        if cantidad_de_argumentos > 1:
+            raise Exception("No puedes asignar una funcion que espera 2 o mas argumentos")
+        elif cantidad_de_argumentos == 1:
+            # Si la función espera un argumento, se re-define la función para que siempre
+            # reciba al actor sobre el que se produjo el evento.
+            
+            def inyectar_self(f):
+                def invocar():
+                    f(self)
+                return invocar
+            
+            callback = inyectar_self(callback)
+        
+        grupo_de_callbacks.add(callback)
 
     def set_click_de_mouse(self, callback):
         if (callback is None):
             self.callback_click_de_mouse.clear()
         else:
             pilas.eventos.click_de_mouse.conectar(self._click_de_mouse)
-            self.callback_click_de_mouse.add(callback)
+            self._agregar_callback(self.callback_click_de_mouse, callback)
 
     def get_click_de_mouse(self):
         return self.callback_click_de_mouse
@@ -372,13 +403,12 @@ class Actor(object, Estudiante):
 
     click_de_mouse = property(get_click_de_mouse, set_click_de_mouse, doc="")
 
-
     def set_mueve_mouse(self, callback):
         if (callback is None):
             self.callback_mueve_mouse.clear()
         else:
             pilas.eventos.mueve_mouse.conectar(self._mueve_mouse)
-            self.callback_mueve_mouse.add(callback)
+            self._agregar_callback(self.callback_mueve_mouse, callback)
 
     def get_mueve_mouse(self):
         return self.callback_mueve_mouse
