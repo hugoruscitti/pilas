@@ -105,8 +105,8 @@ class Actor(object, Estudiante):
         self._dy = self.y
 
         # Listas para definir los callbacks de los eventos
-        self.callback_click_de_mouse = set()
-        self.callback_mueve_mouse = set()
+        self._callback_cuando_hace_click = set()
+        self._callback_cuando_mueve_mouse = set()
 
     def definir_centro(self, (x, y)):
         """ Define en que posición estará el centro del Actor.
@@ -345,50 +345,43 @@ class Actor(object, Estudiante):
         self.actualizar_comportamientos()
         self.actualizar_habilidades()
         self.__actualizar_velocidad()
-        
+
     def _agregar_callback(self, grupo_de_callbacks, callback):
         """Agrega una función para invocar en una colección.
-        
+
         Este método se asegura de agregar funciones que no esperen
         argumentos, o bien, solamente esperen un argumento.
-        
+
         Si la función a agregar espera un argumento, este método se
         asegura de enviarle el actor receptor del evento.
         """
         cantidad_de_argumentos = len(inspect.getargspec(callback).args)
-        
+
         if inspect.ismethod(callback):
             cantidad_de_argumentos -= 1
-        
+
         if cantidad_de_argumentos > 1:
             raise Exception("No puedes asignar una funcion que espera 2 o mas argumentos")
         elif cantidad_de_argumentos == 1:
             # Si la función espera un argumento, se re-define la función para que siempre
             # reciba al actor sobre el que se produjo el evento.
-            
+
             def inyectar_self(f):
                 def invocar():
                     f(self)
                 return invocar
-            
+
             callback = inyectar_self(callback)
-        
+
         grupo_de_callbacks.add(callback)
 
-    def set_click_de_mouse(self, callback):
-        if (callback is None):
-            self.callback_click_de_mouse.clear()
-        else:
-            pilas.eventos.click_de_mouse.conectar(self._click_de_mouse)
-            self._agregar_callback(self.callback_click_de_mouse, callback)
-
-    def get_click_de_mouse(self):
-        return self.callback_click_de_mouse
-
-    def _click_de_mouse(self, evento):
+    def _ejecutar_callback(self, evento, listado_de_callbacks ):
+        """ Ejecuta el listado de métodos asociados a un callback si se
+        produce una colisión con el ratón y el actor
+        """
         if self.colisiona_con_un_punto(evento.x, evento.y):
             a_eliminar = []
-            for callback in set(self.callback_click_de_mouse):
+            for callback in set(listado_de_callbacks):
                 try:
                     callback()
                 except ReferenceError:
@@ -397,40 +390,51 @@ class Actor(object, Estudiante):
             if a_eliminar:
                 for x in a_eliminar:
                     try:
-                        self.callback_click_de_mouse.remove(x)
+                        listado_de_callbacks.remove(x)
                     except:
-                        raise ValueError("La funcion no está agregada en el callback de click_de_mouse")
+                        raise ValueError("La funcion no está agregada en el callback")
 
-    click_de_mouse = property(get_click_de_mouse, set_click_de_mouse, doc="")
-
-    def set_mueve_mouse(self, callback):
+    def set_cuando_hace_click(self, callback):
         if (callback is None):
-            self.callback_mueve_mouse.clear()
+            self._callback_cuando_hace_click.clear()
         else:
-            pilas.eventos.mueve_mouse.conectar(self._mueve_mouse)
-            self._agregar_callback(self.callback_mueve_mouse, callback)
+            pilas.eventos.click_de_mouse.conectar(self._cuando_hace_click)
+            self._agregar_callback(self._callback_cuando_hace_click, callback)
 
-    def get_mueve_mouse(self):
-        return self.callback_mueve_mouse
+    def get_cuando_hace_click(self):
+        return self._callback_cuando_hace_click
 
-    def _mueve_mouse(self, evento):
-        if self.colisiona_con_un_punto(evento.x, evento.y):
-            a_eliminar = []
-            for callback in set(self.callback_mueve_mouse):
-                try:
-                    callback()
-                except ReferenceError:
-                    a_eliminar.append(callback)
+    def _cuando_hace_click(self, evento):
+        self._ejecutar_callback(evento, self._callback_cuando_hace_click)
 
-            if a_eliminar:
-                for x in a_eliminar:
-                    try:
-                        self.callback_mueve_mouse.remove(x)
-                    except:
-                        raise ValueError("La funcion no está agregada en el callback de mueve el mouse")
+    cuando_hace_click = property(get_cuando_hace_click, set_cuando_hace_click, doc="")
 
-    mueve_mouse = property(get_mueve_mouse, set_mueve_mouse, doc="")
 
+    def set_cuando_mueve_el_mouse(self, callback):
+        if (callback is None):
+            self._callback_cuando_mueve_mouse.clear()
+        else:
+            pilas.eventos.mueve_mouse.conectar(self._cuando_mueve_mouse)
+            self._agregar_callback(self._callback_cuando_mueve_mouse, callback)
+
+    def get_cuando_mueve_el_mouse(self):
+        return self._callback_cuando_mueve_mouse
+
+    def _cuando_mueve_mouse(self, evento):
+        self._ejecutar_callback(evento, self._callback_cuando_mueve_mouse)
+
+    cuando_mueve_el_mouse = property(get_cuando_mueve_el_mouse, set_cuando_mueve_el_mouse, doc="")
+
+
+    def click_de_mouse(self, callback):
+        """Acceso directo para conectar el actor al evento de click_de_mouse.
+        No se debe redefinir este método."""
+        pilas.eventos.click_de_mouse.conectar(callback)
+
+    def mueve_mouse(self, callback):
+        """Acceso directo para conectar el actor al evento de mueve_mouse.
+        No se debe redefinir este método."""
+        pilas.eventos.mueve_mouse.conectar(callback)
 
     def mueve_camara(self, callback):
         """Acceso directo para conectar el actor al evento de mueve_camara.
