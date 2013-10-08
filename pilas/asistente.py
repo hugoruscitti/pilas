@@ -171,7 +171,8 @@ class VentanaAsistente(Ui_AsistenteWindow):
             QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
     def _cuando_selecciona_interprete(self):
-        pilas.interprete.main(self.main)
+        self.instancia_interprete = pilas.interprete.main(self.main)
+
 
     def ejecutar_script(self, nombre_archivo_script, directorio_trabajo):
         self.nombre_archivo_script = nombre_archivo_script
@@ -256,6 +257,15 @@ class MainWindow(QtGui.QMainWindow):
         else:
             super(MainWindow,self).dropEvent(event)
         self.ui.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
+        
+    def closeEvent(self, event):
+        # TODO: Evitar cerrar la aplicación de esta forma, el
+        # problema se produce a causa del objeto widget de pilas. En
+        # una situación normal, la este método no devería ser necesario, pyqt
+        # tiene que cerrar la aplicación cuando la última ventana se cierra.
+        QtGui.qApp.closeAllWindows()
+        import sys
+        sys.exit(0)
 
 def ejecutar():
     app = QtGui.QApplication(sys.argv)

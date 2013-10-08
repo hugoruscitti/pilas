@@ -134,15 +134,19 @@ class VentanaInterprete(Ui_InterpreteWindow):
             print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
 
     def _insertar_ventana_principal_de_pilas(self):
+
+        if pilas.esta_inicializada():
+            pilas.reiniciar()
+
         pilas.iniciar(usar_motor='qtsugargl', ancho=640, alto=400)
 
         mono = pilas.actores.Mono()
 
         ventana = pilas.mundo.motor.ventana
         canvas = pilas.mundo.motor.canvas
+
         canvas.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.canvas.setFocus()
-
         self.canvas.addWidget(ventana)
         self.canvas.setCurrentWidget(ventana)
         return {'pilas': pilas, 'mono': mono, 'self': self}
@@ -166,6 +170,7 @@ def main(parent=None, do_raise=False):
     ui.setupUi(main)
     main.show()
     main.raise_()
+    return main
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)

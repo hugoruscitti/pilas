@@ -40,6 +40,7 @@ def main(parent=None, do_raise=False):
     ui.setupUi(dialog)
     dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
     dialog.show()
+    dialog.raise_()
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
