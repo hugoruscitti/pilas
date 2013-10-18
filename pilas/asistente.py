@@ -21,6 +21,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.nombre_archivo_script = ""
         self.main = main
         Ui_AsistenteWindow.setupUi(self, main)
+        main.setWindowTitle("pilas-engine")
         main.resize(550, 342)
 
         self.webView.setAcceptDrops(False)
@@ -257,7 +258,7 @@ class MainWindow(QtGui.QMainWindow):
         else:
             super(MainWindow,self).dropEvent(event)
         self.ui.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
-        
+
     def closeEvent(self, event):
         # TODO: Evitar cerrar la aplicación de esta forma, el
         # problema se produce a causa del objeto widget de pilas. En
