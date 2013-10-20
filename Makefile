@@ -1,4 +1,4 @@
-VERSION=0.82
+VERSION=0.83
 
 
 all:
@@ -42,7 +42,7 @@ api:
 
 mac:
 	rm -r -f *.dmg
-	rm -r -f dist build; python setup-mac.py py2app;
+	rm -r -f dist build; python setup-mac.py py2app --no-strip;
 	rm dist/pilas-engine.app/Contents/Resources/qt.conf
 	macdeployqt dist/pilas-engine.app
 	rm -r -f macbins.tar.gz
