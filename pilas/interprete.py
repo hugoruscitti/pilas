@@ -168,9 +168,18 @@ def main(parent=None, do_raise=False):
     #main.setAttribute(QtCorIe.Qt.WA_DeleteOnClose)
     ui = VentanaInterprete()
     ui.setupUi(main)
+
+    if sys.platform == 'darwin':
+        main.showMinimized()
+        main.showNormal()
+
     main.show()
-    main.raise_()
+
+    if do_raise:
+        main.raise_()
+
     return main
+
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import sys
 
 try:
@@ -24,12 +25,7 @@ class VentanaManual(Ui_ManualWindow):
         file_path = pilas.utils.obtener_ruta_al_recurso('manual/index.html')
         file_path = os.path.abspath(file_path)
 
-        #archivo = open(file_path, "rt")
-        #contenido = archivo.read().decode('utf8')
-        #archivo.close()
-
         base_dir =  QtCore.QUrl.fromLocalFile(file_path)
-        #self.webView.setHtml(contenido, base_dir)
         self.webView.load(base_dir)
         self.webView.history().setMaximumItemCount(0)
 
@@ -39,8 +35,15 @@ def main(parent=None, do_raise=False):
     ui = VentanaManual()
     ui.setupUi(dialog)
     dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
-    dialog.show()
-    dialog.raise_()
+
+    if sys.platform == 'darwin':
+        dialog.showMinimized()
+        dialog.showNormal()
+    else:
+        main.show()
+
+    if do_raise:
+        dialog.raise_()
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
