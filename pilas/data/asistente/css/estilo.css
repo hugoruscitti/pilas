@@ -34,7 +34,6 @@ div.version:hover {
 }
 
 div.tip {
-    margin-top: 4em;
     font-size: small; 
     color: #3e424d;
     border: 2px dashed #ccc;

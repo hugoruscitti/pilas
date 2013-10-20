@@ -46,3 +46,8 @@ a:hover {
     text-decoration: none;
     background-color: yellow;
 }
+
+
+.changelog h2, .changelog .h2 {
+  font-size: 18px !important;
+}
