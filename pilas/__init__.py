@@ -271,7 +271,7 @@ def obtener_configuracion():
     """
     opciones = {}
     opciones['usar_motor'] = 'qtgl'
-    opciones['audio'] = 'deshabilitado'
+    opciones['audio'] = 'pygame'
     return opciones
 
 # Representa el viejo acceso al modulo eventos, pero convierte cada uno
