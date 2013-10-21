@@ -381,7 +381,10 @@ class Figura(object):
 
     def impulsar(self, dx, dy):
         # TODO: convertir los valores dx y dy a metros.
-        self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0))
+        try:
+            self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0))
+        except TypeError, e:
+            self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0), True)
 
     def obtener_velocidad_lineal(self):
         # TODO: convertir a pixels
