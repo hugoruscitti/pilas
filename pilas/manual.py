@@ -37,10 +37,11 @@ def main(parent=None, do_raise=False):
     dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
 
     if sys.platform == 'darwin':
-        dialog.showMinimized()
-        dialog.showNormal()
-    else:
-        main.show()
+        if getattr(sys, 'frozen', None):
+            dialog.showMinimized()
+            dialog.showNormal()
+						
+    dialog.show()
 
     if do_raise:
         dialog.raise_()

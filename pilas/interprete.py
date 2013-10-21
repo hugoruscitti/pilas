@@ -170,8 +170,9 @@ def main(parent=None, do_raise=False):
     ui.setupUi(main)
 
     if sys.platform == 'darwin':
-        main.showMinimized()
-        main.showNormal()
+        if getattr(sys, 'frozen', None):
+            main.showMinimized()
+            main.showNormal()
 
     main.show()
 
