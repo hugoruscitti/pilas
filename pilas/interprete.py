@@ -43,8 +43,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
         self.colapsar_ayuda()
         self.cargar_ayuda()
+        self.navegador.history().setMaximumItemCount(0)
 
-
+        self._conectar_botones()
+				
+    def _conectar_botones(self):
         # Observa el deslizador vertical para mostrar el boton de ayuda
         # pulsado o despulsado.
         self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador)
@@ -77,8 +80,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.definir_icono(self.pushButton, 'iconos/f12.png')
         self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
-        self.navegador.history().setMaximumItemCount(0)
-
     def colapsar_ayuda(self):
         self.splitter_vertical.setSizes([0])
         self.manual_button.setChecked(False)
@@ -86,13 +87,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def cargar_ayuda(self):
         file_path = utils.obtener_ruta_al_recurso('manual/index.html')
         file_path = os.path.abspath(file_path)
-
-        archivo = open(file_path, "rt")
-        contenido = archivo.read().decode('utf8')
-        archivo.close()
-
         base_dir =  QtCore.QUrl.fromLocalFile(file_path)
-        self.navegador.setHtml(contenido, base_dir)
+        self.navegador.load(base_dir)
 
     def definir_icono(self, boton, ruta):
         icon = QtGui.QIcon();
@@ -115,8 +111,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
                             puntos_de_control=self.pushButton_5.isChecked(), # F08
                             radios=self.pushButton_4.isChecked(),            # F09
                             areas=self.pushButton_3.isChecked(),             # F10
-                            fisica=self.pushButton_2.isChecked(),
-                            posiciones=self.pushButton.isChecked(),
+                            fisica=self.pushButton_2.isChecked(),            # F11
+                            posiciones=self.pushButton.isChecked(),          # F12
                 )
 
     def raw_input(self, mensaje):
