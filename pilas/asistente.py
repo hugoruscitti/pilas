@@ -130,6 +130,9 @@ class VentanaAsistente(Ui_AsistenteWindow):
         Internamente, esta funcion intenta buscar un archivo dentro de la
         ruta "../ejemplos/ejemplos/{categoria}/{nombre}.py".
         """
+        ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
+        pilas.interprete.cargar_ejemplo(self.main, True, ruta)
+        """
         try:
             ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
 
@@ -139,6 +142,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
             self.process.start(sys.executable, [ruta], QtCore.QIODevice.ReadWrite)
         except Exception, name:
             QtGui.QMessageBox.critical(self.main, "Error", str(name))
+        """
 
     def _mostrar_codigo(self, categoria, nombre):
         try:

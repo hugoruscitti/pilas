@@ -163,16 +163,48 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.console.addWidget(consola)
         self.console.setCurrentWidget(consola)
 
-def main(parent=None, do_raise=False):
+def cargar_ejemplo(parent=None, do_raise=False, ruta=None):
     main = QtGui.QMainWindow(parent)
-    #main.setAttribute(QtCorIe.Qt.WA_DeleteOnClose)
     ui = VentanaInterprete()
     ui.setupUi(main)
 
-    if sys.platform == 'darwin':
-        if getattr(sys, 'frozen', None):
-            main.showMinimized()
-            main.showNormal()
+    archivo = open(ruta, "rt")
+    contenido = []
+    for linea in archivo.readlines():
+        if '#' in linea or 'path' in linea or 'import' in linea or 'pilas.iniciar' in linea or 'pilas.ejecutar' in linea:
+            pass
+        else:
+            contenido.append(linea)
+    codigo = '\n'.join(contenido)
+
+    try:
+        exec(codigo)
+    except:
+        print "ERROR"
+
+    archivo.close()
+
+    #if sys.platform == 'darwin':
+    #    if getattr(sys, 'frozen', None):
+    #        main.showMinimized()
+    #        main.showNormal()
+
+    main.show()
+
+    if do_raise:
+        main.raise_()
+
+    return main
+
+def main(parent=None, do_raise=False):
+    main = QtGui.QMainWindow(parent)
+    ui = VentanaInterprete()
+    ui.setupUi(main)
+
+    #if sys.platform == 'darwin':
+    #    if getattr(sys, 'frozen', None):
+    #        main.showMinimized()
+    #        main.showNormal()
 
     main.show()
 

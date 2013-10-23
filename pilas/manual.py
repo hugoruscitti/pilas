@@ -36,10 +36,10 @@ def main(parent=None, do_raise=False):
     ui.setupUi(dialog)
     dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
 
-    if sys.platform == 'darwin':
-        if getattr(sys, 'frozen', None):
-            dialog.showMinimized()
-            dialog.showNormal()
+    #if sys.platform == 'darwin':
+    #    if getattr(sys, 'frozen', None):
+    #        dialog.showMinimized()
+    #        dialog.showNormal()
 						
     dialog.show()
 
