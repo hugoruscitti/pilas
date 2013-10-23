@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pilas/data/lanzador.ui'
 #
-# Created: Sat Oct 19 21:22:14 2013
-#      by: PyQt4 UI code generator 4.10.2
+# Created: Wed Oct 23 20:02:03 2013
+#      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,16 +12,7 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+    _fromUtf8 = lambda s: s
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -81,18 +72,18 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "Lanzador de pilas-engine", None))
-        self.groupBox.setTitle(_translate("Dialog", "Opciones", None))
-        self.label.setText(_translate("Dialog", "Aceleración:", None))
-        self.comboBox.setItemText(0, _translate("Dialog", "Usar aceleración OpenGL", None))
-        self.comboBox.setItemText(1, _translate("Dialog", "Sin aceleración", None))
-        self.label_2.setText(_translate("Dialog", "Pantalla completa:", None))
-        self.comboBox_2.setItemText(0, _translate("Dialog", "Deshabilitar", None))
-        self.comboBox_2.setItemText(1, _translate("Dialog", "Habilitar", None))
-        self.label_3.setText(_translate("Dialog", "Sistema de audio", None))
-        self.comboBox_3.setItemText(0, _translate("Dialog", "Gstreamer", None))
-        self.comboBox_3.setItemText(1, _translate("Dialog", "Phonon", None))
-        self.comboBox_3.setItemText(2, _translate("Dialog", "Deshabilitar", None))
+        Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "Lanzador de pilas-engine", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("Dialog", "Opciones", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Dialog", "Aceleración:", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox.setItemText(0, QtGui.QApplication.translate("Dialog", "Usar aceleración OpenGL", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox.setItemText(1, QtGui.QApplication.translate("Dialog", "Sin aceleración", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("Dialog", "Pantalla completa:", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox_2.setItemText(0, QtGui.QApplication.translate("Dialog", "Deshabilitar", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox_2.setItemText(1, QtGui.QApplication.translate("Dialog", "Habilitar", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("Dialog", "Sistema de audio", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox_3.setItemText(0, QtGui.QApplication.translate("Dialog", "Gstreamer", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox_3.setItemText(1, QtGui.QApplication.translate("Dialog", "Phonon", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBox_3.setItemText(2, QtGui.QApplication.translate("Dialog", "Deshabilitar", None, QtGui.QApplication.UnicodeUTF8))
 
 
 if __name__ == "__main__":

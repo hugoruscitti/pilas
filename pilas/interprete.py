@@ -40,22 +40,27 @@ class VentanaInterprete(Ui_InterpreteWindow):
         # Haciendo que el panel de pilas y el interprete no se puedan
         # ocultar completamente.
         self.splitter_vertical.setCollapsible(1, False)
-
+        self.splitter.setCollapsible(0, False)
+        
+        # Define el tamaño inicial de la consola.
+        self.splitter.setSizes([300, 100])
+        
         self.colapsar_ayuda()
         self.cargar_ayuda()
         self.navegador.history().setMaximumItemCount(0)
 
         self._conectar_botones()
+        self._conectar_observadores_splitters()
 				
     def _conectar_botones(self):
-        # Observa el deslizador vertical para mostrar el boton de ayuda
-        # pulsado o despulsado.
-        self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador)
-
         # Botón del manual
         self.definir_icono(self.manual_button, 'iconos/manual.png')
         self.manual_button.connect(self.manual_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_manual)
 
+        # Botón del interprete
+        self.definir_icono(self.interprete_button, 'iconos/interprete.png')
+        self.interprete_button.connect(self.interprete_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_interprete)
+        
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
         self.pushButton_6.connect(self.pushButton_6, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
@@ -80,6 +85,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.definir_icono(self.pushButton, 'iconos/f12.png')
         self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
+    def _conectar_observadores_splitters(self):
+        # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.
+        self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador_vertical)
+        self.splitter.connect(self.splitter, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador)
+
     def colapsar_ayuda(self):
         self.splitter_vertical.setSizes([0])
         self.manual_button.setChecked(False)
@@ -96,14 +106,24 @@ class VentanaInterprete(Ui_InterpreteWindow):
         boton.setIcon(icon)
         boton.setText('')
 
-    def cuando_mueve_deslizador(self, a1, a2):
+    def cuando_mueve_deslizador_vertical(self, a1, a2):
         self.manual_button.setChecked(a1 != 0)
+
+    def cuando_mueve_deslizador(self, a1, a2):
+        altura_interprete = self.splitter.sizes()[1]
+        self.interprete_button.setChecked(altura_interprete != 0)
 
     def cuando_pulsa_el_boton_manual(self):
         if self.manual_button.isChecked():
             self.splitter_vertical.setSizes([300])
         else:
             self.splitter_vertical.setSizes([0])
+            
+    def cuando_pulsa_el_boton_interprete(self):
+        if self.interprete_button.isChecked():
+            self.splitter.setSizes([300, 100])
+        else:
+            self.splitter.setSizes([300, 0])
 
     def pulsa_boton_depuracion(self):
         pilas.atajos.definir_modos(
