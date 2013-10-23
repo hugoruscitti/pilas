@@ -1,5 +1,6 @@
 import pilas
 from pilas.escena import Normal
+from pilas.escena import Pausa
 
 
 class EscenaDeMenu(pilas.escena.Normal):
@@ -42,7 +43,8 @@ Intenta mover la nave por la pantalla con el teclado.",
                             y=200)
 
         pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar al menu \n\
-        o la tecla '2' para ir a la Escena 2.\n\n\
+        , la tecla '2' para ir a la Escena 2\n\n\
+        o la tecla 'p' para Pausar\n\n\
 Si vas a la Escena 2 y regresas, la nave\n\
 seguira en la misma posicion donde la dejaste.")
 
@@ -60,6 +62,8 @@ seguira en la misma posicion donde la dejaste.")
             pilas.almacenar_escena(Escena_2())
         if evento.texto == u'a':
             print self.actores
+        if evento.texto == u'p':
+            pilas.almacenar_escena(Escena_Pausa())
 
 
 class Escena_2(pilas.escena.Normal):
@@ -80,6 +84,18 @@ class Escena_2(pilas.escena.Normal):
     def ir_a_escena_anterior(self, evento):
         pilas.recuperar_escena()
 
+
+class Escena_Pausa(pilas.escena.Pausa):
+
+    def __init__(self):
+        Pausa.__init__(self)
+
+    def iniciar(self):
+        self.pausa = pilas.actores.Pausa()
+        self.pulsa_tecla_escape.conectar(self.ir_a_escena_anterior)
+
+    def ir_a_escena_anterior(self, evento):
+        pilas.recuperar_escena()
 
 pilas.iniciar()
 pilas.cambiar_escena(EscenaDeMenu())
