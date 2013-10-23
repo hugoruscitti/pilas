@@ -82,20 +82,21 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _cargar_pagina_principal(self):
         file_path = utils.obtener_ruta_al_recurso('asistente/index.html')
+        self.webView.load(QtCore.QUrl.fromLocalFile(file_path))
         # TODO: convierto la ruta en absoluta para que mac desde py2app
         #       pueda interpretar correctamente las imagenes.
-        file_path = os.path.abspath(file_path)
+        #file_path = os.path.abspath(file_path)
 
-        contenido = self._obtener_html(file_path)
-        base_dir =  QtCore.QUrl.fromLocalFile(file_path)
-        self.webView.setHtml(contenido, base_dir)
+        #contenido = self._obtener_html(file_path)
+        #base_dir =  QtCore.QUrl.fromLocalFile(file_path)
+        #self.webView.setHtml(contenido, base_dir)
 
-    def _obtener_html(self, file_path):
-        archivo = open(file_path, "rt")
-        contenido = archivo.read()
-        contenido = contenido.replace("{{VERSION_FRAME}}", """<iframe src='http://www.pilas-engine.com.ar/estadistica'></iframe>""")
-        archivo.close()
-        return contenido.decode('utf8')
+    #def _obtener_html(self, file_path):
+    #    archivo = open(file_path, "rt")
+    #    contenido = archivo.read()
+    #    contenido = contenido.replace("{{VERSION_FRAME}}", """<iframe src='http://www.pilas-engine.com.ar/estadistica'></iframe>""")
+    #    archivo.close()
+    #    return contenido.decode('utf8')
 
     def cuando_pulsa_link(self, url):
         seccion = str(url.path()).split('/')[-1]
@@ -176,6 +177,9 @@ class VentanaAsistente(Ui_AsistenteWindow):
             QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
     def _cuando_selecciona_interprete(self):
+        QtCore.QTimer.singleShot(500, self._iniciar_interprete_diferido)
+
+    def _iniciar_interprete_diferido(self):
         self.instancia_interprete = pilas.interprete.main(self.main, True)
 
     def ejecutar_script(self, nombre_archivo_script, directorio_trabajo):

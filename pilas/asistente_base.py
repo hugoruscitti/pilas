@@ -64,4 +64,3 @@ if __name__ == "__main__":
     ui.setupUi(AsistenteWindow)
     AsistenteWindow.show()
     sys.exit(app.exec_())
-
