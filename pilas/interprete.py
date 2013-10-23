@@ -30,11 +30,11 @@ if os.environ.has_key('lanas'):
 
 class VentanaInterprete(Ui_InterpreteWindow):
 
-    def setupUi(self, main):
+    def setupUi(self, main, ejecutar_codigo_inicial=False):
         self.main = main
         Ui_InterpreteWindow.setupUi(self, main)
-        scope = self._insertar_ventana_principal_de_pilas()
-        self._insertar_consola_interactiva(scope)
+        scope = self._insertar_ventana_principal_de_pilas(ejecutar_codigo_inicial)
+        self._insertar_consola_interactiva(scope, ejecutar_codigo_inicial)
         pilas.utils.centrar_ventana(main)
 
         # Haciendo que el panel de pilas y el interprete no se puedan
@@ -129,14 +129,18 @@ class VentanaInterprete(Ui_InterpreteWindow):
         else:
             print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
 
-    def _insertar_ventana_principal_de_pilas(self):
+    def _insertar_ventana_principal_de_pilas(self, ejecutar_codigo_inicial):
 
         if pilas.esta_inicializada():
             pilas.reiniciar()
 
         pilas.iniciar(usar_motor='qtsugargl', ancho=640, alto=400)
 
-        mono = pilas.actores.Mono()
+        if ejecutar_codigo_inicial:
+            mono = pilas.actores.Mono()
+            scope = {'pilas': pilas, 'mono': mono, 'self': self}
+        else:
+            scope = {'pilas': pilas, 'self': self}
 
         ventana = pilas.mundo.motor.ventana
         canvas = pilas.mundo.motor.canvas
@@ -145,15 +149,18 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.canvas.setFocus()
         self.canvas.addWidget(ventana)
         self.canvas.setCurrentWidget(ventana)
-        return {'pilas': pilas, 'mono': mono, 'self': self}
+        return scope
 
-    def _insertar_consola_interactiva(self, scope):
-        codigo_inicial = [
+    def _insertar_consola_interactiva(self, scope, ejecutar_codigo_inicial):
+        if ejecutar_codigo_inicial:
+            codigo_inicial = [
                 'import pilas',
                 '',
                 'pilas.iniciar()',
                 'mono = pilas.actores.Mono()',
                 ]
+        else:
+            codigo_inicial = []
 
         consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
         self.console.addWidget(consola)
@@ -162,7 +169,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
 def cargar_ejemplo(parent=None, do_raise=False, ruta=None):
     main = QtGui.QMainWindow(parent)
     ui = VentanaInterprete()
-    ui.setupUi(main)
+    ui.setupUi(main, ejecutar_codigo_inicial=False)
 
     archivo = open(ruta, "rt")
     contenido = []
@@ -195,7 +202,7 @@ def cargar_ejemplo(parent=None, do_raise=False, ruta=None):
 def main(parent=None, do_raise=False):
     main = QtGui.QMainWindow(parent)
     ui = VentanaInterprete()
-    ui.setupUi(main)
+    ui.setupUi(main, ejecutar_codigo_inicial=True)
 
     #if sys.platform == 'darwin':
     #    if getattr(sys, 'frozen', None):
