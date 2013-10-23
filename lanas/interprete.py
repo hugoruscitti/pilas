@@ -73,18 +73,28 @@ class Ventana(QWidget):
         else:
             print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
 
+
 class Output:
 
     def __init__(self, destino):
         self.destino = destino
 
+
+class ErrorOutput(Output):
+
     def write(self, linea):
-        print linea
+        self.destino.stdout_original.write(linea)
         self.destino.insertar_error(linea.decode('utf-8'))
         self.destino.ensureCursorVisible()
 
+
 class NormalOutput(Output):
-    pass
+
+    def write(self, linea):
+        self.destino.stdout_original.write(linea)
+        self.destino.insertPlainText(linea.decode('utf-8'))
+        self.destino.ensureCursorVisible()
+
 
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
@@ -92,8 +102,9 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         super(InterpreteTextEdit,  self).__init__(parent)
 
         self.ventana = parent
-        sys.stdout = self
-        sys.stderr = Output(self)
+        self.stdout_original = sys.stdout
+        sys.stdout = NormalOutput(self)
+        sys.stderr = ErrorOutput(self)
         self.refreshMarker = False
         self.multiline = False
         self.command = ''
@@ -154,11 +165,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
     def updateInterpreterLocals(self, newLocals):
         className = newLocals.__class__.__name__
         self.interpreterLocals[className] = newLocals
-
-    def write(self, line):
-        print line
-        self.insertPlainText(line.decode('utf-8'))
-        self.ensureCursorVisible()
 
     def clearCurrentBlock(self):
         length = len(self.document().lastBlock().text()[2:])
