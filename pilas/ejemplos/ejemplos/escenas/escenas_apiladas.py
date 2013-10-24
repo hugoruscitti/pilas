@@ -10,7 +10,7 @@ class EscenaDeMenu(pilas.escena.Normal):
 
     def iniciar(self):
         pilas.fondos.Color(pilas.colores.negro)
-        
+
         pilas.actores.Texto("Bienvenidos al ejemplo de escenas apiladas.",
                             y=200)
 
@@ -63,7 +63,7 @@ seguira en la misma posicion donde la dejaste.")
         if evento.texto == u'a':
             print self.actores
         if evento.texto == u'p':
-            pilas.almacenar_escena(Escena_Pausa())
+            pilas.escena.pausar()
 
 
 class Escena_2(pilas.escena.Normal):
@@ -79,19 +79,6 @@ class Escena_2(pilas.escena.Normal):
         pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar a la\n\
         escena anterior.")
 
-        self.pulsa_tecla_escape.conectar(self.ir_a_escena_anterior)
-
-    def ir_a_escena_anterior(self, evento):
-        pilas.recuperar_escena()
-
-
-class Escena_Pausa(pilas.escena.Pausa):
-
-    def __init__(self):
-        Pausa.__init__(self)
-
-    def iniciar(self):
-        self.pausa = pilas.actores.Pausa()
         self.pulsa_tecla_escape.conectar(self.ir_a_escena_anterior)
 
     def ir_a_escena_anterior(self, evento):
