@@ -262,9 +262,9 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         # ir al primer caracter del interprete cuando pulsa HOME
         if event.key() == Qt.Key_Home:
             blockLength = len(self.document().lastBlock().text()[2:])
-            lineLength  = len(self.document().toPlainText())
+            lineLength = len(self.document().toPlainText())
             position = lineLength - blockLength
-            textCursor  = self.textCursor()
+            textCursor = self.textCursor()
             textCursor.setPosition(position)
             self.setTextCursor(textCursor)
             return None
@@ -272,6 +272,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         if event.key() in [Qt.Key_Left, Qt.Key_Backspace]:
             if self.textCursor().positionInBlock() >= 3:
                 super(InterpreteTextEdit, self).keyPressEvent(event)
+                self._autocompletar_argumentos_si_corresponde(event.key())
             return
 
 
@@ -336,7 +337,40 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
             return None
 
+        self._autocompletar_argumentos_si_corresponde(event.key())
         super(InterpreteTextEdit, self).keyPressEvent(event)
+
+    def _autocompletar_argumentos_si_corresponde(self, ultima_tecla):
+        """Muestra un mensaje con la documentación de una función ejecutar.
+
+        Se invoca mientras que el usuario escribe, siempre y cuando
+        se vea un paréntisis.
+
+        Por ejemplo, si el usuario escribe 'os.system(' esta función
+        intentará mostrar un tooltip con el contenido de 'os.system.__doc__'
+        """
+        linea = unicode(self.document().lastBlock().text())[2:]
+        linea.rstrip()
+
+        try:
+            if ultima_tecla == Qt.Key_ParenLeft or '(' in linea:
+                principio = linea.split('(')[0]
+                principio = principio.split(' ')[-1]
+
+                # Obtiene el mensaje a mostrar y lo despliega en el tooltip
+                texto_consejo = self._obtener_doctring(principio)
+                self.mostrar_consejo(texto_consejo)
+        except:
+            pass
+
+    def _obtener_doctring(self, texto):
+        texto_a_ejecutar = texto + ".__doc__"
+        docstring = eval(texto_a_ejecutar, self.interpreterLocals)
+        return docstring.decode('utf-8')
+
+    def mostrar_consejo(self, linea):
+        pos = self.mapToGlobal(self.cursorRect().bottomRight())
+        QToolTip.showText(pos, linea, self)
 
     def guardar_contenido_con_dialogo(self):
         filename = QFileDialog.getSaveFileName(self, 'Guardar archivo', 'programa.py', 'Python (*.py)')
