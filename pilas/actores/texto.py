@@ -47,10 +47,10 @@ class Texto(Actor):
     def definir_texto(self, texto):
         """Define el texto a mostrar."""
         imagen = pilas.mundo.motor.obtener_texto(texto, self.__magnitud, self.__vertical, self.__fuente, color=self.__color, ancho=self._ancho_del_texto)
-        
+
         if not self._ancho_del_texto:
-            self._ancho_de_texto = imagen.ancho
-            
+            self._ancho_del_texto = imagen.ancho()
+
         self.imagen = imagen
         self.centro = ("centro", "centro")
         self.__texto = texto
@@ -78,12 +78,12 @@ class Texto(Actor):
         self.definir_texto(self.__texto)
 
     color = property(obtener_color, definir_color, doc="Color del texto.")
-    
+
     def obtener_ancho(self):
         return self._ancho_del_texto
-    
+
     def definir_ancho(self, ancho):
         self._ancho_del_texto = ancho
         self.texto = self.texto
-        
+
     ancho = property(obtener_ancho, definir_ancho, doc="Ancho del texto a mostrar")
