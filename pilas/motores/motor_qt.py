@@ -623,7 +623,7 @@ class Superficie(Imagen):
     def pintar_imagen(self, imagen, x=0, y=0):
         self.pintar_parte_de_imagen(imagen, 0, 0, imagen.ancho(), imagen.alto(), x, y)
 
-    def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro, ancho=0):
+    def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro, ancho=0, vertical=False):
         self.canvas.begin(self._imagen)
         r, g, b, a = color.obtener_componentes()
         self.canvas.setPen(QtGui.QColor(r, g, b))
@@ -645,7 +645,13 @@ class Superficie(Imagen):
         self.canvas.setFont(font)
         metrica = QtGui.QFontMetrics(font)
 
-        for line in cadena.split('\n'):
+
+        if vertical:
+            lineas = [t for t in cadena]
+        else:
+            lineas = cadena.split('\n')
+
+        for line in lineas:
             r = QtCore.QRect(dx, dy, ancho, 2000)
             rect = self.canvas.drawText(r, flags, line)
             dy += rect.height()
@@ -717,7 +723,7 @@ class Texto(Superficie):
         Superficie.__init__(self, ancho, alto)
         self._ancho_del_texto = ancho
         self.dibujar_texto = self.texto
-        self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente, color=color, ancho=ancho)
+        self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente, color=color, ancho=ancho, vertical=vertical)
         self.ruta_original = texto.encode('ascii', 'xmlcharrefreplace') + str(os.urandom(25))
         self.texto = texto
 
