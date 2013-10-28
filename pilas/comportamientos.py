@@ -182,3 +182,30 @@ class Proyectil(Comportamiento):
             self._vy -= 0.1
         else:
             self.receptor.y += dy
+
+
+
+class Orbitar(Comportamiento):
+    def __init__(self, x=0, y=0, radio=50, velocidad=5, direccion="derecha"):
+        self.punto_de_orbita_x = x
+        self.punto_de_orbita_y = y
+        self.radio = radio
+        self.velocidad = velocidad
+        self.direccion = direccion
+
+    def iniciar(self,receptor):
+        self.receptor = receptor
+        self.angulo = 0
+
+    def actualizar(self):
+        if self.direccion == "derecha":
+            self.angulo += self.velocidad
+            if self.angulo > 360:
+                self.angulo = 1
+        elif self.direccion == "izquierda":
+            self.angulo -= self.velocidad
+            if self.angulo < 1:
+                self.angulo = 360
+
+        self.receptor.x = self.punto_de_orbita_x + (math.cos(math.radians(self.angulo))*self.radio)
+        self.receptor.y = self.punto_de_orbita_y - (math.sin(math.radians(self.angulo))*self.radio)
