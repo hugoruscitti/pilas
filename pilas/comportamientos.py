@@ -207,6 +207,9 @@ class Orbitar(Comportamiento):
             if self.angulo < 1:
                 self.angulo = 360
 
+        self.mover_astro()
+
+    def mover_astro(self):
         self.receptor.x = self.punto_de_orbita_x + (math.cos(math.radians(self.angulo))*self.radio)
         self.receptor.y = self.punto_de_orbita_y - (math.sin(math.radians(self.angulo))*self.radio)
 
@@ -215,21 +218,8 @@ class OrbitarSobreActor(Orbitar):
         Orbitar.__init__(self, actor.x, actor.y, radio, velocidad, direccion)
         self.actor_a_orbitar = actor
 
-    def iniciar(self,receptor):
-        self.receptor = receptor
-        self.angulo = 0
-
-    def actualizar(self):
-        if self.direccion == "derecha":
-            self.angulo += self.velocidad
-            if self.angulo > 360:
-                self.angulo = 1
-        elif self.direccion == "izquierda":
-            self.angulo -= self.velocidad
-            if self.angulo < 1:
-                self.angulo = 360
+    def mover_astro(self):
         self.punto_de_orbita_x = self.actor_a_orbitar.x
         self.punto_de_orbita_y = self.actor_a_orbitar.y
+        Orbitar.mover_astro(self)
 
-        self.receptor.x = self.punto_de_orbita_x + (math.cos(math.radians(self.angulo))*self.radio)
-        self.receptor.y = self.punto_de_orbita_y - (math.sin(math.radians(self.angulo))*self.radio)
