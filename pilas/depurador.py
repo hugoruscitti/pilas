@@ -250,7 +250,7 @@ class ModoInformacionDeSistema(ModoDepurador):
             "Sistema: " + sys.platform,
             "Version de pilas: " + pilasversion.VERSION,
             "Version de python: " + sys.subversion[0] + " " + sys.subversion[1],
-            "Version de Box2D: " + pilas.fisica.obtener_version(),
+            "Version de Box2D: {}".format(pilas.fisica.obtener_version()),
             ]
 
     def termina_dibujado(self, motor, painter, lienzo):
