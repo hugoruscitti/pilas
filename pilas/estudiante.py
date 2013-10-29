@@ -126,12 +126,12 @@ class Estudiante:
         if (inspect.isclass(comportamiento)):
             self._hacer(comportamiento, *k, **kw)
         else:
-            self.comportamientos.append(comportamiento)
+            self.comportamientos.insert(0, comportamiento)
             self._adoptar_el_siguiente_comportamiento()
 
     def _hacer(self, comportamiento, *k, **kw):
         objecto_comportamiento = comportamiento(*k, **kw)
-        self.comportamientos.append(objecto_comportamiento)
+        self.comportamientos.insert(0, objecto_comportamiento)
         self._adoptar_el_siguiente_comportamiento()
 
     def eliminar_habilidades(self):
