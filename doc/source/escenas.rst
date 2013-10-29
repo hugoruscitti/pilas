@@ -34,6 +34,16 @@ imprime toda la pantalla de gris para que
 podamos colocar actores sobre ella y veamos una
 escena limpia.
 
+Pausando el juego
+-----------------
+
+En cualquier momento del juego podemos ejecutar ``pilas.escena.pausar()``
+y el juego quedará pausado hasta que se pulse la tecla ESC y vuelva a la 
+ejecución normal del juego.
+
+Este comando es un atajo que carga la escena ``Pausa``.
+Puedes crear tu propia pantalla de PAUSA heredando de ``pilas.escena.Pausa``.
+
 
 Cambiando el fondo de las escenas
 ---------------------------------

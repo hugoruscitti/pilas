@@ -69,6 +69,8 @@ class Base(object):
         self.camara_x = 0
         self.camara_y = 0
 
+        self.escena_pausa = False
+
     def iniciar(self):
         """ Este método debe ser reimplementado en todas las clases que
         hereden de ella.
