@@ -510,7 +510,7 @@ class Actor(object, Estudiante):
 
     @pilas.utils.interpolable
     def set_derecha(self, x):
-        self.set_izquierda(x - self.ancho)
+        self.set_izquierda(x - (self.ancho * self.escala))
 
     derecha = property(get_derecha, set_derecha, doc="Establece el " \
                          "espacio entre la derecha del actor y el centro " \
@@ -521,7 +521,7 @@ class Actor(object, Estudiante):
 
     @pilas.utils.interpolable
     def set_abajo(self, y):
-        self.set_arriba(y + self.alto)
+        self.set_arriba(y + (self.alto * self.escala))
 
     abajo = property(get_abajo, set_abajo, doc="Establece el " \
                          "espacio entre la parte inferior del actor y el " \
