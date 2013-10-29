@@ -8,6 +8,7 @@
 
 import pilas.utils
 import inspect
+import sys
 
 class Estudiante:
     """Componente que permite a los actores aprender habilidades o realizar comportamientos."""
@@ -98,14 +99,14 @@ class Estudiante:
         # actor.hacer_luego(pilas.comportamientos..Orbitar(velocidad=3, direccion="derecha"))
 
         if (inspect.isclass(comportamiento)):
-            self._hacer_luego(comportamiento,repetir_comportamientos_por_siempre, *k, **kw)
+            self._hacer_luego(comportamiento,repetir_por_siempre, *k, **kw)
         else:
             self.comportamientos.append(comportamiento)
             self.repetir_comportamientos_por_siempre = repetir_por_siempre
 
     def _hacer_luego(self, comportamiento, repetir_por_siempre=False, *k, **kw):
         objecto_comportamiento = comportamiento(*k, **kw)
-        self.comportamientos.append(comportamiento)
+        self.comportamientos.append(objecto_comportamiento)
         self.repetir_comportamientos_por_siempre = repetir_por_siempre
 
 
