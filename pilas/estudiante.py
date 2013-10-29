@@ -158,7 +158,7 @@ class Estudiante:
 
             if termina:
                 if self.repetir_comportamientos_por_siempre:
-                    self.comportamientos.append(self.comportamiento_actual)
+                    self.comportamientos.insert(0, self.comportamiento_actual)
                 self._adoptar_el_siguiente_comportamiento()
         else:
             self._adoptar_el_siguiente_comportamiento()

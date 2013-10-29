@@ -75,16 +75,17 @@ class Saltar(Comportamiento):
         self.suelo = int(self.receptor.y)
         self.velocidad = self.velocidad_inicial
         self.sonido_saltar.reproducir()
+        self.velocidad_aux = self.velocidad_inicial
 
     def actualizar(self):
         self.receptor.y += self.velocidad
         self.velocidad -= 0.3
 
         if self.receptor.y <= self.suelo:
-            self.velocidad_inicial /= 2.0
-            self.velocidad = self.velocidad_inicial
+            self.velocidad_aux /= 2.0
+            self.velocidad = self.velocidad_aux
 
-            if self.velocidad_inicial <= 1:
+            if self.velocidad_aux <= 1:
                 # Si toca el suelo
                 self.receptor.y = self.suelo
                 if self.cuando_termina:
@@ -112,16 +113,17 @@ class Avanzar(Comportamiento):
         rotacion_en_radianes = math.radians(-receptor.rotacion)
         self.dx = math.cos(rotacion_en_radianes)
         self.dy = math.sin(rotacion_en_radianes)
+        self.pasos_aux = self.pasos
 
     def actualizar(self):
         salir = False
 
-        if self.pasos > 0:
-            if self.pasos - self.velocidad < 0:
-                avance = self.pasos
+        if self.pasos_aux > 0:
+            if self.pasos_aux - self.velocidad < 0:
+                avance = self.pasos_aux
             else:
                 avance = self.velocidad
-            self.pasos -= avance
+            self.pasos_aux -= avance
             self.receptor.x += self.dx * avance
             self.receptor.y += self.dy * avance
         else:
