@@ -91,12 +91,11 @@ class VentanaAsistente(Ui_AsistenteWindow):
         #base_dir =  QtCore.QUrl.fromLocalFile(file_path)
         #self.webView.setHtml(contenido, base_dir)
 
-    #def _obtener_html(self, file_path):
-    #    archivo = open(file_path, "rt")
-    #    contenido = archivo.read()
-    #    contenido = contenido.replace("{{VERSION_FRAME}}", """<iframe src='http://www.pilas-engine.com.ar/estadistica'></iframe>""")
-    #    archivo.close()
-    #    return contenido.decode('utf8')
+    def _obtener_html(self, file_path):
+        archivo = open(file_path, "rt")
+        contenido = archivo.read()
+        archivo.close()
+        return contenido.decode('utf8')
 
     def cuando_pulsa_link(self, url):
         seccion = str(url.path()).split('/')[-1]
