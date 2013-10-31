@@ -183,3 +183,7 @@ html, body {height: 100%; padding-left: 1em; padding-right: 1em}
 body.modal-open {
   margin-right: 0 !important;
 }
+
+.centrado {
+  text-align: center;
+}
