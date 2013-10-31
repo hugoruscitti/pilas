@@ -144,7 +144,7 @@ html, body {height: 100%; padding-left: 1em; padding-right: 1em}
 	background-color: #fff;
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12),inset 0 -4px 4px -4px rgba(0,0,0,0.3);
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12),inset 0 -4px 4px -4px rgba(0,0,0,0.3);
-	height: 50px;
+	height: 49px;
   background-image: url("../imagenes/pilas-logo.png");
 	background-repeat: no-repeat;
 	background-position: center;
