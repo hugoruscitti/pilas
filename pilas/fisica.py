@@ -637,6 +637,40 @@ class ConstanteDeDistancia():
     def eliminar(self):
         pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante_mouse)
 
+class ConstanteDeGiro():
+    """Representa un punto de giro entre dos figuras
+        Ejemplo:
+
+        >>> rectangulo1 = pilas.fisica.Rectangulo(10,10,10,80)
+        >>> rectangulo2 = pilas.fisica.Rectangulo(10,10,10,80)
+        >>> pilas.fisica.ConstanteDeGiro(rectangulo1,rectangulo2)
+
+        Para el ejemplo el punto de giro de cada objeto será (.5,0) y (-.5,0)
+        esto para simular que estan tomados de los extremos los rectangulos
+    """
+    def __init__(self,figura_1, figura_2, fisica=None, con_colision=True):
+        """ Inicializa la constante
+        :param figura_1: Una de las figuras a conectar por la constante.
+        :param figura_2: La otra figura a conectar por la constante.
+        :param fisica: Referencia al motor de física.
+        :param con_colision: Indica si se permite colisión entre las dos figuras.
+        """
+        if not fisica:
+            fisica = pilas.escena_actual().fisica
+
+        if not isinstance(figura_1, Figura) or not isinstance(figura_2, Figura):
+            raise Exception("Las dos figuras tienen que ser objetos de la clase Figura.")
+
+        constante = box2d.b2RevoluteJointDef()
+        constante.Initialize(bodyA=figura_1._cuerpo, bodyB=figura_2._cuerpo,anchor=(0,0))
+        constante.localAnchorA = (.5,0) 
+        constante.localAnchorB = (-.5,0) 
+        constante.collideConnected = con_colision
+        self.constante = fisica.mundo.CreateJoint(constante)
+
+    def eliminar(self):
+        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante_mouse)
+
 def definir_gravedad(x, y):
     """Define la gravedad del motor de física.
 
