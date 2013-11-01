@@ -649,15 +649,19 @@ class ConstanteDeGiro():
 
         >>> rectangulo1 = pilas.fisica.Rectangulo(10,10,10,80)
         >>> rectangulo2 = pilas.fisica.Rectangulo(10,10,10,80)
-        >>> pilas.fisica.ConstanteDeGiro(rectangulo1,rectangulo2)
+        >>> pilas.fisica.ConstanteDeGiro(rectangulo1,rectangulo2,(.5,0),(-.5,0))
 
         Para el ejemplo el punto de giro de cada objeto será (.5,0) y (-.5,0)
         esto para simular que estan tomados de los extremos los rectangulos
     """
-    def __init__(self,figura_1, figura_2, fisica=None, con_colision=True):
+    def __init__(self,figura_1, figura_2, figura_1_punto=(0,0), figura_2_punto=(0,0), angulo_minimo=None,angulo_maximo=None, fisica=None, con_colision=True):
         """ Inicializa la constante
         :param figura_1: Una de las figuras a conectar por la constante.
         :param figura_2: La otra figura a conectar por la constante.
+        :param figura_1_punto: Punto de rotación de figura_1
+        :param figura_1_punto: Punto de rotación de figura_2
+        :param angulo_minimo: Angulo minimo de rotacion para figura_2 con respecto a figura_1_punto
+        :param angulo_maximo: Angulo maximo de rotacion para figura_2 con respecto a figura_1_punto
         :param fisica: Referencia al motor de física.
         :param con_colision: Indica si se permite colisión entre las dos figuras.
         """
@@ -669,8 +673,12 @@ class ConstanteDeGiro():
 
         constante = box2d.b2RevoluteJointDef()
         constante.Initialize(bodyA=figura_1._cuerpo, bodyB=figura_2._cuerpo,anchor=(0,0))
-        constante.localAnchorA = (.5,0) 
-        constante.localAnchorB = (-.5,0) 
+        constante.localAnchorA = figura_1_punto 
+        constante.localAnchorB = figura_2_punto
+        if angulo_minimo != None or angulo_maximo != None:
+            constante.enableLimit = True
+            constante.lowerAngle = math.radians(angulo_minimo)
+            constante.upperAngle = math.radians(angulo_maximo)  
         constante.collideConnected = con_colision
         self.constante = fisica.mundo.CreateJoint(constante)
 
