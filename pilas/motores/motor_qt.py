@@ -131,8 +131,10 @@ class CanvasWidgetAbstracto(object):
         self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
         self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
 
-        if not(self.gestor_escenas.escena_actual().escena_pausa):
-            self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
+        if self.gestor_escenas.escena_actual():
+            if not(self.gestor_escenas.escena_actual().escena_pausa):
+                self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
+                
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
         if self.gestor_escenas.escena_actual():
