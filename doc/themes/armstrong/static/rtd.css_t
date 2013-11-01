@@ -36,6 +36,7 @@ body {
     margin: 0;
 }
 
+
 div.document {
     text-align: left;
     background-color: {{ theme_light_color }};
@@ -778,4 +779,15 @@ p {
         margin-left: 0;
     }
 
+}
+
+
+
+/* PERSONALIZADOS */
+div.bodywrapper {
+    margin: 0;
+}
+
+div.sphinxsidebar {
+    display: none;
 }
