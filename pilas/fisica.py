@@ -185,9 +185,15 @@ class Fisica(object):
                     lienzo.poligono(motor, vertices, color=pilas.colores.blanco, grosor=grosor, cerrado=True)
                 elif isinstance(shape, box2d.b2CircleShape):
                     (x, y) = pilas.escena_actual().camara.desplazar(cuerpo.transform * shape.pos * PPM)
+                    
+                    # Dibuja el angulo de la circunferencia.
+                    lienzo.angulo(motor, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM, pilas.colores.negro, grosor=grosor+2)
+                    lienzo.angulo(motor, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
 
+                    # Dibuja el borde de la circunferencia.
                     lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.negro, grosor=grosor+2)
                     lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
+                    
                 else:
                     # TODO: implementar las figuras de tipo "edge" y "loop".
                     raise Exception("No puedo identificar el tipo de figura.")
@@ -377,7 +383,7 @@ class Figura(object):
 
     def definir_rotacion(self, angulo):
         # TODO: simplificar a la nueva api.
-        self._cuerpo.SetXForm((self.x, self.y), math.radians(-angulo))
+        self._cuerpo.angle = math.radians(-angulo)
 
     def impulsar(self, dx, dy):
         # TODO: convertir los valores dx y dy a metros.

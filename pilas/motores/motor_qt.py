@@ -19,6 +19,7 @@ import pilas
 import sys
 import traceback
 import copy
+import math
 
 
 class LibreriaImagenes(object):
@@ -134,7 +135,6 @@ class CanvasWidgetAbstracto(object):
         if self.gestor_escenas.escena_actual():
             if not(self.gestor_escenas.escena_actual().escena_pausa):
                 self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
-                
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
         if self.gestor_escenas.escena_actual():
@@ -571,6 +571,13 @@ class Lienzo(Imagen):
         pen = QtGui.QPen(color, grosor)
         painter.setPen(pen)
         painter.drawLine(x0, y0, x1, y1)
+    
+    def angulo(self, motor, x, y, angulo, radio, color, grosor):
+        angulo_en_radianes = math.radians(-angulo)
+        dx = math.cos(angulo_en_radianes) * radio
+        dy = math.sin(angulo_en_radianes) * radio
+        self.linea(motor, x, y, x + dx, y + dy, color, grosor)
+               
 
     def poligono(self, motor, puntos, color=colores.negro, grosor=1, cerrado=False):
         x, y = puntos[0]
