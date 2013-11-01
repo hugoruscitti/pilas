@@ -14,8 +14,8 @@ def cuando_selecciona(opcion_seleccionada):
     interpolacion.texto = "Interpolacion: " + seleccion
 
 def detener_interpolacion():
-    pilas.utils.deneter_interpolacion(actor, 'y')
-    pilas.utils.deneter_interpolacion(actor, 'x')
+    pilas.utils.detener_interpolacion(actor, 'y')
+    pilas.utils.detener_interpolacion(actor, 'x')
 
 def cuando_click(evento):
     global seleccion
@@ -25,7 +25,7 @@ def cuando_click(evento):
         actor.x = pilas.interpolar(evento.x,tipo=seleccion)
 
 def actualizar(evento):
-    velocidad.texto = "Velocidad (x,y): (%f, %f)" %(actor.vx, actor.vy)  
+    velocidad.texto = "Velocidad (x,y): (%f, %f)" %(actor.vx, actor.vy)
 
 opciones = pilas.interfaz.ListaSeleccion(['lineal',
                                           'aceleracion_gradual',

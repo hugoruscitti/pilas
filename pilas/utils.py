@@ -263,10 +263,10 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
     return clase(valor_o_valores, duracion, demora)
 
 
-def deneter_interpolacion(objeto, propiedad):
+def detener_interpolacion(objeto, propiedad):
     """Deteiene una interpolación iniciada en un campo de un objeto.
 
-       >>> pilas.utils.deneter_interpolacion(actor, 'y')
+       >>> pilas.utils.detener_interpolacion(actor, 'y')
 
     :param objeto: Actor del que se desea detener al interpolacion.
     :para propiedad: Cadena de texto que indica la propiedad del objeto cuya interpolación se desea terminar.
