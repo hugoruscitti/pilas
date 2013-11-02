@@ -130,19 +130,19 @@ class VentanaAsistente(Ui_AsistenteWindow):
         Internamente, esta funcion intenta buscar un archivo dentro de la
         ruta "../ejemplos/ejemplos/{categoria}/{nombre}.py".
         """
-        ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
-        pilas.interprete.cargar_ejemplo(self.main, True, ruta)
-        """
-        try:
+        if sys.platform == "darwin":
             ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
-
-            self.process = QtCore.QProcess(self.main)
-            self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
-            self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
-            self.process.start(sys.executable, [ruta], QtCore.QIODevice.ReadWrite)
-        except Exception, name:
-            QtGui.QMessageBox.critical(self.main, "Error", str(name))
-        """
+            pilas.interprete.cargar_ejemplo(self.main, True, ruta)
+        else:
+            try:
+                ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
+    
+                self.process = QtCore.QProcess(self.main)
+                self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
+                self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
+                self.process.start(sys.executable, [ruta], QtCore.QIODevice.ReadWrite)
+            except Exception, name:
+                QtGui.QMessageBox.critical(self.main, "Error", str(name))
 
     def _mostrar_codigo(self, categoria, nombre):
         try:
@@ -176,7 +176,14 @@ class VentanaAsistente(Ui_AsistenteWindow):
             QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
     def _cuando_selecciona_interprete(self):
-        QtCore.QTimer.singleShot(500, self._iniciar_interprete_diferido)
+        if sys.platform == "darwin":
+        	QtCore.QTimer.singleShot(500, self._iniciar_interprete_diferido)
+        else:
+            if sys.platform == "win32":
+                self._ejecutar_comando(sys.executable, ['-i'], '.')
+            else:
+                self._ejecutar_comando(sys.executable, [sys.argv[0], '-i'], '.')
+
 
     def _iniciar_interprete_diferido(self):
         self.instancia_interprete = pilas.interprete.main(self.main, True)
