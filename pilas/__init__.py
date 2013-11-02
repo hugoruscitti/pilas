@@ -236,6 +236,7 @@ def abrir_interprete(parent=None, do_raise=False, con_aplicacion=False):
         app.setApplicationName("pilas-engine")
 
     interprete.main(parent, do_raise)
+    return app
 
 
 def log(*parametros):

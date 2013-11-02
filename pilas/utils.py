@@ -449,6 +449,7 @@ def obtener_archivo_a_ejecutar_desde_argv():
 def procesar_argumentos_desde_command_line():
     from optparse import OptionParser
 
+
     analizador = OptionParser()
 
     analizador.add_option("-t", "--test", dest="test",
@@ -473,35 +474,34 @@ def iniciar_asistente_desde_argumentos():
         pilas.abrir_asistente()
     else:
         (opciones, argumentos) = procesar_argumentos_desde_command_line()
-    
+
         if argumentos:
-    
-            if opciones.interprete:
-                import pilas
-                pilas.abrir_interprete(do_raise=True, con_aplicacion=True)
-                return
-    
             archivo_a_ejecutar = obtener_archivo_a_ejecutar_desde_argv()
-    
+
             if not os.path.exists(archivo_a_ejecutar):
                 mostrar_mensaje_de_error_y_salir("El archivo '%s' no existe o no se puede leer." % (archivo_a_ejecutar))
-    
+
             if not 'text/x-python' in mimetypes.guess_type(archivo_a_ejecutar):
                 mostrar_mensaje_de_error_y_salir("El archivo '%s' no parece un script python. Intenta con un archivo .py" % (archivo_a_ejecutar))
-    
+
             ## Intenta ejecutar el script como un programa de pilas.
             try:
                 directorio_juego = os.path.dirname(archivo_a_ejecutar)
-    
+
                 if directorio_juego:
                     os.chdir(directorio_juego)
-    
+
                 sys.exit(execfile(archivo_a_ejecutar))
             except Exception, e:
                 mostrar_mensaje_de_error_y_salir(e.__class__.name + ": " + e.message)
                 return
-    
-        if opciones.test:
+
+        if opciones.interprete:
+            import pilas
+            app = pilas.abrir_interprete(do_raise=True, con_aplicacion=True)
+            app.exec_()
+            return
+        elif opciones.test:
             realizar_pruebas()
         elif opciones.interprete:
             import pilas

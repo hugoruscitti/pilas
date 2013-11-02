@@ -41,17 +41,17 @@ class VentanaInterprete(Ui_InterpreteWindow):
         # ocultar completamente.
         self.splitter_vertical.setCollapsible(1, False)
         self.splitter.setCollapsible(0, False)
-        
+
         # Define el tamaño inicial de la consola.
         self.splitter.setSizes([300, 100])
-        
+
         self.colapsar_ayuda()
         self.cargar_ayuda()
         self.navegador.history().setMaximumItemCount(0)
 
         self._conectar_botones()
         self._conectar_observadores_splitters()
-				
+
     def _conectar_botones(self):
         # Botón del manual
         self.definir_icono(self.manual_button, 'iconos/manual.png')
@@ -60,7 +60,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         # Botón del interprete
         self.definir_icono(self.interprete_button, 'iconos/interprete.png')
         self.interprete_button.connect(self.interprete_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_interprete)
-        
+
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
         self.pushButton_6.connect(self.pushButton_6, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
@@ -118,7 +118,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.splitter_vertical.setSizes([300])
         else:
             self.splitter_vertical.setSizes([0])
-            
+
     def cuando_pulsa_el_boton_interprete(self):
         if self.interprete_button.isChecked():
             self.splitter.setSizes([300, 100])
