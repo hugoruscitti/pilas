@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,9 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
 
-    <title>Guía para desarrolladores &mdash; Documentación de Pilas Engine</title>
+    <title>Guía para desarrolladores &mdash; pilas</title>
 
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 
 
     
@@ -19,8 +17,8 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
-        VERSION:     '0.82',
+        URL_ROOT:    './',
+        VERSION:     '0.83',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -31,7 +29,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <script type="text/javascript" src="_static/searchtools.js"></script>
-    <link rel="top" title="Documentación de Pilas Engine" href="index.html" />
+    <link rel="top" title="pilas" href="index.html" />
     <link rel="next" title="Guía de preguntas avanzadas" href="preguntas_avanzadas.html" />
     <link rel="prev" title="Módulo pilas.habilidades" href="referencia-habilidades.html" /> 
   </head>
@@ -43,7 +41,7 @@
           <a href="genindex.html" title="Índice General"
              accesskey="I">índice</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
+          <a href="py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li class="right" >
           <a href="preguntas_avanzadas.html" title="Guía de preguntas avanzadas"
@@ -51,7 +49,7 @@
         <li class="right" >
           <a href="referencia-habilidades.html" title="Módulo pilas.habilidades"
              accesskey="P">anterior</a> |</li>
-        <li><a href="index.html">Documentación de Pilas Engine</a> &raquo;</li> 
+        <li><a href="index.html">pilas</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -131,13 +129,13 @@ ejecutar el siguiente comando de manera periódica:</p>
 <p>Definición de la version actual de pilas y funciones para compararla.</p>
 <dl class="data">
 <dt id="pilas.pilasversion.VERSION">
-<tt class="descclassname">pilas.pilasversion.</tt><tt class="descname">VERSION</tt><em class="property"> = '0.82'</em><a class="headerlink" href="#pilas.pilasversion.VERSION" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<tt class="descclassname">pilas.pilasversion.</tt><tt class="descname">VERSION</tt><em class="property"> = '0.83'</em><a class="headerlink" href="#pilas.pilasversion.VERSION" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Contiene la versión actual de pilas.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="pilas.pilasversion.compare">
-<tt class="descclassname">pilas.pilasversion.</tt><tt class="descname">compare</tt><big>(</big><em>v0</em>, <em>v1</em><big>)</big><a class="reference internal" href="_modules/pilas/pilasversion.html#compare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pilas.pilasversion.compare" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<tt class="descclassname">pilas.pilasversion.</tt><tt class="descname">compare</tt><big>(</big><em>v0</em>, <em>v1</em><big>)</big><a class="reference internal" href="_modules/pilas/pilasversion.html#compare"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.pilasversion.compare" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Compara dos versiones de pilas.</p>
 <p>Sus posibles retornos son</p>
 <ul class="simple">
@@ -161,7 +159,7 @@ ejecutar el siguiente comando de manera periódica:</p>
 
 <dl class="function">
 <dt id="pilas.pilasversion.compareactual">
-<tt class="descclassname">pilas.pilasversion.</tt><tt class="descname">compareactual</tt><big>(</big><em>v</em><big>)</big><a class="reference internal" href="_modules/pilas/pilasversion.html#compareactual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pilas.pilasversion.compareactual" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<tt class="descclassname">pilas.pilasversion.</tt><tt class="descname">compareactual</tt><big>(</big><em>v</em><big>)</big><a class="reference internal" href="_modules/pilas/pilasversion.html#compareactual"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.pilasversion.compareactual" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Compara la versión actual de pilas con una que se pasa como parámetro</p>
 <p>Sus posibles retornos son:</p>
 <ul class="simple">
@@ -194,7 +192,7 @@ con lo cual los <tt class="docutils literal"><span class="pre">DeprecationWarnin
 del módulo  <a class="reference external" href="http://docs.python.org/2/library/warnings.html">warnings</a></p>
 <dl class="function">
 <dt id="pilas.dev.deprecated">
-<tt class="descclassname">pilas.dev.</tt><tt class="descname">deprecated</tt><big>(</big><em>se_desactiva_en</em>, <em>se_elimina_en</em>, <em>reemplazo=None</em>, <em>nombre=None</em><big>)</big><a class="reference internal" href="_modules/pilas/dev.html#deprecated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pilas.dev.deprecated" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<tt class="descclassname">pilas.dev.</tt><tt class="descname">deprecated</tt><big>(</big><em>se_desactiva_en</em>, <em>se_elimina_en</em>, <em>reemplazo=None</em>, <em>nombre=None</em><big>)</big><a class="reference internal" href="_modules/pilas/dev.html#deprecated"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.dev.deprecated" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Decorador utilizado para marcar una función como deprecada</p>
 <p>Las excepciones que puede lanzar este decorador son:</p>
 <ul class="simple">
@@ -231,7 +229,7 @@ desaconsejada.</li>
 
 <dl class="function">
 <dt id="pilas.dev.deprecated_warning">
-<tt class="descclassname">pilas.dev.</tt><tt class="descname">deprecated_warning</tt><big>(</big><em>elemento_deprecado</em>, <em>se_desactiva_en</em>, <em>se_elimina_en</em>, <em>reemplazo=None</em><big>)</big><a class="reference internal" href="_modules/pilas/dev.html#deprecated_warning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pilas.dev.deprecated_warning" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<tt class="descclassname">pilas.dev.</tt><tt class="descname">deprecated_warning</tt><big>(</big><em>elemento_deprecado</em>, <em>se_desactiva_en</em>, <em>se_elimina_en</em>, <em>reemplazo=None</em><big>)</big><a class="reference internal" href="_modules/pilas/dev.html#deprecated_warning"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.dev.deprecated_warning" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Lanza la correcta exception/warning de anuncio de que <em>algo</em> está en desuso.</p>
 <p>Las excepción/warning que puede lanzar esta función son:</p>
 <ul class="simple">
@@ -266,7 +264,7 @@ atributo</li>
 
 <dl class="function">
 <dt id="pilas.dev.utilizar_desaconsejados">
-<tt class="descclassname">pilas.dev.</tt><tt class="descname">utilizar_desaconsejados</tt><big>(</big><em>usar</em><big>)</big><a class="reference internal" href="_modules/pilas/dev.html#utilizar_desaconsejados"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pilas.dev.utilizar_desaconsejados" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<tt class="descclassname">pilas.dev.</tt><tt class="descname">utilizar_desaconsejados</tt><big>(</big><em>usar</em><big>)</big><a class="reference internal" href="_modules/pilas/dev.html#utilizar_desaconsejados"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.dev.utilizar_desaconsejados" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Permite que se utilicen atributos, métodos y funciones que estan
 desaconsejados en esta versión.</p>
 <p>NOTA: si usted habilita los desaconsejados, los utiliza y luego los
@@ -296,7 +294,10 @@ si <em>usar</em> es <tt class="docutils literal"><span class="pre">True</span></
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Contenidos</a></h3>
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Guía para desarrolladores</a><ul>
 <li><a class="reference internal" href="#repositorio">Repositorio</a></li>
@@ -319,14 +320,14 @@ si <em>usar</em> es <tt class="docutils literal"><span class="pre">True</span></
 
   <h4>Tema anterior</h4>
   <p class="topless"><a href="referencia-habilidades.html"
-                        title="Capítulo anterior">Módulo pilas.habilidades</a></p>
+                        title="capítulo anterior">Módulo pilas.habilidades</a></p>
   <h4>Próximo tema</h4>
   <p class="topless"><a href="preguntas_avanzadas.html"
-                        title="Próximo capítulo">Guía de preguntas avanzadas</a></p>
+                        title="próximo capítulo">Guía de preguntas avanzadas</a></p>
   <h3>Esta página</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/desarrolladores.txt"
-           rel="nofollow">Enseñar el código</a></li>
+           rel="nofollow">Mostrar el código</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Búsqueda rápida</h3>
@@ -337,7 +338,7 @@ si <em>usar</em> es <tt class="docutils literal"><span class="pre">True</span></
       <input type="hidden" name="area" value="default" />
     </form>
     <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
@@ -352,7 +353,7 @@ si <em>usar</em> es <tt class="docutils literal"><span class="pre">True</span></
           <a href="genindex.html" title="Índice General"
              >índice</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
+          <a href="py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li class="right" >
           <a href="preguntas_avanzadas.html" title="Guía de preguntas avanzadas"
@@ -360,14 +361,10 @@ si <em>usar</em> es <tt class="docutils literal"><span class="pre">True</span></
         <li class="right" >
           <a href="referencia-habilidades.html" title="Módulo pilas.habilidades"
              >anterior</a> |</li>
-        <li><a href="index.html">Documentación de Pilas Engine</a> &raquo;</li> 
+        <li><a href="index.html">pilas</a> &raquo;</li> 
       </ul>
     </div>
 <div class="footer">
-    &copy; Copyright 2011-2013 - Hugo Ruscitti.
-  Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-  <br />Theme based on <a href="http://readthedocs.org/">Read The Docs</a>
-
 </div>
 
 

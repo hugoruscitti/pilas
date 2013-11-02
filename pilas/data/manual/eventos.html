@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,9 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
 
-    <title>Eventos, conexiones y respuestas &mdash; Documentación de Pilas Engine</title>
+    <title>Eventos, conexiones y respuestas &mdash; pilas</title>
 
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 
 
     
@@ -19,8 +17,8 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
-        VERSION:     '0.82',
+        URL_ROOT:    './',
+        VERSION:     '0.83',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -31,7 +29,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <script type="text/javascript" src="_static/searchtools.js"></script>
-    <link rel="top" title="Documentación de Pilas Engine" href="index.html" />
+    <link rel="top" title="pilas" href="index.html" />
     <link rel="next" title="Textos" href="texto.html" />
     <link rel="prev" title="Motores" href="motores.html" /> 
   </head>
@@ -43,7 +41,7 @@
           <a href="genindex.html" title="Índice General"
              accesskey="I">índice</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
+          <a href="py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li class="right" >
           <a href="texto.html" title="Textos"
@@ -51,7 +49,7 @@
         <li class="right" >
           <a href="motores.html" title="Motores"
              accesskey="P">anterior</a> |</li>
-        <li><a href="index.html">Documentación de Pilas Engine</a> &raquo;</li> 
+        <li><a href="index.html">pilas</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -112,6 +110,9 @@ esto:</p>
     <span class="n">mono</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">evento</span><span class="o">.</span><span class="n">y</span>
 
 <span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">mueve_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">mover_mono_a_la_posicion_del_mouse</span><span class="p">)</span>
+
+<span class="c"># O puedes utilizar el método abreviado del actor.</span>
+<span class="n">mono</span><span class="o">.</span><span class="n">mueve_mouse</span><span class="p">(</span><span class="n">mover_mono_a_la_posicion_del_mouse</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Es decir, la señal de evento que nos interesa es <tt class="docutils literal"><span class="pre">mueve_mouse</span></tt> (que se emite
@@ -251,7 +252,10 @@ eventos te recomendamos los siguientes documentos:</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Contenidos</a></h3>
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Eventos, conexiones y respuestas</a><ul>
 <li><a class="reference internal" href="#que-es-un-evento">¿Que es un Evento?</a></li>
@@ -270,14 +274,14 @@ eventos te recomendamos los siguientes documentos:</p>
 
   <h4>Tema anterior</h4>
   <p class="topless"><a href="motores.html"
-                        title="Capítulo anterior">Motores</a></p>
+                        title="capítulo anterior">Motores</a></p>
   <h4>Próximo tema</h4>
   <p class="topless"><a href="texto.html"
-                        title="Próximo capítulo">Textos</a></p>
+                        title="próximo capítulo">Textos</a></p>
   <h3>Esta página</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/eventos.txt"
-           rel="nofollow">Enseñar el código</a></li>
+           rel="nofollow">Mostrar el código</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Búsqueda rápida</h3>
@@ -288,7 +292,7 @@ eventos te recomendamos los siguientes documentos:</p>
       <input type="hidden" name="area" value="default" />
     </form>
     <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
@@ -303,7 +307,7 @@ eventos te recomendamos los siguientes documentos:</p>
           <a href="genindex.html" title="Índice General"
              >índice</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
+          <a href="py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li class="right" >
           <a href="texto.html" title="Textos"
@@ -311,14 +315,10 @@ eventos te recomendamos los siguientes documentos:</p>
         <li class="right" >
           <a href="motores.html" title="Motores"
              >anterior</a> |</li>
-        <li><a href="index.html">Documentación de Pilas Engine</a> &raquo;</li> 
+        <li><a href="index.html">pilas</a> &raquo;</li> 
       </ul>
     </div>
 <div class="footer">
-    &copy; Copyright 2011-2013 - Hugo Ruscitti.
-  Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-  <br />Theme based on <a href="http://readthedocs.org/">Read The Docs</a>
-
 </div>
 
 

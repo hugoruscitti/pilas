@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,9 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
 
-    <title>pilas.depurador &mdash; Documentación de Pilas Engine</title>
+    <title>pilas.depurador &mdash; pilas</title>
 
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 
 
     
@@ -20,7 +18,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.82',
+        VERSION:     '0.83',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -31,7 +29,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
     <script type="text/javascript" src="../../../../_static/searchtools.js"></script>
-    <link rel="top" title="Documentación de Pilas Engine" href="../../index.html" />
+    <link rel="top" title="pilas" href="../../index.html" />
     <link rel="up" title="pilas" href="../pilas.html" /> 
   </head>
   <body>
@@ -42,10 +40,10 @@
           <a href="../../genindex.html" title="Índice General"
              accesskey="I">índice</a></li>
         <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
-        <li><a href="../../index.html">Documentación de Pilas Engine</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li>
+        <li><a href="../../index.html">pilas</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
           <li><a href="../pilas.html" accesskey="U">pilas</a> &raquo;</li> 
       </ul>
     </div>  
@@ -55,7 +53,7 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <h1>Source code for pilas.depurador</h1><div class="highlight"><pre>
+  <h1>Código fuente para pilas.depurador</h1><div class="highlight"><pre>
 <span class="c"># -*- encoding: utf-8 -*-</span>
 <span class="c"># pilas engine - a video game framework.</span>
 <span class="c">#</span>
@@ -105,7 +103,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lienzo</span><span class="p">,</span> <span class="n">fps</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">modos</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lienzo</span> <span class="o">=</span> <span class="n">lienzo</span>
-        <span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span> <span class="o">=</span> <span class="mi">4</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="n">fps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">posicion_del_mouse</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
@@ -158,7 +156,7 @@
         <span class="k">return</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">_cambiar_grosor_de_bordes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cambio</span><span class="p">):</span>
-        <span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span> <span class="o">+</span> <span class="n">cambio</span><span class="p">)</span>
+        <span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span> <span class="o">+</span> <span class="n">cambio</span><span class="p">),</span> <span class="mi">8</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_alternar_modo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clase_del_modo</span><span class="p">):</span>
         <span class="n">clases_activas</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">__class__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modos</span><span class="p">]</span>
@@ -218,7 +216,7 @@
         <span class="n">texto</span> <span class="o">=</span> <span class="s">&quot;Cantidad de actores: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">total_de_actores</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lienzo</span><span class="o">.</span><span class="n">texto_absoluto</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">texto</span><span class="p">,</span> <span class="n">izquierda</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="n">abajo</span> <span class="o">+</span> <span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">blanco</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Depurador.definir_modos"><a class="viewcode-back" href="../../depurando.html#pilas.depurador.Depurador.definir_modos">[docs]</a>    <span class="k">def</span> <span class="nf">definir_modos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fisica</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">puntos_de_control</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+<div class="viewcode-block" id="Depurador.definir_modos"><a class="viewcode-back" href="../../depurando.html#pilas.depurador.Depurador.definir_modos">[documentos]</a>    <span class="k">def</span> <span class="nf">definir_modos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fisica</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">puntos_de_control</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                             <span class="n">radios</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">areas</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">posiciones</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Permite habilitar o deshabilitar los modos depuración.</span>
 
@@ -308,7 +306,7 @@
             <span class="s">&quot;Sistema: &quot;</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">,</span>
             <span class="s">&quot;Version de pilas: &quot;</span> <span class="o">+</span> <span class="n">pilasversion</span><span class="o">.</span><span class="n">VERSION</span><span class="p">,</span>
             <span class="s">&quot;Version de python: &quot;</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">subversion</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">subversion</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-            <span class="s">&quot;Version de Box2D: &quot;</span> <span class="o">+</span> <span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">obtener_version</span><span class="p">(),</span>
+            <span class="s">&quot;Version de Box2D: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">obtener_version</span><span class="p">()),</span>
             <span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">termina_dibujado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">lienzo</span><span class="p">):</span>
@@ -324,6 +322,7 @@
 
     <span class="k">def</span> <span class="nf">dibuja_al_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">lienzo</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obtener_posicion_relativa_a_camara</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="n">lienzo</span><span class="o">.</span><span class="n">cruz</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">negro</span><span class="p">,</span> <span class="n">grosor</span><span class="o">=</span><span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">lienzo</span><span class="o">.</span><span class="n">cruz</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">blanco</span><span class="p">,</span> <span class="n">grosor</span><span class="o">=</span><span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span><span class="p">)</span>
 
 
@@ -332,6 +331,7 @@
 
     <span class="k">def</span> <span class="nf">dibuja_al_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">lienzo</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obtener_posicion_relativa_a_camara</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="n">lienzo</span><span class="o">.</span><span class="n">circulo</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">actor</span><span class="o">.</span><span class="n">radio_de_colision</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">negro</span><span class="p">,</span> <span class="n">grosor</span><span class="o">=</span><span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">lienzo</span><span class="o">.</span><span class="n">circulo</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">actor</span><span class="o">.</span><span class="n">radio_de_colision</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">blanco</span><span class="p">,</span> <span class="n">grosor</span><span class="o">=</span><span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span><span class="p">)</span>
 
 
@@ -341,6 +341,7 @@
     <span class="k">def</span> <span class="nf">dibuja_al_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">lienzo</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
         <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">actor</span><span class="o">.</span><span class="n">centro</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obtener_posicion_relativa_a_camara</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="n">lienzo</span><span class="o">.</span><span class="n">rectangulo</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="n">dx</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">,</span> <span class="n">actor</span><span class="o">.</span><span class="n">ancho</span><span class="p">,</span> <span class="n">actor</span><span class="o">.</span><span class="n">alto</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">negro</span><span class="p">,</span> <span class="n">grosor</span><span class="o">=</span><span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">lienzo</span><span class="o">.</span><span class="n">rectangulo</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="n">dx</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">,</span> <span class="n">actor</span><span class="o">.</span><span class="n">ancho</span><span class="p">,</span> <span class="n">actor</span><span class="o">.</span><span class="n">alto</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">blanco</span><span class="p">,</span> <span class="n">grosor</span><span class="o">=</span><span class="n">ModoDepurador</span><span class="o">.</span><span class="n">grosor_de_lineas</span><span class="p">)</span>
 
 
@@ -362,9 +363,9 @@
     <span class="k">def</span> <span class="nf">dibuja_al_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">lienzo</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">Fondo</span><span class="p">):</span>
             <span class="n">texto</span> <span class="o">=</span> <span class="s">&quot;(</span><span class="si">%d</span><span class="s">, </span><span class="si">%d</span><span class="s">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">actor</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">actor</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-            <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">actor</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">actor</span><span class="o">.</span><span class="n">derecha</span><span class="p">,</span> <span class="n">actor</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">actor</span><span class="o">.</span><span class="n">abajo</span> <span class="o">+</span> <span class="mi">10</span>
+            <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="o">-</span> <span class="mi">30</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obtener_posicion_relativa_a_camara</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
-            <span class="n">lienzo</span><span class="o">.</span><span class="n">texto</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">texto</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="n">dx</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span><span class="n">dy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">blanco</span><span class="p">)</span>
+            <span class="n">lienzo</span><span class="o">.</span><span class="n">texto</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">texto</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">blanco</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">sale_del_modo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eje</span><span class="o">.</span><span class="n">eliminar</span><span class="p">()</span>
@@ -375,6 +376,9 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
 <div id="searchbox" style="display: none">
   <h3>Búsqueda rápida</h3>
     <form class="search" action="../../search.html" method="get">
@@ -384,7 +388,7 @@
       <input type="hidden" name="area" value="default" />
     </form>
     <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
@@ -399,18 +403,14 @@
           <a href="../../genindex.html" title="Índice General"
              >índice</a></li>
         <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
-        <li><a href="../../index.html">Documentación de Pilas Engine</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li>
+        <li><a href="../../index.html">pilas</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
           <li><a href="../pilas.html" >pilas</a> &raquo;</li> 
       </ul>
     </div>
 <div class="footer">
-    &copy; Copyright 2011-2013 - Hugo Ruscitti.
-  Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-  <br />Theme based on <a href="http://readthedocs.org/">Read The Docs</a>
-
 </div>
 
 
