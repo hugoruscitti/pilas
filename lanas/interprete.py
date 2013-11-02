@@ -41,6 +41,10 @@ class Ventana(QWidget):
         self.raise_()
         self.log("Iniciando lanas ver " + version.VERSION)
 
+    def ejecutar(self, codigo):
+        """Ejecuta el codigo en formato string enviado."""
+        exec(codigo, self.text_edit.interpreterLocals)
+
     def center_on_screen(self):
         resolution = QDesktopWidget().screenGeometry()
         self.move((resolution.width()  / 2) - (self.frameSize().width()  / 2),
@@ -97,6 +101,7 @@ class NormalOutput(Output):
 
 
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
+
 
     def __init__(self,  parent, codigo_inicial):
         super(InterpreteTextEdit,  self).__init__(parent)
