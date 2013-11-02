@@ -185,6 +185,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
         self.console.addWidget(consola)
         self.console.setCurrentWidget(consola)
+        self.consola = consola
 
 def cargar_ejemplo(parent=None, do_raise=False, ruta=None):
     main = QtGui.QMainWindow(parent)
@@ -194,16 +195,13 @@ def cargar_ejemplo(parent=None, do_raise=False, ruta=None):
     archivo = open(ruta, "rt")
     contenido = []
     for linea in archivo.readlines():
-        if '#' in linea or 'path' in linea or 'import' in linea or 'pilas.iniciar' in linea or 'pilas.ejecutar' in linea:
+        if '#' in linea or 'path' in linea or 'import pilas' in linea or 'pilas.iniciar' in linea or 'pilas.ejecutar' in linea:
             pass
         else:
             contenido.append(linea)
     codigo = '\n'.join(contenido)
 
-    try:
-        exec(codigo)
-    except:
-        print "ERROR"
+    ui.consola.ejecutar(codigo)
 
     archivo.close()
 
