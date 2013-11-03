@@ -136,7 +136,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         else:
             try:
                 ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
-    
+
                 self.process = QtCore.QProcess(self.main)
                 self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
                 self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
@@ -192,10 +192,13 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.nombre_archivo_script = nombre_archivo_script
         self.directorio_trabajo = directorio_trabajo
 
-        try:
-            self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
-        except Exception, e:
-            QtGui.QMessageBox.critical(self.main, "Error", str(e))
+        if sys.platform == "darwin":
+            pilas.interprete.cargar_ejemplo(self.main, True, nombre_archivo_script)
+        else:
+            try:
+                self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
+            except Exception, e:
+                QtGui.QMessageBox.critical(self.main, "Error", str(e))
 
     def _ejecutar_comando(self, comando, argumentos, directorio_trabajo):
         "Ejecuta un comando en segundo plano."
