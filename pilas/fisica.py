@@ -185,7 +185,7 @@ class Fisica(object):
                     lienzo.poligono(motor, vertices, color=pilas.colores.blanco, grosor=grosor, cerrado=True)
                 elif isinstance(shape, box2d.b2CircleShape):
                     (x, y) = pilas.escena_actual().camara.desplazar(cuerpo.transform * shape.pos * PPM)
-                    
+
                     # Dibuja el angulo de la circunferencia.
                     lienzo.angulo(motor, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM, pilas.colores.negro, grosor=grosor+2)
                     lienzo.angulo(motor, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
@@ -193,7 +193,7 @@ class Fisica(object):
                     # Dibuja el borde de la circunferencia.
                     lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.negro, grosor=grosor+2)
                     lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
-                    
+
                 else:
                     # TODO: implementar las figuras de tipo "edge" y "loop".
                     raise Exception("No puedo identificar el tipo de figura.")
@@ -641,7 +641,7 @@ class ConstanteDeDistancia():
         self.constante = fisica.mundo.CreateJoint(constante)
 
     def eliminar(self):
-        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante_mouse)
+        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
 
 class ConstanteDeGiro():
     """Representa un punto de giro entre dos figuras
@@ -658,7 +658,7 @@ class ConstanteDeGiro():
         """ Inicializa la constante
         :param figura_1: Una de las figuras a conectar por la constante.
         :param figura_2: La otra figura a conectar por la constante.
-        :param figura_1_punto: Punto de rotación de figura_1 
+        :param figura_1_punto: Punto de rotación de figura_1
         :param figura_2_punto: Punto de rotación de figura_2
         :param angulo_minimo: Angulo minimo de rotacion para figura_2 con respecto a figura_1_punto
         :param angulo_maximo: Angulo maximo de rotacion para figura_2 con respecto a figura_1_punto
@@ -678,12 +678,12 @@ class ConstanteDeGiro():
         if angulo_minimo != None or angulo_maximo != None:
             constante.enableLimit = True
             constante.lowerAngle = math.radians(angulo_minimo)
-            constante.upperAngle = math.radians(angulo_maximo)  
+            constante.upperAngle = math.radians(angulo_maximo)
         constante.collideConnected = con_colision
         self.constante = fisica.mundo.CreateJoint(constante)
 
     def eliminar(self):
-        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante_mouse)
+        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
 
 def definir_gravedad(x, y):
     """Define la gravedad del motor de física.
