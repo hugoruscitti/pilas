@@ -658,8 +658,8 @@ class ConstanteDeGiro():
         """ Inicializa la constante
         :param figura_1: Una de las figuras a conectar por la constante.
         :param figura_2: La otra figura a conectar por la constante.
-        :param figura_1_punto: Punto de rotación de figura_1
-        :param figura_1_punto: Punto de rotación de figura_2
+        :param figura_1_punto: Punto de rotación de figura_1 
+        :param figura_2_punto: Punto de rotación de figura_2
         :param angulo_minimo: Angulo minimo de rotacion para figura_2 con respecto a figura_1_punto
         :param angulo_maximo: Angulo maximo de rotacion para figura_2 con respecto a figura_1_punto
         :param fisica: Referencia al motor de física.
@@ -673,8 +673,8 @@ class ConstanteDeGiro():
 
         constante = box2d.b2RevoluteJointDef()
         constante.Initialize(bodyA=figura_1._cuerpo, bodyB=figura_2._cuerpo,anchor=(0,0))
-        constante.localAnchorA = figura_1_punto 
-        constante.localAnchorB = figura_2_punto
+        constante.localAnchorA = convertir_a_metros(figura_1_punto[0]), convertir_a_metros(figura_1_punto[1])
+        constante.localAnchorB = convertir_a_metros(figura_2_punto[0]), convertir_a_metros(figura_2_punto[1])
         if angulo_minimo != None or angulo_maximo != None:
             constante.enableLimit = True
             constante.lowerAngle = math.radians(angulo_minimo)
