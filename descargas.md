@@ -12,7 +12,8 @@ Elige tu sabor favorito de la versión 0.82 (Lanzada en Julio del 2013):
  <li><a href='d_mac.html'><img width=16 height=16 src='images/platform_mac.png'> Mac OS X</a></li>
  <li><a href='d_ubuntu.html'><img width=16 height=16 src='images/ico-ubuntu.png'> Ubuntu</a></li>
  <li><a href='http://huayra.conectarigualdad.gob.ar/'><img width=16 height=16 src='images/huayra.png'> Huayra</a></li>
- <li><a href='d_codigo.html'><img width=16 height=16 src='images/menu_pack.gif'> Código fuente</a></li>
+ <li><a href='http://morpheusv.fedorapeople.org/pilas/0.80-5/pilas-0.80-5.fc18.src.rpm'><img width=16 height=16 src='images/fedora.png'> Fedora</a></li>
+ <li><a href='d_codigo.html'><img width=16 height=16 src='images/menu_pack.gif'> Fuente</a></li>
 </ul>
 
 
