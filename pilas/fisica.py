@@ -674,11 +674,48 @@ class ConstanteDeGiro():
         constante = box2d.b2RevoluteJointDef()
         constante.Initialize(bodyA=figura_1._cuerpo, bodyB=figura_2._cuerpo,anchor=(0,0))
         constante.localAnchorA = convertir_a_metros(figura_1_punto[0]), convertir_a_metros(figura_1_punto[1])
-        constante.localAnchorB = convertir_a_metros(figura_2_punto[0]), convertir_a_metros(figura_2_punto[1])
+        constante.localAnchorB = convertir_a_metros(figura_2_punto[0]), convertir_a_metros(figura_2_punto[1])       
         if angulo_minimo != None or angulo_maximo != None:
             constante.enableLimit = True
             constante.lowerAngle = math.radians(angulo_minimo)
             constante.upperAngle = math.radians(angulo_maximo)
+        constante.collideConnected = con_colision
+        self.constante = fisica.mundo.CreateJoint(constante)
+
+    def eliminar(self):
+        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
+
+class ConstanteDeMovimientoTipoCuerda():
+    """Representa una conexion tipo cuerda elastica entre dos figuras
+        Ejemplo:
+
+        >>> rectangulo1 = pilas.fisica.Rectangulo(10,10,10,80)
+        >>> rectangulo2 = pilas.fisica.Rectangulo(10,10,10,80)
+        >>> pilas.fisica.ConstanteDeMovimientoTipoCuerda(rectangulo1,rectangulo2,(.5,0),(-.5,0),longitud_maxima=100)
+
+        Para el ejemplo el punto de giro de cada objeto será (.5,0) y (-.5,0)
+        esto para simular que estan tomados de los extremos los rectangulos
+    """
+    def __init__(self, figura_1, figura_2, figura_1_punto, figura_2_punto, longitud_maxima, fisica=None, con_colision=True):
+        """ Inicializa la constante
+        :param figura_1: Una de las figuras a conectar por la constante.
+        :param figura_2: La otra figura a conectar por la constante.
+        :param figura_1_punto: Punto de conexiin de la figura_1
+        :param figura_2_punto: Punto de conexion de la figura_2
+        :param longitud_maxima: Longitu Maxima de distancia que puede alcanzar la conexion
+        :param fisica: Referencia al motor de física.
+        :param con_colision: Indica si se permite colisión entre las dos figuras.
+        """        
+        if not fisica:
+            fisica = pilas.escena_actual().fisica
+
+        if not isinstance(figura_1, Figura) or not isinstance(figura_2, Figura):
+            raise Exception("Las dos figuras tienen que ser objetos de la clase Figura.")
+
+        constante = box2d.b2RopeJointDef(bodyA=figura_1._cuerpo, bodyB=figura_2._cuerpo)
+        constante.localAnchorA = convertir_a_metros(figura_1_punto[0]), convertir_a_metros(figura_1_punto[1])
+        constante.localAnchorB = convertir_a_metros(figura_2_punto[0]), convertir_a_metros(figura_2_punto[1])
+        constante.maxLength = convertir_a_metros(longitud_maxima)
         constante.collideConnected = con_colision
         self.constante = fisica.mundo.CreateJoint(constante)
 
