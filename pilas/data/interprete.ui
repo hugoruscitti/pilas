@@ -43,7 +43,7 @@
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QStackedWidget" name="canvas">
@@ -106,6 +106,28 @@
              </property>
              <property name="checked">
               <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="guardar_button">
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="toolTip">
+              <string>Guardar el contenido del intérprete</string>
+             </property>
+             <property name="text">
+              <string>G</string>
              </property>
              <property name="flat">
               <bool>true</bool>

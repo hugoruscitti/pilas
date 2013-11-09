@@ -62,6 +62,10 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.definir_icono(self.interprete_button, 'iconos/interprete.png')
         self.interprete_button.connect(self.interprete_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_interprete)
 
+        # Botón del guardar
+        self.definir_icono(self.guardar_button, 'iconos/guardar.png')
+        self.interprete_button.connect(self.guardar_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
+
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
         self.pushButton_6.connect(self.pushButton_6, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
@@ -187,6 +191,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.console.addWidget(consola)
         self.console.setCurrentWidget(consola)
         self.consola = consola
+
+    def cuando_pulsa_el_boton_guardar(self):
+        self.consola.text_edit.guardar_contenido_con_dialogo()
 
 def cargar_ejemplo(parent=None, do_raise=False, ruta=None):
     main = QtGui.QMainWindow(parent)
