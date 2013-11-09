@@ -348,7 +348,10 @@ def ver_codigo(objeto, imprimir, retornar):
     try:
         codigo = inspect.getsource(objeto.__class__)
     except TypeError:
-        codigo = inspect.getsource(objeto)
+        try:
+            codigo = inspect.getsource(objeto)
+        except TypeError:
+            codigo = "<< imposible inspeccionar código para mostrar >>"
 
     if imprimir:
         print codigo

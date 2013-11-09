@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
+import inspect
 
 try:
     from PyQt4 import QtCore, QtGui
@@ -158,7 +159,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
         if ejecutar_codigo_inicial:
             mono = pilas.actores.Mono()
-            scope = {'pilas': pilas, 'mono': mono, 'self': self}
+            scope = {'pilas': pilas, 'mono': mono, 'self': self, 'inspect': inspect}
         else:
             scope = {'pilas': pilas, 'self': self}
 
