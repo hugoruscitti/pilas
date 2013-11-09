@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import code
 import sys
+import inspect
 
 import os
 os.environ['lanas'] = 'enabled'
@@ -357,21 +358,37 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         linea = unicode(self.document().lastBlock().text())[2:]
         linea.rstrip()
 
-        try:
-            if ultima_tecla == Qt.Key_ParenLeft or '(' in linea:
-                principio = linea.split('(')[0]
-                principio = principio.split(' ')[-1]
+        if ultima_tecla == Qt.Key_ParenLeft or '(' in linea:
+            principio = linea.split('(')[0]
+            principio = principio.split(' ')[-1]
 
-                # Obtiene el mensaje a mostrar y lo despliega en el tooltip
-                texto_consejo = self._obtener_doctring(principio)
-                self.mostrar_consejo(texto_consejo)
+            # Obtiene el mensaje a mostrar y lo despliega en el tooltip
+            texto_consejo = self._obtener_firma_de_funcion(principio)
+            self.mostrar_consejo(texto_consejo)
+
+    def _obtener_firma_de_funcion(self, texto):
+        return self.ver_codigo(texto)
+
+    def ver_codigo(self, texto):
+        codigo = ""
+        try:
+            try:
+                texto_a_ejecutar = 'inspect.getsource(' + texto + ")"
+                codigo = eval(texto_a_ejecutar, self.interpreterLocals)
+            except TypeError:
+                try:
+                    texto_a_ejecutar = 'inspect.getsource(' + texto + ")"
+                    codigo = eval(texto_a_ejecutar, self.interpreterLocals)
+                except TypeError:
+                    codigo = ""
         except:
             pass
 
-    def _obtener_doctring(self, texto):
-        texto_a_ejecutar = texto + ".__doc__"
-        docstring = eval(texto_a_ejecutar, self.interpreterLocals)
-        return docstring.decode('utf-8')
+
+        if codigo:
+            posicion = codigo.find(":")
+            codigo = codigo[:posicion].replace("def ", "")
+        return codigo
 
     def mostrar_consejo(self, linea):
         pos = self.mapToGlobal(self.cursorRect().bottomRight())
