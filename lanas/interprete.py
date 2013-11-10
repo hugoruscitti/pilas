@@ -103,7 +103,6 @@ class NormalOutput(Output):
 
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
-
     def __init__(self,  parent, codigo_inicial):
         super(InterpreteTextEdit,  self).__init__(parent)
 
@@ -387,7 +386,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         if codigo:
             posicion = codigo.find(":")
-            codigo = codigo[:posicion].replace("def ", "")
+            codigo = codigo[:posicion].replace("def ", "").replace('  ', '').replace('self, ', '').replace('self', '')
         return codigo
 
     def mostrar_consejo(self, linea):
