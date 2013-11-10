@@ -385,6 +385,27 @@ class Figura(object):
         # TODO: simplificar a la nueva api.
         self._cuerpo.angle = math.radians(-angulo)
 
+    @pilas.utils.interpolable
+    def set_x(self, x):
+        self.definir_x(x)
+
+    def get_x(self):
+        return self.obtener_x()
+
+    @pilas.utils.interpolable
+    def set_y(self, y):
+        self.definir_y(y)
+
+    def get_y(self):
+        return self.obtener_y()
+
+    @pilas.utils.interpolable
+    def set_rotation(self, angulo):
+        self.definir_rotacion(angulo)
+
+    def get_rotation(self):
+        return self.obtener_rotacion()   
+
     def impulsar(self, dx, dy):
         # TODO: convertir los valores dx y dy a metros.
         try:
@@ -429,9 +450,9 @@ class Figura(object):
         """Quita una figura de la simulación."""
         pilas.escena_actual().fisica.eliminar_figura(self._cuerpo)
 
-    x = property(obtener_x, definir_x, doc="define la posición horizontal.")
-    y = property(obtener_y, definir_y, doc="define la posición vertical.")
-    rotacion = property(obtener_rotacion, definir_rotacion, doc="define la rotacion.")
+    x = property(get_x, set_x, doc="define la posición horizontal.")
+    y = property(get_y, set_y, doc="define la posición vertical.")
+    rotacion = property(get_rotation, set_rotation, doc="define la rotacion.")
 
 
 class Circulo(Figura):
