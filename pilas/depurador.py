@@ -33,6 +33,9 @@ class DepuradorDeshabilitado(object):
     def cuando_mueve_el_mouse(self, x, y):
         pass
 
+    def reiniciar(self):
+        pass
+
 class Depurador(DepuradorDeshabilitado):
     """Esta clase permite hacer depuraciones visuales.
 
@@ -196,6 +199,9 @@ class Depurador(DepuradorDeshabilitado):
 
         for clase in clases_activas:
             self._desactivar_modo(clase)
+
+    def reiniciar(self):
+        self._desactivar_todos_los_modos()
 
 
 class ModoDepurador(object):

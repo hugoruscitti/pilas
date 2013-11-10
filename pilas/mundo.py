@@ -32,7 +32,7 @@ class Mundo(object):
         self.gravedad = gravedad
 
     def crear_motor_fisica(self):
-        if self.area_fisica != None: 
+        if self.area_fisica != None:
             return fisica.crear_motor_fisica(self.area_fisica, gravedad=self.gravedad)
         else:
             return fisica.crear_motor_fisica(self.obtener_area(), gravedad=self.gravedad)
@@ -40,6 +40,7 @@ class Mundo(object):
     def reiniciar(self):
         self.gestor_escenas.limpiar()
         self.gestor_escenas.cambiar_escena(Normal())
+        self.motor.canvas.depurador.reiniciar()
 
     def terminar(self):
         self.motor.terminar()
