@@ -372,21 +372,23 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         codigo = ""
         try:
             try:
+                texto_a_ejecutar = 'inspect.isclass(' + texto + ")"
+                es_clase = eval(texto_a_ejecutar, self.interpreterLocals)
+
+                if es_clase:
+                    texto = texto + ".__init__"
+
                 texto_a_ejecutar = 'inspect.getsource(' + texto + ")"
                 codigo = eval(texto_a_ejecutar, self.interpreterLocals)
             except TypeError:
-                try:
-                    texto_a_ejecutar = 'inspect.getsource(' + texto + ")"
-                    codigo = eval(texto_a_ejecutar, self.interpreterLocals)
-                except TypeError:
-                    codigo = ""
+                codigo = ""
         except:
             pass
-
 
         if codigo:
             posicion = codigo.find(":")
             codigo = codigo[:posicion].replace("def ", "").replace('  ', '').replace('self, ', '').replace('self', '')
+
         return codigo
 
     def mostrar_consejo(self, linea):
