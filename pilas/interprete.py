@@ -191,6 +191,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.console.addWidget(consola)
         self.console.setCurrentWidget(consola)
         self.consola = consola
+        self.consola.text_edit.setFocus()
 
     def cuando_pulsa_el_boton_guardar(self):
         self.consola.text_edit.guardar_contenido_con_dialogo()
