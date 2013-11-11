@@ -104,7 +104,7 @@ sencilla es ejecutar lo siguiente:
 
 .. code-block:: python
 
-    bananas += pilas.atajos.fabricar(pilas.actores.Bananas, 20)
+    bananas += pilas.atajos.fabricar(pilas.actores.Banana, 20)
 
 La pantalla se llenará de bananas, bah, habrá exactamente 20...
 
