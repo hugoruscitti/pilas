@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilas/data/asistente.ui'
 #
-# Created: Wed Oct 23 20:02:03 2013
+# Created: Sat Nov  9 21:50:51 2013
 #      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
