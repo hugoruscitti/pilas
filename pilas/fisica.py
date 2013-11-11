@@ -482,10 +482,14 @@ class Circulo(Figura):
         y = convertir_a_metros(y)
         radio = convertir_a_metros(radio)
 
-        if not fisica:
-            fisica = pilas.escena_actual().fisica
+        self.dinamica = dinamica
+        self.fisica = fisica
+        self.sin_rotacion = sin_rotacion
 
-        if not dinamica:
+        if not self.fisica:
+            self.fisica = pilas.escena_actual().fisica
+
+        if not self.dinamica:
             densidad = 0
 
         fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=radio),
@@ -496,16 +500,43 @@ class Circulo(Figura):
 
         # Agregamos un identificador para controlarlo posteriormente en las
         # colisiones.
-        userData = { 'id' : self.id }
-        fixture.userData = userData
+        self.userData = { 'id' : self.id }
+        fixture.userData = self.userData
 
-        if dinamica:
-            self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
-            self._cuerpo = fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
 
-        self._cuerpo.fixedRotation = sin_rotacion
+        self._cuerpo.fixedRotation = self.sin_rotacion
 
+    def definir_radio(self, radio):
+        fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=radio),
+                                     density=self._cuerpo.fixtures[0].density,
+                                     linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
+                                     friction=self._cuerpo.fixtures[0].friction,
+                                     restitution=self._cuerpo.fixtures[0].restitution)
+
+        fixture.userData = self.userData
+
+        self.fisica.mundo.DestroyBody(self._cuerpo)
+
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, linearVelocity=self._cuerpo.linearVelocity, fixtures=fixture)    
+        else:
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, fixtures=fixture)
+
+        self._cuerpo.fixedRotation = self.sin_rotacion
+
+    @pilas.utils.interpolable
+    def set_radius(self, radio):
+        self.definir_radio(radio)
+
+    def get_radius(self):
+        return self._cuerpo.fixtures[0].shape.radius
+
+    radio = property(get_radius, set_radius,doc="definir radio del circulo")
+        
 class Rectangulo(Figura):
     """Representa un rectángulo que puede colisionar con otras figuras.
 
@@ -528,10 +559,14 @@ class Rectangulo(Figura):
         ancho = convertir_a_metros(ancho)
         alto = convertir_a_metros(alto)
 
-        if not fisica:
-            fisica = pilas.escena_actual().fisica
+        self.dinamica = dinamica
+        self.fisica = fisica
+        self.sin_rotacion = sin_rotacion
 
-        if not dinamica:
+        if not self.fisica:
+            self.fisica = pilas.escena_actual().fisica
+
+        if not self.dinamica:
             densidad = 0
 
         fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(ancho/2, alto/2)),
@@ -542,16 +577,57 @@ class Rectangulo(Figura):
 
         # Agregamos un identificador para controlarlo posteriormente en las
         # colisiones.
-        userData = { 'id' : self.id }
-        fixture.userData = userData
+        self.userData = { 'id' : self.id }
+        fixture.userData = self.userData
 
-        if dinamica:
-            self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
-            self._cuerpo = fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
 
-        self._cuerpo.fixedRotation = sin_rotacion
+        self._cuerpo.fixedRotation = self.sin_rotacion
 
+    def definir_escala(self, ancho=None, alto=None):
+        if ancho != None:
+            fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(ancho/2, self._cuerpo.fixtures[0].shape.vertices[2][1])),
+                                     density=self._cuerpo.fixtures[0].density,
+                                     linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
+                                     friction=self._cuerpo.fixtures[0].friction,
+                                     restitution=self._cuerpo.fixtures[0].restitution)
+        elif alto != None:
+            fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(self._cuerpo.fixtures[0].shape.vertices[2][0], alto/2)),
+                                     density=self._cuerpo.fixtures[0].density,
+                                     linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
+                                     friction=self._cuerpo.fixtures[0].friction,
+                                     restitution=self._cuerpo.fixtures[0].restitution)     
+
+        fixture.userData = self.userData
+
+        self.fisica.mundo.DestroyBody(self._cuerpo)
+
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, linearVelocity=self._cuerpo.linearVelocity, fixtures=fixture)    
+        else:
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, fixtures=fixture)
+
+        self._cuerpo.fixedRotation = self.sin_rotacion
+
+    @pilas.utils.interpolable
+    def set_width(self, ancho):
+        self.definir_escala(ancho=ancho)
+
+    def get_width(self):
+        return (self._cuerpo.fixtures[0].shape.vertices[2][0]) * 2
+
+    @pilas.utils.interpolable
+    def set_height(self, alto):
+        self.definir_escala(alto=alto)
+
+    def get_height(self):
+        return (self._cuerpo.fixtures[0].shape.vertices[2][1]) * 2
+
+    ancho = property(get_width, set_width, doc="definir ancho del rectangulo")
+    alto = property(get_height, set_height, doc="definir alto del rectangulo")
 
 class Poligono(Figura):
     """Representa un cuerpo poligonal.
