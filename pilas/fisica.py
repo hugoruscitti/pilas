@@ -703,7 +703,7 @@ class Poligono(Figura):
     def get_scale(self):
         return self._escala
 
-    escala = property(get_scale, set_scale, doc="definri escala del poligono")
+    escala = property(get_scale, set_scale, doc="definir escala del poligono")
 
 class ConstanteDeMovimiento():
     """Representa una constante de movimiento para el mouse."""
