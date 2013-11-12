@@ -506,7 +506,7 @@ class Circulo(Figura):
         if self.dinamica:
             self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
-            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture) 
 
         self._cuerpo.fixedRotation = self.sin_rotacion
 
@@ -648,27 +648,62 @@ class Poligono(Figura):
 
         Figura.__init__(self)
 
-        if not fisica:
-            fisica = pilas.escena_actual().fisica
+        self._escala = 1
 
-        vertices = [(convertir_a_metros(x1), convertir_a_metros(y1)) for (x1, y1) in puntos]
+        self.puntos = puntos
+        self.dinamica = dinamica
+        self.fisica = fisica
+        self.sin_rotacion = sin_rotacion
 
-        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(vertices=vertices),
+        if not self.fisica:
+            self.fisica = pilas.escena_actual().fisica
+
+        self.vertices = [(convertir_a_metros(x1) * self._escala, convertir_a_metros(y1) * self._escala) for (x1, y1) in self.puntos]
+
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(vertices=self.vertices),
                                      density=densidad,
                                      linearDamping=amortiguacion,
                                      friction=friccion,
                                      restitution=restitucion)
 
-        userData = { 'id' : self.id }
-        fixture.userData = userData
+        self.userData = { 'id' : self.id }
+        fixture.userData = self.userData
 
-        if dinamica:
-            self._cuerpo = fisica.mundo.CreateDynamicBody(position=(0, 0), fixtures=fixture)
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(0, 0), fixtures=fixture)
         else:
-            self._cuerpo = fisica.mundo.CreateKinematicBody(position=(0, 0), fixtures=fixture)
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(0, 0), fixtures=fixture)
 
-        self._cuerpo.fixedRotation = sin_rotacion
+        self._cuerpo.fixedRotation = self.sin_rotacion
 
+    def definir_escala(self, scale):
+        self._escala = scale
+        self.vertices = [(convertir_a_metros(x1) * self._escala, convertir_a_metros(y1) * self._escala) for (x1, y1) in self.puntos]
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(vertices=self.vertices),
+                                     density=self._cuerpo.fixtures[0].density,
+                                     linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
+                                     friction=self._cuerpo.fixtures[0].friction,
+                                     restitution=self._cuerpo.fixtures[0].restitution)
+
+        fixture.userData = self.userData
+
+        self.fisica.mundo.DestroyBody(self._cuerpo)
+
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, linearVelocity=self._cuerpo.linearVelocity, fixtures=fixture)    
+        else:
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, fixtures=fixture)
+        
+        self._cuerpo.fixedRotation = self.sin_rotacion
+
+    @pilas.utils.interpolable
+    def set_scale(self, scale):
+        self.definir_escala(scale)
+
+    def get_scale(self):
+        return self._escala
+
+    escala = property(get_scale, set_scale, doc="definri escala del poligono")
 
 class ConstanteDeMovimiento():
     """Representa una constante de movimiento para el mouse."""
