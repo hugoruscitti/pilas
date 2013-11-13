@@ -480,7 +480,8 @@ class Circulo(Figura):
 
         x = convertir_a_metros(x)
         y = convertir_a_metros(y)
-        radio = convertir_a_metros(radio)
+        self._radio = convertir_a_metros(radio)
+        self._escala = 1
 
         self.dinamica = dinamica
         self.fisica = fisica
@@ -492,7 +493,7 @@ class Circulo(Figura):
         if not self.dinamica:
             densidad = 0
 
-        fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=radio),
+        fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=self._radio),
                                      density=densidad,
                                      linearDamping=amortiguacion,
                                      friction=friccion,
@@ -510,13 +511,20 @@ class Circulo(Figura):
 
         self._cuerpo.fixedRotation = self.sin_rotacion
 
-    def definir_radio(self, radio):
-        radio = convertir_a_metros(radio)
-        fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=radio),
-                                     density=self._cuerpo.fixtures[0].density,
-                                     linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
-                                     friction=self._cuerpo.fixtures[0].friction,
-                                     restitution=self._cuerpo.fixtures[0].restitution)
+    def definir_escala(self, radio=None, escala=None):
+        if radio != None:
+            self._escala = (self._escala * radio) / self.radio
+            self._radio = convertir_a_metros(radio)
+
+        elif escala != None:
+            self._radio = (self._radio * escala) / self._escala
+            self._escala = escala 
+        
+        fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=self._radio),
+                                         density=self._cuerpo.fixtures[0].density,
+                                         linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
+                                         friction=self._cuerpo.fixtures[0].friction,
+                                         restitution=self._cuerpo.fixtures[0].restitution)                
 
         fixture.userData = self.userData
 
@@ -531,12 +539,20 @@ class Circulo(Figura):
 
     @pilas.utils.interpolable
     def set_radius(self, radio):
-        self.definir_radio(radio)
+        self.definir_escala(radio=radio)
 
     def get_radius(self):
-        return convertir_a_pixels(self._cuerpo.fixtures[0].shape.radius)
+        return convertir_a_pixels(self._radio)
 
-    radio = property(get_radius, set_radius,doc="definir radio del circulo")
+    @pilas.utils.interpolable
+    def set_scale(self, escala):
+        self.definir_escala(escala=escala)
+
+    def get_scale(self):
+        return self._escala
+
+    radio = property(get_radius, set_radius,doc='definir radio del circulo')
+    escala = property(get_scale, set_scale, doc='definir escala del circulo')
         
 class Rectangulo(Figura):
     """Representa un rectángulo que puede colisionar con otras figuras.
@@ -706,7 +722,7 @@ class Poligono(Figura):
     def get_scale(self):
         return self._escala
 
-    escala = property(get_scale, set_scale, doc="definir_escala escala del poligono")
+    escala = property(get_scale, set_scale, doc="definir escala del poligono")
 
 class ConstanteDeMovimiento():
     """Representa una constante de movimiento para el mouse."""
