@@ -664,11 +664,11 @@ class Poligono(Figura):
 
     El poligono necesita al menos tres puntos para dibujarse, y cada
     uno de los puntos se tienen que ir dando en orden de las agujas
-    del relog.
+    del reloj.
 
     Por ejemplo:
 
-        >>> pilas.fisica.Poligono([(100, 2), (-50, 0), (-100, 100.0)])
+        >>> pilas.fisica.Poligono(0,0,[(100, 2), (-50, 0), (-100, 100.0)])
 
     """
 
@@ -706,8 +706,8 @@ class Poligono(Figura):
 
         self._cuerpo.fixedRotation = self.sin_rotacion
 
-    def definir_escala(self, scale):
-        self._escala = scale
+    def definir_escala(self, escala):
+        self._escala = escala
         self.vertices = [(convertir_a_metros(x1) * self._escala, convertir_a_metros(y1) * self._escala) for (x1, y1) in self.puntos]
         fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(vertices=self.vertices),
                                      density=self._cuerpo.fixtures[0].density,
@@ -727,8 +727,8 @@ class Poligono(Figura):
         self._cuerpo.fixedRotation = self.sin_rotacion
 
     @pilas.utils.interpolable
-    def set_scale(self, scale):
-        self.definir_escala(scale)
+    def set_scale(self, escala):
+        self.definir_escala(escala)
 
     def get_scale(self):
         return self._escala
