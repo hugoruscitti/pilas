@@ -21,6 +21,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.nombre_archivo_script = ""
         self.main = main
         Ui_AsistenteWindow.setupUi(self, main)
+        main.setWindowTitle("pilas-engine")
         main.resize(550, 342)
 
         self.webView.setAcceptDrops(False)
@@ -36,6 +37,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.process = None
         self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
         self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_proceso)
+        self.webView.history().setMaximumItemCount(0)
 
     def _consultar_ultima_version_del_servidor(self):
         direccion = QtCore.QUrl("https://raw.github.com/hugoruscitti/pilas/gh-pages/version.json")
@@ -80,18 +82,18 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _cargar_pagina_principal(self):
         file_path = utils.obtener_ruta_al_recurso('asistente/index.html')
+        self.webView.load(QtCore.QUrl.fromLocalFile(file_path))
         # TODO: convierto la ruta en absoluta para que mac desde py2app
         #       pueda interpretar correctamente las imagenes.
-        file_path = os.path.abspath(file_path)
+        #file_path = os.path.abspath(file_path)
 
-        contenido = self._obtener_html(file_path)
-        base_dir =  QtCore.QUrl.fromLocalFile(file_path)
-        self.webView.setHtml(contenido, base_dir)
+        #contenido = self._obtener_html(file_path)
+        #base_dir =  QtCore.QUrl.fromLocalFile(file_path)
+        #self.webView.setHtml(contenido, base_dir)
 
     def _obtener_html(self, file_path):
         archivo = open(file_path, "rt")
         contenido = archivo.read()
-        contenido = contenido.replace("{{VERSION_FRAME}}", """<iframe src='http://www.pilas-engine.com.ar/estadistica'></iframe>""")
         archivo.close()
         return contenido.decode('utf8')
 
@@ -128,15 +130,19 @@ class VentanaAsistente(Ui_AsistenteWindow):
         Internamente, esta funcion intenta buscar un archivo dentro de la
         ruta "../ejemplos/ejemplos/{categoria}/{nombre}.py".
         """
-        try:
+        if sys.platform == "darwin":
             ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
+            pilas.interprete.cargar_ejemplo(self.main, True, ruta)
+        else:
+            try:
+                ruta = self._obtener_ruta_al_ejemplo(categoria, nombre)
 
-            self.process = QtCore.QProcess(self.main)
-            self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
-            self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
-            self.process.start(sys.executable, [ruta], QtCore.QIODevice.ReadWrite)
-        except Exception, name:
-            QtGui.QMessageBox.critical(self.main, "Error", str(name))
+                self.process = QtCore.QProcess(self.main)
+                self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
+                self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
+                self.process.start(sys.executable, [ruta], QtCore.QIODevice.ReadWrite)
+            except Exception, name:
+                QtGui.QMessageBox.critical(self.main, "Error", str(name))
 
     def _mostrar_codigo(self, categoria, nombre):
         try:
@@ -170,19 +176,29 @@ class VentanaAsistente(Ui_AsistenteWindow):
             QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
     def _cuando_selecciona_interprete(self):
-        if sys.platform == "win32":
-            self._ejecutar_comando(sys.executable, ['-i'], '.')
+        if sys.platform == "darwin":
+        	QtCore.QTimer.singleShot(500, self._iniciar_interprete_diferido)
         else:
-            self._ejecutar_comando(sys.executable, [sys.argv[0], '-i'], '.')
+            if sys.platform == "win32":
+                self._ejecutar_comando(sys.executable, ['-i'], '.')
+            else:
+                self._ejecutar_comando(sys.executable, [sys.argv[0], '-i'], '.')
+
+
+    def _iniciar_interprete_diferido(self):
+        self.instancia_interprete = pilas.interprete.main(self.main, True)
 
     def ejecutar_script(self, nombre_archivo_script, directorio_trabajo):
         self.nombre_archivo_script = nombre_archivo_script
         self.directorio_trabajo = directorio_trabajo
 
-        try:
-            self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
-        except Exception, e:
-            QtGui.QMessageBox.critical(self.main, "Error", str(e))
+        if sys.platform == "darwin":
+            pilas.interprete.cargar_ejemplo(self.main, True, nombre_archivo_script)
+        else:
+            try:
+                self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
+            except Exception, e:
+                QtGui.QMessageBox.critical(self.main, "Error", str(e))
 
     def _ejecutar_comando(self, comando, argumentos, directorio_trabajo):
         "Ejecuta un comando en segundo plano."
@@ -192,7 +208,6 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
         self.process = QtCore.QProcess(self.main)
         self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
-        #self.process.error.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
         self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
         self.process.setWorkingDirectory(directorio_trabajo)
         self.process.start(comando, argumentos)
@@ -214,27 +229,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
             self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
 
     def _cuando_selecciona_abrir_manual(self):
-        try:
-            base_dir = '/usr/share/python-pilas'
-            ruta_al_manual = os.path.join(base_dir, 'manual.pdf')
-            # BUSCA el archivo: /usr/share/python-pilas/manual.pdf
-            ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
-            pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
-        except IOError:
-            try:
-                # BUSCA el archivo: /home/mi_usuario/.pilas/pilas-VERSION.pdf
-                base_dir = str(QtCore.QDir.homePath())
-                ruta_al_manual = os.path.join(base_dir, '.pilas', 'pilas-%s.pdf' %(pilas.version()))
-                ruta = pilas.utils.obtener_ruta_al_recurso(ruta_al_manual)
-                pilas.utils.abrir_archivo_con_aplicacion_predeterminada(ruta)
-            except IOError:
-                titulo = "Error, no se encuentra el manual"
-                mensaje = u"Lo siento, no se encuentra el manual en tu equipo. ¿Quieres descargarlo?"
-                respuesta = self._consultar(self.main, titulo, mensaje)
-
-                if respuesta == QtGui.QMessageBox.Yes:
-                    url = "http://media.readthedocs.org/pdf/pilas/latest/pilas.pdf"
-                    pilas.utils.descargar_archivo_desde_internet(self.main, url, ruta_al_manual)
+        pilas.manual.main(self.main, True)
 
     def _consultar(self, parent, titulo, mensaje):
         "Realizar una consulta usando un cuadro de dialogo."
@@ -278,6 +273,15 @@ class MainWindow(QtGui.QMainWindow):
         else:
             super(MainWindow,self).dropEvent(event)
         self.ui.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
+
+    def closeEvent(self, event):
+        # TODO: Evitar cerrar la aplicación de esta forma, el
+        # problema se produce a causa del objeto widget de pilas. En
+        # una situación normal, la este método no devería ser necesario, pyqt
+        # tiene que cerrar la aplicación cuando la última ventana se cierra.
+        QtGui.qApp.closeAllWindows()
+        import sys
+        sys.exit(0)
 
 def ejecutar():
     app = QtGui.QApplication(sys.argv)

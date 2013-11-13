@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'asistente.ui'
+# Form implementation generated from reading ui file 'pilas/data/asistente.ui'
 #
-# Created: Fri Nov  2 01:12:59 2012
-#      by: PyQt4 UI code generator 4.9.1
+# Created: Sat Nov  9 21:50:51 2013
+#      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,7 +17,8 @@ except AttributeError:
 class Ui_AsistenteWindow(object):
     def setupUi(self, AsistenteWindow):
         AsistenteWindow.setObjectName(_fromUtf8("AsistenteWindow"))
-        AsistenteWindow.resize(507, 342)
+        AsistenteWindow.resize(615, 380)
+        AsistenteWindow.setMinimumSize(QtCore.QSize(615, 380))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("pilas.ico")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         AsistenteWindow.setWindowIcon(icon)
@@ -31,27 +32,17 @@ class Ui_AsistenteWindow(object):
         self.webView.setObjectName(_fromUtf8("webView"))
         self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)
         AsistenteWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(AsistenteWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 507, 22))
-        self.menubar.setObjectName(_fromUtf8("menubar"))
-        self.menu_Archivo = QtGui.QMenu(self.menubar)
-        self.menu_Archivo.setObjectName(_fromUtf8("menu_Archivo"))
-        AsistenteWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(AsistenteWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         AsistenteWindow.setStatusBar(self.statusbar)
         self.salir_action = QtGui.QAction(AsistenteWindow)
         self.salir_action.setObjectName(_fromUtf8("salir_action"))
-        self.menu_Archivo.addSeparator()
-        self.menu_Archivo.addAction(self.salir_action)
-        self.menubar.addAction(self.menu_Archivo.menuAction())
 
         self.retranslateUi(AsistenteWindow)
         QtCore.QMetaObject.connectSlotsByName(AsistenteWindow)
 
     def retranslateUi(self, AsistenteWindow):
         AsistenteWindow.setWindowTitle(QtGui.QApplication.translate("AsistenteWindow", "pilas-engine", None, QtGui.QApplication.UnicodeUTF8))
-        self.menu_Archivo.setTitle(QtGui.QApplication.translate("AsistenteWindow", "&Archivo", None, QtGui.QApplication.UnicodeUTF8))
         self.salir_action.setText(QtGui.QApplication.translate("AsistenteWindow", "Salir", None, QtGui.QApplication.UnicodeUTF8))
 
 from PyQt4 import QtWebKit

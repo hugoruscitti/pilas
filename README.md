@@ -34,7 +34,7 @@ una serie de dependencias:
 
 (en ubuntu 10.04 habilitar la fuente de software "universe" antes)
 
-    sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion
+    sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion python-pygame
 
 Luego, instalar box2d:
 
@@ -52,7 +52,7 @@ y por último, obtener e instalar pilas desde el respositorio:
     
 ### Instalación en Open Suse 12.2
 
-    sudo zypper install git gcc python-devel swig python-qt4 python-setuptools gcc-c++
+    sudo zypper install git gcc python-devel swig python-qt4 python-setuptools gcc-c++ python-pygame
 
     sudo easy_install -U distribute 
     sudo easy_install -U box2d
@@ -69,7 +69,7 @@ y por último, obtener e instalar pilas desde el respositorio:
 
 Primero se deben instalar los siguientes paquetes:
 
-    sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion
+    sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion python-pygame
 
 Luego, instalar box2d y pilas usando el comando ``easy_install``:
 

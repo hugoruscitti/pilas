@@ -26,10 +26,14 @@ div.consulta_version {
 div.version {
     font-size: small; 
     color: gray;
+  cursor: pointer;
+}
+
+div.version:hover {
+  color: black !important;
 }
 
 div.tip {
-    margin-top: 4em;
     font-size: small; 
     color: #3e424d;
     border: 2px dashed #ccc;
@@ -97,7 +101,7 @@ span.progresando {
 
 div.fila {
     display: block;
-    max-width: 500px;
+    max-width: 450px;
     clear: both;
     margin: auto;
 }
@@ -115,5 +119,71 @@ html, body {height: 100%; padding-left: 1em; padding-right: 1em}
 	padding-bottom: 130;}  /* must be same height as the footer */
 
 #footer {position: relative;
-	margin-top: -130px; /* negative value of footer height */
+  position: absolute;
+	bottom: 25px;
+	margin: auto;
+	left: 10%;
+	right: 10%;
+}
+
+
+#principal {
+  min-width: 500px;
+  color: red;
+  margin-top: 90px;
+}
+
+
+#header {
+	min-width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	border-bottom: 1px solid #9baab2;
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12),inset 0 -4px 4px -4px rgba(0,0,0,0.3);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12),inset 0 -4px 4px -4px rgba(0,0,0,0.3);
+	height: 49px;
+  background-image: url("../imagenes/pilas-logo.png");
+	background-repeat: no-repeat;
+	background-position: center;
+
+}
+
+
+.version {
+  float: right;
+  padding-top: 16px;
+  padding-right: 16px;
+  color: #bbb !important;
+}
+
+
+.invisible {
+  display: none;
+}
+
+.popover-content {
+  overflow-y: scroll;
+  height: 300px;
+}
+
+.popover ul {
+  list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+  margin-top: 10px;
+}
+
+.popover ul li {
+  margin-bottom: 10px;
+}
+
+body.modal-open {
+  margin-right: 0 !important;
+}
+
+.centrado {
+  text-align: center;
 }

@@ -19,6 +19,7 @@ import pilas
 import sys
 import traceback
 import copy
+import math
 
 
 class LibreriaImagenes(object):
@@ -131,7 +132,9 @@ class CanvasWidgetAbstracto(object):
         self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
         self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
 
-        self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
+        if self.gestor_escenas.escena_actual():
+            if not(self.gestor_escenas.escena_actual().escena_pausa):
+                self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
         if self.gestor_escenas.escena_actual():
@@ -149,6 +152,16 @@ class CanvasWidgetAbstracto(object):
 
         self.depurador.termina_dibujado(self.motor, self.painter)
         self.painter.end()
+
+    def save_to_disk(self, filename):
+        try:
+            image =  QtGui.QPixmap(self.width(), self.height())
+            image = QtGui.QPixmap.grabWidget(self, 0, 0, self.width(), self.height())
+            if not image.save(filename, "PNG", -1):
+                print "Imposible guardar la captura de pantalla."
+        except Exception:
+            print traceback.format_exc()
+            print sys.exc_info()[0]
 
     def timerEvent(self, event):
         try:
@@ -558,6 +571,13 @@ class Lienzo(Imagen):
         pen = QtGui.QPen(color, grosor)
         painter.setPen(pen)
         painter.drawLine(x0, y0, x1, y1)
+    
+    def angulo(self, motor, x, y, angulo, radio, color, grosor):
+        angulo_en_radianes = math.radians(-angulo)
+        dx = math.cos(angulo_en_radianes) * radio
+        dy = math.sin(angulo_en_radianes) * radio
+        self.linea(motor, x, y, x + dx, y + dy, color, grosor)
+               
 
     def poligono(self, motor, puntos, color=colores.negro, grosor=1, cerrado=False):
         x, y = puntos[0]
@@ -613,7 +633,7 @@ class Superficie(Imagen):
     def pintar_imagen(self, imagen, x=0, y=0):
         self.pintar_parte_de_imagen(imagen, 0, 0, imagen.ancho(), imagen.alto(), x, y)
 
-    def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro):
+    def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro, ancho=0, vertical=False):
         self.canvas.begin(self._imagen)
         r, g, b, a = color.obtener_componentes()
         self.canvas.setPen(QtGui.QColor(r, g, b))
@@ -624,14 +644,27 @@ class Superficie(Imagen):
             nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
         else:
             nombre_de_fuente = self.canvas.font().family()
+            
+        if not ancho:
+            flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop
+            ancho = self._imagen.width()
+        else:
+            flags = QtCore.Qt.AlignLeft | QtCore.Qt.TextWordWrap | QtCore.Qt.AlignTop
 
         font = QtGui.QFont(nombre_de_fuente, magnitud)
         self.canvas.setFont(font)
         metrica = QtGui.QFontMetrics(font)
 
-        for line in cadena.split('\n'):
-            self.canvas.drawText(QtCore.QRect(dx, dy, self._imagen.width(), self._imagen.height()), QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop, line)
-            dy += metrica.height()
+
+        if vertical:
+            lineas = [t for t in cadena]
+        else:
+            lineas = cadena.split('\n')
+
+        for line in lineas:
+            r = QtCore.QRect(dx, dy, ancho, 2000)
+            rect = self.canvas.drawText(r, flags, line)
+            dy += rect.height()
 
         self.canvas.end()
 
@@ -695,11 +728,12 @@ class Superficie(Imagen):
 class Texto(Superficie):
     CACHE_FUENTES = {}
 
-    def __init__(self, texto, magnitud, motor, vertical=False, fuente=None, color=pilas.colores.negro):
-        ancho, alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente)
+    def __init__(self, texto, magnitud, motor, vertical=False, fuente=None, color=pilas.colores.negro, ancho=None):
+        ancho, alto = motor.obtener_area_de_texto(texto, magnitud, vertical, fuente, ancho)
         Superficie.__init__(self, ancho, alto)
+        self._ancho_del_texto = ancho
         self.dibujar_texto = self.texto
-        self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente, color=color)
+        self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente, color=color, ancho=ancho, vertical=vertical)
         self.ruta_original = texto.encode('ascii', 'xmlcharrefreplace') + str(os.urandom(25))
         self.texto = texto
 
@@ -938,6 +972,45 @@ class MusicaPhonon(SonidoPhonon):
         SonidoPhonon.__init__(self, media, ruta)
 
 
+class SonidoPygame:
+    deshabilitado = False
+
+    def __init__(self, media, ruta):
+        import pygame
+        self.media = media
+        self.ruta = ruta
+        self.sonido = pygame.mixer.Sound(ruta)
+
+    def _play(self):
+        if not self.deshabilitado:
+            self.sonido.play()
+
+    def reproducir(self, repetir=False):
+        if not self.deshabilitado:
+            if repetir:
+                self.sonido.play(-1)
+            else:
+                self.sonido.play()
+
+    def detener(self):
+        "Detiene el audio."
+        self.sonido.stop()
+
+    def pausar(self):
+        "Hace una pausa del audio."
+        self.sonido.stop()
+
+    def continuar(self):
+        "Continúa reproduciendo el audio."
+        if not self.deshabilitado:
+            self.sonido.play()
+
+class MusicaPygame(SonidoPygame):
+
+    def __init__(self, media, ruta):
+        SonidoPygame.__init__(self, media, ruta)
+
+
 class Motor(object):
     """Representa la ventana principal de pilas.
 
@@ -976,7 +1049,7 @@ class Motor(object):
         self.libreria_imagenes = LibreriaImagenes()
 
     def _inicializar_sistema_de_audio(self, audio):
-        sistemas_de_sonido = ['deshabilitado', 'phonon', 'gst']
+        sistemas_de_sonido = ['deshabilitado', 'pygame', 'phonon', 'gst']
 
         if audio not in sistemas_de_sonido:
             error = "El sistema de audio '%s' es invalido" % (audio)
@@ -987,13 +1060,7 @@ class Motor(object):
             try:
                 import gst
             except ImportError:
-                print "Nota: El sistema de audio gstreamer no está disponible, usando phonon en su lugar."
-                audio = 'phonon'
-
-        if audio == 'deshabilitado':
-            self.player = None
-            self.clase_sonido = SonidoDeshabilitado
-            self.clase_musica = MusicaDeshabilitada
+                raise Exception("Error, el sistema de audio GST (gstreamer) no esta disponible.")
         elif audio == 'phonon':
             from PyQt4 import phonon
             self.media = phonon.Phonon.MediaObject()
@@ -1002,10 +1069,26 @@ class Motor(object):
             self.player = self.media
             self.clase_sonido = SonidoPhonon
             self.clase_musica = MusicaPhonon
+        elif audio == 'pygame':
+            try:
+                import pygame
+                pygame.mixer.init()
+                self.player = None
+                self.clase_sonido = SonidoPygame
+                self.clase_musica = MusicaPygame
+            except ImportError:
+                raise Exception("Error, el sistema de audio pygame no esta disponible")
+                audio = "deshabilitado"
         elif audio == 'gst':
             self.player = gst.element_factory_make("playbin2", "player")
             self.clase_sonido = SonidoGST
             self.clase_musica = MusicaGST
+
+        # Si se deshabilita el sistema de sonido completo.
+        if audio == 'deshabilitado':
+            self.player = None
+            self.clase_sonido = SonidoDeshabilitado
+            self.clase_musica = MusicaDeshabilitada
 
     def terminar(self):
         self.ventana.close()
@@ -1081,7 +1164,7 @@ class Motor(object):
     def obtener_area(self):
         return (self.ancho_original, self.alto_original)
 
-    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None):
+    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None, ancho=0):
         pic = QtGui.QPicture()
         p = QtGui.QPainter(pic)
 
@@ -1093,23 +1176,25 @@ class Motor(object):
         font = QtGui.QFont(nombre_de_fuente, magnitud)
         p.setFont(font)
 
-        ancho = 0
         alto = 0
 
         if vertical:
             lineas = [t for t in cadena]
         else:
             lineas = cadena.split('\n')
+            
+        if not ancho:
+            flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop
+        else:
+            flags = QtCore.Qt.AlignLeft | QtCore.Qt.TextWordWrap | QtCore.Qt.AlignTop
 
         for line in lineas:
             if line == '':
                 line = ' '
-
-            brect = p.drawText(QtCore.QRect(0, 0, 1024, 768),
-                               QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop, line)
-            ancho = max(ancho, brect.size().width())
-            alto += brect.size().height()
-
+            
+            brect = p.drawText(QtCore.QRect(0, 0, ancho, 2000), flags, line)
+            ancho = max(ancho, brect.width())
+            alto += brect.height()
 
         p.end()
         return (ancho, alto)
@@ -1117,8 +1202,8 @@ class Motor(object):
     def obtener_actor(self, imagen, x, y):
         return Actor(imagen, x, y)
 
-    def obtener_texto(self, texto, magnitud, vertical=False, fuente=None, color=pilas.colores.negro):
-        return Texto(texto, magnitud, self, vertical, fuente, color=color)
+    def obtener_texto(self, texto, magnitud, vertical=False, fuente=None, color=pilas.colores.negro, ancho=None):
+        return Texto(texto, magnitud, self, vertical, fuente, color=color, ancho=ancho)
 
     def obtener_grilla(self, ruta, columnas, filas):
         return Grilla(ruta, columnas, filas)
@@ -1153,6 +1238,8 @@ class Motor(object):
             self._widgetlog = WidgetLog()
         else:
             self._widgetlog.show()
-        
+
         self._widgetlog.imprimir(params)
 
+    def capturar_pantalla(self, nombre_archivo):
+        self.canvas.save_to_disk(nombre_archivo)

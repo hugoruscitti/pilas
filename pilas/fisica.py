@@ -10,6 +10,7 @@ PPM = 30
 
 import math
 import pilas
+import random
 
 try:
     import Box2D as box2d
@@ -180,11 +181,19 @@ class Fisica(object):
                 if isinstance(shape, box2d.b2PolygonShape):
                     vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
                     vertices = [pilas.escena_actual().camara.desplazar(v) for v in vertices]
+                    lienzo.poligono(motor, vertices, color=pilas.colores.negro, grosor=grosor+2, cerrado=True)
                     lienzo.poligono(motor, vertices, color=pilas.colores.blanco, grosor=grosor, cerrado=True)
                 elif isinstance(shape, box2d.b2CircleShape):
                     (x, y) = pilas.escena_actual().camara.desplazar(cuerpo.transform * shape.pos * PPM)
 
+                    # Dibuja el angulo de la circunferencia.
+                    lienzo.angulo(motor, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM, pilas.colores.negro, grosor=grosor+2)
+                    lienzo.angulo(motor, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
+
+                    # Dibuja el borde de la circunferencia.
+                    lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.negro, grosor=grosor+2)
                     lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
+
                 else:
                     # TODO: implementar las figuras de tipo "edge" y "loop".
                     raise Exception("No puedo identificar el tipo de figura.")
@@ -374,11 +383,35 @@ class Figura(object):
 
     def definir_rotacion(self, angulo):
         # TODO: simplificar a la nueva api.
-        self._cuerpo.SetXForm((self.x, self.y), math.radians(-angulo))
+        self._cuerpo.angle = math.radians(-angulo)
+
+    @pilas.utils.interpolable
+    def set_x(self, x):
+        self.definir_x(x)
+
+    def get_x(self):
+        return self.obtener_x()
+
+    @pilas.utils.interpolable
+    def set_y(self, y):
+        self.definir_y(y)
+
+    def get_y(self):
+        return self.obtener_y()
+
+    @pilas.utils.interpolable
+    def set_rotation(self, angulo):
+        self.definir_rotacion(angulo)
+
+    def get_rotation(self):
+        return self.obtener_rotacion()   
 
     def impulsar(self, dx, dy):
         # TODO: convertir los valores dx y dy a metros.
-        self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0))
+        try:
+            self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0))
+        except TypeError, e:
+            self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0), True)
 
     def obtener_velocidad_lineal(self):
         # TODO: convertir a pixels
@@ -417,9 +450,9 @@ class Figura(object):
         """Quita una figura de la simulación."""
         pilas.escena_actual().fisica.eliminar_figura(self._cuerpo)
 
-    x = property(obtener_x, definir_x, doc="define la posición horizontal.")
-    y = property(obtener_y, definir_y, doc="define la posición vertical.")
-    rotacion = property(obtener_rotacion, definir_rotacion, doc="define la rotacion.")
+    x = property(get_x, set_x, doc="define la posición horizontal.")
+    y = property(get_y, set_y, doc="define la posición vertical.")
+    rotacion = property(get_rotation, set_rotation, doc="define la rotacion.")
 
 
 class Circulo(Figura):
@@ -447,15 +480,20 @@ class Circulo(Figura):
 
         x = convertir_a_metros(x)
         y = convertir_a_metros(y)
-        radio = convertir_a_metros(radio)
+        self._radio = convertir_a_metros(radio)
+        self._escala = 1
 
-        if not fisica:
-            fisica = pilas.escena_actual().fisica
+        self.dinamica = dinamica
+        self.fisica = fisica
+        self.sin_rotacion = sin_rotacion
 
-        if not dinamica:
+        if not self.fisica:
+            self.fisica = pilas.escena_actual().fisica
+
+        if not self.dinamica:
             densidad = 0
 
-        fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=radio),
+        fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=self._radio),
                                      density=densidad,
                                      linearDamping=amortiguacion,
                                      friction=friccion,
@@ -463,16 +501,59 @@ class Circulo(Figura):
 
         # Agregamos un identificador para controlarlo posteriormente en las
         # colisiones.
-        userData = { 'id' : self.id }
-        fixture.userData = userData
+        self.userData = { 'id' : self.id }
+        fixture.userData = self.userData
 
-        if dinamica:
-            self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
-            self._cuerpo = fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture) 
 
-        self._cuerpo.fixedRotation = sin_rotacion
+        self._cuerpo.fixedRotation = self.sin_rotacion
 
+    def definir_escala(self, radio=None, escala=None):
+        if radio != None:
+            self._escala = (self._escala * radio) / self.radio
+            self._radio = convertir_a_metros(radio)
+
+        elif escala != None:
+            self._radio = (self._radio * escala) / self._escala
+            self._escala = escala 
+        
+        fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=self._radio),
+                                         density=self._cuerpo.fixtures[0].density,
+                                         linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
+                                         friction=self._cuerpo.fixtures[0].friction,
+                                         restitution=self._cuerpo.fixtures[0].restitution)                
+
+        fixture.userData = self.userData
+
+        self.fisica.mundo.DestroyBody(self._cuerpo)
+
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, linearVelocity=self._cuerpo.linearVelocity, fixtures=fixture)    
+        else:
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, fixtures=fixture)
+
+        self._cuerpo.fixedRotation = self.sin_rotacion
+
+    @pilas.utils.interpolable
+    def set_radius(self, radio):
+        self.definir_escala(radio=radio)
+
+    def get_radius(self):
+        return convertir_a_pixels(self._radio)
+
+    @pilas.utils.interpolable
+    def set_scale(self, escala):
+        self.definir_escala(escala=escala)
+
+    def get_scale(self):
+        return self._escala
+
+    radio = property(get_radius, set_radius,doc='definir radio del circulo')
+    escala = property(get_scale, set_scale, doc='definir escala del circulo')
+        
 class Rectangulo(Figura):
     """Representa un rectángulo que puede colisionar con otras figuras.
 
@@ -492,16 +573,21 @@ class Rectangulo(Figura):
 
         x = convertir_a_metros(x)
         y = convertir_a_metros(y)
-        ancho = convertir_a_metros(ancho)
-        alto = convertir_a_metros(alto)
+        self._ancho = convertir_a_metros(ancho)
+        self._alto = convertir_a_metros(alto)
+        self._escala = 1
 
-        if not fisica:
-            fisica = pilas.escena_actual().fisica
+        self.dinamica = dinamica
+        self.fisica = fisica
+        self.sin_rotacion = sin_rotacion
 
-        if not dinamica:
+        if not self.fisica:
+            self.fisica = pilas.escena_actual().fisica
+
+        if not self.dinamica:
             densidad = 0
 
-        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(ancho/2, alto/2)),
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(self._ancho/2, self._alto/2)),
                                      density=densidad,
                                      linearDamping=amortiguacion,
                                      friction=friccion,
@@ -509,27 +595,80 @@ class Rectangulo(Figura):
 
         # Agregamos un identificador para controlarlo posteriormente en las
         # colisiones.
-        userData = { 'id' : self.id }
-        fixture.userData = userData
+        self.userData = { 'id' : self.id }
+        fixture.userData = self.userData
 
-        if dinamica:
-            self._cuerpo = fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
-            self._cuerpo = fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
 
-        self._cuerpo.fixedRotation = sin_rotacion
+        self._cuerpo.fixedRotation = self.sin_rotacion
 
+    def definir_escala(self, ancho=None, alto=None, escala=None):
+        if ancho != None:
+            self._ancho = convertir_a_metros(ancho)
+
+        elif alto != None:
+            self._alto = convertir_a_metros(alto)
+
+        elif escala != None:
+            self._ancho = (self._ancho * escala) / self._escala
+            self._alto = (self._alto * escala) / self._escala
+            self._escala = escala
+        
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(self._ancho/2, self._alto/2)),
+                                     density=self._cuerpo.fixtures[0].density,
+                                     linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
+                                     friction=self._cuerpo.fixtures[0].friction,
+                                     restitution=self._cuerpo.fixtures[0].restitution)
+
+        fixture.userData = self.userData
+
+        self.fisica.mundo.DestroyBody(self._cuerpo)
+
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, linearVelocity=self._cuerpo.linearVelocity, fixtures=fixture)    
+        else:
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, fixtures=fixture)
+
+        self._cuerpo.fixedRotation = self.sin_rotacion
+
+    @pilas.utils.interpolable
+    def set_width(self, ancho):
+        self.definir_escala(ancho=ancho)
+
+    def get_width(self):
+        return convertir_a_pixels(self._ancho)
+
+    @pilas.utils.interpolable
+    def set_height(self, alto):
+        self.definir_escala(alto=alto)
+
+    def get_height(self):
+        return convertir_a_pixels(self._alto)
+
+    @pilas.utils.interpolable
+    def set_scale(self, escala):
+        self.definir_escala(escala=escala)
+
+    def get_scale(self):
+        return self._escala
+
+    ancho = property(get_width, set_width, doc="definir ancho del rectangulo")
+    alto = property(get_height, set_height, doc="definir alto del rectangulo")
+    escala = property(get_scale, set_scale, doc="definir escala del rectangulo")
 
 class Poligono(Figura):
     """Representa un cuerpo poligonal.
 
     El poligono necesita al menos tres puntos para dibujarse, y cada
     uno de los puntos se tienen que ir dando en orden de las agujas
-    del relog.
+    del reloj.
 
     Por ejemplo:
 
-        >>> pilas.fisica.Poligono([(100, 2), (-50, 0), (-100, 100.0)])
+        >>> pilas.fisica.Poligono(0,0,[(100, 2), (-50, 0), (-100, 100.0)])
 
     """
 
@@ -539,27 +678,62 @@ class Poligono(Figura):
 
         Figura.__init__(self)
 
-        if not fisica:
-            fisica = pilas.escena_actual().fisica
+        self._escala = 1
 
-        vertices = [(convertir_a_metros(x1), convertir_a_metros(y1)) for (x1, y1) in puntos]
+        self.puntos = puntos
+        self.dinamica = dinamica
+        self.fisica = fisica
+        self.sin_rotacion = sin_rotacion
 
-        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(vertices=vertices),
+        if not self.fisica:
+            self.fisica = pilas.escena_actual().fisica
+
+        self.vertices = [(convertir_a_metros(x1) * self._escala, convertir_a_metros(y1) * self._escala) for (x1, y1) in self.puntos]
+
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(vertices=self.vertices),
                                      density=densidad,
                                      linearDamping=amortiguacion,
                                      friction=friccion,
                                      restitution=restitucion)
 
-        userData = { 'id' : self.id }
-        fixture.userData = userData
+        self.userData = { 'id' : self.id }
+        fixture.userData = self.userData
 
-        if dinamica:
-            self._cuerpo = fisica.mundo.CreateDynamicBody(position=(0, 0), fixtures=fixture)
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(0, 0), fixtures=fixture)
         else:
-            self._cuerpo = fisica.mundo.CreateKinematicBody(position=(0, 0), fixtures=fixture)
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(0, 0), fixtures=fixture)
 
-        self._cuerpo.fixedRotation = sin_rotacion
+        self._cuerpo.fixedRotation = self.sin_rotacion
 
+    def definir_escala(self, escala):
+        self._escala = escala
+        self.vertices = [(convertir_a_metros(x1) * self._escala, convertir_a_metros(y1) * self._escala) for (x1, y1) in self.puntos]
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(vertices=self.vertices),
+                                     density=self._cuerpo.fixtures[0].density,
+                                     linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
+                                     friction=self._cuerpo.fixtures[0].friction,
+                                     restitution=self._cuerpo.fixtures[0].restitution)
+
+        fixture.userData = self.userData
+
+        self.fisica.mundo.DestroyBody(self._cuerpo)
+
+        if self.dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, linearVelocity=self._cuerpo.linearVelocity, fixtures=fixture)    
+        else:
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, fixtures=fixture)
+        
+        self._cuerpo.fixedRotation = self.sin_rotacion
+
+    @pilas.utils.interpolable
+    def set_scale(self, escala):
+        self.definir_escala(escala)
+
+    def get_scale(self):
+        return self._escala
+
+    escala = property(get_scale, set_scale, doc="definir escala del poligono")
 
 class ConstanteDeMovimiento():
     """Representa una constante de movimiento para el mouse."""
@@ -629,7 +803,86 @@ class ConstanteDeDistancia():
         self.constante = fisica.mundo.CreateJoint(constante)
 
     def eliminar(self):
-        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante_mouse)
+        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
+
+class ConstanteDeGiro():
+    """Representa un punto de giro entre dos figuras
+        Ejemplo:
+
+        >>> rectangulo1 = pilas.fisica.Rectangulo(10,10,10,80)
+        >>> rectangulo2 = pilas.fisica.Rectangulo(10,10,10,80)
+        >>> pilas.fisica.ConstanteDeGiro(rectangulo1,rectangulo2,(.5,0),(-.5,0))
+
+        Para el ejemplo el punto de giro de cada objeto será (.5,0) y (-.5,0)
+        esto para simular que estan tomados de los extremos los rectangulos
+    """
+    def __init__(self,figura_1, figura_2, figura_1_punto=(0,0), figura_2_punto=(0,0), angulo_minimo=None,angulo_maximo=None, fisica=None, con_colision=True):
+        """ Inicializa la constante
+        :param figura_1: Una de las figuras a conectar por la constante.
+        :param figura_2: La otra figura a conectar por la constante.
+        :param figura_1_punto: Punto de rotación de figura_1
+        :param figura_2_punto: Punto de rotación de figura_2
+        :param angulo_minimo: Angulo minimo de rotacion para figura_2 con respecto a figura_1_punto
+        :param angulo_maximo: Angulo maximo de rotacion para figura_2 con respecto a figura_1_punto
+        :param fisica: Referencia al motor de física.
+        :param con_colision: Indica si se permite colisión entre las dos figuras.
+        """
+        if not fisica:
+            fisica = pilas.escena_actual().fisica
+
+        if not isinstance(figura_1, Figura) or not isinstance(figura_2, Figura):
+            raise Exception("Las dos figuras tienen que ser objetos de la clase Figura.")
+
+        constante = box2d.b2RevoluteJointDef()
+        constante.Initialize(bodyA=figura_1._cuerpo, bodyB=figura_2._cuerpo,anchor=(0,0))
+        constante.localAnchorA = convertir_a_metros(figura_1_punto[0]), convertir_a_metros(figura_1_punto[1])
+        constante.localAnchorB = convertir_a_metros(figura_2_punto[0]), convertir_a_metros(figura_2_punto[1])       
+        if angulo_minimo != None or angulo_maximo != None:
+            constante.enableLimit = True
+            constante.lowerAngle = math.radians(angulo_minimo)
+            constante.upperAngle = math.radians(angulo_maximo)
+        constante.collideConnected = con_colision
+        self.constante = fisica.mundo.CreateJoint(constante)
+
+    def eliminar(self):
+        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
+
+class ConstanteDeMovimientoTipoCuerda():
+    """Representa una conexion tipo cuerda elastica entre dos figuras
+        Ejemplo:
+
+        >>> rectangulo1 = pilas.fisica.Rectangulo(10,10,10,80)
+        >>> rectangulo2 = pilas.fisica.Rectangulo(10,10,10,80)
+        >>> pilas.fisica.ConstanteDeMovimientoTipoCuerda(rectangulo1,rectangulo2,(.5,0),(-.5,0),longitud_maxima=100)
+
+        Para el ejemplo el punto de giro de cada objeto será (.5,0) y (-.5,0)
+        esto para simular que estan tomados de los extremos los rectangulos
+    """
+    def __init__(self, figura_1, figura_2, figura_1_punto, figura_2_punto, longitud_maxima, fisica=None, con_colision=True):
+        """ Inicializa la constante
+        :param figura_1: Una de las figuras a conectar por la constante.
+        :param figura_2: La otra figura a conectar por la constante.
+        :param figura_1_punto: Punto de conexiin de la figura_1
+        :param figura_2_punto: Punto de conexion de la figura_2
+        :param longitud_maxima: Longitu Maxima de distancia que puede alcanzar la conexion
+        :param fisica: Referencia al motor de física.
+        :param con_colision: Indica si se permite colisión entre las dos figuras.
+        """        
+        if not fisica:
+            fisica = pilas.escena_actual().fisica
+
+        if not isinstance(figura_1, Figura) or not isinstance(figura_2, Figura):
+            raise Exception("Las dos figuras tienen que ser objetos de la clase Figura.")
+
+        constante = box2d.b2RopeJointDef(bodyA=figura_1._cuerpo, bodyB=figura_2._cuerpo)
+        constante.localAnchorA = convertir_a_metros(figura_1_punto[0]), convertir_a_metros(figura_1_punto[1])
+        constante.localAnchorB = convertir_a_metros(figura_2_punto[0]), convertir_a_metros(figura_2_punto[1])
+        constante.maxLength = convertir_a_metros(longitud_maxima)
+        constante.collideConnected = con_colision
+        self.constante = fisica.mundo.CreateJoint(constante)
+
+    def eliminar(self):
+        pilas.escena_actual().fisica.mundo.DestroyJoint(self.constante)
 
 def definir_gravedad(x, y):
     """Define la gravedad del motor de física.
@@ -638,6 +891,12 @@ def definir_gravedad(x, y):
     :param y: Aceleración vertical.
     """
     pilas.escena_actual().fisica.mundo.gravity = (x, y)
+
+    for actor in pilas.escena_actual().actores:
+        if getattr(actor, 'empujar', None):
+            dx, dy = random.choice([-1, 1]), random.choice([-1, 1])
+            actor.empujar(dx, dy)
+
 
 class ObjetosContactListener(contact_listener):
     """Gestiona las colisiones de los objetos para ejecutar funcionés."""

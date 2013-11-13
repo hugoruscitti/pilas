@@ -18,7 +18,7 @@ class Texto(Actor):
         >>> saludo = pilas.actores.Texto("Hola mundo!")
     """
 
-    def __init__(self, texto="None", x=0, y=0, magnitud=20, vertical=False, fuente=None, fijo=True):
+    def __init__(self, texto="None", x=0, y=0, magnitud=20, vertical=False, fuente=None, fijo=True, ancho=0):
         """Inicializa el actor.
 
         :param texto: Texto a mostrar.
@@ -28,7 +28,9 @@ class Texto(Actor):
         :param vertical: Si el texto será vertical u horizontal, como True o False.
         :param fuente: Nombre de la fuente a utilizar.
         :param fijo: Determina si el texto se queda fijo aunque se mueva la camara. Por defecto está fijo.
+        :param ancho: El limite horizontal en pixeles para la cadena, el texto de mostrara en varias lineas si no cabe en este límite.
         """
+        self._ancho_del_texto = ancho
         self.__magnitud = magnitud
         self.__vertical = vertical
         self.__fuente = fuente
@@ -44,7 +46,11 @@ class Texto(Actor):
 
     def definir_texto(self, texto):
         """Define el texto a mostrar."""
-        imagen = pilas.mundo.motor.obtener_texto(texto, self.__magnitud, self.__vertical, self.__fuente, color=self.__color)
+        imagen = pilas.mundo.motor.obtener_texto(texto, self.__magnitud, self.__vertical, self.__fuente, color=self.__color, ancho=self._ancho_del_texto)
+
+        if not self._ancho_del_texto:
+            self._ancho_del_texto = imagen.ancho()
+
         self.imagen = imagen
         self.centro = ("centro", "centro")
         self.__texto = texto
@@ -72,3 +78,12 @@ class Texto(Actor):
         self.definir_texto(self.__texto)
 
     color = property(obtener_color, definir_color, doc="Color del texto.")
+
+    def obtener_ancho(self):
+        return self._ancho_del_texto
+
+    def definir_ancho(self, ancho):
+        self._ancho_del_texto = ancho
+        self.texto = self.texto
+
+    ancho = property(obtener_ancho, definir_ancho, doc="Ancho del texto a mostrar")

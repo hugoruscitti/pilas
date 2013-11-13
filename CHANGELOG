@@ -1,3 +1,47 @@
+Pilas engine - 0.83 (2013-11-11)
+--------------------------------
+
+- Ahora es posible modificar radio del circulo, ancho y alto de Rectangulo
+- Haciendo que el modo depuración se reinicie junto con la llamada a pilas.reiniciar()
+- Añadido parametro para definir area del motor de fisica
+- Agregando un botón para que se pueda guardar desde el intérprete.
+- Haciendo interpolable la propiedad progreso del actor Energia.
+- Agregada clase ConstanteDeMovimientoTipoCuerda
+- Reparando la funcionalidad de arrastrar y soltar en mac.
+- Haciendo que abrir el interprete y los ejemplo sea diferente en mac y linux/windows.
+- Arreglo menor del modo pausa cuando no hay escena activa.
+- Ejemplo de una cuerda utilizando la clase ConstanteDeGiro del motor de físicas
+- arreglo menor de estilo en la barra para arrastrar y soltar archivos del asistente.
+- Añadida clase ContantedeGiro
+- Arreglado el problema de MantenerseEnPantalla con un actor reescalado. close #196
+- Arreglado el issue #195
+- La asignación de los comportamiento se hace igual que el de las habilidades. close #193
+- Refactorizando el orbitar sobre Actor. ref #192
+- Añadido el comportamiento de orbitar sobre otro actor
+- Creado el atajo para PAUSAR el juego. pilas.escena.pausar()
+- Agregando el changelog al asistente.
+- Mejorando la pantalla principal del asistente.
+- Mejorando el ícono de pilas en macos.
+- Modificando el interprete para que sea una ventana y no un dialogo.
+- Agregando icono al botón que permite ver el manual de pilas desde el interprete interactivo.
+- Reparando el atributo "ancho" del actor Texto.
+- Añadida una referencia de los atajos de eventos de los actores en la documentación
+- Creados los accesos directos para conectar un Actor a los eventos de pilas.
+- solucionando el problema de la funcion help en el interprete.
+- Arreglado el problema del backspace en el asistente fix #178
+- mostrando la coordenada de posicion del modo F12 en una posicion fija.
+- reparando el bug de cambio que ocasionaba que los objetos fisicos se queden estaticos incluso si se cambiaba la gravedad.
+- Cambiando el grosor inicial de las lineas de dibujado de los depuradores.
+- Implementando un visor de manual en HTML y agregando todos los archivos generados del manual al repositorio.
+- Agregando instrucciones para instalar pygame en el archivo readme.
+- Haciendo que el motor de audio soporte pygame como backend de sonido.
+- Merge pull request #181 from lucianobaraglia/develop
+- Corregida la colisión con un punto cuando el actor está fijo
+- Reparando el problema de posición de los objetos físicos.
+- eliminando archivos minificados de javascript.
+- Añadida la funcionalidad de capturar la pantalla con F2. Ref #180
+
+
 Pilas engine - 0.82 (2013-07-05)
 --------------------------------
 

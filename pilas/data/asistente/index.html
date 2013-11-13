@@ -6,9 +6,11 @@
 
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/estilo.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
+  <link href="css/index.css" rel="stylesheet" type="text/css"/>
+
   <script src="js/jquery-1.8.3.js"></script>
   <script src="js/bootstrap.js"></script>
+
   <script>
     $(document).ready(function() {
       $("a").click(function() {
@@ -17,13 +19,20 @@
         if (id === 'procesando')
             return false;
 
-
         $(this).attr('id', 'procesando');
 
         /* Restaurando el icono del boton */
         var self = $(this);
         setTimeout(function() {self.attr('id', id)}, 3000);
       });
+      
+      
+      $(".version").click(function() {
+        $('.modal').modal({});
+      });
+      
+      
+      
     });
 
     function resaltar_caja_destino_para_soltar(resaltar) {
@@ -42,15 +51,20 @@
 
 <body>
 
-<div id="wrap">
-  <div id="main">
-    
-    <div class='fila'>
-      <h3>¡ Bienvenido a pilas-engine !</h3>
+  
+<div class='container'>
+  <div id='header'>
+    <div class='version'>
+      versión 0.83
     </div>
-
+  </div>
+  
+  <!-- forzando la carga de la imagenen -->
+  <img src='imagenes/procesando.gif'>
+    
+  <div id='principal'>
     <div class='fila'>
-        <a href="http://pilas/interprete" id="interprete" class="button"><span>abrir intérprete</span></a>
+        <a href="http://pilas/interprete" id="interprete" class="button"><span>abrir el intérprete</span></a>
         <a href="ejemplos.html" id="ejemplos" class="button"><span>ver ejemplos</span></a>
     </div>
 
@@ -59,38 +73,439 @@
       <a href="http://pilas/web" id="web" class="button"><span>visitar la web</span></a>
     </div>
     
-    </div>
-</div>
-
-<div id="footer">
-  
-    <div class='fila'>
-      <div class='tip'>
-        <div class='frame'>{{VERSION_FRAME}}</div>
-        <img src='imagenes/caja.png'> Puedes ejecutar archivos .py soltándolos sobre esta ventana.
-      </div>
-    </div>
-  
   </div>
 
-
-<!--
-
-
-<div class="un_container">
-
-  <div id="wrap">
+  <div id="footer">
     
-	
+      <div class='fila centrado'>
+        <div class='tip'>
+          <img src='imagenes/caja.png'> Puedes ejecutar archivos .py soltándolos aquí.
+        </div>
+      </div>
+    
   </div>
-
-  <div id='footer'>
-    <div class='fila'>
-    </div>
-  </div>
-
+  
+  
+  <div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Historial de cambios</h4>
+      </div>
+      <div class="modal-body changelog">
+        
+        <h2 id='pilas_engine__083_20131018'>Pilas engine - 0.83 (2013-11-11)</h2>
+        
+        <ul>
+        <li>Ahora es posible modificar radio del circulo, ancho y alto de Rectangulo</li>
+        <li>Haciendo que el modo depuración se reinicie junto con la llamada a
+        pilas.reiniciar()</li>
+        <li>Añadido parametro para definir area del motor de fisica</li>
+        <li>Agregando un botón para que se pueda guardar desde el intérprete.</li>
+        <li>Haciendo interpolable la propiedad progreso del actor Energia.</li>
+        <li>Agregada clase ConstanteDeMovimientoTipoCuerda</li>
+        <li>Reparando la funcionalidad de arrastrar y soltar en mac.</li>
+        <li>Haciendo que abrir el interprete y los ejemplo sea diferente en mac y
+        linux/windows.</li>
+        <li>Arreglo menor del modo pausa cuando no hay escena activa.</li>
+        <li>Ejemplo de una cuerda utilizando la clase ConstanteDeGiro del motor de
+        físicas</li>
+        <li>arreglo menor de estilo en la barra para arrastrar y soltar archivos del
+        asistente.</li>
+        <li>Añadida clase ContantedeGiro</li>
+        <li>Arreglado el problema de MantenerseEnPantalla con un actor reescalado.
+        close #196</li>
+        <li>Arreglado el issue #195</li>
+        <li>La asignación de los comportamiento se hace igual que el de las
+        habilidades. close #193</li>
+        <li>Refactorizando el orbitar sobre Actor. ref #192</li>
+        <li>Añadido el comportamiento de orbitar sobre otro actor</li>
+        <li>Creado el atajo para PAUSAR el juego. pilas.escena.pausar()</li>
+        <li>Agregando el changelog al asistente.</li>
+        <li>Mejorando la pantalla principal del asistente.</li>
+        
+        <li>Mejorando el ícono de pilas en macos.</li>
+        
+        <li>Modificando el interprete para que sea una ventana y no un dialogo.</li>
+        
+        <li>Agregando icono al botón que permite ver el manual de pilas desde el interprete interactivo.</li>
+        
+        <li>Reparando el atributo &#8220;ancho&#8221; del actor Texto.</li>
+        
+        <li>Añadida una referencia de los atajos de eventos de los actores en la documentación</li>
+        
+        <li>Creados los accesos directos para conectar un Actor a los eventos de pilas.</li>
+        
+        <li>solucionando el problema de la funcion help en el interprete.</li>
+        
+        <li>Arreglado el problema del backspace en el asistente fix #178</li>
+        
+        <li>mostrando la coordenada de posicion del modo F12 en una posicion fija.</li>
+        
+        <li>reparando el bug de cambio que ocasionaba que los objetos fisicos se queden estaticos incluso si se cambiaba la gravedad.</li>
+        
+        <li>Cambiando el grosor inicial de las lineas de dibujado de los depuradores.</li>
+        
+        <li>Implementando un visor de manual en HTML y agregando todos los archivos generados del manual al repositorio.</li>
+        
+        <li>Agregando instrucciones para instalar pygame en el archivo readme.</li>
+        
+        <li>Haciendo que el motor de audio soporte pygame como backend de sonido.</li>
+        
+        <li>Merge pull request #181 from lucianobaraglia/develop</li>
+        
+        <li>Corregida la colisión con un punto cuando el actor está fijo</li>
+        
+        <li>Reparando el problema de posición de los objetos físicos.</li>
+        
+        <li>eliminando archivos minificados de javascript.</li>
+        
+        <li>Añadida la funcionalidad de capturar la pantalla con F2. Ref #180</li>
+        </ul>
+        
+        <h2 id='pilas_engine__082_20130705'>Pilas engine - 0.82 (2013-07-05)</h2>
+        
+        <ul>
+        <li>Arreglos menores de encoding en la documentación.</li>
+        </ul>
+        
+        <h2 id='pilas_engine__081_20130613'>Pilas engine - 0.81 (2013-06-13)</h2>
+        
+        <ul>
+        <li>agregando el ejemplo de la vaca voladora.</li>
+        
+        <li>reparando la funcion interna de fisica que hacia fallar el ejemplo de aceitunas vs bombas</li>
+        
+        <li>mejorando la barra de botones closes #177.</li>
+        
+        <li>Implementando una barra de botones de depuracion en el interprete #177</li>
+        
+        <li>Arreglada la ventana de log. Ref #56</li>
+        
+        <li>Mejorado el metodo para detectar desde donde se llamó a un método decrecated. Ref #173</li>
+        
+        <li>Realizando mejoras en el rendimiento del actor Mapa (branch &#8216;feature_map&#8217;)</li>
+        
+        <li>Reparando el problema de las rutas relativas fix #174</li>
+        
+        <li>Añadido un nuevo actor llamado Manzana</li>
+        
+        <li>Creando un nuevo actor DesplazamientoHorizontal y sustituyendo el ejemplo desplazamiento para que use este actor.</li>
+        
+        <li>Haciendo clip del mapa</li>
+        </ul>
+        
+        <h2 id='pilas_engine__080_20130531'>Pilas engine - 0.80 (2013-05-31)</h2>
+        
+        <ul>
+        <li>actualizando lanas.</li>
+        
+        <li>Corrigiendo el modulo de fisica para notificar errores en caso de que falle la instalación de box2d.</li>
+        
+        <li>Arreglado el desplazamiento de la camara al cambiar de escena. close #169</li>
+        
+        <li>fixes #170 - menus con colores personalizables</li>
+        
+        <li>Reparando la pantalla &#8220;acerca de&#8221; del juego asteroides.</li>
+        
+        <li>Alineando correctamente los textos del componente IngresoDeTexto y Selector.</li>
+        
+        <li>haciendo que las rutas a los recursos sean aún mas flexibles.</li>
+        
+        <li>Reparando el problema de raw-input en lanas para mac.</li>
+        
+        <li>Mejorando el efecto de arrastrar y soltar archivos sobre el asistente.</li>
+        
+        <li>actualizando docstring para la funcion iniciar de pilas</li>
+        
+        <li>Actualizando las instrucciones de instalacion para linux mint</li>
+        
+        <li>Movido el metodo obtener_area ref #164 #log</li>
+        
+        <li>Movido el metodo definir_gravedad close #167 #log</li>
+        
+        <li>Optimizado el método para fabricar Actores aleatorios dependiendo del tamaño de la ventana</li>
+        
+        <li>Limpiez de motor y cámara</li>
+        
+        <li>Deshabilitando el error de box2d cuando no está correctamente instalado.</li>
+        
+        <li>Eliminado el parametro ignorar_errores que nunca se utiliza</li>
+        
+        <li>Deshabilitando temporalmente el cache de imagenes para reparar el uso de grillas.</li>
+        
+        <li>Mostrando texto en el asistente de ejemplos en lugar de iconos.</li>
+        
+        <li>fixes #162</li>
+        
+        <li>Haciendo que el autocompletado se muestre directamente al pulsar &#8217;.&#8217; y que solo muestre las clases dentro de &#8216;pilas.actores&#8217; fix #161</li>
+        
+        <li>Reparando los ejemplos de tutorial (aceituna vs bombas) ref #160</li>
+        
+        <li>Reparando el ejemplo de colisiones #160</li>
+        
+        <li>Reparando el método &#8220;aumentar&#8221; del puntaje. fix #160</li>
+        
+        <li>convirtiendo pilas.mundo.control en un property</li>
+        
+        <li>Reparando problema de tilde en box2d dentro del paquete ubuntu.</li>
+        </ul>
+        
+        <h2 id='pilas_engine__079_20130501'>Pilas engine - 0.79 (2013-05-01)</h2>
+        
+        <ul>
+        <li>Reparando setter de imagenes de los actores.</li>
+        
+        <li>Haciendo que se pueda acceder al control principal nuevamente.</li>
+        
+        <li>Reparando la posicion vertical del texto sobre información de sistema.</li>
+        
+        <li>Tomando el valor ciclico para el fondo desde los argumentos de la clase.</li>
+        
+        <li>Fijando los fondos de desplazamiento infinitos</li>
+        
+        <li>haciendo que pilas funcione de todas formas aunque no este habilitado el motor de fisica.</li>
+        
+        <li>Reparando el problema de las tipografías TTF que no se cargaban. refs #157</li>
+        
+        <li>Mejorando el cálculo de tamaño para textos sobre superficies fix #157</li>
+        
+        <li>Arreglo la posición del modo depuración para que se vea el contador de imagenes en cache.</li>
+        
+        <li>Añadidos atajos para entrar y salir de pantalla completa</li>
+        </ul>
+        
+        <h2 id='pilas_engine__078_20130321'>Pilas engine - 0.78 (2013-03-21)</h2>
+        
+        <ul>
+        <li>Mostrando errores en los scripts lanzados sobre la ventana principal.</li>
+        
+        <li>Haciendo que los juegos se recarguen automáticamente cuando se cambian.</li>
+        
+        <li>Arreglando la barra inferior del asistente que muestra si pilas está actualizado #log.</li>
+        
+        <li>Haciendo que el fondo no desaparezca cuando sale del area visible de la cámara.</li>
+        
+        <li>Agregando un contador de cuerpos dentro del motor de física.</li>
+        
+        <li>Primera aproximacion a la colision lateral de las plataformas</li>
+        </ul>
+        
+        <h2 id='pilas_engine__077_20120222'>Pilas engine - 0.77 (2012-02-22)</h2>
+        
+        <ul>
+        <li>Cambiando la ruta del manual para Huayra GNU/Linux.</li>
+        </ul>
+        
+        <h2 id='pilas_engine__076_20130212'>Pilas engine - 0.76 (2013-02-12)</h2>
+        
+        <ul>
+        <li>Reparando el asistente en macosx, windows y ubuntu.</li>
+        
+        <li>Modificando el lanzamiento del intérprete.</li>
+        
+        <li>Reparando el arrastrar y soltar sobre el asistente.</li>
+        
+        <li>Arreglos de la camara y los actores fijos. Ref #151</li>
+        
+        <li>Mejorada la documentación de sonidos.</li>
+        
+        <li>Volviendo a habilitar el soporte para opengl.</li>
+        
+        <li>Incorporando documentación de api con epydoc.</li>
+        
+        <li>Mejoras en la documentación.</li>
+        
+        <li>Eliminados los widgets sugar y sugargl.</li>
+        
+        <li>Agregado soporte para reproduccion sonidos con repetición.</li>
+        
+        <li>Agregada escena logos utilizada en el gamejam 2013.</li>
+        
+        <li>Agregando archivo Makefile para automatizar tareas.</li>
+        
+        <li>Agregando métodos para pausar y continuar sonidos y música.</li>
+        
+        <li>Agregando posibilidad de cambiar la fuente del actor Texto.</li>
+        </ul>
+        
+        <h2 id='pilas_engine__075_20130125'>Pilas engine - 0.75 (2013-01-25)</h2>
+        
+        <ul>
+        <li>Documentando la API completa del motor.</li>
+        
+        <li>Diseñando un nuevo asistente.</li>
+        
+        <li>Implementando un nuevo explorador de ejemplos.</li>
+        
+        <li>Mejorando la introducción del manual fix #24</li>
+        
+        <li>Mejorando el asistente para que cargue correctamente los recursos del directorio del juego.</li>
+        
+        <li>Implementando tests automáticos sobre travis-ci.org</li>
+        
+        <li>Actualizando todas las imágenes del manual a la nueva versión.</li>
+        
+        <li>Reparando bugs de sonido e imagenes gif en aplicacion Mac.</li>
+        </ul>
+        
+        <h2 id='pilas_engine__073_20121123'>Pilas engine - 0.73 (2012-11-23)</h2>
+        
+        <ul>
+        <li>Haciendo que el manual se pueda cargar desde /usr/share/doc/pilas</li>
+        </ul>
+        
+        <h2 id='pilas_engine__072_20121118'>Pilas engine - 0.72 (2012-11-18)</h2>
+        
+        <ul>
+        <li>Mejoras en la documentación de API</li>
+        
+        <li>Cambiando la ruta del manual, ahora está en $HOME/.pilas</li>
+        </ul>
+        
+        <h2 id='pilas_engine__071_20121108'>Pilas engine - 0.71 (2012-11-08)</h2>
+        
+        <ul>
+        <li>Fix #95 Los eventos del raton ahora envian tambien el boton que se pulsó.</li>
+        
+        <li>Creado el actor pacman.</li>
+        
+        <li>Creado fantasma para el juego pacman.</li>
+        
+        <li>Cambiado el sistema de audio (opciones Phonon o GStreamer)</li>
+        
+        <li>Fix 78 Se elimina el evento conectado al terminar el click</li>
+        
+        <li>Añadida a la habilidad de SeMantieneEnPantalla un parametro para que el actor no pueda salir de la ventana de juego. Por defecto si sale, aparece por el lado opuesto por donde salió.</li>
+        
+        <li>Añadida la habilidad RotarConMouse.</li>
+        
+        <li>Control personalizado: Añadida la opcion de mover con el teclado un Actor con un control personalizado. Se puede mapear las teclas del Control.</li>
+        
+        <li>Por defecto se ha dejado el boton del Control asociado a la tecla ESPACIO.Así que el menú responde ahora a un control personalizado en la que la tecla de boton es el INTRO.</li>
+        
+        <li>Estableciendo la velocidad como parametro en la habilidad de MoverseConElTeclado</li>
+        
+        <li>Añadida la opcion de eliminar una interpolación mientras está en ejecución.</li>
+        
+        <li>Añadido el cálculo de la velocidad que lleva un Actor. actor.vx y actor.vy</li>
+        
+        <li>Añadida una utilidad para calcular el tiempo que se tardaría en recorrer una distancia en pixeles con una velocidad constante en pixeles.</li>
+        
+        <li>Añadida la habilidad de Disparar</li>
+        
+        <li>Evitado que la escala del actor elimine el radio de colisión.</li>
+        
+        <li>Añadida la opcion de eliminar una habilidad.</li>
+        
+        <li>Añadida la habilidad de MirarAlActor</li>
+        
+        <li>Si se añade una habilidad a un Actor y este ya la tenia, se elimina y se da de alta la nueva.</li>
+        
+        <li>Añadida la posibilidad de acelerar y rotar en la habilidad de MoverseConElTeclado.</li>
+        
+        <li>Añadida la habilidad de SiempreEnElCentro.</li>
+        
+        <li>Añadida la opcion de moverse en 4 u 8 direcciones a la habilidad de MoverseConElTeclado.</li>
+        
+        <li>Añadido el parametro marcha_atras para no poder ir hacia atrás en la habilidad de MoverseConElTeclado.</li>
+        
+        <li>Añadido el parametro de deceleracion a la habilidad de MoverseConElTeclado.</li>
+        
+        <li>Creado un proxy para poder acceder a las habilidades de un actor mediante actor.habilidades.Nombre_De_Habilidad.</li>
+        
+        <li>agregando soporte multilinea para el actor EntradaDeTexto.</li>
+        
+        <li>Creado el actor Humo</li>
+        
+        <li>Agregando opción para seleccionar el backend de sonido.</li>
+        
+        <li>Fixed #105 Los eventos del raton ahora acompañan a la camara.</li>
+        
+        <li>Creadas las interpolaciones ElasticoInicial y ElasticoFinal.</li>
+        
+        <li>Creando una habilidad para disparar haciendo click con el mouse.</li>
+        
+        <li>Permitidoo a <code>Opcion</code> recibir argumentos para <code>funcion_a_invocar</code>, de manera opcional.</li>
+        
+        <li><code>aviso</code> acepta un parámetro opcional <code>retraso</code>.</li>
+        
+        <li>Añadida la utilidad de Obtener Actor más cercano (pilas.utils.actor_mas_cercano_al_actor).</li>
+        
+        <li>Creado el actor Torreta</li>
+        
+        <li>Agregado el proyectil Estrella Ninja</li>
+        
+        <li>Habilitando el inspector web en el asistente (pulsar el boton derecho sobre el asistente y seleccionar inspeccionar)</li>
+        
+        <li>Arreglada las velocidad lineal en los bojetos fisicos.</li>
+        
+        <li>Creando archivos para que se pueda crear una aplicación Mac de pilas.</li>
+        
+        <li>Modificando el deslizador para que se pueda eliminar</li>
+        
+        <li>Creando un minijuego de monos que lanzan bananas tipo el juego gorillas.</li>
+        
+        <li>Añadido el actor NaveKids.</li>
+        
+        <li>fix #103 haciendo que se puedan arrastrar programas al asistente y que puedan cargar imagenes.</li>
+        
+        <li>Creando el comportamiento de Proyectil.</li>
+        
+        <li>La habilidad de Disparar permite disparar Municiones o Actores que tengan el comportamiento de Proyectil.</li>
+        
+        <li>Agregando opción para salir del asistente desde un menú fix #101</li>
+        
+        <li>Reparando bug en el deslizador fix #113</li>
+        
+        <li>Añadido un Ovni como actor.</li>
+        
+        <li>Creado un generador de paquete .deb para pilas.</li>
+        
+        <li>Close #115 ahora se pueden pasar parámetros a la municion.</li>
+        
+        <li>Añadida la opcion de saber si un Actor tiene un comportamiento en concreto.</li>
+        </ul>
+        
+        <h2 id='pilas_engine__070_20121010'>Pilas engine - 0.70 (2012-10-10)</h2>
+        
+        <ul>
+        <li>Creada una nueva Habilidad llamada RotarConMouse.</li>
+        
+        <li>Creada una nueva Habilidad llamada Disparar.</li>
+        
+        <li>La habilidad MoverseConElTeclado ahora permite asignarle un Control personalizado.</li>
+        
+        <li>Creado un nuevo Actor llamado Pacman</li>
+        
+        <li>Cambiado el motor de Sonido. Ahora utiliza la biblioteca pygst y gst (GStreamer).</li>
+        
+        <li>La Habilidad de SeMantieneEnPantalla ahora permite que el Actor no salga de la misma.</li>
+        
+        <li>Se puede consultar la velocidad horizontal y vertical de un actor mediante los campos actor.vx y actor.vy</li>
+        
+        <li>Añadidas las interpolaciones: AceleracionGradual, DesaceleracionGradual, ReboteInicial, ReboteFinal.</li>
+        
+        <li>Añadida la Habilidad de MirarAlActor.</li>
+        
+        <li>Añadida la posibilidad de eliminar una Habilidad mediante actor.eliminar_habilidad(nombre_de_la_habilidad)</li>
+        
+        <li>Si se añade una habilidad a un Actor que ya la tenia, se elimina y se da de alta la nueva habilidad.</li>
+        </ul>
+        
+        
+        <div class='alert alert-warning'>El historial de las versiones anteriores se puede consultar en <a href='http://github.com/hugoruscitti/pilas'>nuestro repositorio github</a></div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+  
 </div>
--->
 
 </body>
 </html>

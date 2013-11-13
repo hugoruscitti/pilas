@@ -6,6 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import inspect
+
 import pilas
 from pilas import utils
 from pilas.estudiante import Estudiante
@@ -101,6 +103,10 @@ class Actor(object, Estudiante):
         self._vy = 0
         self._dx = self.x
         self._dy = self.y
+
+        # Listas para definir los callbacks de los eventos
+        self._callback_cuando_hace_click = set()
+        self._callback_cuando_mueve_mouse = set()
 
     def definir_centro(self, (x, y)):
         """ Define en que posición estará el centro del Actor.
@@ -306,7 +312,7 @@ class Actor(object, Estudiante):
     escala_y = property(get_scale_y, set_scale_y, doc="Escala de tamaño vertical, 1 es normal, 2 al doble de tamaño etc...)")
     transparencia = property(get_transparencia, set_transparencia, doc="Define el nivel de transparencia, 0 indica opaco y 100 la maxima transparencia.")
     imagen = property(get_imagen, set_imagen, doc="Define la imagen a mostrar.")
-    fijo = property(get_fijo, set_fijo, doc="Indica si el actor debe ser independiente a la camara.")
+    fijo = property(get_fijo, set_fijo, doc="Indica si el actor debe ser independiente a la cámara.")
 
     def eliminar(self):
         """Elimina el actor de la lista de actores que se imprimen en pantalla."""
@@ -339,6 +345,126 @@ class Actor(object, Estudiante):
         self.actualizar_comportamientos()
         self.actualizar_habilidades()
         self.__actualizar_velocidad()
+
+    def _agregar_callback(self, grupo_de_callbacks, callback):
+        """Agrega una función para invocar en una colección.
+
+        Este método se asegura de agregar funciones que no esperen
+        argumentos, o bien, solamente esperen un argumento.
+
+        Si la función a agregar espera un argumento, este método se
+        asegura de enviarle el actor receptor del evento.
+        """
+        cantidad_de_argumentos = len(inspect.getargspec(callback).args)
+
+        if inspect.ismethod(callback):
+            cantidad_de_argumentos -= 1
+
+        if cantidad_de_argumentos > 1:
+            raise Exception("No puedes asignar una funcion que espera 2 o mas argumentos")
+        elif cantidad_de_argumentos == 1:
+            # Si la función espera un argumento, se re-define la función para que siempre
+            # reciba al actor sobre el que se produjo el evento.
+
+            def inyectar_self(f):
+                def invocar():
+                    f(self)
+                return invocar
+
+            callback = inyectar_self(callback)
+
+        grupo_de_callbacks.add(callback)
+
+    def _ejecutar_callback(self, evento, listado_de_callbacks ):
+        """ Ejecuta el listado de métodos asociados a un callback si se
+        produce una colisión con el ratón y el actor
+        """
+        if self.colisiona_con_un_punto(evento.x, evento.y):
+            a_eliminar = []
+            for callback in set(listado_de_callbacks):
+                try:
+                    callback()
+                except ReferenceError:
+                    a_eliminar.append(callback)
+
+            if a_eliminar:
+                for x in a_eliminar:
+                    try:
+                        listado_de_callbacks.remove(x)
+                    except:
+                        raise ValueError("La funcion no está agregada en el callback")
+
+    def set_cuando_hace_click(self, callback):
+        if (callback is None):
+            self._callback_cuando_hace_click.clear()
+        else:
+            pilas.eventos.click_de_mouse.conectar(self._cuando_hace_click)
+            self._agregar_callback(self._callback_cuando_hace_click, callback)
+
+    def get_cuando_hace_click(self):
+        return self._callback_cuando_hace_click
+
+    def _cuando_hace_click(self, evento):
+        self._ejecutar_callback(evento, self._callback_cuando_hace_click)
+
+    cuando_hace_click = property(get_cuando_hace_click, set_cuando_hace_click, doc="")
+
+
+    def set_cuando_mueve_el_mouse(self, callback):
+        if (callback is None):
+            self._callback_cuando_mueve_mouse.clear()
+        else:
+            pilas.eventos.mueve_mouse.conectar(self._cuando_mueve_mouse)
+            self._agregar_callback(self._callback_cuando_mueve_mouse, callback)
+
+    def get_cuando_mueve_el_mouse(self):
+        return self._callback_cuando_mueve_mouse
+
+    def _cuando_mueve_mouse(self, evento):
+        self._ejecutar_callback(evento, self._callback_cuando_mueve_mouse)
+
+    cuando_mueve_el_mouse = property(get_cuando_mueve_el_mouse, set_cuando_mueve_el_mouse, doc="")
+
+
+    def click_de_mouse(self, callback):
+        """Acceso directo para conectar el actor al evento de click_de_mouse.
+        No se debe redefinir este método."""
+        pilas.eventos.click_de_mouse.conectar(callback)
+
+    def mueve_mouse(self, callback):
+        """Acceso directo para conectar el actor al evento de mueve_mouse.
+        No se debe redefinir este método."""
+        pilas.eventos.mueve_mouse.conectar(callback)
+
+    def mueve_camara(self, callback):
+        """Acceso directo para conectar el actor al evento de mueve_camara.
+        No se debe redefinir este método."""
+        pilas.eventos.mueve_camara.conectar(callback)
+
+    def termina_click(self, callback):
+        """Acceso directo para conectar el actor al evento de termina_click.
+        No se debe redefinir este método."""
+        pilas.eventos.termina_click.conectar(callback)
+
+    def mueve_rueda(self, callback):
+        """Acceso directo para conectar el actor al evento de mueve_rueda.
+        No se debe redefinir este método."""
+        pilas.eventos.mueve_rueda.conectar(callback)
+
+    def pulsa_tecla(self, callback):
+        """Acceso directo para conectar el actor al evento de pulsa_tecla.
+        No se debe redefinir este método."""
+        pilas.eventos.pulsa_tecla.conectar(callback)
+
+    def suelta_tecla(self, callback):
+        """Acceso directo para conectar el actor al evento de suelta_tecla.
+        No se debe redefinir este método."""
+        pilas.eventos.suelta_tecla.conectar(callback)
+
+    def pulsa_tecla_escape(self, callback):
+        """Acceso directo para conectar el actor al evento de pulsa_tecla_escape.
+        No se debe redefinir este método."""
+        pilas.eventos.pulsa_tecla_escape.conectar(callback)
 
     def __actualizar_velocidad(self):
         """ Calcula la velocidad horizontal y vertical del actor. """
@@ -384,7 +510,7 @@ class Actor(object, Estudiante):
 
     @pilas.utils.interpolable
     def set_derecha(self, x):
-        self.set_izquierda(x - self.ancho)
+        self.set_izquierda(x - (self.ancho * self.escala))
 
     derecha = property(get_derecha, set_derecha, doc="Establece el " \
                          "espacio entre la derecha del actor y el centro " \
@@ -395,7 +521,7 @@ class Actor(object, Estudiante):
 
     @pilas.utils.interpolable
     def set_abajo(self, y):
-        self.set_arriba(y + self.alto)
+        self.set_arriba(y + (self.alto * self.escala))
 
     abajo = property(get_abajo, set_abajo, doc="Establece el " \
                          "espacio entre la parte inferior del actor y el " \
@@ -417,12 +543,17 @@ class Actor(object, Estudiante):
 
         Todos los actores tienen un area rectangular, pulsa la
         tecla **F10** para ver el area de colision.
+        Si el actor tiene la propiedad fijo en True, el cálculo
+        se hace independientemente de la cámara.
 
         :param x: Posición horizontal del punto.
         :type x: int
         :param y: Posición vertical del punto.
         :type y: int
         """
+        if self.fijo:
+            x = x - pilas.escena_actual().camara.x
+            y = y - pilas.escena_actual().camara.y
         return self.izquierda <= x <= self.derecha and self.abajo <= y <= self.arriba
 
     def distancia_con(self, otro_actor):

@@ -1,5 +1,6 @@
 import pilas
 from pilas.escena import Normal
+from pilas.escena import Pausa
 
 
 class EscenaDeMenu(pilas.escena.Normal):
@@ -9,7 +10,7 @@ class EscenaDeMenu(pilas.escena.Normal):
 
     def iniciar(self):
         pilas.fondos.Color(pilas.colores.negro)
-        
+
         pilas.actores.Texto("Bienvenidos al ejemplo de escenas apiladas.",
                             y=200)
 
@@ -42,7 +43,8 @@ Intenta mover la nave por la pantalla con el teclado.",
                             y=200)
 
         pilas.actores.Texto("Pulsa la tecla 'ESC' para regresar al menu \n\
-        o la tecla '2' para ir a la Escena 2.\n\n\
+        , la tecla '2' para ir a la Escena 2\n\n\
+        o la tecla 'p' para Pausar\n\n\
 Si vas a la Escena 2 y regresas, la nave\n\
 seguira en la misma posicion donde la dejaste.")
 
@@ -60,6 +62,8 @@ seguira en la misma posicion donde la dejaste.")
             pilas.almacenar_escena(Escena_2())
         if evento.texto == u'a':
             print self.actores
+        if evento.texto == u'p':
+            pilas.escena.pausar()
 
 
 class Escena_2(pilas.escena.Normal):
@@ -79,7 +83,6 @@ class Escena_2(pilas.escena.Normal):
 
     def ir_a_escena_anterior(self, evento):
         pilas.recuperar_escena()
-
 
 pilas.iniciar()
 pilas.cambiar_escena(EscenaDeMenu())

@@ -36,7 +36,7 @@ class Energia(Actor):
         Actor.__init__(self, x=x, y=y)
         self.area_ancho = ancho
         self.area_alto = alto
-        self.progreso = progreso
+        self._progreso = progreso
         self.progreso_anterior = progreso
         self.imagen = pilas.imagenes.cargar_superficie(self.area_ancho, self.area_alto)
         self.color_relleno = color_relleno
@@ -45,6 +45,7 @@ class Energia(Actor):
         self.pintar_imagen()
         self.fijo = True
         self.miniatura = None
+
 
     def pintar_imagen(self):
         """ Dibuja la barra de energia en pantalla. """
@@ -86,3 +87,12 @@ class Energia(Actor):
         self.miniatura.derecha = self.izquierda - 5
         self.miniatura.arriba = self.arriba
         self.miniatura.fijo = True
+
+    @pilas.utils.interpolable
+    def set_progreso(self, progreso):
+        self._progreso = progreso
+
+    def get_progreso(self):
+        return self._progreso
+
+    progreso = property(get_progreso, set_progreso, doc="Cambia el nivel de progreso de la energia, entre 0 y 100")

@@ -5,7 +5,6 @@
 {% block htmltitle %}
 {{ super() }}
 
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 
 {% endblock %}
 
@@ -24,9 +23,6 @@
 {%- if show_sphinx %}
   {% trans sphinx_version=sphinx_version|e %}Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %}
 {%- endif %}
-{%- if theme_show_rtd %}
-  {% trans %}<br />Theme based on <a href="http://readthedocs.org/">Read The Docs</a>{% endtrans %}
-{% endif %}
 </div>
 
 

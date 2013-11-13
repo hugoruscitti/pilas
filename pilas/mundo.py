@@ -20,7 +20,7 @@ class Mundo(object):
     motor y mantener el bucle de juego.
     """
 
-    def __init__(self, motor, ancho, alto, titulo, rendimiento=60,
+    def __init__(self, motor, ancho, alto, titulo, rendimiento=60, area_fisica=None,
                  gravedad=(0, -10), pantalla_completa=False, centrado=True):
 
         self.gestor_escenas = Gestor()
@@ -28,14 +28,19 @@ class Mundo(object):
         self.motor = motor
         self.motor.iniciar_ventana(ancho, alto, titulo, pantalla_completa, self.gestor_escenas, rendimiento, centrado)
 
+        self.area_fisica = area_fisica
         self.gravedad = gravedad
 
     def crear_motor_fisica(self):
-        return fisica.crear_motor_fisica(self.obtener_area(), gravedad=self.gravedad)
+        if self.area_fisica != None:
+            return fisica.crear_motor_fisica(self.area_fisica, gravedad=self.gravedad)
+        else:
+            return fisica.crear_motor_fisica(self.obtener_area(), gravedad=self.gravedad)
 
     def reiniciar(self):
         self.gestor_escenas.limpiar()
         self.gestor_escenas.cambiar_escena(Normal())
+        self.motor.canvas.depurador.reiniciar()
 
     def terminar(self):
         self.motor.terminar()

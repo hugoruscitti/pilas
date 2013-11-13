@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import sys
+import inspect
 
 try:
     from PyQt4 import QtCore, QtGui
-    from interprete_base import Ui_InterpreteDialog
+    from interprete_base import Ui_InterpreteWindow
 except:
     print "ERROR: No se encuentra pyqt"
-    Ui_InterpreteDialog = object
+    Ui_InterpreteWindow = object
     pass
 
 import pilas
@@ -28,15 +29,42 @@ import os
 if os.environ.has_key('lanas'):
     del os.environ['lanas']
 
-class VentanaInterprete(Ui_InterpreteDialog):
+class VentanaInterprete(Ui_InterpreteWindow):
 
-    def setupUi(self, main):
+    def setupUi(self, main, ejecutar_codigo_inicial=False):
         self.main = main
-        Ui_InterpreteDialog.setupUi(self, main)
-        scope = self._insertar_ventana_principal_de_pilas()
-        self._insertar_consola_interactiva(scope)
+        Ui_InterpreteWindow.setupUi(self, main)
+        scope = self._insertar_ventana_principal_de_pilas(ejecutar_codigo_inicial)
+        self._insertar_consola_interactiva(scope, ejecutar_codigo_inicial)
         pilas.utils.centrar_ventana(main)
 
+        # Haciendo que el panel de pilas y el interprete no se puedan
+        # ocultar completamente.
+        self.splitter_vertical.setCollapsible(1, False)
+        self.splitter.setCollapsible(0, False)
+
+        # Define el tamaño inicial de la consola.
+        self.splitter.setSizes([300, 100])
+
+        self.colapsar_ayuda()
+        self.cargar_ayuda()
+        self.navegador.history().setMaximumItemCount(0)
+
+        self._conectar_botones()
+        self._conectar_observadores_splitters()
+
+    def _conectar_botones(self):
+        # Botón del manual
+        self.definir_icono(self.manual_button, 'iconos/manual.png')
+        self.manual_button.connect(self.manual_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_manual)
+
+        # Botón del interprete
+        self.definir_icono(self.interprete_button, 'iconos/interprete.png')
+        self.interprete_button.connect(self.interprete_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_interprete)
+
+        # Botón del guardar
+        self.definir_icono(self.guardar_button, 'iconos/guardar.png')
+        self.interprete_button.connect(self.guardar_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
 
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
@@ -62,11 +90,45 @@ class VentanaInterprete(Ui_InterpreteDialog):
         self.definir_icono(self.pushButton, 'iconos/f12.png')
         self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
+    def _conectar_observadores_splitters(self):
+        # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.
+        self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador_vertical)
+        self.splitter.connect(self.splitter, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador)
+
+    def colapsar_ayuda(self):
+        self.splitter_vertical.setSizes([0])
+        self.manual_button.setChecked(False)
+
+    def cargar_ayuda(self):
+        file_path = utils.obtener_ruta_al_recurso('manual/index.html')
+        file_path = os.path.abspath(file_path)
+        base_dir =  QtCore.QUrl.fromLocalFile(file_path)
+        self.navegador.load(base_dir)
+
     def definir_icono(self, boton, ruta):
         icon = QtGui.QIcon();
         icon.addFile(pilas.utils.obtener_ruta_al_recurso(ruta), QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         boton.setIcon(icon)
         boton.setText('')
+
+    def cuando_mueve_deslizador_vertical(self, a1, a2):
+        self.manual_button.setChecked(a1 != 0)
+
+    def cuando_mueve_deslizador(self, a1, a2):
+        altura_interprete = self.splitter.sizes()[1]
+        self.interprete_button.setChecked(altura_interprete != 0)
+
+    def cuando_pulsa_el_boton_manual(self):
+        if self.manual_button.isChecked():
+            self.splitter_vertical.setSizes([300])
+        else:
+            self.splitter_vertical.setSizes([0])
+
+    def cuando_pulsa_el_boton_interprete(self):
+        if self.interprete_button.isChecked():
+            self.splitter.setSizes([300, 100])
+        else:
+            self.splitter.setSizes([300, 0])
 
     def pulsa_boton_depuracion(self):
         pilas.atajos.definir_modos(
@@ -74,8 +136,8 @@ class VentanaInterprete(Ui_InterpreteDialog):
                             puntos_de_control=self.pushButton_5.isChecked(), # F08
                             radios=self.pushButton_4.isChecked(),            # F09
                             areas=self.pushButton_3.isChecked(),             # F10
-                            fisica=self.pushButton_2.isChecked(),
-                            posiciones=self.pushButton.isChecked(),
+                            fisica=self.pushButton_2.isChecked(),            # F11
+                            posiciones=self.pushButton.isChecked(),          # F12
                 )
 
     def raw_input(self, mensaje):
@@ -86,40 +148,104 @@ class VentanaInterprete(Ui_InterpreteDialog):
         text, state = QtGui.QInputDialog.getText(self, "raw_input", mensaje)
         return eval(str(text))
 
-    def _insertar_ventana_principal_de_pilas(self):
-        pilas.iniciar(usar_motor='qtsugar', ancho=640, alto=400)
+    def help(self, objeto=None):
+        if objeto:
+            print help(objeto)
+        else:
+            print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
 
-        mono = pilas.actores.Mono()
+    def _insertar_ventana_principal_de_pilas(self, ejecutar_codigo_inicial):
+
+        if pilas.esta_inicializada():
+            pilas.reiniciar()
+
+        pilas.iniciar(usar_motor='qtsugargl', ancho=640, alto=400)
+
+        if ejecutar_codigo_inicial:
+            mono = pilas.actores.Mono()
+            scope = {'pilas': pilas, 'mono': mono, 'self': self, 'inspect': inspect}
+        else:
+            scope = {'pilas': pilas, 'self': self}
 
         ventana = pilas.mundo.motor.ventana
         canvas = pilas.mundo.motor.canvas
+
         canvas.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.canvas.setFocus()
-
         self.canvas.addWidget(ventana)
         self.canvas.setCurrentWidget(ventana)
-        return {'pilas': pilas, 'mono': mono, 'self': self}
+        return scope
 
-    def _insertar_consola_interactiva(self, scope):
-        codigo_inicial = [
+    def _insertar_consola_interactiva(self, scope, ejecutar_codigo_inicial):
+        if ejecutar_codigo_inicial:
+            codigo_inicial = [
                 'import pilas',
                 '',
                 'pilas.iniciar()',
                 'mono = pilas.actores.Mono()',
                 ]
+        else:
+            codigo_inicial = []
 
         consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
         self.console.addWidget(consola)
         self.console.setCurrentWidget(consola)
+        self.consola = consola
+        self.consola.text_edit.setFocus()
 
-def main(parent=None, do_raise=False):
-    dialog = QtGui.QDialog(parent)
-    dialog.setWindowFlags(dialog.windowFlags() | QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowMinMaxButtonsHint)
+    def cuando_pulsa_el_boton_guardar(self):
+        self.consola.text_edit.guardar_contenido_con_dialogo()
+
+def cargar_ejemplo(parent=None, do_raise=False, ruta=None):
+    main = QtGui.QMainWindow(parent)
     ui = VentanaInterprete()
-    ui.setupUi(dialog)
+    ui.setupUi(main, ejecutar_codigo_inicial=False)
+
+    archivo = open(ruta, "rt")
+    contenido = []
+    for linea in archivo.readlines():
+        if '#' in linea or 'path' in linea or 'import pilas' in linea or 'pilas.iniciar' in linea or 'pilas.ejecutar' in linea:
+            pass
+        else:
+            contenido.append(linea)
+    codigo = '\n'.join(contenido)
+
+    ui.consola.ejecutar(codigo)
+
+    archivo.close()
+
+    #if sys.platform == 'darwin':
+    #    if getattr(sys, 'frozen', None):
+    #        main.showMinimized()
+    #        main.showNormal()
+
+    main.show()
 
     if do_raise:
-        dialog.show()
-        dialog.raise_()
+        main.raise_()
 
-    dialog.exec_()
+    return main
+
+def main(parent=None, do_raise=False):
+    main = QtGui.QMainWindow(parent)
+    ui = VentanaInterprete()
+    ui.setupUi(main, ejecutar_codigo_inicial=True)
+
+    #if sys.platform == 'darwin':
+    #    if getattr(sys, 'frozen', None):
+    #        main.showMinimized()
+    #        main.showNormal()
+
+    main.show()
+
+    if do_raise:
+        main.raise_()
+
+    return main
+
+
+if __name__ == '__main__':
+    app = QtGui.QApplication(sys.argv)
+    app.setApplicationName("pilas-engine")
+    main()
+    app.exec_()

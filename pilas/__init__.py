@@ -24,6 +24,7 @@ import demos
 import atajos
 import interfaz
 import interprete
+import manual
 import municion
 import dev
 from pilas.escena import Normal
@@ -47,8 +48,8 @@ para iniciar y ejecutar la biblioteca.
 
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
-            rendimiento=60, modo='detectar', gravedad=(0, -90), pantalla_completa=False,
-            permitir_depuracion=True, audio='phonon', centrado=True):
+            rendimiento=60, modo=None, area_fisica=None, gravedad=(0, -90), pantalla_completa=False,
+            permitir_depuracion=True, audio=None, centrado=True):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -66,20 +67,29 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :usar_motor: el motor multimedia a utilizar, puede ser 'qt', 'qtgl', 'qtsugar' o 'qtsugargl'.
     :rendimiento: cantidad de cuadros por segundo a mostrar.
     :modo: si se utiliza modo interactivo o no.
+    :area_fisica: recibe una tupla con el ancho y el alto que tendra el mundo de fisica, por defecto sera el tamaño de la ventana
     :gravedad: el vector de aceleracion para la simulacion de fisica.
     :pantalla_completa: si debe usar pantalla completa o no.
     :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12
-    :audio: selecciona el motor de sonido a utilizar, los valores permitidos son 'deshabilitado', 'phonon' o 'gst'.
+    :audio: selecciona el motor de sonido a utilizar, los valores permitidos son 'deshabilitado', 'pygame', 'phonon' o 'gst'.
     :centrado: Indica si se desea centrar la ventana de pilas.
     """
 
     global mundo
 
     if not esta_inicializada():
+        configuracion = obtener_configuracion()
+
+        if not usar_motor:
+            usar_motor = configuracion['usar_motor']
+
+        if not audio:
+            audio = configuracion['audio']
+
         motor = _crear_motor(usar_motor, permitir_depuracion, audio)
 
         if motor:
-            mundo = Mundo(motor, ancho, alto, titulo, rendimiento, gravedad, pantalla_completa, centrado)
+            mundo = Mundo(motor, ancho, alto, titulo, rendimiento, area_fisica, gravedad, pantalla_completa, centrado)
             mundo.gestor_escenas.cambiar_escena(Normal())
 
             if _usa_interprete_lanas():
@@ -96,7 +106,7 @@ def esta_inicializada():
 
 
 def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas', rendimiento=60,
-                         modo='detectar', gravedad=(0, -90), imagen="asistente.png",
+                         modo='detectar', area_fisica=None, gravedad=(0, -90), imagen="asistente.png",
                          permitir_depuracion=True):
     """Identica a la función iniciar, solo que permite al usuario seleccionar
     el motor multimedia y el modo de video a utilizar.
@@ -107,7 +117,7 @@ def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas', rendimiento=60,
     import lanzador
 
     usar_motor, pantalla_completa, audio = lanzador.ejecutar(imagen, titulo)
-    iniciar(ancho, alto, titulo, usar_motor, rendimiento, modo, gravedad, pantalla_completa, permitir_depuracion, audio)
+    iniciar(ancho, alto, titulo, usar_motor, rendimiento, modo, area_fisica, gravedad, pantalla_completa, permitir_depuracion, audio)
 
 
 def abrir_asistente():
@@ -227,10 +237,10 @@ def abrir_interprete(parent=None, do_raise=False, con_aplicacion=False):
         app.setApplicationName("pilas-engine")
 
     interprete.main(parent, do_raise)
+    return app
 
 
 def log(*parametros):
-    #eventos.log.emitir(data=parametros)
     global mundo
     mundo.motor.log(parametros)
 
@@ -252,7 +262,22 @@ def almacenar_escena(escena):
 def recuperar_escena():
     mundo.gestor_escenas.recuperar_escena()
 
+
+def obtener_configuracion():
+    """Retorna la configuración del usuario almacenada en su directorio HOME.
+
+    La configuración permite definir los valores por omisión cuando
+    se abre la ventana de pilas. Por ejemplo, si se llama a ``pilas.iniciar()``
+    sin argumentos, los valores de 'motor' o 'sistema de sonido' a utilizar
+    se cargarán desde esa configuración.
+    """
+    opciones = {}
+    opciones['usar_motor'] = 'qtgl'
+    opciones['audio'] = 'pygame'
+    return opciones
+
 # Representa el viejo acceso al modulo eventos, pero convierte cada uno
 # de los eventos en una referencia al evento dentro de la escena actual.
 from evento import ProxyEventos
 eventos = ProxyEventos()
+

@@ -1,0 +1,53 @@
+
+.bs-docs-sidenav {
+    width: 200px;
+}
+
+.bs-docs-sidenav > li > a {
+    display: block;
+    width: 190px 9;
+    margin: 0 0 -1px;
+    padding: 8px 14px;
+    border: 1px solid #e5e5e5;
+}
+
+.bs-docs-sidenav .icon-chevron-right {
+    float: right;
+    margin-top: 2px;
+    margin-right: -6px;
+    opacity: .25;
+}
+
+.bs-docs-sidenav {
+    width: 228px;
+    padding: 0;
+    background-color: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    box-shadow: 0 1px 4px rgba(0,0,0,.065);
+}
+
+
+span.error {
+    color: red;
+}
+
+
+img {
+    max-width: 100%;
+}
+
+
+a:hover {
+    color: black;
+    text-decoration: none;
+    background-color: yellow;
+}
+
+
+.changelog h2, .changelog .h2 {
+  font-size: 18px !important;
+}

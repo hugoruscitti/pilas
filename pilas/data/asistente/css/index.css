@@ -9,9 +9,9 @@ a.button {
   padding: 8px 4px 8px 4px;
   display: block;
   float: left;
-  width: 190px;
-  margin-right: 14px;  
-  margin-bottom: 14px;  
+  width: 200px;
+  margin-right: 20px;  
+  margin-bottom: 20px;  
   background: #fdfdfd; /* Old browsers */
   background: -moz-linear-gradient(top,  #fdfdfd 0%, #f2f2f2 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#f2f2f2)); /* Chrome,Safari4+ */
@@ -23,6 +23,8 @@ a.button {
   -webkit-box-shadow: 10px 10px 5px #888;
   -moz-box-shadow: 10px 10px 5px #888;
   box-shadow: 0px 1px 5px #e8e8e8;
+  display: inline-block;
+  text-decoration: none;
 }
 a.button:hover {
   border-top: solid 1px #b7b7b7;

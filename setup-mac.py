@@ -22,19 +22,18 @@ setup(
     name='pilas-engine',
     app=["bin/pilas-mac.py"],
     data_files = [
-                    ('../lanas', ['lanas']),
-                    ('bin/pilas-mac.py', ['bin/pilas-mac.py']),
-                    ('../PlugIns/phonon_backend', ['/usr/local/Cellar/qt/4.8.4/plugins/phonon_backend/libphonon_qt7.dylib']),
-                 ],
-        options={
-                    "py2app":
-                        {"argv_emulation": True,
-                            "includes": ["sip", "PyQt4", 'PyQt4.QtWebKit', 'PyQt4.QtNetwork'],
-                    "resources": ['./README.md'],
-                    'packages': ['pilas', 'lanas'],
-                    'iconfile': 'pilas/data/pilas-icono.icns',
-
-                            },
-                },
+        ('../lanas', ['lanas']),
+        ('bin/pilas-mac.py', ['bin/pilas-mac.py']),
+        #('../PlugIns/phonon_backend', ['/usr/local/Cellar/qt/4.8.4/plugins/phonon_backend/libphonon_qt7.dylib']),
+        ],
+    options={
+        "py2app": {
+            "argv_emulation": False,
+            "includes": ["sip", "PyQt4", 'PyQt4.QtWebKit', 'PyQt4.QtNetwork'],
+            "resources": ['./README.md'],
+            'packages': ['pilas', 'lanas'],
+            'iconfile': 'pilas/data/pilas-icono.icns',
+        },
+    },
     setup_requires=["py2app"]
 )

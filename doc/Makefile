@@ -13,8 +13,15 @@ PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
 
-all: latexpdf html
+
+actualizar_docs: html
+	cp -R build/html/* ../pilas/data/manual/
+
+# TODO: volver a habilitar esta regla para que se genere nuevamente
+#       el manual en formato PDF para descargar desde la web.
+all: latexpdf html actualizar_docs
 	mv build/latex/Pilasengine.pdf ./pilas-engine.pdf
+
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest
 

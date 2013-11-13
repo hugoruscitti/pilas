@@ -33,6 +33,9 @@ class DepuradorDeshabilitado(object):
     def cuando_mueve_el_mouse(self, x, y):
         pass
 
+    def reiniciar(self):
+        pass
+
 class Depurador(DepuradorDeshabilitado):
     """Esta clase permite hacer depuraciones visuales.
 
@@ -47,7 +50,7 @@ class Depurador(DepuradorDeshabilitado):
     def __init__(self, lienzo, fps):
         self.modos = []
         self.lienzo = lienzo
-        ModoDepurador.grosor_de_lineas = 1
+        ModoDepurador.grosor_de_lineas = 4
         self.fps = fps
         self.posicion_del_mouse = (0, 0)
 
@@ -72,7 +75,9 @@ class Depurador(DepuradorDeshabilitado):
                 m.termina_dibujado(motor, painter, self.lienzo)
 
     def cuando_pulsa_tecla(self, codigo_tecla, texto_tecla):
-        if codigo_tecla == 'F5':
+        if codigo_tecla == 'F2':
+            pilas.mundo.motor.capturar_pantalla("captura_pantalla.png")
+        elif codigo_tecla == 'F5':
             self._alternar_modo(ModoWidgetLog)
         elif codigo_tecla == 'F6':
             pilas.utils.imprimir_todos_los_eventos()
@@ -98,7 +103,7 @@ class Depurador(DepuradorDeshabilitado):
         return True
 
     def _cambiar_grosor_de_bordes(self, cambio):
-        ModoDepurador.grosor_de_lineas = max(1, ModoDepurador.grosor_de_lineas + cambio)
+        ModoDepurador.grosor_de_lineas = min(max(1, ModoDepurador.grosor_de_lineas + cambio), 8)
 
     def _alternar_modo(self, clase_del_modo):
         clases_activas = [x.__class__ for x in self.modos]
@@ -195,6 +200,9 @@ class Depurador(DepuradorDeshabilitado):
         for clase in clases_activas:
             self._desactivar_modo(clase)
 
+    def reiniciar(self):
+        self._desactivar_todos_los_modos()
+
 
 class ModoDepurador(object):
     tecla = "F00"
@@ -248,7 +256,7 @@ class ModoInformacionDeSistema(ModoDepurador):
             "Sistema: " + sys.platform,
             "Version de pilas: " + pilasversion.VERSION,
             "Version de python: " + sys.subversion[0] + " " + sys.subversion[1],
-            "Version de Box2D: " + pilas.fisica.obtener_version(),
+            "Version de Box2D: {}".format(pilas.fisica.obtener_version()),
             ]
 
     def termina_dibujado(self, motor, painter, lienzo):
@@ -264,6 +272,7 @@ class ModoPuntosDeControl(ModoDepurador):
 
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         x, y = self._obtener_posicion_relativa_a_camara(actor)
+        lienzo.cruz(painter, x, y, color=pilas.colores.negro, grosor=ModoDepurador.grosor_de_lineas+2)
         lienzo.cruz(painter, x, y, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
 
 
@@ -272,6 +281,7 @@ class ModoRadiosDeColision(ModoDepurador):
 
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         x, y = self._obtener_posicion_relativa_a_camara(actor)
+        lienzo.circulo(painter, x, y, actor.radio_de_colision, color=pilas.colores.negro, grosor=ModoDepurador.grosor_de_lineas+2)
         lienzo.circulo(painter, x, y, actor.radio_de_colision, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
 
 
@@ -281,6 +291,7 @@ class ModoArea(ModoDepurador):
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         dx, dy = actor.centro
         x, y = self._obtener_posicion_relativa_a_camara(actor)
+        lienzo.rectangulo(painter, x - dx, y + dy, actor.ancho, actor.alto, color=pilas.colores.negro, grosor=ModoDepurador.grosor_de_lineas+2)
         lienzo.rectangulo(painter, x - dx, y + dy, actor.ancho, actor.alto, color=pilas.colores.blanco, grosor=ModoDepurador.grosor_de_lineas)
 
 
@@ -302,9 +313,9 @@ class ModoPosicion(ModoDepurador):
     def dibuja_al_actor(self, motor, painter, lienzo, actor):
         if not isinstance(actor, pilas.fondos.Fondo):
             texto = "(%d, %d)" %(actor.x, actor.y)
-            dx, dy = actor.x - actor.derecha, actor.y - actor.abajo + 10
+            dx, dy = 30, - 30
             x, y = self._obtener_posicion_relativa_a_camara(actor)
-            lienzo.texto(painter, texto, x - dx, y -dy, color=pilas.colores.blanco)
+            lienzo.texto(painter, texto, x + dx, y + dy, color=pilas.colores.blanco)
 
     def sale_del_modo(self):
         self.eje.eliminar()

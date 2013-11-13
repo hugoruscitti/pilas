@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'lanzador.ui'
+# Form implementation generated from reading ui file 'pilas/data/lanzador.ui'
 #
-# Created: Wed Oct 17 21:53:37 2012
-#      by: PyQt4 UI code generator 4.9.1
+# Created: Wed Oct 23 20:02:03 2013
+#      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
 

@@ -7,6 +7,8 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas.utils
+import inspect
+import sys
 
 class Estudiante:
     """Componente que permite a los actores aprender habilidades o realizar comportamientos."""
@@ -79,7 +81,7 @@ class Estudiante:
 
         return su_habilidad
 
-    def hacer_luego(self, comportamiento, repetir_por_siempre=False):
+    def hacer_luego(self, comportamiento, repetir_por_siempre=False, *k, **kw):
         """Define un nuevo comportamiento para realizar al final.
 
         Los actores pueden tener una cadena de comportamientos, este
@@ -89,15 +91,47 @@ class Estudiante:
         :param repetir_por_siempre: Si el comportamiento se volverá a ejecutar luego de terminar.
         """
 
-        self.comportamientos.append(comportamiento)
+        # El comportamiento se trata de diferente forma si se pasa como instancia o como
+        # clase.
+        # Se pretende que el comportamiento se asigne de la misma forma que las habilidades
+        # actor.hacer_luego(pilas.comportamientos.Orbitar, velocidad=3, direccion="derecha")
+        # aunque se conserva la forma antígua de asignar el comportamiento
+        # actor.hacer_luego(pilas.comportamientos..Orbitar(velocidad=3, direccion="derecha"))
+
+        if (inspect.isclass(comportamiento)):
+            self._hacer_luego(comportamiento,repetir_por_siempre, *k, **kw)
+        else:
+            self.comportamientos.append(comportamiento)
+            self.repetir_comportamientos_por_siempre = repetir_por_siempre
+
+    def _hacer_luego(self, comportamiento, repetir_por_siempre=False, *k, **kw):
+        objecto_comportamiento = comportamiento(*k, **kw)
+        self.comportamientos.append(objecto_comportamiento)
         self.repetir_comportamientos_por_siempre = repetir_por_siempre
 
-    def hacer(self, comportamiento):
+
+    def hacer(self, comportamiento, *k, **kw):
         """Define el comportamiento para el actor de manera inmediata.
 
         :param comportamiento: Referencia al comportamiento a realizar.
         """
-        self.comportamientos.append(comportamiento)
+
+        # El comportamiento se trata de diferente forma si se pasa como instancia o como
+        # clase.
+        # Se pretende que el comportamiento se asigne de la misma forma que las habilidades
+        # actor.hacer(pilas.comportamientos.Orbitar, velocidad=3, direccion="derecha")
+        # aunque se conserva la forma antígua de asignar el comportamiento
+        # actor.hacer(pilas.comportamientos..Orbitar(velocidad=3, direccion="derecha"))
+
+        if (inspect.isclass(comportamiento)):
+            self._hacer(comportamiento, *k, **kw)
+        else:
+            self.comportamientos.insert(0, comportamiento)
+            self._adoptar_el_siguiente_comportamiento()
+
+    def _hacer(self, comportamiento, *k, **kw):
+        objecto_comportamiento = comportamiento(*k, **kw)
+        self.comportamientos.insert(0, objecto_comportamiento)
         self._adoptar_el_siguiente_comportamiento()
 
     def eliminar_habilidades(self):
@@ -124,7 +158,7 @@ class Estudiante:
 
             if termina:
                 if self.repetir_comportamientos_por_siempre:
-                    self.comportamientos.append(self.comportamiento_actual)
+                    self.comportamientos.insert(0, self.comportamiento_actual)
                 self._adoptar_el_siguiente_comportamiento()
         else:
             self._adoptar_el_siguiente_comportamiento()
