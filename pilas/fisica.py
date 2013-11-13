@@ -573,8 +573,9 @@ class Rectangulo(Figura):
 
         x = convertir_a_metros(x)
         y = convertir_a_metros(y)
-        ancho = convertir_a_metros(ancho)
-        alto = convertir_a_metros(alto)
+        self._ancho = convertir_a_metros(ancho)
+        self._alto = convertir_a_metros(alto)
+        self._escala = 1
 
         self.dinamica = dinamica
         self.fisica = fisica
@@ -586,7 +587,7 @@ class Rectangulo(Figura):
         if not self.dinamica:
             densidad = 0
 
-        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(ancho/2, alto/2)),
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(self._ancho/2, self._alto/2)),
                                      density=densidad,
                                      linearDamping=amortiguacion,
                                      friction=friccion,
@@ -604,21 +605,23 @@ class Rectangulo(Figura):
 
         self._cuerpo.fixedRotation = self.sin_rotacion
 
-    def definir_escala(self, ancho=None, alto=None):
+    def definir_escala(self, ancho=None, alto=None, escala=None):
         if ancho != None:
-            ancho = convertir_a_metros(ancho)
-            fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(ancho/2, self._cuerpo.fixtures[0].shape.vertices[2][1])),
+            self._ancho = convertir_a_metros(ancho)
+
+        elif alto != None:
+            self._alto = convertir_a_metros(alto)
+
+        elif escala != None:
+            self._ancho = (self._ancho * escala) / self._escala
+            self._alto = (self._alto * escala) / self._escala
+            self._escala = escala
+        
+        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(self._ancho/2, self._alto/2)),
                                      density=self._cuerpo.fixtures[0].density,
                                      linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
                                      friction=self._cuerpo.fixtures[0].friction,
                                      restitution=self._cuerpo.fixtures[0].restitution)
-        elif alto != None:
-            alto = convertir_a_metros(alto)
-            fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(self._cuerpo.fixtures[0].shape.vertices[2][0], alto/2)),
-                                     density=self._cuerpo.fixtures[0].density,
-                                     linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
-                                     friction=self._cuerpo.fixtures[0].friction,
-                                     restitution=self._cuerpo.fixtures[0].restitution)     
 
         fixture.userData = self.userData
 
@@ -636,17 +639,25 @@ class Rectangulo(Figura):
         self.definir_escala(ancho=ancho)
 
     def get_width(self):
-        return convertir_a_pixels((self._cuerpo.fixtures[0].shape.vertices[2][0]) * 2)
+        return convertir_a_pixels(self._ancho)
 
     @pilas.utils.interpolable
     def set_height(self, alto):
         self.definir_escala(alto=alto)
 
     def get_height(self):
-        return convertir_a_pixels((self._cuerpo.fixtures[0].shape.vertices[2][1]) * 2)
+        return convertir_a_pixels(self._alto)
+
+    @pilas.utils.interpolable
+    def set_scale(self, escala):
+        self.definir_escala(escala=escala)
+
+    def get_scale(self):
+        return self._escala
 
     ancho = property(get_width, set_width, doc="definir ancho del rectangulo")
     alto = property(get_height, set_height, doc="definir alto del rectangulo")
+    escala = property(get_scale, set_scale, doc="definir escala del rectangulo")
 
 class Poligono(Figura):
     """Representa un cuerpo poligonal.
