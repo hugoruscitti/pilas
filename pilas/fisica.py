@@ -605,18 +605,21 @@ class Rectangulo(Figura):
 
         self._cuerpo.fixedRotation = self.sin_rotacion
 
-    def definir_escala(self, ancho=None, alto=None, escala=None):
-        if ancho != None:
-            self._ancho = convertir_a_metros(ancho)
+    def definir_ancho(self, ancho):
+        self._ancho = convertir_a_metros(ancho)
+        self.__crear_fixture()
 
-        elif alto != None:
-            self._alto = convertir_a_metros(alto)
+    def definir_alto(self, alto):
+        self._alto = convertir_a_metros(alto)
+        self.__crear_fixture()
 
-        elif escala != None:
-            self._ancho = (self._ancho * escala) / self._escala
-            self._alto = (self._alto * escala) / self._escala
-            self._escala = escala
-        
+    def definir_escala(self, escala):
+        self._ancho = (self._ancho * escala) / self._escala
+        self._alto = (self._alto * escala) / self._escala
+        self._escala = escala
+        self.__crear_fixture()
+    
+    def __crear_fixture(self):
         fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(self._ancho/2, self._alto/2)),
                                      density=self._cuerpo.fixtures[0].density,
                                      linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
@@ -636,21 +639,21 @@ class Rectangulo(Figura):
 
     @pilas.utils.interpolable
     def set_width(self, ancho):
-        self.definir_escala(ancho=ancho)
+        self.definir_ancho(ancho)
 
     def get_width(self):
         return convertir_a_pixels(self._ancho)
 
     @pilas.utils.interpolable
     def set_height(self, alto):
-        self.definir_escala(alto=alto)
+        self.definir_alto(alto)
 
     def get_height(self):
         return convertir_a_pixels(self._alto)
 
     @pilas.utils.interpolable
     def set_scale(self, escala):
-        self.definir_escala(escala=escala)
+        self.definir_escala(escala)
 
     def get_scale(self):
         return self._escala
