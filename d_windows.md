@@ -4,7 +4,7 @@ title: Descargando versión Windows
 active: /descargas.html
 ---
 
-{% assign download_url = "http://dev-losersjuegos.com.ar/pilas_0-82.exe" %}
+{% assign download_url = "http://dev-losersjuegos.com.ar/pilas_0-83.exe" %}
 
 ## Descargando ...
 

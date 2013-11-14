@@ -486,3 +486,7 @@ div.cuenta {
     width: 50%;
     margin: auto;
 }
+
+ul.identado {
+    margin-left: 2em;
+}

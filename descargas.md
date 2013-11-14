@@ -5,7 +5,7 @@ title: Descargas
 
 # Descargas
 
-Elige tu sabor favorito de la versión 0.82 (Lanzada en Julio del 2013):
+Elige tu sabor favorito de la versión 0.83 (Lanzada en Noviembre del 2013):
 
 <ul id='descargas'>
  <li><a href='d_windows.html'><img width=16 height=16 src='images/windows.png'> Windows</a></li>
@@ -16,6 +16,7 @@ Elige tu sabor favorito de la versión 0.82 (Lanzada en Julio del 2013):
  <li><a href='d_codigo.html'><img width=16 height=16 src='images/menu_pack.gif'> Fuente</a></li>
 </ul>
 
+o bien puedes <a href='d_anteriores.html'>descargar alguna versión anterior</a>.
 
 
 ## Github
