@@ -28,6 +28,7 @@
         function crear_ejemplo(categoria, nombre) {
             var opciones = {
                 nombre: nombre,
+                nombre_largo: nombre.replace(/_/g, ' '),
                 categoria: categoria,
                 run: "Ejecutar",
                 codigo: "Código",
@@ -177,12 +178,6 @@
             setTimeout(function() {self.parent().find(".progresando").css("display", "none")}, 3000);
         });
 
-        $("ul.item a").hover(function() {
-            var elemento = $(this);
-
-            elemento.parent().find(".nombre").css("display", "block");
-
-        });
 
 
         $('.menu li a').click(function() {
@@ -245,7 +240,7 @@
         <div class='contenedor_ejemplo'>
 
             <span class='nombre'>
-                    {nombre}
+                    {nombre_largo}
             </span>
 
             <a href='http://pilas/ejecutar/{categoria}/{nombre}'><img src='../../ejemplos/ejemplos/{categoria}/{nombre}.png'></a>

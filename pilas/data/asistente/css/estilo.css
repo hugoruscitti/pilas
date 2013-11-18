@@ -92,7 +92,13 @@ span.nombre {
     position: absolute;
     text-align: center;
     width: 128px;
-    display: none;
+    display: block;
+    opacity: 0;
+}
+
+span.nombre:hover {
+    display: block;
+    opacity: 1;
 }
 
 span.progresando {
