@@ -42,3 +42,10 @@ Si deseas que un sonido se repita indefinidamente debes utilizar el parámetro
 .. code-block:: python
 
     sonido_de_explosion.reproducir(repetir=True)
+
+Para detener la música o un efecto de sonido, existe 
+el método *detener*. Por ejemplo:
+
+.. code-block:: python
+    
+    sonido_de_explosion.detener()
