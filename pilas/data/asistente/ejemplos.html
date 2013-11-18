@@ -177,6 +177,14 @@
             setTimeout(function() {self.parent().find(".progresando").css("display", "none")}, 3000);
         });
 
+        $("ul.item a").hover(function() {
+            var elemento = $(this);
+
+            elemento.parent().find(".nombre").css("display", "block");
+
+        });
+
+
         $('.menu li a').click(function() {
             $('.menu li').removeClass('selected');
             $(this).parent('li').addClass('selected');
@@ -235,13 +243,19 @@
     <div class='elemento_template'>
       <li rel='{categoria}'>
         <div class='contenedor_ejemplo'>
+
+            <span class='nombre'>
+                    {nombre}
+            </span>
+
             <a href='http://pilas/ejecutar/{categoria}/{nombre}'><img src='../../ejemplos/ejemplos/{categoria}/{nombre}.png'></a>
             <br/>
+
             <a href='http://pilas/ejecutar/{categoria}/{nombre}'>{run}</a>  &nbsp; &nbsp; &nbsp;
 
 
             <a href='http://pilas/codigo/{categoria}/{nombre}'>{codigo}</a>
-            <br/>
+            <br/>        
 
             <span class='progresando'><img src='imagenes/procesando.gif'/></span>
         </div>
