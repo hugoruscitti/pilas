@@ -83,6 +83,18 @@ div.contenedor_ejemplo {
     position: relative;
 }
 
+span.nombre {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 2px solid black;
+    height: 96px;
+    padding: 30px 5px;
+    position: absolute;
+    text-align: center;
+    width: 128px;
+    display: none;
+}
+
 span.progresando {
     position: absolute;
     top: 20px;
