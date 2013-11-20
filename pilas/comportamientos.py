@@ -9,6 +9,7 @@
 import math
 import pilas
 
+
 class Comportamiento(object):
     "Representa un comportamiento (estrategia) que se puede anexar a un actor."
 
@@ -57,6 +58,7 @@ class Girar(Comportamiento):
         if delta <= abs(self.velocidad):
             self.receptor.rotacion = self.angulo_final
             return True
+
 
 class Saltar(Comportamiento):
     """Realiza un salto, cambiando los atributos 'y'."""
@@ -132,6 +134,7 @@ class Avanzar(Comportamiento):
         if salir:
             return True
 
+
 class Proyectil(Comportamiento):
     "Hace que un actor se comporte como un proyectil."
 
@@ -186,8 +189,8 @@ class Proyectil(Comportamiento):
             self.receptor.y += dy
 
 
-
 class Orbitar(Comportamiento):
+
     def __init__(self, x=0, y=0, radio=50, velocidad=5, direccion="derecha"):
         self.punto_de_orbita_x = x
         self.punto_de_orbita_y = y
@@ -215,7 +218,9 @@ class Orbitar(Comportamiento):
         self.receptor.x = self.punto_de_orbita_x + (math.cos(math.radians(self.angulo))*self.radio)
         self.receptor.y = self.punto_de_orbita_y - (math.sin(math.radians(self.angulo))*self.radio)
 
+
 class OrbitarSobreActor(Orbitar):
+
     def __init__(self, actor, radio=50, velocidad=5, direccion="derecha"):
         Orbitar.__init__(self, actor.x, actor.y, radio, velocidad, direccion)
         self.actor_a_orbitar = actor
@@ -224,4 +229,3 @@ class OrbitarSobreActor(Orbitar):
         self.punto_de_orbita_x = self.actor_a_orbitar.x
         self.punto_de_orbita_y = self.actor_a_orbitar.y
         Orbitar.mover_astro(self)
-
