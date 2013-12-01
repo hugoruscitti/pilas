@@ -527,6 +527,7 @@ class Imitar(Habilidad):
     def actualizar(self):
         self.receptor.x = self.objeto_a_imitar.x
         self.receptor.y = self.objeto_a_imitar.y
+        self.objeto_a_imitar.escala = self.receptor.escala
         if (self.con_rotacion):
             self.receptor.rotacion = self.objeto_a_imitar.rotacion
 
