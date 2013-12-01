@@ -446,14 +446,13 @@ class Imagen(object):
            x, y: indican la posicion dentro del mundo.
            dx, dy: es el punto centro de la imagen (importante para rotaciones).
            escala_x, escala_yindican cambio de tamano (1 significa normal).
-           rotacion: angulo de inclinacion en sentido anti-horario, contrario
-           al de las agujas del reloj.
+           rotacion: angulo de inclinacion en sentido de las agujas del reloj.
         """
 
         painter.save()
         centro_x, centro_y = pilas.mundo.motor.centro_fisico()
         painter.translate(x + centro_x, centro_y - y)
-        painter.rotate(-rotacion)
+        painter.rotate(rotacion)
         painter.scale(escala_x, escala_y)
 
         if transparencia:
