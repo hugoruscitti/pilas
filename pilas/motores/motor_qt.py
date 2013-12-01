@@ -446,13 +446,14 @@ class Imagen(object):
            x, y: indican la posicion dentro del mundo.
            dx, dy: es el punto centro de la imagen (importante para rotaciones).
            escala_x, escala_yindican cambio de tamano (1 significa normal).
-           rotacion: angulo de inclinacion en sentido de las agujas del reloj.
+           rotacion: angulo de inclinacion en sentido anti-horario, contrario
+           al de las agujas del reloj.
         """
 
         painter.save()
         centro_x, centro_y = pilas.mundo.motor.centro_fisico()
         painter.translate(x + centro_x, centro_y - y)
-        painter.rotate(rotacion)
+        painter.rotate(-rotacion)
         painter.scale(escala_x, escala_y)
 
         if transparencia:
@@ -571,13 +572,13 @@ class Lienzo(Imagen):
         pen = QtGui.QPen(color, grosor)
         painter.setPen(pen)
         painter.drawLine(x0, y0, x1, y1)
-    
+
     def angulo(self, motor, x, y, angulo, radio, color, grosor):
         angulo_en_radianes = math.radians(-angulo)
         dx = math.cos(angulo_en_radianes) * radio
         dy = math.sin(angulo_en_radianes) * radio
         self.linea(motor, x, y, x + dx, y + dy, color, grosor)
-               
+
 
     def poligono(self, motor, puntos, color=colores.negro, grosor=1, cerrado=False):
         x, y = puntos[0]
@@ -644,7 +645,7 @@ class Superficie(Imagen):
             nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
         else:
             nombre_de_fuente = self.canvas.font().family()
-            
+
         if not ancho:
             flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop
             ancho = self._imagen.width()
@@ -1182,7 +1183,7 @@ class Motor(object):
             lineas = [t for t in cadena]
         else:
             lineas = cadena.split('\n')
-            
+
         if not ancho:
             flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop
         else:
@@ -1191,7 +1192,7 @@ class Motor(object):
         for line in lineas:
             if line == '':
                 line = ' '
-            
+
             brect = p.drawText(QtCore.QRect(0, 0, ancho, 2000), flags, line)
             ancho = max(ancho, brect.width())
             alto += brect.height()
