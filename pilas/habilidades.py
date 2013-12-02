@@ -501,7 +501,7 @@ class PisaPlataformas(Habilidad):
 class Imitar(Habilidad):
     "Logra que el actor imite las propiedades de otro."
 
-    def __init__(self, receptor, objeto_a_imitar, con_rotacion=True):
+    def __init__(self, receptor, objeto_a_imitar, con_escala=True, con_rotacion=True):
         """Inicializa la habilidad.
 
         :param receptor: Referencia al actor.
@@ -520,15 +520,20 @@ class Imitar(Habilidad):
         # Posterormente en las colisiones fisicas comprobaremos si el
         # objeto tiene el atributo "figura" para saber si estamos delante
         # de una figura fisica o no.
-        receptor.figura = objeto_a_imitar
+        if hasattr(objeto_a_imitar, '_cuerpo'):
+            receptor.figura = objeto_a_imitar
 
+        self.con_escala = con_escala
         self.con_rotacion = con_rotacion
 
     def actualizar(self):
         self.receptor.x = self.objeto_a_imitar.x
         self.receptor.y = self.objeto_a_imitar.y
-        self.objeto_a_imitar.escala = self.receptor.escala
-        if (self.con_rotacion):
+
+        if self.con_escala:
+            self.objeto_a_imitar.escala = self.receptor.escala
+
+        if self.con_rotacion:
             self.receptor.rotacion = self.objeto_a_imitar.rotacion
 
     def eliminar(self):
