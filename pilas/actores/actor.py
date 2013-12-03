@@ -658,7 +658,7 @@ class Actor(object, Estudiante):
     def definir_transparencia(self, valor):
         self._actor.definir_transparencia(valor)
 
-    def imitar(self, otro_actor_o_figura):
+    def imitar(self, otro_actor_o_figura, *args, **kwargs):
         """ Hace que un Actor copie la posición y la rotación de otro Actor o
         Figura fisica.
 
@@ -670,7 +670,7 @@ class Actor(object, Estudiante):
         :param otro_actor_o_figura: Actor o Figura física a imitar.
         :type otro_actor_o_figura: `Actor`, `Figura`
         """
-        self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura)
+        self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura, *args, **kwargs)
 
     def decir(self, mensaje, autoeliminar=True):
         """Emite un mensaje usando un globo similar al de los comics.
