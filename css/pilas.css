@@ -490,3 +490,8 @@ div.cuenta {
 ul.identado {
     margin-left: 2em;
 }
+
+/* Sombra para las imagenes del blog */
+#tumblr-badge img {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.46);
+}
