@@ -311,9 +311,9 @@ class MoverseConElTeclado(Habilidad):
         if self.con_rotacion:
 
             if c.izquierda:
-                self.receptor.rotacion -= self.velocidad_rotacion * self.velocidad_maxima
-            elif c.derecha:
                 self.receptor.rotacion += self.velocidad_rotacion * self.velocidad_maxima
+            elif c.derecha:
+                self.receptor.rotacion -= self.velocidad_rotacion * self.velocidad_maxima
 
             if c.arriba:
                 self.avanzar(+1)
@@ -325,7 +325,7 @@ class MoverseConElTeclado(Habilidad):
             else:
                 self.decelerar()
 
-            rotacion_en_radianes = math.radians(-self.receptor.rotacion + 90)
+            rotacion_en_radianes = math.radians(self.receptor.rotacion + 90)
             dx = math.cos(rotacion_en_radianes) * self.velocidad
             dy = math.sin(rotacion_en_radianes) * self.velocidad
             self.receptor.x += dx
