@@ -718,3 +718,21 @@ class DispararConClick(Disparar):
 
     def pulsa_disparar(self):
         return self.boton_pulsado
+
+class PerseguirAOtroActor(Habilidad):
+    """Hace que un actor persiga a otro actor.
+       No navega alrededor de obstaculos.
+    """
+
+    def __init__(self, receptor, objetivo, velocidad=5):
+        Habilidad.__init__(self, receptor)
+        self.objetivo = objetivo
+        self.velocidad = velocidad
+
+    def actualizar(self):
+
+        def limitar(valor):
+            return min(max(valor, -self.velocidad), self.velocidad)
+
+        self.receptor.x += limitar(self.objetivo.x - self.receptor.x)
+        self.receptor.y += limitar(self.objetivo.y - self.receptor.y)
