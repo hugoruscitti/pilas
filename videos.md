@@ -1,11 +1,21 @@
 ---
-layout: base 
+layout: base
 title: Videos
 ---
 
 # Videos
 
 Aquí encontrarás charlas y tutoriales en videos para comenzar a programar.
+
+<div class="post" id="presentacion-de-pilas-en-pyconES-2013">
+ <h5>Pilas en PyCon España 2013 (Madrid)</h5>
+
+ <iframe width="420" height="315" src="http://www.youtube.com/watch?v=bjlWZjTZLmQ" frameborder="0" allowfullscreen></iframe>
+
+ <p>
+    Puedes ver mas información en el <a href='http://2013.es.pycon.org/'>sitio del evento</a>.
+</div>
+
 
 <div class="post" id="presentacion-de-pilas-en-pycon-2013">
  <h5>Pilas en PyCon Argentina 2013 (Rosario)</h5>
@@ -22,7 +32,7 @@ Aquí encontrarás charlas y tutoriales en videos para comenzar a programar.
 <div class="post" id="presentacion-de-pilas-en-betabeers-bs-as-marzo-2012">
  <h5>Pilas en PyCon Argentina 2012</h5>
  <iframe width="640" height="480" src="http://www.youtube.com/embed/sQhxjLoJlZs" frameborder="0" allowfullscreen></iframe>
- 
+
  <p>
     Puedes ver mas información en el <a href='http://ar.pycon.org/2012/default/index'>sitio del evento</a>.
 </div>
