@@ -21,9 +21,9 @@ class EscenaMenu(pilas.escena.Base):
 
     def crear_el_menu_principal(self):
         opciones = [
-                    ("Comenzar a jugar", self.comenzar_a_jugar),
-                    ("Ver ayuda", self.mostrar_ayuda_del_juego),
-                    ("Salir", self.salir_del_juego),
+                    ("Comenzar a jugar", [self.comenzar_a_jugar]),
+                    ("Ver ayuda", [self.mostrar_ayuda_del_juego]),
+                    ("Salir", [self.salir_del_juego]),
                    ]
         self.menu = pilas.actores.Menu(opciones, y=-50)
 

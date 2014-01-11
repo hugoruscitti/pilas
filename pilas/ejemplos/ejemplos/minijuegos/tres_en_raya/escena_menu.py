@@ -12,9 +12,9 @@ class EscenaMenu(pilas.escena.Base):
 
     def menu_de_juego(self):
         opciones_menu = [
-        ("Iniciar juego", self.iniciar_juego),
-        ("Ayuda", self.mostrar_ayuda),
-        ("Salir", self.salir_del_juego),
+        ("Iniciar juego", [self.iniciar_juego]),
+        ("Ayuda", [self.mostrar_ayuda]),
+        ("Salir", [self.salir_del_juego]),
         ]
         self.menu = pilas.actores.Menu(opciones_menu, y = -50)
 
