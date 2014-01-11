@@ -26,8 +26,8 @@ para iniciar el juego y otra para salir:
 
     pilas.actores.Menu(
             [
-                ('iniciar juego', iniciar_juego),
-                ('salir', salir_del_juego),
+                ('iniciar juego', [iniciar_juego]),
+                ('salir', [salir_del_juego]),
             ])
 
     pilas.ejecutar()
@@ -65,15 +65,15 @@ ejemplo:
 Y luego, cuando creamos el menú, armamos una lista
 de tuplas, donde el primer elemento es la cadena
 de texto que queremos mostrar, y el segundo elemento
-es la función a invocar:
+es una lista con la función a invocar y sus argumentos si es que tiene:
 
 
 .. code-block:: python
 
     pilas.actores.Menu(
             [
-                ('iniciar juego', iniciar_juego),
-                ('salir', salir_del_juego),
+                ('iniciar juego', [iniciar_juego]),
+                ('salir', [salir_del_juego]),
             ])
 
 
@@ -82,9 +82,14 @@ una lista como la anterior.
 
 Puedes crear tantas
 opciones como quieras, pero siempre tienen que estar
-en una tupla de dos elementos, el primer con un texto
-y el segundo con el nombre de la función que se tiene
-que invocar.
+en una tupla de dos o tres elementos:
+
+Si es de dos elementos: el primero debe de ser un texto
+y el segundo la lista con el nombre de la funcion a invocar.
+
+Si es de tres elementos: el primero debe ser una cadena de 
+texto con la ruta de la imagen, el segundo un texto y el 
+tercero la lista con el nombre de la funcion a invocar.
 
 Cuando colocamos un nombre de función de esa forma, es
 decir, sin los paréntesis, decimos que esa función
@@ -122,5 +127,5 @@ o que se mueva constantemente como si estuviera flotando.
 
 Ten en cuenta que en realidad no estamos aplicando transformaciones
 a todo el menú, simplemente estamos transmitiendo las transformaciones
-a cada uno de los textos que componen el menú. Si haces un
+a cada uno de los textos e iconos que componen el menú. Si haces un
 cambio de rotación vas a ver a qué me refiero...

@@ -24,6 +24,7 @@ class Menu(Actor):
         :param y: Posicion en el eje y
         """
         self.opciones_como_actores = []
+        self.iconos_de_opciones = []
         self.demora_al_responder = 0
         Actor.__init__(self, "invisible.png", x=x, y=y)
         self._verificar_opciones(opciones)
@@ -63,16 +64,31 @@ class Menu(Actor):
 
         for indice, opcion in enumerate(opciones):
             y = self.y - indice * 50
-            texto, funcion, argumentos = opcion[0],opcion[1],opcion[2:]
+            if len(opcion) == 2:
+                icono, texto, funcion, argumentos = None, opcion[0], opcion[1][0], opcion[1][1:]
+            elif len(opcion) == 3:
+                icono, texto, funcion, argumentos = opcion[0], opcion[1], opcion[2][0], opcion[2][1:]
+            else:
+                raise Exception('El menú admite una lista de tuplas con 2 elementos ("texto", [callback, argumentos])\
+                    o 3 elementos para añadir un icono ("icono.png", texto", [callback, argumentos])')
+
             opciones = pilas.actores.Opcion(texto, x=0, y=y, funcion_a_invocar=funcion, argumentos=argumentos, fuente=fuente,
                                             color_normal=color_normal, color_resaltado=color_resaltado)
+            
+            if isinstance(icono, str):
+                icono = pilas.actores.Actor(icono, x=-120, y=opciones.y)
 
+            self.iconos_de_opciones.append(icono)
             self.opciones_como_actores.append(opciones)
 
     def seleccionar_primer_opcion(self):
         """Destaca la primer opción del menú."""
         if self.opciones_como_actores:
             self.opciones_como_actores[0].resaltar()
+            try:
+                self.iconos_de_opciones[0].escala = 2
+            except:
+                pass
 
     def _verificar_opciones(self, opciones):
         """Se asegura de que la lista este bien definida.
@@ -121,11 +137,18 @@ class Menu(Actor):
 
         # Selecciona la opcion nueva.
         self.opciones_como_actores[self.opcion_actual].resaltar()
+        try:
+            self.iconos_de_opciones[self.opcion_actual].escala = [1.8], .3
+        except:
+            pass
 
     def __setattr__(self, atributo, valor):
         # Intenta propagar la accion a los actores del grupo.
         try:
             for x in self.opciones_como_actores:
+                setattr(x, atributo, valor)
+
+            for x in self.iconos_de_opciones:
                 setattr(x, atributo, valor)
         except AttributeError:
             pass
@@ -143,11 +166,19 @@ class Menu(Actor):
                     self._deshabilitar_opcion_actual()
                     self.opcion_actual = indice
                     self.opciones_como_actores[indice].resaltar()
+                    try:
+                        self.iconos_de_opciones[self.opcion_actual].escala = [1.8], .3
+                    except:
+                        pass
                 return True
 
     def _deshabilitar_opcion_actual(self):
         """Le quita el foco o resaltado a la opción del menú actual."""
         self.opciones_como_actores[self.opcion_actual].resaltar(False)
+        try:
+            self.iconos_de_opciones[self.opcion_actual].escala = [1], .3
+        except:
+            pass
 
     def cuando_hace_click_con_el_mouse(self, evento):
         """Se ejecuta cuando se hace click con el mouse.
