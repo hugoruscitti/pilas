@@ -84,7 +84,7 @@ class Menu(Actor):
         if self.opciones_como_actores:
             self.opciones_como_actores[0].resaltar()
             try:
-                self.iconos_de_opciones[0].escala = [2], .2
+                self.iconos_de_opciones[0].escala = [self.escala * 2], .2
             except:
                 pass
 
@@ -136,7 +136,7 @@ class Menu(Actor):
         # Selecciona la opcion nueva.
         self.opciones_como_actores[self.opcion_actual].resaltar()
         try:
-            self.iconos_de_opciones[self.opcion_actual].escala = [2],.3
+            self.iconos_de_opciones[self.opcion_actual].escala = [self.escala * 2],.3
         except:
             pass
 
@@ -145,6 +145,8 @@ class Menu(Actor):
         try:
             for x in self.opciones_como_actores:
                 setattr(x, atributo, valor)
+            for x in self.iconos_de_opciones:
+                setattr(x , atributo, valor)
         except AttributeError:
             pass
 
@@ -162,7 +164,7 @@ class Menu(Actor):
                     self.opcion_actual = indice
                     self.opciones_como_actores[indice].resaltar()
                     try:
-                        self.iconos_de_opciones[self.opcion_actual].escala = [2],.3
+                        self.iconos_de_opciones[self.opcion_actual].escala = [self.escala * 2],.3
                     except:
                         pass
                 return True
@@ -171,7 +173,7 @@ class Menu(Actor):
         """Le quita el foco o resaltado a la opción del menú actual."""
         self.opciones_como_actores[self.opcion_actual].resaltar(False)
         try:
-            self.iconos_de_opciones[self.opcion_actual].escala = [1],.3
+            self.iconos_de_opciones[self.opcion_actual].escala = [self.escala],.3
         except:
             pass
 
