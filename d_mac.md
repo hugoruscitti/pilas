@@ -4,7 +4,7 @@ title: Descargando versión mac
 active: /descargas.html
 ---
 
-{% assign download_url = "http://dev-losersjuegos.com.ar/pilas-engine-0.83.dmg" %}
+{% assign download_url = "http://dev-losersjuegos.com.ar/pilas-python/pilas-engine-0.83.dmg" %}
 
 ## Descargando ...
 
