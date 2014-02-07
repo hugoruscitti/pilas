@@ -555,7 +555,8 @@ class Disparar(Habilidad):
                  offset_disparo=(0,0),
                  offset_origen_actor=(0,0),
                  cuando_dispara=None,
-                 escala=1):
+                 escala=1,
+                 control=None):
         """
         Construye la habilidad.
 
@@ -568,6 +569,7 @@ class Disparar(Habilidad):
         :param offset_origen_actor: Si el Actor no tiene su origen en el centro, con este parametro podremos colocar correctamente el disparo.
         :param cuando_dispara: Metodo que será llamado cuando se produzca un disparo.
         :param escala: Escala de los actores que serán disparados.
+        :param control: Indica los controles que utiliza el actor para saber cuando pulsa el botón de disparar.
 
         :example:
 
@@ -604,6 +606,8 @@ class Disparar(Habilidad):
         self.cuando_dispara = cuando_dispara
 
         self.escala = escala
+
+        self.control = control
 
     def set_frecuencia_de_disparo(self, valor):
         self._frecuencia_de_disparo = 60 / valor
@@ -695,7 +699,7 @@ class Disparar(Habilidad):
         pass
 
     def pulsa_disparar(self):
-        return pilas.escena_actual().control.boton
+        return self.control.boton if self.control else pilas.escena_actual().control.boton
 
 
 class DispararConClick(Disparar):
