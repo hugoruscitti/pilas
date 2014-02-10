@@ -106,6 +106,11 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
     def __init__(self,  parent, codigo_inicial):
         super(InterpreteTextEdit,  self).__init__(parent)
 
+        this_dir = os.path.dirname(os.path.realpath(__file__))
+        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
+        fuente_id = QFontDatabase.addApplicationFont(font_path)
+        self.font_family = QFontDatabase.applicationFontFamilies(fuente_id)[0]
+        
         self.ventana = parent
         self.stdout_original = sys.stdout
         sys.stdout = NormalOutput(self)
@@ -123,7 +128,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         #palette.setColor(QPalette.Text, QColor(0, 255, 0))
         #self.setPalette(palette)
 
-        self._set_font_size(16)
+        self._set_font_size(14)
         self._highlighter = highlighter.Highlighter(self.document(), 'python', highlighter.COLOR_SCHEME)
 
         if codigo_inicial:
@@ -146,7 +151,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
     def _set_font_size(self, font_size):
         self.font_size = font_size
-        font = QFont('Monaco', font_size)
+        font = QFont(self.font_family, font_size)
         self.setFont(font)
 
     def _change_font_size(self, delta_size):
