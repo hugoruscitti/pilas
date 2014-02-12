@@ -311,9 +311,9 @@ class MoverseConElTeclado(Habilidad):
         if self.con_rotacion:
 
             if c.izquierda:
-                self.receptor.rotacion += self.velocidad_rotacion * self.velocidad_maxima
-            elif c.derecha:
                 self.receptor.rotacion -= self.velocidad_rotacion * self.velocidad_maxima
+            elif c.derecha:
+                self.receptor.rotacion += self.velocidad_rotacion * self.velocidad_maxima
 
             if c.arriba:
                 self.avanzar(+1)
@@ -325,7 +325,7 @@ class MoverseConElTeclado(Habilidad):
             else:
                 self.decelerar()
 
-            rotacion_en_radianes = math.radians(self.receptor.rotacion + 90)
+            rotacion_en_radianes = math.radians(-self.receptor.rotacion + 90)
             dx = math.cos(rotacion_en_radianes) * self.velocidad
             dy = math.sin(rotacion_en_radianes) * self.velocidad
             self.receptor.x += dx
@@ -376,12 +376,13 @@ class MoverseComoCoche(MoverseConElTeclado):
     "Hace que un actor se mueva como un coche."
 
     def __init__(self, receptor, control=None, velocidad_maxima=4,
-                 aceleracion=0.06, deceleracion=0.1, rozamiento=0):
+                 aceleracion=0.06, deceleracion=0.1, rozamiento=0, velocidad_rotacion=1):
         MoverseConElTeclado.__init__(self, receptor,
                                      control=control,
                                      velocidad_maxima=velocidad_maxima,
                                      aceleracion=aceleracion,
                                      deceleracion=deceleracion,
+                                     velocidad_rotacion=velocidad_rotacion,
                                      con_rotacion=True)
 
         self._rozamiento = rozamiento

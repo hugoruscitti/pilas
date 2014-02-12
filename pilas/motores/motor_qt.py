@@ -453,7 +453,7 @@ class Imagen(object):
         painter.save()
         centro_x, centro_y = pilas.mundo.motor.centro_fisico()
         painter.translate(x + centro_x, centro_y - y)
-        painter.rotate(-rotacion)
+        painter.rotate(rotacion)
         painter.scale(escala_x, escala_y)
 
         if transparencia:
