@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pilas/data/manual.ui'
 #
-# Created: Wed Oct 23 20:02:03 2013
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Thu Feb 13 11:07:12 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,16 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    _fromUtf8 = lambda s: s
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_ManualWindow(object):
     def setupUi(self, ManualWindow):
@@ -44,7 +53,7 @@ class Ui_ManualWindow(object):
         QtCore.QMetaObject.connectSlotsByName(ManualWindow)
 
     def retranslateUi(self, ManualWindow):
-        ManualWindow.setWindowTitle(QtGui.QApplication.translate("ManualWindow", "manual de pilas-engine", None, QtGui.QApplication.UnicodeUTF8))
+        ManualWindow.setWindowTitle(_translate("ManualWindow", "manual de pilas-engine", None))
 
 from PyQt4 import QtWebKit
 
