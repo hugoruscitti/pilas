@@ -8,7 +8,6 @@
 
 import pilas
 from pilas.actores import Animacion
-import math
 
 
 class Nave(Animacion):
@@ -77,3 +76,8 @@ class Nave(Animacion):
 
         if self.cuando_elimina_enemigo:
             self.cuando_elimina_enemigo()
+
+    def disparar(self):
+        for x in self._habilidades:
+            if x.__class__.__name__ == 'Disparar':
+                x.disparar()
