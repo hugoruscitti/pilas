@@ -376,12 +376,13 @@ class MoverseComoCoche(MoverseConElTeclado):
     "Hace que un actor se mueva como un coche."
 
     def __init__(self, receptor, control=None, velocidad_maxima=4,
-                 aceleracion=0.06, deceleracion=0.1, rozamiento=0):
+                 aceleracion=0.06, deceleracion=0.1, rozamiento=0, velocidad_rotacion=1):
         MoverseConElTeclado.__init__(self, receptor,
                                      control=control,
                                      velocidad_maxima=velocidad_maxima,
                                      aceleracion=aceleracion,
                                      deceleracion=deceleracion,
+                                     velocidad_rotacion=velocidad_rotacion,
                                      con_rotacion=True)
 
         self._rozamiento = rozamiento
@@ -501,7 +502,7 @@ class PisaPlataformas(Habilidad):
 class Imitar(Habilidad):
     "Logra que el actor imite las propiedades de otro."
 
-    def __init__(self, receptor, objeto_a_imitar, con_rotacion=True):
+    def __init__(self, receptor, objeto_a_imitar, con_escala=True, con_rotacion=True):
         """Inicializa la habilidad.
 
         :param receptor: Referencia al actor.
@@ -520,14 +521,20 @@ class Imitar(Habilidad):
         # Posterormente en las colisiones fisicas comprobaremos si el
         # objeto tiene el atributo "figura" para saber si estamos delante
         # de una figura fisica o no.
-        receptor.figura = objeto_a_imitar
+        if hasattr(objeto_a_imitar, '_cuerpo'):
+            receptor.figura = objeto_a_imitar
 
+        self.con_escala = con_escala
         self.con_rotacion = con_rotacion
 
     def actualizar(self):
         self.receptor.x = self.objeto_a_imitar.x
         self.receptor.y = self.objeto_a_imitar.y
-        if (self.con_rotacion):
+
+        if self.con_escala:
+            self.objeto_a_imitar.escala = self.receptor.escala
+
+        if self.con_rotacion:
             self.receptor.rotacion = self.objeto_a_imitar.rotacion
 
     def eliminar(self):
@@ -549,7 +556,8 @@ class Disparar(Habilidad):
                  offset_disparo=(0,0),
                  offset_origen_actor=(0,0),
                  cuando_dispara=None,
-                 escala=1):
+                 escala=1,
+                 control=None):
         """
         Construye la habilidad.
 
@@ -562,6 +570,7 @@ class Disparar(Habilidad):
         :param offset_origen_actor: Si el Actor no tiene su origen en el centro, con este parametro podremos colocar correctamente el disparo.
         :param cuando_dispara: Metodo que será llamado cuando se produzca un disparo.
         :param escala: Escala de los actores que serán disparados.
+        :param control: Indica los controles que utiliza el actor para saber cuando pulsa el botón de disparar.
 
         :example:
 
@@ -598,6 +607,8 @@ class Disparar(Habilidad):
         self.cuando_dispara = cuando_dispara
 
         self.escala = escala
+
+        self.control = control
 
     def set_frecuencia_de_disparo(self, valor):
         self._frecuencia_de_disparo = 60 / valor
@@ -689,7 +700,7 @@ class Disparar(Habilidad):
         pass
 
     def pulsa_disparar(self):
-        return pilas.escena_actual().control.boton
+        return self.control.boton if self.control else pilas.escena_actual().control.boton
 
 
 class DispararConClick(Disparar):
@@ -712,3 +723,21 @@ class DispararConClick(Disparar):
 
     def pulsa_disparar(self):
         return self.boton_pulsado
+
+class PerseguirAOtroActor(Habilidad):
+    """Hace que un actor persiga a otro actor.
+       No navega alrededor de obstaculos.
+    """
+
+    def __init__(self, receptor, objetivo, velocidad=5):
+        Habilidad.__init__(self, receptor)
+        self.objetivo = objetivo
+        self.velocidad = velocidad
+
+    def actualizar(self):
+
+        def limitar(valor):
+            return min(max(valor, -self.velocidad), self.velocidad)
+
+        self.receptor.x += limitar(self.objetivo.x - self.receptor.x)
+        self.receptor.y += limitar(self.objetivo.y - self.receptor.y)

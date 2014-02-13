@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pilas/data/interprete.ui'
 #
-# Created: Sat Nov  9 14:06:47 2013
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Thu Feb 13 11:07:12 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,16 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    _fromUtf8 = lambda s: s
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_InterpreteWindow(object):
     def setupUi(self, InterpreteWindow):
@@ -153,26 +162,26 @@ class Ui_InterpreteWindow(object):
         QtCore.QMetaObject.connectSlotsByName(InterpreteWindow)
 
     def retranslateUi(self, InterpreteWindow):
-        InterpreteWindow.setWindowTitle(QtGui.QApplication.translate("InterpreteWindow", "pilas-engine", None, QtGui.QApplication.UnicodeUTF8))
-        self.manual_button.setToolTip(QtGui.QApplication.translate("InterpreteWindow", "Mostrar el manual de pilas", None, QtGui.QApplication.UnicodeUTF8))
-        self.manual_button.setText(QtGui.QApplication.translate("InterpreteWindow", "M", None, QtGui.QApplication.UnicodeUTF8))
-        self.interprete_button.setToolTip(QtGui.QApplication.translate("InterpreteWindow", "Mostrar el intérprete", None, QtGui.QApplication.UnicodeUTF8))
-        self.interprete_button.setText(QtGui.QApplication.translate("InterpreteWindow", "I", None, QtGui.QApplication.UnicodeUTF8))
-        self.guardar_button.setToolTip(QtGui.QApplication.translate("InterpreteWindow", "Guardar el contenido del intérprete", None, QtGui.QApplication.UnicodeUTF8))
-        self.guardar_button.setText(QtGui.QApplication.translate("InterpreteWindow", "G", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_6.setToolTip(QtGui.QApplication.translate("InterpreteWindow", "Mostrar información del sistema", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_6.setText(QtGui.QApplication.translate("InterpreteWindow", "F7", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_5.setToolTip(QtGui.QApplication.translate("InterpreteWindow", "Mostrar puntos de control", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_5.setText(QtGui.QApplication.translate("InterpreteWindow", "F8", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_4.setToolTip(QtGui.QApplication.translate("InterpreteWindow", "Mostrar radios de colisión", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_4.setText(QtGui.QApplication.translate("InterpreteWindow", "F9", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_3.setToolTip(QtGui.QApplication.translate("InterpreteWindow", "Mostrar areas", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_3.setText(QtGui.QApplication.translate("InterpreteWindow", "F10", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_2.setToolTip(QtGui.QApplication.translate("InterpreteWindow", "Mostrar figuras físicas", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_2.setText(QtGui.QApplication.translate("InterpreteWindow", "F11", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setToolTip(QtGui.QApplication.translate("InterpreteWindow", "Mostrar posiciones", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("InterpreteWindow", "F12", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSalir.setText(QtGui.QApplication.translate("InterpreteWindow", "Salir", None, QtGui.QApplication.UnicodeUTF8))
+        InterpreteWindow.setWindowTitle(_translate("InterpreteWindow", "pilas-engine", None))
+        self.manual_button.setToolTip(_translate("InterpreteWindow", "Mostrar el manual de pilas", None))
+        self.manual_button.setText(_translate("InterpreteWindow", "M", None))
+        self.interprete_button.setToolTip(_translate("InterpreteWindow", "Mostrar el intérprete", None))
+        self.interprete_button.setText(_translate("InterpreteWindow", "I", None))
+        self.guardar_button.setToolTip(_translate("InterpreteWindow", "Guardar el contenido del intérprete", None))
+        self.guardar_button.setText(_translate("InterpreteWindow", "G", None))
+        self.pushButton_6.setToolTip(_translate("InterpreteWindow", "Mostrar información del sistema", None))
+        self.pushButton_6.setText(_translate("InterpreteWindow", "F7", None))
+        self.pushButton_5.setToolTip(_translate("InterpreteWindow", "Mostrar puntos de control", None))
+        self.pushButton_5.setText(_translate("InterpreteWindow", "F8", None))
+        self.pushButton_4.setToolTip(_translate("InterpreteWindow", "Mostrar radios de colisión", None))
+        self.pushButton_4.setText(_translate("InterpreteWindow", "F9", None))
+        self.pushButton_3.setToolTip(_translate("InterpreteWindow", "Mostrar areas", None))
+        self.pushButton_3.setText(_translate("InterpreteWindow", "F10", None))
+        self.pushButton_2.setToolTip(_translate("InterpreteWindow", "Mostrar figuras físicas", None))
+        self.pushButton_2.setText(_translate("InterpreteWindow", "F11", None))
+        self.pushButton.setToolTip(_translate("InterpreteWindow", "Mostrar posiciones", None))
+        self.pushButton.setText(_translate("InterpreteWindow", "F12", None))
+        self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
 from PyQt4 import QtWebKit
 

@@ -83,6 +83,29 @@ div.contenedor_ejemplo {
     position: relative;
 }
 
+div.contenedor_ejemplo a { 
+    text-decoration: none;
+}
+
+span.nombre {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 2px solid black;
+    height: 96px;
+    padding: 30px 5px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    width: 128px;
+    display: block;
+    opacity: 0;
+}
+
+span.nombre:hover {
+    display: block;
+    opacity: 1;
+}
+
 span.progresando {
     position: absolute;
     top: 20px;

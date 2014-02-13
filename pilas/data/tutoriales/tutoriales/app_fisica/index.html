@@ -1,0 +1,239 @@
+<html ng-app='app'>
+  <head>
+    <title>Pilas tutorial</title>
+    <meta charset="UTF-8">
+    
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/pilas-tutorial.css" rel="stylesheet">
+    <link href="css/console.css" rel="stylesheet">
+		<link href='../../css/tutoriales.css' rel='stylesheet'>
+  </head>
+  
+  <body>
+    
+    <div class='pilas-contenedor' ng-controller='TutorialCtrl'>
+        
+      <!-- Mensajes que avisan si el ejercicio se resolvio -->
+      <div ng-show='mostrar_mensaje' ng-click='ocultar_mensajes()' class='animate-show pilas-mensajes'>
+        <div class='alert alert-success'>
+          <button type="button" class="close">&times;</button>
+          {{mensaje}}
+         </div>
+      </div>
+      
+      <!-- Linea que enumera los ejercicios -->
+      <ul class='pilas-ejercicios'>
+        Pasos del tutorial 
+        <li class='pilas-ejercicio' ng-repeat='e in ejercicios'>
+            <a href='#/{{e.path}}' ng-show='e.completado' class='animate-show completado'>{{e.numero}}</a> 
+            <a href='#/{{e.path}}' ng-show='!e.completado' class='animate-show' ng-class="{actual: e.es_actual()}">{{e.numero}}</a> 
+        </li>
+      </ul>
+      
+      <div class="row-fluid">
+        <div class="tutorial-panel-consigna">
+          <ng-view class="view-example"></ng-view>
+        </div>
+          
+        <div class="tutorial-panel-interprete">
+          <pilas-canvas></pilas-canvas>
+          <pilas-interprete evaluador='cuando_ejecuta()'></pilas-interprete>
+        </div>
+      </div>
+      
+    </div> <!-- fin class='pilas-contenedor' -->
+    
+<!-- comienzan templates -->
+<script type="text/ng-template" id="partials/paso1.html">
+<h1>¡ Hola !</h1>
+
+<p>Este es el tutorial avanzado de <a href='http://www.pilas-engine.com.ar' target='_blank'>pilas-engine</a>, en donde
+vamos a realizar un juego que involucra física y simulaciones.</p>
+
+<p>Vamos a realizar un juego de Basket simple, pero que nos dará
+muchos conceptos e ideas para implementar en otros juegos.
+
+<div class='alert alert-info'>Escribí <code>crear_pelota()</code> y luego enter para comenzar.</div>
+
+
+<img class='flecha_interprete' src='../../imagenes/flecha_al_interprete.png'>
+</script>
+    
+<script type="text/ng-template" id="partials/paso2.html">
+<p>Perfecto, ahora podés ver un nuevo actor
+ en pantalla.</p>
+
+ <p>¿Habíamos dicho un juego de basket? Bueno, en realidad
+ sólo haremos lo más básico de un juego de basket: pondremos
+ un cesto, una pelota y algunos actores más.</p>
+ 
+<p>Algo así, ¿comenzamos?: </p>
+
+<p style='text-align: center'>
+	<img width=100 src='img/preview.png'>
+    
+    <br/>
+    <br/>
+    <button ng-click="comenzar_tutorial()" class='btn btn-info'>¡ Vamos a comenzar !</button>
+</p>
+
+</script>
+
+
+<script type="text/ng-template" id="partials/paso3.html">
+<h1>Comenzando</h1>
+
+<p>Para hacer el videojuego vamos a utilizar
+<a href='http://pilas-engine.com.ar/' target="_blank">pilas-engine</a> y el intérprete interactivo.</p>
+
+<p>Ahora, al igual que hicimos en los tutoriales
+anteriores, los actores tienen un nombre. En este caso
+tenemos la variable <code>pelota</code>.
+
+<p>Hagamos algunas cosas:</p>
+
+<div ng-repeat='c in consignas'>
+  <div ng-show='!c.completa' class='alert alert-info'><span class='icon-hand-right'></span> {{c.texto}}</div>
+  <div ng-show='c.completa' class='alert alert-success'><span class='icon-ok-circle'></span> {{c.texto}}</div>
+</div>
+</script>
+
+
+<script type="text/ng-template" id="partials/paso4.html">
+<h1>Moviendo actores</h1>
+
+<p>El último método que escribimos es muy útil. Nos permite
+desplazar un actor físico en cualquier dirección usando dos
+valores.</p>
+
+<p>Por ejemplo, anteriormente le dimos dos números que resultaron
+en la dirección que ilustra la imagen:</p>
+
+<p style='text-align: center'>
+    <img src='img/vector.png'/>
+</p>
+
+<div class='alert alert-info'>Analizando el dibujo, escribí una linea de código que empuje la pelota hacia arriba, tan alto que
+  llegue a tocar el techo.</div>
+</script>
+
+<script type="text/ng-template" id="partials/paso5.html">
+<h1>Cesto</h1>
+
+<p>Perfecto, ahora vamos a crear el cesto, y asegurarnos de que
+los actores tengan las escalas correctas:
+
+<div class="alert alert-info"><span class="icon-hand-right"></span> Escribí <code>crear_cesto()</code></div>
+
+<p>Lamentablemente, la escala de la pelota es muy grande... escribí
+<code>pelota.escala = 0.75</code> para que pueda llegar a pasar por el
+cesto.</p>
+
+</script>
+
+<script type="text/ng-template" id="partials/paso6.html">
+
+<h1>Viendo detalles</h1>
+
+<p>Dentro de un juego hay varios elementos "invisibles", pero muy
+importantes.</p>
+
+<p>La pelota puede moverse por el escenario, rebotar y colisionar
+con el cesto:</p>
+
+
+<div ng-repeat='c in consignas'>
+  <div ng-show='!c.completa' class='alert alert-info'><span class='icon-hand-right'></span> {{c.texto}}</div>
+  <div ng-show='c.completa' class='alert alert-success'><span class='icon-ok-circle'></span> {{c.texto}}</div>
+</div>
+
+<div ng-show='mostrar_extras'>
+  <p>Ahora, cada actor tiene una pequeña línea blanca. Esa línea 
+  nos muestra el área de colisión física.</p>
+ 
+  <p>La buena noticia es que las áreas de colisión son siempre 
+  muy simples: círculos, rectángulos, polígonos etc...</p>
+
+  <br/>
+    <button ng-click="avanzar()" class='btn btn-info'>Continuar</button>
+</div>
+
+</script>
+
+<script type="text/ng-template" id="partials/paso7.html">
+<h1>Habilidades</h1>
+
+<p>Los actores pueden aprender nuevas habilidades, cosas
+nuevas que podrían ser útiles en tus juegos, comencemos con
+alguna de ellas:</p>
+
+<div ng-repeat='c in consignas'>
+  <div ng-show='!c.completa' class='alert alert-info'><span class='icon-hand-right'></span> {{c.texto}}</div>
+  <div ng-show='c.completa' class='alert alert-success'><span class='icon-ok-circle'></span> {{c.texto}}</div>
+</div>
+
+<div ng-show='mostrar_extras'>
+  <p>Ahora, vas a poder arrastrar y soltar la pelota
+  usando directamente el cursor del mouse.</p>
+ 
+  <p>Todo actor puede aprender nuevas habilidades, no importa 
+  si es una nave, pelota, mono etc..., todos pueden combinar las habilidades 
+  para lograr comportamientos más elaborados.</p>
+
+  <br/>
+    <button ng-click="avanzar()" class='btn btn-info'>Continuar</button>
+</div>
+
+
+</script>
+
+<script type="text/ng-template" id="partials/paso8.html">
+<h1>Cambiando la gravedad</h1>
+
+<p>En este último paso vamos a modificar un poco la
+gravedad y probar otros actores.</p>
+
+<p>Tenemos una caja, una aceituna, la pelota y todos
+responden a la aceleración gravitatoria del escenario.
+
+<p>Escribí <code>pilas.definir_gravedad(10, 5)</code> o
+<code>pilas.definir_gravedad(0, 0)</code> para ver
+qué ocurre.</p>
+
+<p>Y por último, ejecutando <code>avanzar()</code> vamos a la última
+pantalla.
+
+</script>
+
+<script type="text/ng-template" id="partials/paso9.html">
+<h1>Felicitaciones</h1>
+
+<p>Excelente, has completado el tutorial de física. Ahora podés
+continuar en la sección intérprete, para hacer tu primer juego.
+
+</script>
+    
+    
+<!-- fin templates -->
+    
+  </body>
+  
+  <!-- Bibliotecas relacionadas con angularjs -->
+	<script src="../../js/jquery.js"></script>
+  <script src='../../js/angular.js'></script>
+  <script src='../../js/angular-route.js'></script>
+	
+	<!-- TODO: instalar angular-animate desde bower -->
+  <script src='../../js/angular-animate.js'></script>
+	
+  <script src='js/app.js'></script>
+  
+  <!-- Bibliotecas de terminal interactivo -->
+  <script src='../../js/console/console.js'></script>
+  <script src='../../js/console/prettyprint.js'></script>
+  
+  <!-- Biblioteca pilas-engine -->
+  <script src='../../pilasweb.js'></script>
+  
+  
+</html>

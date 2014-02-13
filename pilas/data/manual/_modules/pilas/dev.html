@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -19,7 +18,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.83',
+        VERSION:     '0.84',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -41,10 +40,10 @@
           <a href="../../genindex.html" title="Índice General"
              accesskey="I">índice</a></li>
         <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li><a href="../../index.html">pilas</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
           <li><a href="../pilas.html" accesskey="U">pilas</a> &raquo;</li> 
       </ul>
     </div>  
@@ -54,7 +53,7 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <h1>Source code for pilas.dev</h1><div class="highlight"><pre>
+  <h1>Código fuente para pilas.dev</h1><div class="highlight"><pre>
 <span class="c"># -*- encoding: utf-8 -*-</span>
 <span class="c"># pilas engine - a video game framework.</span>
 <span class="c">#</span>
@@ -101,7 +100,7 @@
 <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s">&quot;once&quot;</span><span class="p">,</span> <span class="ne">PendingDeprecationWarning</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="deprecated"><a class="viewcode-back" href="../../desarrolladores.html#pilas.dev.deprecated">[docs]</a><span class="k">def</span> <span class="nf">deprecated</span><span class="p">(</span><span class="n">se_desactiva_en</span><span class="p">,</span> <span class="n">se_elimina_en</span><span class="p">,</span> <span class="n">reemplazo</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">nombre</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="deprecated"><a class="viewcode-back" href="../../desarrolladores.html#pilas.dev.deprecated">[documentos]</a><span class="k">def</span> <span class="nf">deprecated</span><span class="p">(</span><span class="n">se_desactiva_en</span><span class="p">,</span> <span class="n">se_elimina_en</span><span class="p">,</span> <span class="n">reemplazo</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">nombre</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Decorador utilizado para marcar una función como deprecada</span>
 
 <span class="sd">    Las excepciones que puede lanzar este decorador son:</span>
@@ -148,7 +147,7 @@
     <span class="k">return</span> <span class="n">outer</span>
 
 </div>
-<div class="viewcode-block" id="deprecated_warning"><a class="viewcode-back" href="../../desarrolladores.html#pilas.dev.deprecated_warning">[docs]</a><span class="k">def</span> <span class="nf">deprecated_warning</span><span class="p">(</span><span class="n">elemento_deprecado</span><span class="p">,</span> <span class="n">se_desactiva_en</span><span class="p">,</span>
+<div class="viewcode-block" id="deprecated_warning"><a class="viewcode-back" href="../../desarrolladores.html#pilas.dev.deprecated_warning">[documentos]</a><span class="k">def</span> <span class="nf">deprecated_warning</span><span class="p">(</span><span class="n">elemento_deprecado</span><span class="p">,</span> <span class="n">se_desactiva_en</span><span class="p">,</span>
                        <span class="n">se_elimina_en</span><span class="p">,</span> <span class="n">reemplazo</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Lanza la correcta exception/warning de anuncio de que *algo* está en desuso.</span>
 
@@ -205,7 +204,7 @@
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="ne">PendingDeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="utilizar_desaconsejados"><a class="viewcode-back" href="../../desarrolladores.html#pilas.dev.utilizar_desaconsejados">[docs]</a><span class="k">def</span> <span class="nf">utilizar_desaconsejados</span><span class="p">(</span><span class="n">usar</span><span class="p">):</span>
+<div class="viewcode-block" id="utilizar_desaconsejados"><a class="viewcode-back" href="../../desarrolladores.html#pilas.dev.utilizar_desaconsejados">[documentos]</a><span class="k">def</span> <span class="nf">utilizar_desaconsejados</span><span class="p">(</span><span class="n">usar</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Permite que se utilicen atributos, métodos y funciones que estan</span>
 <span class="sd">    desaconsejados en esta versión.</span>
 
@@ -241,7 +240,7 @@
       <input type="hidden" name="area" value="default" />
     </form>
     <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
@@ -256,10 +255,10 @@
           <a href="../../genindex.html" title="Índice General"
              >índice</a></li>
         <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li><a href="../../index.html">pilas</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
           <li><a href="../pilas.html" >pilas</a> &raquo;</li> 
       </ul>
     </div>

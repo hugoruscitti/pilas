@@ -24,16 +24,20 @@ class Temporizador(Texto):
         >>> t.iniciar()
 
     """
-    def __init__(self, x=0, y=0, color=colores.negro, fuente=None):
+    def __init__(self, x=0, y=0, color=colores.negro, fuente=None,
+                 autoeliminar=False):
         """Inicializa el temporizador.
 
         :param x: Posición horizontal.
         :param y: Posición vertical.
         :param color: El color que tendrá el texto.
+        :param autoeliminar: Indica si se desea eliminar el Temporizador
+        cuando acabe.
         """
         Texto.__init__(self, '0', x=x, y=y, fuente=fuente)
         self.ajustar(1, self.funcion_vacia)
         self.color = color
+        self.autoeliminar = autoeliminar
 
     # funcion cuando no se ajusta temporizador
     def funcion_vacia(self):
@@ -69,7 +73,12 @@ class Temporizador(Texto):
             self.definir_tiempo_texto(self.tiempo)
             return True
 
+    def autoeliminar_al_terminar(self):
+        self.funcion()
+        if self.autoeliminar:
+            self.eliminar()
+
     def iniciar(self):
         """Inicia el contador de tiempo con la función indicada."""
-        pilas.mundo.agregar_tarea_una_vez(self.tiempo, self.funcion)
+        pilas.mundo.agregar_tarea_una_vez(self.tiempo, self.autoeliminar_al_terminar)
         pilas.mundo.agregar_tarea_siempre(1, self._restar_a_contador)

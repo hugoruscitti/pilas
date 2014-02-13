@@ -17,7 +17,7 @@ Definición de la version actual de pilas y funciones para compararla.
 
 
 #: Contiene la versión actual de pilas.
-VERSION = "0.83"
+VERSION = "0.84"
 
 
 def compareactual(v):

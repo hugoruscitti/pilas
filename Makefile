@@ -1,10 +1,11 @@
-VERSION=0.83
+VERSION=0.84
 
 
 all:
 	@echo "Por favor especifica el comando de make:"
 	@echo ""
 	@echo "  test     Ejecuta todas las pruebas unitarias con nosetest."
+	@echo "  test_mac Ejecuta la aplicacion en macosx."
 	@echo "  html     Actualiza el manual en HTML y genera los PDF para subir a la web."
 	@echo "  api      Genera la referencia de clases, metodos y funciones."
 	@echo "  mac      Genera el paquete de aplicacion para MacOSX."
@@ -19,7 +20,7 @@ test:
 
 # TODO: hacer que tambien genere el archivo PDF del manual y que la regla se llame 'docs'
 html:
-	@cd doc; make
+	@cd docs; make
 
 
 ui:
@@ -27,6 +28,7 @@ ui:
 	pyuic4 -o pilas/asistente_base.py -x pilas/data/asistente.ui
 	pyuic4 -o pilas/interprete_base.py -x pilas/data/interprete.ui
 	pyuic4 -o pilas/manual_base.py -x pilas/data/manual.ui
+	pyuic4 -o pilas/tutoriales_base.py -x pilas/data/tutoriales.ui
 
 api:
 	## IMPORTANTE: Aplica el siguiente patch a epydoc
@@ -63,3 +65,6 @@ ubuntu:
 
 pypi:
 	python utils/actualizar_pypi.py
+
+test_mac:
+	python bin/pilas

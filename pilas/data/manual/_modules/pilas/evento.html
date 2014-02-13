@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -19,7 +18,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.83',
+        VERSION:     '0.84',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -41,10 +40,10 @@
           <a href="../../genindex.html" title="Índice General"
              accesskey="I">índice</a></li>
         <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li><a href="../../index.html">pilas</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
           <li><a href="../pilas.html" accesskey="U">pilas</a> &raquo;</li> 
       </ul>
     </div>  
@@ -54,7 +53,7 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <h1>Source code for pilas.evento</h1><div class="highlight"><pre>
+  <h1>Código fuente para pilas.evento</h1><div class="highlight"><pre>
 <span class="c"># -*- encoding: utf-8 -*-</span>
 <span class="c"># Pilas engine - A video game framework.</span>
 <span class="c">#</span>
@@ -229,7 +228,7 @@
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ProxyEventos"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos">[docs]</a><span class="k">class</span> <span class="nc">ProxyEventos</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos">[documentos]</a><span class="k">class</span> <span class="nc">ProxyEventos</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Representa el objeto pilas.evento, que internamente delega todos los metodos</span>
 <span class="sd">    conectados a la escena actual.</span>
 
@@ -249,7 +248,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ProxyEventos.click_de_mouse"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.click_de_mouse">[docs]</a>    <span class="k">def</span> <span class="nf">click_de_mouse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos.click_de_mouse"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.click_de_mouse">[documentos]</a>    <span class="k">def</span> <span class="nf">click_de_mouse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Informa ante la pulsación del mouse.</span>
 
 <span class="sd">        :param x: Posición horizontal del mouse.</span>
@@ -261,7 +260,7 @@
         <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">click_de_mouse</span>
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ProxyEventos.mueve_camara"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.mueve_camara">[docs]</a>    <span class="k">def</span> <span class="nf">mueve_camara</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos.mueve_camara"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.mueve_camara">[documentos]</a>    <span class="k">def</span> <span class="nf">mueve_camara</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Informa que ha cambiado la posición de la cámara.</span>
 
 <span class="sd">        :param x: Posición horizontal de la cámara.</span>
@@ -272,7 +271,7 @@
         <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">mueve_camara</span>
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ProxyEventos.mueve_mouse"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.mueve_mouse">[docs]</a>    <span class="k">def</span> <span class="nf">mueve_mouse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos.mueve_mouse"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.mueve_mouse">[documentos]</a>    <span class="k">def</span> <span class="nf">mueve_mouse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Informa que la posición del mouse ha cambiado.</span>
 
 <span class="sd">        :param x: Posición horizontal del mouse.</span>
@@ -283,7 +282,7 @@
         <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">mueve_mouse</span>
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ProxyEventos.termina_click"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.termina_click">[docs]</a>    <span class="k">def</span> <span class="nf">termina_click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos.termina_click"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.termina_click">[documentos]</a>    <span class="k">def</span> <span class="nf">termina_click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Informa cuando la pulsación del mouse termina.</span>
 
 <span class="sd">        :param x: Posición horizontal del mouse.</span>
@@ -295,7 +294,7 @@
         <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">termina_click</span>
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ProxyEventos.mueve_rueda"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.mueve_rueda">[docs]</a>    <span class="k">def</span> <span class="nf">mueve_rueda</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos.mueve_rueda"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.mueve_rueda">[documentos]</a>    <span class="k">def</span> <span class="nf">mueve_rueda</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Indica que cambió la rueda del mouse que se utiliza para desplazamiento o scroll.</span>
 
 <span class="sd">        :param delta: indica el grado de rotación de la rueda del mouse.</span>
@@ -303,7 +302,7 @@
         <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">mueve_rueda</span>
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ProxyEventos.pulsa_tecla"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.pulsa_tecla">[docs]</a>    <span class="k">def</span> <span class="nf">pulsa_tecla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos.pulsa_tecla"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.pulsa_tecla">[documentos]</a>    <span class="k">def</span> <span class="nf">pulsa_tecla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Informa que se ha pulsado una tecla del teclado.</span>
 
 <span class="sd">        :param codigo: Codigo de la tecla normalizado, por ejemplo ``simbolos.m``.</span>
@@ -313,7 +312,7 @@
         <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">pulsa_tecla</span>
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ProxyEventos.suelta_tecla"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.suelta_tecla">[docs]</a>    <span class="k">def</span> <span class="nf">suelta_tecla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos.suelta_tecla"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.suelta_tecla">[documentos]</a>    <span class="k">def</span> <span class="nf">suelta_tecla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Informa que se ha soltado una tecla del teclado.</span>
 
 <span class="sd">        :param codigo: Codigo de la tecla normalizado, por ejemplo ``simbolos.m``.</span>
@@ -323,17 +322,17 @@
         <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">suelta_tecla</span>
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ProxyEventos.pulsa_tecla_escape"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.pulsa_tecla_escape">[docs]</a>    <span class="k">def</span> <span class="nf">pulsa_tecla_escape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos.pulsa_tecla_escape"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.pulsa_tecla_escape">[documentos]</a>    <span class="k">def</span> <span class="nf">pulsa_tecla_escape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Indica que se ha pulsado la tecla ``scape``.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">pulsa_tecla_escape</span>
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ProxyEventos.actualizar"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.actualizar">[docs]</a>    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos.actualizar"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.actualizar">[documentos]</a>    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Se invoca regularmente, 60 veces por segundo.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">actualizar</span>
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ProxyEventos.log"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.log">[docs]</a>    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProxyEventos.log"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.log">[documentos]</a>    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Indica que se emitió un mensaje para depuración usando la función ``pilas.log``.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">log</span>
 </div>
@@ -359,7 +358,7 @@
       <input type="hidden" name="area" value="default" />
     </form>
     <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
@@ -374,10 +373,10 @@
           <a href="../../genindex.html" title="Índice General"
              >índice</a></li>
         <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li><a href="../../index.html">pilas</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
           <li><a href="../pilas.html" >pilas</a> &raquo;</li> 
       </ul>
     </div>

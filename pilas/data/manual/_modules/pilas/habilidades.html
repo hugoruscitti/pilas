@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -19,7 +18,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.83',
+        VERSION:     '0.84',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -41,10 +40,10 @@
           <a href="../../genindex.html" title="Índice General"
              accesskey="I">índice</a></li>
         <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li><a href="../../index.html">pilas</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
           <li><a href="../pilas.html" accesskey="U">pilas</a> &raquo;</li> 
       </ul>
     </div>  
@@ -54,7 +53,7 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <h1>Source code for pilas.habilidades</h1><div class="highlight"><pre>
+  <h1>Código fuente para pilas.habilidades</h1><div class="highlight"><pre>
 <span class="c"># -*- encoding: utf-8 -*-</span>
 <span class="c"># Pilas engine - A video game framework.</span>
 <span class="c">#</span>
@@ -67,10 +66,10 @@
 <span class="kn">import</span> <span class="nn">pilas</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
-<div class="viewcode-block" id="Habilidad"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Habilidad">[docs]</a><span class="k">class</span> <span class="nc">Habilidad</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Habilidad"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Habilidad">[documentos]</a><span class="k">class</span> <span class="nc">Habilidad</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Representa una habilidad que un actor puede aprender.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Habilidad.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Habilidad.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="Habilidad.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Habilidad.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span> <span class="o">=</span> <span class="n">receptor</span>
 </div>
     <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -80,14 +79,14 @@
         <span class="k">pass</span>
 
 </div>
-<div class="viewcode-block" id="RebotarComoPelota"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RebotarComoPelota">[docs]</a><span class="k">class</span> <span class="nc">RebotarComoPelota</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="RebotarComoPelota"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RebotarComoPelota">[documentos]</a><span class="k">class</span> <span class="nc">RebotarComoPelota</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Le indica al actor que rebote y colisiones como una pelota.</span>
 
 <span class="sd">    &gt;&gt;&gt; un_actor = pilas.actores.Aceituna()</span>
 <span class="sd">    &gt;&gt;&gt; un_actor.aprender(pilas.habilidades.RebotarComoPelota)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RebotarComoPelota.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RebotarComoPelota.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="RebotarComoPelota.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RebotarComoPelota.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="n">Habilidad</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
         <span class="n">error</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span>
 
@@ -109,14 +108,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">circulo</span><span class="o">.</span><span class="n">empujar</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="RebotarComoCaja"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RebotarComoCaja">[docs]</a><span class="k">class</span> <span class="nc">RebotarComoCaja</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="RebotarComoCaja"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RebotarComoCaja">[documentos]</a><span class="k">class</span> <span class="nc">RebotarComoCaja</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Le indica al actor que rebote y colisiones como una caja cuadrada.</span>
 
 <span class="sd">    &gt;&gt;&gt; un_actor = pilas.actores.Aceituna()</span>
 <span class="sd">    &gt;&gt;&gt; un_actor.aprender(pilas.habilidades.RebotarComoPelota)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RebotarComoCaja.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RebotarComoCaja.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="RebotarComoCaja.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RebotarComoCaja.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="n">Habilidad</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
         <span class="n">error</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span>
         <span class="n">rectangulo</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">Rectangulo</span><span class="p">(</span><span class="n">receptor</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">error</span><span class="p">,</span>
@@ -131,14 +130,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">rectangulo</span><span class="o">.</span><span class="n">eliminar</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="ColisionableComoPelota"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.ColisionableComoPelota">[docs]</a><span class="k">class</span> <span class="nc">ColisionableComoPelota</span><span class="p">(</span><span class="n">RebotarComoPelota</span><span class="p">):</span>
+<div class="viewcode-block" id="ColisionableComoPelota"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.ColisionableComoPelota">[documentos]</a><span class="k">class</span> <span class="nc">ColisionableComoPelota</span><span class="p">(</span><span class="n">RebotarComoPelota</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Le indica al actor que colisione como una pelota, pero que no rebote.</span>
 
 <span class="sd">    &gt;&gt;&gt; un_actor = pilas.actores.Aceituna()</span>
 <span class="sd">    &gt;&gt;&gt; un_actor.aprender(pilas.habilidades.ColisionableComoPelota)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ColisionableComoPelota.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.ColisionableComoPelota.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="ColisionableComoPelota.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.ColisionableComoPelota.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="n">RebotarComoPelota</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
 </div>
     <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -149,10 +148,10 @@
         <span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">eliminar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figura</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="SeguirAlMouse"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeguirAlMouse">[docs]</a><span class="k">class</span> <span class="nc">SeguirAlMouse</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="SeguirAlMouse"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeguirAlMouse">[documentos]</a><span class="k">class</span> <span class="nc">SeguirAlMouse</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="s">&quot;Hace que un actor siga la posición del mouse en todo momento.&quot;</span>
 
-<div class="viewcode-block" id="SeguirAlMouse.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeguirAlMouse.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="SeguirAlMouse.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeguirAlMouse.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="n">Habilidad</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
         <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">mueve_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mover</span><span class="p">)</span>
 </div>
@@ -161,7 +160,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">evento</span><span class="o">.</span><span class="n">y</span>
 
 </div>
-<div class="viewcode-block" id="RotarConMouse"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RotarConMouse">[docs]</a><span class="k">class</span> <span class="nc">RotarConMouse</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="RotarConMouse"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RotarConMouse">[documentos]</a><span class="k">class</span> <span class="nc">RotarConMouse</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;&quot;Hace que un actor rote con respecto a la posicion del mouse.</span>
 
 <span class="sd">    Ejemplo:</span>
@@ -175,7 +174,7 @@
     <span class="n">IZQUIERDA</span> <span class="o">=</span> <span class="mi">180</span>
     <span class="n">DERECHA</span> <span class="o">=</span> <span class="mi">0</span>
 
-<div class="viewcode-block" id="RotarConMouse.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RotarConMouse.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">lado_seguimiento</span><span class="o">=</span><span class="n">ARRIBA</span><span class="p">):</span>
+<div class="viewcode-block" id="RotarConMouse.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.RotarConMouse.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">lado_seguimiento</span><span class="o">=</span><span class="n">ARRIBA</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Inicializa la Habilidad</span>
 
 <span class="sd">        :param receptor: La referencia al actor.</span>
@@ -203,7 +202,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">angulo</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lado_seguimiento</span>
 
 </div>
-<div class="viewcode-block" id="MirarAlActor"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MirarAlActor">[docs]</a><span class="k">class</span> <span class="nc">MirarAlActor</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="MirarAlActor"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MirarAlActor">[documentos]</a><span class="k">class</span> <span class="nc">MirarAlActor</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;&quot;Hace que un actor rote para mirar hacia otro actor.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ARRIBA</span> <span class="o">=</span> <span class="mi">270</span>
@@ -211,7 +210,7 @@
     <span class="n">IZQUIERDA</span> <span class="o">=</span> <span class="mi">180</span>
     <span class="n">DERECHA</span> <span class="o">=</span> <span class="mi">0</span>
 
-<div class="viewcode-block" id="MirarAlActor.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MirarAlActor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">actor_a_seguir</span><span class="p">,</span> <span class="n">lado_seguimiento</span><span class="o">=</span><span class="n">ARRIBA</span><span class="p">):</span>
+<div class="viewcode-block" id="MirarAlActor.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MirarAlActor.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">actor_a_seguir</span><span class="p">,</span> <span class="n">lado_seguimiento</span><span class="o">=</span><span class="n">ARRIBA</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Inicializa la habilidad.</span>
 
 <span class="sd">        :param receptor: Actor que aprenderá la habilidad.</span>
@@ -233,10 +232,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">angulo</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lado_seguimiento</span>
 
 </div>
-<div class="viewcode-block" id="AumentarConRueda"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.AumentarConRueda">[docs]</a><span class="k">class</span> <span class="nc">AumentarConRueda</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="AumentarConRueda"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.AumentarConRueda">[documentos]</a><span class="k">class</span> <span class="nc">AumentarConRueda</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="s">&quot;Permite cambiar el tamaño de un actor usando la ruedita scroll del mouse.&quot;</span>
 
-<div class="viewcode-block" id="AumentarConRueda.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.AumentarConRueda.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="AumentarConRueda.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.AumentarConRueda.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="n">Habilidad</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
         <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">mueve_rueda</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cambiar_de_escala</span><span class="p">)</span>
 </div>
@@ -244,10 +243,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">escala</span> <span class="o">+=</span> <span class="p">(</span><span class="n">evento</span><span class="o">.</span><span class="n">delta</span> <span class="o">/</span> <span class="mf">4.0</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="SeguirClicks"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeguirClicks">[docs]</a><span class="k">class</span> <span class="nc">SeguirClicks</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="SeguirClicks"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeguirClicks">[documentos]</a><span class="k">class</span> <span class="nc">SeguirClicks</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="s">&quot;Hace que el actor se coloque la posición del cursor cuando se hace click.&quot;</span>
 
-<div class="viewcode-block" id="SeguirClicks.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeguirClicks.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="SeguirClicks.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeguirClicks.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="n">Habilidad</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
         <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">click_de_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">moverse_a_este_punto</span><span class="p">)</span>
 </div>
@@ -257,7 +256,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">evento</span><span class="o">.</span><span class="n">y</span><span class="p">],</span> <span class="mf">0.5</span>
 
 </div>
-<div class="viewcode-block" id="Arrastrable"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Arrastrable">[docs]</a><span class="k">class</span> <span class="nc">Arrastrable</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="Arrastrable"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Arrastrable">[documentos]</a><span class="k">class</span> <span class="nc">Arrastrable</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Hace que un objeto se pueda arrastrar con el puntero del mouse.</span>
 
 <span class="sd">    Cuando comienza a mover al actor se llama al metodo &#39;&#39;comienza_a_arrastrar&#39;&#39;</span>
@@ -269,11 +268,11 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Arrastrable.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Arrastrable.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="Arrastrable.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Arrastrable.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="n">Habilidad</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
         <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">click_de_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cuando_intenta_arrastrar</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Arrastrable.cuando_intenta_arrastrar"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Arrastrable.cuando_intenta_arrastrar">[docs]</a>    <span class="k">def</span> <span class="nf">cuando_intenta_arrastrar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evento</span><span class="p">):</span>
+<div class="viewcode-block" id="Arrastrable.cuando_intenta_arrastrar"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Arrastrable.cuando_intenta_arrastrar">[documentos]</a>    <span class="k">def</span> <span class="nf">cuando_intenta_arrastrar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evento</span><span class="p">):</span>
         <span class="s">&quot;Intenta mover el objeto con el mouse cuando se pulsa sobre el.&quot;</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">evento</span><span class="o">.</span><span class="n">boton</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">colisiona_con_un_punto</span><span class="p">(</span><span class="n">evento</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">evento</span><span class="o">.</span><span class="n">y</span><span class="p">):</span>
@@ -281,7 +280,7 @@
                 <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">mueve_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cuando_arrastra</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s">&#39;cuando_arrastra&#39;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">comienza_a_arrastrar</span><span class="p">()</span>
 </div>
-<div class="viewcode-block" id="Arrastrable.cuando_arrastra"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Arrastrable.cuando_arrastra">[docs]</a>    <span class="k">def</span> <span class="nf">cuando_arrastra</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evento</span><span class="p">):</span>
+<div class="viewcode-block" id="Arrastrable.cuando_arrastra"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Arrastrable.cuando_arrastra">[documentos]</a>    <span class="k">def</span> <span class="nf">cuando_arrastra</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evento</span><span class="p">):</span>
         <span class="s">&quot;Arrastra el actor a la posicion indicada por el puntero del mouse.&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_el_receptor_tiene_fisica</span><span class="p">():</span>
             <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">cuando_mueve_el_mouse</span><span class="p">(</span><span class="n">evento</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">evento</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
@@ -289,7 +288,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">evento</span><span class="o">.</span><span class="n">dx</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">evento</span><span class="o">.</span><span class="n">dy</span>
 </div>
-<div class="viewcode-block" id="Arrastrable.cuando_termina_de_arrastrar"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Arrastrable.cuando_termina_de_arrastrar">[docs]</a>    <span class="k">def</span> <span class="nf">cuando_termina_de_arrastrar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evento</span><span class="p">):</span>
+<div class="viewcode-block" id="Arrastrable.cuando_termina_de_arrastrar"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Arrastrable.cuando_termina_de_arrastrar">[documentos]</a>    <span class="k">def</span> <span class="nf">cuando_termina_de_arrastrar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evento</span><span class="p">):</span>
         <span class="s">&quot;Suelta al actor porque se ha soltado el botón del mouse.&quot;</span>
         <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">mueve_mouse</span><span class="o">.</span><span class="n">desconectar_por_id</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s">&#39;cuando_arrastra&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">termina_de_arrastrar</span><span class="p">()</span>
@@ -307,13 +306,13 @@
         <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="p">,</span> <span class="s">&#39;figura&#39;</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="MoverseConElTeclado"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MoverseConElTeclado">[docs]</a><span class="k">class</span> <span class="nc">MoverseConElTeclado</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="MoverseConElTeclado"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MoverseConElTeclado">[documentos]</a><span class="k">class</span> <span class="nc">MoverseConElTeclado</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Hace que un actor cambie de posición con pulsar el teclado.&quot;&quot;&quot;</span>
     <span class="n">CUATRO_DIRECCIONES</span> <span class="o">=</span> <span class="mi">4</span>
     <span class="n">OCHO_DIRECCIONES</span> <span class="o">=</span> <span class="mi">8</span>
 
 
-<div class="viewcode-block" id="MoverseConElTeclado.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MoverseConElTeclado.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">direcciones</span><span class="o">=</span><span class="n">OCHO_DIRECCIONES</span><span class="p">,</span> <span class="n">velocidad_maxima</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<div class="viewcode-block" id="MoverseConElTeclado.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MoverseConElTeclado.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">direcciones</span><span class="o">=</span><span class="n">OCHO_DIRECCIONES</span><span class="p">,</span> <span class="n">velocidad_maxima</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
                  <span class="n">aceleracion</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">deceleracion</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">con_rotacion</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">velocidad_rotacion</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">marcha_atras</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Inicializa la habilidad.</span>
 
@@ -429,16 +428,17 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">velocidad</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocidad_maxima</span> <span class="o">/</span> <span class="mi">2</span>
 
 </div>
-<div class="viewcode-block" id="MoverseComoCoche"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MoverseComoCoche">[docs]</a><span class="k">class</span> <span class="nc">MoverseComoCoche</span><span class="p">(</span><span class="n">MoverseConElTeclado</span><span class="p">):</span>
+<div class="viewcode-block" id="MoverseComoCoche"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MoverseComoCoche">[documentos]</a><span class="k">class</span> <span class="nc">MoverseComoCoche</span><span class="p">(</span><span class="n">MoverseConElTeclado</span><span class="p">):</span>
     <span class="s">&quot;Hace que un actor se mueva como un coche.&quot;</span>
 
-<div class="viewcode-block" id="MoverseComoCoche.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MoverseComoCoche.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">velocidad_maxima</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                 <span class="n">aceleracion</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span> <span class="n">deceleracion</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">rozamiento</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="MoverseComoCoche.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.MoverseComoCoche.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">velocidad_maxima</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                 <span class="n">aceleracion</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span> <span class="n">deceleracion</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">rozamiento</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">velocidad_rotacion</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">MoverseConElTeclado</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span>
                                      <span class="n">control</span><span class="o">=</span><span class="n">control</span><span class="p">,</span>
                                      <span class="n">velocidad_maxima</span><span class="o">=</span><span class="n">velocidad_maxima</span><span class="p">,</span>
                                      <span class="n">aceleracion</span><span class="o">=</span><span class="n">aceleracion</span><span class="p">,</span>
                                      <span class="n">deceleracion</span><span class="o">=</span><span class="n">deceleracion</span><span class="p">,</span>
+                                     <span class="n">velocidad_rotacion</span><span class="o">=</span><span class="n">velocidad_rotacion</span><span class="p">,</span>
                                      <span class="n">con_rotacion</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_rozamiento</span> <span class="o">=</span> <span class="n">rozamiento</span>
@@ -461,10 +461,10 @@
     <span class="n">rozamiento</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_rozamiento</span><span class="p">,</span> <span class="n">set_rozamiento</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;Define el rozamiento del coche con la superficie por donde circula.&quot;</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="PuedeExplotar"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.PuedeExplotar">[docs]</a><span class="k">class</span> <span class="nc">PuedeExplotar</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="PuedeExplotar"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.PuedeExplotar">[documentos]</a><span class="k">class</span> <span class="nc">PuedeExplotar</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="s">&quot;Hace que un actor se pueda hacer explotar invocando al metodo eliminar.&quot;</span>
 
-<div class="viewcode-block" id="PuedeExplotar.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.PuedeExplotar.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="PuedeExplotar.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.PuedeExplotar.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="n">Habilidad</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
         <span class="n">receptor</span><span class="o">.</span><span class="n">eliminar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eliminar_y_explotar</span>
 </div>
@@ -475,11 +475,11 @@
         <span class="n">explosion</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">escala</span> <span class="o">*</span> <span class="mi">2</span>
         <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="o">.</span><span class="n">eliminar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="SiempreEnElCentro"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SiempreEnElCentro">[docs]</a><span class="k">class</span> <span class="nc">SiempreEnElCentro</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="SiempreEnElCentro"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SiempreEnElCentro">[documentos]</a><span class="k">class</span> <span class="nc">SiempreEnElCentro</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Hace que un actor siempre esté en el centro de la camara y la desplace</span>
 <span class="sd">    cuando el actor se desplaza.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SiempreEnElCentro.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SiempreEnElCentro.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="SiempreEnElCentro.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SiempreEnElCentro.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="n">Habilidad</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
 </div>
     <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -487,7 +487,7 @@
         <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">camara</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">y</span>
 
 </div>
-<div class="viewcode-block" id="SeMantieneEnPantalla"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeMantieneEnPantalla">[docs]</a><span class="k">class</span> <span class="nc">SeMantieneEnPantalla</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="SeMantieneEnPantalla"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeMantieneEnPantalla">[documentos]</a><span class="k">class</span> <span class="nc">SeMantieneEnPantalla</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Se asegura de que el actor regrese a la pantalla si sale o que no</span>
 <span class="sd">    salga en nigún momento de la pantalla.</span>
 
@@ -495,7 +495,7 @@
 <span class="sd">    por la izquiera. Si sale por arriba regresa por abajo y asi...</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="SeMantieneEnPantalla.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeMantieneEnPantalla.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">permitir_salida</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="SeMantieneEnPantalla.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.SeMantieneEnPantalla.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">permitir_salida</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Inicializa la habilidad.</span>
 
 <span class="sd">        :param receptor: El actor que aprenderá la habilidad.</span>
@@ -530,10 +530,10 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">abajo</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alto</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="PisaPlataformas"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.PisaPlataformas">[docs]</a><span class="k">class</span> <span class="nc">PisaPlataformas</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="PisaPlataformas"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.PisaPlataformas">[documentos]</a><span class="k">class</span> <span class="nc">PisaPlataformas</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Enseña al actor a pisar plataformas físicas.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="PisaPlataformas.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.PisaPlataformas.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+<div class="viewcode-block" id="PisaPlataformas.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.PisaPlataformas.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
         <span class="n">Habilidad</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
         <span class="n">error</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">figura</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">crear_figura_cuadrado</span><span class="p">(</span><span class="n">receptor</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">error</span><span class="p">,</span>
@@ -555,10 +555,10 @@
         <span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">eliminar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figura</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="Imitar"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Imitar">[docs]</a><span class="k">class</span> <span class="nc">Imitar</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="Imitar"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Imitar">[documentos]</a><span class="k">class</span> <span class="nc">Imitar</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="s">&quot;Logra que el actor imite las propiedades de otro.&quot;</span>
 
-<div class="viewcode-block" id="Imitar.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Imitar.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">objeto_a_imitar</span><span class="p">,</span> <span class="n">con_rotacion</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Imitar.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Imitar.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">objeto_a_imitar</span><span class="p">,</span> <span class="n">con_escala</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">con_rotacion</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Inicializa la habilidad.</span>
 
 <span class="sd">        :param receptor: Referencia al actor.</span>
@@ -577,14 +577,20 @@
         <span class="c"># Posterormente en las colisiones fisicas comprobaremos si el</span>
         <span class="c"># objeto tiene el atributo &quot;figura&quot; para saber si estamos delante</span>
         <span class="c"># de una figura fisica o no.</span>
-        <span class="n">receptor</span><span class="o">.</span><span class="n">figura</span> <span class="o">=</span> <span class="n">objeto_a_imitar</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">objeto_a_imitar</span><span class="p">,</span> <span class="s">&#39;_cuerpo&#39;</span><span class="p">):</span>
+            <span class="n">receptor</span><span class="o">.</span><span class="n">figura</span> <span class="o">=</span> <span class="n">objeto_a_imitar</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">con_escala</span> <span class="o">=</span> <span class="n">con_escala</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">con_rotacion</span> <span class="o">=</span> <span class="n">con_rotacion</span>
 </div>
     <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objeto_a_imitar</span><span class="o">.</span><span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objeto_a_imitar</span><span class="o">.</span><span class="n">y</span>
-        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">con_rotacion</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">con_escala</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">objeto_a_imitar</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">escala</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">con_rotacion</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objeto_a_imitar</span><span class="o">.</span><span class="n">rotacion</span>
 
     <span class="k">def</span> <span class="nf">eliminar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -592,11 +598,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">objeto_a_imitar</span><span class="o">.</span><span class="n">eliminar</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="Disparar"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Disparar">[docs]</a><span class="k">class</span> <span class="nc">Disparar</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+<div class="viewcode-block" id="Disparar"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Disparar">[documentos]</a><span class="k">class</span> <span class="nc">Disparar</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Establece la habilidad de poder disparar un Actor o un objeto de tipo</span>
 <span class="sd">    pilas.municion.Municion.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Disparar.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Disparar.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span>
+<div class="viewcode-block" id="Disparar.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.Disparar.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span>
                  <span class="n">municion</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Bala</span><span class="p">,</span>
                  <span class="n">parametros_municion</span> <span class="o">=</span> <span class="p">{},</span>
                  <span class="n">grupo_enemigos</span><span class="o">=</span><span class="p">[],</span>
@@ -606,7 +612,8 @@
                  <span class="n">offset_disparo</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
                  <span class="n">offset_origen_actor</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
                  <span class="n">cuando_dispara</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">escala</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                 <span class="n">escala</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">control</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construye la habilidad.</span>
 
@@ -619,6 +626,7 @@
 <span class="sd">        :param offset_origen_actor: Si el Actor no tiene su origen en el centro, con este parametro podremos colocar correctamente el disparo.</span>
 <span class="sd">        :param cuando_dispara: Metodo que será llamado cuando se produzca un disparo.</span>
 <span class="sd">        :param escala: Escala de los actores que serán disparados.</span>
+<span class="sd">        :param control: Indica los controles que utiliza el actor para saber cuando pulsa el botón de disparar.</span>
 
 <span class="sd">        :example:</span>
 
@@ -655,6 +663,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cuando_dispara</span> <span class="o">=</span> <span class="n">cuando_dispara</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="n">escala</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">control</span> <span class="o">=</span> <span class="n">control</span>
 </div>
     <span class="k">def</span> <span class="nf">set_frecuencia_de_disparo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_frecuencia_de_disparo</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">/</span> <span class="n">valor</span>
@@ -746,14 +756,14 @@
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">pulsa_disparar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">boton</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">boton</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">control</span> <span class="k">else</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">boton</span>
 
 </div>
-<div class="viewcode-block" id="DispararConClick"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.DispararConClick">[docs]</a><span class="k">class</span> <span class="nc">DispararConClick</span><span class="p">(</span><span class="n">Disparar</span><span class="p">):</span>
+<div class="viewcode-block" id="DispararConClick"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.DispararConClick">[documentos]</a><span class="k">class</span> <span class="nc">DispararConClick</span><span class="p">(</span><span class="n">Disparar</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Establece la habilidad de poder disparar un Actor o un objeto de tipo</span>
 <span class="sd">    pilas.municion.Municion pulsando el boton izquierdo del ratón.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DispararConClick.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.DispararConClick.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">kv</span><span class="p">):</span>
+<div class="viewcode-block" id="DispararConClick.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.DispararConClick.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">kv</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">DispararConClick</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">kv</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">boton_pulsado</span> <span class="o">=</span> <span class="bp">False</span>
         <span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">click_de_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cuando_hace_click</span><span class="p">)</span>
@@ -768,7 +778,25 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">boton_pulsado</span> <span class="o">=</span> <span class="bp">False</span>
 
     <span class="k">def</span> <span class="nf">pulsa_disparar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">boton_pulsado</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">boton_pulsado</span>
+</div>
+<div class="viewcode-block" id="PerseguirAOtroActor"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.PerseguirAOtroActor">[documentos]</a><span class="k">class</span> <span class="nc">PerseguirAOtroActor</span><span class="p">(</span><span class="n">Habilidad</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hace que un actor persiga a otro actor.</span>
+<span class="sd">       No navega alrededor de obstaculos.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PerseguirAOtroActor.__init__"><a class="viewcode-back" href="../../referencia-habilidades.html#pilas.habilidades.PerseguirAOtroActor.__init__">[documentos]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">objetivo</span><span class="p">,</span> <span class="n">velocidad</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">Habilidad</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">objetivo</span> <span class="o">=</span> <span class="n">objetivo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocidad</span> <span class="o">=</span> <span class="n">velocidad</span>
+</div>
+    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">limitar</span><span class="p">(</span><span class="n">valor</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">valor</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">velocidad</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocidad</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">limitar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">objetivo</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">limitar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">objetivo</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -788,7 +816,7 @@
       <input type="hidden" name="area" value="default" />
     </form>
     <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
@@ -803,10 +831,10 @@
           <a href="../../genindex.html" title="Índice General"
              >índice</a></li>
         <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li><a href="../../index.html">pilas</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
           <li><a href="../pilas.html" >pilas</a> &raquo;</li> 
       </ul>
     </div>

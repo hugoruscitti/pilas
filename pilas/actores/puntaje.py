@@ -13,7 +13,7 @@ from pilas.actores import Texto
 
 class Puntaje(Texto):
     """Representa un contador de Puntaje"""
-	
+
     def __init__(self, texto='0', x=0, y=0, color=pilas.colores.negro):
         """Inicializa el Puntaje.
 
@@ -40,6 +40,13 @@ class Puntaje(Texto):
         :param cantidad: La cantidad de puntaje que se aumentará.
         """
         self.definir(self.valor + int(cantidad))
+
+    def reducir(self, cantidad=1):
+        """Reduce el puntaje.
+
+        :param cantidad: La cantidad de puntaje que se reducirá.
+        """
+        self.definir(self.valor - int(cantidad))
 
     def obtener(self):
         """Retorna el puntaje en forma de número."""
