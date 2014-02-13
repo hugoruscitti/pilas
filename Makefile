@@ -1,4 +1,4 @@
-VERSION=0.83
+VERSION=0.84
 
 
 all:
@@ -20,7 +20,7 @@ test:
 
 # TODO: hacer que tambien genere el archivo PDF del manual y que la regla se llame 'docs'
 html:
-	@cd doc; make
+	@cd docs; make
 
 
 ui:

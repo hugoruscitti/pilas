@@ -1,3 +1,49 @@
+Pilas engine - 0.84 (2014-02-13)
+--------------------------------
+
+- Agregando tutoriales interactivos.
+- Creando opción en el interprete para lanzar los tutoriales.
+- agregando el metodo 'disparar' a la nave.
+- actualizando lanas.
+- Añadida la opcion de reducir la puntuacion en el Actor Puntaje
+- Añadidas teclas al Control
+- Añadido el autoeliminar al actor Temporizador
+- Revertidos los cambios de rotacion para crear una rama y modificar todos los ejemplos implicados
+- Añadido el parametro de Control al Diparo para poder tener dos jugadores en el mismo ordenador disparando con distintas teclas
+- agregando el submodulo pilas-docs (en el directorio docs)
+- Merge pull request #233 from irvingprog/develop_
+- Correción en escala de iconos y __setattr__
+- Ahora es posible añadir un icono a cada opción del menú
+- Merge pull request #231 from fsalamero/master
+- Altura de pilas.avisar() fixes #230
+- Merge pull request #229 from DrDub/develop
+- Nueva habilidad: PerseguirAOtroActor
+- Merge pull request #228 from lucianobaraglia/master
+- Gestor de escenas: Se inicia la escena después de reiniciarla
+- Merge pull request #227 from josx/tortuga
+- Tortuga: dibuja solo cuando el lapiz esta bajo
+- Merge pull request #226 from irvingprog/develop
+- Solucionando bug en habilidad MoverseConElTeclado
+- Merge pull request #225 from irvingprog/develop
+- Mejorando la habilidad Imitar
+- Llevando el cambio de ipedrazas sobre rotacion de actores al branch develop refs #224
+- restaurando el cambio de rotación en los actores. Llevando los cambios a develop
+- Merge pull request #224 from ipedrazas/master
+- Merge pull request #223 from irvingprog/develop
+- Al reescalar el receptor también reescalamos el objeto a imitar
+- cambiando la imagen del fondo por omision
+- Merge pull request #216 from DiegoAccorinti/patch-1
+- Update sonidos.html
+- Haciendo que se puedan ejecutar los ejemplos haciendo click sobre la imagen refs #215
+- Modificando el código javascript para mostrar el nombre largo de los ejemplos refs #215
+- Merge pull request #215 from irvingprog/overlay_ejemplos
+- Overlay nombre de los ejemplos
+- Merge pull request #214 from irvingprog/interpolacion_fisica
+- Merge branches 'fisica_circulo' and 'interpolacion_fisica' into interpolacion_fisica
+- Restructurando código del Circulo
+- Merge branches 'fisica_rectangulo' and 'interpolacion_fisica' into interpolacion_fisica
+- Acomodando código de ancho, alto y escala del Rectangulo
+
 Pilas engine - 0.83 (2013-11-11)
 --------------------------------
 

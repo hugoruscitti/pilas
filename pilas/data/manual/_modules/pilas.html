@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -19,7 +18,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.83',
+        VERSION:     '0.84',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -31,7 +30,7 @@
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="../../_static/searchtools.js"></script>
     <link rel="top" title="pilas" href="../index.html" />
-    <link rel="up" title="Module code" href="index.html" /> 
+    <link rel="up" title="Código de módulo" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,10 +40,10 @@
           <a href="../genindex.html" title="Índice General"
              accesskey="I">índice</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
+          <a href="../py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li><a href="../index.html">pilas</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+          <li><a href="index.html" accesskey="U">Código de módulo</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -53,7 +52,7 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <h1>Source code for pilas</h1><div class="highlight"><pre>
+  <h1>Código fuente para pilas</h1><div class="highlight"><pre>
 <span class="c"># -*- encoding: utf-8 -*-</span>
 <span class="c"># pilas engine - a video game framework.</span>
 <span class="c">#</span>
@@ -81,6 +80,7 @@
 <span class="kn">import</span> <span class="nn">interfaz</span>
 <span class="kn">import</span> <span class="nn">interprete</span>
 <span class="kn">import</span> <span class="nn">manual</span>
+<span class="kn">import</span> <span class="nn">tutoriales</span>
 <span class="kn">import</span> <span class="nn">municion</span>
 <span class="kn">import</span> <span class="nn">dev</span>
 <span class="kn">from</span> <span class="nn">pilas.escena</span> <span class="kn">import</span> <span class="n">Normal</span>
@@ -103,7 +103,7 @@
 <span class="s">&quot;&quot;&quot;</span>
 
 
-<div class="viewcode-block" id="iniciar"><a class="viewcode-back" href="../referencia.html#pilas.iniciar">[docs]</a><span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="n">ancho</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">alto</span><span class="o">=</span><span class="mi">480</span><span class="p">,</span> <span class="n">titulo</span><span class="o">=</span><span class="s">&#39;Pilas&#39;</span><span class="p">,</span> <span class="n">usar_motor</span><span class="o">=</span><span class="s">&#39;qtgl&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="iniciar"><a class="viewcode-back" href="../referencia.html#pilas.iniciar">[documentos]</a><span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="n">ancho</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">alto</span><span class="o">=</span><span class="mi">480</span><span class="p">,</span> <span class="n">titulo</span><span class="o">=</span><span class="s">&#39;Pilas&#39;</span><span class="p">,</span> <span class="n">usar_motor</span><span class="o">=</span><span class="s">&#39;qtgl&#39;</span><span class="p">,</span>
             <span class="n">rendimiento</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">modo</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">area_fisica</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">gravedad</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="n">pantalla_completa</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
             <span class="n">permitir_depuracion</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">audio</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">centrado</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -155,13 +155,13 @@
         <span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">definir_gravedad</span><span class="p">(</span><span class="o">*</span><span class="n">gravedad</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="esta_inicializada"><a class="viewcode-back" href="../referencia.html#pilas.esta_inicializada">[docs]</a><span class="k">def</span> <span class="nf">esta_inicializada</span><span class="p">():</span>
+<div class="viewcode-block" id="esta_inicializada"><a class="viewcode-back" href="../referencia.html#pilas.esta_inicializada">[documentos]</a><span class="k">def</span> <span class="nf">esta_inicializada</span><span class="p">():</span>
     <span class="s">&quot;Indica si la biblioteca pilas ha sido inicializada con pilas.iniciar()&quot;</span>
     <span class="k">global</span> <span class="n">mundo</span>
     <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mundo</span><span class="p">,</span> <span class="n">Mundo</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="iniciar_con_lanzador"><a class="viewcode-back" href="../referencia.html#pilas.iniciar_con_lanzador">[docs]</a><span class="k">def</span> <span class="nf">iniciar_con_lanzador</span><span class="p">(</span><span class="n">ancho</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">alto</span><span class="o">=</span><span class="mi">480</span><span class="p">,</span> <span class="n">titulo</span><span class="o">=</span><span class="s">&#39;Pilas&#39;</span><span class="p">,</span> <span class="n">rendimiento</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<div class="viewcode-block" id="iniciar_con_lanzador"><a class="viewcode-back" href="../referencia.html#pilas.iniciar_con_lanzador">[documentos]</a><span class="k">def</span> <span class="nf">iniciar_con_lanzador</span><span class="p">(</span><span class="n">ancho</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">alto</span><span class="o">=</span><span class="mi">480</span><span class="p">,</span> <span class="n">titulo</span><span class="o">=</span><span class="s">&#39;Pilas&#39;</span><span class="p">,</span> <span class="n">rendimiento</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
                          <span class="n">modo</span><span class="o">=</span><span class="s">&#39;detectar&#39;</span><span class="p">,</span> <span class="n">area_fisica</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">gravedad</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="n">imagen</span><span class="o">=</span><span class="s">&quot;asistente.png&quot;</span><span class="p">,</span>
                          <span class="n">permitir_depuracion</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Identica a la función iniciar, solo que permite al usuario seleccionar</span>
@@ -176,7 +176,7 @@
     <span class="n">iniciar</span><span class="p">(</span><span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">usar_motor</span><span class="p">,</span> <span class="n">rendimiento</span><span class="p">,</span> <span class="n">modo</span><span class="p">,</span> <span class="n">area_fisica</span><span class="p">,</span> <span class="n">gravedad</span><span class="p">,</span> <span class="n">pantalla_completa</span><span class="p">,</span> <span class="n">permitir_depuracion</span><span class="p">,</span> <span class="n">audio</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="abrir_asistente"><a class="viewcode-back" href="../referencia.html#pilas.abrir_asistente">[docs]</a><span class="k">def</span> <span class="nf">abrir_asistente</span><span class="p">():</span>
+<div class="viewcode-block" id="abrir_asistente"><a class="viewcode-back" href="../referencia.html#pilas.abrir_asistente">[documentos]</a><span class="k">def</span> <span class="nf">abrir_asistente</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Abre una ventana que permite iniciar pilas graficamente.</span>
 
 <span class="sd">    Las opciones que ofrece son &quot;leer el manual&quot; (si esta disponible),</span>
@@ -189,7 +189,7 @@
     <span class="n">asistente</span><span class="o">.</span><span class="n">ejecutar</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="ejecutar"><a class="viewcode-back" href="../referencia.html#pilas.ejecutar">[docs]</a><span class="k">def</span> <span class="nf">ejecutar</span><span class="p">(</span><span class="n">ignorar_errores</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="ejecutar"><a class="viewcode-back" href="../referencia.html#pilas.ejecutar">[documentos]</a><span class="k">def</span> <span class="nf">ejecutar</span><span class="p">(</span><span class="n">ignorar_errores</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Pone en funcionamiento las actualizaciones y dibujado.</span>
 
 <span class="sd">    Esta función es necesaria cuando se crea un juego</span>
@@ -197,17 +197,17 @@
     <span class="n">mundo</span><span class="o">.</span><span class="n">ejecutar_bucle_principal</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="terminar"><a class="viewcode-back" href="../referencia.html#pilas.terminar">[docs]</a><span class="k">def</span> <span class="nf">terminar</span><span class="p">():</span>
+<div class="viewcode-block" id="terminar"><a class="viewcode-back" href="../referencia.html#pilas.terminar">[documentos]</a><span class="k">def</span> <span class="nf">terminar</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Finaliza la ejecución de pilas y cierra la ventana principal.&quot;&quot;&quot;</span>
     <span class="n">mundo</span><span class="o">.</span><span class="n">terminar</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="ver"><a class="viewcode-back" href="../referencia.html#pilas.ver">[docs]</a><span class="k">def</span> <span class="nf">ver</span><span class="p">(</span><span class="n">objeto</span><span class="p">,</span> <span class="n">imprimir</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">retornar</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="ver"><a class="viewcode-back" href="../referencia.html#pilas.ver">[documentos]</a><span class="k">def</span> <span class="nf">ver</span><span class="p">(</span><span class="n">objeto</span><span class="p">,</span> <span class="n">imprimir</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">retornar</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Imprime en pantalla el codigo fuente asociado a un objeto.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">ver_codigo</span><span class="p">(</span><span class="n">objeto</span><span class="p">,</span> <span class="n">imprimir</span><span class="p">,</span> <span class="n">retornar</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="version"><a class="viewcode-back" href="../referencia.html#pilas.version">[docs]</a><span class="k">def</span> <span class="nf">version</span><span class="p">():</span>
+<div class="viewcode-block" id="version"><a class="viewcode-back" href="../referencia.html#pilas.version">[documentos]</a><span class="k">def</span> <span class="nf">version</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Retorna el número de version de pilas.&quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">pilasversion</span>
     <span class="k">return</span> <span class="n">pilasversion</span><span class="o">.</span><span class="n">VERSION</span>
@@ -240,12 +240,12 @@
     <span class="k">return</span> <span class="s">&#39;lanas&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span>
 
 
-<div class="viewcode-block" id="reiniciar"><a class="viewcode-back" href="../referencia.html#pilas.reiniciar">[docs]</a><span class="k">def</span> <span class="nf">reiniciar</span><span class="p">():</span>
+<div class="viewcode-block" id="reiniciar"><a class="viewcode-back" href="../referencia.html#pilas.reiniciar">[documentos]</a><span class="k">def</span> <span class="nf">reiniciar</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Elimina todos los actores y vuelve al estado inicial.&quot;&quot;&quot;</span>
     <span class="n">mundo</span><span class="o">.</span><span class="n">reiniciar</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="avisar"><a class="viewcode-back" href="../referencia.html#pilas.avisar">[docs]</a><span class="k">def</span> <span class="nf">avisar</span><span class="p">(</span><span class="n">mensaje</span><span class="p">,</span> <span class="n">retraso</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<div class="viewcode-block" id="avisar"><a class="viewcode-back" href="../referencia.html#pilas.avisar">[documentos]</a><span class="k">def</span> <span class="nf">avisar</span><span class="p">(</span><span class="n">mensaje</span><span class="p">,</span> <span class="n">retraso</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Emite un mensaje en la ventana principal.</span>
 
 <span class="sd">    Este mensaje aparecerá en la parte inferior de la pantalla durante</span>
@@ -256,7 +256,7 @@
     <span class="n">actores</span><span class="o">.</span><span class="n">TextoInferior</span><span class="p">(</span><span class="n">mensaje</span><span class="p">,</span> <span class="n">autoeliminar</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">retraso</span><span class="o">=</span><span class="n">retraso</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="abrir_cargador"><a class="viewcode-back" href="../referencia.html#pilas.abrir_cargador">[docs]</a><span class="k">def</span> <span class="nf">abrir_cargador</span><span class="p">():</span>
+<div class="viewcode-block" id="abrir_cargador"><a class="viewcode-back" href="../referencia.html#pilas.abrir_cargador">[documentos]</a><span class="k">def</span> <span class="nf">abrir_cargador</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Abre un cargador de ejemplos con varios códigos de prueba.</span>
 
 <span class="sd">    Ejemplo:</span>
@@ -278,7 +278,7 @@
     <span class="k">return</span> <span class="p">[]</span>
 
 </div>
-<div class="viewcode-block" id="abrir_interprete"><a class="viewcode-back" href="../referencia.html#pilas.abrir_interprete">[docs]</a><span class="k">def</span> <span class="nf">abrir_interprete</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">do_raise</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">con_aplicacion</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="abrir_interprete"><a class="viewcode-back" href="../referencia.html#pilas.abrir_interprete">[documentos]</a><span class="k">def</span> <span class="nf">abrir_interprete</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">do_raise</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">con_aplicacion</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Abre un intérprete interactivo de python con una ventana.</span>
 
 <span class="sd">    Esta función se ejecuta cuando un usuario escribe::</span>
@@ -319,7 +319,7 @@
     <span class="n">mundo</span><span class="o">.</span><span class="n">gestor_escenas</span><span class="o">.</span><span class="n">recuperar_escena</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="obtener_configuracion"><a class="viewcode-back" href="../referencia.html#pilas.obtener_configuracion">[docs]</a><span class="k">def</span> <span class="nf">obtener_configuracion</span><span class="p">():</span>
+<div class="viewcode-block" id="obtener_configuracion"><a class="viewcode-back" href="../referencia.html#pilas.obtener_configuracion">[documentos]</a><span class="k">def</span> <span class="nf">obtener_configuracion</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Retorna la configuración del usuario almacenada en su directorio HOME.</span>
 
 <span class="sd">    La configuración permite definir los valores por omisión cuando</span>
@@ -355,7 +355,7 @@
       <input type="hidden" name="area" value="default" />
     </form>
     <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
@@ -370,10 +370,10 @@
           <a href="../genindex.html" title="Índice General"
              >índice</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
+          <a href="../py-modindex.html" title="Índice de Módulos Python"
              >módulos</a> |</li>
         <li><a href="../index.html">pilas</a> &raquo;</li>
-          <li><a href="index.html" >Module code</a> &raquo;</li> 
+          <li><a href="index.html" >Código de módulo</a> &raquo;</li> 
       </ul>
     </div>
 <div class="footer">
