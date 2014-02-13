@@ -1,0 +1,146 @@
+body {
+    background-color: white;
+}
+
+
+div.pilas-contenedor {
+  max-width: 800px;
+  margin: 1em;
+  height: 400px;
+  position: relative;
+}
+
+div.pilas-mensajes {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 300px;
+  z-index: 200;
+  cursor: hand;
+}
+
+ul.pilas-ejercicios {
+  text-align: right;
+}
+
+li.pilas-ejercicio {
+  display: inline-block;
+}
+
+li.pilas-ejercicio a {
+  color: white;
+  margin-right: 2px;
+  background-color: #bb007d;
+  border-radius: 2em;
+  display: inline-block;
+  width: 21px;
+  height: 21px;;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 15px;
+}
+
+li.pilas-ejercicio a:hover {
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+li.pilas-ejercicio a.completado {
+  background-color: #cd9b9d;
+}
+
+li.pilas-ejercicio a.actual {
+  background-color: #660245;
+}
+
+div.centrado {
+  text-align: center;
+}
+
+div#console {
+  height: 110px;
+}
+
+canvas {
+  border: 1px solid green;
+}
+
+
+/* Animaciones de los mensajes de completado y el indicado de pasos del tutorial */
+
+.animate-show.ng-hide-add, 
+.animate-show.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+ 
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove {
+  opacity:0;
+}
+ 
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}
+
+
+
+
+/* Animaciones de la vista de tutorial (ng-view) */
+
+.view-example.ng-enter, .view-example.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+ 
+  display:block;
+}
+ 
+.view-example.ng-enter {
+  opacity: 0;
+}
+
+.view-example.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+ 
+.view-example.ng-leave { 
+  display: none !important;
+}
+.view-example.ng-leave.ng-leave-active {
+  display: none !important;
+}
+
+
+#cursor {
+    width: 80%;
+}
+
+
+
+h1, h3 {
+    color: #660245;
+}
+
+a {
+    color: #bb007d;
+}
+
+a:hover {
+    color: #660245;
+}
+
+
+p {
+}
+
+
+.con-margen {
+    margin-top: 15px;
+}

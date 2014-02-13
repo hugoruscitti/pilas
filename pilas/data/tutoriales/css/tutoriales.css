@@ -1,0 +1,18 @@
+#console {
+	width: 292px;
+}
+
+.tutorial-panel-consigna {
+	width: 49%;
+	display: inline-block;
+	vertical-align:top;
+}
+
+.tutorial-panel-interprete {
+	display: inline-block;
+	width: 49%;
+}
+
+img.flecha_interprete {
+	float: right;
+}

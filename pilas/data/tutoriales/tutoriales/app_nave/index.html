@@ -1,0 +1,231 @@
+<html ng-app='app'>
+  <head>
+    <title>Pilas tutorial</title>
+    <meta charset="UTF-8">
+    
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/pilas-tutorial.css" rel="stylesheet">
+    <link href="css/console.css" rel="stylesheet">
+		<link href='../../css/tutoriales.css' rel='stylesheet'>
+  </head>
+  
+  <body>
+    
+    <div class='pilas-contenedor' ng-controller='TutorialCtrl'>
+        
+      <!-- Mensajes que avisan si el ejercicio se resolvio -->
+      <div ng-show='mostrar_mensaje' ng-click='ocultar_mensajes()' class='animate-show pilas-mensajes'>
+        <div class='alert alert-success'>
+          <button type="button" class="close">&times;</button>
+          {{mensaje}}
+         </div>
+      </div>
+      
+      <!-- Linea que enumera los ejercicios -->
+      <ul class='pilas-ejercicios'>
+        Pasos del tutorial 
+        <li class='pilas-ejercicio' ng-repeat='e in ejercicios'>
+            <a href='#/{{e.path}}' ng-show='e.completado' class='animate-show completado'>{{e.numero}}</a> 
+            <a href='#/{{e.path}}' ng-show='!e.completado' class='animate-show' ng-class="{actual: e.es_actual()}">{{e.numero}}</a> 
+        </li>
+      </ul>
+      
+      <div class="row-fluid">
+        <div class="tutorial-panel-consigna">
+          <ng-view class="view-example"></ng-view>
+        </div>
+          
+        <div class="tutorial-panel-interprete">
+          <pilas-canvas></pilas-canvas>
+          <pilas-interprete evaluador='cuando_ejecuta()'></pilas-interprete>
+        </div>
+      </div>
+      
+    </div> <!-- fin class='pilas-contenedor' -->
+    
+<!-- comienzan templates -->
+<script type="text/ng-template" id="partials/paso1.html">
+<h1>¡ Hola !</h1>
+
+<p>Te invitamos a descubrir la programación escribiendo
+un poco de código.</p>
+
+<p>A la derecha vas a ver un intérprete de programación.
+Comencemos con algo sencillo. Esta es la primera consigna:</p>
+
+<div class='alert alert-info'>Ingresá el texto <code>2 * 2</code> y luego pulsá la tecla Enter.</div>
+
+
+<img class='flecha_interprete' src='../../imagenes/flecha_al_interprete.png'>
+</script>
+    
+<script type="text/ng-template" id="partials/paso2.html">
+<p>Como se ve a la derecha, el intérprete nos muestra <code>4</code>, el
+resultado de la operación que escribimos.</p>
+
+<p>Ese es uno de los conceptos mas básicos de programar, consiste
+en decirle a la computadora <strong>"qué"</strong> tiene que hacer.</p>
+
+<h3>¡ Hagamos un videojuego !</h3>
+
+<p><strong>¿Viste la nave que aparece al lado?</strong>, te invitamos
+a escribir un videojuego donde podés controlar a esa nave para enfrentar
+      asteroides en movimiento. Algo así:</p>
+
+<p style='text-align: center'>
+	<img width=100 src='img/preview.png'>
+    
+    <br/>
+    <br/>
+    <button ng-click="comenzar_tutorial()" class='btn btn-info'>¡ Vamos a comenzar !</button>
+</p>
+
+</script>
+
+
+<script type="text/ng-template" id="partials/paso3.html">
+<h1>Comenzando</h1>
+
+<p>Para hacer el videojuego vamos a utilizar
+<a href='http://pilas-engine.com.ar/' target="_blank">pilas-engine</a> y el intérprete interactivo.</p>
+
+<p>En un lenguaje de programación se le pueden dar nombre
+a las cosas. En nuestro caso <code>nave</code> hace referencia
+al protagonista del juego.
+
+<div ng-repeat='c in consignas'>
+  <div ng-show='!c.completa' class='alert alert-info'><span class='icon-hand-right'></span> {{c.texto}}</div>
+  <div ng-show='c.completa' class='alert alert-success'><span class='icon-ok-circle'></span> {{c.texto}}</div>
+</div>
+</script>
+
+
+<script type="text/ng-template" id="partials/paso4.html">
+<h1>Sintáxis</h1>
+
+<p>Como nuestro protagonista es <code>nave</code>, podemos cambiar
+sus características escribiendo cosas como <code>nave.x = 30</code>, 
+<code>nave.escala_x = 2</code> o <code>nave.escala_x = 1</code>. Es decir, 
+escribimos de forma general <code>actor.atributo = valor</code>
+
+<p>Y si en lugar de números usamos listas, como
+<code>[1, 10, 5]</code>, el actor va a realizar una animación para tomar el valor
+1, luego el 10 y por último 5:
+
+<div ng-repeat='c in consignas'>
+  <div ng-show='!c.completa' class='alert alert-info'><span class='icon-hand-right'></span> {{c.texto}}</div>
+  <div ng-show='c.completa' class='alert alert-success'><span class='icon-ok-circle'></span> {{c.texto}}</div>
+</div>
+</script>
+
+<script type="text/ng-template" id="partials/paso5.html">
+<h1>Coordenadas</h1>
+
+<p>Con la línea de código <code>pilas.mostrar_posiciones()</code> habilitamos
+un modo gráfico para visualizar las coordenadas en pantalla. Observá que el centro del
+escenario es la coordenada <code>x=0</code> y <code>y=0</code>.
+
+<p>Por eso cuando escribimos <code>nave.x = [100]</code> la nave se movió a
+la derecha. Si quisiéramos que suba podemos escribir algo como <code>nave.y = 100</code> o <code>nave.avanzar()</code>
+
+<p>Ahora que vimos las coordenadas, volvamos a dejar el modo gráfico
+como estaba antes.
+
+<div class="alert alert-info"><span class="icon-hand-right"></span> Por favor escribí <code>pilas.ocultar_posiciones()</code></div>
+
+
+<p>Por cierto, podés pulsar la tecla <code>↑</code> en el intérprete para recuperar
+el texto anterior.
+
+</script>
+
+<script type="text/ng-template" id="partials/paso6.html">
+
+<h1>Controles</h1>
+
+<p>Para controlar un objeto en la pantalla podemos escribir
+algo de código para cambiar las coordenadas <code>x</code> e <code>y</code>.
+
+<p>O bien, darle al usuario la posibilidad de controlar la nave directamente
+con el teclado:
+
+
+<div ng-repeat='c in consignas'>
+  <div ng-show='!c.completa' class='alert alert-info'><span class='icon-hand-right'></span> {{c.texto}}</div>
+  <div ng-show='c.completa' class='alert alert-success'><span class='icon-ok-circle'></span> {{c.texto}}</div>
+</div>
+
+<div ng-show='mostrar_extras'>
+  <p>Excelente, ahora podés mover la nave usando las teclas <code>W</code> <code>A</code> <code>S</code> <code>D</code>. También podés disparar pulsando la tecla <code>J</code>.</p>
+
+  <p>Luego, para avanzar el tutorial escribí <code>avanzar()</code> y después enter.</p>
+</div>
+
+</script>
+
+<script type="text/ng-template" id="partials/paso7.html">
+<h1>¡Enemigos!</h1>
+
+<p>Vamos a crear algunos enemigos en movimiento para nuestra
+nave.
+
+<p>Tené en cuenta que <code>Piedra</code> lo tenemos que escribir
+con mayúscula.
+
+<div ng-repeat='c in consignas'>
+  <div ng-show='!c.completa' class='alert alert-info'><span class='icon-hand-right'></span> {{c.texto}}</div>
+  <div ng-show='c.completa' class='alert alert-success'><span class='icon-ok-circle'></span> {{c.texto}}</div>
+</div>
+
+
+</script>
+
+<script type="text/ng-template" id="partials/paso8.html">
+<h1>¡Casi listos!</h1>
+
+<p>Excelente, ya casi tenemos algo que se puede jugar. Nos
+falta hacer que la nave pueda destruir esas piedras.</p>
+
+<p>Escribí <code>nave.definir_enemigos(enemigos)</code> y listo.
+Acordate que disparás pulsando la tecla <code>J</code> o <code>espacio</code>.
+
+<p>También podés escribir <code>piedra.clonar(5)</code> para
+crear otros 5 enemigos más o todos los que quieras.
+
+<p>Y por último, ejecutando <code>avanzar()</code> vamos a la última
+pantalla.
+
+</script>
+
+<script type="text/ng-template" id="partials/paso9.html">
+<h1>Felicitaciones</h1>
+
+<p>Completaste el tutorial intermedio, ¡felicitaciones!. Ahora
+te invitamos a seguir con el tutorial avanzado.
+
+</script>
+    
+    
+<!-- fin templates -->
+    
+  </body>
+ 
+  
+  <!-- Bibliotecas relacionadas con angularjs -->
+	<script src="../../js/jquery.js"></script>
+  <script src='../../js/angular.js'></script>
+  <script src='../../js/angular-route.js'></script>
+	
+	<!-- TODO: instalar angular-animate desde bower -->
+  <script src='../../js/angular-animate.js'></script>
+	
+  <script src='js/app.js'></script>
+  
+  <!-- Bibliotecas de terminal interactivo -->
+  <script src='../../js/console/console.js'></script>
+  <script src='../../js/console/prettyprint.js'></script>
+  
+  <!-- Biblioteca pilas-engine -->
+  <script src='../../pilasweb.js'></script>
+  
+</html>

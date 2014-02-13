@@ -1,0 +1,148 @@
+textarea {
+    border:1px solid red;
+}
+
+#consola {
+    margin-top: 15px;
+}
+#console { 
+    margin-top: 20px;
+    margin-bottom: 0; 
+    height: 250px;
+    background-color: white;
+    width: 322px;
+    border: 2px solid gray;
+    margin: auto;
+}
+
+#output { list-style: none; margin: 0; padding: 0; }
+#output li { margin: 5px 0; padding: 5px; white-space: pre-wrap; padding-bottom: 0; }
+#output li:last-child { border-bottom: 0;}
+#output > li > div { margin-left: 20px; line-height: 20px; }
+#console span.gutter { float: left; display: block; width: 5px; }
+
+#output li div { position: relative; }
+#output .echo .permalink { position: absolute; right: 0; overflow: hidden; display: block; background: url(link.png) no-repeat center; height: 20px; width: 30px; text-indent: -200px; top: 0; opacity: 0.5; }
+
+#output .echo .permalink:hover { opacity: 1; }
+
+/* log types */
+/*#output span.gutter:before { position: absolute; }*/
+#output span.gutter:before { display: inline-block; font-family: monospace; font-size: 13px; line-height: 20px; }
+#output .echo span.gutter:before { content: '❯ '; color: #8595AD; /*#3583FC;*/ font-weight: bold; margin-left: 5px; }
+#output .info span.gutter:before { content: 'i '; color: #27A700; font-weight: bold; margin-left: 4px; }
+#output .error span.gutter:before { content: '× '; color: #E81D20; margin-right: -10px; margin-left: 2px; font-size: 20px; font-weight: bold; }
+#output .response span.gutter:before { line-height: 16px; content: '« '; color: #BDC3CD; margin-right: -10px; font-size: 20px; }
+
+/* if response is directly next to echo, don't give it a line - only consoles get lines */
+#output li.echo + li.response { border-width: 0; }
+
+/* hard line on new echo */
+/* #output li.response + li.echo { border-width: 2px; border-color: #DFDFDF; }
+#output li.error + li.echo { border-width: 2px; border-color: #DFDFDF; }
+#output li.log + li.echo { border-width: 2px; border-color: #DFDFDF; }
+#output li.info + li.echo { border-width: 2px; border-color: #DFDFDF; }
+ */
+    /*#output li.info .response span { line-height: 30px; }*/
+
+    #output li.echo:first-child { border-width: 0;}
+    #output li:first-child { border-width: 0; padding-top: 0; }
+
+    #jsconsole-sandbox { display: none;}
+
+    /* input style - note: moz-shadow purposely omitted because it affects layout */
+    #console form {
+        padding: 5px;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    #console.plain form {
+        padding: 0;
+        margin-left: 23px;
+        width: auto;
+    }
+
+    #exec, .fakeInput {
+        resize: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        border: 0;
+        /*padding: 5px; */
+        outline: 0;
+        color: #000;
+        height: 24px;
+        line-height: 24px;
+        overflow: hidden;
+        background: transparent;
+    }
+
+    #exec {
+        margin: 0;
+    }
+
+    #console.plain form:before {
+        font-family: monospace;
+        font-size: 14px;
+        line-height: 0px;
+        content: '❯ ';
+        color: #3583FC;
+        font-weight: bold;
+        margin-left: 10px;
+        position: absolute;
+        top: 14px;
+        left: -23px;
+    }
+
+    .fakeInput:before,
+    #exec:before {
+        font-family: monospace;
+        font-size: 14px;
+        line-height: 14px;
+        content: '❯ ';
+        color: #3583FC;
+        font-weight: bold;
+        margin-left: 5px;
+    }
+
+
+    /* code complete visual tweaks */
+    #cursor { display: inline-block; height: 24px; min-width: 1px; outline: 0; top: 0; left: 0; z-index: 999;}
+
+    /* HACK */
+    #console form { position: relative; top: 0; width: 100%; z-index: 20; }
+    #exec, .fakeInput { position: relative; height: auto; }
+
+    #cursor { height: auto; white-space: pre-wrap; }
+
+    #exec, .fakeInput { cursor: text; }
+    #exec .suggest { color: #999; }
+
+
+
+    /* font size control */
+    /*#console { top: 35px; bottom: 35px; }*/
+    #output li, #exec, .fakeInput { min-height: 20px; font-size: 14px; font-family: SourceCodeProRegular, "Menlo", consolas, monospace; }
+
+    /** Pretty printing styles. Used with prettify.js. */
+
+    #output .str { color: #080; }
+    #output .kwd { color: #008; }
+    #output .com { color: #800; }
+    #output .typ { color: #606; }
+    #output .lit { color: #066; }
+    #output .pun { color: #660; }
+    #output .pln { color: #000; }
+    #output .tag { color: #008; }
+    #output .atn { color: #606; }
+    #output .atv { color: #080; }
+    #output .dec { color: #606; }
+    #output .error span { color: #E81D20;}
+
+
+    .stretch {
+        overflow: auto;
+    }
+

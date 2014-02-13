@@ -104,6 +104,8 @@ class VentanaAsistente(Ui_AsistenteWindow):
             self._cuando_selecciona_interprete()
         elif seccion == "manual":
             self._cuando_selecciona_abrir_manual()
+        elif seccion == "tutoriales":
+            self._cuando_selecciona_abrir_tutoriales()
         elif seccion == "web":
             import webbrowser
             webbrowser.open("http://www.pilas-engine.com.ar")
@@ -230,6 +232,9 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _cuando_selecciona_abrir_manual(self):
         pilas.manual.main(self.main, True)
+        
+    def _cuando_selecciona_abrir_tutoriales(self):
+        pilas.tutoriales.main(self.main, True)
 
     def _consultar(self, parent, titulo, mensaje):
         "Realizar una consulta usando un cuadro de dialogo."
