@@ -35,7 +35,6 @@ class TextoInferior(Texto):
 
         self.z = -100
         TextoInferior.anterior_texto = self
-        self._crear_sombra()
 
         self.centro = ("centro", "centro")
         self.izquierda = izquierda + 10
@@ -43,19 +42,21 @@ class TextoInferior(Texto):
         self.abajo = abajo + 10
         self.fijo = True
 
+        self._crear_sombra()
+
         if autoeliminar:
             pilas.escena_actual().tareas.una_vez(retraso, self.eliminar)
 
     def _crear_sombra(self):
         """Genera una sombra para el texto."""
         izquierda, derecha, arriba, abajo = pilas.utils.obtener_bordes()
-        imagen = pilas.imagenes.cargar_superficie(derecha - izquierda, 40)
+        imagen = pilas.imagenes.cargar_superficie(derecha - izquierda, self.alto + 15)
         imagen.pintar(pilas.colores.negro_transparente)
 
         self.sombra = pilas.actores.Actor(imagen)
         self.sombra.z = self.z + 1
         self.sombra.fijo = True
-        self.sombra.abajo = abajo
+        self.sombra.abajo = self.abajo - 10
         self.sombra.izquierda = izquierda
 
     def eliminar(self):

@@ -29,8 +29,8 @@ class Gestor(object):
 
         self.limpiar()
         self.escenas.append(escena)
-        escena.iniciar()
         escena.camara.reiniciar()
+        escena.iniciar()
         escena.iniciada = True
 
     def almacenar_escena(self, escena):
@@ -45,8 +45,8 @@ class Gestor(object):
             self.escena_actual().pausar()
 
         self.escenas.append(escena)
-        escena.iniciar()
         escena.camara.reiniciar()
+        escena.iniciar()
         escena.iniciada = True
 
     def recuperar_escena(self):

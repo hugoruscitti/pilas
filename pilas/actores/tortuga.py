@@ -66,7 +66,8 @@ class Tortuga(Actor):
     def actualizar(self):
         """Actualiza su estado interno."""
         if self.anterior_x != self.x or self.anterior_y != self.y:
-            self.dibujar_linea_desde_el_punto_anterior()
+            if self.lapiz_bajo:
+                self.dibujar_linea_desde_el_punto_anterior()
             self.anterior_x = self.x
             self.anterior_y = self.y
 
