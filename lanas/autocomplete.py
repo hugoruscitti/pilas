@@ -124,6 +124,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
             #self.completer.completionCount() > -1:
 
             popup = self.completer.popup()
+            popup.setStyleSheet("border: 1px solid gray")
             popup.setFont(self.font())
             popup.setCurrentIndex(self.completer.completionModel().index(0,0))
 

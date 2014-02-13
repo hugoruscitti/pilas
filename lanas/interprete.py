@@ -110,7 +110,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
         fuente_id = QFontDatabase.addApplicationFont(font_path)
         self.font_family = QFontDatabase.applicationFontFamilies(fuente_id)[0]
-        
+
         self.ventana = parent
         self.stdout_original = sys.stdout
         sys.stdout = NormalOutput(self)
@@ -123,12 +123,16 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         self.interpreterLocals = {}
 
         # setting the color for bg and text
-        #palette = QPalette()
+        palette = QPalette()
         #palette.setColor(QPalette.Base, QColor(20, 20, 20))
-        #palette.setColor(QPalette.Text, QColor(0, 255, 0))
-        #self.setPalette(palette)
+        palette.setColor(QPalette.Text, QColor(0, 0, 0))
+        self.setPalette(palette)
 
-        self._set_font_size(14)
+        if sys.platform == 'darwin':
+            self._set_font_size(15)
+        else:
+            self._set_font_size(14)
+
         self._highlighter = highlighter.Highlighter(self.document(), 'python', highlighter.COLOR_SCHEME)
 
         if codigo_inicial:
