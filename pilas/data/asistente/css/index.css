@@ -63,6 +63,10 @@ a.button span {
   background: transparent url(../imagenes/manual.png) 12px 50% no-repeat;
 }
 
+#tutoriales span {
+  background: transparent url(../imagenes/tutoriales.png) 12px 50% no-repeat;
+}
+
 #procesando span {
     background: transparent url(../imagenes/procesando.gif) 12px 50% no-repeat;
 }

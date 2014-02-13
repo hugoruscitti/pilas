@@ -22,7 +22,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.main = main
         Ui_AsistenteWindow.setupUi(self, main)
         main.setWindowTitle("pilas-engine")
-        main.resize(550, 342)
+        main.resize(550, 442)
 
         self.webView.setAcceptDrops(False)
         self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
