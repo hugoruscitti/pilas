@@ -19,10 +19,10 @@ class VentanaTutoriales(Ui_TutorialesWindow):
         self.main = main
         Ui_TutorialesWindow.setupUi(self, main)
         pilas.utils.centrar_ventana(main)
-        self.cargar_Tutoriales()
+        self.cargar_tutoriales()
 
-    def cargar_Tutoriales(self):
-        file_path = pilas.utils.obtener_ruta_al_recurso('Tutoriales/index.html')
+    def cargar_tutoriales(self):
+        file_path = pilas.utils.obtener_ruta_al_recurso('tutoriales/index.html')
         file_path = os.path.abspath(file_path)
 
         base_dir =  QtCore.QUrl.fromLocalFile(file_path)
@@ -40,7 +40,7 @@ def main(parent=None, do_raise=False):
     #    if getattr(sys, 'frozen', None):
     #        dialog.showMinimized()
     #        dialog.showNormal()
-						
+
     dialog.show()
 
     if do_raise:
