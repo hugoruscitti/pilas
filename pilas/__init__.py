@@ -282,3 +282,10 @@ def obtener_configuracion():
 from evento import ProxyEventos
 eventos = ProxyEventos()
 
+def reiniciar_si_cambia(archivo):
+    """Regista un archivo para hacer livecoding.
+
+    Livecoding es un modo de pilas que se reinicia automáticamente
+    si el archivo indicado cambia. Esto de termina programar
+    mas rápido y prototipar con mayor fluidez."""
+    mundo.motor.reiniciar_si_cambia(archivo)

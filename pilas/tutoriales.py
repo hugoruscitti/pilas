@@ -3,7 +3,7 @@ import os
 import sys
 
 try:
-    from PyQt4 import QtCore, QtGui
+    from PyQt4 import QtCore, QtGui, QtWebKit, QtNetwork
     from tutoriales_base import Ui_TutorialesWindow
 except:
     print "ERROR: No se encuentra pyqt"
@@ -20,6 +20,16 @@ class VentanaTutoriales(Ui_TutorialesWindow):
         Ui_TutorialesWindow.setupUi(self, main)
         pilas.utils.centrar_ventana(main)
         self.cargar_tutoriales()
+        self._habilitar_inspector_web()
+        
+    def _habilitar_inspector_web(self):
+        QtWebKit.QWebSettings.globalSettings()
+        settings = QtWebKit.QWebSettings.globalSettings()
+        settings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
+        try:
+            settings.setAttribute(QtWebKit.QWebSettings.LocalContentCanAccessFileUrls, True)
+        except AttributeError:
+            pass  # Arreglo para funcionar en ubuntu 10.04
 
     def cargar_tutoriales(self):
         file_path = pilas.utils.obtener_ruta_al_recurso('tutoriales/index.html')

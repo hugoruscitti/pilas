@@ -20,6 +20,7 @@ import sys
 import traceback
 import copy
 import math
+import time
 
 
 class LibreriaImagenes(object):
@@ -1015,6 +1016,28 @@ class MusicaPygame(SonidoPygame):
     def __init__(self, media, ruta):
         SonidoPygame.__init__(self, media, ruta)
 
+class Watcher(QtCore.QObject):
+
+    def __init__(self, aFile, callback=None, checkEvery=2):
+        super(Watcher, self).__init__()
+
+        self.file = aFile
+        self.callback = callback
+        self.ultima_modificacion = os.path.getmtime(self.file)
+
+        self._timer = QtCore.QTimer(self)
+        self._timer.setInterval(checkEvery*1000)
+        self._timer.timeout.connect(self._checkFile)
+        self._timer.start()
+
+    def _checkFile(self):
+        modificacion = os.path.getmtime(self.file)
+
+        if modificacion != self.ultima_modificacion:
+            if self.callback:
+                self.callback()
+
+            self.ultima_modificacion = modificacion
 
 class Motor(object):
     """Representa la ventana principal de pilas.
@@ -1055,7 +1078,7 @@ class Motor(object):
 
     def _inicializar_sistema_de_audio(self, audio):
         sistemas_de_sonido = ['deshabilitado', 'pygame', 'phonon', 'gst']
-
+        audio = 'deshabilitado'
         if audio not in sistemas_de_sonido:
             error = "El sistema de audio '%s' es invalido" % (audio)
             sugerencia = ". Use alguno de los siguientes: %s" % (str(sistemas_de_sonido))
@@ -1094,6 +1117,47 @@ class Motor(object):
             self.player = None
             self.clase_sonido = SonidoDeshabilitado
             self.clase_musica = MusicaDeshabilitada
+
+    def reiniciar_si_cambia(self, archivo):
+        self.archivo_a_observar = archivo
+        self.watcher = Watcher(archivo, callback=self._reiniciar_pilas)
+
+    def _reiniciar_pilas(self):
+        f = open(self.archivo_a_observar, 'rt')
+        contenido = f.read()
+        f.close()
+
+        pilas.reiniciar()
+        lineas_a_descartar = ['pilas.iniciar', 'pilas.ejecutar',
+                              'pilas.reiniciar_si_cambia', 'import']
+        contenido = self.limpiar_lineas_que_contengan(contenido, lineas_a_descartar)
+
+        try:
+            exec(contenido)
+        except Exception, e:
+            pilas.actores.MensajeExcepcion(e)
+            print traceback.format_exc()
+            print sys.exc_info()[0]
+
+    def limpiar_lineas_que_contengan(self, codigo, lineas_a_eliminar):
+        contenido = []
+
+        for linea_de_codigo in codigo.split("\n"):
+            agregar = True
+
+            for linea in lineas_a_eliminar:
+                if linea_de_codigo.startswith(linea):
+                    #print "Descartando la linea", [linea_de_codigo]
+                    agregar = False
+
+            if agregar:
+                contenido.append(linea_de_codigo)
+            else:
+                contenido.append("")
+
+
+        return "\n".join(contenido)
+
 
     def terminar(self):
         self.ventana.close()

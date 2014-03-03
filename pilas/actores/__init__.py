@@ -86,6 +86,7 @@ from proyectil import EstrellaNinja
 from torreta import Torreta
 from ovni import Ovni
 from manzana import Manzana
+from mensaje_excepcion import MensajeExcepcion
 
 def listar_actores():
     """Devuelve una lista con todos los actores disponibles para crear en pilas

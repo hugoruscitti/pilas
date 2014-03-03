@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilas/data/tutoriales.ui'
 #
-# Created: Thu Feb 13 11:07:12 2014
+# Created: Fri Feb 21 18:52:31 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -34,7 +34,7 @@ class Ui_TutorialesWindow(object):
         self.gridLayout.setMargin(0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.webView = QtWebKit.QWebView(self.centralwidget)
-        self.webView.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.webView.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.webView.setStatusTip(_fromUtf8(""))
         self.webView.setAccessibleDescription(_fromUtf8(""))
         self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
