@@ -19,8 +19,8 @@ class MensajeExcepcion(Actor):
         mensaje_titulo = str(excepcion_de_python)
         mensaje_descripcion = str(traceback.format_exc())
 
-        titulo = pilas.actores.Texto("ERROR: " + mensaje_titulo, y=90)
-        descripcion = pilas.actores.Texto(mensaje_descripcion, magnitud=12, y=-50)
+        titulo = pilas.actores.Texto("ERROR: " + mensaje_titulo, y=90, ancho=500)
+        descripcion = pilas.actores.Texto(mensaje_descripcion, magnitud=12, y=-50, ancho=500)
 
         titulo.fijo = True
         descripcion.fijo = True
