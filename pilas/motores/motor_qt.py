@@ -1133,7 +1133,8 @@ class Motor(object):
         contenido = self.limpiar_lineas_que_contengan(contenido, lineas_a_descartar)
 
         try:
-            exec(contenido)
+            scope = {'pilas': pilas}
+            exec(contenido, scope, scope)
         except Exception, e:
             pilas.actores.MensajeExcepcion(e)
             print traceback.format_exc()
