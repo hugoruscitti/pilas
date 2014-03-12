@@ -1127,6 +1127,7 @@ class Motor(object):
         contenido = f.read()
         f.close()
 
+        print "%s - Reiniciando" %(time.strftime("%H:%m:%S"))
         pilas.reiniciar()
         lineas_a_descartar = ['pilas.iniciar', 'pilas.ejecutar',
                               'pilas.reiniciar_si_cambia', 'import']
