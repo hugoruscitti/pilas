@@ -531,8 +531,8 @@ class Imitar(Habilidad):
         self.receptor.x = self.objeto_a_imitar.x
         self.receptor.y = self.objeto_a_imitar.y
 
-        if self.con_escala:
-            self.objeto_a_imitar.escala = self.receptor.escala
+        #if self.con_escala:
+        #    self.objeto_a_imitar.escala = self.receptor.escala
 
         if self.con_rotacion:
             self.receptor.rotacion = self.objeto_a_imitar.rotacion
