@@ -1,5 +1,5 @@
 ---
-layout: base 
+layout: base
 title: Imágenes
 ---
 
@@ -45,11 +45,11 @@ title: Imágenes
                 config_photos: {
                     closeClick : false,
                     nextEffect : 'none',
-			        closeEffect: 'none',
+                    closeEffect: 'none',
                     loop       : false,
                     beforeLoad : formatPhotoTitleFancyBox,
-                    helpers	   : {
-                        buttons	: {}
+                    helpers       : {
+                        buttons    : {}
                     }
                 },
             },

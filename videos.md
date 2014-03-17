@@ -5,7 +5,7 @@ title: Videos
 
 # Videos
 
-Aquí encontrarás charlas y tutoriales en videos para comenzar a programar.
+En esta sección vas a encontar video-tutoriales y charlas sobre pilas.
 
 <div class="post" id="presentacion-de-pilas-en-pyconES-2013">
  <h5>Pilas en PyCon España 2013 (Madrid)</h5>

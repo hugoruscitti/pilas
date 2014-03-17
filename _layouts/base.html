@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang='es'>
-
   <head>
     <title>Pilas Engine - {{page.title}}</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./style.css" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/pilas.css" />
     <link rel="shortcut icon" href="./images/favicon.png"/>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
     {% if page.css %}
     <link rel="stylesheet" type="text/css" href="css/{{ page.css }}" />
     {% endif %}
@@ -22,36 +31,53 @@
     };
     </script>
 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
-  
+
   <body>
 
-    <div id="container" class="container_12">
-      <div id="header" role="banner" class="grid_12 clearfix">
-        <h1 id="logo"><a title="Pilas Engine" href="index.html"><span>Pilas Engine</span></a></h1>
 
-        <nav id="access" class="navigation" role="natigation">
-            {% include menu.html %}
-        </nav>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">pilas-engine</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          {% include menu.html %}
+        </div>
+      </div>
+    </div>
 
+
+    <div class="container">
+      <div class="page-header" id="banner">
+            {{ content }}
       </div>
 
-      <div id="main" class="grid_12 clearfix">
-        {{ content }}
-      </div>
 
-      <div id="footer" class="grid_12 clearfix">
+
+
+          <div id="footer" class="grid_12 clearfix center">
         <a href="#" class="logo"><span class="hide">pilas engine</a>
-          <nav class="navigation" role="natigation">
-            {% include menu.html %}
-          </nav>
+            <div class='copyright'>&copy; Hugo Ruscitti</div>
+
 
           <div id='github-footer'>
             <div id="github-star"><iframe src="http://ghbtns.com/github-btn.html?user=hugoruscitti&repo=pilas&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></div>
             <div id="github-fork"><iframe src="http://ghbtns.com/github-btn.html?user=hugoruscitti&repo=pilas&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe></div>
-            
+
             <!--
-            
+
             <div style="margin: 10px;">Patrocinado por <a href="http://gcoop.coop">gcoop</a></div>
 
             -->
@@ -78,7 +104,7 @@
 
     <script type='text/javascript'>
     var _ues = {
-        host:'pilas.userecho.com',
+       host:'pilas.userecho.com',
        forum:'15341',
        lang:'en',
        tab_corner_radius:10,

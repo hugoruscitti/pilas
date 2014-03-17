@@ -1,4 +1,4 @@
-<ul id='navlist'>
+<ul class="nav navbar-nav">
 
   {% for link in site.navigation %}
     {% assign current = nil %}
@@ -15,4 +15,5 @@
   <li class="nav-list-item{% if forloop.first %}first{% endif %} {{ current }} {% if forloop.last %}nav-list-item-last{% endif %}"><a class="{{ current }}" href=".{{ link.url }}">{{ link.text }}</a></li>
 
   {% endfor %}
+
 </ul>

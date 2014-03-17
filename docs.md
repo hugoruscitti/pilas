@@ -1,5 +1,5 @@
 ---
-layout: base 
+layout: base
 title: Documentación
 ---
 
@@ -22,29 +22,31 @@ Este manual recorre toda la funcionalidad de pilas, y explica con ejemplos cómo
 También puedes seguir nuestros tutoriales paso a paso para aprender
 sobre pilas haciendo juegos:
 
+<table class='tutoriales'>
 
-<div class='grid_12 alpha borde' style='margin-top: 2em'>
- <div class='grid_2 alpha'>
- <img style='border: 1px solid #A8A8A8;' src='./images/tutoriales/disparar_a_monos.png'>
- </div>
+<tr>
+    <td>
+      <img style='border: 1px solid #A8A8A8;' src='./images/tutoriales/disparar_a_monos.png'>
+    </td>
 
- <div class="grid_10 omega">
- <h4>Disparar a Monos</h4>
+    <td>
+     <h4>Disparar a Monos</h4>
 
- <p>Una introducción a pilas-engine utilizando un juego de disparos.
- <ul style='margin-left: 1em; list-style-type: disc'>
-  <li><a href="tutoriales/disparar_a_monos.pdf">Abrir PDF</a></li>
- </ul>
- </div>
-</div>
+        <p>Una introducción a pilas-engine utilizando un juego de disparos.
+        <ul style='margin-left: 1em; list-style-type: disc'>
+       <li><a href="tutoriales/disparar_a_monos.pdf">Abrir PDF</a></li>
+     </ul>
+    </td>
+</tr>
 
 
-<div class='grid_12 alpha borde' style='margin-top: 2em'>
- <div class='grid_2 alpha'>
+<tr>
+<td>
  <img style='border: 1px solid #A8A8A8;' src='./images/tutoriales/asteroides.png'>
- </div>
+</td>
 
- <div class="grid_10 omega">
+<td>
+
  <h4>Asteroides</h4>
 
  <p>Una guia para construir un juego como el original asteroides.
@@ -52,16 +54,17 @@ sobre pilas haciendo juegos:
   <li><a href="tutoriales/Asteroides.pdf">Abrir PDF</a></li>
   <li><a href="tutoriales/recursos_asteroides.zip">Descargar recursos adicionales</a></li>
  </ul>
- </div>
-</div>
+</td>
+
+</tr>
 
 
-<div class='grid_12 alpha borde' style='margin-top: 2em'>
- <div class='grid_2 alpha'>
+<tr>
+
+<td>
  <img style='border: 1px solid #A8A8A8;' src='./images/tutoriales/mario.png'>
- </div>
-
- <div class="grid_10 omega">
+</td>
+<td>
  <h4>Sprites y Física</h4>
 
  <p>Muestra los primeros pasos con actores, el motor de física y una comparativa entre pilas y pygame.
@@ -69,16 +72,17 @@ sobre pilas haciendo juegos:
   <li><a href="tutoriales/mario.pdf">Abrir PDF</a></li>
   <li><a href="tutoriales/recursos_mario.zip">Descargar recursos adicionales</a></li>
  </ul>
- </div>
-</div>
+</td>
+
+</tr>
 
 
-<div class='grid_12 alpha borde' style='margin-top: 2em'>
- <div class='grid_2 alpha'>
+<tr>
+
+<td>
  <img style='border: 1px solid #A8A8A8;' src='./images/tutoriales/grillas.png'>
- </div>
-
- <div class="grid_10 omega">
+</td>
+<td>
  <h4>Grillas y Animación</h4>
 
  <p>Guia paso a paso para construir animaciones mediante grillas de gráficos.
@@ -86,19 +90,18 @@ sobre pilas haciendo juegos:
   <li><a href="tutoriales/grillas.pdf">Abrir PDF</a></li>
   <li><a href="tutoriales/recursos_grillas.zip">Descargar recursos adicionales</a></li>
  </ul>
- </div>
-</div>
+</td>
+
+</tr>
 
 
+<tr>
 
-
-
-<div class='grid_12 alpha borde' style='margin-top: 2em'>
- <div class='grid_2 alpha'>
+<td>
  <img style='border: 1px solid #A8A8A8;' src='./images/tutoriales/scrolling.png'>
- </div>
+</td>
 
- <div class="grid_10 omega">
+<td>
  <h4>Scrolling</h4>
 
  <p>Muestra cómo generar el efecto desplazamiento de múltiples capas.
@@ -106,19 +109,19 @@ sobre pilas haciendo juegos:
   <li><a href="tutoriales/scrolling.pdf">Abrir PDF</a></li>
   <li><a href="tutoriales/recursos_scrolling.zip">Descargar recursos adicionales</a></li>
  </ul>
- </div>
-</div>
+</td>
+
+</tr>
 
 
 
+<tr>
 
-
-<div class='grid_12 alpha borde' style='margin-top: 2em'>
- <div class='grid_2 alpha'>
+<td>
  <img style='border: 1px solid #A8A8A8;' src='./images/tutoriales/aceitunas_vs_bombas.png'>
- </div>
+</td>
 
- <div class="grid_10 omega">
+<td>
  <h4>Aceitunas vs Bombas</h4>
 
  <p>Un juego sencillo realizado paso a paso, desde el diseño hasta la publicación.
@@ -128,5 +131,8 @@ sobre pilas haciendo juegos:
   <li><a href="aceitunas_vs_bombas_parte_2.html">Parte 2</a></li>
   <li>Parte 3 <small>(proximamente)</small></li>
  </ul>
- </div>
-</div>
+</td>
+
+</tr>
+
+</table>
