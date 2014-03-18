@@ -514,7 +514,8 @@ class Circulo(Figura):
     def definir_escala(self, escala):
         self._radio = (self._radio * escala) / self._escala
         self._escala = escala
-        self.__crear_fixture()
+        for fixture in self._cuerpo:
+            fixture.shape.radius = self._radio
 
     def definir_radio(self, radio):
         self._escala = (self._escala * radio) / self.radio
