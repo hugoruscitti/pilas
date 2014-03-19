@@ -550,3 +550,8 @@ table.tutoriales td {
     padding: 5px;
     padding-bottom: 10px;
 }
+
+div.feature.grid_4 {
+    display: inline-block;
+    margin-left: 100px;
+}
