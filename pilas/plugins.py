@@ -7,7 +7,10 @@ import inspect
 
 def obtener_ruta_de_plugins():
     """Returna el path a los plugins de Pila."""
-    return os.path.expanduser('~/.pilas/plugins')
+    ruta_de_plugins = os.path.expanduser('~/.pilas/plugins')
+    if not ruta_de_plugins:
+        os.makedirs(ruta_de_plugins)
+    return ruta_de_plugins
 
 
 def lista_de_plugins_encontrados():

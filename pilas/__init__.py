@@ -9,8 +9,10 @@
 mundo = None
 bg = None
 
+import os
 import sys
 import utils
+import yaml
 from mundo import Mundo
 import actores
 import grupo
@@ -34,6 +36,18 @@ from pilas.escena import Normal
 # Permite cerrar el programa usando CTRL+C
 import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+# Obtener el directorio donde se guardan los archivos
+# de configuracion según la plataforma
+if sys.platform == 'win32':
+    # won't find this in linux; pylint: disable=F0401
+    from win32com.shell import shell, shellcon
+    CONFIG_DIR = shell.SHGetFolderPath(0, shellcon.CSIDL_PROFILE, None, 0)
+    del shell, shellcon
+else:
+    from xdg import BaseDirectory
+    CONFIG_DIR = BaseDirectory.xdg_config_home
+    del BaseDirectory
 
 
 __doc__ = """
@@ -81,13 +95,14 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
 
     global mundo
 
-    if cargar_plugins:
-        lista_de_plugins_por_cargar = cargar_plugins
-        plugins_cargados = plugins.cargar_plugins(lista_de_plugins_por_cargar)
-        plugins.aplicar_plugins_en_habilidades(plugins_cargados, habilidades)
-
     if not esta_inicializada():
+
         configuracion = obtener_configuracion()
+
+        if cargar_plugins:
+            lista_de_plugins_por_cargar = cargar_plugins
+            plugins_cargados = plugins.cargar_plugins(lista_de_plugins_por_cargar)
+            plugins.aplicar_plugins_en_habilidades(plugins_cargados, habilidades)
 
         if not usar_motor:
             usar_motor = configuracion['usar_motor']
@@ -280,9 +295,23 @@ def obtener_configuracion():
     sin argumentos, los valores de 'motor' o 'sistema de sonido' a utilizar
     se cargarán desde esa configuración.
     """
-    opciones = {}
-    opciones['usar_motor'] = 'qtgl'
-    opciones['audio'] = 'pygame'
+
+    pilas_home = os.path.join(CONFIG_DIR, 'pilas')
+    pilas_cfg = os.path.join(pilas_home, 'pilas.yaml')
+
+    # Si no existe el directorio de pilas, lo creamos.
+    if not os.path.isdir(pilas_home):
+        os.makedirs(pilas_home)
+
+    # Si no existe un archivo de configuracion por defecto,
+    # lo creamos.
+    if not os.path.isfile(pilas_cfg):
+        opciones = {}
+        opciones['usar_motor'] = 'qtgl'
+        opciones['audio'] = 'pygame'
+        with open(pilas_cfg, 'w') as outfile:
+            outfile.write( yaml.dump(opciones, default_flow_style=True))
+
     return opciones
 
 # Representa el viejo acceso al modulo eventos, pero convierte cada uno
