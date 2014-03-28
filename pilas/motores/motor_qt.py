@@ -1078,7 +1078,7 @@ class Motor(object):
 
     def _inicializar_sistema_de_audio(self, audio):
         sistemas_de_sonido = ['deshabilitado', 'pygame', 'phonon', 'gst']
-        audio = 'deshabilitado'
+
         if audio not in sistemas_de_sonido:
             error = "El sistema de audio '%s' es invalido" % (audio)
             sugerencia = ". Use alguno de los siguientes: %s" % (str(sistemas_de_sonido))

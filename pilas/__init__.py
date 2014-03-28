@@ -50,7 +50,7 @@ para iniciar y ejecutar la biblioteca.
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo=None, area_fisica=None, gravedad=(0, -90), pantalla_completa=False,
-            permitir_depuracion=True, audio=None, centrado=True):
+            permitir_depuracion=True, audio="pygame", centrado=True):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
