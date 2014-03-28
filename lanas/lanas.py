@@ -6,10 +6,10 @@ from PyQt4.QtCore import *
 
 import interprete
 
-def main(with_log=False):
+def main():
     app = QApplication(sys.argv)
     app.setApplicationName('Lanas')
-    win = interprete.Ventana(with_log=with_log)
+    win = interprete.Ventana()
     win.show()
     win.raise_()
     sys.exit(app.exec_())

@@ -15,7 +15,7 @@ import version
 
 class Ventana(QWidget):
 
-    def __init__(self, parent=None, scope=None, codigo_inicial="", with_log=False):
+    def __init__(self, parent=None, scope=None, codigo_inicial=""):
         super(Ventana, self).__init__(parent)
         box = QVBoxLayout()
         box.setMargin(0)
@@ -25,22 +25,20 @@ class Ventana(QWidget):
 
         if not scope:
             scope = locals()
+            scope['inspect'] = inspect
 
         self.text_edit = InterpreteTextEdit(self, codigo_inicial)
         self.text_edit.init(scope)
 
-        self.log_widget = QListWidget(self)
-
-        if not with_log:
-            self.log_widget.hide()
+        self.tip_widget = QLabel(self)
+        self.tip_widget.setText("")
 
         box.addWidget(self.text_edit)
-        box.addWidget(self.log_widget)
+        box.addWidget(self.tip_widget)
 
         self.resize(650, 300)
         self.center_on_screen()
         self.raise_()
-        self.log("Iniciando lanas ver " + version.VERSION)
 
     def ejecutar(self, codigo):
         """Ejecuta el codigo en formato string enviado."""
@@ -53,10 +51,6 @@ class Ventana(QWidget):
 
     def closeEvent(self, event):
         sys.exit(0)
-
-    def log(self, mensaje):
-        item = QListWidgetItem(mensaje)
-        self.log_widget.addItem(item)
 
     def alternar_log(self):
         if self.log_widget.isHidden():
@@ -102,6 +96,10 @@ class NormalOutput(Output):
 
 
 class InterpreteTextEdit(autocomplete.CompletionTextEdit):
+    """Representa el widget del interprete.
+
+    Esta instancia tiene como atributo "self.ventana" al
+    al QWidget representado por la clase Ventana"""
 
     def __init__(self,  parent, codigo_inicial):
         super(InterpreteTextEdit,  self).__init__(parent)
@@ -240,9 +238,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 self._change_font_size(+2)
                 event.ignore()
                 return
-            elif event.key() == Qt.Key_I:
-                self.ventana.alternar_log()
-                return
             elif event.key() == Qt.Key_S:
                 self.guardar_contenido_con_dialogo()
                 return
@@ -373,9 +368,21 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             # Obtiene el mensaje a mostrar y lo despliega en el tooltip
             texto_consejo = self._obtener_firma_de_funcion(principio)
             self.mostrar_consejo(texto_consejo)
+        else:
+            self.limpiar_consejo()
+
+    def limpiar_consejo(self):
+        self.mostrar_consejo("")
 
     def _obtener_firma_de_funcion(self, texto):
-        return self.ver_codigo(texto)
+        codigo = self.ver_codigo(texto)
+
+        if codigo:
+            posicion = codigo.find(":")
+            codigo = codigo[:posicion].replace("def ", "").replace('  ', '').replace('self, ', '').replace('self', '')
+            return codigo
+        else:
+            return ""
 
     def ver_codigo(self, texto):
         codigo = ""
@@ -394,15 +401,11 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         except:
             pass
 
-        if codigo:
-            posicion = codigo.find(":")
-            codigo = codigo[:posicion].replace("def ", "").replace('  ', '').replace('self, ', '').replace('self', '')
-
         return codigo
 
     def mostrar_consejo(self, linea):
         pos = self.mapToGlobal(self.cursorRect().bottomRight())
-        QToolTip.showText(pos, linea, self)
+        self.ventana.tip_widget.setText(linea)
 
     def guardar_contenido_con_dialogo(self):
         filename = QFileDialog.getSaveFileName(self, 'Guardar archivo', 'programa.py', 'Python (*.py)')
