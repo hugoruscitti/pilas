@@ -312,6 +312,10 @@ def obtener_configuracion():
         with open(pilas_cfg, 'w') as outfile:
             outfile.write( yaml.dump(opciones, default_flow_style=True))
 
+    # Cargamos la configuracion por defecto para pilas
+    with open(pilas_cfg, 'r') as fp:
+        opciones = yaml.load(fp)
+
     return opciones
 
 # Representa el viejo acceso al modulo eventos, pero convierte cada uno

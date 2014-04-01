@@ -4,10 +4,21 @@ import os
 import sys
 import inspect
 
+if sys.platform == 'win32':
+    # won't find this in linux; pylint: disable=F0401
+    from win32com.shell import shell, shellcon
+    CONFIG_DIR = shell.SHGetFolderPath(0, shellcon.CSIDL_PROFILE, None, 0)
+    del shell, shellcon
+else:
+    from xdg import BaseDirectory
+    CONFIG_DIR = BaseDirectory.xdg_config_home
+    del BaseDirectory
+
 
 def obtener_ruta_de_plugins():
     """Returna el path a los plugins de Pila."""
-    ruta_de_plugins = os.path.expanduser('~/.pilas/plugins')
+    pilas_home = os.path.join(CONFIG_DIR, 'pilas')
+    ruta_de_plugins = os.path.join(CONFIG_DIR, pilas_home, 'plugins')
     if not ruta_de_plugins:
         os.makedirs(ruta_de_plugins)
     return ruta_de_plugins
