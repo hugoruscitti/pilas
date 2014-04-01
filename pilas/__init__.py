@@ -89,8 +89,8 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12
     :audio: selecciona el motor de sonido a utilizar, los valores permitidos son 'deshabilitado', 'pygame', 'phonon' o 'gst'.
     :centrado: Indica si se desea centrar la ventana de pilas.
-    :cargar_plugins: Indica una lista de nombres de plugins que se desean cargar ena lista de nombres de plugins que se
-                     desean cargar. Si se especifica 'todos', se cargan todos los plugins encontrados.
+    :cargar_plugins: Parametro de tipo booleano. Si es True, se cargan todos los plugins que se encuentren dentro del directorio
+                     de plugins de pilas.
     """
 
     global mundo
@@ -100,9 +100,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
         configuracion = obtener_configuracion()
 
         if cargar_plugins:
-            lista_de_plugins_por_cargar = cargar_plugins
-            plugins_cargados = plugins.cargar_plugins(lista_de_plugins_por_cargar)
-            plugins.aplicar_plugins_en_habilidades(plugins_cargados, habilidades)
+            plugins.cargar_plugins(cargar_plugins)
 
         if not usar_motor:
             usar_motor = configuracion['usar_motor']

@@ -3,6 +3,10 @@
 import os
 import sys
 import inspect
+from pilas import (
+    habilidades,
+)
+
 
 if sys.platform == 'win32':
     # won't find this in linux; pylint: disable=F0401
@@ -36,7 +40,7 @@ def lista_de_plugins_encontrados():
     return lista_de_plugins
 
 
-def cargar_plugins(lista_de_plugins_por_cargar):
+def cargar_plugins(cargar_plugins):
     """Importa la lista de plugins dado. Retorna una lista
     de modulos de plugins importados."""
 
@@ -44,35 +48,22 @@ def cargar_plugins(lista_de_plugins_por_cargar):
     ruta_de_plugins = obtener_ruta_de_plugins()
     if not ruta_de_plugins in sys.path:
         sys.path.append(ruta_de_plugins)
+    if not cargar_plugins:
+        return
 
-    lista_de_plugins_importados = list()
     plugins_encontrados = lista_de_plugins_encontrados()
-
-    # lista 'flag' para importar todos los plugins
-    TODOS_LOS_PLUGINS = ['todos']
-
-    if lista_de_plugins_por_cargar == TODOS_LOS_PLUGINS:
-        for plugin in plugins_encontrados:
-            plugin_importado = __import__(plugin)
-            lista_de_plugins_importados.append(plugin_importado)
-    else:
-        for plugin in lista_de_plugins_por_cargar:
-            if plugin not in plugins_encontrados:
-                raise Exception('Plugin %s no encontrado.' % plugin)
-            plugin_importado = __import__(plugin)
-            lista_de_plugins_importados.append(plugin_importado)
-    return lista_de_plugins_importados
+    for plugin in plugins_encontrados:
+        if es_plugin_de_habilidad(plugin):
+            cargar_plugin_de_habilidad(plugin)
 
 
-def aplicar_plugins_en_habilidades(lista_de_plugins, habilidades):
-    """Aplica los modulos de plugins dados a las habilidades."""
+def es_plugin_de_habilidad(plugin):
+    """Retorna True si el plugin dado es una clase qeu hereda de
+    Habilidad."""
+    return issubclass(plugin, habilidades.Habilidad)
 
-    for modulo_de_plugin in lista_de_plugins:
-        miembros_del_plugin = inspect.getmembers(modulo_de_plugin)
-        for miembro in miembros_del_plugin:
-            nombre_de_clase, clase = miembro
-            if not inspect.isclass(clase):
-                continue
-            setattr(habilidades, nombre_de_clase, clase)
-    return habilidades
 
+def cargar_plugin_de_habilidad(plugin):
+   """Agrega un nuevo plugin a las habilidades de pilas."""
+   _ = __import__(plugin)
+   setattr(habilidades, _.__name__, _.__class__)
