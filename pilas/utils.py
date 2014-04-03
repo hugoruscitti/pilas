@@ -515,3 +515,18 @@ def iniciar_asistente_desde_argumentos():
         else:
             import pilas
             pilas.abrir_asistente()
+
+
+def obtener_directorio_de_configuracion():
+    """" Retorna la ruta de configuracion segun la plataforma"""
+    if sys.platform == 'win32':
+        # won't find this in linux; pylint: disable=F0401
+        from win32com.shell import shell, shellcon
+        CONFIG_DIR = shell.SHGetFolderPath(0, shellcon.CSIDL_PROFILE, None, 0)
+        del shell, shellcon
+    else:
+        from xdg import BaseDirectory
+        CONFIG_DIR = BaseDirectory.xdg_config_home
+        del BaseDirectory
+
+    return CONFIG_DIR
