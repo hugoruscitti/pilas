@@ -9,8 +9,10 @@
 mundo = None
 bg = None
 
+import os
 import sys
 import utils
+import yaml
 from mundo import Mundo
 import actores
 import grupo
@@ -35,7 +37,6 @@ from pilas.escena import Normal
 import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-
 __doc__ = """
 Módulo pilas
 ============
@@ -51,7 +52,7 @@ para iniciar y ejecutar la biblioteca.
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo=None, area_fisica=None, gravedad=(0, -90), pantalla_completa=False,
-            permitir_depuracion=True, audio="pygame", centrado=True, cargar_plugins=False):
+            permitir_depuracion=True, audio=None, centrado=True, cargar_plugins=False):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -75,17 +76,18 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12
     :audio: selecciona el motor de sonido a utilizar, los valores permitidos son 'deshabilitado', 'pygame', 'phonon' o 'gst'.
     :centrado: Indica si se desea centrar la ventana de pilas.
-    :cargar_plugins: Indica si se desean cargar(True) o noFalse) los plugins creados en ~/.pilas/plugins/
+    :cargar_plugins: Parametro de tipo booleano. Si es True, se cargan todos los plugins que se encuentren dentro del directorio
+                     de plugins de pilas.
     """
 
     global mundo
-
-    if cargar_plugins:
-        global complementos
-        complementos = plugins.Complementos()
-
     if not esta_inicializada():
+
         configuracion = obtener_configuracion()
+
+        if cargar_plugins:
+            global complementos
+            complementos = plugins.Complementos()
 
         if not usar_motor:
             usar_motor = configuracion['usar_motor']
@@ -278,9 +280,28 @@ def obtener_configuracion():
     sin argumentos, los valores de 'motor' o 'sistema de sonido' a utilizar
     se cargarán desde esa configuración.
     """
-    opciones = {}
-    opciones['usar_motor'] = 'qtgl'
-    opciones['audio'] = 'pygame'
+    CONFIG_DIR  = utils.obtener_directorio_de_configuracion()
+
+    pilas_home = os.path.join(CONFIG_DIR, 'pilas-engine')
+    pilas_cfg = os.path.join(pilas_home, 'pilas.yaml')
+
+    # Si no existe el directorio de pilas, lo creamos.
+    if not os.path.isdir(pilas_home):
+        os.makedirs(pilas_home)
+
+    # Si no existe un archivo de configuracion por defecto,
+    # lo creamos.
+    if not os.path.isfile(pilas_cfg):
+        opciones = {}
+        opciones['usar_motor'] = 'qtgl'
+        opciones['audio'] = 'pygame'
+        with open(pilas_cfg, 'w') as outfile:
+            outfile.write( yaml.dump(opciones, default_flow_style=True))
+
+    # Cargamos la configuracion por defecto para pilas
+    with open(pilas_cfg, 'r') as fp:
+        opciones = yaml.load(fp)
+
     return opciones
 
 # Representa el viejo acceso al modulo eventos, pero convierte cada uno

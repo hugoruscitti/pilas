@@ -3,15 +3,22 @@
 import os
 import sys
 import inspect
+import utils
 
-class Complementos:
+class Complementos():
     def __init__(self):
         lista_de_plugins = self.__cargar_plugins()
         self.__aplicar_plugins(lista_de_plugins)
 
     def __obtener_ruta_de_plugins(self):
         """Returna el path a los plugins de Pila."""
-        return os.path.expanduser('~/.pilas/plugins')
+        CONFIG_DIR = utils.obtener_directorio_de_configuracion()
+        pilas_home = os.path.join(CONFIG_DIR, 'pilas-engine')
+        ruta_de_plugins = os.path.join(pilas_home, 'plugins')
+        if not os.path.exists(ruta_de_plugins):
+            os.makedirs(ruta_de_plugins)
+
+        return ruta_de_plugins
 
 
     def __lista_de_plugins_encontrados(self):
