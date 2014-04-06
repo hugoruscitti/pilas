@@ -39,6 +39,7 @@ una serie de dependencias:
 Luego, instalar box2d:
 
     sudo easy_install -U box2d
+    sudo easy_install -U PyYAML
 
 y por último, obtener e instalar pilas desde el respositorio:
 
@@ -74,6 +75,7 @@ Primero se deben instalar los siguientes paquetes:
 Luego, instalar box2d y pilas usando el comando ``easy_install``:
 
     sudo easy_install -U box2d
+    sudo easy_install -U PyYAML
     sudo easy_install -U pilas
 
     
