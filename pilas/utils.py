@@ -523,10 +523,8 @@ def obtener_directorio_de_configuracion():
         # won't find this in linux; pylint: disable=F0401
         from win32com.shell import shell, shellcon
         CONFIG_DIR = shell.SHGetFolderPath(0, shellcon.CSIDL_PROFILE, None, 0)
-        del shell, shellcon
     else:
-        from xdg import BaseDirectory
-        CONFIG_DIR = BaseDirectory.xdg_config_home
-        del BaseDirectory
+        from os.path import expanduser
+        CONFIG_DIR = expanduser("~")
 
     return CONFIG_DIR
