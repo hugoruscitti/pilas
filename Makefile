@@ -22,7 +22,6 @@ test:
 html:
 	@cd docs; make
 
-
 ui:
 	pyuic4 -o pilas/lanzador_base.py -x pilas/data/lanzador.ui
 	pyuic4 -o pilas/asistente_base.py -x pilas/data/asistente.ui
