@@ -589,37 +589,36 @@ class Rectangulo(Figura):
 
         self._cuerpo.fixedRotation = self.sin_rotacion
 
+
     def definir_ancho(self, ancho):
         self._ancho = convertir_a_metros(ancho)
-        self.__crear_fixture()
+        vertices = []
+        for i in self._cuerpo.fixtures[0].shape.vertices:
+            if i[0] <0:
+                vertices.append((-(self._ancho/2),i[1]))
+            else:
+                vertices.append((self._ancho/2,i[1]))
+
+        self._cuerpo.fixtures[0].shape.vertices = vertices
+
 
     def definir_alto(self, alto):
         self._alto = convertir_a_metros(alto)
-        self.__crear_fixture()
+        vertices = []
+        for i in self._cuerpo.fixtures[0].shape.vertices:
+            if i[1] <0:
+                vertices.append((i[0],-(self._ancho/2)))
+            else:
+                vertices.append((i[0],(self._ancho/2)))
+
+        self._cuerpo.fixtures[0].shape.vertices = vertices
+
 
     def definir_escala(self, escala):
-        self._ancho = (self._ancho * escala) / self._escala
-        self._alto = (self._alto * escala) / self._escala
+        self.ancho = (self.ancho * escala) / self.escala
+        self.alto = (self.alto * escala) / self.escala
         self._escala = escala
-        self.__crear_fixture()
-    
-    def __crear_fixture(self):
-        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(self._ancho/2, self._alto/2)),
-                                     density=self._cuerpo.fixtures[0].density,
-                                     linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
-                                     friction=self._cuerpo.fixtures[0].friction,
-                                     restitution=self._cuerpo.fixtures[0].restitution)
 
-        fixture.userData = self.userData
-
-        self.fisica.mundo.DestroyBody(self._cuerpo)
-
-        if self.dinamica:
-            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, linearVelocity=self._cuerpo.linearVelocity, fixtures=fixture)    
-        else:
-            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, fixtures=fixture)
-
-        self._cuerpo.fixedRotation = self.sin_rotacion
 
     @pilas.utils.interpolable
     def set_width(self, ancho):
