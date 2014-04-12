@@ -511,45 +511,26 @@ class Circulo(Figura):
 
         self._cuerpo.fixedRotation = self.sin_rotacion
 
-    def definir_escala(self, escala):
-        self._radio = (self._radio * escala) / self._escala
-        self._escala = escala
+
+    def definir_radio(self):
         for fixture in self._cuerpo:
-            fixture.shape.radius = self._radio
+            fixture.shape.radius = self._radio        
 
-    def definir_radio(self, radio):
-        self._escala = (self._escala * radio) / self.radio
-        self._radio = convertir_a_metros(radio)
-        self.__crear_fixture()
-    
-    def __crear_fixture(self):
-        fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=self._radio),
-                                         density=self._cuerpo.fixtures[0].density,
-                                         linearDamping=self._cuerpo.fixtures[0].body.linearDamping,
-                                         friction=self._cuerpo.fixtures[0].friction,
-                                         restitution=self._cuerpo.fixtures[0].restitution)                
-
-        fixture.userData = self.userData
-
-        self.fisica.mundo.DestroyBody(self._cuerpo)
-
-        if self.dinamica:
-            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, linearVelocity=self._cuerpo.linearVelocity, fixtures=fixture)    
-        else:
-            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(self._cuerpo.position.x, self._cuerpo.position.y), angle=self._cuerpo.angle, fixtures=fixture)
-
-        self._cuerpo.fixedRotation = self.sin_rotacion
 
     @pilas.utils.interpolable
     def set_radius(self, radio):
-        self.definir_radio(radio)
+        self._escala = (self._escala * radio) / self.radio
+        self._radio = convertir_a_metros(radio)
+        self.definir_radio()
 
     def get_radius(self):
         return convertir_a_pixels(self._radio)
 
     @pilas.utils.interpolable
     def set_scale(self, escala):
-        self.definir_escala(escala)
+        self._radio = (self._radio * escala) / self._escala
+        self._escala = escala
+        self.definir_radio()
 
     def get_scale(self):
         return self._escala
