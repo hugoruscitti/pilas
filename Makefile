@@ -52,7 +52,7 @@ mac:
 	cp -r -f macbins/Frameworks dist/pilas-engine.app/Contents/
 	cp -r -f macbins/PlugIns dist/pilas-engine.app/Contents/
 	cp -r -f macbins/Resources/lib/python2.7/lib-dynload dist/pilas-engine.app/Contents/Resources/lib/python2.7/
-	hdiutil create pilas-engine-${VERSION}.dmg -srcfolder ./dist/pilas-engine.app
+	hdiutil create pilas-engine-${VERSION}.dmg -srcfolder ./dist/pilas-engine.app -size 200mb
 	@echo ""
 	@echo "Para probar el programa generado ejecuta o utiliza el dmg:"
 	@echo "  ./dist/pilas-engine.app/Contents/MacOS/pilas-engine"
