@@ -7,7 +7,6 @@
 # website - http://www.pilas-engine.com.ar
 
 import pilas
-import subprocess
 from pilas import dev
 
 fabricar = pilas.actores.utils.fabricar
@@ -29,18 +28,21 @@ def definir_gravedad(x, y):
     pilas.escena_actual().fisica.definir_gravedad(x, y)
 
 
-def leer(texto):
+def leer(texto, esperar = False):
     """Utiliza el comando speak para 'leer' un texto como sonido.
 
     :param texto: Cadena de texto a pronunciar.
+    :param esperar: Si es True la función no vuelve hasta que se termina de leer el texo.
+    :type esperar: boolean
     """
-    # TODO: usar speak binding en lugar de subprocess.
     try:
-        comando = subprocess.Popen(["espeak",  texto, "-v", "es-la"],
-                                   stdout=subprocess.PIPE,
-                                   stdin=subprocess.PIPE,
-                                   stderr=subprocess.PIPE)
-    except OSError:
+        from espeak import espeak
+        import time
+        espeak.set_voice('es-la')
+        espeak.synth(texto)
+        while esperar and espeak.is_playing():
+            time.sleep(1)
+    except ImportError:
         pass
 
 
