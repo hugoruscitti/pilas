@@ -45,6 +45,20 @@ class MapaTiled(Mapa):
 
     def _cargar_datos_basicos_del_mapa(self, archivo):
         nodo = makeRootNode(archivo)
+
+	# Analiza si el archivo es formato CSV
+        layers = nodo.getChild('map').getChildren('layer')
+
+        if len(layers) == 0:
+            raise Exception("El mapa solicitado no tiene ninguna capa.")
+
+        data = layers[0].getChildren('data')
+	encoding = data[0].getAttributeValue('encoding')
+
+        if encoding.lower() != 'csv':
+            raise Exception("El formato de archivo es incorrecto. Selecciona CSV dentro de las preferencias de Tiled")
+
+
         nodo_mapa = nodo.getChild('map')
         nodo_tileset = nodo_mapa.getChild('tileset')
 
