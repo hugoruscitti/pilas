@@ -1,0 +1,55 @@
+# -*- encoding: utf-8 -*-
+import uuid
+
+class Utils(object):
+
+    def __init__(self, pilas):
+        self.pilas = pilas
+
+    def obtener_uuid(self):
+        """Genera un identificador único."""
+        return str(uuid.uuid4())
+
+
+def es_interpolacion(an_object):
+    """Indica si un objeto se comportará como una interpolación.
+
+    :param an_object: El objeto a consultar.
+    """
+    return isinstance(an_object, interpolaciones.Interpolacion)
+
+def interpolable(f):
+    """Decorador que se aplica a un metodo para que permita animaciones de interpolaciones.
+
+    Ejemplo::
+
+        @interpolable
+        def set_x(self, valor_x):
+            [...]
+
+    :param f: Método sobre el que va a trabajar el interpolador.
+    """
+
+    def inner(*args, **kwargs):
+        value = args[1]
+
+        # Si le indican dos argumentos, el primer sera
+        # el valor de la interpolacion y el segundo la
+        # velocidad.
+        if isinstance(value, tuple) and len(value) == 2:
+            duracion = value[1]
+            value = value[0]
+        else:
+            duracion = 1
+
+        if isinstance(value, list):
+            value = interpolar(value, duracion=duracion, tipo='lineal')
+        elif isinstance(value, xrange):
+            value = interpolar(list(value), duracion=duracion, tipo='lineal')
+
+        if es_interpolacion(value):
+            value.apply(args[0], function=f.__name__)
+        else:
+            f(args[0], value, **kwargs)
+
+    return inner
