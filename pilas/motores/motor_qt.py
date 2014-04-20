@@ -1130,7 +1130,7 @@ class Motor(object):
         print "%s - Reiniciando" %(time.strftime("%H:%m:%S"))
         pilas.reiniciar()
         lineas_a_descartar = ['pilas.iniciar', 'pilas.ejecutar',
-                              'pilas.reiniciar_si_cambia', 'import']
+                              'pilas.reiniciar_si_cambia', 'import pilas']
         contenido = self.limpiar_lineas_que_contengan(contenido, lineas_a_descartar)
 
         try:
