@@ -5,8 +5,8 @@ import sys
 
 from PyQt4 import QtCore, QtGui
 
-from interprete_base import Ui_InterpreteWindow
 import pilasengine
+from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
 
 
 class VentanaInterprete(Ui_InterpreteWindow):

@@ -3,7 +3,6 @@ import inspect
 
 from estudiante import Estudiante
 
-
 IZQUIERDA = ["izquierda"]
 DERECHA = ["derecha"]
 ARRIBA = ["arriba", "superior"]
