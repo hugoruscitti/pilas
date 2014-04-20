@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+import lanas
 import os
 import sys
 
 from PyQt4 import QtCore, QtGui
-from interprete_base import Ui_InterpreteWindow
 
+from interprete_base import Ui_InterpreteWindow
 import pilasengine
-import lanas
+
 
 class VentanaInterprete(Ui_InterpreteWindow):
 
@@ -115,7 +116,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.splitter.setSizes([300, 0])
 
     def pulsa_boton_depuracion(self):
-        pilas.atajos.definir_modos(
+        self.scope['pilas'].definir_modos(
                             info=self.pushButton_6.isChecked(),              # F07
                             puntos_de_control=self.pushButton_5.isChecked(), # F08
                             radios=self.pushButton_4.isChecked(),            # F09

@@ -24,7 +24,8 @@ class Pilas(object):
     de los actores y quien mantiene con "vida" el juego completo.
     """
 
-    def __init__(self, ancho=640, alto=480, titulo='pilas-engine'):
+    def __init__(self, ancho=640, alto=480, titulo='pilas-engine', habilitar_mensajes_log=False):
+        self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
         self.actores = actores.Actores(self)
         self.escenas = escenas.Escenas(self)
@@ -40,6 +41,9 @@ class Pilas(object):
         """Retorna el centro de la ventana en pixels."""
         return self.widget.obtener_centro_fisico()
 
+    def habilitar_mensajes_log(self, estado):
+        self._imprimir_mensajes_log = estado
+
     def obtener_escena_actual(self):
         return self.escenas.obtener_escena_actual()
 
@@ -51,9 +55,11 @@ class Pilas(object):
 
     def log(self, *mensaje):
         "Muestra un mensaje de prueba sobre la consola."
-        hora = datetime.datetime.now().strftime("%H:%M:%S")
-        mensaje = map(lambda x: str(x), mensaje)
-        print(":: %s :: %s " %(hora, " ".join(mensaje)))
+
+        if self._imprimir_mensajes_log:
+            hora = datetime.datetime.now().strftime("%H:%M:%S")
+            mensaje = map(lambda x: str(x), mensaje)
+            print(":: %s :: %s " %(hora, " ".join(mensaje)))
 
     def obtener_ruta_al_recurso(self, ruta):
         """Busca la ruta a un archivo de recursos.
