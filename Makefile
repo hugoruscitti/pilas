@@ -1,13 +1,18 @@
 all:
 	@echo "Comando disponibles"
 	@echo ""
+	@echo "  actualizar  Actualiza pilas y los submodulos."
 	@echo "  ejecutar    Ejecuta pilas sin instarlo."
 	@echo "  test        Lanza todos los test de unidad."
 	@echo "  ui          Actualiza todas las interfaces de usuario."
 	@echo ""
 
+actualizar:
+	git pull
+	git submodule update --init
+
 ejecutar:
-	python bin/pilasengine
+	python bin/pilas.py
 
 test:
 	@python -m unittest discover pilasengine/tests '*.py'

@@ -6,6 +6,7 @@ from PyQt4 import QtCore, QtGui
 from interprete_base import Ui_InterpreteWindow
 
 import pilasengine
+import lanas
 
 class VentanaInterprete(Ui_InterpreteWindow):
 
@@ -140,7 +141,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def _insertar_ventana_principal_de_pilas(self):
         pilas = pilasengine.iniciar()
         aceituna = pilas.actores.Aceituna()
-        scope = {'pilas': pilas, 'aceituna': aceituna}
+        scope = {'pilas': pilas, 'aceituna': aceituna, 'self': self}
         ventana = pilas.obtener_widget()
 
         ventana.setFocusPolicy(QtCore.Qt.ClickFocus)
@@ -157,11 +158,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
                 'aceituna = pilas.actores.Aceituna()',
         ]
 
-        #consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
-        #self.console.addWidget(consola)
-        #self.console.setCurrentWidget(consola)
-        #self.consola = consola
-        #self.consola.text_edit.setFocus()
+        consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
+        self.console.addWidget(consola)
+        self.console.setCurrentWidget(consola)
+        self.consola = consola
+        self.consola.text_edit.setFocus()
 
     def cuando_pulsa_el_boton_guardar(self):
         self.consola.text_edit.guardar_contenido_con_dialogo()

@@ -24,7 +24,7 @@ def es_interpolacion(an_object):
     return isinstance(an_object, interpolaciones.Interpolacion)
 
 def obtener_ruta_al_recurso(ruta):
-    dirs = ['./', '/../data', 'data',
+    dirs = ['./', '/../data', '/data',
             PATH, INTERPRETE_PATH,
             PATH + '/data', INTERPRETE_PATH + '/data',
             PATH + '/../data', INTERPRETE_PATH + '/../data'
