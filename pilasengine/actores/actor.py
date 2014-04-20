@@ -10,6 +10,21 @@ ARRIBA = ["arriba", "superior"]
 CENTRO = ["centro", "centrado", "medio", "arriba"]
 ABAJO = ["abajo", "inferior", "debajo"]
 
+class ActorEliminado(object):
+    """Representa a un actor que ha sido eliminado y ya no se puede usar.
+
+    Esta clase entra en acción cuando se toma cualquier actor
+    y se lo elimina. Cualquier actor de pilas, al momento de ser
+    eliminado, cambia de clase y pasa a formar parte de esta
+    clase.
+
+    Observá el método '_destruir' de la clase actor.
+    """
+
+    def __getattr__(self, *k, **kw):
+        raise Exception("Este actor ya ha sido eliminado, no se puede utilizar.")
+
+
 class Actor(Estudiante):
     """Representa un objeto visible en pantalla, algo que se ve y tiene
     posicion.
@@ -358,16 +373,19 @@ class Actor(Estudiante):
     def eliminar(self):
         """Elimina el actor de la lista de actores que se imprimen en pantalla."""
         self._eliminar_anexados()
-        self.destruir()
+        self._destruir()
 
-    def destruir(self):
+    def _destruir(self):
         """Elimina a un actor pero de manera inmediata."""
         self._vivo = False
         self.eliminar_habilidades()
         self.eliminar_comportamientos()
         # Solo permite eliminar el actor si está en su escena.
         self._eliminar_de_todos_los_grupos_al_que_pertenece()
+        self._inhabilitar_actor_completamente()
 
+    def _inhabilitar_actor_completamente(self):
+        self.__class__ = ActorEliminado
 
     def _eliminar_de_todos_los_grupos_al_que_pertenece(self):
         for g in self._grupos_a_los_que_pertenece:
