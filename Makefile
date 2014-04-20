@@ -1,10 +1,13 @@
+N=\x1b[0m
+V=\x1b[32;01m
+
 all:
 	@echo "Comando disponibles"
 	@echo ""
-	@echo "  actualizar  Actualiza pilas y los submodulos."
-	@echo "  ejecutar    Ejecuta pilas sin instarlo."
-	@echo "  test        Lanza todos los test de unidad."
-	@echo "  ui          Actualiza todas las interfaces de usuario."
+	@echo "  $(V)actualizar$(N)  Actualiza pilas y los submodulos."
+	@echo "  $(V)ejecutar$(N)    Ejecuta pilas sin instarlo."
+	@echo "  $(V)test$(N)        Lanza todos los test de unidad."
+	@echo "  $(V)ui$(N)          Actualiza todas las interfaces de usuario."
 	@echo ""
 
 actualizar:
