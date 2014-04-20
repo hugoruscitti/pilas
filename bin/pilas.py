@@ -1,5 +1,9 @@
 import sys
+import signal
 from PyQt4 import QtGui
+
+# Permitiendo cerrar pilas usando CTRL+C
+signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 sys.path.append('./')
 sys.path.append('../')
