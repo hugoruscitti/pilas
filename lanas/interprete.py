@@ -44,6 +44,7 @@ class Ventana(QWidget):
         """Ejecuta el codigo en formato string enviado."""
         exec(codigo, self.text_edit.interpreterLocals)
 
+
     def center_on_screen(self):
         resolution = QDesktopWidget().screenGeometry()
         self.move((resolution.width()  / 2) - (self.frameSize().width()  / 2),
@@ -83,7 +84,18 @@ class ErrorOutput(Output):
 
     def write(self, linea):
         self.destino.stdout_original.write(linea)
-        self.destino.insertar_error(linea.decode('utf-8'))
+
+        # Solo muestra el error en consola si es un mensaje util.
+        if linea.startswith('Traceback (most re') or linea.startswith('  File "<input>", line 1, in'):
+            pass
+        else:
+
+            if linea.startswith('  File "'):
+                linea = linea.replace("File", "Archivo").replace('line', 'linea')
+                linea = linea[:linea.find(', in')] + " ..."
+
+            self.destino.insertar_error(linea.decode('utf-8'))
+
         self.destino.ensureCursorVisible()
 
 
@@ -140,7 +152,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         self.marker()
 
     def insertar_error(self, mensaje):
-        self.insertHtml(u"<b style='color: #FF0000'>  ×</b> %s" %(mensaje))
+        self.insertHtml(u" <b style='color: #FF0000'> &nbsp; × %s </b>" %(mensaje))
         self.insertPlainText('\n')
 
     def insertar_mensaje(self, mensaje):
