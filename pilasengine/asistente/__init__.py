@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import sys
+import webbrowser
 
 from PyQt4 import QtGui
 from PyQt4 import QtCore
@@ -13,16 +14,16 @@ class Interlocutor(QtCore.QObject):
 
     def iniciar_con_ventana(self, ventana):
         self.manual = None
+        self.interprete = None
         self.ventana = ventana
-
-    @QtCore.pyqtSlot(str)
-    def mostrar_mensaje(self, msg):
-        """Open a message box and display the specified message."""
-        QtGui.QMessageBox.information(None, "Info", msg)
 
     @QtCore.pyqtSlot()
     def abrir_interprete(self):
-        QtGui.QMessageBox.information(None, "Info", "hola!")
+        if not self.interprete:
+            self.interprete = pilasengine.abrir_interprete()
+        else:
+            self.interprete.show()
+            self.interprete.raise_()
 
     @QtCore.pyqtSlot()
     def abrir_manual(self):
@@ -31,6 +32,10 @@ class Interlocutor(QtCore.QObject):
         else:
             self.manual.show()
             self.manual.raise_()
+
+    @QtCore.pyqtSlot()
+    def abrir_sitio_de_pilas(self):
+        webbrowser.open("http://www.pilas-engine.com.ar")
 
 class VentanaAsistente(Base):
 

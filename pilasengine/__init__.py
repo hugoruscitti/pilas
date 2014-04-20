@@ -93,3 +93,7 @@ def abrir_asistente():
 def abrir_manual():
     import manual
     return manual.abrir()
+
+def abrir_interprete():
+    import interprete
+    return interprete.abrir()

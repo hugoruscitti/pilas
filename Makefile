@@ -15,3 +15,4 @@ test:
 ui:
 	pyuic4 -xo pilasengine/asistente/asistente_base.py pilasengine/asistente/asistente.ui
 	pyuic4 -xo pilasengine/manual/manual_base.py pilasengine/manual/manual.ui
+	pyuic4 -xo pilasengine/interprete/interprete_base.py pilasengine/interprete/interprete.ui
