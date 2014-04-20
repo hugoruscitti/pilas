@@ -59,6 +59,16 @@ class Actor(Estudiante):
         # Listas para definir los callbacks de los eventos
         self._callback_cuando_hace_click = set()
         self._callback_cuando_mueve_mouse = set()
+        self._grupos_a_los_que_pertenece = []
+
+    def agregar_al_grupo(self, grupo):
+        self._grupos_a_los_que_pertenece.append(grupo)
+
+    def eliminar_del_grupo(self, grupo):
+        self._grupos_a_los_que_pertenece.remove(grupo)
+
+    def obtener_cantidad_de_grupos_al_que_pertenece(self):
+        return len(self._grupos_a_los_que_pertenece)
 
     def _definir_valores_iniciales(self, pilas):
         self.imagen = "sin_imagen.png"
@@ -221,7 +231,7 @@ class Actor(Estudiante):
             >>> actor.centro = ("izquierda", "abajo")
             >>> actor.centro = ("centro", "arriba")
 
-        Pulsa la tecla **F8** para ver el centro del los actores
+        Pulsa la tecla **F8** para ver el centro de los actores
         dentro de pilas. Es aconsejable pulsar la tecla **+** para
         que el punto del modo **F8** se vea bien.
         """)
@@ -356,8 +366,14 @@ class Actor(Estudiante):
         self.eliminar_habilidades()
         self.eliminar_comportamientos()
         # Solo permite eliminar el actor si está en su escena.
-        if self in pilas.escena_actual().actores:
-            pilas.escena_actual().actores.remove(self)
+        self._eliminar_de_todos_los_grupos_al_que_pertenece()
+
+
+    def _eliminar_de_todos_los_grupos_al_que_pertenece(self):
+        for g in self._grupos_a_los_que_pertenece:
+            g.eliminar(self)
+
+        self._grupos_a_los_que_pertenece = []
 
     def pre_actualizar(self):
         """Actualiza comportamiento y habilidades antes de la actualización.
@@ -708,7 +724,7 @@ class Actor(Estudiante):
         pilas.atajos.leer(mensaje)
 
     def anexar(self, otro_actor):
-        """ Agrega un Actor a la lista de actores anexados al Actor actual.
+        """Agrega un Actor a la lista de actores anexados al Actor actual.
         Cuando se elimina un Actor, se eliminan los actores anexados.
 
         :param otro_actor: Actor a anexar.

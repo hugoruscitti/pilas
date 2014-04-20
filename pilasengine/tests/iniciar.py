@@ -23,6 +23,11 @@ class TestIniciar(unittest.TestCase):
         self.assertEquals(un_actor.x, 0, "Se ubica en la posicion x=0")
         self.assertEquals(un_actor.y, 0, "Se ubica en la posicion y=0")
 
+    def  testPuedeEliminarUnActor(self):
+        actor = self.pilas.actores.Aceituna()
+        self.assertTrue(actor, "Creando un actor")
+        actor.eliminar()
+
     def testAreaDePantalla(self):
         centro = self.pilas.obtener_centro_fisico()
         self.assertEqual((320, 240), centro,

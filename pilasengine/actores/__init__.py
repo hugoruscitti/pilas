@@ -35,6 +35,14 @@ class Actores(object):
 
         return actor
 
+    def agregar_grupo(self, grupo):
+        escena_actual = self.pilas.obtener_escena_actual()
+
+        self.pilas.log("Agregando el grupo", grupo, "a la escena", escena_actual)
+        escena_actual.agregar_grupo(grupo)
+
+        return grupo
+
     def Aceituna(self):
         import aceituna
         nuevo_actor = aceituna.Aceituna(self.pilas)
@@ -49,3 +57,8 @@ class Actores(object):
         import actor
         nuevo_actor = actor.Actor(self.pilas)
         return self.agregar_actor(nuevo_actor)
+
+    def Grupo(self):
+        import grupo
+        nuevo_grupo = grupo.Grupo(self.pilas)
+        return self.agregar_grupo(nuevo_grupo)

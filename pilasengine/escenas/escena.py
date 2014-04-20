@@ -1,4 +1,5 @@
 import camara
+from pilasengine.actores import grupo
 
 class Escena(object):
 
@@ -6,7 +7,8 @@ class Escena(object):
         self.pilas = pilas
         pilas.log("Creando una escena: ", self)
         self.camara = camara.Camara(pilas, self)
-        self.actores = []
+        self._actores = grupo.Grupo(pilas)
+        self.grupos = []
 
     def iniciar(self):
         pass
@@ -18,17 +20,20 @@ class Escena(object):
         pass
 
     def actualizar_actores(self):
-        for x in self.actores:
+        for x in self._actores.obtener_actores():
             x.actualizar()
 
     def dibujar_actores(self, painter):
         painter.save()
         self.camara.aplicar_transformaciones(painter)
 
-        for x in self.actores:
+        for x in self._actores.obtener_actores():
             x.dibujar(painter)
 
         painter.restore()
 
     def agregar_actor(self, actor):
-        self.actores.append(actor)
+        self._actores.agregar(actor)
+
+    def agregar_grupo(self, grupo):
+        self.grupos.append(grupo)

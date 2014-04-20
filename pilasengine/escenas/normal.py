@@ -4,7 +4,6 @@ class Normal(Escena):
 
     def iniciar(self):
         self.pilas.actores.Aceituna()
-        pass
 
     def actualizar(self):
         pass
