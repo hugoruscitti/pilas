@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Interfaz de usuario &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Como crear menúes para tu juegos" href="menu.html" />
+    <link rel="prev" title="Demos" href="demos.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="menu.html" title="Como crear menúes para tu juegos"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="demos.html" title="Demos"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="interfaz-de-usuario">
+<h1>Interfaz de usuario<a class="headerlink" href="#interfaz-de-usuario" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Pilas incluye un submódulo que te permitirá crear
+una interfaz de usuario con deslizadores, botones, cajas
+de texto y selectores.</p>
+<p>Este submódulo tiene objetos basados en actores, así que
+lo que conoces sobre actores vas a poder usarlo para construir
+una interfaz.</p>
+<div class="section" id="propiedades-comunes">
+<h2>Propiedades comunes<a class="headerlink" href="#propiedades-comunes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Todos lo elementos de la interfaz comparten una serie de propiedades como:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">activar:</th><td class="field-body">Permite que un control sea seleccionado y que el usuario interactue
+con él. Por defecto todos los controles están activados.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entrada</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interfaz</span><span class="o">.</span><span class="n">IngresoDeTexto</span><span class="p">()</span>
+<span class="n">entrada</span><span class="o">.</span><span class="n">texto</span> <span class="o">=</span> <span class="s">&quot;Texto inicial&quot;</span>
+
+<span class="n">entrada</span><span class="o">.</span><span class="n">activar</span><span class="p">()</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">descativar:</th><td class="field-body">Bloquea el control para que el usuario no pueda utilizarlo.
+El control se queda semi-transparente para indicar este estado.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entrada</span><span class="o">.</span><span class="n">desactivar</span><span class="p">()</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">ocultar:</th><td class="field-body">Oculta el control en la pantalla.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entrada</span><span class="o">.</span><span class="n">ocultar</span><span class="p">()</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">mostrar:</th><td class="field-body">Muestra el control y lo activa.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entrada</span><span class="o">.</span><span class="n">mostrar</span><span class="p">()</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">obtener_foco:</th><td class="field-body">Establece el control como activo.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entrada</span><span class="o">.</span><span class="n">obtener_foco</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deslizador">
+<h2>Deslizador<a class="headerlink" href="#deslizador" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El deslizador es útil para que el usuario pueda seleccionar
+un valor intermedio entre dos números, por ejemplo entre 0 y 1, 0 y
+100 etc.</p>
+<p>Un ejemplo típico de este componente puedes encontrarlo
+en las preferencias de audio de algún programa de sonido, los
+deslizadores te permiten regular el grado de volumen.</p>
+<p>Esta es una imagen del ejemplo <tt class="docutils literal"><span class="pre">deslizador.py</span></tt> que está
+en el directorio <tt class="docutils literal"><span class="pre">ejemplos</span></tt>. Tiene tres deslizadores, y
+el usuario puede regular cualquiera de los tres para ver
+los cambios en el actor:</p>
+<img alt="_images/deslizador.jpg" src="_images/deslizador.jpg" />
+<p>Para construir un deslizador y asociarlo a una función
+puedes escribir algo como esto:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cuando_cambia</span><span class="p">(</span><span class="n">valor</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;El deslizador tiene grado:&quot;</span><span class="p">,</span> <span class="n">valor</span>
+
+<span class="n">deslizador</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interfaz</span><span class="o">.</span><span class="n">Deslizador</span><span class="p">()</span>
+<span class="n">deslizador</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">cuando_cambia</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Entonces, a medida que muevas el deslizador se imprimirán
+en pantalla valores del 0 al 1, por ejemplo 0.25, 0.52777 etc...</p>
+<p>Si quieres cambiar los valores iniciales y finales de la
+escala de valores, lo mas sencillo es multiplicar el argumento
+<tt class="docutils literal"><span class="pre">valor</span></tt> de la función. Por ejemplo, si quieres valores entre
+0 y 100:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cuando_cambia</span><span class="p">(</span><span class="n">valor</span><span class="p">):</span>
+    <span class="n">valor_entre_cero_y_cien</span> <span class="o">=</span> <span class="n">valor</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="selector">
+<h2>Selector<a class="headerlink" href="#selector" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El selector te permite seleccionar una opción con
+dos valores: habilitado, deshabilitado.</p>
+<img alt="_images/selector.png" src="_images/selector.png" />
+<p>Se puede usar para opciones cómo habilitar o deshabilitar
+el modo pantalla completa o algo así.</p>
+<p>Para usarlo, se tiene que crear un objeto de la
+clase <tt class="docutils literal"><span class="pre">Selector</span></tt> y un texto a mostrar:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">selector</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interfaz</span><span class="o">.</span><span class="n">Selector</span><span class="p">(</span><span class="s">&quot;Habilitar pantalla completa.&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Y luego, puedes consultar el valor del selector mediante el
+atributo <tt class="docutils literal"><span class="pre">seleccionado</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">selector</span><span class="o">.</span><span class="n">seleccionado</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;El selector esta seleccionado.&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;El selector no esta seleccionado.&quot;</span>
+</pre></div>
+</div>
+<p>o directamente asociarle una función para que el selector
+la llame cuando cambia de estado:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cuando_el_selector_cambia</span><span class="p">(</span><span class="n">estado</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;El selector ahora esta en estado:&quot;</span><span class="p">,</span> <span class="n">estado</span>
+
+<span class="n">selector</span><span class="o">.</span><span class="n">definir_accion</span><span class="p">(</span><span class="n">cuando_el_selector_cambia</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ingreso-de-texto">
+<h2>Ingreso de texto<a class="headerlink" href="#ingreso-de-texto" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si quieres solicitar datos, como el nombre del usuario, puedes
+usar el objeto <tt class="docutils literal"><span class="pre">IngresoDeTexto</span></tt>. Ya que muestra una caja
+y un pequeño cursor para ingresar texto:</p>
+<img alt="_images/ingreso_de_texto.png" src="_images/ingreso_de_texto.png" />
+<p>Para usar este componente tienes que crearlo y luego
+leer o escribir el atributo <tt class="docutils literal"><span class="pre">texto</span></tt>, que contiene la
+cadena de texto de la caja:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entrada</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interfaz</span><span class="o">.</span><span class="n">IngresoDeTexto</span><span class="p">()</span>
+<span class="n">entrada</span><span class="o">.</span><span class="n">texto</span> <span class="o">=</span> <span class="s">&quot;Texto inicial&quot;</span>
+</pre></div>
+</div>
+<p>Inicialmente, el objeto <tt class="docutils literal"><span class="pre">IngresoDeTexto</span></tt> toma un tamaño
+y apariencia predeterminado. Pero esto se puede cambiar
+fácilmente usando argumentos al momento de crear
+el componente.</p>
+<p>Por ejemplo, podríamos enviarle cómo argumento un
+tamaño mas pequeño y un ícono de búsqueda:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entrada</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interfaz</span><span class="o">.</span><span class="n">IngresoDeTexto</span><span class="p">(</span><span class="n">ancho</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">icono</span><span class="o">=</span><span class="s">&#39;iconos/lupa.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>u otro ícono:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entrada</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interfaz</span><span class="o">.</span><span class="n">IngresoDeTexto</span><span class="p">(</span><span class="n">ancho</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">icono</span><span class="o">=</span><span class="s">&#39;iconos/ok.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La caja también tiene otros métodos para permitir o prohibir
+el ingreso de datos.</p>
+<p>Por ejemplo, podríamos decirle a la caja que solo permita
+el ingreso de números, letras, o poner un límite de cantidad
+de caracteres. Los métodos son:</p>
+<ul class="simple">
+<li>solo_numeros()</li>
+<li>solo_letras()</li>
+</ul>
+<p>y el límite de caracteres está indicado por la referencia <tt class="docutils literal"><span class="pre">limite_de_caracteres</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;El limite de caracteres es&quot;</span>
+<span class="k">print</span> <span class="n">entrada</span><span class="o">.</span><span class="n">limite_de_caracteres</span>
+
+<span class="n">entrada</span><span class="o">.</span><span class="n">limite_de_caracteres</span> <span class="o">=</span> <span class="mi">50</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lista-de-seleccion">
+<h2>Lista de selección<a class="headerlink" href="#lista-de-seleccion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La lista de selección se utiliza para mostrar al usuario
+una lista de cadenas, y permitirle seleccionarlas
+con el mouse.</p>
+<p>Para crear un lista de selección, se tiene que crear
+una lista de cadenas y declarar una función para que
+sea llamada cuando se termina de seleccionar.</p>
+<p>Por ejemplo, el siguiente código muestra una lista
+e imprime por consola cuando el usuario selecciona
+con el click del mouse:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cuando_selecciona</span><span class="p">(</span><span class="n">opcion</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;Ha seleccionado la opcion:&quot;</span><span class="p">,</span> <span class="n">opcion</span>
+
+<span class="n">consulta</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interfaz</span><span class="o">.</span><span class="n">ListaSeleccion</span><span class="p">([</span><span class="s">&#39;Uno&#39;</span><span class="p">,</span> <span class="s">&#39;Dos&#39;</span><span class="p">,</span> <span class="s">&#39;Tres&#39;</span><span class="p">],</span> <span class="n">cuando_selecciona</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Interfaz de usuario</a><ul>
+<li><a class="reference internal" href="#propiedades-comunes">Propiedades comunes</a></li>
+<li><a class="reference internal" href="#deslizador">Deslizador</a></li>
+<li><a class="reference internal" href="#selector">Selector</a></li>
+<li><a class="reference internal" href="#ingreso-de-texto">Ingreso de texto</a></li>
+<li><a class="reference internal" href="#lista-de-seleccion">Lista de selección</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="demos.html"
+                        title="capítulo anterior">Demos</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="menu.html"
+                        title="próximo capítulo">Como crear menúes para tu juegos</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/interfaz_de_usuario.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="menu.html" title="Como crear menúes para tu juegos"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="demos.html" title="Demos"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

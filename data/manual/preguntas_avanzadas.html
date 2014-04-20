@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Guía de preguntas avanzadas &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Cómo funciona pilas por dentro" href="como_funciona_pilas_por_dentro.html" />
+    <link rel="prev" title="Guía para desarrolladores" href="desarrolladores.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="como_funciona_pilas_por_dentro.html" title="Cómo funciona pilas por dentro"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="desarrolladores.html" title="Guía para desarrolladores"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="guia-de-preguntas-avanzadas">
+<h1>Guía de preguntas avanzadas<a class="headerlink" href="#guia-de-preguntas-avanzadas" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="obtengo-errores-en-ingles-al-iniciar-pilas-que-anda-mal">
+<h2>Obtengo errores en ingles al iniciar pilas ¿Que anda mal?<a class="headerlink" href="#obtengo-errores-en-ingles-al-iniciar-pilas-que-anda-mal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si al ejecutar pilas, ves un mensaje cómo el siguiente:</p>
+<div class="highlight-python"><div class="highlight"><pre>X Error: RenderBadPicture (invalid Picture parameter) 163
+Extension: 149 (RENDER)
+Minor opcode: 8 (RenderComposite)
+Resource id: 0x4a0000e
+</pre></div>
+</div>
+<p>Es muy probable que se deba al adaptador de video. Una forma
+de solucionarlo es cambiar la linea de código:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>por:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">(</span><span class="n">usar_motor</span><span class="o">=</span><span class="s">&#39;qt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El motivo de este problema, es que pilas usa una biblioteca llamada
+OpenGL, y algunos equipos no lo tienen disponible o con algunos detalles
+de configuración.</p>
+</div>
+<div class="section" id="que-es-opengl-como-se-configura-en-mi-equipo">
+<h2>¿Que es OpenGL?, ¿Cómo se configura en mi equipo?<a class="headerlink" href="#que-es-opengl-como-se-configura-en-mi-equipo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>OpenGL es una biblioteca que usamos en pilas para que los gráficos
+sean mucho mas rápidos y fluidos. OpenGL utiliza aceleración de hardware
+y rutinas de optimización avanzadas.</p>
+<p>El punto es, que tal vez tu equipo no lo soporte, o no esté correctamente
+configurado.</p>
+<p>Para saber si tu equipo tiene soporte para opengl, es conveniente que
+ejecutes el comando:</p>
+<div class="highlight-python"><div class="highlight"><pre>glxinfo | grep rende
+</pre></div>
+</div>
+<p>Si tu equipo tiene soporte para opengl, tendrías que ver un mensaje
+cómo el siguiente:</p>
+<div class="highlight-python"><div class="highlight"><pre>direct rendering: Yes
+OpenGL renderer string: Quadro FX 570/PCI/SSE2
+</pre></div>
+</div>
+<p>Luego, si no tienes soporte, puedes ejecutar el siguiente comando
+y volver a intentar:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install freeglut3 freeglut3-dev
+</pre></div>
+</div>
+</div>
+<div class="section" id="obtengo-errores-de-attributeerror-por-parte-de-pilas">
+<h2>Obtengo errores de AttributeError por parte de pilas<a class="headerlink" href="#obtengo-errores-de-attributeerror-por-parte-de-pilas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El funcionamiento de pilas como módulo de python
+es un poquito especial... porque sentencias
+como <tt class="docutils literal"><span class="pre">pilas.actores</span></tt> no funcionarán a menos
+que antes escribas <tt class="docutils literal"><span class="pre">pilas.iniciar()</span></tt>.</p>
+<p>Por lo tanto, te recomiendo que en tus programas
+siempre comiences con un archivo que tenga
+algo como esto:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>es decir, tu programa principal tiene que importar
+pilas y luego inicializarlo. Recién ahí podrás
+usar el resto de los módulos de pilas.</p>
+</div>
+<div class="section" id="como-puedo-personalizar-el-dibujado-de-un-actor">
+<h2>¿Cómo puedo personalizar el dibujado de un actor?<a class="headerlink" href="#como-puedo-personalizar-el-dibujado-de-un-actor" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Cada vez que se actualiza el bucle de juego
+se llama al método <tt class="docutils literal"><span class="pre">dibujar</span></tt> de cada actor.</p>
+<p>Si quieres personalizar por completo la forma en
+que se dibuja un actor puedes redefinir el
+método <tt class="docutils literal"><span class="pre">dibujar</span></tt> y listo.</p>
+<p>Para mas referencias puedes ver el método <tt class="docutils literal"><span class="pre">dibujar</span></tt>
+de la clase <tt class="docutils literal"><span class="pre">Actor</span></tt> o el método <tt class="docutils literal"><span class="pre">dibujar</span></tt> de
+la clase <tt class="docutils literal"><span class="pre">escena.Normal</span></tt>, que en lugar
+de pintar una imagen borra todo el fondo de pantalla.</p>
+</div>
+<div class="section" id="a-veces-los-sonidos-no-se-reproducen">
+<h2>¿A veces los sonidos no se reproducen?<a class="headerlink" href="#a-veces-los-sonidos-no-se-reproducen" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>sip... a veces los sonidos no se reproducen porque
+python los libera de memoria mientras están sonando.</p>
+<p>Entonces, para solucionar el problema tienes que
+mantener viva la referencia al objeto <tt class="docutils literal"><span class="pre">Sonido</span></tt> cuando
+quieras reproducir algo. Por ejemplo:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Ejemplo incompleto:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><div class="first highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">reproducir_sonido</span><span class="p">():</span>
+    <span class="n">mi_sonido_que_no_suena</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">sonidos</span><span class="o">.</span><span class="n">cargar</span><span class="p">(</span><span class="s">&quot;sonido.wav.&quot;</span><span class="p">)</span>
+    <span class="n">mi_sonido_que_no_suena</span><span class="o">.</span><span class="n">reproducir</span><span class="p">()</span>
+
+<span class="n">reproducir_sonido</span><span class="p">()</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Ejemplo correcto:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><div class="first last highlight-python"><div class="highlight"><pre><span class="n">sonido</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">reproducir_sonido</span><span class="p">():</span>
+    <span class="n">sonido</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">sonidos</span><span class="o">.</span><span class="n">cargar</span><span class="p">(</span><span class="s">&quot;sonido.wav&quot;</span><span class="p">)</span>
+    <span class="n">sonido</span><span class="o">.</span><span class="n">reproducir</span><span class="p">()</span>
+
+<span class="n">reproducir_sonido</span><span class="p">()</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>¿Cual es la diferencia?, en el primer ejemplo el sonido no
+se reproducirá porque la referencia <tt class="docutils literal"><span class="pre">mi_sonido_que_no_suena</span></tt> se
+eliminará cuando termine de ejecutar la función <tt class="docutils literal"><span class="pre">reproducir_sonido</span></tt>, mientras
+que en el segundo la referencia <tt class="docutils literal"><span class="pre">sonido</span></tt> seguirá existiendo mientras
+el sonido esté reproduciéndose.</p>
+</div>
+<div class="section" id="como-desinstalo-una-version-vieja-de-pilas">
+<h2>Como desinstalo una versión vieja de pilas<a class="headerlink" href="#como-desinstalo-una-version-vieja-de-pilas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Pilas de puede desinstalar directamente borrando el cargador
+e instalando una versión nueva.</p>
+<p>Si has instalado pilas en un sistema linux, también podrías
+desinstalar pilas ubicando el directorio de instalación y
+borrándolo.</p>
+<p>Por ejemplo, con el siguiente comando podemos conocer el directorio
+de instalación:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo easy_install -m pilas
+</pre></div>
+</div>
+<p>En pantalla tendría que aparecer un mensaje cómo:</p>
+<div class="highlight-python"><div class="highlight"><pre>Using /usr/lib/python2.7/dist-packages
+</pre></div>
+</div>
+<p>Este mensaje significa que pilas se buscará dentro de ese
+contenedor de directorio. Este directorio puede ser distinto
+en tu sistema.</p>
+<p>En mi caso, como el directorio es <tt class="docutils literal"><span class="pre">/usr/lib/python2.7/dist-packages</span></tt>,
+para desinstalar pilas puedo borrar el directorio <tt class="docutils literal"><span class="pre">pilas</span></tt> dentro
+del directorio anterior:</p>
+<blockquote>
+<div><p>rm -r -f /usr/lib/python2.7/dist-packages/pilas</p>
+<p>(IMPORTANTE: puede variar en tu sistema)</p>
+</div></blockquote>
+</div>
+<div class="section" id="tengo-una-consulta-puntual-quien-me-puede-ayudar">
+<h2>Tengo una consulta puntual, ¿quien me puede ayudar?<a class="headerlink" href="#tengo-una-consulta-puntual-quien-me-puede-ayudar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Tenemos un foro de mensajes en donde puedes preguntar
+lo que quieras sobre pilas, esta es la dirección
+web:</p>
+<p><a class="reference external" href="http://www.losersjuegos.com.ar/foro/viewforum.php?f=22">http://www.losersjuegos.com.ar/foro/viewforum.php?f=22</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Guía de preguntas avanzadas</a><ul>
+<li><a class="reference internal" href="#obtengo-errores-en-ingles-al-iniciar-pilas-que-anda-mal">Obtengo errores en ingles al iniciar pilas ¿Que anda mal?</a></li>
+<li><a class="reference internal" href="#que-es-opengl-como-se-configura-en-mi-equipo">¿Que es OpenGL?, ¿Cómo se configura en mi equipo?</a></li>
+<li><a class="reference internal" href="#obtengo-errores-de-attributeerror-por-parte-de-pilas">Obtengo errores de AttributeError por parte de pilas</a></li>
+<li><a class="reference internal" href="#como-puedo-personalizar-el-dibujado-de-un-actor">¿Cómo puedo personalizar el dibujado de un actor?</a></li>
+<li><a class="reference internal" href="#a-veces-los-sonidos-no-se-reproducen">¿A veces los sonidos no se reproducen?</a></li>
+<li><a class="reference internal" href="#como-desinstalo-una-version-vieja-de-pilas">Como desinstalo una versión vieja de pilas</a></li>
+<li><a class="reference internal" href="#tengo-una-consulta-puntual-quien-me-puede-ayudar">Tengo una consulta puntual, ¿quien me puede ayudar?</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="desarrolladores.html"
+                        title="capítulo anterior">Guía para desarrolladores</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="como_funciona_pilas_por_dentro.html"
+                        title="próximo capítulo">Cómo funciona pilas por dentro</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/preguntas_avanzadas.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="como_funciona_pilas_por_dentro.html" title="Cómo funciona pilas por dentro"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="desarrolladores.html" title="Guía para desarrolladores"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

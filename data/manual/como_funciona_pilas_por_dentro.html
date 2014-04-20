@@ -1,0 +1,659 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Cómo funciona pilas por dentro &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="prev" title="Guía de preguntas avanzadas" href="preguntas_avanzadas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="preguntas_avanzadas.html" title="Guía de preguntas avanzadas"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="como-funciona-pilas-por-dentro">
+<h1>Cómo funciona pilas por dentro<a class="headerlink" href="#como-funciona-pilas-por-dentro" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Pilas es un proyecto con una arquitectura de objetos
+grande. Tiene mucha funcionalidad, incluye un
+motor de física, muchos personaje pre-diseñados, eventos, escenas
+y un enlace al motor multimedia Qt.</p>
+<p>Mediante este capítulo quisiera explicar a grandes
+rasgos los componentes de pilas. Cómo están estructurados
+los módulos, y qué hacen las clases mas importantes.</p>
+<p>El objetivo es orientar a los programadores mas
+avanzados para que puedan investigar pilas
+por dentro.</p>
+<div class="section" id="filosofia-de-desarrollo">
+<h2>Filosofía de desarrollo<a class="headerlink" href="#filosofia-de-desarrollo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Pilas es un proyecto de software libre, orientado a facilitar
+el desarrollo de videojuegos a personas que generalmente no
+hacen juegos... Por ese motivo que gran parte de las decisiones de
+desarrollo se tomaron reflexionando sobre cómo
+diseñar una interfaz de programación simple y fácil
+de utilizar.</p>
+<p>Un ejemplo de ello, es que elegimos el lenguaje de
+programación python, y tratamos de aprovechar al máximo
+su modo interactivo.</p>
+</div>
+<div class="section" id="api-en-espanol">
+<h2>API en español<a class="headerlink" href="#api-en-espanol" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Dado que pilas está orientado a principiantes, docentes y
+programadores de habla hispana. Preferimos hacer el motor
+en español, permitirle a los mas chicos usar su idioma
+para hacer juegos es alentador, tanto para ellos que
+observan que el idioma no es una barrera, como
+para los que enseñamos y queremos entusiasmar.</p>
+<p>Esta es una decisión de diseño importante, porque al
+mismo tiempo que incluye a muchas personas, no coincide
+con lo que acostumbran muchos programadores (escribir
+en inglés).</p>
+<p>Posiblemente en el futuro podamos ofrecer una
+versión de pilas alternativa en inglés, pero
+actualmente no es una prioridad.</p>
+</div>
+<div class="section" id="bibliotecas-que-usa-pilas">
+<h2>Bibliotecas que usa pilas<a class="headerlink" href="#bibliotecas-que-usa-pilas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hay tres grandes bibliotecas que se utilizan dentro de pilas:</p>
+<ul class="simple">
+<li>Box2D</li>
+<li>Qt4</li>
+</ul>
+<img alt="_images/box2d.png" src="_images/box2d.png" />
+<img alt="_images/qt-logo.jpg" src="_images/qt-logo.jpg" />
+<p>Box2D se utiliza cómo motor de física, mientras que Qt es un
+motor multimedia utilizado para dibujar, reproducir sonidos y
+manejar eventos.</p>
+</div>
+<div class="section" id="objetos-y-modulos">
+<h2>Objetos y módulos<a class="headerlink" href="#objetos-y-modulos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Pilas incluye muchos objetos y es un sistema complejo. Pero
+hay una forma sencilla de abordarlo, porque hay solamente
+3 componentes que son indispensables, y han
+sido los pilares desde las primeras versiones de pilas
+hasta la fecha:</p>
+<ul class="simple">
+<li>Mundo</li>
+<li>Actor</li>
+<li>Motor</li>
+</ul>
+<p>Si puedes comprender el rol y las características
+de estos 3 componentes el resto del motor es mas
+fácil de analizar.</p>
+<p>Veamos los 3 componentes rápidamente:</p>
+<p><tt class="docutils literal"><span class="pre">Mundo</span></tt> es un objeto <tt class="docutils literal"><span class="pre">singleton</span></tt>, hay una sola instancia
+de esta clase en todo el sistema y se encarga de
+mantener el juego en funcionamiento e interactuando con
+el usuario.</p>
+<p>Los actores (clase <tt class="docutils literal"><span class="pre">Actor</span></tt>) representan a los personajes de los
+juegos, la clase se encarga de representar todos sus atributos
+como la posición y comportamiento como &#8220;dibujarse en la ventana&#8221;. Si
+has usado otras herramientas para hacer juegos, habrás notado
+que se los denomina <tt class="docutils literal"><span class="pre">Sprites</span></tt>.</p>
+<p>Luego, el <tt class="docutils literal"><span class="pre">Motor</span></tt>, permite que pilas sea un motor
+multimedia portable y multiplaforma. Básicamente
+pilas delega la tarea de dibujar, emitir sonidos y controlar
+eventos a una biblioteca externa. Actualmente esa biblioteca
+es Qt, pero en versiones anteriores ha sido implementada en pygame y
+sfml.</p>
+<p>Ahora que lo he mencionado, veamos con un poco mas
+de profundidad lo que hace cada uno.</p>
+<div class="section" id="inspeccionando-mundo">
+<h3>Inspeccionando: Mundo<a class="headerlink" href="#inspeccionando-mundo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El objeto de la clase Mundo se construye cuando se invoca a la
+función <tt class="docutils literal"><span class="pre">pilas.iniciar</span></tt>. Su implementación está en el
+archivo <tt class="docutils literal"><span class="pre">mundo.py</span></tt>:</p>
+<img alt="_images/mundo.png" src="_images/mundo.png" />
+<p>Su responsabilidad es inicializar varios componentes de pilas, como
+el sistema de controles, la ventana, etc.</p>
+<p>Uno de sus métodos mas importantes es <tt class="docutils literal"><span class="pre">ejecutar_bucle_principal</span></tt>. Un
+método que se invoca directamente cuando alguien escribe
+la sentencia <tt class="docutils literal"><span class="pre">pilas.ejecutar()</span></tt>.</p>
+<p>Si observas el código, notarás que es el responsable de mantener a todo
+el motor en funcionamiento.</p>
+<p>Esta es una versión muy simplificada del
+método <tt class="docutils literal"><span class="pre">ejecutar_bucle_principal</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">ejecutar_bucle_principal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignorar_errores</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">salir</span><span class="p">:</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">procesar_y_emitir_eventos</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">pausa_habilitada</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_realizar_actualizacion_logica</span><span class="p">(</span><span class="n">ignorar_errores</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_realizar_actualizacion_grafica</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Lo primero que debemos tener en cuenta es que este método contiene
+un bucle <tt class="docutils literal"><span class="pre">while</span></tt> que lo mantendrá en ejecución. Este bucle
+solo se detendrá cuando alguien llame al método <tt class="docutils literal"><span class="pre">terminar</span></tt> (que
+cambia el valor de la variable <tt class="docutils literal"><span class="pre">salir</span></tt> a <tt class="docutils literal"><span class="pre">True</span></tt>).</p>
+<p>Luego hay tres métodos importantes:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">procesar_y_emitir_eventos</span></tt> analiza el estado de los controles y avisa al resto del sistema si ocurre algo externo, como el movimiento del mouse..</li>
+<li><tt class="docutils literal"><span class="pre">_realizar_actualizacion_logica</span></tt> le permite a los personajes realizar una fracción muy pequeña de movimiento, poder leer el estado de los controles o hacer otro tipo de acciones.</li>
+<li><tt class="docutils literal"><span class="pre">_realizar_actualizacion_logica</span></tt> simplemente vuelca sobre la pantalla a todos los actores y muestra el resultado del dibujo al usuario.</li>
+</ul>
+<p>Otra tarea que sabe hacer el objeto <tt class="docutils literal"><span class="pre">Mundo</span></tt>, es administrar
+escenas. Las escenas son objetos que representan una
+parte individual del juego: un menú, una pantalla de opciones, el
+momento de acción del juego etc...</p>
+</div>
+</div>
+<div class="section" id="modo-interactivo">
+<h2>Modo interactivo<a class="headerlink" href="#modo-interactivo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Pilas soporta dos modos de funcionamiento, que técnicamente son
+muy similares, pero que a la hora de programar hacen una gran
+diferencia.</p>
+<ul class="simple">
+<li><strong>modo normal</strong>: si estás haciendo un archivo <tt class="docutils literal"><span class="pre">.py</span></tt> con el código de tu juego usarás este modo, tu programa comienza con una sentencia como <tt class="docutils literal"><span class="pre">iniciar</span></tt> y la simulación se inicia cuando llamas a <tt class="docutils literal"><span class="pre">pilas.ejecutar</span></tt> (que se encarga de llamar a <tt class="docutils literal"><span class="pre">ejecutar_bucle_principal</span></tt> del objeto mundo).</li>
+<li><strong>modo interactivo</strong>: el modo que generalmente se usa en las demostraciones o cursos es el modo interactivo. Este modo funciona gracias a una estructura de hilos, que se encargan de ejecutar la simulación pero a la vez no interrumpe al programador y le permite ir escribiendo código mientras la simulación está en funcionamiento.</li>
+</ul>
+</div>
+<div class="section" id="motores-multimedia">
+<h2>Motores multimedia<a class="headerlink" href="#motores-multimedia" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Al principio pilas delegaba todo el manejo multimedia a una
+biblioteca llamada SFML. Pero esta biblioteca requería que todos los equipos
+en donde funcionan tengan aceleradoras gráficas (al menos con
+soporte OpenGL básico).</p>
+<p>Pero como queremos que pilas funcione en la mayor cantidad
+de equipos, incluso en los equipos antiguos de algunas
+escuelas, reemplazamos el soporte multimedia con la biblioteca Qt. Que sabe
+acceder a las funciones de aceleración de gráficos (si están disponibles), o
+brinda una capa de compatibilidad con equipos antiguos.</p>
+<p>La función que permite iniciar y seleccionar el motor es <tt class="docutils literal"><span class="pre">pilas.iniciar</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">(</span><span class="n">usar_motor</span><span class="o">=</span><span class="s">&#39;qt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ahora bien, ¿cómo funciona?. Dado que pilas está realizado
+usando orientación a objetos, usamos un concepto llamado
+polimorfismo:</p>
+<p>El objeto motor sabe que tiene que delegar el manejo multimedia
+a una instancia (o derivada) de la clase <tt class="docutils literal"><span class="pre">Motor</span></tt> (ver directorio
+<tt class="docutils literal"><span class="pre">pilas/motores/</span></tt>:</p>
+<img alt="_images/motores.png" src="_images/motores.png" />
+<p>El motor expone toda la funcionalidad que se necesita para
+hace un juego: sabe crear una ventana, pintar una imagen o
+reproducir sonidos, entre tantas otras cosas.</p>
+<p>El objeto mundo no sabe exactamente que motor está utilizando, solo
+tiene una referencia a un motor y delega en él todas las
+tareas multimedia.</p>
+<p>Solo puede haber una instancia de motor en funcionamiento, y
+se define cuando se inicia el motor.</p>
+</div>
+<div class="section" id="sistema-de-actores">
+<h2>Sistema de actores<a class="headerlink" href="#sistema-de-actores" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los actores permiten que los juegos cobren atractivo, porque
+un actor puede representarse con una imagen en pantalla.</p>
+<p>La implementación de todos los actores están en
+el directorio <tt class="docutils literal"><span class="pre">pilas/actores</span></tt>.</p>
+<p>Todos los actores heredan de la clase <tt class="docutils literal"><span class="pre">Actor</span></tt>, que define
+el comportamiento común de todos los actores.</p>
+<p>Por ejemplo, esta sería una versión reducida de la
+jerarquía de clases de los actores Mono, Pingu y Tortuga:</p>
+<img alt="_images/actores.png" src="_images/actores.png" />
+<p>Hay dos métodos en los actores que se invocarán en
+todo momento: el método <tt class="docutils literal"><span class="pre">actualizar</span></tt> se invocará
+cuando el bucle de juego del mundo llame al método
+<tt class="docutils literal"><span class="pre">_realizar_actualizacion_logica</span></tt>, esto ocurre unas
+60 veces por segundo. Y el otro método es <tt class="docutils literal"><span class="pre">dibujar</span></tt>, que
+se también se invoca desde el objeto mundo, pero esta
+vez en el método <tt class="docutils literal"><span class="pre">_realizar_actualizacion_grafica</span></tt>.</p>
+</div>
+<div class="section" id="modo-depuracion">
+<h2>Modo depuración<a class="headerlink" href="#modo-depuracion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Cuando pulsas teclas como F8, F9, F10, F11 o F12 durante
+la ejecución de pilas, vas a ver que la pantalla comienza
+a mostrar información valiosa para los desarrolladores.</p>
+<p>Esta modalidad de dibujo la llamamos <strong>modo depuración</strong>, y
+ayuda mucho a la hora de encontrar errores o ajustar detalles.</p>
+<p>El objeto <tt class="docutils literal"><span class="pre">Mundo</span></tt>, que mantiene en ejecución al juego, tiene
+una instancia de objeto <tt class="docutils literal"><span class="pre">Depurador</span></tt> que se encarga de
+hacer estos dibujos.</p>
+<p>Las clases mas importantes a la hora de investigar el depurador
+están en el archivo <tt class="docutils literal"><span class="pre">depurador.py</span></tt>:</p>
+<img alt="_images/depurador.png" src="_images/depurador.png" />
+<p>El Depurador tiene dos atributos, tiene una pizarra para dibujar y
+una lista de modos. Los modos pueden ser cualquiera de los que están
+en la jerarquía de ModoDepuracion, por ejemplo, podría tener
+instancias de ModoArea y ModoPuntoDeControl.</p>
+</div>
+<div class="section" id="sistema-de-eventos">
+<h2>Sistema de eventos<a class="headerlink" href="#sistema-de-eventos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hay varios enfoques para resolver el manejo de eventos
+en los videojuegos.</p>
+<p>Pilas usa un modelo conocido y elaborado
+llamado <tt class="docutils literal"><span class="pre">Observator</span></tt>, un patrón de diseño. Pero que
+lamentablemente no es muy intuitivo a primera vista.</p>
+<p>En esta sección intentaré mostrar por qué usamos
+esa solución y qué problemas nos ayuda a resolver.</p>
+<p>Comenzaré explicando sobre el problema de gestionar eventos
+y luego cómo el modelo <tt class="docutils literal"><span class="pre">Observator</span></tt> se volvió
+una buena solución para el manejo de eventos.</p>
+<div class="section" id="el-problema-pooling-de-eventos">
+<h3>El problema: pooling de eventos<a class="headerlink" href="#el-problema-pooling-de-eventos" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Originalmente, en un modelo muy simple de aplicación multimedia,
+manejar eventos de usuario es algo sencillo, pero con el
+tiempo comienza a crecer y se hace cada vez mas difícil de
+mantener.</p>
+<p>Resulta que las bibliotecas multimedia suelen entregar un
+objeto <tt class="docutils literal"><span class="pre">evento</span></tt> cada vez que ocurre algo y tu responsabilidad
+es consultar sobre ese objeto en búsqueda de datos.</p>
+<p>Imagina que quieres crear un actor <tt class="docutils literal"><span class="pre">Bomba</span></tt> cada
+vez que el usuario hace click en la pantalla. El
+código podría ser algo así:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">evento</span> <span class="o">=</span> <span class="n">obtener_evento_actual</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">evento</span><span class="o">.</span><span class="n">tipo</span> <span class="o">==</span> <span class="s">&#39;click_de_mouse&#39;</span><span class="p">:</span>
+    <span class="n">crear_bomba</span><span class="p">(</span><span class="n">evento</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">crear_bomba</span><span class="p">(</span><span class="n">evento</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c"># el evento de otro tipo (teclado, ventana ...)</span>
+    <span class="c"># lo descartamos.</span>
+</pre></div>
+</div>
+<p>A esta solución podríamos llamarla <strong>preguntar</strong> y <strong>responder</strong>,
+porque efectivamente así funciona el código, primero
+nos aseguramos de que el evento nos importa y luego
+hacemos algo. En algunos sitios suelen llamar a esta
+estrategia <em>pooling</em>.</p>
+<p>Pero este enfoque tiene varios problemas, y cuando hacemos
+juegos o bibliotecas se hace mas evidente. El código, a medida
+que crece, comienza a mezclar manejo de eventos y lógica
+del juego.</p>
+<p>Para ver el problema de cerca, imagina que en determinadas
+ocasiones quieres deshabilitar la creación de bombas, ¿cómo
+harías?. ¿Y si quieres que las bombas creadas se puedan
+mover con el teclado?.</p>
+</div>
+<div class="section" id="otro-enfoque-en-pilas-usamos-observator">
+<h3>Otro enfoque, en pilas usamos &#8216;Observator&#8217;<a class="headerlink" href="#otro-enfoque-en-pilas-usamos-observator" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Hay otro enfoque para el manejo de eventos que me parece
+mas interesante, y lo he seleccionado para el motor
+<tt class="docutils literal"><span class="pre">pilas</span></tt>:</p>
+<p>En lugar de administrar los eventos uno a uno por
+<strong>consultas</strong>, delegamos esa tarea a un sistema que nos
+permite <strong>suscribir</strong> y <strong>ser notificado</strong>.</p>
+<p>Aquí no mezclamos nuestro código con el sistema de eventos, si
+queremos hacer algo relacionado con un evento, escribimos
+una función y le pedimos al evento que llame a nuestra
+función cuando sea necesario.</p>
+<p>Veamos el ejemplo anterior pero usando este enfoque, se
+creará una <tt class="docutils literal"><span class="pre">Bomba</span></tt> cada vez que el usuario
+hace <tt class="docutils literal"><span class="pre">click</span></tt> en la pantalla:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">crear_bomba</span><span class="p">(</span><span class="n">evento</span><span class="p">):</span>
+    <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Bomba</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">evento</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">evento</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">true</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">click_de_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">crear_bomba</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Si queremos que el mouse deje de crear bombas, podemos
+ejecutar la función <tt class="docutils literal"><span class="pre">desconectar</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">click_de_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">crear_bomba</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>o simplemente retornar <tt class="docutils literal"><span class="pre">False</span></tt> en la función <tt class="docutils literal"><span class="pre">crear_bomba</span></tt>.</p>
+<p>Nuestro código tendrá <em>bajo acoplamiento</em> con los eventos
+del motor, y no se nos mezclarán.</p>
+<p>De hecho, cada vez que tengas dudas sobre las funciones
+suscritas a eventos pulsa F7 y se imprimirán en pantalla.</p>
+</div>
+<div class="section" id="como-funciona">
+<h3>¿Cómo funciona?<a class="headerlink" href="#como-funciona" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Ahora bien, ¿cómo funciona el sistema de eventos por dentro?:</p>
+<p>El sistema de eventos que usamos es una ligera adaptación
+del sistema de señales de django (un framework para desarrollo
+de sitios web) dónde cada evento es un objeto que puede
+hacer dos cosas:</p>
+<ul class="simple">
+<li>suscribir funciones.</li>
+<li>invocar a las funciones que se han suscrito.</li>
+</ul>
+<p><strong>1 Suscribir</strong></p>
+<p>Por ejemplo, el evento <tt class="docutils literal"><span class="pre">mueve_mouse</span></tt> es un objeto, y cuando
+invocamos la sentencia <tt class="docutils literal"><span class="pre">pilas.eventos.mueve_mouse.conectar(mi_funcion)</span></tt>,
+le estamos diciendo al objeto &#8220;quiero que guardes una referencia
+a <tt class="docutils literal"><span class="pre">mi_funcion</span></tt>&#8221;.</p>
+<p>Puedes imaginar al evento como un objeto contenedor (similar
+a una lista), que guarda cada una de las funciones que le enviamos
+con el método <tt class="docutils literal"><span class="pre">conectar</span></tt>.</p>
+<p><strong>2 Notificar</strong></p>
+<p>La segunda tarea del evento es notificar a todas
+las funciones que se suscribieron.</p>
+<p>Esto se hace, retomando el ejemplo anterior, cuando el usuario
+hace click con el mouse.</p>
+<p>Los eventos son objetos <tt class="docutils literal"><span class="pre">Signal</span></tt> y se inicializan en el
+archivo <tt class="docutils literal"><span class="pre">eventos.py</span></tt>, cada uno con sus respectivos
+argumentos o detalles:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">click_de_mouse</span> <span class="o">=</span> <span class="n">Evento</span><span class="p">(</span><span class="s">&quot;click_de_mouse&quot;</span><span class="p">)</span>
+<span class="n">pulsa_tecla</span> <span class="o">=</span> <span class="n">Evento</span><span class="p">(</span><span class="s">&quot;pulsa_tecla&quot;</span><span class="p">)</span>
+<span class="p">[</span> <span class="n">etc</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Los argumentos indican información adicional del evento, en
+el caso del click, observarás que los argumentos son el botón pulsado
+y la coordenada del puntero.</p>
+<p>Cuando se quiere notificar a las funciones conectadas a
+un evento simplemente se tiene que invocar al método <tt class="docutils literal"><span class="pre">emitir</span></tt>
+del evento y proveer los argumentos que necesita:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">click_de_mouse</span><span class="o">.</span><span class="n">emitir</span><span class="p">(</span><span class="n">button</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Eso hará que todas las funciones suscritas al evento <tt class="docutils literal"><span class="pre">click_de_mouse</span></tt>
+se invoquen con el argumento <tt class="docutils literal"><span class="pre">evento</span></tt> representando esos detalles:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">crear_bomba</span><span class="p">(</span><span class="n">evento</span><span class="p">):</span>
+
+    <span class="k">print</span> <span class="n">evento</span><span class="o">.</span><span class="n">x</span>
+    <span class="c"># imprimirá 30</span>
+
+    <span class="k">print</span> <span class="n">evento</span><span class="o">.</span><span class="n">y</span>
+    <span class="c"># imprimirá 50</span>
+
+    <span class="p">[</span> <span class="n">etc</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>La parte de pilas que se encarga de llamar a los métodos <tt class="docutils literal"><span class="pre">emitir</span></tt>
+es el método <tt class="docutils literal"><span class="pre">procesar_y_emitir_eventos</span></tt> del motor.</p>
+</div>
+</div>
+<div class="section" id="habilidades">
+<h2>Habilidades<a class="headerlink" href="#habilidades" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los actores de pilas tienen la cualidad de poder
+ir obteniendo comportamiento desde otras clases.</p>
+<p>Esto te permite lograr resultados de forma rápida, y
+a la vez, es un modelo tan flexible que podrías
+hacer muchos juegos distintos combinando los mismos
+actores pero con distintas habilidades.</p>
+<p>Veamos un ejemplo, un actor sencillo como <tt class="docutils literal"><span class="pre">Mono</span></tt> no
+hace muchas cosas. Pero si escribimos lo siguiente, podremos
+controlarlo con el mouse:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="n">mono</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Arrastrable</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Lo que en realidad estamos haciendo, es vincular dos objetos
+en tiempo de ejecución. <tt class="docutils literal"><span class="pre">mono</span></tt> es un objeto <tt class="docutils literal"><span class="pre">Actor</span></tt>, y tiene una
+lista de habilidades que puede aumentar usando el método <tt class="docutils literal"><span class="pre">aprender</span></tt>.</p>
+<p>El método <tt class="docutils literal"><span class="pre">aprender</span></tt> toma la clase que le enviamos como
+argumento, construye un objeto y lo guarda en su lista de habilidades.</p>
+<p>Este es un modelo de cómo se conocen las clases entre
+sí:</p>
+<img alt="_images/habilidades.png" src="_images/habilidades.png" />
+<p>Entonces, una vez que invocamos a la sentencia, nuestro actor
+tendrá un nuevo objeto en su lista de habilidades, listo para
+ejecutarse en cada cuadro de animación.</p>
+<div class="section" id="como-se-ejecutan-las-habilidades">
+<h3>¿Cómo se ejecutan las habilidades?<a class="headerlink" href="#como-se-ejecutan-las-habilidades" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Retomando un poco lo que vimos al principio de este capítulo, lo
+que mantiene con <em>vida</em> al juego es el bucle principal, la clase
+<tt class="docutils literal"><span class="pre">Mundo</span></tt> tiene un bucle que recorre la lista de actores en pantalla
+y por cada uno llama al método actualizar.</p>
+<p>Bien, las habilidades se mantienen en ejecución desde ahí también. Esta
+es una versión muy simplificada del bucle que encontrarás en el
+archivo <tt class="docutils literal"><span class="pre">mundo.py`</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">ejecutar_bucle_principal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignorar_errores</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">salir</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actualizar_actores</span><span class="p">()</span>
+
+        <span class="p">[</span> <span class="n">etc</span> <span class="o">...</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">actualizar_actores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">todos</span><span class="p">:</span>
+        <span class="n">actor</span><span class="o">.</span><span class="n">actualizar</span><span class="p">()</span>
+        <span class="n">actor</span><span class="o">.</span><span class="n">actualizar_habilidades</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Aquí puedes ver dos llamadas a métodos del actor, el método
+<tt class="docutils literal"><span class="pre">actualizar</span></tt> se creó para que cada programador escriba
+ahí lo que quiera que el personaje haga (leer el teclado,
+hacer validaciones, moverse etc). Y el método <tt class="docutils literal"><span class="pre">actualizar_habilidades</span></tt>
+es el encargado de <em>dar vida</em> a las habilidades.</p>
+<p>Técnicamente hablando, el método <tt class="docutils literal"><span class="pre">actualizar_habilidades</span></tt> es
+muy simple, solamente toma la lista de objetos habilidades y
+los actualiza, al <tt class="docutils literal"><span class="pre">Actor</span></tt> no le preocupa en lo mas mínimo
+&#8220;qué&#8221; hace cada habilidad, solamente les permite ejecutar código
+(ver código <tt class="docutils literal"><span class="pre">estudiante.py</span></tt>, una superclase de <tt class="docutils literal"><span class="pre">Actor</span></tt>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">actualizar_habilidades</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">habilidades</span><span class="p">:</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">actualizar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Entonces, si queremos que un actor haga muchas cosas, podemos
+crear un objeto habilidad y vincularlo con el actor. Esto
+permite generar &#8220;comportamientos&#8221; re-utilizables, la habilidad
+se codifica una vez, y se puede usar muchas veces.</p>
+</div>
+<div class="section" id="objetos-habilidad">
+<h3>Objetos habilidad<a class="headerlink" href="#objetos-habilidad" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Las habilidades interactúan con los actores, y por ese motivo
+tienen que tener una interfaz en común, de modo tal que
+desde cualquier parte de pilas puedas tratar a una habilidad
+como a cualquier otra.</p>
+<p>La interfaz que toda habilidad debe tener es la que define
+la clase <tt class="docutils literal"><span class="pre">Habilidad</span></tt> del archivo <tt class="docutils literal"><span class="pre">habilidades.py</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Habilidad</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span> <span class="o">=</span> <span class="n">receptor</span>
+
+    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">eliminar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Tiene que tener tres métodos, uno que se ejecuta al producirle
+la relación con un actor, un método que se ejecutará en
+cada iteración del bucle de juego (<tt class="docutils literal"><span class="pre">actualizar</span></tt>) y un
+último método para ejecutar cuando la habilidad se desconecta
+del actor. Este método <tt class="docutils literal"><span class="pre">eliminar</span></tt> suele ser el que desconecta
+eventos o cualquier otra cosa creada temporalmente.</p>
+<p>Ten en cuenta que el método <tt class="docutils literal"><span class="pre">__init__</span></tt>, que construye
+al objeto, lo invoca el propio actor desde su método <tt class="docutils literal"><span class="pre">aprender</span></tt>. Y
+el argumento <tt class="docutils literal"><span class="pre">receptor</span></tt> será una referencia al actor que
+<em>aprende</em> la habilidad.</p>
+<p>Veamos un ejemplo muy básico, imagina que quieres hacer
+una habilidad muy simple, que gire al personaje todo el
+tiempo, cómo una aguja de reloj. Podrías hacer
+algo así:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">GirarPorSiempre</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Habilidad</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span> <span class="o">=</span> <span class="n">receptor</span>
+
+    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="n">mono</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">GirarPorSiempre</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La sentencia <tt class="docutils literal"><span class="pre">aprender</span></tt> construirá un objeto de la
+clase que le indiquemos, y el bucle de pilas (en <tt class="docutils literal"><span class="pre">mundo.py</span></tt>)
+dará la orden para ejecutar los métodos actualizar de
+cada habilidad conocida por los actores.</p>
+</div>
+<div class="section" id="argumentos-de-las-habilidades">
+<h3>Argumentos de las habilidades<a class="headerlink" href="#argumentos-de-las-habilidades" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En el ejemplo anterior podríamos encontrar una
+limitación. El actor siempre girará a la misma velocidad.</p>
+<p>Si queremos que los personajes puedan girar a diferentes
+velocidades tendríamos que agregarle argumentos
+a la habilidad, esto es simple: solo tienes que llamar
+al método <tt class="docutils literal"><span class="pre">aprender</span></tt> con los argumentos que quieras
+y asegurarte de que la habilidad los tenga definidos en
+su método <tt class="docutils literal"><span class="pre">__init__</span></tt>.</p>
+<p>Este es un ejemplo de la habilidad pero que permite
+definir la velocidad de giro:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">GirarPorSiempre</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Habilidad</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receptor</span><span class="p">,</span> <span class="n">velocidad</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span> <span class="o">=</span> <span class="n">receptor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocidad</span> <span class="o">=</span> <span class="n">velocidad</span>
+
+    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocidad</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="n">a</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">GirarPorSiempre</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Listo, es casi idéntico al anterior, si llamas a <tt class="docutils literal"><span class="pre">aprender</span></tt> con un
+argumento como <tt class="docutils literal"><span class="pre">20</span></tt>, el actor girará mucho mas rápido que
+antes. Y si no especificas la velocidad, se asumirá que la
+velocidad es <tt class="docutils literal"><span class="pre">1</span></tt>, porque así lo indica el método <tt class="docutils literal"><span class="pre">__init__</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="documentacion">
+<h2>Documentación<a class="headerlink" href="#documentacion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El sistema de documentación que usamos en pilas
+es Sphinx, un sistema muy interesante porque nos
+permite gestionar todo el contenido del manual
+en texto plano, y gracias a varias herramientas
+de conversión cómo restructuredText y latex, se
+producen muchos formatos de salida cómo HTML y PDF.</p>
+<p>Toda la documentación del proyecto está en el
+directorio <tt class="docutils literal"><span class="pre">doc</span></tt>. El directorio <tt class="docutils literal"><span class="pre">doc/sources</span></tt> contiene
+todos los archivos que modificamos para escribir contenido
+en la documentación.</p>
+<p>Para generar los archivos PDF o HTML usamos el comando
+<tt class="docutils literal"><span class="pre">make</span></tt> dentro del directorio <tt class="docutils literal"><span class="pre">doc</span></tt>. El archivo que
+dispara todas las acciones que sphinx sabe hacer están
+definidas en el archivo <tt class="docutils literal"><span class="pre">Makefile</span></tt>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cómo funciona pilas por dentro</a><ul>
+<li><a class="reference internal" href="#filosofia-de-desarrollo">Filosofía de desarrollo</a></li>
+<li><a class="reference internal" href="#api-en-espanol">API en español</a></li>
+<li><a class="reference internal" href="#bibliotecas-que-usa-pilas">Bibliotecas que usa pilas</a></li>
+<li><a class="reference internal" href="#objetos-y-modulos">Objetos y módulos</a><ul>
+<li><a class="reference internal" href="#inspeccionando-mundo">Inspeccionando: Mundo</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modo-interactivo">Modo interactivo</a></li>
+<li><a class="reference internal" href="#motores-multimedia">Motores multimedia</a></li>
+<li><a class="reference internal" href="#sistema-de-actores">Sistema de actores</a></li>
+<li><a class="reference internal" href="#modo-depuracion">Modo depuración</a></li>
+<li><a class="reference internal" href="#sistema-de-eventos">Sistema de eventos</a><ul>
+<li><a class="reference internal" href="#el-problema-pooling-de-eventos">El problema: pooling de eventos</a></li>
+<li><a class="reference internal" href="#otro-enfoque-en-pilas-usamos-observator">Otro enfoque, en pilas usamos &#8216;Observator&#8217;</a></li>
+<li><a class="reference internal" href="#como-funciona">¿Cómo funciona?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#habilidades">Habilidades</a><ul>
+<li><a class="reference internal" href="#como-se-ejecutan-las-habilidades">¿Cómo se ejecutan las habilidades?</a></li>
+<li><a class="reference internal" href="#objetos-habilidad">Objetos habilidad</a></li>
+<li><a class="reference internal" href="#argumentos-de-las-habilidades">Argumentos de las habilidades</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#documentacion">Documentación</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="preguntas_avanzadas.html"
+                        title="capítulo anterior">Guía de preguntas avanzadas</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/como_funciona_pilas_por_dentro.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="preguntas_avanzadas.html" title="Guía de preguntas avanzadas"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

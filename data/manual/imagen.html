@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Manejo de imágenes &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Cargar sonidos y música" href="sonidos.html" />
+    <link rel="prev" title="Física" href="fisica.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="sonidos.html" title="Cargar sonidos y música"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="fisica.html" title="Física"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="manejo-de-imagenes">
+<h1>Manejo de imágenes<a class="headerlink" href="#manejo-de-imagenes" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En los videojuegos 2D las imágenes suelen estar en formatos
+gráficos como <strong>png</strong> o <strong>jpg</strong> ya diseñados con anterioridad.</p>
+<p>En <tt class="docutils literal"><span class="pre">pilas</span></tt> se pueden cargar estos recursos usando
+el módulo <tt class="docutils literal"><span class="pre">imagenes</span></tt>. Por ejemplo, si tenemos una
+imagen llamada <tt class="docutils literal"><span class="pre">hola.png</span></tt> podríamos incorporarla a
+nuestro juego así:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="n">hola</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar</span><span class="p">(</span><span class="s">&#39;hola.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Las imágenes no se imprimen directamente en pantalla, en
+su lugar tienes que crear un Actor y asignarle la
+imagen.</p>
+<p>Por ejemplo, el siguiente código muestra la imagen
+en pantalla:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">imagen</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar</span><span class="p">(</span><span class="s">&quot;mi_personaje.png&quot;</span><span class="p">)</span>
+<span class="n">actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="p">(</span><span class="n">imagen</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>otra opción similar es crear al actor, y luego
+asignarle la imagen:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">imagen</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar</span><span class="p">(</span><span class="s">&quot;mi_personaje.png&quot;</span><span class="p">)</span>
+<span class="n">actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="p">()</span>
+
+<span class="n">actor</span><span class="o">.</span><span class="n">imagen</span> <span class="o">=</span> <span class="n">imagen</span>
+</pre></div>
+</div>
+<p>Cualquiera de las dos opciones produce el mismo
+resultado, personaje &#8220;cambiará&#8221; de apariencia
+cuando se le asigne una nueva imagen.</p>
+<div class="section" id="grillas-de-imagenes">
+<h2>Grillas de imágenes<a class="headerlink" href="#grillas-de-imagenes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un forma conveniente de almacenar las imágenes de tus
+personajes es usar una grilla.</p>
+<p>La siguiente imagen es una grilla de 10 columnas
+que utilizamos para crear al personaje &#8220;pingu&#8221;:</p>
+<img alt="_images/pingu.png" src="_images/pingu.png" />
+<p>Internamente la imagen se almacena así, pero a la
+hora de mostrarse en pantalla se puede seleccionar
+el cuadro.</p>
+<p>Este es un ejemplo que carga la grilla de mas arriba
+y genera un actor para mostrar el cuadro 1:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="p">()</span>
+<span class="n">grilla</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">(</span><span class="s">&quot;pingu.png&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">actor</span><span class="o">.</span><span class="n">imagen</span> <span class="o">=</span> <span class="n">grilla</span>
+</pre></div>
+</div>
+<p>Ten en cuenta que el último argumento de la función <tt class="docutils literal"><span class="pre">pilas.imagenes.cargar_grilla</span></tt> es la cantidad de columnas que
+tiene la grilla. También es posible usar funciones
+que tengan filas y columnas, solo tendrías que indicar un
+argumento mas con el número de filas. Lo veremos mas adelante.</p>
+<p>Puedes ejecutar la siguiente sentencia para ver
+la documentación completa de esta función:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">help</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reproduciendo-animaciones">
+<h2>Reproduciendo animaciones<a class="headerlink" href="#reproduciendo-animaciones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Tener una grilla de imagenes es una buena
+forma de comenzar a realizar animaciones.</p>
+<p>Si quieres tomar una grilla y mostrar una
+y otra vez sus cuadros podrías usar el actor Animación.</p>
+<p>El siguiente código genera un actor que mostrará
+uno a uno los cuadros de la grilla:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">grilla</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">(</span><span class="s">&quot;explosion.png&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Animacion</span><span class="p">(</span><span class="n">grilla</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El actor <tt class="docutils literal"><span class="pre">Animacion</span></tt>, también puede recibir cómo argumento
+la velocidad con la que tiene que reproducir la animación (medida
+en cuadros por segundo).</p>
+<p>El segundo argumento indica que la animación tiene que ser
+cíclica (nunca termina).</p>
+<p>Observa este ejemplo, muesta la misma animación de antes pero
+mostrando un cuadro por segundo y se elimina cuando termina:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">grilla</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">(</span><span class="s">&quot;explosion.png&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Animacion</span><span class="p">(</span><span class="n">grilla</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="n">velocidad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="animaciones-controladas-a-mano-con-una-grilla">
+<h2>Animaciones controladas a mano con una grilla<a class="headerlink" href="#animaciones-controladas-a-mano-con-una-grilla" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Otra forma de hacer animaciones, es asociar una grilla
+directamente a un actor y cambiar el cuadro a mostrar.</p>
+<p>Por ejemplo, la siguiente sentencia avanza al siguiente
+cuadro de animación en la grilla. Recuerda que
+comienza en 1:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">grilla</span><span class="o">.</span><span class="n">avanzar</span><span class="p">()</span>
+<span class="n">actor</span><span class="o">.</span><span class="n">imagen</span> <span class="o">=</span> <span class="n">grilla</span>
+</pre></div>
+</div>
+<p>Ten en cuenta que el método <tt class="docutils literal"><span class="pre">avanzar</span></tt> va a retornar <tt class="docutils literal"><span class="pre">True</span></tt> o <tt class="docutils literal"><span class="pre">False</span></tt>.
+<tt class="docutils literal"><span class="pre">True</span></tt> signigica que la grilla ha avanzado y ha mostrado un cuadro nuevo.
+<tt class="docutils literal"><span class="pre">False</span></tt> significa que la grilla volvió a mostrar el primer cuadro.</p>
+<p>Este valor de retorno es muy útil a la hora de
+saber si una animación terminó, y poder tomar
+alguna decisión al respecto.</p>
+<div class="section" id="grillas-con-filas-y-columnas">
+<h3>Grillas con filas y columnas<a class="headerlink" href="#grillas-con-filas-y-columnas" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En el ejemplo anterior mencioné que las grillas pueden
+tener filas y columnas. Esto se logra gracias a que
+python permite tener funciones y métodos con argumentos
+opcionales.</p>
+<p>En este caso, la función <tt class="docutils literal"><span class="pre">cargar_grilla</span></tt> también
+puede recibir la cantidad de filas que tiene una grilla:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">animacion</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">(</span><span class="s">&quot;grilla.png&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>el primer número <tt class="docutils literal"><span class="pre">2</span></tt> indica que la grilla tiene dos
+columnas y el segudo <tt class="docutils literal"><span class="pre">2</span></tt> indica que la grilla tiene dos
+filas.</p>
+<p>Cuando usas una grilla con pilas y columnas, la función <tt class="docutils literal"><span class="pre">avanzar</span></tt>
+que vimos antes va a recorriendo los cuadros de la misma
+manera en que se lee una historieta (de izquierda
+a derecha y de arriba a abajo).</p>
+<p>Esta es la apariencia de la imágen que usamos antes y
+los números indican el órden con que pilas leerá los cuadros:</p>
+<img alt="_images/grilla_con_columnas.png" src="_images/grilla_con_columnas.png" />
+</div>
+<div class="section" id="haciendo-animaciones-sencillas">
+<h3>Haciendo animaciones sencillas<a class="headerlink" href="#haciendo-animaciones-sencillas" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En muchas oportunidades nos interesa hacer animaciones simples
+y que se repitan todo el tiempo sin mucho esfuerzo.</p>
+<p>Con lo que vimos hasta ahora, hacer esas animación
+es cuestión de cargar una grilla y llamar cada
+un determinado tiempo a la función <tt class="docutils literal"><span class="pre">avanzar</span></tt>.</p>
+<p>Pero como esta es una tarea muy común, en <strong>pilas</strong> hay una forma
+mas sencilla de hacer esto.</p>
+<p>Existe un actor llamado <tt class="docutils literal"><span class="pre">Animación</span></tt> que tiene la
+capacidad de mostrar una animación cíclica, es decir,
+que se repita todo el tiempo, comenzando desde el principio
+cuando llega al final.</p>
+<p>Veamos un ejemplo, esta imagen tiene <tt class="docutils literal"><span class="pre">6</span></tt> cuadros de animación
+ordenados en columnas:</p>
+<img alt="_images/grilla_fuego.png" src="_images/grilla_fuego.png" />
+<p>Una forma sencilla de convertir esta animación en un actor
+simple es crear la grilla, construir un actor <tt class="docutils literal"><span class="pre">Animacion</span></tt> e
+indicarle a pilas que será una animación cíclica, es decir, que
+se tendrá que repetir indefinidamente:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">grilla</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">(</span><span class="s">&quot;fuego.png&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Animacion</span><span class="p">(</span><span class="n">grilla</span><span class="p">,</span> <span class="n">ciclica</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El resultado en la ventana será una animación de fuego que
+no terminará nunca. Cuando el actor termine de mostrar el
+cuadro 6 de la animación regresará al primero para comenzar
+nuevamente.</p>
+<p>Otra posibilidad es especificar el argumento <tt class="docutils literal"><span class="pre">ciclica=False</span></tt>. En
+ese caso el actor comenzará a mostrar la animación desde el cuadro
+1 y cuanto termine eliminará al actor de la ventana. Esto es útil
+para hacer efectos especiales, como explosiones o destellos, cosas
+que quieres tener en la ventana un instante de tiempo y nada mas...</p>
+</div>
+</div>
+<div class="section" id="haciendo-actores-con-animacion">
+<h2>Haciendo actores con animación<a class="headerlink" href="#haciendo-actores-con-animacion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Puede que quieras hacer un actor que tenga múltiples animaciones, y
+que las muestre en determinados momentos. Por ejemplo, si tienes
+una nave con motores, es probable que quieras mostrar una animación
+de motores en funcionamiento cuando la nave avanza y detener la
+animación de motores cuando finaliza el movimiento.</p>
+<p>Una forma de lograr esto de manera sencilla es crear tu propio
+actor, y que este tenga dos atributos, uno para cada animación:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MiNave</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">Actor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">animacion_detenida</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">(</span><span class="s">&quot;nave_detenida.png&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">animacion_movimiento</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">(</span><span class="s">&quot;nave_en_movimiento.png&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Luego, en el método <tt class="docutils literal"><span class="pre">actualizar</span></tt> del propio actor podrías
+avanzar la animación actual y permitirle al programador invocar
+métodos para intercambiar animaciones:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MiNave</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="p">):</span>
+
+    <span class="c"># [...] codigo anterior</span>
+
+    <span class="k">def</span> <span class="nf">poner_en_movimiento</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imagen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">animacion_movimiento</span>
+
+    <span class="k">def</span> <span class="nf">poner_en_reposo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imagen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">animacion_detenida</span>
+
+    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imagen</span><span class="o">.</span><span class="n">avanzar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Como puedes ver, el concepto inicial es el mismo, cuando
+queremos cambiar de animación tenemos que cambiar de grilla, y
+cuando queremos avanzar la animación solamente tenemos que
+llamar al método <tt class="docutils literal"><span class="pre">avanzar</span></tt>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Manejo de imágenes</a><ul>
+<li><a class="reference internal" href="#grillas-de-imagenes">Grillas de imágenes</a></li>
+<li><a class="reference internal" href="#reproduciendo-animaciones">Reproduciendo animaciones</a></li>
+<li><a class="reference internal" href="#animaciones-controladas-a-mano-con-una-grilla">Animaciones controladas a mano con una grilla</a><ul>
+<li><a class="reference internal" href="#grillas-con-filas-y-columnas">Grillas con filas y columnas</a></li>
+<li><a class="reference internal" href="#haciendo-animaciones-sencillas">Haciendo animaciones sencillas</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#haciendo-actores-con-animacion">Haciendo actores con animación</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="fisica.html"
+                        title="capítulo anterior">Física</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="sonidos.html"
+                        title="próximo capítulo">Cargar sonidos y música</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/imagen.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="sonidos.html" title="Cargar sonidos y música"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="fisica.html" title="Física"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

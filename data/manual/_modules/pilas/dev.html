@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>pilas.dev &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="../../../../_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="../../index.html" />
+    <link rel="up" title="pilas" href="../pilas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li><a href="../../index.html">pilas</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
+          <li><a href="../pilas.html" accesskey="U">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Código fuente para pilas.dev</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+<span class="c"># pilas engine - a video game framework.</span>
+<span class="c">#</span>
+<span class="c"># copyright 2010 - hugo ruscitti</span>
+<span class="c"># license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)</span>
+<span class="c">#</span>
+<span class="c"># website - http://www.pilas-engine.com.ar</span>
+
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">pilas.dev</span>
+<span class="sd">=========</span>
+
+<span class="sd">Utilidades de desarrollo para Pilas.</span>
+
+<span class="sd">Sobre Atributos Desaconsejados</span>
+<span class="sd">------------------------------</span>
+
+<span class="sd">Por defecto la ``PendingDeprecationWarning`` en pilas esta en modo *once* y</span>
+<span class="sd">``DeprecationWarning`` en *error*.</span>
+
+<span class="sd">Si se desea que todos los metodos desaconsejados puedan utilizarse, puede</span>
+<span class="sd">llamar a la funcion ``pilas.dev.utilizar_desaconsejados(True)``</span>
+<span class="sd">con lo cual los ``DeprecationWarning`` pasan a estado *once*.</span>
+
+<span class="sd">Para manejo avanzado de estas carasterísticas dirijase a documentación</span>
+<span class="sd">del módulo  `warnings &lt;http://docs.python.org/2/library/warnings.html&gt;`_</span>
+
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+
+<span class="kn">from</span> <span class="nn">pilas</span> <span class="kn">import</span> <span class="n">pilasversion</span>
+
+
+<span class="c"># ATRIBUTOS DESACONSEJADOS</span>
+
+<span class="c"># Seteamos todos los warnings en el estado por defecto</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s">&quot;error&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s">&quot;once&quot;</span><span class="p">,</span> <span class="ne">PendingDeprecationWarning</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="deprecated"><a class="viewcode-back" href="../../desarrolladores.html#pilas.dev.deprecated">[documentos]</a><span class="k">def</span> <span class="nf">deprecated</span><span class="p">(</span><span class="n">se_desactiva_en</span><span class="p">,</span> <span class="n">se_elimina_en</span><span class="p">,</span> <span class="n">reemplazo</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">nombre</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decorador utilizado para marcar una función como deprecada</span>
+
+<span class="sd">    Las excepciones que puede lanzar este decorador son:</span>
+
+<span class="sd">    - Si la versión actual de pilas es mayor o igual que ``se_elimina_en``</span>
+<span class="sd">      y por descuido de los desarrolladores se olvidaron de eliminar</span>
+<span class="sd">      la llamada a esta función, Siempre se lanza un ``AttributeError``.</span>
+<span class="sd">    - Si la versión actual de pilas es mayor o igual que ``se_desactiva_en``</span>
+<span class="sd">      se emite un ``DeprecationWarning``.</span>
+<span class="sd">    - Si la versión actual de pilas es menor que ``se_desactiva_en``</span>
+<span class="sd">      se emite un ``PendingDeprecationWarning``.</span>
+
+<span class="sd">    :param elemento_deprecado: Cual el nombre del elemento desaconsejado.</span>
+<span class="sd">    :type elemento_deprecado: str</span>
+<span class="sd">    :param se_desactiva_en: Indica en que versión de pilas el atributo</span>
+<span class="sd">                            estará desactivado por defecto. De todas</span>
+<span class="sd">                            maneras se podran activar con</span>
+<span class="sd">                            ``pilas.dev.utilizar_desaconsejados(True)``</span>
+<span class="sd">    :type se_desactiva_en: str</span>
+<span class="sd">    :param se_elimina_en: Indica en que versión de pilas el atributo</span>
+<span class="sd">                          se eliminara completamente.</span>
+<span class="sd">    :type se_elimina_en: str</span>
+<span class="sd">    :param reemplazo: Indica cuales son las  alternativas a este</span>
+<span class="sd">                      atributo</span>
+<span class="sd">    :type reemplazo: str</span>
+<span class="sd">    :param nombre: Si se desea cambiar el nombre de la función</span>
+<span class="sd">                   desaconsejada.</span>
+<span class="sd">    :type nombre: str</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+
+        <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">_wraps</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+            <span class="n">deprecated_warning</span><span class="p">(</span><span class="n">nombre</span> <span class="ow">or</span> <span class="n">func</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                               <span class="n">se_desactiva_en</span><span class="p">,</span>
+                               <span class="n">se_elimina_en</span><span class="p">,</span>
+                               <span class="n">reemplazo</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_wraps</span>
+
+    <span class="k">return</span> <span class="n">outer</span>
+
+</div>
+<div class="viewcode-block" id="deprecated_warning"><a class="viewcode-back" href="../../desarrolladores.html#pilas.dev.deprecated_warning">[documentos]</a><span class="k">def</span> <span class="nf">deprecated_warning</span><span class="p">(</span><span class="n">elemento_deprecado</span><span class="p">,</span> <span class="n">se_desactiva_en</span><span class="p">,</span>
+                       <span class="n">se_elimina_en</span><span class="p">,</span> <span class="n">reemplazo</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Lanza la correcta exception/warning de anuncio de que *algo* está en desuso.</span>
+
+<span class="sd">    Las excepción/warning que puede lanzar esta función son:</span>
+
+<span class="sd">    - Si la versión actual de pilas es mayor o igual que ``se_elimina_en``</span>
+<span class="sd">      y por descuido de los desarrolladores se olvidaron de eliminar</span>
+<span class="sd">      la llamada a esta función, Siempre se lanza un ``AttributeError``.</span>
+<span class="sd">    - Si la versión actual de pilas es mayor o igual que ``se_desactiva_en``</span>
+<span class="sd">      se emite un ``DeprecationWarning``.</span>
+<span class="sd">    - Si la versión actual de pilas es menor que ``se_desactiva_en``</span>
+<span class="sd">      se emite un ``PendingDeprecationWarning``.</span>
+
+<span class="sd">    :param elemento_deprecado: Cual el nombre del elemento desaconsejado.</span>
+<span class="sd">    :type elemento_deprecado: str</span>
+<span class="sd">    :param se_desactiva_en: Indica en que versión de pilas el atributo</span>
+<span class="sd">                            estará desactivado por defecto. De todas</span>
+<span class="sd">                            maneras se podran activar con</span>
+<span class="sd">                            ``pilas.dev.utilizar_desaconsejados(True)``</span>
+<span class="sd">    :type se_desactiva_en: str</span>
+<span class="sd">    :param se_elimina_en: Indica en que versión de pilas el atributo</span>
+<span class="sd">                          se eliminara completamente.</span>
+<span class="sd">    :type se_elimina_en: str</span>
+<span class="sd">    :param reemplazo: Indica cuales son las  alternativas a este</span>
+<span class="sd">                      atributo</span>
+<span class="sd">    :type reemplazo: str</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">frame</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">function_name</span><span class="p">,</span> <span class="n">lines</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getouterframes</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;deprecated_warning&#39;</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getouterframes</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="k">else</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getouterframes</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">msg_line</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">+------------------------------------------------+</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">msg_line</span> <span class="o">+=</span> <span class="s">&quot;La excepcion se produjo en la siguiente llamada:</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">msg_line</span> <span class="o">+=</span> <span class="s">&quot;Archivo:  </span><span class="si">%s</span><span class="se">\n</span><span class="s">Nº Linea: </span><span class="si">%s</span><span class="se">\n</span><span class="s">Metodo:   </span><span class="si">%s</span><span class="se">\n</span><span class="s">Linea:    </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">function_name</span><span class="p">,</span> <span class="n">lines</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="n">msg_line</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">+------------------------------------------------+</span><span class="se">\n\n</span><span class="s">&quot;</span>
+
+
+    <span class="k">if</span> <span class="n">pilasversion</span><span class="o">.</span><span class="n">compareactual</span><span class="p">(</span><span class="n">se_elimina_en</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s">u&quot;El atributo &#39;{}&#39; no puede utilizarse desde la version {}&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">elemento_deprecado</span><span class="p">,</span> <span class="n">se_elimina_en</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s">&quot;CUIDADO: Utilizar &#39;{}&#39; esta desaconsejado&quot;</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">elemento_deprecado</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">reemplazo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot;; utilice en su lugar: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reemplazo</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">+=</span> <span class="n">msg_line</span>
+
+    <span class="k">if</span> <span class="n">pilasversion</span><span class="o">.</span><span class="n">compareactual</span><span class="p">(</span><span class="n">se_desactiva_en</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="ne">PendingDeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="utilizar_desaconsejados"><a class="viewcode-back" href="../../desarrolladores.html#pilas.dev.utilizar_desaconsejados">[documentos]</a><span class="k">def</span> <span class="nf">utilizar_desaconsejados</span><span class="p">(</span><span class="n">usar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Permite que se utilicen atributos, métodos y funciones que estan</span>
+<span class="sd">    desaconsejados en esta versión.</span>
+
+<span class="sd">    NOTA: si usted habilita los desaconsejados, los utiliza y luego los</span>
+<span class="sd">    deshabilita; estos ya estaran disponibles. Esta función debería</span>
+<span class="sd">    llamarse lo mas temprano posible es un juego y una sola ves.</span>
+
+<span class="sd">    :param usar: Si se debe o no permitir que los atributos deprecados</span>
+<span class="sd">                 puedan utilizarse. Si el *usar* es ``False``, todo lo</span>
+<span class="sd">                 desaconsejado lanza una excepción; de lo contrario,</span>
+<span class="sd">                 si *usar* es ``True`` solo se lanza un warning.</span>
+<span class="sd">    :type usar: bool</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="s">&quot;once&quot;</span> <span class="k">if</span> <span class="n">usar</span> <span class="k">else</span> <span class="s">&quot;error&quot;</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li><a href="../../index.html">pilas</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
+          <li><a href="../pilas.html" >pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Textos &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Habilidades" href="habilidades.html" />
+    <link rel="prev" title="Eventos, conexiones y respuestas" href="eventos.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="habilidades.html" title="Habilidades"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="eventos.html" title="Eventos, conexiones y respuestas"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="textos">
+<h1>Textos<a class="headerlink" href="#textos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Los objetos que muestran texto en pantalla se tratan de manera similar
+a los actores. Por lo tanto, si ya sabes usar
+actores, no tendrás problemas en usar cadenas
+de texto.</p>
+<div class="section" id="crear-cadenas-de-texto">
+<h2>Crear cadenas de texto<a class="headerlink" href="#crear-cadenas-de-texto" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El objeto que representa texto se llama <tt class="docutils literal"><span class="pre">Texto</span></tt> y
+está dentro del modulo <tt class="docutils literal"><span class="pre">actores</span></tt>.</p>
+<p>Para crear un mensaje tienes que escribir:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">texto</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Texto</span><span class="p">(</span><span class="s">&quot;Hola, este es mi primer texto.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>y tu cadena de texto aparecerá en pantalla en color
+negro y con un tamaño predeterminado:</p>
+<img alt="_images/texto.jpg" src="_images/texto.jpg" />
+<p>Si quieres puedes escribir texto de varias lineas usando el caracter
+<tt class="docutils literal"><span class="pre">\n</span></tt> para indicar el salto de linea.</p>
+<p>Por ejemplo, el siguiente código escribe el mismo mensaje de
+arriba pero en dos lineas:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">texto</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Texto</span><span class="p">(</span><span class="s">&quot;Hola (en la primer linea)</span><span class="se">\n</span><span class="s"> este es mi primer texto.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="los-textos-son-actores">
+<h2>Los textos son actores<a class="headerlink" href="#los-textos-son-actores" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Al principio comenté que los textos también son actores, esto
+significa que casi todo lo que puedes hacer con un actor
+aquí también funciona, por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">texto</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">texto</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>incluso también funcionarán las interpolaciones:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">texto</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interpolar</span><span class="p">(</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="propiedades-exclusivas-de-los-textos">
+<h2>Propiedades exclusivas de los textos<a class="headerlink" href="#propiedades-exclusivas-de-los-textos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Existen varias propiedades que te permitirán alterar la
+apariencia de los textos.</p>
+<p>Esta es una lista de los mas importantes.</p>
+<ul class="simple">
+<li>color</li>
+<li>magnitud</li>
+<li>texto</li>
+</ul>
+<p>Por ejemplo, para alterar el texto, color y tamaño de un
+texto podría escribir algo así:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">texto</span><span class="o">.</span><span class="n">magnitud</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">texto</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="c"># Color negro</span>
+<span class="n">texto</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>   <span class="c"># Color rojo, semi transparente.</span>
+<span class="n">texto</span><span class="o">.</span><span class="n">texto</span> <span class="o">=</span> <span class="s">&quot;Hola, este texto </span><span class="se">\n</span><span class="s"> tiene 2 lineas separadas&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mostrando-mensajes-en-pantalla">
+<h2>Mostrando mensajes en pantalla<a class="headerlink" href="#mostrando-mensajes-en-pantalla" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si bien podemos crear actores <tt class="docutils literal"><span class="pre">Texto</span></tt> y manipularlos como
+quedarmos, hay una forma aún mas sencilla de imprimir mensajes
+para los usuarios.</p>
+<p>Existe una función llamada <tt class="docutils literal"><span class="pre">avisar</span></tt> que nos permite mostrar
+en pantalla un texto pequeño en la esquina izquierda inferior
+de la pantalla.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">avisar</span><span class="p">(</span><span class="s">&quot;Hola, esto es un mensaje.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Esto te facilitará mucho el código en los programas
+pequeños como demostraciones o ejemplos.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Textos</a><ul>
+<li><a class="reference internal" href="#crear-cadenas-de-texto">Crear cadenas de texto</a></li>
+<li><a class="reference internal" href="#los-textos-son-actores">Los textos son actores</a></li>
+<li><a class="reference internal" href="#propiedades-exclusivas-de-los-textos">Propiedades exclusivas de los textos</a></li>
+<li><a class="reference internal" href="#mostrando-mensajes-en-pantalla">Mostrando mensajes en pantalla</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="eventos.html"
+                        title="capítulo anterior">Eventos, conexiones y respuestas</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="habilidades.html"
+                        title="próximo capítulo">Habilidades</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/texto.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="habilidades.html" title="Habilidades"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="eventos.html" title="Eventos, conexiones y respuestas"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

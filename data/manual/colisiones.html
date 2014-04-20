@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Colisiones &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Física" href="fisica.html" />
+    <link rel="prev" title="Grupos" href="grupos.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="fisica.html" title="Física"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="grupos.html" title="Grupos"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="colisiones">
+<h1>Colisiones<a class="headerlink" href="#colisiones" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En el desarrollo de videojuegos le damos el
+nombre de <tt class="docutils literal"><span class="pre">colisión</span></tt> a lo que ocurre cuando
+dos actores entran en contacto.</p>
+<p>Por ejemplo, cuando un personaje como <tt class="docutils literal"><span class="pre">Pacman</span></tt> toca
+a un <tt class="docutils literal"><span class="pre">Fantasma</span></tt> se produce una colisión.</p>
+<p>Para programar colisiones en pilas tienes seguir
+unos pocos pasos.</p>
+<ul class="simple">
+<li>Tienes que pensar &#8220;qué&#8221; quieres hacer cuando se produce una colisión.</li>
+<li>Escribir una función de respuesta a la colisión.</li>
+<li>y, por último, decirle a pilas qué actores son colisionables entre sí.</li>
+</ul>
+<p>Ten en cuenta que cada actor tiene un atributo llamado
+<tt class="docutils literal"><span class="pre">radio_de_colision</span></tt>, que se representa como un círculo de color
+verde cuando pulsas la tecla F12 sobre la ventana.</p>
+<div class="section" id="un-ejemplo-sencillo">
+<h2>Un ejemplo sencillo<a class="headerlink" href="#un-ejemplo-sencillo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Comencemos con un ejemplo, coloque dos actores
+en la pantalla de su juego:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">banana</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Banana</span><span class="p">()</span>
+<span class="n">banana</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Ahora pulsá la tecla <strong>F12</strong> para ver la posición de cada
+uno de los actores:</p>
+<img alt="_images/mono_colisiones.jpg" src="_images/mono_colisiones.jpg" />
+<p>Si pulsas <strong>F9</strong>, aparecerá un circulo verde por cada actor. Ese
+círculo indica el radio de colisión de cada actor:</p>
+<img alt="_images/mono_colisiones1.jpg" src="_images/mono_colisiones1.jpg" />
+<p>Este círculo se puede alterar cambiando el valor del <tt class="docutils literal"><span class="pre">radio_de_colision</span></tt>
+del actor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">banana</span><span class="o">.</span><span class="n">radio_de_colision</span> <span class="o">=</span> <span class="mi">30</span>
+</pre></div>
+</div>
+<img alt="_images/radios.png" src="_images/radios.png" />
+<p>Ahora, para poder mover al mono, podemos enseñarle
+una habilidad:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Arrastrable</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ahora vamos a crear una función con lo que queremos
+que hagan los dos actores al entrar en contacto:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">el_mono_come</span><span class="p">(</span><span class="n">mono</span><span class="p">,</span> <span class="n">banana</span><span class="p">):</span>
+    <span class="n">mono</span><span class="o">.</span><span class="n">sonreir</span><span class="p">()</span>
+    <span class="n">banana</span><span class="o">.</span><span class="n">eliminar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>y por último crear dos listas de actores y decirle
+a pilas que asocie la función de mas arriba con
+la colisión:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bananas</span> <span class="o">=</span> <span class="p">[</span><span class="n">banana</span><span class="p">]</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">colisiones</span><span class="o">.</span><span class="n">agregar</span><span class="p">(</span><span class="n">mono</span><span class="p">,</span> <span class="n">bananas</span><span class="p">,</span> <span class="n">el_mono_come</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Perfecto. Ahora, si mueves al mono por la pantalla con el
+mouse, podrá comer bananas.</p>
+<p>Intenta crear mas actores que representen bananas y
+agregarlos a la lista que usamos antes, por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">b</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Banana</span><span class="p">()</span>
+<span class="n">b</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>
+
+<span class="n">bananas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ahora intenta nuevamente mover al mono... sí, las colisiones
+seguirán funcionando, cualquier objeto que agregues a la lista
+de bananas será alimento del mono...</p>
+<p>Bien, ¿y si queremos llenar la pantalla de comida?, una forma
+sencilla es ejecutar lo siguiente:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bananas</span> <span class="o">+=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">atajos</span><span class="o">.</span><span class="n">fabricar</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Banana</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La pantalla se llenará de bananas, bah, habrá exactamente 20...</p>
+<img alt="_images/colisiones_muchas_bananas.jpg" src="_images/colisiones_muchas_bananas.jpg" />
+<p>De hecho, si quieres tener mas control sobre las bananas
+que se crearán, puedes usar esta rutina de código
+en lugar de llamar a la función <tt class="docutils literal"><span class="pre">fabricar</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">cantidad_de_bananas</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cantidad_de_bananas</span><span class="p">):</span>
+    <span class="n">banana</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Banana</span><span class="p">()</span>
+    <span class="n">banana</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="o">+</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">banana</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="o">+</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">bananas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">banana</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Colisiones</a><ul>
+<li><a class="reference internal" href="#un-ejemplo-sencillo">Un ejemplo sencillo</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="grupos.html"
+                        title="capítulo anterior">Grupos</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="fisica.html"
+                        title="próximo capítulo">Física</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/colisiones.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="fisica.html" title="Física"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="grupos.html" title="Grupos"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

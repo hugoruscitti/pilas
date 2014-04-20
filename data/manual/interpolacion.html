@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Interpolaciones &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Controlando la pantalla" href="controlando_la_pantalla.html" />
+    <link rel="prev" title="Manejo de tiempo con tareas" href="tareas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="controlando_la_pantalla.html" title="Controlando la pantalla"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="tareas.html" title="Manejo de tiempo con tareas"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="interpolaciones">
+<h1>Interpolaciones<a class="headerlink" href="#interpolaciones" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Las interpolaciones nos permiten lograr movimientos
+de los actores de manera sencilla.</p>
+<p>Por ejemplo, tradicionalmente si quisiéramos cambiar
+posición de un actor en pantalla podemos usar estas
+sentencias:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">actor</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">actor</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">etc</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>una forma de lograr lo mismo con pilas
+es asignarle todos los valores en forma de lista:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>o lo que es lo mismo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span> <span class="o">...</span> <span class="n">etc</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Y a estas interpolaciones, también le puedes decir
+cuantos segundos puede demorar. Por ejemplo, para
+dar un giro completo de 360 grados en 10
+segundos puedes hacer algo como:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="p">[</span><span class="mi">360</span><span class="p">],</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>de hecho, puede que te resulte mas conveniente
+tener mas control sobre la interpolación, así
+que puedes usar esta forma:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interpolar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>donde el valor inicial será la posición x del actor y el valor
+final será <tt class="docutils literal"><span class="pre">100</span></tt>.</p>
+<p>La función <tt class="docutils literal"><span class="pre">interpolar</span></tt>, como mencioné antes, te da mas
+control sobre la interpolación, porque admite otros parámetros
+de ajuste como los siguientes:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">duracion</span></tt>: los segundos que durara la interpolacion.</li>
+<li><tt class="docutils literal"><span class="pre">demora</span></tt>: los segundos que tiene que esperar antes de iniciar la interpolacion.</li>
+<li><tt class="docutils literal"><span class="pre">tipo</span></tt>: tipo de interpolaciones, que generalmente es &#8216;lineal&#8217;.</li>
+</ul>
+<p>Por ejemplo, si queremos que un personaje dé un giro
+completo de 360 grados en 10 segundos podemos
+hacer algo así:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">actor</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interpolar</span><span class="p">(</span><span class="mi">360</span><span class="p">,</span> <span class="n">duracion</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="girando-un-actor">
+<h2>Girando un actor<a class="headerlink" href="#girando-un-actor" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Esta herramienta se puede aplicar a muchas situaciones distintas, por
+ejemplo si queremos hacer girar un personaje
+podemos hacer algo como:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">actor</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interpolar</span><span class="p">(</span><span class="mi">360</span><span class="p">,</span> <span class="n">duracion</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>con lo que estaríamos diciendo al personaje que dé un
+giro completo (de <tt class="docutils literal"><span class="pre">0</span></tt> a <tt class="docutils literal"><span class="pre">360</span></tt> grados) en <tt class="docutils literal"><span class="pre">5</span></tt> segundos.</p>
+<p>También existe un argumento <tt class="docutils literal"><span class="pre">delay</span></tt> para demorar el
+inicio de la interpolación.</p>
+</div>
+<div class="section" id="escalando-un-actor">
+<h2>Escalando un actor<a class="headerlink" href="#escalando-un-actor" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>De manera similar a lo que hicimos anteriormente, podemos
+aplicarla a la propiedad <tt class="docutils literal"><span class="pre">escala</span></tt> una nueva
+interpolación:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interpolar</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">duracion</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>esto duplicará el tamaño del actor en <tt class="docutils literal"><span class="pre">5</span></tt> segundos.</p>
+<p>¿Y mas simple?, bueno, como hicimos antes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interpolaciones-en-cadena">
+<h2>Interpolaciones en cadena<a class="headerlink" href="#interpolaciones-en-cadena" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si queremos que una interpolación pase por distintos
+valores podemos hacer algo como esto:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interpolar</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span> <span class="n">duracion</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>lo que llevará al actor de su posición <tt class="docutils literal"><span class="pre">x</span></tt> actual, a 300
+en un segundo, y luego a <tt class="docutils literal"><span class="pre">0</span></tt> en un segundo y por último
+de nuevo a <tt class="docutils literal"><span class="pre">300</span></tt> en un segundo.</p>
+<p>En total, ha consumido 3 segundos en pasar por todos los
+valores que le indicamos.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Interpolaciones</a><ul>
+<li><a class="reference internal" href="#girando-un-actor">Girando un actor</a></li>
+<li><a class="reference internal" href="#escalando-un-actor">Escalando un actor</a></li>
+<li><a class="reference internal" href="#interpolaciones-en-cadena">Interpolaciones en cadena</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="tareas.html"
+                        title="capítulo anterior">Manejo de tiempo con tareas</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="controlando_la_pantalla.html"
+                        title="próximo capítulo">Controlando la pantalla</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/interpolacion.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="controlando_la_pantalla.html" title="Controlando la pantalla"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="tareas.html" title="Manejo de tiempo con tareas"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

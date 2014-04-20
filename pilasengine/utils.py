@@ -1,5 +1,10 @@
 # -*- encoding: utf-8 -*-
+import os
+import sys
 import uuid
+
+PATH = os.path.dirname(os.path.abspath(__file__))
+INTERPRETE_PATH = os.path.dirname(sys.argv[0])
 
 class Utils(object):
 
@@ -17,6 +22,22 @@ def es_interpolacion(an_object):
     :param an_object: El objeto a consultar.
     """
     return isinstance(an_object, interpolaciones.Interpolacion)
+
+def obtener_ruta_al_recurso(ruta):
+    dirs = ['./', '/../data', 'data',
+            PATH, INTERPRETE_PATH,
+            PATH + '/data', INTERPRETE_PATH + '/data',
+            PATH + '/../data', INTERPRETE_PATH + '/../data'
+           ]
+
+    for x in dirs:
+        full_path = os.path.join(x, ruta)
+
+        if os.path.exists(full_path):
+            return full_path
+
+    # Si no ha encontrado el archivo lo reporta.
+    raise IOError("El archivo '%s' no existe." % (ruta))
 
 def interpolable(f):
     """Decorador que se aplica a un metodo para que permita animaciones de interpolaciones.

@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>pilas.actores &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="../../../../_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="../../index.html" />
+    <link rel="up" title="pilas" href="../pilas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li><a href="../../index.html">pilas</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
+          <li><a href="../pilas.html" accesskey="U">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Código fuente para pilas.actores</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+<span class="c"># Pilas engine - A video game framework.</span>
+<span class="c">#</span>
+<span class="c"># Copyright 2010 - Hugo Ruscitti</span>
+<span class="c"># License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)</span>
+<span class="c">#</span>
+<span class="c"># Website - http://www.pilas-engine.com.ar</span>
+
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+
+<span class="kn">import</span> <span class="nn">pilas</span>
+<span class="kn">import</span> <span class="nn">utils</span>
+<span class="kn">from</span> <span class="nn">actor</span> <span class="kn">import</span> <span class="n">Actor</span>
+
+<span class="n">todos</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">__doc__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">Módulo pilas.actores</span>
+<span class="s">====================</span>
+
+<span class="s">El módulo actores contiene una serie de clases</span>
+<span class="s">para representar personajes de videojuegos.</span>
+
+<span class="s">Para crear actores en una escena del juego simplemente</span>
+<span class="s">se tiene que crear un nuevo objeto a partir de una</span>
+<span class="s">clase.</span>
+
+<span class="s">Por ejemplo, para crear un pongüino podríamos</span>
+<span class="s">escribir la siguiente sentencia:</span>
+
+<span class="s">    &gt;&gt;&gt; p = pilas.actores.Pingu()</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+
+
+
+<span class="kn">from</span> <span class="nn">mono</span> <span class="kn">import</span> <span class="n">Mono</span>
+<span class="kn">from</span> <span class="nn">ejes</span> <span class="kn">import</span> <span class="n">Ejes</span>
+<span class="kn">from</span> <span class="nn">animado</span> <span class="kn">import</span> <span class="n">Animado</span>
+<span class="kn">from</span> <span class="nn">animacion</span> <span class="kn">import</span> <span class="n">Animacion</span>
+<span class="kn">from</span> <span class="nn">explosion</span> <span class="kn">import</span> <span class="n">Explosion</span>
+<span class="kn">from</span> <span class="nn">bomba</span> <span class="kn">import</span> <span class="n">Bomba</span>
+<span class="kn">from</span> <span class="nn">pingu</span> <span class="kn">import</span> <span class="n">Pingu</span>
+<span class="kn">from</span> <span class="nn">banana</span> <span class="kn">import</span> <span class="n">Banana</span>
+<span class="kn">from</span> <span class="nn">texto</span> <span class="kn">import</span> <span class="n">Texto</span>
+<span class="kn">from</span> <span class="nn">temporizador</span> <span class="kn">import</span> <span class="n">Temporizador</span>
+<span class="kn">from</span> <span class="nn">moneda</span> <span class="kn">import</span> <span class="n">Moneda</span>
+<span class="kn">from</span> <span class="nn">pizarra</span> <span class="kn">import</span> <span class="n">Pizarra</span>
+<span class="kn">from</span> <span class="nn">pelota</span> <span class="kn">import</span> <span class="n">Pelota</span>
+<span class="kn">from</span> <span class="nn">puntaje</span> <span class="kn">import</span> <span class="n">Puntaje</span>
+<span class="kn">from</span> <span class="nn">estrella</span> <span class="kn">import</span> <span class="n">Estrella</span>
+<span class="kn">from</span> <span class="nn">caja</span> <span class="kn">import</span> <span class="n">Caja</span>
+<span class="kn">from</span> <span class="nn">nave</span> <span class="kn">import</span> <span class="n">Nave</span>
+<span class="kn">from</span> <span class="nn">navekids</span> <span class="kn">import</span> <span class="n">NaveKids</span>
+<span class="kn">from</span> <span class="nn">cursordisparo</span> <span class="kn">import</span> <span class="n">CursorDisparo</span>
+<span class="kn">from</span> <span class="nn">piedra</span> <span class="kn">import</span> <span class="n">Piedra</span>
+<span class="kn">from</span> <span class="nn">menu</span> <span class="kn">import</span> <span class="n">Menu</span>
+<span class="kn">from</span> <span class="nn">opcion</span> <span class="kn">import</span> <span class="n">Opcion</span>
+<span class="kn">from</span> <span class="nn">tortuga</span> <span class="kn">import</span> <span class="n">Tortuga</span>
+<span class="kn">from</span> <span class="nn">mapa</span> <span class="kn">import</span> <span class="n">Mapa</span>
+<span class="kn">from</span> <span class="nn">mapatiled</span> <span class="kn">import</span> <span class="n">MapaTiled</span>
+<span class="kn">from</span> <span class="nn">martian</span> <span class="kn">import</span> <span class="n">Martian</span>
+<span class="kn">from</span> <span class="nn">boton</span> <span class="kn">import</span> <span class="n">Boton</span>
+<span class="kn">from</span> <span class="nn">aceituna</span> <span class="kn">import</span> <span class="n">Aceituna</span>
+<span class="kn">from</span> <span class="nn">globo</span> <span class="kn">import</span> <span class="n">Globo</span>
+<span class="kn">from</span> <span class="nn">dialogo</span> <span class="kn">import</span> <span class="n">Dialogo</span>
+<span class="kn">from</span> <span class="nn">globoelegir</span> <span class="kn">import</span> <span class="n">GloboElegir</span>
+<span class="kn">from</span> <span class="nn">pausa</span> <span class="kn">import</span> <span class="n">Pausa</span>
+<span class="kn">from</span> <span class="nn">mano</span> <span class="kn">import</span> <span class="n">CursorMano</span>
+<span class="kn">from</span> <span class="nn">cooperativista</span> <span class="kn">import</span> <span class="n">Cooperativista</span>
+<span class="kn">from</span> <span class="nn">zanahoria</span> <span class="kn">import</span> <span class="n">Zanahoria</span>
+<span class="kn">from</span> <span class="nn">energia</span> <span class="kn">import</span> <span class="n">Energia</span>
+<span class="kn">from</span> <span class="nn">texto_inferior</span> <span class="kn">import</span> <span class="n">TextoInferior</span>
+<span class="kn">from</span> <span class="nn">sonido</span> <span class="kn">import</span> <span class="n">Sonido</span>
+<span class="kn">from</span> <span class="nn">personajes_rpg</span> <span class="kn">import</span> <span class="n">Calvo</span>
+<span class="kn">from</span> <span class="nn">personajes_rpg</span> <span class="kn">import</span> <span class="n">Maton</span>
+<span class="kn">from</span> <span class="nn">pacman</span> <span class="kn">import</span> <span class="n">Pacman</span>
+<span class="kn">from</span> <span class="nn">fantasma</span> <span class="kn">import</span> <span class="n">Fantasma</span>
+<span class="kn">from</span> <span class="nn">humo</span> <span class="kn">import</span> <span class="n">Humo</span>
+<span class="kn">from</span> <span class="nn">proyectil</span> <span class="kn">import</span> <span class="n">Bala</span>
+<span class="kn">from</span> <span class="nn">proyectil</span> <span class="kn">import</span> <span class="n">Misil</span>
+<span class="kn">from</span> <span class="nn">proyectil</span> <span class="kn">import</span> <span class="n">Dinamita</span>
+<span class="kn">from</span> <span class="nn">proyectil</span> <span class="kn">import</span> <span class="n">EstrellaNinja</span>
+<span class="kn">from</span> <span class="nn">torreta</span> <span class="kn">import</span> <span class="n">Torreta</span>
+<span class="kn">from</span> <span class="nn">ovni</span> <span class="kn">import</span> <span class="n">Ovni</span>
+<span class="kn">from</span> <span class="nn">manzana</span> <span class="kn">import</span> <span class="n">Manzana</span>
+
+<div class="viewcode-block" id="listar_actores"><a class="viewcode-back" href="../../referencia.html#pilas.actores.listar_actores">[documentos]</a><span class="k">def</span> <span class="nf">listar_actores</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Devuelve una lista con todos los actores disponibles para crear en pilas</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+             <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">Actor</span><span class="p">)]</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li><a href="../../index.html">pilas</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
+          <li><a href="../pilas.html" >pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

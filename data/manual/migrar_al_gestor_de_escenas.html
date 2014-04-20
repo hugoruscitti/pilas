@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Como migrar mi juego al nuevo Gestor de Escenas &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Nuevo Gestor de Escenas" href="gestor_de_escenas.html" />
+    <link rel="prev" title="Escenas" href="escenas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="gestor_de_escenas.html" title="Nuevo Gestor de Escenas"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="escenas.html" title="Escenas"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="como-migrar-mi-juego-al-nuevo-gestor-de-escenas">
+<span id="ref-migrar-al-gestor-de-escenas"></span><h1>Como migrar mi juego al nuevo Gestor de Escenas<a class="headerlink" href="#como-migrar-mi-juego-al-nuevo-gestor-de-escenas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Antes de migrar tu juego al nuevo sistema de gestión de escenas, es mejor que
+le des un vistazo a <a class="reference internal" href="gestor_de_escenas.html#ref-gestor-de-escenas"><em>Nuevo Gestor de Escenas</em></a> para comprender mejor el
+apilamiento de escenas.</p>
+<p>Ahora pasamos a explicar los sencillos pasos a seguir para hacer la migración de tu juego.</p>
+<div class="section" id="iniciar-el-juego">
+<h2>Iniciar el juego<a class="headerlink" href="#iniciar-el-juego" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Tu juego debe tener una estructura de inicio parecida a la siguiente:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+<span class="kn">import</span> <span class="nn">escena_menu</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">(</span><span class="n">titulo</span><span class="o">=</span><span class="s">&#39;Mi titulo&#39;</span><span class="p">)</span>
+
+<span class="n">escena_menu</span><span class="o">.</span><span class="n">EscenaMenu</span><span class="p">()</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">ejecutar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Lo único que deberás cambiar aquí es la línea que llama a la escena.
+Tendrá que quedar de la siguiente forma:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+<span class="kn">import</span> <span class="nn">escena_menu</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">(</span><span class="n">titulo</span><span class="o">=</span><span class="s">&#39;Mi titulo&#39;</span><span class="p">)</span>
+
+<span class="c"># Esta es la línea que debemos cambiar</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">cambiar_escena</span><span class="p">(</span><span class="n">escena_menu</span><span class="o">.</span><span class="n">EscenaMenu</span><span class="p">())</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">ejecutar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="escenas-del-juego">
+<h2>Escenas del juego<a class="headerlink" href="#escenas-del-juego" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Todas las escenas de tu juego deben heredar ahora de <cite>pilas.escena.Base</cite>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MiEscena</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Y el otro cambio que debes realizar en las escenas es que el método <tt class="docutils literal"><span class="pre">__init__(self)</span></tt> no debe
+contener nada más que la llamada al <tt class="docutils literal"><span class="pre">__init__</span></tt> de la escena Base</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Base</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Luego debes definir un método <tt class="docutils literal"><span class="pre">iniciar(self)</span></tt> donde podrás crear los
+nuevos actores y lo necesario para iniciar tu escena.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">Pasto</span><span class="p">()</span>
+    <span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Aquí un ejemplo de como debería ser el cambio.</p>
+<p><strong>Escena antigua</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MiEscena</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">escenas</span><span class="o">.</span><span class="n">Escena</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">escenas</span><span class="o">.</span><span class="n">Escena</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">Pasto</span><span class="p">()</span>
+        <span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Escena nueva</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MiEscena</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Base</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">Pasto</span><span class="p">()</span>
+        <span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cambio-de-escena">
+<h2>Cambio de Escena<a class="headerlink" href="#cambio-de-escena" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En algún punto de tu juego, llamarías a otra escena para cambiarla.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">escena_juego</span><span class="o">.</span><span class="n">Escena_Juego</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Debes sustituir esta llamada a la nueva escena por esta otra forma:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">cambiar_escena</span><span class="p">(</span><span class="n">escena_juego</span><span class="o">.</span><span class="n">Escena_Juego</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="eventos">
+<h2>Eventos<a class="headerlink" href="#eventos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Ahora los eventos son individuales por cada escena.
+Si quieres conectar a algún evento, como <cite>mueve_mouse</cite>, <cite>actualizar</cite>, <cite>pulsa_tecla</cite>, puedes
+hacerlo de cualquiera de las dos siguientes formas:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">mi_metodo</span><span class="p">(</span><span class="n">evento</span><span class="p">):</span>
+    <span class="c"># Hace algo</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">actualizar</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">mi_metodo</span><span class="p">())</span>
+
+<span class="c"># Otra forma de conectar</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">actualizar</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">mi_metodo</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Ambas formas conectan a los eventos de la escena actualmente activa.</p>
+<p>Si deseas crear tu propio evento, lo deberás hacer de la siguiente forma:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">mi_evento_personalizado</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">evento</span><span class="o">.</span><span class="n">Evento</span><span class="p">(</span><span class="s">&quot;mi_evento_personalizado&quot;</span><span class="p">)</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">mi_evento_personalizado</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mi_evento_personalizado</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fin-de-la-migracion">
+<h2>Fin de la migración<a class="headerlink" href="#fin-de-la-migracion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Con estos simples pasos, tu juego debe funcionar sin problemas con el nuevo
+sistema de gestión de escenas.</p>
+<p>Ante cualquier problema no tengas dudas en ponerte en contacto con nosotros
+mediante el <a class="reference external" href="http://www.losersjuegos.com.ar/foro/viewforum.php?f=24">foro de losersjuegos</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Como migrar mi juego al nuevo Gestor de Escenas</a><ul>
+<li><a class="reference internal" href="#iniciar-el-juego">Iniciar el juego</a></li>
+<li><a class="reference internal" href="#escenas-del-juego">Escenas del juego</a></li>
+<li><a class="reference internal" href="#cambio-de-escena">Cambio de Escena</a></li>
+<li><a class="reference internal" href="#eventos">Eventos</a></li>
+<li><a class="reference internal" href="#fin-de-la-migracion">Fin de la migración</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="escenas.html"
+                        title="capítulo anterior">Escenas</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="gestor_de_escenas.html"
+                        title="próximo capítulo">Nuevo Gestor de Escenas</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/migrar_al_gestor_de_escenas.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="gestor_de_escenas.html" title="Nuevo Gestor de Escenas"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="escenas.html" title="Escenas"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

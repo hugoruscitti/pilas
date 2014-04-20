@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Dibujado avanzado con Superficies &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Manejo de tiempo con tareas" href="tareas.html" />
+    <link rel="prev" title="Dibujado simple en pantalla" href="dibujado_simple_en_pantalla.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="tareas.html" title="Manejo de tiempo con tareas"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="dibujado_simple_en_pantalla.html" title="Dibujado simple en pantalla"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="dibujado-avanzado-con-superficies">
+<h1>Dibujado avanzado con Superficies<a class="headerlink" href="#dibujado-avanzado-con-superficies" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Anteriormente vimos que los actores podían
+tener un aspecto visual, ya sea gracias a
+una imagen completa, una grilla o un dibujo
+de pizarra.</p>
+<p>Pero hay situaciones donde realmente necesitamos
+algo mas. En muchas ocasiones necesitamos que
+los actores puedan tener una apariencia que
+construimos programáticamente (si existe la palabra...).</p>
+<p>Por ejemplo, imagina que queremos hacer un indicador
+de energía, un cronómetro, un indicador de vidas, un
+botón etc...</p>
+<div class="section" id="dibujando-sobre-superficies">
+<h2>Dibujando sobre superficies<a class="headerlink" href="#dibujando-sobre-superficies" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En pilas una superficie es una imagen, pero que no
+se carga directamente desde el disco, sino que se
+construye en memoria de la computadora, se puede
+dibujar sobre ella y luego se le puede aplicar
+a un actor como apariencia.</p>
+<p>Comencemos con un ejemplo sencillo, imagina que
+queremos hacer un actor muy feo, de color &#8220;verde&#8221;
+y con dos ojitos. Lo primero que tenemos que hacer
+es crear una superficie, dibujar sobre ella, y luego
+crear un actor con esa apariencia:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">()</span>
+
+<span class="n">superficie</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_superficie</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c"># dibujamos el cuerpo</span>
+<span class="n">superficie</span><span class="o">.</span><span class="n">circulo</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">verdeoscuro</span><span class="p">,</span> <span class="n">relleno</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c"># un ojo</span>
+<span class="n">superficie</span><span class="o">.</span><span class="n">circulo</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">blanco</span><span class="p">,</span> <span class="n">relleno</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">superficie</span><span class="o">.</span><span class="n">circulo</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">negro</span><span class="p">,</span> <span class="n">relleno</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c"># el otro ojo</span>
+<span class="n">superficie</span><span class="o">.</span><span class="n">circulo</span><span class="p">(</span><span class="mi">67</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">blanco</span><span class="p">,</span> <span class="n">relleno</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">superficie</span><span class="o">.</span><span class="n">circulo</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">negro</span><span class="p">,</span> <span class="n">relleno</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="p">(</span><span class="n">superficie</span><span class="p">)</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">ejecutar</span><span class="p">()</span> <span class="c"># Necesario al ejecutar en scripts.</span>
+</pre></div>
+</div>
+<p>Es decir, una vez que creamos la superficie, en realidad lo que obtenemos
+es un objeto que se comporta cómo una imagen, pero con la diferencia
+que podemos dibujar sobre ella libremente y crear desde el código la
+imagen que queramos:</p>
+<img alt="_images/carita.png" src="_images/carita.png" />
+<p>Ten en cuenta que también estamos mostrando la superficie gracias a un
+actor, así que si rotamos el actor o cambiamos su escala la superficie
+se observará de forma transformada.</p>
+<p>Vamos a ver con mas detalle este recurso de pilas, porque ofrece muchas
+mas funcionalidades de las que vemos en este ejemplo.</p>
+</div>
+<div class="section" id="creacion-de-una-superficie">
+<h2>Creación de una superficie<a class="headerlink" href="#creacion-de-una-superficie" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para crear una superficie tenemos que invocar a la función <tt class="docutils literal"><span class="pre">pilas.imagenes.cargar_superficie</span></tt>
+como vimos mas arriba. Esta función admite dos parámetros que indican
+el ancho y el alto de la superficie.</p>
+<p>A partir de ese momento, la superficie será completamente transparente, y lo
+que dibujemos sobre ella hará que no se note que en realidad es
+un rectángulo. Vale aclarar que efectivamente todas las imágenes de los videojuegos
+son rectangulares aunque se disimule...</p>
+</div>
+<div class="section" id="coordenadas-de-las-superficies">
+<h2>Coordenadas de las superficies<a class="headerlink" href="#coordenadas-de-las-superficies" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las coordenadas que se tienen que especificar para dibujar
+sobre una superficie son diferentes a las coordenadas cartesianas
+que usamos en la ventana de pilas.</p>
+<p>El motivo de este cambio es que las superficies están en la memoria
+de la computadora, y es mas sencillo tratar con ellas si usamos
+el mismo sistema de coordenadas que se usa en casi todas las aplicaciones
+gráficas. Ten en cuenta que estas son funciones avanzadas y
+que generalmente se trabaja sobre estas funciones unas pocas veces
+para lograr lo que ya no está implementado como un actor...</p>
+<p>El sistema de coordenadas de las superficies tiene su origen
+en la esquina superior izquierda <tt class="docutils literal"><span class="pre">(0,</span> <span class="pre">0)</span></tt>, luego el eje <tt class="docutils literal"><span class="pre">x</span></tt> crece
+hacia la derecha y el eje <tt class="docutils literal"><span class="pre">y</span></tt> crece hacia abajo.</p>
+</div>
+<div class="section" id="metodos-para-dibujar">
+<h2>Métodos para dibujar<a class="headerlink" href="#metodos-para-dibujar" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="pintar">
+<h3>Pintar<a class="headerlink" href="#pintar" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Originalmente cuando creamos una superficie es completamente
+transparente. Si queremos cambiar esto y pintar toda la superficie
+de un color plano, podemos usar el siguiente método:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">superficie</span><span class="o">.</span><span class="n">pintar</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Donde el argumento color puede ser algo cómo <tt class="docutils literal"><span class="pre">pilas.colores.rojo</span></tt> o
+un color personalizado indicando las componentes de color
+<tt class="docutils literal"><span class="pre">rojo</span></tt>, <tt class="docutils literal"><span class="pre">verde</span></tt> y <tt class="docutils literal"><span class="pre">azul</span></tt>. Por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">superficie</span><span class="o">.</span><span class="n">pintar</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="circulo">
+<h3>Circulo<a class="headerlink" href="#circulo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Para pintar círculos podemos usar el método <tt class="docutils literal"><span class="pre">circulo</span></tt>. Indicando la
+posición del círculo, su radio y el color.</p>
+<p>Ten en cuenta que también debemos indicar si queremos un círculo completamente
+sólido y pintado o solamente un borde.</p>
+<p>Esta es la definición del método:</p>
+<div class="highlight-python"><div class="highlight"><pre>def circulo(self, x, y, radio, color=colores.negro, relleno=False, grosor=1):
+</pre></div>
+</div>
+<p>Si invocamos a la función solamente con sus argumentos principales, obtendremos
+una silueta de circunferencia sin relleno, por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">figura</span><span class="o">.</span><span class="n">circulo</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>o si queremos un trazo mas grueso:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">figura</span><span class="o">.</span><span class="n">circulo</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">grosor</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>aunque también podemos indicarle que la circunferencia tiene que
+estar pintada y con otro color:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">figura</span><span class="o">.</span><span class="n">circulo</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">rojo</span><span class="p">,</span> <span class="n">relleno</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rectangulo">
+<h3>Rectángulo<a class="headerlink" href="#rectangulo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El dibujo de rectángulos es muy similar al de círculos, solo que aquí
+tenemos que indicar la coordenada de la esquina superior izquierda
+del rectángulo y el tamaño, en ancho y alto.</p>
+<p>Esta es la definición del método:</p>
+<div class="highlight-python"><div class="highlight"><pre>def rectangulo(self, x, y, ancho, alto, color=colores.negro, relleno=False, grosor=1):
+</pre></div>
+</div>
+</div>
+<div class="section" id="linea">
+<h3>Linea<a class="headerlink" href="#linea" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Una linea se compone obligatoriamente de puntos, los que marcan el
+principio y el final de la linea. Para esto se tienen que usar
+4 números, dos para cada punto.</p>
+<p>Por ejemplo, el siguiente código dibuja una linea diagonal
+de color rojo y con 3 píxeles de grosor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">superficie</span><span class="o">.</span><span class="n">linea</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">rojo</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="texto">
+<h3>Texto<a class="headerlink" href="#texto" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El dibujo de texto se realiza siempre a partir de una cadena
+de texto. Y opcionalmente se pueden especificar otros
+parámetros cómo la posición del texto, el color, el tamaño de
+las letras y la tipografía.</p>
+<p>Este es un ejemplo sencillo que imprime un texto de color
+azul:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">superficie</span><span class="o">.</span><span class="n">texto</span><span class="p">(</span><span class="s">&quot;Hola mundo&quot;</span><span class="p">,</span> <span class="n">magnitud</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fuente</span><span class="o">=</span><span class="s">&quot;Courrier&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">azul</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ten en cuenta que la fuente se indica como una cadena, y
+el valor que podemos poner ahí es el de cualquiera de nuestras
+fuentes del sistema. Si nuestro sistema no tiene la fuente que le
+solicitamos, se imprimirá usando una tipografía por defecto.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Dibujado avanzado con Superficies</a><ul>
+<li><a class="reference internal" href="#dibujando-sobre-superficies">Dibujando sobre superficies</a></li>
+<li><a class="reference internal" href="#creacion-de-una-superficie">Creación de una superficie</a></li>
+<li><a class="reference internal" href="#coordenadas-de-las-superficies">Coordenadas de las superficies</a></li>
+<li><a class="reference internal" href="#metodos-para-dibujar">Métodos para dibujar</a><ul>
+<li><a class="reference internal" href="#pintar">Pintar</a></li>
+<li><a class="reference internal" href="#circulo">Circulo</a></li>
+<li><a class="reference internal" href="#rectangulo">Rectángulo</a></li>
+<li><a class="reference internal" href="#linea">Linea</a></li>
+<li><a class="reference internal" href="#texto">Texto</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="dibujado_simple_en_pantalla.html"
+                        title="capítulo anterior">Dibujado simple en pantalla</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="tareas.html"
+                        title="próximo capítulo">Manejo de tiempo con tareas</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/dibujado_avanzado_con_superficies.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="tareas.html" title="Manejo de tiempo con tareas"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="dibujado_simple_en_pantalla.html" title="Dibujado simple en pantalla"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Dibujado simple en pantalla &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Dibujado avanzado con Superficies" href="dibujado_avanzado_con_superficies.html" />
+    <link rel="prev" title="Cargar sonidos y música" href="sonidos.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="dibujado_avanzado_con_superficies.html" title="Dibujado avanzado con Superficies"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="sonidos.html" title="Cargar sonidos y música"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="dibujado-simple-en-pantalla">
+<h1>Dibujado simple en pantalla<a class="headerlink" href="#dibujado-simple-en-pantalla" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Hasta ahora hemos mostrado en la pantalla
+fondos y actores que originalmente estaban
+almacenados en el disco de la computadora
+cómo imágenes.</p>
+<p>En esta sección veremos como dibujar libremente, ya
+sean lineas, círculos, texto etc..</p>
+<p>Comenzaremos con una forma de dibujado muy
+sencilla, y luego veremos algunas alternativas
+que ofrecen mas flexibilidad.</p>
+<p>Ten en cuenta que el dibujo avanzado y mas flexible
+lo vamos a ver en el siguiente capítulo <strong>Dibujo avanzado
+con Superficies</strong>.</p>
+</div>
+<div class="section" id="usando-la-tortuga-para-dibujar">
+<h1>Usando la Tortuga para dibujar<a class="headerlink" href="#usando-la-tortuga-para-dibujar" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>El actor <tt class="docutils literal"><span class="pre">Tortuga</span></tt> está inspirado en una de
+las actividades mas divertidas, didácticas y simbólicas
+del lenguaje de programación <strong>logo</strong>, creado
+por <strong>Seymour Papert</strong>.</p>
+<p>La <tt class="docutils literal"><span class="pre">Tortuga</span></tt> básicamente es un actor que sabe
+dibujar sobre la ventana de pilas. Para ello el
+programador tiene que indicarle a la tortuga qué
+movimiento debe realizar.</p>
+<p>La siguiente imagen muestra lo que podría
+dibujar la tortuga con algunas sentencias de
+movimientos:</p>
+<img alt="_images/tortuga_dibuja_triangulo.jpg" src="_images/tortuga_dibuja_triangulo.jpg" />
+<p>La imagen no alcanza a mostrar por completo el
+concepto, pero en pocas palabras se puede sintetizar
+lo que realmente hace.</p>
+<p>El dibujo de la imagen anterior es una traza que
+va dibujando la tortuga a partir de su movimiento.</p>
+<p>El siguiente código es el que se utilizó para
+dibujar esa linea de dos colores:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">()</span>
+<span class="n">tortuga</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Tortuga</span><span class="p">()</span>
+<span class="n">tortuga</span><span class="o">.</span><span class="n">avanzar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">tortuga</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">azul</span>
+<span class="n">tortuga</span><span class="o">.</span><span class="n">avanzar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Algo muy valioso en términos didácticos, es que
+uno podría animarse a realizar dibujos simples cómo
+una casa, un hexágono o cualquier otra figura diseñando una estrategia
+de movimiento para la tortuga.</p>
+<div class="section" id="inspeccionando-a-la-tortuga">
+<h2>Inspeccionando a la tortuga<a class="headerlink" href="#inspeccionando-a-la-tortuga" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para manejar a este actor tienes varios comandos
+inspirados en logo.</p>
+<p>Esta es una lista de los comandos mas utilizados:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="12%" />
+<col width="32%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Método completo</th>
+<th class="head">nombre corto</th>
+<th class="head">ejemplo</th>
+<th class="head">¿que hace?</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>avanzar</td>
+<td>av</td>
+<td>tortuga.av(10)</td>
+<td>avanza en dirección a donde mira la tortuga.</td>
+</tr>
+<tr class="row-odd"><td>giraderecha</td>
+<td>gd</td>
+<td>tortuga.gd(45)</td>
+<td>gira hacia la derecha los grados indicados.</td>
+</tr>
+<tr class="row-even"><td>giraizquierda</td>
+<td>gi</td>
+<td>tortuga.gi(45)</td>
+<td>gira hacia la izquierda los grados indicados.</td>
+</tr>
+<tr class="row-odd"><td>subelapiz</td>
+<td>sl</td>
+<td>tortuga.sl()</td>
+<td>deja de dibujar cuando se mueve la tortuga.</td>
+</tr>
+<tr class="row-even"><td>bajalapiz</td>
+<td>bl</td>
+<td>tortuga.bl()</td>
+<td>comienza a dibujar cuando la tortuga se mueve.</td>
+</tr>
+<tr class="row-odd"><td>pon_color</td>
+<td>pc</td>
+<td>tortuga.pc(pilas.colores.rojo)</td>
+<td>dibuja con el color indicado.</td>
+</tr>
+<tr class="row-even"><td>pintar</td>
+<td>pintar</td>
+<td>tortuga.pintar(pilas.colores.blanco)</td>
+<td>pinta toda la pantala del mismo color.</td>
+</tr>
+</tbody>
+</table>
+<p>Por supuesto hay algunos mas, pero esos quedan para
+investigar en la clase propiamente dicha. Recuerda que
+el auto-completado del intérprete de python es bastante
+útil para estas cosas.</p>
+</div>
+</div>
+<div class="section" id="usando-una-pizarra">
+<h1>Usando una Pizarra<a class="headerlink" href="#usando-una-pizarra" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Si quieres dibujar sobre la pantalla pero
+de forma inmediata y con algunas posibilidades mas
+elaboradas, puedes
+usar un actor llamado <tt class="docutils literal"><span class="pre">Pizarra</span></tt>. Esta no es la
+forma mas avanzada, pero es el siguiente paso después
+de dominar al actor <tt class="docutils literal"><span class="pre">Tortuga</span></tt>.</p>
+<p>Este actor <tt class="docutils literal"><span class="pre">Pizarra</span></tt> es cómo un lienzo invisible sobre
+el que podemos pintar imágenes, figuras
+geométricas y trazos de cualquier tipo. De hecho, el actor
+<tt class="docutils literal"><span class="pre">Tortuga</span></tt> que vimos antes, en realidad estaba
+dibujando sobre una pizarra, solo que lo hacía con
+animaciones y algo lento.</p>
+<p>Comencemos con algo sencillo: para crear la pizarra y
+dibujar un punto en el centro de la
+pantalla se puede usar el siguiente
+código:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pizarra</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Pizarra</span><span class="p">()</span>
+<span class="n">pizarra</span><span class="o">.</span><span class="n">dibujar_punto</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>incluso podrías usar el argumento opcional <tt class="docutils literal"><span class="pre">color</span></tt>
+si prefieres otro color, o trazar una linea:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pizarra</span><span class="o">.</span><span class="n">linea</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="n">pilas</span><span class="o">.</span><span class="n">colores</span><span class="o">.</span><span class="n">verdeoscuro</span><span class="p">,</span> <span class="n">grosor</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/linea.jpg" src="_images/linea.jpg" />
+<div class="section" id="pintando-imagenes">
+<h2>Pintando imágenes<a class="headerlink" href="#pintando-imagenes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las pizarras también pueden dibujar imágenes sobre la superficie,
+y esto es útil cuando quieras crear pinceles especiales sobre
+la pizarra o construir un escenario usando bloques tipo
+ladrillos.</p>
+<p>Para pintar una imagen solo tienes que cargarla e
+indicarla a la pizarra que la dibuje en una posicion determinada.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">imagen</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar</span><span class="p">(</span><span class="s">&quot;pelota.png&quot;</span><span class="p">)</span>
+<span class="n">pizarra</span><span class="o">.</span><span class="n">pintar_imagen</span><span class="p">(</span><span class="n">imagen</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Así se verá:</p>
+<img alt="_images/pizarra_imagen.jpg" src="_images/pizarra_imagen.jpg" />
+<p>Ten en cuenta que en estos casos, cuando estamos dibujando
+una imagen sobre otra, el punto destino (x, y) siempre indica
+la esquina superior izquierda de la imagen, no el centro u
+otra posición relativa como en el caso de los actores.</p>
+</div>
+<div class="section" id="pintando-porciones-de-imagenes">
+<h2>Pintando porciones de imágenes<a class="headerlink" href="#pintando-porciones-de-imagenes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hay ocasiones en las que te resultará útil poder
+pintar solamente porciones de una imagen sobre otra. Para
+estos casos está el método <tt class="docutils literal"><span class="pre">pintar_parte_de_imagen</span></tt>.</p>
+<p>Veamos la definición del método:</p>
+<div class="highlight-python"><div class="highlight"><pre>def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
+</pre></div>
+</div>
+</div>
+<div class="section" id="dibujando-grillas">
+<h2>Dibujando grillas<a class="headerlink" href="#dibujando-grillas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>De manera similar a las imágenes normales, sobre las pizarras
+también se pueden pintar grillas.</p>
+<p>Solamente tenemos que crear la grilla, seleccionar el
+cuadro de animación y después decirle a la pizarra
+que pinte el cuadro actual de la grilla:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">grilla</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">(</span><span class="s">&quot;pingu.png&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">pizarra</span><span class="o">.</span><span class="n">pintar_grilla</span><span class="p">(</span><span class="n">grilla</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Así se verá:</p>
+<img alt="_images/pizarra_grilla.jpg" src="_images/pizarra_grilla.jpg" />
+<p>Esto es útil cuando se quieren pintar bloques de un escenario
+completo, por ejemplo podríamos tener una grilla con distintos
+tipos de suelos (pasto, piedra, tierra) y luego ir
+imprimiendo sobre una pizarra para formar un escenario completo.</p>
+</div>
+<div class="section" id="la-pizarra-como-actor">
+<h2>La pizarra como actor<a class="headerlink" href="#la-pizarra-como-actor" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Recuerda que la pizarra también es un actor, así que puedes enseñarle
+habilidades, cambiar su posición, rotación o lo que quieras.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Dibujado simple en pantalla</a></li>
+<li><a class="reference internal" href="#usando-la-tortuga-para-dibujar">Usando la Tortuga para dibujar</a><ul>
+<li><a class="reference internal" href="#inspeccionando-a-la-tortuga">Inspeccionando a la tortuga</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usando-una-pizarra">Usando una Pizarra</a><ul>
+<li><a class="reference internal" href="#pintando-imagenes">Pintando imágenes</a></li>
+<li><a class="reference internal" href="#pintando-porciones-de-imagenes">Pintando porciones de imágenes</a></li>
+<li><a class="reference internal" href="#dibujando-grillas">Dibujando grillas</a></li>
+<li><a class="reference internal" href="#la-pizarra-como-actor">La pizarra como actor</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="sonidos.html"
+                        title="capítulo anterior">Cargar sonidos y música</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="dibujado_avanzado_con_superficies.html"
+                        title="próximo capítulo">Dibujado avanzado con Superficies</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/dibujado_simple_en_pantalla.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="dibujado_avanzado_con_superficies.html" title="Dibujado avanzado con Superficies"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="sonidos.html" title="Cargar sonidos y música"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

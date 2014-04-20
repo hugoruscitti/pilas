@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Nuevo Gestor de Escenas &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Demos" href="demos.html" />
+    <link rel="prev" title="Como migrar mi juego al nuevo Gestor de Escenas" href="migrar_al_gestor_de_escenas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="demos.html" title="Demos"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="migrar_al_gestor_de_escenas.html" title="Como migrar mi juego al nuevo Gestor de Escenas"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="nuevo-gestor-de-escenas">
+<span id="ref-gestor-de-escenas"></span><h1>Nuevo Gestor de Escenas<a class="headerlink" href="#nuevo-gestor-de-escenas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Pilas contiene un nuevo gestor de escenas que permite tener más de una
+escena en el juego, aunque sólo una de ellas será la activa.</p>
+<p>Esta nueva funcionalidad nos permitiría, por ejemplo, estar jugando y en
+cualquier momento pulsar una tecla y acceder a las opciones del juego.</p>
+<p>Allí quitaríamos el sonido y luego pulsando otra tecla volveriamos al juego,
+justo donde lo habíamos dejado.</p>
+<p>Nuestros actores estarán en la misma posición y estado en el que los habíamos
+dejado antes de ir a las opciones.</p>
+<div class="section" id="escena-base">
+<h2>Escena Base<a class="headerlink" href="#escena-base" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Es la Escena de la cual deben heredar todas las escenas del juego en pilas.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Base</span>
+</pre></div>
+</div>
+<p>El <tt class="docutils literal"><span class="pre">antiguo</span> <span class="pre">método</span></tt> para crear una escena era el siguiente:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MiEscena</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">escenas</span><span class="o">.</span><span class="n">Escena</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">escenas</span><span class="o">.</span><span class="n">Escena</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">Pasto</span><span class="p">()</span>
+        <span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Ahora el <tt class="docutils literal"><span class="pre">nuevo</span> <span class="pre">método</span></tt> para crear una escena es el siguiente:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MiEscena</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Base</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">Pasto</span><span class="p">()</span>
+        <span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Como puedes observar, ahora la escena hereda de</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Base</span>
+</pre></div>
+</div>
+<p>Otro cambio <strong>muy importante</strong> es que el metodo <tt class="docutils literal"><span class="pre">__init__(self)</span></tt> no debe
+contener nada más que la llamada al <tt class="docutils literal"><span class="pre">__init__</span></tt> de la escena Base.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">):</span>
+    <span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Base</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_titulo</span> <span class="o">=</span> <span class="n">titulo</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_puntuacion</span> <span class="o">=</span> <span class="n">puntuacion</span>
+</pre></div>
+</div>
+<p>Puedes almacenar unicamente parámetros que quieras pasar a la escena.
+Por ejemplo así:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">):</span>
+    <span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Base</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_titulo</span> <span class="o">=</span> <span class="n">titulo</span>
+</pre></div>
+</div>
+<p>Y por último debes definir un método <tt class="docutils literal"><span class="pre">iniciar(self)</span></tt> donde podrás crear los
+nuevos actores y lo necesario para iniciar tu escena.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">Pasto</span><span class="p">()</span>
+    <span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+    <span class="n">texti</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Texto</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_titulo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="iniciar-pilas-con-una-escena">
+<h2>Iniciar pilas con una Escena<a class="headerlink" href="#iniciar-pilas-con-una-escena" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para iniciar pilas, con el nuevo sistema, debemos ejecutar lo siguiente</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">cambiar_escena</span><span class="p">(</span><span class="n">mi_escena</span><span class="o">.</span><span class="n">MiEscena</span><span class="p">())</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">ejecutar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Te habrás fijado que pilas dispone de un nuevo método para realizar esta
+acción.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">cambiar_escena</span><span class="p">(</span><span class="n">escena_a_cambiar</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>En el próximo punto explicarémos su función junto con otros 2 metodos nuevos.</p>
+</div>
+<div class="section" id="cambiar-entre-escenas">
+<h2>Cambiar entre Escenas<a class="headerlink" href="#cambiar-entre-escenas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Antes de nada debes comprender que pilas tiene la capacidad de apilar el número
+de escenas que desees en su sistema.</p>
+<p>El método de apilamiento es FILO (First In, Last Out), la primera escena en
+entrar en la pila será la última en salir.</p>
+<p>¿Y como apilamos, recuperamos y cambiamos escenas?, muy sencillo.
+Pilas dispone de 3 métodos para realizar esta operaciones:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">cambiar_escena</span><span class="p">(</span><span class="n">mi_escena</span><span class="p">)</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">almacenar_escena</span><span class="p">(</span><span class="n">mi_escena</span><span class="p">)</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">recuperar_escena</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">pilas.cambiar_escena(mi_escena)</span></tt>: VACIA por completo la pila de escenas del sistema e incorporar la escena que pasamos como parámetro. La escena incorporada será la escena activa.</li>
+<li><tt class="docutils literal"><span class="pre">pilas.almacenar_escena(mi_escena)</span></tt>: apila la escena actual y establece como escena activa la que le pasamos como parámetro. La escena que ha sido apilada quedará pausada hasta su recuperación.</li>
+<li><tt class="docutils literal"><span class="pre">pilas.recuperar_escena()</span></tt>: recupera la última escena que fué apilada mediante <tt class="docutils literal"><span class="pre">alamacenar_escena()</span></tt> y la establece como escena activa.</li>
+</ul>
+<p>Por último indicar que si quieres tener acceso a la escena actualmente activa, puedes hacerlo mediante el comando:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Nuevo Gestor de Escenas</a><ul>
+<li><a class="reference internal" href="#escena-base">Escena Base</a></li>
+<li><a class="reference internal" href="#iniciar-pilas-con-una-escena">Iniciar pilas con una Escena</a></li>
+<li><a class="reference internal" href="#cambiar-entre-escenas">Cambiar entre Escenas</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="migrar_al_gestor_de_escenas.html"
+                        title="capítulo anterior">Como migrar mi juego al nuevo Gestor de Escenas</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="demos.html"
+                        title="próximo capítulo">Demos</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/gestor_de_escenas.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="demos.html" title="Demos"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="migrar_al_gestor_de_escenas.html" title="Como migrar mi juego al nuevo Gestor de Escenas"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

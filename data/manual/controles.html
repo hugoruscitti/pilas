@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Controles &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Escenas" href="escenas.html" />
+    <link rel="prev" title="Comportamientos" href="comportamientos.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="escenas.html" title="Escenas"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="comportamientos.html" title="Comportamientos"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="controles">
+<h1>Controles<a class="headerlink" href="#controles" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Si quieres conocer el estado de los controles
+en pilas, tienes que usar el objeto <tt class="docutils literal"><span class="pre">pilas.mundo.control</span></tt>.</p>
+<p>Por ejemplo, para hacer que un actor
+se mueva por la pantalla simplemente puedes crear
+al actor y escribir estas sentencias.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">izquierda</span><span class="p">:</span>
+    <span class="n">mono</span><span class="o">.</span><span class="n">x</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class="k">elif</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">derecha</span><span class="p">:</span>
+    <span class="n">mono</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Esta no es la única forma de mover a un personaje por
+la pantalla, pero suele ser la mas conveniente porque
+es muy directa, y se puede escribir en cualquier parte
+del código.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Recuerda que para poder interactuar con el teclado, debes seleccionar la
+ventana de resultado. Haz click en la parte de arriba del intérprete de
+pilas para seleccionarla.</p>
+</div>
+<div class="section" id="investigando-al-objeto-control">
+<h2>Investigando al objeto control<a class="headerlink" href="#investigando-al-objeto-control" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En realidad, cuando usamos a <tt class="docutils literal"><span class="pre">pilas.mundo.control</span></tt>, accedemos
+a un objeto que tienen varios atributos.</p>
+<p>Estos atributos pueden valer <tt class="docutils literal"><span class="pre">True</span></tt> o <tt class="docutils literal"><span class="pre">False</span></tt>, dependiendo
+de la pulsación de las teclas:</p>
+<ul class="simple">
+<li>izquierda</li>
+<li>derecha</li>
+<li>arriba</li>
+<li>abajo</li>
+<li>boton</li>
+</ul>
+<p>Esto te permite simplificar el código, porque no tienes que
+conocer específicamente las teclas que activan cada acción, y en
+todos los juegos serán las mismas teclas.</p>
+</div>
+<div class="section" id="donde-consultar-los-controles">
+<h2>¿Dónde consultar los controles?<a class="headerlink" href="#donde-consultar-los-controles" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El mejor lugar para consultar el estado de los controles
+es en la actualización de un actor.</p>
+<p>Esto se logra colocando un método llamado <tt class="docutils literal"><span class="pre">actualizar</span></tt> dentro
+del actor y haciendo la consulta ahí. Veamos un
+actor sencillo que se pueda mover de izquierda a derecha. El código sería
+así:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">MiActor</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imagen</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar</span><span class="p">(</span><span class="s">&quot;aceituna.png&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">izquierda</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-=</span> <span class="mi">10</span>
+
+        <span class="k">if</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">derecha</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mi">10</span>
+
+<span class="n">MiActor</span><span class="p">()</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">ejecutar</span><span class="p">()</span> <span class="c"># Necesario al ejecutar en scripts.</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Controles</a><ul>
+<li><a class="reference internal" href="#investigando-al-objeto-control">Investigando al objeto control</a></li>
+<li><a class="reference internal" href="#donde-consultar-los-controles">¿Dónde consultar los controles?</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="comportamientos.html"
+                        title="capítulo anterior">Comportamientos</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="escenas.html"
+                        title="próximo capítulo">Escenas</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/controles.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="escenas.html" title="Escenas"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="comportamientos.html" title="Comportamientos"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

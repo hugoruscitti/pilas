@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Cargar sonidos y música &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Dibujado simple en pantalla" href="dibujado_simple_en_pantalla.html" />
+    <link rel="prev" title="Manejo de imágenes" href="imagen.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="dibujado_simple_en_pantalla.html" title="Dibujado simple en pantalla"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="imagen.html" title="Manejo de imágenes"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cargar-sonidos-y-musica">
+<h1>Cargar sonidos y música<a class="headerlink" href="#cargar-sonidos-y-musica" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Si bien a continuación ejemplificamos todo con el modulo <tt class="docutils literal"><span class="pre">pilas.sonidos</span></tt>
+todos los ejemplos funcionan para el modulo <tt class="docutils literal"><span class="pre">pilas.musica</span></tt></p>
+<p>Los sonidos se pueden cargar usando el módulo
+<tt class="docutils literal"><span class="pre">sonidos</span></tt> de la siguiente manera:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sonido_de_explosion</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">sonidos</span><span class="o">.</span><span class="n">cargar</span><span class="p">(</span><span class="s">&#39;explosion.wav&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>donde <tt class="docutils literal"><span class="pre">explosion.wav</span></tt> es el nombre del archivo de audio.</p>
+<p>Ten en cuenta que esta función para cargar sonidos
+se comporta muy parecido a la función que nos permite
+cargar imágenes o grillas. El archivo se buscará en
+el directorio principal de nuestro juego, luego en el
+directorio <tt class="docutils literal"><span class="pre">data</span></tt> y por último en la biblioteca de
+sonidos que trae pilas.</p>
+<div class="section" id="reproducir">
+<h2>Reproducir<a class="headerlink" href="#reproducir" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La función <tt class="docutils literal"><span class="pre">sonidos.cargar</span></tt> nos retorna un objeto de tipo
+<tt class="docutils literal"><span class="pre">Sonido</span></tt> que tiene un método para reproducirse llamado
+<tt class="docutils literal"><span class="pre">reproducir()</span></tt>.</p>
+<p>Entonces, para reproducir un sonido solamente tienes
+que llamar al método <tt class="docutils literal"><span class="pre">reproducir</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sonido_de_explosion</span><span class="o">.</span><span class="n">reproducir</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Si deseas que un sonido se repita indefinidamente debes utilizar el parámetro
+<em>repetir=True</em>. Por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sonido_de_explosion</span><span class="o">.</span><span class="n">reproducir</span><span class="p">(</span><span class="n">repetir</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Para detener la música o un efecto de sonido, existe
+el método <em>detener</em>. Por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sonido_de_explosion</span><span class="o">.</span><span class="n">detener</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cargar sonidos y música</a><ul>
+<li><a class="reference internal" href="#reproducir">Reproducir</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="imagen.html"
+                        title="capítulo anterior">Manejo de imágenes</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="dibujado_simple_en_pantalla.html"
+                        title="próximo capítulo">Dibujado simple en pantalla</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/sonidos.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="dibujado_simple_en_pantalla.html" title="Dibujado simple en pantalla"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="imagen.html" title="Manejo de imágenes"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

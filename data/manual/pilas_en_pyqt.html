@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Integrando Pilas a una Aplicación Qt &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Referencia completa" href="referencia.html" />
+    <link rel="prev" title="Depurando y buscando detalles" href="depurando.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="referencia.html" title="Referencia completa"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="depurando.html" title="Depurando y buscando detalles"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="integrando-pilas-a-una-aplicacion-qt">
+<h1>Integrando Pilas a una Aplicación Qt<a class="headerlink" href="#integrando-pilas-a-una-aplicacion-qt" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En esta sección vamos a mostrar como integrar Pilas como un widget dentro de tu
+aplicación desarrollada con <em>PyQt</em>.</p>
+<p><strong>Nota: En este capitulo asumimos que el programador ya conoce PyQt y Pilas.</strong></p>
+<p>Antes de empezar vamos a establecer algunos objetivos:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Trataremos que la programación de la parte <em>Pilas</em> sea lo mas
+<em>Pilas-Like</em>.</li>
+<li>Pilas nos brinda un solo widget; por el objetivo anterior intentaremos
+mantener esto.</li>
+<li>La programación de la parte PyQt trataremos que se mantenga lo mas
+<em>PyQt-Like</em>.</li>
+</ul>
+</div></blockquote>
+<p>Con esto en mente vamos a proponernos un proyecto:</p>
+<blockquote>
+<div>Desarrollaremos una aplicación PyQt que muestre algunos actores en pantalla
+y al hacerle click sobre alguno nos permita seleccionar una imagen desde
+un archivo para reemplazar a la del actor.</div></blockquote>
+<p>La estructura de objetos que manejaremos sera la siguiente:</p>
+<img alt="_images/pilasqtclass.png" src="_images/pilasqtclass.png" />
+<p>Donde el objetivo de cada clase es el siguiente:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">MainWindow</span></tt>: Es un widget PyQt4 que hereda de
+<tt class="docutils literal"><span class="pre">PyQt4.QtGui.QMainWindow</span></tt>. Se encargara de recibir el evento de cuando
+un <tt class="docutils literal"><span class="pre">ActorVacio</span></tt> fue &#8220;clickeado&#8221; y mostrara la ventana emergente para
+seleccionar la imagen que luego sera asignada en el actor que lanzo el
+evento.</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">PilasProxy</span></tt>: Esta clase es un <em>singleton</em> que cada vez que es destruida
+<em>finje</em> su destrucción y solo limpia el widget principal de Pilas, para
+que cuando sea reutilizada, parezca que esta como nueva. Tendrá 3
+métodos/propiedades imporantes implementara:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">widget</span></tt>: Propiedad que referencia al widget principal de Pilas.</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">__getattr__</span></tt>: Método que delegara todas las llamadas que no
+posea el proxy al widget principal de Pilas.</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">destroy</span></tt>: Método que ocultara la implementación de <tt class="docutils literal"><span class="pre">destroy</span></tt>
+del widget principal de Pilas.</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">actor_clickeado</span></tt>: <em>evento</em> de pilas que enviara como parámetro
+el actor que fue clickeado.</p>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">agregar_actor</span></tt>: permitirá agregar un actor al proxy y conectará</dt>
+<dd><p class="first last">las señales del actor con la señal del proxy.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">borrar_actor</span></tt>: borra un actor de los manejados por el proxy</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">ActorVacio</span></tt>: Subclase de <tt class="docutils literal"><span class="pre">pilas.actores.Actor</span></tt> que emitirá un evento
+al ser clickeada sobre si misma.</p>
+</li>
+</ul>
+</div></blockquote>
+<div class="section" id="codigo">
+<h2>Código<a class="headerlink" href="#codigo" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#===============================================================================</span>
+<span class="c"># IMPORTS</span>
+<span class="c">#===============================================================================</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c"># importamos todos los modulos necesarios de PyQt</span>
+<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtCore</span>
+
+
+<span class="c">#===============================================================================</span>
+<span class="c"># CONFIGURACIÓN INICIAL</span>
+<span class="c">#===============================================================================</span>
+
+<span class="c"># antes de importar pilas creamos la app QT del programa</span>
+<span class="c"># si tenemos los componentes pilas en otro modulo puede llegar a ser conveniente</span>
+<span class="c"># importar ese modulo (el que usa pilas) dentro de un metodo de clase o una</span>
+<span class="c"># funcion. Tambien para que phonon no se queje es bueno setearle una nombre a</span>
+<span class="c"># nuestro QApplication</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">setApplicationName</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<span class="c"># Importamos pilas con un motor que sirva para embeber</span>
+<span class="c"># &#39;qt&#39; y &#39;qtgl&#39; crean y auto-arrancan la aplicacion</span>
+<span class="c"># mientras que &#39;qtsugar&#39; y &#39;qtsugargl&#39; solo crean</span>
+<span class="c"># los widget necesarios para embeber pilas</span>
+<span class="kn">import</span> <span class="nn">pilas</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">(</span><span class="n">usar_motor</span><span class="o">=</span><span class="s">&quot;qtsugar&quot;</span><span class="p">)</span>
+
+
+<span class="c">#===============================================================================</span>
+<span class="c"># CLASE ACTOR</span>
+<span class="c">#===============================================================================</span>
+
+<span class="c"># nuestra clase actor</span>
+<span class="k">class</span> <span class="nc">ActorVacio</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ActorVacio</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c"># El evento que emitiremos cuando clickean al actor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">me_clickearon</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">evento</span><span class="o">.</span><span class="n">Evento</span><span class="p">(</span><span class="s">&quot;me_clickearon&quot;</span><span class="p">)</span>
+
+        <span class="c"># Conectamos el evento genérico de click del mouse con un</span>
+        <span class="c"># validador que se encargara de determinar si el click</span>
+        <span class="c"># sucedió sobre el actor</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">click_de_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_validar_click</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_validar_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt</span><span class="p">):</span>
+        <span class="c"># extraemos las coordenadas donde sucedió el click</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">evt</span><span class="p">[</span><span class="s">&quot;x&quot;</span><span class="p">],</span> <span class="n">evt</span><span class="p">[</span><span class="s">&quot;y&quot;</span><span class="p">]</span>
+
+        <span class="c"># vemos si el actor colisiona con el punto donde</span>
+        <span class="c"># se hizo click y de ser asi se lanza el evento</span>
+        <span class="c"># me_clickearon pasando como parámetro al mismo</span>
+        <span class="c"># actor</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">colisiona_con_un_punto</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">me_clickearon</span><span class="o">.</span><span class="n">emitir</span><span class="p">(</span><span class="n">actor</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="c">#===============================================================================</span>
+<span class="c"># PROXY CONTRA PILAS</span>
+<span class="c">#===============================================================================</span>
+
+<span class="k">class</span> <span class="nc">PilasProxy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="c"># esta variable de clase guardara la única instancia que genera esta clase.</span>
+    <span class="n">_instance</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="c"># redefinimos __new__ para que solo haya una instancia de pilas proxy</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">PilasProxy</span><span class="o">.</span><span class="n">_instance</span><span class="p">:</span>
+            <span class="n">PilasProxy</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">PilasProxy</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PilasProxy</span><span class="o">.</span><span class="n">_instance</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actores</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c"># aca almacenaremos todos los actores</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">click_en_actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">evento</span><span class="o">.</span><span class="n">Evento</span><span class="p">(</span><span class="s">&quot;click_en_actor&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="c"># todo lo que no pueda resolver la clase se lo delega al widget.</span>
+        <span class="c"># Con esto el proxy puede ser usado trasparentemenente</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">widget</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">agregar_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
+        <span class="c"># Validamos que el actor sea un ActorVacio</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">ActorVacio</span><span class="p">)</span>
+
+        <span class="c"># conectamos la señal del actor con la señal del proxy</span>
+        <span class="n">actor</span><span class="o">.</span><span class="n">me_clickearon</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_clickearon_actor</span>
+        <span class="p">)</span>
+
+        <span class="c"># agregamos el actor a la coleccion de actores</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actores</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_clickearon_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt</span><span class="p">):</span>
+        <span class="c"># método que recibe a que actor clickearon y emite la señal</span>
+        <span class="c"># de que clickearon al actor desde el proxy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">click_en_actor</span><span class="o">.</span><span class="n">emitir</span><span class="p">(</span><span class="o">**</span><span class="n">evt</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">borrar_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">actor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actores</span><span class="p">:</span>
+            <span class="c"># si el actor exist en los manejados por el proxy</span>
+            <span class="c"># deconectamos las señales y destruimos el actor</span>
+            <span class="n">actor</span><span class="o">.</span><span class="n">me_clickearon</span><span class="o">.</span><span class="n">desconectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">click_en_actor</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_actores</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+            <span class="n">actor</span><span class="o">.</span><span class="n">destruir</span><span class="p">()</span>
+
+    <span class="c"># prevenimos que al ejecutarse destroy sobre el widget subyacente</span>
+    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">act</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actores</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">borrar_actor</span><span class="p">(</span><span class="n">act</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">mundo</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">ventana</span>
+
+
+<span class="c">#===============================================================================</span>
+<span class="c"># VENTANA PRINCIPAL</span>
+<span class="c">#===============================================================================</span>
+
+<span class="k">class</span> <span class="nc">MainWindow</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pilas</span> <span class="o">=</span> <span class="n">PilasProxy</span><span class="p">()</span> <span class="c"># traemos nuestro proxy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pilas</span><span class="o">.</span><span class="n">widget</span><span class="p">)</span> <span class="c"># lo agregamos a la ventana</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pilas</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+
+        <span class="c"># creamos entre 5 y 10 actores</span>
+        <span class="n">actores</span> <span class="o">=</span> <span class="n">ActorVacio</span><span class="p">()</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">actores</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pilas</span><span class="o">.</span><span class="n">agregar_actor</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+        <span class="c"># conectamos el evento click en el actor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pilas</span><span class="o">.</span><span class="n">click_en_actor</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_actor_clickeado</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_actor_clickeado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt</span><span class="p">):</span>
+        <span class="c"># este slot va a abrir el selector de archivos de imagen</span>
+        <span class="c"># y asignar esa imagen al actor que llego como parametro</span>
+        <span class="n">actor</span> <span class="o">=</span> <span class="n">evt</span><span class="p">[</span><span class="s">&quot;actor&quot;</span><span class="p">]</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QFileDialog</span><span class="o">.</span><span class="n">getOpenFileName</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Imagen de Actor&quot;</span><span class="p">),</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&quot;~&quot;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Imagenes (*.png *.jpg)&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="n">actor</span><span class="o">.</span><span class="n">imagen</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_imagen</span><span class="p">(</span>
+                <span class="nb">unicode</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="p">)</span>
+
+<span class="c">#===============================================================================</span>
+<span class="c"># PONEMOS A CORRER TODO</span>
+<span class="c">#===============================================================================</span>
+
+<span class="n">win</span> <span class="o">=</span> <span class="n">MainWindow</span><span class="p">()</span>
+<span class="n">win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="resultado">
+<h2>Resultado<a class="headerlink" href="#resultado" title="Enlazar permanentemente con este título">¶</a></h2>
+<iframe width="560"
+        height="315"
+        src="http://www.youtube.com/embed/DA1DFTHJ-rE"
+        frameborder="0"
+        allowfullscreen>
+</iframe></div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Integrando Pilas a una Aplicación Qt</a><ul>
+<li><a class="reference internal" href="#codigo">Código</a></li>
+<li><a class="reference internal" href="#resultado">Resultado</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="depurando.html"
+                        title="capítulo anterior">Depurando y buscando detalles</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="referencia.html"
+                        title="próximo capítulo">Referencia completa</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/pilas_en_pyqt.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="referencia.html" title="Referencia completa"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="depurando.html" title="Depurando y buscando detalles"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

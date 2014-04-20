@@ -10,8 +10,6 @@ from pilasengine import utils
 
 import widget
 
-PATH = os.path.dirname(os.path.abspath(__file__))
-INTERPRETE_PATH = os.path.dirname(sys.argv[0])
 
 
 class Pilas(object):
@@ -67,21 +65,7 @@ class Pilas(object):
         :param ruta: Ruta al archivo (recurso) a inspeccionar.
         """
         self.log("Buscando ruta al recurso:", ruta)
-
-        dirs = ['./', '/../data', 'data',
-                PATH, INTERPRETE_PATH,
-                PATH + '/data', INTERPRETE_PATH + '/data',
-                PATH + '/../data', INTERPRETE_PATH + '/../data'
-               ]
-
-        for x in dirs:
-            full_path = os.path.join(x, ruta)
-
-            if os.path.exists(full_path):
-                return full_path
-
-        # Si no ha encontrado el archivo lo reporta.
-        raise IOError("El archivo '%s' no existe." % (ruta))
+        return utils.obtener_ruta_al_recurso(ruta)
 
 def iniciar(ancho=640, alto=480, titulo='Pilas'):
     """
@@ -101,3 +85,11 @@ def iniciar(ancho=640, alto=480, titulo='Pilas'):
     """
     pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo)
     return pilas
+
+def abrir_asistente():
+    import asistente
+    return asistente.abrir()
+
+def abrir_manual():
+    import manual
+    return manual.abrir()

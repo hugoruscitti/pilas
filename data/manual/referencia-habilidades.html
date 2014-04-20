@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Módulo pilas.habilidades &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Guía para desarrolladores" href="desarrolladores.html" />
+    <link rel="prev" title="Referencia completa" href="referencia.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="desarrolladores.html" title="Guía para desarrolladores"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="referencia.html" title="Referencia completa"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-pilas.habilidades">
+<span id="modulo-pilas-habilidades"></span><h1>Módulo pilas.habilidades<a class="headerlink" href="#module-pilas.habilidades" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="class">
+<dt id="pilas.habilidades.Arrastrable">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">Arrastrable</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Arrastrable"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Arrastrable" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace que un objeto se pueda arrastrar con el puntero del mouse.</p>
+<p>Cuando comienza a mover al actor se llama al metodo &#8216;&#8217;comienza_a_arrastrar&#8217;&#8217;
+y cuando termina llama a &#8216;&#8217;termina_de_arrastrar&#8217;&#8216;. Estos nombres
+de metodos se llaman para que puedas personalizar estos eventos, dado
+que puedes usar polimorfismo para redefinir el comportamiento
+de estos dos metodos. Observa un ejemplo de esto en
+el ejemplo <tt class="docutils literal"><span class="pre">pilas.ejemplos.Piezas</span></tt>.</p>
+<dl class="method">
+<dt id="pilas.habilidades.Arrastrable.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Arrastrable.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Arrastrable.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilas.habilidades.Arrastrable.cuando_arrastra">
+<tt class="descname">cuando_arrastra</tt><big>(</big><em>evento</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Arrastrable.cuando_arrastra"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Arrastrable.cuando_arrastra" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Arrastra el actor a la posicion indicada por el puntero del mouse.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilas.habilidades.Arrastrable.cuando_intenta_arrastrar">
+<tt class="descname">cuando_intenta_arrastrar</tt><big>(</big><em>evento</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Arrastrable.cuando_intenta_arrastrar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Arrastrable.cuando_intenta_arrastrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Intenta mover el objeto con el mouse cuando se pulsa sobre el.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilas.habilidades.Arrastrable.cuando_termina_de_arrastrar">
+<tt class="descname">cuando_termina_de_arrastrar</tt><big>(</big><em>evento</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Arrastrable.cuando_termina_de_arrastrar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Arrastrable.cuando_termina_de_arrastrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Suelta al actor porque se ha soltado el botón del mouse.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.AumentarConRueda">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">AumentarConRueda</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#AumentarConRueda"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.AumentarConRueda" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Permite cambiar el tamaño de un actor usando la ruedita scroll del mouse.</p>
+<dl class="method">
+<dt id="pilas.habilidades.AumentarConRueda.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#AumentarConRueda.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.AumentarConRueda.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.ColisionableComoPelota">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">ColisionableComoPelota</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#ColisionableComoPelota"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.ColisionableComoPelota" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Le indica al actor que colisione como una pelota, pero que no rebote.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">un_actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Aceituna</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">un_actor</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">ColisionableComoPelota</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pilas.habilidades.ColisionableComoPelota.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#ColisionableComoPelota.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.ColisionableComoPelota.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.Disparar">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">Disparar</tt><big>(</big><em>receptor</em>, <em>municion=&lt;class 'pilas.actores.proyectil.Bala'&gt;</em>, <em>parametros_municion={}</em>, <em>grupo_enemigos=</em>, <span class="optional">[</span><span class="optional">]</span><em>cuando_elimina_enemigo=None</em>, <em>frecuencia_de_disparo=10</em>, <em>angulo_salida_disparo=0</em>, <em>offset_disparo=(0</em>, <em>0)</em>, <em>offset_origen_actor=(0</em>, <em>0)</em>, <em>cuando_dispara=None</em>, <em>escala=1</em>, <em>control=None</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Disparar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Disparar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Establece la habilidad de poder disparar un Actor o un objeto de tipo
+pilas.municion.Municion.</p>
+<dl class="method">
+<dt id="pilas.habilidades.Disparar.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em>, <em>municion=&lt;class 'pilas.actores.proyectil.Bala'&gt;</em>, <em>parametros_municion={}</em>, <em>grupo_enemigos=</em>, <span class="optional">[</span><span class="optional">]</span><em>cuando_elimina_enemigo=None</em>, <em>frecuencia_de_disparo=10</em>, <em>angulo_salida_disparo=0</em>, <em>offset_disparo=(0</em>, <em>0)</em>, <em>offset_origen_actor=(0</em>, <em>0)</em>, <em>cuando_dispara=None</em>, <em>escala=1</em>, <em>control=None</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Disparar.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Disparar.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Construye la habilidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>municion</strong> &#8211; Municion o Actor que se disparará.</li>
+<li><strong>grupo_enemigos</strong> &#8211; Actores que son considerados enemigos y con los que colisionará la munición disparada.</li>
+<li><strong>cuando_elimina_enemigo</strong> &#8211; Método que será llamado cuando se produzca un impacto con un enemigo.</li>
+<li><strong>frecuencia_de_disparo</strong> &#8211; El número de disparos por segundo que realizará.</li>
+<li><strong>angulo_salida_disparo</strong> &#8211; Especifica el angulo por donde saldrá el disparo efectuado por el Actor.</li>
+<li><strong>offset_disparo</strong> &#8211; Separación en pixeles (x,y) del disparo con respecto al centro del Actor.</li>
+<li><strong>offset_origen_actor</strong> &#8211; Si el Actor no tiene su origen en el centro, con este parametro podremos colocar correctamente el disparo.</li>
+<li><strong>cuando_dispara</strong> &#8211; Metodo que será llamado cuando se produzca un disparo.</li>
+<li><strong>escala</strong> &#8211; Escala de los actores que serán disparados.</li>
+<li><strong>control</strong> &#8211; Indica los controles que utiliza el actor para saber cuando pulsa el botón de disparar.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mono</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Disparar</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>              <span class="n">municion</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">proyectil</span><span class="o">.</span><span class="n">Bala</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>              <span class="n">grupo_enemigos</span><span class="o">=</span><span class="n">enemigos</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>              <span class="n">cuando_elimina_enemigo</span><span class="o">=</span><span class="n">eliminar_enemigo</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilas.habilidades.Disparar.frecuencia_de_disparo">
+<tt class="descname">frecuencia_de_disparo</tt><a class="headerlink" href="#pilas.habilidades.Disparar.frecuencia_de_disparo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Número de disparos por segundo.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilas.habilidades.Disparar.municion">
+<tt class="descname">municion</tt><a class="headerlink" href="#pilas.habilidades.Disparar.municion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Establece el tipo de municion que dispara.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.DispararConClick">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">DispararConClick</tt><big>(</big><em>*k</em>, <em>**kv</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#DispararConClick"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.DispararConClick" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Establece la habilidad de poder disparar un Actor o un objeto de tipo
+pilas.municion.Municion pulsando el boton izquierdo del ratón.</p>
+<dl class="method">
+<dt id="pilas.habilidades.DispararConClick.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*k</em>, <em>**kv</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#DispararConClick.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.DispararConClick.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.Habilidad">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">Habilidad</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Habilidad"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Habilidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Representa una habilidad que un actor puede aprender.</p>
+<dl class="method">
+<dt id="pilas.habilidades.Habilidad.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Habilidad.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Habilidad.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.Imitar">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">Imitar</tt><big>(</big><em>receptor</em>, <em>objeto_a_imitar</em>, <em>con_escala=True</em>, <em>con_rotacion=True</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Imitar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Imitar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Logra que el actor imite las propiedades de otro.</p>
+<dl class="method">
+<dt id="pilas.habilidades.Imitar.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em>, <em>objeto_a_imitar</em>, <em>con_escala=True</em>, <em>con_rotacion=True</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#Imitar.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.Imitar.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicializa la habilidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>receptor</strong> &#8211; Referencia al actor.</li>
+<li><strong>objeto_a_imitar</strong> &#8211; Cualquier objeto con atributos rotacion, x e y (por ejemplo otro actor).</li>
+<li><strong>con_rotacion</strong> &#8211; Si debe imitar o no la rotación.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.MirarAlActor">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">MirarAlActor</tt><big>(</big><em>receptor</em>, <em>actor_a_seguir</em>, <em>lado_seguimiento=270</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#MirarAlActor"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.MirarAlActor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>&#8220;Hace que un actor rote para mirar hacia otro actor.</p>
+<dl class="method">
+<dt id="pilas.habilidades.MirarAlActor.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em>, <em>actor_a_seguir</em>, <em>lado_seguimiento=270</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#MirarAlActor.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.MirarAlActor.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicializa la habilidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>receptor</strong> &#8211; Actor que aprenderá la habilidad.</td>
+</tr>
+</tbody>
+</table>
+<p>:param actor_a_seguir : Actor al que se desea seguir con la mirada.
+:param lado_seguimiento: Establece el lado del actor que rotará para estar encarado hacia el actor que desea vigilar.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.MoverseComoCoche">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">MoverseComoCoche</tt><big>(</big><em>receptor</em>, <em>control=None</em>, <em>velocidad_maxima=4</em>, <em>aceleracion=0.06</em>, <em>deceleracion=0.1</em>, <em>rozamiento=0</em>, <em>velocidad_rotacion=1</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#MoverseComoCoche"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.MoverseComoCoche" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace que un actor se mueva como un coche.</p>
+<dl class="method">
+<dt id="pilas.habilidades.MoverseComoCoche.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em>, <em>control=None</em>, <em>velocidad_maxima=4</em>, <em>aceleracion=0.06</em>, <em>deceleracion=0.1</em>, <em>rozamiento=0</em>, <em>velocidad_rotacion=1</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#MoverseComoCoche.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.MoverseComoCoche.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilas.habilidades.MoverseComoCoche.rozamiento">
+<tt class="descname">rozamiento</tt><a class="headerlink" href="#pilas.habilidades.MoverseComoCoche.rozamiento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define el rozamiento del coche con la superficie por donde circula.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.MoverseConElTeclado">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">MoverseConElTeclado</tt><big>(</big><em>receptor</em>, <em>control=None</em>, <em>direcciones=8</em>, <em>velocidad_maxima=4</em>, <em>aceleracion=1</em>, <em>deceleracion=0.1</em>, <em>con_rotacion=False</em>, <em>velocidad_rotacion=1</em>, <em>marcha_atras=True</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#MoverseConElTeclado"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.MoverseConElTeclado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace que un actor cambie de posición con pulsar el teclado.</p>
+<dl class="method">
+<dt id="pilas.habilidades.MoverseConElTeclado.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em>, <em>control=None</em>, <em>direcciones=8</em>, <em>velocidad_maxima=4</em>, <em>aceleracion=1</em>, <em>deceleracion=0.1</em>, <em>con_rotacion=False</em>, <em>velocidad_rotacion=1</em>, <em>marcha_atras=True</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#MoverseConElTeclado.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.MoverseConElTeclado.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicializa la habilidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>receptor</strong> &#8211; Referencia al actor que aprenderá la habilidad.</li>
+<li><strong>control</strong> &#8211; Control al que va a responder para mover el Actor.</li>
+<li><strong>direcciones</strong> &#8211; Establece si puede mover en cualquier direccion o unicamente en 4 direcciones arriba, abajo, izquierda y derecha. El parametro con_rotacion establece las direcciones a OCHO_DIRECCIONES siempre.</li>
+<li><strong>velocidad_maxima</strong> &#8211; Velocidad maxima en pixeles a la que se moverá el Actor.</li>
+<li><strong>aceleracion</strong> &#8211; Indica lo rapido que acelera el actor hasta su velocidad máxima.</li>
+<li><strong>deceleracion</strong> &#8211; Indica lo rapido que decelera el actor hasta parar.</li>
+<li><strong>con_rotacion</strong> &#8211; Si deseas que el actor rote pulsando las teclas de izquierda y derecha.</li>
+<li><strong>velocidad_rotacion</strong> &#8211; Indica lo rapido que rota un actor sobre si mismo.</li>
+<li><strong>marcha_atras</strong> &#8211; Posibilidad de ir hacia atrás. (True o False)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilas.habilidades.MoverseConElTeclado.aceleracion">
+<tt class="descname">aceleracion</tt><a class="headerlink" href="#pilas.habilidades.MoverseConElTeclado.aceleracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define la acelaracion.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilas.habilidades.MoverseConElTeclado.velocidad_maxima">
+<tt class="descname">velocidad_maxima</tt><a class="headerlink" href="#pilas.habilidades.MoverseConElTeclado.velocidad_maxima" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define la velocidad maxima.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.PerseguirAOtroActor">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">PerseguirAOtroActor</tt><big>(</big><em>receptor</em>, <em>objetivo</em>, <em>velocidad=5</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#PerseguirAOtroActor"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.PerseguirAOtroActor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace que un actor persiga a otro actor.
+No navega alrededor de obstaculos.</p>
+<dl class="method">
+<dt id="pilas.habilidades.PerseguirAOtroActor.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em>, <em>objetivo</em>, <em>velocidad=5</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#PerseguirAOtroActor.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.PerseguirAOtroActor.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.PisaPlataformas">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">PisaPlataformas</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#PisaPlataformas"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.PisaPlataformas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Enseña al actor a pisar plataformas físicas.</p>
+<dl class="method">
+<dt id="pilas.habilidades.PisaPlataformas.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#PisaPlataformas.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.PisaPlataformas.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.PuedeExplotar">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">PuedeExplotar</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#PuedeExplotar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.PuedeExplotar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace que un actor se pueda hacer explotar invocando al metodo eliminar.</p>
+<dl class="method">
+<dt id="pilas.habilidades.PuedeExplotar.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#PuedeExplotar.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.PuedeExplotar.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.RebotarComoCaja">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">RebotarComoCaja</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#RebotarComoCaja"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.RebotarComoCaja" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Le indica al actor que rebote y colisiones como una caja cuadrada.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">un_actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Aceituna</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">un_actor</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">RebotarComoPelota</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pilas.habilidades.RebotarComoCaja.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#RebotarComoCaja.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.RebotarComoCaja.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.RebotarComoPelota">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">RebotarComoPelota</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#RebotarComoPelota"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.RebotarComoPelota" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Le indica al actor que rebote y colisiones como una pelota.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">un_actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Aceituna</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">un_actor</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">RebotarComoPelota</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pilas.habilidades.RebotarComoPelota.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#RebotarComoPelota.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.RebotarComoPelota.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.RotarConMouse">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">RotarConMouse</tt><big>(</big><em>receptor</em>, <em>lado_seguimiento=270</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#RotarConMouse"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.RotarConMouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>&#8220;Hace que un actor rote con respecto a la posicion del mouse.</p>
+<p>Ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">actor</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">RotarConMouse</span><span class="p">,</span>
+<span class="go">                   lado_seguimiento=pilas.habilidades.RotarConMouse.ABAJO)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pilas.habilidades.RotarConMouse.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em>, <em>lado_seguimiento=270</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#RotarConMouse.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.RotarConMouse.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicializa la Habilidad</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>receptor</strong> &#8211; La referencia al actor.</li>
+<li><strong>lado_seguimiento</strong> &#8211; Establece el lado del actor que rotará para estar encarado hacia el puntero del mouse.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.SeMantieneEnPantalla">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">SeMantieneEnPantalla</tt><big>(</big><em>receptor</em>, <em>permitir_salida=True</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#SeMantieneEnPantalla"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.SeMantieneEnPantalla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Se asegura de que el actor regrese a la pantalla si sale o que no
+salga en nigún momento de la pantalla.</p>
+<p>Si el actor sale por la derecha de la pantalla, entonces regresa
+por la izquiera. Si sale por arriba regresa por abajo y asi...</p>
+<dl class="method">
+<dt id="pilas.habilidades.SeMantieneEnPantalla.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em>, <em>permitir_salida=True</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#SeMantieneEnPantalla.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.SeMantieneEnPantalla.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicializa la habilidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>receptor</strong> &#8211; El actor que aprenderá la habilidad.</li>
+<li><strong>permitir_salida</strong> &#8211; Valor booleano que establece si el actor puede salir por los lados de la ventana y regresar por el lado opuesto. Si se establece a False, el actor no puede salir de la ventana en ningún momento.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.SeguirAlMouse">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">SeguirAlMouse</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#SeguirAlMouse"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.SeguirAlMouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace que un actor siga la posición del mouse en todo momento.</p>
+<dl class="method">
+<dt id="pilas.habilidades.SeguirAlMouse.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#SeguirAlMouse.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.SeguirAlMouse.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.SeguirClicks">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">SeguirClicks</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#SeguirClicks"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.SeguirClicks" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace que el actor se coloque la posición del cursor cuando se hace click.</p>
+<dl class="method">
+<dt id="pilas.habilidades.SeguirClicks.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#SeguirClicks.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.SeguirClicks.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilas.habilidades.SiempreEnElCentro">
+<em class="property">class </em><tt class="descclassname">pilas.habilidades.</tt><tt class="descname">SiempreEnElCentro</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#SiempreEnElCentro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.SiempreEnElCentro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace que un actor siempre esté en el centro de la camara y la desplace
+cuando el actor se desplaza.</p>
+<dl class="method">
+<dt id="pilas.habilidades.SiempreEnElCentro.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>receptor</em><big>)</big><a class="reference internal" href="_modules/pilas/habilidades.html#SiempreEnElCentro.__init__"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.habilidades.SiempreEnElCentro.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="referencia.html"
+                        title="capítulo anterior">Referencia completa</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="desarrolladores.html"
+                        title="próximo capítulo">Guía para desarrolladores</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/referencia-habilidades.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="desarrolladores.html" title="Guía para desarrolladores"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="referencia.html" title="Referencia completa"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

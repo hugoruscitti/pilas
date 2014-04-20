@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Física &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Manejo de imágenes" href="imagen.html" />
+    <link rel="prev" title="Colisiones" href="colisiones.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="imagen.html" title="Manejo de imágenes"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="colisiones.html" title="Colisiones"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="fisica">
+<h1>Física<a class="headerlink" href="#fisica" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Pilas incluye integración con un sistema de física
+para realizar simulaciones y dotar a tus juegos
+de mas realismo y diversión.</p>
+<div class="section" id="el-protagonista-es-box2d">
+<h2>El protagonista es Box2D<a class="headerlink" href="#el-protagonista-es-box2d" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El motor de física seleccionado para pilas se llama Box2D, el mismo
+motor de física utilizado en el juego Angry Birds.</p>
+<p>Así, Box2D y PyBox2D son las bibliotecas protagonistas
+de casi toda la funcionalidad que vas a ver en este módulo.</p>
+<p>El módulo <tt class="docutils literal"><span class="pre">pilas.fisica</span></tt> es solamente un facilitador para utilizar Box2D, y
+que puedas comenzar a jugar con físicas rápidamente.</p>
+<p>Así que aprovecho este espacio para dar las gracias a <strong>Erin Catto</strong>, y
+su grupo de desarrollo por haber creado <strong>Box2D</strong>.</p>
+</div>
+<div class="section" id="unos-ejemplos">
+<h2>Unos ejemplos<a class="headerlink" href="#unos-ejemplos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El motor de física se puede mostrar en funcionamiento
+usando un ejemplo, escribe el siguiente código:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pelotas</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Pelota</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>esto creará un grupo de circunferencias que rebotarán
+hasta la parte inferior de la pantalla.</p>
+<p>De manera similar puedes crear un montón de cajas y
+hacerlas rebotar:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">cajas</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Caja</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>Como puedes ver, el resultado es un grupo caótico
+de actores chocando entre sí. Mas adelante veremos
+como personalizar y &#8220;controlar&#8221; un poco el escenario.</p>
+<img alt="_images/fisica.jpg" src="_images/fisica.jpg" />
+<p>Los actores que tienen física son un poco particulares, pero
+aún así se los puede tratar como a otros actores. Por
+ejemplo, si quieres poder arrastrar y soltar figuras con
+el mouse, puedes enseñarles una habilidad:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pelotas</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Arrastrable</span><span class="p">)</span>
+<span class="n">cajas</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Arrastrable</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modo-depuracion-de-fisica">
+<h2>Modo depuración de física<a class="headerlink" href="#modo-depuracion-de-fisica" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Cuando haces juegos con física o movimientos realistas es
+muy importante tener en cuenta un concepto importate:</p>
+<p>Si bien uno observa pelotas y cajas, en realidad, internamente
+son solo cuadrados y circunferencias.</p>
+<p>Lo que ocurre en pantalla son dos cosas, por una lado vemos imágenes
+con aspecto de caja o pelota, y por el otro se nos oculta una
+simulación entre polígonos mucho mas primitiva y simple.</p>
+<p>Observa esta escena:</p>
+<img alt="_images/fisica_1.jpg" src="_images/fisica_1.jpg" />
+<p>Cada uno de esos actores está asociado a una figura
+geométrica, la física en realidad se da en un nivel muy
+primitivo de figuras. El aspecto de las cosas es
+solo eso, un aspecto. Lo que &#8220;manda&#8221; en el comportamiento
+físico son las figuras geométricas (cuerpos).</p>
+<p>Intenta lo siguiente, pulsa la tecla <strong>F11</strong> y observarás
+varias lineas de color rojo indicando las figuras de
+los cuerpos:</p>
+<img alt="_images/fisica_2.jpg" src="_images/fisica_2.jpg" />
+<p>Las lineas rojas indican polígonos que el
+motor de física puede controlar, las cajas tienen forma
+rectangular, los actores Pelota tienen figuras circulares, y
+el suelo y las paredes también están en el sistema de física.</p>
+<p>Si por algún motivo quieres que los objetos no estén contenidos
+en la pantalla, y sean un poco mas libres, podrías eliminar
+las paredes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">eliminar_paredes</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>o incluso podrías eliminar el suelo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">eliminar_suelo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Pero recuerda que los objetos que no se ven en la pantalla
+de todas maneras estarán ahí. Una buena idea es eliminarlos
+ni bien los dejas de usar.</p>
+</div>
+<div class="section" id="fisica-personalizada">
+<h2>Física personalizada<a class="headerlink" href="#fisica-personalizada" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los actores <tt class="docutils literal"><span class="pre">Pelota</span></tt> y <tt class="docutils literal"><span class="pre">Caja</span></tt> están bien para simulaciones
+simples y generales. Pero, ¿cómo podemos dotar a nuestros
+propios actores de ese comportamiento?.</p>
+<p>Los objetos o figuras físicas viven dentro del módulo de física
+y son invisibles (al principio), pero luego se pueden vincular
+a cualquier actor con facilidad.</p>
+<p>Intenta lo siguiente, ingresa en el modo interactivo de pilas
+y pulsa la tecla <strong>F11</strong>. Tendrías que ver el texto
+&#8220;F11 ModoFisica habilitado.&#8221;
+en la esquina superior de la ventana:</p>
+<img alt="_images/fisica_personalizada_1.jpg" src="_images/fisica_personalizada_1.jpg" />
+<p>Ahora genera dos figuras físicas, una circunferencia estática
+y otra dinámica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">circulo</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">Circulo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">dinamica</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">circulo_dinamico</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">Circulo</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El primer círculo aparecerá en el centro de la ventana, y el
+segundo comenzará en la posición <tt class="docutils literal"><span class="pre">(10,</span> <span class="pre">200)</span></tt>, es decir,
+en la parte superior de la ventana y luego caerá
+rebotando. Algo así:</p>
+<img alt="_images/fisica_personalizada_2.jpg" src="_images/fisica_personalizada_2.jpg" />
+<p>Ahora bien, habrás notado que estas dos circunferencias las
+podemos ver porque está habilitado el módulo de depuración (que
+activamos con <strong>F11</strong>), pero esto no lo va a ver alguien que juegue
+a nuestro juego. El modo depuración es solo para desarrolladores.</p>
+<p>Lo que nos falta hacer, es darles apariencia a esas figuras. Algo
+así como una piel..</p>
+<p>Para esto podemos usar actores. La dinámica es así, tenemos que
+crear dos actores, y luego decirle a estos actores que se comporten
+cómo figuras geométricas.</p>
+<p>Agreguemos a nuestro programa estas 4 lineas de código, queremos
+que el primer circulo (el del centro) sea un mono, y el otro
+círculo que sea una bomba:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="n">mono</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Imitar</span><span class="p">(</span><span class="n">circulo</span><span class="p">))</span>
+
+<span class="n">bomba</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Bomba</span><span class="p">()</span>
+<span class="n">bomba</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Imitar</span><span class="p">,</span> <span class="n">circulo_dinamico</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Esto es diferente a lo anterior, los objetos físicos ahora
+tienen apariencia:</p>
+<img alt="_images/fisica_personalizada_3.jpg" src="_images/fisica_personalizada_3.jpg" />
+<p>Ahora podríamos desactivar el modo depuración física (pulsando
+nuevamente <strong>F11</strong>) y jugar un poco impulsando la bomba de un
+lado a otro:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">circulo_dinamico</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">200</span>
+</pre></div>
+</div>
+<p>Ten en cuenta que ahora la figura del motor físico es la
+que determina el movimiento y la rotación, así que ya no
+funcionará escribir algo cómo <tt class="docutils literal"><span class="pre">bomba.y</span> <span class="pre">=</span> <span class="pre">200</span></tt>, ahora tienes
+que escribir <tt class="docutils literal"><span class="pre">circulo_dinamico.y</span> <span class="pre">=</span> <span class="pre">200</span></tt> para mover al actor...</p>
+<p>Otra cosa a considerar, es que en nuestro ejemplo no ajustamos
+muy bien el tamaño del <tt class="docutils literal"><span class="pre">circulo_dinamico</span></tt> con el de la
+bomba. Esto es un detalle poco relevante aquí, porque solo
+quiero explicar cómo se usa el motor, pero cuando hagas tus
+juegos, recuerda usar el modo depuración de física para detectar
+estos detalles y corregirlos, son muy importantes para que
+tus usuarios disfruten del juego. Recuerda que ellos no
+verán los círculos rojos... solo verán la apariencia
+de los actores.</p>
+</div>
+<div class="section" id="escala-real-y-tamano-de-figuras">
+<h2>Escala real y tamaño de figuras<a class="headerlink" href="#escala-real-y-tamano-de-figuras" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Pilas utiliza una pantalla que se puede medir en pixels, de hecho, todas
+las imágenes tienen un tamaño en pixels predefinido.</p>
+<p>Pero dentro del mundo físico de box2d, las figuras no tienen tamaño en pixels
+sino en metros.</p>
+<p>¿Cual es la relación?, pilas convierte pixels a metros para mantener al mundo
+de box2D en coherencia con lo que estamos viendo en pantalla.</p>
+<p>30 pixels son equivalentes a 1 metro:</p>
+<img alt="_images/escalas.png" src="_images/escalas.png" />
+</div>
+<div class="section" id="cambiando-la-gravedad-interactivamente">
+<h2>Cambiando la gravedad interactivamente<a class="headerlink" href="#cambiando-la-gravedad-interactivamente" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Por defecto, la gravedad del escenario es de (0, -90), esto
+significa que los objetos &#8220;caen&#8221; hacia abajo, y lo hacen con
+una aceleración de 90 mts/s^2 (metros sobre segundos cuadrados).</p>
+<p>Pero no estás obligado a que esto sea siempre así, de hecho
+si quieres hacer un juego que transcurra en el espacio seguramente
+vas a querer eliminar por completo la gravedad del escenario
+para que los objetos puedan &#8220;flotar&#8221;, ¿no?.</p>
+<p>Entonces, hay dos formas de cambiar la gravedad del escenario. Podrías
+cambiar la gravedad en cualquier momento invocando a la función
+<tt class="docutils literal"><span class="pre">definir_gravedad</span></tt> indicando la nueva gravedad, por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">atajos</span><span class="o">.</span><span class="n">definir_gravedad</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>o directamente especificar la gravedad cuando inicias pilas, por
+ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">definir_gravedad</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ten en cuenta que el primer argumento es la aceleración horizontal y
+la segunda componente es la aceleración vertical. Los valores originales
+de la gravedad son <tt class="docutils literal"><span class="pre">0</span></tt> y <tt class="docutils literal"><span class="pre">-90</span></tt>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Física</a><ul>
+<li><a class="reference internal" href="#el-protagonista-es-box2d">El protagonista es Box2D</a></li>
+<li><a class="reference internal" href="#unos-ejemplos">Unos ejemplos</a></li>
+<li><a class="reference internal" href="#modo-depuracion-de-fisica">Modo depuración de física</a></li>
+<li><a class="reference internal" href="#fisica-personalizada">Física personalizada</a></li>
+<li><a class="reference internal" href="#escala-real-y-tamano-de-figuras">Escala real y tamaño de figuras</a></li>
+<li><a class="reference internal" href="#cambiando-la-gravedad-interactivamente">Cambiando la gravedad interactivamente</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="colisiones.html"
+                        title="capítulo anterior">Colisiones</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="imagen.html"
+                        title="próximo capítulo">Manejo de imágenes</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/fisica.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="imagen.html" title="Manejo de imágenes"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="colisiones.html" title="Colisiones"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

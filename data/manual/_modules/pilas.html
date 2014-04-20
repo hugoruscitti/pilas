@@ -1,0 +1,387 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>pilas &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="../../_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="../index.html" />
+    <link rel="up" title="Código de módulo" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li><a href="../index.html">pilas</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Código de módulo</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Código fuente para pilas</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+<span class="c"># pilas engine - a video game framework.</span>
+<span class="c">#</span>
+<span class="c"># copyright 2010 - hugo ruscitti</span>
+<span class="c"># license: lgplv3 (see http://www.gnu.org/licenses/lgpl.html)</span>
+<span class="c">#</span>
+<span class="c"># website - http://www.pilas-engine.com.ar</span>
+
+<span class="n">mundo</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">bg</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">utils</span>
+<span class="kn">from</span> <span class="nn">mundo</span> <span class="kn">import</span> <span class="n">Mundo</span>
+<span class="kn">import</span> <span class="nn">actores</span>
+<span class="kn">import</span> <span class="nn">grupo</span>
+<span class="kn">import</span> <span class="nn">escena</span>
+<span class="kn">import</span> <span class="nn">fondos</span>
+<span class="kn">import</span> <span class="nn">habilidades</span>
+<span class="kn">import</span> <span class="nn">sonidos</span>
+<span class="kn">import</span> <span class="nn">musica</span>
+<span class="kn">import</span> <span class="nn">colores</span>
+<span class="kn">import</span> <span class="nn">demos</span>
+<span class="kn">import</span> <span class="nn">atajos</span>
+<span class="kn">import</span> <span class="nn">interfaz</span>
+<span class="kn">import</span> <span class="nn">interprete</span>
+<span class="kn">import</span> <span class="nn">manual</span>
+<span class="kn">import</span> <span class="nn">tutoriales</span>
+<span class="kn">import</span> <span class="nn">municion</span>
+<span class="kn">import</span> <span class="nn">dev</span>
+<span class="kn">from</span> <span class="nn">pilas.escena</span> <span class="kn">import</span> <span class="n">Normal</span>
+
+<span class="c"># Permite cerrar el programa usando CTRL+C</span>
+<span class="kn">import</span> <span class="nn">signal</span>
+<span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIG_DFL</span><span class="p">)</span>
+
+
+<span class="n">__doc__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">Módulo pilas</span>
+<span class="s">============</span>
+
+<span class="s">Pilas es una biblioteca para facilitar el desarrollo</span>
+<span class="s">de videojuegos. Es útil para programadores</span>
+<span class="s">principiantes o para el desarrollo de juegos casuales.</span>
+
+<span class="s">Este módulo contiene las funciones principales</span>
+<span class="s">para iniciar y ejecutar la biblioteca.</span>
+<span class="s">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="iniciar"><a class="viewcode-back" href="../referencia.html#pilas.iniciar">[documentos]</a><span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="n">ancho</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">alto</span><span class="o">=</span><span class="mi">480</span><span class="p">,</span> <span class="n">titulo</span><span class="o">=</span><span class="s">&#39;Pilas&#39;</span><span class="p">,</span> <span class="n">usar_motor</span><span class="o">=</span><span class="s">&#39;qtgl&#39;</span><span class="p">,</span>
+            <span class="n">rendimiento</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">modo</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">area_fisica</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">gravedad</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="n">pantalla_completa</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">permitir_depuracion</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">audio</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">centrado</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inicia la ventana principal del juego con algunos detalles de funcionamiento.</span>
+
+<span class="sd">    Ejemplo de invocación:</span>
+
+<span class="sd">        &gt;&gt;&gt; pilas.iniciar(ancho=320, alto=240)</span>
+
+<span class="sd">    .. image:: images/iniciar_320_240.png</span>
+
+<span class="sd">    Parámetros:</span>
+
+<span class="sd">    :ancho: el tamaño en pixels para la ventana.</span>
+<span class="sd">    :alto: el tamaño en pixels para la ventana.</span>
+<span class="sd">    :titulo: el titulo a mostrar en la ventana.</span>
+<span class="sd">    :usar_motor: el motor multimedia a utilizar, puede ser &#39;qt&#39;, &#39;qtgl&#39;, &#39;qtsugar&#39; o &#39;qtsugargl&#39;.</span>
+<span class="sd">    :rendimiento: cantidad de cuadros por segundo a mostrar.</span>
+<span class="sd">    :modo: si se utiliza modo interactivo o no.</span>
+<span class="sd">    :area_fisica: recibe una tupla con el ancho y el alto que tendra el mundo de fisica, por defecto sera el tamaño de la ventana</span>
+<span class="sd">    :gravedad: el vector de aceleracion para la simulacion de fisica.</span>
+<span class="sd">    :pantalla_completa: si debe usar pantalla completa o no.</span>
+<span class="sd">    :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12</span>
+<span class="sd">    :audio: selecciona el motor de sonido a utilizar, los valores permitidos son &#39;deshabilitado&#39;, &#39;pygame&#39;, &#39;phonon&#39; o &#39;gst&#39;.</span>
+<span class="sd">    :centrado: Indica si se desea centrar la ventana de pilas.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">global</span> <span class="n">mundo</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">esta_inicializada</span><span class="p">():</span>
+        <span class="n">configuracion</span> <span class="o">=</span> <span class="n">obtener_configuracion</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">usar_motor</span><span class="p">:</span>
+            <span class="n">usar_motor</span> <span class="o">=</span> <span class="n">configuracion</span><span class="p">[</span><span class="s">&#39;usar_motor&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">audio</span><span class="p">:</span>
+            <span class="n">audio</span> <span class="o">=</span> <span class="n">configuracion</span><span class="p">[</span><span class="s">&#39;audio&#39;</span><span class="p">]</span>
+
+        <span class="n">motor</span> <span class="o">=</span> <span class="n">_crear_motor</span><span class="p">(</span><span class="n">usar_motor</span><span class="p">,</span> <span class="n">permitir_depuracion</span><span class="p">,</span> <span class="n">audio</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">motor</span><span class="p">:</span>
+            <span class="n">mundo</span> <span class="o">=</span> <span class="n">Mundo</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span> <span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">rendimiento</span><span class="p">,</span> <span class="n">area_fisica</span><span class="p">,</span> <span class="n">gravedad</span><span class="p">,</span> <span class="n">pantalla_completa</span><span class="p">,</span> <span class="n">centrado</span><span class="p">)</span>
+            <span class="n">mundo</span><span class="o">.</span><span class="n">gestor_escenas</span><span class="o">.</span><span class="n">cambiar_escena</span><span class="p">(</span><span class="n">Normal</span><span class="p">())</span>
+
+            <span class="k">if</span> <span class="n">_usa_interprete_lanas</span><span class="p">():</span>
+                <span class="n">mundo</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mundo</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">modificar_ventana</span><span class="p">(</span><span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">pantalla_completa</span><span class="p">)</span>
+        <span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">definir_gravedad</span><span class="p">(</span><span class="o">*</span><span class="n">gravedad</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="esta_inicializada"><a class="viewcode-back" href="../referencia.html#pilas.esta_inicializada">[documentos]</a><span class="k">def</span> <span class="nf">esta_inicializada</span><span class="p">():</span>
+    <span class="s">&quot;Indica si la biblioteca pilas ha sido inicializada con pilas.iniciar()&quot;</span>
+    <span class="k">global</span> <span class="n">mundo</span>
+    <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mundo</span><span class="p">,</span> <span class="n">Mundo</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="iniciar_con_lanzador"><a class="viewcode-back" href="../referencia.html#pilas.iniciar_con_lanzador">[documentos]</a><span class="k">def</span> <span class="nf">iniciar_con_lanzador</span><span class="p">(</span><span class="n">ancho</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">alto</span><span class="o">=</span><span class="mi">480</span><span class="p">,</span> <span class="n">titulo</span><span class="o">=</span><span class="s">&#39;Pilas&#39;</span><span class="p">,</span> <span class="n">rendimiento</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                         <span class="n">modo</span><span class="o">=</span><span class="s">&#39;detectar&#39;</span><span class="p">,</span> <span class="n">area_fisica</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">gravedad</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="n">imagen</span><span class="o">=</span><span class="s">&quot;asistente.png&quot;</span><span class="p">,</span>
+                         <span class="n">permitir_depuracion</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Identica a la función iniciar, solo que permite al usuario seleccionar</span>
+<span class="sd">    el motor multimedia y el modo de video a utilizar.</span>
+
+<span class="sd">    Esta función es útil cuando se quiere distribuir un juego y no se conoce</span>
+<span class="sd">    exáctamente el equipo del usuario.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">lanzador</span>
+
+    <span class="n">usar_motor</span><span class="p">,</span> <span class="n">pantalla_completa</span><span class="p">,</span> <span class="n">audio</span> <span class="o">=</span> <span class="n">lanzador</span><span class="o">.</span><span class="n">ejecutar</span><span class="p">(</span><span class="n">imagen</span><span class="p">,</span> <span class="n">titulo</span><span class="p">)</span>
+    <span class="n">iniciar</span><span class="p">(</span><span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">usar_motor</span><span class="p">,</span> <span class="n">rendimiento</span><span class="p">,</span> <span class="n">modo</span><span class="p">,</span> <span class="n">area_fisica</span><span class="p">,</span> <span class="n">gravedad</span><span class="p">,</span> <span class="n">pantalla_completa</span><span class="p">,</span> <span class="n">permitir_depuracion</span><span class="p">,</span> <span class="n">audio</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="abrir_asistente"><a class="viewcode-back" href="../referencia.html#pilas.abrir_asistente">[documentos]</a><span class="k">def</span> <span class="nf">abrir_asistente</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Abre una ventana que permite iniciar pilas graficamente.</span>
+
+<span class="sd">    Las opciones que ofrece son &quot;leer el manual&quot; (si esta disponible),</span>
+<span class="sd">    &quot;abrir un interprete&quot;, &quot;explorar los ejemplos&quot; etc.</span>
+
+<span class="sd">    Esta ventana se ha diseñado para mostrarse a los nuevos usuarios</span>
+<span class="sd">    de pilas, por ejemplo cuando eligen abrir pilas desde el icono principal.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">asistente</span>
+    <span class="n">asistente</span><span class="o">.</span><span class="n">ejecutar</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="ejecutar"><a class="viewcode-back" href="../referencia.html#pilas.ejecutar">[documentos]</a><span class="k">def</span> <span class="nf">ejecutar</span><span class="p">(</span><span class="n">ignorar_errores</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Pone en funcionamiento las actualizaciones y dibujado.</span>
+
+<span class="sd">    Esta función es necesaria cuando se crea un juego</span>
+<span class="sd">    en modo ``no-interactivo``.&quot;&quot;&quot;</span>
+    <span class="n">mundo</span><span class="o">.</span><span class="n">ejecutar_bucle_principal</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="terminar"><a class="viewcode-back" href="../referencia.html#pilas.terminar">[documentos]</a><span class="k">def</span> <span class="nf">terminar</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Finaliza la ejecución de pilas y cierra la ventana principal.&quot;&quot;&quot;</span>
+    <span class="n">mundo</span><span class="o">.</span><span class="n">terminar</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="ver"><a class="viewcode-back" href="../referencia.html#pilas.ver">[documentos]</a><span class="k">def</span> <span class="nf">ver</span><span class="p">(</span><span class="n">objeto</span><span class="p">,</span> <span class="n">imprimir</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">retornar</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Imprime en pantalla el codigo fuente asociado a un objeto.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">ver_codigo</span><span class="p">(</span><span class="n">objeto</span><span class="p">,</span> <span class="n">imprimir</span><span class="p">,</span> <span class="n">retornar</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="version"><a class="viewcode-back" href="../referencia.html#pilas.version">[documentos]</a><span class="k">def</span> <span class="nf">version</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Retorna el número de version de pilas.&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">pilasversion</span>
+    <span class="k">return</span> <span class="n">pilasversion</span><span class="o">.</span><span class="n">VERSION</span>
+
+</div>
+<span class="k">def</span> <span class="nf">_crear_motor</span><span class="p">(</span><span class="n">usar_motor</span><span class="p">,</span> <span class="n">permitir_depuracion</span><span class="p">,</span> <span class="n">audio</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Genera instancia del motor multimedia en base a un nombre.</span>
+
+<span class="sd">    Esta es una función interna y no debe ser ejecutada</span>
+<span class="sd">    excepto por el mismo motor pilas.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">usar_motor</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;qt&#39;</span><span class="p">,</span> <span class="s">&#39;qtgl&#39;</span><span class="p">,</span> <span class="s">&#39;qtwidget&#39;</span><span class="p">,</span> <span class="s">&#39;qtsugar&#39;</span><span class="p">,</span> <span class="s">&#39;qtsugargl&#39;</span><span class="p">]:</span>
+        <span class="kn">from</span> <span class="nn">motores</span> <span class="kn">import</span> <span class="n">motor_qt</span>
+
+        <span class="k">if</span> <span class="n">_usa_interprete_lanas</span><span class="p">():</span>
+            <span class="n">usar_motor</span> <span class="o">=</span> <span class="s">&#39;qtsugar&#39;</span>
+
+        <span class="n">motor</span> <span class="o">=</span> <span class="n">motor_qt</span><span class="o">.</span><span class="n">Motor</span><span class="p">(</span><span class="n">usar_motor</span><span class="p">,</span> <span class="n">permitir_depuracion</span><span class="p">,</span> <span class="n">audio</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;El motor multimedia seleccionado (</span><span class="si">%s</span><span class="s">) no esta disponible&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">usar_motor</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&quot;Las opciones de motores que puedes probar son &#39;qt&#39;, &#39;qtgl&#39;, &#39;qtwidget&#39;, &#39;qtsugar&#39; y &#39;qtsugargl&#39;.&quot;</span>
+        <span class="n">motor</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">return</span> <span class="n">motor</span>
+
+
+<span class="k">def</span> <span class="nf">_usa_interprete_lanas</span><span class="p">():</span>
+    <span class="s">&quot;Retorna True si se ha iniciado pilas desde lanas&quot;</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="k">return</span> <span class="s">&#39;lanas&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span>
+
+
+<div class="viewcode-block" id="reiniciar"><a class="viewcode-back" href="../referencia.html#pilas.reiniciar">[documentos]</a><span class="k">def</span> <span class="nf">reiniciar</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Elimina todos los actores y vuelve al estado inicial.&quot;&quot;&quot;</span>
+    <span class="n">mundo</span><span class="o">.</span><span class="n">reiniciar</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="avisar"><a class="viewcode-back" href="../referencia.html#pilas.avisar">[documentos]</a><span class="k">def</span> <span class="nf">avisar</span><span class="p">(</span><span class="n">mensaje</span><span class="p">,</span> <span class="n">retraso</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Emite un mensaje en la ventana principal.</span>
+
+<span class="sd">    Este mensaje aparecerá en la parte inferior de la pantalla durante</span>
+<span class="sd">    5 segundo, por ejemplo:</span>
+
+<span class="sd">        &gt;&gt;&gt; pilas.avisar(&quot;Use la tecla &lt;esc&gt; para terminar el programa&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">actores</span><span class="o">.</span><span class="n">TextoInferior</span><span class="p">(</span><span class="n">mensaje</span><span class="p">,</span> <span class="n">autoeliminar</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">retraso</span><span class="o">=</span><span class="n">retraso</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="abrir_cargador"><a class="viewcode-back" href="../referencia.html#pilas.abrir_cargador">[documentos]</a><span class="k">def</span> <span class="nf">abrir_cargador</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Abre un cargador de ejemplos con varios códigos de prueba.</span>
+
+<span class="sd">    Ejemplo:</span>
+
+<span class="sd">        &gt;&gt;&gt; pilas.abrir_cargador()</span>
+
+<span class="sd">    El cargador de ejemplos se ve de esta forma:</span>
+
+<span class="sd">    .. image:: images/cargador.png</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">ejemplos</span>
+        <span class="n">ejemplos</span><span class="o">.</span><span class="n">ejecutar</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Lo siento, no tienes instalada la extesion de ejemplos.&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;Instale el paquete &#39;pilas-examples&#39; para continuar.&quot;</span>
+
+    <span class="k">return</span> <span class="p">[]</span>
+
+</div>
+<div class="viewcode-block" id="abrir_interprete"><a class="viewcode-back" href="../referencia.html#pilas.abrir_interprete">[documentos]</a><span class="k">def</span> <span class="nf">abrir_interprete</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">do_raise</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">con_aplicacion</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Abre un intérprete interactivo de python con una ventana.</span>
+
+<span class="sd">    Esta función se ejecuta cuando un usuario escribe::</span>
+
+<span class="sd">        pilas -i</span>
+
+<span class="sd">    en una consola del sistema.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">con_aplicacion</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">setApplicationName</span><span class="p">(</span><span class="s">&quot;pilas-engine&quot;</span><span class="p">)</span>
+
+    <span class="n">interprete</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">do_raise</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">app</span>
+
+</div>
+<span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="o">*</span><span class="n">parametros</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">mundo</span>
+    <span class="n">mundo</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">parametros</span><span class="p">)</span>
+
+<span class="n">interpolar</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">interpolar</span>
+
+
+<span class="k">def</span> <span class="nf">escena_actual</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">mundo</span><span class="o">.</span><span class="n">gestor_escenas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">cambiar_escena</span><span class="p">(</span><span class="n">escena</span><span class="p">):</span>
+    <span class="n">mundo</span><span class="o">.</span><span class="n">gestor_escenas</span><span class="o">.</span><span class="n">cambiar_escena</span><span class="p">(</span><span class="n">escena</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">almacenar_escena</span><span class="p">(</span><span class="n">escena</span><span class="p">):</span>
+    <span class="n">mundo</span><span class="o">.</span><span class="n">gestor_escenas</span><span class="o">.</span><span class="n">almacenar_escena</span><span class="p">(</span><span class="n">escena</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">recuperar_escena</span><span class="p">():</span>
+    <span class="n">mundo</span><span class="o">.</span><span class="n">gestor_escenas</span><span class="o">.</span><span class="n">recuperar_escena</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="obtener_configuracion"><a class="viewcode-back" href="../referencia.html#pilas.obtener_configuracion">[documentos]</a><span class="k">def</span> <span class="nf">obtener_configuracion</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Retorna la configuración del usuario almacenada en su directorio HOME.</span>
+
+<span class="sd">    La configuración permite definir los valores por omisión cuando</span>
+<span class="sd">    se abre la ventana de pilas. Por ejemplo, si se llama a ``pilas.iniciar()``</span>
+<span class="sd">    sin argumentos, los valores de &#39;motor&#39; o &#39;sistema de sonido&#39; a utilizar</span>
+<span class="sd">    se cargarán desde esa configuración.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">opciones</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">opciones</span><span class="p">[</span><span class="s">&#39;usar_motor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;qtgl&#39;</span>
+    <span class="n">opciones</span><span class="p">[</span><span class="s">&#39;audio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;pygame&#39;</span>
+    <span class="k">return</span> <span class="n">opciones</span>
+
+<span class="c"># Representa el viejo acceso al modulo eventos, pero convierte cada uno</span>
+<span class="c"># de los eventos en una referencia al evento dentro de la escena actual.</span></div>
+<span class="kn">from</span> <span class="nn">evento</span> <span class="kn">import</span> <span class="n">ProxyEventos</span>
+<span class="n">eventos</span> <span class="o">=</span> <span class="n">ProxyEventos</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li><a href="../index.html">pilas</a> &raquo;</li>
+          <li><a href="index.html" >Código de módulo</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

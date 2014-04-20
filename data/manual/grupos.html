@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Grupos &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Colisiones" href="colisiones.html" />
+    <link rel="prev" title="Empezando, los primeros pasos con pilas" href="empezando.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="colisiones.html" title="Colisiones"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="empezando.html" title="Empezando, los primeros pasos con pilas"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="grupos">
+<h1>Grupos<a class="headerlink" href="#grupos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Ahora que podemos manejar a los actores de manera individual. Vamos
+a ver cómo organizarlos en grupos.</p>
+<p>Organizar a los actores en grupo es de utilidad, porque generalmente
+es una buena idea agrupar a los actores por características y
+tratarlos a todos por igual. Por ejemplo, en un juego de naves
+podríamos tener un grupo de naves, un grupo de estrellas y un
+grupo de disparos.</p>
+<div class="section" id="creando-grupos-de-actores">
+<h2>Creando grupos de actores<a class="headerlink" href="#creando-grupos-de-actores" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para crear varios actores de una misma clase
+podríamos ejecutar algo como lo que sigue:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bombas</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Bomba</span><span class="p">()</span> <span class="o">*</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>es decir, creamos un actor y luego lo multiplicamos
+para construir un grupo con muchos actores de la misma
+especie.</p>
+<p>Al crear un grupo de esta forma, todos los actores
+se colocarán en posiciones aleatorias.</p>
+<p>Esto es lo que veríamos en la ventana de pilas:</p>
+<img alt="_images/grupos_bombas.jpg" src="_images/grupos_bombas.jpg" />
+<p>A partir de ahora, la referencia <tt class="docutils literal"><span class="pre">bombas</span></tt> nos servirá para
+controlar a todas las bombas al mismo tiempo.</p>
+<p>Esta referencia es parecida a una lista de python
+normal. Así que podríamos contar cuantas bombas
+hay en la escena, o recorrer el grupo haciendo algo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;hay&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">bombas</span><span class="p">),</span> <span class="s">&quot;bombas&quot;</span>
+<span class="go">hay 5 bombas</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">una_bomba</span> <span class="ow">in</span> <span class="n">bombas</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span> <span class="n">una_bomba</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">una_bomba</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>Ahora bien, algo que hace un poquito diferente a los
+grupos de las listas de python, es que los grupos
+te permiten alterar a varios actores al mismo tiempo
+con mas facilidad.</p>
+<p>Por ejemplo, imagina que quieres hacer que todas las
+bombas aparezcan en el centro de la ventana. Podrías
+hacer algo cómo esto:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bombas</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Y en la ventana obtendremos:</p>
+<img alt="_images/grupos_bombas_x.jpg" src="_images/grupos_bombas_x.jpg" />
+<p>Incluso, les podríamos enseñar a las bombas a reaccionar
+como si fueran pelotas, es decir, que reboten e interactúen
+con la aceleración gravitatoria:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bombas</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">RebotarComoPelota</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ahora tendrás algo mucho mas interesante, un montón de
+actores rebotando entre sí:</p>
+<img alt="_images/grupos_bombas_como_pelota.jpg" src="_images/grupos_bombas_como_pelota.jpg" />
+<p>Un consejo, la gravedad del escenario se puede modificar
+usando una sentencia como la que sigue:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">atajos</span><span class="o">.</span><span class="n">definir_gravedad</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>donde el primer argumento es la gravedad horizontal, en este caso 200 es hacia
+la derecha, y el segundo argumento es la gravedad vertical, que suele ser de -90
+en general.</p>
+<p>Pruebalo, es divertido!</p>
+</div>
+<div class="section" id="creando-un-grupo-para-distintos-actores">
+<h2>Creando un grupo para distintos actores<a class="headerlink" href="#creando-un-grupo-para-distintos-actores" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hay ocasiones, donde quieres tener un grupo
+desde cero e ir agregando actores en él.</p>
+<p>Esto se puede hacer fácilmente, e incluso
+abre las puertas a que puedas mezclar actores
+de distintas especies.</p>
+<p>Para crear un grupo vacío tienes que crear
+un objeto de la clase Grupo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mi_grupo</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">grupo</span><span class="o">.</span><span class="n">Grupo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>y luego, para añadir actores al grupo puedes usar el
+método <tt class="docutils literal"><span class="pre">append</span></tt> e indicar la referencia del actor
+que quieres agregar:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bomba</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Bomba</span><span class="p">()</span>
+<span class="n">pelota</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Pelota</span><span class="p">()</span>
+
+<span class="n">mi_grupo</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bomba</span><span class="p">)</span>
+<span class="n">mi_grupo</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pelota</span><span class="p">)</span>
+
+<span class="n">mi_grupo</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<img alt="_images/grupos_personalizado_escala.jpg" src="_images/grupos_personalizado_escala.jpg" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Grupos</a><ul>
+<li><a class="reference internal" href="#creando-grupos-de-actores">Creando grupos de actores</a></li>
+<li><a class="reference internal" href="#creando-un-grupo-para-distintos-actores">Creando un grupo para distintos actores</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="empezando.html"
+                        title="capítulo anterior">Empezando, los primeros pasos con pilas</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="colisiones.html"
+                        title="próximo capítulo">Colisiones</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/grupos.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="colisiones.html" title="Colisiones"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="empezando.html" title="Empezando, los primeros pasos con pilas"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

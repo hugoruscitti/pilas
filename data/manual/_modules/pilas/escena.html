@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>pilas.escena &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="../../../../_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="../../index.html" />
+    <link rel="up" title="pilas" href="../pilas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li><a href="../../index.html">pilas</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
+          <li><a href="../pilas.html" accesskey="U">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Código fuente para pilas.escena</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Módulo pilas.escena</span>
+<span class="sd">===================</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="kn">from</span> <span class="nn">gestor</span> <span class="kn">import</span> <span class="n">Gestor</span>
+<span class="kn">from</span> <span class="nn">escena_base</span> <span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span> <span class="nn">escena_normal</span> <span class="kn">import</span> <span class="n">Normal</span>
+<span class="kn">from</span> <span class="nn">escena_pausa</span> <span class="kn">import</span> <span class="n">Pausa</span>
+<span class="kn">from</span> <span class="nn">escena_normal</span> <span class="kn">import</span> <span class="n">Aviso</span>
+<span class="kn">from</span> <span class="nn">escena_logos</span> <span class="kn">import</span> <span class="n">Logos</span>
+
+<span class="k">def</span> <span class="nf">pausar</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Hace que la ejecución del juego se PAUSE y pulsando la tecla ESC </span>
+<span class="sd">    vuelves al juego.&quot;&quot;&quot;</span>
+    <span class="k">class</span> <span class="nc">Escena_Pausa</span><span class="p">(</span><span class="n">Pausa</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">Pausa</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pausa</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Pausa</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pulsa_tecla_escape</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">recuperar_escena_anterior</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">recuperar_escena_anterior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evento</span><span class="p">):</span>
+            <span class="n">pilas</span><span class="o">.</span><span class="n">recuperar_escena</span><span class="p">()</span>
+
+    <span class="n">pilas</span><span class="o">.</span><span class="n">almacenar_escena</span><span class="p">(</span><span class="n">Escena_Pausa</span><span class="p">())</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li><a href="../../index.html">pilas</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
+          <li><a href="../pilas.html" >pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

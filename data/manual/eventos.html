@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Eventos, conexiones y respuestas &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Textos" href="texto.html" />
+    <link rel="prev" title="Motores" href="motores.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="texto.html" title="Textos"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="motores.html" title="Motores"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="eventos-conexiones-y-respuestas">
+<h1>Eventos, conexiones y respuestas<a class="headerlink" href="#eventos-conexiones-y-respuestas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En el desarrollo de videojuegos es muy importante
+poder comunicarse con el usuario. Lograr que los
+personajes del juego puedan interactuar con él y
+exista una fuerte interacción.</p>
+<p>En pilas usamos una estrategia llamada <tt class="docutils literal"><span class="pre">eventos,</span> <span class="pre">conexiones</span>
+<span class="pre">y</span> <span class="pre">respuestas</span></tt>, no solo porque es muy sencilla de usar, sino
+también porque es una solución conocida y muy utilizada
+en otros lugares como en la web.</p>
+<div class="section" id="que-es-un-evento">
+<h2>¿Que es un Evento?<a class="headerlink" href="#que-es-un-evento" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los eventos representan algo que esperamos que ocurra
+dentro de un juego, por ejemplo un <tt class="docutils literal"><span class="pre">click</span></tt> del mouse, la
+<tt class="docutils literal"><span class="pre">pulsación</span></tt> de una tecla, el <tt class="docutils literal"><span class="pre">cierre</span></tt> de la
+ventana o la <tt class="docutils literal"><span class="pre">colisión</span></tt> entre un enemigo y nuestro
+protagonista.</p>
+<p>Lo interesante de los eventos, es que pueden ocurrir en
+cualquier momento, y generalmente no lo controlamos, solamente
+los escuchamos y tomamos alguna respuesta predefinida.</p>
+<p>Pilas representa a los eventos como objetos, y nos brinda
+funciones para ser avisados cuando un evento ocurre e incluso
+emitir y generar eventos nuevos.</p>
+<p>Veamos algunos ejemplos:</p>
+</div>
+<div class="section" id="conectando-la-emision-de-eventos-a-funciones">
+<h2>Conectando la emisión de eventos a funciones<a class="headerlink" href="#conectando-la-emision-de-eventos-a-funciones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los <tt class="docutils literal"><span class="pre">eventos</span></tt> no disparan ninguna acción automática, nosotros
+los programadores somos los que tenemos que elegir los
+eventos importantes y elegir que hacer al respecto.</p>
+<p>Para utilizar estas señales, tenemos que vincularlas a funciones, de
+forma que al emitirse la señal podamos ejecutar código.</p>
+<div class="section" id="la-funcion-conectar">
+<h3>La función <tt class="docutils literal"><span class="pre">conectar</span></tt><a class="headerlink" href="#la-funcion-conectar" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La función <tt class="docutils literal"><span class="pre">conectar</span></tt> nos permite conectar una señal de
+evento a un método o una función.</p>
+<p>De esta forma, cada vez que se emita una determinada
+señal, se avisará a todos los objectos que hallamos
+conectado.</p>
+<p>Por ejemplo, si queremos que un personaje se mueva
+en pantalla siguiendo la posición del puntero
+del mouse, tendríamos que escribir algo como
+esto:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">mover_mono_a_la_posicion_del_mouse</span><span class="p">(</span><span class="n">evento</span><span class="p">):</span>
+    <span class="n">mono</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">evento</span><span class="o">.</span><span class="n">x</span>
+    <span class="n">mono</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">evento</span><span class="o">.</span><span class="n">y</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">mueve_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">mover_mono_a_la_posicion_del_mouse</span><span class="p">)</span>
+
+<span class="c"># O puedes utilizar el método abreviado del actor.</span>
+<span class="n">mono</span><span class="o">.</span><span class="n">mueve_mouse</span><span class="p">(</span><span class="n">mover_mono_a_la_posicion_del_mouse</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Es decir, la señal de evento que nos interesa es <tt class="docutils literal"><span class="pre">mueve_mouse</span></tt> (que se emite
+cada vez que el usuario mueve el mouse). Y a esta señal le conectamos
+la función que buscamos ejecutar cada vez que se mueva el mouse.</p>
+<p>Ten en cuenta que pueden existir tantas funciones conectadas a una señal como
+quieras.</p>
+<p>Las coordenadas que reporta el mouse son relativas al escenario y no
+de la ventana. Por lo tanto puedes asignar directamente el valor
+de las coordenadas del mouse a los actores sin efectos colaterales
+con respecto a la cámara.</p>
+</div>
+</div>
+<div class="section" id="observando-a-los-eventos-para-conocerlos-mejor">
+<h2>Observando a los eventos para conocerlos mejor<a class="headerlink" href="#observando-a-los-eventos-para-conocerlos-mejor" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Como puedes ver en la función <tt class="docutils literal"><span class="pre">mover_mono_a_la_posicion_del_mouse</span></tt>, hemos
+definido un parámetro llamado <tt class="docutils literal"><span class="pre">evento</span></tt> y accedimos a sus valores
+<tt class="docutils literal"><span class="pre">x</span></tt> e <tt class="docutils literal"><span class="pre">y</span></tt>.</p>
+<p>Cada evento tiene dentro un conjunto de valores que nos resultará
+de utilidad conocer. En el caso del movimiento de mouse usamos
+<tt class="docutils literal"><span class="pre">x</span></tt> e <tt class="docutils literal"><span class="pre">y</span></tt>, pero si el evento es la pulsación de una tecla, seguramente
+vamos a querer saber exactamente qué tecla se pulsó.</p>
+<p>Entonces, una forma fácil y simple de conocer el estado de un
+objeto es imprimir directamente su contenido, por ejemplo, en
+la función de arriba podíamos escribir:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">mover_mono_a_la_posicion_del_mouse</span><span class="p">(</span><span class="n">evento</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">evento</span>
+</pre></div>
+</div>
+<p>y en la ventana de nuestra computadora tendríamos que ver
+algo así:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&#39;y&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">57.0</span><span class="p">,</span> <span class="s">&#39;dx&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s">&#39;dy&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>donde claramente podemos ver todos los datos que vienen asociados
+al evento.</p>
+<p>Por último, ten en cuenta que este argumento <tt class="docutils literal"><span class="pre">evento</span></tt>, en realidad,
+es un diccionario de python como cualquier otro, solo
+que puedes acceder a sus valores usando sentencias cómo
+<tt class="docutils literal"><span class="pre">diccionario.clave</span></tt> en lugar de <tt class="docutils literal"><span class="pre">diccionario['clave']</span></tt>.</p>
+</div>
+<div class="section" id="desconectando-senales">
+<h2>Desconectando señales<a class="headerlink" href="#desconectando-senales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las señales se desconectan por cuenta propia cuando dejan de existir
+los objetos que le conectamos. En la mayoría de los casos podemos
+conectar señales y olvidarnos de desconectarlas, no habrá problemas,
+se deconectarán solas.</p>
+<p>De todas formas, puede que quieras conectar una señal, y por
+algún motivo desconectarla. Por ejemplo si el juego cambia
+de estado o algo así...</p>
+<p>Si ese es tu caso, simplemente asígnale un identificador único
+al manejador de la señal y luego usa la función <tt class="docutils literal"><span class="pre">desconectar_por_id</span></tt> indicando
+el identificador.</p>
+<p>Por ejemplo, las siguientes sentencias muestran eso:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">mueve_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">imprimir_posicion</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s">&#39;drag&#39;</span><span class="p">)</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">mueve_mouse</span><span class="o">.</span><span class="n">desconectar_por_id</span><span class="p">(</span><span class="s">&#39;drag&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>En la primera sentencia conecté la señal del evento a una función y le di
+un valor al argumento <tt class="docutils literal"><span class="pre">id</span></tt>. Este valor será el identificador
+de ese enlace. Y en la siguiente linea se utilizó el identificador
+para desconectarla.</p>
+</div>
+<div class="section" id="consultado-senales-conectadas">
+<h2>Consultado señales conectadas<a class="headerlink" href="#consultado-senales-conectadas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Durante el desarrollo es útil poder observar qué
+eventos se han conectado a funciones.</p>
+<p>Una forma de observar la conexión de los eventos
+es pulsar la tecla <tt class="docutils literal"><span class="pre">F6</span></tt>. Eso imprimirá sobre
+consola los nombres de las señales conectadas
+junto a las funciones.</p>
+</div>
+<div class="section" id="creando-tus-propios-eventos">
+<h2>Creando tus propios eventos<a class="headerlink" href="#creando-tus-propios-eventos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si tu juego se vuelve mas complejo y hay interacciones entre
+varios actores, puede ser una buena idea hacer que exista algo
+de comunicación entre ellos usando eventos.</p>
+<p>Veamos cómo crear un evento:</p>
+<p>Primero tienes que crear un objeto que represente a tu evento
+y darle un nombre:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">evento</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">evento</span><span class="o">.</span><span class="n">Evento</span><span class="p">(</span><span class="s">&quot;Nombre&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>luego, este nuevo objeto <tt class="docutils literal"><span class="pre">evento</span></tt> podrá ser utilizado como
+canal de comunicación: muchos actores podrán <tt class="docutils literal"><span class="pre">conectarse</span></tt> para
+recibir alertas y otros podrán <tt class="docutils literal"><span class="pre">emitir</span></tt> alertas:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">ha_ocurrido_un_evento</span><span class="p">(</span><span class="n">datos_evento</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;Hola!!!&quot;</span><span class="p">,</span> <span class="n">datos_evento</span>
+
+<span class="n">evento</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">ha_ocurrido_un_evento</span><span class="p">)</span>
+
+<span class="c"># En otra parte...</span>
+<span class="n">evento</span><span class="o">.</span><span class="n">emitir</span><span class="p">(</span><span class="n">argumento1</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">argumento2</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Cuando se emite un evento se pueden pasar muchos argumentos, tantos
+como se quiera. Todos estos argumentos llegarán a la función de
+respuesta en forma de diccionario.</p>
+<p>Por ejemplo, para este caso, cuando llamamos al método <tt class="docutils literal"><span class="pre">evento.emitir</span></tt>,
+el sistema de eventos irá automáticamente a ejecutar la función <tt class="docutils literal"><span class="pre">ha_ocurrido_un_evento</span></tt>
+y ésta imprimirá:</p>
+<div class="highlight-python"><div class="highlight"><pre>Hola!!! {argumento1: 123, argumento2: 123}
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Para entender mejor cómo se han implementado los eventos, visita este link
+<a class="reference external" href="http://hugoruscitti.github.com/2012/03/01/redisenando-el-sistema-de-eventos-pilas/">http://hugoruscitti.github.com/2012/03/01/redisenando-el-sistema-de-eventos-pilas/</a></p>
+</div>
+</div>
+<div class="section" id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El concepto que hemos visto en esta sección se utiliza
+en muchos sistemas. Tal vez el mas conocido de estos es
+la biblioteca <tt class="docutils literal"><span class="pre">GTK</span></tt>, que se utiliza actualmente para construir
+el escritorio <tt class="docutils literal"><span class="pre">GNOME</span></tt> y <tt class="docutils literal"><span class="pre">Gimp</span></tt> entre otras aplicaciones.</p>
+<p>El sistema de señales que se utiliza en pilas es una
+adaptación del siguiente sistema de eventos:</p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/1092531/event-system-in-python">http://stackoverflow.com/questions/1092531/event-system-in-python</a></p>
+<p>Anteriormente usábamos parte del código del sistema <tt class="docutils literal"><span class="pre">django</span></tt>, pero
+luego de varios meses lo reescribimos para que sea mas sencillo
+de utilizar y no tenga efectos colaterales con los métodos y
+el módulo <tt class="docutils literal"><span class="pre">weakref</span></tt>.</p>
+<p>Si quieres obtener mas información sobre otros sistemas de
+eventos te recomendamos los siguientes documentos:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://pydispatcher.sourceforge.net/">http://pydispatcher.sourceforge.net/</a></li>
+<li><a class="reference external" href="http://www.mercurytide.co.uk/news/article/django-signals/">http://www.mercurytide.co.uk/news/article/django-signals/</a></li>
+<li><a class="reference external" href="http://www.boduch.ca/2009/06/sending-django-dispatch-signals.html">http://www.boduch.ca/2009/06/sending-django-dispatch-signals.html</a></li>
+<li><a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/signals/">http://docs.djangoproject.com/en/dev/topics/signals/</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Eventos, conexiones y respuestas</a><ul>
+<li><a class="reference internal" href="#que-es-un-evento">¿Que es un Evento?</a></li>
+<li><a class="reference internal" href="#conectando-la-emision-de-eventos-a-funciones">Conectando la emisión de eventos a funciones</a><ul>
+<li><a class="reference internal" href="#la-funcion-conectar">La función <tt class="docutils literal"><span class="pre">conectar</span></tt></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#observando-a-los-eventos-para-conocerlos-mejor">Observando a los eventos para conocerlos mejor</a></li>
+<li><a class="reference internal" href="#desconectando-senales">Desconectando señales</a></li>
+<li><a class="reference internal" href="#consultado-senales-conectadas">Consultado señales conectadas</a></li>
+<li><a class="reference internal" href="#creando-tus-propios-eventos">Creando tus propios eventos</a></li>
+<li><a class="reference internal" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="motores.html"
+                        title="capítulo anterior">Motores</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="texto.html"
+                        title="próximo capítulo">Textos</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/eventos.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="texto.html" title="Textos"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="motores.html" title="Motores"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Habilidades &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Depurando y buscando detalles" href="depurando.html" />
+    <link rel="prev" title="Textos" href="texto.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="depurando.html" title="Depurando y buscando detalles"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="texto.html" title="Textos"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="habilidades">
+<h1>Habilidades<a class="headerlink" href="#habilidades" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Pilas permite añadir funcionalidad a tus objetos
+de manera sencilla, dado que usamos el concepto
+de habilidades, un enfoque similar a la
+programación orientada a componentes <a class="footnote-reference" href="#id3" id="id1">[1]</a> y mixins <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://es.wikipedia.org/wiki">http://es.wikipedia.org/wiki</a>/Programación_orientada_a_componentes</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://es.wikipedia.org/wiki/Mixin">http://es.wikipedia.org/wiki/Mixin</a></td></tr>
+</tbody>
+</table>
+<div class="section" id="un-ejemplo">
+<h2>Un ejemplo<a class="headerlink" href="#un-ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Una habilidad es una funcionalidad que está implementada
+en alguna clase, y que si quieres la puedes vincular
+a un actor cualquiera.</p>
+<p>Veamos un ejemplo, imagina que tienes un actor en
+tu escena y quieres que la rueda del mouse te permita
+cambiarle el tamaño.</p>
+<p>Puedes usar la habilidad <tt class="docutils literal"><span class="pre">AumentarConRueda</span></tt> y vincularla
+al actor fácilmente.</p>
+<p>El siguiente código hace eso:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="n">mono</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">AumentarConRueda</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>así, cuando uses la rueda del mouse el tamaño del personaje aumentará
+o disminuirá.</p>
+<p>Nota que aquí usamos la metáfora de &#8220;aprender habilidades&#8221;, porque
+las habilidades son algo que duran para toda la vida
+del actor.</p>
+</div>
+<div class="section" id="un-ejemplo-mas-hacer-que-un-actor-sea-arrastrable-por-el-mouse">
+<h2>Un ejemplo mas: hacer que un actor sea arrastrable por el mouse<a class="headerlink" href="#un-ejemplo-mas-hacer-que-un-actor-sea-arrastrable-por-el-mouse" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Algo muy común en los juegos es que puedas
+tomar piezas con el mouse y moverlas por la pantalla.</p>
+<p>Esta habilidad llamada <tt class="docutils literal"><span class="pre">Arrastrable</span></tt> representa eso, puedes vincularlo
+a cualquier actor y simplemente funciona:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="n">mono</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Arrastrable</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="otro-ejemplo-un-actor-que-cambia-de-posicion">
+<h2>Otro ejemplo: un actor que cambia de posición<a class="headerlink" href="#otro-ejemplo-un-actor-que-cambia-de-posicion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Veamos otro ejemplo sencillo, si queremos que un actor
+se coloque en la posición del mouse cada vez que hacemos
+click, podemos usar la habilidad: <tt class="docutils literal"><span class="pre">SeguirClicks</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="n">mono</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">SeguirClicks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mezclar-habilidades">
+<h2>Mezclar habilidades<a class="headerlink" href="#mezclar-habilidades" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En pilas se ha intentado hacer que las habilidades sean
+lo mas independientes posibles, porque claramente lo mas
+divertido de este enfoque es poder combinar distintas
+habilidades para lograr comportamientos complejos.</p>
+<p>Así que te invitamos a que pruebes y experimientes
+mezclando habilidades.</p>
+</div>
+<div class="section" id="otras-habilidades-para-investigar">
+<h2>Otras habilidades para investigar<a class="headerlink" href="#otras-habilidades-para-investigar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Pilas viene con varias habilidades incluidas, pero
+lamentablemente este manual no las menciona a todas. Así
+que te recomendamos abrir un intérprete de python
+y consultarle directamente a él que habilidades tienes
+diponibles en tu versión de pilas.</p>
+<p>Para esto, abre un terminar de python y escribe lo siguiente:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">()</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>esto imprimirá en pantalla todas las habilidades como una
+lista de cadenas.</p>
+</div>
+<div class="section" id="como-funcionan-las-habilidades">
+<h2>¿Cómo funcionan las habilidades?<a class="headerlink" href="#como-funcionan-las-habilidades" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las habilidades son clases normales de python, solo que se han
+diseñado para representar funcionalidad y no entidades.</p>
+<p>La vinculación con los actores se produce usando herencia
+múltiple, una de las virtudes de python.</p>
+<p>Así que internamente lo que sucede cuando ejecutas una
+sentencia como:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">HabilidadDeEjemplo</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>es que la instancia de la clase actor pasa a tener una
+superclase adicional, llamada <tt class="docutils literal"><span class="pre">HabilidadDeEjemplo</span></tt>.</p>
+<p>A diferencia de la programación orientada a objetos
+clásica, en <tt class="docutils literal"><span class="pre">pilas</span></tt> los objetos no guardan una
+estrecha relación con una jerarquía de clases. Por el
+contrario, los objetos se combinan a conveniencia, y
+cada clase intenta tener solamente la mínima
+funcionalidad que se necesita.</p>
+<p>Esta idea de combinación de objetos la hemos adoptado
+de la programación orientada a componentes. Por lo
+que puedes investigar en la red para conocer mas
+acerca de ello.</p>
+</div>
+<div class="section" id="ideas">
+<h2>¿Ideas?<a class="headerlink" href="#ideas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si encuentras habilidades interesantes para desarrollar
+te invitamos compartir tus ideas con las personas
+que hacemos pilas y estamos en el foro de losersjuegos <a class="footnote-reference" href="#id6" id="id5">[3]</a>.</p>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="http://www.losersjuegos.com.ar/foro">http://www.losersjuegos.com.ar/foro</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Habilidades</a><ul>
+<li><a class="reference internal" href="#un-ejemplo">Un ejemplo</a></li>
+<li><a class="reference internal" href="#un-ejemplo-mas-hacer-que-un-actor-sea-arrastrable-por-el-mouse">Un ejemplo mas: hacer que un actor sea arrastrable por el mouse</a></li>
+<li><a class="reference internal" href="#otro-ejemplo-un-actor-que-cambia-de-posicion">Otro ejemplo: un actor que cambia de posición</a></li>
+<li><a class="reference internal" href="#mezclar-habilidades">Mezclar habilidades</a></li>
+<li><a class="reference internal" href="#otras-habilidades-para-investigar">Otras habilidades para investigar</a></li>
+<li><a class="reference internal" href="#como-funcionan-las-habilidades">¿Cómo funcionan las habilidades?</a></li>
+<li><a class="reference internal" href="#ideas">¿Ideas?</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="texto.html"
+                        title="capítulo anterior">Textos</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="depurando.html"
+                        title="próximo capítulo">Depurando y buscando detalles</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/habilidades.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="depurando.html" title="Depurando y buscando detalles"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="texto.html" title="Textos"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

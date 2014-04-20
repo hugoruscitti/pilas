@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Diálogos &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Manejo de Cámara" href="camara.html" />
+    <link rel="prev" title="Mapas y plataformas" href="mapas_y_plataformas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="camara.html" title="Manejo de Cámara"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="mapas_y_plataformas.html" title="Mapas y plataformas"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="dialogos">
+<h1>Diálogos<a class="headerlink" href="#dialogos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Para contar una historia dentro de un juego
+podrías hacer que los personajes conversen
+entre sí.</p>
+<p>Esto es muy habitual en un genero de videojuego
+llamado aventuras gráficas.</p>
+<div class="section" id="mensajes-de-dialogo">
+<h2>Mensajes de dialogo<a class="headerlink" href="#mensajes-de-dialogo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para hacer que un personaje emita un mensaje sencillo
+puedes usar el método <tt class="docutils literal"><span class="pre">decir</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="n">actor</span><span class="o">.</span><span class="n">decir</span><span class="p">(</span><span class="s">&quot;Eh!, ahora puedo hablar...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Esto hará que el personaje muestre un globo similar al
+de las historietas con las frases que has colocado.</p>
+<img alt="_images/decir.jpg" src="_images/decir.jpg" />
+</div>
+<div class="section" id="conversaciones">
+<h2>Conversaciones<a class="headerlink" href="#conversaciones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los mensajes de dialogo se pueden usar para que dos
+o mas actores puedan conversar entre sí. Esto es útil
+para contar una historia, ya que le permites al usuario
+ir viendo paso a paso lo que se dicen los actores entre
+sí.</p>
+<p>Para crear una conversación entre actores tienes que
+crear un objeto de la clase <tt class="docutils literal"><span class="pre">Dialogo</span></tt>, luego
+indicarle la secuencia de conversación y por último
+iniciar el dialogo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dialogo</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Dialogo</span><span class="p">()</span>
+
+<span class="n">dialogo</span><span class="o">.</span><span class="n">decir</span><span class="p">(</span><span class="n">mono</span><span class="p">,</span> <span class="s">&quot;Hola, como estas?&quot;</span><span class="p">)</span>
+<span class="n">dialogo</span><span class="o">.</span><span class="n">decir</span><span class="p">(</span><span class="n">otro_mono</span><span class="p">,</span> <span class="s">&quot;Perfecto!!, gracias...&quot;</span><span class="p">)</span>
+<span class="n">dialogo</span><span class="o">.</span><span class="n">decir</span><span class="p">(</span><span class="n">mono</span><span class="p">,</span> <span class="s">&quot;genial...&quot;</span><span class="p">)</span>
+
+<span class="n">dialogo</span><span class="o">.</span><span class="n">iniciar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Ahora cuando ejecutes este programa, solamente aparecerá
+el primer mensaje <tt class="docutils literal"><span class="pre">&quot;Hola,</span> <span class="pre">cómo</span> <span class="pre">estas?&quot;</span></tt> y solo cuando el
+usuario haga click con el mouse avanzará.</p>
+<p>Ten en cuenta que el método <tt class="docutils literal"><span class="pre">decir</span></tt> funciona como una
+cola de mensajes, es decir, si llamas a <tt class="docutils literal"><span class="pre">decir</span></tt> el mensaje
+no aparecerá inmediatamente. El mensaje aparecerá cuando
+corresponda según el orden de la conversación que se siga.</p>
+<p>Si quieres que un botón accione un mensaje y lo haga
+de manera inmediata tendrías que usar un método cómo <tt class="docutils literal"><span class="pre">dialogo.decir_inmediatamente</span></tt>.</p>
+</div>
+<div class="section" id="preguntas">
+<h2>Preguntas<a class="headerlink" href="#preguntas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para desarrollar conversaciones con preguntas también
+puedes usar a los diálogos. Lo único diferente es que las
+preguntas traerán asociada una repuesta del usuario, y para
+manejar el resultado tienes que escribir una función.</p>
+<p>La función se invocará cuando el usuario haga click en
+alguna de las opciones. Y cuando se llame la función
+se pasará la respuesta que ha elegido como una cadena
+de texto.</p>
+<p>Aquí tienes una ejemplo de una pregunta con 3 respuestas. Cuando
+el usuario elija una repuesta el personaje volverá a
+decirlo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cuando_responde_color_favorito</span><span class="p">(</span><span class="n">respuesta</span><span class="p">):</span>
+    <span class="n">dialogo</span><span class="o">.</span><span class="n">decir</span><span class="p">(</span><span class="n">mono</span><span class="p">,</span> <span class="s">&quot;he dicho: &quot;</span> <span class="o">+</span> <span class="n">respuesta</span><span class="p">)</span>
+
+<span class="n">dialogo</span><span class="o">.</span><span class="n">elegir</span><span class="p">(</span><span class="n">mono</span><span class="p">,</span> <span class="s">&quot;Mi color favorito es el...&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;rojo&quot;</span><span class="p">,</span> <span class="s">&quot;verde&quot;</span><span class="p">,</span> <span class="s">&quot;azul&quot;</span><span class="p">],</span> <span class="n">cuando_responde_color_favorito</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/pregunta.jpg" src="_images/pregunta.jpg" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Diálogos</a><ul>
+<li><a class="reference internal" href="#mensajes-de-dialogo">Mensajes de dialogo</a></li>
+<li><a class="reference internal" href="#conversaciones">Conversaciones</a></li>
+<li><a class="reference internal" href="#preguntas">Preguntas</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="mapas_y_plataformas.html"
+                        title="capítulo anterior">Mapas y plataformas</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="camara.html"
+                        title="próximo capítulo">Manejo de Cámara</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/dialogos.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="camara.html" title="Manejo de Cámara"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="mapas_y_plataformas.html" title="Mapas y plataformas"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

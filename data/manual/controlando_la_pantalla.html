@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Controlando la pantalla &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Comportamientos" href="comportamientos.html" />
+    <link rel="prev" title="Interpolaciones" href="interpolacion.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="comportamientos.html" title="Comportamientos"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="interpolacion.html" title="Interpolaciones"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="controlando-la-pantalla">
+<h1>Controlando la pantalla<a class="headerlink" href="#controlando-la-pantalla" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Para posicionar actores en el escenario
+principal es importante conocer las
+propiedades de la pantalla.</p>
+<p>La pantalla es lo que contiene la ventana
+principal de pilas, y que puede observar
+una porción del escenario y a un grupo de actores.</p>
+<div class="section" id="modo-depuracion">
+<h2>Modo depuración<a class="headerlink" href="#modo-depuracion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El modo depuración te permite ver información
+de utilidad cuando estás desarrollando un juego
+o simplemente buscando algún error.</p>
+<p>Para iniciar el modo depuración pulsa <strong>F12</strong>. En
+la ventana principal aparecerán varios textos
+indicando el rendimiento del juego, las coordenadas
+de posición de los actores y la posición del
+mouse.</p>
+<p>El centro de la ventana es, inicialmente, el
+punto <tt class="docutils literal"><span class="pre">(0,</span> <span class="pre">0)</span></tt>. Este modelo de coordenadas
+es el cartesiano, y lo hemos elegido porque es
+el que mejor se adapta a los conocimientos
+geométricos que se enseñan en las escuelas.</p>
+</div>
+<div class="section" id="orden-de-impresion-atributo-z">
+<h2>Orden de impresión: atributo z<a class="headerlink" href="#orden-de-impresion-atributo-z" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Cuando tienes varios actores en pantalla notaras
+que a veces unos aparecen sobre otros.</p>
+<p>Para cambiar este comportamiento tienes que modificar
+el atributo <tt class="docutils literal"><span class="pre">z</span></tt> de cada actor.</p>
+<p>Los valores altos de <tt class="docutils literal"><span class="pre">z</span></tt> indican mucha distancia
+entre el observador y el escenario. Mientras que
+valores pequeños <tt class="docutils literal"><span class="pre">z</span></tt> harán que los actores tapen
+a los demás (porque aparecerán mas cerca del
+usuario).</p>
+<p>Este es un ejemplo de dos configuraciones distintas
+de atributos <tt class="docutils literal"><span class="pre">z</span></tt>:</p>
+<img alt="_images/atributo_z.png" src="_images/atributo_z.png" />
+<p>Ten en cuenta que inicialmente todos los actores
+tienen un atributo <tt class="docutils literal"><span class="pre">z=0</span></tt>.</p>
+</div>
+<div class="section" id="atributos-de-posicion">
+<h2>Atributos de posición<a class="headerlink" href="#atributos-de-posicion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Todos los actores tienen atributos cómo:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">x</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">y</span></tt></li>
+</ul>
+<p>que sirven para cambiar la posición del actor dentro de la escena.</p>
+<p>También encontrarás atributos que permiten hacer lo mismo, pero
+tomando como referencia alguno de los bordes del
+actor. Por ejemplo:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">izquierda</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">derecha</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">arriba</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">abajo</span></tt></li>
+</ul>
+<p>Ten en cuenta que estos valores indicarán la posición del
+actor dentro del escenario, no de la ventana. Esto significa que
+si cambias la posición de la cámara los actores seguirán estando
+en la misma posición pero se verán un poco corridos.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Controlando la pantalla</a><ul>
+<li><a class="reference internal" href="#modo-depuracion">Modo depuración</a></li>
+<li><a class="reference internal" href="#orden-de-impresion-atributo-z">Orden de impresión: atributo z</a></li>
+<li><a class="reference internal" href="#atributos-de-posicion">Atributos de posición</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="interpolacion.html"
+                        title="capítulo anterior">Interpolaciones</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="comportamientos.html"
+                        title="próximo capítulo">Comportamientos</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/controlando_la_pantalla.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="comportamientos.html" title="Comportamientos"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="interpolacion.html" title="Interpolaciones"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Mapas y plataformas &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Diálogos" href="dialogos.html" />
+    <link rel="prev" title="Como crear menúes para tu juegos" href="menu.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="dialogos.html" title="Diálogos"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="menu.html" title="Como crear menúes para tu juegos"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="mapas-y-plataformas">
+<h1>Mapas y plataformas<a class="headerlink" href="#mapas-y-plataformas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En los años 80 uno de los géneros de videojuegos mas
+celebrados ha sido el genero de plataformas.</p>
+<p>En los juegos de este género el protagonista de la
+aventura estaba en un escenario armado de bloques y
+plataformas en donde podía saltar.</p>
+<p>Uno de los juegos mas populares de esos días era
+Super Mario Bros.</p>
+<p>Pilas incluye un actor llamado <tt class="docutils literal"><span class="pre">Mapa</span></tt> que te permite
+hacer juegos de plataformas fácilmente.</p>
+<div class="section" id="presentando-el-actor-mapa">
+<h2>Presentando el actor <tt class="docutils literal"><span class="pre">Mapa</span></tt><a class="headerlink" href="#presentando-el-actor-mapa" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El <tt class="docutils literal"><span class="pre">Mapa</span></tt> representa un escenario compuesto de bloques
+que pueden ser plataformas, muros o simplemente adornos
+del escenario.</p>
+<p>Para crear un <tt class="docutils literal"><span class="pre">Mapa</span></tt> necesitas una grilla de gráficos con los bloques
+que se usarán en el escenario. Luego puedes crear el <tt class="docutils literal"><span class="pre">Mapa</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">grilla</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">(</span><span class="s">&quot;grillas/plataformas_10_10.png&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">mapa</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mapa</span><span class="p">(</span><span class="n">grilla</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Una vez que ejecutas esas sentencias no observarás cambios
+en la ventana, el mapa está, pero no tiene bloques aún.</p>
+<p>Si quieres dibujar bloques solo tienes que indicar un
+índice de bloque y la posición en pantalla a dibujar.</p>
+<p>Por ejemplo, un bloque cerca del centro de la ventana es
+la posición (8, 10):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mapa</span><span class="o">.</span><span class="n">pintar_bloque</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/mapa_un_bloque.jpg" src="_images/mapa_un_bloque.jpg" />
+<p>Otro ejemplo: si queremos dibujar en la parte inferior de la
+ventana, podemos llamar muchas veces al método <tt class="docutils literal"><span class="pre">pintar_bloque</span></tt>, una
+vez por cada bloque que necesitamos:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">columna</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">mapa</span><span class="o">.</span><span class="n">pintar_bloque</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="n">columna</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El primer y segundo argumento del método <tt class="docutils literal"><span class="pre">pintar_bloque</span></tt> indica
+la posición en donde vamos a dibujar el bloque. En este caso la
+fila será 14 y la columna será 0, 1, 2, 3, 4.. etc</p>
+<p>El tercer argumento será el índice de la grilla que indicamos
+anteriormente.</p>
+<p>Este será el resultado:</p>
+<img alt="_images/mapa_muchos_bloques.jpg" src="_images/mapa_muchos_bloques.jpg" />
+</div>
+<div class="section" id="colisiones-con-el-escenario">
+<h2>Colisiones con el escenario<a class="headerlink" href="#colisiones-con-el-escenario" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En los juegos de plataformas es muy importante que los bloques
+puedan interactuar con los jugadores. Por ejemplo habrá bloques
+que sirvan como plataformas y otros impedirán que avancemos como
+si se trataran de muros.</p>
+<p>Los mapas de pilas te permiten crear esta interacción de manera
+sencilla. El método que usamos antes <tt class="docutils literal"><span class="pre">pintar_bloque</span></tt>, le
+dice al mapa que dibuje el bloque, pero a la vez te permite
+indicar si ese bloque es sólido o no.</p>
+<p>Diremos que un bloque es sólido cuando un personaje no puede
+pasar a través de él. Por ejemplo, una plataforma es un bloque
+sólido.</p>
+<p>Entonces, cada vez que invocas al método <tt class="docutils literal"><span class="pre">pintar_bloque</span></tt> tienes
+la posibilidad de indicar si el bloque es sólido o no:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mapa</span><span class="o">.</span><span class="n">pintar_bloque</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">es_bloque_solido</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">mapa</span><span class="o">.</span><span class="n">pintar_bloque</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">es_bloque_solido</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Y ten en cuenta que si no especificas el último parámetro, pilas
+asumirá que el bloque debe ser sólido.</p>
+<p>Por cierto, los bloques &#8220;no sólidos&#8221; son útiles para representar
+adornos del escenario, como nubes o agua. Incluso en algunos
+juegos se usan para crear pasadizos secretos entre muros o
+plataformas...</p>
+</div>
+<div class="section" id="creando-mapas-con-el-programa-tiled">
+<h2>Creando mapas con el programa tiled<a class="headerlink" href="#creando-mapas-con-el-programa-tiled" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Crear los mapas directamente desde el código está bien, pero
+si tienes que hacer muchos mapas te llevará un montón de tiempo.</p>
+<p>Una buena alternativa a esto es usar un software de diseño
+de escenarios, crear un archivo con todo el escenario y
+luego cargarlo desde pilas.</p>
+<p>El software que te recomiendo para esta tarea se llama <tt class="docutils literal"><span class="pre">tiled</span></tt>
+(ver <a class="reference external" href="http://www.mapeditor.org">http://www.mapeditor.org</a>).</p>
+<p>Veamos como usar tiled para crear un escenario sencillo, primero
+tienes que crear un mapa desde el menú <tt class="docutils literal"><span class="pre">File</span></tt>, se le solicitará
+indicar el tamaño del escenario:</p>
+<img alt="_images/tiled2.png" src="_images/tiled2.png" />
+<p>Usa los valores por defecto, al menos por esta vez.</p>
+<p>Luego tienes que ir al menú <tt class="docutils literal"><span class="pre">Map</span></tt> y luego <tt class="docutils literal"><span class="pre">New</span> <span class="pre">tileset</span></tt> para
+indicar cual es la grilla de imágenes que usarás en los bloques. Te
+recomiendo usar la imagen <tt class="docutils literal"><span class="pre">batalhao.png</span></tt> (de Silveins Neto), que
+está en la carpeta de ejemplos de pilas:</p>
+<img alt="_images/tiled3.png" src="_images/tiled3.png" />
+<p>Ahora, lo mas divertido, comienza a dibujar sobre el escenario
+seleccionando bloques. Observa que el programa tiene varias herramientas
+para hacer que esto sea mucho mas sencillo:</p>
+<img alt="_images/tiled4.png" src="_images/tiled4.png" />
+<p>Luego, asegúrate de que el programa guarda todos los datos en formato CSV, esto
+es importante para que se pueda vincular con pilas. Para esto tienes
+que abrir el menú <tt class="docutils literal"><span class="pre">Edit</span></tt> y luego <tt class="docutils literal"><span class="pre">Preferences</span></tt>, la pantalla de opciones
+te tiene que quedar así:</p>
+<img alt="_images/tiled5.png" src="_images/tiled5.png" />
+<p>Listo, ahora solamente hay que guardar el mapa en un archivo. Ve al menú
+<tt class="docutils literal"><span class="pre">File</span></tt> y luego selecciona <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">as</span></tt>, tienes que darle un nombre
+al archivo <tt class="docutils literal"><span class="pre">.tmx</span></tt>.</p>
+<p>Luego, desde pilas, es muy simple, solamente tienes que crear
+el actor mapa indicando el nombre del archivo <tt class="docutils literal"><span class="pre">.tmx</span></tt> que has
+generado con el programa <strong>tiled</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">()</span>
+<span class="n">mapa_desde_archivo</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">MapaTiled</span><span class="p">(</span><span class="s">&quot;archivo.tmx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creando-bloques-solidos-con-tiled">
+<h2>Creando bloques sólidos con tiled<a class="headerlink" href="#creando-bloques-solidos-con-tiled" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si quieres hacer bloques sólidos desde <strong>tiled</strong> solamente
+tienes que crear mas capas, la capa 0 se utilizará como
+decorado (todos los bloques son no-sólidos) y el resto de las
+capas serán siempre de bloques sólidos.</p>
+<p>Por ejemplo, en el escenario anterior, sería interesante colocar
+los bloques de pasto y la ruta en la capa que he llamado &#8220;suelo&#8221;
+y el resto de los objetos en otras capas como &#8220;obstáculos&#8221; y &#8220;paredes&#8221;:</p>
+<img alt="_images/tiled6.png" src="_images/tiled6.png" />
+</div>
+<div class="section" id="un-ejemplo-completo">
+<h2>Un ejemplo completo<a class="headerlink" href="#un-ejemplo-completo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Te recomiendo que observes el ejemplo <tt class="docutils literal"><span class="pre">mapa_desde_archivo.py</span></tt> del
+directorio de ejemplos de pilas, podrás observar un escenario
+muy simple con obstáculos y un personaje que se puede mover
+con el teclado:</p>
+<img alt="_images/tiled8.png" src="_images/tiled8.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Mapas y plataformas</a><ul>
+<li><a class="reference internal" href="#presentando-el-actor-mapa">Presentando el actor <tt class="docutils literal"><span class="pre">Mapa</span></tt></a></li>
+<li><a class="reference internal" href="#colisiones-con-el-escenario">Colisiones con el escenario</a></li>
+<li><a class="reference internal" href="#creando-mapas-con-el-programa-tiled">Creando mapas con el programa tiled</a></li>
+<li><a class="reference internal" href="#creando-bloques-solidos-con-tiled">Creando bloques sólidos con tiled</a></li>
+<li><a class="reference internal" href="#un-ejemplo-completo">Un ejemplo completo</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="menu.html"
+                        title="capítulo anterior">Como crear menúes para tu juegos</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="dialogos.html"
+                        title="próximo capítulo">Diálogos</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/mapas_y_plataformas.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="dialogos.html" title="Diálogos"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="menu.html" title="Como crear menúes para tu juegos"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Depurando y buscando detalles &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Integrando Pilas a una Aplicación Qt" href="pilas_en_pyqt.html" />
+    <link rel="prev" title="Habilidades" href="habilidades.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="pilas_en_pyqt.html" title="Integrando Pilas a una Aplicación Qt"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="habilidades.html" title="Habilidades"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="depurando-y-buscando-detalles">
+<h1>Depurando y buscando detalles<a class="headerlink" href="#depurando-y-buscando-detalles" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Pilas incluye varios modos de ejecución que te
+pueden resultar de utilidad para ver en detalle
+el funcionamiento de tu juego.</p>
+<p>La depuración dentro de la progración de juegos permite detectar errores, corregir
+detalles e incluso comprender algunas interacciones complejas.</p>
+<div class="section" id="modo-pausa-y-manejo-de-tiempo">
+<h2>Modo pausa y manejo de tiempo<a class="headerlink" href="#modo-pausa-y-manejo-de-tiempo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si pulsas las teclas <tt class="docutils literal"><span class="pre">ALT</span> <span class="pre">+</span> <span class="pre">P</span></tt> durante la ejecución de
+pilas, el juego completo se detiene. En ese
+momento puedes pulsar cualquier tecla
+para avanzar un instante de la simulación o
+la tecla <tt class="docutils literal"><span class="pre">flecha</span> <span class="pre">derecha</span></tt> para avanzar mas rápidamente.</p>
+<p>Esto es muy útil cuando trabajas con colisiones físicas, porque
+este modo de pausa y manejo de tiempo te permite
+ver en detalle la interacción de los objetos y detectar
+cualquier inconveniente rápidamente.</p>
+</div>
+<div class="section" id="modos-depuracion">
+<h2>Modos depuración<a class="headerlink" href="#modos-depuracion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las teclas <strong>F6</strong>, <strong>F7</strong>, <strong>F8</strong>, <strong>F9</strong>, <strong>F10</strong>, <strong>F11</strong> y <strong>F12</strong> te permiten
+hacer visibles los modos de depuración.</p>
+<p>Cada modo representa un aspecto interno del juego que podrías ver. Por ejemplo, el
+modo que se activa con la tecla <strong>F12</strong> te permite ver la posición exácta de
+cada actor, mientras que al tecla <strong>F11</strong> te permite ver las figuras físicas.</p>
+</div>
+<div class="section" id="activar-modos-desde-codigo">
+<h2>Activar modos desde código<a class="headerlink" href="#activar-modos-desde-codigo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si quieres que el juego inicie alguno de los modos, puedes usar la
+función <tt class="docutils literal"><span class="pre">pilas.atajos.definir_modos</span></tt>. Por ejemplo, para habilitar el
+modo depuración física podrías escribir:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">atajos</span><span class="o">.</span><span class="n">definir_modos</span><span class="p">(</span><span class="n">fisica</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>esta función tiene varios argumentos opcionales, cómo <tt class="docutils literal"><span class="pre">posicion</span></tt>, <tt class="docutils literal"><span class="pre">radios</span></tt> etc. Mira
+la definición de la función para obtener mas detalles:</p>
+<dl class="method">
+<dt id="pilas.depurador.Depurador.definir_modos">
+<tt class="descclassname">Depurador.</tt><tt class="descname">definir_modos</tt><big>(</big><em>fisica=False</em>, <em>info=False</em>, <em>puntos_de_control=False</em>, <em>radios=False</em>, <em>areas=False</em>, <em>posiciones=False</em>, <em>log=False</em><big>)</big><a class="reference internal" href="_modules/pilas/depurador.html#Depurador.definir_modos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.depurador.Depurador.definir_modos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Permite habilitar o deshabilitar los modos depuración.</p>
+<p>Cada uno de los argumentos representa un modo depuración, el valor True
+habilita el modo, False lo deshabilita.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="activando-los-modos-para-detectar-errores">
+<h2>Activando los modos para detectar errores<a class="headerlink" href="#activando-los-modos-para-detectar-errores" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Ten en cuenta que puedes activar los modos depuración en cualquier momento,
+incluso en medio de una pausa, ir del modo depuración al
+modo pausa y al revés. Los dos modos se pueden
+combinar fácilmente.</p>
+<p>Mi recomendación es que ante la menor duda, pulses <strong>alt + p</strong> para
+ir al modo pausa, y luego comiences a pulsar alguna de las teclas para
+activar los modos depuración y observar en detalle qué está ocurriendo: <strong>F6</strong> , <strong>F7</strong> etc.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Depurando y buscando detalles</a><ul>
+<li><a class="reference internal" href="#modo-pausa-y-manejo-de-tiempo">Modo pausa y manejo de tiempo</a></li>
+<li><a class="reference internal" href="#modos-depuracion">Modos depuración</a></li>
+<li><a class="reference internal" href="#activar-modos-desde-codigo">Activar modos desde código</a></li>
+<li><a class="reference internal" href="#activando-los-modos-para-detectar-errores">Activando los modos para detectar errores</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="habilidades.html"
+                        title="capítulo anterior">Habilidades</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="pilas_en_pyqt.html"
+                        title="próximo capítulo">Integrando Pilas a una Aplicación Qt</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/depurando.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="pilas_en_pyqt.html" title="Integrando Pilas a una Aplicación Qt"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="habilidades.html" title="Habilidades"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

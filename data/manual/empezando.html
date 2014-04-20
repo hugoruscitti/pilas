@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Empezando, los primeros pasos con pilas &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Grupos" href="grupos.html" />
+    <link rel="prev" title="Instalación" href="instalar.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="grupos.html" title="Grupos"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="instalar.html" title="Instalación"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="empezando-los-primeros-pasos-con-pilas">
+<h1>Empezando, los primeros pasos con pilas<a class="headerlink" href="#empezando-los-primeros-pasos-con-pilas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Si ya tienes instalada la biblioteca podemos
+comenzar a realizar nuestros primeros pasos
+con la biblioteca.</p>
+<p><strong>pilas</strong> incluye un intérprete interactivo
+que te permite escribir código de python y
+autocompletar el nombre de las funciones.
+Aunque si quieres, puedes usar el intérprete
+estándar de python, abriendo un terminal de
+texto y ejecutando el comando <tt class="docutils literal"><span class="pre">python</span></tt>.</p>
+<div class="section" id="iniciando-pilas">
+<h2>Iniciando pilas<a class="headerlink" href="#iniciando-pilas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para ejecutar el asistente de <strong>pilas</strong>,
+abre un terminal y ejecuta el comando
+<tt class="docutils literal"><span class="pre">pilas</span></tt>.</p>
+<p>En tu pantalla tiene que aparecer una ventana como esta.</p>
+<img alt="_images/asistente.jpg" src="_images/asistente.jpg" />
+</div>
+<div class="section" id="interprete-de-pilas">
+<h2>Intérprete de pilas<a class="headerlink" href="#interprete-de-pilas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Haz click en <strong>Abrir intérprete</strong> y aparecerá esta ventana.</p>
+<img alt="_images/interprete.jpg" src="_images/interprete.jpg" />
+<p>La ventana se divide en dos partes. La parte de abajo muestra el editor. Todo lo
+que escribas en el editor se ejecutará automáticamente. El resultado se muestra
+en la parte de arriba.</p>
+</div>
+<div class="section" id="iniciando-la-biblioteca">
+<h2>Iniciando la biblioteca<a class="headerlink" href="#iniciando-la-biblioteca" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La parte de arriba es la que utilizaremos para interactuar
+con el motor. Y mas adelante será la única pantalla
+que verán los usuarios de nuestros juegos.</p>
+<p>Puedes ver que el intérprete viene con algunas líneas de ejemplo.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">()</span>
+<span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>La línea <tt class="docutils literal"><span class="pre">import</span> <span class="pre">pilas</span></tt> le dice a Python que use la librería pilas. La función
+<tt class="docutils literal"><span class="pre">pilas.iniciar()</span></tt> prepara la ventana (entre otras cosas) para empezar a usar
+pilas. La línea <tt class="docutils literal"><span class="pre">mono</span> <span class="pre">=</span> <span class="pre">pilas.actores.Mono()</span></tt>, por una parte crea un personaje
+con forma de mono (<strong>pilas.actores.Mono()</strong>) y, por otra parte, le da el nombre de
+<strong>mono</strong>.</p>
+<p>La función <tt class="docutils literal"><span class="pre">pilas.iniciar()</span></tt> tiene mas parámetros, pero los veremos mas
+adelante. Por ahora, continuaremos con lo básico.</p>
+</div>
+<div class="section" id="creando-personajes">
+<h2>Creando personajes<a class="headerlink" href="#creando-personajes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un concepto importante en <a class="reference internal" href="referencia.html#module-pilas" title="pilas"><tt class="xref py py-mod docutils literal"><span class="pre">pilas</span></tt></a> es del de <tt class="docutils literal"><span class="pre">actores</span></tt>. Un
+actor en pilas es un objeto que aparece en pantalla, tiene
+una posición determinada y se puede manipular.</p>
+<p>Por ejemplo, una nave, un enemigo, una medalla... etc.</p>
+<p>Para agilizar el desarrollo de juegos se incluyen varios
+actores dentro del motor, uno de ellos es <tt class="docutils literal"><span class="pre">Mono</span></tt>, un
+simpático chimpancé.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Puedes ver todos los actores disponibles en <a class="reference internal" href="referencia.html#module-pilas" title="pilas"><tt class="xref py py-mod docutils literal"><span class="pre">pilas</span></tt></a>
+ejecutando <tt class="docutils literal"><span class="pre">pilas.actores.listar_actores()</span></tt>.</p>
+</div>
+<p>Tenemos al actor <tt class="docutils literal"><span class="pre">mono</span></tt>. Para indicarle
+acciones solo tenemos que utilizar su nombre y sentencias
+simples.</p>
+<p>Por ejemplo, para que el personaje cambie su expresión,
+podemos usar sentencias cómo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">sonreir</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>o:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">gritar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>En cualquiera de los dos casos, el personaje
+cambiará su aspecto y emitirá un sonido.</p>
+<img alt="_images/smile.png" src="_images/smile.png" />
+<p>Incluso podríamos decirle al personaje
+que tiene que hablar algo, por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">decir</span><span class="p">(</span><span class="s">&quot;Hey, bienvenido a pilas!!!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>y el personaje mostrará exactamente lo que le
+indicamos que tiene que decir, cómo si fuera un
+personaje de comic:</p>
+<img alt="_images/decir.png" src="_images/decir.png" />
+<p>A partir de ahora, comenzaremos a escribir algunos
+ejemplos. Ten en cuenta que no es necesario que
+escribas todo el código de los ejemplos, el intérprete de pilas
+te permite autocompletar sentencias mientras escribes.</p>
+</div>
+<div class="section" id="cosas-en-comun-para-los-actores">
+<h2>Cosas en común para los actores<a class="headerlink" href="#cosas-en-comun-para-los-actores" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Internamente, <tt class="docutils literal"><span class="pre">Mono</span></tt> es un actor, así que encontraremos
+mucha funcionalidad en él que la tendrán el resto de los
+actores.</p>
+<p>Veamos algunas de estas características:</p>
+<div class="section" id="posicion">
+<h3>Posición<a class="headerlink" href="#posicion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Podemos cambiar la posición de un actor mediante las propiedades <tt class="docutils literal"><span class="pre">x</span></tt> e <tt class="docutils literal"><span class="pre">y</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">mono</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>Ten en cuenta que <tt class="docutils literal"><span class="pre">x</span></tt> e <tt class="docutils literal"><span class="pre">y</span></tt> son las coordenadas de posición
+en el escenario. Por lo tanto el punto (0, 0) es el centro
+de la ventana. Y <tt class="docutils literal"><span class="pre">x</span></tt> aumenta hacia la derecha e <tt class="docutils literal"><span class="pre">y</span></tt> hacia arriba.</p>
+<img alt="_images/normal.png" src="_images/normal.png" />
+<p>Este espacio de referencia se puede observar en detalle si pulsas
+la tecla <strong>F12</strong>, ahí observarás que el movimiento del mouse
+está asociado a una coordenada y cada actor también.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Para que tenga efecto, debes tener seleccionada la ventana de resultado
+(parte de arriba). Haz click sobre ella antes de pulsar F12.</p>
+</div>
+</div>
+<div class="section" id="escala">
+<h3>Escala<a class="headerlink" href="#escala" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Todo actor tiene un atributo para indicar su tamaño
+en pantalla, el atributo <tt class="docutils literal"><span class="pre">escala</span></tt> (que originalmente vale 1):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rotacion">
+<h3>Rotación<a class="headerlink" href="#rotacion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>También contamos con un atributo que indica la rotación en grados que debe
+tener el actor en pantalla. El atributo <tt class="docutils literal"><span class="pre">rotacion</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="mi">40</span>
+</pre></div>
+</div>
+<img alt="_images/rotation40.png" src="_images/rotation40.png" />
+<p>o bien:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="mi">80</span>
+</pre></div>
+</div>
+<img alt="_images/rotation80.png" src="_images/rotation80.png" />
+<p>La rotación siempre se indica en grados, e indica
+el grado de inclinación hacia la derecha.</p>
+</div>
+<div class="section" id="animaciones">
+<h3>Animaciones<a class="headerlink" href="#animaciones" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Cualquiera de todas las propiedes
+que vimos anteriormente se pueden usar para hacer
+animaciones, por
+ejemplo, con el siguiente código
+podríamos indicarle al actor que dé una
+vuelta completa:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="p">[</span><span class="mi">360</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>¿por qué?, porque los caracteres <tt class="docutils literal"><span class="pre">[</span></tt> y <tt class="docutils literal"><span class="pre">]</span></tt> representan
+una lista de valores, y cuando pilas ve esta lista asignada
+a un atributo de pilas, intenta hacer una animación.</p>
+<p>Veamos otro ejemplo, si queremos que un personaje
+como el mono se mueva horizontalmente con una animación
+podemos escribir esto:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Estas animaciones las veremos mas adelante, pero
+de todas formas es interesante observar que son
+listas comunes y corrientes.</p>
+<p>Python permite multiplicar listas, así que podríamos multiplicarlas para repetir
+la animación.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Sólo en python.</span>
+<span class="n">mono</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="c"># ir de una lado a otro 5 veces.</span>
+</pre></div>
+</div>
+<p>o incluso podríamos alterarles la velocidad, digamos
+que el ir y regresar se tiene que hacer
+muy lento, en unos 10 segundos:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pidiendo-ayuda">
+<h2>Pidiendo ayuda<a class="headerlink" href="#pidiendo-ayuda" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Recuerda que cada componente de <a class="reference internal" href="referencia.html#module-pilas" title="pilas"><tt class="xref py py-mod docutils literal"><span class="pre">pilas</span></tt></a> está documentado
+como un módulo de python. Por lo tanto, puedes
+ejecutar una sentencia cómo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">help</span><span class="p">(</span><span class="n">mono</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>y aparecerán en pantalla todos los instructivos de
+la funcionalidad del actor.</p>
+<p>Incluso puedes usar la función <tt class="docutils literal"><span class="pre">pilas.ver</span></tt> para conocer
+el código fuente de cualquier cosa de pilas. Por ejemplo
+podemos el código completo del mono ejecutando
+la sentencia:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">ver</span><span class="p">(</span><span class="n">mono</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="eliminando-a-un-actor">
+<h2>Eliminando a un actor<a class="headerlink" href="#eliminando-a-un-actor" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para eliminar un actor de la escena tienes que llamar
+al método <tt class="docutils literal"><span class="pre">eliminar</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mono</span><span class="o">.</span><span class="n">eliminar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusión<a class="headerlink" href="#conclusion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hemos visto los pasos principales para gestionar
+actores. Ten en cuenta que el módulo <a class="reference internal" href="referencia.html#module-pilas.actores" title="pilas.actores"><tt class="xref py py-mod docutils literal"><span class="pre">pilas.actores</span></tt></a> es
+donde se guardarán todos los actores.</p>
+<p>Un buen ejercicio es ponerse a investigar el módulo
+<strong>actores</strong>. Hay muchos actores, estos son algunos ejemplos
+de código para probar:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">b</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Bomba</span><span class="p">()</span>
+<span class="n">b</span><span class="o">.</span><span class="n">explotar</span><span class="p">()</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Pingu</span><span class="p">()</span>    <span class="c"># se mueve con el teclado.</span>
+</pre></div>
+</div>
+<img alt="_images/resultado_parte_1.jpg" src="_images/resultado_parte_1.jpg" />
+<p>Es todo por ahora, seguí leyendo o comenzá
+a explorar por tu cuenta. A divertirse!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Empezando, los primeros pasos con pilas</a><ul>
+<li><a class="reference internal" href="#iniciando-pilas">Iniciando pilas</a></li>
+<li><a class="reference internal" href="#interprete-de-pilas">Intérprete de pilas</a></li>
+<li><a class="reference internal" href="#iniciando-la-biblioteca">Iniciando la biblioteca</a></li>
+<li><a class="reference internal" href="#creando-personajes">Creando personajes</a></li>
+<li><a class="reference internal" href="#cosas-en-comun-para-los-actores">Cosas en común para los actores</a><ul>
+<li><a class="reference internal" href="#posicion">Posición</a></li>
+<li><a class="reference internal" href="#escala">Escala</a></li>
+<li><a class="reference internal" href="#rotacion">Rotación</a></li>
+<li><a class="reference internal" href="#animaciones">Animaciones</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pidiendo-ayuda">Pidiendo ayuda</a></li>
+<li><a class="reference internal" href="#eliminando-a-un-actor">Eliminando a un actor</a></li>
+<li><a class="reference internal" href="#conclusion">Conclusión</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="instalar.html"
+                        title="capítulo anterior">Instalación</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="grupos.html"
+                        title="próximo capítulo">Grupos</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/empezando.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="grupos.html" title="Grupos"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="instalar.html" title="Instalación"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

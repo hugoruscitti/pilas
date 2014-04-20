@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Motores &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Eventos, conexiones y respuestas" href="eventos.html" />
+    <link rel="prev" title="Manejo de Cámara" href="camara.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="eventos.html" title="Eventos, conexiones y respuestas"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="camara.html" title="Manejo de Cámara"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="motores">
+<h1>Motores<a class="headerlink" href="#motores" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Internamente pilas delega toda la tarea de dibujar,
+manejo de eventos y multimedia en general a un
+motor llamado Qt.</p>
+<p>Actualmente pilas soporta dos motores, y permite
+que los programadores puedan seleccionar el motor
+que mejor se adapta a los sistemas que se van
+a utilizar para ejecutar el juego.</p>
+<p>Para indicarle a pilas el motor que tiene que
+utilizar puede usar la siguiente sentencia:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">(</span><span class="n">usar_motor</span><span class="o">=</span><span class="s">&#39;qt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>es decir, solamente tienes que cambiar la inicialización
+de la biblioteca, el resto funcionará normalmente.</p>
+<p>Ten en cuenta que generalmente en los tutoriales de
+pilas o en las presentanciones solamente llamamos a <tt class="docutils literal"><span class="pre">pilas.iniciar</span></tt>
+pero sin indicarle el motor a utilizar. Cuando no le decimos
+a pilas &#8220;qué&#8221; motor utilizar, pilas seleccionará a <tt class="docutils literal"><span class="pre">qtgl</span></tt>.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="camara.html"
+                        title="capítulo anterior">Manejo de Cámara</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="eventos.html"
+                        title="próximo capítulo">Eventos, conexiones y respuestas</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/motores.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="eventos.html" title="Eventos, conexiones y respuestas"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="camara.html" title="Manejo de Cámara"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

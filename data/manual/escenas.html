@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Escenas &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Como migrar mi juego al nuevo Gestor de Escenas" href="migrar_al_gestor_de_escenas.html" />
+    <link rel="prev" title="Controles" href="controles.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="migrar_al_gestor_de_escenas.html" title="Como migrar mi juego al nuevo Gestor de Escenas"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="controles.html" title="Controles"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="escenas">
+<h1>Escenas<a class="headerlink" href="#escenas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Las escenas te permiten dividir el juego en partes
+reconocibles y que interactúan de manera diferente
+con el usuario.</p>
+<p>Un juego típico tendrá al menos una escena cómo
+el menú principal, una presentanción y una
+pantalla de juego.</p>
+<img alt="_images/escenas_juego.png" src="_images/escenas_juego.png" />
+<div class="section" id="cosas-a-tener-en-cuenta">
+<h2>Cosas a tener en cuenta<a class="headerlink" href="#cosas-a-tener-en-cuenta" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hay algunas cosas a tener en cuenta
+a la hora de manejar escenas, porque
+simplifican mucho el trabajo posterior:</p>
+<ul class="simple">
+<li>La escena actual siempre está señalada por el atributo <tt class="docutils literal"><span class="pre">pilas.escena_actual()</span></tt>.</li>
+<li>Solo puede existir una escena activa a la vez.</li>
+</ul>
+</div>
+<div class="section" id="la-escena-normal">
+<h2>La escena Normal<a class="headerlink" href="#la-escena-normal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Cuando iniciamos pilas por primera vez se creará
+una escena llamada <tt class="docutils literal"><span class="pre">Normal</span></tt>. Esta escena no
+tiene un comportamiento muy elaborado, simplemente
+imprime toda la pantalla de gris para que
+podamos colocar actores sobre ella y veamos una
+escena limpia.</p>
+</div>
+<div class="section" id="pausando-el-juego">
+<h2>Pausando el juego<a class="headerlink" href="#pausando-el-juego" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En cualquier momento del juego podemos ejecutar <tt class="docutils literal"><span class="pre">pilas.escena.pausar()</span></tt>
+y el juego quedará pausado hasta que se pulse la tecla ESC y vuelva a la
+ejecución normal del juego.</p>
+<p>Este comando es un atajo que carga la escena <tt class="docutils literal"><span class="pre">Pausa</span></tt>.
+Puedes crear tu propia pantalla de PAUSA heredando de <tt class="docutils literal"><span class="pre">pilas.escena.Pausa</span></tt>.</p>
+</div>
+<div class="section" id="cambiando-el-fondo-de-las-escenas">
+<h2>Cambiando el fondo de las escenas<a class="headerlink" href="#cambiando-el-fondo-de-las-escenas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para hacer una pequeña prueba sobre una
+escena, podrías ejecutar la siguiente sentencia
+de código:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">Volley</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Esto le dará a tu escena una vista
+mas agradable, porque carga un fondo de
+pantalla colorido y mas divertido:</p>
+<img alt="_images/paisaje.jpg" src="_images/paisaje.jpg" />
+<p>o podrías usar un fondo de atardecer:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">Tarde</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/tarde.jpg" src="_images/tarde.jpg" />
+</div>
+<div class="section" id="como-crear-nuevas-escenas">
+<h2>Cómo crear nuevas escenas<a class="headerlink" href="#como-crear-nuevas-escenas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Imagina que tienes un juego con dos pantallas, una
+que simplemente dice &#8220;bienvenido&#8221; y  otra con
+un personaje para mover.</p>
+<p>Claramente tendríamos que hacer dos escenas, e iniciar
+nuestro juego creando la escena principal.</p>
+<p>La primer escena tendríamos que representarla
+con una clase, que herede de la escena Normal
+así:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">PantallaBienvenida</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Normal</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">escena</span><span class="o">.</span><span class="n">Normal</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">Pasto</span><span class="p">()</span>
+        <span class="n">texto</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Texto</span><span class="p">(</span><span class="s">&quot;Bienvenido a pilas!!!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ahora, para poner en funcionamiento esta escena
+simplemente tienes que decirle a pilas que esta escena es la activa:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">cambiar_escena</span><span class="p">(</span><span class="n">PantallaBienvenida</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Esto eliminará las escenas almacenadas y se colocará como la escena
+actual y activa:</p>
+<div class="admonition seealso">
+<p class="first admonition-title">Ver también</p>
+<p class="last">Mira la documentación <a class="reference internal" href="gestor_de_escenas.html#ref-gestor-de-escenas"><em>Nuevo Gestor de Escenas</em></a> para comprender mejor el apilamiento de escenas.</p>
+</div>
+<img alt="_images/escena_simple.jpg" src="_images/escena_simple.jpg" />
+<p>Ahora, si quieres salir de la escena, simplemente tendrías
+que hacer un objeto de otra clase que represente otra escena y llamar a uno de
+estos tres metodos:</p>
+<ul class="simple">
+<li>pilas.cambiar_escena(mi_escena)</li>
+<li>pilas.almacenar_escena(mi_escena)</li>
+<li>pilas.recuperar_escena()</li>
+</ul>
+</div>
+<div class="section" id="metodo-sobreescribibles">
+<h2>Método sobreescribibles<a class="headerlink" href="#metodo-sobreescribibles" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Dentro de cada escena existen 2 métodos que pueden ser sobreescritos.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">pausar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">reanudar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Si quieres tener el control de cuando una escena se queda apilada, deberás
+sobreescritir el método:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">pausar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Si quieres sabes cuando una escena apilada vuelve a ser la escena activa,
+deberás sobreescribir el método:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">reanudar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Escenas</a><ul>
+<li><a class="reference internal" href="#cosas-a-tener-en-cuenta">Cosas a tener en cuenta</a></li>
+<li><a class="reference internal" href="#la-escena-normal">La escena Normal</a></li>
+<li><a class="reference internal" href="#pausando-el-juego">Pausando el juego</a></li>
+<li><a class="reference internal" href="#cambiando-el-fondo-de-las-escenas">Cambiando el fondo de las escenas</a></li>
+<li><a class="reference internal" href="#como-crear-nuevas-escenas">Cómo crear nuevas escenas</a></li>
+<li><a class="reference internal" href="#metodo-sobreescribibles">Método sobreescribibles</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="controles.html"
+                        title="capítulo anterior">Controles</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="migrar_al_gestor_de_escenas.html"
+                        title="próximo capítulo">Como migrar mi juego al nuevo Gestor de Escenas</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/escenas.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="migrar_al_gestor_de_escenas.html" title="Como migrar mi juego al nuevo Gestor de Escenas"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="controles.html" title="Controles"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

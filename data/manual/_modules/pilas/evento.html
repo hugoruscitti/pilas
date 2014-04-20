@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>pilas.evento &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="../../../../_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="../../index.html" />
+    <link rel="up" title="pilas" href="../pilas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li><a href="../../index.html">pilas</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
+          <li><a href="../pilas.html" accesskey="U">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Código fuente para pilas.evento</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+<span class="c"># Pilas engine - A video game framework.</span>
+<span class="c">#</span>
+<span class="c"># Copyright 2010 - Hugo Ruscitti</span>
+<span class="c"># License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)</span>
+<span class="c">#</span>
+<span class="c"># Website - http://www.pilas-engine.com.ar</span>
+<span class="c">#</span>
+<span class="c"># Este sistema de eventos está basado en:</span>
+<span class="c">#</span>
+<span class="c">#     http://stackoverflow.com/questions/1092531/event-system-in-python</span>
+<span class="c">#</span>
+
+<span class="kn">import</span> <span class="nn">weakref</span>
+<span class="kn">import</span> <span class="nn">new</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">pilas</span>
+
+<span class="n">__doc__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">Módulo pilas.evento</span>
+<span class="s">===================</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">Evento</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">respuestas</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+
+    <span class="k">def</span> <span class="nf">emitir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">evento</span><span class="p">):</span>
+        <span class="n">a_eliminar</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">respuesta</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">respuestas</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">respuesta</span><span class="p">(</span><span class="o">**</span><span class="n">evento</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ReferenceError</span><span class="p">:</span>
+                <span class="n">a_eliminar</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">respuesta</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">a_eliminar</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a_eliminar</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">desconectar</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">conectar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">respuesta</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isfunction</span><span class="p">(</span><span class="n">respuesta</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">respuestas</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ProxyFuncion</span><span class="p">(</span><span class="n">respuesta</span><span class="p">,</span> <span class="nb">id</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">inspect</span><span class="o">.</span><span class="n">ismethod</span><span class="p">(</span><span class="n">respuesta</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">respuestas</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ProxyMetodo</span><span class="p">(</span><span class="n">respuesta</span><span class="p">,</span> <span class="nb">id</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Solo se permite conectar nombres de funciones o metodos.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">desconectar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">respuesta</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">respuestas</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">respuesta</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;La funcion indicada no estaba agregada como respuesta del evento.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">desconectar_por_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="n">a_eliminar</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">respuesta</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">respuestas</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">respuesta</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
+                <span class="n">a_eliminar</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">respuesta</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a_eliminar</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">desconectar</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">esta_conectado</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">respuestas</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">imprimir_funciones_conectadas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">esta_conectado</span><span class="p">():</span>
+            <span class="k">print</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s"> &lt;&lt; sin funciones conectadas &gt;&gt;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">respuestas</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s"> +&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="s">&quot; en &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">receptor</span>
+
+
+<span class="k">class</span> <span class="nc">AttrDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Envoltorio para que el diccionario de eventos</span>
+<span class="sd">    se pueda acceder usando como si tuviera attributos</span>
+<span class="sd">    de objeto.</span>
+
+<span class="sd">    Por ejemplo, con esta clase es posible que un diccionario</span>
+<span class="sd">    se pueda usar así:</span>
+
+<span class="sd">        &gt;&gt;&gt; b = AttrDict({&#39;x&#39;: 123})</span>
+<span class="sd">        &gt;&gt;&gt; b.x</span>
+<span class="sd">        123</span>
+<span class="sd">        &gt;&gt;&gt; b[&#39;x&#39;]</span>
+<span class="sd">        123</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">dict</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">ProxyFuncion</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Representa a una función de repuesta pero usando</span>
+<span class="sd">    una referencia débil.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcion</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">cb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s">&#39;modulo actual&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">evento</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcion</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">f</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">(</span><span class="n">evento</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ReferenceError</span><span class="p">(</span><span class="s">&quot;La funcion dejo de existir&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ProxyMetodo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Permite asociar funciones pero con referencias débiles, que no</span>
+<span class="sd">    incrementan el contador de referencias.</span>
+
+<span class="sd">    Este proxy funciona tanto con funciones como con métodos enlazados</span>
+<span class="sd">    a un objeto.</span>
+
+<span class="sd">    @organization: IBM Corporation</span>
+<span class="sd">    @copyright: Copyright (c) 2005, 2006 IBM Corporation</span>
+<span class="sd">    @license: The BSD License</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">cb</span><span class="o">.</span><span class="n">im_self</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">cb</span><span class="o">.</span><span class="n">im_func</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">klass</span> <span class="o">=</span> <span class="n">cb</span><span class="o">.</span><span class="n">im_class</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">cb</span><span class="o">.</span><span class="n">im_func</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">cb</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">klass</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cb</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receptor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">klass</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">evento</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">inst</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ReferenceError</span><span class="p">(</span><span class="s">&quot;El metodo ha dejado de existir&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">mtd</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">instancemethod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inst</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">klass</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mtd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span>
+
+        <span class="k">return</span> <span class="n">mtd</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">(</span><span class="n">evento</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">func</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">inst</span><span class="p">()</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">inst</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ProxyEventos"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos">[documentos]</a><span class="k">class</span> <span class="nc">ProxyEventos</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Representa el objeto pilas.evento, que internamente delega todos los metodos</span>
+<span class="sd">    conectados a la escena actual.</span>
+
+<span class="sd">    Para acceder a este objeto, usar una sentencia como la siguiente:</span>
+
+<span class="sd">        &gt;&gt;&gt; pilas.eventos.click_de_mouse.conectar(una_funcion)</span>
+
+<span class="sd">    La función enviada como parámetro será invocada cuando el evento</span>
+<span class="sd">    ocurra. Y se enviará como argumento los datos del evento, por ejemplo:</span>
+
+<span class="sd">        &gt;&gt;&gt; def cuando_hace_click(evento):</span>
+<span class="sd">        ...     print evento.x</span>
+<span class="sd">        ...     print evento.y</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; pilas.eventos.click_de_mouse.conectar(cuando_hace_click)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ProxyEventos.click_de_mouse"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.click_de_mouse">[documentos]</a>    <span class="k">def</span> <span class="nf">click_de_mouse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Informa ante la pulsación del mouse.</span>
+
+<span class="sd">        :param x: Posición horizontal del mouse.</span>
+<span class="sd">        :param y: Posición vertical del mouse.</span>
+<span class="sd">        :param dx: Posición horizontal relativa del mouse.</span>
+<span class="sd">        :param dy: Posición vertical relativa del mouse.</span>
+<span class="sd">        :param boton: Botón del mouse que se pulsó (1 - Izquierdo, 2 - Derecho, 4 - Central)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">click_de_mouse</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ProxyEventos.mueve_camara"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.mueve_camara">[documentos]</a>    <span class="k">def</span> <span class="nf">mueve_camara</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Informa que ha cambiado la posición de la cámara.</span>
+
+<span class="sd">        :param x: Posición horizontal de la cámara.</span>
+<span class="sd">        :param y: Posición vertical de la cámara.</span>
+<span class="sd">        :param dx: Movimiento relativo horizontal que sufrió la cámara.</span>
+<span class="sd">        :param dy: Movimiento relativo vertical que sufrió la cámara.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">mueve_camara</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ProxyEventos.mueve_mouse"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.mueve_mouse">[documentos]</a>    <span class="k">def</span> <span class="nf">mueve_mouse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Informa que la posición del mouse ha cambiado.</span>
+
+<span class="sd">        :param x: Posición horizontal del mouse.</span>
+<span class="sd">        :param y: Posición vertical del mouse.</span>
+<span class="sd">        :param dx: Posición horizontal relativa del mouse.</span>
+<span class="sd">        :param dy: Posición vertical relativa del mouse.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">mueve_mouse</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ProxyEventos.termina_click"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.termina_click">[documentos]</a>    <span class="k">def</span> <span class="nf">termina_click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Informa cuando la pulsación del mouse termina.</span>
+
+<span class="sd">        :param x: Posición horizontal del mouse.</span>
+<span class="sd">        :param y: Posición vertical del mouse.</span>
+<span class="sd">        :param dx: Posición horizontal relativa del mouse.</span>
+<span class="sd">        :param dy: Posición vertical relativa del mouse.</span>
+<span class="sd">        :param boton: Botón del mouse que se pulsó (1 - Izquierdo, 2 - Derecho, 4 - Central)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">termina_click</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ProxyEventos.mueve_rueda"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.mueve_rueda">[documentos]</a>    <span class="k">def</span> <span class="nf">mueve_rueda</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Indica que cambió la rueda del mouse que se utiliza para desplazamiento o scroll.</span>
+
+<span class="sd">        :param delta: indica el grado de rotación de la rueda del mouse.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">mueve_rueda</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ProxyEventos.pulsa_tecla"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.pulsa_tecla">[documentos]</a>    <span class="k">def</span> <span class="nf">pulsa_tecla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Informa que se ha pulsado una tecla del teclado.</span>
+
+<span class="sd">        :param codigo: Codigo de la tecla normalizado, por ejemplo ``simbolos.m``.</span>
+<span class="sd">        :param es_repeticion: Indica si el evento surgió por repetición de teclado. False indica que es la primer pulsación.</span>
+<span class="sd">        :param texto: Cadena de texto que indica la tecla pulsada, por ejemplo ``&quot;m&quot;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">pulsa_tecla</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ProxyEventos.suelta_tecla"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.suelta_tecla">[documentos]</a>    <span class="k">def</span> <span class="nf">suelta_tecla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Informa que se ha soltado una tecla del teclado.</span>
+
+<span class="sd">        :param codigo: Codigo de la tecla normalizado, por ejemplo ``simbolos.m``.</span>
+<span class="sd">        :param es_repeticion: Indica si el evento surgió por repetición de teclado. False indica que es la primer pulsación.</span>
+<span class="sd">        :param texto: Cadena de texto que indica la tecla pulsada, por ejemplo ``&quot;m&quot;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">suelta_tecla</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ProxyEventos.pulsa_tecla_escape"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.pulsa_tecla_escape">[documentos]</a>    <span class="k">def</span> <span class="nf">pulsa_tecla_escape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Indica que se ha pulsado la tecla ``scape``.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">pulsa_tecla_escape</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ProxyEventos.actualizar"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.actualizar">[documentos]</a>    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Se invoca regularmente, 60 veces por segundo.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">actualizar</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ProxyEventos.log"><a class="viewcode-back" href="../../referencia.html#pilas.evento.ProxyEventos.log">[documentos]</a>    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Indica que se emitió un mensaje para depuración usando la función ``pilas.log``.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">log</span>
+</div>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">Evento</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Evento</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li><a href="../../index.html">pilas</a> &raquo;</li>
+          <li><a href="../index.html" >Código de módulo</a> &raquo;</li>
+          <li><a href="../pilas.html" >pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

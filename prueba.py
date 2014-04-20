@@ -6,10 +6,10 @@ from PyQt4 import QtGui
 import pilasengine
 
 
-class Ventana(QtGui.QWidget):
+class VentanaAsistente(QtGui.QWidget):
 
     def __init__(self):
-        super(Ventana, self).__init__()
+        super(VentanaAsistente, self).__init__()
         self.initUI()
 
     def agregar_widget(self, widget):
@@ -28,7 +28,7 @@ class Ventana(QtGui.QWidget):
 
 def main():
     app = QtGui.QApplication(sys.argv)
-    ventana = Ventana()
+    ventana = VentanaAsistente()
 
     # similar a la funcion "iniciar" pero simplemente
     # arma el widget para utilizar dentro de una aplicacion.

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Manejo de Cámara &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Motores" href="motores.html" />
+    <link rel="prev" title="Diálogos" href="dialogos.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="motores.html" title="Motores"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="dialogos.html" title="Diálogos"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="manejo-de-camara">
+<h1>Manejo de Cámara<a class="headerlink" href="#manejo-de-camara" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En ocasiones queremos que el escenario de
+nuestro juego sea muy extenso, un bosque, una
+ciudad repleta de objetos etc...</p>
+<p>Nuestros juegos con pilas no están limitados
+a lo que podemos ver en la ventana, el espacio
+del escenario puede ser tan grande como queramos. Aquí
+es donde la <tt class="docutils literal"><span class="pre">cámara</span></tt> toma protagonismo.</p>
+<p>El objeto <tt class="docutils literal"><span class="pre">cámara</span></tt> nos permite desplazar el punto
+de vista en cualquier parte del escenario, dado que nos
+brinda dos coordenadas: <tt class="docutils literal"><span class="pre">x</span></tt> e <tt class="docutils literal"><span class="pre">y</span></tt>, para que le
+indiquemos qué parte del escenario tenemos que observar.</p>
+<div class="section" id="las-coordenadas-de-la-camara">
+<h2>Las coordenadas de la cámara<a class="headerlink" href="#las-coordenadas-de-la-camara" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Inicialmente la cámara estará mostrando el punto <tt class="docutils literal"><span class="pre">(0,</span> <span class="pre">0)</span></tt>
+del escenario, el punto central de la ventana.</p>
+<p>Si queremos que muestre otra parte del escenario
+podemos ejecutar una sentencia como la que sigue:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">camara</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">200</span><span class="p">]</span>
+<span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">camara</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">200</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Con esto le estaríamos diciendo a la cámara que nos
+muestre el punto <tt class="docutils literal"><span class="pre">(200,</span> <span class="pre">200)</span></tt> del escenario. Así
+observaríamos que podemos explorar la parte superior
+derecha del escenario de forma gradual.</p>
+</div>
+<div class="section" id="objetos-sensibles-a-la-camara">
+<h2>Objetos sensibles a la cámara<a class="headerlink" href="#objetos-sensibles-a-la-camara" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hay casos en donde queremos que los actores no
+se desplacen junto con el escenario, es decir,
+puede ocurrir que necesitemos que un actor permanezca
+fijo en su posicion de pantalla aunque la cámara cambie
+de lugar.</p>
+<p>Este es el caso de los contadores de vidas, los textos
+que vé un usuario o cualquier marcador auxiliar.</p>
+<p>Para que un actor no se vea afectado por la cámara, tienes
+que guardar el valor <tt class="docutils literal"><span class="pre">True</span></tt> dentro del atributo <tt class="docutils literal"><span class="pre">fijo</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">actor</span><span class="o">.</span><span class="n">fijo</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<p>Por lo general, todos los actores tienen este atributo a <tt class="docutils literal"><span class="pre">False</span></tt>, porque
+viven en el escenario de juego y no se quedan fijos a la pantalla. Excepto
+los textos que siempre permanecen en la parte superior de la ventana.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Manejo de Cámara</a><ul>
+<li><a class="reference internal" href="#las-coordenadas-de-la-camara">Las coordenadas de la cámara</a></li>
+<li><a class="reference internal" href="#objetos-sensibles-a-la-camara">Objetos sensibles a la cámara</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="dialogos.html"
+                        title="capítulo anterior">Diálogos</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="motores.html"
+                        title="próximo capítulo">Motores</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/camara.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="motores.html" title="Motores"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="dialogos.html" title="Diálogos"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>Manejo de tiempo con tareas &mdash; pilas</title>
+
+
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.84',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <link rel="top" title="pilas" href="index.html" />
+    <link rel="next" title="Interpolaciones" href="interpolacion.html" />
+    <link rel="prev" title="Dibujado avanzado con Superficies" href="dibujado_avanzado_con_superficies.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="interpolacion.html" title="Interpolaciones"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="dibujado_avanzado_con_superficies.html" title="Dibujado avanzado con Superficies"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="manejo-de-tiempo-con-tareas">
+<h1>Manejo de tiempo con tareas<a class="headerlink" href="#manejo-de-tiempo-con-tareas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Una necesidad muy común en los videojuegos
+es poder planificar tareas para ser ejecutadas
+por tiempo.</p>
+<p>Por ejemplo, en un juego de naves podríamos
+querer que aparezcan naves enemigas cada
+dos segundos.</p>
+<div class="section" id="tareas">
+<h2>Tareas<a class="headerlink" href="#tareas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las tareas son acciones que elegimos ejecutar
+en un determinado momento.</p>
+<p>Al momento de crear la tarea tenemos que
+pensar &#8220;en qué momento se tiene que ejecutar
+la tarea&#8221;, y dependiendo de lo que queramos,
+tenemos que escribir algo cómo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">agregar_tarea</span><span class="p">(</span><span class="n">tiempo</span><span class="p">,</span> <span class="n">funcion</span><span class="p">,</span> <span class="n">parametros</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Hay tres tipos de creaciones de tareas:</p>
+<blockquote>
+<div><ul class="simple">
+<li>tareas que se ejecutan una vez.</li>
+<li>tareas que se ejecutan siempre.</li>
+<li>tareas condicionales.</li>
+</ul>
+</div></blockquote>
+<p>las tareas condicionales se ejecutarán siempre y cuando
+la función que las representa retorna True. Si la función
+retorna False la tarea dejará de ejecutarse.</p>
+</div>
+<div class="section" id="eliminar-tareas">
+<h2>Eliminar tareas<a class="headerlink" href="#eliminar-tareas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Una forma sencilla de detener una tarea es iniciarla
+cómo condicional, y que la función que le asignamos
+retorne False.</p>
+<p>Otra forma es simplemente capturar el retorno de
+la función que ha creado la tarea y detenerla.</p>
+<p>Por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">una_tarea</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">agregar_tarea_siempre</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">funcion</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>y luego, cuando queramos que la tarea finalice
+y no se vuelva a ejecutar, tendríamos que ejecutar
+una sentancia cómo ésta:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">una_tarea</span><span class="o">.</span><span class="n">terminar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/pilas-logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Tabla de Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Manejo de tiempo con tareas</a><ul>
+<li><a class="reference internal" href="#tareas">Tareas</a></li>
+<li><a class="reference internal" href="#eliminar-tareas">Eliminar tareas</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="dibujado_avanzado_con_superficies.html"
+                        title="capítulo anterior">Dibujado avanzado con Superficies</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="interpolacion.html"
+                        title="próximo capítulo">Interpolaciones</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/tareas.txt"
+           rel="nofollow">Mostrar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un nombre de módulo, clase o función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="interpolacion.html" title="Interpolaciones"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="dibujado_avanzado_con_superficies.html" title="Dibujado avanzado con Superficies"
+             >anterior</a> |</li>
+        <li><a href="index.html">pilas</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+</div>
+
+
+
+
+
+  </body>
+</html>
