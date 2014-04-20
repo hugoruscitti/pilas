@@ -35,8 +35,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self._conectar_botones()
         self._conectar_observadores_splitters()
 
-
-
     def _conectar_botones(self):
         # Botón del manual
         self.definir_icono(self.manual_button, 'iconos/manual.png')
@@ -126,11 +124,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
                 )
 
     def raw_input(self, mensaje):
-        text, _ = QtGui.QInputDialog.getText(self, "raw_input", mensaje)
+        text, _ = QtGui.QInputDialog.getText(self.main, "raw_input", mensaje)
         return str(text)
 
     def input(self, mensaje):
-        text, _ = QtGui.QInputDialog.getText(self, "raw_input", mensaje)
+        text, _ = QtGui.QInputDialog.getText(self.main, "raw_input", mensaje)
         return eval(str(text))
 
     def help(self, objeto=None):
