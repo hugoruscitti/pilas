@@ -3,7 +3,7 @@ from pilasengine.escenas.escena import Escena
 class Normal(Escena):
 
     def iniciar(self):
-        self.pilas.actores.Aceituna()
+        self.fondo = self.pilas.fondos.Plano()
 
     def actualizar(self):
         pass

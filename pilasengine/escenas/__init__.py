@@ -21,6 +21,7 @@ class Escenas(object):
     def definir_escena(self, escena):
         self.pilas.log("Definiendo como activa la escena", escena)
         self.escena_actual = escena
+        escena.iniciar()
         return escena
 
     def obtener_escena_actual(self):

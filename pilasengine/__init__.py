@@ -7,6 +7,7 @@ from pilasengine import escenas
 from pilasengine import imagenes
 from pilasengine import actores
 from pilasengine import utils
+from pilasengine import fondos
 
 import widget
 
@@ -30,9 +31,10 @@ class Pilas(object):
         self.actores = actores.Actores(self)
         self.escenas = escenas.Escenas(self)
         self.imagenes = imagenes.Imagenes(self)
-        self.escenas.Normal()
-        self.widget = widget.Widget(self, ancho, alto)
         self.utils = utils.Utils(self)
+        self.fondos = fondos.Fondos(self)
+        self.escenas.Normal()
+        self.widget = widget.WidgetConAceleracion(self, ancho, alto)
 
     def obtener_widget(self):
         return self.widget
@@ -40,6 +42,10 @@ class Pilas(object):
     def obtener_centro_fisico(self):
         """Retorna el centro de la ventana en pixels."""
         return self.widget.obtener_centro_fisico()
+
+    def obtener_area(self):
+        """Retorna el tamaño real de la ventana."""
+        return self.widget.obtener_area()
 
     def habilitar_mensajes_log(self, estado):
         self._imprimir_mensajes_log = estado
