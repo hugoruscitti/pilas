@@ -138,7 +138,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
             print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
 
     def _insertar_ventana_principal_de_pilas(self):
-        pilas = pilasengine.iniciar()
+        pilas = pilasengine.iniciar(640, 400)
         aceituna = pilas.actores.Aceituna()
         scope = {'pilas': pilas, 'aceituna': aceituna, 'self': self}
         ventana = pilas.obtener_widget()
