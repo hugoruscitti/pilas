@@ -113,13 +113,29 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
     Esta instancia tiene como atributo "self.ventana" al
     al QWidget representado por la clase Ventana"""
 
+    def _buscar_fuente_personalizada(self):
+        this_dir = os.path.dirname(os.path.realpath('.'))
+        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
+
+        if os.path.exists(font_path):
+            return font_path
+
+        font_path = os.path.join("./data/fuentes", 'SourceCodePro-Regular.ttf')
+
+        if os.path.exists(font_path):
+            return font_path
+
+        return None
+
     def __init__(self,  parent, codigo_inicial):
         super(InterpreteTextEdit,  self).__init__(parent)
+        font_path = self._buscar_fuente_personalizada()
 
-        this_dir = os.path.dirname(os.path.realpath(__file__))
-        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
-        fuente_id = QFontDatabase.addApplicationFont(font_path)
-        self.font_family = QFontDatabase.applicationFontFamilies(fuente_id)[0]
+        if font_path:
+            fuente_id = QFontDatabase.addApplicationFont(font_path)
+            self.font_family = QFontDatabase.applicationFontFamilies(fuente_id)[0]
+        else:
+            self.font_family = "Courier New"
 
         self.ventana = parent
         self.stdout_original = sys.stdout
