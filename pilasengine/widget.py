@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 import sys
 from PyQt4 import QtGui
+from PyQt4.QtOpenGL import QGLWidget
 
 import fps
 
-class Widget(QtGui.QWidget):
+class BaseWidget(QGLWidget):
     """Representa el componente que contiene toda la escena de pilas.
 
     Este widget puede contenerse dentro de una ventana de PyQt, o
@@ -14,7 +15,7 @@ class Widget(QtGui.QWidget):
 
     def __init__(self, pilas, ancho, alto):
         self.pilas = pilas
-        super(Widget, self).__init__()
+        super(BaseWidget, self).__init__()
         self.setMinimumSize(200, 200)
         self.iniciar_interface(ancho, alto)
 
@@ -34,6 +35,10 @@ class Widget(QtGui.QWidget):
     def obtener_centro_fisico(self):
         """Retorna el centro de la ventana en pixels."""
         return (self.original_width/2, self.original_height/2)
+
+    def obtener_area(self):
+        """Retorna el tamaño real de la ventana."""
+        return (self.original_width, self.original_height)
 
     def _realizar_actualizacion_logica(self):
         for _ in range(self.fps.actualizar()):
@@ -56,7 +61,6 @@ class Widget(QtGui.QWidget):
 
         # Pide redibujar el widget (Qt llamará a paintEvent después).
         self.update()
-
 
     def _pintar_fondo(self):
         self.painter.setBrush(QtGui.QColor(200, 200, 200))
@@ -103,3 +107,9 @@ class Widget(QtGui.QWidget):
         self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
 
         self.pilas.realizar_dibujado(self.painter)
+
+class WidgetConAceleracion(BaseWidget, QGLWidget):
+    pass
+
+class WidgetSinAceleracion(BaseWidget, QtGui.QWidget):
+    pass
