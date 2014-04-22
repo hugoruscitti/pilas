@@ -24,6 +24,8 @@ ejecutar:
 
 test:
 	@python -m unittest discover pilasengine/tests '*.py'
+	# O una version mas linda si se instala nose y nosecolor con pip
+	#@nosetests --color pilasengine/tests/*
 
 ui:
 	pyuic4 -xo pilasengine/asistente/asistente_base.py pilasengine/asistente/asistente.ui
