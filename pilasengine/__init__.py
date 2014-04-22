@@ -8,9 +8,11 @@ from pilasengine import imagenes
 from pilasengine import actores
 from pilasengine import utils
 from pilasengine import fondos
+from pilasengine import depurador
 
 import widget
 
+VERSION = "0.86"
 
 
 class Pilas(object):
@@ -25,7 +27,7 @@ class Pilas(object):
     de los actores y quien mantiene con "vida" el juego completo.
     """
 
-    def __init__(self, ancho=640, alto=480, titulo='pilas-engine', habilitar_mensajes_log=False):
+    def __init__(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
         self.actores = actores.Actores(self)
@@ -33,8 +35,17 @@ class Pilas(object):
         self.imagenes = imagenes.Imagenes(self)
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)
+        self.depurador = depurador.Depurador(self)
         self.escenas.Normal()
-        self.widget = widget.WidgetConAceleracion(self, ancho, alto)
+
+        if con_aceleracion:
+            self.widget = widget.WidgetConAceleracion(self, ancho, alto)
+        else:
+            self.widget = widget.WidgetSinAceleracion(self, ancho, alto)
+
+    def usa_aceleracion(self):
+        """Informa si está habilitado el modo aceleración de video."""
+        return (self.widget.__class__ == widget.WidgetConAceleracion)
 
     def obtener_widget(self):
         return self.widget
@@ -78,6 +89,7 @@ class Pilas(object):
         """
         self.log("Buscando ruta al recurso:", ruta)
         return utils.obtener_ruta_al_recurso(ruta)
+
 
 def iniciar(ancho=640, alto=480, titulo='Pilas'):
     """
