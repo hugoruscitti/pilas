@@ -114,7 +114,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.splitter.setSizes([300, 0])
 
     def pulsa_boton_depuracion(self):
-        self.scope['pilas'].definir_modos(
+        pilas = self.scope['pilas']
+        pilas.depurador.definir_modos(
                             info=self.pushButton_6.isChecked(),              # F07
                             puntos_de_control=self.pushButton_5.isChecked(), # F08
                             radios=self.pushButton_4.isChecked(),            # F09
