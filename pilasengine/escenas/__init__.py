@@ -40,3 +40,8 @@ class Escenas(object):
         import normal
         nueva_escena = normal.Normal(self.pilas)
         return self.definir_escena(nueva_escena)
+
+    def Error(self, mensaje_error):
+        import error
+        nueva_escena = error.Error(self.pilas, mensaje_error)
+        return self.definir_escena(nueva_escena)

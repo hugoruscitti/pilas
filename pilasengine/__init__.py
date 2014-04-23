@@ -68,7 +68,16 @@ class Pilas(object):
         self.escenas.realizar_actualizacion_logica()
 
     def realizar_dibujado(self, painter):
-        self.escenas.realizar_dibujado(painter)
+        try:
+            self.escenas.realizar_dibujado(painter)
+            self.depurador.realizar_dibujado(painter)
+        except Exception, e:
+            # Si hay un error lo informa y detiene toda
+            # la ejecución de pilas.
+            self.log("Capturando un error: %s", e)
+            self.depurador.desactivar_todos_los_modos()
+            error = self.escenas.Error(e)
+            raise Exception(e)
 
     def log(self, *mensaje):
         "Muestra un mensaje de prueba sobre la consola."

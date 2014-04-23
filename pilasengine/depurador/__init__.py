@@ -7,6 +7,28 @@ class Depurador(object):
         self.pilas = pilas
         self._modos = []
 
+    def desactivar_todos_los_modos(self):
+        self._modos = []
+
+    def realizar_dibujado(self, painter):
+        """Realiza un dibujado de los modos depuración habilitados.
+
+        Hay dos rutinas de dibujado en cada modo, una dibujado general
+        que se suele utilizar para pintar textos o estadísticas y otra
+        rutina que se llama cada vez que se inspecciona un actor.
+        """
+        if self._modos:
+            actores_de_la_escena = self.pilas.obtener_escena_actual()._actores.obtener_actores()
+
+            # Dibujado depuración de cada modo.
+            for a in actores_de_la_escena:
+                for m in self._modos:
+                    m.dibujar_actor(a)
+
+            # Dibujado general del modo.
+            for m in self._modos:
+                m.realizar_dibujado(painter)
+
     def obtener_modos_habilitados(self):
         """Retorna una lista con los nombres de los modos habilitados."""
         modos = [x.__class__.__name__ for x in self._modos]

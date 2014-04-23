@@ -9,5 +9,4 @@ class Camara(object):
         self.zoom = 1
 
     def aplicar_transformaciones(self, painter):
-        
         painter.scale(self.zoom, self.zoom)

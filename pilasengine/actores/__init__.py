@@ -58,6 +58,11 @@ class Actores(object):
         nuevo_actor = actor.Actor(self.pilas)
         return self.agregar_actor(nuevo_actor)
 
+    def MensajeError(self, error):
+        import mensaje_error
+        nuevo_actor = mensaje_error.MensajeError(self.pilas, error)
+        return self.agregar_actor(nuevo_actor)
+
     def Grupo(self):
         import grupo
         nuevo_grupo = grupo.Grupo(self.pilas)

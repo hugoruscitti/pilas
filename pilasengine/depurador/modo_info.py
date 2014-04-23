@@ -23,10 +23,10 @@ class ModoInformacionDeSistema(ModoDepurador):
             #"Version de Box2D: {}".format(pilas.fisica.obtener_version()),
             ]
 
-    def termina_dibujado(self, motor, painter, lienzo):
+    def realizar_dibujado(self, painter, lienzo):
         izquierda, derecha, arriba, abajo = 100, 300, 200, -200
         #pilas.utils.obtener_bordes()
 
         for (i, texto) in enumerate(self.informacion):
             posicion_y = abajo + 90 + i * 20
-            lienzo.texto(painter, texto, izquierda + 10, posicion_y, color=pilas.colores.blanco)
+            lienzo.texto(painter, texto, izquierda + 10, posicion_y, color=pilasengine.colores.blanco)

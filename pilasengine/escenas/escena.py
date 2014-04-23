@@ -25,6 +25,7 @@ class Escena(object):
 
     def dibujar_actores(self, painter):
         painter.save()
+
         self.camara.aplicar_transformaciones(painter)
 
         for x in self._actores.obtener_actores():

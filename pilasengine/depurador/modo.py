@@ -7,10 +7,10 @@ class ModoDepurador(object):
         self.pilas = pilas
         self.depurador = depurador
 
-    def comienza_dibujado(self, painter, lienzo):
+    def realizar_dibujado(self, painter, lienzo):
         pass
 
-    def dibuja_al_actor(self, painter, lienzo, actor):
+    def dibuja_actor(self, painter, lienzo, actor):
         pass
 
     def termina_dibujado(self, painter, lienzo):
