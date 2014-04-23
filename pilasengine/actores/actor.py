@@ -2,6 +2,8 @@
 import inspect
 
 from estudiante import Estudiante
+from pilasengine.utils import interpolable
+
 
 IZQUIERDA = ["izquierda"]
 DERECHA = ["derecha"]
@@ -268,9 +270,8 @@ class Actor(Estudiante):
     def obtener_x(self):
         return self._x
 
-    #@interpolable
     def definir_x(self, x):
-        self._x = x
+        self._x = self.pilas.utils.interpolar_si_es_necesario(x, "definir_x", "lineal")
 
     def obtener_z(self):
         return self._z

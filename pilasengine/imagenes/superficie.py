@@ -28,15 +28,16 @@ class Superficie(Imagen):
 
     def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro, ancho=0, vertical=False):
         self.canvas.begin(self._imagen)
-        r, g, b, a = color.obtener_componentes()
+        r, g, b, _ = color.obtener_componentes()
         self.canvas.setPen(QtGui.QColor(r, g, b))
         dx = x
         dy = y
 
-        if fuente:
-            nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
-        else:
-            nombre_de_fuente = self.canvas.font().family()
+        #if fuente:
+        #    nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
+        #else:
+        #    nombre_de_fuente = self.canvas.font().family()
+        nombre_de_fuente = self.canvas.font().family()
 
         if not ancho:
             flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop
@@ -46,8 +47,6 @@ class Superficie(Imagen):
 
         font = QtGui.QFont(nombre_de_fuente, magnitud)
         self.canvas.setFont(font)
-        metrica = QtGui.QFontMetrics(font)
-
 
         if vertical:
             lineas = [t for t in cadena]
@@ -64,7 +63,7 @@ class Superficie(Imagen):
     def circulo(self, x, y, radio, color=colores.negro, relleno=False, grosor=1):
         self.canvas.begin(self._imagen)
 
-        r, g, b, a = color.obtener_componentes()
+        r, g, b, _ = color.obtener_componentes()
         color = QtGui.QColor(r, g, b)
         pen = QtGui.QPen(color, grosor)
         self.canvas.setPen(pen)
@@ -78,7 +77,7 @@ class Superficie(Imagen):
     def rectangulo(self, x, y, ancho, alto, color=colores.negro, relleno=False, grosor=1):
         self.canvas.begin(self._imagen)
 
-        r, g, b, a = color.obtener_componentes()
+        r, g, b, _ = color.obtener_componentes()
         color = QtGui.QColor(r, g, b)
         pen = QtGui.QPen(color, grosor)
         self.canvas.setPen(pen)
@@ -92,7 +91,7 @@ class Superficie(Imagen):
     def linea(self, x, y, x2, y2, color=colores.negro, grosor=1):
         self.canvas.begin(self._imagen)
 
-        r, g, b, a = color.obtener_componentes()
+        r, g, b, _ = color.obtener_componentes()
         color = QtGui.QColor(r, g, b)
         pen = QtGui.QPen(color, grosor)
         self.canvas.setPen(pen)

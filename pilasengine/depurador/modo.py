@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+from pilasengine.colores import negro
+from PyQt4 import QtGui
+from PyQt4 import QtCore
 
 class ModoDepurador(object):
     tecla = "F00"
@@ -22,8 +25,23 @@ class ModoDepurador(object):
     def sale_del_modo(self):
         pass
 
-    def _obtener_posicion_relativa_a_camara(self, actor):
-        if actor.fijo:
-            return (actor.x, actor.y)
-        else:
-            return (actor.x - pilas.escena_actual().camara.x, actor.y - pilas.escena_actual().camara.y)
+    def _texto(self, painter, cadena, x=0, y=0, magnitud=10, fuente=None, color=negro):
+        "Imprime un texto respespetando el desplazamiento de la camara."
+        self._texto_absoluto(painter, cadena, x, y, magnitud, fuente, color)
+
+    def _texto_absoluto(self, painter, cadena, x=0, y=0, magnitud=10, fuente=None, color=negro):
+        "Imprime un texto sin respetar al camara."
+        x, y = self.pilas.obtener_coordenada_de_pantalla_absoluta(x, y)
+
+        r, g, b, _ = color.obtener_componentes()
+        painter.setPen(QtGui.QColor(r, g, b))
+
+        #if fuente:
+        #    nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
+        #else:
+        #    nombre_de_fuente = painter.font().family()
+        nombre_de_fuente = painter.font().family()
+
+        font = QtGui.QFont(nombre_de_fuente, magnitud)
+        painter.setFont(font)
+        painter.drawText(x, y, cadena)
