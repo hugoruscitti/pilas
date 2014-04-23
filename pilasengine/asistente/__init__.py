@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import sys
+import os
 import webbrowser
 
 from PyQt4 import QtGui
@@ -235,7 +236,7 @@ class VentanaAsistente(Base):
     def closeEvent(self, event):
         # TODO: Evitar cerrar la aplicación de esta forma, el
         # problema se produce a causa del objeto widget de pilas. En
-        # una situación normal, la este método no devería ser necesario, pyqt
+        # ura situación normal, la este método no devería ser necesario, pyqt
         # tiene que cerrar la aplicación cuando la última ventana se cierra.
         QtGui.qApp.closeAllWindows()
         import sys
@@ -249,5 +250,7 @@ def abrir():
 
     MainWindow.show()
     MainWindow.raise_()
+
+    pilasengine.utils.verificar_si_lanas_existe(MainWindow)
 
     return MainWindow

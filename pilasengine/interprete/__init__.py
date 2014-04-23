@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import lanas
 import os
 import sys
 
@@ -157,6 +156,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
                 'pilas = pilasengine.iniciar()',
                 'aceituna = pilas.actores.Aceituna()',
         ]
+
+        pilasengine.utils.verificar_si_lanas_existe(self.main)
+        import sys
+        sys.path.append('../lanas')
+        import lanas
 
         consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
         self.console.addWidget(consola)
