@@ -158,6 +158,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         ]
 
         pilasengine.utils.verificar_si_lanas_existe(self.main)
+
         import sys
         sys.path.append('../lanas')
         import lanas

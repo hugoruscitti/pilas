@@ -1,3 +1,6 @@
 [submodule "lanas"]
 	path = lanas
 	url = https://github.com/hugoruscitti/lanas.git
+[submodule "docs"]
+	path = docs
+	url = git://github.com/hugoruscitti/pilas-docs

@@ -18,7 +18,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.84',
+        VERSION:     '0.83',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -40,9 +40,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="Índice General"
              accesskey="I">índice</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Índice de Módulos Python"
-             >módulos</a> |</li>
         <li class="right" >
           <a href="preguntas_avanzadas.html" title="Guía de preguntas avanzadas"
              accesskey="N">siguiente</a> |</li>
@@ -126,169 +123,8 @@ ejecutar el siguiente comando de manera periódica:</p>
 <li><a class="reference external" href="http://www.cocoanetics.com/2012/01/github-fork-fix-pull-request/">http://www.cocoanetics.com/2012/01/github-fork-fix-pull-request/</a></li>
 </ul>
 </div>
-<div class="section" id="module-pilas.pilasversion">
-<span id="referencias-para-desarrolladores"></span><h2>Referencias para desarrolladores<a class="headerlink" href="#module-pilas.pilasversion" title="Enlazar permanentemente con este título">¶</a></h2>
-<div class="section" id="pilas-pilasverion">
-<h3>pilas.pilasverion<a class="headerlink" href="#pilas-pilasverion" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Definición de la version actual de pilas y funciones para compararla.</p>
-<dl class="data">
-<dt id="pilas.pilasversion.VERSION">
-<tt class="descclassname">pilas.pilasversion.</tt><tt class="descname">VERSION</tt><em class="property"> = '0.84'</em><a class="headerlink" href="#pilas.pilasversion.VERSION" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Contiene la versión actual de pilas.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="pilas.pilasversion.compare">
-<tt class="descclassname">pilas.pilasversion.</tt><tt class="descname">compare</tt><big>(</big><em>v0</em>, <em>v1</em><big>)</big><a class="reference internal" href="_modules/pilas/pilasversion.html#compare"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.pilasversion.compare" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Compara dos versiones de pilas.</p>
-<p>Sus posibles retornos son</p>
-<ul class="simple">
-<li><strong>-1</strong> si <tt class="docutils literal"><span class="pre">v0</span></tt> &lt; <tt class="docutils literal"><span class="pre">v1</span></tt>.</li>
-<li><strong>0</strong> si <tt class="docutils literal"><span class="pre">v0</span></tt> == <tt class="docutils literal"><span class="pre">v1</span></tt>.</li>
-<li><strong>1</strong> si <tt class="docutils literal"><span class="pre">v0</span></tt> &gt; <tt class="docutils literal"><span class="pre">v1</span></tt>.</li>
-</ul>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
-<li><strong>v0</strong> (<em>str</em>) &#8211; primer versión a comparar.</li>
-<li><strong>v1</strong> (<em>str</em>) &#8211; segunda versión a comparar.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="pilas.pilasversion.compareactual">
-<tt class="descclassname">pilas.pilasversion.</tt><tt class="descname">compareactual</tt><big>(</big><em>v</em><big>)</big><a class="reference internal" href="_modules/pilas/pilasversion.html#compareactual"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.pilasversion.compareactual" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Compara la versión actual de pilas con una que se pasa como parámetro</p>
-<p>Sus posibles retornos son:</p>
-<ul class="simple">
-<li><strong>-1</strong> si <em>versión actual de pilas</em> &lt; <tt class="docutils literal"><span class="pre">v</span></tt>.</li>
-<li><strong>0</strong> si <em>versión actual de pilas</em> == <tt class="docutils literal"><span class="pre">v</span></tt>.</li>
-<li><strong>1</strong> si <em>versión actual de pilas</em> &gt; <tt class="docutils literal"><span class="pre">v</span></tt>.</li>
-</ul>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>v</strong> (<em>str</em>) &#8211; versión a comparar con la actual.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-<span class="target" id="module-pilas.dev"></span><div class="section" id="pilas-dev">
-<h3>pilas.dev<a class="headerlink" href="#pilas-dev" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Utilidades de desarrollo para Pilas.</p>
-<div class="section" id="sobre-atributos-desaconsejados">
-<h4>Sobre Atributos Desaconsejados<a class="headerlink" href="#sobre-atributos-desaconsejados" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>Por defecto la <tt class="docutils literal"><span class="pre">PendingDeprecationWarning</span></tt> en pilas esta en modo <em>once</em> y
-<tt class="docutils literal"><span class="pre">DeprecationWarning</span></tt> en <em>error</em>.</p>
-<p>Si se desea que todos los metodos desaconsejados puedan utilizarse, puede
-llamar a la funcion <tt class="docutils literal"><span class="pre">pilas.dev.utilizar_desaconsejados(True)</span></tt>
-con lo cual los <tt class="docutils literal"><span class="pre">DeprecationWarning</span></tt> pasan a estado <em>once</em>.</p>
-<p>Para manejo avanzado de estas carasterísticas dirijase a documentación
-del módulo  <a class="reference external" href="http://docs.python.org/2/library/warnings.html">warnings</a></p>
-<dl class="function">
-<dt id="pilas.dev.deprecated">
-<tt class="descclassname">pilas.dev.</tt><tt class="descname">deprecated</tt><big>(</big><em>se_desactiva_en</em>, <em>se_elimina_en</em>, <em>reemplazo=None</em>, <em>nombre=None</em><big>)</big><a class="reference internal" href="_modules/pilas/dev.html#deprecated"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.dev.deprecated" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Decorador utilizado para marcar una función como deprecada</p>
-<p>Las excepciones que puede lanzar este decorador son:</p>
-<ul class="simple">
-<li>Si la versión actual de pilas es mayor o igual que <tt class="docutils literal"><span class="pre">se_elimina_en</span></tt>
-y por descuido de los desarrolladores se olvidaron de eliminar
-la llamada a esta función, Siempre se lanza un <tt class="docutils literal"><span class="pre">AttributeError</span></tt>.</li>
-<li>Si la versión actual de pilas es mayor o igual que <tt class="docutils literal"><span class="pre">se_desactiva_en</span></tt>
-se emite un <tt class="docutils literal"><span class="pre">DeprecationWarning</span></tt>.</li>
-<li>Si la versión actual de pilas es menor que <tt class="docutils literal"><span class="pre">se_desactiva_en</span></tt>
-se emite un <tt class="docutils literal"><span class="pre">PendingDeprecationWarning</span></tt>.</li>
-</ul>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
-<li><strong>elemento_deprecado</strong> (<em>str</em>) &#8211; Cual el nombre del elemento desaconsejado.</li>
-<li><strong>se_desactiva_en</strong> (<em>str</em>) &#8211; Indica en que versión de pilas el atributo
-estará desactivado por defecto. De todas
-maneras se podran activar con
-<tt class="docutils literal"><span class="pre">pilas.dev.utilizar_desaconsejados(True)</span></tt></li>
-<li><strong>se_elimina_en</strong> (<em>str</em>) &#8211; Indica en que versión de pilas el atributo
-se eliminara completamente.</li>
-<li><strong>reemplazo</strong> (<em>str</em>) &#8211; Indica cuales son las  alternativas a este
-atributo</li>
-<li><strong>nombre</strong> (<em>str</em>) &#8211; Si se desea cambiar el nombre de la función
-desaconsejada.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="pilas.dev.deprecated_warning">
-<tt class="descclassname">pilas.dev.</tt><tt class="descname">deprecated_warning</tt><big>(</big><em>elemento_deprecado</em>, <em>se_desactiva_en</em>, <em>se_elimina_en</em>, <em>reemplazo=None</em><big>)</big><a class="reference internal" href="_modules/pilas/dev.html#deprecated_warning"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.dev.deprecated_warning" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Lanza la correcta exception/warning de anuncio de que <em>algo</em> está en desuso.</p>
-<p>Las excepción/warning que puede lanzar esta función son:</p>
-<ul class="simple">
-<li>Si la versión actual de pilas es mayor o igual que <tt class="docutils literal"><span class="pre">se_elimina_en</span></tt>
-y por descuido de los desarrolladores se olvidaron de eliminar
-la llamada a esta función, Siempre se lanza un <tt class="docutils literal"><span class="pre">AttributeError</span></tt>.</li>
-<li>Si la versión actual de pilas es mayor o igual que <tt class="docutils literal"><span class="pre">se_desactiva_en</span></tt>
-se emite un <tt class="docutils literal"><span class="pre">DeprecationWarning</span></tt>.</li>
-<li>Si la versión actual de pilas es menor que <tt class="docutils literal"><span class="pre">se_desactiva_en</span></tt>
-se emite un <tt class="docutils literal"><span class="pre">PendingDeprecationWarning</span></tt>.</li>
-</ul>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
-<li><strong>elemento_deprecado</strong> (<em>str</em>) &#8211; Cual el nombre del elemento desaconsejado.</li>
-<li><strong>se_desactiva_en</strong> (<em>str</em>) &#8211; Indica en que versión de pilas el atributo
-estará desactivado por defecto. De todas
-maneras se podran activar con
-<tt class="docutils literal"><span class="pre">pilas.dev.utilizar_desaconsejados(True)</span></tt></li>
-<li><strong>se_elimina_en</strong> (<em>str</em>) &#8211; Indica en que versión de pilas el atributo
-se eliminara completamente.</li>
-<li><strong>reemplazo</strong> (<em>str</em>) &#8211; Indica cuales son las  alternativas a este
-atributo</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="pilas.dev.utilizar_desaconsejados">
-<tt class="descclassname">pilas.dev.</tt><tt class="descname">utilizar_desaconsejados</tt><big>(</big><em>usar</em><big>)</big><a class="reference internal" href="_modules/pilas/dev.html#utilizar_desaconsejados"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#pilas.dev.utilizar_desaconsejados" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Permite que se utilicen atributos, métodos y funciones que estan
-desaconsejados en esta versión.</p>
-<p>NOTA: si usted habilita los desaconsejados, los utiliza y luego los
-deshabilita; estos ya estaran disponibles. Esta función debería
-llamarse lo mas temprano posible es un juego y una sola ves.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>usar</strong> (<em>bool</em>) &#8211; Si se debe o no permitir que los atributos deprecados
-puedan utilizarse. Si el <em>usar</em> es <tt class="docutils literal"><span class="pre">False</span></tt>, todo lo
-desaconsejado lanza una excepción; de lo contrario,
-si <em>usar</em> es <tt class="docutils literal"><span class="pre">True</span></tt> solo se lanza un warning.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-</div>
+<div class="section" id="referencias-para-desarrolladores">
+<h2>Referencias para desarrolladores<a class="headerlink" href="#referencias-para-desarrolladores" title="Enlazar permanentemente con este título">¶</a></h2>
 </div>
 </div>
 
@@ -310,14 +146,7 @@ si <em>usar</em> es <tt class="docutils literal"><span class="pre">True</span></
 <li><a class="reference internal" href="#instalacion-en-modo-desarrollo">Instalación en modo desarrollo</a></li>
 <li><a class="reference internal" href="#mantenerse-actualizado-siempre">Mantenerse actualizado, siempre...</a></li>
 <li><a class="reference internal" href="#mas-detalles">Mas detalles</a></li>
-<li><a class="reference internal" href="#module-pilas.pilasversion">Referencias para desarrolladores</a><ul>
-<li><a class="reference internal" href="#pilas-pilasverion">pilas.pilasverion</a></li>
-<li><a class="reference internal" href="#pilas-dev">pilas.dev</a><ul>
-<li><a class="reference internal" href="#sobre-atributos-desaconsejados">Sobre Atributos Desaconsejados</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#referencias-para-desarrolladores">Referencias para desarrolladores</a></li>
 </ul>
 </li>
 </ul>
@@ -356,9 +185,6 @@ si <em>usar</em> es <tt class="docutils literal"><span class="pre">True</span></
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="Índice General"
              >índice</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Índice de Módulos Python"
-             >módulos</a> |</li>
         <li class="right" >
           <a href="preguntas_avanzadas.html" title="Guía de preguntas avanzadas"
              >siguiente</a> |</li>

@@ -10,6 +10,7 @@ all:
 	@echo "  $(V)ejecutar$(N)    Ejecuta pilas sin instarlo."
 	@echo "  $(V)test$(N)        Lanza todos los test de unidad."
 	@echo "  $(V)ui$(N)          Actualiza todas las interfaces de usuario."
+	@echo "  $(V)html$(N)        Actualiza toda la documentación y la copia a pilas/data/manual."
 	@echo ""
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
 	@echo "  $(V)distmac$(N)     Genera la versión compilada para macos."
@@ -26,6 +27,9 @@ test:
 	@python -m unittest discover pilasengine/tests '*.py'
 	# O una version mas linda si se instala nose y nosecolor con pip
 	#@nosetests --color pilasengine/tests/*
+
+html:
+	cd docs; make
 
 ui:
 	pyuic4 -xo pilasengine/asistente/asistente_base.py pilasengine/asistente/asistente.ui
