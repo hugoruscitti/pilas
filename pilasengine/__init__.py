@@ -54,6 +54,10 @@ class Pilas(object):
         """Retorna el centro de la ventana en pixels."""
         return self.widget.obtener_centro_fisico()
 
+    def obtener_coordenada_de_pantalla_absoluta(self, x, y):
+        dx, dy = self.widget.obtener_centro_fisico()
+        return (x + dx, dy - y)
+
     def obtener_area(self):
         """Retorna el tamaño real de la ventana."""
         return self.widget.obtener_area()
@@ -77,7 +81,7 @@ class Pilas(object):
             self.log("Capturando un error: %s", e)
             self.depurador.desactivar_todos_los_modos()
             error = self.escenas.Error(e)
-            raise Exception(e)
+            raise e
 
     def log(self, *mensaje):
         "Muestra un mensaje de prueba sobre la consola."

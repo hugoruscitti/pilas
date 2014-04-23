@@ -53,6 +53,11 @@ class BaseWidget(QGLWidget):
         """Retorna el tamaño real de la ventana."""
         return (self.original_width, self.original_height)
 
+    def obtener_bordes(self):
+        """Retorna los bordes de la pantalla en forma de tupla."""
+        ancho, alto = self.obtener_area()
+        return -ancho/2, ancho/2, alto/2, -alto/2
+
     def _realizar_actualizacion_logica(self):
         for _ in range(self.fps.actualizar()):
             self.pilas.realizar_actualizacion_logica()

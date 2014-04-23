@@ -6,6 +6,7 @@ class Depurador(object):
     def __init__(self, pilas):
         self.pilas = pilas
         self._modos = []
+        self.lienzo = pilas.imagenes.crear_superficie(500, 500)
 
     def desactivar_todos_los_modos(self):
         self._modos = []
@@ -23,7 +24,7 @@ class Depurador(object):
             # Dibujado depuración de cada modo.
             for a in actores_de_la_escena:
                 for m in self._modos:
-                    m.dibujar_actor(a)
+                    m.dibujar_actor(a, painter)
 
             # Dibujado general del modo.
             for m in self._modos:
@@ -42,24 +43,46 @@ class Depurador(object):
         Cada uno de los argumentos representa un modo depuración, el valor True
         habilita el modo, False lo deshabilita.
         """
-        modos = self.obtener_modos_habilitados()
+
+        modos_habilitados = self.obtener_modos_habilitados()
+        modos_solicitados = []
 
         if info:
-            self._alternar_modo(ModoInformacionDeSistema)
-
-        if puntos_de_control:
-            self._alternar_modo(ModoPuntosDeControl)
+            modos_solicitados.append('ModoInformacionDeSistema')
 
         if radios:
-            self._alternar_modo(ModoRadiosDeColision)
-
-        if areas:
-            self._alternar_modo(ModoArea)
-
-        if fisica:
-            self._alternar_modo(ModoFisica)
+            modos_solicitados.append('ModoRadiosDeColision')
 
         if posiciones:
+            modos_solicitados.append('ModoPosicion')
+
+        if puntos_de_control:
+            modos_solicitados.append('ModoPuntosDeControl')
+
+        if areas:
+            modos_solicitados.append('ModoArea')
+
+        if fisica:
+            modos_solicitados.append('ModoFisica')
+
+        modos = set(modos_habilitados).symmetric_difference(modos_solicitados)
+
+        if 'ModoInformacionDeSistema' in modos:
+            self._alternar_modo(ModoInformacionDeSistema)
+
+        if 'ModoPuntosDeControl' in modos:
+            self._alternar_modo(ModoPuntosDeControl)
+
+        if 'ModoRadiosDeColision' in modos:
+            self._alternar_modo(ModoRadiosDeColision)
+
+        if 'ModoArea' in modos:
+            self._alternar_modo(ModoArea)
+
+        if 'ModoFisica' in modos:
+            self._alternar_modo(ModoFisica)
+
+        if 'ModoPosicion' in modos:
             self._alternar_modo(ModoPosicion)
 
     def _alternar_modo(self, clase_del_modo):

@@ -16,6 +16,7 @@ class MensajeError(Actor):
 
     def __init__(self, pilas, excepcion_de_python):
         Actor.__init__(self, pilas)
+        self.transparencia = 100
         self.excepcion = excepcion_de_python
 
     def iniciar(self):
