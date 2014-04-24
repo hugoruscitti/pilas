@@ -271,7 +271,7 @@ class Actor(Estudiante):
         return self._x
 
     def definir_x(self, x):
-        self._x = self.pilas.utils.interpolar_si_es_necesario(x, "definir_x", "lineal")
+        self._x = x
 
     def obtener_z(self):
         return self._z
