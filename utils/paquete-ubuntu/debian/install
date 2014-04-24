@@ -1,0 +1,6 @@
+debian/pilas-icono.png /usr/share/pixmaps
+debian/pilas.desktop /usr/share/applications
+usr/local/bin/pilas /usr/bin
+usr/local/lib/python2.7/dist-packages/Box2D /usr/lib/python2.7/dist-packages/
+usr/local/lib/python2.7/dist-packages/lanas /usr/lib/python2.7/dist-packages/
+usr/local/lib/python2.7/dist-packages/pilas /usr/lib/python2.7/dist-packages/
