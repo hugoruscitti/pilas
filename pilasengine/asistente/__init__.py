@@ -49,19 +49,12 @@ class VentanaAsistente(Base):
         self.interlocutor = Interlocutor()
         self.interlocutor.iniciar_con_ventana(self)
 
-        self.webView.page().mainFrame().javaScriptWindowObjectCleared.connect(
-                self.populateJavaScriptWindowObject)
+        objeto_js = self.webView.page().mainFrame().javaScriptWindowObjectCleared
+        objeto_js.connect(self._vincular_con_javascript)
 
         self._cargar_pagina_principal()
         self._habilitar_inspector_web()
 
-        #self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
-        #self.webView.connect(self.webView, QtCore.SIGNAL("linkClicked(const QUrl&)"), self.cuando_pulsa_link)
-
-    def populateJavaScriptWindowObject(self):
-        self.webView.page().mainFrame().addToJavaScriptWindowObject("interlocutor", self.interlocutor)
-
-    def test(self):
         self.webView.setAcceptDrops(False)
         self._deshabilitar_barras_de_scroll()
         #self.statusbar.showMessage(u"Versión " + pilas.version())
@@ -70,6 +63,9 @@ class VentanaAsistente(Base):
         #self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
         #self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_proceso)
         self.webView.history().setMaximumItemCount(0)
+
+    def _vincular_con_javascript(self):
+        self.webView.page().mainFrame().addToJavaScriptWindowObject("interlocutor", self.interlocutor)
 
     def _consultar_ultima_version_del_servidor(self):
         direccion = QtCore.QUrl("https://raw.github.com/hugoruscitti/pilas/gh-pages/version.json")
