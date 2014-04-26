@@ -2,7 +2,9 @@
 import os
 import sys
 import uuid
-import interpolaciones
+#import interpolaciones
+
+import pitweener
 
 from PyQt4 import QtGui
 
@@ -17,6 +19,16 @@ class Utils(object):
     def obtener_uuid(self):
         """Genera un identificador único."""
         return str(uuid.uuid4())
+
+    def es_interpolacion(self, valor):
+        return isinstance(valor, list)
+
+    def interpolar(self, actor, atributo, valor):
+        parametro = {atributo: valor[0]}
+
+        tweener = self.pilas.obtener_escena_actual().tweener
+        tweener.add_tween(actor, tween_time=.5, tween_type=tweener.IN_OUT_QUAD,
+                          **parametro)
 
     def interpolar_si_es_necesario(self, valor, nombre, tipo):
         # Si le indican dos argumentos, el primer sera

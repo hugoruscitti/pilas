@@ -30,6 +30,7 @@ class Escenas(object):
     def realizar_actualizacion_logica(self):
         escena = self.obtener_escena_actual()
         escena.actualizar_actores()
+        escena.actualizar_interpolaciones()
         escena.actualizar()
 
     def realizar_dibujado(self, painter):

@@ -1,5 +1,6 @@
 import camara
 from pilasengine.actores import grupo
+from pilasengine.utils import pitweener
 
 class Escena(object):
 
@@ -7,6 +8,7 @@ class Escena(object):
         self.pilas = pilas
         pilas.log("Creando una escena: ", self)
         self.camara = camara.Camara(pilas, self)
+        self.tweener = pitweener.Tweener()
         self._actores = grupo.Grupo(pilas)
         self.grupos = []
 
@@ -18,6 +20,9 @@ class Escena(object):
 
     def terminar(self):
         pass
+
+    def actualizar_interpolaciones(self):
+        self.tweener.update()
 
     def actualizar_actores(self):
         for x in self._actores.obtener_actores():

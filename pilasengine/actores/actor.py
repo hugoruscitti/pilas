@@ -271,7 +271,12 @@ class Actor(Estudiante):
         return self._x
 
     def definir_x(self, x):
-        self._x = x
+        if isinstance(x, int) or isinstance(x, float):
+            self._x = x
+        elif self.pilas.utils.es_interpolacion(x):
+            self.pilas.utils.interpolar(self, 'x', x)
+        else:
+            raise Exception("Solo se pueden asignar números o interpolaciones.")
 
     def obtener_z(self):
         return self._z
