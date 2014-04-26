@@ -271,23 +271,36 @@ class Actor(Estudiante):
         return self._x
 
     def definir_x(self, x):
-        if isinstance(x, int) or isinstance(x, float):
-            self._x = x
-        elif self.pilas.utils.es_interpolacion(x):
-            self.pilas.utils.interpolar(self, 'x', x)
+        self._interpretar_propiedad_numerica('x', x)
+
+    def _interpretar_propiedad_numerica(self, propiedad, valor):
+        """Procesa una propiedad y permite que sea numero o interpolación.
+
+        Este método se invoca en la mayoría de propiedades y atributos
+        de actores en pilas-engine. Por ejemplo cuando se invoca a
+        esta sentencia para mover al personaje:
+
+            >>> actor.x = [100, 0, 200]
+
+        o bien, para duplicar su tamaño en 10 segundos:
+
+            >>> actor.escala = [2], 10
+        """
+        if isinstance(valor, int) or isinstance(valor, float):
+            setattr(self, '_' + propiedad, valor)
+        elif self.pilas.utils.es_interpolacion(valor):
+            self.pilas.utils.interpolar(self, propiedad, valor)
         else:
             raise Exception("Solo se pueden asignar números o interpolaciones.")
 
     def obtener_z(self):
         return self._z
 
-    #@interpolable
     def definir_z(self, z):
         self._z = z
 
-    #@interpolable
     def definir_y(self, y):
-        self._y = y
+        self._interpretar_propiedad_numerica('y', y)
 
     def obtener_y(self):
         return self._y
@@ -308,17 +321,15 @@ class Actor(Estudiante):
         self.escala_y = s
         self.radio_de_colision = (s * self.radio_de_colision) / max(ultima_escala, 0.0001)
 
-    #@interpolable
     def definir_escala_x(self, s):
-        if s < 0.001:
-            s = 0.001
-        self._escala_x = s
+        self._interpretar_propiedad_numerica('escala_x', s)
+        if self._escala_x < 0.001:
+            self._escala_x = 0.001
 
-    #@interpolable
     def definir_escala_y(self, s):
-        if s < 0.001:
-            s = 0.001
-        self._escala_y = s
+        self._interpretar_propiedad_numerica('escala_y', s)
+        if self._escala_y < 0.001:
+            self._escala_y = 0.001
 
     def obtener_escala(self):
         return self._escala_x
@@ -334,7 +345,7 @@ class Actor(Estudiante):
 
     #@interpolable
     def definir_rotacion(self, rotacion):
-        self._rotacion = rotacion
+        self._interpretar_propiedad_numerica('rotacion', rotacion)
 
     def obtener_espejado(self):
         return self._espejado
@@ -344,7 +355,7 @@ class Actor(Estudiante):
 
     #@interpolable
     def definir_transparencia(self, transparencia):
-        self._transparencia = transparencia
+        self._interpretar_propiedad_numerica('transparencia', transparencia)
 
     def obtener_transparencia(self):
         return self._transparencia
@@ -354,7 +365,6 @@ class Actor(Estudiante):
 
     def definir_fijo(self, fijo):
         self._fijo = fijo
-
 
     def obtener_vx(self):
         return self._vx
