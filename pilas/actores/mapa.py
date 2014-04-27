@@ -184,7 +184,8 @@ class Mapa(Actor):
         :param x: Coordenada horizontal de pantalla.
         :param y: Coordenada vertical de pantalla.
         """
-        dx, dy = pilas.mundo.motor.centro_fisico()#self.centro
+        dx = self.ancho/2
+        dy = self.alto/2
         x = x + dx - self.x
         y = -y + dy + self.y
         return x, y
