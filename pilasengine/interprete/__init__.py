@@ -80,6 +80,10 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.splitter_vertical.setSizes([0])
         self.manual_button.setChecked(False)
 
+    def colapsar_interprete(self):
+        self.splitter.setSizes([300, 0])
+        self.interprete_button.setChecked(False)
+
     def cargar_ayuda(self):
         file_path = pilasengine.utils.obtener_ruta_al_recurso('manual/index.html')
         file_path = os.path.abspath(file_path)
@@ -172,6 +176,18 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def cuando_pulsa_el_boton_guardar(self):
         self.consola.text_edit.guardar_contenido_con_dialogo()
 
+    def ejecutar_y_reiniciar_si_cambia(self, archivo):
+        self._reiniciar_y_ejecutar(archivo)
+        self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
+        self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_y_ejecutar)
+        self.watcher.addPath(archivo)
+
+    def _reiniciar_y_ejecutar(self, archivo):
+        f = open(archivo, "rt")
+        contenido = f.read()
+        contenido = contenido.replace('import pilasengine', '')
+        contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
+        self.consola.ejecutar(contenido)
 
 def abrir():
     MainWindow = QtGui.QMainWindow()
@@ -182,4 +198,17 @@ def abrir():
     MainWindow.show()
     MainWindow.raise_()
 
+    return MainWindow
+
+def abrir_script_con_livereload(archivo):
+    MainWindow = QtGui.QMainWindow()
+
+    ui = VentanaInterprete()
+    ui.setupUi(MainWindow)
+
+    MainWindow.show()
+    MainWindow.raise_()
+    ui.ejecutar_y_reiniciar_si_cambia(archivo)
+
+    ui.colapsar_interprete()
     return MainWindow

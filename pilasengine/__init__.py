@@ -28,6 +28,11 @@ class Pilas(object):
     """
 
     def __init__(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
+        """Inicializa el area de juego con una configuración inicial."""
+        self.widget = None
+        self.reiniciar(ancho, alto, titulo, con_aceleracion, habilitar_mensajes_log)
+
+    def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
         self.actores = actores.Actores(self)
@@ -38,16 +43,47 @@ class Pilas(object):
         self.depurador = depurador.Depurador(self)
         self.escenas.Normal()
 
+        es_reinicio = self.widget != None
+
+        if es_reinicio:
+            parent = self._eliminar_el_anterior_widget()
+
         if con_aceleracion:
             self.widget = widget.WidgetConAceleracion(self, ancho, alto)
         else:
             self.widget = widget.WidgetSinAceleracion(self, ancho, alto)
+
+        if es_reinicio:
+            self._vincular_el_nuevo_widget(parent)
+
+    def _eliminar_el_anterior_widget(self):
+        """Quita de la ventana el widget utilizado anteriorente.
+
+        Este método se suele utilizar cuando se cambia de resolución
+        de pantalla o se re-inicia pilas completamente."""
+        parent = self.widget.parent()
+        parent.layout().removeWidget(self.widget)
+        self.widget.setParent(None)
+        return parent
+
+    def _vincular_el_nuevo_widget(self, parent):
+        """Comienza a mostrar el nuevo widget en pantalla.
+
+        Este método se utiliza para mostrar nuevamente el area de
+        juego después de haber cambiado de resolución o reiniciado
+        pilas."""
+        parent.layout().addWidget(self.widget)
+        parent.setCurrentWidget(self.widget)
 
     def usa_aceleracion(self):
         """Informa si está habilitado el modo aceleración de video."""
         return (self.widget.__class__ == widget.WidgetConAceleracion)
 
     def obtener_widget(self):
+        """Retorna el widget en donde se dibuja el juego completo.
+
+        El 'widget' es un componente de la interfaz de usuario, que
+        en nuestro caso contiene toda el area de juego."""
         return self.widget
 
     def obtener_centro_fisico(self):
@@ -55,6 +91,13 @@ class Pilas(object):
         return self.widget.obtener_centro_fisico()
 
     def obtener_coordenada_de_pantalla_absoluta(self, x, y):
+        """Convierte una coordenada común en una coordenada de pantalla.
+
+        Las coordenadas comunes son las que utilizamos en pilas, donde
+        el centro de pantalla es el punto (0, 0). Las coordenadas
+        de pantalla, en cambio, son las que tienen como punto (0, 0)
+        la esquina superir izquierda de la pantalla.
+        """
         dx, dy = self.widget.obtener_centro_fisico()
         return (x + dx, dy - y)
 
@@ -67,6 +110,9 @@ class Pilas(object):
 
     def obtener_escena_actual(self):
         return self.escenas.obtener_escena_actual()
+
+    def escena_actual(self):
+        return self.obtener_escena_actual()
 
     def realizar_actualizacion_logica(self):
         self.escenas.realizar_actualizacion_logica()
@@ -134,3 +180,7 @@ def abrir_manual():
 def abrir_interprete():
     import interprete
     return interprete.abrir()
+
+def abrir_script_con_livereload(archivo):
+    import interprete
+    return interprete.abrir_script_con_livereload(archivo)
