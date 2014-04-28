@@ -51,13 +51,6 @@ class Utils(object):
             return valor
 
 
-def es_interpolacion(an_object):
-    """Indica si un objeto se comportará como una interpolación.
-
-    :param an_object: El objeto a consultar.
-    """
-    return isinstance(an_object, interpolaciones.Interpolacion)
-
 def obtener_ruta_al_recurso(ruta):
     dirs = ['./', '/../data', '/data',
             PATH, INTERPRETE_PATH,
