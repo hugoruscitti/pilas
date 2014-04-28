@@ -2,8 +2,6 @@
 import inspect
 
 from estudiante import Estudiante
-from pilasengine.utils import interpolable
-
 
 IZQUIERDA = ["izquierda"]
 DERECHA = ["derecha"]
@@ -319,6 +317,7 @@ class Actor(Estudiante):
 
         self.escala_x = s
         self.escala_y = s
+        s = self.escala_x
         self.radio_de_colision = (s * self.radio_de_colision) / max(ultima_escala, 0.0001)
 
     def definir_escala_x(self, s):
@@ -343,7 +342,6 @@ class Actor(Estudiante):
     def obtener_rotacion(self):
         return self._rotacion
 
-    #@interpolable
     def definir_rotacion(self, rotacion):
         self._interpretar_propiedad_numerica('rotacion', rotacion)
 
@@ -353,7 +351,6 @@ class Actor(Estudiante):
     def definir_espejado(self, espejado):
         self._espejado = espejado
 
-    #@interpolable
     def definir_transparencia(self, transparencia):
         self._interpretar_propiedad_numerica('transparencia', transparencia)
 
@@ -365,6 +362,7 @@ class Actor(Estudiante):
 
     def definir_fijo(self, fijo):
         self._fijo = fijo
+        self.pilas.obtener_escena_actual().cambia_estado_fijo(self)
 
     def obtener_vx(self):
         return self._vx
