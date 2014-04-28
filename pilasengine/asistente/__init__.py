@@ -12,6 +12,11 @@ from asistente_base import Ui_AsistenteWindow as Base
 import pilasengine
 
 class Interlocutor(QtCore.QObject):
+    """Representa el objeto auxiliar que permite la comunicación js/Qt
+
+    Esta clase se utiliza para cominicar a javascript (dentro del
+    webview) con los objetos python dentro de pilas.
+    """
 
     def iniciar_con_ventana(self, ventana):
         self.manual = None
@@ -38,7 +43,9 @@ class Interlocutor(QtCore.QObject):
     def abrir_sitio_de_pilas(self):
         webbrowser.open("http://www.pilas-engine.com.ar")
 
+
 class VentanaAsistente(Base):
+    """Representa la ventana principal del asistente."""
 
     def __init__(self):
         Base.__init__(self)
@@ -63,6 +70,12 @@ class VentanaAsistente(Base):
         #self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
         #self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_proceso)
         self.webView.history().setMaximumItemCount(0)
+        self.webView.setAcceptDrops(True)
+
+        self.webView.dragEnterEvent = self.dragEnterEvent
+        self.webView.dragLeaveEvent = self.dragLeaveEvent
+        self.webView.dragMoveEvent = self.dragMoveEvent
+        self.webView.dropEvent = self.dropEvent
 
     def _vincular_con_javascript(self):
         self.webView.page().mainFrame().addToJavaScriptWindowObject("interlocutor", self.interlocutor)
@@ -74,25 +87,6 @@ class VentanaAsistente(Base):
 
         self.manager.connect(self.manager, QtCore.SIGNAL("finished(QNetworkReply*)"),
                 self._cuando_termina_de_consultar_version)
-
-    def _cuando_termina_de_consultar_version(self, respuesta):
-        respuesta_como_texto = respuesta.readAll().data()
-        try:
-            respuesta_como_json = json.loads(str(respuesta_como_texto))
-
-            version_en_el_servidor = float(respuesta_como_json['version'])
-            version_instalada = float(pilas.pilasversion.VERSION)
-
-            if version_en_el_servidor == version_instalada:
-                mensaje = "- actualizada"
-            elif version_en_el_servidor < version_instalada:
-                mensaje = u"- desarrollo (versión estable en la web: %.2f)" %(version_en_el_servidor)
-            else:
-                mensaje = u"- desactualizada: la version %.2f ya está disponible en la web!)" %(version_en_el_servidor)
-        except ValueError:
-            mensaje = u"(sin conexión a internet)"
-
-        self.statusbar.showMessage(u"Versión " + pilas.version() + " " + mensaje)
 
     def _habilitar_inspector_web(self):
         QtWebKit.QWebSettings.globalSettings()
@@ -110,59 +104,6 @@ class VentanaAsistente(Base):
     def _cargar_pagina_principal(self):
         file_path = pilasengine.utils.obtener_ruta_al_recurso('asistente/index.html')
         self.webView.load(QtCore.QUrl.fromLocalFile(file_path))
-
-    def cuando_pulsa_link(self, url):
-        seccion = str(url.path()).split('/')[-1]
-
-        if seccion == "interprete":
-            self._cuando_selecciona_interprete()
-        elif seccion == "manual":
-            self._cuando_selecciona_abrir_manual()
-        elif seccion == "tutoriales":
-            self._cuando_selecciona_abrir_tutoriales()
-        elif seccion == "web":
-            import webbrowser
-            webbrowser.open("http://www.pilas-engine.com.ar")
-        else:
-            partes = url.path().split('/')
-
-            if len(partes) == 4:
-                accion = partes[1]
-                categoria = partes[2]
-                ejemplo = partes[3]
-
-                if accion == "ejecutar":
-                    self._ejecutar_ejemplo(str(categoria), str(ejemplo))
-                elif accion == "codigo":
-                    self._mostrar_codigo(str(categoria), str(ejemplo))
-                else:
-                    print accion, "sobre el ejemplo", ejemplo
-            else:
-                raise Exception(seccion + "es una opcion desconocida")
-
-    def _obtener_ruta_al_ejemplo(self, categoria, nombre):
-        recurso = "../ejemplos/ejemplos/" + categoria + "/" + nombre + ".py"
-        return pilasengine.utils.obtener_ruta_al_recurso(recurso)
-
-    def _cuando_termina_la_ejecucion_del_ejemplo(self, codigo=0, estado=0):
-        "Vuelve a permitir que se usen todos los botone de la interfaz."
-        salida = str(self.process.readAll())
-
-        if codigo and salida:
-            QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
-
-    def _cuando_selecciona_interprete(self):
-        if sys.platform == "darwin":
-            QtCore.QTimer.singleShot(500, self._iniciar_interprete_diferido)
-        else:
-            if sys.platform == "win32":
-                self._ejecutar_comando(sys.executable, ['-i'], '.')
-            else:
-                self._ejecutar_comando(sys.executable, [sys.argv[0], '-i'], '.')
-
-
-    def _iniciar_interprete_diferido(self):
-        self.instancia_interprete = pilas.interprete.main(self.main, True)
 
     def ejecutar_script(self, nombre_archivo_script, directorio_trabajo):
         self.nombre_archivo_script = nombre_archivo_script
@@ -183,12 +124,6 @@ class VentanaAsistente(Base):
         self.watcher.addPath(nombre_archivo_script)
         #(nombre_archivo_script, directorio_trabajo))
 
-    def _cuando_selecciona_abrir_manual(self):
-        pilas.manual.main(self.main, True)
-
-    def _cuando_selecciona_abrir_tutoriales(self):
-        pilas.tutoriales.main(self.main, True)
-
     def _consultar(self, parent, titulo, mensaje):
         "Realizar una consulta usando un cuadro de dialogo."
         return QtGui.QMessageBox.question(parent, titulo, mensaje,
@@ -206,28 +141,23 @@ class VentanaAsistente(Base):
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
             event.acceptProposedAction()
-            self.ui.evaluar_javascript("resaltar_caja_destino_para_soltar(true);")
+            self.evaluar_javascript("resaltar_caja_destino_para_soltar(true);")
 
     def dragLeaveEvent(self, event):
-        self.ui.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
+        self.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
 
     def dragMoveEvent(self, event):
-        super(VentanaAsistente, self).dragMoveEvent(event)
-
-    def linkClicked(self, arg__1):
-        print "ASDADASD"
+        pass
 
     def dropEvent(self, event):
         if event.mimeData().hasUrls():
             for url in event.mimeData().urls():
                 archivo = url.toLocalFile()
                 path = os.path.dirname(str(archivo))
-
-                self.ui.ejecutar_script(archivo, path)
+                print "Ejecutar", archivo, "en", path
                 event.acceptProposedAction()
-        else:
-            super(MainWindow,self).dropEvent(event)
-        self.ui.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
+
+        self.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
 
     def closeEvent(self, event):
         # TODO: Evitar cerrar la aplicación de esta forma, el

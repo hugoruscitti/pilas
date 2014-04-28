@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/asistente/asistente.ui'
 #
-# Created: Sat Apr 19 23:44:54 2014
+# Created: Sun Apr 27 22:23:25 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -28,10 +28,12 @@ class Ui_AsistenteWindow(object):
         AsistenteWindow.setObjectName(_fromUtf8("AsistenteWindow"))
         AsistenteWindow.resize(615, 380)
         AsistenteWindow.setMinimumSize(QtCore.QSize(615, 380))
+        AsistenteWindow.setAcceptDrops(False)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("../../../pilas/pilas/data/pilas.ico")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         AsistenteWindow.setWindowIcon(icon)
         self.centralwidget = QtGui.QWidget(AsistenteWindow)
+        self.centralwidget.setAcceptDrops(False)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout.setMargin(0)

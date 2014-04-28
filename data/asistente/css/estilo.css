@@ -31,9 +31,12 @@ div.version {
 div.tip {
     font-size: small;
     color: #3e424d;
-    border: 2px dashed #ccc;
-    padding: 5px;
+    border: 2px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 18px;
 }
+
 
 div.frame {
     display:none;

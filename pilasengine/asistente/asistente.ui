@@ -16,6 +16,9 @@
     <height>380</height>
    </size>
   </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
    <string>pilas-engine</string>
   </property>
@@ -24,6 +27,9 @@
     <normaloff>../../../pilas/pilas/data/pilas.ico</normaloff>../../../pilas/pilas/data/pilas.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="acceptDrops">
+    <bool>false</bool>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <property name="margin">
      <number>0</number>
