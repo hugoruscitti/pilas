@@ -17,13 +17,16 @@ class ModoInformacionDeSistema(ModoDepurador):
         else:
             usa_aceleracion = u"No"
 
+        ancho, alto = self.pilas.obtener_area()
+
         self.informacion = [
             u"Usa aceleración de video: %s" %(usa_aceleracion),
             "Sistema: " + sys.platform,
             "Version de pilas: " + pilasengine.VERSION,
             "Version de python: " + sys.subversion[0] + " " + sys.subversion[1],
+            "Area de juego: (%d, %d)" %(ancho, alto),
             #"Version de Box2D: {}".format(pilas.fisica.obtener_version()),
-            ]
+            ][::-1]
 
     def realizar_dibujado(self, painter):
         izquierda, _, _, abajo = self.pilas.widget.obtener_bordes()
