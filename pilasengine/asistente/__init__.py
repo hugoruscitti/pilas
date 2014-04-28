@@ -52,6 +52,9 @@ class VentanaAsistente(Base):
 
     def setupUi(self, MainWindow):
         Base.setupUi(self, MainWindow)
+        self.MainWindow = MainWindow
+
+        MainWindow.closeEvent = self.on_close_event
 
         self.interlocutor = Interlocutor()
         self.interlocutor.iniciar_con_ventana(self)
@@ -65,7 +68,7 @@ class VentanaAsistente(Base):
         self.webView.setAcceptDrops(False)
         self._deshabilitar_barras_de_scroll()
         #self.statusbar.showMessage(u"Versión " + pilas.version())
-        self.salir_action.connect(self.salir_action, QtCore.SIGNAL("triggered()"), self.salir)
+        #self.salir_action.connect(self.salir_action, QtCore.SIGNAL("triggered()"), self.salir)
         #self._consultar_ultima_version_del_servidor()
         #self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
         #self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_proceso)
@@ -74,7 +77,6 @@ class VentanaAsistente(Base):
 
         self.webView.dragEnterEvent = self.dragEnterEvent
         self.webView.dragLeaveEvent = self.dragLeaveEvent
-        self.webView.dragMoveEvent = self.dragMoveEvent
         self.webView.dropEvent = self.dropEvent
 
     def _vincular_con_javascript(self):
@@ -125,12 +127,24 @@ class VentanaAsistente(Base):
         #(nombre_archivo_script, directorio_trabajo))
 
     def _consultar(self, parent, titulo, mensaje):
-        "Realizar una consulta usando un cuadro de dialogo."
-        return QtGui.QMessageBox.question(parent, titulo, mensaje,
-                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+        """Realizar una consulta usando un cuadro de dialogo simple.
 
-    def salir(self, *_):
-        self.main.close()
+        Este método retorna True si el usuario acepta la pregunta."""
+        # TODO: reemplazar por un dialogo que no tenga los botones YES NO, sino algo en español: http://stackoverflow.com/questions/15682665/how-to-add-custom-button-to-a-qmessagebox-in-pyqt4
+        respuesta = QtGui.QMessageBox.question(parent, titulo, mensaje,
+                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+        return (respuesta == QtGui.QMessageBox.Yes)
+
+    def on_close_event(self, evento):
+        consulta = self._consultar(self.MainWindow,
+                                   u"¿Quieres salir?",
+                                   u"Se perderán los cambios sin guardar... ¿Quieres salir realmente?")
+
+        if consulta:
+            evento.accept()
+            QtGui.QApplication.quit()
+        else:
+            evento.ignore()
 
     def evaluar_javascript(self, codigo):
         self.webView.page().mainFrame().evaluateJavaScript(codigo)
@@ -146,27 +160,21 @@ class VentanaAsistente(Base):
     def dragLeaveEvent(self, event):
         self.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
 
-    def dragMoveEvent(self, event):
-        pass
-
     def dropEvent(self, event):
         if event.mimeData().hasUrls():
             for url in event.mimeData().urls():
                 archivo = url.toLocalFile()
-                path = os.path.dirname(str(archivo))
-                print "Ejecutar", archivo, "en", path
-                event.acceptProposedAction()
+
+                if not str(archivo).endswith('.py'):
+                    QtGui.QMessageBox.critical(self.MainWindow, "Error", "Solo se aceptan archivos terminados con .py")
+                else:
+                    self._ejecutar_programa_con_livereload(str(archivo))
+                    event.acceptProposedAction()
 
         self.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
 
-    def closeEvent(self, event):
-        # TODO: Evitar cerrar la aplicación de esta forma, el
-        # problema se produce a causa del objeto widget de pilas. En
-        # ura situación normal, la este método no devería ser necesario, pyqt
-        # tiene que cerrar la aplicación cuando la última ventana se cierra.
-        QtGui.qApp.closeAllWindows()
-        import sys
-        sys.exit(0)
+    def _ejecutar_programa_con_livereload(self, archivo):
+        self.programa = pilasengine.abrir_script_con_livereload(archivo)
 
 def abrir():
     MainWindow = QtGui.QMainWindow()
