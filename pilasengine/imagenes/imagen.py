@@ -29,7 +29,7 @@ class Imagen(object):
         "Retorna una tupla con la coordenada del punto medio del la imagen."
         return (self.ancho()/2, self.alto()/2)
 
-    def dibujar(self, painter, x, y, dx=0, dy=0, escala_x=1, escala_y=1, rotacion=0, transparencia=0):
+    def dibujar(self, painter):
         """Dibuja la imagen sobre la ventana que muestra el motor.
 
            x, y: indican la posicion dentro del mundo.
@@ -37,21 +37,10 @@ class Imagen(object):
            escala_x, escala_yindican cambio de tamano (1 significa normal).
            rotacion: angulo de inclinacion en sentido de las agujas del reloj.
         """
+        self._dibujar_pixmap(painter)
 
-        painter.save()
-        centro_x, centro_y = self.pilas.obtener_centro_fisico()
-        painter.translate(x + centro_x, centro_y - y)
-        painter.rotate(rotacion)
-        painter.scale(escala_x, escala_y)
-
-        if transparencia:
-            painter.setOpacity(1 - transparencia/100.0)
-
-        self._dibujar_pixmap(painter, -dx, -dy)
-        painter.restore()
-
-    def _dibujar_pixmap(self, painter, x, y):
-        painter.drawPixmap(x, y, self._imagen)
+    def _dibujar_pixmap(self, painter):
+        painter.drawPixmap(0, 0, self._imagen)
 
     def __str__(self):
         nombre_imagen = os.path.basename(self.ruta_original)

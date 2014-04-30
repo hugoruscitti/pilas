@@ -74,6 +74,10 @@ class Actor(Estudiante):
         self._callback_cuando_hace_click = set()
         self._callback_cuando_mueve_mouse = set()
         self._grupos_a_los_que_pertenece = []
+        self._actores = []
+
+    def agregar(self, actor):
+        self._actores.append(actor)
 
     def agregar_al_grupo(self, grupo):
         self._grupos_a_los_que_pertenece.append(grupo)
@@ -153,10 +157,27 @@ class Actor(Estudiante):
         x = self.x - dx
         y = self.y - dy
 
-        self.imagen.dibujar(painter, x, y,
-                            self.centro[0], self.centro[1],
-                            escala_x, escala_y,
-                            self.rotacion, self.transparencia)
+        painter.save()
+
+        # Tranformaciones para aplicar al actor
+
+        dx, dy = self.centro
+        centro_x, centro_y = self.pilas.obtener_centro_fisico()
+        painter.translate(x + centro_x, centro_y - y)
+        painter.scale(escala_x, escala_y)
+        painter.rotate(self.rotacion)
+        painter.translate(-dx, -dy)
+
+        if self.transparencia:
+            painter.setOpacity(1 - self.transparencia/100.0)
+
+        # Dibujado de la imagen
+        for x in self._actores:
+            x.dibujar(painter)
+
+        self.imagen.dibujar(painter)
+
+        painter.restore()
 
 
 
@@ -362,7 +383,7 @@ class Actor(Estudiante):
 
     def definir_fijo(self, fijo):
         self._fijo = fijo
-        self.pilas.obtener_escena_actual().cambia_estado_fijo(self)
+        #self.pilas.obtener_escena_actual().cambia_estado_fijo(self)
 
     def obtener_vx(self):
         return self._vx
