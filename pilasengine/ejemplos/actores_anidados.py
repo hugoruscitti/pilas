@@ -1,15 +1,15 @@
 import pilasengine
 
-
 pilas = pilasengine.iniciar()
-
+mono = pilas.actores.Mono()
+mono.x = [100], 10
 aceituna = pilas.actores.Aceituna()
-aceituna2 = pilas.actores.Aceituna()
-aceituna2.x = 100
 
-aceituna.agregar(aceituna2)
-aceituna.rotacion = [180]
+#aceituna_grande = pilas.actores.Aceituna()
+#aceituna_grande.x = 100
+#aceituna_grande.escala = 0.75
 
-print pilas.escena_actual()._actores
+aceituna.agregar(mono)
+aceituna.rotacion = [180], 10
 
 pilas.ejecutar()
