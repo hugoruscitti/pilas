@@ -21,13 +21,20 @@ class Utils(object):
         return str(uuid.uuid4())
 
     def es_interpolacion(self, valor):
-        return isinstance(valor, list)
+        return isinstance(valor, list) or (isinstance(valor,tuple) and len(valor) == 2)
 
     def interpolar(self, actor, atributo, valor):
+        duracion = 0.5
+
+        if isinstance(valor, tuple):
+            duracion = valor[1]
+            valor = valor[0]
+
         parametro = {atributo: valor[0]}
 
         tweener = self.pilas.obtener_escena_actual().tweener
-        tweener.add_tween(actor, tween_time=.5, tween_type=tweener.IN_OUT_QUAD,
+        tweener.add_tween(actor, tween_time=duracion,
+                          tween_type=tweener.IN_OUT_QUAD,
                           **parametro)
 
     def interpolar_si_es_necesario(self, valor, nombre, tipo):
