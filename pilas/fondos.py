@@ -7,13 +7,14 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
-
-
-class Fondo(pilas.actores.Actor):
+from pilas.actores import Actor
+import Image
+import os
+class Fondo(Actor):
 
     def __init__(self, imagen):
         self._eliminar_el_fondo_de_pantalla_actual()
-        pilas.actores.Actor.__init__(self, imagen)
+        Actor.__init__(self, imagen)
         self.z = 1000
 
     def _eliminar_el_fondo_de_pantalla_actual(self):
@@ -28,6 +29,7 @@ class Fondo(pilas.actores.Actor):
     def es_fondo(self):
         return True
 
+
 class Volley(Fondo):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."
 
@@ -41,7 +43,7 @@ class Nubes(Fondo):
         Fondo.__init__(self, "fondos/nubes.png")
 
 class Pasto(Fondo):
-    "Muestra una escena que tiene un fondo de pantalla de paisaje."
+    "Muestrak una escena que tiene un fondo de pantalla de paisaje."
 
     def __init__(self):
         Fondo.__init__(self, "fondos/pasto.png")
@@ -85,6 +87,18 @@ class Color(Fondo):
         if self.color:
             self.lienzo.pintar(motor, self.color)
 
+class FondoPersonalizado(Fondo):
+    "Permite definir una imágen como fondo de un escena y analizar la opacidad de sus pixeles"
+    def __init__(self, imagen):
+        Fondo.__init__(self, imagen)
+        self.imagenFndo =  Image.open(imagen)
+        pilas.mundo.get_gestor().escena_actual().set_fondo(self)
+
+    def informacion_de_un_pixel(self, x, y):
+        return self.imagenFndo.getpixel( (x,y) )
+
+    def dimension_fondo(self):
+        return self.imagenFndo.size
 
 class Desplazamiento(Fondo):
     """Representa un fondo formado por varias capas (o actores).
@@ -165,8 +179,19 @@ class Desplazamiento(Fondo):
 class Plano(Fondo):
 
     def __init__(self):
-        Fondo.__init__(self, "plano.png")
+        Fondo.__init__(self,"plano.png")
+        imagen = os.path.abspath(os.path.dirname(__file__)) + "/data/plano.png"
+        self.imagenFndo = Image.open(imagen)
+    
+    def informacion_de_un_pixel(self, x, y):
+        # Porque el fondo esde un sólo color. Entonces no mporta el valor del pixel
+        return self.imagenFndo.getpixel( (1,1) )
 
+    def dimension_fondo(self):
+        # No importa el tamaño de la imagen del fondo, porque tiene el mismo color en todos lados.
+        return (0, 0) 
+
+    
     def dibujar(self, painter):
         painter.save()
         x = pilas.mundo.motor.camara_x

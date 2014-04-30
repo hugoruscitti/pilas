@@ -162,8 +162,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         pilas.iniciar(usar_motor='qtsugargl', ancho=640, alto=400)
 
         if ejecutar_codigo_inicial:
-            mono = pilas.actores.Mono()
-            scope = {'pilas': pilas, 'mono': mono, 'self': self, 'inspect': inspect}
+            b = pilas.actores.Board("/dev/tty/USB0")
+            r = pilas.actores.Robot(b, 1)
+            scope = {'pilas': pilas, 'b': b, 'r': r, 'self': self}
         else:
             scope = {'pilas': pilas, 'self': self}
 
@@ -182,7 +183,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
                 'import pilas',
                 '',
                 'pilas.iniciar()',
-                'mono = pilas.actores.Mono()',
+		'b = pilas.actores.Board("/dev/tty/USB0")',
+		'r = pilas.actores.Robot(b, 1)',
                 ]
         else:
             codigo_inicial = []
