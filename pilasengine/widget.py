@@ -17,6 +17,7 @@ class BaseWidget(QGLWidget):
         self.pilas = pilas
         super(BaseWidget, self).__init__()
         self.setMinimumSize(200, 200)
+        self.activar_borrosidad()
         self.iniciar_interface(ancho, alto)
 
     def iniciar_interface(self, ancho, alto):
@@ -121,10 +122,18 @@ class BaseWidget(QGLWidget):
 
         # Suavizar efectos y transformaciones de imágenes.
         self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
-        self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
+        self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, self._borrosidad)
         self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
 
         self.pilas.realizar_dibujado(self.painter)
+
+    def activar_borrosidad(self):
+        "Habilita transformaciones de buena calidad, como zoom y rotaciones."
+        self._borrosidad = True
+
+    def desactivar_borrosidad(self):
+        "Deshabilita las transformaciones de buena calidad."
+        self._borrosidad = False
 
 class WidgetConAceleracion(BaseWidget, QGLWidget):
     pass
