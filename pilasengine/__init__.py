@@ -2,6 +2,7 @@
 import sys
 import os
 import datetime
+from PyQt4 import QtGui
 
 from pilasengine import escenas
 from pilasengine import imagenes
@@ -29,6 +30,7 @@ class Pilas(object):
 
     def __init__(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
         """Inicializa el area de juego con una configuración inicial."""
+        self.app = QtGui.QApplication(sys.argv)
         self.widget = None
         self.reiniciar(ancho, alto, titulo, con_aceleracion, habilitar_mensajes_log)
 
@@ -148,6 +150,11 @@ class Pilas(object):
         """
         self.log("Buscando ruta al recurso:", ruta)
         return utils.obtener_ruta_al_recurso(ruta)
+
+    def ejecutar(self):
+        self.widget.show()
+        self.widget.raise_()
+        self.app.exec_()
 
 
 def iniciar(ancho=640, alto=480, titulo='Pilas'):
