@@ -6,6 +6,4 @@ class Mono(Actor):
         self.imagen = "mono.png"
 
     def actualizar(self):
-        self.rotacion += 3
-        self.x += 1
-        self.y += 1
+        pass
