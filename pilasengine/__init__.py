@@ -35,6 +35,7 @@ class Pilas(object):
         self.reiniciar(ancho, alto, titulo, con_aceleracion, habilitar_mensajes_log)
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
+        """Genera nuevamente la ventana del videojuego."""
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
         self.actores = actores.Actores(self)
@@ -128,7 +129,7 @@ class Pilas(object):
             # la ejecución de pilas.
             self.log("Capturando un error: %s", e)
             self.depurador.desactivar_todos_los_modos()
-            error = self.escenas.Error(e)
+            _ = self.escenas.Error(e)
             raise e
 
     def log(self, *mensaje):
@@ -156,6 +157,10 @@ class Pilas(object):
         self.widget.raise_()
         self.app.exec_()
 
+    def obtener_camara(self):
+        return self.escena_actual().camara
+
+    camara = property(obtener_camara, doc="")
 
 def iniciar(ancho=640, alto=480, titulo='Pilas'):
     """
