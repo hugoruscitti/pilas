@@ -37,6 +37,26 @@ class Utils(object):
                           tween_type=tweener.IN_OUT_QUAD,
                           **parametro)
 
+    def interpretar_propiedad_numerica(self, objeto, propiedad, valor):
+        """Procesa una propiedad y permite que sea numero o interpolación.
+
+        Este método se invoca en la mayoría de propiedades y atributos
+        de actores en pilas-engine. Por ejemplo cuando se invoca a
+        esta sentencia para mover al personaje:
+
+            >>> actor.x = [100, 0, 200]
+
+        o bien, para duplicar su tamaño en 10 segundos:
+
+            >>> actor.escala = [2], 10
+        """
+        if isinstance(valor, int) or isinstance(valor, float):
+            setattr(objeto, '_' + propiedad, valor)
+        elif self.es_interpolacion(valor):
+            self.interpolar(objeto, propiedad, valor)
+        else:
+            raise Exception("Solo se pueden asignar números o interpolaciones.")
+
     def interpolar_si_es_necesario(self, valor, nombre, tipo):
         # Si le indican dos argumentos, el primer sera
         # el valor de la interpolacion y el segundo la
