@@ -66,6 +66,7 @@ class Actor(Estudiante):
 
     def __init__(self, pilas):
         self.pilas = pilas
+        self.padre = None
 
         Estudiante.__init__(self)
         self._definir_valores_iniciales(pilas)
@@ -78,6 +79,7 @@ class Actor(Estudiante):
 
     def agregar(self, actor):
         self._actores.append(actor)
+        actor.padre = self
 
     def agregar_al_grupo(self, grupo):
         self._grupos_a_los_que_pertenece.append(grupo)

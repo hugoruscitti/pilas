@@ -162,6 +162,7 @@ class Pilas(object):
 
     camara = property(obtener_camara, doc="")
 
+
 def iniciar(ancho=640, alto=480, titulo='Pilas'):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
