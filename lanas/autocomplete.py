@@ -41,7 +41,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
         self.dictionary = DictionaryCompleter()
         self.set_completer(self.dictionary)
         self.set_dictionary([])
-        self.setReadOnly(False)
+
 
     def set_dictionary(self, list):
         self.dictionary.set_dictionary(list)
