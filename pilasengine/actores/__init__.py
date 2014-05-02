@@ -65,6 +65,19 @@ class Actores(object):
         nuevo_actor = actor.Actor(self.pilas)
         return self.agregar_actor(nuevo_actor)
 
+    def Palo(self):
+        return self._crear_actor('palo', 'Palo')
+
+    def _crear_actor(self, modulo, clase):
+        import importlib
+
+        referencia_a_modulo = importlib.import_module('pilasengine.actores.' + modulo)
+        referencia_a_clase = getattr(referencia_a_modulo, clase)
+
+        nuevo_actor = referencia_a_clase(self.pilas)
+        return self.agregar_actor(nuevo_actor)
+
+
     def MensajeError(self, error):
         import mensaje_error
         nuevo_actor = mensaje_error.MensajeError(self.pilas, error)
