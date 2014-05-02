@@ -159,9 +159,8 @@ class Pilas(object):
 
     def obtener_camara(self):
         return self.escena_actual().camara
-
+    
     camara = property(obtener_camara, doc="")
-
 
 def iniciar(ancho=640, alto=480, titulo='Pilas'):
     """
