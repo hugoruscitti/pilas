@@ -25,6 +25,8 @@ class Ventana(QWidget):
 
         if not scope:
             scope = locals()
+
+        if not 'inspect' in scope:
             scope['inspect'] = inspect
 
         self.text_edit = InterpreteTextEdit(self, codigo_inicial)
@@ -43,7 +45,6 @@ class Ventana(QWidget):
     def ejecutar(self, codigo):
         """Ejecuta el codigo en formato string enviado."""
         exec(codigo, self.text_edit.interpreterLocals)
-
 
     def center_on_screen(self):
         resolution = QDesktopWidget().screenGeometry()
@@ -256,6 +257,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         tc.insertText(word)
 
     def keyPressEvent(self, event):
+        textCursor = self.textCursor()
+
         # cambia el tamano de la tipografia.
         if event.modifiers() & Qt.AltModifier:
             if event.key() == Qt.Key_Minus:
@@ -319,6 +322,15 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         except UnicodeEncodeError:
             pass
 
+        # Ignorando la pulsación de tecla si está en medio de la consola.
+        if textCursor.blockNumber() != self.document().blockCount() - 1:
+
+            textCursor = self.textCursor()
+            textCursor.movePosition(QTextCursor.End)
+            self.setTextCursor(textCursor)
+
+            event.ignore()
+            return
 
         if event.key() in [Qt.Key_Return, Qt.Key_Enter]:
             line = self._get_entered_line()
@@ -407,7 +419,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         if codigo:
             posicion = codigo.find(":")
-            codigo = codigo[:posicion].replace("def ", "").replace('  ', '').replace('self, ', '').replace('self', '')
+            codigo = codigo[:posicion].replace("def ", "").replace('  ', '').replace('self, ', '').replace('self', '').replace('\n', ' ')
             return codigo
         else:
             return ""
@@ -424,9 +436,9 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
                 texto_a_ejecutar = 'inspect.getsource(' + texto + ")"
                 codigo = eval(texto_a_ejecutar, self.interpreterLocals)
-            except TypeError:
-                codigo = ""
-        except:
+            except TypeError, e:
+                pass
+        except Exception, e:
             pass
 
         return codigo
