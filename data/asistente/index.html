@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" ng-app='app'>
 <head>
   <title>pilas engine</title>
   <meta charset="utf-8">
 
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/estilo.css" rel="stylesheet">
-  <link href="css/index.css" rel="stylesheet" type="text/css"/>
+  <link href="css/index.css" rel="stylesheet">
+  <link href="css/ejemplos.css" rel="stylesheet">
 
   <script src="js/jquery-1.8.3.js"></script>
   <script src="js/bootstrap.js"></script>
 
-  <script>
+  <script src="js/angular.js"></script>
+  <script src="js/angular-route.js"></script>
+  <script src="js/angular-animate.js"></script>
+  <script src="js/ui-bootstrap-tpls.js"></script>
+  <script src="js/app.js"></script>
 
+
+  <script>
     function abrir_interprete() {
         interlocutor.abrir_interprete();
     }
@@ -37,10 +44,10 @@
     }
 
   </script>
+
 </head>
 
 <body>
-
 
 <div class='container'>
   <div id='header'>
@@ -51,29 +58,8 @@
 
   <!-- forzando la carga de la imagenen -->
   <img src='imagenes/procesando.gif'>
+  <ng-view class='view-animate'></ng-view>
 
-  <div id='principal'>
-    <div class='fila'>
-        <a href="#" id="interprete" onclick='abrir_interprete()' class="button"><span>abrir el intérprete</span></a>
-        <a href="ejemplos.html" id="ejemplos" class="button"><span>ver ejemplos</span></a>
-    </div>
-
-    <div class='fila'>
-      <a href="#" id="manual" onclick='abrir_manual()' class="button"><span>ver manual</span></a>
-      <a href="#" id="web" onclick='abrir_sitio_de_pilas()' class="button"><span>visitar la web</span></a>
-    </div>
-
-  </div>
-
-  <div id="footer">
-
-      <div class='fila centrado'>
-        <div class='tip'>
-          <img src='imagenes/caja.png'> Puedes ejecutar archivos .py soltándolos aquí.
-        </div>
-      </div>
-
-  </div>
 </div>
 
 </body>
