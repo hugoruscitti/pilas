@@ -167,7 +167,7 @@ class Actor(Estudiante):
         centro_x, centro_y = self.pilas.obtener_centro_fisico()
         painter.translate(x, -y)
         painter.scale(escala_x, escala_y)
-        painter.rotate(self.rotacion)
+        painter.rotate(-self.rotacion)
         painter.translate(-dx, -dy)
 
         if self.transparencia:

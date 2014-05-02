@@ -13,7 +13,7 @@ class Camara(object):
         centro_x, centro_y = self.pilas.obtener_centro_fisico()
         painter.translate(centro_x, centro_y)
         painter.scale(self._aumento, self._aumento)
-        painter.rotate(self._rotacion)
+        painter.rotate(-self._rotacion)
 
     def aplicar_translacion(self, painter):
         centro_x, centro_y = self.pilas.obtener_centro_fisico()
