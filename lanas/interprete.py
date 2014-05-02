@@ -309,6 +309,16 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
             self.setTextCursor(textCursor)
             return None
 
+        # Ignorando la pulsación de tecla si está en medio de la consola.
+        if textCursor.blockNumber() != self.document().blockCount() - 1:
+
+            textCursor = self.textCursor()
+            textCursor.movePosition(QTextCursor.End)
+            self.setTextCursor(textCursor)
+
+            event.ignore()
+            return
+
         if event.key() in [Qt.Key_Left, Qt.Key_Backspace]:
             if self.textCursor().positionInBlock() >= 3:
                 super(InterpreteTextEdit, self).keyPressEvent(event)
@@ -322,15 +332,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         except UnicodeEncodeError:
             pass
 
-        # Ignorando la pulsación de tecla si está en medio de la consola.
-        if textCursor.blockNumber() != self.document().blockCount() - 1:
-
-            textCursor = self.textCursor()
-            textCursor.movePosition(QTextCursor.End)
-            self.setTextCursor(textCursor)
-
-            event.ignore()
-            return
 
         if event.key() in [Qt.Key_Return, Qt.Key_Enter]:
             line = self._get_entered_line()
