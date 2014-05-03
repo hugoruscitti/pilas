@@ -30,7 +30,12 @@ class Pilas(object):
 
     def __init__(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
         """Inicializa el area de juego con una configuración inicial."""
-        self.app = QtGui.QApplication(sys.argv)
+
+        if QtGui.QApplication.instance():
+            self.app = QtGui.QApplication.instance()
+        else:
+            self.app = QtGui.QApplication(sys.argv)
+
         self.widget = None
         self.reiniciar(ancho, alto, titulo, con_aceleracion, habilitar_mensajes_log)
 
@@ -204,3 +209,4 @@ def abrir_script_con_livereload(archivo):
     ruta = os.path.dirname(archivo)
     os.chdir(ruta)
     return interprete.abrir_script_con_livereload(archivo)
+
