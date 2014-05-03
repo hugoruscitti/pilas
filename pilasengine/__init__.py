@@ -112,15 +112,19 @@ class Pilas(object):
         self._imprimir_mensajes_log = estado
 
     def obtener_escena_actual(self):
+        "Retorna la escena actual."
         return self.escenas.obtener_escena_actual()
 
     def escena_actual(self):
+        "Retorna la escena actual."
         return self.obtener_escena_actual()
 
     def realizar_actualizacion_logica(self):
+        "Realiza la etapa de actualización lógica."
         self.escenas.realizar_actualizacion_logica()
 
     def realizar_dibujado(self, painter):
+        "Realiza la etapa de actualización gráfica."
         try:
             self.escenas.realizar_dibujado(painter)
             self.depurador.realizar_dibujado(painter)
@@ -153,6 +157,7 @@ class Pilas(object):
         return utils.obtener_ruta_al_recurso(ruta)
 
     def ejecutar(self):
+        "Muestra la ventana y mantiene el programa en ejecución."
         self.widget.show()
         self.widget.raise_()
         self.app.exec_()
@@ -160,7 +165,8 @@ class Pilas(object):
     def obtener_camara(self):
         return self.escena_actual().camara
 
-    camara = property(obtener_camara, doc="")
+    camara = property(obtener_camara, doc="Cámara de la escena actual")
+    escena = property(obtener_escena_actual, doc="Escena actual")
 
 def iniciar(ancho=640, alto=480, titulo='Pilas'):
     """

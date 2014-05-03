@@ -50,6 +50,16 @@ class Interlocutor(QtCore.QObject):
         webbrowser.open("http://www.pilas-engine.com.ar")
 
 
+    @QtCore.pyqtSlot(str, result=str)
+    def obtener_codigo_del_ejemplo(self, juego):
+        juego = str(juego)
+        ruta_al_ejemplo = os.path.join(os.path.dirname(__file__), '..', 'ejemplos/' + juego + '.py')
+        archivo = open(ruta_al_ejemplo, "rt")
+        contenido = archivo.read()
+        archivo.close()
+        return contenido
+
+
 class VentanaAsistente(Base):
     """Representa la ventana principal del asistente."""
 
