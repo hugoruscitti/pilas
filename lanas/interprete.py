@@ -126,6 +126,12 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         if os.path.exists(font_path):
             return font_path
 
+        this_dir = os.path.dirname(__file__)
+        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
+
+        if os.path.exists(font_path):
+            return font_path
+
         return None
 
     def __init__(self,  parent, codigo_inicial):
