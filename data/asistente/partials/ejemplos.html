@@ -1,8 +1,7 @@
 <div id='ejemplos'>
-    <h2>Ejemplos</h2>
 
     <div class='barra-superior'>
-        <input disabled class='filtro' ng-model='data.filtro' placeholder='Filtrar'>
+        <div class='filtro'>Filtro <input ng-model='data.filtro'></div>
         <p><a href='#/' class='btn btn-sm btn-info'> Regresar</a>
     </div>
 
@@ -10,20 +9,20 @@
 
         <ul class='item'>
 
-        <li ng-repeat='ejemplo in data.ejemplos'>
+        <li class="animate" ng-repeat='ejemplo in data.ejemplos | filter:data.filtro'>
 
             <div class='contenedor_ejemplo'>
-            <a ng-click="abrir_ejemplo(ejemplos.nick)" href=''>
-              <span class='nombre'>
-                      {{ejemplos.titulo}}
-              </span>
-              <img src='imagenes/ejemplos/{{ejemplo.nick}}.png'>
-            </a>
+              <a ng-click="abrir_ejemplo(ejemplo.nick)" href=''>
+                <span class='nombre'>
+                    {{ejemplo.titulo}}
+                </span>
+                <img src='imagenes/ejemplos/{{ejemplo.nick}}.png'>
+              </a>
 
             <br/>
 
-            <a href='' ng-click="abrir_ejemplo(ejemplos.nick)">Ejecutar</a>  &nbsp; &nbsp; &nbsp;
-            <a href='' ng-click="abrir_codigo(ejemplos.nick)">Código</a>
+            <a href='' ng-click="abrir_ejemplo(ejemplo.nick)">Ejecutar</a>  &nbsp; &nbsp; &nbsp;
+            <a href='' ng-click="mostrar_codigo(ejemplo)">Código</a>
 
             <br/>
 

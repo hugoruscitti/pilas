@@ -31,6 +31,10 @@ class Interlocutor(QtCore.QObject):
             self.interprete.show()
             self.interprete.raise_()
 
+    @QtCore.pyqtSlot(str)
+    def abrir_ejemplo(self, juego):
+        print juego
+
     @QtCore.pyqtSlot()
     def abrir_manual(self):
         if not self.manual:

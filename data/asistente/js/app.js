@@ -22,6 +22,14 @@ app.controller("PrincipalCtrl", function($scope, $location){
 app.controller("EjemplosCtrl", function($scope, $location){
     $scope.data = {};
 
+    $scope.abrir_ejemplo = function(juego) {
+        window.interlocutor.abrir_ejemplo(juego);
+    }
+
+    $scope.mostrar_codigo = function(juego) {
+        alert("codigo " + juego.titulo);
+    }
+
     $scope.data.ejemplos = [
         {
             titulo: "Animacion con velocidad",

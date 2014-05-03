@@ -160,6 +160,7 @@ html, body {height: 100%; padding-left: 1em; padding-right: 1em}
 }
 
 .barra-superior {
+    margin-top: 15px;
 }
 
 .filtro {
