@@ -159,7 +159,7 @@ class Pilas(object):
 
     def obtener_camara(self):
         return self.escena_actual().camara
-    
+
     camara = property(obtener_camara, doc="")
 
 def iniciar(ancho=640, alto=480, titulo='Pilas'):
@@ -195,4 +195,6 @@ def abrir_interprete():
 
 def abrir_script_con_livereload(archivo):
     import interprete
+    ruta = os.path.dirname(archivo)
+    os.chdir(ruta)
     return interprete.abrir_script_con_livereload(archivo)
