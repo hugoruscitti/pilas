@@ -31,6 +31,12 @@ class Interlocutor(QtCore.QObject):
             self.interprete.show()
             self.interprete.raise_()
 
+    @QtCore.pyqtSlot(str)
+    def abrir_ejemplo(self, juego):
+        juego = str(juego)
+        ruta_al_ejemplo = os.path.join(os.path.dirname(__file__), '..', 'ejemplos/' + juego + '.py')
+        self.ventana.abrir_ejemplo(ruta_al_ejemplo)
+
     @QtCore.pyqtSlot()
     def abrir_manual(self):
         if not self.manual:
@@ -42,6 +48,16 @@ class Interlocutor(QtCore.QObject):
     @QtCore.pyqtSlot()
     def abrir_sitio_de_pilas(self):
         webbrowser.open("http://www.pilas-engine.com.ar")
+
+
+    @QtCore.pyqtSlot(str, result=str)
+    def obtener_codigo_del_ejemplo(self, juego):
+        juego = str(juego)
+        ruta_al_ejemplo = os.path.join(os.path.dirname(__file__), '..', 'ejemplos/' + juego + '.py')
+        archivo = open(ruta_al_ejemplo, "rt")
+        contenido = archivo.read()
+        archivo.close()
+        return contenido
 
 
 class VentanaAsistente(Base):
@@ -174,6 +190,9 @@ class VentanaAsistente(Base):
         self.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
 
     def _ejecutar_programa_con_livereload(self, archivo):
+        self.programa = pilasengine.abrir_script_con_livereload(archivo)
+
+    def abrir_ejemplo(self, archivo):
         self.programa = pilasengine.abrir_script_con_livereload(archivo)
 
 def abrir():

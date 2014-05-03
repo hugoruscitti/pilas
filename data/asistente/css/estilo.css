@@ -151,9 +151,22 @@ html, body {height: 100%; padding-left: 1em; padding-right: 1em}
 #principal {
     min-width: 500px;
     color: red;
-    margin-top: 90px;
+    margin-top: 75px;
 }
 
+#ejemplos {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.barra-superior {
+    margin-top: 15px;
+}
+
+.filtro {
+    float: right;
+
+}
 
 #header {
     min-width: 100%;
@@ -209,3 +222,25 @@ body.modal-open {
     text-align: center;
 }
 
+.view-animate {
+  position:absolute;
+  top:50px;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.view-animate.ng-enter, .view-animate.ng-leave {
+  -webkit-transition:0.2s linear all;
+  transition:0.2s linear all;
+}
+
+.view-animate.ng-enter {
+  opacity:0;
+}
+.view-animate.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.view-animate.ng-leave.ng-leave-active {
+  opacity: 0;
+}

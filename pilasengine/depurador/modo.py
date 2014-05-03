@@ -25,7 +25,7 @@ class ModoDepurador(object):
     def sale_del_modo(self):
         pass
 
-    def _texto(self, painter, cadena, x=0, y=0, magnitud=10, fuente=None, color=negro):
+    def _texto(self, painter, cadena, x=0, y=0, magnitud=12, fuente=None, color=negro):
         "Imprime un texto respespetando el desplazamiento de la camara."
         self._texto_absoluto(painter, cadena, x, y, magnitud, fuente, color)
 

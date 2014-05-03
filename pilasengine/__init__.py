@@ -35,6 +35,7 @@ class Pilas(object):
         self.reiniciar(ancho, alto, titulo, con_aceleracion, habilitar_mensajes_log)
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
+        """Genera nuevamente la ventana del videojuego."""
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
         self.actores = actores.Actores(self)
@@ -111,15 +112,19 @@ class Pilas(object):
         self._imprimir_mensajes_log = estado
 
     def obtener_escena_actual(self):
+        "Retorna la escena actual."
         return self.escenas.obtener_escena_actual()
 
     def escena_actual(self):
+        "Retorna la escena actual."
         return self.obtener_escena_actual()
 
     def realizar_actualizacion_logica(self):
+        "Realiza la etapa de actualización lógica."
         self.escenas.realizar_actualizacion_logica()
 
     def realizar_dibujado(self, painter):
+        "Realiza la etapa de actualización gráfica."
         try:
             self.escenas.realizar_dibujado(painter)
             self.depurador.realizar_dibujado(painter)
@@ -128,7 +133,7 @@ class Pilas(object):
             # la ejecución de pilas.
             self.log("Capturando un error: %s", e)
             self.depurador.desactivar_todos_los_modos()
-            error = self.escenas.Error(e)
+            _ = self.escenas.Error(e)
             raise e
 
     def log(self, *mensaje):
@@ -152,10 +157,16 @@ class Pilas(object):
         return utils.obtener_ruta_al_recurso(ruta)
 
     def ejecutar(self):
+        "Muestra la ventana y mantiene el programa en ejecución."
         self.widget.show()
         self.widget.raise_()
         self.app.exec_()
 
+    def obtener_camara(self):
+        return self.escena_actual().camara
+
+    camara = property(obtener_camara, doc="Cámara de la escena actual")
+    escena = property(obtener_escena_actual, doc="Escena actual")
 
 def iniciar(ancho=640, alto=480, titulo='Pilas'):
     """
@@ -190,4 +201,6 @@ def abrir_interprete():
 
 def abrir_script_con_livereload(archivo):
     import interprete
+    ruta = os.path.dirname(archivo)
+    os.chdir(ruta)
     return interprete.abrir_script_con_livereload(archivo)

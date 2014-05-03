@@ -8,7 +8,7 @@ import pitweener
 
 from PyQt4 import QtGui
 
-PATH = os.path.dirname(os.path.abspath(__file__))
+PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
 INTERPRETE_PATH = os.path.dirname(sys.argv[0])
 
 class Utils(object):
@@ -21,14 +21,41 @@ class Utils(object):
         return str(uuid.uuid4())
 
     def es_interpolacion(self, valor):
-        return isinstance(valor, list)
+        return isinstance(valor, list) or (isinstance(valor,tuple) and len(valor) == 2)
 
     def interpolar(self, actor, atributo, valor):
+        duracion = 0.5
+
+        if isinstance(valor, tuple):
+            duracion = valor[1]
+            valor = valor[0]
+
         parametro = {atributo: valor[0]}
 
         tweener = self.pilas.obtener_escena_actual().tweener
-        tweener.add_tween(actor, tween_time=.5, tween_type=tweener.IN_OUT_QUAD,
+        tweener.add_tween(actor, tween_time=duracion,
+                          tween_type=tweener.IN_OUT_QUAD,
                           **parametro)
+
+    def interpretar_propiedad_numerica(self, objeto, propiedad, valor):
+        """Procesa una propiedad y permite que sea numero o interpolación.
+
+        Este método se invoca en la mayoría de propiedades y atributos
+        de actores en pilas-engine. Por ejemplo cuando se invoca a
+        esta sentencia para mover al personaje:
+
+            >>> actor.x = [100, 0, 200]
+
+        o bien, para duplicar su tamaño en 10 segundos:
+
+            >>> actor.escala = [2], 10
+        """
+        if isinstance(valor, int) or isinstance(valor, float):
+            setattr(objeto, '_' + propiedad, valor)
+        elif self.es_interpolacion(valor):
+            self.interpolar(objeto, propiedad, valor)
+        else:
+            raise Exception("Solo se pueden asignar números o interpolaciones.")
 
     def interpolar_si_es_necesario(self, valor, nombre, tipo):
         # Si le indican dos argumentos, el primer sera
@@ -52,11 +79,14 @@ class Utils(object):
 
 
 def obtener_ruta_al_recurso(ruta):
-    dirs = ['./', '/../data', '/data',
-            PATH, INTERPRETE_PATH,
+    dirs = ['./', '/../data',
+            PATH,
+            INTERPRETE_PATH,
             PATH + '/../',
-            PATH + '/../data', INTERPRETE_PATH + '/data',
-            PATH + '/../../data', INTERPRETE_PATH + '/../data'
+            PATH + '/../data',
+            INTERPRETE_PATH + '/data',
+            PATH + '/../../data',
+            INTERPRETE_PATH + '/../data'
            ]
 
     for x in dirs:

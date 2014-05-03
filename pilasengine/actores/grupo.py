@@ -49,8 +49,20 @@ class Grupo(object):
         else:
             raise Exception("No se agrega al actor porque ya estába en este grupo")
 
-    def obtener_actores(self):
-        return list(self._actores)
+    def obtener_actores(self, fijos=None, sin_padre=False):
+        """Retorna una lista de actores.
+
+        El argumento fijos sirve para filtrar los actores. Si se
+        especifica True solo se retornan los actores fijos, en cambio
+        con False se retornan los actores normales.
+        """
+        if fijos in [True, False]:
+            if sin_padre:
+                return [x for x in self._actores if x.fijo == fijos and not x.padre]
+            else:
+                return [x for x in self._actores if x.fijo == fijos]
+        else:
+            return list(self._actores)
 
     def __repr__(self):
         cantidad = self.obtener_cantidad_de_actores()

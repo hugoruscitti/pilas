@@ -66,6 +66,7 @@ class Actor(Estudiante):
 
     def __init__(self, pilas):
         self.pilas = pilas
+        self.padre = None
 
         Estudiante.__init__(self)
         self._definir_valores_iniciales(pilas)
@@ -74,6 +75,11 @@ class Actor(Estudiante):
         self._callback_cuando_hace_click = set()
         self._callback_cuando_mueve_mouse = set()
         self._grupos_a_los_que_pertenece = []
+        self._actores = []
+
+    def agregar(self, actor):
+        self._actores.append(actor)
+        actor.padre = self
 
     def agregar_al_grupo(self, grupo):
         self._grupos_a_los_que_pertenece.append(grupo)
@@ -153,10 +159,27 @@ class Actor(Estudiante):
         x = self.x - dx
         y = self.y - dy
 
-        self.imagen.dibujar(painter, x, y,
-                            self.centro[0], self.centro[1],
-                            escala_x, escala_y,
-                            self.rotacion, self.transparencia)
+        painter.save()
+
+        # Tranformaciones para aplicar al actor
+
+        dx, dy = self.centro
+        centro_x, centro_y = self.pilas.obtener_centro_fisico()
+        painter.translate(x, -y)
+        painter.scale(escala_x, escala_y)
+        painter.rotate(-self.rotacion)
+        painter.translate(-dx, -dy)
+
+        if self.transparencia:
+            painter.setOpacity(1 - self.transparencia/100.0)
+
+        # Dibujado de la imagen
+        for x in self._actores:
+            x.dibujar(painter)
+
+        self.imagen.dibujar(painter)
+
+        painter.restore()
 
 
 
@@ -269,27 +292,7 @@ class Actor(Estudiante):
         return self._x
 
     def definir_x(self, x):
-        self._interpretar_propiedad_numerica('x', x)
-
-    def _interpretar_propiedad_numerica(self, propiedad, valor):
-        """Procesa una propiedad y permite que sea numero o interpolación.
-
-        Este método se invoca en la mayoría de propiedades y atributos
-        de actores en pilas-engine. Por ejemplo cuando se invoca a
-        esta sentencia para mover al personaje:
-
-            >>> actor.x = [100, 0, 200]
-
-        o bien, para duplicar su tamaño en 10 segundos:
-
-            >>> actor.escala = [2], 10
-        """
-        if isinstance(valor, int) or isinstance(valor, float):
-            setattr(self, '_' + propiedad, valor)
-        elif self.pilas.utils.es_interpolacion(valor):
-            self.pilas.utils.interpolar(self, propiedad, valor)
-        else:
-            raise Exception("Solo se pueden asignar números o interpolaciones.")
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'x', x)
 
     def obtener_z(self):
         return self._z
@@ -298,12 +301,11 @@ class Actor(Estudiante):
         self._z = z
 
     def definir_y(self, y):
-        self._interpretar_propiedad_numerica('y', y)
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'y', y)
 
     def obtener_y(self):
         return self._y
 
-    #@interpolable
     def definir_escala(self, s):
         if s < 0.001:
             s = 0.001
@@ -321,12 +323,12 @@ class Actor(Estudiante):
         self.radio_de_colision = (s * self.radio_de_colision) / max(ultima_escala, 0.0001)
 
     def definir_escala_x(self, s):
-        self._interpretar_propiedad_numerica('escala_x', s)
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'escala_x', s)
         if self._escala_x < 0.001:
             self._escala_x = 0.001
 
     def definir_escala_y(self, s):
-        self._interpretar_propiedad_numerica('escala_y', s)
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'escala_y', s)
         if self._escala_y < 0.001:
             self._escala_y = 0.001
 
@@ -343,7 +345,7 @@ class Actor(Estudiante):
         return self._rotacion
 
     def definir_rotacion(self, rotacion):
-        self._interpretar_propiedad_numerica('rotacion', rotacion)
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'rotacion', rotacion)
 
     def obtener_espejado(self):
         return self._espejado
@@ -352,7 +354,7 @@ class Actor(Estudiante):
         self._espejado = espejado
 
     def definir_transparencia(self, transparencia):
-        self._interpretar_propiedad_numerica('transparencia', transparencia)
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'transparencia', transparencia)
 
     def obtener_transparencia(self):
         return self._transparencia
@@ -362,7 +364,7 @@ class Actor(Estudiante):
 
     def definir_fijo(self, fijo):
         self._fijo = fijo
-        self.pilas.obtener_escena_actual().cambia_estado_fijo(self)
+        #self.pilas.obtener_escena_actual().cambia_estado_fijo(self)
 
     def obtener_vx(self):
         return self._vx

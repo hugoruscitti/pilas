@@ -51,24 +51,28 @@ class Actores(object):
         return grupo
 
     def Aceituna(self):
-        import aceituna
-        nuevo_actor = aceituna.Aceituna(self.pilas)
-        return self.agregar_actor(nuevo_actor)
+        return self._crear_actor('aceituna', 'Aceituna')
 
     def Mono(self):
-        import mono
-        nuevo_actor = mono.Mono(self.pilas)
-        return self.agregar_actor(nuevo_actor)
+        return self._crear_actor('mono', 'Mono')
 
     def Actor(self):
-        import actor
-        nuevo_actor = actor.Actor(self.pilas)
+        return self._crear_actor('actor', 'Actor')
+
+    def Palo(self):
+        return self._crear_actor('palo', 'Palo')
+
+    def _crear_actor(self, modulo, clase):
+        import importlib
+
+        referencia_a_modulo = importlib.import_module('pilasengine.actores.' + modulo)
+        referencia_a_clase = getattr(referencia_a_modulo, clase)
+
+        nuevo_actor = referencia_a_clase(self.pilas)
         return self.agregar_actor(nuevo_actor)
 
     def MensajeError(self, error):
-        import mensaje_error
-        nuevo_actor = mensaje_error.MensajeError(self.pilas, error)
-        return self.agregar_actor(nuevo_actor)
+        return self._crear_actor('mensaje_error', 'MensajeError')
 
     def Grupo(self):
         import grupo
