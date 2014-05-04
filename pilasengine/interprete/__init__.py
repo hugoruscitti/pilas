@@ -28,13 +28,19 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.splitter.setSizes([300, 100])
 
         self.colapsar_ayuda()
+        self.colapsar_editor()
         self.cargar_ayuda()
         self.navegador.history().setMaximumItemCount(0)
 
         self._conectar_botones()
+        self._conectar_botones_del_editor()
         self._conectar_observadores_splitters()
 
     def _conectar_botones(self):
+        # Botón del editor
+        #self.definir_icono(self.editor_button, 'iconos/manual.png')
+        self.editor_button.connect(self.editor_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_editor)
+
         # Botón del manual
         self.definir_icono(self.manual_button, 'iconos/manual.png')
         self.manual_button.connect(self.manual_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_manual)
@@ -71,6 +77,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.definir_icono(self.pushButton, 'iconos/f12.png')
         self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
+    def _conectar_botones_del_editor(self):
+        self.ejecutar_button.connect(self.ejecutar_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_ejecutar)
+
     def _conectar_observadores_splitters(self):
         # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.
         self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador_vertical)
@@ -79,6 +88,10 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def colapsar_ayuda(self):
         self.splitter_vertical.setSizes([0])
         self.manual_button.setChecked(False)
+
+    def colapsar_editor(self):
+        self.splitter_editor.setSizes([0])
+        self.editor_button.setChecked(False)
 
     def colapsar_interprete(self):
         self.splitter.setSizes([300, 0])
@@ -110,11 +123,21 @@ class VentanaInterprete(Ui_InterpreteWindow):
         else:
             self.splitter_vertical.setSizes([0])
 
+    def cuando_pulsa_el_boton_editor(self):
+        if self.editor_button.isChecked():
+            self.splitter_editor.setSizes([300, 50])
+        else:
+            self.splitter_editor.setSizes([200, 0])
+
     def cuando_pulsa_el_boton_interprete(self):
         if self.interprete_button.isChecked():
             self.splitter.setSizes([300, 100])
         else:
             self.splitter.setSizes([300, 0])
+
+    def cuando_pulsa_el_boton_ejecutar(self):
+        texto = str(self.textEdit.document().toPlainText())
+        self.ejecutar_codigo_como_string(texto)
 
     def pulsa_boton_depuracion(self):
         pilas = self.scope['pilas']
@@ -185,6 +208,10 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def _reiniciar_y_ejecutar(self, archivo):
         f = open(archivo, "rt")
         contenido = f.read()
+        self.ejecutar_codigo_como_string(contenido)
+        f.close()
+
+    def ejecutar_codigo_como_string(self, contenido):
         contenido = contenido.replace('import pilasengine', '')
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
         self.consola.ejecutar(contenido)
