@@ -3,6 +3,7 @@ import sys
 import os
 import datetime
 from PyQt4 import QtGui
+from PyQt4 import QtCore
 
 from pilasengine import escenas
 from pilasengine import imagenes
@@ -165,7 +166,10 @@ class Pilas(object):
         "Muestra la ventana y mantiene el programa en ejecución."
         self.widget.show()
         self.widget.raise_()
-        self.app.exec_()
+
+        # Inicializa el bucle de pyqt solo si es necesario.
+        if not QtCore.QAbstractEventDispatcher.instance():
+            self.app.exec_()
 
     def obtener_camara(self):
         return self.escena_actual().camara
