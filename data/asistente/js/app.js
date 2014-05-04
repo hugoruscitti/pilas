@@ -37,8 +37,8 @@ app.controller("PrincipalCtrl", function($scope, $location){
 app.controller("EjemplosCtrl", function($scope, $location, $modal){
     $scope.data = {};
 
-    $scope.abrir_ejemplo = function() {
-        window.interlocutor.abrir_ejemplo(juego.nick);
+    $scope.abrir_ejemplo = function(nick) {
+        window.interlocutor.abrir_ejemplo(nick);
     }
 
     $scope.mostrar_codigo = function(juego) {

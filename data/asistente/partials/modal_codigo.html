@@ -1,6 +1,12 @@
 <div class="modal-body">
     <strong>{{data.juego.titulo}}</strong> &nbsp; ({{data.juego.nick}}.py)
 
+
+<div class="modal-footer">
+    <button class='btn btn-success' ng-click="ejecutar(data.juego.nick)">Ejecutar</button>
+    <button class="btn btn-primary" ng-click="cancelar()">Cancelar</button>
+</div>
+
 <pre>{{data.codigo}}</pre>
 
 </div>
