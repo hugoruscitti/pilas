@@ -136,7 +136,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.splitter.setSizes([300, 0])
 
     def cuando_pulsa_el_boton_ejecutar(self):
-        texto = str(self.textEdit.document().toPlainText())
+        texto = str(self.editor.document().toPlainText())
         self.ejecutar_codigo_como_string(texto)
 
     def pulsa_boton_depuracion(self):

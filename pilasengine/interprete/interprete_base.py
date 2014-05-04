@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Sun May  4 01:46:04 2014
+# Created: Sun May  4 13:50:38 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -183,9 +183,9 @@ class Ui_InterpreteWindow(object):
         spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
-        self.textEdit = QtGui.QTextEdit(self.widget)
-        self.textEdit.setObjectName(_fromUtf8("textEdit"))
-        self.verticalLayout_3.addWidget(self.textEdit)
+        self.editor = QtGui.QTextEdit(self.widget)
+        self.editor.setObjectName(_fromUtf8("editor"))
+        self.verticalLayout_3.addWidget(self.editor)
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)
         InterpreteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(InterpreteWindow)
@@ -227,7 +227,7 @@ class Ui_InterpreteWindow(object):
         self.pushButton_7.setText(_translate("InterpreteWindow", "Abrir", None))
         self.pushButton_8.setText(_translate("InterpreteWindow", "Guardar", None))
         self.ejecutar_button.setText(_translate("InterpreteWindow", "Ejecutar", None))
-        self.textEdit.setHtml(_translate("InterpreteWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.editor.setHtml(_translate("InterpreteWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'.Lucida Grande UI\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
