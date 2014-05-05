@@ -85,9 +85,7 @@ http://www.pilas-engine.com.ar
             'Topic :: Games/Entertainment',
           ],
      data_files=[('/usr/share/applications', ('debian/pilas.desktop',)),
-		  (  ('/usr/share/pixmaps', ('debian/pilas-icono.png',)),
-
- 
-          ]
+		  ('/usr/share/pixmaps', ('debian/pilas-icono.png',))
+         ]
     )
 
