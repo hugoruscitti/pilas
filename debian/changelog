@@ -3,7 +3,7 @@ pilas (0.84.3-1) UNRELEASED; urgency=low
   * Archivo desktop.
   * Modificaciones en setup.py
 
- - Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Mon, 05 May 2014 17:31:24 -0300
+ -- Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Mon, 05 May 2014 17:31:24 -0300
 
 pilas (0.84.3) unstable; urgency=low
 
