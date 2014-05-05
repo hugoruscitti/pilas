@@ -5,6 +5,7 @@ from PyQt4.QtOpenGL import QGLWidget
 
 import fps
 
+
 class BaseWidget(QGLWidget):
     """Representa el componente que contiene toda la escena de pilas.
 

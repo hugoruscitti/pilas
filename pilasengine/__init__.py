@@ -4,6 +4,7 @@ import os
 import datetime
 from PyQt4 import QtGui
 from PyQt4 import QtCore
+import pygame
 
 from pilasengine import escenas
 from pilasengine import imagenes
@@ -11,6 +12,8 @@ from pilasengine import actores
 from pilasengine import utils
 from pilasengine import fondos
 from pilasengine import depurador
+from pilasengine import musica
+from pilasengine import sonidos
 
 import widget
 
@@ -39,6 +42,7 @@ class Pilas(object):
 
         self.widget = None
         self.reiniciar(ancho, alto, titulo, con_aceleracion, habilitar_mensajes_log)
+        pygame.mixer.init()
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
         """Genera nuevamente la ventana del videojuego."""
@@ -50,6 +54,8 @@ class Pilas(object):
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)
         self.depurador = depurador.Depurador(self)
+        self.musica = musica.Musica(self)
+        self.sonidos = sonidos.Sonidos(self)
         self.escenas.Normal()
 
         es_reinicio = self.widget != None
