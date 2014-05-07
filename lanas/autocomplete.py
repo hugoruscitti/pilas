@@ -5,6 +5,8 @@ import re
 from PyQt4 import QtGui, QtCore
 from PyQt4.Qt import QTextCursor
 
+EXPRESION_SENTENCIA = r'.*\s*\=\s*(-*\d+\.*\d*)$'
+
 def autocompletar(scope, texto):
     texto = texto.replace('(', ' ').split(' ')[-1]
 
@@ -99,7 +101,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
         QtGui.QTextEdit.focusInEvent(self, event)
 
     def _obtener_numero_de_la_linea(self, linea):
-        grupos =  re.search(r'.*\s*\=\s*(-*\d+)$', linea).groups()
+        grupos =  re.search(EXPRESION_SENTENCIA, linea).groups()
         return grupos[0]
 
     def mousePressEvent(self, *args, **kwargs):
@@ -107,7 +109,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
         linea = self._get_current_line()
 
         # Si parece una sentencia se asignacion normal permie cambiarla con un deslizador.
-        if re.match(r'.*\s*\=\s*(-*\d+)$', str(linea)):
+        if re.match(EXPRESION_SENTENCIA, str(linea)):
             self.mostrar_deslizador()
 
         return retorno
@@ -185,11 +187,19 @@ class Deslizador(QtGui.QWidget):
 
         layout = QtGui.QGridLayout(self)
         slider = QtGui.QSlider(QtCore.Qt.Horizontal)
-        slider.setMaximum(300)
-        slider.setMinimum(-300)
-        slider.setValue(int(str(valor_inicial)))
-        slider.valueChanged[int].connect(self.on_change)
+
         slider.setMinimumWidth(200)
+
+        if '.' in str(valor_inicial):
+            valor_inicial = int(float(valor_inicial) * 100)
+            slider.valueChanged[int].connect(self.on_change_float)
+        else:
+            valor_inicial = int(str(valor_inicial))
+            slider.valueChanged[int].connect(self.on_change)
+
+        slider.setMaximum(valor_inicial + 300)
+        slider.setMinimum(valor_inicial - 300)
+        slider.setValue(valor_inicial)
 
         layout.addWidget(slider)
         layout.setContentsMargins(7, 7, 7, 7)
@@ -205,4 +215,8 @@ class Deslizador(QtGui.QWidget):
         self.move(global_point)
 
     def on_change(self, valor):
+        self.funcion_cuando_cambia(str(valor))
+
+    def on_change_float(self, valor):
+        valor = str(valor/100.0)
         self.funcion_cuando_cambia(str(valor))
