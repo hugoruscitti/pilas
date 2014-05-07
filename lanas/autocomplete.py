@@ -1,5 +1,6 @@
 import sys
 import os
+import re
 
 from PyQt4 import QtGui, QtCore
 from PyQt4.Qt import QTextCursor
@@ -107,7 +108,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
         palabra = self._get_current_word()
 
         # Si parece una sentencia se asignacion normal permie cambiarla con un deslizador.
-        if '=' in str(linea) and str(palabra).isdigit():
+        if re.match(r'.*\s*\=\s*-*\d', str(linea)):
             self.mostrar_deslizador()
 
         return retorno
