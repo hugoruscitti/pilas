@@ -43,7 +43,6 @@ class CompletionTextEdit(QtGui.QTextEdit):
         self.set_completer(self.dictionary)
         self.set_dictionary([])
 
-
     def set_dictionary(self, list):
         self.dictionary.set_dictionary(list)
         self.set_completer(self.dictionary)
@@ -76,22 +75,19 @@ class CompletionTextEdit(QtGui.QTextEdit):
         return tc.selectedText()
 
     def _cambiar_sentencia_con_deslizador(self, nueva):
+        linea = self._get_current_line()
+        numero = self._obtener_numero_de_la_linea(linea)
+
+
+
         tc = self.textCursor()
         tc.select(QtGui.QTextCursor.LineUnderCursor)
+
         texto = tc.selectedText()
-
-        palabras = texto.split(' ')
-        numero = None
-
-        # Busca cuales de las palabras es el numero a reemplazar.
-        for p in palabras:
-            if unicode(p).lstrip("-+").isdigit():
-                numero = p
-
         texto = texto.replace(numero, str(nueva))
         tc.removeSelectedText()
-
         tc.insertText(texto)
+
         self.setTextCursor(tc)
 
         linea = str(self._get_current_line())
@@ -102,19 +98,22 @@ class CompletionTextEdit(QtGui.QTextEdit):
             self.completer.setWidget(self);
         QtGui.QTextEdit.focusInEvent(self, event)
 
+    def _obtener_numero_de_la_linea(self, linea):
+        grupos =  re.search(r'.*\s*\=\s*(-*\d+)$', linea).groups()
+        return grupos[0]
+
     def mousePressEvent(self, *args, **kwargs):
         retorno = QtGui.QTextEdit.mousePressEvent(self, *args, **kwargs)
         linea = self._get_current_line()
-        palabra = self._get_current_word()
 
         # Si parece una sentencia se asignacion normal permie cambiarla con un deslizador.
-        if re.match(r'.*\s*\=\s*-*\d', str(linea)):
+        if re.match(r'.*\s*\=\s*(-*\d+)$', str(linea)):
             self.mostrar_deslizador()
 
         return retorno
 
     def mostrar_deslizador(self):
-        valor_inicial = self._get_current_word()
+        valor_inicial = self._obtener_numero_de_la_linea(self._get_current_line())
         self.deslizador = Deslizador(self, self.textCursor(), valor_inicial, self._cambiar_sentencia_con_deslizador)
         self.deslizador.show()
 
@@ -186,10 +185,10 @@ class Deslizador(QtGui.QWidget):
 
         layout = QtGui.QGridLayout(self)
         slider = QtGui.QSlider(QtCore.Qt.Horizontal)
-        slider.valueChanged[int].connect(self.on_change)
-        slider.setValue(int(valor_inicial))
         slider.setMaximum(300)
         slider.setMinimum(-300)
+        slider.setValue(int(str(valor_inicial)))
+        slider.valueChanged[int].connect(self.on_change)
         slider.setMinimumWidth(200)
 
         layout.addWidget(slider)
