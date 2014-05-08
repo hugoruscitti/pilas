@@ -11,5 +11,11 @@ sys.path.append('../')
 import pilasengine
 
 app = QtGui.QApplication(sys.argv)
-asistente = pilasengine.abrir_asistente()
+
+if '-i' in sys.argv:
+    from pilasengine import interprete
+    _ = interprete.abrir()
+else:
+    _ = pilasengine.abrir_asistente()
+
 sys.exit(app.exec_())
