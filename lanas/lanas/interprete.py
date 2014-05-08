@@ -6,6 +6,7 @@ import inspect
 import os
 os.environ['lanas'] = 'enabled'
 
+from PyQt4 import QtGui
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
@@ -154,6 +155,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 self.insertar_comando_falso(line)
 
         self.marker()
+        self.setUndoRedoEnabled(False)
+        self.setContextMenuPolicy(Qt.NoContextMenu)
 
     def canInsertFromMimeData(self, *k):
         return False

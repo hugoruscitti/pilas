@@ -26,9 +26,9 @@ http://www.pilas-engine.com.ar
         install_requires=[
             'setuptools',
             'box2d',
-            'lanas',
             ],
         packages=[
+            'lanas',
             'pilasengine',
             'pilasengine.actores',
             'pilasengine.asistente',
