@@ -80,8 +80,6 @@ class CompletionTextEdit(QtGui.QTextEdit):
         linea = self._get_current_line()
         numero = self._obtener_numero_de_la_linea(linea)
 
-
-
         tc = self.textCursor()
         tc.select(QtGui.QTextCursor.LineUnderCursor)
 
@@ -107,9 +105,6 @@ class CompletionTextEdit(QtGui.QTextEdit):
     def mousePressEvent(self, event):
         retorno = QtGui.QTextEdit.mousePressEvent(self, event)
 
-        #tc = self.textCursor()
-        #tc.select(QtGui.QTextCursor.LineUnderCursor)
-
         linea = self._get_current_line()
 
         # Si parece una sentencia se asignacion normal permie cambiarla con un deslizador.
@@ -120,6 +115,9 @@ class CompletionTextEdit(QtGui.QTextEdit):
             pass
 
         return retorno
+
+    def _es_sentencia_asignacion_simple(self, linea):
+        return re.match(EXPRESION_SENTENCIA, str(linea))
 
     def mostrar_deslizador(self):
         valor_inicial = self._obtener_numero_de_la_linea(self._get_current_line())
