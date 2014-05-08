@@ -174,6 +174,9 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         self.marker()
 
+    def canInsertFromMimeData(self, *k):
+        return False
+
     def insertar_error(self, mensaje):
         self.insertHtml(u" <b style='color: #FF0000'> &nbsp; × %s </b>" %(mensaje))
         self.insertPlainText('\n')
