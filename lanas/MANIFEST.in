@@ -1,0 +1,2 @@
+recursive-include kanzen/kanzen *
+include README.md

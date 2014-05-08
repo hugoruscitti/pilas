@@ -1,0 +1,1 @@
+from lanas import main
