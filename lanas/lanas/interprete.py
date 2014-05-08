@@ -104,7 +104,7 @@ class NormalOutput(Output):
 
     def write(self, linea):
         self.destino.stdout_original.write(linea)
-        self.destino.insertPlainText(linea.decode('utf-8'))
+        self.destino.imprimir_linea(linea.decode('utf-8'))
         self.destino.ensureCursorVisible()
 
 
@@ -114,25 +114,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
     Esta instancia tiene como atributo "self.ventana" al
     al QWidget representado por la clase Ventana"""
 
-    def _buscar_fuente_personalizada(self):
-        this_dir = os.path.dirname(os.path.realpath('.'))
-        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
-
-        if os.path.exists(font_path):
-            return font_path
-
-        font_path = os.path.join("./data/fuentes", 'SourceCodePro-Regular.ttf')
-
-        if os.path.exists(font_path):
-            return font_path
-
-        this_dir = os.path.dirname(__file__)
-        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
-
-        if os.path.exists(font_path):
-            return font_path
-
-        return None
 
     def __init__(self,  parent, codigo_inicial):
         super(InterpreteTextEdit,  self).__init__(parent)
@@ -176,6 +157,29 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
     def canInsertFromMimeData(self, *k):
         return False
+
+    def imprimir_linea(self, linea):
+        self.insertPlainText(linea)
+
+    def _buscar_fuente_personalizada(self):
+        this_dir = os.path.dirname(os.path.realpath('.'))
+        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
+
+        if os.path.exists(font_path):
+            return font_path
+
+        font_path = os.path.join("./data/fuentes", 'SourceCodePro-Regular.ttf')
+
+        if os.path.exists(font_path):
+            return font_path
+
+        this_dir = os.path.dirname(__file__)
+        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
+
+        if os.path.exists(font_path):
+            return font_path
+
+        return None
 
     def insertar_error(self, mensaje):
         self.insertHtml(u" <b style='color: #FF0000'> &nbsp; × %s </b>" %(mensaje))
@@ -265,6 +269,13 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         tc.removeSelectedText()
         tc.insertText(word)
 
+
+    def _mover_cursor_al_final(self, textCursor):
+        textCursor = self.textCursor()
+        textCursor.movePosition(QTextCursor.End)
+        self.setTextCursor(textCursor)
+        return textCursor
+
     def keyPressEvent(self, event):
         textCursor = self.textCursor()
 
@@ -320,11 +331,13 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         # Ignorando la pulsación de tecla si está en medio de la consola.
         if textCursor.blockNumber() != self.document().blockCount() - 1:
+            textCursor = self._mover_cursor_al_final(textCursor)
+            event.ignore()
+            return
 
-            textCursor = self.textCursor()
-            textCursor.movePosition(QTextCursor.End)
-            self.setTextCursor(textCursor)
-
+        # Ignora el evento si está sobre el cursor de la consola.
+        if textCursor.positionInBlock() < 2:
+            textCursor = self._mover_cursor_al_final(textCursor)
             event.ignore()
             return
 
