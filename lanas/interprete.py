@@ -262,6 +262,13 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         tc.removeSelectedText()
         tc.insertText(word)
 
+
+    def _mover_cursor_al_final(self, textCursor):
+        textCursor = self.textCursor()
+        textCursor.movePosition(QTextCursor.End)
+        self.setTextCursor(textCursor)
+        return textCursor
+
     def keyPressEvent(self, event):
         textCursor = self.textCursor()
 
@@ -317,11 +324,13 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         # Ignorando la pulsación de tecla si está en medio de la consola.
         if textCursor.blockNumber() != self.document().blockCount() - 1:
+            textCursor = self._mover_cursor_al_final(textCursor)
+            event.ignore()
+            return
 
-            textCursor = self.textCursor()
-            textCursor.movePosition(QTextCursor.End)
-            self.setTextCursor(textCursor)
-
+        # Ignora el evento si está sobre el cursor de la consola.
+        if textCursor.positionInBlock() < 2:
+            textCursor = self._mover_cursor_al_final(textCursor)
             event.ignore()
             return
 
