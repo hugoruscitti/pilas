@@ -45,6 +45,10 @@
             var elemento = '<li><a href="#" rel="{id}">{nombre}</a></li>'.format({nombre: nombre, id: identificador});
             $(".menu").append(elemento);
         }
+	    crear_nueva_seccion("Robot", "robot");
+	    crear_ejemplo("robot", "robot_forward");
+	    crear_ejemplo("robot", "robot_cuadrado");
+	    crear_ejemplo("robot", "robot_zigzag");
 
         crear_nueva_seccion("Animación", 'animaciones');
         crear_ejemplo('animaciones', 'animacion_con_velocidad');
