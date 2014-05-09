@@ -24,11 +24,6 @@ from pilas.actores import Pizarra
 from pilas.actores import Ejes
 from datetime import datetime, timedelta
 
-
-def _posicionObstaculo():
-	
-
-
 EPSILON = 0.0001
 
 def _puntos_de_la_linea(unActor):
@@ -539,9 +534,9 @@ class Robot():
         return actores
 
 
-    def _buscarObstaculos(self):
-	    for actor in pilas.escena_actual().actores:
-            if (id(actor) != id(self.actor) and _actor_no_valido(actor)):
+#   def _buscarObstaculos(self):
+#	    for actor in pilas.escena_actual().actores:
+ #           if (id(actor) != id(self.actor) and _actor_no_valido(actor)):
 
 
     def ping(self):
@@ -549,12 +544,12 @@ class Robot():
       
         bala = pilas.actores.Bala()
   #      bala.imagen = pilas.imagenes.cargar('invisible.png')
-        habilidad = pilas.habilidades.Disparar,
-                municion = bala,
-                grupo_enemigos = self.obstaculos,
-                cuando_elimina_enemigo=_posicionObstaculo
+ #       habilidad = pilas.habilidades.Disparar,
+  #              municion = bala,
+   #             grupo_enemigos = self.obstaculos,
+   #             cuando_elimina_enemigo=_posicionObstaculo
                
-        self.actor.aprender(habilidad)
+       # self.actor.aprender(habilidad)
 
         
         
@@ -634,6 +629,7 @@ class Robot():
         """ Imprime en la terminal el mensaje msj. """
         print msj
 
-
+    def __del__():
+        self.eliminar()
 
 

@@ -4,7 +4,7 @@ import pilas
 from pilas.actores import Actor
 #### Board
 
-class Board():
+class Board(object):
 
     def __init__(self, device='/dev/ttyUSB0'):
         """Inicializa el dispositivo de conexion con el/los robot/s  """

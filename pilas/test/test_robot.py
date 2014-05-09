@@ -30,15 +30,13 @@ class TestRobot(unittest.TestCase):
         self.robot.backward(100, 1)
         self.assertLess(self.actor.y, 0)
 
-    @unittest.skip('Aun no entiendo como maneja las coordenadas')
     def test_turn_left_with_time(self):
         self.robot.turnLeft(100, 1)
-        self.assertGreater(self.actor.rotacion, TestRobot.INITIAL_ROTATION)
+        self.assertLess(self.actor.rotacion, TestRobot.INITIAL_ROTATION)
 
-    @unittest.skip('Aun no entiendo como maneja las coordenadas')
     def test_turn_right_with_time(self):
         self.robot.turnRight(100, 1)
-        self.assertLess(self.actor.rotacion, TestRobot.INITIAL_ROTATION)
+        self.assertGreater(self.actor.rotacion, TestRobot.INITIAL_ROTATION)
 
 
 if __name__ == '__main__':
