@@ -37,8 +37,10 @@ class Pilas(object):
 
         if QtGui.QApplication.instance():
             self.app = QtGui.QApplication.instance()
+            self._necesita_ejecutar_loop = False
         else:
             self.app = QtGui.QApplication(sys.argv)
+            self._necesita_ejecutar_loop = True
 
         self.widget = None
         self.reiniciar(ancho, alto, titulo, con_aceleracion, habilitar_mensajes_log)
@@ -174,7 +176,7 @@ class Pilas(object):
         self.widget.raise_()
 
         # Inicializa el bucle de pyqt solo si es necesario.
-        if not QtCore.QAbstractEventDispatcher.instance():
+        if self._necesita_ejecutar_loop:
             self.app.exec_()
 
     def obtener_camara(self):
