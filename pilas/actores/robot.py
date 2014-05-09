@@ -24,6 +24,11 @@ from pilas.actores import Pizarra
 from pilas.actores import Ejes
 from datetime import datetime, timedelta
 
+
+def _posicionObstaculo():
+	
+
+
 EPSILON = 0.0001
 
 def _puntos_de_la_linea(unActor):
@@ -229,11 +234,10 @@ class Robot():
         self.actor.aprender(pilas.habilidades.Arrastrable)
         self.actor.radio_de_colision = 31
         self.actor.color = pilas.colores.negro
-        self.actor.bajalapiz()
         self.actor.tiempo = 0
 #       self.actor.aprender(pilas.habilidades.SeguidoPorLaCamara)
         self.actor.aprender(pilas.habilidades.SeMantieneEnPantalla)
-
+       
         """ Inicializa el robot y lo asocia con la placa board. """
 
         self.robotid = robotid
@@ -241,7 +245,10 @@ class Robot():
         self.name = ''
         self.board.agregarRobot(self)
         self.tarea = None
-
+        self.obstaculos = None
+        self.observar = False
+        
+        
     # Redefinir el método eliminar de la clase Actor para que lo elimine también de la lista de robots de Board
     def eliminar(self):
         self.board.eliminarDeLaLista(self)
@@ -532,17 +539,34 @@ class Robot():
         return actores
 
 
+    def _buscarObstaculos(self):
+	    for actor in pilas.escena_actual().actores:
+            if (id(actor) != id(self.actor) and _actor_no_valido(actor)):
+
+
     def ping(self):
         """ Devuelve la distancia en centimetros al objeto frente al robot. """
-        linea1 = _puntos_de_la_linea(self)
+      
+        bala = pilas.actores.Bala()
+  #      bala.imagen = pilas.imagenes.cargar('invisible.png')
+        habilidad = pilas.habilidades.Disparar,
+                municion = bala,
+                grupo_enemigos = self.obstaculos,
+                cuando_elimina_enemigo=_posicionObstaculo
+               
+        self.actor.aprender(habilidad)
+
         
-        for actor in pilas.escena_actual().actores:
-            if (id(actor) != id(self.actor) and _actor_no_valido(actor)):
-                linea2 = _puntoEInterseccionConLaLinea(actor.x, actor.y, linea1["a"])
-                ix, iy = _interseccionEntreLineas(linea1, linea2)
-                if (ix!= None and iy != None):
+        
+#        linea1 = _puntos_de_la_linea(self)
+        
+#        for actor in pilas.escena_actual().actores:
+#            if (id(actor) != id(self.actor) and _actor_no_valido(actor)):
+#                linea2 = _puntoEInterseccionConLaLinea(actor.x, actor.y, linea1["a"])
+#                ix, iy = _interseccionEntreLineas(linea1, linea2)
+#                if (ix!= None and iy != None):
 		#			distancia = distancia_entre_radios_de_colision_de_dos_actores(self.actor, actot)
-					print actor, distancia
+#					print actor, distancia
  
    #     return self._analizarDistanciaEntreActores()
         
