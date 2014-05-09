@@ -1,3 +1,5 @@
+import sys
+sys.path.append('.')
 import pilasengine
 
 pilas = pilasengine.iniciar()

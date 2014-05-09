@@ -64,7 +64,11 @@ class Actor(Estudiante):
         >>> invisible = pilas.actores.Actor('invisible.png')
     """
 
-    def __init__(self, pilas):
+    def __init__(self, pilas=None):
+
+        if not pilas:
+            raise Exception("Tienes que vincular al actor antes con 'pilas.actores.vincular(MiActor)'")
+
         self.pilas = pilas
         self.padre = None
 

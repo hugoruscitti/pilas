@@ -19,11 +19,34 @@ class Actores(object):
     def __init__(self, pilas):
         self.pilas = pilas
 
+    def vincular(self, clase_del_actor):
+        """Permite vincular una clase de actor con pilas.
+
+        Esto permite de después el actor se pueda crear desde
+        el módulo "pilas.actores".
+
+        Por ejemplo, si tengo una clase ``MiActor`` lo puedo
+        vincular con:
+
+            >>> pilas.actores.vincular(MiActor)
+            >>> mi_actor = pilas.actores.MiActor()
+
+        """
+
+        if not Actor in clase_del_actor.__bases__:
+            raise Exception("Solo se pueden vincular clases que heredan de pilasengine.actores.Actor")
+
+        def metodo_crear_actor(self):
+            nuevo_actor = clase_del_actor(self.pilas)
+            return self.agregar_actor(nuevo_actor)
+
+        setattr(self.__class__, clase_del_actor.__name__, metodo_crear_actor)
+
     def agregar_actor(self, actor):
         """Agrega un actor a la escena actual.
 
         Este método se ejecuta internamente cada vez que se
-        contruye un actor escribiendo algo cómo:
+        contruye un actor escribiendo algo como:
 
             >>> actor = pilas.actores.Actor()
         """
