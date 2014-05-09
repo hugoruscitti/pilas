@@ -61,11 +61,15 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
             nick: 'animacion_con_velocidad',
             tags: ['animaciones', 'velocidad']
         },
-
         {
             titulo: "Muchos actores",
             nick: 'muchos_actores',
             tags: ['camara', 'rotacion']
+        },
+        {
+            titulo: "Actor personalizado",
+            nick: 'actor_personalizado',
+            tags: ['actor']
         },
     ];
 });
