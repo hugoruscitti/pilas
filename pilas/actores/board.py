@@ -14,18 +14,18 @@ class Board(object):
     #  Agrega un robot a la lista de reobots de un determinado Board
     # Decidir qué hacer cuando se agrega la misma variable con Id de robot diferente
     def agregarRobot(self, unRobot):
-	self.listaDeRobots.append(unRobot)
+        self.listaDeRobots.append(unRobot)
 
     # Eliminar un robot de la lista de robots de un determinado Board
     def eliminarDeLaLista(self, unRobot):
-  	self.listaDeRobots.remove(unRobot)
+        self.listaDeRobots.remove(unRobot)
 
     def boards(self):
         return self.device
 
    
     def _eliminarRobots(self):
-	for i in self.listaDeRobots:
+        for i in self.listaDeRobots:
             del(i)
 
     def exit(self):
@@ -35,7 +35,7 @@ class Board(object):
     def report(self):
         """ Retorna los números de ID's de los robots creados en el intérprete  """
         for i in self.listaDeRobots:
-                print i.getId()
+            print i.getId()
 
     def _mover(self,unRobot, vel, seconds):
         """ Envía un movimiento  vertical/horizontal a toos los robots con el mismo ID  """ 

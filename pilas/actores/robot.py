@@ -629,7 +629,7 @@ class Robot():
         """ Imprime en la terminal el mensaje msj. """
         print msj
 
-    def __del__():
+    def __del__(self):
         self.eliminar()
 
 
