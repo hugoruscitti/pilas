@@ -167,7 +167,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def _insertar_ventana_principal_de_pilas(self):
         pilas = pilasengine.iniciar(640, 400)
         aceituna = pilas.actores.Aceituna()
-        scope = {'pilas': pilas, 'aceituna': aceituna, 'self': self}
+        scope = {'pilas': pilas,
+                 'aceituna': aceituna,
+                 'self': self,
+                 'pilasengine': pilasengine
+                 }
         ventana = pilas.obtener_widget()
 
         ventana.setFocusPolicy(QtCore.Qt.ClickFocus)
