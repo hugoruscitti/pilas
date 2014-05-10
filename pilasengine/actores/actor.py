@@ -170,8 +170,8 @@ class Actor(Estudiante):
         dx, dy = self.centro
         centro_x, centro_y = self.pilas.obtener_centro_fisico()
         painter.translate(x, -y)
-        painter.scale(escala_x, escala_y)
         painter.rotate(-self.rotacion)
+        painter.scale(escala_x, escala_y)
         painter.translate(-dx, -dy)
 
         if self.transparencia:
@@ -349,6 +349,8 @@ class Actor(Estudiante):
         return self._rotacion
 
     def definir_rotacion(self, rotacion):
+        if isinstance(rotacion, int) or isinstance(rotacion, float):
+            rotacion %= 360
         self.pilas.utils.interpretar_propiedad_numerica(self, 'rotacion', rotacion)
 
     def obtener_espejado(self):
