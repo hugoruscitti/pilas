@@ -1,6 +1,9 @@
 # -*- encoding: utf-8 -*-
+import codecs
+
 from PyQt4 import QtGui
 from PyQt4 import QtCore
+
 from pilasengine.lanas import autocomplete
 from pilasengine.lanas import editor_con_deslizador
 
@@ -61,8 +64,7 @@ class Editor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDes
         return tc.selectedText()
 
     def cargar_desde_archivo(self, ruta):
-        import codecs
-        archivo = codecs.open(ruta,'r','utf-8')
+        archivo = codecs.open(ruta, 'r', 'utf-8')
         contenido = archivo.read()
         archivo.close()
         self.setText(contenido)

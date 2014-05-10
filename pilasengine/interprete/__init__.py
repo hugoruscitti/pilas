@@ -2,6 +2,8 @@
 import os
 import sys
 import re
+import codecs
+import time
 
 from PyQt4 import QtCore, QtGui
 
@@ -218,17 +220,28 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.consola.text_edit.guardar_contenido_con_dialogo()
 
     def ejecutar_y_reiniciar_si_cambia(self, archivo):
-        self._reiniciar_y_ejecutar(archivo)
-        self._cargar_codigo_del_editor_desde_archivo(archivo)
+        self.watcher_ultima_invocacion = time.time() - 500
         self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
         self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_y_ejecutar)
         self.watcher.addPath(archivo)
+        self._reiniciar_y_ejecutar(archivo)
+        self._cargar_codigo_del_editor_desde_archivo(archivo)
 
     def _cargar_codigo_del_editor_desde_archivo(self, archivo):
         self.editor.cargar_desde_archivo(archivo)
 
     def _reiniciar_y_ejecutar(self, archivo):
-        f = open(archivo, "rt")
+        self.watcher.removePath(archivo)
+        self.watcher.addPath(archivo)
+
+        # Evita actualizar el archivo si no han pasado mas de 3 segundos.
+        if time.time() - self.watcher_ultima_invocacion < 3:
+            return
+
+        self.watcher_ultima_invocacion = time.time();
+
+        self._cargar_codigo_del_editor_desde_archivo(archivo)
+        f = codecs.open(archivo, 'r', 'utf-8')
         contenido = f.read()
         self.ejecutar_codigo_como_string(contenido)
         f.close()
