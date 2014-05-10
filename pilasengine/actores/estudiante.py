@@ -19,18 +19,21 @@ class Estudiante(object):
 
         :param classname: Referencia a la clase que representa la habilidad.
         """
-        if self.tiene_habilidad(classname):
-            self.eliminar_habilidad(classname)
-            self.agregar_habilidad(classname, *k, **w)
-        else:
-            self.agregar_habilidad(classname, *k, **w)
 
-    def agregar_habilidad(self, classname, *k, **w):
+        _ = classname() #Creo la habilidad para comprobar si el actor ya la tiene asignada
+
+        if self.tiene_habilidad(_):
+            self.eliminar_habilidad(_)
+            self.agregar_habilidad(_, *k, **w)
+        else:
+            self.agregar_habilidad(_, *k, **w)
+
+    def agregar_habilidad(self, habilidad, *k, **w):
         """Agrega una habilidad a la lista de cosas que puede hacer un actor.
 
         :param classname: Referencia a la clase que representa la habilidad.
         """
-        objeto_habilidad = classname()
+        objeto_habilidad = habilidad
         objeto_habilidad.iniciar(self, *k, **w)
         self._habilidades.append(objeto_habilidad)
 
@@ -50,7 +53,9 @@ class Estudiante(object):
         :param classname: Referencia a la clase que representa la habilidad.
         """
         habilidades_actuales = [habilidad.__class__ for habilidad in self._habilidades]
-        return (classname in habilidades_actuales)
+
+        return (classname.__class__ in habilidades_actuales)
+
 
     def tiene_comportamiento(self, classname):
         """Comprueba si el actor tiene el comportamiento indicado.
@@ -69,7 +74,7 @@ class Estudiante(object):
         su_habilidad = None
 
         for habilidad in self._habilidades:
-            if habilidad.__class__ == classname:
+            if habilidad.__class__ == classname.__class__:
                 su_habilidad = habilidad
                 break
 
