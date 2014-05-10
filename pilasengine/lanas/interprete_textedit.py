@@ -14,11 +14,10 @@ from PyQt4.QtCore import *
 import highlighter
 import autocomplete
 import io
-import deslizador
+import editor_con_deslizador
 
-EXPRESION_SENTENCIA = r'.*\s*\=\s*(-*\d+\.*\d*)$'
 
-class InterpreteTextEdit(autocomplete.CompletionTextEdit):
+class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDeslizador):
     """Representa el widget del interprete.
 
     Esta instancia tiene como atributo "self.ventana" al
@@ -420,49 +419,3 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
         texto = texto.replace(u'‥ ', '')
         texto = texto.replace(u'» ', '')
         return texto
-
-    def _cambiar_sentencia_con_deslizador(self, nueva):
-        try:
-            linea = self._get_current_line()
-            numero = self._obtener_numero_de_la_linea(linea)
-
-            tc = self.textCursor()
-            tc.select(QtGui.QTextCursor.LineUnderCursor)
-
-            texto = tc.selectedText()
-            texto = texto.replace(numero, str(nueva))
-            tc.removeSelectedText()
-            tc.insertText(texto)
-
-            self.setTextCursor(tc)
-
-            linea = str(self._get_current_line())
-            exec(linea, self.interpreterLocals)
-        except:
-            pass
-
-    def _obtener_numero_de_la_linea(self, linea):
-        grupos =  re.search(EXPRESION_SENTENCIA, linea).groups()
-        return grupos[0]
-
-    def mousePressEvent(self, event):
-        retorno = QtGui.QTextEdit.mousePressEvent(self, event)
-
-        linea = self._get_current_line()
-
-        # Si parece una sentencia se asignacion normal permie cambiarla con un deslizador.
-        try:
-            if re.match(EXPRESION_SENTENCIA, str(linea)):
-                self.mostrar_deslizador()
-        except UnicodeEncodeError:
-            pass
-
-        return retorno
-
-    def _es_sentencia_asignacion_simple(self, linea):
-        return re.match(EXPRESION_SENTENCIA, str(linea))
-
-    def mostrar_deslizador(self):
-        valor_inicial = self._obtener_numero_de_la_linea(self._get_current_line())
-        self.deslizador = deslizador.Deslizador(self, self.textCursor(), valor_inicial, self._cambiar_sentencia_con_deslizador)
-        self.deslizador.show()

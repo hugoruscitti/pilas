@@ -2,6 +2,7 @@
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 from pilasengine.lanas import autocomplete
+from pilasengine.lanas import editor_con_deslizador
 
 CONTENIDO = """import pilasengine
 
@@ -12,7 +13,7 @@ aceituna.escala = [2]
 
 pilas.ejecutar()"""
 
-class Editor(autocomplete.CompletionTextEdit):
+class Editor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDeslizador):
 
     def __init__(self, interpreterLocals):
         autocomplete.CompletionTextEdit.__init__(self, None, self.funcion_valores_autocompletado)
