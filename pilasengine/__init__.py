@@ -14,6 +14,7 @@ from pilasengine import fondos
 from pilasengine import depurador
 from pilasengine import musica
 from pilasengine import sonidos
+from pilasengine import habilidades
 
 import widget
 
@@ -58,6 +59,7 @@ class Pilas(object):
         self.depurador = depurador.Depurador(self)
         self.musica = musica.Musica(self)
         self.sonidos = sonidos.Sonidos(self)
+        self.habilidades = habilidades.Habilidades(self)
         self.escenas.Normal()
 
         es_reinicio = self.widget != None

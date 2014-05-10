@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 import inspect
 
+from pilasengine.habilidades import ProxyHabilidades
+
 class Estudiante(object):
     """Componente que permite a los actores aprender habilidades o realizar comportamientos."""
 
@@ -28,7 +30,8 @@ class Estudiante(object):
 
         :param classname: Referencia a la clase que representa la habilidad.
         """
-        objeto_habilidad = classname(self, *k, **w)
+        objeto_habilidad = classname()
+        objeto_habilidad.iniciar(self, *k, **w)
         self._habilidades.append(objeto_habilidad)
 
     def eliminar_habilidad(self, classname):
@@ -162,22 +165,3 @@ class Estudiante(object):
             self.comportamiento_actual = None
 
 
-class ProxyHabilidades(object):
-    """Implementa un intermediario con todas las habilidades del Actor."""
-
-    def __init__(self, habilidades):
-        self.habilidades = habilidades
-
-    def __getattr__(self, name):
-        su_habilidad = None
-
-        for habilidad in self.habilidades:
-            if habilidad.__class__.__name__ == name:
-                su_habilidad = habilidad
-                break
-
-        if not su_habilidad:
-            raise Exception("El actor no tiene asignada la habilidad " + name +
-                            ".\n No puede acceder mediante actor.habilidades." + name)
-
-        return su_habilidad

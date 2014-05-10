@@ -37,3 +37,5 @@ class TestActores(unittest.TestCase):
         escena.actualizar_interpolaciones()
         self.assertTrue(actor.x == 100, actor.x)
 
+if __name__ == '__main__':
+    unittest.main()
