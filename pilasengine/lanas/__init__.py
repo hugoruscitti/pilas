@@ -1,1 +1,1 @@
-from lanas import main
+import ventana

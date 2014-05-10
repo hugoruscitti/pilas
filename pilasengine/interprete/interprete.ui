@@ -402,6 +402,9 @@
            </item>
            <item>
             <widget class="QPushButton" name="ejecutar_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="text">
               <string>Ejecutar</string>
              </property>

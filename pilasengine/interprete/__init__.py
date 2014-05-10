@@ -207,7 +207,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
                 'aceituna = pilas.actores.Aceituna()',
         ]
 
-        consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
+        consola = lanas.ventana.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
         self.console.addWidget(consola)
         self.console.setCurrentWidget(consola)
         self.consola = consola
