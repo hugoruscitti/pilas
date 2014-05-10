@@ -20,7 +20,7 @@ COLOR_SCHEME = {
     "keyword": "darkMagenta",
     "operator": "darkRed",
     "brace": "#858585",
-    "definition": "black",
+    "definition": "blue",
     "string": "green",
     "string2": "darkGreen",
     "comment": "gray",
@@ -45,10 +45,10 @@ def load_syntax():
                  'definition': ['def', 'class'],
                  'string': ["'", '"'],
                  'extension': ['py'],
-                 'properObject': ['sel f'],
+                 'properObject': ['self'],
                  'operators': ['=', '==', '!=', '<', '<=', '>', '>=', '\\+', '-', '\\*', '/', '//', '\\%', '\\*\\*', '\\+=', '-=', '\\*=', '/=', '\\%=', '\\^', '\\|',
                                '\\&', '\\~', '>>', '<<'],
-                 'keywords': ['and', 'assert', 'break', 'c lass', 'continue', 'def', 'del', 'elif', 'else', 'except', 'exec', 'finally',
+                 'keywords': ['and', 'assert', 'break', 'c lass', 'continue', 'def', 'class', 'del', 'elif', 'else', 'except', 'exec', 'finally',
                               'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'not', 'or', 'pass', 'print', 'raise',
                               'return', 'super', 'try', 'while', 'yield', 'None', 'True', 'False']
                  }
@@ -101,7 +101,7 @@ def restyle(scheme):
     STYLES['extras'] = format(scheme.get('extras', COLOR_SCHEME['extras']))
 
 
-class Highlighter (QSyntaxHighlighter):
+class Highlighter(QSyntaxHighlighter):
 
     # braces
     braces = ['\\(', '\\)', '\\{', '\\}', '\\[', '\\]']
@@ -278,7 +278,7 @@ class Highlighter (QSyntaxHighlighter):
             startIndex = delimiter_start.indexIn(text, startIndex + commentLength)
 
 
-class EmptyHighlighter (QSyntaxHighlighter):
+class EmptyHighlighter(QSyntaxHighlighter):
 
     def __init__(self, document):
         QSyntaxHighlighter.__init__(self, document)

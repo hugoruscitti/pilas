@@ -175,13 +175,3 @@ def interpolable(f):
             f(args[0], value, **kwargs)
 
     return inner
-
-
-def verificar_si_lanas_existe(parent):
-    import sys
-    sys.path.append('../lanas')
-    try:
-        import lanas
-    except ImportError:
-        QtGui.QMessageBox.warning(parent, u"Error al inicializar pilas", u"No se puede encontrar el submódulo 'lanas'. \n\n¿Ejecutaste 'make actualizar' antes?")
-

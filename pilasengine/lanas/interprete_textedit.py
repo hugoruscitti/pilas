@@ -2,121 +2,30 @@
 import code
 import sys
 import inspect
+import re
 
 import os
 os.environ['lanas'] = 'enabled'
 
+from PyQt4 import QtGui
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
 import highlighter
 import autocomplete
-import version
-
-class Ventana(QWidget):
-
-    def __init__(self, parent=None, scope=None, codigo_inicial=""):
-        super(Ventana, self).__init__(parent)
-        box = QVBoxLayout()
-        box.setMargin(0)
-        box.setSpacing(0)
-
-        self.setLayout(box)
-
-        if not scope:
-            scope = locals()
-
-        if not 'inspect' in scope:
-            scope['inspect'] = inspect
-
-        self.text_edit = InterpreteTextEdit(self, codigo_inicial)
-        self.text_edit.init(scope)
-
-        self.tip_widget = QLabel(self)
-        self.tip_widget.setText("")
-
-        box.addWidget(self.text_edit)
-        box.addWidget(self.tip_widget)
-
-        self.resize(650, 300)
-        self.center_on_screen()
-        self.raise_()
-
-    def ejecutar(self, codigo):
-        """Ejecuta el codigo en formato string enviado."""
-        exec(codigo, self.text_edit.interpreterLocals)
-
-    def center_on_screen(self):
-        resolution = QDesktopWidget().screenGeometry()
-        self.move((resolution.width()  / 2) - (self.frameSize().width()  / 2),
-                  (resolution.height() / 2) - (self.frameSize().height() / 2))
-
-    def closeEvent(self, event):
-        sys.exit(0)
-
-    def alternar_log(self):
-        if self.log_widget.isHidden():
-            self.log_widget.show()
-        else:
-            self.log_widget.hide()
-
-    def raw_input(self, mensaje):
-        text, state = QInputDialog.getText(self, "raw_input", mensaje)
-        return str(text)
-
-    def input(self, mensaje):
-        text, state = QInputDialog.getText(self, "raw_input", mensaje)
-        return eval(str(text))
-
-    def help(self, objeto=None):
-        if objeto:
-            print help(objeto)
-        else:
-            print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
+import io
+import editor_con_deslizador
 
 
-class Output:
-
-    def __init__(self, destino):
-        self.destino = destino
-
-
-class ErrorOutput(Output):
-
-    def write(self, linea):
-        self.destino.stdout_original.write(linea)
-
-        # Solo muestra el error en consola si es un mensaje util.
-        if linea.startswith('Traceback (most re') or linea.startswith('  File "<input>", line 1, in'):
-            pass
-        else:
-
-            if linea.startswith('  File "'):
-                linea = linea.replace("File", "Archivo").replace('line', 'linea')
-                linea = linea[:linea.find(', in')] + " ..."
-
-            self.destino.insertar_error(linea.decode('utf-8'))
-
-        self.destino.ensureCursorVisible()
-
-
-class NormalOutput(Output):
-
-    def write(self, linea):
-        self.destino.stdout_original.write(linea)
-        self.destino.imprimir_linea(linea.decode('utf-8'))
-        self.destino.ensureCursorVisible()
-
-
-class InterpreteTextEdit(autocomplete.CompletionTextEdit):
+class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDeslizador):
     """Representa el widget del interprete.
 
     Esta instancia tiene como atributo "self.ventana" al
-    al QWidget representado por la clase Ventana"""
+    al QWidget representado por la clase Ventana.
+    """
 
-
-    def __init__(self,  parent, codigo_inicial):
-        super(InterpreteTextEdit,  self).__init__(parent)
+    def __init__(self, parent, codigo_inicial):
+        super(InterpreteTextEdit,  self).__init__(parent, self.funcion_valores_autocompletado)
         font_path = self._buscar_fuente_personalizada()
 
         if font_path:
@@ -127,8 +36,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
 
         self.ventana = parent
         self.stdout_original = sys.stdout
-        sys.stdout = NormalOutput(self)
-        sys.stderr = ErrorOutput(self)
+        sys.stdout = io.NormalOutput(self)
+        sys.stderr = io.ErrorOutput(self)
         self.refreshMarker = False
         self.multiline = False
         self.command = ''
@@ -154,6 +63,27 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 self.insertar_comando_falso(line)
 
         self.marker()
+        self.setUndoRedoEnabled(False)
+        self.setContextMenuPolicy(Qt.NoContextMenu)
+
+    def funcion_valores_autocompletado(self, texto):
+        scope = self.interpreterLocals
+        texto = texto.replace('(', ' ').split(' ')[-1]
+
+        if '.' in texto:
+            palabras = texto.split('.')
+            ultima = palabras.pop()
+            prefijo = '.'.join(palabras)
+
+            try:
+                elementos = eval("dir(%s)" %prefijo, scope)
+            except:
+                # TODO: notificar este error de autocompletado en algun lado...
+                return []
+
+            return [a for a in elementos if a.startswith(ultima)]
+        else:
+            return [a for a in scope.keys() if a.startswith(texto)]
 
     def canInsertFromMimeData(self, *k):
         return False
@@ -346,7 +276,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit):
                 super(InterpreteTextEdit, self).keyPressEvent(event)
                 self._autocompletar_argumentos_si_corresponde(event.key())
             return
-
 
         try:
             if self.autocomplete(event):

@@ -26,10 +26,10 @@ http://www.pilas-engine.com.ar
         install_requires=[
             'setuptools',
             'box2d',
-            'lanas',
             ],
         packages=[
             'pilasengine',
+            'pilasengine.lanas',
             'pilasengine.actores',
             'pilasengine.asistente',
             'pilasengine.depurador',

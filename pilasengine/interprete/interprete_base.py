@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Sun May  4 19:46:14 2014
+# Created: Sat May 10 14:59:22 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -53,6 +53,7 @@ class Ui_InterpreteWindow(object):
         self.horizontalLayout_3.addWidget(self.interprete_button)
         self.editor_button = QtGui.QPushButton(self.centralwidget)
         self.editor_button.setMaximumSize(QtCore.QSize(20, 20))
+        self.editor_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.editor_button.setCheckable(True)
         self.editor_button.setFlat(True)
         self.editor_button.setObjectName(_fromUtf8("editor_button"))
@@ -159,33 +160,43 @@ class Ui_InterpreteWindow(object):
         self.page_4.setObjectName(_fromUtf8("page_4"))
         self.console.addWidget(self.page_4)
         self.verticalLayout.addWidget(self.console)
-        self.widget = QtGui.QWidget(self.splitter_editor)
-        self.widget.setObjectName(_fromUtf8("widget"))
-        self.verticalLayout_3 = QtGui.QVBoxLayout(self.widget)
+        self.layoutWidget2 = QtGui.QWidget(self.splitter_editor)
+        self.layoutWidget2.setObjectName(_fromUtf8("layoutWidget2"))
+        self.verticalLayout_3 = QtGui.QVBoxLayout(self.layoutWidget2)
         self.verticalLayout_3.setMargin(0)
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.pushButton_7 = QtGui.QPushButton(self.widget)
-        self.pushButton_7.setEnabled(False)
-        self.pushButton_7.setFlat(True)
-        self.pushButton_7.setObjectName(_fromUtf8("pushButton_7"))
-        self.horizontalLayout.addWidget(self.pushButton_7)
-        self.pushButton_8 = QtGui.QPushButton(self.widget)
-        self.pushButton_8.setEnabled(False)
-        self.pushButton_8.setFlat(True)
-        self.pushButton_8.setObjectName(_fromUtf8("pushButton_8"))
-        self.horizontalLayout.addWidget(self.pushButton_8)
-        self.ejecutar_button = QtGui.QPushButton(self.widget)
-        self.ejecutar_button.setFlat(True)
-        self.ejecutar_button.setObjectName(_fromUtf8("ejecutar_button"))
-        self.horizontalLayout.addWidget(self.ejecutar_button)
+        self.boton_abrir = QtGui.QPushButton(self.layoutWidget2)
+        self.boton_abrir.setEnabled(False)
+        self.boton_abrir.setMaximumSize(QtCore.QSize(20, 20))
+        self.boton_abrir.setFlat(True)
+        self.boton_abrir.setObjectName(_fromUtf8("boton_abrir"))
+        self.horizontalLayout.addWidget(self.boton_abrir)
+        self.boton_guardar = QtGui.QPushButton(self.layoutWidget2)
+        self.boton_guardar.setEnabled(False)
+        self.boton_guardar.setMaximumSize(QtCore.QSize(20, 20))
+        self.boton_guardar.setFlat(True)
+        self.boton_guardar.setObjectName(_fromUtf8("boton_guardar"))
+        self.horizontalLayout.addWidget(self.boton_guardar)
+        self.boton_ejecutar = QtGui.QPushButton(self.layoutWidget2)
+        self.boton_ejecutar.setMaximumSize(QtCore.QSize(20, 20))
+        self.boton_ejecutar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.boton_ejecutar.setFlat(True)
+        self.boton_ejecutar.setObjectName(_fromUtf8("boton_ejecutar"))
+        self.horizontalLayout.addWidget(self.boton_ejecutar)
         spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
-        self.editor = QtGui.QTextEdit(self.widget)
-        self.editor.setObjectName(_fromUtf8("editor"))
-        self.verticalLayout_3.addWidget(self.editor)
+        self.editor_placeholder = QtGui.QStackedWidget(self.layoutWidget2)
+        self.editor_placeholder.setObjectName(_fromUtf8("editor_placeholder"))
+        self.page_5 = QtGui.QWidget()
+        self.page_5.setObjectName(_fromUtf8("page_5"))
+        self.editor_placeholder.addWidget(self.page_5)
+        self.page_6 = QtGui.QWidget()
+        self.page_6.setObjectName(_fromUtf8("page_6"))
+        self.editor_placeholder.addWidget(self.page_6)
+        self.verticalLayout_3.addWidget(self.editor_placeholder)
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)
         InterpreteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(InterpreteWindow)
@@ -224,18 +235,9 @@ class Ui_InterpreteWindow(object):
         self.pushButton_2.setText(_translate("InterpreteWindow", "F11", None))
         self.pushButton.setToolTip(_translate("InterpreteWindow", "Mostrar posiciones", None))
         self.pushButton.setText(_translate("InterpreteWindow", "F12", None))
-        self.pushButton_7.setText(_translate("InterpreteWindow", "Abrir", None))
-        self.pushButton_8.setText(_translate("InterpreteWindow", "Guardar", None))
-        self.ejecutar_button.setText(_translate("InterpreteWindow", "Ejecutar", None))
-        self.editor.setHtml(_translate("InterpreteWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.Lucida Grande UI\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">import pilasengine</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:16pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">pilas = pilasengine.iniciar()</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">mono = pilas.actores.Mono()</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">pilas.camara.x = [100], 10</span></p></body></html>", None))
+        self.boton_abrir.setText(_translate("InterpreteWindow", "A", None))
+        self.boton_guardar.setText(_translate("InterpreteWindow", "G", None))
+        self.boton_ejecutar.setText(_translate("InterpreteWindow", "E", None))
         self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
 from PyQt4 import QtWebKit

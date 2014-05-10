@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+import re
+import codecs
+import time
 
 from PyQt4 import QtCore, QtGui
 
 import pilasengine
 from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
+from pilasengine import lanas
+import editor
 
 
 class VentanaInterprete(Ui_InterpreteWindow):
@@ -18,6 +23,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def iniciar_interfaz(self):
         self.scope = self._insertar_ventana_principal_de_pilas()
         self._insertar_consola_interactiva(self.scope)
+        self._insertar_editor(self.consola.obtener_fuente(), self.scope)
 
         # Haciendo que el panel de pilas y el interprete no se puedan
         # ocultar completamente.
@@ -38,7 +44,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def _conectar_botones(self):
         # Botón del editor
-        #self.definir_icono(self.editor_button, 'iconos/manual.png')
+        self.definir_icono(self.editor_button, 'iconos/editor.png')
         self.editor_button.connect(self.editor_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_editor)
 
         # Botón del manual
@@ -48,6 +54,16 @@ class VentanaInterprete(Ui_InterpreteWindow):
         # Botón del interprete
         self.definir_icono(self.interprete_button, 'iconos/interprete.png')
         self.interprete_button.connect(self.interprete_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_interprete)
+
+        # Botón del guardar
+        self.definir_icono(self.boton_guardar, 'iconos/guardar.png')
+        #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
+
+        self.definir_icono(self.boton_ejecutar, 'iconos/ejecutar.png')
+        #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
+
+        self.definir_icono(self.boton_abrir, 'iconos/abrir.png')
+        #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
 
         # Botón del guardar
         self.definir_icono(self.guardar_button, 'iconos/guardar.png')
@@ -78,12 +94,13 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
     def _conectar_botones_del_editor(self):
-        self.ejecutar_button.connect(self.ejecutar_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_ejecutar)
+        self.boton_ejecutar.connect(self.boton_ejecutar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_ejecutar)
 
     def _conectar_observadores_splitters(self):
         # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.
         self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador_vertical)
         self.splitter.connect(self.splitter, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador)
+        self.splitter_editor.connect(self.splitter_editor, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador_del_editor)
 
     def colapsar_ayuda(self):
         self.splitter_vertical.setSizes([0])
@@ -113,6 +130,10 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def cuando_mueve_deslizador_vertical(self, a1, a2):
         self.manual_button.setChecked(a1 != 0)
 
+    def cuando_mueve_deslizador_del_editor(self, a1, a2):
+        area = self.splitter_editor.sizes()[1]
+        self.editor_button.setChecked(area != 0)
+
     def cuando_mueve_deslizador(self, a1, a2):
         altura_interprete = self.splitter.sizes()[1]
         self.interprete_button.setChecked(altura_interprete != 0)
@@ -136,7 +157,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.splitter.setSizes([300, 0])
 
     def cuando_pulsa_el_boton_ejecutar(self):
-        texto = str(self.editor.document().toPlainText())
+        texto = unicode(self.editor.document().toPlainText())
         self.ejecutar_codigo_como_string(texto)
 
     def pulsa_boton_depuracion(self):
@@ -180,6 +201,17 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.canvas.setCurrentWidget(ventana)
         return scope
 
+    def _insertar_editor(self, fuente, scope):
+        componente = editor.Editor(scope)
+        componente.definir_fuente(fuente)
+        self.editor_placeholder.addWidget(componente)
+        self.editor_placeholder.setCurrentWidget(componente)
+        self.editor = componente
+        self._cargar_resaltador_de_sintaxis()
+
+    def _cargar_resaltador_de_sintaxis(self):
+        self._highlighter = lanas.highlighter.Highlighter(self.editor.document(), 'python', lanas.highlighter.COLOR_SCHEME)
+
     def _insertar_consola_interactiva(self, scope):
         codigo_inicial = [
                 'import pilasengine',
@@ -188,13 +220,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
                 'aceituna = pilas.actores.Aceituna()',
         ]
 
-        pilasengine.utils.verificar_si_lanas_existe(self.main)
-
-        import sys
-        sys.path.append('../lanas')
-        import lanas
-
-        consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
+        consola = lanas.ventana.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
         self.console.addWidget(consola)
         self.console.setCurrentWidget(consola)
         self.consola = consola
@@ -204,21 +230,40 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.consola.text_edit.guardar_contenido_con_dialogo()
 
     def ejecutar_y_reiniciar_si_cambia(self, archivo):
-        self._reiniciar_y_ejecutar(archivo)
+        self.watcher_ultima_invocacion = time.time() - 500
         self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
         self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_y_ejecutar)
         self.watcher.addPath(archivo)
+        self._reiniciar_y_ejecutar(archivo)
+        self._cargar_codigo_del_editor_desde_archivo(archivo)
+
+    def _cargar_codigo_del_editor_desde_archivo(self, archivo):
+        self.editor.cargar_desde_archivo(archivo)
 
     def _reiniciar_y_ejecutar(self, archivo):
-        f = open(archivo, "rt")
+        self.watcher.removePath(archivo)
+        self.watcher.addPath(archivo)
+
+        # Evita actualizar el archivo si no han pasado mas de 3 segundos.
+        if time.time() - self.watcher_ultima_invocacion < 3:
+            return
+
+        self.watcher_ultima_invocacion = time.time();
+
+        self._cargar_codigo_del_editor_desde_archivo(archivo)
+        f = codecs.open(archivo, 'r', 'utf-8')
         contenido = f.read()
         self.ejecutar_codigo_como_string(contenido)
         f.close()
 
     def ejecutar_codigo_como_string(self, contenido):
+        contenido = re.sub('coding\s*:\s*', '', contenido)      # elimina cabecera de encoding.
         contenido = contenido.replace('import pilasengine', '')
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
         self.consola.ejecutar(contenido)
+        scope_nuevo = self.consola.obtener_scope()
+        self.editor.actualizar_scope(scope_nuevo)
+
 
 def abrir():
     MainWindow = QtGui.QMainWindow()
