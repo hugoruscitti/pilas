@@ -11,7 +11,7 @@ setup(
             "argv_emulation": False,
             "includes": ["sip", "PyQt4", 'PyQt4.QtWebKit', 'PyQt4.QtNetwork'],
             "resources": ['./README.md', 'data'],
-            'packages': ['pilasengine', 'lanas'],
+            'packages': ['pilasengine'],
             'iconfile': 'data/iconos/pilas.icns',
         },
     },

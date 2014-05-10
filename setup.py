@@ -28,8 +28,8 @@ http://www.pilas-engine.com.ar
             'box2d',
             ],
         packages=[
-            'lanas',
             'pilasengine',
+            'pilasengine.lanas',
             'pilasengine.actores',
             'pilasengine.asistente',
             'pilasengine.depurador',

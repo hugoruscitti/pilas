@@ -6,6 +6,7 @@ from PyQt4 import QtCore, QtGui
 
 import pilasengine
 from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
+from pilasengine import lanas
 
 
 class VentanaInterprete(Ui_InterpreteWindow):
@@ -35,6 +36,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self._conectar_botones()
         self._conectar_botones_del_editor()
         self._conectar_observadores_splitters()
+        self._cargar_resaltador_de_sintaxis()
+
+    def _cargar_resaltador_de_sintaxis(self):
+        self._highlighter = lanas.highlighter.Highlighter(self.editor.document(), 'python', lanas.highlighter.COLOR_SCHEME)
+        pass
 
     def _conectar_botones(self):
         # Botón del editor
@@ -192,12 +198,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
                 'pilas = pilasengine.iniciar()',
                 'aceituna = pilas.actores.Aceituna()',
         ]
-
-        pilasengine.utils.verificar_si_lanas_existe(self.main)
-
-        import sys
-        sys.path.append('../lanas')
-        import lanas
 
         consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
         self.console.addWidget(consola)

@@ -45,7 +45,7 @@ def load_syntax():
                  'definition': ['def', 'class'],
                  'string': ["'", '"'],
                  'extension': ['py'],
-                 'properObject': ['sel f'],
+                 'properObject': ['self'],
                  'operators': ['=', '==', '!=', '<', '<=', '>', '>=', '\\+', '-', '\\*', '/', '//', '\\%', '\\*\\*', '\\+=', '-=', '\\*=', '/=', '\\%=', '\\^', '\\|',
                                '\\&', '\\~', '>>', '<<'],
                  'keywords': ['and', 'assert', 'break', 'c lass', 'continue', 'def', 'del', 'elif', 'else', 'except', 'exec', 'finally',
@@ -101,7 +101,7 @@ def restyle(scheme):
     STYLES['extras'] = format(scheme.get('extras', COLOR_SCHEME['extras']))
 
 
-class Highlighter (QSyntaxHighlighter):
+class Highlighter(QSyntaxHighlighter):
 
     # braces
     braces = ['\\(', '\\)', '\\{', '\\}', '\\[', '\\]']
@@ -278,7 +278,7 @@ class Highlighter (QSyntaxHighlighter):
             startIndex = delimiter_start.indexIn(text, startIndex + commentLength)
 
 
-class EmptyHighlighter (QSyntaxHighlighter):
+class EmptyHighlighter(QSyntaxHighlighter):
 
     def __init__(self, document):
         QSyntaxHighlighter.__init__(self, document)
