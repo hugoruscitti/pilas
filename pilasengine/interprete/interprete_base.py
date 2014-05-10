@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Sun May  4 19:46:14 2014
+# Created: Fri May  9 21:32:15 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -53,6 +53,7 @@ class Ui_InterpreteWindow(object):
         self.horizontalLayout_3.addWidget(self.interprete_button)
         self.editor_button = QtGui.QPushButton(self.centralwidget)
         self.editor_button.setMaximumSize(QtCore.QSize(20, 20))
+        self.editor_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.editor_button.setCheckable(True)
         self.editor_button.setFlat(True)
         self.editor_button.setObjectName(_fromUtf8("editor_button"))
@@ -159,31 +160,31 @@ class Ui_InterpreteWindow(object):
         self.page_4.setObjectName(_fromUtf8("page_4"))
         self.console.addWidget(self.page_4)
         self.verticalLayout.addWidget(self.console)
-        self.widget = QtGui.QWidget(self.splitter_editor)
-        self.widget.setObjectName(_fromUtf8("widget"))
-        self.verticalLayout_3 = QtGui.QVBoxLayout(self.widget)
+        self.layoutWidget2 = QtGui.QWidget(self.splitter_editor)
+        self.layoutWidget2.setObjectName(_fromUtf8("layoutWidget2"))
+        self.verticalLayout_3 = QtGui.QVBoxLayout(self.layoutWidget2)
         self.verticalLayout_3.setMargin(0)
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.pushButton_7 = QtGui.QPushButton(self.widget)
+        self.pushButton_7 = QtGui.QPushButton(self.layoutWidget2)
         self.pushButton_7.setEnabled(False)
         self.pushButton_7.setFlat(True)
         self.pushButton_7.setObjectName(_fromUtf8("pushButton_7"))
         self.horizontalLayout.addWidget(self.pushButton_7)
-        self.pushButton_8 = QtGui.QPushButton(self.widget)
+        self.pushButton_8 = QtGui.QPushButton(self.layoutWidget2)
         self.pushButton_8.setEnabled(False)
         self.pushButton_8.setFlat(True)
         self.pushButton_8.setObjectName(_fromUtf8("pushButton_8"))
         self.horizontalLayout.addWidget(self.pushButton_8)
-        self.ejecutar_button = QtGui.QPushButton(self.widget)
+        self.ejecutar_button = QtGui.QPushButton(self.layoutWidget2)
         self.ejecutar_button.setFlat(True)
         self.ejecutar_button.setObjectName(_fromUtf8("ejecutar_button"))
         self.horizontalLayout.addWidget(self.ejecutar_button)
         spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
-        self.editor = QtGui.QTextEdit(self.widget)
+        self.editor = QtGui.QTextEdit(self.layoutWidget2)
         self.editor.setObjectName(_fromUtf8("editor"))
         self.verticalLayout_3.addWidget(self.editor)
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)

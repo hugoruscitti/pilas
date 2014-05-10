@@ -38,7 +38,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def _conectar_botones(self):
         # Botón del editor
-        #self.definir_icono(self.editor_button, 'iconos/manual.png')
+        self.definir_icono(self.editor_button, 'iconos/editor.png')
         self.editor_button.connect(self.editor_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_editor)
 
         # Botón del manual
@@ -84,6 +84,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.
         self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador_vertical)
         self.splitter.connect(self.splitter, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador)
+        self.splitter_editor.connect(self.splitter_editor, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador_del_editor)
 
     def colapsar_ayuda(self):
         self.splitter_vertical.setSizes([0])
@@ -112,6 +113,10 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def cuando_mueve_deslizador_vertical(self, a1, a2):
         self.manual_button.setChecked(a1 != 0)
+
+    def cuando_mueve_deslizador_del_editor(self, a1, a2):
+        area = self.splitter_editor.sizes()[1]
+        self.editor_button.setChecked(area != 0)
 
     def cuando_mueve_deslizador(self, a1, a2):
         altura_interprete = self.splitter.sizes()[1]
