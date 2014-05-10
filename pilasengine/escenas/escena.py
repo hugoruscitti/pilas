@@ -19,13 +19,14 @@ class Escena(object):
         pass
 
     def terminar(self):
-        pass
+        pass        
 
     def actualizar_interpolaciones(self):
         self.tweener.update()
 
     def actualizar_actores(self):
         for x in self._actores.obtener_actores():
+            x.pre_actualizar()
             x.actualizar()
 
     def dibujar_actores(self, painter):
