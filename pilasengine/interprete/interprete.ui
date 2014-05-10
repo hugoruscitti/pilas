@@ -375,12 +375,18 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <widget class="QPushButton" name="pushButton_7">
+            <widget class="QPushButton" name="boton_abrir">
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
              <property name="text">
-              <string>Abrir</string>
+              <string>A</string>
              </property>
              <property name="flat">
               <bool>true</bool>
@@ -388,12 +394,18 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_8">
+            <widget class="QPushButton" name="boton_guardar">
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
              <property name="text">
-              <string>Guardar</string>
+              <string>G</string>
              </property>
              <property name="flat">
               <bool>true</bool>
@@ -401,12 +413,18 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="ejecutar_button">
+            <widget class="QPushButton" name="boton_ejecutar">
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="text">
-              <string>Ejecutar</string>
+              <string>E</string>
              </property>
              <property name="flat">
               <bool>true</bool>

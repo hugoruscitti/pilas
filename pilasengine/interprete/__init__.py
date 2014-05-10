@@ -56,6 +56,16 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.interprete_button.connect(self.interprete_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_interprete)
 
         # Botón del guardar
+        self.definir_icono(self.boton_guardar, 'iconos/guardar.png')
+        #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
+
+        self.definir_icono(self.boton_ejecutar, 'iconos/ejecutar.png')
+        #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
+
+        self.definir_icono(self.boton_abrir, 'iconos/abrir.png')
+        #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
+
+        # Botón del guardar
         self.definir_icono(self.guardar_button, 'iconos/guardar.png')
         self.interprete_button.connect(self.guardar_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
 
@@ -84,7 +94,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
 
     def _conectar_botones_del_editor(self):
-        self.ejecutar_button.connect(self.ejecutar_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_ejecutar)
+        self.boton_ejecutar.connect(self.boton_ejecutar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_ejecutar)
 
     def _conectar_observadores_splitters(self):
         # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.

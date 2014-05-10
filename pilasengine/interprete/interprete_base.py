@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Sat May 10 00:48:42 2014
+# Created: Sat May 10 14:59:22 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -167,21 +167,24 @@ class Ui_InterpreteWindow(object):
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.pushButton_7 = QtGui.QPushButton(self.layoutWidget2)
-        self.pushButton_7.setEnabled(False)
-        self.pushButton_7.setFlat(True)
-        self.pushButton_7.setObjectName(_fromUtf8("pushButton_7"))
-        self.horizontalLayout.addWidget(self.pushButton_7)
-        self.pushButton_8 = QtGui.QPushButton(self.layoutWidget2)
-        self.pushButton_8.setEnabled(False)
-        self.pushButton_8.setFlat(True)
-        self.pushButton_8.setObjectName(_fromUtf8("pushButton_8"))
-        self.horizontalLayout.addWidget(self.pushButton_8)
-        self.ejecutar_button = QtGui.QPushButton(self.layoutWidget2)
-        self.ejecutar_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.ejecutar_button.setFlat(True)
-        self.ejecutar_button.setObjectName(_fromUtf8("ejecutar_button"))
-        self.horizontalLayout.addWidget(self.ejecutar_button)
+        self.boton_abrir = QtGui.QPushButton(self.layoutWidget2)
+        self.boton_abrir.setEnabled(False)
+        self.boton_abrir.setMaximumSize(QtCore.QSize(20, 20))
+        self.boton_abrir.setFlat(True)
+        self.boton_abrir.setObjectName(_fromUtf8("boton_abrir"))
+        self.horizontalLayout.addWidget(self.boton_abrir)
+        self.boton_guardar = QtGui.QPushButton(self.layoutWidget2)
+        self.boton_guardar.setEnabled(False)
+        self.boton_guardar.setMaximumSize(QtCore.QSize(20, 20))
+        self.boton_guardar.setFlat(True)
+        self.boton_guardar.setObjectName(_fromUtf8("boton_guardar"))
+        self.horizontalLayout.addWidget(self.boton_guardar)
+        self.boton_ejecutar = QtGui.QPushButton(self.layoutWidget2)
+        self.boton_ejecutar.setMaximumSize(QtCore.QSize(20, 20))
+        self.boton_ejecutar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.boton_ejecutar.setFlat(True)
+        self.boton_ejecutar.setObjectName(_fromUtf8("boton_ejecutar"))
+        self.horizontalLayout.addWidget(self.boton_ejecutar)
         spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
@@ -232,9 +235,9 @@ class Ui_InterpreteWindow(object):
         self.pushButton_2.setText(_translate("InterpreteWindow", "F11", None))
         self.pushButton.setToolTip(_translate("InterpreteWindow", "Mostrar posiciones", None))
         self.pushButton.setText(_translate("InterpreteWindow", "F12", None))
-        self.pushButton_7.setText(_translate("InterpreteWindow", "Abrir", None))
-        self.pushButton_8.setText(_translate("InterpreteWindow", "Guardar", None))
-        self.ejecutar_button.setText(_translate("InterpreteWindow", "Ejecutar", None))
+        self.boton_abrir.setText(_translate("InterpreteWindow", "A", None))
+        self.boton_guardar.setText(_translate("InterpreteWindow", "G", None))
+        self.boton_ejecutar.setText(_translate("InterpreteWindow", "E", None))
         self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
 from PyQt4 import QtWebKit

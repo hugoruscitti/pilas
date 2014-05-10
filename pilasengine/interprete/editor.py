@@ -22,6 +22,7 @@ class Editor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDes
         autocomplete.CompletionTextEdit.__init__(self, None, self.funcion_valores_autocompletado)
         self.interpreterLocals = interpreterLocals
         self.insertPlainText(CONTENIDO)
+        self.setLineWrapMode(QtGui.QTextEdit.NoWrap)
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Tab:
