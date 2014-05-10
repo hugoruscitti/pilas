@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/manual/manual.ui'
 #
-# Created: Sat May 10 00:30:13 2014
+# Created: Sat May 10 00:48:42 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!

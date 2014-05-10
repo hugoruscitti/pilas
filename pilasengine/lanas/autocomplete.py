@@ -3,27 +3,6 @@ import os
 import re
 
 from PyQt4 import QtGui, QtCore
-from PyQt4.Qt import QTextCursor
-
-EXPRESION_SENTENCIA = r'.*\s*\=\s*(-*\d+\.*\d*)$'
-
-def autocompletar(scope, texto):
-    texto = texto.replace('(', ' ').split(' ')[-1]
-
-    if '.' in texto:
-        palabras = texto.split('.')
-        ultima = palabras.pop()
-        prefijo = '.'.join(palabras)
-
-        try:
-            elementos = eval("dir(%s)" %prefijo, scope)
-        except:
-            # TODO: notificar este error de autocompletado en algun lado...
-            return []
-
-        return [a for a in elementos if a.startswith(ultima)]
-    else:
-        return [a for a in scope.keys() if a.startswith(texto)]
 
 
 class DictionaryCompleter(QtGui.QCompleter):
@@ -37,13 +16,14 @@ class DictionaryCompleter(QtGui.QCompleter):
 
 class CompletionTextEdit(QtGui.QTextEdit):
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, funcion_valores_autocompletado=None):
         super(CompletionTextEdit, self).__init__(parent)
         self.completer = None
         self.moveCursor(QtGui.QTextCursor.End)
         self.dictionary = DictionaryCompleter()
         self.set_completer(self.dictionary)
         self.set_dictionary([])
+        self.funcion_valores_autocompletado = funcion_valores_autocompletado
 
     def set_dictionary(self, list):
         self.dictionary.set_dictionary(list)
@@ -66,63 +46,10 @@ class CompletionTextEdit(QtGui.QTextEdit):
         self.clearFocus()
         self.setFocus()
 
-    def _get_current_line(self):
-        tc = self.textCursor()
-        tc.select(QtGui.QTextCursor.LineUnderCursor)
-        return tc.selectedText()[2:]
-
-    def _get_current_word(self):
-        tc = self.textCursor()
-        tc.select(QtGui.QTextCursor.WordUnderCursor)
-        return tc.selectedText()
-
-    def _cambiar_sentencia_con_deslizador(self, nueva):
-        linea = self._get_current_line()
-        numero = self._obtener_numero_de_la_linea(linea)
-
-        tc = self.textCursor()
-        tc.select(QtGui.QTextCursor.LineUnderCursor)
-
-        texto = tc.selectedText()
-        texto = texto.replace(numero, str(nueva))
-        tc.removeSelectedText()
-        tc.insertText(texto)
-
-        self.setTextCursor(tc)
-
-        linea = str(self._get_current_line())
-        exec(linea, self.interpreterLocals)
-
     def focusInEvent(self, event):
         if self.completer:
             self.completer.setWidget(self);
         QtGui.QTextEdit.focusInEvent(self, event)
-
-    def _obtener_numero_de_la_linea(self, linea):
-        grupos =  re.search(EXPRESION_SENTENCIA, linea).groups()
-        return grupos[0]
-
-    def mousePressEvent(self, event):
-        retorno = QtGui.QTextEdit.mousePressEvent(self, event)
-
-        linea = self._get_current_line()
-
-        # Si parece una sentencia se asignacion normal permie cambiarla con un deslizador.
-        try:
-            if re.match(EXPRESION_SENTENCIA, str(linea)):
-                self.mostrar_deslizador()
-        except UnicodeEncodeError:
-            pass
-
-        return retorno
-
-    def _es_sentencia_asignacion_simple(self, linea):
-        return re.match(EXPRESION_SENTENCIA, str(linea))
-
-    def mostrar_deslizador(self):
-        valor_inicial = self._obtener_numero_de_la_linea(self._get_current_line())
-        self.deslizador = Deslizador(self, self.textCursor(), valor_inicial, self._cambiar_sentencia_con_deslizador)
-        self.deslizador.show()
 
     def autocomplete(self, event):
         current_char = event.text()
@@ -148,18 +75,13 @@ class CompletionTextEdit(QtGui.QTextEdit):
             return
 
         codigo_completo = str(self._get_current_line() + event.text())
-        values = autocompletar(self.interpreterLocals, codigo_completo)
+        values = self.funcion_valores_autocompletado(codigo_completo)
 
         if str(word).endswith('.'):
             word = ''
 
         # Evita todos los metodos privados si no se escribe un _
         values = [v for v in values if not v.startswith('_')]
-
-        # Previene que pilas autocomplete nombre de modulos en los actores.
-        # (solo mostrara el nombre de las clases).
-        if codigo_completo.startswith('pilas.actores.'):
-            values = [v for v in values if v.istitle()]
 
         if '__builtins__' in values:
             values.remove('__builtins__')
@@ -184,44 +106,12 @@ class CompletionTextEdit(QtGui.QTextEdit):
         else:
             self.completer.popup().hide()
 
-class Deslizador(QtGui.QWidget):
+    def _get_current_line(self):
+        tc = self.textCursor()
+        tc.select(QtGui.QTextCursor.LineUnderCursor)
+        return tc.selectedText()[2:]
 
-    def __init__(self, parent, cursor, valor_inicial, funcion_cuando_cambia):
-        QtGui.QWidget.__init__(self, parent)
-        self.funcion_cuando_cambia = funcion_cuando_cambia
-
-        layout = QtGui.QGridLayout(self)
-        slider = QtGui.QSlider(QtCore.Qt.Horizontal)
-
-        slider.setMinimumWidth(200)
-
-        if '.' in str(valor_inicial):
-            valor_inicial = int(float(valor_inicial) * 100)
-            slider.valueChanged[int].connect(self.on_change_float)
-        else:
-            valor_inicial = int(str(valor_inicial))
-            slider.valueChanged[int].connect(self.on_change)
-
-        slider.setMaximum(valor_inicial + 300)
-        slider.setMinimum(valor_inicial - 300)
-        slider.setValue(valor_inicial)
-
-        layout.addWidget(slider)
-        layout.setContentsMargins(7, 7, 7, 7)
-
-        self.setLayout(layout)
-        self.adjustSize()
-
-        self.setWindowFlags(QtCore.Qt.Popup)
-
-        point = parent.cursorRect(cursor).bottomRight()
-        global_point = parent.mapToGlobal(point)
-
-        self.move(global_point)
-
-    def on_change(self, valor):
-        self.funcion_cuando_cambia(str(valor))
-
-    def on_change_float(self, valor):
-        valor = str(valor/100.0)
-        self.funcion_cuando_cambia(str(valor))
+    def _get_current_word(self):
+        tc = self.textCursor()
+        tc.select(QtGui.QTextCursor.WordUnderCursor)
+        return tc.selectedText()

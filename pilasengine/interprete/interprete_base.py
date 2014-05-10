@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Sat May 10 00:30:13 2014
+# Created: Sat May 10 00:48:42 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -174,7 +174,6 @@ class Ui_InterpreteWindow(object):
         self.horizontalLayout.addWidget(self.pushButton_7)
         self.pushButton_8 = QtGui.QPushButton(self.layoutWidget2)
         self.pushButton_8.setEnabled(False)
-        self.pushButton_8.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_8.setFlat(True)
         self.pushButton_8.setObjectName(_fromUtf8("pushButton_8"))
         self.horizontalLayout.addWidget(self.pushButton_8)

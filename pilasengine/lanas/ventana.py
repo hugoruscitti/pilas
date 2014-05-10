@@ -53,6 +53,9 @@ class Ventana(QWidget):
         """Ejecuta el codigo en formato string enviado."""
         exec(codigo, self.text_edit.interpreterLocals)
 
+    def obtener_scope(self):
+        return self.text_edit.interpreterLocals
+
     def center_on_screen(self):
         resolution = QDesktopWidget().screenGeometry()
         self.move((resolution.width()  / 2) - (self.frameSize().width()  / 2),

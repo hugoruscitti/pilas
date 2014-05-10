@@ -20,7 +20,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def iniciar_interfaz(self):
         self.scope = self._insertar_ventana_principal_de_pilas()
         self._insertar_consola_interactiva(self.scope)
-        self._insertar_editor(self.consola.obtener_fuente())
+        self._insertar_editor(self.consola.obtener_fuente(), self.scope)
 
         # Haciendo que el panel de pilas y el interprete no se puedan
         # ocultar completamente.
@@ -188,8 +188,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.canvas.setCurrentWidget(ventana)
         return scope
 
-    def _insertar_editor(self, fuente):
-        componente = editor.Editor()
+    def _insertar_editor(self, fuente, scope):
+        componente = editor.Editor(scope)
         componente.definir_fuente(fuente)
         self.editor_placeholder.addWidget(componente)
         self.editor_placeholder.setCurrentWidget(componente)
@@ -232,6 +232,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         contenido = contenido.replace('import pilasengine', '')
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
         self.consola.ejecutar(contenido)
+        scope_nuevo = self.consola.obtener_scope()
+        self.editor.actualizar_scope(scope_nuevo)
+
 
 def abrir():
     MainWindow = QtGui.QMainWindow()

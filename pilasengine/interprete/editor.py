@@ -1,5 +1,7 @@
+# -*- encoding: utf-8 -*-
 from PyQt4 import QtGui
 from PyQt4 import QtCore
+from pilasengine.lanas import autocomplete
 
 CONTENIDO = """import pilasengine
 
@@ -10,10 +12,11 @@ aceituna.escala = [2]
 
 pilas.ejecutar()"""
 
-class Editor(QtGui.QTextEdit):
+class Editor(autocomplete.CompletionTextEdit):
 
-    def __init__(self):
-        QtGui.QTextEdit.__init__(self)
+    def __init__(self, interpreterLocals):
+        autocomplete.CompletionTextEdit.__init__(self, None, self.funcion_valores_autocompletado)
+        self.interpreterLocals = interpreterLocals
         self.insertPlainText(CONTENIDO)
 
     def keyPressEvent(self, event):
@@ -21,7 +24,37 @@ class Editor(QtGui.QTextEdit):
             tc = self.textCursor()
             tc.insertText("    ")
         else:
+            if self.autocomplete(event):
+                return None
+
             return QtGui.QTextEdit.keyPressEvent(self, event)
 
     def definir_fuente(self, fuente):
         self.setFont(fuente)
+
+    def actualizar_scope(self, scope):
+        self.interpreterLocals = scope
+
+    def funcion_valores_autocompletado(self, texto):
+        scope = self.interpreterLocals
+        texto = texto.replace('(', ' ').split(' ')[-1]
+
+        if '.' in texto:
+            palabras = texto.split('.')
+            ultima = palabras.pop()
+            prefijo = '.'.join(palabras)
+
+            try:
+                elementos = eval("dir(%s)" %prefijo, scope)
+            except:
+                # TODO: notificar este error de autocompletado en algun lado...
+                return []
+
+            return [a for a in elementos if a.startswith(ultima)]
+        else:
+            return [a for a in scope.keys() if a.startswith(texto)]
+
+    def _get_current_line(self):
+        tc = self.textCursor()
+        tc.select(QtGui.QTextCursor.LineUnderCursor)
+        return tc.selectedText()
