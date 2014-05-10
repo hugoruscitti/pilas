@@ -204,6 +204,4 @@ def abrir():
     MainWindow.show()
     MainWindow.raise_()
 
-    pilasengine.utils.verificar_si_lanas_existe(MainWindow)
-
     return MainWindow

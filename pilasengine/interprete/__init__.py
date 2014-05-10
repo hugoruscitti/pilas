@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+import re
 
 from PyQt4 import QtCore, QtGui
 
@@ -144,7 +145,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.splitter.setSizes([300, 0])
 
     def cuando_pulsa_el_boton_ejecutar(self):
-        texto = str(self.editor.document().toPlainText())
+        texto = unicode(self.editor.document().toPlainText())
         self.ejecutar_codigo_como_string(texto)
 
     def pulsa_boton_depuracion(self):
@@ -218,9 +219,13 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def ejecutar_y_reiniciar_si_cambia(self, archivo):
         self._reiniciar_y_ejecutar(archivo)
+        self._cargar_codigo_del_editor_desde_archivo(archivo)
         self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
         self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_y_ejecutar)
         self.watcher.addPath(archivo)
+
+    def _cargar_codigo_del_editor_desde_archivo(self, archivo):
+        self.editor.cargar_desde_archivo(archivo)
 
     def _reiniciar_y_ejecutar(self, archivo):
         f = open(archivo, "rt")
@@ -229,6 +234,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         f.close()
 
     def ejecutar_codigo_como_string(self, contenido):
+        contenido = re.sub('coding\s*:\s*', '', contenido)      # elimina cabecera de encoding.
         contenido = contenido.replace('import pilasengine', '')
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
         self.consola.ejecutar(contenido)

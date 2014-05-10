@@ -59,3 +59,10 @@ class Editor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDes
         tc = self.textCursor()
         tc.select(QtGui.QTextCursor.LineUnderCursor)
         return tc.selectedText()
+
+    def cargar_desde_archivo(self, ruta):
+        import codecs
+        archivo = codecs.open(ruta,'r','utf-8')
+        contenido = archivo.read()
+        archivo.close()
+        self.setText(contenido)
