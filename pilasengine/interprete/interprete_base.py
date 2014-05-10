@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Fri May  9 21:32:15 2014
+# Created: Sat May 10 00:04:50 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -184,9 +184,15 @@ class Ui_InterpreteWindow(object):
         spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
-        self.editor = QtGui.QTextEdit(self.layoutWidget2)
-        self.editor.setObjectName(_fromUtf8("editor"))
-        self.verticalLayout_3.addWidget(self.editor)
+        self.editor_placeholder = QtGui.QStackedWidget(self.layoutWidget2)
+        self.editor_placeholder.setObjectName(_fromUtf8("editor_placeholder"))
+        self.page_5 = QtGui.QWidget()
+        self.page_5.setObjectName(_fromUtf8("page_5"))
+        self.editor_placeholder.addWidget(self.page_5)
+        self.page_6 = QtGui.QWidget()
+        self.page_6.setObjectName(_fromUtf8("page_6"))
+        self.editor_placeholder.addWidget(self.page_6)
+        self.verticalLayout_3.addWidget(self.editor_placeholder)
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)
         InterpreteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(InterpreteWindow)
@@ -228,15 +234,6 @@ class Ui_InterpreteWindow(object):
         self.pushButton_7.setText(_translate("InterpreteWindow", "Abrir", None))
         self.pushButton_8.setText(_translate("InterpreteWindow", "Guardar", None))
         self.ejecutar_button.setText(_translate("InterpreteWindow", "Ejecutar", None))
-        self.editor.setHtml(_translate("InterpreteWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.Lucida Grande UI\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">import pilasengine</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:16pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">pilas = pilasengine.iniciar()</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">mono = pilas.actores.Mono()</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">pilas.camara.x = [100], 10</span></p></body></html>", None))
         self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
 from PyQt4 import QtWebKit

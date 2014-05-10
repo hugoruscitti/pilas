@@ -7,6 +7,7 @@ from PyQt4 import QtCore, QtGui
 import pilasengine
 from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
 from pilasengine import lanas
+import editor
 
 
 class VentanaInterprete(Ui_InterpreteWindow):
@@ -19,6 +20,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def iniciar_interfaz(self):
         self.scope = self._insertar_ventana_principal_de_pilas()
         self._insertar_consola_interactiva(self.scope)
+        self._insertar_editor(self.consola.obtener_fuente())
 
         # Haciendo que el panel de pilas y el interprete no se puedan
         # ocultar completamente.
@@ -36,11 +38,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self._conectar_botones()
         self._conectar_botones_del_editor()
         self._conectar_observadores_splitters()
-        self._cargar_resaltador_de_sintaxis()
-
-    def _cargar_resaltador_de_sintaxis(self):
-        self._highlighter = lanas.highlighter.Highlighter(self.editor.document(), 'python', lanas.highlighter.COLOR_SCHEME)
-        pass
 
     def _conectar_botones(self):
         # Botón del editor
@@ -190,6 +187,17 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.canvas.addWidget(ventana)
         self.canvas.setCurrentWidget(ventana)
         return scope
+
+    def _insertar_editor(self, fuente):
+        componente = editor.Editor()
+        componente.definir_fuente(fuente)
+        self.editor_placeholder.addWidget(componente)
+        self.editor_placeholder.setCurrentWidget(componente)
+        self.editor = componente
+        self._cargar_resaltador_de_sintaxis()
+
+    def _cargar_resaltador_de_sintaxis(self):
+        self._highlighter = lanas.highlighter.Highlighter(self.editor.document(), 'python', lanas.highlighter.COLOR_SCHEME)
 
     def _insertar_consola_interactiva(self, scope):
         codigo_inicial = [
