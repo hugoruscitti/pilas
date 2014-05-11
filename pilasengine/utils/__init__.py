@@ -30,11 +30,15 @@ class Utils(object):
             duracion = valor[1]
             valor = valor[0]
 
-        parametro = {atributo: valor[0]}
 
         tweener = self.pilas.obtener_escena_actual().tweener
-        tweener.add_tween(actor, tween_time=duracion,
+
+        for (i, x) in enumerate(valor):
+            demora_inicial = i * duracion
+            parametro = {atributo: x}
+            tweener.add_tween(actor, tween_time=duracion,
                           tween_type=tweener.IN_OUT_QUAD,
+                          tween_delay=demora_inicial,
                           **parametro)
 
     def interpretar_propiedad_numerica(self, objeto, propiedad, valor):

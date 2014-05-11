@@ -146,9 +146,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def cuando_pulsa_el_boton_editor(self):
         if self.editor_button.isChecked():
-            self.splitter_editor.setSizes([300, 50])
+            self.splitter_editor.setSizes([300, 250])
         else:
-            self.splitter_editor.setSizes([200, 0])
+            self.splitter_editor.setSizes([500, 0])
 
     def cuando_pulsa_el_boton_interprete(self):
         if self.interprete_button.isChecked():

@@ -1,5 +1,18 @@
 # -*- encoding: utf -*-
+import random
+
 class Camara(object):
+    """Representa la cámara principal de la escena.
+
+    El objeto cámara permite desplazarse, hacer movimientos
+    de automento, alejamiento e incluso rotaciones.
+
+    Este objeto se puede acceder usando el atributos pilas.carama, por
+    ejemplo:
+
+        >>> pilas.camara.escala = [2]
+        >>> pilas.camara.rotacion = [45]
+    """
 
     def __init__(self, pilas, escena):
         self.pilas = pilas
@@ -18,6 +31,16 @@ class Camara(object):
     def aplicar_translacion(self, painter):
         centro_x, centro_y = self.pilas.obtener_centro_fisico()
         painter.translate(centro_x, centro_y)
+
+    def vibrar(self, intensidad=1, tiempo=0.5):
+        valores = [x*intensidad for x in [-4, -3, -2, 2, 3, 4] * int(tiempo + 1)]
+        cantidad_de_valores = float(len(valores)) + 1
+
+        random.shuffle(valores)
+        self.x = valores + [0], tiempo/cantidad_de_valores
+
+        random.shuffle(valores)
+        self.y = valores + [0], tiempo/cantidad_de_valores
 
     def obtener_escala(self):
         return self._escala
