@@ -365,6 +365,7 @@ class Tween(object):
                 if self.delay == 0:
                     self.paused = False
                     self.delay = -1
+                    return  # ARREGLO PARA EVITAR QUE DOS INTERPOLACIONES SE SOLAPEN.
                 if self.update_function:
                     self.update_function()
             return
