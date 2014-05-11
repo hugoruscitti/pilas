@@ -144,7 +144,7 @@ class Tweener(TweenerEquations):
         return len(self.current_tweens) > 0
 
 
-    def add_tween(self, obj, **kwargs):
+    def add_tween(self, obj, inicial=None, **kwargs):
         """Returns Tween object or False
 
            Example::
@@ -197,6 +197,7 @@ class Tweener(TweenerEquations):
             t_delay = 0
 
         tw = Tween(obj, t_time, t_type, t_complete_func, t_update_func, t_delay,
+                   inicial=inicial,
                    **kwargs)
         if tw:
             self.current_tweens.append(tw)
@@ -257,7 +258,7 @@ class Tweener(TweenerEquations):
 
 class Tween(object):
     def __init__(self, obj, tduration, tween_type, complete_function,
-                 update_function, delay, **kwargs):
+                 update_function, delay, inicial, **kwargs):
         """Tween object:
            Can be created directly, but much more easily using
            ``Tweener.add_tween(...)``
@@ -274,9 +275,9 @@ class Tween(object):
         self.t_props = []
         self.t_funcs = []
         self.paused = self.delay > 0
-        self.decode_arguments()
+        self.decode_arguments(inicial)
 
-    def decode_arguments(self):
+    def decode_arguments(self, inicial):
         """Internal setup procedure to create tweenables and work out how to
            deal with each
            """
@@ -286,7 +287,6 @@ class Tween(object):
             raise BaseException("No Tweenable properties or functions defined")
             self.complete = True
             return
-
 
         for k, v in self.tweenables.items():
 
@@ -301,11 +301,15 @@ class Tween(object):
             change = v
 
             var = getattr(self.target, k)
+
             if hasattr(var, "__call__"):
                 func = var
                 func_name = k
             else:
-                start_val = var
+                if inicial:
+                    start_val = inicial
+                else:
+                    start_val = var
                 change = v - start_val
                 prop = k
                 prop_name = k
@@ -361,6 +365,7 @@ class Tween(object):
                 if self.delay == 0:
                     self.paused = False
                     self.delay = -1
+                    return  # ARREGLO PARA EVITAR QUE DOS INTERPOLACIONES SE SOLAPEN.
                 if self.update_function:
                     self.update_function()
             return
