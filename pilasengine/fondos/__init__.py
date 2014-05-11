@@ -13,4 +13,7 @@ class Fondos(object):
     def Plano(self):
         import plano
         nuevo_fondo = plano.Plano(self.pilas)
-        return self.pilas.actores.agregar_actor(nuevo_fondo)
+        # Importante: cuando se inicializa el actor, el método __init__
+        #             realiza una llamada a pilas.actores.agregar_actor
+        #             para vincular el actor a la escena.
+        return nuevo_fondo

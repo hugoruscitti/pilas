@@ -38,7 +38,7 @@ class Actores(object):
 
         def metodo_crear_actor(self):
             nuevo_actor = clase_del_actor(self.pilas)
-            return self.agregar_actor(nuevo_actor)
+            return nuevo_actor
 
         setattr(self.__class__, clase_del_actor.__name__, metodo_crear_actor)
 
@@ -92,7 +92,10 @@ class Actores(object):
         referencia_a_clase = getattr(referencia_a_modulo, clase)
 
         nuevo_actor = referencia_a_clase(self.pilas)
-        return self.agregar_actor(nuevo_actor)
+        # Importante: cuando se inicializa el actor, el método __init__
+        #             realiza una llamada a pilas.actores.agregar_actor
+        #             para vincular el actor a la escena.
+        return nuevo_actor
 
     def MensajeError(self, error):
         return self._crear_actor('mensaje_error', 'MensajeError')

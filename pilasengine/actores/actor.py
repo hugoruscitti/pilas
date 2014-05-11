@@ -81,6 +81,9 @@ class Actor(Estudiante):
         self._grupos_a_los_que_pertenece = []
         self._actores = []
 
+        # Vincula el actor con la escena actual.
+        pilas.actores.agregar_actor(self)
+
     def agregar(self, actor):
         self._actores.append(actor)
         actor.padre = self
