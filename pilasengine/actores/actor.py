@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import inspect
 
+import pilasengine
 from estudiante import Estudiante
 
 IZQUIERDA = ["izquierda"]
@@ -65,9 +66,11 @@ class Actor(Estudiante):
     """
 
     def __init__(self, pilas=None):
-
         if not pilas:
             raise Exception("Tienes que vincular al actor antes con 'pilas.actores.vincular(MiActor)'")
+
+        if not isinstance(pilas, pilasengine.Pilas):
+            raise Exception("Tienes que enviar el objeto 'pilas' como argumento al actor.'")
 
         self.pilas = pilas
         self.padre = None
@@ -186,12 +189,13 @@ class Actor(Estudiante):
 
         self.imagen.dibujar(painter)
 
+        # Vuelve al punto inicial para dibujar el
+        # modo depuración.
+        painter.translate(dx, dy)
+
+        self.pilas.depurador.cuando_dibuja_actor(self, painter)
+
         painter.restore()
-
-
-
-
-
 
     ## Métodos internos
     def _obtener_imagen(self):

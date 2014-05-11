@@ -40,7 +40,14 @@ class Actores(object):
             nuevo_actor = clase_del_actor(self.pilas)
             return nuevo_actor
 
-        setattr(self.__class__, clase_del_actor.__name__, metodo_crear_actor)
+        nombre_del_actor = clase_del_actor.__name__
+        existe = getattr(self.__class__, nombre_del_actor, None)
+
+        if existe:
+            raise Exception("Lo siento, ya existe un actor con el nombre " + nombre_del_actor)
+
+
+        setattr(self.__class__, nombre_del_actor, metodo_crear_actor)
 
     def agregar_actor(self, actor):
         """Agrega un actor a la escena actual.
@@ -112,4 +119,4 @@ class Actores(object):
                                   fuente, fijo, ancho)
         nuevo_actor.x = x
         nuevo_actor.y = y
-        return self.agregar_actor(nuevo_actor)
+        return nuevo_actor

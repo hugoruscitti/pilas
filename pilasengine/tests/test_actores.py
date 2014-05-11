@@ -37,5 +37,46 @@ class TestActores(unittest.TestCase):
         escena.actualizar_interpolaciones()
         self.assertTrue(actor.x == 100, actor.x)
 
+    def testPuedeCrearActorPersonalizado(self):
+        class MiActor(pilasengine.actores.Actor):
+
+            def iniciar(self):
+                self.imagen = "aceituna.png"
+
+            def actualizar(self):
+                self.rotacion += 2
+
+        self.pilas.actores.vincular(MiActor)
+        actor = self.pilas.actores.MiActor()
+        self.assertTrue(actor, "Ha podido crear el objeto actor.")
+
+        otro_actor = MiActor(self.pilas)
+        self.assertTrue(otro_actor, "También funciona el método alternativo")
+
+        def crear_actor_sin_argumentos():
+            actor_falla = MiActor()
+
+        self.assertRaises(Exception, crear_actor_sin_argumentos)
+
+        def crear_actor_argumentos_incorrectos():
+            actor_falla = MiActor(123)
+
+        self.assertRaises(Exception, crear_actor_argumentos_incorrectos)
+
+    def testObtieneErrorSiElActorPersonalizadoExiste(self):
+        class Actor(pilasengine.actores.Actor):
+
+            def iniciar(self):
+                self.imagen = "aceituna.png"
+
+            def actualizar(self):
+                self.rotacion += 2
+
+        def crear_actor_que_existe():
+            self.pilas.actores.vincular(Actor)
+
+        self.assertRaises(Exception, crear_actor_que_existe)
+
+
 if __name__ == '__main__':
     unittest.main()
