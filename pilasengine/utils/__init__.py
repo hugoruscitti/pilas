@@ -30,8 +30,8 @@ class Utils(object):
             duracion = valor[1]
             valor = valor[0]
 
-
         tweener = self.pilas.obtener_escena_actual().tweener
+        anterior = None
 
         for (i, x) in enumerate(valor):
             demora_inicial = i * duracion
@@ -39,7 +39,9 @@ class Utils(object):
             tweener.add_tween(actor, tween_time=duracion,
                           tween_type=tweener.IN_OUT_QUAD,
                           tween_delay=demora_inicial,
+                          inicial=anterior,
                           **parametro)
+            anterior=x
 
     def interpretar_propiedad_numerica(self, objeto, propiedad, valor):
         """Procesa una propiedad y permite que sea numero o interpolación.
