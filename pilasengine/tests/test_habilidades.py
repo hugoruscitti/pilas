@@ -14,6 +14,12 @@ class TestHabilidades(unittest.TestCase):
 	def testPuedeCrearHabilidad(self):
 		habilidad = self.pilas.habilidades.Habilidad()
 		self.assertTrue(habilidad, 'Puede crear habilidad')
+
+	def testNoPuedeRepetirHabilidad(self):
+		actor = self.pilas.actores.Aceituna()
+		actor.aprender(self.pilas.habilidades.Habilidad)
+		actor.aprender(self.pilas.habilidades.Habilidad)
+		self.assertEquals(len(actor._habilidades), 1, 'No puede Repetir la habilidad')
 	
 	def testPuedeIniciarHabilidad(self):
 		actor = self.pilas.actores.Aceituna()
@@ -29,7 +35,7 @@ class TestHabilidades(unittest.TestCase):
 		actor = self.pilas.actores.Aceituna()
 		actor.aprender(self.pilas.habilidades.Habilidad)
 		actor.habilidades.Habilidad.eliminar()
-		self.assertEquals(actor._habilidades, list(), 'Puede eliminar habilidad')	
+		self.assertEquals(actor._habilidades, list(), 'Puede eliminar habilidad')
 
 if __name__ == '__main__':
 	unittest.main()		

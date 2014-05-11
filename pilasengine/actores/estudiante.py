@@ -19,38 +19,42 @@ class Estudiante(object):
 
         :param classname: Referencia a la clase que representa la habilidad.
         """
-        if self.tiene_habilidad(classname):
-            self.eliminar_habilidad(classname)
-            self.agregar_habilidad(classname, *k, **w)
-        else:
-            self.agregar_habilidad(classname, *k, **w)
 
-    def agregar_habilidad(self, classname, *k, **w):
+        #Instanciando habilidad para comprobar si el actor la tiene asignada
+        habilidad = classname() 
+
+        if self.tiene_habilidad(habilidad):
+            self.eliminar_habilidad(habilidad)
+        
+        self.agregar_habilidad(habilidad, *k, **w)
+
+    def agregar_habilidad(self, habilidad, *k, **w):
         """Agrega una habilidad a la lista de cosas que puede hacer un actor.
 
-        :param classname: Referencia a la clase que representa la habilidad.
+        :param habilidad: Objeto que representa una habilidad.
         """
-        objeto_habilidad = classname()
-        objeto_habilidad.iniciar(self, *k, **w)
-        self._habilidades.append(objeto_habilidad)
+        habilidad.iniciar(self, *k, **w)
+        self._habilidades.append(habilidad)
 
-    def eliminar_habilidad(self, classname):
+    def eliminar_habilidad(self, habilidad):
         """ Elimina una habilidad asociada a un Actor.
 
-        :param classname: Referencia a la clase que representa la habilidad.
+        :param classname: Objeto que representa una habilidad.
         """
-        habilidad = self.obtener_habilidad(classname)
+        referencia_habilidad = self.obtener_habilidad(habilidad)
 
-        if habilidad:
-            self._habilidades.remove(habilidad)
+        if referencia_habilidad:
+            self._habilidades.remove(referencia_habilidad)
 
-    def tiene_habilidad(self, classname):
+    def tiene_habilidad(self, habilidad):
         """Comprueba si el actor ha aprendido la habilidad indicada.
 
-        :param classname: Referencia a la clase que representa la habilidad.
+        :param classname: Objeto que representa una habilidad.
+        :return: Devuelve True si el actor tiene asignada la habilidad
         """
         habilidades_actuales = [habilidad.__class__ for habilidad in self._habilidades]
-        return (classname in habilidades_actuales)
+
+        return (habilidad.__class__ in habilidades_actuales)
 
     def tiene_comportamiento(self, classname):
         """Comprueba si el actor tiene el comportamiento indicado.
@@ -60,17 +64,17 @@ class Estudiante(object):
         comportamientos_actuales = [comportamiento.__class__ for comportamiento in self.comportamientos]
         return (classname in comportamientos_actuales)
 
-    def obtener_habilidad(self, classname):
+    def obtener_habilidad(self, habilidad):
         """Obtiene la habilidad asociada a un Actor.
 
-        :param classname: Referencia a la clase que representa la habilidad.
+        :param habilidad: Objeto que representa una habilidad.
         :return: Devuelve None si no se encontró.
         """
         su_habilidad = None
 
-        for habilidad in self._habilidades:
-            if habilidad.__class__ == classname:
-                su_habilidad = habilidad
+        for h in self._habilidades:
+            if h.__class__ == habilidad.__class__:
+                su_habilidad = h
                 break
 
         return su_habilidad
