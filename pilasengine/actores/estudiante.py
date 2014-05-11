@@ -2,6 +2,7 @@
 import inspect
 
 from pilasengine.habilidades import ProxyHabilidades
+from pilasengine.habilidades.habilidad import Habilidad
 
 class Estudiante(object):
     """Componente que permite a los actores aprender habilidades o realizar comportamientos."""
@@ -20,8 +21,12 @@ class Estudiante(object):
         :param classname: Referencia a la clase que representa la habilidad.
         """
 
-        #Instanciando habilidad para comprobar si el actor la tiene asignada
-        habilidad = classname() 
+        # Instanciando habilidad para comprobar si el actor la tiene asignada
+        if inspect.isclass(classname):
+            # Comprobando si la habilidad es una clase (habilidades personalizadas)
+            habilidad = classname(self.pilas)
+        else:
+            habilidad = classname() 
 
         if self.tiene_habilidad(habilidad):
             self.eliminar_habilidad(habilidad)

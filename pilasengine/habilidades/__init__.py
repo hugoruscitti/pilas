@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+from pilasengine.habilidades.habilidad import Habilidad
+
 class Habilidades(object):
 	"""Representa la forma de acceso y construcción de las habilidades.
 
