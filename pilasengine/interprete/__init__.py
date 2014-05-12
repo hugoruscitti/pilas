@@ -251,7 +251,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.watcher_ultima_invocacion = time.time();
 
         self._cargar_codigo_del_editor_desde_archivo(archivo)
-        f = codecs.open(archivo, 'r', 'utf-8')
+        f = codecs.open(unicode(archivo), 'r', 'utf-8')
         contenido = f.read()
         self.ejecutar_codigo_como_string(contenido)
         f.close()

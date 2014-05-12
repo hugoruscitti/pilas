@@ -174,7 +174,6 @@ class Actor(Estudiante):
         # Tranformaciones para aplicar al actor
 
         dx, dy = self.centro
-        centro_x, centro_y = self.pilas.obtener_centro_fisico()
         painter.translate(x, -y)
         painter.rotate(-self.rotacion)
         painter.scale(escala_x, escala_y)

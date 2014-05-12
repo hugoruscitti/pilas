@@ -181,10 +181,10 @@ class VentanaAsistente(Base):
             for url in event.mimeData().urls():
                 archivo = url.toLocalFile()
 
-                if not str(archivo).endswith('.py'):
+                if not unicode(archivo).endswith('.py'):
                     QtGui.QMessageBox.critical(self.MainWindow, "Error", "Solo se aceptan archivos terminados con .py")
                 else:
-                    self._ejecutar_programa_con_livereload(str(archivo))
+                    self._ejecutar_programa_con_livereload(unicode(archivo))
                     event.acceptProposedAction()
 
         self.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")

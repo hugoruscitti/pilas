@@ -65,7 +65,7 @@ class Editor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDes
         return tc.selectedText()
 
     def cargar_desde_archivo(self, ruta):
-        archivo = codecs.open(ruta, 'r', 'utf-8')
+        archivo = codecs.open(unicode(ruta), 'r', 'utf-8')
         contenido = archivo.read()
         archivo.close()
         self.setText(contenido)

@@ -3,6 +3,7 @@ from PyQt4 import QtGui
 from PyQt4 import QtCore
 
 from pilasengine.depurador.modo_info import ModoInformacionDeSistema
+from pilasengine.depurador.modo_radios_de_colision import ModoRadiosDeColision
 from pilasengine.depurador.modo_puntos_de_control import ModoPuntosDeControl
 from pilasengine.depurador.modo_area import ModoArea
 from pilasengine.depurador.modo_posicion import ModoPosicion

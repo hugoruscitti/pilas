@@ -56,7 +56,10 @@ class Pilas(object):
         self.imagenes = imagenes.Imagenes(self)
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)
-        self.depurador = depurador.Depurador(self)
+
+        if not getattr(self, 'depurador', None):
+            self.depurador = depurador.Depurador(self)
+
         self.musica = musica.Musica(self)
         self.sonidos = sonidos.Sonidos(self)
         self.habilidades = habilidades.Habilidades(self)
