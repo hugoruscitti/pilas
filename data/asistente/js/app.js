@@ -71,5 +71,10 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
             nick: 'actor_personalizado',
             tags: ['actor']
         },
+        {
+            titulo: "Grilla",
+            nick: 'grilla',
+            tags: ['animaciones']
+        },
     ];
 });

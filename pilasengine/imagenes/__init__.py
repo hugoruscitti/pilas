@@ -20,3 +20,28 @@ class Imagenes(object):
     def crear_texto(self, cadena_de_texto, magnitud, vertical, fuente, color, ancho):
         import texto
         return texto.Texto(self.pilas, cadena_de_texto, magnitud, vertical, fuente, color, ancho)
+
+    def cargar_grilla(self, ruta, columnas=1, filas=1):
+        """Representa una grilla de imagenes con varios cuadros de animación.
+
+        Una grilla es un objeto que se tiene que inicializar con la ruta
+        a una imagen, la cantidad de columnas y filas.
+
+        Por ejemplo, si tenemos una grilla con 2 columnas y 3 filas
+        podemos asociarla a un actor de la siguiente manera::
+
+            grilla = pilas.imagenes.cargar_grilla("animacion.png", 2, 3)
+            grilla.asignar(actor)
+
+        Entonces, a partir de ahora nuestro actor muestra solamente un
+        cuadro de toda la grilla.
+
+        Si quieres avanzar la animacion tienes que modificar el objeto
+        grilla y asignarlo nuevamente al actor::
+
+            grilla.avanzar()
+            grilla.asignar(actor)
+        """
+        import grilla
+        ruta_a_imagen = self.pilas.obtener_ruta_al_recurso(ruta)
+        return grilla.Grilla(self.pilas, ruta_a_imagen, columnas, filas)
