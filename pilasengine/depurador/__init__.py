@@ -1,5 +1,11 @@
 # -*- encoding: utf-8 -*-
+from PyQt4 import QtGui
+from PyQt4 import QtCore
+
 from pilasengine.depurador.modo_info import ModoInformacionDeSistema
+from pilasengine.depurador.modo_puntos_de_control import ModoPuntosDeControl
+from pilasengine.depurador.modo_area import ModoArea
+from pilasengine.depurador.modo_posicion import ModoPosicion
 
 class Depurador(object):
 
@@ -14,21 +20,32 @@ class Depurador(object):
     def realizar_dibujado(self, painter):
         """Realiza un dibujado de los modos depuración habilitados.
 
-        Hay dos rutinas de dibujado en cada modo, una dibujado general
-        que se suele utilizar para pintar textos o estadísticas y otra
-        rutina que se llama cada vez que se inspecciona un actor.
+        Este método se llama automáticamente desde el método
+        '_dibujar_widget' que está definido en widget.py, es decir, se
+        llama cada vez que se tiene que dibujar la pantalla (unas 60
+        veces por segundo).
         """
         if self._modos:
-            actores_de_la_escena = self.pilas.obtener_escena_actual()._actores.obtener_actores()
-
-            # Dibujado depuración de cada modo.
-            for a in actores_de_la_escena:
-                for m in self._modos:
-                    m.dibujar_actor(a, painter)
-
-            # Dibujado general del modo.
             for m in self._modos:
                 m.realizar_dibujado(painter)
+
+    def cuando_dibuja_actor(self, actor, painter):
+        """Este método se llama cada vez que se dibujar un actor en pantalla.
+
+        Es importante notar que el objeto 'painter' que viene como
+        argumento es en realidad un objeto que tiene estado: cualquier
+        cosa que se dibuje va a 'heredar' las mismas transformaciones
+        que tiene el actor.
+
+        Por ejemplo, si el actor esta escalado a 2x lo que dibujes
+        aquí va a salir 2 veces mas grande que su tamaño original.
+
+        Para revertir o evitar estas transformaciones se pueden usar
+        las propiedades x, y, escala, centro o rotacion del actor.
+        """
+        if self._modos:
+            for m in self._modos:
+                m.cuando_dibuja_actor(actor, painter)
 
     def obtener_modos_habilitados(self):
         """Retorna una lista con los nombres de los modos habilitados."""
@@ -96,7 +113,6 @@ class Depurador(object):
     def _activar_modo(self, clase_del_modo):
         instancia_del_modo = clase_del_modo(self.pilas, self)
         self._modos.append(instancia_del_modo)
-        self._modos.sort(key=lambda x: x.orden_de_tecla())
 
     def _desactivar_modo(self, clase_del_modo):
         instancia_a_eliminar = [x for x in self._modos
