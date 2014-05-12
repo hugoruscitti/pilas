@@ -15,6 +15,7 @@ class Actores(object):
         >>> nave = pilas.actores.Nave()
 
     """
+    _lista_actores_personalizados = []
 
     def __init__(self, pilas):
         self.pilas = pilas
@@ -46,8 +47,19 @@ class Actores(object):
         if existe:
             raise Exception("Lo siento, ya existe un actor con el nombre " + nombre_del_actor)
 
-
         setattr(self.__class__, nombre_del_actor, metodo_crear_actor)
+        Actores._lista_actores_personalizados.append(nombre_del_actor)
+
+    def obtener_actores_personalizados(self):
+        "Retorna una lista con todos los nombres de actores personalizados."
+        return Actores._lista_actores_personalizados
+
+    def eliminar_actores_personalizados(self):
+        "Recorre todos los actores personalizados y los elimina."
+        for x in Actores._lista_actores_personalizados:
+            delattr(self.__class__, x)
+
+        Actores._lista_actores_personalizados = []
 
     def agregar_actor(self, actor):
         """Agrega un actor a la escena actual.

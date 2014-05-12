@@ -52,6 +52,7 @@ class Pilas(object):
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
         self.actores = actores.Actores(self)
+        self.actores.eliminar_actores_personalizados()
         self.escenas = escenas.Escenas(self)
         self.imagenes = imagenes.Imagenes(self)
         self.utils = utils.Utils(self)
@@ -84,7 +85,8 @@ class Pilas(object):
         Este método se suele utilizar cuando se cambia de resolución
         de pantalla o se re-inicia pilas completamente."""
         parent = self.widget.parent()
-        parent.layout().removeWidget(self.widget)
+        if parent:
+            parent.layout().removeWidget(self.widget)
         self.widget.setParent(None)
         return parent
 
@@ -94,8 +96,9 @@ class Pilas(object):
         Este método se utiliza para mostrar nuevamente el area de
         juego después de haber cambiado de resolución o reiniciado
         pilas."""
-        parent.layout().addWidget(self.widget)
-        parent.setCurrentWidget(self.widget)
+        if parent:
+            parent.layout().addWidget(self.widget)
+            parent.setCurrentWidget(self.widget)
 
     def usa_aceleracion(self):
         """Informa si está habilitado el modo aceleración de video."""

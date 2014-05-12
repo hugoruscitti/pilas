@@ -5,10 +5,12 @@ from PyQt4 import QtGui
 
 import pilasengine
 
+
 class TestActores(unittest.TestCase):
     app = QtGui.QApplication(sys.argv)
 
     def setUp(self):
+        import pilasengine
         self.pilas = pilasengine.iniciar()
 
     def testPuedeCrearActores(self):
@@ -52,6 +54,13 @@ class TestActores(unittest.TestCase):
 
         otro_actor = MiActor(self.pilas)
         self.assertTrue(otro_actor, "También funciona el método alternativo")
+
+        self.pilas.reiniciar()
+
+        self.pilas.actores.vincular(MiActor)
+        otro_actor = MiActor(self.pilas)
+        self.assertTrue(otro_actor, "Puede volver a vincular un actor luego de reiniciar.")
+
 
         def crear_actor_sin_argumentos():
             actor_falla = MiActor()
