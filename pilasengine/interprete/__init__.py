@@ -19,6 +19,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def setupUi(self, main):
         self.main = main
         Ui_InterpreteWindow.setupUi(self, main)
+        main.closeEvent = self.on_close_event
         self.iniciar_interfaz()
 
     def iniciar_interfaz(self):
@@ -42,6 +43,30 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self._conectar_botones()
         self._conectar_botones_del_editor()
         self._conectar_observadores_splitters()
+
+    def on_close_event(self, evento):
+
+        if not self.editor.tiene_cambios_sin_guardar():
+            evento.accept()
+            return
+
+        consulta = self._consultar(self.main,
+                                   u"¿Quieres salir?",
+                                   u"Se perderán los cambios sin guardar... ¿Quieres salir realmente?")
+
+        if consulta:
+            evento.accept()
+        else:
+            evento.ignore()
+
+    def _consultar(self, parent, titulo, mensaje):
+        """Realizar una consulta usando un cuadro de dialogo simple.
+
+        Este método retorna True si el usuario acepta la pregunta."""
+        # TODO: reemplazar por un dialogo que no tenga los botones YES NO, sino algo en español: http://stackoverflow.com/questions/15682665/how-to-add-custom-button-to-a-qmessagebox-in-pyqt4
+        respuesta = QtGui.QMessageBox.question(parent, titulo, mensaje,
+                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+        return (respuesta == QtGui.QMessageBox.Yes)
 
     def _conectar_botones(self):
         # Botón del editor
@@ -284,6 +309,7 @@ def abrir_script_con_livereload(archivo):
     ui = VentanaInterprete()
     ui.setupUi(MainWindow)
 
+    utils.centrar_ventana(MainWindow)
     MainWindow.show()
     MainWindow.raise_()
     ui.ejecutar_y_reiniciar_si_cambia(archivo)

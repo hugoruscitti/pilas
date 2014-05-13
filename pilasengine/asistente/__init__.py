@@ -70,8 +70,6 @@ class VentanaAsistente(Base):
         Base.setupUi(self, MainWindow)
         self.MainWindow = MainWindow
 
-        MainWindow.closeEvent = self.on_close_event
-
         self.interlocutor = Interlocutor()
         self.interlocutor.iniciar_con_ventana(self)
 
@@ -141,15 +139,6 @@ class VentanaAsistente(Base):
 
         self.watcher.addPath(nombre_archivo_script)
         #(nombre_archivo_script, directorio_trabajo))
-
-    def _consultar(self, parent, titulo, mensaje):
-        """Realizar una consulta usando un cuadro de dialogo simple.
-
-        Este método retorna True si el usuario acepta la pregunta."""
-        # TODO: reemplazar por un dialogo que no tenga los botones YES NO, sino algo en español: http://stackoverflow.com/questions/15682665/how-to-add-custom-button-to-a-qmessagebox-in-pyqt4
-        respuesta = QtGui.QMessageBox.question(parent, titulo, mensaje,
-                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-        return (respuesta == QtGui.QMessageBox.Yes)
 
     def evaluar_javascript(self, codigo):
         self.webView.page().mainFrame().evaluateJavaScript(codigo)
