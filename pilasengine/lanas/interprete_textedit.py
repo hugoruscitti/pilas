@@ -215,7 +215,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
                 self._change_font_size(-2)
                 event.ignore()
                 return
-            elif event.key() == Qt.Key_Equal:
+            elif event.key() == Qt.Key_Plus:
                 self._change_font_size(+2)
                 event.ignore()
                 return
