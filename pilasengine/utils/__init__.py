@@ -2,7 +2,6 @@
 import os
 import sys
 import uuid
-#import interpolaciones
 
 import pitweener
 
@@ -62,27 +61,6 @@ class Utils(object):
             self.interpolar(objeto, propiedad, valor)
         else:
             raise Exception("Solo se pueden asignar números o interpolaciones.")
-
-    def interpolar_si_es_necesario(self, valor, nombre, tipo):
-        # Si le indican dos argumentos, el primer sera
-        # el valor de la interpolacion y el segundo la
-        # velocidad.
-        if isinstance(valor, tuple) and len(valor) == 2:
-            duracion = valor[1]
-            valor = valor[0]
-        else:
-            duracion = 1
-
-        if isinstance(valor, list):
-            valor = instanciar_interpolacion(self.pilas, valor, duracion=duracion, tipo=tipo)
-        elif isinstance(valor, xrange):
-            valor = instanciar_interpolacion(self.pilas, list(valor), duracion=duracion, tipo=tipo)
-
-        if es_interpolacion(valor):
-            valor.apply(valor, function=nombre)
-        else:
-            return valor
-
 
 def obtener_ruta_al_recurso(ruta):
     dirs = ['./', '/../data',
@@ -181,3 +159,10 @@ def interpolable(f):
             f(args[0], value, **kwargs)
 
     return inner
+
+def centrar_ventana(ventana):
+    """Mueve la ventana al centro del area visible del escritorio."""
+    qr = ventana.frameGeometry()
+    cp = QtGui.QDesktopWidget().availableGeometry().center()
+    qr.moveCenter(cp)
+    ventana.move(qr.topLeft())

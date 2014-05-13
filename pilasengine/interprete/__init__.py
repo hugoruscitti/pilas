@@ -11,6 +11,7 @@ import pilasengine
 from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
 from pilasengine import lanas
 import editor
+from pilasengine import utils
 
 
 class VentanaInterprete(Ui_InterpreteWindow):
@@ -271,6 +272,7 @@ def abrir():
     ui = VentanaInterprete()
     ui.setupUi(MainWindow)
 
+    utils.centrar_ventana(MainWindow)
     MainWindow.show()
     MainWindow.raise_()
 
