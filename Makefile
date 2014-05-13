@@ -11,6 +11,7 @@ all:
 	@echo "  $(V)test$(N)        Lanza todos los test de unidad."
 	@echo "  $(V)ui$(N)          Actualiza todas las interfaces de usuario."
 	@echo "  $(V)html$(N)        Actualiza toda la documentación y la copia a pilas/data/manual."
+	@echo "  $(V)rm_pyc$(N)      Borra todos los archivos .pyc del proyecto."
 	@echo ""
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
 	@echo "  $(V)distmac$(N)     Genera la versión compilada para macos."
@@ -46,3 +47,6 @@ distmac: clean
 	@echo "Los archivos generados están en el directorio dist/"
 	@echo "Se abre una ventana para mostrarlos."
 	@open dist
+
+rm_pyc: clean
+	find . -name "*.pyc" -exec rm -rf {} \;
