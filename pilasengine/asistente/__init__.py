@@ -151,17 +151,6 @@ class VentanaAsistente(Base):
                                     QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
         return (respuesta == QtGui.QMessageBox.Yes)
 
-    def on_close_event(self, evento):
-        consulta = self._consultar(self.MainWindow,
-                                   u"¿Quieres salir?",
-                                   u"Se perderán los cambios sin guardar... ¿Quieres salir realmente?")
-
-        if consulta:
-            evento.accept()
-            QtGui.QApplication.quit()
-        else:
-            evento.ignore()
-
     def evaluar_javascript(self, codigo):
         self.webView.page().mainFrame().evaluateJavaScript(codigo)
 
