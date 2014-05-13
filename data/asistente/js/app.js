@@ -137,11 +137,6 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
             tags: [],
         },
         {
-            titulo: 'arboles',
-            nick: 'arboles',
-            tags: [],
-        },
-        {
             titulo: 'arrastrable',
             nick: 'arrastrable',
             tags: [],
@@ -174,11 +169,6 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
         {
             titulo: 'camara',
             nick: 'camara',
-            tags: [],
-        },
-        {
-            titulo: 'cielo',
-            nick: 'cielo',
             tags: [],
         },
         {
@@ -372,11 +362,6 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
             tags: [],
         },
         {
-            titulo: 'montes',
-            nick: 'montes',
-            tags: [],
-        },
-        {
             titulo: 'mover_actor_por_eventos',
             nick: 'mover_actor_por_eventos',
             tags: [],
@@ -394,11 +379,6 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
         {
             titulo: 'pacman_simple',
             nick: 'pacman_simple',
-            tags: [],
-        },
-        {
-            titulo: 'pasto',
-            nick: 'pasto',
             tags: [],
         },
         {
