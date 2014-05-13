@@ -15,6 +15,7 @@ class TestIniciar(unittest.TestCase):
         self.assertTrue(self.pilas.escenas, "Existe el modulo escenas")
         self.assertTrue(self.pilas.imagenes, "Existe el modulo escenas")
         self.assertTrue(self.pilas.habilidades, 'Existe el modulo habilidades')
+        self.assertTrue(self.pilas.eventos, "Existe el modulo eventos")
         self.assertTrue(self.pilas.utils, "Existe el modulo escenas")
         self.assertTrue(self.pilas.widget, "Existe el componente widget")
 
