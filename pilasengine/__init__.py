@@ -15,6 +15,7 @@ from pilasengine import depurador
 from pilasengine import musica
 from pilasengine import sonidos
 from pilasengine import habilidades
+from pilasengine import eventos
 
 import widget
 
@@ -53,6 +54,7 @@ class Pilas(object):
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
         self.actores = actores.Actores(self)
         self.actores.eliminar_actores_personalizados()
+        self.eventos = eventos.Eventos(self)
         self.escenas = escenas.Escenas(self)
         self.imagenes = imagenes.Imagenes(self)
         self.utils = utils.Utils(self)
