@@ -13,7 +13,7 @@ import pilas
 import random
 
 try:
-    import Box2D as box2d
+    import Box2D_23 as box2d
     contact_listener = box2d.b2ContactListener
     __enabled__ = True
 except ImportError:
