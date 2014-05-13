@@ -380,13 +380,16 @@
            <item>
             <widget class="QPushButton" name="boton_abrir">
              <property name="enabled">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
              <property name="maximumSize">
               <size>
                <width>20</width>
                <height>20</height>
               </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="text">
               <string>A</string>
@@ -399,13 +402,16 @@
            <item>
             <widget class="QPushButton" name="boton_guardar">
              <property name="enabled">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
              <property name="maximumSize">
               <size>
                <width>20</width>
                <height>20</height>
               </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="text">
               <string>G</string>

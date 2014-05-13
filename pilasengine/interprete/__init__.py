@@ -44,15 +44,18 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self._conectar_botones_del_editor()
         self._conectar_observadores_splitters()
 
+    def consultar_si_quiere_perder_cambios(self):
+        titulo = u"¿Quieres salir?"
+        aviso = u"Se perderán los cambios sin guardar... ¿Quieres perder los cambios del editor realmente?"
+        return self._consultar(self.main, titulo, aviso)
+
     def on_close_event(self, evento):
 
         if not self.editor.tiene_cambios_sin_guardar():
             evento.accept()
             return
 
-        consulta = self._consultar(self.main,
-                                   u"¿Quieres salir?",
-                                   u"Se perderán los cambios sin guardar... ¿Quieres salir realmente?")
+        consulta = self.consultar_si_quiere_perder_cambios()
 
         if consulta:
             evento.accept()
@@ -83,13 +86,13 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
         # Botón del guardar
         self.definir_icono(self.boton_guardar, 'iconos/guardar.png')
-        #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
+        self.boton_guardar.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
 
         self.definir_icono(self.boton_ejecutar, 'iconos/ejecutar.png')
         #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
 
         self.definir_icono(self.boton_abrir, 'iconos/abrir.png')
-        #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
+        self.boton_abrir.connect(self.boton_abrir, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_abrir)
 
         # Botón del guardar
         self.definir_icono(self.guardar_button, 'iconos/guardar.png')
@@ -183,8 +186,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.splitter.setSizes([300, 0])
 
     def cuando_pulsa_el_boton_ejecutar(self):
-        texto = unicode(self.editor.document().toPlainText())
-        self.ejecutar_codigo_como_string(texto)
+        self.editor.ejecutar()
 
     def pulsa_boton_depuracion(self):
         pilas = self.scope['pilas']
@@ -228,7 +230,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         return scope
 
     def _insertar_editor(self, fuente, scope):
-        componente = editor.Editor(scope)
+        componente = editor.Editor(self.main, scope, self)
         componente.definir_fuente(fuente)
         self.editor_placeholder.addWidget(componente)
         self.editor_placeholder.setCurrentWidget(componente)
@@ -252,8 +254,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.consola = consola
         self.consola.text_edit.setFocus()
 
+    def cuando_pulsa_el_boton_abrir(self):
+        self.editor.abrir_con_dialogo()
+
     def cuando_pulsa_el_boton_guardar(self):
-        self.consola.text_edit.guardar_contenido_con_dialogo()
+        self.editor.guardar_con_dialogo()
 
     def ejecutar_y_reiniciar_si_cambia(self, archivo):
         self.watcher_ultima_invocacion = time.time() - 500
@@ -286,6 +291,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         contenido = re.sub('coding\s*:\s*', '', contenido)      # elimina cabecera de encoding.
         contenido = contenido.replace('import pilasengine', '')
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
+
         self.consola.ejecutar(contenido)
         scope_nuevo = self.consola.obtener_scope()
         self.editor.actualizar_scope(scope_nuevo)

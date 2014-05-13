@@ -85,6 +85,10 @@ div.contenedor_ejemplo a {
     text-decoration: none;
 }
 
+div.contenedor_ejemplo a:hover {
+    color: black;
+}
+
 span.nombre {
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
@@ -97,6 +101,7 @@ span.nombre {
     width: 128px;
     display: block;
     opacity: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
 }
 
 span.nombre:hover {

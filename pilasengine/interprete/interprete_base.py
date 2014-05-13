@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Sun May 11 23:32:22 2014
+# Created: Tue May 13 01:40:19 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -169,14 +169,16 @@ class Ui_InterpreteWindow(object):
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.boton_abrir = QtGui.QPushButton(self.layoutWidget2)
-        self.boton_abrir.setEnabled(False)
+        self.boton_abrir.setEnabled(True)
         self.boton_abrir.setMaximumSize(QtCore.QSize(20, 20))
+        self.boton_abrir.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.boton_abrir.setFlat(True)
         self.boton_abrir.setObjectName(_fromUtf8("boton_abrir"))
         self.horizontalLayout.addWidget(self.boton_abrir)
         self.boton_guardar = QtGui.QPushButton(self.layoutWidget2)
-        self.boton_guardar.setEnabled(False)
+        self.boton_guardar.setEnabled(True)
         self.boton_guardar.setMaximumSize(QtCore.QSize(20, 20))
+        self.boton_guardar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.boton_guardar.setFlat(True)
         self.boton_guardar.setObjectName(_fromUtf8("boton_guardar"))
         self.horizontalLayout.addWidget(self.boton_guardar)
