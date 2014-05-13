@@ -1,9 +1,10 @@
-pilas (0.84.3-1) UNRELEASED; urgency=low
+pilas (0.84.3-2) UNRELEASED; urgency=low
 
   * Archivo desktop.
   * Modificaciones en setup.py
+  * Dependencia por Box2D_23 para Lihuen.
 
- -- Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Mon, 05 May 2014 17:31:24 -0300
+ -- Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Tue, 13 May 2014 18:22:38 -0300
 
 pilas (0.84.3) unstable; urgency=low
 
