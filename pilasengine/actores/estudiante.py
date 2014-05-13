@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import inspect
 
-from pilasengine.habilidades import ProxyHabilidades
+from pilasengine import habilidades
 from pilasengine.habilidades import habilidad
 
 class Estudiante(object):
@@ -13,7 +13,7 @@ class Estudiante(object):
         self.comportamiento_actual = None
         self.comportamientos = []
         self.repetir_comportamientos_por_siempre = False
-        self.habilidades = ProxyHabilidades(self._habilidades)
+        self.habilidades = habilidades.ProxyHabilidades(self._habilidades)
 
     def aprender(self, classname, *k, **w):
         """Comienza a realizar una habilidad indicada por parametros.
@@ -25,7 +25,7 @@ class Estudiante(object):
         if inspect.isclass(classname):
             if issubclass(classname, habilidad.Habilidad):
                 _habilidad = classname(self.pilas)
-            else:
+            else:   
                 raise Exception('El actor solo puede aprender clases que hereden de pilasengine.habilidades.Habilidad')
         else:
             _habilidad = classname()
