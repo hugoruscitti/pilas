@@ -37,5 +37,25 @@ class TestHabilidades(unittest.TestCase):
 		actor.habilidades.Habilidad.eliminar()
 		self.assertEquals(actor._habilidades, list(), 'Puede eliminar habilidad')
 
+	def testPuedeCrearHabilidadPersonalizada(self):
+		class MiHabilidad(pilasengine.habilidades.Habilidad):
+			def actualizar(self):
+				pass
+
+		actor = self.pilas.actores.Aceituna()
+		actor.aprender(MiHabilidad)
+
+		self.assertEquals(1, len(actor._habilidades), 'Pude aprender habilidad personalizada')
+
+		def crear_habilidad_incorrectamente():
+			class MiHabilidad():
+				def actualizar(self):
+					pass
+
+			actor = self.pilas.actores.Aceituna()
+			actor.aprender(MiHabilidad)			
+
+		self.assertRaises(Exception, crear_habilidad_incorrectamente)			
+
 if __name__ == '__main__':
 	unittest.main()		

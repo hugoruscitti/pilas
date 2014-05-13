@@ -2,7 +2,7 @@
 import inspect
 
 from pilasengine.habilidades import ProxyHabilidades
-from pilasengine.habilidades.habilidad import Habilidad
+from pilasengine.habilidades import habilidad
 
 class Estudiante(object):
     """Componente que permite a los actores aprender habilidades o realizar comportamientos."""
@@ -23,15 +23,17 @@ class Estudiante(object):
 
         # Instanciando habilidad para comprobar si el actor la tiene asignada
         if inspect.isclass(classname):
-            # Comprobando si la habilidad es una clase (habilidades personalizadas)
-            habilidad = classname(self.pilas)
+            if issubclass(classname, habilidad.Habilidad):
+                _habilidad = classname(self.pilas)
+            else:
+                raise Exception('El actor solo puede aprender clases que hereden de pilasengine.habilidades.Habilidad')
         else:
-            habilidad = classname() 
+            _habilidad = classname()
 
-        if self.tiene_habilidad(habilidad):
-            self.eliminar_habilidad(habilidad)
+        if self.tiene_habilidad(_habilidad):
+            self.eliminar_habilidad(_habilidad)
         
-        self.agregar_habilidad(habilidad, *k, **w)
+        self.agregar_habilidad(_habilidad, *k, **w)
 
     def agregar_habilidad(self, habilidad, *k, **w):
         """Agrega una habilidad a la lista de cosas que puede hacer un actor.
