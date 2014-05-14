@@ -2,7 +2,6 @@ import camara
 from pilasengine.actores import grupo
 from pilasengine.utils import pitweener
 
-
 class Escena(object):
 
     def __init__(self, pilas):
@@ -13,8 +12,12 @@ class Escena(object):
         self._actores = grupo.Grupo(pilas)
         self.grupos = []
 
-        self.pulsa_tecla = self.pilas.eventos.Evento('pulsa_tecla')                 # ['codigo', 'texto']
-        self.suelta_tecla = self.pilas.eventos.Evento('suelta_tecla')               # ['codigo', 'texto']
+        self.mueve_mouse = self.pilas.eventos.Evento('mueve_mouse')         # ['x', 'y', 'dx', 'dy']
+        self.click_de_mouse = self.pilas.eventos.Evento('click_de_mouse')   # ['boton', 'x', 'y']
+        self.termina_click = self.pilas.eventos.Evento('termina_click')     # ['boton', 'x', 'y']
+        self.mueve_rueda = self.pilas.eventos.Evento('mueve_rueda')         # ['delta']
+        self.pulsa_tecla = self.pilas.eventos.Evento('pulsa_tecla')         # ['codigo', 'texto']
+        self.suelta_tecla = self.pilas.eventos.Evento('suelta_tecla')       # ['codigo', 'texto']
 
         self.control = self.pilas.control.Control(self)
 
