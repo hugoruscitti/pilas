@@ -32,6 +32,12 @@ class Habilidades(object):
 	def AumentarConRueda(self):
 		return self._crear_habilidad('aumentar_con_rueda', 'AumentarConRueda')
 
+	def SeguirClicks(self):
+		return self._crear_habilidad('seguir_clicks', 'SeguirClicks')
+
+	def SeguirAlMouse(self):
+		return self._crear_habilidad('seguir_al_mouse', 'SeguirAlMouse')
+
 	def _crear_habilidad(self, modulo, clase):
 		import importlib
 
