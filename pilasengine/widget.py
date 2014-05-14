@@ -107,7 +107,7 @@ class BaseWidget(QGLWidget):
         self.pilas.eventos.termina_click.emitir(boton=event.button(), x=x, y=y)
 
     def wheelEvent(self, event):
-        self.pilas.escena_actual().mueve_rueda.emitir(delta=evento.delta() / 120)
+        self.pilas.escena_actual().mueve_rueda.emitir(delta=event.delta() / 120)
 
     def mouseMoveEvent(self, event):
         x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala, 
