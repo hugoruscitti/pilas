@@ -6,13 +6,13 @@ from pilasengine.controles import simbolos
 from pilasengine.controles import control
 
 class Controles(object):
-      def __init__(self, pilas):
-            self.pilas = pilas
+    def __init__(self, pilas):
+        self.pilas = pilas
 
-      def Control(self, escena, mapa_teclado=None):
-            return control.Control(escena, mapa_teclado)
-            
-      def _obtener_codigo_de_tecla_normalizado(self, tecla_qt):
+    def Control(self, escena, mapa_teclado=None):
+        return control.Control(escena, mapa_teclado)
+
+    def _obtener_codigo_de_tecla_normalizado(self, tecla_qt):
         teclas = {
             QtCore.Qt.Key_Left: simbolos.IZQUIERDA,
             QtCore.Qt.Key_Right: simbolos.DERECHA,
