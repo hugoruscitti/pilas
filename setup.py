@@ -26,7 +26,10 @@ verificar_submodulos()
 try:
     import Box2D_23
 except ImportError:
-    error("box2d", "http://code.google.com/p/pybox2d")
+    try:
+        import Box2D
+    except ImportError:
+        error("box2d", "http://code.google.com/p/pybox2d")
 
 
 setup(
