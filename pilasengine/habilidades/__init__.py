@@ -26,6 +26,9 @@ class Habilidades(object):
 	def SiempreEnElCentro(self):
 		return self._crear_habilidad('siempre_en_el_centro', 'SiempreEnElCentro')
 
+	def Arrastrable(self):
+		return self._crear_habilidad('arrastrable', 'Arrastrable')
+
 	def _crear_habilidad(self, modulo, clase):
 		import importlib
 
