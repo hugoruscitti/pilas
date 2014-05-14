@@ -66,6 +66,11 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         self.setUndoRedoEnabled(False)
         self.setContextMenuPolicy(Qt.NoContextMenu)
 
+
+        self.timer_cursor = QTimer()
+        self.timer_cursor.start(1000)
+        self.timer_cursor.timeout.connect(self.marker_si_es_necesario)
+
     def funcion_valores_autocompletado(self, texto):
         scope = self.interpreterLocals
         texto = texto.replace('(', ' ').split(' ')[-1]
@@ -419,3 +424,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         texto = texto.replace(u'‥ ', '')
         texto = texto.replace(u'» ', '')
         return texto
+
+    def marker_si_es_necesario(self):
+        line = unicode(self.document().lastBlock().text())
+        if not line.startswith(u'» '):
+            self.marker()
