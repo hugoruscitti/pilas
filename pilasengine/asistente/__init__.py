@@ -81,11 +81,13 @@ class VentanaAsistente(Base):
 
         self.webView.setAcceptDrops(False)
         self._deshabilitar_barras_de_scroll()
+
         #self.statusbar.showMessage(u"Versión " + pilas.version())
         #self.salir_action.connect(self.salir_action, QtCore.SIGNAL("triggered()"), self.salir)
         #self._consultar_ultima_version_del_servidor()
         #self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
         #self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_proceso)
+
         self.webView.history().setMaximumItemCount(0)
         self.webView.setAcceptDrops(True)
 

@@ -36,6 +36,7 @@ class Pilas(object):
 
     def __init__(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
         """Inicializa el area de juego con una configuración inicial."""
+        self._iniciado_desde_asistente = False
 
         if QtGui.QApplication.instance():
             self.app = QtGui.QApplication.instance()
@@ -70,16 +71,21 @@ class Pilas(object):
 
         es_reinicio = self.widget != None
 
-        if es_reinicio:
-            parent = self._eliminar_el_anterior_widget()
+        if not self._iniciado_desde_asistente:
+            if es_reinicio:
+                parent = self._eliminar_el_anterior_widget()
 
         if con_aceleracion:
             self.widget = widget.WidgetConAceleracion(self, ancho, alto)
         else:
             self.widget = widget.WidgetSinAceleracion(self, ancho, alto)
 
-        if es_reinicio:
-            self._vincular_el_nuevo_widget(parent)
+        if not self._iniciado_desde_asistente:
+            if es_reinicio:
+                self._vincular_el_nuevo_widget(parent)
+
+    def definir_iniciado_desde_asistente(self, estado):
+        self._iniciado_desde_asistente = estado
 
     def _eliminar_el_anterior_widget(self):
         """Quita de la ventana el widget utilizado anteriorente.
@@ -87,8 +93,10 @@ class Pilas(object):
         Este método se suele utilizar cuando se cambia de resolución
         de pantalla o se re-inicia pilas completamente."""
         parent = self.widget.parent()
+
         if parent:
             parent.layout().removeWidget(self.widget)
+
         self.widget.setParent(None)
         return parent
 
@@ -182,8 +190,9 @@ class Pilas(object):
 
     def ejecutar(self):
         "Muestra la ventana y mantiene el programa en ejecución."
-        self.widget.show()
-        self.widget.raise_()
+        if not self._iniciado_desde_asistente:
+            self.widget.show()
+            self.widget.raise_()
 
         # Inicializa el bucle de pyqt solo si es necesario.
         if self._necesita_ejecutar_loop:

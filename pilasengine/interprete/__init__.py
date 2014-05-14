@@ -215,6 +215,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def _insertar_ventana_principal_de_pilas(self):
         pilas = pilasengine.iniciar(640, 400)
+        pilas.definir_iniciado_desde_asistente(True)
+
         aceituna = pilas.actores.Aceituna()
         scope = {'pilas': pilas,
                  'aceituna': aceituna,
@@ -224,10 +226,40 @@ class VentanaInterprete(Ui_InterpreteWindow):
         ventana = pilas.obtener_widget()
 
         ventana.setFocusPolicy(QtCore.Qt.ClickFocus)
+
+        self.cargando = QtGui.QLabel("Cargando ...")
+        self.cargando.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+        self.canvas.addWidget(self.cargando)
+        self.canvas.setCurrentWidget(self.cargando)
+
+        self.ventana_pilas = ventana
         self.canvas.setFocus()
         self.canvas.addWidget(ventana)
-        self.canvas.setCurrentWidget(ventana)
+        self.stimer = QtCore.QTimer()
+        self.stimer.singleShot(500, self._mostrar_ventana_de_pilas)
+
         return scope
+
+    def mostrar_mensaje_cargando(self):
+        self.canvas.setCurrentWidget(self.cargando)
+
+    def reinsertar_widget_de_pilas(self, widget):
+        self.ventana_pilas = widget
+        self.canvas.setFocus()
+        self.canvas.addWidget(widget)
+
+        # Se asegura de mostrar la ventana de pilas luego de 1/2 segundo.
+        if getattr(self, 'stimer', None):
+            self.stimer.stop()
+            self.stimer.deleteLater()
+
+        self.stimer = QtCore.QTimer()
+        self.stimer.timeout.connect(self._mostrar_ventana_de_pilas)
+        self.stimer.setSingleShot(True)
+        self.stimer.start(300)
+
+    def _mostrar_ventana_de_pilas(self):
+        self.canvas.setCurrentWidget(self.ventana_pilas)
 
     def _insertar_editor(self, fuente, scope):
         componente = editor.Editor(self.main, scope, self)
@@ -253,6 +285,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.console.setCurrentWidget(consola)
         self.consola = consola
         self.consola.text_edit.setFocus()
+
 
     def cuando_pulsa_el_boton_abrir(self):
         self.editor.abrir_con_dialogo()
@@ -295,6 +328,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.consola.ejecutar(contenido)
         scope_nuevo = self.consola.obtener_scope()
         self.editor.actualizar_scope(scope_nuevo)
+        widget = scope_nuevo['pilas'].widget
+        self.mostrar_mensaje_cargando()
+        self.reinsertar_widget_de_pilas(widget)
 
 
 def abrir():
