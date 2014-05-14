@@ -391,6 +391,9 @@
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
+             <property name="toolTip">
+              <string>Abrir archivo</string>
+             </property>
              <property name="text">
               <string>A</string>
              </property>
@@ -413,6 +416,9 @@
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
+             <property name="toolTip">
+              <string>Guardar código en un archivo</string>
+             </property>
              <property name="text">
               <string>G</string>
              </property>
@@ -431,6 +437,9 @@
              </property>
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="toolTip">
+              <string>Ejecutar el código actual (F5 o CTRL+R)</string>
              </property>
              <property name="text">
               <string>E</string>

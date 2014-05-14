@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Tue May 13 01:40:19 2014
+# Created: Wed May 14 07:17:31 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -238,8 +238,11 @@ class Ui_InterpreteWindow(object):
         self.pushButton_2.setText(_translate("InterpreteWindow", "F11", None))
         self.pushButton.setToolTip(_translate("InterpreteWindow", "Mostrar posiciones", None))
         self.pushButton.setText(_translate("InterpreteWindow", "F12", None))
+        self.boton_abrir.setToolTip(_translate("InterpreteWindow", "Abrir archivo", None))
         self.boton_abrir.setText(_translate("InterpreteWindow", "A", None))
+        self.boton_guardar.setToolTip(_translate("InterpreteWindow", "Guardar código en un archivo", None))
         self.boton_guardar.setText(_translate("InterpreteWindow", "G", None))
+        self.boton_ejecutar.setToolTip(_translate("InterpreteWindow", "Ejecutar el código actual (F5 o CTRL+R)", None))
         self.boton_ejecutar.setText(_translate("InterpreteWindow", "E", None))
         self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 

@@ -21,6 +21,15 @@ class VentanaInterprete(Ui_InterpreteWindow):
         Ui_InterpreteWindow.setupUi(self, main)
         main.closeEvent = self.on_close_event
         self.iniciar_interfaz()
+        self._vincular_atajos_de_teclado()
+
+    def _vincular_atajos_de_teclado(self):
+        QtGui.QShortcut(QtGui.QKeySequence("F5"), self.main, self.cuando_pulsa_el_boton_ejecutar)
+        QtGui.QShortcut(QtGui.QKeySequence("Ctrl+r"), self.main, self.cuando_pulsa_el_boton_ejecutar)
+
+        # Solo en MacOS informa que la tecla Command sustituye a CTRL.
+        if sys.platform == 'darwin':
+            self.boton_ejecutar.setToolTip(u"Ejecutar el código actual (F5 o ⌘R)")
 
     def iniciar_interfaz(self):
         self.scope = self._insertar_ventana_principal_de_pilas()
