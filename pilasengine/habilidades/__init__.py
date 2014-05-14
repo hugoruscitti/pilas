@@ -29,6 +29,9 @@ class Habilidades(object):
 	def Arrastrable(self):
 		return self._crear_habilidad('arrastrable', 'Arrastrable')
 
+	def AumentarConRueda(self):
+		return self._crear_habilidad('aumentar_con_rueda', 'AumentarConRueda')
+
 	def _crear_habilidad(self, modulo, clase):
 		import importlib
 
