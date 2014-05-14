@@ -38,6 +38,9 @@ class Habilidades(object):
 	def SeguirAlMouse(self):
 		return self._crear_habilidad('seguir_al_mouse', 'SeguirAlMouse')
 
+	def SeMantieneEnPantalla(self):
+		return self._crear_habilidad('se_mantiene_en_pantalla', 'SeMantieneEnPantalla')
+
 	def _crear_habilidad(self, modulo, clase):
 		import importlib
 
