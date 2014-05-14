@@ -21,7 +21,7 @@ class Eventos(object):
 
     """
     def __init__(self, pilas):
-		self.pilas = pilas
+        self.pilas = pilas
 
     @property
     def click_de_mouse(self):

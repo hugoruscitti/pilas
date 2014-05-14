@@ -16,6 +16,7 @@ from pilasengine import musica
 from pilasengine import sonidos
 from pilasengine import habilidades
 from pilasengine import eventos
+from pilasengine import controles
 
 import widget
 
@@ -56,6 +57,7 @@ class Pilas(object):
         self.actores = actores.Actores(self)
         self.actores.eliminar_actores_personalizados()
         self.eventos = eventos.Eventos(self)
+        self.control = controles.Controles(self)
         self.escenas = escenas.Escenas(self)
         self.imagenes = imagenes.Imagenes(self)
         self.utils = utils.Utils(self)
