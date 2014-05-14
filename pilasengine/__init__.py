@@ -127,6 +127,17 @@ class Pilas(object):
         """Retorna el centro de la ventana en pixels."""
         return self.widget.obtener_centro_fisico()
 
+    def obtener_coordenada_de_pantalla_relativa(self, x, y):
+        """Convierte una coordenada pantalla en una coordenada de común.
+
+        Las coordenadas comunes son las que utilizamos en pilas, donde
+        el centro de pantalla es el punto (0, 0). Las coordenadas
+        de pantalla, en cambio, son las que tienen como punto (0, 0)
+        la esquina superir izquierda de la pantalla.
+        """
+        dx, dy = self.widget.obtener_centro_fisico()
+        return (x - dx, (y - dy)*-1)       
+
     def obtener_coordenada_de_pantalla_absoluta(self, x, y):
         """Convierte una coordenada común en una coordenada de pantalla.
 

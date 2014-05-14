@@ -94,6 +94,33 @@ class BaseWidget(QGLWidget):
         self.pilas.eventos.suelta_tecla.emitir(codigo=codigo_de_tecla, 
                                                 es_repeticion=event.isAutoRepeat(), texto=event.text())
 
+    def mousePressEvent(self, event):
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala, 
+                                                                    event.pos().y()/self.escala)
+
+        self.pilas.eventos.click_de_mouse.emitir(boton=event.button(), x=x, y=y)
+
+    def mouseReleaseEvent(self, event):
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala, 
+                                                                    event.pos().y()/self.escala)
+
+        self.pilas.eventos.termina_click.emitir(boton=event.button(), x=x, y=y)
+
+    def wheelEvent(self, event):
+        self.pilas.escena_actual().mueve_rueda.emitir(delta=evento.delta() / 120)
+
+    def mouseMoveEvent(self, event):
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala, 
+                                                                    event.pos().y()/self.escala)
+        
+        dx = x - self.mouse_x
+        dy = y - self.mouse_y
+
+        self.pilas.eventos.mueve_mouse.emitir(x=x, y=y, dx=dx, dy=dy)
+
+        self.mouse_x = x
+        self.mouse_y = y
+
     def _pintar_fondo(self):
         self.painter.setBrush(QtGui.QColor(200, 200, 200))
         size = self.size()
