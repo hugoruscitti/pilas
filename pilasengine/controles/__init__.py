@@ -6,6 +6,7 @@ from pilasengine.controles import simbolos
 from pilasengine.controles import control
 
 class Controles(object):
+
     def __init__(self, pilas):
         self.pilas = pilas
 

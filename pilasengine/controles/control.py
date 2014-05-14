@@ -50,16 +50,16 @@ class Control(object):
     arriba, abajo y boton.
     Con las constantes de pilas.simbolos, puedes asignar una tecla a cada una
     de las entradas del diccionario.
-    
-    
+
+
     >>>    teclas = {pilas.simbolos.a: 'izquierda',
                               pilas.simbolos.d: 'derecha',
                               pilas.simbolos.w: 'arriba',
                               pilas.simbolos.s: 'abajo',
                               pilas.simbolos.ESPACIO: 'boton'}
-                
+
     >>>    mi_control = pilas.control.Control(pilas.escena_actual(), teclas)
-    
+
 
     Consultando controles desde un actor:
 
@@ -90,7 +90,7 @@ class Control(object):
 
         escena.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
         escena.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
-        
+
         if mapa_teclado is None:
             self.mapa_teclado = {simbolos.IZQUIERDA: 'izquierda',
                                   simbolos.DERECHA: 'derecha',

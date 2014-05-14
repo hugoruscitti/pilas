@@ -136,7 +136,7 @@ class Pilas(object):
         la esquina superir izquierda de la pantalla.
         """
         dx, dy = self.widget.obtener_centro_fisico()
-        return (x - dx, (y - dy)*-1)       
+        return (x - dx, (y - dy)*-1)
 
     def obtener_coordenada_de_pantalla_absoluta(self, x, y):
         """Convierte una coordenada común en una coordenada de pantalla.
@@ -167,6 +167,15 @@ class Pilas(object):
     def realizar_actualizacion_logica(self):
         "Realiza la etapa de actualización lógica."
         self.escenas.realizar_actualizacion_logica()
+
+    def simular_actualizacion_logica(self):
+        """Realiza un TICK o actualización forzada de lógica.
+
+        Este método es casi interno, se llama desde la batería de tests,
+        donde no podemos ejecutar pilas de manera tradicional, con una
+        ventana o una llamada a pilas.ejecutar.
+        """
+        self.escenas.simular_actualizacion_logica()
 
     def realizar_dibujado(self, painter):
         "Realiza la etapa de actualización gráfica."

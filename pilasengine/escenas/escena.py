@@ -28,10 +28,10 @@ class Escena(object):
         pass
 
     def terminar(self):
-        pass        
+        pass
 
-    def actualizar_interpolaciones(self):
-        self.tweener.update()
+    def actualizar_interpolaciones(self, tiempo_desde_ultima_actualizacion=None):
+        self.tweener.update(tiempo_desde_ultima_actualizacion)
 
     def actualizar_actores(self):
         for x in self._actores.obtener_actores():

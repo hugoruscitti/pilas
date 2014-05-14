@@ -85,6 +85,17 @@ class TestActores(unittest.TestCase):
 
         self.assertRaises(Exception, crear_actor_que_existe)
 
+    def testRealizaMovimientoConInterpolacion(self):
+        aceituna = self.pilas.actores.Aceituna()
+
+        self.assertEqual(0, aceituna.x, "Comienza en el punto (0, 0)")
+        aceituna.x = [100], 1
+
+        # Simula que pasaron 60 ticks (osea 1 segundo).
+        for x in range(60):
+            self.pilas.simular_actualizacion_logica()
+
+        self.assertEqual(100.0, aceituna.x, "Luego de 60 ticks (1 segundo) llegó a x=100")
 
 if __name__ == '__main__':
     unittest.main()

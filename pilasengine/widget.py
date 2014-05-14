@@ -85,23 +85,23 @@ class BaseWidget(QGLWidget):
     def keyPressEvent(self, event):
         codigo_de_tecla = self.pilas.control._obtener_codigo_de_tecla_normalizado(event.key())
 
-        self.pilas.eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla, 
+        self.pilas.eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla,
                                                 es_repeticion=event.isAutoRepeat(), texto=event.text())
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self.pilas.control._obtener_codigo_de_tecla_normalizado(event.key())
 
-        self.pilas.eventos.suelta_tecla.emitir(codigo=codigo_de_tecla, 
+        self.pilas.eventos.suelta_tecla.emitir(codigo=codigo_de_tecla,
                                                 es_repeticion=event.isAutoRepeat(), texto=event.text())
 
     def mousePressEvent(self, event):
-        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala, 
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala,
                                                                     event.pos().y()/self.escala)
 
         self.pilas.eventos.click_de_mouse.emitir(boton=event.button(), x=x, y=y)
 
     def mouseReleaseEvent(self, event):
-        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala, 
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala,
                                                                     event.pos().y()/self.escala)
 
         self.pilas.eventos.termina_click.emitir(boton=event.button(), x=x, y=y)
@@ -110,9 +110,9 @@ class BaseWidget(QGLWidget):
         self.pilas.escena_actual().mueve_rueda.emitir(delta=event.delta() / 120)
 
     def mouseMoveEvent(self, event):
-        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala, 
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala,
                                                                     event.pos().y()/self.escala)
-        
+
         dx = x - self.mouse_x
         dy = y - self.mouse_y
 
