@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 
 import weakref
-import new
+import types
 import inspect
 
 class Evento():
-    """Representa un evento, el cual puede conectar,desconectar 
+    """Representa un evento, el cual puede conectar,desconectar
     y emitir funciones o métodos"""
 
     def __init__(self, nombre):
@@ -140,7 +140,7 @@ class ProxyMetodo(object):
         if self.inst is not None and self.inst() is None:
             raise ReferenceError("El metodo ha dejado de existir")
         elif self.inst is not None:
-            mtd = new.instancemethod(self.func, self.inst(), self.klass)
+            mtd = types.MethodType(self.func, self.inst)
         else:
             mtd = self.func
 
