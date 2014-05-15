@@ -130,6 +130,9 @@ class Actores(object):
     def Banana(self, x=0, y=0):
         return self._crear_actor('banana', 'Banana', x=x, y=y)
 
+    def Bomba(self, x=0, y=0):
+        return self._crear_actor('bomba', 'Bomba', x=x, y=y)
+
     def Texto(self, cadena_de_texto="Sin texto", magnitud=20, vertical=False,
               fuente=None, fijo=True, ancho=0, x=0, y=0):
         import texto
