@@ -15,6 +15,7 @@ all:
 	@echo ""
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
 	@echo "  $(V)distmac$(N)     Genera la versión compilada para macos."
+	@echo "  $(V)distwin$(N)     Genera la versión compilada para windows."
 	@echo ""
 
 actualizar:
@@ -50,3 +51,32 @@ distmac: clean
 
 rm_pyc: clean
 	find . -name "*.pyc" -exec rm -rf {} \;
+
+
+distwin:
+	clear
+	git submodule update --init
+	git pull
+
+	echo "Compilando pilas ..."
+	/C/Python27/python.exe setup.py build > pilas_build.log
+
+	echo "Instalando..."
+	/C/Python27/python.exe setup.py install -f > pilas_install.lo
+
+	echo "Generando el cargador"
+	cd extras/cargador_windows/ && \
+	rm -r -f build && \
+	rm -r -f pilasengine && \
+	python setup.py build > pilas_compilacion.log && \
+	mv build/exe.win32-2.7/ pilasengine && \
+	rmdir build && \
+	echo "Regresa al directorio principal."
+	
+	echo "Copia el resto de los archivos para el cargador:"
+	cp bin/pilas.py extras/cargador_windows/pilasengine/ejecutar.py
+	cp -R data extras/cargador_windows/pilasengine/
+	cp -R pilasengine extras/cargador_windows/pilasengine/
+	cp extras/cargador_windows/pilas.ico extras/cargador_windows/pilasengine
+
+	explorer.exe "extras\cargador_windows"
