@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import sys
 from PyQt4 import QtGui
+from PyQt4 import QtCore
 from PyQt4.QtOpenGL import QGLWidget
 
 import fps
@@ -84,6 +85,9 @@ class BaseWidget(object):
 
     def keyPressEvent(self, event):
         codigo_de_tecla = self.pilas.control._obtener_codigo_de_tecla_normalizado(event.key())
+
+        if event.key() == QtCore.Qt.Key_Escape:
+            self.pilas.eventos.pulsa_tecla_escape.emitir()
 
         self.pilas.eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla,
                                                 es_repeticion=event.isAutoRepeat(), texto=event.text())

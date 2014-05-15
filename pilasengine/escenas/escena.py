@@ -18,6 +18,7 @@ class Escena(object):
         self.mueve_rueda = self.pilas.eventos.Evento('mueve_rueda')         # ['delta']
         self.pulsa_tecla = self.pilas.eventos.Evento('pulsa_tecla')         # ['codigo', 'texto']
         self.suelta_tecla = self.pilas.eventos.Evento('suelta_tecla')       # ['codigo', 'texto']
+        self.pulsa_tecla_escape = self.pilas.eventos.Evento('pulsa_tecla_escape') #['']
 
         self.control = self.pilas.control.Control(self)
 
