@@ -104,13 +104,13 @@ class Actores(object):
     def Palo(self):
         return self._crear_actor('palo', 'Palo')
 
-    def _crear_actor(self, modulo, clase):
+    def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
 
         referencia_a_modulo = importlib.import_module('pilasengine.actores.' + modulo)
         referencia_a_clase = getattr(referencia_a_modulo, clase)
 
-        nuevo_actor = referencia_a_clase(self.pilas)
+        nuevo_actor = referencia_a_clase(self.pilas, *k, **kw)
         # Importante: cuando se inicializa el actor, el método __init__
         #             realiza una llamada a pilas.actores.agregar_actor
         #             para vincular el actor a la escena.
@@ -118,6 +118,9 @@ class Actores(object):
 
     def MensajeError(self, error):
         return self._crear_actor('mensaje_error', 'MensajeError')
+
+    def Animacion(self, grilla, ciclica=False, x=0, y=0, velocidad=10):
+        return self._crear_actor('animacion', 'Animacion', grilla=grilla, ciclica=ciclica, x=x, y=y, velocidad=velocidad)
 
     def Grupo(self):
         import grupo

@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
-# Permite que este ejemplo funcion incluso si no has instalado pilas.
 import sys
-sys.path.insert(0, "..")
-import pilas
+sys.path.append('.')
+import pilasengine
 
-pilas.iniciar()
+pilas = pilasengine.iniciar()
 
 grilla = pilas.imagenes.cargar_grilla("explosion.png", 7)
 animacion = pilas.actores.Animacion(grilla, True, velocidad=1)
 
+"""
 texto = pilas.actores.Texto("1 cuadro por segundo", x=100, y=80, magnitud=10)
 texto.color = pilas.colores.negro
 
@@ -23,4 +23,5 @@ barra.conectar(cambia_velocidad)
 
 
 pilas.avisar("Usa la barra para modificar la velocidad de la animacion.")
+"""
 pilas.ejecutar()
