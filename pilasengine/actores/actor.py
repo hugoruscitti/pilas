@@ -65,7 +65,7 @@ class Actor(Estudiante):
         >>> invisible = pilas.actores.Actor('invisible.png')
     """
 
-    def __init__(self, pilas=None):
+    def __init__(self, pilas=None, x=0, y=0):
         if not pilas:
             raise Exception("Tienes que vincular al actor antes con 'pilas.actores.vincular(MiActor)'")
 
@@ -83,6 +83,9 @@ class Actor(Estudiante):
         self._callback_cuando_mueve_mouse = set()
         self._grupos_a_los_que_pertenece = []
         self._actores = []
+
+        self.x = x
+        self.y = y
 
         # Vincula el actor con la escena actual.
         pilas.actores.agregar_actor(self)
