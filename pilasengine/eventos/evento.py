@@ -140,7 +140,7 @@ class ProxyMetodo(object):
         if self.inst is not None and self.inst() is None:
             raise ReferenceError("El metodo ha dejado de existir")
         elif self.inst is not None:
-            mtd = types.MethodType(self.func, self.inst)
+            mtd = types.MethodType(self.func, self.inst())
         else:
             mtd = self.func
 
