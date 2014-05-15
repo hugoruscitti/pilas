@@ -57,11 +57,6 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
 
     $scope.data.ejemplos = [
         {
-            titulo: "Animacion con velocidad",
-            nick: 'animacion_con_velocidad',
-            tags: ['animaciones', 'velocidad']
-        },
-        {
             titulo: "Muchos actores",
             nick: 'muchos_actores',
             tags: ['camara', 'rotacion']

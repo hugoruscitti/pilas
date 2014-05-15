@@ -8,6 +8,7 @@ import pygame
 
 from pilasengine import escenas
 from pilasengine import imagenes
+from pilasengine import colores
 from pilasengine import actores
 from pilasengine import utils
 from pilasengine import fondos
@@ -62,6 +63,7 @@ class Pilas(object):
         self.imagenes = imagenes.Imagenes(self)
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)
+        self.colores = colores
 
         if not getattr(self, 'depurador', None):
             self.depurador = depurador.Depurador(self)
