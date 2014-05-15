@@ -133,6 +133,12 @@ class Actores(object):
     def Bomba(self, x=0, y=0):
         return self._crear_actor('bomba', 'Bomba', x=x, y=y)
 
+    def Explosion(self, x=0, y=0):
+        return self._crear_actor('explosion', 'Explosion', x=x, y=y)
+
+    def Estrella(self, x=0, y=0):
+        return self._crear_actor('estrella', 'Estrella', x=x, y=y)
+
     def Texto(self, cadena_de_texto="Sin texto", magnitud=20, vertical=False,
               fuente=None, fijo=True, ancho=0, x=0, y=0):
         import texto

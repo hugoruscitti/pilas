@@ -22,7 +22,7 @@ class Animacion(Animado):
         .. image:: images/actores/explosion.png
     """
 
-    def __init__(self, pilas, grilla, ciclica, x, y, velocidad):
+    def __init__(self, pilas, grilla, ciclica=False, x=0, y=0, velocidad=10):
         """ Constructor de la Animación.
 
         :param grilla: Grilla de imagenes obtenida mediante pilas.imagenes.cargar_grilla()
