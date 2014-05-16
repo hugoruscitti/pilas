@@ -111,7 +111,7 @@ class Eventos(object):
     @property
     def actualizar(self):
         """Se invoca regularmente, 60 veces por segundo."""
-        return self.pilas.escena_actual().actualizar
+        return self.pilas.escena_actual().cuando_actualiza
 
     @property
     def log(self):
