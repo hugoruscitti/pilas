@@ -164,6 +164,12 @@ class Actores(object):
     def Ovni(self, x=0, y=0):
         return self._crear_actor('ovni', 'Ovni', x=x, y=y)
 
+    def Nave(self, x=0, y=0):
+        return self._crear_actor('nave', 'Nave', x=x, y=y)
+
+    def NaveKids(self, x=0, y=0):
+        return self._crear_actor('nave_kids', 'NaveKids', x=x, y=y)
+
     def Planeta(self, x=0, y=0):
         return self._crear_actor('planeta', 'Planeta', x=x, y=y)
 
