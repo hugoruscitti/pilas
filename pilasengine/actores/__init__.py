@@ -107,6 +107,9 @@ class Actores(object):
     def Ejes(self):
         return self._crear_actor('ejes', 'Ejes')
 
+    def Pingu(self):
+        return self._crear_actor('pingu', 'Pingu')
+
     def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
 
