@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from pilasengine.fisica.contact_listener import ObjectContactListener
+from pilasengine.fisica.contact_listener import ObjetosContactListener
 
 PPM = 30
 
