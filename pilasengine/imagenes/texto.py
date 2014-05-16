@@ -10,6 +10,7 @@ import os
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 from pilasengine.imagenes.superficie import Superficie
+from pilasengine import utils
 
 class Texto(Superficie):
     CACHE_FUENTES = {}
@@ -75,7 +76,7 @@ class Texto(Superficie):
         """
 
         if not fuente_como_ruta in Texto.CACHE_FUENTES.keys():
-            ruta_a_la_fuente = self.pilas.obtener_ruta_al_recurso(fuente_como_ruta)
+            ruta_a_la_fuente = utils.obtener_ruta_al_recurso(fuente_como_ruta)
             fuente_id = QtGui.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
             Texto.CACHE_FUENTES[fuente_como_ruta] = fuente_id
         else:
