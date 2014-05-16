@@ -1,4 +1,10 @@
 # -*- encoding: utf-8 -*-
+# pilas engine: un motor para hacer videojuegos
+#
+# Copyright 2010-2014 - Hugo Ruscitti
+# License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
+#
+# Website - http://www.pilas-engine.com.ar
 
 from pilasengine.habilidades.habilidad import Habilidad
 
@@ -72,5 +78,5 @@ class ProxyHabilidades(object):
 		return su_habilidad
 
 	def __repr__(self):
-		return '<Éste actor tiene {0} habilidades: {1}>'.format(str(len(self.habilidades)), 
-			str(self.habilidades))	
+		return '<Éste actor tiene {0} habilidades: {1}>'.format(str(len(self.habilidades)),
+			str(self.habilidades))

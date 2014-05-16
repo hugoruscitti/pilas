@@ -1,4 +1,10 @@
 # -*- encoding: utf-8 -*-
+# pilas engine: un motor para hacer videojuegos
+#
+# Copyright 2010-2014 - Hugo Ruscitti
+# License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
+#
+# Website - http://www.pilas-engine.com.ar
 from pilasengine import habilidades
 
 class SeMantieneEnPantalla(habilidades.Habilidad):
@@ -12,8 +18,8 @@ class SeMantieneEnPantalla(habilidades.Habilidad):
     def iniciar(self, receptor, permitir_salida=True):
         """
         :param receptor: El actor que aprenderá la habilidad.
-        :param permitir_salida: Valor booleano que establece si el actor 
-                                puede salir por los lados de la ventana y regresar por el lado opuesto. 
+        :param permitir_salida: Valor booleano que establece si el actor
+                                puede salir por los lados de la ventana y regresar por el lado opuesto.
                                 Si se establece a False, el actor no puede salir de la ventana en ningún momento.
         """
         super(SeMantieneEnPantalla, self).iniciar(receptor)
