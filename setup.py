@@ -41,6 +41,7 @@ http://www.pilas-engine.com.ar
             'pilasengine.manual',
             'pilasengine.tests',
             'pilasengine.utils',
+            'pilasengine.tareas',
             ],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
