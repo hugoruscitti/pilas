@@ -9,6 +9,7 @@ import camara
 from pilasengine.actores import grupo
 from pilasengine.utils import pitweener
 from pilasengine.tareas import Tareas
+from pilasengine.fisica import Fisica
 
 class Escena(object):
 
@@ -30,6 +31,7 @@ class Escena(object):
 
         self.control = self.pilas.control.Control(self)
         self.tareas = Tareas(self)
+        self.fisica = Fisica(self)
 
     def iniciar(self):
         pass
