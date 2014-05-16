@@ -39,6 +39,7 @@ class TextoInferior(Texto):
         self.fijo = True
 
         #pilas.escena_actual().tareas.una_vez(retraso, self.eliminar)
+        pilas.tareas.una_vez(retraso, self.eliminar)
 
     def obtener_bordes(self):
         return self.pilas.obtener_widget().obtener_bordes()

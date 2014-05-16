@@ -1,4 +1,10 @@
 # -*- encoding: utf-8 -*-
+# pilas engine: un motor para hacer videojuegos
+#
+# Copyright 2010-2014 - Hugo Ruscitti
+# License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
+#
+# Website - http://www.pilas-engine.com.ar
 import sys
 import os
 import datetime
@@ -138,7 +144,7 @@ class Pilas(object):
         la esquina superir izquierda de la pantalla.
         """
         dx, dy = self.widget.obtener_centro_fisico()
-        return (x - dx, (y - dy)*-1)
+        return (x - dx, (y - dy) * -1)
 
     def obtener_coordenada_de_pantalla_absoluta(self, x, y):
         """Convierte una coordenada común en una coordenada de pantalla.
@@ -198,7 +204,7 @@ class Pilas(object):
         if self._imprimir_mensajes_log:
             hora = datetime.datetime.now().strftime("%H:%M:%S")
             mensaje = map(lambda x: str(x), mensaje)
-            print(":: %s :: %s " %(hora, " ".join(mensaje)))
+            print(":: %s :: %s " % (hora, " ".join(mensaje)))
 
     def obtener_ruta_al_recurso(self, ruta):
         """Busca la ruta a un archivo de recursos.
@@ -222,9 +228,16 @@ class Pilas(object):
         if self._necesita_ejecutar_loop:
             self.app.exec_()
 
+    def avisar(self, texto):
+        texto = self.actores.TextoInferior(texto)
+
     def obtener_camara(self):
         return self.escena_actual().camara
 
+    def obtener_tareas(self):
+        return self.escena_actual().tareas
+
+    tareas = property(obtener_tareas, doc="Obtiene el modulo de tareas")
     camara = property(obtener_camara, doc="Cámara de la escena actual")
     escena = property(obtener_escena_actual, doc="Escena actual")
 

@@ -37,11 +37,13 @@ class Escenas(object):
         escena = self.obtener_escena_actual()
         escena.actualizar_actores()
         escena.actualizar_interpolaciones()
+        escena.tareas.actualizar(1/60.0)
         escena.actualizar()
 
     def simular_actualizacion_logica(self):
         escena = self.obtener_escena_actual()
         escena.actualizar_actores()
+        escena.tareas.actualizar(1/60.0)
         escena.actualizar_interpolaciones(1/60.0)
         escena.actualizar()
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # pilas engine: un motor para hacer videojuegos
 #
 # Copyright 2010-2014 - Hugo Ruscitti
@@ -7,6 +8,7 @@
 import camara
 from pilasengine.actores import grupo
 from pilasengine.utils import pitweener
+from pilasengine.tareas import Tareas
 
 class Escena(object):
 
@@ -27,6 +29,7 @@ class Escena(object):
         self.pulsa_tecla_escape = self.pilas.eventos.Evento('pulsa_tecla_escape') #['']
 
         self.control = self.pilas.control.Control(self)
+        self.tareas = Tareas(self)
 
     def iniciar(self):
         pass
