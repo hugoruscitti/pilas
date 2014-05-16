@@ -104,6 +104,9 @@ class Actores(object):
     def Palo(self):
         return self._crear_actor('palo', 'Palo')
 
+    def Ejes(self):
+        return self._crear_actor('ejes', 'Ejes')
+
     def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
 
