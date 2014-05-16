@@ -161,6 +161,12 @@ class Actores(object):
     def Manzana(self, x=0, y=0):
         return self._crear_actor('manzana', 'Manzana', x=x, y=y)
 
+    def Ovni(self, x=0, y=0):
+        return self._crear_actor('ovni', 'Ovni', x=x, y=y)
+
+    def Planeta(self, x=0, y=0):
+        return self._crear_actor('planeta', 'Planeta', x=x, y=y)
+
     def Cooperativista(self, x=0, y=0):
         return self._crear_actor('cooperativista', 'Cooperativista', x=x, y=y)
 
