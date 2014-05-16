@@ -44,6 +44,9 @@ class Habilidades(object):
 	def SeguirAlMouse(self):
 		return self._crear_habilidad('seguir_al_mouse', 'SeguirAlMouse')
 
+	def PuedeExplotar(self):
+		return self._crear_habilidad('puede_explotar', 'PuedeExplotar')
+
 	def SeMantieneEnPantalla(self):
 		return self._crear_habilidad('se_mantiene_en_pantalla', 'SeMantieneEnPantalla')
 
