@@ -107,6 +107,9 @@ class Actores(object):
     def Ejes(self):
         return self._crear_actor('ejes', 'Ejes')
 
+    def Puntaje(self):
+        return self._crear_actor('puntaje', 'Puntaje')
+
     def Pingu(self):
         return self._crear_actor('pingu', 'Pingu')
 

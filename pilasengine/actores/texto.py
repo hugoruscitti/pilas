@@ -5,7 +5,7 @@ from pilasengine.colores import blanco
 class Texto(Actor):
 
     def __init__(self, pilas, texto="Sin texto", magnitud=20, vertical=False,
-              fuente=None, fijo=True, ancho=0):
+              fuente=None, fijo=True, ancho=0, x=0, y=0):
         """Inicializa el actor.
 
         :param texto: Texto a mostrar.
@@ -21,6 +21,8 @@ class Texto(Actor):
         self.__vertical = vertical
         self.__fuente = fuente
         self.__color = blanco
+        self.x = x
+        self.y = y
         self.centro = ("centro", "centro")
         self.fijo = fijo
         self.texto = texto
