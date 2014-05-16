@@ -176,6 +176,9 @@ class Actores(object):
     def Piedra(self, x=0, y=0):
         return self._crear_actor('piedra', 'Piedra', x=x, y=y)
 
+    def Zanahoria(self, x=0, y=0):
+        return self._crear_actor('zanahoria', 'Zanahoria', x=x, y=y)
+
     def Cooperativista(self, x=0, y=0):
         return self._crear_actor('cooperativista', 'Cooperativista', x=x, y=y)
 
