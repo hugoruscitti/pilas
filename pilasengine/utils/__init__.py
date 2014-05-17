@@ -8,6 +8,7 @@
 import os
 import sys
 import uuid
+import math
 
 import pitweener
 
@@ -70,6 +71,16 @@ class Utils(object):
             self.interpolar(objeto, propiedad, valor)
         else:
             raise Exception("Solo se pueden asignar números o interpolaciones.")
+
+def obtener_angulo_entre(punto_a, punto_b):
+    """Retorna el ángulo entro dos puntos de la pantalla.
+
+    :param punto_a: Una tupla con la coordenada del primer punto.
+    :param punto_b: Una tupla con la coordenada del segundo punto.
+    """
+    (x, y) = punto_a
+    (x1, y1) = punto_b
+    return math.degrees(math.atan2(y1 - y, x1 - x))
 
 def convertir_a_metros(valor):
     """Convierte una magnitid de pixels a metros."""
