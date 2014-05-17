@@ -206,7 +206,7 @@ class Actores(object):
         grupo = self.Grupo()
         ancho_ventana, alto_ventana = self.pilas.widget.obtener_area()
 
-        for i in range(cantidad):
+        for i in xrange(cantidad):
             _x = random.randint(-ancho_ventana/2, ancho_ventana/2)
             _y = random.randint(-alto_ventana/2, alto_ventana/2)
             grupo.agregar(clase(self.pilas, x=_x, y=_y))
