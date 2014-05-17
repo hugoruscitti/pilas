@@ -56,14 +56,7 @@ class Tareas(object):
                 if tarea.una_vez:
                     tareas_a_eliminar.append(tarea)
                 else:
-                    w = self.contador_de_tiempo - tarea.time_out
-                    parte_entera = int((w)/float(tarea.dt))
-                    resto = w - (parte_entera * tarea.dt)
-
-                    for x in range(parte_entera):
-                        tarea.ejecutar()
-
-                    tarea.time_out += tarea.dt + (parte_entera * tarea.dt) - resto
+                    tarea.time_out += tarea.dt
 
         for x in tareas_a_eliminar:
             if x in self.tareas_planificadas:
