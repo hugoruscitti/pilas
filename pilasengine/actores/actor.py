@@ -734,8 +734,8 @@ class Actor(Estudiante):
             raise TypeError("Solo puede multiplicar por numeros enteros " \
                             "mayores a 1.")
 
-        grupo = pilas.atajos.fabricar(self.__class__, cantidad - 1)
-        grupo.append(self)
+        grupo = self.pilas.actores.fabricar(self.__class__, cantidad - 1)
+        grupo.agregar(self)
         return grupo
 
     def __str__(self):
