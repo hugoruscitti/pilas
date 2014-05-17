@@ -77,7 +77,6 @@ class Pilas(object):
         self.musica = musica.Musica(self)
         self.sonidos = sonidos.Sonidos(self)
         self.habilidades = habilidades.Habilidades(self)
-        self.escenas.Normal()
 
         es_reinicio = self.widget != None
 
@@ -93,6 +92,8 @@ class Pilas(object):
         if not self._iniciado_desde_asistente:
             if es_reinicio:
                 self._vincular_el_nuevo_widget(parent)
+
+        self.escenas.Normal()
 
     def definir_iniciado_desde_asistente(self, estado):
         self._iniciado_desde_asistente = estado

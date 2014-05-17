@@ -16,6 +16,9 @@ from PyQt4 import QtGui
 PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 INTERPRETE_PATH = os.path.dirname(sys.argv[0])
 
+# Relación de pixels por metro (para el motor de física).
+PPM = 30
+
 class Utils(object):
 
     def __init__(self, pilas):
@@ -67,6 +70,14 @@ class Utils(object):
             self.interpolar(objeto, propiedad, valor)
         else:
             raise Exception("Solo se pueden asignar números o interpolaciones.")
+
+def convertir_a_metros(valor):
+    """Convierte una magnitid de pixels a metros."""
+    return valor / float(PPM)
+
+def convertir_a_pixels(valor):
+    """Convierte una magnitud de metros a pixels."""
+    return valor * PPM
 
 def obtener_ruta_al_recurso(ruta):
     dirs = ['./', '/../data',

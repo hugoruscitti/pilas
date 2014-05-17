@@ -32,7 +32,8 @@ class Escena(object):
 
         self.control = self.pilas.control.Control(self)
         self.tareas = Tareas(self)
-        self.fisica = Fisica(self)
+        self.fisica = Fisica(self, pilas)
+        self.fisica.iniciar()
 
     def iniciar(self):
         pass

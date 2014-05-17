@@ -7,6 +7,8 @@
 # Website - http://www.pilas-engine.com.ar
 
 from pilasengine.fisica.contact_listener import ObjetosContactListener
+from pilasengine.fisica import rectangulo
+from pilasengine.fisica import circulo
 
 PPM = 30
 
@@ -16,27 +18,18 @@ import random
 try:
     import Box2D as box2d
     contact_listener = box2d.b2ContactListener
-    __enabled__ = True
 except ImportError:
-    __enabled__ = False
     class Tmp:
         pass
     contact_listener = Tmp
 
 
-def convertir_a_metros(valor):
-    """Convierte una magnitid de pixels a metros."""
-    return valor / float(PPM)
-
-def convertir_a_pixels(valor):
-    """Convierte una magnitud de metros a pixels."""
-    return valor * PPM
 
 
 class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca Box2D (version 2.1)."""
 
-    def __init__(self, escena):
+    def __init__(self, escena, pilas):
         """Inicializa el motor de física.
 
         :param area: El area del escenario, en forma de tupla.
@@ -44,21 +37,22 @@ class Fisica(object):
         """
         gravedad = (0, -10)
 
+        self.pilas = pilas
         self.escena = escena
-        self.pilas = escena.pilas
         self.mundo = box2d.b2World(gravedad, False)
         self.objetosContactListener = ObjetosContactListener()
         self.mundo.contactListener = self.objetosContactListener
         self.mundo.continuousPhysics = False
-
-        self.area = self.pilas.obtener_area()
         self.figuras_a_eliminar = []
-
         self.constante_mouse = None
-        self.crear_bordes_del_escenario()
 
         self.velocidad = 1.0
         self.timeStep = self.velocidad/120.0
+
+    def iniciar(self):
+        print "ASDASD"
+        self.area = self.pilas.obtener_widget().obtener_area()
+        self.crear_bordes_del_escenario()
 
     def crear_bordes_del_escenario(self):
         """Genera las paredes, el techo y el suelo."""
@@ -186,7 +180,7 @@ class Fisica(object):
         :param alto: Alto del suelo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.suelo = Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
+        self.suelo = self.Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
     def crear_techo(self, (ancho, alto), restitucion=0):
         """Genera un techo sólido para el escenario.
@@ -195,7 +189,7 @@ class Fisica(object):
         :param alto: Alto del techo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.techo = Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
+        self.techo = self.Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
     def crear_paredes(self, (ancho, alto), restitucion=0):
         """Genera dos paredes para el escenario.
@@ -204,8 +198,8 @@ class Fisica(object):
         :param alto: El alto de las paredes.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.pared_izquierda = Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
-        self.pared_derecha = Rectangulo(ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
+        self.pared_izquierda = self.Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
+        self.pared_derecha = self.Rectangulo(ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
 
     def eliminar_suelo(self):
         "Elimina el suelo del escenario."
@@ -295,3 +289,22 @@ class Fisica(object):
         :param y: Aceleración vertical.
         """
         pilas.fisica.definir_gravedad(x, y)
+
+
+    def Rectangulo(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
+                   restitucion=0.5, friccion=.2, amortiguacion=0.1,
+                   fisica=None, sin_rotacion=False):
+
+        return rectangulo.Rectangulo(self, self.pilas, x, y, ancho, alto,
+                                     dinamica=True, densidad=1.0,
+                                     restitucion=0.5, friccion=.2,
+                                     amortiguacion=0.1,
+                                     sin_rotacion=False)
+
+    def Circulo(self, x, y, radio, dinamica=True, densidad=1.0,
+                restitucion=0.56, friccion=10.5, amortiguacion=0.1,
+                sin_rotacion=False):
+        return circulo.Circulo(self, self.pilas, x, y, radio,
+                               dinamica=True, densidad=1.0,
+                               restitucion=0.56, friccion=10.5,
+                               amortiguacion=0.1, sin_rotacion=False)
