@@ -5,6 +5,7 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
+import random
 
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.grupo import Grupo
@@ -200,3 +201,14 @@ class Actores(object):
         nuevo_actor = texto_inferior.TextoInferior(self.pilas, texto, magnitud, vertical,
                                   fuente, fijo, ancho, x=x, y=x, retraso=retraso)
         return nuevo_actor
+
+    def fabricar(self, clase, cantidad):
+        grupo = self.Grupo()
+        ancho_ventana, alto_ventana = self.pilas.widget.obtener_area()
+
+        for i in xrange(cantidad):
+            _x = random.randint(-ancho_ventana/2, ancho_ventana/2)
+            _y = random.randint(-alto_ventana/2, alto_ventana/2)
+            grupo.agregar(clase(self.pilas, x=_x, y=_y))
+
+        return grupo
