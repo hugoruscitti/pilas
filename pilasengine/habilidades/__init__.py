@@ -50,6 +50,9 @@ class Habilidades(object):
 	def SeMantieneEnPantalla(self):
 		return self._crear_habilidad('se_mantiene_en_pantalla', 'SeMantieneEnPantalla')
 
+	def RotarConMouse(self):
+		return self._crear_habilidad('rotar_con_mouse', 'RotarConMouse')
+
 	def _crear_habilidad(self, modulo, clase):
 		import importlib
 
