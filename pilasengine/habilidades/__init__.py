@@ -56,6 +56,9 @@ class Habilidades(object):
 	def MirarAlActor(self):
 		return self._crear_habilidad('mirar_al_actor', 'MirarAlActor')
 
+	def MoverseConElTeclado(self):
+		return self._crear_habilidad('moverse_con_el_teclado', 'MoverseConElTeclado')
+
 	def _crear_habilidad(self, modulo, clase):
 		import importlib
 
