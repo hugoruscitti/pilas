@@ -433,5 +433,5 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
 
     def marker_si_es_necesario(self):
         line = unicode(self.document().lastBlock().text())
-        if not line.startswith(u'» '):
+        if not line.startswith(u'» ') and not line.startswith(u'‥ '):
             self.marker()
