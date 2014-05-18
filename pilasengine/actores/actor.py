@@ -763,7 +763,7 @@ class Actor(Estudiante):
         :param otro_actor_o_figura: Actor o Figura física a imitar.
         :type otro_actor_o_figura: `Actor`, `Figura`
         """
-        self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura, *args, **kwargs)
+        self.aprender(self.pilas.habilidades.Imitar, otro_actor_o_figura, *args, **kwargs)
 
     def decir(self, mensaje, autoeliminar=True):
         """Emite un mensaje usando un globo similar al de los comics.
