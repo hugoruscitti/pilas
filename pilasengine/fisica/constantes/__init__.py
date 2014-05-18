@@ -1,0 +1,1 @@
+from constante_de_movimiento import ConstanteDeMovimiento

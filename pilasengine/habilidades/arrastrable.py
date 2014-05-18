@@ -6,6 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 from pilasengine import habilidades
+from pilasengine.fisica import constantes
 
 class Arrastrable(habilidades.Habilidad):
 	def iniciar(self, receptor):
@@ -15,16 +16,24 @@ class Arrastrable(habilidades.Habilidad):
 		self.pilas.eventos.mueve_mouse.conectar(self.arrastrando)
 
 		self.arrastrando = False
+		self.constante = None
 
 	def comenzar_a_arrastrar(self, evento):
 		if evento.boton == 1:
 			if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
 				self.arrastrando = True
+				if self.receptor.figura:
+					self.constante = constantes.ConstanteDeMovimiento(self.pilas, self.receptor.figura)
 
 	def arrastrando(self, evento):
 		if self.arrastrando:
-			self.receptor.x = evento.x
-			self.receptor.y = evento.y
+			if self.constante:
+				self.constante.mover(evento.x, evento.y)
+			else:
+				self.receptor.x = evento.x
+				self.receptor.y = evento.y
 
 	def termina_de_arrastrar(self, evento):
 		self.arrastrando = False
+		if self.constante:
+			self.constante.eliminar()
