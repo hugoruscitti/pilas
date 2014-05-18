@@ -53,7 +53,7 @@ class Figura(object):
         self.definir_y(y)
 
     def obtener_rotacion(self):
-        return - math.degrees(self._cuerpo.angle)
+        return math.degrees(self._cuerpo.angle)
 
     def definir_rotacion(self, angulo):
         # TODO: simplificar a la nueva api.
