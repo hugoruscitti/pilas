@@ -100,26 +100,26 @@ class Actores(object):
 
         return grupo
 
-    def Aceituna(self):
-        return self._crear_actor('aceituna', 'Aceituna')
+    def Aceituna(self, x=0, y=0):
+        return self._crear_actor('aceituna', 'Aceituna', x=x, y=y)
 
-    def Mono(self):
-        return self._crear_actor('mono', 'Mono')
+    def Mono(self, x=0, y=0):
+        return self._crear_actor('mono', 'Mono', x=x, y=y)
 
-    def Actor(self):
-        return self._crear_actor('actor', 'Actor')
+    def Actor(self, x=0, y=0):
+        return self._crear_actor('actor', 'Actor', x=x, y=y)
 
-    def Palo(self):
-        return self._crear_actor('palo', 'Palo')
+    def Palo(self, x=0, y=0):
+        return self._crear_actor('palo', 'Palo', x=x, y=y)
 
-    def Ejes(self):
-        return self._crear_actor('ejes', 'Ejes')
+    def Ejes(self, x=0, y=0):
+        return self._crear_actor('ejes', 'Ejes', x=x, y=y)
 
-    def Puntaje(self):
-        return self._crear_actor('puntaje', 'Puntaje')
+    def Puntaje(self, x=0, y=0):
+        return self._crear_actor('puntaje', 'Puntaje', x=x, y=y)
 
-    def Pingu(self):
-        return self._crear_actor('pingu', 'Pingu')
+    def Pingu(self, x=0, y=0):
+        return self._crear_actor('pingu', 'Pingu', x=x, y=y)
 
     def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
