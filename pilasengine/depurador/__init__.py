@@ -60,6 +60,26 @@ class Depurador(object):
         modos = [x.__class__.__name__ for x in self._modos]
         return modos
 
+    def habilitar_modos_con_teclado(self, tecla):
+        if tecla == 'F7':
+            self._alternar_modo(ModoInformacionDeSistema)
+
+        if tecla == 'F8':
+            self._alternar_modo(ModoPuntosDeControl)
+
+        if tecla == 'F9':
+            self._alternar_modo(ModoRadiosDeColision)
+
+        if tecla == 'F10':
+            self._alternar_modo(ModoArea)
+
+        if tecla == 'F11':
+            self._alternar_modo(ModoFisica)
+
+        if tecla == 'F12':
+            self._alternar_modo(ModoPosicion)
+
+
     def definir_modos(self, info=False, radios=False, posiciones=False,
                       puntos_de_control=False, areas=False,
                       fisica=False):
