@@ -52,7 +52,7 @@ class Utils(object):
                           **parametro)
             anterior=x
 
-    def interpretar_propiedad_numerica(self, objeto, propiedad, valor):
+    def interpretar_propiedad_numerica(self, objeto, propiedad, valor, evento=None):
         """Procesa una propiedad y permite que sea numero o interpolación.
 
         Este método se invoca en la mayoría de propiedades y atributos
@@ -66,6 +66,8 @@ class Utils(object):
             >>> actor.escala = [2], 10
         """
         if isinstance(valor, int) or isinstance(valor, float):
+            if evento:
+                evento.emitir(propiedad=valor)
             setattr(objeto, '_' + propiedad, valor)
         elif self.es_interpolacion(valor):
             self.interpolar(objeto, propiedad, valor)
