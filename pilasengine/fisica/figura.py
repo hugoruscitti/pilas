@@ -109,7 +109,7 @@ class Figura(object):
         b2vec.x = dx
         b2vec.y = dy
 
-        # Añadimos eltry, porque aparece el siguiente error:
+        # Añadimos el try, porque aparece el siguiente error:
         # TypeError: in method 'b2Vec2___call__', argument 2 of type 'int32'
         try:
             self._cuerpo.linearVelocity(b2vec)

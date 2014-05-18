@@ -44,6 +44,9 @@ class Escena(object):
     def terminar(self):
         pass
 
+    def actualizar_fisica(self):
+        self.fisica.actualizar()
+
     def actualizar_interpolaciones(self, tiempo_desde_ultima_actualizacion=None):
         self.tweener.update(tiempo_desde_ultima_actualizacion)
 

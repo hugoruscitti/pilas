@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Fri May 16 15:24:34 2014
+# Created: Sun May 18 03:20:37 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -126,7 +126,7 @@ class Ui_InterpreteWindow(object):
         self.pushButton_3.setObjectName(_fromUtf8("pushButton_3"))
         self.horizontalLayout_2.addWidget(self.pushButton_3)
         self.pushButton_2 = QtGui.QPushButton(self.layoutWidget)
-        self.pushButton_2.setEnabled(False)
+        self.pushButton_2.setEnabled(True)
         self.pushButton_2.setMaximumSize(QtCore.QSize(20, 20))
         self.pushButton_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_2.setCheckable(True)

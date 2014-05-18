@@ -38,6 +38,7 @@ class Escenas(object):
         escena.cuando_actualiza.emitir()
         escena.actualizar_actores()
         escena.actualizar_interpolaciones()
+        escena.actualizar_fisica()
         escena.tareas.actualizar(1/60.0)
         escena.actualizar()
 

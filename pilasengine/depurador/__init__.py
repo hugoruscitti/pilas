@@ -13,6 +13,7 @@ from pilasengine.depurador.modo_radios_de_colision import ModoRadiosDeColision
 from pilasengine.depurador.modo_puntos_de_control import ModoPuntosDeControl
 from pilasengine.depurador.modo_area import ModoArea
 from pilasengine.depurador.modo_posicion import ModoPosicion
+from pilasengine.depurador.modo_fisica import ModoFisica
 
 class Depurador(object):
 

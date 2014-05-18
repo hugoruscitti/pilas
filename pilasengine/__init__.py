@@ -202,6 +202,7 @@ class Pilas(object):
                 descripcion = traceback.format_exception(e[0], e[1], e[2])
                 descripcion = '\n'.join(descripcion)
                 _ = self.escenas.Error(titulo, descripcion)
+                traceback.print_exc()
             else:
                 self.log("Capturando un error: %s", e)
                 traceback.print_exc()
@@ -246,9 +247,13 @@ class Pilas(object):
     def obtener_tareas(self):
         return self.escena_actual().tareas
 
+    def obtener_fisica(self):
+        return self.escena_actual().fisica
+
     tareas = property(obtener_tareas, doc="Obtiene el modulo de tareas")
     camara = property(obtener_camara, doc="Cámara de la escena actual")
     escena = property(obtener_escena_actual, doc="Escena actual")
+    fisica = property(obtener_fisica, doc="Escena actual")
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', capturar_errores=True, habilitar_mensajes_log=False):
     """

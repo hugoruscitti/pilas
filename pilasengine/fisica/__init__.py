@@ -24,8 +24,6 @@ except ImportError:
     contact_listener = Tmp
 
 
-
-
 class Fisica(object):
     """Representa un simulador de mundo fisico, usando la biblioteca Box2D (version 2.1)."""
 
@@ -40,17 +38,16 @@ class Fisica(object):
         self.pilas = pilas
         self.escena = escena
         self.mundo = box2d.b2World(gravedad, False)
-        self.objetosContactListener = ObjetosContactListener()
+        self.objetosContactListener = ObjetosContactListener(pilas)
         self.mundo.contactListener = self.objetosContactListener
         self.mundo.continuousPhysics = False
         self.figuras_a_eliminar = []
         self.constante_mouse = None
 
         self.velocidad = 1.0
-        self.timeStep = self.velocidad/120.0
+        self.timeStep = self.velocidad/60.0
 
     def iniciar(self):
-        print "ASDASD"
         self.area = self.pilas.obtener_widget().obtener_area()
         self.crear_bordes_del_escenario()
 
@@ -97,10 +94,9 @@ class Fisica(object):
             self.constante_mouse.eliminar()
             self.constante_mouse = None
 
-    def actualizar(self, velocidad=1.0):
+    def actualizar(self):
         """Realiza la actualización lógica del escenario.
         """
-        # TODO: eliminar el arguemnto velocidad que no se utiliza.
         if self.mundo:
             self.mundo.Step(self.timeStep, 6, 3)
             self._procesar_figuras_a_eliminar()
@@ -124,47 +120,6 @@ class Fisica(object):
                 if x in self.mundo.bodies:
                     self.mundo.DestroyBody(x)
             self.figuras_a_eliminar = []
-
-    def dibujar_figuras_sobre_lienzo(self, motor, lienzo, grosor=1):
-        """Dibuja todas las figuras en una pizarra. Indicado para depuracion.
-
-        :param motor: Referencia al motor de pilas.
-        :param lienzo: Un actor lienzo sobre el que se dibujará.
-        :param grosor: El grosor de la linea medida en pixels.
-        """
-
-        cuerpos = self.mundo.bodies
-
-        for cuerpo in cuerpos:
-
-            for fixture in cuerpo:
-
-                # cuerpo.type == 0 → estatico
-                # cuerpo.type == 1 → kinematico
-                # cuerpo.type == 2 → dinamico
-
-                shape = fixture.shape
-
-                if isinstance(shape, box2d.b2PolygonShape):
-                    vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
-                    vertices = [pilas.escena_actual().camara.desplazar(v) for v in vertices]
-                    lienzo.poligono(motor, vertices, color=pilas.colores.negro, grosor=grosor+2, cerrado=True)
-                    lienzo.poligono(motor, vertices, color=pilas.colores.blanco, grosor=grosor, cerrado=True)
-                elif isinstance(shape, box2d.b2CircleShape):
-                    (x, y) = pilas.escena_actual().camara.desplazar(cuerpo.transform * shape.pos * PPM)
-
-                    # Dibuja el angulo de la circunferencia.
-                    lienzo.angulo(motor, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM, pilas.colores.negro, grosor=grosor+2)
-                    lienzo.angulo(motor, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
-
-                    # Dibuja el borde de la circunferencia.
-                    lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.negro, grosor=grosor+2)
-                    lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
-
-                else:
-                    # TODO: implementar las figuras de tipo "edge" y "loop".
-                    raise Exception("No puedo identificar el tipo de figura.")
-
 
     def crear_cuerpo(self, definicion_de_cuerpo):
         """Genera un Body de box2d.
@@ -296,15 +251,15 @@ class Fisica(object):
                    fisica=None, sin_rotacion=False):
 
         return rectangulo.Rectangulo(self, self.pilas, x, y, ancho, alto,
-                                     dinamica=True, densidad=1.0,
-                                     restitucion=0.5, friccion=.2,
-                                     amortiguacion=0.1,
-                                     sin_rotacion=False)
+                                     dinamica=dinamica, densidad=densidad,
+                                     restitucion=restitucion, friccion=friccion,
+                                     amortiguacion=amortiguacion,
+                                     sin_rotacion=sin_rotacion)
 
     def Circulo(self, x, y, radio, dinamica=True, densidad=1.0,
                 restitucion=0.56, friccion=10.5, amortiguacion=0.1,
                 sin_rotacion=False):
         return circulo.Circulo(self, self.pilas, x, y, radio,
-                               dinamica=True, densidad=1.0,
-                               restitucion=0.56, friccion=10.5,
-                               amortiguacion=0.1, sin_rotacion=False)
+                               dinamica=dinamica, densidad=densidad,
+                               restitucion=restitucion, friccion=friccion,
+                               amortiguacion=amortiguacion, sin_rotacion=sin_rotacion)
