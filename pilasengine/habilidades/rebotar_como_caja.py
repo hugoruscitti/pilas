@@ -9,6 +9,7 @@ import random
 
 from pilasengine import habilidades
 
+
 class RebotarComoCaja(habilidades.Habilidad):
     """Le indica al actor que rebote y colisiones como una caja cuadrada.
 
