@@ -73,6 +73,7 @@ class BaseWidget(object):
 
     def procesar_error(self, e):
         print "Error:", e, "en", __file__
+        raise e
         sys.exit(1)
 
     def timerEvent(self, event):

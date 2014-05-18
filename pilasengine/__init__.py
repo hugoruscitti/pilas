@@ -11,6 +11,7 @@ import datetime
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 import pygame
+import traceback
 
 from pilasengine import escenas
 from pilasengine import imagenes
@@ -42,7 +43,7 @@ class Pilas(object):
     de los actores y quien mantiene con "vida" el juego completo.
     """
 
-    def __init__(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
+    def __init__(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, capturar_errores=True, habilitar_mensajes_log=False):
         """Inicializa el area de juego con una configuración inicial."""
         self._iniciado_desde_asistente = False
 
@@ -54,6 +55,7 @@ class Pilas(object):
             self._necesita_ejecutar_loop = True
 
         self.widget = None
+        self._capturar_errores = capturar_errores
         self.reiniciar(ancho, alto, titulo, con_aceleracion, habilitar_mensajes_log)
         pygame.mixer.init()
 
@@ -192,12 +194,18 @@ class Pilas(object):
             self.escenas.realizar_dibujado(painter)
             self.depurador.realizar_dibujado(painter)
         except Exception, e:
-            # Si hay un error lo informa y detiene toda
-            # la ejecución de pilas.
-            self.log("Capturando un error: %s", e)
-            self.depurador.desactivar_todos_los_modos()
-            _ = self.escenas.Error(e)
-            raise e
+            if self._capturar_errores:
+                self.log("Capturando un error: %s", e)
+                self.depurador.desactivar_todos_los_modos()
+                e = sys.exc_info()
+                titulo = str(e[1])
+                descripcion = traceback.format_exception(e[0], e[1], e[2])
+                descripcion = '\n'.join(descripcion)
+                _ = self.escenas.Error(titulo, descripcion)
+            else:
+                self.log("Capturando un error: %s", e)
+                traceback.print_exc()
+                sys.exit(1)
 
     def log(self, *mensaje):
         "Muestra un mensaje de prueba sobre la consola."
@@ -242,7 +250,7 @@ class Pilas(object):
     camara = property(obtener_camara, doc="Cámara de la escena actual")
     escena = property(obtener_escena_actual, doc="Escena actual")
 
-def iniciar(ancho=640, alto=480, titulo='Pilas'):
+def iniciar(ancho=640, alto=480, titulo='Pilas', capturar_errores=True, habilitar_mensajes_log=False):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -257,8 +265,10 @@ def iniciar(ancho=640, alto=480, titulo='Pilas'):
     :ancho: el tamaño en pixels para la ventana.
     :alto: el tamaño en pixels para la ventana.
     :titulo: el titulo a mostrar en la ventana.
+    :capturar_errores: True indica que los errores se tienen que mostrar en la ventana de pilas. En caso de poner False los errores se muestran en consola.
+    :habilitar_mensajes_log: Muestra cada operación que hace pilas en consola.
     """
-    pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo)
+    pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo, capturar_errores=capturar_errores)
     return pilas
 
 def abrir_asistente():
@@ -278,4 +288,3 @@ def abrir_script_con_livereload(archivo):
     ruta = os.path.dirname(archivo)
     os.chdir(ruta)
     return interprete.abrir_script_con_livereload(archivo)
-

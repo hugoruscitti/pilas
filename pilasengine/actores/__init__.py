@@ -133,8 +133,8 @@ class Actores(object):
         #             para vincular el actor a la escena.
         return nuevo_actor
 
-    def MensajeError(self, error):
-        return self._crear_actor('mensaje_error', 'MensajeError')
+    def MensajeError(self, error, descripcion):
+        return self._crear_actor('mensaje_error', 'MensajeError', error, descripcion)
 
     def Animacion(self, grilla, ciclica=False, x=0, y=0, velocidad=10):
         return self._crear_actor('animacion', 'Animacion', grilla=grilla, ciclica=ciclica, x=x, y=y, velocidad=velocidad)

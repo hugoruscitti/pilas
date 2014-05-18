@@ -58,7 +58,7 @@ class Escenas(object):
         nueva_escena = normal.Normal(self.pilas)
         return self.definir_escena(nueva_escena)
 
-    def Error(self, mensaje_error):
+    def Error(self, titulo, descripcion):
         import error
-        nueva_escena = error.Error(self.pilas, mensaje_error)
+        nueva_escena = error.Error(self.pilas, titulo, descripcion)
         return self.definir_escena(nueva_escena)
