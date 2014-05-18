@@ -37,6 +37,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
         if sys.platform == 'darwin':
             self.boton_ejecutar.setToolTip(u"Ejecutar el código actual (F5 o ⌘R)")
 
+        self.atajos_de_depuracion()
+
     def iniciar_interfaz(self):
         self.scope = self._insertar_ventana_principal_de_pilas()
         self._insertar_consola_interactiva(self.scope)
@@ -76,6 +78,29 @@ class VentanaInterprete(Ui_InterpreteWindow):
             evento.accept()
         else:
             evento.ignore()
+
+    def atajos_de_depuracion(self):
+        QtGui.QShortcut(QtGui.QKeySequence("F7"), self.main, \
+            lambda: self.cambiar_estado_boton_depuracion(self.pushButton_6))
+
+        QtGui.QShortcut(QtGui.QKeySequence("F8"), self.main, \
+            lambda: self.cambiar_estado_boton_depuracion(self.pushButton_5))
+
+        QtGui.QShortcut(QtGui.QKeySequence("F9"), self.main, \
+            lambda: self.cambiar_estado_boton_depuracion(self.pushButton_4))
+
+        QtGui.QShortcut(QtGui.QKeySequence("F10"), self.main, \
+            lambda: self.cambiar_estado_boton_depuracion(self.pushButton_3))
+
+        QtGui.QShortcut(QtGui.QKeySequence("F11"), self.main, \
+            lambda: self.cambiar_estado_boton_depuracion(self.pushButton_2))
+
+        QtGui.QShortcut(QtGui.QKeySequence("F12"), self.main, \
+            lambda: self.cambiar_estado_boton_depuracion(self.pushButton))
+
+    def cambiar_estado_boton_depuracion(self, button):
+        button.nextCheckState()
+        self.pulsa_boton_depuracion()
 
     def _consultar(self, parent, titulo, mensaje):
         """Realizar una consulta usando un cuadro de dialogo simple.
