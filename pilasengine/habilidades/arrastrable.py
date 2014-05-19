@@ -22,7 +22,7 @@ class Arrastrable(habilidades.Habilidad):
 		if evento.boton == 1:
 			if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
 				self.arrastrando = True
-				if self.receptor.figura:
+				if hasattr(self.receptor, 'figura') and self.receptor.figura:
 					self.constante = constantes.ConstanteDeMovimiento(self.pilas, self.receptor.figura)
 
 	def arrastrando(self, evento):
