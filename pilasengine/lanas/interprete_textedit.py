@@ -233,7 +233,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             elif event.key() == Qt.Key_S:
                 self.guardar_contenido_con_dialogo()
                 return
-        
+
+        #Completar comillas y braces
         if event.key() == Qt.Key_QuoteDbl:
             self._autocompletar_comillas('"')
 
@@ -248,6 +249,18 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
 
         if event.key() == Qt.Key_BracketLeft:
             self._autocompletar_braces('[')
+
+        #Elimina los pares de commillas si los encuentra
+        if event.key() == Qt.Key_Backspace:
+            line = self._get_current_line()
+            lengthline = len(line)
+            position = textCursor.positionInBlock() - 3
+            try:
+                if line[position] == '"' and line[position+1] == '"' \
+                or line[position] == "'" and line[position+1] == "'":
+                    textCursor.deleteChar()                    
+            except:
+                pass
 
         # navegar por el historial
         if event.key() == Qt.Key_Down:
@@ -308,7 +321,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
                 return None
         except UnicodeEncodeError:
             pass
-
 
         if event.key() in [Qt.Key_Return, Qt.Key_Enter]:
             line = self._get_entered_line()
@@ -387,7 +399,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             texto_consejo = self._obtener_firma_de_funcion(principio)
             self.mostrar_consejo(texto_consejo)
         else:
-            self.limpiar_consejo()  
+            self.limpiar_consejo()
 
     def limpiar_consejo(self):
         self.mostrar_consejo("")
