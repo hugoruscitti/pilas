@@ -51,3 +51,4 @@ class Imitar(habilidades.Habilidad):
         super(Imitar, self).eliminar()
         if isinstance(self.objeto_a_imitar, fisica.figura.Figura):
             self.objeto_a_imitar.eliminar()
+            self.receptor.figura = None
