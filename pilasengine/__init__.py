@@ -10,7 +10,7 @@ import os
 import datetime
 from PyQt4 import QtGui
 from PyQt4 import QtCore
-#import pygame
+import pygame
 import traceback
 
 from pilasengine import escenas
@@ -57,7 +57,7 @@ class Pilas(object):
         self.widget = None
         self._capturar_errores = capturar_errores
         self.reiniciar(ancho, alto, titulo, con_aceleracion, habilitar_mensajes_log)
-        # pygame.mixer.init()
+        pygame.mixer.init()
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
         """Genera nuevamente la ventana del videojuego."""
