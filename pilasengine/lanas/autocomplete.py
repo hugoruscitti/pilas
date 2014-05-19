@@ -121,3 +121,15 @@ class CompletionTextEdit(QtGui.QTextEdit):
         tc = self.textCursor()
         tc.select(QtGui.QTextCursor.WordUnderCursor)
         return tc.selectedText()
+
+    def _autocompletar_comiilas_dobles(self):
+        tc = self.textCursor()
+        tc.insertText('"')
+        tc.setPosition(tc.position()-1)
+        self.setTextCursor(tc)
+
+    def _autocompletar_apostrofe(self):
+        tc = self.textCursor()
+        tc.insertText("'")
+        tc.setPosition(tc.position()-1)
+        self.setTextCursor(tc) 

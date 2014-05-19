@@ -233,6 +233,12 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             elif event.key() == Qt.Key_S:
                 self.guardar_contenido_con_dialogo()
                 return
+        
+        if event.key() == Qt.Key_QuoteDbl:
+            self._autocompletar_comiilas_dobles()
+
+        if event.key() == Qt.Key_Apostrophe:
+            self._autocompletar_apostrofe() 
 
         # navegar por el historial
         if event.key() == Qt.Key_Down:
@@ -372,7 +378,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             texto_consejo = self._obtener_firma_de_funcion(principio)
             self.mostrar_consejo(texto_consejo)
         else:
-            self.limpiar_consejo()
+            self.limpiar_consejo()  
 
     def limpiar_consejo(self):
         self.mostrar_consejo("")

@@ -41,6 +41,12 @@ class Editor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDes
         "Atiene el evento de pulsación de tecla."
         self._cambios_sin_guardar = True
 
+        if event.key() == QtCore.Qt.Key_QuoteDbl:
+            self._autocompletar_comiilas_dobles()
+
+        if event.key() == QtCore.Qt.Key_Apostrophe:
+            self._autocompletar_apostrofe() 
+
         if event.key() == QtCore.Qt.Key_Tab:
             tc = self.textCursor()
             tc.insertText("    ")
