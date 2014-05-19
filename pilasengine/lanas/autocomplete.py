@@ -10,6 +10,7 @@ import re
 
 from PyQt4 import QtGui, QtCore
 
+BRACES = {'(':')', '[':']', '{':'}'}
 
 class DictionaryCompleter(QtGui.QCompleter):
 
@@ -122,14 +123,14 @@ class CompletionTextEdit(QtGui.QTextEdit):
         tc.select(QtGui.QTextCursor.WordUnderCursor)
         return tc.selectedText()
 
-    def _autocompletar_comiilas_dobles(self):
+    def _autocompletar_comillas(self, comilla):
         tc = self.textCursor()
-        tc.insertText('"')
+        tc.insertText(comilla)
         tc.setPosition(tc.position()-1)
         self.setTextCursor(tc)
 
-    def _autocompletar_apostrofe(self):
+    def _autocompletar_braces(self, brace):
         tc = self.textCursor()
-        tc.insertText("'")
+        tc.insertText(BRACES[brace])
         tc.setPosition(tc.position()-1)
-        self.setTextCursor(tc) 
+        self.setTextCursor(tc)

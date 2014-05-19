@@ -235,10 +235,19 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
                 return
         
         if event.key() == Qt.Key_QuoteDbl:
-            self._autocompletar_comiilas_dobles()
+            self._autocompletar_comillas('"')
 
         if event.key() == Qt.Key_Apostrophe:
-            self._autocompletar_apostrofe() 
+            self._autocompletar_comillas("'")
+
+        if event.key() == Qt.Key_ParenLeft:
+            self._autocompletar_braces('(')
+
+        if event.key() == Qt.Key_BraceLeft:
+            self._autocompletar_braces('{')
+
+        if event.key() == Qt.Key_BracketLeft:
+            self._autocompletar_braces('[')
 
         # navegar por el historial
         if event.key() == Qt.Key_Down:

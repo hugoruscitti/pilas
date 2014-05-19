@@ -42,10 +42,10 @@ class Editor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDes
         self._cambios_sin_guardar = True
 
         if event.key() == QtCore.Qt.Key_QuoteDbl:
-            self._autocompletar_comiilas_dobles()
+            self._autocompletar_comillas('"')
 
         if event.key() == QtCore.Qt.Key_Apostrophe:
-            self._autocompletar_apostrofe() 
+            self._autocompletar_comillas("'") 
 
         if event.key() == QtCore.Qt.Key_Tab:
             tc = self.textCursor()
