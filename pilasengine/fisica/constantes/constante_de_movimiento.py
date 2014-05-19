@@ -20,7 +20,6 @@ class ConstanteDeMovimiento():
         mundo = pilas.escena_actual().fisica.mundo
         punto_captura = utils.convertir_a_metros(figura.x), utils.convertir_a_metros(figura.y)
         self.cuerpo_enlazado = mundo.CreateBody()
-        self.figura_cuerpo = figura
         self.constante = mundo.CreateMouseJoint(bodyA=self.cuerpo_enlazado,
                 bodyB=figura._cuerpo,
                 target=punto_captura,

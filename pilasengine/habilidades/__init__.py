@@ -68,6 +68,9 @@ class Habilidades(object):
 	def RebotarComoPelota(self):
 		return self._crear_habilidad('rebotar_como_pelota', 'RebotarComoPelota')
 
+	def MoverseComoCoche(self):
+		return self._crear_habilidad('moverse_como_coche', 'MoverseComoCoche')
+
 	def _crear_habilidad(self, modulo, clase):
 		import importlib
 

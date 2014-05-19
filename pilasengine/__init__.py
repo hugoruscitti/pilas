@@ -253,7 +253,7 @@ class Pilas(object):
     tareas = property(obtener_tareas, doc="Obtiene el modulo de tareas")
     camara = property(obtener_camara, doc="Cámara de la escena actual")
     escena = property(obtener_escena_actual, doc="Escena actual")
-    fisica = property(obtener_fisica, doc="Escena actual")
+    fisica = property(obtener_fisica, doc="Retorna el componente fisica")
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', capturar_errores=True, habilitar_mensajes_log=False):
     """

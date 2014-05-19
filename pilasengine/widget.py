@@ -99,7 +99,7 @@ class BaseWidget(object):
         self.pilas.eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla,
                                                 es_repeticion=event.isAutoRepeat(), texto=event.text())
 
-        self.pilas.depurador.habilitar_modos_con_teclado(codigo_de_tecla)
+        self.pilas.depurador.cuando_pulsa_tecla(codigo_de_tecla)
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = self.pilas.control._obtener_codigo_de_tecla_normalizado(event.key())

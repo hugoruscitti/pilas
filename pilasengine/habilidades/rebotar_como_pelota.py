@@ -30,7 +30,7 @@ class RebotarComoPelota(habilidades.Habilidad):
         receptor.empujar = self.empujar
 
     def eliminar(self):
-        super(RebotarComoCaja, self).eliminar()
+        super(RebotarComoPelota, self).eliminar()
         self.receptor.habilidades.Imitar.eliminar()
 
     def impulsar(self, dx, dy):

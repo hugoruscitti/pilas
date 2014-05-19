@@ -60,7 +60,7 @@ class Depurador(object):
         modos = [x.__class__.__name__ for x in self._modos]
         return modos
 
-    def habilitar_modos_con_teclado(self, tecla):
+    def cuando_pulsa_tecla(self, tecla):
         if tecla == 'F7':
             self._alternar_modo(ModoInformacionDeSistema)
 
