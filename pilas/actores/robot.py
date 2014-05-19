@@ -9,7 +9,7 @@ from pilas.fondos import  *
 from pilas.actores import Pizarra
 # from pilas.utils import distancia_entre_radios_de_colision_de_dos_actores
 from PyQt4 import QtGui, QtCore, uic
-
+import weakref
 
 
 # -*- encoding: utf-8 -*-
@@ -238,7 +238,8 @@ class Robot():
         self.robotid = robotid
         self.board = board
         self.name = ''
-        self.board.agregarRobot(self)
+        self.proxy = weakref.proxy(self)
+        self.board.agregarRobot(self.proxy)
         self.tarea = None
         self.obstaculos = None
         self.observar = False
@@ -246,7 +247,7 @@ class Robot():
         
     # Redefinir el método eliminar de la clase Actor para que lo elimine también de la lista de robots de Board
     def eliminar(self):
-        self.board.eliminarDeLaLista(self)
+        self.board.eliminarDeLaLista(self.proxy)
         Actor.eliminar(self.actor)
 
     ## Movimiento horizontal y vertical
