@@ -319,6 +319,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             pass
 
         if event.key() in [Qt.Key_Return, Qt.Key_Enter]:
+            self.limpiar_consejo() # Limpiando consejo si existe
+            
             line = self._get_entered_line()
             self.historyIndex = -1
 
@@ -388,12 +390,13 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
 
         self.limpiar_consejo()
 
-        principio = linea.split('(')[0]
-        principio = principio.split(' ')[-1]
+        if '(' in linea:
+            principio = linea.split('(')[0]
+            principio = principio.split(' ')[-1]
 
-        # Obtiene el mensaje a mostrar y lo despliega en el tooltip
-        texto_consejo = self._obtener_firma_de_funcion(principio)
-        self.mostrar_consejo(texto_consejo)            
+            # Obtiene el mensaje a mostrar y lo despliega en el tooltip
+            texto_consejo = self._obtener_firma_de_funcion(principio)
+            self.mostrar_consejo(texto_consejo)            
 
     def limpiar_consejo(self):
         self.mostrar_consejo("")
