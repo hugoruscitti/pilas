@@ -33,7 +33,6 @@ class Texto(Superficie):
         else:
             nombre_de_fuente = p.font().family()
 
-        print [magnitud]
         font = QtGui.QFont(nombre_de_fuente, magnitud)
         p.setFont(font)
 
