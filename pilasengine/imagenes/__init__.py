@@ -23,6 +23,8 @@ class Imagenes(object):
         import superficie
         return superficie.Superficie(self.pilas, ancho, alto)
 
+    cargar_superficie = crear_superficie
+
     def crear_texto(self, cadena_de_texto, magnitud, vertical, fuente, color, ancho):
         import texto
         return texto.Texto(self.pilas, cadena_de_texto, magnitud, vertical, fuente, color, ancho)

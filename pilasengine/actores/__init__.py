@@ -195,6 +195,13 @@ class Actores(object):
     def Pacman(self, x=0, y=0):
         return self._crear_actor('pacman', 'Pacman', x=x, y=y)
 
+    def Globo(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True, autoeliminar=False, ancho_globo=0, alto_globo=0):
+        return self._crear_actor('globo', 'Globo', texto=texto, x=x, y=y, dialogo=dialogo,
+                                 avance_con_clicks=avance_con_clicks,
+                                 autoeliminar=autoeliminar,
+                                 ancho_globo=ancho_globo,
+                                 alto_globo=alto_globo)
+
     def Texto(self, cadena_de_texto="Sin texto", magnitud=20, vertical=False,
               fuente=None, fijo=True, ancho=0, x=0, y=0):
         import texto

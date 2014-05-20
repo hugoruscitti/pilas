@@ -10,6 +10,7 @@ import sys
 import uuid
 import math
 
+from pilasengine import colores
 import pitweener
 
 from PyQt4 import QtGui
@@ -28,6 +29,10 @@ class Utils(object):
     def obtener_uuid(self):
         """Genera un identificador único."""
         return str(uuid.uuid4())
+
+    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None, ancho=0):
+        texto = self.pilas.imagenes.crear_texto(cadena, magnitud, vertical, fuente, colores.blanco, ancho)
+        return (texto.ancho(), texto.alto())
 
     def es_interpolacion(self, valor):
         return isinstance(valor, list) or (isinstance(valor,tuple) and len(valor) == 2)

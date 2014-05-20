@@ -4,7 +4,6 @@
 # Copyright 2010-2014 - Hugo Ruscitti
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
-# Website - http://www.pilas-engine.com.ar
 
 
 import inspect
@@ -773,11 +772,8 @@ class Actor(Estudiante):
         :param autoeliminar: Establece si se eliminará el globo al cabo de unos segundos.
         :type autoeliminar: boolean
         """
-        nuevo_actor = pilas.actores.Globo(mensaje, self.x, self.y, autoeliminar=autoeliminar)
-        nuevo_actor.aprender(pilas.habilidades.Imitar, self, False)
+        nuevo_actor = self.pilas.actores.Globo(mensaje, self.x, self.y, autoeliminar=autoeliminar)
         nuevo_actor.z = self.z - 1
-        self.anexar(nuevo_actor)
-        pilas.atajos.leer(mensaje)
 
     def anexar(self, otro_actor):
         """Agrega un Actor a la lista de actores anexados al Actor actual.

@@ -16,7 +16,7 @@ class Texto(Superficie):
     CACHE_FUENTES = {}
 
     def __init__(self, pilas, texto, magnitud, vertical, fuente, color, ancho):
-        ancho, alto = self._obtener_area_de_texto(texto, magnitud, vertical, fuente, ancho)
+        ancho, alto = self.obtener_area_de_texto(texto, magnitud, vertical, fuente, ancho)
         Superficie.__init__(self, pilas, ancho, alto)
         self._ancho_del_texto = ancho
         self.dibujar_texto = self.texto
@@ -24,7 +24,7 @@ class Texto(Superficie):
         self.ruta_original = texto.encode('ascii', 'xmlcharrefreplace') + str(os.urandom(25))
         self.texto = texto
 
-    def _obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None, ancho=0):
+    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None, ancho=0):
         pic = QtGui.QPicture()
         p = QtGui.QPainter(pic)
 
@@ -33,6 +33,7 @@ class Texto(Superficie):
         else:
             nombre_de_fuente = p.font().family()
 
+        print [magnitud]
         font = QtGui.QFont(nombre_de_fuente, magnitud)
         p.setFont(font)
 
