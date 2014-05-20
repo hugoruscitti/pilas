@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # pilas engine: un motor para hacer videojuegos
 #
 # Copyright 2010-2014 - Hugo Ruscitti
@@ -138,10 +139,14 @@ class CompletionTextEdit(QtGui.QTextEdit):
         tc.setPosition(tc.position()-1)
         self.setTextCursor(tc)
 
-    def _eliminar_pares_de_caracteres(self):
+    def _eliminar_pares_de_caracteres(self, es_consola=True):
         tc = self.textCursor()
         line = self._get_current_line()
-        position = tc.positionInBlock() - 3
+        if es_consola:
+            # La posicíón del cursor es diferente por '» '
+            position = tc.positionInBlock() - 3 
+        else:
+            position = tc.positionInBlock() - 1
         try:
             char = str(line[position])
             nextchar = str(line[position+1])

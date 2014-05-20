@@ -234,7 +234,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
                 self.guardar_contenido_con_dialogo()
                 return
 
-        #Completar comillas y braces
+        # Completar comillas y braces
         if event.key() == Qt.Key_QuoteDbl:
             self._autocompletar_comillas('"')
 
