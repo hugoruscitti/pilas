@@ -9,6 +9,7 @@ import codecs
 
 from PyQt4 import QtGui
 from PyQt4 import QtCore
+from PyQt4.QtCore import Qt
 
 from pilasengine.lanas import autocomplete
 from pilasengine.lanas import editor_con_deslizador
@@ -41,11 +42,25 @@ class Editor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDes
         "Atiene el evento de pulsación de tecla."
         self._cambios_sin_guardar = True
 
-        if event.key() == QtCore.Qt.Key_QuoteDbl:
+        # Completar comillas y braces
+        if event.key() == Qt.Key_QuoteDbl:
             self._autocompletar_comillas('"')
 
-        if event.key() == QtCore.Qt.Key_Apostrophe:
+        if event.key() == Qt.Key_Apostrophe:
             self._autocompletar_comillas("'") 
+
+        if event.key() == Qt.Key_ParenLeft:
+            self._autocompletar_braces('(')
+
+        if event.key() == Qt.Key_BraceLeft:
+            self._autocompletar_braces('{')
+
+        if event.key() == Qt.Key_BracketLeft:
+            self._autocompletar_braces('[')
+
+        # Elimina los pares de caracteres especiales si los encuentra
+        if event.key() == Qt.Key_Backspace:
+            self._eliminar_pares_de_caracteres(es_consola=False)
 
         if event.key() == QtCore.Qt.Key_Tab:
             tc = self.textCursor()
