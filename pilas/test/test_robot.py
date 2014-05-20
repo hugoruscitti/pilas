@@ -19,7 +19,6 @@ class TestRobot(unittest.TestCase):
 
     def test_destruction(self):
         actors = len(pilas.escena_actual().actores)
-        del self.board
         del self.robot
         self.assertEqual(len(pilas.escena_actual().actores), actors - 1)
 
