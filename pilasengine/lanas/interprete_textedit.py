@@ -217,6 +217,10 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         self.setTextCursor(textCursor)
         return textCursor
 
+    def keyReleaseEvent(self, event):
+        if event.key() == Qt.Key_ParenLeft:
+            self._autocompletar_argumentos_si_corresponde()
+
     def keyPressEvent(self, event):
         textCursor = self.textCursor()
 
@@ -305,7 +309,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         if event.key() in [Qt.Key_Left, Qt.Key_Backspace]:
             if self.textCursor().positionInBlock() >= 3:
                 super(InterpreteTextEdit, self).keyPressEvent(event)
-                self._autocompletar_argumentos_si_corresponde(event.key())
+                self._autocompletar_argumentos_si_corresponde()
             return
 
         try:
@@ -368,10 +372,9 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
 
             return None
 
-        self._autocompletar_argumentos_si_corresponde(event.key())
         super(InterpreteTextEdit, self).keyPressEvent(event)
 
-    def _autocompletar_argumentos_si_corresponde(self, ultima_tecla):
+    def _autocompletar_argumentos_si_corresponde(self):
         """Muestra un mensaje con la documentación de una función ejecutar.
 
         Se invoca mientras que el usuario escribe, siempre y cuando
@@ -383,15 +386,14 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         linea = unicode(self.document().lastBlock().text())[2:]
         linea.rstrip()
 
-        if ultima_tecla == Qt.Key_ParenLeft or '(' in linea:
-            principio = linea.split('(')[0]
-            principio = principio.split(' ')[-1]
+        self.limpiar_consejo()
 
-            # Obtiene el mensaje a mostrar y lo despliega en el tooltip
-            texto_consejo = self._obtener_firma_de_funcion(principio)
-            self.mostrar_consejo(texto_consejo)
-        else:
-            self.limpiar_consejo()
+        principio = linea.split('(')[0]
+        principio = principio.split(' ')[-1]
+
+        # Obtiene el mensaje a mostrar y lo despliega en el tooltip
+        texto_consejo = self._obtener_firma_de_funcion(principio)
+        self.mostrar_consejo(texto_consejo)            
 
     def limpiar_consejo(self):
         self.mostrar_consejo("")
