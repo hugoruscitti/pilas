@@ -250,17 +250,9 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         if event.key() == Qt.Key_BracketLeft:
             self._autocompletar_braces('[')
 
-        #Elimina los pares de commillas si los encuentra
+        # Elimina los pares de caracteres especiales si los encuentra
         if event.key() == Qt.Key_Backspace:
-            line = self._get_current_line()
-            lengthline = len(line)
-            position = textCursor.positionInBlock() - 3
-            try:
-                if line[position] == '"' and line[position+1] == '"' \
-                or line[position] == "'" and line[position+1] == "'":
-                    textCursor.deleteChar()                    
-            except:
-                pass
+            self._eliminar_pares_de_caracteres()
 
         # navegar por el historial
         if event.key() == Qt.Key_Down:
