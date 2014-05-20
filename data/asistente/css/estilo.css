@@ -249,3 +249,8 @@ body.modal-open {
 .view-animate.ng-leave.ng-leave-active {
   opacity: 0;
 }
+
+.view-animate {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
