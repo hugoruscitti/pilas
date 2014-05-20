@@ -234,6 +234,26 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
                 self.guardar_contenido_con_dialogo()
                 return
 
+        #Completar comillas y braces
+        if event.key() == Qt.Key_QuoteDbl:
+            self._autocompletar_comillas('"')
+
+        if event.key() == Qt.Key_Apostrophe:
+            self._autocompletar_comillas("'")
+
+        if event.key() == Qt.Key_ParenLeft:
+            self._autocompletar_braces('(')
+
+        if event.key() == Qt.Key_BraceLeft:
+            self._autocompletar_braces('{')
+
+        if event.key() == Qt.Key_BracketLeft:
+            self._autocompletar_braces('[')
+
+        # Elimina los pares de caracteres especiales si los encuentra
+        if event.key() == Qt.Key_Backspace:
+            self._eliminar_pares_de_caracteres()
+
         # navegar por el historial
         if event.key() == Qt.Key_Down:
             if self.historyIndex == len(self.history):
@@ -293,7 +313,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
                 return None
         except UnicodeEncodeError:
             pass
-
 
         if event.key() in [Qt.Key_Return, Qt.Key_Enter]:
             line = self._get_entered_line()

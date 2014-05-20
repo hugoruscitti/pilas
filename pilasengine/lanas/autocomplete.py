@@ -10,6 +10,10 @@ import re
 
 from PyQt4 import QtGui, QtCore
 
+BRACES = {'(':')', '[':']', '{':'}'}
+COMILLAS = {'"':'"', "'":"'"}
+CHARACTERS = {}
+for d in (BRACES, COMILLAS): CHARACTERS.update(d)
 
 class DictionaryCompleter(QtGui.QCompleter):
 
@@ -121,3 +125,27 @@ class CompletionTextEdit(QtGui.QTextEdit):
         tc = self.textCursor()
         tc.select(QtGui.QTextCursor.WordUnderCursor)
         return tc.selectedText()
+
+    def _autocompletar_comillas(self, comilla):
+        tc = self.textCursor()
+        tc.insertText(comilla)
+        tc.setPosition(tc.position()-1)
+        self.setTextCursor(tc)
+
+    def _autocompletar_braces(self, brace):
+        tc = self.textCursor()
+        tc.insertText(BRACES[brace])
+        tc.setPosition(tc.position()-1)
+        self.setTextCursor(tc)
+
+    def _eliminar_pares_de_caracteres(self):
+        tc = self.textCursor()
+        line = self._get_current_line()
+        position = tc.positionInBlock() - 3
+        try:
+            char = str(line[position])
+            nextchar = str(line[position+1])
+            if char in CHARACTERS and nextchar in CHARACTERS.values():
+                tc.deleteChar()                    
+        except:
+            pass
