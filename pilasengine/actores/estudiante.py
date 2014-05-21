@@ -48,7 +48,7 @@ class Estudiante(object):
     def eliminar_habilidad(self, classname):
         """ Elimina una habilidad asociada a un Actor.
 
-        :param classname: Objeto que representa una habilidad.
+        :param classname: Referencia a la clase que representa la habilidad.
         """
         referencia_habilidad = self.obtener_habilidad(classname)
 
