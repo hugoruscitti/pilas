@@ -12,7 +12,7 @@ class TestHabilidades(unittest.TestCase):
 		self.pilas = pilasengine.iniciar()
 
 	def testPuedeCrearHabilidad(self):
-		habilidad = self.pilas.habilidades.Habilidad()
+		habilidad = self.pilas.habilidades.Habilidad(self.pilas)
 		self.assertTrue(habilidad, 'Puede crear habilidad')
 
 	def testNoPuedeRepetirHabilidad(self):

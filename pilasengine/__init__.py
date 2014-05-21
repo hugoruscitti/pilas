@@ -78,7 +78,7 @@ class Pilas(object):
 
         self.musica = musica.Musica(self)
         self.sonidos = sonidos.Sonidos(self)
-        self.habilidades = habilidades.Habilidades(self)
+        self.habilidades = habilidades.Habilidades()
 
         es_reinicio = self.widget != None
 
