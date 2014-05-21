@@ -516,3 +516,13 @@ def iniciar_asistente_desde_argumentos():
         else:
             import pilas
             pilas.abrir_asistente()
+            
+def distancia_entre_radios_de_colision_de_dos_actores(a, b):
+    """Retorna la distancia entre dos actores tenieno en cuenta su radio de colisión
+    
+    :param a: Un actor.
+    :param b: El segundo actor a verificar.
+    """
+    return distancia_entre_dos_actores(a, b) - (a.radio_de_colision + b.radio_de_colision)
+
+

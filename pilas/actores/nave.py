@@ -39,7 +39,7 @@ class Nave(Animacion):
         self.aprender(pilas.habilidades.Disparar,
                        municion=self.municion,
                        angulo_salida_disparo=0,
-                       frecuencia_de_disparo=6,
+                       frecuencia_de_disparo=3,
                        offset_disparo=(29,29),
                        escala=0.7)
 

@@ -65,11 +65,11 @@ class Bala(Actor):
 
 class BalaInvisible(Bala):
     """ Representa una bala que va en línea recta. """
-    
+
     def __init__(self,x=0,y=0,rotacion=0,velocidad_maxima=9,
                  angulo_de_movimiento=90):
-        super(Bala, self).__init__(x=0, y=0, rotacion=0,velocidad_maxima=9, angulo_de_movimiento=90)        
-        self.imagen = "disparos/bala_invisible"
+        super(BalaInvisible, self).__init__(x=0, y=0, rotacion=0,velocidad_maxima=9, angulo_de_movimiento=90)
+        imagen = pilas.imagenes.cargar('disparos/bola_amarilla.png')
 
 class Dinamita(Animacion):
     """ Representa un cartucho de dinamita. """
