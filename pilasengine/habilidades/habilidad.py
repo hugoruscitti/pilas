@@ -18,7 +18,7 @@ class Habilidad(object):
 		pass
 
 	def eliminar(self):
-		self.receptor.eliminar_habilidad(self)
+		self.receptor.eliminar_habilidad(self.__class__)
 
 	def __repr__(self):
 		return '<Habilidad: {0}>'.format(self.__class__.__name__)

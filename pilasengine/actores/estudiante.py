@@ -9,7 +9,6 @@
 import inspect
 
 from pilasengine import habilidades
-from pilasengine.habilidades import habilidad
 
 class Estudiante(object):
     """Componente que permite a los actores aprender habilidades o realizar comportamientos."""
@@ -28,47 +27,68 @@ class Estudiante(object):
         :param classname: Referencia a la clase que representa la habilidad.
         """
 
-        # Instanciando habilidad para comprobar si el actor la tiene asignada
-        if inspect.isclass(classname):
-            if issubclass(classname, habilidad.Habilidad):
-                _habilidad = classname(self.pilas)
-            else:   
-                raise Exception('El actor solo puede aprender clases que hereden de pilasengine.habilidades.Habilidad')
-        else:
-            _habilidad = classname()
+        if issubclass(classname, habilidades.Habilidad):
+            if self.tiene_habilidad(classname):
+                self.eliminar_habilidad(classname)
+            
+            self.agregar_habilidad(classname, *k, **w)
+        else:   
+            raise Exception('El actor solo puede aprender clases que hereden \
+                            de pilasengine.habilidades.Habilidad')
 
-        if self.tiene_habilidad(_habilidad):
-            self.eliminar_habilidad(_habilidad)
-        
-        self.agregar_habilidad(_habilidad, *k, **w)
-
-    def agregar_habilidad(self, habilidad, *k, **w):
+    def agregar_habilidad(self, classname, *k, **w):
         """Agrega una habilidad a la lista de cosas que puede hacer un actor.
 
-        :param habilidad: Objeto que representa una habilidad.
+        :param habilidad: Referencia a la clase que representa la habilidad.
         """
+        habilidad = classname(self.pilas)
         habilidad.iniciar(self, *k, **w)
         self._habilidades.append(habilidad)
 
-    def eliminar_habilidad(self, habilidad):
+    def eliminar_habilidad(self, classname):
         """ Elimina una habilidad asociada a un Actor.
 
         :param classname: Objeto que representa una habilidad.
         """
-        referencia_habilidad = self.obtener_habilidad(habilidad)
+        referencia_habilidad = self.obtener_habilidad(classname)
 
         if referencia_habilidad:
             self._habilidades.remove(referencia_habilidad)
 
-    def tiene_habilidad(self, habilidad):
+    def tiene_habilidad(self, classname):
         """Comprueba si el actor ha aprendido la habilidad indicada.
 
-        :param classname: Objeto que representa una habilidad.
+        :param classname: Referencia a la clase que representa la habilidad.
         :return: Devuelve True si el actor tiene asignada la habilidad
         """
         habilidades_actuales = [habilidad.__class__ for habilidad in self._habilidades]
 
-        return (habilidad.__class__ in habilidades_actuales)
+        return (classname in habilidades_actuales)
+
+    def obtener_habilidad(self, classname):
+        """Obtiene la habilidad asociada a un Actor.
+
+        :param habilidad: Referencia a la clase que representa la habilidad.
+        :return: Devuelve None si no se encontró.
+        """
+        su_habilidad = None
+
+        for h in self._habilidades:
+            if h.__class__ == classname:
+                su_habilidad = h
+                break
+
+        return su_habilidad
+
+    def eliminar_habilidades(self):
+        "Elimina todas las habilidades asociadas al actor."
+        for h in self._habilidades:
+            h.eliminar()
+
+    def actualizar_habilidades(self):
+        "Realiza una actualización sobre todas las habilidades."
+        for h in self._habilidades:
+            h.actualizar()
 
     def tiene_comportamiento(self, classname):
         """Comprueba si el actor tiene el comportamiento indicado.
@@ -77,21 +97,6 @@ class Estudiante(object):
         """
         comportamientos_actuales = [comportamiento.__class__ for comportamiento in self.comportamientos]
         return (classname in comportamientos_actuales)
-
-    def obtener_habilidad(self, habilidad):
-        """Obtiene la habilidad asociada a un Actor.
-
-        :param habilidad: Objeto que representa una habilidad.
-        :return: Devuelve None si no se encontró.
-        """
-        su_habilidad = None
-
-        for h in self._habilidades:
-            if h.__class__ == habilidad.__class__:
-                su_habilidad = h
-                break
-
-        return su_habilidad
 
     def hacer_luego(self, comportamiento, repetir_por_siempre=False, *k, **kw):
         """Define un nuevo comportamiento para realizar al final.
@@ -146,20 +151,10 @@ class Estudiante(object):
         self.comportamientos.insert(0, objecto_comportamiento)
         self._adoptar_el_siguiente_comportamiento()
 
-    def eliminar_habilidades(self):
-        "Elimina todas las habilidades asociadas al actor."
-        for h in self._habilidades:
-            h.eliminar()
-
     def eliminar_comportamientos(self):
         "Elimina todos los comportamientos que tiene que hacer el actor."
         for c in self.comportamientos:
             c.eliminar()
-
-    def actualizar_habilidades(self):
-        "Realiza una actualización sobre todas las habilidades."
-        for h in self._habilidades:
-            h.actualizar()
 
     def actualizar_comportamientos(self):
         "Actualiza la lista de comportamientos"

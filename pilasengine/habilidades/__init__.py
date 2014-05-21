@@ -23,62 +23,73 @@ class Habilidades(object):
 
 	"""
 
-	def __init__(self, pilas):
-		self.pilas = pilas
-
+	@property
    	def Habilidad(self):
-   		return self._crear_habilidad('habilidad', 'Habilidad')
+   		return self._referencia_habilidad('habilidad', 'Habilidad')
 
+   	@property
 	def SiempreEnElCentro(self):
-		return self._crear_habilidad('siempre_en_el_centro', 'SiempreEnElCentro')
+		return self._referencia_habilidad('siempre_en_el_centro', 'SiempreEnElCentro')
 
+	@property
 	def Arrastrable(self):
-		return self._crear_habilidad('arrastrable', 'Arrastrable')
+		return self._referencia_habilidad('arrastrable', 'Arrastrable')
 
+	@property
 	def AumentarConRueda(self):
-		return self._crear_habilidad('aumentar_con_rueda', 'AumentarConRueda')
+		return self._referencia_habilidad('aumentar_con_rueda', 'AumentarConRueda')
 
+	@property
 	def SeguirClicks(self):
-		return self._crear_habilidad('seguir_clicks', 'SeguirClicks')
+		return self._referencia_habilidad('seguir_clicks', 'SeguirClicks')
 
+	@property
 	def SeguirAlMouse(self):
-		return self._crear_habilidad('seguir_al_mouse', 'SeguirAlMouse')
+		return self._referencia_habilidad('seguir_al_mouse', 'SeguirAlMouse')
 
+	@property
 	def PuedeExplotar(self):
-		return self._crear_habilidad('puede_explotar', 'PuedeExplotar')
+		return self._referencia_habilidad('puede_explotar', 'PuedeExplotar')
 
+	@property
 	def SeMantieneEnPantalla(self):
-		return self._crear_habilidad('se_mantiene_en_pantalla', 'SeMantieneEnPantalla')
+		return self._referencia_habilidad('se_mantiene_en_pantalla', 'SeMantieneEnPantalla')
 
+	@property
 	def RotarConMouse(self):
-		return self._crear_habilidad('rotar_con_mouse', 'RotarConMouse')
+		return self._referencia_habilidad('rotar_con_mouse', 'RotarConMouse')
 
+	@property
 	def MirarAlActor(self):
-		return self._crear_habilidad('mirar_al_actor', 'MirarAlActor')
+		return self._referencia_habilidad('mirar_al_actor', 'MirarAlActor')
 
+	@property
 	def MoverseConElTeclado(self):
-		return self._crear_habilidad('moverse_con_el_teclado', 'MoverseConElTeclado')
+		return self._referencia_habilidad('moverse_con_el_teclado', 'MoverseConElTeclado')
 
+	@property
 	def Imitar(self):
-		return self._crear_habilidad('imitar', 'Imitar')
+		return self._referencia_habilidad('imitar', 'Imitar')
 
+	@property
 	def RebotarComoCaja(self):
-		return self._crear_habilidad('rebotar_como_caja', 'RebotarComoCaja')
+		return self._referencia_habilidad('rebotar_como_caja', 'RebotarComoCaja')
 
+	@property
 	def RebotarComoPelota(self):
-		return self._crear_habilidad('rebotar_como_pelota', 'RebotarComoPelota')
+		return self._referencia_habilidad('rebotar_como_pelota', 'RebotarComoPelota')
 
+	@property
 	def MoverseComoCoche(self):
-		return self._crear_habilidad('moverse_como_coche', 'MoverseComoCoche')
+		return self._referencia_habilidad('moverse_como_coche', 'MoverseComoCoche')
 
-	def _crear_habilidad(self, modulo, clase):
+	def _referencia_habilidad(self, modulo, clase):
 		import importlib
 
 		referencia_a_modulo = importlib.import_module('pilasengine.habilidades.' + modulo)
 		referencia_a_clase = getattr(referencia_a_modulo, clase)
 
-		nueva_habilidad = referencia_a_clase(self.pilas)
-		return nueva_habilidad
+		return referencia_a_clase
 
 
 class ProxyHabilidades(object):
