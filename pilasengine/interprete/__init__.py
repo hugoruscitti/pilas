@@ -33,11 +33,16 @@ class VentanaInterprete(Ui_InterpreteWindow):
         QtGui.QShortcut(QtGui.QKeySequence("F5"), self.main, self.cuando_pulsa_el_boton_ejecutar)
         QtGui.QShortcut(QtGui.QKeySequence("Ctrl+r"), self.main, self.cuando_pulsa_el_boton_ejecutar)
 
+        self.pushButton_6.setShortcut(QtGui.QKeySequence('F7'))
+        self.pushButton_5.setShortcut(QtGui.QKeySequence('F8'))
+        self.pushButton_4.setShortcut(QtGui.QKeySequence('F9'))
+        self.pushButton_3.setShortcut(QtGui.QKeySequence('F10'))
+        self.pushButton_2.setShortcut(QtGui.QKeySequence('F11'))
+        self.pushButton.setShortcut(QtGui.QKeySequence('F12'))
+
         # Solo en MacOS informa que la tecla Command sustituye a CTRL.
         if sys.platform == 'darwin':
             self.boton_ejecutar.setToolTip(u"Ejecutar el código actual (F5 o ⌘R)")
-
-        self.atajos_de_depuracion()
 
     def iniciar_interfaz(self):
         self.scope = self._insertar_ventana_principal_de_pilas()
@@ -78,29 +83,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
             evento.accept()
         else:
             evento.ignore()
-
-    def atajos_de_depuracion(self):
-        QtGui.QShortcut(QtGui.QKeySequence("F7"), self.main, \
-            lambda: self.cambiar_estado_boton_depuracion(self.pushButton_6))
-
-        QtGui.QShortcut(QtGui.QKeySequence("F8"), self.main, \
-            lambda: self.cambiar_estado_boton_depuracion(self.pushButton_5))
-
-        QtGui.QShortcut(QtGui.QKeySequence("F9"), self.main, \
-            lambda: self.cambiar_estado_boton_depuracion(self.pushButton_4))
-
-        QtGui.QShortcut(QtGui.QKeySequence("F10"), self.main, \
-            lambda: self.cambiar_estado_boton_depuracion(self.pushButton_3))
-
-        QtGui.QShortcut(QtGui.QKeySequence("F11"), self.main, \
-            lambda: self.cambiar_estado_boton_depuracion(self.pushButton_2))
-
-        QtGui.QShortcut(QtGui.QKeySequence("F12"), self.main, \
-            lambda: self.cambiar_estado_boton_depuracion(self.pushButton))
-
-    def cambiar_estado_boton_depuracion(self, button):
-        button.nextCheckState()
-        self.pulsa_boton_depuracion()
 
     def _consultar(self, parent, titulo, mensaje):
         """Realizar una consulta usando un cuadro de dialogo simple.
