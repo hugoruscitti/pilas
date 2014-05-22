@@ -23,6 +23,7 @@ from pilasengine import depurador
 from pilasengine import musica
 from pilasengine import sonidos
 from pilasengine import habilidades
+from pilasengine import comportamientos
 from pilasengine import eventos
 from pilasengine import controles
 
@@ -79,6 +80,7 @@ class Pilas(object):
         self.musica = musica.Musica(self)
         self.sonidos = sonidos.Sonidos(self)
         self.habilidades = habilidades.Habilidades()
+        self.comportamientos = comportamientos.Comportamientos()
 
         es_reinicio = self.widget != None
 
