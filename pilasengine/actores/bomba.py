@@ -27,8 +27,7 @@ class Bomba(Animacion):
         grilla = pilas.imagenes.cargar_grilla("bomba.png", 2)
         Animacion.__init__(self, pilas, grilla, ciclica=True, x=x, y=y, velocidad=10)
         self.radio_de_colision = 25
-        ### TODO: habilitar cuando exista la habilidad
-        #   self.aprender(pilas.habilidades.PuedeExplotar)
+        self.aprender(pilas.habilidades.PuedeExplotar)
 
     def explotar(self):
         """Hace explotar a la bomba y la elimina de la pantalla."""
