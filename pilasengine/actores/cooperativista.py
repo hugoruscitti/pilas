@@ -16,7 +16,7 @@ class Cooperativista(Actor):
 
     def iniciar(self, x=0, y=0):
         self._cargar_animaciones()
-        self.hacer(Esperando())
+        self.hacer(Esperando)
         self.radio_de_colision = 30
 
     def _cargar_animaciones(self):
@@ -62,20 +62,16 @@ class Esperando(Comportamiento):
 
     def actualizar(self):
         if self.control.izquierda:
-            self.receptor.hacer(Caminando())
+            self.receptor.hacer(Caminando)
         elif self.control.derecha:
-            self.receptor.hacer(Caminando())
+            self.receptor.hacer(Caminando)
 
         if self.control.arriba:
-            self.receptor.hacer(DecirOk())
+            self.receptor.hacer(DecirOk)
 
 
 class Caminando(Comportamiento):
     """Clase que define un comportamiento del actor Cooperativista."""
-
-    def __init__(self):
-        self.cuadros = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3]
-        self.paso = 0
 
     def iniciar(self, receptor):
         """Inicializa el comportamiento.
@@ -84,6 +80,8 @@ class Caminando(Comportamiento):
         """
         self.receptor = receptor
         self.receptor.cambiar_animacion("camina")
+        self.cuadros = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3]
+        self.paso = 0
         self.control = receptor.pilas.escena_actual().control
 
     def actualizar(self):
@@ -96,7 +94,7 @@ class Caminando(Comportamiento):
             self.receptor.x += VELOCIDAD
             self.receptor.espejado = True
         else:
-            self.receptor.hacer(Esperando())
+            self.receptor.hacer(Esperando)
 
     def avanzar_animacion(self):
         self.paso += 1
@@ -110,19 +108,17 @@ class Caminando(Comportamiento):
 class DecirOk(Comportamiento):
     """Clase que define un comportamiento del actor Cooperativista."""
 
-    def __init__(self):
-        self.paso = 0
-
     def iniciar(self, receptor):
         """Inicializa el comportamiento.
 
         :param receptor: La referencia al actor.
         """
         self.receptor = receptor
+        self.paso = 0
         self.receptor.cambiar_animacion("ok")
 
     def actualizar(self):
         self.paso += 1
 
         if self.paso > 50:
-            self.receptor.hacer(Esperando())
+            self.receptor.hacer(Esperando)

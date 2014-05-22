@@ -8,6 +8,8 @@
 
 class Comportamiento(object):
     "Representa un comportamiento (estrategia) que se puede anexar a un actor."
+    def __init__(self, pilas):
+        self.pilas = pilas
 
     def iniciar(self, receptor):
         """Se invoca cuando se anexa el comportamiento a un actor.
