@@ -203,15 +203,18 @@ class Robot():
 
     def ping(self):
         """ Devuelve la distancia en centimetros al objeto frente al robot. """
-
+        self.ultimo_ping = -1
+        
         actores = self.actor.actoresEnLaEscena()
-        print actores
+
         self.actor.definir_enemigos(actores)
-        distancia = self.actor.disparar()
-        if (distancia != -1):
-            return distancia
-        else:
-		    return 601
+        
+        return self.actor.disparar()
+        
+        #if (self.ultimo_ping != -1):
+            #return self.ultimo_ping
+        #else:
+	    
         
     def _determinar_pixel_por_cuadrante(self, cuadrante):
         if cuadrante == 1 :
@@ -279,7 +282,15 @@ class Robot():
     def __del__(self):
         self.eliminar()
 
+    def bajalapiz(self):
+        """Le indica a la tortuga si debe comenzar a dibujar con cada movimiento."""
+        self.actor.lapiz_bajo = True
 
+    def subelapiz(self):
+        """Le indica a la tortuga que deje de dibujar con cada movimiento."""
+        self.actor.lapiz_bajo = False
+        
+        
 class Board(object):
 
     def __init__(self, device='/dev/ttyUSB0'):
@@ -330,13 +341,7 @@ class Board(object):
             if (i.getId() == unRobot.getId()) :
                 i._detenerse()
 
-    def bajalapiz(self):
-        """Le indica a la tortuga si debe comenzar a dibujar con cada movimiento."""
-        self.actor.lapiz_bajo = True
 
-    def subelapiz(self):
-        """Le indica a la tortuga que deje de dibujar con cada movimiento."""
-        self.actor.lapiz_bajo = False
         
 class Sense(QtGui.QMainWindow):
     def __init__(self, unRobot):
@@ -380,16 +385,18 @@ class NaveTortuga(Nave):
         imagen = pilas.imagenes.cargar('RobotN6.png')
         Actor.__init__(self, imagen, x=x, y=y)
 
-        self.municion = pilas.actores.Misil
+        self.municion = pilas.actores.Bala
         self.esta_disparando = False
-         
+        self.bajalapiz()
         self.ultimo_ping = -1
         self.rotacion = 270
         self.velocidad = 3
         self.pasos = 1
         self.anterior_x = x
         self.anterior_y = y
-        self.subelapiz()
+        self.bajalapiz()
+        self.pizarra = pilas.actores.Pizarra()
+
         self.aprender(pilas.habilidades.Arrastrable)
         self.radio_de_colision = 31
         self.color = pilas.colores.negro
@@ -405,8 +412,9 @@ class NaveTortuga(Nave):
     def obtenerDistancia(self, mi_disparo, el_enemigo):
         self.ultimo_disparo = mi_disparo
         self.ultimo_ping = pilas.utils.distancia_entre_radios_de_colision_de_dos_actores (el_enemigo, self)
-        print self.ultimo_ping
+        print  "en elobtenerDistancia ",  self.ultimo_ping
         mi_disparo.eliminar()
+        return self.ultimo_ping
         
        
     def actoresEnLaEscena(self):
@@ -429,8 +437,9 @@ class NaveTortuga(Nave):
     def disparar(self):
         for x in self._habilidades:
             if x.__class__.__name__ == 'Disparar':
-                x.disparar()
-        return self.ultimo_ping 
+                self.ultimo_ping  = x.disparar()
+        
+        
 
     def definir_enemigos(self, grupo, cuando_elimina_enemigo=None):
         """Hace que una nave tenga como enemigos a todos los actores del grupo.

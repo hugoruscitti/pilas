@@ -37,7 +37,14 @@ class TestRobot(unittest.TestCase):
     def test_turn_right_with_time(self):
         self.robot.turnRight(100, 1)
         self.assertGreater(self.actor.rotacion, TestRobot.INITIAL_ROTATION)
+        
+    def test_up_pen(self):
+        self.robot.subelapiz()
+        self.assertEqual(self.actor.lapiz_bajo, False)
 
+    def test_down_pen(self):
+        self.robot.bajalapiz()
+        self.assertEqual(self.actor.lapiz_bajo, True)
 
 if __name__ == '__main__':
     pilas.iniciar()
