@@ -5,26 +5,22 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-import code
 import sys
 import inspect
 
 import os
 os.environ['lanas'] = 'enabled'
 
-from PyQt4 import QtGui
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt4.QtGui import QLabel
+from PyQt4.QtGui import QWidget
+from PyQt4.QtGui import QVBoxLayout
+from PyQt4.QtGui import QInputDialog
+from PyQt4.QtGui import QDesktopWidget
 
-import highlighter
-import autocomplete
 import interprete_textedit
 
 
-
-
 class Ventana(QWidget):
-
     def __init__(self, parent=None, scope=None, codigo_inicial=""):
         super(Ventana, self).__init__(parent)
         box = QVBoxLayout()
@@ -64,7 +60,7 @@ class Ventana(QWidget):
 
     def center_on_screen(self):
         resolution = QDesktopWidget().screenGeometry()
-        self.move((resolution.width()  / 2) - (self.frameSize().width()  / 2),
+        self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
 
     def closeEvent(self, event):
