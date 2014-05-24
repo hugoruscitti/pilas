@@ -8,6 +8,7 @@
 import os
 import pygame
 
+
 class Musica(object):
     deshabilitado = False
 
