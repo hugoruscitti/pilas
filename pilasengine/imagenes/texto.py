@@ -12,19 +12,23 @@ from PyQt4 import QtCore
 from pilasengine.imagenes.superficie import Superficie
 from pilasengine import utils
 
+
 class Texto(Superficie):
     CACHE_FUENTES = {}
 
     def __init__(self, pilas, texto, magnitud, vertical, fuente, color, ancho):
-        ancho, alto = self.obtener_area_de_texto(texto, magnitud, vertical, fuente, ancho)
+        ancho, alto = self.obtener_area_de_texto(texto, magnitud, vertical,
+                                                 fuente, ancho)
         Superficie.__init__(self, pilas, ancho, alto)
         self._ancho_del_texto = ancho
         self.dibujar_texto = self.texto
-        self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente, color=color, ancho=ancho, vertical=vertical)
+        self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente,
+                           color=color, ancho=ancho, vertical=vertical)
         self.ruta_original = texto.encode('ascii', 'xmlcharrefreplace') + str(os.urandom(25))
         self.texto = texto
 
-    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None, ancho=0):
+    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False,
+                              fuente=None, ancho=0):
         pic = QtGui.QPicture()
         p = QtGui.QPainter(pic)
 
@@ -58,7 +62,6 @@ class Texto(Superficie):
 
         p.end()
         return (ancho, alto)
-
 
     @classmethod
     def cargar_fuente_desde_cache(kclass, fuente_como_ruta):

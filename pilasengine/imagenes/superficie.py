@@ -11,6 +11,7 @@ from PyQt4 import QtCore
 from pilasengine.imagenes.imagen import Imagen
 from pilasengine import colores
 
+
 class Superficie(Imagen):
 
     def __init__(self, pilas, ancho, alto):
@@ -24,15 +25,19 @@ class Superficie(Imagen):
         r, g, b, a = color.obtener_componentes()
         self._imagen.fill(QtGui.QColor(r, g, b, a))
 
-    def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
+    def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto,
+                               x, y):
         self.canvas.begin(self._imagen)
-        self.canvas.drawPixmap(x, y, imagen._imagen, origen_x, origen_y, ancho, alto)
+        self.canvas.drawPixmap(x, y, imagen._imagen, origen_x, origen_y,
+                               ancho, alto)
         self.canvas.end()
 
     def pintar_imagen(self, imagen, x=0, y=0):
-        self.pintar_parte_de_imagen(imagen, 0, 0, imagen.ancho(), imagen.alto(), x, y)
+        self.pintar_parte_de_imagen(imagen, 0, 0, imagen.ancho(),
+                                    imagen.alto(), x, y)
 
-    def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro, ancho=0, vertical=False):
+    def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None,
+              color=colores.negro, ancho=0, vertical=False):
         self.canvas.begin(self._imagen)
         r, g, b, _ = color.obtener_componentes()
         self.canvas.setPen(QtGui.QColor(r, g, b))
@@ -66,7 +71,8 @@ class Superficie(Imagen):
 
         self.canvas.end()
 
-    def circulo(self, x, y, radio, color=colores.negro, relleno=False, grosor=1):
+    def circulo(self, x, y, radio, color=colores.negro,
+                relleno=False, grosor=1):
         self.canvas.begin(self._imagen)
 
         r, g, b, _ = color.obtener_componentes()
@@ -80,7 +86,8 @@ class Superficie(Imagen):
         self.canvas.drawEllipse(x-radio, y-radio, radio*2, radio*2)
         self.canvas.end()
 
-    def rectangulo(self, x, y, ancho, alto, color=colores.negro, relleno=False, grosor=1):
+    def rectangulo(self, x, y, ancho, alto, color=colores.negro,
+                   relleno=False, grosor=1):
         self.canvas.begin(self._imagen)
 
         r, g, b, _ = color.obtener_componentes()

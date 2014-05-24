@@ -9,6 +9,7 @@ import os
 
 from imagen import Imagen
 
+
 class Grilla(Imagen):
 
     """Representa una grilla regular, que se utiliza en animaciones.
@@ -35,7 +36,8 @@ class Grilla(Imagen):
         return self.cuadro_alto
 
     def _dibujar_pixmap(self, painter):
-        painter.drawPixmap(0, 0, self._imagen, self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto)
+        painter.drawPixmap(0, 0, self._imagen, self.dx, self.dy,
+                           self.cuadro_ancho, self.cuadro_alto)
 
     def definir_cuadro(self, cuadro):
         self._cuadro = cuadro
@@ -61,7 +63,9 @@ class Grilla(Imagen):
         return self._cuadro
 
     def dibujarse_sobre_una_pizarra(self, pizarra, x, y):
-        pizarra.pintar_parte_de_imagen(self, self.dx, self.dy, self.cuadro_ancho, self.cuadro_alto, x, y)
+        pizarra.pintar_parte_de_imagen(self, self.dx, self.dy,
+                                       self.cuadro_ancho, self.cuadro_alto,
+                                       x, y)
 
     def __str__(self):
         nombre_imagen = os.path.basename(self.ruta_original)
