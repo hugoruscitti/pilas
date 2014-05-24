@@ -6,6 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+
 class Color(object):
     "Representa un color en base a 4 componentes."
 
@@ -16,7 +17,7 @@ class Color(object):
         self.a = a
 
     def __str__(self):
-        return "<Color (%d, %d, %d, %d)>" %(self.r, self.g, self.b, self.a)
+        return "<Color (%d, %d, %d, %d)>" % (self.r, self.g, self.b, self.a)
 
     def obtener_componentes(self):
         return (self.r, self.g, self.b, self.a)

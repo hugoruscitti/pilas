@@ -44,7 +44,9 @@ class Pilas(object):
     de los actores y quien mantiene con "vida" el juego completo.
     """
 
-    def __init__(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, capturar_errores=True, habilitar_mensajes_log=False):
+    def __init__(self, ancho=640, alto=480, titulo='pilas-engine',
+                 con_aceleracion=True, capturar_errores=True,
+                 habilitar_mensajes_log=False):
         """Inicializa el area de juego con una configuración inicial."""
         self._iniciado_desde_asistente = False
 
@@ -57,10 +59,12 @@ class Pilas(object):
 
         self.widget = None
         self._capturar_errores = capturar_errores
-        self.reiniciar(ancho, alto, titulo, con_aceleracion, habilitar_mensajes_log)
+        self.reiniciar(ancho, alto, titulo, con_aceleracion,
+                       habilitar_mensajes_log)
         pygame.mixer.init()
 
-    def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine', con_aceleracion=True, habilitar_mensajes_log=False):
+    def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
+                  con_aceleracion=True, habilitar_mensajes_log=False):
         """Genera nuevamente la ventana del videojuego."""
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
@@ -257,7 +261,9 @@ class Pilas(object):
     escena = property(obtener_escena_actual, doc="Escena actual")
     fisica = property(obtener_fisica, doc="Retorna el componente fisica")
 
-def iniciar(ancho=640, alto=480, titulo='Pilas', capturar_errores=True, habilitar_mensajes_log=False):
+
+def iniciar(ancho=640, alto=480, titulo='Pilas', capturar_errores=True,
+            habilitar_mensajes_log=False):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -272,23 +278,30 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', capturar_errores=True, habilita
     :ancho: el tamaño en pixels para la ventana.
     :alto: el tamaño en pixels para la ventana.
     :titulo: el titulo a mostrar en la ventana.
-    :capturar_errores: True indica que los errores se tienen que mostrar en la ventana de pilas. En caso de poner False los errores se muestran en consola.
+    :capturar_errores: True indica que los errores se tienen que mostrar en la
+                       ventana de pilas. En caso de poner False los errores
+                       se muestran en consola.
     :habilitar_mensajes_log: Muestra cada operación que hace pilas en consola.
     """
-    pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo, capturar_errores=capturar_errores)
+    pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo,
+                  capturar_errores=capturar_errores)
     return pilas
+
 
 def abrir_asistente():
     import asistente
     return asistente.abrir()
 
+
 def abrir_manual():
     import manual
     return manual.abrir()
 
+
 def abrir_interprete():
     import interprete
     return interprete.abrir()
+
 
 def abrir_script_con_livereload(archivo):
     import interprete

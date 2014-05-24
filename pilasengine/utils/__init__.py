@@ -21,6 +21,7 @@ INTERPRETE_PATH = os.path.dirname(sys.argv[0])
 # Relación de pixels por metro (para el motor de física).
 PPM = 30
 
+
 class Utils(object):
 
     def __init__(self, pilas):
@@ -30,12 +31,15 @@ class Utils(object):
         """Genera un identificador único."""
         return str(uuid.uuid4())
 
-    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None, ancho=0):
-        texto = self.pilas.imagenes.crear_texto(cadena, magnitud, vertical, fuente, colores.blanco, ancho)
+    def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False,
+                              fuente=None, ancho=0):
+        texto = self.pilas.imagenes.crear_texto(cadena, magnitud, vertical,
+                                                fuente, colores.blanco, ancho)
         return (texto.ancho(), texto.alto())
 
     def es_interpolacion(self, valor):
-        return isinstance(valor, list) or (isinstance(valor,tuple) and len(valor) == 2)
+        return isinstance(valor, list) or (isinstance(valor, tuple) and
+                                           len(valor) == 2)
 
     def interpolar(self, actor, atributo, valor):
         duracion = 0.5
@@ -51,13 +55,14 @@ class Utils(object):
             demora_inicial = i * duracion
             parametro = {atributo: x}
             tweener.add_tween(actor, tween_time=duracion,
-                          tween_type=tweener.IN_OUT_QUAD,
-                          tween_delay=demora_inicial,
-                          inicial=anterior,
-                          **parametro)
-            anterior=x
+                              tween_type=tweener.IN_OUT_QUAD,
+                              tween_delay=demora_inicial,
+                              inicial=anterior,
+                              **parametro)
+            anterior = x
 
-    def interpretar_propiedad_numerica(self, objeto, propiedad, valor, evento=None):
+    def interpretar_propiedad_numerica(self, objeto, propiedad, valor,
+                                       evento=None):
         """Procesa una propiedad y permite que sea numero o interpolación.
 
         Este método se invoca en la mayoría de propiedades y atributos
@@ -79,6 +84,7 @@ class Utils(object):
         else:
             raise Exception("Solo se pueden asignar números o interpolaciones.")
 
+
 def obtener_angulo_entre(punto_a, punto_b):
     """Retorna el ángulo entro dos puntos de la pantalla.
 
@@ -89,13 +95,16 @@ def obtener_angulo_entre(punto_a, punto_b):
     (x1, y1) = punto_b
     return math.degrees(math.atan2(y1 - y, x1 - x))
 
+
 def convertir_a_metros(valor):
     """Convierte una magnitid de pixels a metros."""
     return valor / float(PPM)
 
+
 def convertir_a_pixels(valor):
     """Convierte una magnitud de metros a pixels."""
     return valor * PPM
+
 
 def obtener_ruta_al_recurso(ruta):
     dirs = ['./', '/../data',
@@ -108,7 +117,7 @@ def obtener_ruta_al_recurso(ruta):
             INTERPRETE_PATH + '/data',
             PATH + '/../../data',
             INTERPRETE_PATH + '/../data'
-           ]
+        ]
 
     for x in dirs:
         full_path = os.path.join(x, ruta)
@@ -119,7 +128,9 @@ def obtener_ruta_al_recurso(ruta):
     # Si no ha encontrado el archivo lo reporta.
     raise IOError("El archivo '%s' no existe." % (ruta))
 
-def instanciar_interpolacion(pilas, valor_o_valores, duracion=1, demora=0, tipo='lineal'):
+
+def instanciar_interpolacion(pilas, valor_o_valores, duracion=1, demora=0,
+                             tipo='lineal'):
     """Retorna un objeto que representa cambios de atributos progresivos.
 
     El resultado de esta función se puede aplicar a varios atributos
@@ -194,6 +205,7 @@ def interpolable(f):
             f(args[0], value, **kwargs)
 
     return inner
+
 
 def centrar_ventana(ventana):
     """Mueve la ventana al centro del area visible del escritorio."""

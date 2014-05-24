@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 from PyQt4 import QtCore
 
+
 class FPS(object):
     """Representa un controlador de tiempo para el mainloop de pilas."""
 
