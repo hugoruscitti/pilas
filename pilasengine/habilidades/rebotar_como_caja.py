@@ -21,12 +21,13 @@ class RebotarComoCaja(habilidades.Habilidad):
         super(RebotarComoCaja, self).iniciar(receptor)
         error = random.randint(-10, 10) / 10.0
         rectangulo = self.pilas.fisica.Rectangulo(receptor.x + error,
-                                             receptor.y + error,
-                                             receptor.radio_de_colision*2 - 4,
-                                             receptor.radio_de_colision*2 - 4,
-                                             )
+                                                  receptor.y + error,
+                                                  receptor.radio_de_colision *
+                                                  2 - 4,
+                                                  receptor.radio_de_colision *
+                                                  2 - 4,)
         receptor.aprender(self.pilas.habilidades.Imitar, rectangulo)
 
     def eliminar(self):
-    	super(RebotarComoCaja, self).eliminar()
-    	self.receptor.habilidades.Imitar.eliminar()
+        super(RebotarComoCaja, self).eliminar()
+        self.receptor.habilidades.Imitar.eliminar()

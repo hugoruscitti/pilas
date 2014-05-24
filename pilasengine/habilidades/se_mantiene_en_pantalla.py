@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 from pilasengine import habilidades
 
+
 class SeMantieneEnPantalla(habilidades.Habilidad):
     """Se asegura de que el actor regrese a la pantalla si sale o que no
     salga en nigún momento de la pantalla.
@@ -19,15 +20,17 @@ class SeMantieneEnPantalla(habilidades.Habilidad):
         """
         :param receptor: El actor que aprenderá la habilidad.
         :param permitir_salida: Valor booleano que establece si el actor
-                                puede salir por los lados de la ventana y regresar por el lado opuesto.
-                                Si se establece a False, el actor no puede salir de la ventana en ningún momento.
+                                puede salir por los lados de la ventana y
+                                regresar por el lado opuesto. Si se establece a
+                                False, el actor no puede salir de la ventana en
+                                ningún momento.
         """
         super(SeMantieneEnPantalla, self).iniciar(receptor)
         self.ancho, self.alto = self.pilas.obtener_area()
         self.permitir_salida = permitir_salida
 
     def actualizar(self):
-        if self.permitir_salida :
+        if self.permitir_salida:
             # Se asegura de regresar por izquierda y derecha.
             if self.receptor.derecha < -(self.ancho/2):
                 self.receptor.izquierda = (self.ancho/2)
@@ -42,7 +45,7 @@ class SeMantieneEnPantalla(habilidades.Habilidad):
         else:
             if self.receptor.izquierda <= -(self.ancho/2):
                 self.receptor.izquierda = -(self.ancho/2)
-            elif self.receptor.derecha >=  (self.ancho/2):
+            elif self.receptor.derecha >= (self.ancho/2):
                 self.receptor.derecha = self.ancho/2
 
             if self.receptor.arriba > (self.alto/2):

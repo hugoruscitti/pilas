@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 from pilasengine import habilidades
 
+
 class SeguirAlMouse(habilidades.Habilidad):
     "Hace que un actor siga la posición del mouse en todo momento."
 

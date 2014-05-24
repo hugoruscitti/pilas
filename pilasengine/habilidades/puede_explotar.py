@@ -9,6 +9,7 @@
 from pilasengine.actores import Actor
 from pilasengine.habilidades.habilidad import Habilidad
 
+
 class PuedeExplotar(Habilidad):
     "Hace que un actor se pueda hacer explotar invocando al metodo eliminar."
 

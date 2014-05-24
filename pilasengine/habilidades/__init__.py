@@ -8,110 +8,116 @@
 
 from pilasengine.habilidades.habilidad import Habilidad
 
+
 class Habilidades(object):
-	"""Representa la forma de acceso y construcción de las habilidades.
+    """Representa la forma de acceso y construcción de las habilidades.
 
-	Esta clase representa el objeto creado por pilas que
-	se puede acceder escribiendo ``pilas.habilidades``. Desde aquí
-	se puede acceder a las habilidades pre-diseñadas de pilas y
-	'enseñarselas' a los actores.
+    Esta clase representa el objeto creado por pilas que
+    se puede acceder escribiendo ``pilas.habilidades``. Desde aquí
+    se puede acceder a las habilidades pre-diseñadas de pilas y
+    'enseñarselas' a los actores.
 
-	Por ejemplo, para 'enseñar' una habilidad:
+    Por ejemplo, para 'enseñar' una habilidad:
 
-		>>> nave = pilas.actores.Nave()
-		>>> nave.aprender(pilas.habilidades.Arrastrable)
+    >>> nave = pilas.actores.Nave()
+    >>> nave.aprender(pilas.habilidades.Arrastrable)
 
-	"""
+    """
 
-	@property
-   	def Habilidad(self):
-   		return self._referencia_habilidad('habilidad', 'Habilidad')
+    @property
+    def Habilidad(self):
+        return self._referencia_habilidad('habilidad', 'Habilidad')
 
-   	@property
-	def SiempreEnElCentro(self):
-		return self._referencia_habilidad('siempre_en_el_centro', 'SiempreEnElCentro')
+    @property
+    def SiempreEnElCentro(self):
+        return self._referencia_habilidad('siempre_en_el_centro',
+                                          'SiempreEnElCentro')
 
-	@property
-	def Arrastrable(self):
-		return self._referencia_habilidad('arrastrable', 'Arrastrable')
+    @property
+    def Arrastrable(self):
+        return self._referencia_habilidad('arrastrable', 'Arrastrable')
 
-	@property
-	def AumentarConRueda(self):
-		return self._referencia_habilidad('aumentar_con_rueda', 'AumentarConRueda')
+    @property
+    def AumentarConRueda(self):
+        return self._referencia_habilidad('aumentar_con_rueda',
+                                          'AumentarConRueda')
 
-	@property
-	def SeguirClicks(self):
-		return self._referencia_habilidad('seguir_clicks', 'SeguirClicks')
+    @property
+    def SeguirClicks(self):
+        return self._referencia_habilidad('seguir_clicks', 'SeguirClicks')
 
-	@property
-	def SeguirAlMouse(self):
-		return self._referencia_habilidad('seguir_al_mouse', 'SeguirAlMouse')
+    @property
+    def SeguirAlMouse(self):
+        return self._referencia_habilidad('seguir_al_mouse', 'SeguirAlMouse')
 
-	@property
-	def PuedeExplotar(self):
-		return self._referencia_habilidad('puede_explotar', 'PuedeExplotar')
+    @property
+    def PuedeExplotar(self):
+        return self._referencia_habilidad('puede_explotar', 'PuedeExplotar')
 
-	@property
-	def SeMantieneEnPantalla(self):
-		return self._referencia_habilidad('se_mantiene_en_pantalla', 'SeMantieneEnPantalla')
+    @property
+    def SeMantieneEnPantalla(self):
+        return self._referencia_habilidad('se_mantiene_en_pantalla',
+                                          'SeMantieneEnPantalla')
 
-	@property
-	def RotarConMouse(self):
-		return self._referencia_habilidad('rotar_con_mouse', 'RotarConMouse')
+    @property
+    def RotarConMouse(self):
+        return self._referencia_habilidad('rotar_con_mouse', 'RotarConMouse')
 
-	@property
-	def MirarAlActor(self):
-		return self._referencia_habilidad('mirar_al_actor', 'MirarAlActor')
+    @property
+    def MirarAlActor(self):
+        return self._referencia_habilidad('mirar_al_actor', 'MirarAlActor')
 
-	@property
-	def MoverseConElTeclado(self):
-		return self._referencia_habilidad('moverse_con_el_teclado', 'MoverseConElTeclado')
+    @property
+    def MoverseConElTeclado(self):
+        return self._referencia_habilidad('moverse_con_el_teclado',
+                                          'MoverseConElTeclado')
 
-	@property
-	def Imitar(self):
-		return self._referencia_habilidad('imitar', 'Imitar')
+    @property
+    def Imitar(self):
+        return self._referencia_habilidad('imitar', 'Imitar')
 
-	@property
-	def RebotarComoCaja(self):
-		return self._referencia_habilidad('rebotar_como_caja', 'RebotarComoCaja')
+    @property
+    def RebotarComoCaja(self):
+        return self._referencia_habilidad('rebotar_como_caja',
+                                          'RebotarComoCaja')
 
-	@property
-	def RebotarComoPelota(self):
-		return self._referencia_habilidad('rebotar_como_pelota', 'RebotarComoPelota')
+    @property
+    def RebotarComoPelota(self):
+        return self._referencia_habilidad('rebotar_como_pelota',
+                                          'RebotarComoPelota')
 
-	@property
-	def MoverseComoCoche(self):
-		return self._referencia_habilidad('moverse_como_coche', 'MoverseComoCoche')
+    @property
+    def MoverseComoCoche(self):
+        return self._referencia_habilidad('moverse_como_coche',
+                                          'MoverseComoCoche')
 
-	def _referencia_habilidad(self, modulo, clase):
-		import importlib
-
-		referencia_a_modulo = importlib.import_module('pilasengine.habilidades.' + modulo)
-		referencia_a_clase = getattr(referencia_a_modulo, clase)
-
-		return referencia_a_clase
+    def _referencia_habilidad(self, modulo, clase):
+        import importlib
+        referencia_a_modulo = importlib.import_module('pilasengine.habilidades.'
+                                                      + modulo)
+        referencia_a_clase = getattr(referencia_a_modulo, clase)
+        return referencia_a_clase
 
 
 class ProxyHabilidades(object):
-	"""Implementa un intermediario con todas las habilidades del Actor."""
+    """Implementa un intermediario con todas las habilidades del Actor."""
 
-	def __init__(self, habilidades):
-		self.habilidades = habilidades
+    def __init__(self, habilidades):
+        self.habilidades = habilidades
 
-	def __getattr__(self, name):
-		su_habilidad = None
+    def __getattr__(self, name):
+        su_habilidad = None
 
-		for habilidad in self.habilidades:
-			if habilidad.__class__.__name__ == name:
-				su_habilidad = habilidad
-				break
+        for habilidad in self.habilidades:
+            if habilidad.__class__.__name__ == name:
+                su_habilidad = habilidad
+                return su_habilidad
 
-		if not su_habilidad:
-			raise Exception("El actor no tiene asignada la habilidad " + name +
-							".\n No puede acceder mediante actor.habilidades." + name)
+            if su_habilidad is None:
+                raise Exception("El actor no tiene asignada la habilidad " +
+                                name + ".\n No puede acceder mediante \
+                                actor.habilidades." + name)
 
-		return su_habilidad
-
-	def __repr__(self):
-		return '<Éste actor tiene {0} habilidades: {1}>'.format(str(len(self.habilidades)),
-			str(self.habilidades))
+    def __repr__(self):
+        return '<Éste actor tiene {0} habilidades: {1}>'.format(
+            str(len(self.habilidades)), str(self.habilidades))
