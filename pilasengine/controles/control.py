@@ -14,6 +14,7 @@ Módulo pilas.control
 
 """
 
+
 class Control(object):
     """Representa un control de teclado sencillo.
 
@@ -99,10 +100,10 @@ class Control(object):
 
         if mapa_teclado is None:
             self.mapa_teclado = {simbolos.IZQUIERDA: 'izquierda',
-                                  simbolos.DERECHA: 'derecha',
-                                  simbolos.ARRIBA: 'arriba',
-                                  simbolos.ABAJO: 'abajo',
-                                  simbolos.ESPACIO: 'boton'}
+                                 simbolos.DERECHA: 'derecha',
+                                 simbolos.ARRIBA: 'arriba',
+                                 simbolos.ABAJO: 'abajo',
+                                 simbolos.ESPACIO: 'boton'}
         else:
             self.mapa_teclado = mapa_teclado
 
@@ -121,7 +122,8 @@ class Control(object):
     def __repr__(self):
         teclas = list()
         for k in self.mapa_teclado:
-            teclas.append("{0}:{1}".format(self.mapa_teclado[k], getattr(self, self.mapa_teclado[k])))
+            teclas.append("{0}:{1}".format(self.mapa_teclado[k],
+                                           getattr(self, self.mapa_teclado[k])))
 
         return '<Control {0}>'.format('  '.join(teclas))
 
