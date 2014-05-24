@@ -32,7 +32,7 @@ class TestControles(unittest.TestCase):
 
         # Simula la pulsación de la tecla Derecha
         widget = self.pilas.obtener_widget()
-        QTest.keyPress(widget, QtCore.Qt.Key_Right);
+        QTest.keyPress(widget, QtCore.Qt.Key_Right)
 
         # Simula que pasó un solo tick (si hago 60 de estos simulará 1 segundo).
         self.pilas.simular_actualizacion_logica()
@@ -40,15 +40,16 @@ class TestControles(unittest.TestCase):
         self.assertEqual(1, actor.x, "Luego de pulsar DERECHA se mueve")
 
         # importante: suelta la tecla que comezó a pulsar antes.
-        QTest.keyRelease(widget, QtCore.Qt.Key_Right);
+        QTest.keyRelease(widget, QtCore.Qt.Key_Right)
 
         # Pulsa dos veces hacia la izquierda:
-        QTest.keyPress(widget, QtCore.Qt.Key_Left);
+        QTest.keyPress(widget, QtCore.Qt.Key_Left)
         self.pilas.simular_actualizacion_logica()
-        QTest.keyPress(widget, QtCore.Qt.Key_Left);
+        QTest.keyPress(widget, QtCore.Qt.Key_Left)
         self.pilas.simular_actualizacion_logica()
 
-        self.assertEqual(-1, actor.x, "Luego de pulsar dos veces IZQUIERDA pasa a x=-1")
+        self.assertEqual(-1, actor.x, "Luego de pulsar dos veces \
+                         IZQUIERDA pasa a x=-1")
 
 
 if __name__ == '__main__':

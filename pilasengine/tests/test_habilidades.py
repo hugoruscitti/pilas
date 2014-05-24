@@ -5,57 +5,61 @@ from PyQt4 import QtGui
 
 import pilasengine
 
+
 class TestHabilidades(unittest.TestCase):
-	app = QtGui.QApplication(sys.argv)
+    app = QtGui.QApplication(sys.argv)
 
-	def setUp(self):
-		self.pilas = pilasengine.iniciar()
+    def setUp(self):
+        self.pilas = pilasengine.iniciar()
 
-	def testPuedeCrearHabilidad(self):
-		habilidad = self.pilas.habilidades.Habilidad(self.pilas)
-		self.assertTrue(habilidad, 'Puede crear habilidad')
+    def testPuedeCrearHabilidad(self):
+        habilidad = self.pilas.habilidades.Habilidad(self.pilas)
+        self.assertTrue(habilidad, 'Puede crear habilidad')
 
-	def testNoPuedeRepetirHabilidad(self):
-		actor = self.pilas.actores.Aceituna()
-		actor.aprender(self.pilas.habilidades.Habilidad)
-		actor.aprender(self.pilas.habilidades.Habilidad)
-		self.assertEquals(len(actor._habilidades), 1, 'No puede Repetir la habilidad')
-	
-	def testPuedeIniciarHabilidad(self):
-		actor = self.pilas.actores.Aceituna()
-		actor.aprender(self.pilas.habilidades.Habilidad)
-		self.assertTrue(actor.habilidades.Habilidad.iniciar, 'Puede iniciar habilidad')	
+    def testNoPuedeRepetirHabilidad(self):
+        actor = self.pilas.actores.Aceituna()
+        actor.aprender(self.pilas.habilidades.Habilidad)
+        actor.aprender(self.pilas.habilidades.Habilidad)
+        self.assertEquals(len(actor._habilidades), 1,
+                          'No puede Repetir la habilidad')
 
-	def testPuedeActualizarHabilidad(self):
-		actor = self.pilas.actores.Aceituna()
-		actor.aprender(self.pilas.habilidades.Habilidad)
-		self.assertTrue(actor.habilidades.Habilidad.actualizar, 'Puede actualizar habilidad')	
+    def testPuedeIniciarHabilidad(self):
+        actor = self.pilas.actores.Aceituna()
+        actor.aprender(self.pilas.habilidades.Habilidad)
+        self.assertTrue(actor.habilidades.Habilidad.iniciar,
+                        'Puede iniciar habilidad')
 
-	def testPuedeEliminarHabilidad(self):
-		actor = self.pilas.actores.Aceituna()
-		actor.aprender(self.pilas.habilidades.Habilidad)
-		actor.habilidades.Habilidad.eliminar()
-		self.assertEquals(actor._habilidades, list(), 'Puede eliminar habilidad')
+    def testPuedeActualizarHabilidad(self):
+        actor = self.pilas.actores.Aceituna()
+        actor.aprender(self.pilas.habilidades.Habilidad)
+        self.assertTrue(actor.habilidades.Habilidad.actualizar,
+                        'Puede actualizar habilidad')
 
-	def testPuedeCrearHabilidadPersonalizada(self):
-		class MiHabilidad(pilasengine.habilidades.Habilidad):
-			def actualizar(self):
-				pass
+    def testPuedeEliminarHabilidad(self):
+        actor = self.pilas.actores.Aceituna()
+        actor.aprender(self.pilas.habilidades.Habilidad)
+        actor.habilidades.Habilidad.eliminar()
+        self.assertEquals(actor._habilidades, list(), 'Puede eliminar habilidad')
 
-		actor = self.pilas.actores.Aceituna()
-		actor.aprender(MiHabilidad)
+    def testPuedeCrearHabilidadPersonalizada(self):
+        class MiHabilidad(pilasengine.habilidades.Habilidad):
+                def actualizar(self):
+                    pass
 
-		self.assertEquals(1, len(actor._habilidades), 'Pude aprender habilidad personalizada')
+        actor = self.pilas.actores.Aceituna()
+        actor.aprender(MiHabilidad)
 
-		def crear_habilidad_incorrectamente():
-			class MiHabilidad():
-				def actualizar(self):
-					pass
+        self.assertEquals(1, len(actor._habilidades),
+                          'Pude aprender habilidad personalizada')
 
-			actor = self.pilas.actores.Aceituna()
-			actor.aprender(MiHabilidad)			
+        def crear_habilidad_incorrectamente():
+            class MiHabilidad():
+                def actualizar(self):
+                    pass
 
-		self.assertRaises(Exception, crear_habilidad_incorrectamente)			
+            actor = self.pilas.actores.Aceituna()
+            actor.aprender(MiHabilidad)
+        self.assertRaises(Exception, crear_habilidad_incorrectamente)
 
 if __name__ == '__main__':
-	unittest.main()		
+    unittest.main()
