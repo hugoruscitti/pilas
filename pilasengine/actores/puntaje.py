@@ -9,6 +9,7 @@
 from pilasengine import colores
 from pilasengine.actores.texto import Texto
 
+
 class Puntaje(Texto):
     """Representa un contador de Puntaje"""
 
@@ -24,7 +25,7 @@ class Puntaje(Texto):
         self.color = color
         self.valor = int(texto)
 
-    def definir(self, puntaje_variable = '0'):
+    def definir(self, puntaje_variable='0'):
         """Cambia el texto que se mostrará cómo puntaje.
 
         :param puntaje_variable: Texto a definir.

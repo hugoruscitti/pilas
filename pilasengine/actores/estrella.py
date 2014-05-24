@@ -8,6 +8,7 @@
 
 from pilasengine.actores.actor import Actor
 
+
 class Estrella(Actor):
 
     def iniciar(self):

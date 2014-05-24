@@ -10,6 +10,7 @@ import random
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.grupo import Grupo
 
+
 class Actores(object):
     """Representa la forma de acceso y construcción de actores.
 
@@ -43,7 +44,8 @@ class Actores(object):
         """
 
         if not Actor in clase_del_actor.__bases__:
-            raise Exception("Solo se pueden vincular clases que heredan de pilasengine.actores.Actor")
+            raise Exception("Solo se pueden vincular clases que heredan de \
+                            pilasengine.actores.Actor")
 
         def metodo_crear_actor(self):
             nuevo_actor = clase_del_actor(self.pilas)
@@ -53,7 +55,8 @@ class Actores(object):
         existe = getattr(self.__class__, nombre_del_actor, None)
 
         if existe:
-            raise Exception("Lo siento, ya existe un actor con el nombre " + nombre_del_actor)
+            raise Exception("Lo siento, ya existe un actor con el nombre " +
+                            nombre_del_actor)
 
         setattr(self.__class__, nombre_del_actor, metodo_crear_actor)
         Actores._lista_actores_personalizados.append(nombre_del_actor)
@@ -80,10 +83,12 @@ class Actores(object):
         if isinstance(actor, Actor):
             escena_actual = self.pilas.obtener_escena_actual()
 
-            self.pilas.log("Agregando el actor", actor, "en la escena", escena_actual)
+            self.pilas.log("Agregando el actor", actor, "en la escena",
+                           escena_actual)
             escena_actual.agregar_actor(actor)
 
-            self.pilas.log("Iniciando el actor, llamando a actor.iniciar() del objeto ", actor)
+            self.pilas.log("Iniciando el actor, llamando a actor.iniciar() \
+                           del objeto ", actor)
             actor.iniciar()
         else:
             raise Exception("Solo puedes agregar actores de esta forma.")
@@ -93,7 +98,8 @@ class Actores(object):
     def agregar_grupo(self, grupo):
         if isinstance(grupo, Grupo):
             escena_actual = self.pilas.obtener_escena_actual()
-            self.pilas.log("Agregando el grupo", grupo, "a la escena", escena_actual)
+            self.pilas.log("Agregando el grupo", grupo, "a la escena",
+                           escena_actual)
             escena_actual.agregar_grupo(grupo)
         else:
             raise Exception("Solo puedes agregar grupos de esta forma.")
@@ -127,7 +133,8 @@ class Actores(object):
     def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
 
-        referencia_a_modulo = importlib.import_module('pilasengine.actores.' + modulo)
+        referencia_a_modulo = importlib.import_module('pilasengine.actores.'
+                                                      + modulo)
         referencia_a_clase = getattr(referencia_a_modulo, clase)
 
         nuevo_actor = referencia_a_clase(self.pilas, *k, **kw)
@@ -137,10 +144,12 @@ class Actores(object):
         return nuevo_actor
 
     def MensajeError(self, error, descripcion):
-        return self._crear_actor('mensaje_error', 'MensajeError', error, descripcion)
+        return self._crear_actor('mensaje_error', 'MensajeError', error,
+                                 descripcion)
 
     def Animacion(self, grilla, ciclica=False, x=0, y=0, velocidad=10):
-        return self._crear_actor('animacion', 'Animacion', grilla=grilla, ciclica=ciclica, x=x, y=y, velocidad=velocidad)
+        return self._crear_actor('animacion', 'Animacion', grilla=grilla,
+                                 ciclica=ciclica, x=x, y=y, velocidad=velocidad)
 
     def Grupo(self):
         import grupo
@@ -150,10 +159,11 @@ class Actores(object):
     def Banana(self, x=0, y=0):
         return self._crear_actor('banana', 'Banana', x=x, y=y)
 
-    def Bala(self, x=0, y=0, rotacion=0, velocidad_maxima=9, angulo_de_movimiento=90):
-        return self._crear_actor('bala', 'Bala', x=x, y=y, rotacion=rotacion, 
-                                    velocidad_maxima=velocidad_maxima, 
-                                    angulo_de_movimiento=angulo_de_movimiento)
+    def Bala(self, x=0, y=0, rotacion=0, velocidad_maxima=9,
+             angulo_de_movimiento=90):
+        return self._crear_actor('bala', 'Bala', x=x, y=y, rotacion=rotacion,
+                                 velocidad_maxima=velocidad_maxima,
+                                 angulo_de_movimiento=angulo_de_movimiento)
 
     def Bomba(self, x=0, y=0):
         return self._crear_actor('bomba', 'Bomba', x=x, y=y)
@@ -200,8 +210,10 @@ class Actores(object):
     def Pacman(self, x=0, y=0):
         return self._crear_actor('pacman', 'Pacman', x=x, y=y)
 
-    def Globo(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True, autoeliminar=False, ancho_globo=0, alto_globo=0):
-        return self._crear_actor('globo', 'Globo', texto=texto, x=x, y=y, dialogo=dialogo,
+    def Globo(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True,
+              autoeliminar=False, ancho_globo=0, alto_globo=0):
+        return self._crear_actor('globo', 'Globo', texto=texto, x=x, y=y,
+                                 dialogo=dialogo,
                                  avance_con_clicks=avance_con_clicks,
                                  autoeliminar=autoeliminar,
                                  ancho_globo=ancho_globo,
@@ -210,17 +222,19 @@ class Actores(object):
     def Texto(self, cadena_de_texto="Sin texto", magnitud=20, vertical=False,
               fuente=None, fijo=True, ancho=0, x=0, y=0):
         import texto
-        nuevo_actor = texto.Texto(self.pilas, cadena_de_texto, magnitud, vertical,
-                                  fuente, fijo, ancho)
+        nuevo_actor = texto.Texto(self.pilas, cadena_de_texto, magnitud,
+                                  vertical, fuente, fijo, ancho)
         nuevo_actor.x = x
         nuevo_actor.y = y
         return nuevo_actor
 
     def TextoInferior(self, texto="Sin texto", magnitud=20, vertical=False,
-              fuente=None, fijo=True, ancho=0, x=0, y=0, retraso=5):
+                      fuente=None, fijo=True, ancho=0, x=0, y=0, retraso=5):
         import texto_inferior
-        nuevo_actor = texto_inferior.TextoInferior(self.pilas, texto, magnitud, vertical,
-                                  fuente, fijo, ancho, x=x, y=x, retraso=retraso)
+        nuevo_actor = texto_inferior.TextoInferior(self.pilas, texto, magnitud,
+                                                   vertical, fuente, fijo,
+                                                   ancho, x=x, y=x,
+                                                   retraso=retraso)
         return nuevo_actor
 
     def fabricar(self, clase, cantidad):

@@ -9,6 +9,7 @@
 
 from pilasengine.actores.actor import Actor
 
+
 class Ovni(Actor):
     """Representa Ovni que explota al momento de ser eliminado.
 

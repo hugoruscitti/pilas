@@ -9,6 +9,7 @@
 import pilasengine
 from pilasengine.actores.actor import Actor
 
+
 class Grupo(object):
     """
     Representa un grupo que puede almacenar actores.
@@ -42,19 +43,23 @@ class Grupo(object):
             actor.eliminar_del_grupo(self)
             self.pilas.log("Eliminando el actor", actor, "del grupo", self)
         else:
-            raise Exception("No se puede eliminar el actor porque no está en el grupo.")
+            raise Exception("No se puede eliminar el actor porque no \
+                            está en el grupo.")
 
     def agregar(self, actor):
         if not isinstance(actor, Actor):
-            raise Exception("Solo puede agregar objetos que herenden de actor a un Grupo.")
+            raise Exception("Solo puede agregar objetos que herenden de \
+                            actor a un Grupo.")
 
         if actor not in self._actores:
             self.pilas.log("Agregando el actor", actor, "al grupo", self)
             self._actores.append(actor)
-            self.pilas.log("Haciendo que el actor", actor, "tenga una referencia al", self)
+            self.pilas.log("Haciendo que el actor", actor,
+                           "tenga una referencia al", self)
             actor.agregar_al_grupo(self)
         else:
-            raise Exception("No se agrega al actor porque ya estába en este grupo")
+            raise Exception("No se agrega al actor porque ya estába en \
+                            este grupo")
 
     def obtener_actores(self, fijos=None, sin_padre=False):
         """Retorna una lista de actores.
@@ -79,6 +84,6 @@ class Grupo(object):
         elif cantidad == 1:
             detalle = "con un solo actor"
         else:
-            detalle = "con %d actores" %(cantidad)
+            detalle = "con %d actores" % (cantidad)
 
-        return "<Un grupo %s>" %(detalle)
+        return "<Un grupo %s>" % (detalle)

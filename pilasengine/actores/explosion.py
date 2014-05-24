@@ -32,7 +32,8 @@ class Explosion(Animacion):
 
     def __init__(self, pilas, x, y):
         grilla = pilas.imagenes.cargar_grilla("explosion.png", 7)
-        Animacion.__init__(self, pilas, grilla, ciclica=False, x=x, y=y, velocidad=10)
+        Animacion.__init__(self, pilas, grilla, ciclica=False, x=x, y=y,
+                           velocidad=10)
         self.sonido_explosion = pilas.sonidos.cargar("audio/explosion.wav")
         self.sonido_explosion.reproducir()
 

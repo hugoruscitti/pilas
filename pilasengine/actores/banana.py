@@ -8,6 +8,7 @@
 
 from pilasengine.actores.actor import Actor
 
+
 class Banana(Actor):
     """Muestra una banana que se combina (temáticamente) con el actor Mono.
 

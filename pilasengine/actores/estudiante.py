@@ -11,8 +11,11 @@ import inspect
 from pilasengine import habilidades
 from pilasengine import comportamientos
 
+
 class Estudiante(object):
-    """Componente que permite a los actores aprender habilidades o realizar comportamientos."""
+    """Componente que permite a los actores aprender habilidades o
+    realizar comportamientos.
+    """
 
     def __init__(self):
         """Inicializa el componente."""
@@ -31,9 +34,9 @@ class Estudiante(object):
         if issubclass(classname, habilidades.Habilidad):
             if self.tiene_habilidad(classname):
                 self.eliminar_habilidad(classname)
-            
+
             self.agregar_habilidad(classname, *k, **w)
-        else:   
+        else:
             raise Exception('El actor solo puede aprender clases que hereden \
                             de pilasengine.habilidades.Habilidad')
 
@@ -94,7 +97,8 @@ class Estudiante(object):
     def tiene_comportamiento(self, classname):
         """Comprueba si el actor tiene el comportamiento indicado.
 
-        :param classname: Referencia a la clase que representa el comportamiento.
+        :param classname: Referencia a la clase que representa el
+                          comportamiento.
         """
         comportamientos_actuales = [comportamiento['objeto'].__class__ \
                                     for comportamiento in self.comportamientos]
@@ -107,11 +111,12 @@ class Estudiante(object):
         metodo agrega el comportamiento al final de la cadena.
 
         :param comportamiento: Referencia al comportamiento.
-        :param repetir_por_siempre: Si el comportamiento se volverá a ejecutar luego de terminar.
+        :param repetir_por_siempre: Si el comportamiento se volverá a ejecutar
+                                    luego de terminar.
         """
         if issubclass(classname, comportamientos.Comportamiento):
             self._hacer_luego(classname, repetir_por_siempre, *k, **kw)
-        else:   
+        else:
             raise Exception('El actor solo puede "hacer" clases que hereden \
                             de pilasengine.comportamientos.Comportamiento')
 
@@ -128,7 +133,7 @@ class Estudiante(object):
 
         if issubclass(classname, comportamientos.Comportamiento):
             self._hacer(classname, *k, **kw)
-        else:   
+        else:
             raise Exception('El actor solo puede "hacer" clases que hereden \
                             de pilasengine.comportamientos.Comportamiento')
 
@@ -148,7 +153,7 @@ class Estudiante(object):
 
     def eliminar_comportamientos(self):
         "Elimina todos los comportamientos que tiene que hacer el actor."
-        
+
         for c in self.comportamientos:
             self.comportamientos.remove(c)
 

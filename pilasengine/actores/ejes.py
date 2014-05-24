@@ -8,6 +8,7 @@
 
 from pilasengine.actores.actor import Actor
 
+
 class Ejes(Actor):
     """Representa el eje de coordenadas tomado como sistema de referencia.
 

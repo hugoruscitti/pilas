@@ -9,6 +9,7 @@
 
 from pilasengine.actores.actor import Actor
 
+
 class Aceituna(Actor):
 
     def iniciar(self):

@@ -8,9 +8,8 @@
 
 from pilasengine.actores.actor import Actor
 
+
 class Fantasma(Actor):
-
-
     def iniciar(self):
         self.grilla = self.pilas.imagenes.cargar_grilla("fantasma.png", 8, 1)
         self.imagen = self.grilla

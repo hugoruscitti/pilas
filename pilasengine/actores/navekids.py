@@ -9,6 +9,7 @@
 
 from pilasengine.actores.animacion import Animacion
 
+
 class NaveKids(Animacion):
     """Representa una nave de aspecto infantil que puede disparar.
 
@@ -35,11 +36,11 @@ class NaveKids(Animacion):
 
         self.municion = pilas.actores.proyectil.Bala
         self.aprender(pilas.habilidades.Disparar,
-                       municion=self.municion,
-                       angulo_salida_disparo=0,
-                       frecuencia_de_disparo=6,
-                       offset_disparo=(29,29),
-                       escala=0.7)
+                      municion=self.municion,
+                      angulo_salida_disparo=0,
+                      frecuencia_de_disparo=6,
+                      offset_disparo=(29, 29),
+                      escala=0.7)
 
         self.aprender(pilas.habilidades.MoverseConElTeclado,
                       velocidad_maxima=self.velocidad,

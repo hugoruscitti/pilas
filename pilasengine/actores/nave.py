@@ -9,6 +9,7 @@
 
 from pilasengine.actores.animacion import Animacion
 
+
 class Nave(Animacion):
     """Representa una nave que puede disparar.
 
@@ -35,11 +36,11 @@ class Nave(Animacion):
 
         self.municion = pilas.actores.proyectil.Misil
         self.aprender(pilas.habilidades.Disparar,
-                       municion=self.municion,
-                       angulo_salida_disparo=0,
-                       frecuencia_de_disparo=6,
-                       offset_disparo=(29,29),
-                       escala=0.7)
+                      municion=self.municion,
+                      angulo_salida_disparo=0,
+                      frecuencia_de_disparo=6,
+                      offset_disparo=(29, 29),
+                      escala=0.7)
 
         self.aprender(pilas.habilidades.MoverseConElTeclado,
                       velocidad_maxima=self.velocidad,
@@ -57,7 +58,8 @@ class Nave(Animacion):
 
         :param grupo: El grupo de actores que serán sus enemigos.
         :type grupo: array
-        :param cuando_elimina_enemigo: Funcion que se ejecutará cuando se elimine un enemigo.
+        :param cuando_elimina_enemigo: Funcion que se ejecutará cuando se
+                                       elimine un enemigo.
 
         """
         self.cuando_elimina_enemigo = cuando_elimina_enemigo

@@ -8,9 +8,10 @@
 
 from pilasengine import actores
 
+
 class Bala(actores.Actor):
     """ Representa una bala que va en línea recta. """
-    
+
     def __init__(self, pilas, x=0, y=0, rotacion=0, velocidad_maxima=9,
                  angulo_de_movimiento=90):
 
@@ -29,7 +30,8 @@ class Bala(actores.Actor):
 
         self.radio_de_colision = 5
 
-        self.hacer(pilas.comportamientos.Proyectil, velocidad_maxima=velocidad_maxima,
-                                                   aceleracion=1,
-                                                   angulo_de_movimiento=angulo_de_movimiento,
-                                                   gravedad=0)
+        self.hacer(pilas.comportamientos.Proyectil,
+                   velocidad_maxima=velocidad_maxima,
+                   aceleracion=1,
+                   angulo_de_movimiento=angulo_de_movimiento,
+                   gravedad=0)

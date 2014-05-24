@@ -8,6 +8,7 @@
 
 from pilasengine.actores.actor import Actor
 
+
 class Pacman(Actor):
     """Muestra un personaje similar al juego Pac-Man
 
