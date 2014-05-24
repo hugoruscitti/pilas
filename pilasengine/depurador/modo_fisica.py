@@ -56,7 +56,8 @@ class ModoFisica(ModoDepurador):
                     # TODO: implementar las figuras de tipo "edge" y "loop".
                     raise Exception("No puedo identificar el tipo de figura.")
 
-    def _poligono(self, painter, puntos, color=colores.negro, grosor=1, cerrado=False):
+    def poligono(self, painter, puntos, color=colores.negro, grosor=1,
+                 cerrado=False):
         x, y = puntos[0]
         if cerrado:
             puntos.append((x, y))

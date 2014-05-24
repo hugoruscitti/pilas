@@ -6,6 +6,7 @@
 # Website - http://www.pilas-engine.com.ar
 from pilasengine.escenas.escena import Escena
 
+
 class Normal(Escena):
 
     def iniciar(self):

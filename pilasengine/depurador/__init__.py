@@ -15,6 +15,7 @@ from pilasengine.depurador.modo_area import ModoArea
 from pilasengine.depurador.modo_posicion import ModoPosicion
 from pilasengine.depurador.modo_fisica import ModoFisica
 
+
 class Depurador(object):
 
     def __init__(self, pilas):
@@ -78,7 +79,6 @@ class Depurador(object):
 
         if tecla == 'F12':
             self._alternar_modo(ModoPosicion)
-
 
     def definir_modos(self, info=False, radios=False, posiciones=False,
                       puntos_de_control=False, areas=False,

@@ -10,6 +10,7 @@ import weakref
 import types
 import inspect
 
+
 class Evento():
     """Representa un evento, el cual puede conectar,desconectar
     y emitir funciones o métodos"""
@@ -37,13 +38,15 @@ class Evento():
         elif inspect.ismethod(respuesta):
             self.respuestas.add(ProxyMetodo(respuesta, id))
         else:
-            raise ValueError("Solo se permite conectar nombres de funciones o metodos.")
+            raise ValueError("Solo se permite conectar nombres de funciones o \
+                             metodos.")
 
     def desconectar(self, respuesta):
         try:
             self.respuestas.remove(respuesta)
         except:
-            raise ValueError("La funcion indicada no estaba agregada como respuesta del evento.")
+            raise ValueError("La funcion indicada no estaba agregada como \
+                             respuesta del evento.")
 
     def desconectar_por_id(self, id):
         a_eliminar = []
