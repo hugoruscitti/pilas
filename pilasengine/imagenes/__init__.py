@@ -9,6 +9,7 @@ import os
 from PyQt4 import QtGui
 import pilasengine
 
+
 class Imagenes(object):
 
     def __init__(self, pilas):
@@ -25,9 +26,11 @@ class Imagenes(object):
 
     cargar_superficie = crear_superficie
 
-    def crear_texto(self, cadena_de_texto, magnitud, vertical, fuente, color, ancho):
+    def crear_texto(self, cadena_de_texto, magnitud, vertical, fuente,
+                    color, ancho):
         import texto
-        return texto.Texto(self.pilas, cadena_de_texto, magnitud, vertical, fuente, color, ancho)
+        return texto.Texto(self.pilas, cadena_de_texto, magnitud, vertical,
+                           fuente, color, ancho)
 
     def cargar_grilla(self, ruta, columnas=1, filas=1):
         """Representa una grilla de imagenes con varios cuadros de animación.

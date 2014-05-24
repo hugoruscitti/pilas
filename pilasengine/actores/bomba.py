@@ -8,6 +8,7 @@
 
 from pilasengine.actores.animacion import Animacion
 
+
 class Bomba(Animacion):
     """Representa una bomba que puede explotar...
 
@@ -25,7 +26,8 @@ class Bomba(Animacion):
 
     def __init__(self, pilas, x, y):
         grilla = pilas.imagenes.cargar_grilla("bomba.png", 2)
-        Animacion.__init__(self, pilas, grilla, ciclica=True, x=x, y=y, velocidad=10)
+        Animacion.__init__(self, pilas, grilla, ciclica=True, x=x, y=y,
+                           velocidad=10)
         self.radio_de_colision = 25
         self.aprender(pilas.habilidades.PuedeExplotar)
 

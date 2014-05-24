@@ -6,6 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+
 class Comportamiento(object):
     "Representa un comportamiento (estrategia) que se puede anexar a un actor."
     def __init__(self, pilas):

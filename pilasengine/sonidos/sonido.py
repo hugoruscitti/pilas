@@ -8,6 +8,7 @@
 import os
 import pygame
 
+
 class Sonido(object):
     deshabilitado = False
 

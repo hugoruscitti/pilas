@@ -8,6 +8,7 @@
 import os
 from PyQt4 import QtGui
 
+
 class Imagen(object):
 
     def __init__(self, pilas, ruta):

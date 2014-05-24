@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 import random
 
+
 class Camara(object):
     """Representa la cámara principal de la escena.
 
@@ -68,25 +69,30 @@ class Camara(object):
         return self._x
 
     def definir_x(self, valor):
-        self.pilas.utils.interpretar_propiedad_numerica(self, 'x', valor, 
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'x', valor,
                                                         self.cuando_mueve_camara_x)
 
     def cuando_cambia_x(self, evento):
-        self.pilas.eventos.mueve_camara.emitir(x=evento.propiedad, y=self.y, 
-                                                dx=evento.propiedad-self.x, dy=0)
+        self.pilas.eventos.mueve_camara.emitir(x=evento.propiedad, y=self.y,
+                                               dx=evento.propiedad-self.x,
+                                               dy=0)
 
     def obtener_y(self):
         return self._y
 
     def definir_y(self, valor):
-        self.pilas.utils.interpretar_propiedad_numerica(self, 'y', valor, 
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'y', valor,
                                                         self.cuando_mueve_camara_y)
 
     def cuando_cambia_y(self, evento):
-        self.pilas.eventos.mueve_camara.emitir(x=self.x, y=evento.propiedad, 
-                                                dx=0, dy=evento.propiedad-self.y)
+        self.pilas.eventos.mueve_camara.emitir(x=self.x, y=evento.propiedad,
+                                               dx=0, dy=evento.propiedad-self.y)
 
-    escala = property(obtener_escala, definir_escala, doc="Cambia el escala o cercanía de la cámara.")
-    rotacion = property(obtener_rotacion, definir_rotacion, doc="Cambia la rotacion de la pantalla.")
-    x = property(obtener_x, definir_x, doc="Cambia la posición x de la pantalla.")
-    y = property(obtener_y, definir_y, doc="Cambia la posición y de la pantalla.")
+    escala = property(obtener_escala, definir_escala,
+                      doc="Cambia el escala o cercanía de la cámara.")
+    rotacion = property(obtener_rotacion, definir_rotacion,
+                        doc="Cambia la rotacion de la pantalla.")
+    x = property(obtener_x, definir_x,
+                 doc="Cambia la posición x de la pantalla.")
+    y = property(obtener_y, definir_y,
+                 doc="Cambia la posición y de la pantalla.")

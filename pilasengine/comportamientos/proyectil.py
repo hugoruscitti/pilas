@@ -10,16 +10,18 @@ import math
 
 from pilasengine import comportamientos
 
+
 class Proyectil(comportamientos.Comportamiento):
     "Hace que un actor se comporte como un proyectil."
 
     def iniciar(self, receptor, velocidad_maxima=5, aceleracion=1,
-                 angulo_de_movimiento=90, gravedad=0):
+                angulo_de_movimiento=90, gravedad=0):
         """Construye el comportamiento.
 
         :param receptor: El actor que comenzará a ejecutar este comportamiento.
         :param velocidad_maxima: Velocidad máxima que alcanzará el proyectil.
-        :param aceleracion: Valor entre 0 y 1 para indicar lo rápido que acelerará el actor.
+        :param aceleracion: Valor entre 0 y 1 para indicar lo rápido que
+                            acelerará el actor.
         :param angulo_de_movimiento: Angulo en que se moverá el Actor.
         :param gravedad: La velocidad vertical con la que caerá el actor.
 

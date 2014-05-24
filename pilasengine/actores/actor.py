@@ -17,6 +17,7 @@ ARRIBA = ["arriba", "superior"]
 CENTRO = ["centro", "centrado", "medio", "arriba"]
 ABAJO = ["abajo", "inferior", "debajo"]
 
+
 class ActorEliminado(object):
     """Representa a un actor que ha sido eliminado y ya no se puede usar.
 
@@ -29,7 +30,8 @@ class ActorEliminado(object):
     """
 
     def __getattr__(self, *k, **kw):
-        raise Exception("Este actor ya ha sido eliminado, no se puede utilizar.")
+        raise Exception("Este actor ya ha sido eliminado, \
+                        no se puede utilizar.")
 
 
 class Actor(Estudiante):
@@ -74,10 +76,12 @@ class Actor(Estudiante):
 
     def __init__(self, pilas=None, x=0, y=0):
         if not pilas:
-            raise Exception("Tienes que vincular al actor antes con 'pilas.actores.vincular(MiActor)'")
+            raise Exception("Tienes que vincular al actor antes con \
+                            'pilas.actores.vincular(MiActor)'")
 
         if not isinstance(pilas, pilasengine.Pilas):
-            raise Exception("Tienes que enviar el objeto 'pilas' como argumento al actor.'")
+            raise Exception("Tienes que enviar el objeto 'pilas' \
+                            como argumento al actor.'")
 
         self.pilas = pilas
         self.padre = None
@@ -219,10 +223,9 @@ class Actor(Estudiante):
         self._imagen = imagen
         self.centro = ("centro", "centro")
 
-
     # Propiedades
-    imagen = property(_obtener_imagen, _definir_imagen, doc="Define la imagen a mostrar.")
-
+    imagen = property(_obtener_imagen, _definir_imagen,
+                      doc="Define la imagen a mostrar.")
 
     def definir_centro(self, (x, y)):
         """ Define en que posición estará el centro del Actor.
@@ -238,18 +241,22 @@ class Actor(Estudiante):
 
         >>> mi_actor.definir_centro(('centro','derecha'))
 
-        :param x: Coordenadas horizontal en la que se establecerá el centro del Actor.
+        :param x: Coordenadas horizontal en la que se establecerá el centro
+                  del Actor.
         :type x: int
-        :param y: Coordenadas vertical en la que se establecerá el centro del Actor.
+        :param y: Coordenadas vertical en la que se establecerá el centro
+                  del Actor.
         :type y: int
         """
         if type(x) == str:
             if x not in IZQUIERDA + CENTRO + DERECHA:
-                raise Exception("No puedes definir '%s' como eje horizontal." %(x))
+                raise Exception("No puedes definir '%s' como eje horizontal."
+                                % (x))
             x = self._interpretar_y_convertir_posicion(x, self.obtener_ancho())
         if type(y) == str:
             if y not in ARRIBA + CENTRO + ABAJO:
-                raise Exception("No puedes definir '%s' como eje vertical." %(y))
+                raise Exception("No puedes definir '%s' como eje vertical."
+                                % (y))
             y = self._interpretar_y_convertir_posicion(y, self.obtener_alto())
 
         self._centro = (x, y)
@@ -262,7 +269,9 @@ class Actor(Estudiante):
         elif posicion in DERECHA + ABAJO:
             return maximo_valor
         else:
-            raise Exception("El valor '%s' no corresponde a una posicion, use numeros o valores como 'izquierda', 'arriba' etc." %(posicion))
+            raise Exception("El valor '%s' no corresponde a una posicion, \
+                            use numeros o valores como 'izquierda', 'arriba' \
+                            etc." % (posicion))
 
     def obtener_centro(self):
         """ Obtiene las coordenadas del centro del Actor. """
@@ -340,7 +349,8 @@ class Actor(Estudiante):
         self.escala_x = s
         self.escala_y = s
         s = self.escala_x
-        self.radio_de_colision = (s * self.radio_de_colision) / max(ultima_escala, 0.0001)
+        self.radio_de_colision = ((s * self.radio_de_colision) /
+                                  max(ultima_escala, 0.0001))
 
     def definir_escala_x(self, s):
         self.pilas.utils.interpretar_propiedad_numerica(self, 'escala_x', s)
@@ -367,7 +377,8 @@ class Actor(Estudiante):
     def definir_rotacion(self, rotacion):
         if isinstance(rotacion, int) or isinstance(rotacion, float):
             rotacion %= 360
-        self.pilas.utils.interpretar_propiedad_numerica(self, 'rotacion', rotacion)
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'rotacion',
+                                                        rotacion)
 
     def obtener_espejado(self):
         return self._espejado
@@ -376,7 +387,8 @@ class Actor(Estudiante):
         self._espejado = espejado
 
     def definir_transparencia(self, transparencia):
-        self.pilas.utils.interpretar_propiedad_numerica(self, 'transparencia', transparencia)
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'transparencia',
+                                                        transparencia)
 
     def obtener_transparencia(self):
         return self._transparencia
@@ -394,21 +406,38 @@ class Actor(Estudiante):
     def definir_vy(self):
         return self._vy
 
-    espejado = property(obtener_espejado, definir_espejado, doc="Indica si se tiene que invertir horizonaltamente la imagen del actor.")
-    z = property(obtener_z, definir_z, doc="Define lejania respecto del observador.")
+    espejado = property(obtener_espejado, definir_espejado,
+                        doc="Indica si se tiene que invertir horizontalmente \
+                        la imagen del actor.")
+    z = property(obtener_z, definir_z,
+                 doc="Define lejania respecto del observador.")
     x = property(obtener_x, definir_x, doc="Define la posición horizontal.")
     y = property(obtener_y, definir_y, doc="Define la posición vertical.")
-    vx = property(obtener_vx, None, doc="Obtiene la velocidad horizontal del actor.")
-    vy = property(definir_vy, None, doc="Obtiene la velocidad vertical del actor.")
-    rotacion = property(obtener_rotacion, definir_rotacion, doc="Angulo de rotación (en grados, de 0 a 360)")
-    escala = property(obtener_escala, definir_escala, doc="Escala de tamaño, 1 es normal, 2 al doble de tamaño etc...)")
-    escala_x = property(obtener_escala_x, definir_escala_x, doc="Escala de tamaño horizontal, 1 es normal, 2 al doble de tamaño etc...)")
-    escala_y = property(obtener_escala_y, definir_escala_y, doc="Escala de tamaño vertical, 1 es normal, 2 al doble de tamaño etc...)")
-    transparencia = property(obtener_transparencia, definir_transparencia, doc="Define el nivel de transparencia, 0 indica opaco y 100 la maxima transparencia.")
-    fijo = property(obtener_fijo, definir_fijo, doc="Indica si el actor debe ser independiente a la cámara.")
+    vx = property(obtener_vx, None,
+                  doc="Obtiene la velocidad horizontal del actor.")
+    vy = property(definir_vy, None,
+                  doc="Obtiene la velocidad vertical del actor.")
+    rotacion = property(obtener_rotacion, definir_rotacion,
+                        doc="Angulo de rotación (en grados, de 0 a 360)")
+    escala = property(obtener_escala, definir_escala,
+                      doc="Escala de tamaño, 1 es normal, \
+                      2 al doble de tamaño etc...)")
+    escala_x = property(obtener_escala_x, definir_escala_x,
+                        doc="Escala de tamaño horizontal, 1 es normal, \
+                        2 al doble de tamaño etc...)")
+    escala_y = property(obtener_escala_y, definir_escala_y,
+                        doc="Escala de tamaño vertical, 1 es normal, 2 al \
+                        doble de tamaño etc...)")
+    transparencia = property(obtener_transparencia, definir_transparencia,
+                             doc="Define el nivel de transparencia, 0 indica \
+                             opaco y 100 la maxima transparencia.")
+    fijo = property(obtener_fijo, definir_fijo,
+                    doc="Indica si el actor debe ser \
+                    independiente a la cámara.")
 
     def eliminar(self):
-        """Elimina el actor de la lista de actores que se imprimen en pantalla."""
+        """Elimina el actor de la lista de actores que se
+           imprimen en pantalla."""
         self._eliminar_anexados()
         self._destruir()
 
@@ -453,10 +482,11 @@ class Actor(Estudiante):
             cantidad_de_argumentos -= 1
 
         if cantidad_de_argumentos > 1:
-            raise Exception("No puedes asignar una funcion que espera 2 o mas argumentos")
+            raise Exception("No puedes asignar una funcion que espera 2 \
+                            o mas argumentos")
         elif cantidad_de_argumentos == 1:
-            # Si la función espera un argumento, se re-define la función para que siempre
-            # reciba al actor sobre el que se produjo el evento.
+            # Si la función espera un argumento, se re-define la función para
+            # que siempre reciba al actor sobre el que se produjo el evento.
 
             def inyectar_self(f):
                 def invocar():
@@ -467,7 +497,7 @@ class Actor(Estudiante):
 
         grupo_de_callbacks.add(callback)
 
-    def _ejecutar_callback(self, evento, listado_de_callbacks ):
+    def _ejecutar_callback(self, evento, listado_de_callbacks):
         """ Ejecuta el listado de métodos asociados a un callback si se
         produce una colisión con el ratón y el actor
         """
@@ -484,13 +514,14 @@ class Actor(Estudiante):
                     try:
                         listado_de_callbacks.remove(x)
                     except:
-                        raise ValueError("La funcion no está agregada en el callback")
+                        raise ValueError("La funcion no está agregada en \
+                                         el callback")
 
     def set_cuando_hace_click(self, callback):
         if (callback is None):
             self._callback_cuando_hace_click.clear()
         else:
-            pilas.eventos.click_de_mouse.conectar(self._cuando_hace_click)
+            self.pilas.eventos.click_de_mouse.conectar(self._cuando_hace_click)
             self._agregar_callback(self._callback_cuando_hace_click, callback)
 
     def get_cuando_hace_click(self):
@@ -499,14 +530,13 @@ class Actor(Estudiante):
     def _cuando_hace_click(self, evento):
         self._ejecutar_callback(evento, self._callback_cuando_hace_click)
 
-    cuando_hace_click = property(get_cuando_hace_click, set_cuando_hace_click, doc="")
-
+    cuando_hace_click = property(get_cuando_hace_click, set_cuando_hace_click)
 
     def set_cuando_mueve_el_mouse(self, callback):
         if (callback is None):
             self._callback_cuando_mueve_mouse.clear()
         else:
-            pilas.eventos.mueve_mouse.conectar(self._cuando_mueve_mouse)
+            self.pilas.eventos.mueve_mouse.conectar(self._cuando_mueve_mouse)
             self._agregar_callback(self._callback_cuando_mueve_mouse, callback)
 
     def get_cuando_mueve_el_mouse(self):
@@ -515,7 +545,8 @@ class Actor(Estudiante):
     def _cuando_mueve_mouse(self, evento):
         self._ejecutar_callback(evento, self._callback_cuando_mueve_mouse)
 
-    cuando_mueve_el_mouse = property(get_cuando_mueve_el_mouse, set_cuando_mueve_el_mouse, doc="")
+    cuando_mueve_el_mouse = property(get_cuando_mueve_el_mouse,
+                                     set_cuando_mueve_el_mouse, doc="")
 
     def click_de_mouse(self, callback):
         """Acceso directo para conectar el actor al evento de click_de_mouse.
@@ -553,7 +584,8 @@ class Actor(Estudiante):
         self.pilas.eventos.suelta_tecla.conectar(callback)
 
     def pulsa_tecla_escape(self, callback):
-        """Acceso directo para conectar el actor al evento de pulsa_tecla_escape.
+        """Acceso directo para conectar el actor al evento de
+        pulsa_tecla_escape.
         No se debe redefinir este método."""
         self.pilas.eventos.pulsa_tecla_escape.conectar(callback)
 
@@ -643,9 +675,10 @@ class Actor(Estudiante):
         :type y: int
         """
         if self.fijo:
-            x = x - pilas.escena_actual().camara.x
-            y = y - pilas.escena_actual().camara.y
-        return self.izquierda <= x <= self.derecha and self.abajo <= y <= self.arriba
+            x = x - self.pilas.escena_actual().camara.x
+            y = y - self.pilas.escena_actual().camara.y
+        return (self.izquierda <= x <= self.derecha and
+                self.abajo <= y <= self.arriba)
 
     def distancia_con(self, otro_actor):
         """Determina la distancia con el ``otro_actor``
@@ -654,11 +687,11 @@ class Actor(Estudiante):
         :type otro_actor: pilas.actores.Actor
 
         """
-        return utils.distancia_entre_dos_actores(self, otro_actor)
+        return self.pilas.utils.distancia_entre_dos_actores(self, otro_actor)
 
     def actor_mas_cercano(self):
         """Retorna otro actor mas cercano a este actor"""
-        return utils.actor_mas_cercano_al_actor(self)
+        return self.pilas.utils.actor_mas_cercano_al_actor(self)
 
     def distancia_al_punto(self, x, y):
         """Determina la distancia desde el centro del actor hasta el punto
@@ -672,7 +705,8 @@ class Actor(Estudiante):
         :param y: Posición vertical del punto.
         :type y: int
         """
-        return utils.distancia_entre_dos_puntos((self.x, self.y), (x, y))
+        return self.pilas.utils.distancia_entre_dos_puntos((self.x, self.y),
+                                                           (x, y))
 
     def colisiona_con(self, otro_actor):
         """Determina si este actor colisiona con ``otro_actor``
@@ -681,7 +715,7 @@ class Actor(Estudiante):
         :type otro_actor: pilas.actores.Actor
 
         """
-        return utils.colisionan(self, otro_actor)
+        return self.pilas.utils.colisionan(self, otro_actor)
 
     def obtener_rotacion(self):
         return self._rotacion
@@ -762,17 +796,20 @@ class Actor(Estudiante):
         :param otro_actor_o_figura: Actor o Figura física a imitar.
         :type otro_actor_o_figura: `Actor`, `Figura`
         """
-        self.aprender(self.pilas.habilidades.Imitar, otro_actor_o_figura, *args, **kwargs)
+        self.aprender(self.pilas.habilidades.Imitar, otro_actor_o_figura,
+                      *args, **kwargs)
 
     def decir(self, mensaje, autoeliminar=True):
         """Emite un mensaje usando un globo similar al de los comics.
 
         :param mensaje: Texto a mostrar en el mensaje.
         :type mensaje: string
-        :param autoeliminar: Establece si se eliminará el globo al cabo de unos segundos.
+        :param autoeliminar: Establece si se eliminará el globo al cabo de
+                             unos segundos.
         :type autoeliminar: boolean
         """
-        nuevo_actor = self.pilas.actores.Globo(mensaje, self.x, self.y, autoeliminar=autoeliminar)
+        nuevo_actor = self.pilas.actores.Globo(mensaje, self.x, self.y,
+                                               autoeliminar=autoeliminar)
         nuevo_actor.z = self.z - 1
 
     def anexar(self, otro_actor):
@@ -795,7 +832,8 @@ class Actor(Estudiante):
         if self.fijo:
             return False
         izquierda, derecha, arriba, abajo = self.escena.camara.obtener_area_visible()
-        return self.derecha < izquierda or self.izquierda > derecha or self.abajo > arriba or self.arriba < abajo
+        return (self.derecha < izquierda or self.izquierda > derecha or
+                self.abajo > arriba or self.arriba < abajo)
 
     def es_fondo(self):
         """ Comprueba si el actor es un fondo del juego.

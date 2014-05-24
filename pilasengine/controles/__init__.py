@@ -11,6 +11,7 @@ from PyQt4 import QtCore
 from pilasengine.controles import simbolos
 from pilasengine.controles import control
 
+
 class Controles(object):
 
     def __init__(self, pilas):

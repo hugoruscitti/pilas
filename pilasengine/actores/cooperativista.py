@@ -11,6 +11,7 @@ from pilasengine.comportamientos.comportamiento import Comportamiento
 
 VELOCIDAD = 4
 
+
 class Cooperativista(Actor):
     """ Representa un Cooperativista que puede caminar y trabajar."""
 
@@ -46,6 +47,7 @@ class Cooperativista(Actor):
         """
         self.imagen = self.animaciones[nombre]
         self.centro = ("centro", "abajo")
+
 
 class Esperando(Comportamiento):
     """Clase que define un comportamiento del actor Cooperativista."""

@@ -10,6 +10,7 @@
 from pilasengine.actores.animado import Animado
 import copy
 
+
 class Animacion(Animado):
     """Representa una animacion de una grilla de imagenes.
 
@@ -19,13 +20,18 @@ class Animacion(Animado):
 
     El constructor tiene algunos parámetros de utilidad:
 
-        - El parámetro ``ciclica`` permite hacer animaciones infinitas, que se repiten siempre, por defecto vale ``False`` que significa que la animación terminará y no se repetirá.
-        - El parámetro ``velocidad`` tiene que ser un número que indicará la cantidad de cuadros por segundo que se tienen que mostrar en la animación.
+        - El parámetro ``ciclica`` permite hacer animaciones infinitas,
+         que se repiten siempre, por defecto vale ``False`` que significa que
+         la animación terminará y no se repetirá.
+        - El parámetro ``velocidad`` tiene que ser un número que indicará la
+        cantidad de cuadros por segundo que se tienen que mostrar
+        en la animación.
 
         Por ejemplo, para mostrar una explosión infinita podrías escribir:
 
         >>> grilla = pilas.imagenes.cargar_grilla("explosion.png", 7)
-        >>> animacion = pilas.actores.Animacion(grilla, ciclica=True, velocidad=1)
+        >>> animacion = pilas.actores.Animacion(grilla, ciclica=True,
+                                                velocidad=1)
 
         .. image:: images/actores/explosion.png
     """
@@ -33,7 +39,8 @@ class Animacion(Animado):
     def __init__(self, pilas, grilla, ciclica=False, x=0, y=0, velocidad=10):
         """ Constructor de la Animación.
 
-        :param grilla: Grilla de imagenes obtenida mediante pilas.imagenes.cargar_grilla()
+        :param grilla: Grilla de imagenes obtenida mediante
+                       pilas.imagenes.cargar_grilla()
         :type grilla: `Grilla`
         :param ciclica: Indica si la animación se realizará de forma infinita.
         :type ciclica: boolean
@@ -41,7 +48,8 @@ class Animacion(Animado):
         :type x: int
         :param y: Posicion vertical del Actor.
         :type y: int
-        :param velocidad: Indica la cantidad de cuadros por segundo que se monstrarán.
+        :param velocidad: Indica la cantidad de cuadros por segundo
+                          que se monstrarán.
         :type velocidad: int
         """
 
@@ -65,7 +73,10 @@ class Animacion(Animado):
         """
         return self._velocidad_de_animacion
 
-    velocidad_de_animacion = property(obtener_velocidad_de_animacion, definir_velocidad_de_animacion, doc="Es la cantidad de cuadros por segundo a mostrar")
+    velocidad_de_animacion = property(obtener_velocidad_de_animacion,
+                                      definir_velocidad_de_animacion,
+                                      doc="Es la cantidad de cuadros por \
+                                      segundo a mostrar")
 
     def actualizar(self):
         """ Hace avanzar la animacion. """

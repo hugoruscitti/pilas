@@ -12,11 +12,13 @@ from pilasengine import fisica
 class Imitar(habilidades.Habilidad):
     "Logra que el actor imite las propiedades de otro."
 
-    def iniciar(self, receptor, objeto_a_imitar, con_escala=True, con_rotacion=True):
+    def iniciar(self, receptor, objeto_a_imitar, con_escala=True,
+                con_rotacion=True):
         """Inicializa la habilidad.
 
         :param receptor: Referencia al actor.
-        :param objeto_a_imitar: Cualquier objeto con atributos rotacion, x e y (por ejemplo otro actor).
+        :param objeto_a_imitar: Cualquier objeto con atributos rotacion,
+                                x e y (por ejemplo otro actor).
         :param con_rotacion: Si debe imitar o no la rotación.
         """
         super(Imitar, self).iniciar(receptor)

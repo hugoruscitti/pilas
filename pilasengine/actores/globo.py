@@ -18,7 +18,9 @@ class Globo(Actor):
     .. image:: images/actores/globo.png
     """
 
-    def __init__(self, pilas, texto="", x=0, y=0, dialogo=None, avance_con_clicks=True, autoeliminar=False, ancho_globo=0, alto_globo=0):
+    def __init__(self, pilas, texto="", x=0, y=0, dialogo=None,
+                 avance_con_clicks=True, autoeliminar=False, ancho_globo=0,
+                 alto_globo=0):
         """ Constructor del Globo
 
         :param texto: Texto a mostrar en el globo.
@@ -31,7 +33,8 @@ class Globo(Actor):
         :type dialogo: Dialogo
         :param avance_con_clicks: Permite avanzar el dialogo pulsando el ratón.
         :type avance_con_clicks: boolean
-        :param autoeliminar: Indica si se desea eliminar el globo cuando pasen 3 segundos.
+        :param autoeliminar: Indica si se desea eliminar el globo cuando
+                             pasen 3 segundos.
         :type autoeliminar: boolean
         :param ancho_globo: Estabece el ancho del globo en pixeles.
         :type ancho_globo: int
@@ -61,7 +64,8 @@ class Globo(Actor):
         else:
             alto = alto + alto_globo
 
-        self.imagen = pilas.imagenes.cargar_superficie(ancho + 36, alto + 24 + 35)
+        self.imagen = pilas.imagenes.cargar_superficie(ancho + 36,
+                                                       alto + 24 + 35)
 
         self._pintar_globo(ancho, alto)
         self.imagen.texto(texto, 17, 20)
@@ -79,8 +83,8 @@ class Globo(Actor):
             pilas.escena_actual().tareas.una_vez(3, self.eliminar)
 
     def colocar_origen_del_globo(self, x, y):
-        """ Cambia la posicion del globo para que el punto de donde se emite el globo sea (x, y).
-
+        """ Cambia la posicion del globo para que el punto de donde se emite el
+        globo sea (x, y).
         :param x: Posición horizontal del globo.
         :type x: int
         :param y: Posición vertical del globo.
@@ -90,7 +94,9 @@ class Globo(Actor):
         self.y = y
 
     def cuando_quieren_avanzar(self, *k):
-        "Función que se ejecuta al hacer click para avanzar o eliminar el globo."
+        """Función que se ejecuta al hacer click para avanzar o
+        eliminar el globo.
+        """
         if self.dialogo:
             self.dialogo.avanzar_al_siguiente_dialogo()
         else:
@@ -107,7 +113,8 @@ class Globo(Actor):
             self.imagen.pintar_parte_de_imagen(imagen, 12, 0, 12, 12, 12 + x, 0)
 
          # esquina sup-der
-        self.imagen.pintar_parte_de_imagen(imagen, 100, 0, 12, 12, 12 + int(ancho) + 12, 0)
+        self.imagen.pintar_parte_de_imagen(imagen, 100, 0, 12, 12,
+                                           12 + int(ancho) + 12, 0)
 
         # centro del dialogo
         for y in range(0, int(alto) + 12, 12):
@@ -115,19 +122,27 @@ class Globo(Actor):
             self.imagen.pintar_parte_de_imagen(imagen, 0, 12, 12, 12, 0, 12 + y)
             # linea horizontal blanca, para el centro del dialogo.
             for x in range(0, int(ancho) + 12, 12):
-                self.imagen.pintar_parte_de_imagen(imagen, 12, 12, 12, 12, 12 + x, 12 + y)
+                self.imagen.pintar_parte_de_imagen(imagen, 12, 12, 12, 12,
+                                                   12 + x, 12 + y)
 
             # borde derecho
-            self.imagen.pintar_parte_de_imagen(imagen, 100, 12, 12, 12, 12 + int(ancho) + 12, 12 + y)
+            self.imagen.pintar_parte_de_imagen(imagen, 100, 12, 12, 12,
+                                               12 + int(ancho) + 12, 12 + y)
 
         # parte inferior
-        self.imagen.pintar_parte_de_imagen(imagen, 0, 35, 12, 12, 0, 0 + int(alto) + 12 + 12)
+        self.imagen.pintar_parte_de_imagen(imagen, 0, 35, 12, 12, 0,
+                                           0 + int(alto) + 12 + 12)
 
         # linea horizontal de la parte inferior
         for x in range(0, int(ancho) + 12, 12):
-            self.imagen.pintar_parte_de_imagen(imagen, 12, 35, 12, 12, 12 + x, 0 + int(alto) + 12 + 12)
+            self.imagen.pintar_parte_de_imagen(imagen, 12, 35, 12, 12, 12 + x,
+                                               0 + int(alto) + 12 + 12)
 
-        self.imagen.pintar_parte_de_imagen(imagen, 100, 35, 12, 12, 12 + int(ancho) + 12, 0 + int(alto) + 12 + 12)
+        self.imagen.pintar_parte_de_imagen(imagen, 100, 35, 12, 12,
+                                           12 + int(ancho) + 12,
+                                           0 + int(alto) + 12 + 12)
         # Pico de la parte de abajo
-        self.imagen.pintar_parte_de_imagen(imagen, 67, 35, 33, 25, int(ancho) - 12, 0 + int(alto) + 12 + 12)
+        self.imagen.pintar_parte_de_imagen(imagen, 67, 35, 33, 25,
+                                           int(ancho) - 12,
+                                           0 + int(alto) + 12 + 12)
 

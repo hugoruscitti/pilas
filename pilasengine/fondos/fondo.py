@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 from pilasengine.actores import actor
 
+
 class Fondo(actor.Actor):
     """Representa un fondo de pantalla.
 

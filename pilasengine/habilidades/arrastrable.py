@@ -8,32 +8,34 @@
 from pilasengine import habilidades
 from pilasengine.fisica import constantes
 
+
 class Arrastrable(habilidades.Habilidad):
-	def iniciar(self, receptor):
-		super(Arrastrable, self).iniciar(receptor)
-		self.pilas.eventos.click_de_mouse.conectar(self.comenzar_a_arrastrar)
-		self.pilas.eventos.termina_click.conectar(self.termina_de_arrastrar)
-		self.pilas.eventos.mueve_mouse.conectar(self.arrastrando)
+    def iniciar(self, receptor):
+        super(Arrastrable, self).iniciar(receptor)
+        self.pilas.eventos.click_de_mouse.conectar(self.comenzar_a_arrastrar)
+        self.pilas.eventos.termina_click.conectar(self.termina_de_arrastrar)
+        self.pilas.eventos.mueve_mouse.conectar(self.arrastrando)
 
-		self.arrastrando = False
-		self.constante = None
+        self.arrastrar = False
+        self.constante = None
 
-	def comenzar_a_arrastrar(self, evento):
-		if evento.boton == 1:
-			if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
-				self.arrastrando = True
-				if hasattr(self.receptor, 'figura') and self.receptor.figura:
-					self.constante = constantes.ConstanteDeMovimiento(self.pilas, self.receptor.figura)
+    def comenzar_a_arrastrar(self, evento):
+        if evento.boton == 1:
+            if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
+                self.arrastrar = True
+                if hasattr(self.receptor, 'figura') and self.receptor.figura:
+                    self.constante = constantes.ConstanteDeMovimiento(
+                        self.pilas, self.receptor.figura)
 
-	def arrastrando(self, evento):
-		if self.arrastrando:
-			if self.constante:
-				self.constante.mover(evento.x, evento.y)
-			else:
-				self.receptor.x = evento.x
-				self.receptor.y = evento.y
+    def arrastrando(self, evento):
+        if self.arrastrar:
+            if self.constante:
+                self.constante.mover(evento.x, evento.y)
+            else:
+                self.receptor.x = evento.x
+                self.receptor.y = evento.y
 
-	def termina_de_arrastrar(self, evento):
-		self.arrastrando = False
-		if self.constante:
-			self.constante.eliminar()
+    def termina_de_arrastrar(self, evento):
+        self.arrastrar = False
+        if self.constante:
+            self.constante.eliminar()

@@ -6,9 +6,11 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+
 class Tarea(object):
 
-    def __init__(self, planificador, time_out, dt, funcion, parametros, una_vez):
+    def __init__(self, planificador, time_out, dt, funcion,
+                 parametros, una_vez):
         """Representa una tarea que se puede ejecutar dentro del planificador.
 
         :param time_out: El tiempo absoluto para ejecutar la tarea.

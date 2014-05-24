@@ -21,7 +21,7 @@ class ModoInformacionDeSistema(ModoDepurador):
         usa_aceleracion = self._usa_aceleracion_de_video(pilas)
 
         self.informacion = [
-            u"Usa aceleración de video: %s" %(usa_aceleracion),
+            u"Usa aceleración de video: %s" % (usa_aceleracion),
             "Sistema: " + sys.platform,
             "Version de pilas: " + pilasengine.VERSION,
             "Version de python: " + sys.subversion[0] + " " + sys.subversion[1],
@@ -40,12 +40,13 @@ class ModoInformacionDeSistema(ModoDepurador):
         izquierda, _, _, abajo = self.pilas.widget.obtener_bordes()
 
         ancho, alto = self.pilas.obtener_area()
-        self.informacion[4] = "Area de juego: (%d, %d)" %(ancho, alto)
-        self.informacion[5] = u"Posición de la cámara: (%d, %d)" %(self.pilas.camara.x, self.pilas.camara.y)
+        self.informacion[4] = "Area de juego: (%d, %d)" % (ancho, alto)
+        self.informacion[5] = u"Posición de la cámara: (%d, %d)" % (self.pilas.camara.x, self.pilas.camara.y)
 
         for (i, texto) in enumerate(self.informacion[::-1]):
             posicion_y = abajo + 90 + i * 20
-            self._texto_absoluto(painter, texto, izquierda + 10, posicion_y, color=pilasengine.colores.blanco)
+            self._texto_absoluto(painter, texto, izquierda + 10, posicion_y,
+                                 color=pilasengine.colores.blanco)
 
     def dibujar_actor(self, actor, painter):
         pass

@@ -13,14 +13,16 @@ class MoverseComoCoche(moverse_con_el_teclado.MoverseConElTeclado):
     "Hace que un actor se mueva como un coche."
 
     def iniciar(self, receptor, control=None, velocidad_maxima=4,
-                 aceleracion=0.06, deceleracion=0.1, rozamiento=0, velocidad_rotacion=1):
+                aceleracion=0.06, deceleracion=0.1,
+                rozamiento=0, velocidad_rotacion=1):
         super(MoverseComoCoche, self).iniciar(receptor,
-                                     control=control,
-                                     velocidad_maxima=velocidad_maxima,
-                                     aceleracion=aceleracion,
-                                     deceleracion=deceleracion,
-                                     velocidad_rotacion=velocidad_rotacion,
-                                     con_rotacion=True)
+                                              control=control,
+                                              velocidad_maxima=velocidad_maxima,
+                                              aceleracion=aceleracion,
+                                              deceleracion=deceleracion,
+                                              velocidad_rotacion=
+                                              velocidad_rotacion,
+                                              con_rotacion=True)
 
         self._rozamiento = rozamiento
         self._velocidad_maxima_aux = self.velocidad_maxima
@@ -39,4 +41,6 @@ class MoverseComoCoche(moverse_con_el_teclado.MoverseConElTeclado):
     def get_velocidad_maxima(self):
         return self.velocidad_maxima
 
-    rozamiento = property(get_rozamiento, set_rozamiento, doc="Define el rozamiento del coche con la superficie por donde circula.")
+    rozamiento = property(get_rozamiento, set_rozamiento, doc="Define el \
+                          rozamiento del coche con la superficie por \
+                          donde circula.")

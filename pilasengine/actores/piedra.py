@@ -8,7 +8,7 @@
 
 
 from pilasengine.actores.actor import Actor
-import pilasengine
+
 
 class Piedra(Actor):
     """Representa una piedra que podría ser usada como meteoríto."""
@@ -21,7 +21,8 @@ class Piedra(Actor):
 
     def definir_tamano(self, tamano):
         if tamano not in ['grande', 'media', 'chica']:
-            raise Exception("El tamano indicado es incorrecto, solo se permite 'grande', 'media' o 'chica'.")
+            raise Exception("El tamano indicado es incorrecto, solo se permite \
+                            grande', 'media' o 'chica'.")
 
         self.imagen = self.pilas.imagenes.cargar('piedra_' + tamano + '.png')
         radios = {'grande': 25, 'media': 20, 'chica': 10}

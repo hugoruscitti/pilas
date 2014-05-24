@@ -19,16 +19,15 @@ class MirarAlActor(habilidades.Habilidad):
         :param receptor: Actor que aprenderá la habilidad.
         :param actor_a_seguir : Actor al que se desea seguir con la mirada.
         :param lado_seguimiento: Establece el lado del actor que rotará para
-                                    estar encarado hacia el actor que desea vigilar.
+                                estar encarado hacia el actor que desea vigilar.
         """
         super(MirarAlActor, self).iniciar(receptor)
-        self.lados_de_seguimiento =  {'ARRIBA':"90",
-                                        'ABAJO':"270",
-                                        'IZQUIERDA':"180",
-                                        'DERECHA':"0"}
+        self.lados_de_seguimiento = {'ARRIBA': "90",
+                                     'ABAJO': "270",
+                                     'IZQUIERDA': "180",
+                                     'DERECHA': "0"}
         self.pilas.eventos.actualizar.conectar(self.rotar)
         self.lado_seguimiento = int(self.lados_de_seguimiento[lado_seguimiento])
-
         self.actor_a_seguir = actor_a_seguir
 
     def rotar(self, evento):

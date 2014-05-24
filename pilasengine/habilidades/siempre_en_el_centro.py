@@ -8,6 +8,7 @@
 
 from pilasengine.habilidades.habilidad import Habilidad
 
+
 class SiempreEnElCentro(Habilidad):
     """Hace que un actor siempre esté en el centro de la camara y la desplace
     cuando el actor se desplaza."""

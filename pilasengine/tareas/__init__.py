@@ -9,6 +9,7 @@
 from pilasengine.tareas.tarea import Tarea
 from pilasengine.tareas.tarea_condicional import TareaCondicional
 
+
 class Tareas(object):
     """Contenedor de tareas a ejecutar por tiempo.
 

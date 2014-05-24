@@ -22,18 +22,18 @@ class RotarConMouse(habilidades.Habilidad):
         """Inicializa la Habilidad
 
         :param receptor: La referencia al actor.
-        :param lado_seguimiento: Establece el lado del actor que rotará para estar encarado hacia el puntero del mouse.
+        :param lado_seguimiento: Establece el lado del actor que rotará para
+                                 estar encarado hacia el puntero del mouse.
         """
         super(RotarConMouse, self).iniciar(receptor)
 
-        self.lados_de_seguimiento =  {'ARRIBA':"90",
-									    'ABAJO':"270",
-									    'IZQUIERDA':"180",
-									    'DERECHA':"0"}
+        self.lados_de_seguimiento = {'ARRIBA': "90",
+                                     'ABAJO': "270",
+                                     'IZQUIERDA': "180",
+                                     'DERECHA': "0"}
         self.pilas.eventos.mueve_mouse.conectar(self.se_movio_el_mouse)
         self.pilas.eventos.actualizar.conectar(self.rotar)
         self.lado_seguimiento = int(self.lados_de_seguimiento[lado_seguimiento])
-
         self.raton_x = receptor.x
         self.raton_y = receptor.y
 
@@ -42,10 +42,7 @@ class RotarConMouse(habilidades.Habilidad):
         self.raton_y = evento.y
 
     def rotar(self, evento):
-
         receptor = (self.receptor.x, self.receptor.y)
         raton = (self.raton_x, self.raton_y)
-
         angulo = utils.obtener_angulo_entre(receptor, raton)
-
         self.receptor.rotacion = (angulo) - self.lado_seguimiento

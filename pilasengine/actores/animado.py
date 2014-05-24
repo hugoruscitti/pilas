@@ -9,6 +9,7 @@
 from pilasengine.actores.actor import Actor
 import copy
 
+
 class Animado(Actor):
     """Representa un actor que tiene asociada una grilla con cuadros de animacion.
 
@@ -50,5 +51,6 @@ class Animado(Actor):
         :type indice: int
         """
         self.imagen.definir_cuadro(indice)
-        # FIX: Esta sentencia es muy ambigua, porque no todos actores se deben centrar en ese punto.
+        # FIX: Esta sentencia es muy ambigua, porque no todos actores se
+        # deben centrar en ese punto.
         self.centro = ('centro', 'centro')

@@ -22,8 +22,8 @@ class RebotarComoPelota(habilidades.Habilidad):
         error = random.randint(-10, 10) / 10.0
 
         circulo = self.pilas.fisica.Circulo(receptor.x + error,
-                                       receptor.y + error,
-                                       receptor.radio_de_colision)
+                                            receptor.y + error,
+                                            receptor.radio_de_colision)
         receptor.aprender(self.pilas.habilidades.Imitar, circulo)
         self.circulo = circulo
         receptor.impulsar = self.impulsar

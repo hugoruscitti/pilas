@@ -39,7 +39,9 @@ class Pingu(Actor):
 
 
 class Esperando(Comportamiento):
-    "Un actor en posición normal o esperando a que el usuario pulse alguna tecla."
+    """Un actor en posición normal o esperando a que el usuario
+    pulse alguna tecla.
+    """
 
     def iniciar(self, receptor):
         self.receptor = receptor
@@ -85,6 +87,7 @@ class Caminando(Comportamiento):
             self.paso = 0
 
         self.receptor.definir_cuadro(self.cuadros[self.paso])
+
 
 class Saltando(Comportamiento):
     """Representa al actor saltando con animación."""

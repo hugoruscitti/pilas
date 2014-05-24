@@ -19,7 +19,7 @@ class ModoPosicion(ModoDepurador):
 
         x = "{0:0.1f}".format(actor.x)
         y = "{0:0.1f}".format(actor.y)
-        texto = "(%s, %s)" %(x, y)
+        texto = "(%s, %s)" % (x, y)
 
         escala_x, escala_y = actor.escala_x, actor.escala_y
 

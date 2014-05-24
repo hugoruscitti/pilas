@@ -9,8 +9,11 @@
 
 from pilasengine.actores.actor import Actor
 
+
 class Pelota(Actor):
-    """Representa una pelota de Volley, que puede rebotar e interactuar con la física del escenario."""
+    """Representa una pelota de Volley, que puede rebotar e interactuar con la
+    física del escenario.
+    """
 
     def iniciar(self):
         self.imagen = self.pilas.imagenes.cargar('pelota.png')

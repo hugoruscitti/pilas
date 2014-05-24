@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 from pilasengine.escenas.escena import Escena
 
+
 class Error(Escena):
     """Representa la escena de errores de pilas.
 

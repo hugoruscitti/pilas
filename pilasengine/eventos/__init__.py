@@ -8,9 +8,10 @@
 
 import evento
 
+
 class Eventos(object):
-    """Representa el objeto pilas.eventos, que internamente delega todos los metodos
-    conectados a la escena actual.
+    """Representa el objeto pilas.eventos, que internamente delega
+    todos los metodos conectados a la escena actual.
 
     Para acceder a este objeto, usar una sentencia como la siguiente:
 
@@ -37,7 +38,8 @@ class Eventos(object):
         :param y: Posición vertical del mouse.
         :param dx: Posición horizontal relativa del mouse.
         :param dy: Posición vertical relativa del mouse.
-        :param boton: Botón del mouse que se pulsó (1 - Izquierdo, 2 - Derecho, 4 - Central)
+        :param boton: Botón del mouse que se pulsó (1 - Izquierdo, 2 -
+                      Derecho, 4 - Central)
         """
         return self.pilas.escena_actual().click_de_mouse
 
@@ -71,13 +73,15 @@ class Eventos(object):
         :param y: Posición vertical del mouse.
         :param dx: Posición horizontal relativa del mouse.
         :param dy: Posición vertical relativa del mouse.
-        :param boton: Botón del mouse que se pulsó (1 - Izquierdo, 2 - Derecho, 4 - Central)
+        :param boton: Botón del mouse que se pulsó (1 - Izquierdo, 2 -
+                      Derecho, 4 - Central)
         """
         return self.pilas.escena_actual().termina_click
 
     @property
     def mueve_rueda(self):
-        """Indica que cambió la rueda del mouse que se utiliza para desplazamiento o scroll.
+        """Indica que cambió la rueda del mouse que se utiliza
+        para desplazamiento o scroll.
 
         :param delta: indica el grado de rotación de la rueda del mouse.
         """
@@ -87,9 +91,12 @@ class Eventos(object):
     def pulsa_tecla(self):
         """Informa que se ha pulsado una tecla del teclado.
 
-        :param codigo: Codigo de la tecla normalizado, por ejemplo ``simbolos.m``.
-        :param es_repeticion: Indica si el evento surgió por repetición de teclado. False indica que es la primer pulsación.
-        :param texto: Cadena de texto que indica la tecla pulsada, por ejemplo ``"m"``.
+        :param codigo: Codigo de la tecla normalizado,
+                       por ejemplo ``simbolos.m``.
+        :param es_repeticion: Indica si el evento surgió por repetición de
+                              teclado. False indica que es la primer pulsación.
+        :param texto: Cadena de texto que indica la tecla pulsada,
+                      por ejemplo ``"m"``.
         """
         return self.pilas.escena_actual().pulsa_tecla
 
@@ -97,9 +104,12 @@ class Eventos(object):
     def suelta_tecla(self):
         """Informa que se ha soltado una tecla del teclado.
 
-        :param codigo: Codigo de la tecla normalizado, por ejemplo ``simbolos.m``.
-        :param es_repeticion: Indica si el evento surgió por repetición de teclado. False indica que es la primer pulsación.
-        :param texto: Cadena de texto que indica la tecla pulsada, por ejemplo ``"m"``.
+        :param codigo: Codigo de la tecla normalizado,
+                       por ejemplo ``simbolos.m``.
+        :param es_repeticion: Indica si el evento surgió por repetición de
+                              teclado. False indica que es la primer pulsación.
+        :param texto: Cadena de texto que indica la tecla pulsada,
+                      por ejemplo ``"m"``.
         """
         return self.pilas.escena_actual().suelta_tecla
 
@@ -115,7 +125,9 @@ class Eventos(object):
 
     @property
     def log(self):
-        """Indica que se emitió un mensaje para depuración usando la función ``pilas.log``."""
+        """Indica que se emitió un mensaje para depuración usando la función
+        ``pilas.log``.
+        """
         return self.pilas.escena_actual().log
 
     @property

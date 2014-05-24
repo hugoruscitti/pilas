@@ -8,6 +8,7 @@
 
 from pilasengine.tareas.tarea import Tarea
 
+
 class TareaCondicional(Tarea):
     """Representa una tarea similar a Tarea, pero que solo se ejecuta si El
     retorno de la función a ejecutar devuelve True.
