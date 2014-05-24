@@ -4,6 +4,7 @@ from PyQt4 import QtGui
 
 import pilasengine
 
+
 class TestInterpolaciones(unittest.TestCase):
     app = QtGui.QApplication(sys.argv)
 

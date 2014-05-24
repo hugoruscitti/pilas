@@ -4,6 +4,7 @@ from PyQt4 import QtGui
 
 import pilasengine
 
+
 class TestIniciar(unittest.TestCase):
     app = QtGui.QApplication(sys.argv)
 
@@ -25,7 +26,7 @@ class TestIniciar(unittest.TestCase):
         self.assertEquals(un_actor.x, 0, "Se ubica en la posicion x=0")
         self.assertEquals(un_actor.y, 0, "Se ubica en la posicion y=0")
 
-    def  testPuedeEliminarUnActor(self):
+    def testPuedeEliminarUnActor(self):
         actor = self.pilas.actores.Aceituna()
         self.assertTrue(actor, "Creando un actor")
         actor.eliminar()
@@ -41,14 +42,16 @@ class TestIniciar(unittest.TestCase):
         def intentar_detener_de_nuevo():
             self.pilas.widget.detener_bucle_principal()
 
-        self.assertRaises(Exception, intentar_detener_de_nuevo, "No se permite detener el bucle dos veces")
+        self.assertRaises(Exception, intentar_detener_de_nuevo,
+                          "No se permite detener el bucle dos veces")
 
         self.pilas.widget.reiniciar_bucle_principal()
 
         def intentar_reiniciar_de_nuevo():
             self.pilas.widget.reiniciar_bucle_principal()
 
-        self.assertRaises(Exception, intentar_reiniciar_de_nuevo, "No se permite reiniciar al bucle dos veces")
+        self.assertRaises(Exception, intentar_reiniciar_de_nuevo,
+                          "No se permite reiniciar al bucle dos veces")
 
 if __name__ == "__main__":
     unittest.main()

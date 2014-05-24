@@ -30,7 +30,6 @@ class TestActores(unittest.TestCase):
         escena.actualizar_interpolaciones()
         self.assertTrue(actor.x > 0, "El actor se mueve un poco a la derecha")
 
-
         # Simula el paso de un segundo
         import time
         time.sleep(0.5)
@@ -58,8 +57,8 @@ class TestActores(unittest.TestCase):
 
         self.pilas.actores.vincular(MiActor)
         otro_actor = MiActor(self.pilas)
-        self.assertTrue(otro_actor, "Puede volver a vincular un actor luego de reiniciar.")
-
+        self.assertTrue(otro_actor, "Puede volver a vincular un actor luego de \
+                        reiniciar.")
 
         def crear_actor_sin_argumentos():
             actor_falla = MiActor()
@@ -95,7 +94,8 @@ class TestActores(unittest.TestCase):
         for x in range(60):
             self.pilas.simular_actualizacion_logica()
 
-        self.assertEqual(100.0, aceituna.x, "Luego de 60 ticks (1 segundo) llegó a x=100")
+        self.assertEqual(100.0, aceituna.x, "Luego de 60 ticks (1 segundo) \
+                         llegó a x=100")
 
 if __name__ == '__main__':
     unittest.main()
