@@ -6,6 +6,7 @@ import random
 
 pilas = pilasengine.iniciar()
 
+
 def crear_actor():
     actor = pilas.actores.Actor()
     actor.imagen = "conejo.png"
