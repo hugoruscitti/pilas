@@ -15,6 +15,7 @@ class Mono(Actor):
     def iniciar(self):
         self.imagen = "mono.png"
         self.sonido = self.pilas.sonidos.cargar('audio/grito.wav')
+        self.radio_de_colision = 50
 
     def actualizar(self):
         pass

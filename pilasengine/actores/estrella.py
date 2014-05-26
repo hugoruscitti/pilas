@@ -13,6 +13,7 @@ class Estrella(Actor):
 
     def iniciar(self):
         self.imagen = "estrella.png"
+        self.radio_de_colision = 25
 
     def actualizar(self):
         pass
