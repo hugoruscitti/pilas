@@ -28,6 +28,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         main.closeEvent = self.on_close_event
         self.iniciar_interfaz()
         self._vincular_atajos_de_teclado()
+        self.editor.ejecutar()
 
     def _vincular_atajos_de_teclado(self):
         QtGui.QShortcut(QtGui.QKeySequence("F5"), self.main, self.cuando_pulsa_el_boton_ejecutar)
@@ -239,9 +240,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         pilas = pilasengine.iniciar(640, 400)
         pilas.definir_iniciado_desde_asistente(True)
 
-        aceituna = pilas.actores.Aceituna()
+        mono = pilas.actores.Mono()
         scope = {'pilas': pilas,
-                 'aceituna': aceituna,
+                 'aceituna': mono,
                  'self': self,
                  'pilasengine': pilasengine
                  }
@@ -299,7 +300,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
                 'import pilasengine',
                 '',
                 'pilas = pilasengine.iniciar()',
-                'aceituna = pilas.actores.Aceituna()',
+                'mono = pilas.actores.Mono()',
         ]
 
         consola = lanas.ventana.Ventana(self.splitter, scope, "\n".join(codigo_inicial))

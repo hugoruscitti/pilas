@@ -18,8 +18,13 @@ CONTENIDO = """import pilasengine
 
 pilas = pilasengine.iniciar()
 
-aceituna = pilas.actores.Aceituna()
-aceituna.escala = [2]
+mono = pilas.actores.Mono()
+
+# Algunas transformaciones:
+mono.x = 0
+mono.y = 0
+mono.escala = 1.0
+mono.rotacion = 0
 
 pilas.ejecutar()"""
 
@@ -47,7 +52,7 @@ class Editor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDes
             self._autocompletar_comillas('"')
 
         if event.key() == Qt.Key_Apostrophe:
-            self._autocompletar_comillas("'") 
+            self._autocompletar_comillas("'")
 
         if event.key() == Qt.Key_ParenLeft:
             self._autocompletar_braces('(')
