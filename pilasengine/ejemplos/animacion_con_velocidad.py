@@ -11,6 +11,7 @@ animacion = pilas.actores.Animacion(grilla, True, velocidad=1)
 texto = pilas.actores.Texto("1 cuadro por segundo", x=100, y=80, magnitud=10)
 texto.color = pilas.colores.negro
 
+
 def cambia_velocidad(progreso):
     progreso = 1 + progreso * 60.0
     animacion.velocidad_de_animacion = progreso

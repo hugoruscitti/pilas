@@ -4,6 +4,7 @@ sys.path.append('.')
 
 import pilasengine
 
+
 class MiActor(pilasengine.actores.Actor):
 
     def iniciar(self):
