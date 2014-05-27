@@ -136,6 +136,9 @@ class Actores(object):
     def CursorDisparo(self, x=0, y=0):
         return self._crear_actor('cursor_disparo', 'CursorDisparo', x=x, y=y)
 
+    def EstrellaNinja(self, x=0, y=0):
+        return self._crear_actor('estrella_ninja', 'EstrellaNinja', x=x, y=y)
+
     def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
 
