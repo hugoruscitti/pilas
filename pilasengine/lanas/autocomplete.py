@@ -85,10 +85,10 @@ class CompletionTextEdit(QtGui.QTextEdit):
         if is_shift_pressed:
             return
 
-        codigo_completo = str(self._get_current_line() + event.text())
+        codigo_completo = unicode(self._get_current_line() + event.text())
         values = self.funcion_valores_autocompletado(codigo_completo)
 
-        if str(word).endswith('.'):
+        if unicode(word).endswith('.'):
             word = ''
 
         # Evita todos los metodos privados si no se escribe un _
@@ -144,13 +144,13 @@ class CompletionTextEdit(QtGui.QTextEdit):
         line = self._get_current_line()
         if es_consola:
             # La posicíón del cursor es diferente por '» '
-            position = tc.positionInBlock() - 3 
+            position = tc.positionInBlock() - 3
         else:
             position = tc.positionInBlock() - 1
         try:
             char = str(line[position])
             nextchar = str(line[position+1])
             if char in CHARACTERS and nextchar in CHARACTERS.values():
-                tc.deleteChar()                    
+                tc.deleteChar()
         except:
             pass

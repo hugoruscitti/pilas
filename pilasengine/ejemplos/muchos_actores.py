@@ -16,7 +16,7 @@ def crear_actor():
     actor.escala = 1 + (random.randint(-5, 5)) / 10.0
     return actor
 
-for x in range(100):
+for x in range(5):
     crear_actor()
 
 pilas.camara.rotacion = [360], 20
