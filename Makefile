@@ -1,7 +1,7 @@
 N=\x1b[0m
 V=\x1b[32;01m
 
-VERSION=0.85
+VERSION=0.90
 
 all:
 	@echo "Comando disponibles"

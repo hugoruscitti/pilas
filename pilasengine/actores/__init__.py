@@ -130,6 +130,9 @@ class Actores(object):
     def Martian(self, x=0, y=0):
         return self._crear_actor('martian', 'Martian', x=x, y=y)
 
+    def CursorMano(self, x=0, y=0):
+        return self._crear_actor('cursor_mano', 'CursorMano', x=x, y=y)
+
     def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
 
