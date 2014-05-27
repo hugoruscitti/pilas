@@ -247,6 +247,12 @@ class Pilas(object):
     def avisar(self, texto):
         texto = self.actores.TextoInferior(texto)
 
+    def ocultar_puntero_del_mouse(self):
+        self.widget.setCursor(QtGui.QCursor(QtCore.Qt.BlankCursor))
+
+    def mostrar_puntero_del_mouse(self):
+        self.widget.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+
     def obtener_camara(self):
         return self.escena_actual().camara
 
