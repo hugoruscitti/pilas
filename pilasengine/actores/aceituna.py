@@ -14,6 +14,7 @@ class Aceituna(Actor):
 
     def iniciar(self):
         self.imagen = "aceituna.png"
+        self.radio_de_colision = 15
 
     def actualizar(self):
         pass
