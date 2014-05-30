@@ -39,10 +39,12 @@ class TestRobot(unittest.TestCase):
         self.assertGreater(self.actor.rotacion, TestRobot.INITIAL_ROTATION)
         
     def test_up_pen(self):
+        self.robot.bajalapiz()
         self.robot.subelapiz()
         self.assertEqual(self.actor.lapiz_bajo, False)
 
     def test_down_pen(self):
+        self.robot.subelapiz()
         self.robot.bajalapiz()
         self.assertEqual(self.actor.lapiz_bajo, True)
 

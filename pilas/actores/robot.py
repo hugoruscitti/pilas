@@ -283,14 +283,31 @@ class Robot():
         self.eliminar()
 
     def bajalapiz(self):
-        """Le indica a la tortuga si debe comenzar a dibujar con cada movimiento."""
+        """Le indica al robot si debe comenzar a dibujar con cada movimiento."""
         self.actor.lapiz_bajo = True
 
     def subelapiz(self):
-        """Le indica a la tortuga que deje de dibujar con cada movimiento."""
+        """Le indica al robot que deje de dibujar con cada movimiento."""
         self.actor.lapiz_bajo = False
         
+    # Posicionamiento
         
+    def set_x(self, valor):
+        self.acto.x = valor
+    
+    def get_x(self):
+        return self.acto.x
+        
+    def set_y(self, valor):
+        self.actor.x = valor
+        
+    def get_y(self):
+        return self.acto.y
+        
+    x = property(get_x, set_x)
+    y = property(get_y, set_y)
+    
+    
 class Board(object):
 
     def __init__(self, device='/dev/ttyUSB0'):
