@@ -6,7 +6,6 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from PyQt4 import QtGui
 from pilasengine.actores.actor import Actor
 
 
@@ -15,10 +14,40 @@ class Mono(Actor):
     def iniciar(self):
         self.imagen = "mono.png"
         self.sonido = self.pilas.sonidos.cargar('audio/grito.wav')
+        self.imagen_normal = self.pilas.imagenes.cargar("mono.png")
+        self.imagen_reir = self.pilas.imagenes.cargar("monkey_smile.png")
+        self.imagen_gritar = self.pilas.imagenes.cargar("monkey_shout.png")
+
+        self.imagen = self.imagen_normal
+        self.sonido_reir = self.pilas.sonidos.cargar('audio/smile.wav')
+        self.sonido_gritar = self.pilas.sonidos.cargar('audio/shout.wav')
         self.radio_de_colision = 50
 
-    def actualizar(self):
-        pass
+    def normal(self):
+        """Restaura la expresión del mono.
+
+        Este función se suele ejecutar por si misma, unos
+        segundos después de haber gritado y sonreir."""
+        self.imagen = self.imagen_normal
+
+    def sonreir(self):
+        """Hace que el mono sonria y emita un sonido."""
+        self.imagen = self.imagen_reir
+        self.pilas.tareas.una_vez(2, self.normal)
+        self.sonido_reir.reproducir()
+
+    def gritar(self):
+        """Hace que el mono grite emitiendo un sonido."""
+        self.imagen = self.imagen_gritar
+        self.pilas.tareas.una_vez(2, self.normal)
+        self.sonido_gritar.reproducir()
+
+    def decir(self, mensaje):
+        """Emite un mensaje y además sonrie mientras habla."""
+        self.sonreir()
+        super(Mono, self).decir(mensaje)
 
     def saltar(self):
-        self.sonido.reproducir()
+        """ Hace que el mono sonria y salte. """
+        self.sonreir()
+        self.hacer(self.pilas.comportamientos.Saltar)
