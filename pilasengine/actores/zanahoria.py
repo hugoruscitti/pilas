@@ -32,8 +32,8 @@ class Zanahoria(Actor):
     def saltar(self):
         """Realiza un salto hacia arriba."""
         self.sonreir()
-        accion = self.pilas.comportamientos.Saltar(cuando_termina=self.normal)
-        self.hacer(accion)
+        self.hacer(self.pilas.comportamientos.Saltar,
+                   cuando_termina=self.normal)
 
     def decir(self, mensaje):
         """Emite un mensaje usando un globo similar al de los commics.
@@ -41,4 +41,4 @@ class Zanahoria(Actor):
         :param mensaje: La cadena de mensaje que mostrará."""
         self.sonreir()
         Actor.decir(self, mensaje)
-        self.pilas.mundo.agregar_tarea_una_vez(1, self.normal)
+        self.pilas.tareas.una_vez(2, self.normal)
