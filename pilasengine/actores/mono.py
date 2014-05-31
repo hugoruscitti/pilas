@@ -20,7 +20,7 @@ class Mono(Actor):
 
         self.imagen = self.imagen_normal
         self.sonido_reir = self.pilas.sonidos.cargar('audio/smile.wav')
-        self.sonido_gritar = self.pilas.sonidos.cargar('audio/shout.wav')
+        self.sonido_gritar = self.pilas.sonidos.cargar('audio/grito.wav')
         self.radio_de_colision = 50
 
     def normal(self):
