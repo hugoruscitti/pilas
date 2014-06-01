@@ -41,6 +41,10 @@ class Comportamientos(object):
     def Avanzar(self):
         return self._referencia_comportamiento('avanzar', 'Avanzar')
 
+    @property
+    def Girar(self):
+        return self._referencia_comportamiento('girar', 'Girar')
+
     def _referencia_comportamiento(self, modulo, clase):
         import importlib
         referencia_a_modulo = importlib.import_module(
