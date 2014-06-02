@@ -9,6 +9,7 @@
 from pilasengine.fisica.contact_listener import ObjetosContactListener
 from pilasengine.fisica import rectangulo
 from pilasengine.fisica import circulo
+from pilasengine.fisica.constantes import constante_de_movimiento
 
 PPM = 30
 
@@ -77,7 +78,8 @@ class Fisica(object):
         if self.constante_mouse:
             self.cuando_suelta_el_mouse()
 
-        self.constante_mouse = ConstanteDeMovimiento(figura)
+        self.constante_mouse = \
+            constante_de_movimiento.ConstanteDeMovimiento(self.pilas, figura)
 
     def cuando_mueve_el_mouse(self, x, y):
         """Gestiona el evento de movimiento del mouse.

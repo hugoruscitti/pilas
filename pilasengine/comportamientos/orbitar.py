@@ -53,7 +53,3 @@ class OrbitarSobreActor(Orbitar):
         self.punto_de_orbita_x = self.actor.x
         self.punto_de_orbita_y = self.actor.y
         super(OrbitarSobreActor, self).mover_astro()
-
-
-
-
