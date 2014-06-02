@@ -6,36 +6,39 @@
 #
 # Website - http://www.pilas-engine.com.ar
 from pilasengine import habilidades
-from pilasengine.fisica import constantes
 
 
 class Arrastrable(habilidades.Habilidad):
     def iniciar(self, receptor):
         super(Arrastrable, self).iniciar(receptor)
-        self.pilas.eventos.click_de_mouse.conectar(self.comenzar_a_arrastrar)
-        self.pilas.eventos.termina_click.conectar(self.termina_de_arrastrar)
-        self.pilas.eventos.mueve_mouse.conectar(self.arrastrando)
+        self.pilas.eventos.click_de_mouse.conectar(self.intentar_arrastrar)
 
-        self.arrastrar = False
-        self.constante = None
+    def intentar_arrastrar(self, evento):
+        if (evento.boton == 1 and
+                self.receptor.colisiona_con_un_punto(evento.x, evento.y)):
 
-    def comenzar_a_arrastrar(self, evento):
-        if evento.boton == 1:
-            if self.receptor.colisiona_con_un_punto(evento.x, evento.y):
-                self.arrastrar = True
-                if hasattr(self.receptor, 'figura') and self.receptor.figura:
-                    self.constante = constantes.ConstanteDeMovimiento(
-                        self.pilas, self.receptor.figura)
+            self.pilas.eventos.termina_click.conectar(self.termina_de_arrastrar,
+                                                      id="termina_de_arrastrar")
+
+            self.pilas.eventos.mueve_mouse.conectar(self.arrastrando,
+                                                    id="arrastrando")
+            self.intentar_capturar_figura()
+
+    def intentar_capturar_figura(self):
+        if self._el_receptor_tiene_fisica():
+            self.pilas.fisica.capturar_figura_con_el_mouse(self.receptor.figura)
 
     def arrastrando(self, evento):
-        if self.arrastrar:
-            if self.constante:
-                self.constante.mover(evento.x, evento.y)
-            else:
-                self.receptor.x = evento.x
-                self.receptor.y = evento.y
+        if self._el_receptor_tiene_fisica():
+            self.pilas.fisica.cuando_mueve_el_mouse(evento.x, evento.y)
+        else:
+            self.receptor.x = evento.x
+            self.receptor.y = evento.y
 
     def termina_de_arrastrar(self, evento):
-        self.arrastrar = False
-        if self.constante:
-            self.constante.eliminar()
+        self.pilas.eventos.mueve_mouse.desconectar_por_id("arrastrando")
+        self.pilas.eventos.termina_click.desconectar_por_id("termina_de_arrastrar")
+        self.pilas.fisica.cuando_suelta_el_mouse()
+
+    def _el_receptor_tiene_fisica(self):
+        return hasattr(self.receptor, 'figura') and self.receptor.figura
