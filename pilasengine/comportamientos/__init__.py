@@ -45,6 +45,14 @@ class Comportamientos(object):
     def Girar(self):
         return self._referencia_comportamiento('girar', 'Girar')
 
+    @property
+    def Orbitar(self):
+        return self._referencia_comportamiento('orbitar', 'Orbitar')
+
+    @property
+    def OrbitarSobreActor(self):
+        return self._referencia_comportamiento('orbitar', 'OrbitarSobreActor')
+
     def _referencia_comportamiento(self, modulo, clase):
         import importlib
         referencia_a_modulo = importlib.import_module(
