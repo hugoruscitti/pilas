@@ -84,6 +84,7 @@ class Editor(QFrame):
 
                 # We want the line number for the selected line to be bold.
                 bold = False
+
                 if block == current_block:
                     bold = True
                     font = painter.font()
@@ -154,6 +155,12 @@ class Editor(QFrame):
 
     def cargar_desde_archivo(self, ruta):
         self.editor.cargar_desde_archivo(ruta)
+
+    def abrir_con_dialogo(self):
+        self.editor.abrir_con_dialogo()
+
+    def guardar_con_dialogo(self):
+        self.editor.guardar_con_dialogo()
 
 class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDeslizador):
     """Representa el editor de texto que aparece en el panel derecho.
@@ -278,7 +285,7 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
             if not self.ventana_interprete.consultar_si_quiere_perder_cambios():
                 return
 
-        paint_event_original = self._reemplazar_rutina_redibujado()
+        #paint_event_original = self._reemplazar_rutina_redibujado()
 
         ruta = QtGui.QFileDialog.getOpenFileName(self, "Abrir Archivo", "", "Archivos python (*.py)")
 
@@ -286,7 +293,7 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
             self.cargar_desde_archivo(ruta)
             self._cambios_sin_guardar = False
 
-        self._restaurar_rutina_de_redibujado_original(paint_event_original)
+        #self._restaurar_rutina_de_redibujado_original(paint_event_original)
 
         if ruta:
             self.ejecutar()
@@ -296,12 +303,12 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
         self.ventana_interprete.ejecutar_codigo_como_string(texto)
 
     def guardar_con_dialogo(self):
-        paint_event_original = self._reemplazar_rutina_redibujado()
+        #paint_event_original = self._reemplazar_rutina_redibujado()
         ruta = QtGui.QFileDialog.getSaveFileName(self, "Guardar Archivo", "", "Archivos python (*.py)")
 
         if ruta:
             self.guardar_contenido_en_el_archivo(ruta)
             self._cambios_sin_guardar = False
 
-        self._restaurar_rutina_de_redibujado_original(paint_event_original)
+        #self._restaurar_rutina_de_redibujado_original(paint_event_original)
         self.ejecutar()
