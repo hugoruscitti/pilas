@@ -240,15 +240,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
         pilas = pilasengine.iniciar(640, 400)
         pilas.definir_iniciado_desde_asistente(True)
 
-        mono = pilas.actores.Mono()
         scope = {'pilas': pilas,
-                 'aceituna': mono,
                  'self': self,
                  'pilasengine': pilasengine
                  }
         ventana = pilas.obtener_widget()
-
-        ventana.setFocusPolicy(QtCore.Qt.ClickFocus)
 
         self.cargando = QtGui.QLabel("Cargando ...")
         self.cargando.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
@@ -256,10 +252,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.canvas.setCurrentWidget(self.cargando)
 
         self.ventana_pilas = ventana
-        self.canvas.setFocus()
-        self.canvas.addWidget(ventana)
+
         self.stimer = QtCore.QTimer()
-        self.stimer.singleShot(500, self._mostrar_ventana_de_pilas)
 
         return scope
 
@@ -267,6 +261,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.canvas.setCurrentWidget(self.cargando)
 
     def reinsertar_widget_de_pilas(self, widget):
+        widget.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.ventana_pilas = widget
         self.canvas.setFocus()
         self.canvas.addWidget(widget)
