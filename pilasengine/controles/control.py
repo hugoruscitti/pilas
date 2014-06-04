@@ -98,7 +98,7 @@ class Control(object):
         escena.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
         escena.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
 
-        if mapa_teclado is None:
+        if not mapa_teclado:
             self.mapa_teclado = {simbolos.IZQUIERDA: 'izquierda',
                                  simbolos.DERECHA: 'derecha',
                                  simbolos.ARRIBA: 'arriba',
@@ -116,17 +116,15 @@ class Control(object):
         self.procesar_cambio_de_estado_en_la_tecla(evento.codigo, False)
 
     def procesar_cambio_de_estado_en_la_tecla(self, codigo, estado):
-        if self.mapa_teclado.has_key(codigo):
+        if codigo in self.mapa_teclado:
             setattr(self, self.mapa_teclado[codigo], estado)
 
     def __repr__(self):
-        teclas = list()
-        for k in self.mapa_teclado:
-            teclas.append("{0}:{1}".format(self.mapa_teclado[k],
-                                           getattr(self, self.mapa_teclado[k])))
+        teclas = ["{0}:{1}".format(var, getattr(self, var))
+                  for var in self.mapa_teclado.values()]
 
         return '<Control {0}>'.format('  '.join(teclas))
 
     def limpiar(self):
-        for k in self.mapa_teclado:
-            setattr(self, self.mapa_teclado[k], False)
+        for var in self.mapa_teclado.values():
+            setattr(self, var, False)
