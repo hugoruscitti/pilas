@@ -106,17 +106,14 @@ class ProxyHabilidades(object):
         self.habilidades = habilidades
 
     def __getattr__(self, name):
-        su_habilidad = None
 
         for habilidad in self.habilidades:
             if habilidad.__class__.__name__ == name:
-                su_habilidad = habilidad
-                return su_habilidad
+                return habilidad
 
-            if su_habilidad is None:
-                raise Exception("El actor no tiene asignada la habilidad " +
-                                name + ".\n No puede acceder mediante \
-                                actor.habilidades." + name)
+        raise Exception("El actor no tiene asignada la habilidad " +
+                        name + ".\n No puede acceder mediante "
+                        "actor.habilidades." + name)
 
     def __repr__(self):
         return '<Éste actor tiene {0} habilidades: {1}>'.format(
