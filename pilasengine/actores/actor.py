@@ -328,6 +328,7 @@ class Actor(Estudiante):
 
     def definir_z(self, z):
         self._z = z
+        self.pilas.escena_actual()._actores._actores.sort()
 
     def definir_y(self, y):
         self.pilas.utils.interpretar_propiedad_numerica(self, 'y', y)
