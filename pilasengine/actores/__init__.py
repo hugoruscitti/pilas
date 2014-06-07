@@ -262,6 +262,9 @@ class Actores(object):
     def Pacman(self, x=0, y=0):
         return self._crear_actor('pacman', 'Pacman', x=x, y=y)
 
+    def Moneda(self, x=0, y=0):
+        return self._crear_actor('moneda', 'Moneda', x=x, y=y)
+
     def Globo(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True,
               autoeliminar=False, ancho_globo=0, alto_globo=0):
         return self._crear_actor('globo', 'Globo', texto=texto, x=x, y=y,
