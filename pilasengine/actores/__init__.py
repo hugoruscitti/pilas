@@ -190,6 +190,15 @@ class Actores(object):
     def Dialogo(self):
         return self._crear_actor('dialogo', 'Dialogo', 0, 0)
 
+    def Energia(self, x=0, y=0, progreso=100, ancho=200, alto=30,
+                color_relleno=colores.amarillo, con_sombra=True,
+                con_brillo=True):
+        return self._crear_actor('energia', 'Energia', x=x, y=y,
+                                 progreso=progreso, ancho=ancho, alto=alto,
+                                 color_relleno=color_relleno,
+                                 con_sombra=con_sombra,
+                                 con_brillo=con_brillo)
+
     def Boton(self, x=0, y=0,
                 ruta_normal='boton/boton_normal.png',
                 ruta_press='boton/boton_press.png',
