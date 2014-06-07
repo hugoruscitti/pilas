@@ -187,6 +187,9 @@ class Actores(object):
         nuevo_grupo = grupo.Grupo(self.pilas)
         return self.agregar_grupo(nuevo_grupo)
 
+    def Dialogo(self):
+        return self._crear_actor('dialogo', 'Dialogo', 0, 0)
+
     def Boton(self, x=0, y=0,
                 ruta_normal='boton/boton_normal.png',
                 ruta_press='boton/boton_press.png',
