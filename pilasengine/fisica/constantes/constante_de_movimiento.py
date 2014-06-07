@@ -21,9 +21,9 @@ class ConstanteDeMovimiento():
         punto_captura = utils.convertir_a_metros(figura.x), utils.convertir_a_metros(figura.y)
         self.cuerpo_enlazado = mundo.CreateBody()
         self.constante = mundo.CreateMouseJoint(bodyA=self.cuerpo_enlazado,
-                bodyB=figura._cuerpo,
-                target=punto_captura,
-                maxForce=1000.0*figura._cuerpo.mass)
+                                                bodyB=figura._cuerpo,
+                                                target=punto_captura,
+                                                maxForce=1000.0*figura._cuerpo.mass)
 
         figura._cuerpo.awake = True
 

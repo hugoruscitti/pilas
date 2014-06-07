@@ -15,4 +15,7 @@ class Fondo(actor.Actor):
     que generalmente están por detrás de toda la
     escena y ocupan toda el area de la ventana.
     """
-    pass
+
+    def __init__(self, pilas=None):
+        super(Fondo, self).__init__(pilas)
+        self.z = 1000
