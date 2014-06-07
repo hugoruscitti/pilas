@@ -242,6 +242,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
         scope = {'pilas': pilas,
                  'self': self,
+                 'colores': pilasengine.colores,
                  'pilasengine': pilasengine
                  }
         ventana = pilas.obtener_widget()
