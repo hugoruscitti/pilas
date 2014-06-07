@@ -160,8 +160,7 @@ class Actores(object):
     def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
 
-        referencia_a_modulo = importlib.import_module('pilasengine.actores.'
-                                                      + modulo)
+        referencia_a_modulo = importlib.import_module('pilasengine.actores.' + modulo)
         referencia_a_clase = getattr(referencia_a_modulo, clase)
 
         try:
@@ -187,6 +186,15 @@ class Actores(object):
         import grupo
         nuevo_grupo = grupo.Grupo(self.pilas)
         return self.agregar_grupo(nuevo_grupo)
+
+    def Boton(self, x=0, y=0,
+                ruta_normal='boton/boton_normal.png',
+                ruta_press='boton/boton_press.png',
+                ruta_over='boton/boton_over.png'):
+        return self._crear_actor('boton', 'Boton', x=x, y=y,
+                                 ruta_normal=ruta_normal,
+                                 ruta_press=ruta_press,
+                                 ruta_over=ruta_over)
 
     def Banana(self, x=0, y=0):
         return self._crear_actor('banana', 'Banana', x=x, y=y)

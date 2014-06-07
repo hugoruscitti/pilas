@@ -83,6 +83,14 @@ class Actor(Estudiante):
             mensaje = "Tienes que enviar el objeto 'pilas' como argumento al actor, en lugar de eso llego esto: " + str(pilas)
             raise Exception(mensaje)
 
+        if not isinstance(x, (int, long, float)):
+            mensaje = "El parametro x tiene un valor no permitido: " + str(x)
+            raise Exception(mensaje)
+
+        if not isinstance(y, (int, long, float)):
+            mensaje = "El parametro y tiene un valor no permitido: " + str(y)
+            raise Exception(mensaje)
+
         self.pilas = pilas
         self.padre = None
 
