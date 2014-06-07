@@ -128,6 +128,10 @@ class Actores(object):
     def Pingu(self, x=0, y=0):
         return self._crear_actor('pingu', 'Pingu', x=x, y=y)
 
+    def Pizarra(self, x=0, y=0, ancho=None, alto=None):
+        return self._crear_actor('pizarra', 'Pizarra', x=x, y=y,
+                                  ancho=ancho, alto=alto)
+
     def Martian(self, x=0, y=0):
         return self._crear_actor('martian', 'Martian', x=x, y=y)
 
