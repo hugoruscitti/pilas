@@ -66,3 +66,13 @@ class Texto(Actor):
 
     texto = property(obtener_texto, definir_texto,
                      doc="El texto que se tiene que mostrar.")
+
+    def obtener_color(self):
+        return self.__color
+
+    def definir_color(self, color):
+        self.__color = color
+        # Actualiza el texto para forzar el re-dibujado
+        self.texto = self.texto
+
+    color = property(obtener_color, definir_color)

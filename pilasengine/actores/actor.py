@@ -76,12 +76,12 @@ class Actor(Estudiante):
 
     def __init__(self, pilas=None, x=0, y=0):
         if not pilas:
-            raise Exception("Tienes que vincular al actor antes con \
-                            'pilas.actores.vincular(MiActor)'")
+            mensaje = "Ten cuidado, antes de crear un actor tienes que vincularlo con: 'pilas.actores.vincular(MiActor)'"
+            raise Exception(mensaje)
 
         if not isinstance(pilas, pilasengine.Pilas):
-            raise Exception("Tienes que enviar el objeto 'pilas' \
-                            como argumento al actor.'")
+            mensaje = "Tienes que enviar el objeto 'pilas' como argumento al actor, en lugar de eso llego esto: " + str(pilas)
+            raise Exception(mensaje)
 
         self.pilas = pilas
         self.padre = None

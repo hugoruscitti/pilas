@@ -9,6 +9,7 @@ import random
 
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.grupo import Grupo
+from pilasengine import colores
 
 
 class Actores(object):
@@ -139,6 +140,23 @@ class Actores(object):
     def EstrellaNinja(self, x=0, y=0):
         return self._crear_actor('estrella_ninja', 'EstrellaNinja', x=x, y=y)
 
+    def Menu(self, opciones=[], x=0, y=0, fuente=None,
+             color_normal=colores.gris, color_resaltado=colores.blanco):
+        return self._crear_actor('menu', 'Menu', x=x, y=y, opciones=opciones,
+                                 fuente=fuente, color_normal=color_normal,
+                                 color_resaltado=color_resaltado)
+
+    def Opcion(self, texto="", x=0, y=0,
+                 funcion_a_invocar=None,argumentos=None,fuente=None,
+                 color_normal=colores.gris,
+                 color_resaltado=colores.blanco):
+        return self._crear_actor("opcion", "Opcion", x=x, y=y,
+                                 texto=texto,
+                                 funcion_a_invocar=funcion_a_invocar,
+                                 argumentos=argumentos, fuente=fuente,
+                                 color_normal=color_normal,
+                                 color_resaltado=color_resaltado)
+
     def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
 
@@ -146,7 +164,12 @@ class Actores(object):
                                                       + modulo)
         referencia_a_clase = getattr(referencia_a_modulo, clase)
 
-        nuevo_actor = referencia_a_clase(self.pilas, *k, **kw)
+        try:
+            nuevo_actor = referencia_a_clase(self.pilas, *k, **kw)
+        except TypeError, error:
+            mensaje_extendido = ", en clase %s con los argumentos: %s %s" %(str(referencia_a_clase), str(k), str(kw))
+            raise TypeError(str(error) + mensaje_extendido)
+
         # Importante: cuando se inicializa el actor, el método __init__
         #             realiza una llamada a pilas.actores.agregar_actor
         #             para vincular el actor a la escena.
