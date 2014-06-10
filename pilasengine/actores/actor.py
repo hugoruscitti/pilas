@@ -95,16 +95,13 @@ class Actor(Estudiante):
         self.padre = None
 
         Estudiante.__init__(self)
-        self._definir_valores_iniciales(pilas)
+        self._definir_valores_iniciales(pilas, x, y)
 
         # Listas para definir los callbacks de los eventos
         self._callback_cuando_hace_click = set()
         self._callback_cuando_mueve_mouse = set()
         self._grupos_a_los_que_pertenece = []
         self._actores = []
-
-        self.x = x
-        self.y = y
 
         # Vincula el actor con la escena actual.
         pilas.actores.agregar_actor(self)
@@ -122,10 +119,10 @@ class Actor(Estudiante):
     def obtener_cantidad_de_grupos_al_que_pertenece(self):
         return len(self._grupos_a_los_que_pertenece)
 
-    def _definir_valores_iniciales(self, pilas):
+    def _definir_valores_iniciales(self, pilas, x, y):
         self.imagen = "sin_imagen.png"
-        self.x = 0
-        self.y = 0
+        self.x = x
+        self.y = y
         self.z = 0
         self.rotacion = 0
         self.escala_x = 1
@@ -849,4 +846,3 @@ class Actor(Estudiante):
 
         :return: boolean"""
         return False
-

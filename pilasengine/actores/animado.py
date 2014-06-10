@@ -38,9 +38,7 @@ class Animado(Actor):
         :param y: Posición vertical del Actor.
         :type y: int
         """
-        Actor.__init__(self, pilas)
-        self.x = x
-        self.y = y
+        Actor.__init__(self, pilas, x, y)
         self.imagen = copy.copy(grilla)
         self.definir_cuadro(0)
 
