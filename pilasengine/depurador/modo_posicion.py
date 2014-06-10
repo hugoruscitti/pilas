@@ -13,6 +13,7 @@ class ModoPosicion(ModoDepurador):
 
     def __init__(self, pilas, depurador):
         ModoDepurador.__init__(self, pilas, depurador)
+        self.ejes = self.pilas.actores.Ejes()
 
     def cuando_dibuja_actor(self, actor, painter):
         self._definir_trazo_blanco(painter)
@@ -33,3 +34,6 @@ class ModoPosicion(ModoDepurador):
 
         #painter.scale(escala_x, escala_y)
         painter.rotate(-actor.rotacion)
+
+    def sale_del_modo(self):
+        self.ejes.eliminar()
