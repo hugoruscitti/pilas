@@ -24,6 +24,7 @@ class Ejes(Actor):
 
     def iniciar(self):
         self.imagen = "ejes.png"
+        self.z = 999
 
     def actualizar(self):
         pass
