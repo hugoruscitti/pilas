@@ -28,3 +28,27 @@ class Fondos(object):
     def Tarde(self):
         import tarde
         return tarde.Tarde(self.pilas)
+
+    def Selva(self):
+        import selva
+        return selva.Selva(self.pilas)
+
+    def Noche(self):
+        import noche
+        return noche.Noche(self.pilas)
+
+    def Espacio(self):
+        import espacio
+        return espacio.Espacio(self.pilas)
+
+    def Nubes(self):
+        import nubes
+        return nubes.Nubes(self.pilas)
+
+    def Pasto(self):
+        import pasto
+        return pasto.Pasto(self.pilas)
+
+    def Volley(self):
+        import volley
+        return volley.Volley(self.pilas)
