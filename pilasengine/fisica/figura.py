@@ -125,6 +125,15 @@ class Figura(object):
         """Quita una figura de la simulación."""
         self.fisica.eliminar_figura(self._cuerpo)
 
+    def obtener_sensor(self):
+        return self._sensor
+
+    def definir_sensor(self, s):
+        self._sensor = s
+        self._cuerpo.fixtures[0].sensor = s
+
     x = property(get_x, set_x, doc="define la posición horizontal.")
     y = property(get_y, set_y, doc="define la posición vertical.")
     rotacion = property(get_rotation, set_rotation, doc="define la rotacion.")
+    sensor = property(obtener_sensor, definir_sensor)
+

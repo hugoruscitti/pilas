@@ -49,8 +49,6 @@ class Rectangulo(Figura):
                                      linearDamping=amortiguacion,
                                      friction=friccion,
                                      restitution=restitucion)
-        fixture.isSensor = sensor
-
         # Agregamos un identificador para controlarlo posteriormente en las
         # colisiones.
         self.userData = {'id': self.id, 'figura': self}
@@ -62,6 +60,7 @@ class Rectangulo(Figura):
             self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
 
         self._cuerpo.fixedRotation = self.sin_rotacion
+        self.sensor = sensor
 
     def definir_vertices(self):
         self._cuerpo.fixtures[0].shape.vertices = box2d.b2PolygonShape(

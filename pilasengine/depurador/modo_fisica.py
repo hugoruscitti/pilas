@@ -30,7 +30,16 @@ class ModoFisica(ModoDepurador):
                 # cuerpo.type == 0 → estatico
                 # cuerpo.type == 1 → kinematico
                 # cuerpo.type == 2 → dinamico
-                self._definir_trazo_blanco(painter)
+
+                if fixture.sensor:
+                    self._definir_trazo_verde(painter)
+                else:
+                    if cuerpo.awake:
+                        self._definir_trazo_blanco(painter)
+                    else:
+                        self._definir_trazo_gris(painter)
+
+
 
                 shape = fixture.shape
 

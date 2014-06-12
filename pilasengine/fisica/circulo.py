@@ -55,7 +55,6 @@ class Circulo(Figura):
                                      friction=friccion,
                                      restitution=restitucion)
 
-        fixture.isSensor = sensor
 
         # Agregamos un identificador para controlarlo posteriormente en las
         # colisiones.
@@ -68,6 +67,7 @@ class Circulo(Figura):
             self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
 
         self._cuerpo.fixedRotation = self.sin_rotacion
+        self.sensor = sensor
 
     def definir_radio(self):
         for fixture in self._cuerpo:

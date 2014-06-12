@@ -45,7 +45,6 @@ class Poligono(Figura):
                                      friction=friccion,
                                      restitution=restitucion)
 
-        fixture.isSensor = sensor
         self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
@@ -55,6 +54,7 @@ class Poligono(Figura):
             self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(0, 0), fixtures=fixture)
 
         self._cuerpo.fixedRotation = self.sin_rotacion
+        self.sensor = sensor
 
 
     def definir_escala(self, escala):
