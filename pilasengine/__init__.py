@@ -262,10 +262,14 @@ class Pilas(object):
     def obtener_fisica(self):
         return self.escena_actual().fisica
 
+    def obtener_colisiones(self):
+        return self.escena_actual().colisiones
+
     tareas = property(obtener_tareas, doc="Obtiene el modulo de tareas")
     camara = property(obtener_camara, doc="Cámara de la escena actual")
     escena = property(obtener_escena_actual, doc="Escena actual")
     fisica = property(obtener_fisica, doc="Retorna el componente fisica")
+    colisiones = property(obtener_colisiones, doc="Retorna las colisiones de la escena")
 
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', capturar_errores=True,

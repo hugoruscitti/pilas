@@ -29,7 +29,7 @@ class Circulo(Figura):
 
     def __init__(self, fisica, pilas, x, y, radio, dinamica=True,
                  densidad=1.0, restitucion=0.56, friccion=10.5,
-                 amortiguacion=0.1, sin_rotacion=False):
+                 amortiguacion=0.1, sin_rotacion=False, sensor=False):
 
         Figura.__init__(self, fisica, pilas)
 
@@ -55,9 +55,11 @@ class Circulo(Figura):
                                      friction=friccion,
                                      restitution=restitucion)
 
+        fixture.isSensor = sensor
+
         # Agregamos un identificador para controlarlo posteriormente en las
         # colisiones.
-        self.userData = { 'id' : self.id }
+        self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
         if self.dinamica:

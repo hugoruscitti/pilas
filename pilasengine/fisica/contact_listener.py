@@ -28,7 +28,11 @@ class ObjetosContactListener(contact_listener):
         objeto_colisionado_1 = args[0].fixtureA
         objeto_colisionado_2 = args[0].fixtureB
 
-        if (not objeto_colisionado_1.userData == None) and (not objeto_colisionado_2.userData == None):
+        # Informar la colisión si entran en contacto:
+        if objeto_colisionado_1.userData and objeto_colisionado_2.userData:
+            print "Colisionan", objeto_colisionado_1.userData['figura'].actor_que_representa_como_area_de_colision, "vs", objeto_colisionado_2.userData['figura'].actor_que_representa_como_area_de_colision
+
+
             # TODO: implementar cuando exista el componente colisiones
             pass
             #self.pilas.escena_actual().colisiones.verificar_colisiones_fisicas(objeto_colisionado_1.userData['id'],

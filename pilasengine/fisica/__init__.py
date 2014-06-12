@@ -47,6 +47,7 @@ class Fisica(object):
 
         self.velocidad = 1.0
         self.timeStep = self.velocidad/60.0
+        self.mundo.SetAllowSleeping(False)
 
     def iniciar(self):
         self.area = self.pilas.obtener_widget().obtener_area()
@@ -137,7 +138,7 @@ class Fisica(object):
         :param alto: Alto del suelo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.suelo = self.Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
+        self.suelo = self.Rectangulo(0, -alto/2, ancho, 2, dinamica=False, restitucion=restitucion)
 
     def crear_techo(self, (ancho, alto), restitucion=0):
         """Genera un techo sólido para el escenario.
@@ -146,7 +147,7 @@ class Fisica(object):
         :param alto: Alto del techo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.techo = self.Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
+        self.techo = self.Rectangulo(0, alto/2, ancho, 2, dinamica=False, restitucion=restitucion)
 
     def crear_paredes(self, (ancho, alto), restitucion=0):
         """Genera dos paredes para el escenario.
@@ -155,8 +156,8 @@ class Fisica(object):
         :param alto: El alto de las paredes.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.pared_izquierda = self.Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
-        self.pared_derecha = self.Rectangulo(ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
+        self.pared_izquierda = self.Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, restitucion=restitucion)
+        self.pared_derecha = self.Rectangulo(ancho/2, 0, 2, alto, dinamica=False, restitucion=restitucion)
 
     def eliminar_suelo(self):
         "Elimina el suelo del escenario."
@@ -245,12 +246,12 @@ class Fisica(object):
         :param x: Aceleración horizontal.
         :param y: Aceleración vertical.
         """
-        pilas.fisica.definir_gravedad(x, y)
+        self.mundo.gravity = (x, y)
 
 
     def Rectangulo(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
                    restitucion=0.5, friccion=.2, amortiguacion=0.1,
-                   fisica=None, sin_rotacion=False):
+                   sin_rotacion=False, sensor=False):
 
         return rectangulo.Rectangulo(self, self.pilas, x, y, ancho, alto,
                                      dinamica=dinamica, densidad=densidad,
@@ -260,8 +261,9 @@ class Fisica(object):
 
     def Circulo(self, x, y, radio, dinamica=True, densidad=1.0,
                 restitucion=0.56, friccion=10.5, amortiguacion=0.1,
-                sin_rotacion=False):
+                sin_rotacion=False, sensor=False):
         return circulo.Circulo(self, self.pilas, x, y, radio,
                                dinamica=dinamica, densidad=densidad,
                                restitucion=restitucion, friccion=friccion,
-                               amortiguacion=amortiguacion, sin_rotacion=sin_rotacion)
+                               amortiguacion=amortiguacion, sin_rotacion=sin_rotacion,
+                               sensor=sensor)

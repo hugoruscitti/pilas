@@ -23,7 +23,7 @@ class Poligono(Figura):
 
     def __init__(self, x, y, puntos, dinamica=True, densidad=1.0,
             restitucion=0.56, friccion=10.5, amortiguacion=0.1,
-            fisica=None, sin_rotacion=False):
+            fisica=None, sin_rotacion=False, sensor=False):
 
         Figura.__init__(self)
 
@@ -45,7 +45,8 @@ class Poligono(Figura):
                                      friction=friccion,
                                      restitution=restitucion)
 
-        self.userData = { 'id' : self.id }
+        fixture.isSensor = sensor
+        self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
         if self.dinamica:

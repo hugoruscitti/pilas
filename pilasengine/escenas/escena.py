@@ -10,6 +10,7 @@ from pilasengine.actores import grupo
 from pilasengine.utils import pitweener
 from pilasengine.tareas import Tareas
 from pilasengine.fisica import Fisica
+from pilasengine.colisiones import Colisiones
 
 class Escena(object):
 
@@ -35,6 +36,7 @@ class Escena(object):
         self.tareas = Tareas(self)
         self.fisica = Fisica(self, pilas)
         self.fisica.iniciar()
+        self.colisiones = Colisiones(pilas, self)
 
     def iniciar(self):
         pass

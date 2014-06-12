@@ -20,6 +20,7 @@ class Figura(object):
         self.fisica = fisica
         self.pilas = pilas
         self.id = pilas.utils.obtener_uuid()
+        self.actor_que_representa_como_area_de_colision = None
 
     def obtener_x(self):
         "Retorna la posición horizontal del cuerpo."

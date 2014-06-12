@@ -155,6 +155,10 @@ class Actor(Estudiante):
         """
         pass
 
+    def definir_colision(self, figura):
+        self.figura_de_colision = figura
+        figura.actor_que_representa_como_area_de_colision = self
+
     def actualizar(self):
         """Método de actualización lógico del actor.
 
@@ -472,6 +476,12 @@ class Actor(Estudiante):
         self.actualizar_comportamientos()
         self.actualizar_habilidades()
         self.__actualizar_velocidad()
+        self.mover_figura_de_colision()
+
+    def mover_figura_de_colision(self):
+        if getattr(self, 'figura_de_colision', False):
+            self.figura_de_colision.x = self.x
+            self.figura_de_colision.y = self.y
 
     def _agregar_callback(self, grupo_de_callbacks, callback):
         """Agrega una función para invocar en una colección.

@@ -24,7 +24,7 @@ class Rectangulo(Figura):
 
     def __init__(self, fisica, pilas, x, y, ancho, alto, dinamica=True,
                  densidad=1.0, restitucion=0.5, friccion=.2,
-                 amortiguacion=0.1, sin_rotacion=False):
+                 amortiguacion=0.1, sin_rotacion=False, sensor=False):
 
         Figura.__init__(self, fisica, pilas)
 
@@ -49,10 +49,11 @@ class Rectangulo(Figura):
                                      linearDamping=amortiguacion,
                                      friction=friccion,
                                      restitution=restitucion)
+        fixture.isSensor = sensor
 
         # Agregamos un identificador para controlarlo posteriormente en las
         # colisiones.
-        self.userData = { 'id' : self.id }
+        self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
         if self.dinamica:
