@@ -130,7 +130,14 @@ class Figura(object):
 
     def definir_sensor(self, s):
         self._sensor = s
-        self._cuerpo.fixtures[0].sensor = s
+        #self._cuerpo.fixtures[0].sensor = s
+
+        if s:
+            self._cuerpo.gravityScale = 0
+            self._cuerpo.fixtures[0].userData['sensor'] = True
+        else:
+            self._cuerpo.gravityScale = 1.0
+            self._cuerpo.fixtures[0].userData['sensor'] = False
 
     x = property(get_x, set_x, doc="define la posición horizontal.")
     y = property(get_y, set_y, doc="define la posición vertical.")

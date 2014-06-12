@@ -32,5 +32,11 @@ class ObjetosContactListener(box2d.b2ContactListener):
         print "fin de colision entre ", id(fixture_1), id(fixture_2)
 
     def PreSolve(self, contact, old):
+        fixture_1 = contact.fixtureA
+        fixture_2 = contact.fixtureB
+
+        if fixture_1.userData['sensor'] or fixture_2.userData['sensor']:
+            contact.enabled = False
+            print "Ignorando contact", fixture_1, fixture_2
         #print contact, old
         pass
