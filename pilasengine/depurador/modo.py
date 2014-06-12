@@ -81,5 +81,11 @@ class ModoDepurador(object):
         painter.setPen(pen)
         return pen
 
-
-
+    def _definir_trazo_verde_oscuro(self, painter):
+        "Define las propiedades para pintar en color blanco."
+        blanco = QtGui.QColor(100, 200, 100)
+        pen = QtGui.QPen(blanco, 2)
+        painter.setBrush(QtCore.Qt.NoBrush)
+        pen.setJoinStyle(QtCore.Qt.MiterJoin)
+        painter.setPen(pen)
+        return pen

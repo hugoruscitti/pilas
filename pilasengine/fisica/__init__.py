@@ -38,7 +38,7 @@ class Fisica(object):
 
         self.pilas = pilas
         self.escena = escena
-        self.mundo = box2d.b2World(gravedad, False)
+        self.mundo = box2d.b2World(gravedad, True)
         self.objetosContactListener = ObjetosContactListener(pilas)
         self.mundo.contactListener = self.objetosContactListener
         self.mundo.continuousPhysics = False

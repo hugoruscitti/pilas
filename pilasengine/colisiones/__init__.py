@@ -1,3 +1,11 @@
+# -*- encoding: utf-8 -*-
+# pilas engine: un motor para hacer videojuegos
+#
+# Copyright 2010-2014 - Hugo Ruscitti
+# License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
+#
+# Website - http://www.pilas-engine.com.ar
+
 class Colisiones:
     "Administra todas las _colisiones entre actores."
 
@@ -5,6 +13,14 @@ class Colisiones:
         self.pilas = pilas
         self.escena = escena
         self._colisiones = []
+
+    def notificar_colision(self, fixture_1, fixture_2):
+        """Se invoca automáticamente desde el componente Fisica.
+
+        Internamente, el motor de física tiene un objeto llamado
+        ContactListener (en el archivo 'fisica/contact_listener.py').
+        """
+        print "Detectando colision", id(fixture_1), id(fixture_2)
 
     def verificar_colisiones(self):
         for x in self._colisiones:
