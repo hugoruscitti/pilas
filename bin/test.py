@@ -30,7 +30,7 @@ def colisiona_con_pelota(m, b):
     b.eliminar()
 
 pilas.colisiones.agregar(mono, banana, colisionan)
-#pilas.colisiones.agregar(mono, pelota, colisiona_con_pelota)
+pilas.colisiones.agregar(mono, pelota, colisiona_con_pelota)
 
 
 pilas.ejecutar()

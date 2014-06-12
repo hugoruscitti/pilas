@@ -20,7 +20,10 @@ class Colisiones:
         Internamente, el motor de física tiene un objeto llamado
         ContactListener (en el archivo 'fisica/contact_listener.py').
         """
-        print "Detectando colision", id(fixture_1), id(fixture_2)
+        actor_asociado_1 = fixture_1.userData.get('actor', None)
+        actor_asociado_2 = fixture_2.userData.get('actor', None)
+
+        print "Detectando colision", actor_asociado_1, actor_asociado_2
 
     def verificar_colisiones(self):
         for x in self._colisiones:
