@@ -10,7 +10,6 @@ import os
 import datetime
 from PyQt4 import QtGui
 from PyQt4 import QtCore
-import pygame
 import traceback
 
 from pilasengine import escenas
@@ -26,6 +25,7 @@ from pilasengine import habilidades
 from pilasengine import comportamientos
 from pilasengine import eventos
 from pilasengine import controles
+from pilasengine import configuracion
 
 import widget
 
@@ -61,6 +61,12 @@ class Pilas(object):
         self._capturar_errores = capturar_errores
         self.reiniciar(ancho, alto, titulo, con_aceleracion,
                        habilitar_mensajes_log)
+
+        if configuracion.AUDIO_HABILITADO:
+            self._inicializar_audio()
+
+    def _inicializar_audio(self):
+        import pygame
         pygame.mixer.init()
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',

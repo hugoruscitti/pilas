@@ -6,13 +6,14 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import os
-import pygame
 
 
 class Sonido(object):
     deshabilitado = False
 
     def __init__(self, ruta):
+        import pygame
+
         self.ruta = ruta
         self.sonido = pygame.mixer.Sound(ruta)
 
