@@ -30,8 +30,8 @@ class ActorEliminado(object):
     """
 
     def __getattr__(self, *k, **kw):
-        raise Exception("Este actor ya ha sido eliminado, \
-                        no se puede utilizar.")
+        mensaje = "Este actor ya ha sido eliminado, no se puede utilizar."
+        raise Exception(mensaje)
 
 
 class Actor(Estudiante):
@@ -131,6 +131,7 @@ class Actor(Estudiante):
         self.espejado = False
         self.centro = ('centro', 'centro')
         self.fijo = False
+        self.figura_de_colision = None
 
         self.id = pilas.utils.obtener_uuid()
 
@@ -156,6 +157,10 @@ class Actor(Estudiante):
         pass
 
     def definir_colision(self, figura):
+        if self.figura_de_colision:
+            print "Ya existia una figura, borrandola"
+            self.figura_de_colision.eliminar()
+
         self.figura_de_colision = figura
         figura.actor_que_representa_como_area_de_colision = self
 
@@ -449,7 +454,12 @@ class Actor(Estudiante):
         """Elimina el actor de la lista de actores que se
            imprimen en pantalla."""
         self._eliminar_anexados()
+        self._eliminar_figura_de_colision()
         self._destruir()
+
+    def _eliminar_figura_de_colision(self):
+        if self.figura_de_colision:
+            self.figura_de_colision.eliminar()
 
     def _destruir(self):
         """Elimina a un actor pero de manera inmediata."""

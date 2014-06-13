@@ -24,12 +24,12 @@ class ObjetosContactListener(box2d.b2ContactListener):
         # Informar la colisión si entran en contacto:
         #if fixture_1.userData and fixture_2.userData:
 
-        print "Comienza colision entre ", id(fixture_1), id(fixture_2)
+        #print "Comienza colision entre ", id(fixture_1), id(fixture_2)
 
     def EndContact(self, *args, **kwargs):
         fixture_1 = args[0].fixtureA
         fixture_2 = args[0].fixtureB
-        print "fin de colision entre ", id(fixture_1), id(fixture_2)
+        #print "fin de colision entre ", id(fixture_1), id(fixture_2)
 
     def PreSolve(self, contact, old):
         fixture_1 = contact.fixtureA

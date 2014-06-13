@@ -21,11 +21,12 @@ class BaseWidget(object):
     o un editor.
     """
 
-    def __init__(self, pilas, ancho, alto):
+    def __init__(self, pilas, ancho, alto, capturar_errores=True):
         self.pilas = pilas
         super(BaseWidget, self).__init__()
         self.setMinimumSize(200, 200)
         self.activar_borrosidad()
+        self.capturar_errores = capturar_errores
         self.iniciar_interface(ancho, alto)
 
     def iniciar_interface(self, ancho, alto):
@@ -82,10 +83,14 @@ class BaseWidget(object):
         Este método se llama automáticamente 100 veces por segundo, ya
         que se hace una llamada a 'startTimer' indicando esa frecuencia.
         """
-        try:
+        if self.capturar_errores:
+            try:
+                self._realizar_actualizacion_logica()
+            except Exception, e:
+                self.procesar_error(e)
+        else:
             self._realizar_actualizacion_logica()
-        except Exception, e:
-            self.procesar_error(e)
+
 
         # Pide redibujar el widget (Qt llamará a paintEvent después).
         self.update()

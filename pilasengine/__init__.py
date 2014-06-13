@@ -99,9 +99,9 @@ class Pilas(object):
                 parent = self._eliminar_el_anterior_widget()
 
         if con_aceleracion:
-            self.widget = widget.WidgetConAceleracion(self, ancho, alto)
+            self.widget = widget.WidgetConAceleracion(self, ancho, alto, self._capturar_errores)
         else:
-            self.widget = widget.WidgetSinAceleracion(self, ancho, alto)
+            self.widget = widget.WidgetSinAceleracion(self, ancho, alto, self._capturar_errores)
 
         if not self._iniciado_desde_asistente:
             if es_reinicio:
