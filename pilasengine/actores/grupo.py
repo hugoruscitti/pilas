@@ -61,6 +61,12 @@ class Grupo(object):
     def obtener_cantidad_de_actores(self):
         return len(self._actores)
 
+    def __setitem__(self, key, item):
+        self._actores[key] = item
+
+    def __getitem__(self, key):
+        return self._actores[key]
+
     def eliminar(self, actor):
         """Agrega el actor a una lista para eliminarlo mas tarde."""
 
