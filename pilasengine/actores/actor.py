@@ -10,6 +10,7 @@ import inspect
 
 import pilasengine
 from estudiante import Estudiante
+from __builtin__ import True
 
 IZQUIERDA = ["izquierda"]
 DERECHA = ["derecha"]
@@ -31,7 +32,20 @@ class ActorEliminado(object):
 
     def __getattr__(self, *k, **kw):
         mensaje = "Este actor ya ha sido eliminado, no se puede utilizar."
-        raise Exception(mensaje)
+
+        print mensaje
+
+    def esta_eliminado(self):
+        return True
+
+    def __cmp__(self, otro_actor):
+        return 1
+
+    def eliminar(self):
+        pass
+
+    def _eliminar_anexados(self):
+        pass
 
 
 class Actor(Estudiante):
@@ -161,8 +175,10 @@ class Actor(Estudiante):
             print "Ya existia una figura, borrandola"
             self.figura_de_colision.eliminar()
 
+
         self.figura_de_colision = figura
         figura.actor_que_representa_como_area_de_colision = self
+        print "definiendo figura de colision para ", self
 
     def actualizar(self):
         """Método de actualización lógico del actor.
@@ -472,6 +488,9 @@ class Actor(Estudiante):
 
     def _inhabilitar_actor_completamente(self):
         self.__class__ = ActorEliminado
+
+    def esta_eliminado(self):
+        return False
 
     def _eliminar_de_todos_los_grupos_al_que_pertenece(self):
         for g in self._grupos_a_los_que_pertenece:

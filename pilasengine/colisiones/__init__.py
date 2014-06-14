@@ -56,14 +56,25 @@ class Colisiones:
             for a in grupo_a:
                 for b in grupo_b:
                     if a in (actor_1, actor_2) and b in (actor_1, actor_2):
-                        funcion_a_llamar(a, b)
+                        if not a.esta_eliminado() and not b.esta_eliminado():
+                            funcion_a_llamar(a, b)
 
+    def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
+        "Agrega dos listas de actores para analizar _colisiones."
+
+        if not isinstance(grupo_a, list):
+            grupo_a = [grupo_a]
+
+        if not isinstance(grupo_b, list):
+            grupo_b = [grupo_b]
+
+        self._colisiones_programadas_con_respuesta.append((grupo_a, grupo_b, funcion_a_llamar))
+
+    """
     def verificar_colisiones(self):
-        print "ASDASDAS"
         print self._colisiones
 
         # Analiza las colisiones físicas reportadas por box2d.
-        """
         for info_colision in []:
             actor_1 = info_colision['actor_1']
             actor_2 = info_colision['actor_2']
@@ -156,16 +167,6 @@ class Colisiones:
         return hasattr(objeto, 'figura')
     """
 
-    def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
-        "Agrega dos listas de actores para analizar _colisiones."
-
-        if not isinstance(grupo_a, list):
-            grupo_a = [grupo_a]
-
-        if not isinstance(grupo_b, list):
-            grupo_b = [grupo_b]
-
-        self._colisiones_programadas_con_respuesta.append((grupo_a, grupo_b, funcion_a_llamar))
 
     """
     def eliminar_colisiones_con_actor(self, actor):
