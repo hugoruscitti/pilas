@@ -248,6 +248,33 @@ class Fisica(object):
         """
         self.mundo.gravity = (x, y)
 
+    def obtener_gravedad_x(self):
+        (x, _) = self.mundo.gravity
+        return x
+
+    def definir_gravedad_x(self, x):
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'set_gravedad_x', x)
+
+    def obtener_gravedad_y(self):
+        (_, y) = self.mundo.gravity
+        return y
+
+    def definir_gravedad_y(self, y):
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'set_gravedad_y', y)
+
+    gravedad_x = property(obtener_gravedad_x, definir_gravedad_x)
+    gravedad_y = property(obtener_gravedad_y, definir_gravedad_y)
+
+    def set_gravedad_x(self, nuevo_x):
+        (_, y) = self.mundo.gravity
+        self.mundo.gravity = (nuevo_x, y)
+
+    def set_gravedad_y(self, nuevo_y):
+        (x, _) = self.mundo.gravity
+        self.mundo.gravity = (x, nuevo_y)
+
+    _set_gravedad_x = property(obtener_gravedad_x, set_gravedad_x)
+    _set_gravedad_y = property(obtener_gravedad_y, set_gravedad_y)
 
     def Rectangulo(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
                    restitucion=0.5, friccion=.2, amortiguacion=0.1,
