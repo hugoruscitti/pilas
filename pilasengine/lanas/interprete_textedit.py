@@ -168,6 +168,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             [self.textCursor().deletePreviousChar() for x in xrange(length)]
 
     def recall_history(self):
+        self._mover_cursor_al_final()
         self.clearCurrentBlock()
         if self.historyIndex <> -1:
             self.insertPlainText(self.history[self.historyIndex])
@@ -211,7 +212,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         tc.insertText(word)
 
 
-    def _mover_cursor_al_final(self, textCursor):
+    def _mover_cursor_al_final(self):
         textCursor = self.textCursor()
         textCursor.movePosition(QTextCursor.End)
         self.setTextCursor(textCursor)
@@ -296,13 +297,13 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
 
         # Ignorando la pulsación de tecla si está en medio de la consola.
         if textCursor.blockNumber() != self.document().blockCount() - 1:
-            textCursor = self._mover_cursor_al_final(textCursor)
+            textCursor = self._mover_cursor_al_final()
             event.ignore()
             return
 
         # Ignora el evento si está sobre el cursor de la consola.
         if textCursor.positionInBlock() < 2:
-            textCursor = self._mover_cursor_al_final(textCursor)
+            textCursor = self._mover_cursor_al_final()
             event.ignore()
             return
 
@@ -320,7 +321,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
 
         if event.key() in [Qt.Key_Return, Qt.Key_Enter]:
             self.limpiar_consejo() # Limpiando consejo si existe
-            
+
             line = self._get_entered_line()
             self.historyIndex = -1
 
@@ -396,7 +397,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
 
             # Obtiene el mensaje a mostrar y lo despliega en el tooltip
             texto_consejo = self._obtener_firma_de_funcion(principio)
-            self.mostrar_consejo(texto_consejo)            
+            self.mostrar_consejo(texto_consejo)
 
     def limpiar_consejo(self):
         self.mostrar_consejo("")
