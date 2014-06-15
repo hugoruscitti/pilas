@@ -144,7 +144,7 @@ class Actor(Estudiante):
         self.espejado = False
         self.centro = ('centro', 'centro')
         self.fijo = False
-        self.figura_de_colision = None
+        self._figura_de_colision = None
 
         self.id = pilas.utils.obtener_uuid()
 
@@ -169,15 +169,20 @@ class Actor(Estudiante):
         """
         pass
 
-    def definir_colision(self, figura):
-        if self.figura_de_colision:
-            print "Ya existia una figura, borrandola"
-            self.figura_de_colision.eliminar()
+    def obtener_figura_de_colision(self):
+        return self._figura_de_colision
 
+    def definir_figura_de_colision(self, figura):
+        if self._figura_de_colision:
+            print "Ya existia una figura de colision para", self, "... borrandola"
+            self._figura_de_colision.eliminar()
 
-        self.figura_de_colision = figura
+        self._figura_de_colision = figura
         figura.actor_que_representa_como_area_de_colision = self
         print "definiendo figura de colision para ", self
+
+    figura_de_colision = property(obtener_figura_de_colision, definir_figura_de_colision)
+
 
     def actualizar(self):
         """Método de actualización lógico del actor.
@@ -369,18 +374,8 @@ class Actor(Estudiante):
         if s < 0.001:
             s = 0.001
 
-        ultima_escala = self.obtener_escala()
-
-        # Se hace la siguiente regla de 3 simple:
-        #
-        #  ultima_escala          self.radio_de_colision
-        #  s                      ?
-
         self.escala_x = s
         self.escala_y = s
-        s = self.escala_x
-        self.radio_de_colision = ((s * self.radio_de_colision) /
-                                  max(ultima_escala, 0.0001))
 
     def definir_escala_x(self, s):
         self.pilas.utils.interpretar_propiedad_numerica(self, 'escala_x', s)
@@ -466,10 +461,14 @@ class Actor(Estudiante):
                     independiente a la cámara.")
 
     def eliminar(self):
-        """Elimina el actor de la lista de actores que se
-           imprimen en pantalla."""
+        """Elimina el actor de la lista que se imprimen en pantalla."""
         self._eliminar_anexados()
-        self._eliminar_figura_de_colision()
+
+        try:
+            self._eliminar_figura_de_colision()
+        except:
+            pass
+
         self._destruir()
 
     def _eliminar_figura_de_colision(self):
@@ -512,6 +511,7 @@ class Actor(Estudiante):
         if getattr(self, 'figura_de_colision', False):
             self.figura_de_colision.x = self.x
             self.figura_de_colision.y = self.y
+            self.figura_de_colision.rotacion = self.rotacion
 
     def _agregar_callback(self, grupo_de_callbacks, callback):
         """Agrega una función para invocar en una colección.
@@ -882,7 +882,20 @@ class Actor(Estudiante):
                 self.abajo > arriba or self.arriba < abajo)
 
     def es_fondo(self):
-        """ Comprueba si el actor es un fondo del juego.
-
-        :return: boolean"""
+        """Comprueba si el actor es un fondo del juego."""
         return False
+
+    def obtener_radio_de_colision(self):
+        return self._radio_de_colision
+
+    def definir_radio_de_colision(self, radio):
+        print "NUEVO RADIO", radio, self
+        self._radio_de_colision = radio
+        self.crear_figura_de_colision_circular(radio)
+
+    radio_de_colision = property(obtener_radio_de_colision, definir_radio_de_colision)
+
+    def crear_figura_de_colision_circular(self, radio):
+        self.ff = self.pilas.fisica.Circulo(0, 0, radio, dinamica=False, sensor=True)
+        print self.ff
+        self.figura_de_colision = self.ff

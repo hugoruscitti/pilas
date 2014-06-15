@@ -61,7 +61,13 @@ class Colisiones:
                 for b in grupo_b:
                     if a in (actor_1, actor_2) and b in (actor_1, actor_2):
                         if not a.esta_eliminado() and not b.esta_eliminado():
-                            funcion_a_llamar(a, b)
+                            self.invocar_funcion(funcion_a_llamar, a, b)
+
+    def invocar_funcion(self, funcion, actor1, actor2):
+        try:
+            funcion(actor1, actor2)
+        except TypeError:
+            funcion()
 
     def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
         "Agrega dos listas de actores para analizar _colisiones."
@@ -69,7 +75,7 @@ class Colisiones:
         if not isinstance(grupo_a, list) and not isinstance(grupo_a, collections.MutableSequence):
             grupo_a = [grupo_a]
 
-        if not isinstance(grupo_b, list) and not isinstance(grupo_a, collections.MutableSequence):
+        if not isinstance(grupo_b, list) and not isinstance(grupo_b, collections.MutableSequence):
             grupo_b = [grupo_b]
 
         self._colisiones_programadas_con_respuesta.append((grupo_a, grupo_b, funcion_a_llamar))

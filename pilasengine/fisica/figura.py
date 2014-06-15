@@ -57,7 +57,7 @@ class Figura(object):
 
     def definir_rotacion(self, angulo):
         # TODO: simplificar a la nueva api.
-        self._cuerpo.angle = math.radians(-angulo)
+        self._cuerpo.angle = math.radians(angulo)
 
     #@pilas.utils.interpolable
     def set_x(self, x):
