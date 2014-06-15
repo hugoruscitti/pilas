@@ -31,7 +31,7 @@ class ModoFisica(ModoDepurador):
                 # cuerpo.type == 1 → kinematico
                 # cuerpo.type == 2 → dinamico
 
-                if fixture.sensor:
+                if fixture.userData['sensor']:
                     if cuerpo.awake:
                         self._definir_trazo_verde(painter)
                     else:

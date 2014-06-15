@@ -35,9 +35,7 @@ class ObjetosContactListener(box2d.b2ContactListener):
         fixture_1 = contact.fixtureA
         fixture_2 = contact.fixtureB
 
+        # Hace que las figuras marcadas como sensores no generen
+        # una respuesta de colisión física (solamente programada).
         if fixture_1.userData['sensor'] or fixture_2.userData['sensor']:
             contact.enabled = False
-            #print "Ignorando contact"
-
-        #print contact, old
-        pass

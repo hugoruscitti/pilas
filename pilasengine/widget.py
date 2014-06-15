@@ -193,6 +193,9 @@ class BaseWidget(object):
         "Deshabilita las transformaciones de buena calidad."
         self._borrosidad = False
 
+    def definir_tamano_real(self):
+        self.resize(self.original_width, self.original_height)
+
 class WidgetConAceleracion(BaseWidget, QGLWidget):
     pass
 
