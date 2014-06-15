@@ -53,6 +53,9 @@ class Escena(object):
     def actualizar_interpolaciones(self, tiempo_desde_ultima_actualizacion=None):
         self.tweener.update(tiempo_desde_ultima_actualizacion)
 
+    def obtener_cantidad_de_actores(self):
+        return len(self._actores.obtener_actores())
+
     def actualizar_actores(self):
         for x in self._actores.obtener_actores():
             x.pre_actualizar()
