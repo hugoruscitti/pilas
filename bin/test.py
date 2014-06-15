@@ -1,36 +1,35 @@
 import pilasengine
 
 pilas = pilasengine.iniciar(capturar_errores=False)
-pilas.depurador.definir_modos(fisica=True)
-
+pilas.depurador.definir_modos(fisica=True, info=True)
 
 mono = pilas.actores.Mono(200, 0)
-
-f = pilas.fisica.Circulo(0, 0, 50, dinamica=True, sensor=True)
-mono.definir_colision(f)
-
 mono.aprender(pilas.habilidades.Arrastrable)
-mono.aprender(pilas.habilidades.MoverseConElTeclado)
+
+mono.aprender(pilas.habilidades.RebotarComoPelota)
+
+mono.figura.sensor = True
+
+caja = pilas.actores.Banana() * 60
+caja.aprender(pilas.habilidades.RebotarComoPelota)
 
 
-banana = pilas.actores.Banana(0, 0)
+def cuando_colisionan(mo, ca):
+    ca.eliminar()
+    mo.sonreir()
 
-f = pilas.fisica.Circulo(0, 0, 30, dinamica=True, sensor=True)
-banana.definir_colision(f)
+pilas.colisiones.agregar(mono, caja, cuando_colisionan)
 
-pelota = pilas.actores.Pelota(y=200) * 3
-#pelota.figura.sensor = True
+#sonido = pilas.sonidos.cargar('/Users/hugoruscitti/barreta.wav')
 
-def colisionan(m, b):
-    print m, b
+def on_click(evento):
+    #sonido.reproducir()
+    actores = pilas.obtener_actores_en(evento.x, evento.y)
+    print actores
 
-def colisiona_con_pelota(m, b):
-    print "Colisiona con una pelota"
-    print m, b
-    b.eliminar()
+    for actor in actores:
+        mono.gritar()
 
-pilas.colisiones.agregar(mono, banana, colisionan)
-pilas.colisiones.agregar(mono, pelota, colisiona_con_pelota)
-
+#pilas.eventos.click_de_mouse.conectar(on_click)
 
 pilas.ejecutar()

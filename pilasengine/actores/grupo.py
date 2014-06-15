@@ -6,10 +6,10 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import collections
 from pilasengine.actores.actor import Actor
 
-
-class Grupo(object):
+class Grupo(collections.MutableSequence):
     """
     Representa un grupo que puede almacenar actores.
 
@@ -66,6 +66,15 @@ class Grupo(object):
 
     def __getitem__(self, key):
         return self._actores[key]
+
+    def __delitem__(self, key):
+        del self._actores[key]
+
+    def __len__(self):
+        return len(self._actores)
+
+    def insert(self, i, key):
+        self._actores.insert(i, key)
 
     def eliminar(self, actor):
         """Agrega el actor a una lista para eliminarlo mas tarde."""
@@ -241,6 +250,10 @@ class Grupo(object):
     arriba = property(_obtener_arriba, _definir_arriba, doc="Establece el \
                       espacio entre la parte superior de los actores del grupo \
                       y el centro de coordenadas del mundo.")
+
+    def aprender(self, habilidad, *k, **kw):
+        for actor in self._actores:
+            actor.aprender(habilidad, *k, **kw)
 
     def __repr__(self):
         cantidad = self.obtener_cantidad_de_actores()

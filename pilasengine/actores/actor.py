@@ -31,9 +31,8 @@ class ActorEliminado(object):
     """
 
     def __getattr__(self, *k, **kw):
-        mensaje = "Este actor ya ha sido eliminado, no se puede utilizar."
-
-        print mensaje
+        mensaje = "Este actor (ex: %s id: %d) ya ha sido eliminado, no se puede utilizar."
+        print mensaje %(self.nombre_de_clase, self.identificador)
 
     def esta_eliminado(self):
         return True
@@ -487,6 +486,8 @@ class Actor(Estudiante):
         self._inhabilitar_actor_completamente()
 
     def _inhabilitar_actor_completamente(self):
+        self.nombre_de_clase = self.__class__.__name__
+        self.identificador = id(self)
         self.__class__ = ActorEliminado
 
     def esta_eliminado(self):
