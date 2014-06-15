@@ -41,13 +41,13 @@ class Fisica(object):
         self.mundo = box2d.b2World(gravedad, True)
         self.objetosContactListener = ObjetosContactListener(pilas)
         self.mundo.contactListener = self.objetosContactListener
-        self.mundo.continuousPhysics = False
+        self.mundo.continuousPhysics = True
         self.figuras_a_eliminar = []
         self.constante_mouse = None
 
         self.velocidad = 1.0
         self.timeStep = self.velocidad/60.0
-        self.mundo.SetAllowSleeping(False)
+        self.mundo.SetAllowSleeping(True)
 
     def iniciar(self):
         self.area = self.pilas.obtener_widget().obtener_area()
@@ -240,6 +240,10 @@ class Fisica(object):
 
         return lista_de_cuerpos
 
+    def despertar_a_todos(self):
+        for x in self.mundo.bodies:
+            x.awake = True
+
     def definir_gravedad(self, x, y):
         """Define la gravedad del motor de física.
 
@@ -247,6 +251,7 @@ class Fisica(object):
         :param y: Aceleración vertical.
         """
         self.mundo.gravity = (x, y)
+        self.despertar_a_todos()
 
     def obtener_gravedad_x(self):
         (x, _) = self.mundo.gravity
@@ -268,10 +273,12 @@ class Fisica(object):
     def set_gravedad_x(self, nuevo_x):
         (_, y) = self.mundo.gravity
         self.mundo.gravity = (nuevo_x, y)
+        self.despertar_a_todos()
 
     def set_gravedad_y(self, nuevo_y):
         (x, _) = self.mundo.gravity
         self.mundo.gravity = (x, nuevo_y)
+        self.despertar_a_todos()
 
     _set_gravedad_x = property(obtener_gravedad_x, set_gravedad_x)
     _set_gravedad_y = property(obtener_gravedad_y, set_gravedad_y)

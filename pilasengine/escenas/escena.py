@@ -81,3 +81,11 @@ class Escena(object):
 
     def agregar_grupo(self, grupo):
         self.grupos.append(grupo)
+
+    def obtener_actores_en(self, x, y):
+        actores = []
+        for actor in self._actores.obtener_actores():
+            if actor.colisiona_con_un_punto(x, y):
+                actores.append(actor)
+
+        return actores
