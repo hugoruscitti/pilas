@@ -291,7 +291,8 @@ class Fisica(object):
                                      dinamica=dinamica, densidad=densidad,
                                      restitucion=restitucion, friccion=friccion,
                                      amortiguacion=amortiguacion,
-                                     sin_rotacion=sin_rotacion)
+                                     sin_rotacion=sin_rotacion,
+                                     sensor=sensor)
 
     def Circulo(self, x, y, radio, dinamica=True, densidad=1.0,
                 restitucion=0.56, friccion=10.5, amortiguacion=0.1,

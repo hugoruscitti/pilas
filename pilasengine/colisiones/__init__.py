@@ -14,12 +14,15 @@ class Colisiones:
     def __init__(self, pilas, escena):
         self.pilas = pilas
         self.escena = escena
+
         # Esta lista contiene elementos de la forma:
         #
         #    (grupo_o_actor_A, grupo_o_actor_B, funcion_de_respuesta)
         #
         # y sus elementos los gestiona el método "agregar".
         self._colisiones_programadas_con_respuesta = []
+
+        # Las colisiones en curso guarda
         self._colisiones_en_curso = []
         self._lista = []
 
@@ -32,10 +35,9 @@ class Colisiones:
         actor_asociado_1 = fixture_1.userData.get('actor', None)
         actor_asociado_2 = fixture_2.userData.get('actor', None)
 
-        info_colision = {'actor1': actor_asociado_1,
-                         'actor2': actor_asociado_2}
-
         if actor_asociado_1 and actor_asociado_2:
+            info_colision = {'actor1': actor_asociado_1,
+                             'actor2': actor_asociado_2}
             self._colisiones_en_curso.append(info_colision)
 
     def actualizar(self):
