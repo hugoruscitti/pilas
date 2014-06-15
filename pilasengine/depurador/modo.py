@@ -65,7 +65,7 @@ class ModoDepurador(object):
 
     def _definir_trazo_gris(self, painter):
         "Define las propiedades para pintar en color blanco."
-        blanco = QtGui.QColor(255, 100, 100)
+        blanco = QtGui.QColor(100, 100, 100)
         pen = QtGui.QPen(blanco, 2)
         painter.setBrush(QtCore.Qt.NoBrush)
         pen.setJoinStyle(QtCore.Qt.MiterJoin)
@@ -83,7 +83,7 @@ class ModoDepurador(object):
 
     def _definir_trazo_verde_oscuro(self, painter):
         "Define las propiedades para pintar en color blanco."
-        blanco = QtGui.QColor(100, 200, 100)
+        blanco = QtGui.QColor(50, 175, 50)
         pen = QtGui.QPen(blanco, 2)
         painter.setBrush(QtCore.Qt.NoBrush)
         pen.setJoinStyle(QtCore.Qt.MiterJoin)
