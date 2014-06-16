@@ -177,7 +177,9 @@ class Actor(Estudiante):
             self._figura_de_colision.eliminar()
 
         self._figura_de_colision = figura
-        figura.actor_que_representa_como_area_de_colision = self
+
+        if figura:
+            figura.actor_que_representa_como_area_de_colision = self
 
     figura_de_colision = property(obtener_figura_de_colision, definir_figura_de_colision)
 
@@ -889,6 +891,7 @@ class Actor(Estudiante):
         :return: boolean"""
         if self.fijo:
             return False
+
         izquierda, derecha, arriba, abajo = self.escena.camara.obtener_area_visible()
         return (self.derecha < izquierda or self.izquierda > derecha or
                 self.abajo > arriba or self.arriba < abajo)
@@ -902,7 +905,11 @@ class Actor(Estudiante):
 
     def definir_radio_de_colision(self, radio):
         self._radio_de_colision = radio
-        self.crear_figura_de_colision_circular(radio)
+
+        if radio:
+            self.crear_figura_de_colision_circular(radio)
+        else:
+            self.figura_de_colision = None
 
     radio_de_colision = property(obtener_radio_de_colision, definir_radio_de_colision)
 

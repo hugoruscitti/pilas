@@ -19,3 +19,4 @@ class Fondo(actor.Actor):
     def __init__(self, pilas=None):
         super(Fondo, self).__init__(pilas)
         self.z = 1000
+        self.radio_de_colision = None
