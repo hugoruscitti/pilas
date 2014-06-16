@@ -174,12 +174,10 @@ class Actor(Estudiante):
 
     def definir_figura_de_colision(self, figura):
         if self._figura_de_colision:
-            print "Ya existia una figura de colision para", self, "... borrandola"
             self._figura_de_colision.eliminar()
 
         self._figura_de_colision = figura
         figura.actor_que_representa_como_area_de_colision = self
-        print "definiendo figura de colision para ", self
 
     figura_de_colision = property(obtener_figura_de_colision, definir_figura_de_colision)
 
@@ -889,7 +887,6 @@ class Actor(Estudiante):
         return self._radio_de_colision
 
     def definir_radio_de_colision(self, radio):
-        print "NUEVO RADIO", radio, self
         self._radio_de_colision = radio
         self.crear_figura_de_colision_circular(radio)
 
@@ -897,5 +894,4 @@ class Actor(Estudiante):
 
     def crear_figura_de_colision_circular(self, radio):
         self.ff = self.pilas.fisica.Circulo(0, 0, radio, dinamica=False, sensor=True)
-        print self.ff
         self.figura_de_colision = self.ff
