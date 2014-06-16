@@ -36,6 +36,7 @@ class Escenas(object):
 
     def realizar_actualizacion_logica(self):
         escena = self.obtener_escena_actual()
+        escena.colisiones.actualizar()
         escena.cuando_actualiza.emitir()
         escena.actualizar_actores()
         escena.actualizar_interpolaciones()

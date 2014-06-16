@@ -24,7 +24,7 @@ class Bomba(Animacion):
         >>> bomba.explotar()
     """
 
-    def __init__(self, pilas, x, y):
+    def __init__(self, pilas=None, x=0, y=0):
         grilla = pilas.imagenes.cargar_grilla("bomba.png", 2)
         Animacion.__init__(self, pilas, grilla, ciclica=True, x=x, y=y,
                            velocidad=10)

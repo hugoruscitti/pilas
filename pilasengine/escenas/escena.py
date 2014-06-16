@@ -10,6 +10,7 @@ from pilasengine.actores import grupo
 from pilasengine.utils import pitweener
 from pilasengine.tareas import Tareas
 from pilasengine.fisica import Fisica
+from pilasengine.colisiones import Colisiones
 
 class Escena(object):
 
@@ -35,6 +36,7 @@ class Escena(object):
         self.tareas = Tareas(self)
         self.fisica = Fisica(self, pilas)
         self.fisica.iniciar()
+        self.colisiones = Colisiones(pilas, self)
 
     def iniciar(self):
         pass
@@ -50,6 +52,9 @@ class Escena(object):
 
     def actualizar_interpolaciones(self, tiempo_desde_ultima_actualizacion=None):
         self.tweener.update(tiempo_desde_ultima_actualizacion)
+
+    def obtener_cantidad_de_actores(self):
+        return len(self._actores.obtener_actores())
 
     def actualizar_actores(self):
         for x in self._actores.obtener_actores():
@@ -79,3 +84,11 @@ class Escena(object):
 
     def agregar_grupo(self, grupo):
         self.grupos.append(grupo)
+
+    def obtener_actores_en(self, x, y):
+        actores = []
+        for actor in self._actores.obtener_actores():
+            if actor.colisiona_con_un_punto(x, y):
+                actores.append(actor)
+
+        return actores

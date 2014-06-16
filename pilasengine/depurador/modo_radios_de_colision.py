@@ -15,8 +15,9 @@ class ModoRadiosDeColision(ModoDepurador):
         ModoDepurador.__init__(self, pilas, depurador)
 
     def cuando_dibuja_actor(self, actor, painter):
-        radio = actor.radio_de_colision / float(actor.escala)
-        self._dibujar_circulo(painter, 0, 0, radio)
+        #radio = actor.radio_de_colision / float(actor.escala)
+        #self._dibujar_circulo(painter, 0, 0, radio)
+        pass
 
     def _dibujar_circulo(self, painter, x, y, radio):
         self._definir_trazo_negro(painter)

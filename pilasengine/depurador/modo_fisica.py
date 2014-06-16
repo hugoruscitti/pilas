@@ -31,20 +31,31 @@ class ModoFisica(ModoDepurador):
                 # cuerpo.type == 1 → kinematico
                 # cuerpo.type == 2 → dinamico
 
+                if fixture.userData['sensor']:
+                    if cuerpo.awake:
+                        self._definir_trazo_verde(painter)
+                    else:
+                        self._definir_trazo_verde_oscuro(painter)
+                else:
+                    if cuerpo.awake:
+                        self._definir_trazo_blanco(painter)
+                    else:
+                        self._definir_trazo_gris(painter)
+
+
+
                 shape = fixture.shape
 
                 if isinstance(shape, box2d.b2PolygonShape):
                     vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
                     #vertices = [pilas.escena_actual().camara.desplazar(v) for v in vertices]
                     #self._poligono(vertices, color=colores.negro, grosor=grosor+2, cerrado=True)
-                    self._definir_trazo_blanco(painter)
                     self._poligono(painter, vertices, color=colores.blanco, grosor=grosor, cerrado=True)
                 elif isinstance(shape, box2d.b2CircleShape):
                     (x, y) = cuerpo.transform * shape.pos * PPM
                     #(x, y) = pilas.escena_actual().camara.desplazar(cuerpo.transform * shape.pos * PPM)
 
                     # Dibuja el angulo de la circunferencia.
-                    self._definir_trazo_blanco(painter)
                     self._angulo(painter, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM)
                     #lienzo.angulo(motor, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
 

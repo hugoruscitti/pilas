@@ -22,7 +22,7 @@ class Avanzar(comportamientos.Comportamiento):
         self.pasos = abs(pasos)
 
         self.velocidad = velocidad
-        rotacion_en_radianes = math.radians(-receptor.rotacion)
+        rotacion_en_radianes = math.radians(receptor.rotacion)
         self.dx = math.cos(rotacion_en_radianes)
         self.dy = math.sin(rotacion_en_radianes)
         self.pasos_aux = self.pasos

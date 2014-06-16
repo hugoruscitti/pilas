@@ -25,6 +25,10 @@ actualizar:
 ejecutar:
 	python bin/pilas.py
 
+test_mac:
+	python bin/pilas.py
+
+
 test:
 	@python -m unittest discover pilasengine/tests '*.py'
 	# O una version mas linda si se instala nose y nosecolor con pip

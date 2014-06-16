@@ -10,6 +10,7 @@ import inspect
 
 import pilasengine
 from estudiante import Estudiante
+from __builtin__ import True
 
 IZQUIERDA = ["izquierda"]
 DERECHA = ["derecha"]
@@ -30,8 +31,20 @@ class ActorEliminado(object):
     """
 
     def __getattr__(self, *k, **kw):
-        raise Exception("Este actor ya ha sido eliminado, \
-                        no se puede utilizar.")
+        mensaje = "Este actor (ex: %s id: %d) ya ha sido eliminado, no se puede utilizar."
+        print mensaje %(self.nombre_de_clase, self.identificador)
+
+    def esta_eliminado(self):
+        return True
+
+    def __cmp__(self, otro_actor):
+        return 1
+
+    def eliminar(self):
+        pass
+
+    def _eliminar_anexados(self):
+        pass
 
 
 class Actor(Estudiante):
@@ -95,16 +108,13 @@ class Actor(Estudiante):
         self.padre = None
 
         Estudiante.__init__(self)
-        self._definir_valores_iniciales(pilas)
+        self._definir_valores_iniciales(pilas, x, y)
 
         # Listas para definir los callbacks de los eventos
         self._callback_cuando_hace_click = set()
         self._callback_cuando_mueve_mouse = set()
         self._grupos_a_los_que_pertenece = []
         self._actores = []
-
-        self.x = x
-        self.y = y
 
         # Vincula el actor con la escena actual.
         pilas.actores.agregar_actor(self)
@@ -122,10 +132,10 @@ class Actor(Estudiante):
     def obtener_cantidad_de_grupos_al_que_pertenece(self):
         return len(self._grupos_a_los_que_pertenece)
 
-    def _definir_valores_iniciales(self, pilas):
+    def _definir_valores_iniciales(self, pilas, x, y):
         self.imagen = "sin_imagen.png"
-        self.x = 0
-        self.y = 0
+        self.x = x
+        self.y = y
         self.z = 0
         self.rotacion = 0
         self.escala_x = 1
@@ -134,6 +144,7 @@ class Actor(Estudiante):
         self.espejado = False
         self.centro = ('centro', 'centro')
         self.fijo = False
+        self._figura_de_colision = None
 
         self.id = pilas.utils.obtener_uuid()
 
@@ -157,6 +168,21 @@ class Actor(Estudiante):
         genera y agrega dentro de una escena.
         """
         pass
+
+    def obtener_figura_de_colision(self):
+        return self._figura_de_colision
+
+    def definir_figura_de_colision(self, figura):
+        if self._figura_de_colision:
+            self._figura_de_colision.eliminar()
+
+        self._figura_de_colision = figura
+
+        if figura:
+            figura.actor_que_representa_como_area_de_colision = self
+
+    figura_de_colision = property(obtener_figura_de_colision, definir_figura_de_colision)
+
 
     def actualizar(self):
         """Método de actualización lógico del actor.
@@ -256,18 +282,8 @@ class Actor(Estudiante):
                   del Actor.
         :type y: int
         """
-        if type(x) == str:
-            if x not in IZQUIERDA + CENTRO + DERECHA:
-                raise Exception("No puedes definir '%s' como eje horizontal."
-                                % (x))
-            x = self._interpretar_y_convertir_posicion(x, self.obtener_ancho())
-        if type(y) == str:
-            if y not in ARRIBA + CENTRO + ABAJO:
-                raise Exception("No puedes definir '%s' como eje vertical."
-                                % (y))
-            y = self._interpretar_y_convertir_posicion(y, self.obtener_alto())
-
-        self._centro = (x, y)
+        self.centro_x = x
+        self.centro_y = y
 
     def _interpretar_y_convertir_posicion(self, posicion, maximo_valor):
         if posicion in IZQUIERDA + ARRIBA:
@@ -283,7 +299,7 @@ class Actor(Estudiante):
 
     def obtener_centro(self):
         """ Obtiene las coordenadas del centro del Actor. """
-        return self._centro
+        return (self.centro_x, self.centro_y)
 
     centro = property(obtener_centro, definir_centro, doc="""
         Cambia la posición del punto (x, y) dentro de actor.
@@ -331,6 +347,28 @@ class Actor(Estudiante):
     def definir_x(self, x):
         self.pilas.utils.interpretar_propiedad_numerica(self, 'x', x)
 
+    def obtener_centro_x(self):
+        return self._centro_x
+
+    def definir_centro_x(self, x):
+        if type(x) == str:
+            if x not in IZQUIERDA + CENTRO + DERECHA:
+                raise Exception("No puedes definir '%s' como eje horizontal."
+                                % (x))
+            x = self._interpretar_y_convertir_posicion(x, self.obtener_ancho())
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'centro_x', x)
+
+    def obtener_centro_y(self):
+        return self._centro_y
+
+    def definir_centro_y(self, y):
+        if type(y) == str:
+            if y not in ARRIBA + CENTRO + ABAJO:
+                raise Exception("No puedes definir '%s' como eje vertical."
+                                % (y))
+            y = self._interpretar_y_convertir_posicion(y, self.obtener_alto())
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'centro_y', y)
+
     def obtener_z(self):
         return self._z
 
@@ -348,18 +386,8 @@ class Actor(Estudiante):
         if s < 0.001:
             s = 0.001
 
-        ultima_escala = self.obtener_escala()
-
-        # Se hace la siguiente regla de 3 simple:
-        #
-        #  ultima_escala          self.radio_de_colision
-        #  s                      ?
-
         self.escala_x = s
         self.escala_y = s
-        s = self.escala_x
-        self.radio_de_colision = ((s * self.radio_de_colision) /
-                                  max(ultima_escala, 0.0001))
 
     def definir_escala_x(self, s):
         self.pilas.utils.interpretar_propiedad_numerica(self, 'escala_x', s)
@@ -422,6 +450,8 @@ class Actor(Estudiante):
                  doc="Define lejania respecto del observador.")
     x = property(obtener_x, definir_x, doc="Define la posición horizontal.")
     y = property(obtener_y, definir_y, doc="Define la posición vertical.")
+    centro_x = property(obtener_centro_x, definir_centro_x)
+    centro_y = property(obtener_centro_y, definir_centro_y)
     vx = property(obtener_vx, None,
                   doc="Obtiene la velocidad horizontal del actor.")
     vy = property(definir_vy, None,
@@ -445,10 +475,19 @@ class Actor(Estudiante):
                     independiente a la cámara.")
 
     def eliminar(self):
-        """Elimina el actor de la lista de actores que se
-           imprimen en pantalla."""
+        """Elimina el actor de la lista que se imprimen en pantalla."""
         self._eliminar_anexados()
+
+        try:
+            self._eliminar_figura_de_colision()
+        except:
+            pass
+
         self._destruir()
+
+    def _eliminar_figura_de_colision(self):
+        if self.figura_de_colision:
+            self.figura_de_colision.eliminar()
 
     def _destruir(self):
         """Elimina a un actor pero de manera inmediata."""
@@ -460,7 +499,12 @@ class Actor(Estudiante):
         self._inhabilitar_actor_completamente()
 
     def _inhabilitar_actor_completamente(self):
+        self.nombre_de_clase = self.__class__.__name__
+        self.identificador = id(self)
         self.__class__ = ActorEliminado
+
+    def esta_eliminado(self):
+        return False
 
     def _eliminar_de_todos_los_grupos_al_que_pertenece(self):
         for g in self._grupos_a_los_que_pertenece:
@@ -475,6 +519,13 @@ class Actor(Estudiante):
         self.actualizar_comportamientos()
         self.actualizar_habilidades()
         self.__actualizar_velocidad()
+        self.mover_figura_de_colision()
+
+    def mover_figura_de_colision(self):
+        if getattr(self, 'figura_de_colision', False):
+            self.figura_de_colision.x = self.x
+            self.figura_de_colision.y = self.y
+            self.figura_de_colision.rotacion = self.rotacion
 
     def _agregar_callback(self, grupo_de_callbacks, callback):
         """Agrega una función para invocar en una colección.
@@ -627,11 +678,11 @@ class Actor(Estudiante):
             return -1
 
     def get_izquierda(self):
-        return self.x - (self.centro[0] * self.escala)
+        return self.x - (self.centro_x * self.escala)
 
     #@interpolable
     def set_izquierda(self, x):
-        self.x = x + (self.centro[0] * self.escala)
+        self.x = x + (self.centro_x * self.escala)
 
     izquierda = property(get_izquierda, set_izquierda, doc="Establece el " \
                          "espacio entre la izquierda del actor y el centro " \
@@ -840,13 +891,28 @@ class Actor(Estudiante):
         :return: boolean"""
         if self.fijo:
             return False
+
         izquierda, derecha, arriba, abajo = self.escena.camara.obtener_area_visible()
         return (self.derecha < izquierda or self.izquierda > derecha or
                 self.abajo > arriba or self.arriba < abajo)
 
     def es_fondo(self):
-        """ Comprueba si el actor es un fondo del juego.
-
-        :return: boolean"""
+        """Comprueba si el actor es un fondo del juego."""
         return False
 
+    def obtener_radio_de_colision(self):
+        return self._radio_de_colision
+
+    def definir_radio_de_colision(self, radio):
+        self._radio_de_colision = radio
+
+        if radio:
+            self.crear_figura_de_colision_circular(radio)
+        else:
+            self.figura_de_colision = None
+
+    radio_de_colision = property(obtener_radio_de_colision, definir_radio_de_colision)
+
+    def crear_figura_de_colision_circular(self, radio):
+        self.ff = self.pilas.fisica.Circulo(0, 0, radio, dinamica=False, sensor=True)
+        self.figura_de_colision = self.ff

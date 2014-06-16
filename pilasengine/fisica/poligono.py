@@ -23,7 +23,7 @@ class Poligono(Figura):
 
     def __init__(self, x, y, puntos, dinamica=True, densidad=1.0,
             restitucion=0.56, friccion=10.5, amortiguacion=0.1,
-            fisica=None, sin_rotacion=False):
+            fisica=None, sin_rotacion=False, sensor=False):
 
         Figura.__init__(self)
 
@@ -45,7 +45,7 @@ class Poligono(Figura):
                                      friction=friccion,
                                      restitution=restitucion)
 
-        self.userData = { 'id' : self.id }
+        self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
         if self.dinamica:
@@ -54,6 +54,7 @@ class Poligono(Figura):
             self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(0, 0), fixtures=fixture)
 
         self._cuerpo.fixedRotation = self.sin_rotacion
+        self.sensor = sensor
 
 
     def definir_escala(self, escala):

@@ -35,6 +35,7 @@ class Imitar(habilidades.Habilidad):
         # de una figura fisica o no.
         if hasattr(objeto_a_imitar, '_cuerpo'):
             receptor.figura = objeto_a_imitar
+            receptor.figura_de_colision = objeto_a_imitar
 
         self.con_escala = con_escala
         self.con_rotacion = con_rotacion

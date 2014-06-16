@@ -6,18 +6,9 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-try:
-    import Box2D as box2d
-    contact_listener = box2d.b2ContactListener
-    __enabled__ = True
-except ImportError:
-    __enabled__ = False
-    class Tmp:
-        pass
-    contact_listener = Tmp
+import Box2D as box2d
 
-
-class ObjetosContactListener(contact_listener):
+class ObjetosContactListener(box2d.b2ContactListener):
     """Gestiona las colisiones de los objetos para ejecutar funcionés."""
 
     def __init__(self, pilas):
@@ -25,12 +16,23 @@ class ObjetosContactListener(contact_listener):
         self.pilas = pilas
 
     def BeginContact(self, *args, **kwargs):
-        objeto_colisionado_1 = args[0].fixtureA
-        objeto_colisionado_2 = args[0].fixtureB
+        fixture_1 = args[0].fixtureA
+        fixture_2 = args[0].fixtureB
 
-        if (not objeto_colisionado_1.userData == None) and (not objeto_colisionado_2.userData == None):
-            # TODO: implementar cuando exista el componente colisiones
-            pass
-            #self.pilas.escena_actual().colisiones.verificar_colisiones_fisicas(objeto_colisionado_1.userData['id'],
-            #                                                              objeto_colisionado_2.userData['id'])
+        self.pilas.colisiones.notificar_colision(fixture_1, fixture_2)
 
+    def EndContact(self, *args, **kwargs):
+        # TODO: informar el fin de la colisión.
+        #fixture_1 = args[0].fixtureA
+        #fixture_2 = args[0].fixtureB
+        #print "fin de colision entre ", id(fixture_1), id(fixture_2)
+        pass
+
+    def PreSolve(self, contact, old):
+        fixture_1 = contact.fixtureA
+        fixture_2 = contact.fixtureB
+
+        # Hace que las figuras marcadas como sensores no generen
+        # una respuesta de colisión física (solamente programada).
+        if fixture_1.userData['sensor'] or fixture_2.userData['sensor']:
+            contact.enabled = False

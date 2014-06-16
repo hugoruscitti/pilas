@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 import musica
+from pilasengine import configuracion
 
 
 class Musica(object):
@@ -16,4 +17,8 @@ class Musica(object):
 
     def cargar(self, ruta):
         ruta_al_sonido = self.pilas.obtener_ruta_al_recurso(ruta)
-        return musica.Musica(ruta_al_sonido)
+
+        if configuracion.AUDIO_HABILITADO:
+            return musica.Musica(ruta_al_sonido)
+        else:
+            return musica.MusicaDeshabilitada()

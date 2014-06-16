@@ -25,8 +25,10 @@ class ModoInformacionDeSistema(ModoDepurador):
             "Sistema: " + sys.platform,
             "Version de pilas: " + pilasengine.VERSION,
             "Version de python: " + sys.subversion[0] + " " + sys.subversion[1],
-            "",
-            "",
+            "", # Area de juego
+            "", # Posición de la cámara
+            "", # Rendimiento
+            ""  # Cantidad de actores
         ]
 
     def _usa_aceleracion_de_video(self, pilas):
@@ -42,6 +44,8 @@ class ModoInformacionDeSistema(ModoDepurador):
         ancho, alto = self.pilas.obtener_area()
         self.informacion[4] = "Area de juego: (%d, %d)" % (ancho, alto)
         self.informacion[5] = u"Posición de la cámara: (%d, %d)" % (self.pilas.camara.x, self.pilas.camara.y)
+        self.informacion[6] = u"Rendimiento: %s cuadros por segundo" % (self.pilas.widget.fps.obtener_cuadros_por_segundo())
+        self.informacion[7] = u"Cantidad de actores: %d" % (self.pilas.escena_actual().obtener_cantidad_de_actores())
 
         for (i, texto) in enumerate(self.informacion[::-1]):
             posicion_y = abajo + 90 + i * 20

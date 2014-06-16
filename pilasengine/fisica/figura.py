@@ -57,7 +57,7 @@ class Figura(object):
 
     def definir_rotacion(self, angulo):
         # TODO: simplificar a la nueva api.
-        self._cuerpo.angle = math.radians(-angulo)
+        self._cuerpo.angle = math.radians(angulo)
 
     #@pilas.utils.interpolable
     def set_x(self, x):
@@ -124,6 +124,31 @@ class Figura(object):
         """Quita una figura de la simulación."""
         self.fisica.eliminar_figura(self._cuerpo)
 
+    def obtener_sensor(self):
+        return self._sensor
+
+    def definir_sensor(self, s):
+        self._sensor = s
+        #self._cuerpo.fixtures[0].sensor = s
+
+        if s:
+            self._cuerpo.gravityScale = 0
+            self._cuerpo.fixtures[0].userData['sensor'] = True
+        else:
+            self._cuerpo.gravityScale = 1.0
+            self._cuerpo.fixtures[0].userData['sensor'] = False
+
+
+    def obtener_colision(self):
+        return self._actor_que_representa_como_area_de_colision
+
+    def definir_colision(self, actor):
+        self._actor_que_representa_como_area_de_colision = actor
+        self._cuerpo.fixtures[0].userData['actor'] = actor
+
     x = property(get_x, set_x, doc="define la posición horizontal.")
     y = property(get_y, set_y, doc="define la posición vertical.")
     rotacion = property(get_rotation, set_rotation, doc="define la rotacion.")
+    sensor = property(obtener_sensor, definir_sensor)
+    actor_que_representa_como_area_de_colision = property(obtener_colision, definir_colision)
+

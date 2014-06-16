@@ -6,13 +6,14 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import os
-import pygame
 
 
 class Sonido(object):
     deshabilitado = False
 
     def __init__(self, ruta):
+        import pygame
+
         self.ruta = ruta
         self.sonido = pygame.mixer.Sound(ruta)
 
@@ -37,3 +38,18 @@ class Sonido(object):
     def __repr__(self):
         nombre = os.path.basename(self.ruta)
         return "<%s del archivo '%s'>" % (self.__class__.__name__, nombre)
+
+
+class SonidoDeshabilitado(object):
+
+    def reproducir(self, repetir=False):
+        pass
+
+    def detener(self):
+        pass
+
+    def pausar(self):
+        pass
+
+    def continuar(self):
+        pass

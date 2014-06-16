@@ -10,7 +10,6 @@ import os
 import datetime
 from PyQt4 import QtGui
 from PyQt4 import QtCore
-import pygame
 import traceback
 
 from pilasengine import escenas
@@ -26,10 +25,11 @@ from pilasengine import habilidades
 from pilasengine import comportamientos
 from pilasengine import eventos
 from pilasengine import controles
+from pilasengine import configuracion
 
 import widget
 
-VERSION = "0.86"
+VERSION = "0.90"
 
 
 class Pilas(object):
@@ -46,7 +46,7 @@ class Pilas(object):
 
     def __init__(self, ancho=640, alto=480, titulo='pilas-engine',
                  con_aceleracion=True, capturar_errores=True,
-                 habilitar_mensajes_log=False):
+                 habilitar_mensajes_log=False, x=None, y=None):
         """Inicializa el area de juego con una configuración inicial."""
         self._iniciado_desde_asistente = False
 
@@ -60,11 +60,18 @@ class Pilas(object):
         self.widget = None
         self._capturar_errores = capturar_errores
         self.reiniciar(ancho, alto, titulo, con_aceleracion,
-                       habilitar_mensajes_log)
+                       habilitar_mensajes_log, x, y)
+
+        if configuracion.AUDIO_HABILITADO:
+            self._inicializar_audio()
+
+    def _inicializar_audio(self):
+        import pygame
         pygame.mixer.init()
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
-                  con_aceleracion=True, habilitar_mensajes_log=False):
+                  con_aceleracion=True, habilitar_mensajes_log=False,
+                  x=None, y=None):
         """Genera nuevamente la ventana del videojuego."""
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
@@ -93,15 +100,17 @@ class Pilas(object):
                 parent = self._eliminar_el_anterior_widget()
 
         if con_aceleracion:
-            self.widget = widget.WidgetConAceleracion(self, ancho, alto)
+            self.widget = widget.WidgetConAceleracion(self, ancho, alto, self._capturar_errores)
         else:
-            self.widget = widget.WidgetSinAceleracion(self, ancho, alto)
+            self.widget = widget.WidgetSinAceleracion(self, ancho, alto, self._capturar_errores)
 
         if not self._iniciado_desde_asistente:
             if es_reinicio:
                 self._vincular_el_nuevo_widget(parent)
 
         self.escenas.Normal()
+        self._x = x
+        self._y = y
 
     def definir_iniciado_desde_asistente(self, estado):
         self._iniciado_desde_asistente = estado
@@ -239,6 +248,10 @@ class Pilas(object):
         if not self._iniciado_desde_asistente:
             self.widget.show()
             self.widget.raise_()
+            self.widget.definir_tamano_real()
+
+            if self._x and self._y:
+                self.widget.move(self._x, self._y)
 
         # Inicializa el bucle de pyqt solo si es necesario.
         if self._necesita_ejecutar_loop:
@@ -262,14 +275,40 @@ class Pilas(object):
     def obtener_fisica(self):
         return self.escena_actual().fisica
 
+    def obtener_colisiones(self):
+        return self.escena_actual().colisiones
+
+    def obtener_actores_en(self, x, y):
+        return self.escena_actual().obtener_actores_en(x, y)
+
+    def ver(self, objeto):
+        """Imprime en pantalla el codigo fuente asociado a un objeto.
+
+        :param objeto: El objeto que se quiere inspeccionar.
+        :param imprimir: Un valor True o False indicando si se quiere imprimir directamente sobre la pantalla.
+        :param retornar: Un valor True o False indicando si se quiere obtener el código como un string.
+        """
+        import inspect
+
+        try:
+            codigo = inspect.getsource(objeto.__class__)
+        except TypeError:
+            try:
+                codigo = inspect.getsource(objeto)
+            except TypeError:
+                codigo = "<< imposible inspeccionar código para mostrar >>"
+
+        print codigo
+
     tareas = property(obtener_tareas, doc="Obtiene el modulo de tareas")
     camara = property(obtener_camara, doc="Cámara de la escena actual")
     escena = property(obtener_escena_actual, doc="Escena actual")
     fisica = property(obtener_fisica, doc="Retorna el componente fisica")
+    colisiones = property(obtener_colisiones, doc="Retorna las colisiones de la escena")
 
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', capturar_errores=True,
-            habilitar_mensajes_log=False):
+            habilitar_mensajes_log=False, x=None, y=None):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -290,7 +329,7 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', capturar_errores=True,
     :habilitar_mensajes_log: Muestra cada operación que hace pilas en consola.
     """
     pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo,
-                  capturar_errores=capturar_errores)
+                  capturar_errores=capturar_errores, x=x, y=y)
     return pilas
 
 
@@ -312,5 +351,6 @@ def abrir_interprete():
 def abrir_script_con_livereload(archivo):
     import interprete
     ruta = os.path.dirname(archivo)
-    os.chdir(ruta)
+    ruta = os.path.abspath(ruta)
+
     return interprete.abrir_script_con_livereload(archivo)

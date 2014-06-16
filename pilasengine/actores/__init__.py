@@ -135,6 +135,9 @@ class Actores(object):
     def Martian(self, x=0, y=0):
         return self._crear_actor('martian', 'Martian', x=x, y=y)
 
+    def Tortuga(self, x=0, y=0, dibuja=True):
+        return self._crear_actor('tortuga', 'Tortuga', x=x, y=y, dibuja=dibuja)
+
     def CursorMano(self, x=0, y=0):
         return self._crear_actor('cursor_mano', 'CursorMano', x=x, y=y)
 

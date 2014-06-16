@@ -29,7 +29,7 @@ class Circulo(Figura):
 
     def __init__(self, fisica, pilas, x, y, radio, dinamica=True,
                  densidad=1.0, restitucion=0.56, friccion=10.5,
-                 amortiguacion=0.1, sin_rotacion=False):
+                 amortiguacion=0.1, sin_rotacion=False, sensor=False):
 
         Figura.__init__(self, fisica, pilas)
 
@@ -55,9 +55,10 @@ class Circulo(Figura):
                                      friction=friccion,
                                      restitution=restitucion)
 
+
         # Agregamos un identificador para controlarlo posteriormente en las
         # colisiones.
-        self.userData = { 'id' : self.id }
+        self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
         if self.dinamica:
@@ -66,6 +67,7 @@ class Circulo(Figura):
             self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
 
         self._cuerpo.fixedRotation = self.sin_rotacion
+        self.sensor = sensor
 
     def definir_radio(self):
         for fixture in self._cuerpo:

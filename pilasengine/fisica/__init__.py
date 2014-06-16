@@ -38,15 +38,16 @@ class Fisica(object):
 
         self.pilas = pilas
         self.escena = escena
-        self.mundo = box2d.b2World(gravedad, False)
+        self.mundo = box2d.b2World(gravedad, True)
         self.objetosContactListener = ObjetosContactListener(pilas)
         self.mundo.contactListener = self.objetosContactListener
-        self.mundo.continuousPhysics = False
+        self.mundo.continuousPhysics = True
         self.figuras_a_eliminar = []
         self.constante_mouse = None
 
         self.velocidad = 1.0
         self.timeStep = self.velocidad/60.0
+        self.mundo.SetAllowSleeping(True)
 
     def iniciar(self):
         self.area = self.pilas.obtener_widget().obtener_area()
@@ -137,7 +138,7 @@ class Fisica(object):
         :param alto: Alto del suelo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.suelo = self.Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
+        self.suelo = self.Rectangulo(0, -alto/2, ancho, 2, dinamica=False, restitucion=restitucion)
 
     def crear_techo(self, (ancho, alto), restitucion=0):
         """Genera un techo sólido para el escenario.
@@ -146,7 +147,7 @@ class Fisica(object):
         :param alto: Alto del techo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.techo = self.Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
+        self.techo = self.Rectangulo(0, alto/2, ancho, 2, dinamica=False, restitucion=restitucion)
 
     def crear_paredes(self, (ancho, alto), restitucion=0):
         """Genera dos paredes para el escenario.
@@ -155,8 +156,8 @@ class Fisica(object):
         :param alto: El alto de las paredes.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.pared_izquierda = self.Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
-        self.pared_derecha = self.Rectangulo(ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
+        self.pared_izquierda = self.Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, restitucion=restitucion)
+        self.pared_derecha = self.Rectangulo(ancho/2, 0, 2, alto, dinamica=False, restitucion=restitucion)
 
     def eliminar_suelo(self):
         "Elimina el suelo del escenario."
@@ -239,29 +240,65 @@ class Fisica(object):
 
         return lista_de_cuerpos
 
+    def despertar_a_todos(self):
+        for x in self.mundo.bodies:
+            x.awake = True
+
     def definir_gravedad(self, x, y):
         """Define la gravedad del motor de física.
 
         :param x: Aceleración horizontal.
         :param y: Aceleración vertical.
         """
-        pilas.fisica.definir_gravedad(x, y)
+        self.mundo.gravity = (x, y)
+        self.despertar_a_todos()
 
+    def obtener_gravedad_x(self):
+        (x, _) = self.mundo.gravity
+        return x
+
+    def definir_gravedad_x(self, x):
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'set_gravedad_x', x)
+
+    def obtener_gravedad_y(self):
+        (_, y) = self.mundo.gravity
+        return y
+
+    def definir_gravedad_y(self, y):
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'set_gravedad_y', y)
+
+    gravedad_x = property(obtener_gravedad_x, definir_gravedad_x)
+    gravedad_y = property(obtener_gravedad_y, definir_gravedad_y)
+
+    def set_gravedad_x(self, nuevo_x):
+        (_, y) = self.mundo.gravity
+        self.mundo.gravity = (nuevo_x, y)
+        self.despertar_a_todos()
+
+    def set_gravedad_y(self, nuevo_y):
+        (x, _) = self.mundo.gravity
+        self.mundo.gravity = (x, nuevo_y)
+        self.despertar_a_todos()
+
+    _set_gravedad_x = property(obtener_gravedad_x, set_gravedad_x)
+    _set_gravedad_y = property(obtener_gravedad_y, set_gravedad_y)
 
     def Rectangulo(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
                    restitucion=0.5, friccion=.2, amortiguacion=0.1,
-                   fisica=None, sin_rotacion=False):
+                   sin_rotacion=False, sensor=False):
 
         return rectangulo.Rectangulo(self, self.pilas, x, y, ancho, alto,
                                      dinamica=dinamica, densidad=densidad,
                                      restitucion=restitucion, friccion=friccion,
                                      amortiguacion=amortiguacion,
-                                     sin_rotacion=sin_rotacion)
+                                     sin_rotacion=sin_rotacion,
+                                     sensor=sensor)
 
     def Circulo(self, x, y, radio, dinamica=True, densidad=1.0,
                 restitucion=0.56, friccion=10.5, amortiguacion=0.1,
-                sin_rotacion=False):
+                sin_rotacion=False, sensor=False):
         return circulo.Circulo(self, self.pilas, x, y, radio,
                                dinamica=dinamica, densidad=densidad,
                                restitucion=restitucion, friccion=friccion,
-                               amortiguacion=amortiguacion, sin_rotacion=sin_rotacion)
+                               amortiguacion=amortiguacion, sin_rotacion=sin_rotacion,
+                               sensor=sensor)
