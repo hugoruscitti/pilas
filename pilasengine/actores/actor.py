@@ -280,18 +280,8 @@ class Actor(Estudiante):
                   del Actor.
         :type y: int
         """
-        if type(x) == str:
-            if x not in IZQUIERDA + CENTRO + DERECHA:
-                raise Exception("No puedes definir '%s' como eje horizontal."
-                                % (x))
-            x = self._interpretar_y_convertir_posicion(x, self.obtener_ancho())
-        if type(y) == str:
-            if y not in ARRIBA + CENTRO + ABAJO:
-                raise Exception("No puedes definir '%s' como eje vertical."
-                                % (y))
-            y = self._interpretar_y_convertir_posicion(y, self.obtener_alto())
-
-        self._centro = (x, y)
+        self.centro_x = x
+        self.centro_y = y
 
     def _interpretar_y_convertir_posicion(self, posicion, maximo_valor):
         if posicion in IZQUIERDA + ARRIBA:
@@ -307,7 +297,7 @@ class Actor(Estudiante):
 
     def obtener_centro(self):
         """ Obtiene las coordenadas del centro del Actor. """
-        return self._centro
+        return (self.centro_x, self.centro_y)
 
     centro = property(obtener_centro, definir_centro, doc="""
         Cambia la posición del punto (x, y) dentro de actor.
@@ -354,6 +344,28 @@ class Actor(Estudiante):
 
     def definir_x(self, x):
         self.pilas.utils.interpretar_propiedad_numerica(self, 'x', x)
+
+    def obtener_centro_x(self):
+        return self._centro_x
+
+    def definir_centro_x(self, x):
+        if type(x) == str:
+            if x not in IZQUIERDA + CENTRO + DERECHA:
+                raise Exception("No puedes definir '%s' como eje horizontal."
+                                % (x))
+            x = self._interpretar_y_convertir_posicion(x, self.obtener_ancho())
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'centro_x', x)
+
+    def obtener_centro_y(self):
+        return self._centro_y
+
+    def definir_centro_y(self, y):
+        if type(y) == str:
+            if y not in ARRIBA + CENTRO + ABAJO:
+                raise Exception("No puedes definir '%s' como eje vertical."
+                                % (y))
+            y = self._interpretar_y_convertir_posicion(y, self.obtener_alto())
+        self.pilas.utils.interpretar_propiedad_numerica(self, 'centro_y', y)
 
     def obtener_z(self):
         return self._z
@@ -436,6 +448,8 @@ class Actor(Estudiante):
                  doc="Define lejania respecto del observador.")
     x = property(obtener_x, definir_x, doc="Define la posición horizontal.")
     y = property(obtener_y, definir_y, doc="Define la posición vertical.")
+    centro_x = property(obtener_centro_x, definir_centro_x)
+    centro_y = property(obtener_centro_y, definir_centro_y)
     vx = property(obtener_vx, None,
                   doc="Obtiene la velocidad horizontal del actor.")
     vy = property(definir_vy, None,
@@ -662,11 +676,11 @@ class Actor(Estudiante):
             return -1
 
     def get_izquierda(self):
-        return self.x - (self.centro[0] * self.escala)
+        return self.x - (self.centro_x * self.escala)
 
     #@interpolable
     def set_izquierda(self, x):
-        self.x = x + (self.centro[0] * self.escala)
+        self.x = x + (self.centro_x * self.escala)
 
     izquierda = property(get_izquierda, set_izquierda, doc="Establece el " \
                          "espacio entre la izquierda del actor y el centro " \
