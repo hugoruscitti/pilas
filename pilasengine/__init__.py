@@ -281,6 +281,25 @@ class Pilas(object):
     def obtener_actores_en(self, x, y):
         return self.escena_actual().obtener_actores_en(x, y)
 
+    def ver(self, objeto):
+        """Imprime en pantalla el codigo fuente asociado a un objeto.
+
+        :param objeto: El objeto que se quiere inspeccionar.
+        :param imprimir: Un valor True o False indicando si se quiere imprimir directamente sobre la pantalla.
+        :param retornar: Un valor True o False indicando si se quiere obtener el código como un string.
+        """
+        import inspect
+
+        try:
+            codigo = inspect.getsource(objeto.__class__)
+        except TypeError:
+            try:
+                codigo = inspect.getsource(objeto)
+            except TypeError:
+                codigo = "<< imposible inspeccionar código para mostrar >>"
+
+        print codigo
+
     tareas = property(obtener_tareas, doc="Obtiene el modulo de tareas")
     camara = property(obtener_camara, doc="Cámara de la escena actual")
     escena = property(obtener_escena_actual, doc="Escena actual")
