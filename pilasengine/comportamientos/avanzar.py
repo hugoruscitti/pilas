@@ -19,10 +19,7 @@ class Avanzar(comportamientos.Comportamiento):
         :param receptor: El actor que comenzará a ejecutar este comportamiento.
         """
         super(Avanzar, self).iniciar(receptor)
-        if pasos < 0:
-            self.pasos = abs(pasos)
-        else:
-            self.pasos = pasos
+        self.pasos = abs(pasos)
 
         self.velocidad = velocidad
         rotacion_en_radianes = math.radians(-receptor.rotacion)
