@@ -5,6 +5,7 @@ from PyQt4 import QtGui
 
 import pilasengine
 
+
 class Test(unittest.TestCase):
     app = QtGui.QApplication(sys.argv)
 
@@ -12,8 +13,10 @@ class Test(unittest.TestCase):
         self.pilas = pilasengine.iniciar()
 
     def testPuedeCrearGrupos(self):
+        import collections
         grupo = self.pilas.actores.Grupo()
-        self.assertTrue(grupo, "Se pueden crear grupos")
+        self.assertIsInstance(grupo, collections.MutableSequence,
+                              "Se pueden crear grupos")
 
     def testCuentaCorrectamenteActoresDentroDeGrupos(self):
         grupo = self.pilas.actores.Grupo()
