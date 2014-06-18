@@ -295,7 +295,7 @@ class Actores(object):
         import texto_inferior
         nuevo_actor = texto_inferior.TextoInferior(self.pilas, texto, magnitud,
                                                    vertical, fuente, fijo,
-                                                   ancho, x=x, y=x,
+                                                   ancho, x=x, y=y,
                                                    retraso=retraso)
         return nuevo_actor
 
