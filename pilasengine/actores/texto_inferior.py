@@ -31,14 +31,15 @@ class TextoInferior(Texto):
         self.izquierda = izquierda + 10
         self.color = pilas.colores.blanco
 
-        self.y = abajo + 20 - 50
-        self.y = [self.y + 50]
+        self.altura_desvanecimiento = magnitud * 2.5
+        self.y = abajo + magnitud - self.altura_desvanecimiento
+        self.y = [self.y + self.altura_desvanecimiento]
         self.fijo = True
 
         pilas.tareas.una_vez(retraso, self.desvanecer)
 
     def desvanecer(self):
-        self.y = [self.y - 50]
+        self.y = [self.y - self.altura_desvanecimiento]
         self.pilas.tareas.una_vez(1, self.eliminar)
 
     def obtener_bordes(self):
