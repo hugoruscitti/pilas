@@ -93,7 +93,7 @@ class Pilas(object):
         self.habilidades = habilidades.Habilidades()
         self.comportamientos = comportamientos.Comportamientos()
 
-        es_reinicio = self.widget != None
+        es_reinicio = self.widget is not None
 
         if not self._iniciado_desde_asistente:
             if es_reinicio:
