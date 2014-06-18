@@ -33,7 +33,6 @@ class DeslizadorHorizontal(Actor):
         self.etiqueta = self.pilas.actores.Texto(self.texto_etiqueta, magnitud=10, y=-alto/2)
         self.etiqueta.derecha = -10
         self.contador = self.pilas.actores.Texto("0", magnitud=10, x=ancho + 15, y=-alto/2)
-        print self.ancho
 
         self.agregar(self.etiqueta)
         self.agregar(self.contador)
@@ -59,8 +58,13 @@ class DeslizadorHorizontal(Actor):
             pos_x = min(pos_x, self.ancho)
             self.progreso_sobre_100 = pos_x
 
-            self.progreso = int((pos_x / float(self.ancho)) * self.rango) + self.min
-            self.contador.texto = str(self.progreso)
+            self.progreso = ((pos_x / float(self.ancho)) * self.rango) + self.min
+
+            if self.progreso > 0:
+                self.contador.texto = str(self.progreso)[:4]
+            else:
+                self.contador.texto = str(self.progreso)[:5]
+
             self.ejecutar_funciones(self.progreso)
             self.actualizar_imagen()
 
