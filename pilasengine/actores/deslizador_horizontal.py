@@ -22,7 +22,6 @@ class DeslizadorHorizontal(Actor):
         self.imagen = pilas.imagenes.cargar_superficie(100, 20)
         self.progreso = valor_inicial
         self.progreso_sobre_100 = 30
-        print self.progreso_sobre_100
         self.actualizar_imagen()
 
     def iniciar(self):

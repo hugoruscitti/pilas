@@ -14,16 +14,35 @@ e.dx_max =  10
 e.dy_min = -10
 e.dy_max =  10
 
-#pc = pilas.actores.PanelControlador()
-#pc.agregar_deslizador(e, 'dy_min', -20, 0)
+
+pc = pilas.actores.Controlador()
+pc.x = 230
+pc.y = 200
+
+pc.agregar(e, 'dy_min', -20, 0)
+pc.agregar(e, 'dy_max', 0, 20)
+pc.agregar_espacio()
+
+pc.agregar(e, 'dx_min', -20, 0)
+pc.agregar(e, 'dx_max', 0, 20)
+pc.agregar_espacio()
+
+pc.agregar(e, 'escala_min', 0.1, 4)
+pc.agregar(e, 'escala_max', 0.1, 4)
+pc.agregar_espacio()
+
+pc.agregar(e, 'rotacion_min', 0, 360)
+pc.agregar(e, 'rotacion_max', 0, 360)
+pc.agregar_espacio()
 
 
-dh = pilas.actores.DeslizadorHorizontal(200, 0, min=-50, max=0, etiqueta='dx_min')
 
-def cuando_cambia_dx_min(valor):
-    e.dx_min = valor
+#dh = pilas.actores.DeslizadorHorizontal(200, 0, min=-50, max=0, etiqueta='dx_min')
 
-dh.conectar(cuando_cambia_dx_min)
+#def cuando_cambia_dx_min(valor):
+#    e.dx_min = valor
+
+#dh.conectar(cuando_cambia_dx_min)
 
 
 #mono = pilas.actores.Mono()

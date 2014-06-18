@@ -27,6 +27,12 @@ class Emisor(Actor):
         self.dy_min = -1
         self.dy_max = 1
 
+        self.escala_min = 0.1
+        self.escala_max = 2
+
+        self.rotacion_min = 0
+        self.rotacion_max = 0
+
     def actualizar(self):
         if self.constante:
             self.crear_particula()
@@ -39,13 +45,21 @@ class Emisor(Actor):
     def crear_particula(self):
         dx = self.rango(self.dx_min, self.dx_max) / 5.0
         dy = self.rango(self.dy_min, self.dy_max) / 5.0
+        d_escala = self.rango(self.escala_min, self.escala_max)
+        d_rotacion = self.rango(self.rotacion_min, self.rotacion_max)
 
-        self.pilas.actores.Particula(self.x, self.y,
+        p = self.pilas.actores.Particula(self.x, self.y,
                                      dx=dx, dy=dy,
                                      imagen=self.imagen_particula)
+        p.escala = d_escala
+        p.rotacion = d_rotacion
+
 
     def rango(self, minimo, maximo):
         if minimo < maximo:
-            return random.randint(minimo, maximo)
+            return self.rand_float_range(minimo, maximo)
         else:
             return minimo
+
+    def rand_float_range(self, start, end):
+        return random.random() * (end - start) + start

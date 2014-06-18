@@ -308,6 +308,16 @@ class Actores(object):
     def Emisor(self, x=0, y=0):
         return self._crear_actor('emisor', 'Emisor', x=x, y=y)
 
+    def Controlador(self, x=0, y=0):
+        return self._crear_actor('controlador', 'Controlador', x=x, y=y)
+
+    def ManejadorPropiedad(self, x, y, actor, propiedad, minimo, maximo):
+        return self._crear_actor('manejador_propiedad',
+                                 'ManejadorPropiedad',
+                                 x, y,
+                                 actor=actor, propiedad=propiedad,
+                                 min=minimo, max=maximo)
+
     def Particula(self, x=0, y=0, dx=0, dy=0, imagen="particula.png",
                   fundir=True):
         actor = self._crear_actor('particula', 'Particula', x=x, y=y,
