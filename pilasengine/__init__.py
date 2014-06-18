@@ -58,9 +58,8 @@ class Pilas(object):
             self._necesita_ejecutar_loop = True
 
         self.widget = None
-        self._capturar_errores = capturar_errores
         self.reiniciar(ancho, alto, titulo, con_aceleracion,
-                       habilitar_mensajes_log, x, y)
+                       habilitar_mensajes_log, x, y, capturar_errores)
 
         if configuracion.AUDIO_HABILITADO:
             self._inicializar_audio()
@@ -71,7 +70,7 @@ class Pilas(object):
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
                   con_aceleracion=True, habilitar_mensajes_log=False,
-                  x=None, y=None):
+                  x=None, y=None, capturar_errores=True):
         """Genera nuevamente la ventana del videojuego."""
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
@@ -84,6 +83,7 @@ class Pilas(object):
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)
         self.colores = colores
+        self._capturar_errores = capturar_errores
 
         if not getattr(self, 'depurador', None):
             self.depurador = depurador.Depurador(self)
