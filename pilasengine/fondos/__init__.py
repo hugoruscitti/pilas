@@ -6,6 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+from pilasengine import colores
+
 
 class Fondos(object):
     """Representa la propiedad pilas.fondos
@@ -52,3 +54,11 @@ class Fondos(object):
     def Volley(self):
         import volley
         return volley.Volley(self.pilas)
+
+    def Color(self, _color=colores.blanco):
+        import color
+        return color.Color(self.pilas, _color)
+
+    def Blanco(self):
+        import blanco
+        return blanco.Blanco(self.pilas)
