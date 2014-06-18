@@ -236,6 +236,9 @@ class Actores(object):
     def Fantasma(self, x=0, y=0):
         return self._crear_actor('fantasma', 'Fantasma', x=x, y=y)
 
+    def Humo(self, x=0, y=0):
+        return self._crear_actor('humo', 'Humo', x=x, y=y)
+
     def Manzana(self, x=0, y=0):
         return self._crear_actor('manzana', 'Manzana', x=x, y=y)
 
