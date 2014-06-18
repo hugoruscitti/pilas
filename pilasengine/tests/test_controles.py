@@ -6,6 +6,8 @@ from PyQt4 import QtCore
 from PyQt4.QtTest import QTest
 
 import pilasengine
+from pilasengine.controles import Controles
+from pilasengine.controles import simbolos
 
 
 class TestControles(unittest.TestCase):
@@ -51,6 +53,17 @@ class TestControles(unittest.TestCase):
         self.assertEqual(-1, actor.x, "Luego de pulsar dos veces \
                          IZQUIERDA pasa a x=-1")
 
+    def test_obtener_codigo_de_tecla_normalizado(self):
+        izquierda = Controles.obtener_codigo_de_tecla_normalizado(QtCore.Qt.Key_Left)
+        self.assertEqual(simbolos.IZQUIERDA, izquierda)
+        derecha = Controles.obtener_codigo_de_tecla_normalizado(QtCore.Qt.Key_Right)
+        self.assertEqual(simbolos.DERECHA, derecha)
+        arriba = Controles.obtener_codigo_de_tecla_normalizado(QtCore.Qt.Key_Up)
+        self.assertEqual(simbolos.ARRIBA, arriba)
+        abajo = Controles.obtener_codigo_de_tecla_normalizado(QtCore.Qt.Key_Down)
+        self.assertEqual(simbolos.ABAJO, abajo)
+        espacio = Controles.obtener_codigo_de_tecla_normalizado(QtCore.Qt.Key_Space)
+        self.assertEqual(simbolos.ESPACIO, espacio)
 
 if __name__ == '__main__':
     unittest.main()

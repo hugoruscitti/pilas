@@ -12,6 +12,7 @@ from PyQt4.QtOpenGL import QGLWidget
 
 import fps
 
+from pilasengine.controles import Controles
 
 class BaseWidget(object):
     """Representa el componente que contiene toda la escena de pilas.
@@ -95,7 +96,7 @@ class BaseWidget(object):
         self.update()
 
     def keyPressEvent(self, event):
-        codigo_de_tecla = self.pilas.control._obtener_codigo_de_tecla_normalizado(event.key())
+        codigo_de_tecla = Controles.obtener_codigo_de_tecla_normalizado(event.key())
 
         if event.key() == QtCore.Qt.Key_Escape:
             self.pilas.eventos.pulsa_tecla_escape.emitir()
@@ -106,7 +107,7 @@ class BaseWidget(object):
         self.pilas.depurador.cuando_pulsa_tecla(codigo_de_tecla)
 
     def keyReleaseEvent(self, event):
-        codigo_de_tecla = self.pilas.control._obtener_codigo_de_tecla_normalizado(event.key())
+        codigo_de_tecla = Controles.obtener_codigo_de_tecla_normalizado(event.key())
 
         self.pilas.eventos.suelta_tecla.emitir(codigo=codigo_de_tecla,
                                                 es_repeticion=event.isAutoRepeat(), texto=event.text())
