@@ -285,9 +285,7 @@ class Actores(object):
               fuente=None, fijo=True, ancho=0, x=0, y=0):
         import texto
         nuevo_actor = texto.Texto(self.pilas, cadena_de_texto, magnitud,
-                                  vertical, fuente, fijo, ancho)
-        nuevo_actor.x = x
-        nuevo_actor.y = y
+                                  vertical, fuente, fijo, ancho, x, y)
         return nuevo_actor
 
     def TextoInferior(self, texto="Sin texto", magnitud=20, vertical=False,
