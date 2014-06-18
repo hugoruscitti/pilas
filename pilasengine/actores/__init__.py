@@ -291,12 +291,9 @@ class Actores(object):
                                   vertical, fuente, fijo, ancho, x, y)
         return nuevo_actor
 
-    def TextoInferior(self, texto="Sin texto", magnitud=20, vertical=False,
-                      fuente=None, fijo=True, ancho=0, x=0, y=0, retraso=5):
+    def TextoInferior(self, texto="Sin texto", magnitud=20, retraso=5):
         import texto_inferior
         nuevo_actor = texto_inferior.TextoInferior(self.pilas, texto, magnitud,
-                                                   vertical, fuente, fijo,
-                                                   ancho, x=x, y=y,
                                                    retraso=retraso)
         return nuevo_actor
 

@@ -15,16 +15,11 @@ class TextoInferior(Texto):
 
     Esta clase se utiliza desde el método "pilas.avisar()".
     """
-    def __init__(self, pilas, texto="Sin texto", magnitud=20, vertical=False,
-                 fuente=None, fijo=True, ancho=0, x=0, y=0, retraso=5):
+    def __init__(self, pilas, texto="Sin texto", magnitud=20, retraso=5):
         """Inicializa el texto.
 
         :param texto: Texto a mostrar.
-        :param x: Posición horizontal.
-        :param y: Posición vertical.
         :param magnitud: Tamaño del texto.
-        :param vertical: Si el texto será vertical u horizontal,
-                         como True o False.
         """
         Texto.__init__(self, pilas, texto, magnitud)
         izquierda, _, _, abajo = self.obtener_bordes()
