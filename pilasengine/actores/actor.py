@@ -119,6 +119,9 @@ class Actor(Estudiante):
         # Vincula el actor con la escena actual.
         pilas.actores.agregar_actor(self)
 
+        # Especifica la composión de dibujado (ver actor particula.py).
+        self.composicion = None
+
     def agregar(self, actor):
         self._actores.append(actor)
         actor.padre = self
@@ -230,9 +233,12 @@ class Actor(Estudiante):
         if self.transparencia:
             painter.setOpacity(1 - self.transparencia/100.0)
 
-        # Dibujado de la imagen
+        # Dibujado de los subactores.
         for x in self._actores:
             x.dibujar(painter)
+
+        if self.composicion:
+            painter.setCompositionMode(self.composicion)
 
         self.imagen.dibujar(painter)
 

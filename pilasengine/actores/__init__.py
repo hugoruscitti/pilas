@@ -299,6 +299,23 @@ class Actores(object):
                                                    retraso=retraso)
         return nuevo_actor
 
+    def DeslizadorHorizontal(self, x=0, y=0, min=0, max=100, etiqueta=''):
+        return self._crear_actor('deslizador_horizontal',
+                                 'DeslizadorHorizontal',
+                                 x=x, y=y, min=min, max=max,
+                                 etiqueta=etiqueta)
+
+    def Emisor(self, x=0, y=0):
+        return self._crear_actor('emisor', 'Emisor', x=x, y=y)
+
+    def Particula(self, x=0, y=0, dx=0, dy=0, imagen="particula.png",
+                  fundir=True):
+        actor = self._crear_actor('particula', 'Particula', x=x, y=y,
+                                 dx=dx, dy=dy,
+                                 imagen=imagen)
+        actor.fundir = fundir
+        return actor
+
     def fabricar(self, clase, cantidad):
         grupo = self.Grupo()
         ancho_ventana, alto_ventana = self.pilas.widget.obtener_area()

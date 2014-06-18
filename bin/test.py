@@ -1,14 +1,51 @@
 import pilasengine
 
 pilas = pilasengine.iniciar(capturar_errores=False)
-pilas.depurador.definir_modos(fisica=True, info=True)
+pilas.depurador.definir_modos(fisica=False, info=True)
 
+
+e = pilas.actores.Emisor(0, 0)
+
+e.constante = True
+
+e.dx_min = -10
+e.dx_max =  10
+
+e.dy_min = -10
+e.dy_max =  10
+
+#pc = pilas.actores.PanelControlador()
+#pc.agregar_deslizador(e, 'dy_min', -20, 0)
+
+
+dh = pilas.actores.DeslizadorHorizontal(200, 0, min=-50, max=0, etiqueta='dx_min')
+
+def cuando_cambia_dx_min(valor):
+    e.dx_min = valor
+
+dh.conectar(cuando_cambia_dx_min)
+
+
+#mono = pilas.actores.Mono()
+#mono.figura_de_colision = pilas.fisica.Rectangulo(0, 0, 100, 100)
+
+#mono.aprender( pilas.habilidades.MoverseConElTeclado)
+
+#cajas = pilas.actores.Caja(y=200) * 10
+
+
+#def cuando_colisionan(mono, caja):
+#    caja.eliminar()
+
+#pilas.colisiones.agregar(mono, cajas, cuando_colisionan)
+
+
+"""
 mono = pilas.actores.Mono(200, 0)
 mono.aprender(pilas.habilidades.Arrastrable)
 
-mono.aprender(pilas.habilidades.RebotarComoPelota)
-
-mono.figura.sensor = True
+#mono.aprender(pilas.habilidades.RebotarComoPelota)
+#mono.figura.sensor = True
 
 caja = pilas.actores.Banana() * 60
 caja.aprender(pilas.habilidades.RebotarComoPelota)
@@ -32,4 +69,5 @@ def on_click(evento):
 
 #pilas.eventos.click_de_mouse.conectar(on_click)
 
+"""
 pilas.ejecutar()
