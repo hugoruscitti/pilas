@@ -15,16 +15,11 @@ class TextoInferior(Texto):
 
     Esta clase se utiliza desde el método "pilas.avisar()".
     """
-    def __init__(self, pilas, texto="Sin texto", magnitud=20, vertical=False,
-                 fuente=None, fijo=True, ancho=0, x=0, y=0, retraso=5):
+    def __init__(self, pilas, texto="Sin texto", magnitud=20, retraso=5):
         """Inicializa el texto.
 
         :param texto: Texto a mostrar.
-        :param x: Posición horizontal.
-        :param y: Posición vertical.
         :param magnitud: Tamaño del texto.
-        :param vertical: Si el texto será vertical u horizontal,
-                         como True o False.
         """
         Texto.__init__(self, pilas, texto, magnitud)
         izquierda, _, _, abajo = self.obtener_bordes()
@@ -36,11 +31,16 @@ class TextoInferior(Texto):
         self.izquierda = izquierda + 10
         self.color = pilas.colores.blanco
 
-        self.y = abajo + 20 - 50
-        self.y = [self.y + 50]
+        self.altura_desvanecimiento = magnitud * 2.5
+        self.y = abajo + magnitud - self.altura_desvanecimiento
+        self.y = [self.y + self.altura_desvanecimiento]
         self.fijo = True
 
-        pilas.tareas.una_vez(retraso, self.eliminar)
+        pilas.tareas.una_vez(retraso, self.desvanecer)
+
+    def desvanecer(self):
+        self.y = [self.y - self.altura_desvanecimiento]
+        self.pilas.tareas.una_vez(1, self.eliminar)
 
     def obtener_bordes(self):
         return self.pilas.obtener_widget().obtener_bordes()

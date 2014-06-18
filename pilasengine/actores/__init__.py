@@ -236,6 +236,9 @@ class Actores(object):
     def Fantasma(self, x=0, y=0):
         return self._crear_actor('fantasma', 'Fantasma', x=x, y=y)
 
+    def Humo(self, x=0, y=0):
+        return self._crear_actor('humo', 'Humo', x=x, y=y)
+
     def Manzana(self, x=0, y=0):
         return self._crear_actor('manzana', 'Manzana', x=x, y=y)
 
@@ -285,19 +288,41 @@ class Actores(object):
               fuente=None, fijo=True, ancho=0, x=0, y=0):
         import texto
         nuevo_actor = texto.Texto(self.pilas, cadena_de_texto, magnitud,
-                                  vertical, fuente, fijo, ancho)
-        nuevo_actor.x = x
-        nuevo_actor.y = y
+                                  vertical, fuente, fijo, ancho, x, y)
         return nuevo_actor
 
-    def TextoInferior(self, texto="Sin texto", magnitud=20, vertical=False,
-                      fuente=None, fijo=True, ancho=0, x=0, y=0, retraso=5):
+    def TextoInferior(self, texto="Sin texto", magnitud=20, retraso=5):
         import texto_inferior
         nuevo_actor = texto_inferior.TextoInferior(self.pilas, texto, magnitud,
-                                                   vertical, fuente, fijo,
-                                                   ancho, x=x, y=x,
                                                    retraso=retraso)
         return nuevo_actor
+
+    def DeslizadorHorizontal(self, x=0, y=0, min=0, max=100, etiqueta=''):
+        return self._crear_actor('deslizador_horizontal',
+                                 'DeslizadorHorizontal',
+                                 x=x, y=y, min=min, max=max,
+                                 etiqueta=etiqueta)
+
+    def Emisor(self, x=0, y=0):
+        return self._crear_actor('emisor', 'Emisor', x=x, y=y)
+
+    def Controlador(self, x=0, y=0):
+        return self._crear_actor('controlador', 'Controlador', x=x, y=y)
+
+    def ManejadorPropiedad(self, x, y, actor, propiedad, minimo, maximo):
+        return self._crear_actor('manejador_propiedad',
+                                 'ManejadorPropiedad',
+                                 x, y,
+                                 actor=actor, propiedad=propiedad,
+                                 min=minimo, max=maximo)
+
+    def Particula(self, x=0, y=0, dx=0, dy=0, imagen="particula.png",
+                  fundir=True):
+        actor = self._crear_actor('particula', 'Particula', x=x, y=y,
+                                 dx=dx, dy=dy,
+                                 imagen=imagen)
+        actor.fundir = fundir
+        return actor
 
     def fabricar(self, clase, cantidad):
         grupo = self.Grupo()

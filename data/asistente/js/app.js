@@ -57,6 +57,11 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
 
     $scope.data.ejemplos = [
         {
+            titulo: "Particulas de humo",
+            nick: 'particulas_humo',
+            tags: ['efectos', 'particulas']
+        },
+        {
             titulo: "Muchos actores",
             nick: 'muchos_actores',
             tags: ['camara', 'rotacion']

@@ -58,9 +58,8 @@ class Pilas(object):
             self._necesita_ejecutar_loop = True
 
         self.widget = None
-        self._capturar_errores = capturar_errores
         self.reiniciar(ancho, alto, titulo, con_aceleracion,
-                       habilitar_mensajes_log, x, y)
+                       habilitar_mensajes_log, x, y, capturar_errores)
 
         if configuracion.AUDIO_HABILITADO:
             self._inicializar_audio()
@@ -71,7 +70,7 @@ class Pilas(object):
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
                   con_aceleracion=True, habilitar_mensajes_log=False,
-                  x=None, y=None):
+                  x=None, y=None, capturar_errores=True):
         """Genera nuevamente la ventana del videojuego."""
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
@@ -84,6 +83,7 @@ class Pilas(object):
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)
         self.colores = colores
+        self._capturar_errores = capturar_errores
 
         if not getattr(self, 'depurador', None):
             self.depurador = depurador.Depurador(self)
@@ -93,7 +93,7 @@ class Pilas(object):
         self.habilidades = habilidades.Habilidades()
         self.comportamientos = comportamientos.Comportamientos()
 
-        es_reinicio = self.widget != None
+        es_reinicio = self.widget is not None
 
         if not self._iniciado_desde_asistente:
             if es_reinicio:
@@ -183,15 +183,15 @@ class Pilas(object):
         self._imprimir_mensajes_log = estado
 
     def obtener_escena_actual(self):
-        "Retorna la escena actual."
+        """Retorna la escena actual."""
         return self.escenas.obtener_escena_actual()
 
     def escena_actual(self):
-        "Retorna la escena actual."
+        """Retorna la escena actual."""
         return self.obtener_escena_actual()
 
     def realizar_actualizacion_logica(self):
-        "Realiza la etapa de actualización lógica."
+        """Realiza la etapa de actualización lógica."""
         self.escenas.realizar_actualizacion_logica()
 
     def simular_actualizacion_logica(self):
@@ -204,7 +204,7 @@ class Pilas(object):
         self.escenas.simular_actualizacion_logica()
 
     def realizar_dibujado(self, painter):
-        "Realiza la etapa de actualización gráfica."
+        """Realiza la etapa de actualización gráfica."""
         try:
             self.escenas.realizar_dibujado(painter)
             self.depurador.realizar_dibujado(painter)
@@ -224,7 +224,7 @@ class Pilas(object):
                 sys.exit(1)
 
     def log(self, *mensaje):
-        "Muestra un mensaje de prueba sobre la consola."
+        """Muestra un mensaje de prueba sobre la consola."""
 
         if self._imprimir_mensajes_log:
             hora = datetime.datetime.now().strftime("%H:%M:%S")
@@ -244,7 +244,7 @@ class Pilas(object):
         return utils.obtener_ruta_al_recurso(ruta)
 
     def ejecutar(self):
-        "Muestra la ventana y mantiene el programa en ejecución."
+        """Muestra la ventana y mantiene el programa en ejecución."""
         if not self._iniciado_desde_asistente:
             self.widget.show()
             self.widget.raise_()
@@ -285,8 +285,6 @@ class Pilas(object):
         """Imprime en pantalla el codigo fuente asociado a un objeto.
 
         :param objeto: El objeto que se quiere inspeccionar.
-        :param imprimir: Un valor True o False indicando si se quiere imprimir directamente sobre la pantalla.
-        :param retornar: Un valor True o False indicando si se quiere obtener el código como un string.
         """
         import inspect
 

@@ -12,6 +12,8 @@ from PyQt4.QtOpenGL import QGLWidget
 
 import fps
 
+from pilasengine.controles import Controles
+
 
 class BaseWidget(object):
     """Representa el componente que contiene toda la escena de pilas.
@@ -39,8 +41,8 @@ class BaseWidget(object):
         self.original_height = alto
         self.escala = 1
 
-        self.fps = fps.FPS(60)                   # 60 Cuadros por segundo.
-        self.timer_id = self.startTimer(1000/100.0)
+        self.fps = fps.FPS(60)  # 60 Cuadros por segundo.
+        self.timer_id = self.startTimer(1000 / 100.0)
 
     def detener_bucle_principal(self):
         if self.timer_id:
@@ -53,20 +55,20 @@ class BaseWidget(object):
         if self.timer_id:
             raise Exception("El bucle está en curso, no se puede reiniciar si se está ejecutando.")
         else:
-            self.timer_id = self.startTimer(1000/100.0)
+            self.timer_id = self.startTimer(1000 / 100.0)
 
     def obtener_centro_fisico(self):
         """Retorna el centro de la ventana en pixels."""
-        return (self.original_width/2, self.original_height/2)
+        return self.original_width / 2, self.original_height / 2
 
     def obtener_area(self):
         """Retorna el tamaño real de la ventana."""
-        return (self.original_width, self.original_height)
+        return self.original_width, self.original_height
 
     def obtener_bordes(self):
         """Retorna los bordes de la pantalla en forma de tupla."""
         ancho, alto = self.obtener_area()
-        return -ancho/2, ancho/2, alto/2, -alto/2
+        return -ancho / 2, ancho / 2, alto / 2, -alto / 2
 
     def _realizar_actualizacion_logica(self):
         for _ in range(self.fps.actualizar()):
@@ -74,7 +76,6 @@ class BaseWidget(object):
 
     def procesar_error(self, e):
         print "Error:", e, "en", __file__
-        raise e
         sys.exit(1)
 
     def timerEvent(self, event):
@@ -96,31 +97,33 @@ class BaseWidget(object):
         self.update()
 
     def keyPressEvent(self, event):
-        codigo_de_tecla = self.pilas.control._obtener_codigo_de_tecla_normalizado(event.key())
+        codigo_de_tecla = Controles.obtener_codigo_de_tecla_normalizado(event.key())
 
         if event.key() == QtCore.Qt.Key_Escape:
             self.pilas.eventos.pulsa_tecla_escape.emitir()
 
         self.pilas.eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla,
-                                                es_repeticion=event.isAutoRepeat(), texto=event.text())
+                                              es_repeticion=event.isAutoRepeat(),
+                                              texto=event.text())
 
         self.pilas.depurador.cuando_pulsa_tecla(codigo_de_tecla)
 
     def keyReleaseEvent(self, event):
-        codigo_de_tecla = self.pilas.control._obtener_codigo_de_tecla_normalizado(event.key())
+        codigo_de_tecla = Controles.obtener_codigo_de_tecla_normalizado(event.key())
 
         self.pilas.eventos.suelta_tecla.emitir(codigo=codigo_de_tecla,
-                                                es_repeticion=event.isAutoRepeat(), texto=event.text())
+                                               es_repeticion=event.isAutoRepeat(),
+                                               texto=event.text())
 
     def mousePressEvent(self, event):
-        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala,
-                                                                    event.pos().y()/self.escala)
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x() / self.escala,
+                                                                  event.pos().y() / self.escala)
 
         self.pilas.eventos.click_de_mouse.emitir(boton=event.button(), x=x, y=y)
 
     def mouseReleaseEvent(self, event):
-        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala,
-                                                                    event.pos().y()/self.escala)
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x() / self.escala,
+                                                                  event.pos().y() / self.escala)
 
         self.pilas.eventos.termina_click.emitir(boton=event.button(), x=x, y=y)
 
@@ -128,8 +131,8 @@ class BaseWidget(object):
         self.pilas.escena_actual().mueve_rueda.emitir(delta=event.delta() / 120)
 
     def mouseMoveEvent(self, event):
-        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x()/self.escala,
-                                                                    event.pos().y()/self.escala)
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x() / self.escala,
+                                                                  event.pos().y() / self.escala)
 
         dx = x - self.mouse_x
         dy = y - self.mouse_y
@@ -167,7 +170,7 @@ class BaseWidget(object):
         x = w - final_w
         y = h - final_h
 
-        self.setGeometry(x/2, y/2, final_w, final_h)
+        self.setGeometry(x / 2, y / 2, final_w, final_h)
         self._centrar_canvas(w, h)
 
     def _centrar_canvas(self, w, h):
@@ -196,8 +199,10 @@ class BaseWidget(object):
     def definir_tamano_real(self):
         self.resize(self.original_width, self.original_height)
 
+
 class WidgetConAceleracion(BaseWidget, QGLWidget):
     pass
+
 
 class WidgetSinAceleracion(BaseWidget, QtGui.QWidget):
     pass

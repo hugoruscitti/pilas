@@ -72,5 +72,6 @@ class Controles(object):
     def Control(self, escena, mapa_teclado=None):
         return control.Control(escena, mapa_teclado)
 
-    def _obtener_codigo_de_tecla_normalizado(self, tecla_qt):
+    @staticmethod
+    def obtener_codigo_de_tecla_normalizado(tecla_qt):
         return TECLAS.get(tecla_qt, tecla_qt)

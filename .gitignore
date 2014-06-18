@@ -40,6 +40,8 @@ coverage.xml
 #.mr.developer.cfg
 #.project
 #.pydevproject
+# PyCharm IDE
+.idea/
 
 # Rope
 .ropeproject
@@ -55,4 +57,3 @@ docs/_build/
 .settings/
 log_distmac.txt
 
-pilasengine/ejemplos
