@@ -35,7 +35,11 @@ class TextoInferior(Texto):
         self.y = [self.y + 50]
         self.fijo = True
 
-        pilas.tareas.una_vez(retraso, self.eliminar)
+        pilas.tareas.una_vez(retraso, self.desvanecer)
+
+    def desvanecer(self):
+        self.y = [self.y - 50]
+        self.pilas.tareas.una_vez(1, self.eliminar)
 
     def obtener_bordes(self):
         return self.pilas.obtener_widget().obtener_bordes()
