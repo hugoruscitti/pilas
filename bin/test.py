@@ -42,6 +42,14 @@ pc.agregar(emisor, 'transparencia_min', 0, 100)
 pc.agregar(emisor, 'transparencia_max', 0, 100)
 pc.agregar_espacio()
 
+pc.agregar(emisor, 'x_min', -200, 200)
+pc.agregar(emisor, 'x_max', -200, 200)
+pc.agregar_espacio()
+
+pc.agregar(emisor, 'y_min', -200, 200)
+pc.agregar(emisor, 'y_max', -200, 200)
+pc.agregar_espacio()
+
 
 pilas.avisar(u"Puedes hacer click para cambiar la posición del emisor")
 pilas.ejecutar()

@@ -15,7 +15,7 @@ class Controlador(Actor):
         self.imagen = self.pilas.imagenes.cargar('invisible.png')
         self.radio_de_colision = None
         self.dy = self.y
-        self.distancia = 30
+        self.distancia = 25
         self.manejadores = []
 
     def agregar(self, actor, propiedad, minimo, maximo):

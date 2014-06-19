@@ -10,6 +10,7 @@
 from pilasengine.actores.actor import Actor
 from pilasengine import colores
 
+ALTURA = 15
 
 class DeslizadorHorizontal(Actor):
 
@@ -19,7 +20,7 @@ class DeslizadorHorizontal(Actor):
         self.rango = max - min
         self.texto_etiqueta = etiqueta
         Actor.__init__(self, pilas, x=x, y=y)
-        self.imagen = pilas.imagenes.cargar_superficie(100, 20)
+        self.imagen = pilas.imagenes.cargar_superficie(100, ALTURA)
         self.progreso = valor_inicial
 
         self.progreso_sobre_100 = ((valor_inicial - min) / float(self.rango))*100
@@ -27,7 +28,7 @@ class DeslizadorHorizontal(Actor):
         self.actualizar_texto()
 
     def iniciar(self):
-        ancho, alto = 100, 20
+        ancho, alto = 100, ALTURA
         self.radio_de_colision = None
         self.click = False
         self.funciones = []
