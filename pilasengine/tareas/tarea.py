@@ -9,8 +9,8 @@
 
 class Tarea(object):
 
-    def __init__(self, planificador, time_out, dt, funcion,
-                 parametros, una_vez):
+    def __init__(self, planificador, una_vez, time_out, dt, funcion,
+                 *args, **kwargs):
         """Representa una tarea que se puede ejecutar dentro del planificador.
 
         :param time_out: El tiempo absoluto para ejecutar la tarea.
@@ -21,15 +21,15 @@ class Tarea(object):
         """
 
         self.planificador = planificador
+        self.una_vez = una_vez
         self.time_out = time_out
         self.dt = dt
         self.funcion = funcion
-        self.parametros = parametros
-        self.una_vez = una_vez
+        self.args, self.kwargs = args, kwargs
 
     def ejecutar(self):
         "Ejecuta la tarea."
-        return self.funcion(*self.parametros)
+        return self.funcion(*self.args, **self.kwargs)
 
     def eliminar(self):
         "Quita la tarea del planificador para que no se vuelva a ejecutar."

@@ -100,9 +100,11 @@ class Pilas(object):
                 parent = self._eliminar_el_anterior_widget()
 
         if con_aceleracion:
-            self.widget = widget.WidgetConAceleracion(self, ancho, alto, self._capturar_errores)
+            self.widget = widget.WidgetConAceleracion(self, titulo, ancho, alto,
+                                                      self._capturar_errores)
         else:
-            self.widget = widget.WidgetSinAceleracion(self, ancho, alto, self._capturar_errores)
+            self.widget = widget.WidgetSinAceleracion(self, titulo, ancho, alto,
+                                                      self._capturar_errores)
 
         if not self._iniciado_desde_asistente:
             if es_reinicio:
@@ -305,7 +307,7 @@ class Pilas(object):
     colisiones = property(obtener_colisiones, doc="Retorna las colisiones de la escena")
 
 
-def iniciar(ancho=640, alto=480, titulo='Pilas', capturar_errores=True,
+def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
             habilitar_mensajes_log=False, x=None, y=None):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.

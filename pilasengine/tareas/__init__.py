@@ -70,38 +70,39 @@ class Tareas(object):
         """
         self.tareas_planificadas.append(tarea)
 
-    def una_vez(self, time_out, function, params=[]):
+    def una_vez(self, time_out, function, *args, **kwargs):
         """Genera una tarea que se ejecutará usan sola vez.
 
         :param time_out: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
         :param function: Función a ejecutar para lanzar la tarea.
         :param params: Parámetros que tiene que recibir la función a ejecutar.
         """
-        tarea = Tarea(self, self.contador_de_tiempo + time_out, time_out, function, params, True)
+        tarea = Tarea(self, True, self.contador_de_tiempo + time_out, time_out,
+                      function, *args, **kwargs)
         self._agregar(tarea)
         return tarea
 
-    def siempre(self, time_out, function, params=[]):
+    def siempre(self, time_out, function, *args, **kwargs):
         """Genera una tarea para ejecutar todo el tiempo, sin expiración.
 
         :param time_out: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
         :param function: Función a ejecutar para lanzar la tarea.
-        :param params: Parámetros que tiene que recibir la función a ejecutar.
         """
-        tarea = Tarea(self, self.contador_de_tiempo + time_out, time_out, function, params, False)
+        tarea = Tarea(self, False, self.contador_de_tiempo+time_out, time_out,
+                      function, *args, **kwargs)
         self._agregar(tarea)
         return tarea
 
-    def condicional(self, time_out, function, params=[]):
+    def condicional(self, time_out, function, *args, **kwargs):
         """Genera una tarea que se puede ejecutar una vez o mas, pero que tiene una condición.
 
-        La tarea se ejecutará hasta que la función a ejecutar revuelva False.
+        La tarea se ejecutará hasta que la función a ejecutar devuelva False.
 
         :param time_out: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
         :param function: Función a ejecutar para lanzar la tarea.
-        :param params: Parámetros que tiene que recibir la función a ejecutar.
         """
-        tarea = TareaCondicional(self, self.contador_de_tiempo + time_out, time_out, function, params, False)
+        tarea = TareaCondicional(self, False, self.contador_de_tiempo+time_out,
+                                 time_out, function, *args, **kwargs)
         self._agregar(tarea)
         return tarea
 
