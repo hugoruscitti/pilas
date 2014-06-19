@@ -23,12 +23,13 @@ class BaseWidget(object):
     o un editor.
     """
 
-    def __init__(self, pilas, ancho, alto, capturar_errores=True):
+    def __init__(self, pilas, titulo, ancho, alto, capturar_errores=True):
         self.pilas = pilas
         super(BaseWidget, self).__init__()
         self.setMinimumSize(200, 200)
         self.activar_borrosidad()
         self.capturar_errores = capturar_errores
+        self.definir_titulo(titulo)
         self.iniciar_interface(ancho, alto)
 
     def iniciar_interface(self, ancho, alto):
@@ -199,6 +200,11 @@ class BaseWidget(object):
     def definir_tamano_real(self):
         self.resize(self.original_width, self.original_height)
 
+    def definir_titulo(self, titulo):
+        self.setWindowTitle(titulo)
+
+    def obtener_titulo(self):
+        return self.windowTitle()
 
 class WidgetConAceleracion(BaseWidget, QGLWidget):
     pass
