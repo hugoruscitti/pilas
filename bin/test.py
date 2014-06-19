@@ -22,12 +22,12 @@ pc = pilas.actores.Controlador()
 pc.x = 230
 pc.y = 200
 
-pc.agregar(emisor, 'dy_min', -20, 0)
-pc.agregar(emisor, 'dy_max', 0, 20)
+pc.agregar(emisor, 'dy_min', -20, 20)
+pc.agregar(emisor, 'dy_max', -20, 20)
 pc.agregar_espacio()
 
-pc.agregar(emisor, 'dx_min', -20, 0)
-pc.agregar(emisor, 'dx_max', 0, 20)
+pc.agregar(emisor, 'dx_min', -20, 20)
+pc.agregar(emisor, 'dx_max', -20, 20)
 pc.agregar_espacio()
 
 pc.agregar(emisor, 'escala_min', 0.1, 4)
@@ -36,6 +36,10 @@ pc.agregar_espacio()
 
 pc.agregar(emisor, 'rotacion_min', 0, 360)
 pc.agregar(emisor, 'rotacion_max', 0, 360)
+pc.agregar_espacio()
+
+pc.agregar(emisor, 'transparencia_min', 0, 100)
+pc.agregar(emisor, 'transparencia_max', 0, 100)
 pc.agregar_espacio()
 
 

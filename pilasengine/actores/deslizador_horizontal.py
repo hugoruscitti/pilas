@@ -21,8 +21,10 @@ class DeslizadorHorizontal(Actor):
         Actor.__init__(self, pilas, x=x, y=y)
         self.imagen = pilas.imagenes.cargar_superficie(100, 20)
         self.progreso = valor_inicial
-        self.progreso_sobre_100 = 30
+
+        self.progreso_sobre_100 = ((valor_inicial - min) / float(self.rango))*100
         self.actualizar_imagen()
+        self.actualizar_texto()
 
     def iniciar(self):
         ancho, alto = 100, 20
@@ -60,10 +62,7 @@ class DeslizadorHorizontal(Actor):
 
             self.progreso = ((pos_x / float(self.ancho)) * self.rango) + self.min
 
-            if self.progreso > 0:
-                self.contador.texto = str(self.progreso)[:4]
-            else:
-                self.contador.texto = str(self.progreso)[:5]
+            self.actualizar_texto()
 
             self.ejecutar_funciones(self.progreso)
             self.actualizar_imagen()
@@ -80,3 +79,9 @@ class DeslizadorHorizontal(Actor):
     def ejecutar_funciones(self, valor):
         for i in self.funciones:
             i(valor)
+
+    def actualizar_texto(self):
+        if self.progreso > 0:
+            self.contador.texto = str(self.progreso)[:4]
+        else:
+            self.contador.texto = str(self.progreso)[:5]

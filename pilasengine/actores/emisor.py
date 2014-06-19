@@ -33,6 +33,9 @@ class Emisor(Actor):
         self.rotacion_min = 0
         self.rotacion_max = 0
 
+        self.transparencia_min = 0
+        self.transparencia_max = 0
+
     def actualizar(self):
         if self.constante:
             self.crear_particula()
@@ -47,10 +50,13 @@ class Emisor(Actor):
         dy = self.rango(self.dy_min, self.dy_max) / 5.0
         d_escala = self.rango(self.escala_min, self.escala_max)
         d_rotacion = self.rango(self.rotacion_min, self.rotacion_max)
+        d_transparencia = self.rango(self.transparencia_min, self.transparencia_max)
 
         p = self.pilas.actores.Particula(self.x, self.y,
-                                     dx=dx, dy=dy,
-                                     imagen=self.imagen_particula)
+                            dx=dx, dy=dy,
+                            imagen=self.imagen_particula)
+
+        p.transparencia = d_transparencia
         p.escala = d_escala
         p.rotacion = d_rotacion
 
