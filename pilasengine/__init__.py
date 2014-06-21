@@ -259,6 +259,9 @@ class Pilas(object):
         if self._necesita_ejecutar_loop:
             self.app.exec_()
 
+    def terminar(self):
+        self.widget.close()
+
     def avisar(self, texto):
         texto = self.actores.TextoInferior(texto)
 
