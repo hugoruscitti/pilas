@@ -25,6 +25,7 @@ class Particula(Actor):
         self.rotacion_fin = self.rotacion
         self.aceleracion_x = 0
         self.aceleracion_y = 0
+        self.figura_de_colision = None
 
     def definir_escala_fin(self, valor):
         self._incremento_escala = (valor - self.escala) / ((self.duracion / 1000.0) * 60.0)

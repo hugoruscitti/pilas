@@ -26,6 +26,7 @@ class DeslizadorHorizontal(Actor):
         self.progreso_sobre_100 = ((valor_inicial - min) / float(self.rango))*100
         self.actualizar_imagen()
         self.actualizar_texto()
+        self.figura_de_colision = None
 
     def iniciar(self):
         ancho, alto = 100, ALTURA
@@ -36,6 +37,9 @@ class DeslizadorHorizontal(Actor):
         self.etiqueta = self.pilas.actores.Texto(self.texto_etiqueta, magnitud=10, y=-alto/2)
         self.etiqueta.derecha = -10
         self.contador = self.pilas.actores.Texto("0", magnitud=10, x=ancho + 15, y=-alto/2)
+
+        self.etiqueta.figura_de_colision = None
+        self.contador.figura_de_colision = None
 
         self.agregar(self.etiqueta)
         self.agregar(self.contador)

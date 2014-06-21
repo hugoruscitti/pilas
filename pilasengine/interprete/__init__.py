@@ -336,6 +336,12 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self._cargar_codigo_del_editor_desde_archivo(archivo)
         f = codecs.open(unicode(archivo), 'r', 'utf-8')
         contenido = f.read()
+
+        # Cambia el directorio para que los recursos del directorio
+        # del archivo a ejecutar se puedan cargar correctamente.
+        current_path = os.path.dirname(archivo)
+        os.chdir(current_path)
+
         self.ejecutar_codigo_como_string(contenido)
         f.close()
 

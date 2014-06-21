@@ -7,6 +7,8 @@ pilas.depurador.definir_modos(info=False)
 emisor = pilas.actores.Emisor(0, 0)
 emisor.imagen_particula = pilas.imagenes.cargar_grilla("humo2.png")
 emisor.constante = True
+emisor.composicion = "blanco"
+emisor.duracion = 4
 
 # Permite cambiar la posición del emisor de partículas.
 def cuando_hace_click(evento):

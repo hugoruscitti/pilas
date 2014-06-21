@@ -177,6 +177,7 @@ class Actor(Estudiante):
 
     def definir_figura_de_colision(self, figura):
         if self._figura_de_colision:
+            self._figura_de_colision.actor_que_representa_como_area_de_colision = None
             self._figura_de_colision.eliminar()
 
         self._figura_de_colision = figura
