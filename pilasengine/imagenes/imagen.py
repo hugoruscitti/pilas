@@ -36,7 +36,7 @@ class Imagen(object):
         "Retorna una tupla con la coordenada del punto medio del la imagen."
         return (self.ancho()/2, self.alto()/2)
 
-    def dibujar(self, painter):
+    def dibujar(self, painter, composicion):
         """Dibuja la imagen sobre la ventana que muestra el motor.
 
            x, y: indican la posicion dentro del mundo.
@@ -44,7 +44,11 @@ class Imagen(object):
            escala_x, escala_yindican cambio de tamano (1 significa normal).
            rotacion: angulo de inclinacion en sentido de las agujas del reloj.
         """
-        self._dibujar_pixmap(painter)
+        if composicion:
+            painter.setCompositionMode(composicion)
+            self._dibujar_pixmap(painter)
+        else:
+            self._dibujar_pixmap(painter)
 
     def _dibujar_pixmap(self, painter):
         painter.drawPixmap(0, 0, self._imagen)

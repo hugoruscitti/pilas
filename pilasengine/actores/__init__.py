@@ -316,12 +316,13 @@ class Actores(object):
                                  actor=actor, propiedad=propiedad,
                                  min=minimo, max=maximo)
 
-    def Particula(self, x=0, y=0, dx=0, dy=0, imagen="particula.png",
-                  fundir=True):
-        actor = self._crear_actor('particula', 'Particula', x=x, y=y,
-                                 dx=dx, dy=dy,
-                                 imagen=imagen)
-        actor.fundir = fundir
+    def Particula(self, emisor, x=0, y=0, dx=0, dy=0, imagen="particula.png",
+                  duracion=1):
+        actor = self._crear_actor('particula', 'Particula', emisor=emisor,
+                                  x=x, y=y,
+                                  dx=dx, dy=dy,
+                                  imagen=imagen,
+                                  duracion=duracion)
         return actor
 
     def fabricar(self, clase, cantidad):

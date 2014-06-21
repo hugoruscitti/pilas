@@ -237,10 +237,7 @@ class Actor(Estudiante):
         for x in self._actores:
             x.dibujar(painter)
 
-        if self.composicion:
-            painter.setCompositionMode(self.composicion)
-
-        self.imagen.dibujar(painter)
+        self.imagen.dibujar(painter, self.composicion)
 
         # Vuelve al punto inicial para dibujar el
         # modo depuración.

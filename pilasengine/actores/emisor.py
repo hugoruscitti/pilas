@@ -16,19 +16,22 @@ class Emisor(Actor):
     def iniciar(self):
         self.imagen = self.pilas.imagenes.cargar_grilla("invisible.png")
         self.imagen_particula = self.pilas.imagenes.cargar_grilla("particula.png")
-        self.cantidad_maxima_particulas = 10
-        self.contador = 0
-        self.fundir = True
+
+        self._contador_frecuencia_creacion = 0
+        self.frecuencia_creacion = 0.1
+        self.particulas_vivas = 0
+
         self.constante = True
+        self.duracion = 1
 
-        self.dx_min = -1
-        self.dx_max = 1
+        self.dx_min = -2
+        self.dx_max = 2
 
-        self.dy_min = -1
-        self.dy_max = 1
+        self.dy_min = -2
+        self.dy_max = 2
 
-        self.escala_min = 0.1
-        self.escala_max = 2
+        self.escala_min = 1
+        self.escala_max = 1
 
         self.rotacion_min = 0
         self.rotacion_max = 0
@@ -42,14 +45,43 @@ class Emisor(Actor):
         self.y_min = 0
         self.y_max = 0
 
-    def actualizar(self):
-        if self.constante:
-            self.crear_particula()
-            self.contador += 1
+        self.escala_fin_min = 1
+        self.escala_fin_max = 1
+
+        self.transparencia_fin_min = 100
+        self.transparencia_fin_max = 100
+
+        self.rotacion_fin_min = 0
+        self.rotacion_fin_max = 0
+
+        self.aceleracion_x_min = 0
+        self.aceleracion_x_max = 0
+
+        self.aceleracion_y_min = 0
+        self.aceleracion_y_max = 0
+
+    def definir_composicion(self, valor):
+        if valor in [0, 'normal', None]:
+            self._composicion = 0
+        elif valor in [1, 'blanco']:
+            self._composicion = 12
+        elif valor in [2, 'negro']:
+            self._composicion = 8
         else:
-            if self.contador <= self.cantidad_maxima_particulas:
-                self.crear_particula()
-                self.contador += 1
+            raise Exception("Modo de composicion no permitido: ." + valor)
+
+    def obtener_composicion(self):
+        return self._composicion
+
+    composicion = property(obtener_composicion, definir_composicion)
+
+
+    def actualizar(self):
+        self._contador_frecuencia_creacion += 0.016  # 1/60 segundos
+
+        if self._contador_frecuencia_creacion > self.frecuencia_creacion:
+            self._contador_frecuencia_creacion -= self.frecuencia_creacion
+            self.crear_particula()
 
     def crear_particula(self):
         dx = self.rango(self.dx_min, self.dx_max) / 5.0
@@ -60,13 +92,26 @@ class Emisor(Actor):
         d_x = self.rango(self.x_min, self.x_max)
         d_y = self.rango(self.y_min, self.y_max)
 
-        p = self.pilas.actores.Particula(self.x + d_x, self.y + d_y,
-                            dx=dx, dy=dy,
-                            imagen=self.imagen_particula)
+        p = self.pilas.actores.Particula(self,
+                                         self.x + d_x, self.y + d_y,
+                                         dx=dx, dy=dy,
+                                         imagen=self.imagen_particula,
+                                         duracion=self.duracion)
 
         p.transparencia = d_transparencia
         p.escala = d_escala
         p.rotacion = d_rotacion
+        p.composicion = self._composicion
+
+        p.escala_fin = self.rango(self.escala_fin_min, self.escala_fin_max)
+        p.transparencia_fin = self.rango(self.transparencia_fin_min, self.transparencia_fin_max)
+        p.rotacion_fin = self.rango(self.rotacion_fin_min, self.rotacion_fin_max)
+
+        p.aceleracion_x = self.rango(self.aceleracion_x_min, self.aceleracion_x_max)
+        p.aceleracion_y = self.rango(self.aceleracion_y_min, self.aceleracion_y_max)
+
+
+        self.particulas_vivas += 1
 
 
     def rango(self, minimo, maximo):
@@ -77,3 +122,6 @@ class Emisor(Actor):
 
     def rand_float_range(self, start, end):
         return random.random() * (end - start) + start
+
+    def se_elimina_particula(self, particula):
+        self.particulas_vivas -= 1
