@@ -4,6 +4,7 @@ import random
 from pilasengine.escenas import normal
 from pilasengine.fondos import fondo
 
+
 class FondoEscenaJuego(fondo.Fondo):
 
     def iniciar(self):
@@ -35,7 +36,7 @@ class EscenaJuego(normal.Normal):
         "Regresa al menu principal"
         import escena_menu
         self.pilas.escenas.definir_escena(escena_menu.EscenaMenu(self.pilas))
-        
+
     def crear_actor_turno_actual(self):
         self.turno_actual = self.pilas.actores.Actor()
         self.turno_actual.x = -160
@@ -52,8 +53,8 @@ class EscenaJuego(normal.Normal):
                 casilla = self.pilas.actores.Boton(80*columna-80, -80*fila+80,
                                                    './data/ficha_vacia.png')
                 casilla.pos_en_tablero = (fila, columna)
-                casilla.conectar_presionado(self.cuando_presiona_casilla, 
-                							casilla)
+                casilla.conectar_presionado(self.cuando_presiona_casilla,
+                                            casilla)
                 self.casillas.agregar(casilla)
 
     def cuando_presiona_casilla(self, casilla):
@@ -77,12 +78,12 @@ class EscenaJuego(normal.Normal):
             self.mostrar_mensaje_fin_juego()
 
     def mostrar_mensaje_fin_juego(self, empate=False):
-    	if empate:
+        if empate:
             mensaje = u"¡Nadie Ganó, vuelve a intentarlo!"
         else:
-        	nombre_jugador = self.turno.replace("ficha", "jugador ")
-        	mensaje = u"¡Ganó {}!".format(nombre_jugador)
-       
+            nombre_jugador = self.turno.replace("ficha", "jugador ")
+            mensaje = u"¡Ganó {}!".format(nombre_jugador)
+
         texto = self.pilas.actores.Texto(cadena_de_texto=mensaje, y=-180)
         texto.escala = .7
         texto.escala = [1]
@@ -141,7 +142,7 @@ class EscenaJuego(normal.Normal):
         self.turnos -= 1
 
     def poner_ficha_en_tablero(self, casilla_pos):
-    	fila, columna = casilla_pos
+        fila, columna = casilla_pos
         self.tablero[fila][columna] = self.turno
 
     def crear_pizarra(self):
