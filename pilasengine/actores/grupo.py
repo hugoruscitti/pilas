@@ -76,6 +76,9 @@ class Grupo(collections.MutableSequence):
     def insert(self, i, key):
         self._actores.insert(i, key)
 
+    def sort(self):
+        self._actores.sort()
+
     def eliminar(self, actor):
         """Agrega el actor a una lista para eliminarlo mas tarde."""
 
