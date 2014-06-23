@@ -105,13 +105,16 @@ class EscenaJuego(normal.Normal):
         return False
 
     def verificar_ganador_en_vertical(self):
-        for columna, _ in enumerate(self.tablero[0]):
-            col = [self.tablero[0][columna],
-                   self.tablero[1][columna],
-                   self.tablero[2][columna]]
-            if col == self.ter_ficha1 or col == self.ter_ficha2:
-                self.pintar_linea_vertical(columna)
-                return True
+        cols = [list(col) for col in zip(*self.tablero)]
+
+        if self.ter_ficha1 in cols:
+            columna = cols.index(self.ter_ficha1)
+            self.pintar_linea_vertical(columna)
+            return True
+        elif self.ter_ficha2 in cols:
+            columna = cols.index(self.ter_ficha2)
+            self.pintar_linea_vertical(columna)
+            return True
         return False
 
     def verificar_ganador_en_diagonal(self):
