@@ -57,6 +57,12 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
 
     $scope.data.ejemplos = [
         {
+            titulo: "Personaje Animado Pixelart",
+            nick: 'pixel_player_animado',
+            tags: ['animacion', 'personalizado', 'pixelart']
+        },
+
+        {
             titulo: "Particulas de humo",
             nick: 'particulas_humo',
             tags: ['efectos', 'particulas']

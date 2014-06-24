@@ -56,3 +56,8 @@ class Imagenes(object):
         import grilla
         ruta_a_imagen = self.pilas.obtener_ruta_al_recurso(ruta)
         return grilla.Grilla(self.pilas, ruta_a_imagen, columnas, filas)
+
+    def cargar_animacion(self, ruta, columnas=1, filas=1):
+        import animacion
+        ruta_a_imagen = self.pilas.obtener_ruta_al_recurso(ruta)
+        return animacion.Animacion(self.pilas, ruta_a_imagen, columnas, filas)
