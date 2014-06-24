@@ -287,7 +287,7 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
 
         #paint_event_original = self._reemplazar_rutina_redibujado()
 
-        ruta = QtGui.QFileDialog.getOpenFileName(self, "Abrir Archivo", "", "Archivos python (*.py)")
+        ruta = QtGui.QFileDialog.getOpenFileName(self, "Abrir Archivo", "", "Archivos python (*.py)", options=QtGui.QFileDialog.DontUseNativeDialog)
 
         if ruta:
             self.cargar_desde_archivo(ruta)
@@ -304,7 +304,7 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
 
     def guardar_con_dialogo(self):
         #paint_event_original = self._reemplazar_rutina_redibujado()
-        ruta = QtGui.QFileDialog.getSaveFileName(self, "Guardar Archivo", "", "Archivos python (*.py)")
+        ruta = QtGui.QFileDialog.getSaveFileName(self, "Guardar Archivo", "", "Archivos python (*.py)", options=QtGui.QFileDialog.DontUseNativeDialog)
 
         if ruta:
             self.guardar_contenido_en_el_archivo(ruta)
