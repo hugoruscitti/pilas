@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+import sys
+sys.path.append('.')
 import pilasengine
 
 pilas = pilasengine.iniciar(capturar_errores=False)
