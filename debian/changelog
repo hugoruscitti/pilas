@@ -1,5 +1,6 @@
-pilasengine (0.90.1) unstable; urgency=low
+pilasengine (0.90.2) unstable; urgency=low
 
+  * Cambiando la ruta de instalación.
   * Arreglo menor en el nombre del archivo de ícono.
 
  -- Hugo Ruscitti <hugoruscitti@gmail.com>  Thu, 26 Jun 2014 17:12:44 +0200
