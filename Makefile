@@ -1,5 +1,5 @@
-N=\x1b[0m
-V=\x1b[32;01m
+N=[0m
+V=[01;32m
 
 VERSION=0.90
 
@@ -8,7 +8,7 @@ all:
 	@echo ""
 	@echo "  $(V)actualizar$(N)  Actualiza pilas y los submodulos."
 	@echo "  $(V)ejecutar$(N)    Ejecuta pilas sin instarlo."
-	@echo "  $(V)test$(N)        Lanza todos los test de unidad."
+	@echo "  $(V)utest$(N)       Lanza todos los test de unidad."
 	@echo "  $(V)ui$(N)          Actualiza todas las interfaces de usuario."
 	@echo "  $(V)html$(N)        Actualiza toda la documentación y la copia a pilas/data/manual."
 	@echo "  $(V)rm_pyc$(N)      Borra todos los archivos .pyc del proyecto."
@@ -16,6 +16,7 @@ all:
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
 	@echo "  $(V)distmac$(N)     Genera la versión compilada para macos."
 	@echo "  $(V)distwin$(N)     Genera la versión compilada para windows."
+	@echo "  $(V)distdeb$(N)     Genera la versión compilada para debian, ubuntu o huayra."
 	@echo ""
 
 actualizar:
@@ -28,8 +29,9 @@ ejecutar:
 test_mac:
 	python bin/pilas.py
 
+.PHONY: test
 
-test:
+utest:
 	@python -m unittest discover pilasengine/tests '*.py'
 	# O una version mas linda si se instala nose y nosecolor con pip
 	#@nosetests --color pilasengine/tests/*
@@ -84,3 +86,7 @@ distwin:
 	cp extras/cargador_windows/pilas.ico extras/cargador_windows/pilasengine
 
 	explorer.exe "extras\cargador_windows"
+
+distdeb:
+	extras/actualizar_changelog.sh
+	pdebuild
