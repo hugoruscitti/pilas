@@ -11,6 +11,7 @@ import datetime
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 import traceback
+import random
 
 from pilasengine import escenas
 from pilasengine import imagenes
@@ -287,6 +288,10 @@ class Pilas(object):
 
     def obtener_actores_en(self, x, y):
         return self.escena_actual().obtener_actores_en(x, y)
+
+    def azar(self, a, b):
+        """Retorna un número al azar entre `a` y `b`"""
+        return random.randint(a, b)
 
     def ver(self, objeto):
         """Imprime en pantalla el codigo fuente asociado a un objeto.
