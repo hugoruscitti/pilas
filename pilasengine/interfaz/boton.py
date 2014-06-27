@@ -18,7 +18,6 @@ class Boton(elemento.Elemento):
         self.centro = ("centro", "centro")
         self.funcion = None
         self.fijo = True
-        self.activo = True
 
         if icono:
             self.icono = pilas.imagenes.cargar(icono)
