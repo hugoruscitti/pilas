@@ -18,6 +18,6 @@ class Interfaz(object):
     def __init__(self, pilas):
         self.pilas = pilas
 
-    def Boton(self, texto='Sin texto', icono=None):
+    def Boton(self, texto='Sin texto'):
         import boton
-        return boton.Boton(self.pilas)
+        return boton.Boton(self.pilas, texto)

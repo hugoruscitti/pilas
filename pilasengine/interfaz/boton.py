@@ -9,7 +9,7 @@ from pilasengine.interfaz import elemento
 
 class Boton(elemento.Elemento):
 
-    def __init__(self, pilas=None, texto='Sin Texto', icono=None):
+    def __init__(self, pilas=None, texto='Sin Texto'):
         super(Boton, self).__init__(pilas)
         self.z = -1000
         self.radio_de_colision = None
@@ -18,11 +18,6 @@ class Boton(elemento.Elemento):
         self.centro = ("centro", "centro")
         self.funcion = None
         self.fijo = True
-
-        if icono:
-            self.icono = pilas.imagenes.cargar(icono)
-        else:
-            self.icono = None
 
         self.pilas.escena_actual().mueve_mouse.conectar(self.cuando_mueve_el_mouse)
         self.pilas.escena_actual().click_de_mouse.conectar(self.cuando_hace_click)
