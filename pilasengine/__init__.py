@@ -20,6 +20,7 @@ from pilasengine import utils
 from pilasengine import fondos
 from pilasengine import depurador
 from pilasengine import musica
+from pilasengine import interfaz
 from pilasengine import sonidos
 from pilasengine import habilidades
 from pilasengine import comportamientos
@@ -83,6 +84,7 @@ class Pilas(object):
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)
         self.colores = colores
+        self.interfaz = interfaz.Interfaz(self)
         self._capturar_errores = capturar_errores
 
         if not getattr(self, 'depurador', None):
