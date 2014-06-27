@@ -2,9 +2,9 @@ from setuptools import setup
 
 setup(
     name='pilas-engine',
-    app=["bin/pilas.py"],
+    app=["bin/pilasengine"],
     data_files = [
-        ('bin/pilas.py', ['bin/pilas.py']),
+        ('bin/pilasengine', ['bin/pilasengine']),
         ],
     options={
         "py2app": {
