@@ -25,3 +25,7 @@ class Interfaz(object):
     def Deslizador(self):
         import deslizador
         return deslizador.Deslizador(self.pilas)
+
+    def Selector(self, texto='Sin texto'):
+        import selector
+        return selector.Selector(self.pilas, texto)
