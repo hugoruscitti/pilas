@@ -21,3 +21,7 @@ class Interfaz(object):
     def Boton(self, texto='Sin texto'):
         import boton
         return boton.Boton(self.pilas, texto)
+
+    def Deslizador(self):
+        import deslizador
+        return deslizador.Deslizador(self.pilas)

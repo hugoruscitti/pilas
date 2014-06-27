@@ -9,8 +9,8 @@ from pilasengine.actores import actor
 
 class Elemento(actor.Actor):
 
-    def __init__(self, pilas=None):
-        super(Elemento, self).__init__(pilas)
+    def __init__(self, pilas=None, x=0, y=0):
+        super(Elemento, self).__init__(pilas, x=x, y=y)
         self.z = -1000
         self.radio_de_colision = None
 
