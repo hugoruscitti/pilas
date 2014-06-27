@@ -52,7 +52,7 @@ http://www.pilas-engine.com.ar
                        ],
             },
 
-        scripts=['bin/pilas.py'],
+        scripts=['bin/pilasengine'],
 
         classifiers = [
             'Intended Audience :: Developers',
