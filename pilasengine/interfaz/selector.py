@@ -9,8 +9,10 @@ from pilasengine.interfaz import elemento
 
 class Selector(elemento.Elemento):
 
-    def __init__(self, pilas=None, texto='Sin Texto'):
-        super(Selector, self).__init__(pilas)
+    def __init__(self, pilas=None, texto='Sin Texto', x=0, y=0):
+        super(Selector, self).__init__(pilas, x=x, y=y)
+        self.x = x
+        self.y = y
         self.z = -1000
         self.radio_de_colision = None
         self.texto = texto

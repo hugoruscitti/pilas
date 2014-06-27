@@ -22,10 +22,14 @@ class Interfaz(object):
         import boton
         return boton.Boton(self.pilas, texto)
 
-    def Deslizador(self):
+    def Deslizador(self, x=0, y=0):
         import deslizador
-        return deslizador.Deslizador(self.pilas)
+        return deslizador.Deslizador(self.pilas, x=x, y=y)
 
-    def Selector(self, texto='Sin texto'):
+    def Selector(self, texto='Sin texto', x=0, y=0):
         import selector
-        return selector.Selector(self.pilas, texto)
+        return selector.Selector(self.pilas, texto, x=x, y=y)
+
+    def IngresoDeTexto(self, texto='Sin texto', x=0, y=0, ancho=300, limite_de_caracteres=20, icono=None):
+        import ingreso_de_texto
+        return ingreso_de_texto.IngresoDeTexto(self.pilas, texto, x=x, y=y, ancho=ancho, limite_de_caracteres=limite_de_caracteres, icono=icono)
