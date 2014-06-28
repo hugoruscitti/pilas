@@ -290,6 +290,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
                  'colores': pilasengine.colores,
                  'pilasengine': pilasengine}
 
+        self.canvas.addWidget(pilas.widget)
+
         return scope
 
     def crear_mensaje_cargando(self):
@@ -311,13 +313,12 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.stimer.deleteLater()
 
         self.stimer = QtCore.QTimer()
-        self.stimer.timeout.connect(self._mostrar_ventana_de_pilas)
+        self.stimer.timeout.connect(self._mostrar_widget_de_pilas)
         self.stimer.setSingleShot(True)
         self.stimer.start(300)
 
-    def _mostrar_ventana_de_pilas(self):
-        pilas = self.scope['pilas']
-        pilas._vincular_el_nuevo_widget(self.canvas)
+    def _mostrar_widget_de_pilas(self):
+        self.canvas.setCurrentWidget(self.ventana_pilas)
 
     def _insertar_editor(self):
         componente = editor.Editor(self.main, self.scope, self)
