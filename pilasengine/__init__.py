@@ -98,9 +98,8 @@ class Pilas(object):
 
         es_reinicio = self.widget is not None
 
-        if self._iniciado_desde_asistente:
-            if es_reinicio:
-                parent = self._eliminar_el_anterior_widget()
+        if self._iniciado_desde_asistente and es_reinicio:
+            parent = self._eliminar_el_anterior_widget()
 
         if con_aceleracion:
             self.widget = widget.WidgetConAceleracion(self, titulo, ancho, alto,
@@ -109,9 +108,8 @@ class Pilas(object):
             self.widget = widget.WidgetSinAceleracion(self, titulo, ancho, alto,
                                                       self._capturar_errores)
 
-        if self._iniciado_desde_asistente:
-            if es_reinicio:
-                self._vincular_el_nuevo_widget(parent)
+        if self._iniciado_desde_asistente and es_reinicio:
+            self._vincular_el_nuevo_widget(parent)
 
         self.escenas.Normal()
         self._x = x
@@ -128,7 +126,7 @@ class Pilas(object):
         parent = self.widget.parent()
 
         if parent:
-            parent.layout().removeWidget(self.widget)
+            parent.removeWidget(self.widget)
 
         self.widget.setParent(None)
         return parent
@@ -140,7 +138,7 @@ class Pilas(object):
         juego después de haber cambiado de resolución o reiniciado
         pilas."""
         if parent:
-            parent.layout().addWidget(self.widget)
+            parent.addWidget(self.widget)
             parent.setCurrentWidget(self.widget)
 
     def usa_aceleracion(self):

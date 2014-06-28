@@ -7,12 +7,18 @@
 # Website - http://www.pilas-engine.com.ar
 import codecs
 
-from PyQt4 import QtGui
-from PyQt4 import QtCore
+from PyQt4.Qt import QFrame
+from PyQt4.Qt import QWidget
+from PyQt4.Qt import QHBoxLayout
+from PyQt4.Qt import QPainter
 from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QFileDialog
+from PyQt4.QtGui import QTextEdit
+from PyQt4.QtGui import QTextCursor
 
 from pilasengine.lanas import autocomplete
 from pilasengine.lanas import editor_con_deslizador
+from pilasengine.lanas import highlighter
 
 CONTENIDO = """import pilasengine
 
@@ -28,11 +34,6 @@ mono.rotacion = 0
 
 pilas.ejecutar()"""
 
-
-
-
-
-from PyQt4.Qt import QFrame, QWidget, QTextEdit, QHBoxLayout, QPainter
 
 class Editor(QFrame):
 
@@ -138,44 +139,24 @@ class Editor(QFrame):
             return False
         return QFrame.eventFilter(object, event)
 
-    def actualizar_scope(self, scope):
-        self.editor.actualizar_scope(scope)
 
-    def definir_fuente(self, fuente):
-        self.editor.setFont(fuente)
-
-    def tiene_cambios_sin_guardar(self):
-        return self.editor.tiene_cambios_sin_guardar()
-
-    def ejecutar(self):
-        self.editor.ejecutar()
-
-    def document(self):
-        return self.editor.document()
-
-    def cargar_desde_archivo(self, ruta):
-        self.editor.cargar_desde_archivo(ruta)
-
-    def abrir_con_dialogo(self):
-        self.editor.abrir_con_dialogo()
-
-    def guardar_con_dialogo(self):
-        self.editor.guardar_con_dialogo()
-
-class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDeslizador):
+class WidgetEditor(autocomplete.CompletionTextEdit,
+                   editor_con_deslizador.EditorConDeslizador):
     """Representa el editor de texto que aparece en el panel derecho.
 
     El editor soporta autocompletado de código y resaltado de sintáxis.
     """
 
     def __init__(self, main, interpreterLocals, ventana_interprete):
-        autocomplete.CompletionTextEdit.__init__(self, None, self.funcion_valores_autocompletado)
+        autocomplete.CompletionTextEdit.__init__(self, None,
+                                                 self.funcion_valores_autocompletado)
         self.interpreterLocals = interpreterLocals
         self.insertPlainText(CONTENIDO)
-        self.setLineWrapMode(QtGui.QTextEdit.NoWrap)
+        self.setLineWrapMode(QTextEdit.NoWrap)
         self._cambios_sin_guardar = False
         self.main = main
         self.ventana_interprete = ventana_interprete
+        self._cargar_resaltador_de_sintaxis()
 
     def keyPressEvent(self, event):
         "Atiene el evento de pulsación de tecla."
@@ -201,14 +182,14 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
         if event.key() == Qt.Key_Backspace:
             self._eliminar_pares_de_caracteres(es_consola=False)
 
-        if event.key() == QtCore.Qt.Key_Tab:
+        if event.key() == Qt.Key_Tab:
             tc = self.textCursor()
             tc.insertText("    ")
         else:
             if self.autocomplete(event):
                 return None
 
-            return QtGui.QTextEdit.keyPressEvent(self, event)
+            return QTextEdit.keyPressEvent(self, event)
 
     def tiene_cambios_sin_guardar(self):
         return self._cambios_sin_guardar
@@ -242,7 +223,7 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
     def _get_current_line(self):
         "Obtiene la linea en donde se encuentra el cursor."
         tc = self.textCursor()
-        tc.select(QtGui.QTextCursor.LineUnderCursor)
+        tc.select(QTextCursor.LineUnderCursor)
         return tc.selectedText()
 
     def cargar_desde_archivo(self, ruta):
@@ -273,7 +254,6 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
         widget.__class__.paintEvent = Editor.paint_event_falso
         return paint_event_original
 
-
     def _restaurar_rutina_de_redibujado_original(self, paint_event_original):
         pilas = self.interpreterLocals['pilas']
         pilas.reiniciar()
@@ -287,7 +267,9 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
 
         #paint_event_original = self._reemplazar_rutina_redibujado()
 
-        ruta = QtGui.QFileDialog.getOpenFileName(self, "Abrir Archivo", "", "Archivos python (*.py)", options=QtGui.QFileDialog.DontUseNativeDialog)
+        ruta = QFileDialog.getOpenFileName(self, "Abrir Archivo", "",
+                                           "Archivos python (*.py)",
+                                           options=QFileDialog.DontUseNativeDialog)
 
         if ruta:
             self.cargar_desde_archivo(ruta)
@@ -304,7 +286,10 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
 
     def guardar_con_dialogo(self):
         #paint_event_original = self._reemplazar_rutina_redibujado()
-        ruta = QtGui.QFileDialog.getSaveFileName(self, "Guardar Archivo", "", "Archivos python (*.py)", options=QtGui.QFileDialog.DontUseNativeDialog)
+
+        ruta = QFileDialog.getSaveFileName(self, "Guardar Archivo", "",
+                                           "Archivos python (*.py)",
+                                           options=QFileDialog.DontUseNativeDialog)
 
         if ruta:
             self.guardar_contenido_en_el_archivo(ruta)
@@ -312,3 +297,9 @@ class WidgetEditor(autocomplete.CompletionTextEdit, editor_con_deslizador.Editor
 
         #self._restaurar_rutina_de_redibujado_original(paint_event_original)
         self.ejecutar()
+
+    def _cargar_resaltador_de_sintaxis(self):
+        self._highlighter = highlighter.Highlighter(
+            self.document(),
+            'python',
+            highlighter.COLOR_SCHEME)
