@@ -16,6 +16,10 @@ app = QtGui.QApplication(sys.argv)
 if '-i' in sys.argv:
     from pilasengine import interprete
     _ = interprete.abrir()
+elif '-t' in sys.argv:
+    from pilasengine import utils
+    utils.realizar_pruebas()
+    sys.exit(1)
 else:
     _ = pilasengine.abrir_asistente()
 

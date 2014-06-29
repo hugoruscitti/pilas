@@ -24,10 +24,10 @@ actualizar:
 	git submodule update --init
 
 ejecutar:
-	python bin/pilas.py
+	python bin/pilasengine
 
 test_mac:
-	python bin/pilas.py
+	python bin/pilasengine
 
 .PHONY: test
 

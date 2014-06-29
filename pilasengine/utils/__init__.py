@@ -210,3 +210,47 @@ def centrar_ventana(ventana):
     cp = QtGui.QDesktopWidget().availableGeometry().center()
     qr.moveCenter(cp)
     ventana.move(qr.topLeft())
+
+def realizar_pruebas():
+    """Imprime pruebas en pantalla para detectar si pilas tiene todas las dependencias instaladas."""
+    print "Realizando pruebas de dependencias:"
+    print ""
+
+    print "Box 2D:",
+
+    try:
+        import Box2D as box2d
+
+        ver = box2d.__version_info__
+
+        if ver[0] == 2 and ver[1] >= 1:
+            print "OK, versión", box2d.__version__
+        else:
+            print "Error -> la versión está obsoleta, instale una versión de la serie 2.1, 2.2 o 2.3"
+    except ImportError:
+        print "Error -> no se encuentra pybox2d"
+
+    print "pyqt:",
+
+    try:
+        from PyQt4 import Qt
+        print "OK, versión", Qt.PYQT_VERSION_STR
+    except ImportError:
+        print "Error -> no se encuentra pyqt."
+
+    print "pyqt con aceleracion:",
+
+    try:
+        from PyQt4 import QtOpenGL
+        from PyQt4.QtOpenGL import QGLWidget
+        print "OK"
+    except ImportError:
+        print "Error -> no se encuentra pyqt4gl."
+
+    print "PIL para soporte de jpeg (opcional):",
+
+    try:
+        from PIL import Image
+        print "OK"
+    except ImportError:
+        print "Cuidado -> no se encuentra PIL."
