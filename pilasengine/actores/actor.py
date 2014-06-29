@@ -514,10 +514,11 @@ class Actor(Estudiante):
         return False
 
     def _eliminar_de_todos_los_grupos_al_que_pertenece(self):
-        for g in self._grupos_a_los_que_pertenece:
+        c_grupos_a_los_que_pertenece = self._grupos_a_los_que_pertenece[:]
+        for g in c_grupos_a_los_que_pertenece:
             g.eliminar(self)
 
-        self._grupos_a_los_que_pertenece = []
+        del c_grupos_a_los_que_pertenece
 
     def pre_actualizar(self):
         """Actualiza comportamiento y habilidades antes de la actualización.
