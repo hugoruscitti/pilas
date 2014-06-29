@@ -18,6 +18,8 @@ ARRIBA = ["arriba", "superior"]
 CENTRO = ["centro", "centrado", "medio", "arriba"]
 ABAJO = ["abajo", "inferior", "debajo"]
 
+class ActorEliminadoException(Exception):
+    pass
 
 class ActorEliminado(object):
     """Representa a un actor que ha sido eliminado y ya no se puede usar.
@@ -31,8 +33,9 @@ class ActorEliminado(object):
     """
 
     def __getattr__(self, *k, **kw):
-        mensaje = "Este actor (ex: %s id: %d) ya ha sido eliminado, no se puede utilizar."
-        print mensaje %(self.nombre_de_clase, self.identificador)
+        plantilla = "Este actor (ex: %s id: %d) ya ha sido eliminado, no se puede utilizar."
+        mensaje = plantilla %(self.nombre_de_clase, self.identificador)
+        raise ActorEliminadoException(mensaje)
 
     def esta_eliminado(self):
         return True

@@ -5,11 +5,12 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
+from pilasengine.actores.actor import ActorEliminadoException
 
 
 class Tarea(object):
 
-    def __init__(self, planificador, una_vez, time_out, dt, funcion,
+    def __init__(self, planificador, pilas, una_vez, time_out, dt, funcion,
                  *args, **kwargs):
         """Representa una tarea que se puede ejecutar dentro del planificador.
 
@@ -26,10 +27,15 @@ class Tarea(object):
         self.dt = dt
         self.funcion = funcion
         self.args, self.kwargs = args, kwargs
+        self.pilas = pilas
 
     def ejecutar(self):
         "Ejecuta la tarea."
-        return self.funcion(*self.args, **self.kwargs)
+        try:
+            return self.funcion(*self.args, **self.kwargs)
+        except ActorEliminadoException:
+            self.pilas.log("Se evitó ejecutar la tarea sobre un actor eliminado...")
+
 
     def eliminar(self):
         "Quita la tarea del planificador para que no se vuelva a ejecutar."

@@ -51,6 +51,7 @@ class Pilas(object):
                  habilitar_mensajes_log=False, x=None, y=None):
         """Inicializa el area de juego con una configuración inicial."""
         self._iniciado_desde_asistente = False
+        self.texto_avisar_anterior = None
 
         if QtGui.QApplication.instance():
             self.app = QtGui.QApplication.instance()
@@ -264,7 +265,10 @@ class Pilas(object):
         self.widget.close()
 
     def avisar(self, texto):
-        texto = self.actores.TextoInferior(texto)
+        if self.texto_avisar_anterior and not self.texto_avisar_anterior.esta_eliminado():
+            self.texto_avisar_anterior.eliminar()
+
+        self.texto_avisar_anterior = self.actores.TextoInferior(texto)
 
     def ocultar_puntero_del_mouse(self):
         self.widget.setCursor(QtGui.QCursor(QtCore.Qt.BlankCursor))

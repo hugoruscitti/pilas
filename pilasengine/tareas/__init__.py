@@ -32,8 +32,9 @@ class Tareas(object):
     ejecute (esto es útil para crear bucles).
     """
 
-    def __init__(self, pilas):
+    def __init__(self, escena, pilas):
         "Inicializa el gestor de tareas."
+        self.escena = escena
         self.pilas = pilas
         self.tareas_planificadas = []
         self.contador_de_tiempo = 0
@@ -77,7 +78,7 @@ class Tareas(object):
         :param function: Función a ejecutar para lanzar la tarea.
         :param params: Parámetros que tiene que recibir la función a ejecutar.
         """
-        tarea = Tarea(self, True, self.contador_de_tiempo + time_out, time_out,
+        tarea = Tarea(self, self.pilas, True, self.contador_de_tiempo + time_out, time_out,
                       function, *args, **kwargs)
         self._agregar(tarea)
         return tarea
@@ -88,7 +89,7 @@ class Tareas(object):
         :param time_out: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
         :param function: Función a ejecutar para lanzar la tarea.
         """
-        tarea = Tarea(self, False, self.contador_de_tiempo+time_out, time_out,
+        tarea = Tarea(self, self.pilas, False, self.contador_de_tiempo+time_out, time_out,
                       function, *args, **kwargs)
         self._agregar(tarea)
         return tarea
@@ -101,7 +102,7 @@ class Tareas(object):
         :param time_out: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
         :param function: Función a ejecutar para lanzar la tarea.
         """
-        tarea = TareaCondicional(self, False, self.contador_de_tiempo+time_out,
+        tarea = TareaCondicional(self, self.pilas, False, self.contador_de_tiempo+time_out,
                                  time_out, function, *args, **kwargs)
         self._agregar(tarea)
         return tarea
