@@ -90,8 +90,8 @@ class Superficie(Imagen):
                    relleno=False, grosor=1):
         self.canvas.begin(self._imagen)
 
-        r, g, b, _ = color.obtener_componentes()
-        color = QtGui.QColor(r, g, b)
+        r, g, b, a = color.obtener_componentes()
+        color = QtGui.QColor(r, g, b, a)
         pen = QtGui.QPen(color, grosor)
         self.canvas.setPen(pen)
 

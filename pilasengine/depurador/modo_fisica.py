@@ -42,8 +42,6 @@ class ModoFisica(ModoDepurador):
                     else:
                         self._definir_trazo_gris(painter)
 
-
-
                 shape = fixture.shape
 
                 if isinstance(shape, box2d.b2PolygonShape):

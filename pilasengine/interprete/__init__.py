@@ -11,12 +11,19 @@ import re
 import codecs
 import time
 
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore
+from PyQt4.QtGui import QShortcut
+from PyQt4.QtGui import QKeySequence
+from PyQt4.QtGui import QMessageBox
+from PyQt4.QtGui import QIcon
+from PyQt4.QtGui import QInputDialog
+from PyQt4.QtGui import QLabel
+from PyQt4.QtGui import QMainWindow
 
 import pilasengine
 from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
+from pilasengine.interprete import editor
 from pilasengine import lanas
-import editor
 from pilasengine import utils
 
 
@@ -31,24 +38,27 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.editor.ejecutar()
 
     def _vincular_atajos_de_teclado(self):
-        QtGui.QShortcut(QtGui.QKeySequence("F5"), self.main, self.cuando_pulsa_el_boton_ejecutar)
-        QtGui.QShortcut(QtGui.QKeySequence("Ctrl+r"), self.main, self.cuando_pulsa_el_boton_ejecutar)
+        QShortcut(QKeySequence("F5"), self.main,
+                  self.cuando_pulsa_el_boton_ejecutar)
+        QShortcut(QKeySequence("Ctrl+r"), self.main,
+                  self.cuando_pulsa_el_boton_ejecutar)
 
-        self.pushButton_6.setShortcut(QtGui.QKeySequence('F7'))
-        self.pushButton_5.setShortcut(QtGui.QKeySequence('F8'))
-        self.pushButton_4.setShortcut(QtGui.QKeySequence('F9'))
-        self.pushButton_3.setShortcut(QtGui.QKeySequence('F10'))
-        self.pushButton_2.setShortcut(QtGui.QKeySequence('F11'))
-        self.pushButton.setShortcut(QtGui.QKeySequence('F12'))
+        self.pushButton_6.setShortcut(QKeySequence('F7'))
+        self.pushButton_5.setShortcut(QKeySequence('F8'))
+        self.pushButton_4.setShortcut(QKeySequence('F9'))
+        self.pushButton_3.setShortcut(QKeySequence('F10'))
+        self.pushButton_2.setShortcut(QKeySequence('F11'))
+        self.pushButton.setShortcut(QKeySequence('F12'))
 
         # Solo en MacOS informa que la tecla Command sustituye a CTRL.
         if sys.platform == 'darwin':
             self.boton_ejecutar.setToolTip(u"Ejecutar el código actual (F5 o ⌘R)")
 
     def iniciar_interfaz(self):
-        self.scope = self._insertar_ventana_principal_de_pilas()
-        self._insertar_consola_interactiva(self.scope)
-        self._insertar_editor(self.consola.obtener_fuente(), self.scope)
+        self.scope = self._iniciar_pilas()
+        self.crear_mensaje_cargando()
+        self._insertar_consola_interactiva()
+        self._insertar_editor()
 
         # Haciendo que el panel de pilas y el interprete no se puedan
         # ocultar completamente.
@@ -90,69 +100,104 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
         Este método retorna True si el usuario acepta la pregunta."""
         # TODO: reemplazar por un dialogo que no tenga los botones YES NO, sino algo en español: http://stackoverflow.com/questions/15682665/how-to-add-custom-button-to-a-qmessagebox-in-pyqt4
-        respuesta = QtGui.QMessageBox.question(parent, titulo, mensaje,
-                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-        return (respuesta == QtGui.QMessageBox.Yes)
+        respuesta = QMessageBox.question(parent, titulo, mensaje,
+                                         QMessageBox.Yes,
+                                         QMessageBox.No)
+        return (respuesta == QMessageBox.Yes)
 
     def _conectar_botones(self):
         # Botón del editor
         self.definir_icono(self.editor_button, 'iconos/editor.png')
-        self.editor_button.connect(self.editor_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_editor)
+        self.editor_button.connect(self.editor_button,
+                                   QtCore.SIGNAL("clicked()"),
+                                   self.cuando_pulsa_el_boton_editor)
 
         # Botón del manual
         self.definir_icono(self.manual_button, 'iconos/manual.png')
-        self.manual_button.connect(self.manual_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_manual)
+        self.manual_button.connect(self.manual_button,
+                                   QtCore.SIGNAL("clicked()"),
+                                   self.cuando_pulsa_el_boton_manual)
 
         # Botón del interprete
         self.definir_icono(self.interprete_button, 'iconos/interprete.png')
-        self.interprete_button.connect(self.interprete_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_interprete)
+        self.interprete_button.connect(self.interprete_button,
+                                       QtCore.SIGNAL("clicked()"),
+                                       self.cuando_pulsa_el_boton_interprete)
 
         # Botón del guardar
         self.definir_icono(self.boton_guardar, 'iconos/guardar.png')
-        self.boton_guardar.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
+        self.boton_guardar.connect(self.boton_guardar,
+                                   QtCore.SIGNAL("clicked()"),
+                                   self.cuando_pulsa_el_boton_guardar)
 
         self.definir_icono(self.boton_ejecutar, 'iconos/ejecutar.png')
         #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
 
         self.definir_icono(self.boton_abrir, 'iconos/abrir.png')
-        self.boton_abrir.connect(self.boton_abrir, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_abrir)
+        self.boton_abrir.connect(self.boton_abrir,
+                                 QtCore.SIGNAL("clicked()"),
+                                 self.cuando_pulsa_el_boton_abrir)
 
         # Botón del guardar
         self.definir_icono(self.guardar_button, 'iconos/guardar.png')
-        self.interprete_button.connect(self.guardar_button, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
+        self.interprete_button.connect(self.guardar_button,
+                                       QtCore.SIGNAL("clicked()"),
+                                       self.cuando_pulsa_el_boton_guardar)
 
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
-        self.pushButton_6.connect(self.pushButton_6, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
+        self.pushButton_6.connect(self.pushButton_6,
+                                  QtCore.SIGNAL("clicked()"),
+                                  self.pulsa_boton_depuracion)
 
         # F8 Modo puntos de control
         self.definir_icono(self.pushButton_5, 'iconos/f08.png')
-        self.pushButton_5.connect(self.pushButton_5, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
+        self.pushButton_5.connect(self.pushButton_5,
+                                  QtCore.SIGNAL("clicked()"),
+                                  self.pulsa_boton_depuracion)
 
         # F9 Modo radios de colision
         self.definir_icono(self.pushButton_4, 'iconos/f09.png')
-        self.pushButton_4.connect(self.pushButton_4, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
+        self.pushButton_4.connect(self.pushButton_4,
+                                  QtCore.SIGNAL("clicked()"),
+                                  self.pulsa_boton_depuracion)
 
         # F10 Modo areas de colision
         self.definir_icono(self.pushButton_3, 'iconos/f10.png')
-        self.pushButton_3.connect(self.pushButton_3, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
+        self.pushButton_3.connect(self.pushButton_3,
+                                  QtCore.SIGNAL("clicked()"),
+                                  self.pulsa_boton_depuracion)
 
         # F11 Modo fisica
         self.definir_icono(self.pushButton_2, 'iconos/f11.png')
-        self.pushButton_2.connect(self.pushButton_2, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
+        self.pushButton_2.connect(self.pushButton_2,
+                                  QtCore.SIGNAL("clicked()"),
+                                  self.pulsa_boton_depuracion)
 
         # F12 Modo depuracion de posicion
         self.definir_icono(self.pushButton, 'iconos/f12.png')
-        self.pushButton.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.pulsa_boton_depuracion)
+        self.pushButton.connect(self.pushButton,
+                                QtCore.SIGNAL("clicked()"),
+                                self.pulsa_boton_depuracion)
 
     def _conectar_botones_del_editor(self):
-        self.boton_ejecutar.connect(self.boton_ejecutar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_ejecutar)
+        self.boton_ejecutar.connect(self.boton_ejecutar,
+                                    QtCore.SIGNAL("clicked()"),
+                                    self.cuando_pulsa_el_boton_ejecutar)
 
     def _conectar_observadores_splitters(self):
         # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.
-        self.splitter_vertical.connect(self.splitter_vertical, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador_vertical)
-        self.splitter.connect(self.splitter, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador)
-        self.splitter_editor.connect(self.splitter_editor, QtCore.SIGNAL("splitterMoved(int, int)"), self.cuando_mueve_deslizador_del_editor)
+        self.splitter_vertical.connect(self.splitter_vertical,
+                                       QtCore.SIGNAL("splitterMoved(int, int)"),
+                                       self.cuando_mueve_deslizador_vertical)
+
+        self.splitter.connect(self.splitter,
+                              QtCore.SIGNAL("splitterMoved(int, int)"),
+                              self.cuando_mueve_deslizador)
+
+        self.splitter_editor.connect(self.splitter_editor,
+                                     QtCore.SIGNAL("splitterMoved(int, int)"),
+                                     self.cuando_mueve_deslizador_del_editor)
 
     def colapsar_ayuda(self):
         self.splitter_vertical.setSizes([0])
@@ -169,13 +214,13 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def cargar_ayuda(self):
         file_path = pilasengine.utils.obtener_ruta_al_recurso('manual/index.html')
         file_path = os.path.abspath(file_path)
-        base_dir =  QtCore.QUrl.fromLocalFile(file_path)
+        base_dir = QtCore.QUrl.fromLocalFile(file_path)
         self.navegador.load(base_dir)
 
     def definir_icono(self, boton, ruta):
-        icon = QtGui.QIcon()
+        icon = QIcon()
         archivo = pilasengine.utils.obtener_ruta_al_recurso(ruta)
-        icon.addFile(archivo, QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addFile(archivo, QtCore.QSize(), QIcon.Normal, QIcon.Off)
         boton.setIcon(icon)
         boton.setText('')
 
@@ -214,20 +259,20 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def pulsa_boton_depuracion(self):
         pilas = self.scope['pilas']
         pilas.depurador.definir_modos(
-                            info=self.pushButton_6.isChecked(),              # F07
-                            puntos_de_control=self.pushButton_5.isChecked(), # F08
-                            radios=self.pushButton_4.isChecked(),            # F09
-                            areas=self.pushButton_3.isChecked(),             # F10
-                            fisica=self.pushButton_2.isChecked(),            # F11
-                            posiciones=self.pushButton.isChecked(),          # F12
-                )
+            info=self.pushButton_6.isChecked(),               # F07
+            puntos_de_control=self.pushButton_5.isChecked(),  # F08
+            radios=self.pushButton_4.isChecked(),             # F09
+            areas=self.pushButton_3.isChecked(),              # F10
+            fisica=self.pushButton_2.isChecked(),             # F11
+            posiciones=self.pushButton.isChecked(),           # F12
+        )
 
     def raw_input(self, mensaje):
-        text, _ = QtGui.QInputDialog.getText(self.main, "raw_input", mensaje)
+        text, _ = QInputDialog.getText(self.main, "raw_input", mensaje)
         return str(text)
 
     def input(self, mensaje):
-        text, _ = QtGui.QInputDialog.getText(self.main, "raw_input", mensaje)
+        text, _ = QInputDialog.getText(self.main, "raw_input", mensaje)
         return eval(str(text))
 
     def help(self, objeto=None):
@@ -236,36 +281,31 @@ class VentanaInterprete(Ui_InterpreteWindow):
         else:
             print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
 
-    def _insertar_ventana_principal_de_pilas(self):
+    def _iniciar_pilas(self):
         pilas = pilasengine.iniciar(640, 400)
         pilas.definir_iniciado_desde_asistente(True)
 
         scope = {'pilas': pilas,
                  'self': self,
                  'colores': pilasengine.colores,
-                 'pilasengine': pilasengine
-                 }
-        ventana = pilas.obtener_widget()
+                 'pilasengine': pilasengine}
 
-        self.cargando = QtGui.QLabel("Cargando ...")
-        self.cargando.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-        self.canvas.addWidget(self.cargando)
-        self.canvas.setCurrentWidget(self.cargando)
-
-        self.ventana_pilas = ventana
-
-        self.stimer = QtCore.QTimer()
+        self.canvas.addWidget(pilas.widget)
 
         return scope
+
+    def crear_mensaje_cargando(self):
+        self.cargando = QLabel("Cargando ...")
+        self.cargando.setAlignment(QtCore.Qt.AlignHCenter |
+                                   QtCore.Qt.AlignVCenter)
+        self.canvas.addWidget(self.cargando)
 
     def mostrar_mensaje_cargando(self):
         self.canvas.setCurrentWidget(self.cargando)
 
-    def reinsertar_widget_de_pilas(self, widget):
-        widget.setFocusPolicy(QtCore.Qt.ClickFocus)
-        self.ventana_pilas = widget
+    def insertar_widget_de_pilas(self):
+        self.ventana_pilas.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.canvas.setFocus()
-        self.canvas.addWidget(widget)
 
         # Se asegura de mostrar la ventana de pilas luego de 1/2 segundo.
         if getattr(self, 'stimer', None):
@@ -273,38 +313,32 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.stimer.deleteLater()
 
         self.stimer = QtCore.QTimer()
-        self.stimer.timeout.connect(self._mostrar_ventana_de_pilas)
+        self.stimer.timeout.connect(self._mostrar_widget_de_pilas)
         self.stimer.setSingleShot(True)
         self.stimer.start(300)
 
-    def _mostrar_ventana_de_pilas(self):
+    def _mostrar_widget_de_pilas(self):
         self.canvas.setCurrentWidget(self.ventana_pilas)
 
-    def _insertar_editor(self, fuente, scope):
-        componente = editor.Editor(self.main, scope, self)
-        componente.definir_fuente(fuente)
+    def _insertar_editor(self):
+        componente = editor.Editor(self.main, self.scope, self)
         self.editor_placeholder.addWidget(componente)
         self.editor_placeholder.setCurrentWidget(componente)
-        self.editor = componente
-        self._cargar_resaltador_de_sintaxis()
+        self.editor = componente.editor
+        self.editor.definir_fuente(self.consola.obtener_fuente())
 
-    def _cargar_resaltador_de_sintaxis(self):
-        self._highlighter = lanas.highlighter.Highlighter(self.editor.document(), 'python', lanas.highlighter.COLOR_SCHEME)
+    def _insertar_consola_interactiva(self):
+        codigo_inicial = ['import pilasengine',
+                          '',
+                          'pilas = pilasengine.iniciar()',
+                          'mono = pilas.actores.Mono()']
 
-    def _insertar_consola_interactiva(self, scope):
-        codigo_inicial = [
-                'import pilasengine',
-                '',
-                'pilas = pilasengine.iniciar()',
-                'mono = pilas.actores.Mono()',
-        ]
-
-        consola = lanas.ventana.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
+        consola = lanas.ventana.Ventana(self.splitter, self.scope,
+                                        "\n".join(codigo_inicial))
         self.console.addWidget(consola)
         self.console.setCurrentWidget(consola)
         self.consola = consola
         self.consola.text_edit.setFocus()
-
 
     def cuando_pulsa_el_boton_abrir(self):
         self.editor.abrir_con_dialogo()
@@ -331,7 +365,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         if time.time() - self.watcher_ultima_invocacion < 3:
             return
 
-        self.watcher_ultima_invocacion = time.time();
+        self.watcher_ultima_invocacion = time.time()
 
         self._cargar_codigo_del_editor_desde_archivo(archivo)
         f = codecs.open(unicode(archivo), 'r', 'utf-8')
@@ -353,13 +387,13 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.consola.ejecutar(contenido)
         scope_nuevo = self.consola.obtener_scope()
         self.editor.actualizar_scope(scope_nuevo)
-        widget = scope_nuevo['pilas'].widget
+        self.ventana_pilas = scope_nuevo['pilas'].widget
         self.mostrar_mensaje_cargando()
-        self.reinsertar_widget_de_pilas(widget)
+        self.insertar_widget_de_pilas()
 
 
 def abrir():
-    MainWindow = QtGui.QMainWindow()
+    MainWindow = QMainWindow()
 
     ui = VentanaInterprete()
     ui.setupUi(MainWindow)
@@ -370,8 +404,9 @@ def abrir():
 
     return MainWindow
 
+
 def abrir_script_con_livereload(archivo):
-    MainWindow = QtGui.QMainWindow()
+    MainWindow = QMainWindow()
 
     ui = VentanaInterprete()
     ui.setupUi(MainWindow)
