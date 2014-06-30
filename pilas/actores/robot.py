@@ -4,7 +4,7 @@ import pilas
 import time
 import sys
 import utils
-
+import math
 
 
 
@@ -22,6 +22,82 @@ from PyQt4 import QtGui
 from pilas.fondos import *
 from pilas.actores import Ejes
 from datetime import datetime, timedelta
+
+# Calculos para sensor Ping
+
+EPSILON = 0.0001
+
+def _puntos_de_la_linea(x1, y1, x2, y2):
+    float(x1)
+    float(x2)
+    float(y1)
+    float(y2)
+    
+    # x2, y2 = _puntosParaLaRecta(unActor) # punto y pendiente
+    linea = {}
+    if (x1 == x2):
+        linea["A"] = 1
+        linea["B"] = 0
+        # linea["c"] = 1  unActor.x * (-1)
+        linea["C"] = x1 * (-1)
+    else:
+        print "No es vertical u horizontal"
+        linea["B"] = 1
+        linea["A"] =  (-1 * (y1 - y2))   / (x1 - x2)
+        linea["C"] =  ( -1 * (linea ["A"] * x1)) - (linea["B"] * y1)
+    
+    return linea
+
+def _puntoEInterseccionConLaLinea(puntoX, puntoY, pendienteM ):
+
+    linea = {}
+    linea["A"] = pendienteM * -1
+    linea["B"] = 1
+    linea["C"]  = ( (linea["A"] * puntoX)  + (linea["B"] * puntoY) ) * -1
+    return linea
+
+def _sonParalelas(linea1, linea2):
+    
+    return ((math.fabs(linea1["A"] - linea2["A"]) <= EPSILON ) and (math.fabs(linea1["B"] - linea2["B"]) <= EPSILON ))
+
+def _sonCoincidentes(linea1, linea2):
+   
+    return(( _sonParalelas(linea1, linea2))  and ( math.fabs(linea1["C"] - linea2["C"]) <= EPSILON ))
+
+def _interseccionEntreLineas(linea1, linea2):
+    
+    if  (_sonCoincidentes(linea1, linea2)):
+        return (0,0)
+    if (_sonParalelas(linea1, linea2)):
+        return None
+
+    px = ((linea2["B"] * linea1["C"] ) - (linea1["B"] * linea2["C"])) / ( (linea2["A"] * linea1["B"] ) - (linea2["B"] * linea1["A"] )   )
+
+    if math.fabs(linea1["B"] > EPSILON): #lineas verticales
+        py =  -1 * ( linea1["A"] * px + linea1["C"] ) / linea1["B"]
+    else:
+        py = -1 * (linea2["A"]  * px + linea2["C"] ) / linea2["B"]
+        
+    return (px, py)		
+
+def puntoCercaDeLaRecta(px, py, linea):		
+
+    if ( fabs(linea["B"]) < EPSILON):
+    # linea vertical
+        px_c = -1 * linea["C"]
+        py_c = py
+        
+    if ( fabs(linea["A"]) < EPSILON):	
+	# linea horizontal
+        px_c = px
+        py_c = -1 * linea["C"]
+
+    pendiente = 1 / linea["A"]
+    perpendicular = _puntoEInterseccionConLaLinea(px, py, pendiente)
+    return _interseccionEntreLineas(linea, perpendicular)
+
+
+
 
 def _actor_no_valido(actor):
     return (not isinstance(actor, Pizarra) and (not isinstance(actor, Fondo)) and  (not isinstance(actor, Ejes)))
