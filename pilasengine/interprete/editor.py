@@ -57,8 +57,10 @@ class Editor(QFrame):
             '''
             # The + 4 is used to compensate for the current line being bold.
             width = self.fontMetrics().width(str(self.highest_line)) + 4
+
             if self.width() != width:
-                self.setFixedWidth(width)
+                self.setFixedWidth(width + 15)
+
             QWidget.update(self, *args)
 
         def paintEvent(self, event):
@@ -70,8 +72,10 @@ class Editor(QFrame):
             painter = QPainter(self)
 
             line_count = 0
+
             # Iterate over all text blocks in the document.
             block = self.edit.document().begin()
+
             while block.isValid():
                 line_count += 1
 
@@ -83,24 +87,9 @@ class Editor(QFrame):
                 if position.y() > page_bottom:
                     break
 
-                # We want the line number for the selected line to be bold.
-                bold = False
-
-                if block == current_block:
-                    bold = True
-                    font = painter.font()
-                    font.setBold(True)
-                    painter.setFont(font)
-
                 # Draw the line number right justified at the y position of the
                 # line. 3 is a magic padding number. drawText(x, y, text).
-                painter.drawText(self.width() - font_metrics.width(str(line_count)) - 3, round(position.y()) - contents_y + font_metrics.ascent(), str(line_count))
-
-                # Remove the bold style if it was set previously.
-                if bold:
-                    font = painter.font()
-                    font.setBold(False)
-                    painter.setFont(font)
+                painter.drawText(-5 + self.width() - font_metrics.width(str(line_count)) - 3, round(position.y()) - contents_y + font_metrics.ascent(), str(line_count))
 
                 block = block.next()
 
