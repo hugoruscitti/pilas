@@ -8,7 +8,7 @@ Este es un texto multilinea que se ajusta al area del texto especificada."""
 
 texto = pilas.actores.Texto(mi_texto, y=100, ancho=100)
 
-texto_codigo = pilas.actores.Texto("", magnitud=16)
+texto_codigo = pilas.actores.Texto("", magnitud=16, ancho =200)
 texto_codigo.x = -150
 texto_codigo.y = -150
 

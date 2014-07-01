@@ -26,8 +26,8 @@ class Texto(Actor):
         :param ancho: El limite horizontal en pixeles para la cadena, el texto
                       se mostrara en varias lineas si no cabe en este límite.
         """
-        Actor.__init__(self, pilas)
         self._ancho = ancho
+        Actor.__init__(self, pilas)
         self.__magnitud = magnitud
         self.__vertical = vertical
         self.__fuente = fuente
@@ -66,6 +66,16 @@ class Texto(Actor):
 
     texto = property(obtener_texto, definir_texto,
                      doc="El texto que se tiene que mostrar.")
+
+
+    def obtener_ancho(self):
+        return self._ancho
+
+    def definir_ancho(self, ancho):
+        self._ancho = ancho
+        self.definir_texto(self.texto)
+
+    ancho = property(obtener_ancho, definir_ancho)
 
     def obtener_color(self):
         return self.__color
