@@ -7,7 +7,6 @@ import utils
 import math
 
 
-
 from pilas.actores import Actor
 from pilas.fondos import  *
 from pilas.actores import Pizarra
@@ -80,24 +79,28 @@ def _interseccionEntreLineas(linea1, linea2):
         
     return (px, py)		
 
-def puntoCercaDeLaRecta(px, py, linea):		
-
-    if ( fabs(linea["B"]) < EPSILON):
-    # linea vertical
-        px_c = -1 * linea["C"]
-        py_c = py
-        
-    if ( fabs(linea["A"]) < EPSILON):	
-	# linea horizontal
-        px_c = px
-        py_c = -1 * linea["C"]
-
-    pendiente = 1 / linea["A"]
-    perpendicular = _puntoEInterseccionConLaLinea(px, py, pendiente)
-    return _interseccionEntreLineas(linea, perpendicular)
+def _verificarPuntoEnLaCircunferencia(x1, y1, x2, y2, radio):
+    
+    # Ingresan centro de actor y pnto de interseccion
+    float(x1)
+    float(y1)
+    float(x2)
+    float(y2)
+    return (utils.distancia_entre_dos_puntos((x1, y1), (x2, y2))  <=  math.pow(radio, 2) )
 
 
+def _actorDetrasDelRobot(psX, psY, crX, crY2, piX, piY):
+    segSenCentroX = psX - crX
+    segSenCentroY = psY - crY
 
+    segIntCentroX = piX -  crX
+    segIntCentroY = piY -  crY
+
+    if (segSenCentroX * segSenCentroY  <  0):# Las X son de distinto signo
+        return False
+    else:
+        return True
+    
 
 def _actor_no_valido(actor):
     return (not isinstance(actor, Pizarra) and (not isinstance(actor, Fondo)) and  (not isinstance(actor, Ejes)))
@@ -279,18 +282,28 @@ class Robot():
 
     def ping(self):
         """ Devuelve la distancia en centimetros al objeto frente al robot. """
-        self.ultimo_ping = -1
+        actoresValidos = self.actoresEnLaEscena()
         
-        actores = self.actor.actoresEnLaEscena()
-
-        self.actor.definir_enemigos(actores)
+        x2, y2 = _puntosParaLaRecta(self)
+        linea_actor_1 = _puntos_de_la_linea(self.actor.x, self.actor.y, x2, y2)
+        pendiente = 1.0 / linea_actor_1["A"] 
         
-        return self.actor.disparar()
+        valor = 601
         
-        #if (self.ultimo_ping != -1):
-            #return self.ultimo_ping
-        #else:
-	    
+        for otroActor in actoresValidos :
+            linea_generada =  _puntoEInterseccionConLaLinea(otroActor.x, otroActor.y, pendiente)
+            if not(_interseccionEntreLineas(linea_actor_1, linea_generada) is None):
+                # No son paralelas
+                oax2, oay2 = _interseccionEntreLineas(linea_actor_1, linea_generada)
+                if ( _verificarPuntoEnLaCircunferencia(otroActor.x, otroActor.y, oax2, oay2, radio)) :
+                    # las rectas son perpendiculares y el punto en comun está en el area del otroActor
+                    # Calcular la distancia entre el actor y el punto de interseccion con el actor
+                    
+                    if(not _actorDetrasDelRobot(self.x, self.y, x2, y2, oax2, oay2 )): #FALTA HACER
+                        valorActual = utils.distancia_entre_dos_puntos((x2, y2), (oax2, oay2))
+                        if (valorActual < valor):
+                            valor = valorActual
+        return valor 
         
     def _determinar_pixel_por_cuadrante(self, cuadrante):
         if cuadrante == 1 :
@@ -383,6 +396,13 @@ class Robot():
     x = property(get_x, set_x)
     y = property(get_y, set_y)
     
+    
+    def actoresEnLaEscena(self):
+        actores = []
+        for actor in pilas.escena_actual().actores:
+            if (id(actor) != id(self) and _actor_no_valido(actor)):
+                actores.append(actor)
+        return actores
     
 class Board(object):
 
@@ -510,13 +530,7 @@ class NaveTortuga(Nave):
         return self.ultimo_ping
         
        
-    def actoresEnLaEscena(self):
 
-        actores = []
-        for actor in pilas.escena_actual().actores:
-            if (id(actor) != id(self) and _actor_no_valido(actor)):
-                actores.append(actor)
-        return actores
     
 		
     def disparando(self):
