@@ -11,12 +11,13 @@ import uuid
 import math
 
 from pilasengine import colores
-import pitweener
 
 from PyQt4 import QtGui
 
 PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 INTERPRETE_PATH = os.path.dirname(sys.argv[0])
+
+rutas_personalizadas = []
 
 # Relación de pixels por metro (para el motor de física).
 PPM = 30
@@ -81,6 +82,12 @@ class Utils(object):
         else:
             raise Exception("Solo se pueden asignar números o interpolaciones.")
 
+    def agregar_ruta_personalizada(self, ruta):
+        global rutas_personalizadas
+
+        if ruta not in rutas_personalizadas:
+            rutas_personalizadas.append(ruta)
+
 
 def obtener_angulo_entre(punto_a, punto_b):
     """Retorna el ángulo entro dos puntos de la pantalla.
@@ -104,6 +111,7 @@ def convertir_a_pixels(valor):
 
 
 def obtener_ruta_al_recurso(ruta):
+    global rutas_personalizadas
     dirs = ['./', '/../data',
             PATH,
             INTERPRETE_PATH,
@@ -116,7 +124,7 @@ def obtener_ruta_al_recurso(ruta):
             INTERPRETE_PATH + '/../data'
         ]
 
-    for x in dirs:
+    for x in dirs + rutas_personalizadas:
         full_path = os.path.join(x, ruta)
 
         if os.path.exists(full_path):
