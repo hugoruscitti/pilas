@@ -185,6 +185,8 @@ class Actor(Estudiante):
             self._figura_de_colision.eliminar()
 
         self._figura_de_colision = figura
+        self._figura_de_colision_dx = 0
+        self._figura_de_colision_dy = 0
 
         if figura:
             figura.actor_que_representa_como_area_de_colision = self
@@ -530,8 +532,8 @@ class Actor(Estudiante):
 
     def mover_figura_de_colision(self):
         if getattr(self, 'figura_de_colision', False):
-            self.figura_de_colision.x = self.x
-            self.figura_de_colision.y = self.y
+            self.figura_de_colision.x = self.x - self._figura_de_colision_dx
+            self.figura_de_colision.y = self.y - self._figura_de_colision_dy
             self.figura_de_colision.rotacion = self.rotacion
 
     def _agregar_callback(self, grupo_de_callbacks, callback):
@@ -925,12 +927,18 @@ class Actor(Estudiante):
 
     area_de_colision = property(None, definir_area_colision)
 
-    def crear_figura_de_colision_circular(self, radio):
+    def crear_figura_de_colision_circular(self, radio, x, y):
         self.ff = self.pilas.fisica.Circulo(0, 0, radio, dinamica=False, sensor=True)
         self.figura_de_colision = self.ff
         self.mover_figura_de_colision()
+        self._figura_de_colision_dx = x
+        self._figura_de_colision_dy = y
 
     def crear_figura_de_colision_rectangular(self, x, y, ancho, alto):
-        self.ff = self.pilas.fisica.Rectangulo(x, y, ancho, alto, dinamica=False, sensor=True)
+        self.ff = self.pilas.fisica.Rectangulo(0, 0, ancho, alto, dinamica=False, sensor=True)
         self.figura_de_colision = self.ff
         self.mover_figura_de_colision()
+        self._figura_de_colision_dx = x
+        self._figura_de_colision_dy = y
+
+
