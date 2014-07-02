@@ -141,8 +141,8 @@ class Actores(object):
     def CursorMano(self, x=0, y=0):
         return self._crear_actor('cursor_mano', 'CursorMano', x=x, y=y)
 
-    def CursorDisparo(self, x=0, y=0):
-        return self._crear_actor('cursor_disparo', 'CursorDisparo', x=x, y=y)
+    def CursorDisparo(self, x=0, y=0, usar_el_mouse=True):
+        return self._crear_actor('cursor_disparo', 'CursorDisparo', x=x, y=y, usar_el_mouse=usar_el_mouse)
 
     def EstrellaNinja(self, x=0, y=0):
         return self._crear_actor('estrella_ninja', 'EstrellaNinja', x=x, y=y)

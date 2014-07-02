@@ -23,4 +23,8 @@ elif '-t' in sys.argv:
 else:
     _ = pilasengine.abrir_asistente()
 
+icono = pilasengine.utils.obtener_ruta_al_recurso('icono.ico')
+app.setWindowIcon(QtGui.QIcon(icono))
+#mainwindow.setWindowIcon(QtGui.QIcon(icono))
+
 sys.exit(app.exec_())
