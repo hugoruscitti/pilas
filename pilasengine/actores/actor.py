@@ -920,6 +920,17 @@ class Actor(Estudiante):
 
     radio_de_colision = property(obtener_radio_de_colision, definir_radio_de_colision)
 
+    def definir_area_colision(self, x, y, ancho, alto):
+        self.crear_figura_de_colision_rectangular(x, y, ancho, alto)
+
+    area_de_colision = property(None, definir_area_colision)
+
     def crear_figura_de_colision_circular(self, radio):
         self.ff = self.pilas.fisica.Circulo(0, 0, radio, dinamica=False, sensor=True)
         self.figura_de_colision = self.ff
+        self.mover_figura_de_colision()
+
+    def crear_figura_de_colision_rectangular(self, x, y, ancho, alto):
+        self.ff = self.pilas.fisica.Rectangulo(x, y, ancho, alto, dinamica=False, sensor=True)
+        self.figura_de_colision = self.ff
+        self.mover_figura_de_colision()
