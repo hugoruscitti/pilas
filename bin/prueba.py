@@ -2,16 +2,27 @@ import pilasengine
 
 pilas = pilasengine.iniciar(capturar_errores=False)
 
-pilas.depurador.definir_modos(fisica=True)
+pilas.depurador.definir_modos()
 
-#mono = pilas.actores.Mono()
-p = pilas.actores.Pelota() * 10
-#b = pilas.fisica.Rectangulo(0,0, 100,100, dinamica=False)
-#p.definir_figura_de_colision(b)
+class Actor(pilasengine.actores.Actor):
 
-#p.impulsar(1,0)
+    def actualizar(self):
+        self.x += pilas.pad.x * 6
+        self.y += pilas.pad.y * 6
+        self.rotacion = (pilas.pad.x1 -1) * 180
 
 
-pilas.fisica.Rectangulo(0, -100, 100, 100, dinamica=False)
+actor = Actor(pilas)
+actor.imagen = "aceituna.png"
 
+
+bananas = pilas.actores.Banana() * 30
+
+
+def eliminar(a, b):
+    b.eliminar()
+    a.escala_x = [a.escala+1, a.escala],0.05
+    a.escala_y = [a.escala+1, a.escala],0.09
+
+pilas.colisiones.agregar(actor, bananas, eliminar)
 pilas.ejecutar()

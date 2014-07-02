@@ -57,6 +57,7 @@ class Escena(object):
         return len(self._actores.obtener_actores())
 
     def actualizar_actores(self):
+        self.pilas.pad.actualizar()
         for x in self._actores.obtener_actores():
             x.pre_actualizar()
             x.actualizar()
