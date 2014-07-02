@@ -8,6 +8,7 @@
 import random
 
 from pilasengine.actores.actor import Actor
+from pilasengine.actores.texto import Texto
 from pilasengine.actores.grupo import Grupo
 from pilasengine import colores
 
