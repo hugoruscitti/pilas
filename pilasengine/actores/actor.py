@@ -510,7 +510,7 @@ class Actor(Estudiante):
     def _inhabilitar_actor_completamente(self):
         self.nombre_de_clase = self.__class__.__name__
         self.identificador = id(self)
-        self.__class__ = ActorEliminado
+        #self.__class__ = ActorEliminado
 
     def esta_eliminado(self):
         return False
