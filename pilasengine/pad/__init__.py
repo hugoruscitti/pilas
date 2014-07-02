@@ -11,6 +11,7 @@ import pygame
 class Pad:
 
     def __init__(self, pilas):
+        self.pilas = pilas
         pygame.init()
         self.joystick = None
 
@@ -34,7 +35,7 @@ class Pad:
 
         for e in pygame.event.get():
             if e.type == pygame.JOYBUTTONDOWN:
-                print "joybotton", e
+                self.pilas.escena.pulsa_boton.emitir(numero=e.button)
             elif e.type == pygame.JOYAXISMOTION:
                 if e.axis == 0:
                     self.x = redondear(e.value)

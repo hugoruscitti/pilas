@@ -31,6 +31,7 @@ class Escena(object):
         self.suelta_tecla = self.pilas.eventos.Evento('suelta_tecla')       # ['codigo', 'texto']
         self.pulsa_tecla_escape = self.pilas.eventos.Evento('pulsa_tecla_escape') #['']
         self.cuando_actualiza = self.pilas.eventos.Evento('actualizar')     #['']
+        self.pulsa_boton = self.pilas.eventos.Evento('pulsa_boton')         #['numero']
 
         self.control = self.pilas.control.Control(self)
         self.tareas = Tareas(self, pilas)
@@ -88,6 +89,7 @@ class Escena(object):
 
     def obtener_actores_en(self, x, y):
         actores = []
+
         for actor in self._actores.obtener_actores():
             if actor.colisiona_con_un_punto(x, y):
                 actores.append(actor)
