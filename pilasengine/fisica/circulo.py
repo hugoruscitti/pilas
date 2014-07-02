@@ -39,14 +39,13 @@ class Circulo(Figura):
         self._radio = utils.convertir_a_metros(radio)
         self._escala = 1
 
-        self.dinamica = dinamica
         self.fisica = fisica
         self.sin_rotacion = sin_rotacion
 
         if not self.fisica:
             self.fisica = pilas.escena_actual().fisica
 
-        if not self.dinamica:
+        if not dinamica:
             densidad = 0
 
         fixture = box2d.b2FixtureDef(shape=box2d.b2CircleShape(radius=self._radio),
@@ -61,13 +60,11 @@ class Circulo(Figura):
         self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
-        if self.dinamica:
-            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
-        else:
-            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
+        self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
 
         self._cuerpo.fixedRotation = self.sin_rotacion
         self.sensor = sensor
+        self.dinamica = dinamica
 
     def definir_radio(self):
         for fixture in self._cuerpo:

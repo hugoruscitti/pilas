@@ -34,14 +34,13 @@ class Rectangulo(Figura):
         self._alto = utils.convertir_a_metros(alto)
         self._escala = 1
 
-        self.dinamica = dinamica
         self.fisica = fisica
         self.sin_rotacion = sin_rotacion
 
         if not self.fisica:
             self.fisica = pilas.escena_actual().fisica
 
-        if not self.dinamica:
+        if dinamica:
             densidad = 0
 
         fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(self._ancho/2, self._alto/2)),
@@ -54,13 +53,13 @@ class Rectangulo(Figura):
         self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
-        if self.dinamica:
-            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
-        else:
-            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
+        self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
 
-        self._cuerpo.fixedRotation = self.sin_rotacion
         self.sensor = sensor
+        self.dinamica = dinamica
+        if not dinamica:
+            self._cuerpo.mass = 1000000
+
 
     def definir_vertices(self):
         self._cuerpo.fixtures[0].shape.vertices = box2d.b2PolygonShape(
