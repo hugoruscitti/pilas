@@ -62,3 +62,7 @@ class Fondos(object):
     def Blanco(self):
         import blanco
         return blanco.Blanco(self.pilas)
+
+    def Fondo(self, imagen=None):
+        import fondo
+        return fondo.Fondo(self.pilas, imagen)
