@@ -1,3 +1,11 @@
+# -*- encoding: utf-8 -*-
+# pilas engine: un motor para hacer videojuegos
+#
+# Copyright 2010-2014 - Hugo Ruscitti
+# License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
+#
+# Website - http://www.pilas-engine.com.ar
+
 import pygame
 
 class Pad:
@@ -18,15 +26,21 @@ class Pad:
 
     def actualizar(self):
 
+        def redondear(valor):
+            if -0.2 < valor < 0.2:
+                return 0
+            else:
+                return valor
+
         for e in pygame.event.get():
             if e.type == pygame.JOYBUTTONDOWN:
                 print "joybotton", e
             elif e.type == pygame.JOYAXISMOTION:
                 if e.axis == 0:
-                    self.x = e.value
+                    self.x = redondear(e.value)
                 elif e.axis == 1:
-                    self.y = -e.value
+                    self.y = redondear(-e.value)
                 elif e.axis == 2:
-                    self.x1 = e.value
+                    self.x1 = redondear(e.value)
                 elif e.axis == 3:
-                    self.y1 = -e.value
+                    self.y1 = redondear(-e.value)
