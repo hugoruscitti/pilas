@@ -374,15 +374,23 @@ class VentanaInterprete(Ui_InterpreteWindow):
         # Cambia el directorio para que los recursos del directorio
         # del archivo a ejecutar se puedan cargar correctamente.
         current_path = os.path.dirname(str(archivo))
-        #os.chdir(current_path)
 
-        self.ejecutar_codigo_como_string(contenido)
+        self.ejecutar_codigo_como_string(contenido, current_path)
         f.close()
 
-    def ejecutar_codigo_como_string(self, contenido):
+    def ejecutar_codigo_como_string(self, contenido, ruta_personalizada=None):
         contenido = re.sub('coding\s*:\s*', '', contenido)      # elimina cabecera de encoding.
         contenido = contenido.replace('import pilasengine', '')
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
+
+        # Muchos códigos personalizados necesitan cargar imágenes o sonidos
+        # desde el directorio que contiene al archivo. Para hacer esto posible,
+        # se llama a la función "pilas.utils.agregar_ruta_personalizada" con el
+        # path al directorio que representa el script. Así la función "obtener_ruta_al_recurso"
+        # puede evaluar al directorio del script en busca de recursos también.
+        if ruta_personalizada:
+            agregar_ruta_personalizada = 'pilas.utils.agregar_ruta_personalizada("%s")' %(ruta_personalizada)
+            contenido = contenido.replace('pilas.reiniciar(', agregar_ruta_personalizada+'\n'+'pilas.reiniciar(')
 
         self.consola.ejecutar(contenido)
         scope_nuevo = self.consola.obtener_scope()

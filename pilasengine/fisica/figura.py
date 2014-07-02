@@ -20,6 +20,7 @@ class Figura(object):
         self.fisica = fisica
         self.pilas = pilas
         self.id = pilas.utils.obtener_uuid()
+        self._dinamica = True
 
     def obtener_x(self):
         "Retorna la posición horizontal del cuerpo."
@@ -146,9 +147,32 @@ class Figura(object):
         self._actor_que_representa_como_area_de_colision = actor
         self._cuerpo.fixtures[0].userData['actor'] = actor
 
+    def obtener_escala_de_gravedad(self):
+        return self._cuerpo.gravityScale
+
+    def definir_escala_de_gravedad(self, s):
+        self._cuerpo.gravityScale = s
+
+    def obtener_dinamica(self):
+        return self._dinamica
+
+    def definir_dinamica(self, d):
+        self._dinamica = d
+
+        if d:
+            self.escala_de_gravedad = 1
+            self._cuerpo.fixtures[0].userData['dinamica'] = True
+            self._cuerpo.fixedRotation = False
+        else:
+            self.escala_de_gravedad = 0
+            self._cuerpo.fixtures[0].userData['dinamica'] = False
+            self._cuerpo.fixedRotation = True
+
     x = property(get_x, set_x, doc="define la posición horizontal.")
     y = property(get_y, set_y, doc="define la posición vertical.")
     rotacion = property(get_rotation, set_rotation, doc="define la rotacion.")
     sensor = property(obtener_sensor, definir_sensor)
     actor_que_representa_como_area_de_colision = property(obtener_colision, definir_colision)
+    escala_de_gravedad = property(obtener_escala_de_gravedad, definir_escala_de_gravedad)
+    dinamica = property(obtener_dinamica, definir_dinamica)
 

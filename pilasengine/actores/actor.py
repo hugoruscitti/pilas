@@ -35,7 +35,8 @@ class ActorEliminado(object):
     def __getattr__(self, *k, **kw):
         plantilla = "Este actor (ex: %s id: %d) ya ha sido eliminado, no se puede utilizar."
         mensaje = plantilla %(self.nombre_de_clase, self.identificador)
-        raise ActorEliminadoException(mensaje)
+        print mensaje
+        #raise ActorEliminadoException(mensaje)
 
     def esta_eliminado(self):
         return True
@@ -490,7 +491,8 @@ class Actor(Estudiante):
         except:
             pass
 
-        self._destruir()
+        if self._destruir:
+            self._destruir()
 
     def _eliminar_figura_de_colision(self):
         if self.figura_de_colision:

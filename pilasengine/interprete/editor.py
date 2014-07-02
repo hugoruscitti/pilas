@@ -57,8 +57,10 @@ class Editor(QFrame):
             '''
             # The + 4 is used to compensate for the current line being bold.
             width = self.fontMetrics().width(str(self.highest_line)) + 4
+
             if self.width() != width:
-                self.setFixedWidth(width)
+                self.setFixedWidth(width + 15)
+
             QWidget.update(self, *args)
 
         def paintEvent(self, event):
@@ -70,8 +72,10 @@ class Editor(QFrame):
             painter = QPainter(self)
 
             line_count = 0
+
             # Iterate over all text blocks in the document.
             block = self.edit.document().begin()
+
             while block.isValid():
                 line_count += 1
 
@@ -83,24 +87,9 @@ class Editor(QFrame):
                 if position.y() > page_bottom:
                     break
 
-                # We want the line number for the selected line to be bold.
-                bold = False
-
-                if block == current_block:
-                    bold = True
-                    font = painter.font()
-                    font.setBold(True)
-                    painter.setFont(font)
-
                 # Draw the line number right justified at the y position of the
                 # line. 3 is a magic padding number. drawText(x, y, text).
-                painter.drawText(self.width() - font_metrics.width(str(line_count)) - 3, round(position.y()) - contents_y + font_metrics.ascent(), str(line_count))
-
-                # Remove the bold style if it was set previously.
-                if bold:
-                    font = painter.font()
-                    font.setBold(False)
-                    painter.setFont(font)
+                painter.drawText(-5 + self.width() - font_metrics.width(str(line_count)) - 3, round(position.y()) - contents_y + font_metrics.ascent(), str(line_count))
 
                 block = block.next()
 
@@ -242,18 +231,6 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
     def paint_event_falso(self, event):
         pass
 
-    def _reemplazar_rutina_redibujado(self):
-        # HACK: en macos la aplicación se conjela si el dialogo está
-        # activo y el widget de pilas se sigue dibujando. Así que
-        # mientras el dialogo está activo, reemplazo el dibujado
-        # del widget de pilas por unos segundos.
-        pilas = self.interpreterLocals['pilas']
-
-        widget = pilas.obtener_widget()
-        paint_event_original = widget.__class__.paintEvent
-        widget.__class__.paintEvent = Editor.paint_event_falso
-        return paint_event_original
-
     def _restaurar_rutina_de_redibujado_original(self, paint_event_original):
         pilas = self.interpreterLocals['pilas']
         pilas.reiniciar()
@@ -265,8 +242,6 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
             if not self.ventana_interprete.consultar_si_quiere_perder_cambios():
                 return
 
-        #paint_event_original = self._reemplazar_rutina_redibujado()
-
         ruta = QFileDialog.getOpenFileName(self, "Abrir Archivo", "",
                                            "Archivos python (*.py)",
                                            options=QFileDialog.DontUseNativeDialog)
@@ -274,8 +249,6 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
         if ruta:
             self.cargar_desde_archivo(ruta)
             self._cambios_sin_guardar = False
-
-        #self._restaurar_rutina_de_redibujado_original(paint_event_original)
 
         if ruta:
             self.ejecutar()
@@ -285,8 +258,6 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
         self.ventana_interprete.ejecutar_codigo_como_string(texto)
 
     def guardar_con_dialogo(self):
-        #paint_event_original = self._reemplazar_rutina_redibujado()
-
         ruta = QFileDialog.getSaveFileName(self, "Guardar Archivo", "",
                                            "Archivos python (*.py)",
                                            options=QFileDialog.DontUseNativeDialog)
@@ -295,7 +266,6 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
             self.guardar_contenido_en_el_archivo(ruta)
             self._cambios_sin_guardar = False
 
-        #self._restaurar_rutina_de_redibujado_original(paint_event_original)
         self.ejecutar()
 
     def _cargar_resaltador_de_sintaxis(self):

@@ -6,6 +6,7 @@ import pilasengine
 
 
 class MiHabilidad(pilasengine.habilidades.Habilidad):
+
     def actualizar(self):
         self.receptor.rotacion += 2
 
