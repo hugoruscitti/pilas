@@ -39,9 +39,17 @@ class Pad:
             elif e.type == pygame.JOYAXISMOTION:
                 if e.axis == 0:
                     self.x = redondear(e.value)
+                    self.emitir_evento_mueve_pad()
                 elif e.axis == 1:
                     self.y = redondear(-e.value)
+                    self.emitir_evento_mueve_pad()
                 elif e.axis == 2:
                     self.x1 = redondear(e.value)
+                    self.emitir_evento_mueve_pad()
                 elif e.axis == 3:
                     self.y1 = redondear(-e.value)
+                    self.emitir_evento_mueve_pad()
+
+    def emitir_evento_mueve_pad(self):
+        self.pilas.escena.mueve_pad.emitir(x=self.x, y=self.y,
+                                           x1=self.x1, y1=self.y1)

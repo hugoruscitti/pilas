@@ -32,6 +32,7 @@ class Escena(object):
         self.pulsa_tecla_escape = self.pilas.eventos.Evento('pulsa_tecla_escape') #['']
         self.cuando_actualiza = self.pilas.eventos.Evento('actualizar')     #['']
         self.pulsa_boton = self.pilas.eventos.Evento('pulsa_boton')         #['numero']
+        self.mueve_pad = self.pilas.eventos.Evento('mueve_pad')         #['x', 'y', 'x1', 'y1']
 
         self.control = self.pilas.control.Control(self)
         self.tareas = Tareas(self, pilas)
