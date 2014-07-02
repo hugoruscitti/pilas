@@ -40,6 +40,7 @@ class Grilla(Imagen):
                            self.cuadro_ancho, self.cuadro_alto)
 
     def definir_cuadro(self, cuadro):
+        self._ticks_acumulados = 0
         self._cuadro = cuadro
 
         frame_col = cuadro % self.columnas
@@ -48,15 +49,21 @@ class Grilla(Imagen):
         self.dx = frame_col * self.cuadro_ancho
         self.dy = frame_row * self.cuadro_alto
 
-    def avanzar(self):
+    def avanzar(self, velocidad=60):
+        velocidad_de_animacion = (1000.0 / 60) * velocidad
+        self._ticks_acumulados += velocidad_de_animacion
         ha_avanzado = True
-        cuadro_actual = self._cuadro + 1
 
-        if cuadro_actual >= self.cantidad_de_cuadros:
-            cuadro_actual = 0
-            ha_avanzado = False
+        if self._ticks_acumulados > 1000.0:
+            self._ticks_acumulados -= 1000.0
+            cuadro_actual = self._cuadro + 1
 
-        self.definir_cuadro(cuadro_actual)
+            if cuadro_actual >= self.cantidad_de_cuadros:
+                cuadro_actual = 0
+                ha_avanzado = False
+
+            self.definir_cuadro(cuadro_actual)
+
         return ha_avanzado
 
     def obtener_cuadro(self):
