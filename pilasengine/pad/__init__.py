@@ -11,19 +11,27 @@ import pygame
 class Pad:
 
     def __init__(self, pilas):
-        self.pilas = pilas
-        pygame.init()
-        self.joystick = None
-
-        for i in range(0, pygame.joystick.get_count()):
-            self.joystick = pygame.joystick.Joystick(i)
-            self.joystick.init()
-
         self.x = 0
         self.y = 0
 
         self.x1 = 0
         self.y1 = 0
+
+        self.pilas = pilas
+
+        pygame.joystick.init()
+        pygame.init()
+
+        self.joystick = None
+        #print "Obteniendo pads:", pygame.joystick.get_count()
+
+
+        for i in range(0, pygame.joystick.get_count()):
+            self.joystick = pygame.joystick.Joystick(i)
+            self.joystick.init()
+            #print self.joystick.get_name()
+            #print "cantidad controles", self.joystick.get_numaxes()
+
 
     def actualizar(self):
 
@@ -32,6 +40,13 @@ class Pad:
                 return 0
             else:
                 return valor
+
+        pygame.event.set_allowed([pygame.JOYAXISMOTION,
+                                  pygame.JOYBALLMOTION,
+                                  pygame.JOYHATMOTION,
+                                  pygame.JOYBUTTONUP,
+                                  pygame.JOYBUTTONDOWN
+                                  ])
 
         for e in pygame.event.get():
             if e.type == pygame.JOYBUTTONDOWN:
@@ -49,6 +64,8 @@ class Pad:
                 elif e.axis == 3:
                     self.y1 = redondear(-e.value)
                     self.emitir_evento_mueve_pad()
+            else:
+                print e
 
     def emitir_evento_mueve_pad(self):
         self.pilas.escena.mueve_pad.emitir(x=self.x, y=self.y,
