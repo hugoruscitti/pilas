@@ -22,7 +22,7 @@ class Emisor(Actor):
         self.particulas_vivas = 0
 
         self.constante = True
-        self.duracion = 1
+        self.vida = 1
 
         self.dx_min = -2
         self.dx_max = 2
@@ -96,7 +96,7 @@ class Emisor(Actor):
                                          self.x + d_x, self.y + d_y,
                                          dx=dx, dy=dy,
                                          imagen=self.imagen_particula,
-                                         duracion=self.duracion)
+                                         vida=self.vida)
 
         p.transparencia = d_transparencia
         p.escala = d_escala

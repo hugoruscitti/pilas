@@ -10,14 +10,14 @@ from pilasengine.actores.actor import Actor
 
 class Particula(Actor):
 
-    def __init__(self, pilas, emisor, x, y, dx, dy, imagen, duracion):
+    def __init__(self, pilas, emisor, x, y, dx, dy, imagen, vida):
         Actor.__init__(self, pilas, x, y)
         self.emisor = emisor
         self.imagen = imagen
         self.dx = dx
         self.dy = dy
 
-        self.duracion = duracion * 1000 # expresada en segundos
+        self.vida = vida * 1000 # expresada en segundos
         self.contador = 0
 
         self.escala_fin = self.escala
@@ -28,27 +28,27 @@ class Particula(Actor):
         self.figura_de_colision = None
 
     def definir_escala_fin(self, valor):
-        self._incremento_escala = (valor - self.escala) / ((self.duracion / 1000.0) * 60.0)
+        self._incremento_escala = (valor - self.escala) / ((self.vida / 1000.0) * 60.0)
 
     escala_fin = property(None, definir_escala_fin)
 
     def definir_transparencia_fin(self, valor):
-        self._incremento_transparencia = (valor - self.transparencia) / ((self.duracion / 1000.0) * 60.0)
+        self._incremento_transparencia = (valor - self.transparencia) / ((self.vida / 1000.0) * 60.0)
 
     transparencia_fin = property(None, definir_transparencia_fin)
 
     def definir_rotacion_fin(self, valor):
-        self._incremento_rotacion = (valor - self.rotacion) / ((self.duracion / 1000.0) * 60.0)
+        self._incremento_rotacion = (valor - self.rotacion) / ((self.vida / 1000.0) * 60.0)
 
     rotacion_fin = property(None, definir_rotacion_fin)
 
     def definir_aceleracion_x(self, valor):
-        self._incremento_aceleracion_x = valor / ((self.duracion / 1000.0) * 60.0)
+        self._incremento_aceleracion_x = valor / ((self.vida / 1000.0) * 60.0)
 
     aceleracion_x = property(None, definir_aceleracion_x)
 
     def definir_aceleracion_y(self, valor):
-        self._incremento_aceleracion_y = valor / ((self.duracion / 1000.0) * 60.0)
+        self._incremento_aceleracion_y = valor / ((self.vida / 1000.0) * 60.0)
 
     aceleracion_y = property(None, definir_aceleracion_y)
 
@@ -65,6 +65,6 @@ class Particula(Actor):
         self.transparencia += self._incremento_transparencia
         self.rotacion += self._incremento_rotacion
 
-        if self.contador > self.duracion:
+        if self.contador > self.vida:
             self.emisor.se_elimina_particula(self)
             self.eliminar()
