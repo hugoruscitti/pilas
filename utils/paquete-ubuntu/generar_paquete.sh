@@ -12,6 +12,7 @@ echo "Clonando box2d"
 svn checkout http://pybox2d.googlecode.com/svn/trunk/ pybox2d > box2d_clone.log
 cd pybox2d
 find . -type f -print0 | xargs -0 sed -i 's/sáb /sab /g'
+find . -type f -print0 | xargs -0 sed -i 's/mié /mie /g'
 python setup.py bdist > pybox2d_bdist.log
 
 # El directorio 'dist' tiene el paquete binario de box2d
