@@ -65,7 +65,7 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
         var nombre = listado_plano.ejemplos[i];
 
         $scope.data.ejemplos.push({
-            titulo: nombre.replace('_', ' '),
+            titulo: nombre.replace(/_/g, ' '),
             nick:  nombre,
             tags: []
         });
