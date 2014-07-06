@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-import inspect
+import collections
 
 from pilasengine import habilidades
 from pilasengine import comportamientos
@@ -22,6 +22,9 @@ class Estudiante(object):
         self._habilidades = []
         self.comportamiento_actual = None
         self.comportamientos = []
+        self.estructura_comportamiento = collections.namedtuple(
+                                "Comportamiento",
+                                ['objeto', 'args', 'kwargs'])
         self.repetir_comportamientos_por_siempre = False
         self.habilidades = habilidades.ProxyHabilidades(self._habilidades)
 
@@ -100,11 +103,11 @@ class Estudiante(object):
         :param classname: Referencia a la clase que representa el
                           comportamiento.
         """
-        comportamientos_actuales = [comportamiento['objeto'].__class__ \
+        comportamientos_actuales = [comportamiento.objeto.__class__
                                     for comportamiento in self.comportamientos]
         return (classname in comportamientos_actuales)
 
-    def hacer_luego(self, classname, repetir_por_siempre=False, *k, **kw):
+    def hacer_luego(self, classname, repetir_por_siempre=False, *args, **kwargs):
         """Define un nuevo comportamiento para realizar al final.
 
         Los actores pueden tener una cadena de comportamientos, este
@@ -115,41 +118,36 @@ class Estudiante(object):
                                     luego de terminar.
         """
         if issubclass(classname, comportamientos.Comportamiento):
-            self._hacer_luego(classname, repetir_por_siempre, *k, **kw)
+            self._hacer_luego(classname, repetir_por_siempre, *args, **kwargs)
         else:
-            raise Exception('El actor solo puede "hacer" clases que hereden \
-                            de pilasengine.comportamientos.Comportamiento')
+            raise Exception('''El actor solo puede "hacer" clases que hereden
+                            de pilasengine.comportamientos.Comportamiento''')
 
-    def _hacer_luego(self, classname, repetir_por_siempre, *k, **kw):
-        comportamiento = self._crear_comportamiento(classname, *k, **kw)
+    def _hacer_luego(self, classname, repetir_por_siempre, *args, **kwargs):
+        comportamiento = self.estructura_comportamiento(
+                            classname(self.pilas), args, kwargs)
+
         self.comportamientos.append(comportamiento)
         self.repetir_comportamientos_por_siempre = repetir_por_siempre
 
-    def hacer(self, classname, *k, **kw):
+    def hacer(self, classname, *args, **kwargs):
         """Define el comportamiento para el actor de manera inmediata.
 
         :param classname: Referencia al comportamiento a realizar.
         """
 
         if issubclass(classname, comportamientos.Comportamiento):
-            self._hacer(classname, *k, **kw)
+            self._hacer(classname, *args, **kwargs)
         else:
-            raise Exception('El actor solo puede "hacer" clases que hereden \
-                            de pilasengine.comportamientos.Comportamiento')
+            raise Exception('''El actor solo puede "hacer" clases que hereden
+                            de pilasengine.comportamientos.Comportamiento''')
 
     def _hacer(self, classname, *args, **kwargs):
-        comportamiento = self._crear_comportamiento(classname, *args, **kwargs)
+        comportamiento = self.estructura_comportamiento(
+                            classname(self.pilas), args, kwargs)
+
         self.comportamientos.insert(0, comportamiento)
         self._adoptar_el_siguiente_comportamiento()
-
-    def _crear_comportamiento(self, classname, *args, **kwargs):
-        # Creando un diccionario con el objeto comportamiento y sus argumentos
-        comportamiento = dict()
-        comportamiento['objeto'] = classname(self.pilas)
-        comportamiento['args'] = args
-        comportamiento['kwargs'] = kwargs
-
-        return comportamiento
 
     def eliminar_comportamientos(self):
         "Elimina todos los comportamientos que tiene que hacer el actor."
@@ -163,7 +161,7 @@ class Estudiante(object):
         termina = None
 
         if self.comportamiento_actual:
-            termina = self.comportamiento_actual.actualizar()
+            termina = self.comportamiento_actual.objeto.actualizar()
 
             if termina:
                 if self.repetir_comportamientos_por_siempre:
@@ -178,10 +176,10 @@ class Estudiante(object):
 
         if self.comportamientos:
             comportamiento = self.comportamientos.pop(0)
-            self.comportamiento_actual = comportamiento['objeto']
-            args = comportamiento['args']
-            kwargs = comportamiento['kwargs']
-            self.comportamiento_actual.iniciar(self, *args, **kwargs)
+            self.comportamiento_actual = comportamiento
+            self.comportamiento_actual.objeto.iniciar(
+                self, *self.comportamiento_actual.args,
+                **self.comportamiento_actual.kwargs)
         else:
             self.comportamiento_actual = None
 
