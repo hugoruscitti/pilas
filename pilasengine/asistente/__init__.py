@@ -56,7 +56,6 @@ class Interlocutor(QtCore.QObject):
     def abrir_sitio_de_pilas(self):
         webbrowser.open("http://www.pilas-engine.com.ar")
 
-
     @QtCore.pyqtSlot(str, result=str)
     def obtener_codigo_del_ejemplo(self, juego):
         juego = str(juego)

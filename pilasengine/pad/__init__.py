@@ -26,7 +26,6 @@ class Pad:
         self.joystick = None
         #print "Obteniendo pads:", pygame.joystick.get_count()
 
-
         for i in range(0, pygame.joystick.get_count()):
             self.joystick = pygame.joystick.Joystick(i)
             self.joystick.init()
@@ -38,8 +37,12 @@ class Pad:
         "Retorna una lista de todos los joysticks conectados"
         return [j.get_name().strip() for j in self.joysticks]
 
+    def hay_pads_conectados(self):
+        return len(self.joysticks) > 0
 
     def actualizar(self):
+        if not self.hay_pads_conectados():
+            return
 
         def redondear(valor):
             if -0.2 < valor < 0.2:
@@ -70,8 +73,6 @@ class Pad:
                 elif e.axis == 3:
                     self.y1 = redondear(-e.value)
                     self.emitir_evento_mueve_pad()
-            else:
-                print e
 
     def emitir_evento_mueve_pad(self):
         self.pilas.escena.mueve_pad.emitir(x=self.x, y=self.y,
