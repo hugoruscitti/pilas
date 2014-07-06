@@ -27,7 +27,7 @@ pc1.x = -150
 pc1.y = 200
 
 pc1.agregar(emisor, 'frecuencia_creacion', 0.01, 1)
-pc1.agregar(emisor, 'duracion', 0.1, 10)
+pc1.agregar(emisor, 'vida', 0.1, 10)
 pc1.agregar_espacio()
 
 pc1.agregar(emisor, 'escala_fin_min', 0.1, 3)

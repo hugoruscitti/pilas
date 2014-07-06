@@ -16,7 +16,11 @@ class Fondo(actor.Actor):
     escena y ocupan toda el area de la ventana.
     """
 
-    def __init__(self, pilas=None):
+    def __init__(self, pilas=None, imagen=None):
         super(Fondo, self).__init__(pilas)
+
+        if imagen:
+            self.imagen = imagen
+
         self.z = 1000
         self.radio_de_colision = None

@@ -8,6 +8,7 @@
 import random
 
 from pilasengine.actores.actor import Actor
+from pilasengine.actores.texto import Texto
 from pilasengine.actores.grupo import Grupo
 from pilasengine import colores
 
@@ -141,8 +142,8 @@ class Actores(object):
     def CursorMano(self, x=0, y=0):
         return self._crear_actor('cursor_mano', 'CursorMano', x=x, y=y)
 
-    def CursorDisparo(self, x=0, y=0):
-        return self._crear_actor('cursor_disparo', 'CursorDisparo', x=x, y=y)
+    def CursorDisparo(self, x=0, y=0, usar_el_mouse=True):
+        return self._crear_actor('cursor_disparo', 'CursorDisparo', x=x, y=y, usar_el_mouse=usar_el_mouse)
 
     def EstrellaNinja(self, x=0, y=0):
         return self._crear_actor('estrella_ninja', 'EstrellaNinja', x=x, y=y)
@@ -316,13 +317,12 @@ class Actores(object):
                                  actor=actor, propiedad=propiedad,
                                  min=minimo, max=maximo)
 
-    def Particula(self, emisor, x=0, y=0, dx=0, dy=0, imagen="particula.png",
-                  duracion=1):
+    def Particula(self, emisor, x=0, y=0, dx=0, dy=0, imagen="particula.png", vida=1):
         actor = self._crear_actor('particula', 'Particula', emisor=emisor,
                                   x=x, y=y,
                                   dx=dx, dy=dy,
                                   imagen=imagen,
-                                  duracion=duracion)
+                                  vida=vida)
         return actor
 
     def fabricar(self, clase, cantidad):

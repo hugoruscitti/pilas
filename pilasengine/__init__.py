@@ -28,6 +28,7 @@ from pilasengine import comportamientos
 from pilasengine import eventos
 from pilasengine import controles
 from pilasengine import configuracion
+from pilasengine import pad
 
 import widget
 
@@ -82,6 +83,7 @@ class Pilas(object):
         self.eventos = eventos.Eventos(self)
         self.control = controles.Controles(self)
         self.escenas = escenas.Escenas(self)
+        self.pad = pad.Pad(self)
         self.imagenes = imagenes.Imagenes(self)
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)

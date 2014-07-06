@@ -47,7 +47,7 @@ class Fisica(object):
 
         self.velocidad = 1.0
         self.timeStep = self.velocidad/60.0
-        self.mundo.SetAllowSleeping(True)
+        self.mundo.SetAllowSleeping(False)
 
     def iniciar(self):
         self.area = self.pilas.obtener_widget().obtener_area()
