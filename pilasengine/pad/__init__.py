@@ -18,6 +18,7 @@ class Pad:
         self.y1 = 0
 
         self.pilas = pilas
+        self.joysticks = []
 
         pygame.joystick.init()
         pygame.init()
@@ -29,8 +30,13 @@ class Pad:
         for i in range(0, pygame.joystick.get_count()):
             self.joystick = pygame.joystick.Joystick(i)
             self.joystick.init()
+            self.joysticks.append(self.joystick)
             #print self.joystick.get_name()
             #print "cantidad controles", self.joystick.get_numaxes()
+
+    def listar(self):
+        "Retorna una lista de todos los joysticks conectados"
+        return [j.get_name().strip() for j in self.joysticks]
 
 
     def actualizar(self):
