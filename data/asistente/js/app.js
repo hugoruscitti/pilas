@@ -40,7 +40,7 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
 
     $scope.abrir_ejemplo = function(nick) {
         window.interlocutor.abrir_ejemplo(nick);
-    }
+    };
 
     $scope.mostrar_codigo = function(juego) {
 
@@ -53,8 +53,7 @@ app.controller("EjemplosCtrl", function($scope, $location, $modal){
                 }
             }
         });
-
-    }
+    };
 
 
 
