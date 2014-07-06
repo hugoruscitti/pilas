@@ -27,6 +27,10 @@ img {
   background: #4D4D4D;
 }
 
+table.about-colaboradores {
+  margin-bottom: 3em;
+}
+
 table.about-colaboradores td {
   text-align: center;
   width: 100px;
@@ -35,6 +39,10 @@ table.about-colaboradores td {
 table.about-colaboradores td img {
   width: 60px;
   height: 60px;
+}
+
+table.about-core {
+  margin-bottom: 3em;
 }
 
 table.about-core td {
@@ -79,4 +87,9 @@ border: 0;
 .wy-side-nav-search>a, .wy-side-nav-search .wy-dropdown>a {
   margin: 0;
   padding: 0;
+}
+
+table {
+
+  margin-bottom: 2em;
 }

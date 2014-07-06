@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guía para desarrolladores - pilas-engine</title>
+  <title>Sonidos - pilas-engine</title>
 
   
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -79,8 +79,17 @@
         
     </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../sonidos/">Sonidos</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Sonidos</a>
+        
+            <ul>
+            
+                <li class="toctree-l2"><a href="#cargar-sonidos-y-musica">Cargar sonidos y música</a></li>
+                
+                    <li><a class="toctree-l3" href="#reproducir">Reproducir</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -94,27 +103,8 @@
         
     </li>
 
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Guía para desarrolladores</a>
-        
-            <ul>
-            
-                <li class="toctree-l2"><a href="#guia-para-desarrolladores">Guía para desarrolladores</a></li>
-                
-                    <li><a class="toctree-l3" href="#repositorio">Repositorio</a></li>
-                
-                    <li><a class="toctree-l3" href="#obteniendo-la-ultima-version-del-repositorio">Obteniendo la última versión del repositorio</a></li>
-                
-                    <li><a class="toctree-l3" href="#primer-prueba">Primer prueba</a></li>
-                
-                    <li><a class="toctree-l3" href="#instalacion-en-modo-desarrollo">Instalación en modo desarrollo</a></li>
-                
-                    <li><a class="toctree-l3" href="#mantenerse-actualizado-siempre">Mantenerse actualizado, siempre...</a></li>
-                
-                    <li><a class="toctree-l3" href="#mas-detalles">Mas detalles</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
         
     </li>
 
@@ -141,7 +131,7 @@
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
-    <li>Guía para desarrolladores</li>
+    <li>Sonidos</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -149,49 +139,36 @@
   <hr/>
 </div>
           <div role="main">
-            <h1 id="guia-para-desarrolladores">Guía para desarrolladores</h1>
-<p>En esta sección veremos como contribuir en el desarrollo de pilas, mostrando las herramientas de desarrollo y dando algunas recomendaciones.</p>
-<p>Actualmente utilizamos Git junto a los servicios de github.</p>
-<h2 id="repositorio">Repositorio</h2>
-<p>Para contribuir en el desarrollo de pilas necesitas una cuenta de usuario en
-<a href="http://github.com">github</a>, nuestros proveedores del servicio de repositorios.</p>
-<p>La dirección de acceso web al repositorio es:</p>
-<ul>
-<li><a href="http://github.com/hugoruscitti/pilas">http://github.com/hugoruscitti/pilas</a></li>
-</ul>
-<p>Ten en cuenta que el servicio <a href="http://github.com">github</a> es gratuito, y solo lleva unos minutos registrarse.</p>
-<h2 id="obteniendo-la-ultima-version-del-repositorio">Obteniendo la última versión del repositorio</h2>
-<p>Para obtener la última versión tienes que ejecutar el siguiente comando desde un terminal:</p>
-<pre class="prettyprint well"><code>git clone http://github.com/hugoruscitti/pilas
+            <h1 id="cargar-sonidos-y-musica">Cargar sonidos y música</h1>
+<p>Si bien a continuación ejemplificamos todo con el modulo <code>pilas.sonidos</code>
+todos los ejemplos funcionan para el modulo <code>pilas.musica</code></p>
+<p>Los sonidos se pueden cargar usando el módulo
+<code>sonidos</code> de la siguiente manera:</p>
+<pre class="prettyprint well"><code>sonido_de_explosion = pilas.sonidos.cargar('explosion.wav')
 </code></pre>
-<p>Luego aparecerá un directorio llamado pilas, con el contenido completo del repositorio.</p>
-<h2 id="primer-prueba">Primer prueba</h2>
-<p>Ingresa en el directorio pilas, ejecuta el comando:</p>
-<pre class="prettyprint well"><code>python bin/pilas
+<p>donde <code>explosion.wav</code> es el nombre del archivo de audio.</p>
+<p>Ten en cuenta que esta función para cargar sonidos
+se comporta muy parecido a la función que nos permite
+cargar imágenes o grillas. El archivo se buscará en
+el directorio principal de nuestro juego, luego en el
+directorio <code>data</code> y por último en la biblioteca de
+sonidos que trae pilas.</p>
+<h2 id="reproducir">Reproducir</h2>
+<p>La función <code>sonidos.cargar</code> nos retorna un objeto de tipo
+<code>Sonido</code> que tiene un método para reproducirse llamado
+<code>reproducir()</code>.</p>
+<p>Entonces, para reproducir un sonido solamente tienes
+que llamar al método <code>reproducir</code>:</p>
+<pre class="prettyprint well"><code>sonido_de_explosion.reproducir()
 </code></pre>
-<p>debería aparecer en pantalla el asistente de primer inicio.</p>
-<h2 id="instalacion-en-modo-desarrollo">Instalación en modo desarrollo</h2>
-<p>Si sos desarrollador, la forma de instalación mas recomendable es mediante el
-comando develop. Esta opción es útil porque te permite mantener actualizada
-la biblioteca en todo momento.</p>
-<p>Para usar esta opción de instalación tienes que ejecutar el siguiente comando:</p>
-<pre class="prettyprint well"><code>sudo python setup.py develop
+<p>Si deseas que un sonido se repita indefinidamente debes utilizar el parámetro
+<em>repetir=True</em>. Por ejemplo:</p>
+<pre class="prettyprint well"><code>sonido_de_explosion.reproducir(repetir=True)
 </code></pre>
-<p>Ten en cuenta que a partir de ahora, cuando uses pilas en el sistema, se
-leerá el código directamente desde ese directorio en donde has clonado
-la biblioteca.</p>
-<h2 id="mantenerse-actualizado-siempre">Mantenerse actualizado, siempre...</h2>
-<p>Dado que <code>pilas</code> está creciendo, es una buena idea mantener tu copia del motor actualizada.</p>
-<p>Para ello tienes que ingresar en el directorio pilas y ejecutar el siguiente
-comando de manera periódica:</p>
-<pre class="prettyprint well"><code>git pull
+<p>Para detener la música o un efecto de sonido, existe
+el método <em>detener</em>. Por ejemplo:</p>
+<pre class="prettyprint well"><code>sonido_de_explosion.detener()
 </code></pre>
-<h2 id="mas-detalles">Mas detalles</h2>
-<p>Usamos el modelo de trabajo de github, haciendo forks y pull requests.</p>
-<p>Si quieres obtener mas detalles te recomiendo ver el siguiente artículo:</p>
-<ul>
-<li><a href="http://www.cocoanetics.com/2012/01/github-fork-fix-pull-request/">http://www.cocoanetics.com/2012/01/github-fork-fix-pull-request/</a></li>
-</ul>
 
           </div>
 
@@ -199,8 +176,10 @@ comando de manera periódica:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../dibujado_simple_en_pantalla/" class="btn btn-neutral float-right" title="Dibujado simple en pantalla"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../interfaz/" class="btn btn-neutral" title="Interfaz de usuario"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+      
+        <a href="../imagen/" class="btn btn-neutral" title="Imagen"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
       
     </div>
   
