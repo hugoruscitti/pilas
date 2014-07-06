@@ -10,7 +10,7 @@ all:
 	@echo "  $(V)ejecutar$(N)    Ejecuta pilas sin instarlo."
 	@echo "  $(V)utest$(N)       Lanza todos los test de unidad."
 	@echo "  $(V)ui$(N)          Actualiza todas las interfaces de usuario."
-	@echo "  $(V)html$(N)        Actualiza toda la documentación y la copia a pilas/data/manual."
+	@echo "  $(V)manual$(N)      Intenta actualizar la documentación y la copia a data/manual."
 	@echo "  $(V)rm_pyc$(N)      Borra todos los archivos .pyc del proyecto."
 	@echo ""
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
@@ -36,8 +36,10 @@ utest:
 	# O una version mas linda si se instala nose y nosecolor con pip
 	#@nosetests --color pilasengine/tests/*
 
-html:
-	cd docs; make
+manual:
+	mkdir -p data/manual
+	cd ../pilas-manual; make generar; 
+	cp -R -f ../pilas-manual/site/* data/manual/
 
 ui:
 	pyuic4 -xo pilasengine/asistente/asistente_base.py pilasengine/asistente/asistente.ui
