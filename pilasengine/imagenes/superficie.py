@@ -10,9 +10,11 @@ from PyQt4 import QtGui
 from PyQt4 import QtCore
 from pilasengine.imagenes.imagen import Imagen
 from pilasengine import colores
+from pilasengine import utils
 
 
 class Superficie(Imagen):
+    CACHE_FUENTES = {}
 
     def __init__(self, pilas, ancho, alto):
         self.pilas = pilas
@@ -44,11 +46,12 @@ class Superficie(Imagen):
         dx = x
         dy = y
 
-        #if fuente:
-        #    nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
-        #else:
-        #    nombre_de_fuente = self.canvas.font().family()
-        nombre_de_fuente = self.canvas.font().family()
+        if fuente:
+            nombre_de_fuente = self.cargar_fuente(fuente)
+        else:
+            nombre_de_fuente = self.canvas.font().family()
+
+        #nombre_de_fuente = self.canvas.font().family()
 
         if not ancho:
             flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop
@@ -128,3 +131,26 @@ class Superficie(Imagen):
 
     def limpiar(self):
         self._imagen.fill(QtGui.QColor(0, 0, 0, 0))
+
+    def cargar_fuente(self, fuente_como_ruta):
+        """Carga o convierte una fuente para ser utilizada dentro del motor.
+
+        Permite a los usuarios referirse a las fuentes como ruta a archivos, sin
+        tener que preocuparse por el font-family.
+
+        :param fuente_como_ruta: Ruta al archivo TTF que se quiere utilizar.
+
+        Ejemplo:
+
+            >>> Texto.cargar_fuente_desde_cache('myttffile.ttf')
+            'Visitor TTF1'
+        """
+
+        if not fuente_como_ruta in Superficie.CACHE_FUENTES.keys():
+            ruta_a_la_fuente = utils.obtener_ruta_al_recurso(fuente_como_ruta)
+            fuente_id = QtGui.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
+            Superficie.CACHE_FUENTES[fuente_como_ruta] = fuente_id
+        else:
+            fuente_id = Superficie.CACHE_FUENTES[fuente_como_ruta]
+
+        return str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
