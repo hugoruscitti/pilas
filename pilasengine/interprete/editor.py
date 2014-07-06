@@ -147,6 +147,9 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
         self.ventana_interprete = ventana_interprete
         self._cargar_resaltador_de_sintaxis()
 
+    def insertFromMimeData(self, source):
+        QTextEdit.insertPlainText(self, source.text())
+
     def keyPressEvent(self, event):
         "Atiene el evento de pulsación de tecla."
         self._cambios_sin_guardar = True

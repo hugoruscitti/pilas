@@ -77,6 +77,9 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         self.timer_cursor.start(1000)
         self.timer_cursor.timeout.connect(self.marker_si_es_necesario)
 
+    def insertFromMimeData(self, source):
+        QTextEdit.insertPlainText(self, source.text())
+
     def funcion_valores_autocompletado(self, texto):
         scope = self.interpreterLocals
         texto = texto.replace('(', ' ').split(' ')[-1]
@@ -223,6 +226,10 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             self._autocompletar_argumentos_si_corresponde()
 
     def keyPressEvent(self, event):
+        # Permite mantener pulsada la tecla CTRL para copiar o pegar.
+        if event.modifiers() &  Qt.ControlModifier:
+            return QtGui.QTextEdit.keyPressEvent(self, event)
+
         textCursor = self.textCursor()
 
         # cambia el tamano de la tipografia.
@@ -238,6 +245,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             elif event.key() == Qt.Key_S:
                 self.guardar_contenido_con_dialogo()
                 return
+
 
         # Completar comillas y braces
         if event.key() == Qt.Key_QuoteDbl:
@@ -459,4 +467,5 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
     def marker_si_es_necesario(self):
         line = unicode(self.document().lastBlock().text())
         if not line.startswith(u'» ') and not line.startswith(u'‥ '):
+            self.insertPlainText("\n")
             self.marker()
