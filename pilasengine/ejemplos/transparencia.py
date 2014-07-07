@@ -1,7 +1,7 @@
 import pilasengine
 
 pilas = pilasengine.iniciar()
-ingreso_de_texto = pilas.interfaz.IngresoDeTexto("Ejemplo de transparencia")
+ingreso_de_texto = pilas.interfaz.IngresoDeTexto("Hola")
 
 def mueve_barra(grado):
     ingreso_de_texto.transparencia = grado * 100

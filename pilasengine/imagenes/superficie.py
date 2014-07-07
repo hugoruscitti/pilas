@@ -142,7 +142,7 @@ class Superficie(Imagen):
 
         Ejemplo:
 
-            >>> Texto.cargar_fuente_desde_cache('myttffile.ttf')
+            >>> Texto.cargar_fuente('myttffile.ttf')
             'Visitor TTF1'
         """
 
