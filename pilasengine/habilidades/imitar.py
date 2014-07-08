@@ -40,7 +40,12 @@ class Imitar(habilidades.Habilidad):
         self.con_escala = con_escala
         self.con_rotacion = con_rotacion
 
+        self.imitar()
+
     def actualizar(self):
+        self.imitar()
+
+    def imitar(self):
         self.receptor.x = self.objeto_a_imitar.x
         self.receptor.y = self.objeto_a_imitar.y
 
