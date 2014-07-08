@@ -226,11 +226,23 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             self._autocompletar_argumentos_si_corresponde()
 
     def keyPressEvent(self, event):
-        # Permite mantener pulsada la tecla CTRL para copiar o pegar.
-        if event.modifiers() &  Qt.ControlModifier:
-            return QtGui.QTextEdit.keyPressEvent(self, event)
-
         textCursor = self.textCursor()
+
+        # Permite mantener pulsada la tecla CTRL para copiar o pegar.
+        if event.modifiers() & Qt.ControlModifier:
+            # Ignorando pegar texto si cursor está en medio de consola.
+            if textCursor.blockNumber() != self.document().blockCount() - 1:
+                if event.key() == Qt.Key_V:
+                    textCursor = self._mover_cursor_al_final()
+                    return
+
+            # Ignorando pegar texto si cursor está sobre el prompt de consola.
+            elif textCursor.positionInBlock() < 2:
+                if event.key() == Qt.Key_V:
+                    textCursor = self._mover_cursor_al_final()
+                    return
+
+            return QtGui.QTextEdit.keyPressEvent(self, event)
 
         # cambia el tamano de la tipografia.
         if event.modifiers() & Qt.AltModifier:
@@ -246,6 +258,19 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
                 self.guardar_contenido_con_dialogo()
                 return
 
+        # Ignorando la pulsación de tecla si está en medio de la consola.
+        if textCursor.blockNumber() != self.document().blockCount() - 1:
+            textCursor = self._mover_cursor_al_final()
+            return
+
+        # Ignora el evento si está sobre el cursor de la consola.
+        if textCursor.positionInBlock() < 2:
+            textCursor = self._mover_cursor_al_final()
+            return
+
+        if event.key() in [Qt.Key_Left, Qt.Key_Backspace]:
+            if self.textCursor().positionInBlock() == 2:
+                return
 
         # Completar comillas y braces
         if event.key() == Qt.Key_QuoteDbl:
@@ -303,24 +328,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             self.setTextCursor(textCursor)
             return None
 
-        # Ignorando la pulsación de tecla si está en medio de la consola.
-        if textCursor.blockNumber() != self.document().blockCount() - 1:
-            textCursor = self._mover_cursor_al_final()
-            event.ignore()
-            return
-
-        # Ignora el evento si está sobre el cursor de la consola.
-        if textCursor.positionInBlock() < 2:
-            textCursor = self._mover_cursor_al_final()
-            event.ignore()
-            return
-
-        if event.key() in [Qt.Key_Left, Qt.Key_Backspace]:
-            if self.textCursor().positionInBlock() >= 3:
-                super(InterpreteTextEdit, self).keyPressEvent(event)
-                self._autocompletar_argumentos_si_corresponde()
-            return
-
         try:
             if self.autocomplete(event):
                 return None
@@ -334,7 +341,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             self.historyIndex = -1
 
             if line == "clear":
-                self.document().setPlainText("")
+                self.clear()
                 self.marker()
                 return
 
