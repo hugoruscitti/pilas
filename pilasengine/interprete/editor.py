@@ -44,7 +44,7 @@ class Editor(QFrame):
             QWidget.__init__(self, *args)
             self.edit = None
             # This is used to update the width of the control.
-            # It is the highest line that is currently visibile.
+            # It is the highest line that is currently visible.
             self.highest_line = 0
 
         def setTextEdit(self, edit):
@@ -67,7 +67,6 @@ class Editor(QFrame):
             contents_y = self.edit.verticalScrollBar().value()
             page_bottom = contents_y + self.edit.viewport().height()
             font_metrics = self.fontMetrics()
-            current_block = self.edit.document().findBlock(self.edit.textCursor().position())
 
             painter = QPainter(self)
 
@@ -120,13 +119,11 @@ class Editor(QFrame):
         self.editor.installEventFilter(self)
         self.editor.viewport().installEventFilter(self)
 
-    def eventFilter(self, object, event):
-        # Update the line numbers for all events on the text edit and the viewport.
-        # This is easier than connecting all necessary singals.
-        if object in (self.editor, self.editor.viewport()):
+    def eventFilter(self, obj, event):
+        if obj in (self.editor, self.editor.viewport()):
             self.number_bar.update()
             return False
-        return QFrame.eventFilter(object, event)
+        return QFrame.eventFilter(obj, event)
 
 
 class WidgetEditor(autocomplete.CompletionTextEdit,
@@ -146,6 +143,7 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
         self.main = main
         self.ventana_interprete = ventana_interprete
         self._cargar_resaltador_de_sintaxis()
+        self.nombre_de_archivo_sugerido = "juego.py"
 
     def insertFromMimeData(self, source):
         QTextEdit.insertPlainText(self, source.text())
@@ -224,12 +222,14 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
         contenido = archivo.read()
         archivo.close()
         self.setText(contenido)
+        self.nombre_de_archivo_sugerido = ruta
 
     def guardar_contenido_en_el_archivo(self, ruta):
         texto = unicode(self.document().toPlainText())
         archivo = codecs.open(unicode(ruta), 'w', 'utf-8')
         archivo.write(texto)
         archivo.close()
+        self.nombre_de_archivo_sugerido = ruta
 
     def paint_event_falso(self, event):
         pass
@@ -245,7 +245,8 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
             if not self.ventana_interprete.consultar_si_quiere_perder_cambios():
                 return
 
-        ruta = QFileDialog.getOpenFileName(self, "Abrir Archivo", "",
+        ruta = QFileDialog.getOpenFileName(self, "Abrir Archivo",
+                                           self.nombre_de_archivo_sugerido,
                                            "Archivos python (*.py)",
                                            options=QFileDialog.DontUseNativeDialog)
 
@@ -261,7 +262,8 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
         self.ventana_interprete.ejecutar_codigo_como_string(texto)
 
     def guardar_con_dialogo(self):
-        ruta = QFileDialog.getSaveFileName(self, "Guardar Archivo", "",
+        ruta = QFileDialog.getSaveFileName(self, "Guardar Archivo",
+                                           self.nombre_de_archivo_sugerido,
                                            "Archivos python (*.py)",
                                            options=QFileDialog.DontUseNativeDialog)
 
