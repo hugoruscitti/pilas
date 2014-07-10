@@ -86,10 +86,12 @@ def _verificarPuntoEnLaCircunferencia(x1, y1, x2, y2, radio):
     float(y1)
     float(x2)
     float(y2)
-    return (utils.distancia_entre_dos_puntos((x1, y1), (x2, y2))  <=  math.pow(radio, 2) )
+    
+    dis  = utils.distancia_entre_dos_puntos(x1, y1, x2, y2) 
+    return ( dis <=  math.pow(radio, 2) )
 
 
-def _actorDetrasDelRobot(psX, psY, crX, crY2, piX, piY):
+def _actorDetrasDelRobot(psX, psY, crX, crY, piX, piY):
     segSenCentroX = psX - crX
     segSenCentroY = psY - crY
 
@@ -113,6 +115,47 @@ def wait(seconds = 0):
         QtGui.QApplication.processEvents()
 
 
+def _puntosParaLaRecta(unActor):
+    
+    # Retorna la ubicación del actor teniendo en cuenta su rotación
+    # print "nActor.rotacion ", unActor.rotacion
+    
+    if (unActor.rotacion == 270): # Norte
+    # print " norte"
+        puntoX = unActor.x
+        puntoY = unActor.y + unActor.radio_de_colision
+
+    elif ((unActor.rotacion > 270) and (unActor.rotacion < 360)): # norte- noreste
+        # print "norte - este"
+        puntoY = unActor.y + unActor.radio_de_colision
+        puntoX = unActor.x + unActor.radio_de_colision
+    elif (unActor.rotacion == 0 ): # Este
+        # print "este"
+        puntoX = unActor.x + unActor.radio_de_colision
+        puntoY = unActor.y
+    elif ((unActor.rotacion > 0) and (unActor.rotacion < 90)): # Este - sur
+        # print "este-sur"
+        puntoY = unActor.y - unActor.radio_de_colision
+        puntoX = unActor.x + unActor.radio_de_colision
+    elif (unActor.rotacion == 90): # Sur
+    # print "sur"
+        puntoY = unActor.y - unActor.radio_de_colision
+        puntoX = unActor.x
+    elif ((unActor.rotacion > 90) and (unActor.rotacion < 180 ) ): # Sur - oeste
+    # print "Sur - oeste"
+        puntoY = unActor.y - unActor.radio_de_colision
+        puntoX = unActor.x - unActor.radio_de_colision
+    elif (unActor.rotacion == 180) : # Oeste
+    # print "Oeste"
+        puntoX = unActor.x - unActor.radio_de_colision
+        puntoY = unActor.y
+    else:
+    # print " de 180 a 270"
+        puntoY = unActor.y + unActor.radio_de_colision
+        puntoX = unActor.x - unActor.radio_de_colision
+
+    return (puntoX, puntoY)
+
 
 #### Robot
 
@@ -121,10 +164,24 @@ class Robot():
     def __init__(self,board, robotid=0, x=0, y=0):
         """ Inicializa el robot y lo asocia con la placa board. """
 
-        self.actor = NaveTortuga()
-
+        self.actor = pilas.actores.Tortuga()
+        imagen = pilas.imagenes.cargar('RobotN6.png')
+        self.actor.set_imagen(imagen)
+        self.actor.rotacion = 270
+        self.actor.velocidad = 3
+        self.actor.pasos = 1
+        self.actor.anterior_x = x
+        self.actor.anterior_y = y
+        self.actor.bajalapiz()
+        self.actor.bajalapiz()
+        self.actor.radio_de_colision = 31
+        self.actor.color = pilas.colores.negro
+        
+        
         # Se queda en pantalla
         self.actor.aprender(pilas.habilidades.SeMantieneEnPantalla)
+        # Se puede arrastrar con el mouse
+        self.actor.aprender(pilas.habilidades.Arrastrable)
 
         self.radio_de_colision = self.actor.radio_de_colision
         self.robotid = robotid
@@ -133,14 +190,12 @@ class Robot():
         self.proxy = weakref.proxy(self)
         self.board.agregarRobot(self.proxy)
         self.tarea = None
-        self.obstaculos = None
-        self.observar = False
 
 
     # Redefinir el método eliminar de la clase Actor para que lo elimine también de la lista de robots de Board
     def eliminar(self):
         self.board.eliminarDeLaLista(self.proxy)
-        Actor.eliminar(self.actor)
+        self.actor.eliminar()
 
     ## Movimiento horizontal y vertical
 
@@ -291,15 +346,20 @@ class Robot():
         valor = 601
         
         for otroActor in actoresValidos :
+            print "Hay un actor"
             linea_generada =  _puntoEInterseccionConLaLinea(otroActor.x, otroActor.y, pendiente)
             if not(_interseccionEntreLineas(linea_actor_1, linea_generada) is None):
+                print "actores no paralelos"
                 # No son paralelas
                 oax2, oay2 = _interseccionEntreLineas(linea_actor_1, linea_generada)
+                
                 if ( _verificarPuntoEnLaCircunferencia(otroActor.x, otroActor.y, oax2, oay2, radio)) :
+                    print "buscar la distancia entre actores"
                     # las rectas son perpendiculares y el punto en comun está en el area del otroActor
                     # Calcular la distancia entre el actor y el punto de interseccion con el actor
                     
                     if(not _actorDetrasDelRobot(self.x, self.y, x2, y2, oax2, oay2 )): #FALTA HACER
+                        print " ver las distanciaas"
                         valorActual = utils.distancia_entre_dos_puntos((x2, y2), (oax2, oay2))
                         if (valorActual < valor):
                             valor = valorActual
@@ -495,7 +555,7 @@ class NaveTortuga(Nave):
 
     def __init__(self, x=0, y=0, velocidad=2):
 
-        imagen = pilas.imagenes.cargar('RobotN6.png')
+        
         Actor.__init__(self, imagen, x=x, y=y)
 
         self.municion = pilas.actores.Bala
@@ -510,97 +570,5 @@ class NaveTortuga(Nave):
         self.bajalapiz()
         self.pizarra = pilas.actores.Pizarra()
 
-        self.aprender(pilas.habilidades.Arrastrable)
-        self.radio_de_colision = 31
-        self.color = pilas.colores.negro
 
-        self.aprender(pilas.habilidades.Disparar,
-                       municion= self.municion,
-                       parametros_municion = { "self.x": self.x, "y": self.y, "angulo_de_movimiento" : self.rotacion, "rotacion": self.rotacion },
-                       angulo_salida_disparo= self.rotacion, 
-                       frecuencia_de_disparo=3,
-                       offset_disparo=(self.x,self.y),
-                       escala=0.7)
-
-    def obtenerDistancia(self, mi_disparo, el_enemigo):
-        self.ultimo_disparo = mi_disparo
-        self.ultimo_ping = pilas.utils.distancia_entre_radios_de_colision_de_dos_actores (el_enemigo, self)
-        print  "en elobtenerDistancia ",  self.ultimo_ping
-        mi_disparo.eliminar()
-        return self.ultimo_ping
-        
        
-
-    
-		
-    def disparando(self):
-        def ir_disparando():
-            self.disparar()
-            return (self.esta_disparando)
-
-        self.esta_disparando = True
-        self.tarea = pilas.escena_actual().tareas.condicional(0.1, ir_disparando) 
-
-    def disparar(self):
-        for x in self._habilidades:
-            if x.__class__.__name__ == 'Disparar':
-                self.ultimo_ping  = x.disparar()
-        
-        
-
-    def definir_enemigos(self, grupo, cuando_elimina_enemigo=None):
-        """Hace que una nave tenga como enemigos a todos los actores del grupo.
-
-        :param grupo: El grupo de actores que serán sus enemigos.
-        :type grupo: array
-        :param cuando_elimina_enemigo: Funcion que se ejecutará cuando se elimine un enemigo.
-
-        """
-        self.cuando_elimina_enemigo = cuando_elimina_enemigo
-        self.habilidades.Disparar.definir_colision(grupo, self.obtenerDistancia)    
-
-   ## Por Tortuga
-
-    def bajalapiz(self):
-        """Le indica a la tortuga si debe comenzar a dibujar con cada movimiento."""
-        self.lapiz_bajo = True
-
-    def subelapiz(self):
-        """Le indica a la tortuga que deje de dibujar con cada movimiento."""
-        self.lapiz_bajo = False
-        
-    def get_color(self):
-        """Retorna el color que se utilizará para trazar."""
-        return self._color
-
-    def set_color(self, color):
-        """Define el color que se utilizará para trazar.
-
-        :param color: El color a utilizar.
-        """
-        self._color = color
-
-    color = property(get_color, set_color)
-
-    def pintar(self, color=None):
-        """Pinta todo el fondo de un solo color.
-
-        :param color: El color que se utilizará para pintar el fondo.
-        """
-        self.pizarra.pintar(color)
-
-    def actualizar(self):
-        """Actualiza su estado interno."""
-        if self.anterior_x != self.x or self.anterior_y != self.y:
-            if self.lapiz_bajo:
-                self.dibujar_linea_desde_el_punto_anterior()
-            self.anterior_x = self.x
-            self.anterior_y = self.y
-
-    def dibujar_linea_desde_el_punto_anterior(self):
-        """Realiza el trazado de una linea desde su posición actual hacia la anterior."""
-        self.pizarra.linea(self.anterior_x, self.anterior_y, self.x, self.y, self.color, grosor=4)
-
-    def pon_color(self, color):
-        """Define el color de trazado cuando comienza a moverse."""
-        self.color = color
