@@ -10,6 +10,7 @@ import random
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.texto import Texto
 from pilasengine.actores.grupo import Grupo
+from pilasengine.actores.bomba import Bomba
 from pilasengine import colores
 
 

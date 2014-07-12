@@ -48,9 +48,9 @@ class Volando(Estado):
     def actualizar(self):
         velocidad = 5
 
-        if pilas.mundo.control.arriba:
+        if pilas.escena.control.arriba:
             self.vaca.y += velocidad
-        elif pilas.mundo.control.abajo:
+        elif pilas.escena.control.abajo:
             self.vaca.y -= velocidad
 
         if self.vaca.y > 210:
@@ -72,10 +72,9 @@ class Perdiendo(Estado):
         self.vaca.y -= 1
 
 
-class Vaca(pilas.actores.Actor):
+class Vaca(pilasengine.actores.Actor):
 
-    def __init__(self):
-        pilas.actores.Actor.__init__(self)
+    def iniciar(self):
         grilla = pilas.imagenes.cargar_grilla('vaca_voladora/sprites.png', 5, 1)
         self.imagen = grilla
         self.definir_animacion([0])
@@ -112,21 +111,20 @@ class Vaca(pilas.actores.Actor):
         t.escala = 0
         t.escala = [1], 0.5
 
-class Enemigo(pilas.actores.Bomba):
+class Enemigo(pilasengine.actores.Bomba):
 
-    def __init__(self):
-        pilas.actores.Bomba.__init__(self)
+    def iniciar(self):
         self.izquierda = 320
         self.y = random.randint(-210, 210)
 
     def actualizar(self):
         self.x -= 5
-        pilas.actores.Bomba.actualizar(self)
+        pilasengine.actores.Bomba.actualizar(self)
 
-class Item(pilas.actores.Actor):
+class Item(pilasengine.actores.Actor):
 
-    def __init__(self):
-        pilas.actores.Actor.__init__(self, 'estrella.png')
+    def iniciar(self):
+        self.imagen = 'estrella.png'
         self.escala = 0.5
         self.izquierda = 320
         self.y = random.randint(-210, 210)
@@ -138,10 +136,9 @@ class Item(pilas.actores.Actor):
             self.eliminar()
 
 
-class Nube(pilas.actores.Actor):
+class Nube(pilasengine.actores.Actor):
 
-    def __init__(self):
-        pilas.actores.Actor.__init__(self)
+    def iniciar(self):
         velocidad = random.randint(2, 10)
         self.velocidad = velocidad
         self.escala = velocidad / 10.0
@@ -167,22 +164,20 @@ class Nube(pilas.actores.Actor):
         self.y = random.randint(-210, 210)
 
 
-pilas = pilasengine.iniciar()
+pilas = pilasengine.iniciar(capturar_errores=False)
 
 fondo = pilas.fondos.Fondo('vaca_voladora/nubes.png')
 puntos = pilas.actores.Puntaje(x=-290, y=210)
-vaca = Vaca()
+vaca = Vaca(pilas)
 items = []
 enemigos = []
 
 def crear_item():
-    un_item = Item()
+    un_item = Item(pilas)
     items.append(un_item)
     return True
 
-pilas.mundo.agregar_tarea(2, crear_item)
-
-
+pilas.tareas.agregar(2, crear_item)
 
 
 def cuanto_toca_item(v, i):
@@ -193,25 +188,25 @@ def cuanto_toca_item(v, i):
     puntos.rotacion = random.randint(30, 60)
     puntos.rotacion = [0], 0.2
 
-pilas.mundo.colisiones.agregar(vaca, items, cuanto_toca_item)
+pilas.colisiones.agregar(vaca, items, cuanto_toca_item)
 
 
 def crear_enemigo():
-    un_enemigo = Enemigo()
+    un_enemigo = Enemigo(pilas)
     enemigos.append(un_enemigo)
     return True
 
-pilas.mundo.agregar_tarea(3.3, crear_enemigo)
+pilas.tareas.agregar(3.3, crear_enemigo)
 
 
 def cuanto_toca_enemigo(vaca, enemigo):
     vaca.perder()
     enemigo.eliminar()
 
-pilas.mundo.colisiones.agregar(vaca, enemigos, cuanto_toca_enemigo)
+pilas.colisiones.agregar(vaca, enemigos, cuanto_toca_enemigo)
 
 
 for x in range(7):
-    Nube()
+    Nube(pilas)
 
 pilas.ejecutar()

@@ -107,6 +107,9 @@ class Tareas(object):
         self._agregar(tarea)
         return tarea
 
+    def agregar(self, *k, **kw):
+        return self.condicional(*k, **kw)
+
     def eliminar_tarea(self, tarea):
         """Elimina una tarea de la lista de tareas planificadas.
 
