@@ -12,6 +12,11 @@ from pilasengine import habilidades
 from pilasengine import comportamientos
 
 
+estructura_comportamiento = collections.namedtuple(
+                                "Comportamiento",
+                                ['objeto', 'args', 'kwargs'])
+
+
 class Estudiante(object):
     """Componente que permite a los actores aprender habilidades o
     realizar comportamientos.
@@ -22,9 +27,6 @@ class Estudiante(object):
         self._habilidades = []
         self.comportamiento_actual = None
         self.comportamientos = []
-        self.estructura_comportamiento = collections.namedtuple(
-                                "Comportamiento",
-                                ['objeto', 'args', 'kwargs'])
         self.repetir_comportamientos_por_siempre = False
         self.habilidades = habilidades.ProxyHabilidades(self._habilidades)
 
@@ -124,7 +126,7 @@ class Estudiante(object):
                             de pilasengine.comportamientos.Comportamiento''')
 
     def _hacer_luego(self, classname, repetir_por_siempre, *args, **kwargs):
-        comportamiento = self.estructura_comportamiento(
+        comportamiento = estructura_comportamiento(
                             classname(self.pilas), args, kwargs)
 
         self.comportamientos.append(comportamiento)
@@ -143,7 +145,7 @@ class Estudiante(object):
                             de pilasengine.comportamientos.Comportamiento''')
 
     def _hacer(self, classname, *args, **kwargs):
-        comportamiento = self.estructura_comportamiento(
+        comportamiento = estructura_comportamiento(
                             classname(self.pilas), args, kwargs)
 
         self.comportamientos.insert(0, comportamiento)
@@ -182,5 +184,3 @@ class Estudiante(object):
                 **self.comportamiento_actual.kwargs)
         else:
             self.comportamiento_actual = None
-
-
