@@ -14,25 +14,33 @@ class Musica(object):
         import pygame
 
         self.ruta = ruta
-        self.musica = pygame.mixer.Sound(ruta)
+        self.musica = pygame.mixer.music.load(ruta)
 
     def reproducir(self, repetir=False):
+        import pygame
+
         if repetir:
-            self.musica.play(-1)
+            pygame.mixer.music.play(-1)
         else:
-            self.musica.play()
+            pygame.mixer.music.play()
 
     def detener(self):
         "Detiene el audio."
-        self.musica.stop()
+        import pygame
+
+        pygame.mixer.music.stop()
 
     def pausar(self):
         "Hace una pausa del audio."
-        self.musica.stop()
+        import pygame
+
+        pygame.mixer.music.stop()
 
     def continuar(self):
         "Continúa reproduciendo el audio."
-        self.musica.play()
+        import pygame
+
+        pygame.mixer.music.play()
 
     def __repr__(self):
         nombre = os.path.basename(self.ruta)

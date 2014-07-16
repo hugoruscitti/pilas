@@ -81,7 +81,7 @@ class Pilas(object):
         self.actores = actores.Actores(self)
         self.actores.eliminar_actores_personalizados()
         self.eventos = eventos.Eventos(self)
-        self.control = controles.Controles(self)
+        self.controles = controles.Controles(self)
         self.escenas = escenas.Escenas(self)
         self.pad = pad.Pad(self)
         self.imagenes = imagenes.Imagenes(self)
@@ -290,6 +290,9 @@ class Pilas(object):
     def obtener_colisiones(self):
         return self.escena_actual().colisiones
 
+    def obtener_control(self):
+        return self.escena_actual().control
+
     def obtener_actores_en(self, x, y):
         return self.escena_actual().obtener_actores_en(x, y)
 
@@ -314,6 +317,7 @@ class Pilas(object):
 
         print codigo
 
+    control = property(obtener_control, doc="Obtiene el modulo de control")
     tareas = property(obtener_tareas, doc="Obtiene el modulo de tareas")
     camara = property(obtener_camara, doc="Cámara de la escena actual")
     escena = property(obtener_escena_actual, doc="Escena actual")

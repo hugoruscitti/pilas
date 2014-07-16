@@ -21,6 +21,7 @@ class Pad:
         self.joysticks = []
 
         pygame.joystick.init()
+        pygame.mixer.init()
         pygame.init()
 
         self.joystick = None

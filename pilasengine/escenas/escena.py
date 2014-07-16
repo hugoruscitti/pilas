@@ -34,7 +34,7 @@ class Escena(object):
         self.pulsa_boton = self.pilas.eventos.Evento('pulsa_boton')         #['numero']
         self.mueve_pad = self.pilas.eventos.Evento('mueve_pad')         #['x', 'y', 'x1', 'y1']
 
-        self.control = self.pilas.control.Control(self)
+        self.control = self.pilas.controles.Control(self)
         self.tareas = Tareas(self, pilas)
         self.fisica = Fisica(self, pilas)
         self.fisica.iniciar()
