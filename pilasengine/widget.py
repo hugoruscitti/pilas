@@ -6,6 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import sys
+import traceback
+
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 from PyQt4.QtOpenGL import QGLWidget
@@ -76,8 +78,9 @@ class BaseWidget(object):
             self.pilas.realizar_actualizacion_logica()
 
     def procesar_error(self, e):
-        print "Error:", e, "en", __file__
-        sys.exit(1)
+        titulo = repr(e)
+        descripcion = traceback.format_exc(e)
+        escena = self.pilas.escenas.Error(titulo, descripcion)
 
     def timerEvent(self, event):
         """Actualiza la simulación completa.

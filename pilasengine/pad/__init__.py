@@ -51,13 +51,6 @@ class Pad:
             else:
                 return valor
 
-        pygame.event.set_allowed([pygame.JOYAXISMOTION,
-                                  pygame.JOYBALLMOTION,
-                                  pygame.JOYHATMOTION,
-                                  pygame.JOYBUTTONUP,
-                                  pygame.JOYBUTTONDOWN
-                                  ])
-
         for e in pygame.event.get():
             if e.type == pygame.JOYBUTTONDOWN:
                 self.pilas.escena.pulsa_boton.emitir(numero=e.button)
