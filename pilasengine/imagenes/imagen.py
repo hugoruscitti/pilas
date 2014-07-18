@@ -14,6 +14,8 @@ class Imagen(object):
     def __init__(self, pilas, ruta):
         self.ruta_original = ruta
         self.pilas = pilas
+        self.repetir_horizontal = False
+        self.repetir_vertical = False
 
         if isinstance(ruta, QtGui.QPixmap):
             self._imagen = ruta
@@ -51,7 +53,19 @@ class Imagen(object):
             self._dibujar_pixmap(painter)
 
     def _dibujar_pixmap(self, painter):
-        painter.drawPixmap(0, 0, self._imagen)
+        if self.repetir_horizontal or self.repetir_vertical:
+            x = 0
+            y = 0
+
+            if self.repetir_horizontal:
+                x = self.ancho() * 200
+
+            if self.repetir_vertical:
+                y = self.ancho() * 200
+
+            painter.drawTiledPixmap(-x, -y, self.ancho() + x, self.alto() +y, self._imagen)
+        else:
+            painter.drawPixmap(0, 0, self._imagen)
 
     def __str__(self):
         nombre_imagen = os.path.basename(self.ruta_original)
