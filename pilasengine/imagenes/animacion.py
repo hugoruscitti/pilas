@@ -19,11 +19,13 @@ class Animacion(Grilla):
         self._ticks_acumulados = 0
 
     def definir_animacion(self, nombre, cuadros, velocidad):
-        self._ticks_acumulados = 0
         self.animaciones[nombre] = (cuadros, velocidad)
 
     def cargar_animacion(self, nombre):
+        self._ticks_acumulados = 0
         self.animacion_en_curso = self.animaciones[nombre]
+        self.cuadro_en_la_animacion = 0
+        self.definir_cuadro(self.animacion_en_curso[0][self.cuadro_en_la_animacion])
 
     def avanzar(self, velocidad=None):
         if velocidad:

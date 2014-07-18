@@ -22,6 +22,8 @@ class Superficie(Imagen):
         self._imagen.fill(QtGui.QColor(255, 255, 255, 0))
         self.canvas = QtGui.QPainter()
         self.ruta_original = os.urandom(25)
+        self.repetir_horizontal = False
+        self.repetir_vertical = False
 
     def pintar(self, color):
         r, g, b, a = color.obtener_componentes()
