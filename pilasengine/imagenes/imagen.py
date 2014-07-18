@@ -63,7 +63,7 @@ class Imagen(object):
             if self.repetir_vertical:
                 y = self.ancho() * 200
 
-            painter.drawTiledPixmap(-x, -y, self.ancho() + x, self.alto() +y, self._imagen)
+            painter.drawTiledPixmap(-x, -y, self.ancho() + x*2, self.alto() +y*2, self._imagen)
         else:
             painter.drawPixmap(0, 0, self._imagen)
 
