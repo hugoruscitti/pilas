@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sonidos - pilas-engine</title>
+  <title>Joystick - pilas-engine</title>
 
   
 
@@ -78,8 +78,21 @@
         
     </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../joystick/">Joystick</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Joystick</a>
+        
+            <ul>
+            
+                <li class="toctree-l2"><a href="#joystick">Joystick</a></li>
+                
+                    <li><a class="toctree-l3" href="#obtener-dispositivos-conectados">Obtener dispositivos conectados</a></li>
+                
+                    <li><a class="toctree-l3" href="#acceder-a-los-controles">Acceder a los controles</a></li>
+                
+                    <li><a class="toctree-l3" href="#acceso-a-eventos">Acceso a eventos</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -88,17 +101,8 @@
         
     </li>
 
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Sonidos</a>
-        
-            <ul>
-            
-                <li class="toctree-l2"><a href="#cargar-sonidos-y-musica">Cargar sonidos y música</a></li>
-                
-                    <li><a class="toctree-l3" href="#reproducir">Reproducir</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../sonidos/">Sonidos</a>
         
     </li>
 
@@ -140,7 +144,7 @@
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
-    <li>Sonidos</li>
+    <li>Joystick</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -148,36 +152,40 @@
   <hr/>
 </div>
           <div role="main">
-            <h1 id="cargar-sonidos-y-musica">Cargar sonidos y música</h1>
-<p>Si bien a continuación ejemplificamos todo con el modulo <code>pilas.sonidos</code>
-todos los ejemplos funcionan para el modulo <code>pilas.musica</code></p>
-<p>Los sonidos se pueden cargar usando el módulo
-<code>sonidos</code> de la siguiente manera:</p>
-<pre class="prettyprint well"><code>sonido_de_explosion = pilas.sonidos.cargar('explosion.wav')
+            <h1 id="joystick">Joystick</h1>
+<p>El soporte para joysticks nos permite controlar actores usando varios
+modelos de mandos usb, por ejemplos los de <strong>xbox</strong> o similares:</p>
+<p><img alt="" src="../imagenes/joystick/xbox.jpg" /></p>
+<h2 id="obtener-dispositivos-conectados">Obtener dispositivos conectados</h2>
+<p>El primer paso para obtener acceso a los joysticks es listar
+los dispositivos conectados con la función <code>listar</code>. Por ejemplo
+en este caso hay un solo mando usb conectado:</p>
+<pre class="prettyprint well"><code>» pilas.pad.listar()
+['Wireless 360 Controller']
 </code></pre>
-<p>donde <code>explosion.wav</code> es el nombre del archivo de audio.</p>
-<p>Ten en cuenta que esta función para cargar sonidos
-se comporta muy parecido a la función que nos permite
-cargar imágenes o grillas. El archivo se buscará en
-el directorio principal de nuestro juego, luego en el
-directorio <code>data</code> y por último en la biblioteca de
-sonidos que trae pilas.</p>
-<h2 id="reproducir">Reproducir</h2>
-<p>La función <code>sonidos.cargar</code> nos retorna un objeto de tipo
-<code>Sonido</code> que tiene un método para reproducirse llamado
-<code>reproducir()</code>.</p>
-<p>Entonces, para reproducir un sonido solamente tienes
-que llamar al método <code>reproducir</code>:</p>
-<pre class="prettyprint well"><code>sonido_de_explosion.reproducir()
+<h2 id="acceder-a-los-controles">Acceder a los controles</h2>
+<p>Cuando pilas-engine detecta el primer <code>joystick</code>, todos los eventos
+que genera el <code>joystick</code> se almacenarán en el objeto <code>pilas.pad</code>. Así
+que el acceso a las palancas o los botones se puede hacer directamente
+desde ahí.</p>
+<p>El control de posición analógico se puede acceder directamente con
+las variables <code>x</code> e <code>y</code></p>
+<pre class="prettyprint well"><code>» pilas.pad.x
+0
+» pilas.pad.y
+0
 </code></pre>
-<p>Si deseas que un sonido se repita indefinidamente debes utilizar el parámetro
-<em>repetir=True</em>. Por ejemplo:</p>
-<pre class="prettyprint well"><code>sonido_de_explosion.reproducir(repetir=True)
+<p>y si se pulsa el pad, las variables retornarán un valor entre <code>-1</code> y <code>1</code>
+dependiendo del eje. En el siguiente caso, el movimiento indica que el pad
+se movió para arriba a la derecha:</p>
+<pre class="prettyprint well"><code>» pilas.pad.x
+0.999123
+» pilas.pad.y
+1
 </code></pre>
-<p>Para detener la música o un efecto de sonido, existe
-el método <em>detener</em>. Por ejemplo:</p>
-<pre class="prettyprint well"><code>sonido_de_explosion.detener()
-</code></pre>
+<h2 id="acceso-a-eventos">Acceso a eventos</h2>
+<p>También se puede acceder al joystick mediante eventos, para que pilas nos
+informe el estado del control de forma mas directa.</p>
 
           </div>
 
@@ -185,10 +193,10 @@ el método <em>detener</em>. Por ejemplo:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../dibujado_simple_en_pantalla/" class="btn btn-neutral float-right" title="Dibujado simple en pantalla"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../imagen/" class="btn btn-neutral float-right" title="Imagen"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../imagen/" class="btn btn-neutral" title="Imagen"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+        <a href="../controles/" class="btn btn-neutral" title="Controles"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
       
     </div>
   
