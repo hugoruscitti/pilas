@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Mon Jun 16 00:02:09 2014
+# Created: Fri Jul 18 12:24:12 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_InterpreteWindow(object):
     def setupUi(self, InterpreteWindow):
         InterpreteWindow.setObjectName(_fromUtf8("InterpreteWindow"))
-        InterpreteWindow.resize(897, 624)
+        InterpreteWindow.resize(794, 605)
         InterpreteWindow.setMinimumSize(QtCore.QSize(660, 530))
         self.centralwidget = QtGui.QWidget(InterpreteWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
@@ -80,12 +80,12 @@ class Ui_InterpreteWindow(object):
         self.canvas = QtGui.QStackedWidget(self.layoutWidget)
         self.canvas.setMinimumSize(QtCore.QSize(320, 240))
         self.canvas.setObjectName(_fromUtf8("canvas"))
-        #self.page = QtGui.QWidget()
-        #self.page.setObjectName(_fromUtf8("page"))
-        #self.canvas.addWidget(self.page)
-        #self.page_2 = QtGui.QWidget()
-        #self.page_2.setObjectName(_fromUtf8("page_2"))
-        #self.canvas.addWidget(self.page_2)
+        self.page = QtGui.QWidget()
+        self.page.setObjectName(_fromUtf8("page"))
+        self.canvas.addWidget(self.page)
+        self.page_2 = QtGui.QWidget()
+        self.page_2.setObjectName(_fromUtf8("page_2"))
+        self.canvas.addWidget(self.page_2)
         self.verticalLayout_2.addWidget(self.canvas)
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
@@ -189,6 +189,12 @@ class Ui_InterpreteWindow(object):
         self.boton_ejecutar.setFlat(True)
         self.boton_ejecutar.setObjectName(_fromUtf8("boton_ejecutar"))
         self.horizontalLayout.addWidget(self.boton_ejecutar)
+        self.boton_pausar = QtGui.QPushButton(self.layoutWidget2)
+        self.boton_pausar.setMaximumSize(QtCore.QSize(20, 20))
+        self.boton_pausar.setCheckable(True)
+        self.boton_pausar.setFlat(True)
+        self.boton_pausar.setObjectName(_fromUtf8("boton_pausar"))
+        self.horizontalLayout.addWidget(self.boton_pausar)
         spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
@@ -204,7 +210,7 @@ class Ui_InterpreteWindow(object):
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)
         InterpreteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(InterpreteWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 897, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 794, 22))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         InterpreteWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(InterpreteWindow)
@@ -245,6 +251,7 @@ class Ui_InterpreteWindow(object):
         self.boton_guardar.setText(_translate("InterpreteWindow", "G", None))
         self.boton_ejecutar.setToolTip(_translate("InterpreteWindow", "Ejecutar el código actual (F5 o CTRL+R)", None))
         self.boton_ejecutar.setText(_translate("InterpreteWindow", "E", None))
+        self.boton_pausar.setText(_translate("InterpreteWindow", "P", None))
         self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
 from PyQt4 import QtWebKit

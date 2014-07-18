@@ -133,6 +133,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.definir_icono(self.boton_ejecutar, 'iconos/ejecutar.png')
         #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
 
+        self.definir_icono(self.boton_pausar, 'iconos/pausa.png')
+
         self.definir_icono(self.boton_abrir, 'iconos/abrir.png')
         self.boton_abrir.connect(self.boton_abrir,
                                  QtCore.SIGNAL("clicked()"),
@@ -184,6 +186,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.boton_ejecutar.connect(self.boton_ejecutar,
                                     QtCore.SIGNAL("clicked()"),
                                     self.cuando_pulsa_el_boton_ejecutar)
+        self.boton_pausar.connect(self.boton_pausar,
+                                    QtCore.SIGNAL("clicked()"),
+                                    self.cuando_pulsa_el_boton_pausar)
 
     def _conectar_observadores_splitters(self):
         # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.
@@ -255,6 +260,13 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def cuando_pulsa_el_boton_ejecutar(self):
         self.editor.ejecutar()
+        self.boton_pausar.setChecked(False)
+
+    def cuando_pulsa_el_boton_pausar(self):
+        if self.boton_pausar.isChecked():
+            self.ventana_pilas.pausar()
+        else:
+            self.ventana_pilas.continuar()
 
     def pulsa_boton_depuracion(self):
         pilas = self.scope['pilas']

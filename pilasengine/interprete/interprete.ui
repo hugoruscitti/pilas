@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>897</width>
-    <height>624</height>
+    <width>794</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -453,6 +453,25 @@
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="boton_pausar">
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>P</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="horizontalSpacer_2">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -485,7 +504,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>897</width>
+     <width>794</width>
      <height>22</height>
     </rect>
    </property>

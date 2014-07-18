@@ -33,6 +33,7 @@ class BaseWidget(object):
         self.capturar_errores = capturar_errores
         self.definir_titulo(titulo)
         self.iniciar_interface(ancho, alto)
+        self.pausa = False
 
     def iniciar_interface(self, ancho, alto):
         self.painter = QtGui.QPainter()
@@ -88,14 +89,14 @@ class BaseWidget(object):
         Este método se llama automáticamente 100 veces por segundo, ya
         que se hace una llamada a 'startTimer' indicando esa frecuencia.
         """
-        if self.capturar_errores:
-            try:
+        if not self.pausa:
+            if self.capturar_errores:
+                try:
+                    self._realizar_actualizacion_logica()
+                except Exception, e:
+                    self.procesar_error(e)
+            else:
                 self._realizar_actualizacion_logica()
-            except Exception, e:
-                self.procesar_error(e)
-        else:
-            self._realizar_actualizacion_logica()
-
 
         # Pide redibujar el widget (Qt llamará a paintEvent después).
         self.update()
@@ -192,6 +193,14 @@ class BaseWidget(object):
 
         self.pilas.realizar_dibujado(self.painter)
 
+        if self.pausa:
+            font = QtGui.QFont(self.painter.font().family(), 30)
+            self.painter.setPen(QtCore.Qt.white)
+            self.painter.setFont(font)
+            w = self.original_width
+            h = self.original_height
+            self.painter.drawText(QtCore.QRect(0, 0, w, h), QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, "en pausa")
+
     def activar_borrosidad(self):
         "Habilita transformaciones de buena calidad, como zoom y rotaciones."
         self._borrosidad = True
@@ -208,6 +217,23 @@ class BaseWidget(object):
 
     def obtener_titulo(self):
         return self.windowTitle()
+
+    def pausar(self):
+        "Pasa al modo pausa."
+        self.pausa = True
+
+    def esta_en_modo_pausa(self):
+        "Informa si el widget está o no en modo pausa."
+        return self.pausa
+
+    def avanzar_un_solo_cuadro(self):
+        "Avanza un solo cuadro de animación estando en modo pausa."
+        pass
+
+    def continuar(self):
+        "Quita el modo pausa."
+        self.pausa = False
+
 
 class WidgetConAceleracion(BaseWidget, QGLWidget):
     pass
