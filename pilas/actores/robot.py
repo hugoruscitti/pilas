@@ -3,15 +3,16 @@
 import pilas
 import time
 import sys
-import utils
 import math
-
 
 from pilas.actores import Actor
 from pilas.fondos import  *
 from pilas.actores import Pizarra
 from pilas.actores import Nave
-# from pilas.utils import distancia_entre_radios_de_colision_de_dos_actores
+
+from pilas.utils import distancia_entre_dos_puntos
+from pilas.utils import distancia_entre_dos_actores 
+
 from PyQt4 import QtGui, QtCore, uic
 import weakref
 
@@ -40,7 +41,6 @@ def _puntos_de_la_linea(x1, y1, x2, y2):
         # linea["c"] = 1  unActor.x * (-1)
         linea["C"] = x1 * (-1)
     else:
-        print "No es vertical u horizontal"
         linea["B"] = 1
         linea["A"] =  (-1 * (y1 - y2))   / (x1 - x2)
         linea["C"] =  ( -1 * (linea ["A"] * x1)) - (linea["B"] * y1)
@@ -72,6 +72,7 @@ def _interseccionEntreLineas(linea1, linea2):
 
     px = ((linea2["B"] * linea1["C"] ) - (linea1["B"] * linea2["C"])) / ( (linea2["A"] * linea1["B"] ) - (linea2["B"] * linea1["A"] )   )
 
+
     if math.fabs(linea1["B"] > EPSILON): #lineas verticales
         py =  -1 * ( linea1["A"] * px + linea1["C"] ) / linea1["B"]
     else:
@@ -87,8 +88,9 @@ def _verificarPuntoEnLaCircunferencia(x1, y1, x2, y2, radio):
     float(x2)
     float(y2)
     
-    dis  = utils.distancia_entre_dos_puntos(x1, y1, x2, y2) 
-    return ( dis <=  math.pow(radio, 2) )
+    dis  = distancia_entre_dos_puntos((x1, y1), (x2, y2)) 
+  
+    return dis <= radio
 
 
 def _actorDetrasDelRobot(psX, psY, crX, crY, piX, piY):
@@ -105,7 +107,7 @@ def _actorDetrasDelRobot(psX, psY, crX, crY, piX, piY):
     
 
 def _actor_no_valido(actor):
-    return (not isinstance(actor, Pizarra) and (not isinstance(actor, Fondo)) and  (not isinstance(actor, Ejes)))
+    return (not isinstance(actor, Pizarra) and (not isinstance(actor, Fondo)) and  (not isinstance(actor, Ejes))  )
 
 def wait(seconds = 0):
     """ Produce un retardo de seconds segundos en los que el robot no hace nada. """
@@ -115,47 +117,16 @@ def wait(seconds = 0):
         QtGui.QApplication.processEvents()
 
 
-def _puntosParaLaRecta(unActor):
+def _puntosParaLaRecta(x, y, grados):
     
-    # Retorna la ubicación del actor teniendo en cuenta su rotación
-    # print "nActor.rotacion ", unActor.rotacion
-    
-    if (unActor.rotacion == 270): # Norte
-    # print " norte"
-        puntoX = unActor.x
-        puntoY = unActor.y + unActor.radio_de_colision
+    # Retorna otro punto para la recta, teniendo en cuenta su rotación
 
-    elif ((unActor.rotacion > 270) and (unActor.rotacion < 360)): # norte- noreste
-        # print "norte - este"
-        puntoY = unActor.y + unActor.radio_de_colision
-        puntoX = unActor.x + unActor.radio_de_colision
-    elif (unActor.rotacion == 0 ): # Este
-        # print "este"
-        puntoX = unActor.x + unActor.radio_de_colision
-        puntoY = unActor.y
-    elif ((unActor.rotacion > 0) and (unActor.rotacion < 90)): # Este - sur
-        # print "este-sur"
-        puntoY = unActor.y - unActor.radio_de_colision
-        puntoX = unActor.x + unActor.radio_de_colision
-    elif (unActor.rotacion == 90): # Sur
-    # print "sur"
-        puntoY = unActor.y - unActor.radio_de_colision
-        puntoX = unActor.x
-    elif ((unActor.rotacion > 90) and (unActor.rotacion < 180 ) ): # Sur - oeste
-    # print "Sur - oeste"
-        puntoY = unActor.y - unActor.radio_de_colision
-        puntoX = unActor.x - unActor.radio_de_colision
-    elif (unActor.rotacion == 180) : # Oeste
-    # print "Oeste"
-        puntoX = unActor.x - unActor.radio_de_colision
-        puntoY = unActor.y
-    else:
-    # print " de 180 a 270"
-        puntoY = unActor.y + unActor.radio_de_colision
-        puntoX = unActor.x - unActor.radio_de_colision
+    radianes = math.radians(360 - grados)
+    
+    puntoX = math.cos(radianes) * 100 + x
+    puntoY = math.sin(radianes) * 100 + y
 
     return (puntoX, puntoY)
-
 
 #### Robot
 
@@ -328,7 +299,6 @@ class Robot():
         """ Devuelve True si hay un obstaculo a menos de distance
         centimetros del robot. """
         valor =  self.ping()
-        print "valor",valor
         if (valor <= distance):
 			
             return True
@@ -337,33 +307,61 @@ class Robot():
 
     def ping(self):
         """ Devuelve la distancia en centimetros al objeto frente al robot. """
+  
         actoresValidos = self.actoresEnLaEscena()
         
-        x2, y2 = _puntosParaLaRecta(self)
-        linea_actor_1 = _puntos_de_la_linea(self.actor.x, self.actor.y, x2, y2)
-        pendiente = 1.0 / linea_actor_1["A"] 
+        x2, y2 = _puntosParaLaRecta(self.actor.x, self.actor.y, self.actor.rotacion)
         
+        linea_actor_1 = _puntos_de_la_linea(self.actor.x, self.actor.y, x2, y2)
+        
+
+        if linea_actor_1["B"] == 0:
+            pendiente = 0
+        elif abs(linea_actor_1["A"]) > EPSILON:
+            pendiente = 1.0 / linea_actor_1["A"] 
+      
         valor = 601
         
         for otroActor in actoresValidos :
-            print "Hay un actor"
-            linea_generada =  _puntoEInterseccionConLaLinea(otroActor.x, otroActor.y, pendiente)
-            if not(_interseccionEntreLineas(linea_actor_1, linea_generada) is None):
-                print "actores no paralelos"
-                # No son paralelas
-                oax2, oay2 = _interseccionEntreLineas(linea_actor_1, linea_generada)
-                
-                if ( _verificarPuntoEnLaCircunferencia(otroActor.x, otroActor.y, oax2, oay2, radio)) :
-                    print "buscar la distancia entre actores"
-                    # las rectas son perpendiculares y el punto en comun está en el area del otroActor
-                    # Calcular la distancia entre el actor y el punto de interseccion con el actor
-                    
-                    if(not _actorDetrasDelRobot(self.x, self.y, x2, y2, oax2, oay2 )): #FALTA HACER
-                        print " ver las distanciaas"
-                        valorActual = utils.distancia_entre_dos_puntos((x2, y2), (oax2, oay2))
-                        if (valorActual < valor):
-                            valor = valorActual
+            if abs(linea_actor_1["A"]) > EPSILON:
+                linea_generada =  _puntoEInterseccionConLaLinea(otroActor.x, otroActor.y, pendiente)
+            else:
+                linea_generada = {
+                    "A": 1,
+                    "B": 0,
+                    "C": -otroActor.x
+                }
+
+            if _interseccionEntreLineas(linea_actor_1, linea_generada) is None:
+                continue
+
+            # No son paralelas
+            oax2, oay2 = _interseccionEntreLineas(linea_actor_1, linea_generada)
+            
+            # Si está atrás del robot
+            if self._esta_atras(x2, y2, oax2, oay2):
+                continue
+                           
+            # Si la intersección está fuera de la circ. del actor no hay obstáculo
+            if not _verificarPuntoEnLaCircunferencia(otroActor.x, otroActor.y, oax2, oay2, otroActor.radio_de_colision):
+                continue
+
+            # las rectas son perpendiculares y el punto en comun está en el area del otroActor
+            # Calcular la distancia entre el actor y el punto de interseccion con el actor
+            valorActual = distancia_entre_dos_actores(self.actor, otroActor)
+            if (valorActual < valor):
+                valor = valorActual  
+        
+
         return valor 
+    
+    def _esta_atras(self, p1x, p1y, p2x, p2y):
+        d1x = p1x - self.actor.x
+        d1y = p1y - self.actor.y
+        d2x = p2x - self.actor.x
+        d2y = p2y - self.actor.y
+        
+        return d1x * d2x < 0 or d1y * d2y < 0
         
     def _determinar_pixel_por_cuadrante(self, cuadrante):
         if cuadrante == 1 :
@@ -442,16 +440,16 @@ class Robot():
     # Posicionamiento
         
     def set_x(self, valor):
-        self.acto.x = valor
+        self.actor.x = valor
     
     def get_x(self):
-        return self.acto.x
+        return self.actor.x
         
     def set_y(self, valor):
         self.actor.x = valor
         
     def get_y(self):
-        return self.acto.y
+        return self.actor.y
         
     x = property(get_x, set_x)
     y = property(get_y, set_y)
@@ -460,7 +458,7 @@ class Robot():
     def actoresEnLaEscena(self):
         actores = []
         for actor in pilas.escena_actual().actores:
-            if (id(actor) != id(self) and _actor_no_valido(actor)):
+            if (id(actor) != id(self.actor) and _actor_no_valido(actor)   ):
                 actores.append(actor)
         return actores
     
@@ -548,27 +546,5 @@ class Sense(QtGui.QMainWindow):
         pilas.escena_actual().tareas.condicional(3, mostrarBateria)
         pilas.escena_actual().tareas.condicional(1, mostrarPing)
         pilas.escena_actual().tareas.condicional(1, mostrarSensoresDeLinea)
-
-
-class NaveTortuga(Nave):
-    # Por Nave
-
-    def __init__(self, x=0, y=0, velocidad=2):
-
-        
-        Actor.__init__(self, imagen, x=x, y=y)
-
-        self.municion = pilas.actores.Bala
-        self.esta_disparando = False
-        self.bajalapiz()
-        self.ultimo_ping = -1
-        self.rotacion = 270
-        self.velocidad = 3
-        self.pasos = 1
-        self.anterior_x = x
-        self.anterior_y = y
-        self.bajalapiz()
-        self.pizarra = pilas.actores.Pizarra()
-
 
        

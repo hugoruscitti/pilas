@@ -1,5 +1,12 @@
+# -*- coding: utf-8 -*-
 import unittest
 import pilas
+import math
+
+def rotar_actor_respecto_otro(referencia, actor, angulo):
+    radianes = math.radians(360 - angulo)
+    actor.x = math.cos(radianes) * 200 + referencia.x
+    actor.y = math.sin(radianes) * 200 + referencia.y
 
 class TestRobot(unittest.TestCase):
     INITIAL_ROTATION = 270
@@ -41,12 +48,46 @@ class TestRobot(unittest.TestCase):
     def test_up_pen(self):
         self.robot.bajalapiz()
         self.robot.subelapiz()
-        self.assertEqual(self.actor.lapiz_bajo, False)
+        self.assertFalse(self.actor.lapiz_bajo)
 
     def test_down_pen(self):
         self.robot.subelapiz()
         self.robot.bajalapiz()
-        self.assertEqual(self.actor.lapiz_bajo, True)
+        self.assertTrue(self.actor.lapiz_bajo)
+    
+    def test_ping_obstacle_present(self):
+        m = pilas.actores.Mono()
+        for ang in range(0, 360, 20):
+            rotar_actor_respecto_otro(self.actor, m, ang)
+            self.actor.rotacion = ang
+            self.assertGreater(600, self.robot.ping(),
+                "Robot y obstaculo rotados a {} grados"
+                .format(ang))
+    
+    def test_ping_obstacle_absent(self):
+        m = pilas.actores.Mono()
+        for ang in range(0, 360, 20):
+            rotar_actor_respecto_otro(self.actor, m, ang)
+            self.actor.rotacion = ang + 180
+            self.assertEqual(601, self.robot.ping(),
+                "Robot y obstaculo rotados a {} grados"
+                .format(ang))
+    
+    def test_behind_the_robot(self):
+        m = pilas.actores.Mono()
+        ang = 20
+        rotar_actor_respecto_otro(self.actor, m, 180 + ang)
+        self.actor.rotacion = ang
+        self.assertEqual(601, self.robot.ping())
+        
+    def test_ahead_of_the_robot(self):
+        m = pilas.actores.Mono()
+        m.y = 150
+        self.assertGreater(600, self.robot.ping())
+        
+    # FIXME: Testear precisión
+    # self.assertAlmostEqual(200, self.robot.ping(), delta=1.5)
+            
 
 if __name__ == '__main__':
     pilas.iniciar()
