@@ -20,13 +20,17 @@ from pilasengine.lanas import autocomplete
 from pilasengine.lanas import editor_con_deslizador
 from pilasengine.lanas import highlighter
 
-CONTENIDO = """import pilasengine
+CONTENIDO = u"""import pilasengine
 
 pilas = pilasengine.iniciar()
 
 mono = pilas.actores.Mono()
 
 # Algunas transformaciones:
+# (Pulsá el botón derecho del
+#  mouse sobre alguna de las
+#  sentencias)
+
 mono.x = 0
 mono.y = 0
 mono.escala = 1.0
