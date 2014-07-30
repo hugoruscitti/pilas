@@ -925,7 +925,14 @@ class Actor(Estudiante):
     def definir_area_colision(self, x, y, ancho, alto):
         self.crear_figura_de_colision_rectangular(x, y, ancho, alto)
 
-    area_de_colision = property(None, definir_area_colision)
+    def obtener_area_colision(self):
+        if getattr(self, 'figura_de_colision'):
+            return self.figura_de_colision
+
+        return None
+
+
+    area_de_colision = property(obtener_area_colision, definir_area_colision)
 
     def crear_figura_de_colision_circular(self, radio, x=0, y=0):
         self.ff = self.pilas.fisica.Circulo(0, 0, radio, dinamica=False, sensor=True)
