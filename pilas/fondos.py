@@ -92,7 +92,9 @@ class FondoPersonalizado(Fondo):
     def __init__(self, imagen):
         Fondo.__init__(self, imagen)
         self.imagenFndo =  Image.open(imagen)
-        pilas.mundo.get_gestor().escena_actual().set_fondo(self)
+      #  pilas.mundo.get_gestor().escena_actual().set_fondo(self)
+        pilas.mundo.gestor_escenas.escena_actual().set_fondo(self)
+
 
     def informacion_de_un_pixel(self, x, y):
         return self.imagenFndo.getpixel( (x,y) )

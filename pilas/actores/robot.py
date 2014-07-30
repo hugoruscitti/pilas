@@ -117,14 +117,14 @@ def wait(seconds = 0):
         QtGui.QApplication.processEvents()
 
 
-def _puntosParaLaRecta(x, y, grados):
+def _puntosParaLaRecta(x, y, grados, distancia):
     
     # Retorna otro punto para la recta, teniendo en cuenta su rotación
 
     radianes = math.radians(360 - grados)
     
-    puntoX = math.cos(radianes) * 100 + x
-    puntoY = math.sin(radianes) * 100 + y
+    puntoX = math.cos(radianes) * distancia + x
+    puntoY = math.sin(radianes) * distancia + y
 
     return (puntoX, puntoY)
 
@@ -310,7 +310,7 @@ class Robot():
   
         actoresValidos = self.actoresEnLaEscena()
         
-        x2, y2 = _puntosParaLaRecta(self.actor.x, self.actor.y, self.actor.rotacion)
+        x2, y2 = _puntosParaLaRecta(self.actor.x, self.actor.y, self.actor.rotacion, 200)
         
         linea_actor_1 = _puntos_de_la_linea(self.actor.x, self.actor.y, x2, y2)
         
@@ -363,41 +363,22 @@ class Robot():
         
         return d1x * d2x < 0 or d1y * d2y < 0
         
-    def _determinar_pixel_por_cuadrante(self, cuadrante):
-        if cuadrante == 1 :
-
-            return (self.actor.x - 2, self.actor.y + 30, self.actor.x + 2, self.actor.y + 30)
-        else:
-            if cuadrante == 2:
-                return (self.actor.x + 30, self.actor.y + 2, self.actor.x + 30, self.actor.y - 2)
-            else:
-                if cuadrante == 3:
-                    return (self.actor.x + 2, self.actor.y - 30, self.actor.x - 2, self.actor.y - 30)
-                else:
-                    return (self.actor.x - 30, self.actor.y - 2, self.actor.x - 30, self.actor.y + 2)
-
 
     def getLine(self):
         """ Devuelve los valores de los sensores de linea. """
 
-        ancho, alto =  pilas.mundo.get_gestor().escena_actual().get_fondo().dimension_fondo()
-        xa, ya, xb, yb =self._determinar_pixel_por_cuadrante(_evaluarCuadrante(self.actor))
+        ancho, alto =  pilas.mundo.gestor_escenas.escena_actual().get_fondo().dimension_fondo()
+
+        xb, yb =  _puntosParaLaRecta(self.actor.x, self.actor.y, self.actor.rotacion, 31)
 
         vi = 0
-        ximagen = ancho / 2 + xa
-        yimagen = alto / 2 - ya
-        valores = pilas.mundo.get_gestor().escena_actual().get_fondo().informacion_de_un_pixel(ximagen, yimagen)
-        for i in valores:
-             vi = vi + i
-
-        vd = 0
         ximagen = ancho / 2 + xb
         yimagen = alto / 2 - yb
-        valores = pilas.mundo.get_gestor().escena_actual().get_fondo().informacion_de_un_pixel(ximagen, yimagen)
+        valores = pilas.mundo.gestor_escenas.escena_actual().get_fondo().informacion_de_un_pixel(ximagen, yimagen)
         for i in valores:
-            vd = vd + i
+            vi = vi + i
 
-        return (vi / 3.0 , vd / 3.0)
+        return (vi / 3.0 , vi / 3.0)
 
     def senses(self):
         ventana = Sense(self)
