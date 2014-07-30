@@ -83,6 +83,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
     def funcion_valores_autocompletado(self, texto):
         scope = self.interpreterLocals
         texto = texto.replace('(', ' ').split(' ')[-1]
+        resultados = []
 
         if '.' in texto:
             palabras = texto.split('.')
@@ -90,14 +91,24 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             prefijo = '.'.join(palabras)
 
             try:
-                elementos = eval("dir(%s)" %prefijo, scope)
+                items = eval("[(x, callable(getattr(eval('%s'), x))) for x in dir(%s)]" %(prefijo, prefijo), scope)
+                elementos = []
+
+                for (x, invocable) in items:
+                    if invocable:
+                        elementos.append(x + '(')
+                    else:
+                        elementos.append(x)
+
             except:
                 # TODO: notificar este error de autocompletado en algun lado...
                 return []
 
-            return [a for a in elementos if a.startswith(ultima)]
+            resultados = [a for a in elementos if a.startswith(ultima)]
         else:
-            return [a for a in scope.keys() if a.startswith(texto)]
+            resultados = [a for a in scope.keys() if a.startswith(texto)]
+
+        return resultados
 
     def canInsertFromMimeData(self, *k):
         return False

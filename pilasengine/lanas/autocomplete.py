@@ -52,7 +52,12 @@ class CompletionTextEdit(QtGui.QTextEdit):
         tc = self.textCursor()
         tc.select(QtGui.QTextCursor.WordUnderCursor)
         tc.removeSelectedText()
-        tc.insertText(completion)
+
+        if str(completion).endswith('('):
+            tc.insertText(completion[:-1])
+        else:
+            tc.insertText(completion)
+
         self.setTextCursor(tc)
         self.clearFocus()
         self.setFocus()
