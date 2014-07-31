@@ -49,13 +49,33 @@
 
 </head>
 
-<body>
+<body ng-controller='MainCtrl'>
 
 <div class='container'>
+
   <div id='header'>
+
     <div class='version'>
-      versión 0.90
+      <a href ng-click='alternar_panel_version()' class='link-version'>versión 0.90</a>
     </div>
+
+
+    <div class='panel-fondo' ng-click='alternar_panel_version()' ng-show='data.consultar_panel_visible() == true'>
+      <div class='panel-version'>
+          <p>Esta versión ha sido generada el
+            xx de mmmm de aaaa desde el commit <code>????</code>.
+
+          <h4>Cambios recientes</h4>
+          <ul>
+              <li>todo 1</li>
+              <li>todo 2</li>
+              <li>todo 3</li>
+              <li>...</li>
+          </ul>
+      </div>
+    </div>
+
+
   </div>
 
   <!-- forzando la carga de la imagenen -->
@@ -66,5 +86,3 @@
 
 </body>
 </html>
-
-

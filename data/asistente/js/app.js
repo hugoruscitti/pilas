@@ -27,8 +27,32 @@ var ModalCodigoCtrl = function($scope, $modalInstance, $http, juego) {
     };
 };
 
+app.factory("PanelVersionFactory", function PanelVersionFactory() {
+  var obj = {};
+  obj.panel_visible = true;
 
-app.controller("MainCtrl", function($scope, $location){
+  function alternar_panel_version() {
+    console.log("alternando !");
+    obj.panel_visible = !obj.panel_visible;
+  }
+
+  function consultar_panel_visible() {
+    console.log("he");
+    return obj.panel_visible;
+  }
+
+  obj.consultar_panel_visible = consultar_panel_visible;
+  obj.alternar_panel_version = alternar_panel_version;
+
+  return obj;
+});
+
+
+app.controller("MainCtrl", function($scope, $location, PanelVersionFactory) {
+  $scope.data = {};
+
+  $scope.data.consultar_panel_visible = PanelVersionFactory.consultar_panel_visible;
+  $scope.alternar_panel_version = PanelVersionFactory.alternar_panel_version;
 });
 
 app.controller("PrincipalCtrl", function($scope, $location){

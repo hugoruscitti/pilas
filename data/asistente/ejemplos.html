@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <title>pilas engine</title>
-  <meta charset="utf-8"> 
+  <meta charset="utf-8">
 
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     };
 
     $(document).ready(function() {
-        
+
         function crear_ejemplo(categoria, nombre) {
             var opciones = {
                 nombre: nombre,
@@ -36,7 +36,7 @@
 
             var elemento_template = $('.elemento_template').html();
             var elemento = elemento_template.format(opciones);
-            
+
 
 	          $(".item").append(elemento);
         }
@@ -188,25 +188,25 @@
 
             if (elemento != "all") {
               $('.item li[rel='+elemento+']').stop().animate({
-                  'width' : '128px', 
-                  'opacity' : 1, 
-                  'marginRight' : '.5em', 
+                  'width' : '128px',
+                  'opacity' : 1,
+                  'marginRight' : '.5em',
                   'marginLeft' : '.5em'
                 });
 
               $('.item li[rel!='+elemento+']').stop().animate({
-                   'width': 0, 
+                   'width': 0,
                    'opacity': 0,
-                   'marginRight': 0, 
+                   'marginRight': 0,
                    'marginLeft': 0
                 });
 
             } else {
 
               $('.item li').stop().animate({
-                  'width': '128px', 
-                  'opacity': 1, 
-                  'marginRight': '.5em', 
+                  'width': '128px',
+                  'opacity': 1,
+                  'marginRight': '.5em',
                   'marginLeft': '.5em'
                 });
             }
@@ -229,7 +229,7 @@
 		<li class="selected"><a href="#" rel="all">Todos</a></li>
     <!-- placeholder -->
 	</ul>
-	
+
 	<ul class="item">
     <!-- placeholder -->
 	</ul>
@@ -251,18 +251,16 @@
 
 
             <a href='http://pilas/codigo/{categoria}/{nombre}'>{codigo}</a>
-            <br/>        
+            <br/>
 
             <span class='progresando'><img src='imagenes/procesando.gif'/></span>
         </div>
       </li>
-    </div> 
+    </div>
 
   </div>
-	
+
 	<div class="cleaner"></div>
 </div>
 </body>
 </html>
-
-

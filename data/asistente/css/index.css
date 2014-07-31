@@ -70,3 +70,32 @@ a.button span {
 #procesando span {
     background: transparent url(../imagenes/procesando.gif) 12px 50% no-repeat;
 }
+
+.link-version {
+  color: gray;
+  text-decoration: none;
+}
+
+div.panel-version {
+  position: absolute;
+  right: 10px;
+  width: 350px;
+  top: 35px;
+  border: 1px solid gray;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  padding: 10px;
+}
+
+.btn-regresar {
+  border-radius: 0;
+}
+
+div.panel-fondo {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
