@@ -14,6 +14,8 @@ all:
 	@echo "  $(V)rm_pyc$(N)      Borra todos los archivos .pyc del proyecto."
 	@echo ""
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
+	@echo "  $(V)version$(N)     Genera el changelog y la informacion de versión en el asistente."
+	@echo ""
 	@echo "  $(V)distmac$(N)     Genera la versión compilada para macos."
 	@echo "  $(V)distwin$(N)     Genera la versión compilada para windows."
 	@echo "  $(V)distdeb$(N)     Genera la versión compilada para debian, ubuntu o huayra."
@@ -30,6 +32,9 @@ test_mac:
 	python bin/pilasengine
 
 .PHONY: test
+
+version:
+	@python extras/actualizar_version.py
 
 utest:
 	@python -m unittest discover pilasengine/tests '*.py'
