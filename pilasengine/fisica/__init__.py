@@ -284,15 +284,15 @@ class Fisica(object):
     _set_gravedad_y = property(obtener_gravedad_y, set_gravedad_y)
 
     def Rectangulo(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
-                   restitucion=0.5, friccion=.2, amortiguacion=0.1,
+                   restitucion=0.56, friccion=10.5, amortiguacion=0.1,
                    sin_rotacion=False, sensor=False):
 
         return rectangulo.Rectangulo(self, self.pilas, x, y, ancho, alto,
-                                     dinamica=dinamica, densidad=densidad,
-                                     restitucion=restitucion, friccion=friccion,
-                                     amortiguacion=amortiguacion,
-                                     sin_rotacion=sin_rotacion,
-                                     sensor=sensor)
+                                    dinamica=dinamica, densidad=densidad,
+                                    restitucion=restitucion, friccion=friccion,
+                                    amortiguacion=amortiguacion,
+                                    sin_rotacion=sin_rotacion,
+                                    sensor=sensor)
 
     def Circulo(self, x, y, radio, dinamica=True, densidad=1.0,
                 restitucion=0.56, friccion=10.5, amortiguacion=0.1,

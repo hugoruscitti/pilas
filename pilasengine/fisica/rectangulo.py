@@ -23,13 +23,14 @@ class Rectangulo(Figura):
     """
 
     def __init__(self, fisica, pilas, x, y, ancho, alto, dinamica=True,
-                 densidad=1.0, restitucion=0.5, friccion=.2,
+                 densidad=1.0, restitucion=0.56, friccion=10.5,
                  amortiguacion=0.1, sin_rotacion=False, sensor=False):
 
         Figura.__init__(self, fisica, pilas)
 
         x = utils.convertir_a_metros(x)
         y = utils.convertir_a_metros(y)
+
         self._ancho = utils.convertir_a_metros(ancho)
         self._alto = utils.convertir_a_metros(alto)
         self._escala = 1
@@ -40,26 +41,30 @@ class Rectangulo(Figura):
         if not self.fisica:
             self.fisica = pilas.escena_actual().fisica
 
-        if dinamica:
+        if not dinamica:
             densidad = 0
 
-        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(box=(self._ancho/2, self._alto/2)),
+        shape = box2d.b2PolygonShape(box=(self._ancho/2, self._alto/2))
+        shape.SetAsBox(self._ancho/2.0, self._alto/2.0)
+        fixture = box2d.b2FixtureDef(shape=shape,
                                      density=densidad,
                                      linearDamping=amortiguacion,
                                      friction=friccion,
                                      restitution=restitucion)
-        # Agregamos un identificador para controlarlo posteriormente en las
-        # colisiones.
+
+        # Agregamos un identificador para controlarlo posteriormente en
+        # las colisiones.
         self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
         self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
 
+        self._cuerpo.fixedRotation = self.sin_rotacion
         self.sensor = sensor
         self.dinamica = dinamica
+
         if not dinamica:
             self._cuerpo.mass = 1000000
-
 
     def definir_vertices(self):
         self._cuerpo.fixtures[0].shape.vertices = box2d.b2PolygonShape(
