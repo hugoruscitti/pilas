@@ -84,7 +84,7 @@ class TweenerEquations(object):
     def IN_OUT_CUBIC(self, t, b, c, d):
         t /= d * .5
         if t < 1:
-             return c * .5 * t * t * t + b
+            return c * .5 * t * t * t + b
         t -= 2
         return c * .5 * (t * t * t + 2) + b
 
@@ -254,6 +254,10 @@ class Tweener(TweenerEquations):
             t.update(time_since_last_frame)
             if t.complete:
                 self.current_tweens.remove(t)
+
+    def update_time_without_motion(self):
+        current_time = time.time()
+        self.prev_time = current_time
 
 
 class Tween(object):

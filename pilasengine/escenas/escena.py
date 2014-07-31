@@ -55,6 +55,9 @@ class Escena(object):
     def actualizar_interpolaciones(self, tiempo_desde_ultima_actualizacion=None):
         self.tweener.update(tiempo_desde_ultima_actualizacion)
 
+    def actualizar_interpolaciones_en_modo_pause(self):
+        self.tweener.update_time_without_motion()
+
     def obtener_cantidad_de_actores(self):
         return len(self._actores.obtener_actores())
 

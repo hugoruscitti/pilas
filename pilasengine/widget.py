@@ -97,6 +97,8 @@ class BaseWidget(object):
                     self.procesar_error(e)
             else:
                 self._realizar_actualizacion_logica()
+        else:
+            self.pilas.realizar_actualizacion_logica_en_modo_pausa()
 
         # Pide redibujar el widget (Qt llamará a paintEvent después).
         self.update()

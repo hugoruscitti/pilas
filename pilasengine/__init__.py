@@ -200,6 +200,9 @@ class Pilas(object):
         """Realiza la etapa de actualización lógica."""
         self.escenas.realizar_actualizacion_logica()
 
+    def realizar_actualizacion_logica_en_modo_pausa(self):
+        self.escenas.realizar_actualizacion_logica_en_modo_pausa()
+
     def simular_actualizacion_logica(self):
         """Realiza un TICK o actualización forzada de lógica.
 
