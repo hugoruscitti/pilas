@@ -259,6 +259,9 @@ class Tweener(TweenerEquations):
         current_time = time.time()
         self.prev_time = current_time
 
+    def force_update_one_frame(self):
+        self.update(1/60.0)
+
 
 class Tween(object):
     def __init__(self, obj, tduration, tween_type, complete_function,

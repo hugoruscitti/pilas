@@ -50,6 +50,10 @@ class Escenas(object):
         escena = self.obtener_escena_actual()
         escena.actualizar_interpolaciones_en_modo_pause()
 
+    def forzar_actualizacion_de_interpolaciones(self):
+        escena = self.obtener_escena_actual()
+        escena.forzar_actualizacion_de_interpolaciones()
+
     def simular_actualizacion_logica(self):
         escena = self.obtener_escena_actual()
         escena.cuando_actualiza.emitir()

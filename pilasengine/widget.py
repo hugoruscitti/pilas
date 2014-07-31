@@ -230,7 +230,8 @@ class BaseWidget(object):
 
     def avanzar_un_solo_cuadro(self):
         "Avanza un solo cuadro de animación estando en modo pausa."
-        pass
+        self.pilas.realizar_actualizacion_logica()
+        self.pilas.forzar_actualizacion_de_interpolaciones()
 
     def continuar(self):
         "Quita el modo pausa."

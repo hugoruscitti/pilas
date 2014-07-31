@@ -131,9 +131,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
                                    self.cuando_pulsa_el_boton_guardar)
 
         self.definir_icono(self.boton_ejecutar, 'iconos/ejecutar.png')
-        #self.interprete_button.connect(self.boton_guardar, QtCore.SIGNAL("clicked()"), self.cuando_pulsa_el_boton_guardar)
-
         self.definir_icono(self.boton_pausar, 'iconos/pausa.png')
+        self.definir_icono(self.boton_siguiente, 'iconos/siguiente.png')
+
 
         self.definir_icono(self.boton_abrir, 'iconos/abrir.png')
         self.boton_abrir.connect(self.boton_abrir,
@@ -189,6 +189,10 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.boton_pausar.connect(self.boton_pausar,
                                     QtCore.SIGNAL("clicked()"),
                                     self.cuando_pulsa_el_boton_pausar)
+        self.boton_siguiente.connect(self.boton_siguiente,
+                                    QtCore.SIGNAL("clicked()"),
+                                    self.cuando_pulsa_el_boton_siguiente)
+
 
     def _conectar_observadores_splitters(self):
         # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.
@@ -267,6 +271,12 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.ventana_pilas.pausar()
         else:
             self.ventana_pilas.continuar()
+
+    def cuando_pulsa_el_boton_siguiente(self):
+        if not self.boton_pausar.isChecked():
+            self.boton_pausar.click()
+
+        self.ventana_pilas.avanzar_un_solo_cuadro()
 
     def pulsa_boton_depuracion(self):
         pilas = self.scope['pilas']
@@ -361,7 +371,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def ejecutar_y_reiniciar_si_cambia(self, archivo):
         self.watcher_ultima_invocacion = time.time() - 500
         self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
-        self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_y_ejecutar)
+        self.watcher.connect(self.watcher,
+                             QtCore.SIGNAL('fileChanged(const QString&)'),
+                             self._reiniciar_y_ejecutar)
         self.watcher.addPath(archivo)
         self._reiniciar_y_ejecutar(archivo)
         self._cargar_codigo_del_editor_desde_archivo(archivo)

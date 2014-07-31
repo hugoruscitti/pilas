@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Fri Jul 18 12:24:12 2014
+# Created: Thu Jul 31 10:53:35 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_InterpreteWindow(object):
     def setupUi(self, InterpreteWindow):
         InterpreteWindow.setObjectName(_fromUtf8("InterpreteWindow"))
-        InterpreteWindow.resize(794, 605)
+        InterpreteWindow.resize(1452, 688)
         InterpreteWindow.setMinimumSize(QtCore.QSize(660, 530))
         self.centralwidget = QtGui.QWidget(InterpreteWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
@@ -183,6 +183,8 @@ class Ui_InterpreteWindow(object):
         self.boton_guardar.setFlat(True)
         self.boton_guardar.setObjectName(_fromUtf8("boton_guardar"))
         self.horizontalLayout.addWidget(self.boton_guardar)
+        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem2)
         self.boton_ejecutar = QtGui.QPushButton(self.layoutWidget2)
         self.boton_ejecutar.setMaximumSize(QtCore.QSize(20, 20))
         self.boton_ejecutar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -195,8 +197,13 @@ class Ui_InterpreteWindow(object):
         self.boton_pausar.setFlat(True)
         self.boton_pausar.setObjectName(_fromUtf8("boton_pausar"))
         self.horizontalLayout.addWidget(self.boton_pausar)
-        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem2)
+        self.boton_siguiente = QtGui.QPushButton(self.layoutWidget2)
+        self.boton_siguiente.setMaximumSize(QtCore.QSize(20, 20))
+        self.boton_siguiente.setFlat(True)
+        self.boton_siguiente.setObjectName(_fromUtf8("boton_siguiente"))
+        self.horizontalLayout.addWidget(self.boton_siguiente)
+        spacerItem3 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem3)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
         self.editor_placeholder = QtGui.QStackedWidget(self.layoutWidget2)
         self.editor_placeholder.setObjectName(_fromUtf8("editor_placeholder"))
@@ -210,7 +217,7 @@ class Ui_InterpreteWindow(object):
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)
         InterpreteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(InterpreteWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 794, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1452, 22))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         InterpreteWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(InterpreteWindow)
@@ -252,6 +259,7 @@ class Ui_InterpreteWindow(object):
         self.boton_ejecutar.setToolTip(_translate("InterpreteWindow", "Ejecutar el código actual (F5 o CTRL+R)", None))
         self.boton_ejecutar.setText(_translate("InterpreteWindow", "E", None))
         self.boton_pausar.setText(_translate("InterpreteWindow", "P", None))
+        self.boton_siguiente.setText(_translate("InterpreteWindow", "S", None))
         self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
 from PyQt4 import QtWebKit

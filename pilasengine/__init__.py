@@ -203,6 +203,9 @@ class Pilas(object):
     def realizar_actualizacion_logica_en_modo_pausa(self):
         self.escenas.realizar_actualizacion_logica_en_modo_pausa()
 
+    def forzar_actualizacion_de_interpolaciones(self):
+        self.escenas.forzar_actualizacion_de_interpolaciones()
+
     def simular_actualizacion_logica(self):
         """Realiza un TICK o actualización forzada de lógica.
 
