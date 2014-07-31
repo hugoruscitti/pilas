@@ -43,7 +43,6 @@ class Editor(QFrame):
 
     class NumberBar(QWidget):
 
-        #def __init__(self, main, interpreterLocals, ventana_interprete, *args):
         def __init__(self, *args):
             QWidget.__init__(self, *args)
             self.edit = None
@@ -205,7 +204,14 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
             prefijo = '.'.join(palabras)
 
             try:
-                elementos = eval("dir(%s)" %prefijo, scope)
+                items = eval("[(x, callable(getattr(eval('%s'), x))) for x in dir(%s)]" %(prefijo, prefijo), scope)
+                elementos = []
+
+                for (x, invocable) in items:
+                    if invocable:
+                        elementos.append(x + '(')
+                    else:
+                        elementos.append(x)
             except:
                 # TODO: notificar este error de autocompletado en algun lado...
                 return []

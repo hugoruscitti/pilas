@@ -148,7 +148,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
         tc = self.textCursor()
         line = self._get_current_line()
         if es_consola:
-            # La posicíón del cursor es diferente por '» '
+            # La posición del cursor es diferente por '» '
             position = tc.positionInBlock() - 3
         else:
             position = tc.positionInBlock() - 1
