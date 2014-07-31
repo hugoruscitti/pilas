@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Thu Jul 31 10:53:35 2014
+# Created: Thu Jul 31 11:58:04 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_InterpreteWindow(object):
     def setupUi(self, InterpreteWindow):
         InterpreteWindow.setObjectName(_fromUtf8("InterpreteWindow"))
-        InterpreteWindow.resize(1452, 688)
+        InterpreteWindow.resize(794, 605)
         InterpreteWindow.setMinimumSize(QtCore.QSize(660, 530))
         self.centralwidget = QtGui.QWidget(InterpreteWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
@@ -204,6 +204,13 @@ class Ui_InterpreteWindow(object):
         self.horizontalLayout.addWidget(self.boton_siguiente)
         spacerItem3 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem3)
+        self.label = QtGui.QLabel(self.layoutWidget2)
+        self.label.setMinimumSize(QtCore.QSize(80, 0))
+        self.label.setMaximumSize(QtCore.QSize(80, 80))
+        self.label.setLineWidth(0)
+        self.label.setText(_fromUtf8(""))
+        self.label.setObjectName(_fromUtf8("label"))
+        self.horizontalLayout.addWidget(self.label)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
         self.editor_placeholder = QtGui.QStackedWidget(self.layoutWidget2)
         self.editor_placeholder.setObjectName(_fromUtf8("editor_placeholder"))
@@ -217,7 +224,7 @@ class Ui_InterpreteWindow(object):
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)
         InterpreteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(InterpreteWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1452, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1646, 22))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         InterpreteWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(InterpreteWindow)
