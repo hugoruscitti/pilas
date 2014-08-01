@@ -1,0 +1,32 @@
+Source: pilas
+Maintainer: Hugo Ruscitti <hugoruscitti@gmail.com>
+Section: python
+Priority: optional
+Standards-Version: 3.9.3
+X-Python-Version: >= 2.7
+Build-Depends: debhelper (>= 8),
+ python-all,
+ python-pygame,
+ python-qt4,
+ python-qt4-gl,
+ python-setuptools
+
+Package: pilas
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends},
+ gvfs-bin,
+ phonon-backend-gstreamer,
+ python-pygame,
+ python-qt4,
+ python-qt4-gl,
+ python-qt4-phonon
+Description: Pilas es un motor para hacer videojuegos de manera sencilla.
+ Está dirigido a personas que comienzan a programar videojuegos y quieren lograr
+ resultados interesantes y divertidos en poco tiempo.
+ Es multiplataforma, funciona tanto en sistema Windows cómo GNU/Linux.
+ Incluye actores prediseñados para que puedas comenzar a crear muchas variedades
+ de juegos rápidamente.
+ Está completamente en castellano, tanto la documentación cómo los nombres
+ internos están en tu idioma.
+ Es interactiva, ya que utiliza el lenguaje de programación python y un modelo
+ orientado a eventos.
