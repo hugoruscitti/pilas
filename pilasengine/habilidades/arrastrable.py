@@ -11,12 +11,8 @@ from pilasengine import habilidades
 class Arrastrable(habilidades.Habilidad):
     def iniciar(self, receptor):
         super(Arrastrable, self).iniciar(receptor)
-        self.pilas.eventos.click_de_mouse.conectar(self.intentar_arrastrar)
 
-    def intentar_arrastrar(self, evento):
-        if (evento.boton == 1 and
-                self.receptor.colisiona_con_un_punto(evento.x, evento.y)):
-
+    def intentar_arrastrar(self):
             self.pilas.eventos.termina_click.conectar(self.termina_de_arrastrar,
                                                       id="termina_de_arrastrar")
 
