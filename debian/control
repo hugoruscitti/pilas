@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 8),
  python-qt4-gl,
  python-setuptools
 Standards-Version: 3.9.3
-Homepage: https://github.com/hugoruscitti/caripela
+Homepage: https://github.com/hugoruscitti/python-pilas-experimental
 #Vcs-Git: git://git.debian.org/collab-maint/huayra-compartir.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/huayra-compartir.git;a=summary
 
