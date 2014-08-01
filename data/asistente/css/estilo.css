@@ -166,6 +166,8 @@ html, body {height: 100%; padding-left: 1em; padding-right: 1em}
 
 .barra-superior {
     margin-top: 15px;
+    margin-left: 40px;
+    margin-right: 50px;
 }
 
 .filtro {
@@ -253,4 +255,21 @@ body.modal-open {
 .view-animate {
   overflow-y: hidden;
   overflow-x: hidden;
+}
+
+
+.cuerpo {
+  background-color: white;
+  position: absolute;
+  left: 50px;
+  right: 50px;
+  bottom: 10px;
+  top: 60px;
+  overflow-y: scroll;
+  border: 1px solid #C8C8C8;
+}
+
+.cuerpo ul.item {
+  padding: 0;
+  float: none;
 }
