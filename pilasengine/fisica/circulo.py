@@ -66,6 +66,9 @@ class Circulo(Figura):
         self.sensor = sensor
         self.dinamica = dinamica
 
+        if not dinamica:
+            self._cuerpo.mass = 1000000
+
     def definir_radio(self):
         for fixture in self._cuerpo:
             fixture.shape.radius = self._radio
