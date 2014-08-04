@@ -4,6 +4,8 @@ import pilas
 import time
 import sys
 import math
+import pygame
+import numpy
 
 from pilas.actores import Actor
 from pilas.fondos import  *
@@ -13,12 +15,11 @@ from pilas.actores import Nave
 from pilas.utils import distancia_entre_dos_puntos
 from pilas.utils import distancia_entre_dos_actores 
 
-from PyQt4 import QtGui, QtCore, uic
+from PyQt4 import QtGui, uic
 import weakref
 
 import Image
 
-from PyQt4 import QtGui
 from pilas.fondos import *
 from pilas.actores import Ejes
 from datetime import datetime, timedelta
@@ -132,6 +133,11 @@ def _puntosParaLaRecta(x, y, grados, distancia):
 
 class Robot():
 
+    atributos = ["forward", "backward", "turnLeft", "turnRight", "beep", 
+                        "getObstacle","getLine", "ping", "stop", "battery" , "senses",
+                        "setId", "setName" , "getName", "speak", "bajalapiz" , "subelapiz",
+                        "set_x", "set_y", "get_x", "get_y" ]
+                        
     def __init__(self,board, robotid=0, x=0, y=0):
         """ Inicializa el robot y lo asocia con la placa board. """
 
@@ -163,6 +169,14 @@ class Robot():
         self.tarea = None
 
 
+    def __getattribute__(self, metodo):
+        if metodo in Robot.atributos:
+            QtGui.QApplication.processEvents()
+        else:
+            return object.__getattribute__(self, metodo)
+             
+            
+
     # Redefinir el método eliminar de la clase Actor para que lo elimine también de la lista de robots de Board
     def eliminar(self):
         self.board.eliminarDeLaLista(self.proxy)
@@ -185,6 +199,8 @@ class Robot():
         """ El robot avanza con velocidad vel durante seconds segundos. """
         self.stop()
         self.board._mover(self, vel,  seconds)
+        QtGui.QApplication.processEvents()
+
 
     def _realizarMovimiento(self, vel, seconds):
         """ El robot avanza con velocidad vel durante seconds segundos. """
@@ -271,7 +287,36 @@ class Robot():
 
     def beep(self, freq=200, seconds=0):
         """ Hace que el robot emita un pitido con frecuencia freq durante seconds segundos."""
+        sample_rate = 44100
+        pygame.mixer.init(frequency=sample_rate, channels=1)
+        
+        #Fs = 8000
+        #length = Fs * 1.5   # 1.5 seconds
+        #freq = 440.0
+        #amp = 2000.0
+        #tmp = []
+        #sound = []
+        
+        #for t in range(int(length)):
+        #v= amp * numpy.sin(t*freq/Fs*2*numpy.pi)
+        #tmp.append(v) 
+        
+        freq = 500
+        sample = 8000
+        seconds = 1
+        amplitud = 2000
+        half_period = int(sample / freq  / 2)
+        wave = [amplitud] * half_period + [0] * half_period
+        beep = wave * int(seconds * sample / half_period)
 
+        channel = pygame.mixer.Channel(0)
+        channel.set_volume(1)
+        sound = pygame.sndarray.make_sound(numpy.array(beep, numpy.int0))
+        channel.play(sound)
+
+        time.sleep(5)
+        
+        
         amplitud = 58
         sample = 8000
         half_period = int(sample/freq / 2)
@@ -308,7 +353,7 @@ class Robot():
     def ping(self):
         """ Devuelve la distancia en centimetros al objeto frente al robot. """
   
-        actoresValidos = self.actoresEnLaEscena()
+        actoresValidos = self._actoresEnLaEscena()
         
         x2, y2 = _puntosParaLaRecta(self.actor.x, self.actor.y, self.actor.rotacion, 200)
         
@@ -436,7 +481,7 @@ class Robot():
     y = property(get_y, set_y)
     
     
-    def actoresEnLaEscena(self):
+    def _actoresEnLaEscena(self):
         actores = []
         for actor in pilas.escena_actual().actores:
             if (id(actor) != id(self.actor) and _actor_no_valido(actor)   ):
