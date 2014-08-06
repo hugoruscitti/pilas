@@ -285,23 +285,14 @@ class Robot():
         self.board._girar(self, -vel, seconds)
 
 
-    def beep(self, freq=200, seconds=0):
+    def beep(self, freq = 200, seconds=0):
         """ Hace que el robot emita un pitido con frecuencia freq durante seconds segundos."""
-        sample_rate = 44100
-        pygame.mixer.init(frequency=sample_rate, channels=1)
-        
-        #Fs = 8000
-        #length = Fs * 1.5   # 1.5 seconds
-        #freq = 440.0
-        #amp = 2000.0
-        #tmp = []
-        #sound = []
-        
-        #for t in range(int(length)):
-        #v= amp * numpy.sin(t*freq/Fs*2*numpy.pi)
-        #tmp.append(v) 
-        
-        freq = 500
+        pygame.mixer.quit()
+        pygame.quit()
+        pygame.mixer.pre_init(frequency=96000,channels=1)
+        pygame.mixer.init(frequency=96000, channels=1)
+        pygame.init()
+
         sample = 8000
         seconds = 1
         amplitud = 2000
@@ -314,17 +305,7 @@ class Robot():
         sound = pygame.sndarray.make_sound(numpy.array(beep, numpy.int0))
         channel.play(sound)
 
-        time.sleep(5)
-        
-        
-        amplitud = 58
-        sample = 8000
-        half_period = int(sample/freq / 2)
-        beep = chr(amplitud)*half_period+chr(0)*half_period
-        beep *= int(seconds * freq)
-        audio = file('/dev/audio', 'wb')
-        audio.write(beep)
-        audio.close()
+      #  time.sleep(3)         
 
     def _detenerse(self):
         self.movimiento = False
