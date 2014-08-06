@@ -154,7 +154,7 @@ class Pizarra(Actor):
         x, y = self.obtener_coordenada_fisica(x, y)
         self.imagen.texto(cadena, x, y, magnitud, fuente, color)
 
-    def poligono(self, puntos, color=colores.negro, grosor=1):
+    def poligono(self, puntos, color=colores.negro, grosor=1, cerrado=False):
         """Dibuja un polígono sobre la pizarra.
 
         Ejemplo:
@@ -167,7 +167,7 @@ class Pizarra(Actor):
         :param grosor: El grosor de la linea a trazar en pixels.
         """
         puntos = [self.obtener_coordenada_fisica(*p) for p in puntos]
-        self.imagen.poligono(puntos, color, grosor)
+        self.imagen.poligono(puntos, color, grosor, cerrado)
 
     def limpiar(self):
         """Borra toda la pizarra y los dibujos que hay en ella."""
