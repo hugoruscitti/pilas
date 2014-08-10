@@ -46,8 +46,8 @@ class Actores(object):
 
         """
 
-        if not Actor in clase_del_actor.__bases__:
-            raise Exception("Solo se pueden vincular clases que heredan de \
+        if not issubclass(clase_del_actor, Actor):
+            raise Exception("Solo se pueden vincular clases que heredan de\
                             pilasengine.actores.Actor")
 
         def metodo_crear_actor(self):
