@@ -177,8 +177,10 @@ class BaseWidget(object):
         x = w - final_w
         y = h - final_h
 
-        self.setGeometry(x / 2, y / 2, final_w, final_h)
-        self._centrar_canvas(w, h)
+        # Guarda el desplazamiento que necesita el canvas para
+        # dibujarse centrado en la ventana.
+        self.window_dx = x / 2.0
+        self.window_dy = y / 2.0
 
     def _centrar_canvas(self, w, h):
         dw = w - self.frameGeometry().width()
@@ -192,6 +194,7 @@ class BaseWidget(object):
         self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, self._borrosidad)
         self.painter.setRenderHint(QtGui.QPainter.TextAntialiasing, True)
 
+        self.painter.translate(self.window_dx, self.window_dy)
         self.painter.scale(self.escala, self.escala)
 
         self.pilas.realizar_dibujado(self.painter)
