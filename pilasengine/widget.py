@@ -150,11 +150,11 @@ class BaseWidget(object):
         self.mouse_y = y
 
     def _pintar_fondo(self):
-        self.painter.setBrush(QtGui.QColor(200, 200, 200))
+        self.painter.setBrush(QtGui.QColor(50, 50, 50))
         size = self.size()
         w = size.width()
         h = size.height()
-        self.painter.drawRect(0, 0, w - 1, h - 1)
+        self.painter.drawRect(0, 0, w, h)
 
     def paintEvent(self, e):
         self.painter.begin(self)
