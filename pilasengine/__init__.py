@@ -335,7 +335,7 @@ class Pilas(object):
 
 
 def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
-            habilitar_mensajes_log=False, x=None, y=None):
+            habilitar_mensajes_log=False, con_aceleracion=True, x=None, y=None):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -354,9 +354,13 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
                        ventana de pilas. En caso de poner False los errores
                        se muestran en consola.
     :habilitar_mensajes_log: Muestra cada operación que hace pilas en consola.
+    :con_aceleracion: Indica si se habilita o no la aceleracion de video. Por omisión está habilitada.
     """
+
     pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo,
-                  capturar_errores=capturar_errores, x=x, y=y)
+                  capturar_errores=capturar_errores, x=x, y=y,
+                  habilitar_mensajes_log=False,
+                  con_aceleracion=con_aceleracion)
     return pilas
 
 

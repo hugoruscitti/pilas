@@ -186,12 +186,13 @@ class BaseWidget(object):
         self.move(dw / 2, dh / 2)
 
     def _dibujar_widget(self):
-        self.painter.scale(self.escala, self.escala)
-
         # Suavizar efectos y transformaciones de imágenes.
+        self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
         self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
         self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, self._borrosidad)
-        self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
+        self.painter.setRenderHint(QtGui.QPainter.TextAntialiasing, True)
+
+        self.painter.scale(self.escala, self.escala)
 
         self.pilas.realizar_dibujado(self.painter)
 
