@@ -8,7 +8,21 @@
 
 import pygame
 
-class Pad:
+class PadDeshabilitado(object):
+
+    def __init__(self, pilas):
+        self.pilas = pilas
+
+    def listar(self):
+        pass
+
+    def hay_pads_conectados(self):
+        pass
+
+    def actualizar(self):
+        pass
+
+class Pad(object):
 
     def __init__(self, pilas):
         self.x = 0
@@ -20,9 +34,8 @@ class Pad:
         self.pilas = pilas
         self.joysticks = []
 
-        pygame.joystick.init()
-        pygame.mixer.init()
         pygame.init()
+        pygame.joystick.init()
 
         self.joystick = None
         #print "Obteniendo pads:", pygame.joystick.get_count()

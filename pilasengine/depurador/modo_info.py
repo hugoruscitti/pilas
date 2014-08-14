@@ -39,7 +39,7 @@ class ModoInformacionDeSistema(ModoDepurador):
         return usa_aceleracion
 
     def realizar_dibujado(self, painter):
-        izquierda, _, _, abajo = self.pilas.widget.obtener_bordes()
+        izquierda, derecha, _, abajo = self.pilas.widget.obtener_bordes()
 
         ancho, alto = self.pilas.obtener_area()
         self.informacion[4] = "Area de juego: (%d, %d)" % (ancho, alto)
@@ -51,6 +51,9 @@ class ModoInformacionDeSistema(ModoDepurador):
             posicion_y = abajo + 90 + i * 20
             self._texto_absoluto(painter, texto, izquierda + 10, posicion_y,
                                  color=pilasengine.colores.blanco)
+
+        texto = u"posición del mouse: (%d, %d)" %(self.pilas.obtener_posicion_del_mouse())
+        self._texto_absoluto(painter, texto, derecha/2, abajo/2, color=pilasengine.colores.blanco)
 
     def dibujar_actor(self, actor, painter):
         pass

@@ -70,12 +70,14 @@ class Pilas(object):
 
     def _inicializar_audio(self):
         import pygame
+        pygame.init()
         pygame.mixer.init()
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
                   con_aceleracion=True, habilitar_mensajes_log=False,
                   x=None, y=None, capturar_errores=True):
         """Genera nuevamente la ventana del videojuego."""
+
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
         self.actores = actores.Actores(self)
@@ -83,7 +85,6 @@ class Pilas(object):
         self.eventos = eventos.Eventos(self)
         self.controles = controles.Controles(self)
         self.escenas = escenas.Escenas(self)
-        self.pad = pad.Pad(self)
         self.imagenes = imagenes.Imagenes(self)
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)
@@ -96,6 +97,12 @@ class Pilas(object):
 
         self.musica = musica.Musica(self)
         self.sonidos = sonidos.Sonidos(self)
+
+        if configuracion.PAD_HABILITADO:
+            self.pad = pad.Pad(self)
+        else:
+            self.pad = pad.PadDeshabilitado(self)
+
         self.habilidades = habilidades.Habilidades()
         self.comportamientos = comportamientos.Comportamientos()
 
@@ -286,6 +293,9 @@ class Pilas(object):
 
     def mostrar_puntero_del_mouse(self):
         self.widget.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+
+    def obtener_posicion_del_mouse(self):
+        return (self.widget.mouse_x, self.widget.mouse_y)
 
     def obtener_camara(self):
         return self.escena_actual().camara
