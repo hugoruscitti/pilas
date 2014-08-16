@@ -423,6 +423,10 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.mostrar_mensaje_cargando()
         self.insertar_widget_de_pilas()
 
+        # Evita perder los 'ejes' del modo de depuracion 'posicion'
+        self.scope['pilas'].depurador.definir_modos()
+        self.pulsa_boton_depuracion()
+
 
 def abrir():
     MainWindow = QMainWindow()
