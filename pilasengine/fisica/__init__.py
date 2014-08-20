@@ -38,6 +38,7 @@ class Fisica(object):
 
         self.pilas = pilas
         self.escena = escena
+        self.mundo = None
         self.mundo = box2d.b2World(gravedad, True)
         self.objetosContactListener = ObjetosContactListener(pilas)
         self.mundo.contactListener = self.objetosContactListener
@@ -51,7 +52,7 @@ class Fisica(object):
 
     def iniciar(self):
         self.area = self.pilas.obtener_widget().obtener_area()
-        self.crear_bordes_del_escenario()
+        #self.crear_bordes_del_escenario()
 
     def crear_bordes_del_escenario(self):
         """Genera las paredes, el techo y el suelo."""
@@ -297,6 +298,7 @@ class Fisica(object):
     def Circulo(self, x, y, radio, dinamica=True, densidad=1.0,
                 restitucion=0.56, friccion=10.5, amortiguacion=0.1,
                 sin_rotacion=False, sensor=False):
+        return ()
         return circulo.Circulo(self, self.pilas, x, y, radio,
                                dinamica=dinamica, densidad=densidad,
                                restitucion=restitucion, friccion=friccion,
