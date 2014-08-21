@@ -1,7 +1,7 @@
 N=[0m
 V=[01;32m
 
-VERSION=0.90.0
+VERSION=0.90.1
 
 all:
 	@echo "Comando disponibles"
@@ -38,8 +38,8 @@ version:
 	@python extras/actualizar_version.py
 	@echo "Es recomendable escribir:"
 	@echo ""
-	@echo "    git tag ${VERSION} "
-	@echo "    git commit -am 'release ${VERSION}' "
+	@echo "    git tag VERSION_NUEVA "
+	@echo "    git commit -am 'release VERSION_NUEVA'"
 	@echo "    git push --all"
 
 utest:
