@@ -36,6 +36,11 @@ test_mac:
 version:
 	@bumpversion --current-version ${VERSION} patch setup.py setup-mac.py ./extras/actualizar_version.py Makefile --list
 	@python extras/actualizar_version.py
+	@echo "Es recomendable escribir:"
+	@echo ""
+	@echo "    git tag ${VERSION} "
+	@echo "    git commit -am 'release ${VERSION}' "
+	@echo "    git push --all"
 
 utest:
 	@python -m unittest discover pilasengine/tests '*.py'
