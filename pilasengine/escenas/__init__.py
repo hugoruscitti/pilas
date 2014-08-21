@@ -29,7 +29,6 @@ class Escenas(object):
 
     def definir_escena(self, escena):
         if self.escena_actual:
-            print "eliminaod escena"
             self.escena_actual.eliminar_el_motor_de_fisica()
             del self.escena_actual
             import gc

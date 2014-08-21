@@ -286,7 +286,6 @@ class Fisica(object):
 
     def eliminar_para_liberar_memoria(self):
         lista = list(self.mundo.bodies)
-        print "liverando %d bodies" %(len(lista))
 
         for cuerpo in lista:
             for fixture in cuerpo:
