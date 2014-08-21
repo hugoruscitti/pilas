@@ -52,7 +52,7 @@ class Fisica(object):
 
     def iniciar(self):
         self.area = self.pilas.obtener_widget().obtener_area()
-        #self.crear_bordes_del_escenario()
+        self.crear_bordes_del_escenario()
 
     def crear_bordes_del_escenario(self):
         """Genera las paredes, el techo y el suelo."""
@@ -284,6 +284,19 @@ class Fisica(object):
     _set_gravedad_x = property(obtener_gravedad_x, set_gravedad_x)
     _set_gravedad_y = property(obtener_gravedad_y, set_gravedad_y)
 
+    def eliminar_para_liberar_memoria(self):
+        lista = list(self.mundo.bodies)
+        print "liverando %d bodies" %(len(lista))
+
+        for cuerpo in lista:
+            for fixture in cuerpo:
+                cuerpo.DestroyFixture(fixture)
+
+            self.mundo.DestroyBody(cuerpo)
+
+        import gc
+        gc.collect()
+
     def Rectangulo(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
                    restitucion=0.56, friccion=10.5, amortiguacion=0.1,
                    sin_rotacion=False, sensor=False):
@@ -298,7 +311,6 @@ class Fisica(object):
     def Circulo(self, x, y, radio, dinamica=True, densidad=1.0,
                 restitucion=0.56, friccion=10.5, amortiguacion=0.1,
                 sin_rotacion=False, sensor=False):
-        return ()
         return circulo.Circulo(self, self.pilas, x, y, radio,
                                dinamica=dinamica, densidad=densidad,
                                restitucion=restitucion, friccion=friccion,
