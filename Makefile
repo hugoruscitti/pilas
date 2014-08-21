@@ -34,7 +34,7 @@ test_mac:
 .PHONY: test
 
 version:
-	@bumpversion --current-version ${VERSION} minor setup.py setup-mac.py ./extras/actualizar_version.py Makefile --list
+	@bumpversion --current-version ${VERSION} patch setup.py setup-mac.py ./extras/actualizar_version.py Makefile --list
 	@python extras/actualizar_version.py
 
 utest:
