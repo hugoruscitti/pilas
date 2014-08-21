@@ -1,7 +1,7 @@
 N=[0m
 V=[01;32m
 
-VERSION=0.90
+VERSION=0.90.0
 
 all:
 	@echo "Comando disponibles"
@@ -34,6 +34,7 @@ test_mac:
 .PHONY: test
 
 version:
+	@bumpversion --current-version ${VERSION} minor setup.py setup-mac.py ./extras/actualizar_version.py Makefile --list
 	@python extras/actualizar_version.py
 
 utest:
