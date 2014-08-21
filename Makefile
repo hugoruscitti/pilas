@@ -38,8 +38,8 @@ version:
 	@python extras/actualizar_version.py
 	@echo "Es recomendable escribir:"
 	@echo ""
-	@echo "    git tag VERSION_NUEVA "
 	@echo "    git commit -am 'release VERSION_NUEVA'"
+	@echo "    git tag 'VERSION_NUEVA'"
 	@echo "    git push --all"
 
 utest:
