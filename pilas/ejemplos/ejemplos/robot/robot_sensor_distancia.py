@@ -1,39 +1,34 @@
 # -*- encoding: utf-8 -*-
 
+# Importat la librería 
 import pilas
+
+#Inniciar 
 pilas.iniciar()
 
 
-
-def evaluar(unRobot, unMono):
-
-        def checkPosicion():
-            print r.ping()
-
-            if (r.ping() > 30) :       
-                print r.ping()         
-                return True
-            else:
-                # Si se acercó el mono le avisa
-                m.decir("Cuidado!!!!!")                
-                r.stop() 
-                return False
-
-        r.forward()
-
-        pilas.escena_actual().tareas.condicional(0.5, checkPosicion)
-
-
+# Definición de los actores
 b = pilas.actores.Board("/dev/tty/USB0")
 r = pilas.actores.Robot(b, 1)
 m = pilas.actores.Mono()
 
 
+# Posiciones de los actores
 r.x = 11
 r.y = -30
 m.x = 15
 m.y = 140
 
-evaluar(r, m)
+# Avance del Robot
+r.forward()
+while  r.ping() > 30 :
+  #  pilas.avisar("Distancia entre el Robot y el Mono:", r.ping())
+    pass
+# Se acerca al Mono
+m.decir("Cuidado!!!!!")        
+
+# Detener el Robot        
+r.stop() 
+print r.getName()
 
 pilas.ejecutar()

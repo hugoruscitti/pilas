@@ -6,23 +6,21 @@ import sys
 import math
 import pygame
 import numpy
+import Image
+import weakref
+
+from PyQt4 import QtGui, uic
+
+from datetime import datetime, timedelta
 
 from pilas.actores import Actor
 from pilas.fondos import  *
 from pilas.actores import Pizarra
 from pilas.actores import Nave
-
 from pilas.utils import distancia_entre_dos_puntos
 from pilas.utils import distancia_entre_dos_actores 
-
-from PyQt4 import QtGui, uic
-import weakref
-
-import Image
-
 from pilas.fondos import *
 from pilas.actores import Ejes
-from datetime import datetime, timedelta
 
 # Calculos para sensor Ping
 
@@ -131,12 +129,9 @@ def _puntosParaLaRecta(x, y, grados, distancia):
 
 #### Robot
 
-class Robot():
+class Robot(object):
 
-    atributos = ["forward", "backward", "turnLeft", "turnRight", "beep", 
-                        "getObstacle","getLine", "ping", "stop", "battery" , "senses",
-                        "setId", "setName" , "getName", "speak", "bajalapiz" , "subelapiz",
-                        "set_x", "set_y", "get_x", "get_y" ]
+
                         
     def __init__(self,board, robotid=0, x=0, y=0):
         """ Inicializa el robot y lo asocia con la placa board. """
@@ -170,12 +165,15 @@ class Robot():
 
 
     def __getattribute__(self, metodo):
-        if metodo in Robot.atributos:
+        atributos = ["forward", "backward", "turnLeft", "turnRight", "beep", 
+                        "getObstacle","getLine", "ping", "stop", "battery" , "senses",
+                        "setId", "setName" , "getName", "speak", "bajalapiz" , "subelapiz",
+                        "set_x", "set_y", "get_x", "get_y" ]
+        if metodo in atributos:
             QtGui.QApplication.processEvents()
-        else:
-            return object.__getattribute__(self, metodo)
+
+        return object.__getattribute__(self, metodo)
              
-            
 
     # Redefinir el método eliminar de la clase Actor para que lo elimine también de la lista de robots de Board
     def eliminar(self):
@@ -333,7 +331,7 @@ class Robot():
 
     def ping(self):
         """ Devuelve la distancia en centimetros al objeto frente al robot. """
-  
+
         actoresValidos = self._actoresEnLaEscena()
         
         x2, y2 = _puntosParaLaRecta(self.actor.x, self.actor.y, self.actor.rotacion, 200)
