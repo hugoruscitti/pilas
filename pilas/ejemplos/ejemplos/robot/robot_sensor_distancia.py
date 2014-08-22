@@ -20,10 +20,10 @@ m.x = 15
 m.y = 140
 
 # Avance del Robot
-r.forward()
+r.forward(20)
 while  r.ping() > 30 :
   #  pilas.avisar("Distancia entre el Robot y el Mono:", r.ping())
-    pass
+    pilas.avisar("Distancia entre el Robot y el Mono: " +  str(r.ping()))
 # Se acerca al Mono
 m.decir("Cuidado!!!!!")        
 
