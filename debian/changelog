@@ -1,4 +1,17 @@
-pilas (0.84.3-2) UNRELEASED; urgency=low
+pilas (0.84.3-3) unstable; urgency=low
+
+  * Nueva dependendencia para el beep
+  * Corregidos los errores de backward.
+  * Rehechos los módulos de: getObstacle, ping y beep
+  * Se agregó manejo de eventos con Qt
+  * Se incorporaron test.
+  * Incorporaron nuevos ejemplos en el módulo de ejemplos de Pilas
+  * Property para las x e y; y el lápiz del robot.
+  * Rediseño de la clase Robot. Dejó de heredar de Actor.
+  
+ -- Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Mon, 25 Aug 2014 17:13:47 -0300
+
+pilas (0.84.3-2) unstable; urgency=low
 
   * Archivo desktop.
   * Modificaciones en setup.py
