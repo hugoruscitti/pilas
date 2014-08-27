@@ -11,7 +11,14 @@ import pygame
 class PadDeshabilitado(object):
 
     def __init__(self, pilas):
+        self.x = 0
+        self.y = 0
+
+        self.x1 = 0
+        self.y1 = 0
+
         self.pilas = pilas
+        self.joysticks = []
 
     def listar(self):
         pass
@@ -23,6 +30,20 @@ class PadDeshabilitado(object):
         pass
 
 class Pad(object):
+
+  def __init__(self, pilas):
+    pass
+
+  def actualizar(self):
+    pass
+
+  def hay_pads_conectados(self):
+    return False
+
+  def listar(self):
+    pass
+
+class PadHabilitado:
 
     def __init__(self, pilas):
         self.x = 0
