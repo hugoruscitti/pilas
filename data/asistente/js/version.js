@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '0.90.1',
-  fecha: '21 de Aug del 2014',
-  commit: 'b27a247',
-  changelog: ['prueba', 'arreglo menor.', 'agregando script para incrementar version.', 'normalizando numero de version', 'Arreglo menor.']
+  version: '0.90.2',
+  fecha: '27 de Aug del 2014',
+  commit: '2c67db9',
+  changelog: ['Habilitando sonidos nuevamente.', 'actualizando Makefile.', 'release 0.90.1', 'prueba', 'arreglo menor.']
 }

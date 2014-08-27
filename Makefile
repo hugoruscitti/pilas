@@ -1,7 +1,7 @@
 N=[0m
 V=[01;32m
 
-VERSION=0.90.1
+VERSION=0.90.2
 
 all:
 	@echo "Comando disponibles"
@@ -36,11 +36,14 @@ test_mac:
 version:
 	@bumpversion --current-version ${VERSION} patch setup.py setup-mac.py ./extras/actualizar_version.py Makefile --list
 	@python extras/actualizar_version.py
-	@echo "Es recomendable escribir:"
+	@echo "Es recomendable escribir el comando que genera los tags y sube todo a github:"
 	@echo ""
-	@echo "    git commit -am 'release VERSION_NUEVA'"
-	@echo "    git tag 'VERSION_NUEVA'"
-	@echo "    git push --all"
+	@echo "make subir_version"
+
+subir_version:
+	git commit -am 'release ${VERSION}'
+	git tag '${VERSION}'
+	git push --all
 
 utest:
 	@python -m unittest discover pilasengine/tests '*.py'
