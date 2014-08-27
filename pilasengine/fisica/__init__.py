@@ -38,6 +38,7 @@ class Fisica(object):
 
         self.pilas = pilas
         self.escena = escena
+        self.mundo = None
         self.mundo = box2d.b2World(gravedad, True)
         self.objetosContactListener = ObjetosContactListener(pilas)
         self.mundo.contactListener = self.objetosContactListener
@@ -282,6 +283,18 @@ class Fisica(object):
 
     _set_gravedad_x = property(obtener_gravedad_x, set_gravedad_x)
     _set_gravedad_y = property(obtener_gravedad_y, set_gravedad_y)
+
+    def eliminar_para_liberar_memoria(self):
+        lista = list(self.mundo.bodies)
+
+        for cuerpo in lista:
+            for fixture in cuerpo:
+                cuerpo.DestroyFixture(fixture)
+
+            self.mundo.DestroyBody(cuerpo)
+
+        import gc
+        gc.collect()
 
     def Rectangulo(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
                    restitucion=0.56, friccion=10.5, amortiguacion=0.1,

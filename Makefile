@@ -1,7 +1,7 @@
 N=[0m
 V=[01;32m
 
-VERSION=0.90
+VERSION=0.90.2
 
 all:
 	@echo "Comando disponibles"
@@ -15,6 +15,7 @@ all:
 	@echo ""
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
 	@echo "  $(V)version$(N)     Genera el changelog y la informacion de versión en el asistente."
+	@echo "  $(V)ver_sync$(N)    Sube la nueva version al servidor."
 	@echo ""
 	@echo "  $(V)distmac$(N)     Genera la versión compilada para macos."
 	@echo "  $(V)distwin$(N)     Genera la versión compilada para windows."
@@ -34,7 +35,16 @@ test_mac:
 .PHONY: test
 
 version:
+	@bumpversion --current-version ${VERSION} patch setup.py setup-mac.py ./extras/actualizar_version.py Makefile --list
 	@python extras/actualizar_version.py
+	@echo "Es recomendable escribir el comando que genera los tags y sube todo a github:"
+	@echo ""
+	@echo "make ver_sync"
+
+ver_sync:
+	git commit -am 'release ${VERSION}'
+	git tag '${VERSION}'
+	git push --all
 
 utest:
 	@python -m unittest discover pilasengine/tests '*.py'

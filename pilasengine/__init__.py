@@ -84,7 +84,10 @@ class Pilas(object):
         self.actores.eliminar_actores_personalizados()
         self.eventos = eventos.Eventos(self)
         self.controles = controles.Controles(self)
-        self.escenas = escenas.Escenas(self)
+
+        if not getattr(self, 'escenas', None):
+            self.escenas = escenas.Escenas(self)
+
         self.imagenes = imagenes.Imagenes(self)
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)
@@ -104,7 +107,6 @@ class Pilas(object):
             self.pad = pad.PadDeshabilitado(self)
 
         self.habilidades = habilidades.Habilidades()
-        self.comportamientos = comportamientos.Comportamientos()
 
         es_reinicio = self.widget is not None
 
@@ -121,7 +123,10 @@ class Pilas(object):
         if self._iniciado_desde_asistente and es_reinicio:
             self._vincular_el_nuevo_widget(parent)
 
+        #if not getattr(self, 'comportamientos', None):
         self.escenas.Normal()
+
+        self.comportamientos = comportamientos.Comportamientos()
         self._x = x
         self._y = y
 

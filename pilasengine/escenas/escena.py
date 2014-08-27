@@ -42,6 +42,10 @@ class Escena(object):
 
         self.click_de_mouse.conectar(self.arrastrar_actor_mas_cercano)
 
+    def eliminar_el_motor_de_fisica(self):
+        """Método especial que se invoca cuando se reinicia pilas, y se tiene que eliminar la escena actual."""
+        self.fisica.eliminar_para_liberar_memoria()
+
     def iniciar(self):
         pass
 

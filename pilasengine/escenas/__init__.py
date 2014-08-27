@@ -28,6 +28,12 @@ class Escenas(object):
         self.escena_actual = None
 
     def definir_escena(self, escena):
+        if self.escena_actual:
+            self.escena_actual.eliminar_el_motor_de_fisica()
+            del self.escena_actual
+            import gc
+            gc.collect()
+
         self.pilas.log("Definiendo como activa la escena", escena)
         self.escena_actual = escena
         escena.iniciar()

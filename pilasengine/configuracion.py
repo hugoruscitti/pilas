@@ -7,5 +7,5 @@
 # Website - http://www.pilas-engine.com.ar
 
 
-AUDIO_HABILITADO = False
+AUDIO_HABILITADO = True
 PAD_HABILITADO = False

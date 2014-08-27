@@ -182,13 +182,9 @@ class BaseWidget(object):
         self.window_dx = x / 2.0
         self.window_dy = y / 2.0
 
-    def _centrar_canvas(self, w, h):
-        dw = w - self.frameGeometry().width()
-        dh = h - self.frameGeometry().height()
-        self.move(dw / 2, dh / 2)
-
     def _dibujar_widget(self):
         # Suavizar efectos y transformaciones de imágenes.
+        self.painter.save()
         self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
         self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
         self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, self._borrosidad)
@@ -206,6 +202,19 @@ class BaseWidget(object):
             w = self.original_width
             h = self.original_height
             self.painter.drawText(QtCore.QRect(0, 0, w, h), QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, "en pausa")
+
+        # Ocultando los bordes de pantalla.
+        self.painter.restore()
+        self.painter.setBrush(QtGui.QColor(200, 50, 50))
+        size = self.size()
+        w = size.width()
+        h = size.height()
+
+        self.painter.drawRect(0, 0, self.window_dx, h)
+        self.painter.drawRect(w-self.window_dx, 0, self.window_dx, h)
+
+        self.painter.drawRect(0, 0, w, self.window_dy)
+        self.painter.drawRect(0, h-self.window_dy, w, self.window_dy)
 
     def activar_borrosidad(self):
         "Habilita transformaciones de buena calidad, como zoom y rotaciones."
