@@ -15,6 +15,7 @@ all:
 	@echo ""
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
 	@echo "  $(V)version$(N)     Genera el changelog y la informacion de versión en el asistente."
+	@echo "  $(V)ver_sync$(N)    Sube la nueva version al servidor."
 	@echo ""
 	@echo "  $(V)distmac$(N)     Genera la versión compilada para macos."
 	@echo "  $(V)distwin$(N)     Genera la versión compilada para windows."
@@ -38,9 +39,9 @@ version:
 	@python extras/actualizar_version.py
 	@echo "Es recomendable escribir el comando que genera los tags y sube todo a github:"
 	@echo ""
-	@echo "make subir_version"
+	@echo "make ver_sync"
 
-subir_version:
+ver_sync:
 	git commit -am 'release ${VERSION}'
 	git tag '${VERSION}'
 	git push --all
