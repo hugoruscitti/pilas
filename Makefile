@@ -81,23 +81,35 @@ distwin:
 	git submodule update --init
 	git pull
 
-	echo "Compilando pilas ..."
+	@echo ""
+	@echo "$(V)Compilando pilas ...$(N)"
+	@echo ""
 	/C/Python27/python.exe setup.py build > pilas_build.log
 
-	echo "Instalando..."
+	@echo ""
+	@echo "$(V)Instalando...$(N)"
+	@echo ""
 	/C/Python27/python.exe setup.py install -f > pilas_install.lo
 
-	echo "Generando el cargador"
+	@echo ""
+	@echo "$(V)Generando el cargador$(N)"
+	@echo ""
 	cd extras/cargador_windows/ && \
 	rm -r -f build && \
 	rm -r -f pilasengine && \
 	python setup.py build > pilas_compilacion.log && \
 	mv build/exe.win32-2.7/ pilasengine && \
-	rmdir build && \
-	echo "Regresa al directorio principal."
+	rmdir build
+
+	@echo ""
+	@echo "$(V)Regresa al directorio principal.$(N)"
+	@echo ""
 	
-	echo "Copia el resto de los archivos para el cargador:"
-	cp bin/pilas.py extras/cargador_windows/pilasengine/ejecutar.py
+	@echo ""
+	@echo "$(V)Copia el resto de los archivos para el cargador:$(N)"
+	@echo ""
+
+	cp bin/pilasengine extras/cargador_windows/pilasengine/ejecutar.py
 	cp -R data extras/cargador_windows/pilasengine/
 	cp -R pilasengine extras/cargador_windows/pilasengine/
 	cp extras/cargador_windows/pilas.ico extras/cargador_windows/pilasengine
