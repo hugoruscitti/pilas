@@ -21,7 +21,6 @@ class Depurador(object):
     def __init__(self, pilas):
         self.pilas = pilas
         self._modos = []
-        self.lienzo = pilas.imagenes.crear_superficie(500, 500)
 
     def desactivar_todos_los_modos(self):
         self._modos = []
