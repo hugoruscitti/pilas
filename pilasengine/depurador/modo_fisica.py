@@ -68,6 +68,7 @@ class ModoFisica(ModoDepurador):
     def _poligono(self, painter, puntos, color=colores.negro, grosor=1,
                  cerrado=False):
         x, y = puntos[0]
+
         if cerrado:
             puntos.append((x, y))
 
@@ -79,11 +80,6 @@ class ModoFisica(ModoDepurador):
     def _linea(self, painter, x0, y0, x1, y1):
         x0, y0 = self.hacer_coordenada_pantalla_absoluta(x0, y0)
         x1, y1 = self.hacer_coordenada_pantalla_absoluta(x1, y1)
-
-        #r, g, b, a = color.obtener_componentes()
-        #color = QtGui.QColor(r, g, b)
-        #pen = QtGui.QPen(color, grosor)
-        #painter.setPen(pen)
 
         painter.drawLine(x0, y0, x1, y1)
 
@@ -106,4 +102,4 @@ class ModoFisica(ModoDepurador):
         #pen = QtGui.QPen(color, grosor)
         #painter.setPen(pen)
 
-        painter.drawEllipse(x-radio, y-radio, radio*2, radio*2)
+        painter.drawEllipse(x-radio+1, y-radio+1, radio*2, radio*2)

@@ -205,7 +205,7 @@ class BaseWidget(object):
 
         # Ocultando los bordes de pantalla.
         self.painter.restore()
-        self.painter.setBrush(QtGui.QColor(200, 50, 50))
+        self.painter.setBrush(QtGui.QColor(0, 0, 0))
         size = self.size()
         w = size.width()
         h = size.height()
