@@ -123,14 +123,14 @@ class BaseWidget(object):
                                                texto=event.text())
 
     def mousePressEvent(self, event):
-        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x() / self.escala,
-                                                                  event.pos().y() / self.escala)
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa((event.pos().x() - self.window_dx) / self.escala,
+                                                                  (event.pos().y() - self.window_dy) / self.escala)
 
         self.pilas.eventos.click_de_mouse.emitir(boton=event.button(), x=x, y=y)
 
     def mouseReleaseEvent(self, event):
-        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x() / self.escala,
-                                                                  event.pos().y() / self.escala)
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa((event.pos().x() - self.window_dx) / self.escala,
+                                                                  (event.pos().y() - self.window_dy) / self.escala)
 
         self.pilas.eventos.termina_click.emitir(boton=event.button(), x=x, y=y)
 
@@ -138,8 +138,8 @@ class BaseWidget(object):
         self.pilas.escena_actual().mueve_rueda.emitir(delta=event.delta() / 120)
 
     def mouseMoveEvent(self, event):
-        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa(event.pos().x() / self.escala,
-                                                                  event.pos().y() / self.escala)
+        x, y = self.pilas.obtener_coordenada_de_pantalla_relativa((event.pos().x() - self.window_dx) / self.escala,
+                                                                  (event.pos().y() - self.window_dy) / self.escala)
 
         dx = x - self.mouse_x
         dy = y - self.mouse_y
