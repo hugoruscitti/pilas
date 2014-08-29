@@ -16,6 +16,7 @@ all:
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
 	@echo "  $(V)version$(N)     Genera el changelog y la informacion de versión en el asistente."
 	@echo "  $(V)ver_sync$(N)    Sube la nueva version al servidor."
+	@echo "  $(V)ejemplos$(N)    Prueba los ejemplos uno a uno."
 	@echo ""
 	@echo "  $(V)distmac$(N)     Genera la versión compilada para macos."
 	@echo "  $(V)distwin$(N)     Genera la versión compilada para windows."
@@ -32,7 +33,7 @@ ejecutar:
 test_mac:
 	python bin/pilasengine
 
-.PHONY: test
+.PHONY: test ejemplos
 
 version:
 	@bumpversion --current-version ${VERSION} patch setup.py setup-mac.py ./extras/actualizar_version.py Makefile --list
@@ -75,6 +76,8 @@ distmac: clean
 rm_pyc: clean
 	find . -name "*.pyc" -exec rm -rf {} \;
 
+ejemplos:
+	python extras/probar_ejemplos.py
 
 distwin:
 	clear
