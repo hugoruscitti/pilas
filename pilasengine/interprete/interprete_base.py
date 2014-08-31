@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Thu Jul 31 11:58:04 2014
+# Created: Sun Aug 31 11:03:19 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -95,6 +95,12 @@ class Ui_InterpreteWindow(object):
         self.guardar_button.setFlat(True)
         self.guardar_button.setObjectName(_fromUtf8("guardar_button"))
         self.horizontalLayout_2.addWidget(self.guardar_button)
+        self.configuracion_button = QtGui.QPushButton(self.layoutWidget)
+        self.configuracion_button.setMaximumSize(QtCore.QSize(20, 20))
+        self.configuracion_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.configuracion_button.setFlat(True)
+        self.configuracion_button.setObjectName(_fromUtf8("configuracion_button"))
+        self.horizontalLayout_2.addWidget(self.configuracion_button)
         spacerItem1 = QtGui.QSpacerItem(37, 13, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem1)
         self.pushButton_6 = QtGui.QPushButton(self.layoutWidget)
@@ -224,7 +230,7 @@ class Ui_InterpreteWindow(object):
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)
         InterpreteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(InterpreteWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1646, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 794, 22))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         InterpreteWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(InterpreteWindow)
@@ -247,6 +253,8 @@ class Ui_InterpreteWindow(object):
         self.editor_button.setText(_translate("InterpreteWindow", "E", None))
         self.guardar_button.setToolTip(_translate("InterpreteWindow", "Guardar el contenido del intérprete", None))
         self.guardar_button.setText(_translate("InterpreteWindow", "G", None))
+        self.configuracion_button.setToolTip(_translate("InterpreteWindow", "Abre el dialogo de configuración", None))
+        self.configuracion_button.setText(_translate("InterpreteWindow", "C", None))
         self.pushButton_6.setToolTip(_translate("InterpreteWindow", "Mostrar información del sistema", None))
         self.pushButton_6.setText(_translate("InterpreteWindow", "F7", None))
         self.pushButton_5.setToolTip(_translate("InterpreteWindow", "Mostrar puntos de control", None))

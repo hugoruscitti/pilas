@@ -388,6 +388,9 @@ def abrir_manual():
     import manual
     return manual.abrir()
 
+def abrir_configuracion(parent=None):
+    import configuracion
+    return configuracion.abrir(parent)
 
 def abrir_interprete():
     import interprete

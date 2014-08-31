@@ -124,11 +124,13 @@ class VentanaInterprete(Ui_InterpreteWindow):
                                        QtCore.SIGNAL("clicked()"),
                                        self.cuando_pulsa_el_boton_interprete)
 
-        # Botón del guardar
+        # Botón guardar del editor
         self.definir_icono(self.boton_guardar, 'iconos/guardar.png')
         self.boton_guardar.connect(self.boton_guardar,
                                    QtCore.SIGNAL("clicked()"),
                                    self.cuando_pulsa_el_boton_guardar)
+
+
 
         self.definir_icono(self.boton_ejecutar, 'iconos/ejecutar.png')
         self.definir_icono(self.boton_pausar, 'iconos/pausa.png')
@@ -140,11 +142,17 @@ class VentanaInterprete(Ui_InterpreteWindow):
                                  QtCore.SIGNAL("clicked()"),
                                  self.cuando_pulsa_el_boton_abrir)
 
-        # Botón del guardar
+        # Botón guardar del interprete
         self.definir_icono(self.guardar_button, 'iconos/guardar.png')
         self.interprete_button.connect(self.guardar_button,
                                        QtCore.SIGNAL("clicked()"),
                                        self.cuando_pulsa_el_boton_guardar)
+
+        # Botón configuración
+        self.definir_icono(self.configuracion_button, 'iconos/preferencias.png')
+        self.interprete_button.connect(self.configuracion_button,
+                                       QtCore.SIGNAL("clicked()"),
+                                       self.cuando_pulsa_el_boton_configuracion)
 
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
@@ -367,6 +375,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def cuando_pulsa_el_boton_guardar(self):
         self.editor.guardar_con_dialogo()
+
+    def cuando_pulsa_el_boton_configuracion(self):
+        print pilasengine.abrir_configuracion()
 
     def ejecutar_y_reiniciar_si_cambia(self, archivo):
         self.watcher_ultima_invocacion = time.time() - 500
