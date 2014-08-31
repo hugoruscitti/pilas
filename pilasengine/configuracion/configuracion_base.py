@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/configuracion/configuracion.ui'
 #
-# Created: Sun Aug 31 15:43:07 2014
+# Created: Sun Aug 31 19:27:07 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,29 +27,26 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(550, 300)
-        Dialog.setMinimumSize(QtCore.QSize(550, 300))
+        Dialog.setMinimumSize(QtCore.QSize(500, 300))
         self.gridLayout = QtGui.QGridLayout(Dialog)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.label = QtGui.QLabel(Dialog)
         self.label.setMinimumSize(QtCore.QSize(250, 0))
-        self.label.setMaximumSize(QtCore.QSize(300, 16777215))
+        self.label.setMaximumSize(QtCore.QSize(250, 16777215))
         self.label.setBaseSize(QtCore.QSize(300, 0))
         self.label.setObjectName(_fromUtf8("label"))
         self.horizontalLayout_2.addWidget(self.label)
         self.fuente = QtGui.QPushButton(Dialog)
         self.fuente.setObjectName(_fromUtf8("fuente"))
         self.horizontalLayout_2.addWidget(self.fuente)
-        self.ejemplo = QtGui.QLineEdit(Dialog)
-        self.ejemplo.setReadOnly(True)
-        self.ejemplo.setObjectName(_fromUtf8("ejemplo"))
-        self.horizontalLayout_2.addWidget(self.ejemplo)
         self.gridLayout.addLayout(self.horizontalLayout_2, 0, 0, 1, 1)
         self.horizontalLayout_3 = QtGui.QHBoxLayout()
         self.horizontalLayout_3.setObjectName(_fromUtf8("horizontalLayout_3"))
         self.label_2 = QtGui.QLabel(Dialog)
         self.label_2.setMinimumSize(QtCore.QSize(250, 0))
+        self.label_2.setMaximumSize(QtCore.QSize(250, 16777215))
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.horizontalLayout_3.addWidget(self.label_2)
         self.checkBox = QtGui.QCheckBox(Dialog)
@@ -68,6 +65,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_4.setObjectName(_fromUtf8("horizontalLayout_4"))
         self.label_3 = QtGui.QLabel(Dialog)
         self.label_3.setMinimumSize(QtCore.QSize(250, 0))
+        self.label_3.setMaximumSize(QtCore.QSize(250, 16777215))
         self.label_3.setObjectName(_fromUtf8("label_3"))
         self.horizontalLayout_4.addWidget(self.label_3)
         self.checkBox_2 = QtGui.QCheckBox(Dialog)
@@ -98,9 +96,8 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(_translate("Dialog", "Configuración", None))
-        self.label.setText(_translate("Dialog", "Tipografías para el editor y el intérprete", None))
+        self.label.setText(_translate("Dialog", "Tipografía para el editor", None))
         self.fuente.setText(_translate("Dialog", "Cambiar", None))
-        self.ejemplo.setText(_translate("Dialog", "ejemplo", None))
         self.label_2.setText(_translate("Dialog", "Habilitar audio", None))
         self.label_3.setText(_translate("Dialog", "Habilitar acceso a pad y joysticks", None))
         self.guardar.setText(_translate("Dialog", "Guardar", None))

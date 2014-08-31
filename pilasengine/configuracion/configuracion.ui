@@ -12,7 +12,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>550</width>
+    <width>500</width>
     <height>300</height>
    </size>
   </property>
@@ -32,7 +32,7 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>300</width>
+         <width>250</width>
          <height>16777215</height>
         </size>
        </property>
@@ -43,7 +43,7 @@
         </size>
        </property>
        <property name="text">
-        <string>Tipografías para el editor y el intérprete</string>
+        <string>Tipografía para el editor</string>
        </property>
       </widget>
      </item>
@@ -51,16 +51,6 @@
       <widget class="QPushButton" name="fuente">
        <property name="text">
         <string>Cambiar</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="ejemplo">
-       <property name="text">
-        <string>ejemplo</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -74,6 +64,12 @@
         <size>
          <width>250</width>
          <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>250</width>
+         <height>16777215</height>
         </size>
        </property>
        <property name="text">
@@ -110,6 +106,12 @@
         <size>
          <width>250</width>
          <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>250</width>
+         <height>16777215</height>
         </size>
        </property>
        <property name="text">

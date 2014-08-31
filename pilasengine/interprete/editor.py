@@ -13,6 +13,7 @@ from PyQt4.Qt import QHBoxLayout
 from PyQt4.Qt import QPainter
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QFileDialog
+from PyQt4.QtGui import QFont
 from PyQt4.QtGui import QTextEdit
 from PyQt4.QtGui import QTextCursor
 
@@ -172,7 +173,6 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
             self._autocompletar_braces('[')
 
 
-        """
         # cambia el tamano de la tipografia.
         if event.modifiers() & Qt.AltModifier:
             if event.key() == Qt.Key_Minus:
@@ -183,7 +183,6 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
                 self._change_font_size(+2)
                 event.ignore()
                 return
-        """
 
         # Elimina los pares de caracteres especiales si los encuentra
         if event.key() == Qt.Key_Backspace:
@@ -203,9 +202,19 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
 
     def definir_fuente(self, fuente):
         self.setFont(fuente)
+        self.font_family = fuente.rawName()
+        self.font_size = fuente.pointSize()
 
     def actualizar_scope(self, scope):
         self.interpreterLocals = scope
+
+    def _change_font_size(self, delta_size):
+        self._set_font_size(self.font_size + delta_size)
+
+    def _set_font_size(self, font_size):
+        self.font_size = font_size
+        font = QFont(self.font_family, font_size)
+        self.setFont(font)
 
     def funcion_valores_autocompletado(self, texto):
         "Retorna una lista de valores propuestos para autocompletar"

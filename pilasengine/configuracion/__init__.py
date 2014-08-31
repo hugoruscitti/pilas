@@ -27,6 +27,7 @@ class Configuracion(object):
         self.cargar()
 
     def cargar(self):
+
         if os.path.exists(self.obtener_ruta()):
             archivo = open(self.obtener_ruta(), 'rb')
             self.valores = pickle.load(archivo)
@@ -36,11 +37,21 @@ class Configuracion(object):
             self.guardar()
 
     def obtener_datos_por_omision(self):
+        font_path = self._buscar_fuente_personalizada()
+
+        if font_path:
+            fuente_id = QtGui.QFontDatabase.addApplicationFont(font_path)
+            fuente = str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
+        else:
+            fuente = "Courier New"
+
         datos = {
-                'fuente': 'Monaco 20',
+                'fuente': fuente + ' 15',
                 'audio_habilitado': False,
                 'pad_habilitado': False,
+                'version': '1', # Versión del formato de configuración.
                 }
+
         return datos
 
     def guardar(self):
@@ -49,7 +60,8 @@ class Configuracion(object):
         archivo.close()
 
     def obtener_ruta(self):
-        return "configuracion.cfg"
+        ruta = os.path.join(str(QtCore.QDir.homePath()), '.pilas.cfg')
+        return ruta
 
     def cambiar_fuente(self, fuente_nueva):
         self.valores['fuente'] = fuente_nueva
@@ -58,6 +70,25 @@ class Configuracion(object):
         fuente_como_tupla = self.valores['fuente'].rsplit(' ', 1)
         return QtGui.QFont(fuente_como_tupla[0], int(fuente_como_tupla[1]))
 
+    def _buscar_fuente_personalizada(self):
+        this_dir = os.path.dirname(os.path.realpath('.'))
+        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
+
+        if os.path.exists(font_path):
+            return font_path
+
+        font_path = os.path.join("./data/fuentes", 'SourceCodePro-Regular.ttf')
+
+        if os.path.exists(font_path):
+            return font_path
+
+        this_dir = os.path.dirname(__file__)
+        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
+
+        if os.path.exists(font_path):
+            return font_path
+
+        return None
 
 class DialogoConfiguracion(Ui_Dialog):
 
@@ -87,8 +118,7 @@ class DialogoConfiguracion(Ui_Dialog):
 
     def definir_fuente(self, font):
         etiqueta = "%s %d" %(font.rawName(), font.pointSize())
-        self.ejemplo.setText(etiqueta)
-        self.ejemplo.setFont(font)
+        self.fuente.setText("Cambiar: " + etiqueta)
 
     def cuando_pulsa_el_boton_guardar(self):
         self.Dialog.close()

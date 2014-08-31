@@ -53,6 +53,9 @@ class Ventana(QWidget):
 
     def definir_fuente(self, fuente):
         self.text_edit.setFont(fuente)
+        self.text_edit.font_family = fuente.rawName()
+        self.text_edit.font_size = fuente.pointSize()
+
 
     def ejecutar(self, codigo):
         """Ejecuta el codigo en formato string enviado."""

@@ -32,13 +32,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
 
     def __init__(self, parent, codigo_inicial):
         super(InterpreteTextEdit,  self).__init__(parent, self.funcion_valores_autocompletado)
-        font_path = self._buscar_fuente_personalizada()
 
-        if font_path:
-            fuente_id = QFontDatabase.addApplicationFont(font_path)
-            self.font_family = QFontDatabase.applicationFontFamilies(fuente_id)[0]
-        else:
-            self.font_family = "Courier New"
 
         self.ventana = parent
         self.stdout_original = sys.stdout
@@ -57,10 +51,12 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         palette.setColor(QPalette.Text, QColor(0, 0, 0))
         self.setPalette(palette)
 
+        """
         if sys.platform == 'darwin':
             self._set_font_size(15)
         else:
             self._set_font_size(14)
+        """
 
         self._highlighter = highlighter.Highlighter(self.document(), 'python', highlighter.COLOR_SCHEME)
 
@@ -116,25 +112,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
     def imprimir_linea(self, linea):
         self.insertPlainText(linea)
 
-    def _buscar_fuente_personalizada(self):
-        this_dir = os.path.dirname(os.path.realpath('.'))
-        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
 
-        if os.path.exists(font_path):
-            return font_path
-
-        font_path = os.path.join("./data/fuentes", 'SourceCodePro-Regular.ttf')
-
-        if os.path.exists(font_path):
-            return font_path
-
-        this_dir = os.path.dirname(__file__)
-        font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
-
-        if os.path.exists(font_path):
-            return font_path
-
-        return None
 
     def insertar_error(self, mensaje):
         self.insertHtml(u" <b style='color: #FF0000'> &nbsp; × %s </b>" %(mensaje))
