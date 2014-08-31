@@ -77,7 +77,7 @@ class DialogoConfiguracion(Ui_Dialog):
                             self.cuando_pulsa_el_boton_guardar)
 
     def cuando_pulsa_el_boton_fuente(self):
-        font, ok = QtGui.QFontDialog.getFont()
+        font, ok = QtGui.QFontDialog.getFont(self.configuracion.obtener_fuente())
 
         if ok:
             etiqueta = "%s %d" %(font.rawName(), font.pointSize())

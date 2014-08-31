@@ -171,6 +171,20 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
         if event.key() == Qt.Key_BracketLeft:
             self._autocompletar_braces('[')
 
+
+        """
+        # cambia el tamano de la tipografia.
+        if event.modifiers() & Qt.AltModifier:
+            if event.key() == Qt.Key_Minus:
+                self._change_font_size(-2)
+                event.ignore()
+                return
+            elif event.key() == Qt.Key_Plus:
+                self._change_font_size(+2)
+                event.ignore()
+                return
+        """
+
         # Elimina los pares de caracteres especiales si los encuentra
         if event.key() == Qt.Key_Backspace:
             self._eliminar_pares_de_caracteres(es_consola=False)
