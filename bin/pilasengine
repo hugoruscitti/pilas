@@ -11,6 +11,8 @@ sys.path.append('../')
 
 import pilasengine
 
+pilasengine.configuracion.Configuracion()
+
 app = QtGui.QApplication(sys.argv)
 
 if '-i' in sys.argv:

@@ -57,8 +57,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def iniciar_interfaz(self):
         self.scope = self._iniciar_pilas()
         self.crear_mensaje_cargando()
+
         self._insertar_consola_interactiva()
         self._insertar_editor()
+
+        self.definir_fuente_desde_configuracion()
 
         # Haciendo que el panel de pilas y el interprete no se puedan
         # ocultar completamente.
@@ -355,7 +358,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.editor_placeholder.addWidget(componente)
         self.editor_placeholder.setCurrentWidget(componente)
         self.editor = componente.editor
-        self.editor.definir_fuente(self.consola.obtener_fuente())
 
     def _insertar_consola_interactiva(self):
         codigo_inicial = ['import pilasengine',
@@ -370,6 +372,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.consola = consola
         self.consola.text_edit.setFocus()
 
+    def definir_fuente_desde_configuracion(self):
+        fuente = pilasengine.configuracion.Configuracion().obtener_fuente()
+        self.editor.definir_fuente(fuente)
+        self.consola.definir_fuente(fuente)
+
     def cuando_pulsa_el_boton_abrir(self):
         self.editor.abrir_con_dialogo()
 
@@ -377,7 +384,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.editor.guardar_con_dialogo()
 
     def cuando_pulsa_el_boton_configuracion(self):
-        print pilasengine.abrir_configuracion()
+        pilasengine.abrir_configuracion()
+        self.definir_fuente_desde_configuracion()
 
     def ejecutar_y_reiniciar_si_cambia(self, archivo):
         self.watcher_ultima_invocacion = time.time() - 500
