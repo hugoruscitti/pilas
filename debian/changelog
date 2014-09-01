@@ -1,3 +1,21 @@
+pilasengine (0.90.5-3) UNRELEASED; urgency=low
+
+  * Actualizando a la version 0.90.3 de pilas.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Mon, 01 Sep 2014 19:01:29 +0200
+
+pilasengine (0.90.5) unstable; urgency=low
+
+  * Actualizando paquete .deb
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Thu, 21 Aug 2014 20:09:09 +0200
+
+pilasengine (0.90.4) unstable; urgency=low
+
+  * Agregando mejoras del editor. 
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Fri, 01 Aug 2014 17:18:29 +0200
+
 pilasengine (0.90.3) unstable; urgency=low
 
   * Copiando archivos data.
