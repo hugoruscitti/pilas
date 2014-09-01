@@ -90,6 +90,8 @@
             
                 <li class="toctree-l2"><a href="#manejo-de-imagenes">Manejo de imágenes</a></li>
                 
+                    <li><a class="toctree-l3" href="#imagenes-de-fondo">Imágenes de fondo</a></li>
+                
                     <li><a class="toctree-l3" href="#grillas-de-imagenes">Grillas de imágenes</a></li>
                 
                     <li><a class="toctree-l3" href="#reproduciendo-animaciones">Reproduciendo animaciones</a></li>
@@ -188,6 +190,25 @@ actor.imagen = imagen
 <p>Cualquiera de las dos opciones produce el mismo
 resultado, personaje "cambiará" de apariencia
 cuando se le asigne una nueva imagen.</p>
+<h2 id="imagenes-de-fondo">Imágenes de fondo</h2>
+<p>Muchas veces queremos que las imágenes cubran el fondo de pantalla
+completamente, como si se tratara de un fondo o papel tapiz.</p>
+<p>Si la imagen es suficientemente gránde para cubrir la pantalla, podemos
+cargarla como una imagen normal y luego crear un fondo que la represente:</p>
+<pre class="prettyprint well"><code>fondo = pilas.fondos.Fondo()
+fondo.imagen = pilas.imagenes.cargar('mi_fondo.png')
+</code></pre>
+<p>Ahora, si en realidad queremos que el fondo se dibuje como si fuera un
+mozaico (o papel tapiz), tenemos que indicarle a la imagen que se re-dibuje
+muchas veces hasta cubrir el fondo de pantalla. El código es muy similar
+al anterior, solo que ahora usamos las propiedades <code>repetir_horizontal</code> y
+<code>repetir_vertical</code></p>
+<pre class="prettyprint well"><code>fondo = pilas.fondos.Fondo()
+fondo.imagen = pilas.imagenes.cargar('mi_fondo.png')
+
+fondo.imagen.repetir_vertical = True
+fondo.imagen.repetir_horizontal = True
+</code></pre>
 <h2 id="grillas-de-imagenes">Grillas de imágenes</h2>
 <p>Un forma conveniente de almacenar las imágenes de tus
 personajes es usar una grilla.</p>
