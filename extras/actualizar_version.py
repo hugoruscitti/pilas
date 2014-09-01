@@ -18,7 +18,7 @@ commit = subprocess.check_output(['git', 'log', '-1', '--oneline']).split(' ')[0
 hoy = datetime.date.today()
 
 template = template.\
-  replace('VERSION_STR', '0.90.2').\
+  replace('VERSION_STR', '0.90.3').\
   replace('FECHA', hoy.strftime('%d de %b del %Y')).\
   replace('CHANGELOG_LIST', str(lista)).\
   replace('COMMIT', str(commit))
