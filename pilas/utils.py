@@ -97,7 +97,14 @@ def distancia_entre_dos_actores(a, b):
     :param a: El primer actor.
     :param b: El segundo actor.
     """
-    return (distancia_entre_dos_puntos((a.x, a.y), (b.x, b.y))  - a.radio_de_colision - b.radio_de_colision )
+    
+    dis = distancia_entre_dos_puntos((a.x, a.y), (b.x, b.y)) - a.radio_de_colision - b.radio_de_colision 
+    
+    if (dis < 0):
+        return 0
+    else:
+        return dis
+    
 
 
 def actor_mas_cercano_al_actor(actor):
