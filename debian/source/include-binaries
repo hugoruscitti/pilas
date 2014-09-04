@@ -1,1 +1,9 @@
 debian/pilas-icono.png
+dist/pilas-0.84-py2.7.egg
+pilas/data/disparos/bola_invisible.png
+pilas/ejemplos/ejemplos/robot/robot_cuadrado.png
+pilas/ejemplos/ejemplos/robot/robot_forward.png
+pilas/ejemplos/ejemplos/robot/robot_sensor_distancia.png
+pilas/ejemplos/ejemplos/robot/robot_sensor_linea.png
+pilas/ejemplos/ejemplos/robot/robot_sensor_lineas.png
+pilas/ejemplos/ejemplos/robot/robot_zigzag.png
