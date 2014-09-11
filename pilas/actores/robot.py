@@ -285,14 +285,15 @@ class Robot(object):
 
     def beep(self, freq = 200, seconds=0):
         """ Hace que el robot emita un pitido con frecuencia freq durante seconds segundos."""
-        time = seconds * 1000
+      
         
         try:
             import winsound
-            winsound.Beep(freq, time)
+            winsound.Beep(freq, seconds * 1000)
         except ImportError:
             import os
-            os.system("beep -f " + str(freq) +" -l " + str(time))
+            os.system('play --no-show-progress --null --channels 1 synth %s sine %f' % ( freq, seconds))
+            
 
 
     def _detenerse(self):
