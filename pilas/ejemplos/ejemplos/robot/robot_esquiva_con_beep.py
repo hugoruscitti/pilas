@@ -4,7 +4,7 @@ import pilas
 from pilas.actores import Actor
 from pilas.actores import Fantasma
 from pilas.actores import Aceituna
-from duinobot import *
+
 
 def incrementarEscala(actores, escala):
     for f in  actores:

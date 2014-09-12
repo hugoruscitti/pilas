@@ -292,7 +292,7 @@ class Robot(object):
             winsound.Beep(freq, seconds * 1000)
         except ImportError:
             import os
-            os.system('play --no-show-progress --null --channels 1 synth %s sine %f' % ( freq, seconds))
+            os.system('play --no-show-progress --null --channels 1 synth %s sine %f' % ( seconds, freq))
             
 
 
