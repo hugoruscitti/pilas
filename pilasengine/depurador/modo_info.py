@@ -18,7 +18,7 @@ class ModoInformacionDeSistema(ModoDepurador):
     def __init__(self, pilas, depurador):
         ModoDepurador.__init__(self, pilas, depurador)
 
-        usa_aceleracion = self._usa_aceleracion_de_video(pilas)
+        usa_aceleracion = self._usa_aceleracion_de_video()
 
         self.informacion = [
             u"Usa aceleración de video: %s" % (usa_aceleracion),
@@ -31,12 +31,8 @@ class ModoInformacionDeSistema(ModoDepurador):
             ""  # Cantidad de actores
         ]
 
-    def _usa_aceleracion_de_video(self, pilas):
-        if pilas.usa_aceleracion():
-            usa_aceleracion = u"Sí"
-        else:
-            usa_aceleracion = u"No"
-        return usa_aceleracion
+    def _usa_aceleracion_de_video(self):
+        return u"Sí" if self.pilas.usa_aceleracion() else u"No"
 
     def realizar_dibujado(self, painter):
         izquierda, derecha, _, abajo = self.pilas.widget.obtener_bordes()
@@ -53,7 +49,7 @@ class ModoInformacionDeSistema(ModoDepurador):
                                  color=pilasengine.colores.blanco)
 
         texto = u"posición del mouse: (%d, %d)" %(self.pilas.obtener_posicion_del_mouse())
-        self._texto_absoluto(painter, texto, derecha/2, abajo/2, color=pilasengine.colores.blanco)
+        self._texto_absoluto(painter, texto, (derecha/2) - 30, abajo/2, color=pilasengine.colores.blanco)
 
     def dibujar_actor(self, actor, painter):
         pass
