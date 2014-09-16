@@ -14,14 +14,13 @@ class Girar(comportamientos.Comportamiento):
     def iniciar(self, receptor, delta=360, velocidad=5):
         super(Girar, self).iniciar(receptor)
 
-        self.grados_a_rotar = abs(self.receptor.rotacion - delta)
+
         if delta < 0:
             self.velocidad = -velocidad
         elif delta > 0:
             self.velocidad = velocidad
-        else:
-            # El actor no gira si el angulo es de 0°
-            self.grados_a_rotar = 0
+
+        self.grados_a_rotar = abs(delta)
 
     def actualizar(self):
         if self.grados_a_rotar <= 0:
