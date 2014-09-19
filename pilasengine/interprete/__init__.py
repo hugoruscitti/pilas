@@ -416,7 +416,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
         # Cambia el directorio para que los recursos del directorio
         # del archivo a ejecutar se puedan cargar correctamente.
-        current_path = os.path.dirname(str(archivo))
+        current_path = os.path.dirname(archivo)
 
         self.ejecutar_codigo_como_string(contenido, current_path)
         f.close()
