@@ -280,18 +280,19 @@ class Editor(editor_base.EditorBase):
 
     def quiere_perder_cambios(self):
         if self.tiene_cambios_sin_guardar():
-            if not self.mensaje_quiere_perder_cambios():
+            if self.mensaje_quiere_guardar_cambios():
                 self.guardar_contenido_con_dialogo()
 
-    def mensaje_quiere_perder_cambios(self):
+    def mensaje_quiere_guardar_cambios(self):
         """Realizar una consulta usando un cuadro de dialogo simple.
-        Este método retorna True si el usuario acepta la pregunta."""
+        Este método retorna True si el usuario presiona el boton 'Guardar'."""
 
         titulo = u"Se perderán los cambios sin guardar"
-        mensaje = u"Se perderán los cambios sin guardar... ¿Quieres perder los cambios del editor realmente?"
+        mensaje = u"¿Deseas guardar los cambios?"
 
-        # False si respuesta es "Si", True si la respuesta es "No"
-        respuesta = QMessageBox.question(self, titulo, mensaje, "Si", "No")
+        # False si respuesta es "Guardar", True si la respuesta es "No"
+        respuesta = QMessageBox.question(self, titulo, mensaje,
+                                         "Guardar", "No")
 
         return (respuesta == False)
 
