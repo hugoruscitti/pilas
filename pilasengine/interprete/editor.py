@@ -6,20 +6,17 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import codecs
+import re
 
-from PyQt4.Qt import QFrame
-from PyQt4.Qt import QWidget
-from PyQt4.Qt import QHBoxLayout
-from PyQt4.Qt import QPainter
+from PyQt4.Qt import (QFrame, QWidget, QHBoxLayout,
+                        QVBoxLayout, QPainter, QSize)
+from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
+                         QIcon, QPushButton, QCursor, QMessageBox)
 from PyQt4.QtCore import Qt
-from PyQt4.QtGui import QFileDialog
-from PyQt4.QtGui import QFont
-from PyQt4.QtGui import QTextEdit
-from PyQt4.QtGui import QTextCursor
+from PyQt4 import QtCore
 
-from pilasengine.lanas import autocomplete
-from pilasengine.lanas import editor_con_deslizador
-from pilasengine.lanas import highlighter
+from editorbase import editor_base
+import pilasengine
 
 CONTENIDO = u"""import pilasengine
 
@@ -40,7 +37,7 @@ mono.rotacion = 0
 pilas.ejecutar()"""
 
 
-class Editor(QFrame):
+class WidgetEditor(QWidget):
 
     class NumberBar(QWidget):
 
@@ -92,7 +89,9 @@ class Editor(QFrame):
 
                 # Draw the line number right justified at the y position of the
                 # line. 3 is a magic padding number. drawText(x, y, text).
-                painter.drawText(-5 + self.width() - font_metrics.width(str(line_count)) - 3, round(position.y()) - contents_y + font_metrics.ascent(), str(line_count))
+                painter.drawText(-5 + self.width() - font_metrics.width(str(line_count)) - 3,
+                                round(position.y()) - contents_y + font_metrics.ascent(),
+                                str(line_count))
 
                 block = block.next()
 
@@ -102,23 +101,77 @@ class Editor(QFrame):
             QWidget.paintEvent(self, event)
 
 
-    def __init__(self, main, interpreterLocals, ventana_interprete, *args):
-        QFrame.__init__(self, *args)
+    def __init__(self, main, interpreter_locals=None, *args):
+        QWidget.__init__(self, *args)
 
-        self.setFrameStyle(QFrame.StyledPanel | QFrame.Sunken)
-
-        self.editor = WidgetEditor(self, interpreterLocals, ventana_interprete)
+        self.editor = Editor(self, interpreter_locals)
         self.editor.setFrameStyle(QFrame.NoFrame)
         self.editor.setAcceptRichText(False)
 
         self.number_bar = self.NumberBar()
         self.number_bar.setTextEdit(self.editor)
 
-        hbox = QHBoxLayout(self)
-        hbox.setSpacing(0)
-        hbox.setMargin(0)
-        hbox.addWidget(self.number_bar)
-        hbox.addWidget(self.editor)
+        # Layout principal: envuelve al editor y layout de acciones
+        vbox = QVBoxLayout(self)
+        vbox.setSpacing(0)
+        vbox.setMargin(0)
+
+        # Layout barra de acciones
+        hbox_buttons = QHBoxLayout()
+        hbox_buttons.setSpacing(0)
+        hbox_buttons.setMargin(0)
+        vbox.addLayout(hbox_buttons)
+
+        # Layout botones acciones sobre archivos
+        hbox_files_buttons = QHBoxLayout()
+        hbox_files_buttons.setSpacing(0)
+        hbox_files_buttons.setMargin(0)
+        hbox_buttons.addLayout(hbox_files_buttons)
+
+        # Botón abrir del editor
+        self.button_open = QPushButton(self)
+        self.button_open.setMaximumSize(QSize(20, 20))
+        self.button_open.setCursor(QCursor(Qt.PointingHandCursor))
+        self.button_open.setFlat(True)
+        #self.guardar_button.setObjectName(_fromUtf8("guardar_button"))
+        self.set_icon(self.button_open, 'iconos/abrir.png')
+        self.button_open.connect(self.button_open,
+                                   QtCore.SIGNAL("clicked()"),
+                                   self.editor.abrir_archivo_con_dialogo)
+        hbox_files_buttons.addWidget(self.button_open)
+
+        # Botón guardar del editor
+        self.button_save = QPushButton(self)
+        self.button_save.setMaximumSize(QSize(20, 20))
+        self.button_save.setCursor(QCursor(Qt.PointingHandCursor))
+        self.button_save.setFlat(True)
+        #self.guardar_button.setObjectName(_fromUtf8("guardar_button"))
+        self.set_icon(self.button_save, 'iconos/guardar.png')
+        self.button_save.connect(self.button_save,
+                                   QtCore.SIGNAL("clicked()"),
+                                   self.editor.guardar_contenido_con_dialogo)
+        hbox_files_buttons.addWidget(self.button_save)
+
+        # Botón ejecutar del editor
+        self.button_execute = QPushButton(self)
+        self.button_execute.setMaximumSize(QSize(20, 20))
+        self.button_execute.setCursor(QCursor(Qt.PointingHandCursor))
+        self.button_execute.setFlat(True)
+        #self.guardar_button.setObjectName(_fromUtf8("guardar_button"))
+        self.set_icon(self.button_execute, 'iconos/ejecutar.png')
+        self.button_execute.connect(self.button_execute,
+                                   QtCore.SIGNAL("clicked()"),
+                                   self.editor.ejecutar)
+        hbox_buttons.addWidget(self.button_execute)
+
+
+        # Layout para el Editor y barra de numeros
+        hbox_editor = QHBoxLayout()
+        hbox_editor.setSpacing(0)
+        hbox_editor.setMargin(0)
+        hbox_editor.addWidget(self.number_bar)
+        hbox_editor.addWidget(self.editor)
+        vbox.addLayout(hbox_editor)
 
         self.editor.installEventFilter(self)
         self.editor.viewport().installEventFilter(self)
@@ -129,60 +182,50 @@ class Editor(QFrame):
             return False
         return QFrame.eventFilter(obj, event)
 
+    def set_icon(self, boton, ruta):
+        icon = QIcon()
+        archivo = pilasengine.utils.obtener_ruta_al_recurso(ruta)
+        icon.addFile(archivo, QSize(), QIcon.Normal, QIcon.Off)
+        boton.setIcon(icon)
+        boton.setText('')
 
-class WidgetEditor(autocomplete.CompletionTextEdit,
-                   editor_con_deslizador.EditorConDeslizador):
+    def cuando_pulsa_el_boton_ejecutar(self):
+        self.editor.ejecutar()
+        self.boton_pausar.setChecked(False)
+
+    def cuando_pulsa_el_boton_pausar(self):
+        if self.boton_pausar.isChecked():
+            self.ventana_pilas.pausar()
+        else:
+            self.ventana_pilas.continuar()
+
+    def cuando_pulsa_el_boton_siguiente(self):
+        if not self.boton_pausar.isChecked():
+            self.boton_pausar.click()
+
+        self.ventana_pilas.avanzar_un_solo_cuadro()
+
+
+class Editor(editor_base.EditorBase):
     """Representa el editor de texto que aparece en el panel derecho.
 
     El editor soporta autocompletado de código y resaltado de sintáxis.
     """
 
-    def __init__(self, main, interpreterLocals, ventana_interprete):
-        autocomplete.CompletionTextEdit.__init__(self, None,
-                                                 self.funcion_valores_autocompletado)
+    def __init__(self, main, interpreterLocals):
+        super(Editor, self).__init__()
         self.interpreterLocals = interpreterLocals
         self.insertPlainText(CONTENIDO)
         self.setLineWrapMode(QTextEdit.NoWrap)
         self._cambios_sin_guardar = False
         self.main = main
-        self.ventana_interprete = ventana_interprete
-        self._cargar_resaltador_de_sintaxis()
-        self.nombre_de_archivo_sugerido = "juego.py"
-
-    def insertFromMimeData(self, source):
-        QTextEdit.insertPlainText(self, source.text())
 
     def keyPressEvent(self, event):
         "Atiene el evento de pulsación de tecla."
         self._cambios_sin_guardar = True
 
-        # Completar comillas y braces
-        if event.key() == Qt.Key_QuoteDbl:
-            self._autocompletar_comillas('"')
-
-        if event.key() == Qt.Key_Apostrophe:
-            self._autocompletar_comillas("'")
-
-        if event.key() == Qt.Key_ParenLeft:
-            self._autocompletar_braces('(')
-
-        if event.key() == Qt.Key_BraceLeft:
-            self._autocompletar_braces('{')
-
-        if event.key() == Qt.Key_BracketLeft:
-            self._autocompletar_braces('[')
-
-
-        # cambia el tamano de la tipografia.
-        if event.modifiers() & Qt.AltModifier:
-            if event.key() == Qt.Key_Minus:
-                self._change_font_size(-2)
-                event.ignore()
-                return
-            elif event.key() == Qt.Key_Plus:
-                self._change_font_size(+2)
-                event.ignore()
-                return
+        if editor_base.EditorBase.keyPressEvent(self, event):
+            return None
 
         # Elimina los pares de caracteres especiales si los encuentra
         if event.key() == Qt.Key_Backspace:
@@ -200,114 +243,88 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
     def tiene_cambios_sin_guardar(self):
         return self._cambios_sin_guardar
 
-    def definir_fuente(self, fuente):
-        self.setFont(fuente)
-        self.font_family = fuente.rawName()
-        self.font_size = fuente.pointSize()
-
-    def actualizar_scope(self, scope):
-        self.interpreterLocals = scope
-
-    def _change_font_size(self, delta_size):
-        self._set_font_size(self.font_size + delta_size)
-
-    def _set_font_size(self, font_size):
-        self.font_size = font_size
-        font = QFont(self.font_family, font_size)
-        self.setFont(font)
-
-    def funcion_valores_autocompletado(self, texto):
-        "Retorna una lista de valores propuestos para autocompletar"
-        scope = self.interpreterLocals
-        texto = texto.replace('(', ' ').split(' ')[-1]
-
-        if '.' in texto:
-            palabras = texto.split('.')
-            ultima = palabras.pop()
-            prefijo = '.'.join(palabras)
-
-            try:
-                items = eval("[(x, callable(getattr(eval('%s'), x))) for x in dir(%s)]" %(prefijo, prefijo), scope)
-                elementos = []
-
-                for (x, invocable) in items:
-                    if invocable:
-                        elementos.append(x + '(')
-                    else:
-                        elementos.append(x)
-            except:
-                # TODO: notificar este error de autocompletado en algun lado...
-                return []
-
-            return [a for a in elementos if a.startswith(ultima)]
-        else:
-            return [a for a in scope.keys() if a.startswith(texto)]
-
     def _get_current_line(self):
         "Obtiene la linea en donde se encuentra el cursor."
         tc = self.textCursor()
         tc.select(QTextCursor.LineUnderCursor)
         return tc.selectedText()
 
-    def cargar_desde_archivo(self, ruta):
+    def _get_position_in_block(self):
+        tc = self.textCursor()
+        position = tc.positionInBlock() - 1
+        return position
+
+    def cargar_contenido_desde_archivo(self, ruta):
         "Carga todo el contenido del archivo indicado por ruta."
-        archivo = codecs.open(unicode(ruta), 'r', 'utf-8')
-        contenido = archivo.read()
-        archivo.close()
+        with codecs.open(unicode(ruta), 'r', 'utf-8') as archivo:
+            contenido = archivo.read()
         self.setText(contenido)
+
         self.nombre_de_archivo_sugerido = ruta
+        self._cambios_sin_guardar = False
 
-    def guardar_contenido_en_el_archivo(self, ruta):
-        texto = unicode(self.document().toPlainText())
-        archivo = codecs.open(unicode(ruta), 'w', 'utf-8')
-        archivo.write(texto)
-        archivo.close()
-        self.nombre_de_archivo_sugerido = ruta
+    def abrir_dialogo_cargar_archivo(self):
+        return QFileDialog.getOpenFileName(self, "Abrir Archivo",
+                                   self.nombre_de_archivo_sugerido,
+                                   "Archivos python (*.py)",
+                                   options=QFileDialog.DontUseNativeDialog)
 
-    def paint_event_falso(self, event):
-        pass
+    def abrir_archivo_con_dialogo(self):
+        self.quiere_perder_cambios()
 
-    def _restaurar_rutina_de_redibujado_original(self, paint_event_original):
-        pilas = self.interpreterLocals['pilas']
-        pilas.reiniciar()
-        widget = pilas.obtener_widget()
-        widget.__class__.paintEvent = paint_event_original
-
-    def abrir_con_dialogo(self):
-        if self.tiene_cambios_sin_guardar():
-            if not self.ventana_interprete.consultar_si_quiere_perder_cambios():
-                return
-
-        ruta = QFileDialog.getOpenFileName(self, "Abrir Archivo",
-                                           self.nombre_de_archivo_sugerido,
-                                           "Archivos python (*.py)",
-                                           options=QFileDialog.DontUseNativeDialog)
+        ruta = self.abrir_dialogo_cargar_archivo()
 
         if ruta:
-            self.cargar_desde_archivo(ruta)
-            self._cambios_sin_guardar = False
-
-        if ruta:
+            self.cargar_contenido_desde_archivo(ruta)
             self.ejecutar()
 
-    def ejecutar(self):
-        texto = unicode(self.document().toPlainText())
-        self.ventana_interprete.ejecutar_codigo_como_string(texto)
+    def quiere_perder_cambios(self):
+        if self.tiene_cambios_sin_guardar():
+            if not self.mensaje_quiere_perder_cambios():
+                self.guardar_contenido_con_dialogo()
 
-    def guardar_con_dialogo(self):
-        ruta = QFileDialog.getSaveFileName(self, "Guardar Archivo",
-                                           self.nombre_de_archivo_sugerido,
-                                           "Archivos python (*.py)",
-                                           options=QFileDialog.DontUseNativeDialog)
+    def mensaje_quiere_perder_cambios(self):
+        """Realizar una consulta usando un cuadro de dialogo simple.
+        Este método retorna True si el usuario acepta la pregunta."""
+
+        titulo = u"Se perderán los cambios sin guardar"
+        mensaje = u"Se perderán los cambios sin guardar... ¿Quieres perder los cambios del editor realmente?"
+
+        # False si respuesta es "Si", True si la respuesta es "No"
+        respuesta = QMessageBox.question(self, titulo, mensaje, "Si", "No")
+
+        return (respuesta == False)
+
+    def guardar_contenido_con_dialogo(self):
+        ruta = self.abrir_dialogo_guardar_archivo()
 
         if ruta:
             self.guardar_contenido_en_el_archivo(ruta)
             self._cambios_sin_guardar = False
+            self.nombre_de_archivo_sugerido = ruta
+            self.mensaje_contenido_guardado()
 
-        self.ejecutar()
+    def obtener_contenido(self):
+        return unicode(self.document().toPlainText())
 
-    def _cargar_resaltador_de_sintaxis(self):
-        self._highlighter = highlighter.Highlighter(
-            self.document(),
-            'python',
-            highlighter.COLOR_SCHEME)
+    def ejecutar(self, ruta_personalizada=None):
+        #print "ejecutando texto desde widget editor"
+        texto = self.obtener_contenido()
+        #texto = self.editor.obtener_texto_sanitizado(self)
+        # elimina cabecera de encoding.
+        contenido = re.sub('coding\s*:\s*', '', texto)
+        contenido = contenido.replace('import pilasengine', '')
+        contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
+
+        # Muchos códigos personalizados necesitan cargar imágenes o sonidos
+        # desde el directorio que contiene al archivo. Para hacer esto posible,
+        # se llama a la función "pilas.utils.agregar_ruta_personalizada" con el
+        # path al directorio que representa el script. Así la función "obtener_ruta_al_recurso"
+        # puede evaluar al directorio del script en busca de recursos también.
+        if ruta_personalizada:
+            agregar_ruta_personalizada = 'pilas.utils.agregar_ruta_personalizada("%s")' %(ruta_personalizada)
+            contenido = contenido.replace('pilas.reiniciar(', agregar_ruta_personalizada+'\n'+'pilas.reiniciar(')
+
+        exec(contenido, self.interpreterLocals)
+
+

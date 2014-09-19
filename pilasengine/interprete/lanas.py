@@ -5,36 +5,83 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-import code
 import sys
 import inspect
-import re
-
 import os
+import code
+
 os.environ['lanas'] = 'enabled'
 
+from PyQt4.QtGui import QLabel
+from PyQt4.QtGui import QWidget
+from PyQt4.QtGui import QVBoxLayout
+from PyQt4.QtGui import QDesktopWidget
 from PyQt4 import QtGui
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
+from PyQt4.QtGui import QTextEdit
 
-import highlighter
-import autocomplete
+from editorbase import editor_base
 import io
-import editor_con_deslizador
 
 
-class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.EditorConDeslizador):
+class WidgetLanas(QWidget):
+    def __init__(self, parent=None, scope=None, codigo_inicial=None):
+        super(WidgetLanas, self).__init__(parent)
+        box = QVBoxLayout()
+        box.setMargin(0)
+        box.setSpacing(0)
+
+        self.setLayout(box)
+
+        if not scope:
+            scope = locals()
+
+        if not 'inspect' in scope:
+            scope['inspect'] = inspect
+
+        self.text_edit = EditorLanas(self, codigo_inicial)
+        self.text_edit.init(scope)
+
+        self.tip_widget = QLabel(self)
+        self.tip_widget.setText("")
+
+        box.addWidget(self.text_edit)
+        box.addWidget(self.tip_widget)
+
+        self.resize(650, 300)
+        self.center_on_screen()
+        self.raise_()
+
+    def obtener_scope(self):
+        return self.text_edit.interpreterLocals
+
+    def center_on_screen(self):
+        resolution = QDesktopWidget().screenGeometry()
+        self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
+                  (resolution.height() / 2) - (self.frameSize().height() / 2))
+
+    def closeEvent(self, event):
+        sys.exit(0)
+
+    def alternar_log(self):
+        if self.log_widget.isHidden():
+            self.log_widget.show()
+        else:
+            self.log_widget.hide()
+
+
+class EditorLanas(editor_base.EditorBase):
     """Representa el widget del interprete.
 
     Esta instancia tiene como atributo "self.ventana" al
     al QWidget representado por la clase Ventana.
     """
 
-    def __init__(self, parent, codigo_inicial):
-        super(InterpreteTextEdit,  self).__init__(parent, self.funcion_valores_autocompletado)
-
-
+    def __init__(self, parent, codigo_inicial=None):
+        super(EditorLanas,  self).__init__()
         self.ventana = parent
+        #self.ventana_interprete = self.ventana.ventana_interprete
         self.stdout_original = sys.stdout
         sys.stdout = io.NormalOutput(self)
         sys.stderr = io.ErrorOutput(self)
@@ -58,16 +105,12 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             self._set_font_size(14)
         """
 
-        self._highlighter = highlighter.Highlighter(self.document(), 'python', highlighter.COLOR_SCHEME)
-
         if codigo_inicial:
-            for line in codigo_inicial.split("\n"):
-                self.insertar_comando_falso(line)
+            self.insertar_codigo_falso(codigo_inicial)
 
         self.marker()
         self.setUndoRedoEnabled(False)
         self.setContextMenuPolicy(Qt.NoContextMenu)
-
 
         self.timer_cursor = QTimer()
         self.timer_cursor.start(1000)
@@ -76,43 +119,11 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
     def insertFromMimeData(self, source):
         QTextEdit.insertPlainText(self, source.text())
 
-    def funcion_valores_autocompletado(self, texto):
-        scope = self.interpreterLocals
-        texto = texto.replace('(', ' ').split(' ')[-1]
-        resultados = []
-
-        if '.' in texto:
-            palabras = texto.split('.')
-            ultima = palabras.pop()
-            prefijo = '.'.join(palabras)
-
-            try:
-                items = eval("[(x, callable(getattr(eval('%s'), x))) for x in dir(%s)]" %(prefijo, prefijo), scope)
-                elementos = []
-
-                for (x, invocable) in items:
-                    if invocable:
-                        elementos.append(x + '(')
-                    else:
-                        elementos.append(x)
-
-            except:
-                # TODO: notificar este error de autocompletado en algun lado...
-                return []
-
-            resultados = [a for a in elementos if a.startswith(ultima)]
-        else:
-            resultados = [a for a in scope.keys() if a.startswith(texto)]
-
-        return resultados
-
     def canInsertFromMimeData(self, *k):
         return False
 
     def imprimir_linea(self, linea):
         self.insertPlainText(linea)
-
-
 
     def insertar_error(self, mensaje):
         self.insertHtml(u" <b style='color: #FF0000'> &nbsp; × %s </b>" %(mensaje))
@@ -121,18 +132,11 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
     def insertar_mensaje(self, mensaje):
         self.insertHtml("<p style='color: green'>%s</p><p></p>" %(mensaje))
 
-    def insertar_comando_falso(self, comando):
-        self.marker()
-        self.insertHtml(comando)
-        self.insertPlainText('\n')
-
-    def _set_font_size(self, font_size):
-        self.font_size = font_size
-        font = QFont(self.font_family, font_size)
-        self.setFont(font)
-
-    def _change_font_size(self, delta_size):
-        self._set_font_size(self.font_size + delta_size)
+    def insertar_codigo_falso(self, codigo):
+        for line in codigo.splitlines():
+            self.marker()
+            self.insertHtml(line)
+            self.insertPlainText('\n')
 
     def marker(self):
         if self.multiline:
@@ -150,14 +154,15 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             self.interpreterLocals = interpreter_locals
 
     def updateInterpreterLocals(self, newLocals):
+        print "upda interpeter"
         className = newLocals.__class__.__name__
         self.interpreterLocals[className] = newLocals
 
     def clearCurrentBlock(self):
-        length = len(self.document().lastBlock().text()[2:])
-
-        if length:
-            [self.textCursor().deletePreviousChar() for x in xrange(length)]
+        textCursor = self.textCursor()
+        textCursor.select(QTextCursor.LineUnderCursor)
+        textCursor.removeSelectedText()
+        self.marker()
 
     def recall_history(self):
         self._mover_cursor_al_final()
@@ -175,10 +180,10 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         line.rstrip()
         return line
 
-    def _get_current_word(self):
+    def _get_position_in_block(self):
         tc = self.textCursor()
-        tc.select(QTextCursor.WordUnderCursor)
-        return tc.selectedText()
+        position = tc.positionInBlock() - 3
+        return position
 
     def _get_current_block_prefix(self):
         tc = self.textCursor()
@@ -203,18 +208,26 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         tc.removeSelectedText()
         tc.insertText(word)
 
-
     def _mover_cursor_al_final(self):
         textCursor = self.textCursor()
         textCursor.movePosition(QTextCursor.End)
         self.setTextCursor(textCursor)
         return textCursor
 
+    def _get_current_line(self):
+        "Obtiene la linea en donde se encuentra el cursor."
+        tc = self.textCursor()
+        tc.select(QTextCursor.LineUnderCursor)
+        return tc.selectedText()[2:]
+
     def keyReleaseEvent(self, event):
         if event.key() == Qt.Key_ParenLeft:
             self._autocompletar_argumentos_si_corresponde()
 
     def keyPressEvent(self, event):
+        if editor_base.EditorBase.keyPressEvent(self, event):
+            return None
+
         textCursor = self.textCursor()
 
         # Permite mantener pulsada la tecla CTRL para copiar o pegar.
@@ -233,20 +246,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
 
             return QtGui.QTextEdit.keyPressEvent(self, event)
 
-        # cambia el tamano de la tipografia.
-        if event.modifiers() & Qt.AltModifier:
-            if event.key() == Qt.Key_Minus:
-                self._change_font_size(-2)
-                event.ignore()
-                return
-            elif event.key() == Qt.Key_Plus:
-                self._change_font_size(+2)
-                event.ignore()
-                return
-            elif event.key() == Qt.Key_S:
-                self.guardar_contenido_con_dialogo()
-                return
-
         # Ignorando la pulsación de tecla si está en medio de la consola.
         if textCursor.blockNumber() != self.document().blockCount() - 1:
             textCursor = self._mover_cursor_al_final()
@@ -260,22 +259,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         if event.key() in [Qt.Key_Left, Qt.Key_Backspace]:
             if self.textCursor().positionInBlock() == 2:
                 return
-
-        # Completar comillas y braces
-        if event.key() == Qt.Key_QuoteDbl:
-            self._autocompletar_comillas('"')
-
-        if event.key() == Qt.Key_Apostrophe:
-            self._autocompletar_comillas("'")
-
-        if event.key() == Qt.Key_ParenLeft:
-            self._autocompletar_braces('(')
-
-        if event.key() == Qt.Key_BraceLeft:
-            self._autocompletar_braces('{')
-
-        if event.key() == Qt.Key_BracketLeft:
-            self._autocompletar_braces('[')
 
         # Elimina los pares de caracteres especiales si los encuentra
         if event.key() == Qt.Key_Backspace:
@@ -379,7 +362,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
 
             return None
 
-        super(InterpreteTextEdit, self).keyPressEvent(event)
+        return QTextEdit.keyPressEvent(self, event)
 
     def _autocompletar_argumentos_si_corresponde(self):
         """Muestra un mensaje con la documentación de una función ejecutar.
@@ -440,13 +423,12 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         self.ventana.tip_widget.setText(linea)
 
     def guardar_contenido_con_dialogo(self):
-        filename = QFileDialog.getSaveFileName(self, 'Guardar archivo', 'programa.py', 'Python (*.py)')
+        ruta = self.abrir_dialogo_guardar_archivo()
 
-        if filename:
-            fname = open(filename, 'w')
-            texto = self.obtener_contenido_completo()
-            fname.write(texto)
-            fname.close()
+        if ruta:
+            self.guardar_contenido_en_el_archivo(ruta)
+            self.nombre_de_archivo_sugerido = ruta
+            self.mensaje_contenido_guardado()
 
     def _ha_ingresado_solo_espacios(self, linea):
         # TODO: Reemplazar por una expresion regular para
@@ -454,14 +436,28 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         if linea == "    ":
             return True
 
-    def obtener_contenido_completo(self):
+    def obtener_contenido(self):
         texto = self.document().toPlainText()
         texto = texto.replace(u'‥ ', '')
         texto = texto.replace(u'» ', '')
-        return texto
+        return unicode(texto)
 
     def marker_si_es_necesario(self):
         line = unicode(self.document().lastBlock().text())
         if not line.startswith(u'» ') and not line.startswith(u'‥ '):
             self.insertPlainText("\n")
             self.marker()
+
+    def raw_input(self, mensaje):
+        text, state = QInputDialog.getText(self, "raw_input", mensaje)
+        return str(text)
+
+    def input(self, expresion):
+        text, state = QInputDialog.getText(self, "raw_input", expresion)
+        return eval(str(text))
+
+    def help(self, objeto=None):
+        if objeto:
+            print help(objeto)
+        else:
+            print "Escribe help(objeto) para obtener ayuda sobre ese objeto."

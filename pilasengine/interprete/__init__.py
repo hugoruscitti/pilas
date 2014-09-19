@@ -7,14 +7,12 @@
 # Website - http://www.pilas-engine.com.ar
 import os
 import sys
-import re
 import codecs
 import time
 
 from PyQt4 import QtCore
 from PyQt4.QtGui import QShortcut
 from PyQt4.QtGui import QKeySequence
-from PyQt4.QtGui import QMessageBox
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QInputDialog
 from PyQt4.QtGui import QLabel
@@ -23,7 +21,7 @@ from PyQt4.QtGui import QMainWindow
 import pilasengine
 from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
 from pilasengine.interprete import editor
-from pilasengine import lanas
+import lanas
 from pilasengine import utils
 
 
@@ -39,9 +37,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def _vincular_atajos_de_teclado(self):
         QShortcut(QKeySequence("F5"), self.main,
-                  self.cuando_pulsa_el_boton_ejecutar)
+                  self.editor.ejecutar)
         QShortcut(QKeySequence("Ctrl+r"), self.main,
-                  self.cuando_pulsa_el_boton_ejecutar)
+                  self.editor.ejecutar)
 
         self.pushButton_6.setShortcut(QKeySequence('F7'))
         self.pushButton_5.setShortcut(QKeySequence('F8'))
@@ -77,36 +75,12 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.navegador.history().setMaximumItemCount(0)
 
         self._conectar_botones()
-        self._conectar_botones_del_editor()
         self._conectar_observadores_splitters()
 
-    def consultar_si_quiere_perder_cambios(self):
-        titulo = u"¿Quieres salir?"
-        aviso = u"Se perderán los cambios sin guardar... ¿Quieres perder los cambios del editor realmente?"
-        return self._consultar(self.main, titulo, aviso)
-
     def on_close_event(self, evento):
+        self.editor.quiere_perder_cambios()
 
-        if not self.editor.tiene_cambios_sin_guardar():
-            evento.accept()
-            return
-
-        consulta = self.consultar_si_quiere_perder_cambios()
-
-        if consulta:
-            evento.accept()
-        else:
-            evento.ignore()
-
-    def _consultar(self, parent, titulo, mensaje):
-        """Realizar una consulta usando un cuadro de dialogo simple.
-
-        Este método retorna True si el usuario acepta la pregunta."""
-        # TODO: reemplazar por un dialogo que no tenga los botones YES NO, sino algo en español: http://stackoverflow.com/questions/15682665/how-to-add-custom-button-to-a-qmessagebox-in-pyqt4
-        respuesta = QMessageBox.question(parent, titulo, mensaje,
-                                         QMessageBox.Yes,
-                                         QMessageBox.No)
-        return (respuesta == QMessageBox.Yes)
+        evento.accept()
 
     def _conectar_botones(self):
         # Botón del editor
@@ -127,29 +101,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
                                        QtCore.SIGNAL("clicked()"),
                                        self.cuando_pulsa_el_boton_interprete)
 
-        # Botón guardar del editor
-        self.definir_icono(self.boton_guardar, 'iconos/guardar.png')
-        self.boton_guardar.connect(self.boton_guardar,
-                                   QtCore.SIGNAL("clicked()"),
-                                   self.cuando_pulsa_el_boton_guardar)
-
-
-
-        self.definir_icono(self.boton_ejecutar, 'iconos/ejecutar.png')
-        self.definir_icono(self.boton_pausar, 'iconos/pausa.png')
-        self.definir_icono(self.boton_siguiente, 'iconos/siguiente.png')
-
-
-        self.definir_icono(self.boton_abrir, 'iconos/abrir.png')
-        self.boton_abrir.connect(self.boton_abrir,
-                                 QtCore.SIGNAL("clicked()"),
-                                 self.cuando_pulsa_el_boton_abrir)
-
         # Botón guardar del interprete
         self.definir_icono(self.guardar_button, 'iconos/guardar.png')
         self.interprete_button.connect(self.guardar_button,
                                        QtCore.SIGNAL("clicked()"),
-                                       self.cuando_pulsa_el_boton_guardar)
+                                       self.cuando_pulsa_el_boton_guardar_interprete)
 
         # Botón configuración
         self.definir_icono(self.configuracion_button, 'iconos/preferencias.png')
@@ -192,18 +148,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.pushButton.connect(self.pushButton,
                                 QtCore.SIGNAL("clicked()"),
                                 self.pulsa_boton_depuracion)
-
-    def _conectar_botones_del_editor(self):
-        self.boton_ejecutar.connect(self.boton_ejecutar,
-                                    QtCore.SIGNAL("clicked()"),
-                                    self.cuando_pulsa_el_boton_ejecutar)
-        self.boton_pausar.connect(self.boton_pausar,
-                                    QtCore.SIGNAL("clicked()"),
-                                    self.cuando_pulsa_el_boton_pausar)
-        self.boton_siguiente.connect(self.boton_siguiente,
-                                    QtCore.SIGNAL("clicked()"),
-                                    self.cuando_pulsa_el_boton_siguiente)
-
 
     def _conectar_observadores_splitters(self):
         # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.
@@ -273,22 +217,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         else:
             self.splitter.setSizes([300, 0])
 
-    def cuando_pulsa_el_boton_ejecutar(self):
-        self.editor.ejecutar()
-        self.boton_pausar.setChecked(False)
-
-    def cuando_pulsa_el_boton_pausar(self):
-        if self.boton_pausar.isChecked():
-            self.ventana_pilas.pausar()
-        else:
-            self.ventana_pilas.continuar()
-
-    def cuando_pulsa_el_boton_siguiente(self):
-        if not self.boton_pausar.isChecked():
-            self.boton_pausar.click()
-
-        self.ventana_pilas.avanzar_un_solo_cuadro()
-
     def pulsa_boton_depuracion(self):
         pilas = self.scope['pilas']
         pilas.depurador.definir_modos(
@@ -354,34 +282,29 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.canvas.setCurrentWidget(self.ventana_pilas)
 
     def _insertar_editor(self):
-        componente = editor.Editor(self.main, self.scope, self)
-        self.editor_placeholder.addWidget(componente)
-        self.editor_placeholder.setCurrentWidget(componente)
-        self.editor = componente.editor
+        widget_editor = editor.WidgetEditor(self.main, self.scope)
+        self.editor_placeholder.addWidget(widget_editor)
+        self.editor_placeholder.setCurrentWidget(widget_editor)
+        self.editor = widget_editor.editor
 
     def _insertar_consola_interactiva(self):
-        codigo_inicial = ['import pilasengine',
-                          '',
-                          'pilas = pilasengine.iniciar()',
-                          'mono = pilas.actores.Mono()']
+        codigo_inicial = u'''import pilasengine
+                            pilas = pilasengine.iniciar()
+                            mono = pilas.actores.Mono()'''
 
-        consola = lanas.ventana.Ventana(self.splitter, self.scope,
-                                        "\n".join(codigo_inicial))
-        self.console.addWidget(consola)
-        self.console.setCurrentWidget(consola)
-        self.consola = consola
-        self.consola.text_edit.setFocus()
+        widgetlanas = lanas.WidgetLanas(self.splitter, self.scope, codigo_inicial)
+        self.console.addWidget(widgetlanas)
+        self.console.setCurrentWidget(widgetlanas)
+        self.consola = widgetlanas.text_edit
+        self.consola.setFocus()
 
     def definir_fuente_desde_configuracion(self):
         fuente = pilasengine.configuracion.Configuracion().obtener_fuente()
         self.editor.definir_fuente(fuente)
         self.consola.definir_fuente(fuente)
 
-    def cuando_pulsa_el_boton_abrir(self):
-        self.editor.abrir_con_dialogo()
-
-    def cuando_pulsa_el_boton_guardar(self):
-        self.editor.guardar_con_dialogo()
+    def cuando_pulsa_el_boton_guardar_interprete(self):
+        self.consola.text_edit.guardar_contenido_con_dialogo()
 
     def cuando_pulsa_el_boton_configuracion(self):
         pilasengine.abrir_configuracion()
@@ -421,30 +344,15 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.ejecutar_codigo_como_string(contenido, current_path)
         f.close()
 
-    def ejecutar_codigo_como_string(self, contenido, ruta_personalizada=None):
-        contenido = re.sub('coding\s*:\s*', '', contenido)      # elimina cabecera de encoding.
-        contenido = contenido.replace('import pilasengine', '')
-        contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
-
-        # Muchos códigos personalizados necesitan cargar imágenes o sonidos
-        # desde el directorio que contiene al archivo. Para hacer esto posible,
-        # se llama a la función "pilas.utils.agregar_ruta_personalizada" con el
-        # path al directorio que representa el script. Así la función "obtener_ruta_al_recurso"
-        # puede evaluar al directorio del script en busca de recursos también.
-        if ruta_personalizada:
-            agregar_ruta_personalizada = 'pilas.utils.agregar_ruta_personalizada("%s")' %(ruta_personalizada)
-            contenido = contenido.replace('pilas.reiniciar(', agregar_ruta_personalizada+'\n'+'pilas.reiniciar(')
-
-        self.consola.ejecutar(contenido)
-        scope_nuevo = self.consola.obtener_scope()
-        self.editor.actualizar_scope(scope_nuevo)
-        self.ventana_pilas = scope_nuevo['pilas'].widget
-        self.mostrar_mensaje_cargando()
-        self.insertar_widget_de_pilas()
+    def actualizar_scope(self):
+        #self.ventana_pilas = scope_nuevo['pilas'].widget
+        #self.mostrar_mensaje_cargando()
+        #self.insertar_widget_de_pilas()
 
         # Evita perder los 'ejes' del modo de depuracion 'posicion'
-        self.scope['pilas'].depurador.definir_modos()
-        self.pulsa_boton_depuracion()
+        #self.scope['pilas'].depurador.definir_modos()
+        #self.pulsa_boton_depuracion()
+        pass
 
 
 def abrir():
@@ -469,7 +377,8 @@ def abrir_script_con_livereload(archivo):
     utils.centrar_ventana(MainWindow)
     MainWindow.show()
     MainWindow.raise_()
-    ui.ejecutar_y_reiniciar_si_cambia(archivo)
+    ui.editor.cargar_contenido_desde_archivo(archivo)
+    ui.editor.ejecutar()
 
     ui.colapsar_interprete()
     return MainWindow

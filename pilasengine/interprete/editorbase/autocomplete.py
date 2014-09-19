@@ -5,16 +5,14 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-import sys
-import os
-import re
-
 from PyQt4 import QtGui, QtCore
+from PyQt4.QtCore import Qt
 
 BRACES = {'(':')', '[':']', '{':'}'}
 COMILLAS = {'"':'"', "'":"'"}
 CHARACTERS = {}
 for d in (BRACES, COMILLAS): CHARACTERS.update(d)
+
 
 class DictionaryCompleter(QtGui.QCompleter):
 
@@ -25,16 +23,16 @@ class DictionaryCompleter(QtGui.QCompleter):
         model = QtGui.QStringListModel(words, self)
         self.setModel(model)
 
+
 class CompletionTextEdit(QtGui.QTextEdit):
 
-    def __init__(self, parent=None, funcion_valores_autocompletado=None):
+    def __init__(self, parent=None):
         super(CompletionTextEdit, self).__init__(parent)
         self.completer = None
         self.moveCursor(QtGui.QTextCursor.End)
         self.dictionary = DictionaryCompleter()
         self.set_completer(self.dictionary)
         self.set_dictionary([])
-        self.funcion_valores_autocompletado = funcion_valores_autocompletado
 
     def set_dictionary(self, list):
         self.dictionary.set_dictionary(list)
@@ -68,6 +66,15 @@ class CompletionTextEdit(QtGui.QTextEdit):
         QtGui.QTextEdit.focusInEvent(self, event)
 
     def autocomplete(self, event):
+
+        # Completar comillas y braces
+        if event.key() in [Qt.Key_QuoteDbl, Qt.Key_Apostrophe]:
+            self._autocompletar_comillas(event.text())
+
+        elif event.key() in [Qt.Key_ParenLeft, Qt.Key_BraceLeft,
+                             Qt.Key_BracketLeft]:
+            self._autocompletar_braces(event.text())
+
         current_char = event.text()
         word = self._get_current_word() + current_char
         is_shift_pressed = (event.modifiers() & QtCore.Qt.ShiftModifier)
@@ -122,16 +129,6 @@ class CompletionTextEdit(QtGui.QTextEdit):
         else:
             self.completer.popup().hide()
 
-    def _get_current_line(self):
-        tc = self.textCursor()
-        tc.select(QtGui.QTextCursor.LineUnderCursor)
-        return tc.selectedText()[2:]
-
-    def _get_current_word(self):
-        tc = self.textCursor()
-        tc.select(QtGui.QTextCursor.WordUnderCursor)
-        return tc.selectedText()
-
     def _autocompletar_comillas(self, comilla):
         tc = self.textCursor()
         tc.insertText(comilla)
@@ -140,22 +137,38 @@ class CompletionTextEdit(QtGui.QTextEdit):
 
     def _autocompletar_braces(self, brace):
         tc = self.textCursor()
-        tc.insertText(BRACES[brace])
+        tc.insertText(BRACES[str(brace)])
         tc.setPosition(tc.position()-1)
         self.setTextCursor(tc)
 
     def _eliminar_pares_de_caracteres(self, es_consola=True):
         tc = self.textCursor()
         line = self._get_current_line()
-        if es_consola:
-            # La posición del cursor es diferente por '» '
-            position = tc.positionInBlock() - 3
-        else:
-            position = tc.positionInBlock() - 1
-        try:
+        position = self._get_position_in_block()
+        if position < len(line) - 1:
             char = str(line[position])
             nextchar = str(line[position+1])
             if char in CHARACTERS and nextchar in CHARACTERS.values():
                 tc.deleteChar()
-        except:
-            pass
+
+    def funcion_valores_autocompletado(self, texto):
+        "Retorna una lista de valores propuestos para autocompletar"
+        scope = self.interpreterLocals
+        texto = texto.replace('(', ' ').split(' ')[-1]
+
+        if '.' in texto:
+            palabras = texto.split('.')
+            ultima = palabras.pop()
+            prefijo = '.'.join(palabras)
+
+            try:
+                items = eval("[(x, callable(getattr(eval('%s'), x))) for x in dir(%s)]" %(prefijo, prefijo), scope)
+
+                elementos = [x+'(' if invocable else x for (x, invocable) in items]
+            except:
+                # TODO: notificar este error de autocompletado en algun lado...
+                return []
+
+            return [a for a in elementos if a.startswith(ultima)]
+        else:
+            return [a for a in scope.keys() if a.startswith(texto)]
