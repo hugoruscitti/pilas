@@ -11,6 +11,8 @@ from pilasengine.actores.actor import Actor
 from pilasengine.actores.texto import Texto
 from pilasengine.actores.grupo import Grupo
 
+from pilasengine.actores import aceituna
+
 
 from pilasengine import colores
 
@@ -111,6 +113,7 @@ class Actores(object):
         return grupo
 
     def Aceituna(self, x=0, y=0):
+        ":rtype: aceituna.Aceituna"
         return self._crear_actor('aceituna', 'Aceituna', x=x, y=y)
 
     def Mono(self, x=0, y=0):

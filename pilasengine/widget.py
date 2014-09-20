@@ -82,6 +82,7 @@ class BaseWidget(object):
         titulo = repr(e)
         descripcion = traceback.format_exc(e)
         escena = self.pilas.escenas.Error(titulo, descripcion)
+        return escena
 
     def timerEvent(self, event):
         """Actualiza la simulación completa.

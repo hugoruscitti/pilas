@@ -32,8 +32,7 @@ from pilasengine import pad
 
 import widget
 
-VERSION = "0.90"
-
+VERSION="0.90.4"
 
 class Pilas(object):
     """Representa el area de juego de pilas, el componente principal.
@@ -360,6 +359,8 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
 
     .. image:: images/iniciar_320_240.png
 
+    :rtype: Pilas
+
     Parámetros:
 
     :ancho: el tamaño en pixels para la ventana.
@@ -370,6 +371,7 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
                        se muestran en consola.
     :habilitar_mensajes_log: Muestra cada operación que hace pilas en consola.
     :con_aceleracion: Indica si se habilita o no la aceleracion de video. Por omisión está habilitada.
+
     """
 
     pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo,
@@ -383,7 +385,6 @@ def abrir_asistente():
     import asistente
     return asistente.abrir()
 
-
 def abrir_manual():
     import manual
     return manual.abrir()
@@ -395,7 +396,6 @@ def abrir_configuracion(parent=None):
 def abrir_interprete():
     import interprete
     return interprete.abrir()
-
 
 def abrir_script_con_livereload(archivo):
     import interprete
