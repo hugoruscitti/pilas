@@ -16,6 +16,7 @@ from PyQt4.QtCore import Qt
 from PyQt4 import QtCore
 
 from editorbase import editor_base
+import editor_ui
 import pilasengine
 
 CONTENIDO = u"""import pilasengine
@@ -37,7 +38,7 @@ mono.rotacion = 0
 pilas.ejecutar()"""
 
 
-class WidgetEditor(QWidget):
+class WidgetEditor(QWidget, editor_ui.Ui_Editor):
 
     class NumberBar(QWidget):
 
@@ -100,9 +101,13 @@ class WidgetEditor(QWidget):
 
             QWidget.paintEvent(self, event)
 
-
-    def __init__(self, main, interpreter_locals=None, *args):
+    def __init__(self, main=None, interpreter_locals=None, *args):
         QWidget.__init__(self, *args)
+        self.setupUi(self)
+        self.setLayout(self.vertical_layout)
+
+        if interpreter_locals is None:
+            interpreter_locals = locals()
 
         self.editor = Editor(self, interpreter_locals)
         self.editor.setFrameStyle(QFrame.NoFrame)
@@ -111,67 +116,39 @@ class WidgetEditor(QWidget):
         self.number_bar = self.NumberBar()
         self.number_bar.setTextEdit(self.editor)
 
-        # Layout principal: envuelve al editor y layout de acciones
-        vbox = QVBoxLayout(self)
-        vbox.setSpacing(0)
-        vbox.setMargin(0)
+        # Agregando editor y number_bar a hbox_editor layout
+        self.hbox_editor.addWidget(self.number_bar)
+        self.hbox_editor.addWidget(self.editor)
 
-        # Layout barra de acciones
-        hbox_buttons = QHBoxLayout()
-        hbox_buttons.setSpacing(0)
-        hbox_buttons.setMargin(0)
-        vbox.addLayout(hbox_buttons)
+        # Boton Abrir
+        self.set_icon(self.boton_abrir, 'iconos/abrir.png')
+        self.boton_abrir.connect(self.boton_abrir,
+                                    QtCore.SIGNAL('clicked()'),
+                                    self.editor.abrir_archivo_con_dialogo)
 
-        # Layout botones acciones sobre archivos
-        hbox_files_buttons = QHBoxLayout()
-        hbox_files_buttons.setSpacing(0)
-        hbox_files_buttons.setMargin(0)
-        hbox_buttons.addLayout(hbox_files_buttons)
+        # Boton Guardar
+        self.set_icon(self.boton_guardar, 'iconos/guardar.png')
+        self.boton_guardar.connect(self.boton_guardar,
+                                    QtCore.SIGNAL('clicked()'),
+                                    self.editor.guardar_contenido_con_dialogo)
 
-        # Botón abrir del editor
-        self.button_open = QPushButton(self)
-        self.button_open.setMaximumSize(QSize(20, 20))
-        self.button_open.setCursor(QCursor(Qt.PointingHandCursor))
-        self.button_open.setFlat(True)
-        #self.guardar_button.setObjectName(_fromUtf8("guardar_button"))
-        self.set_icon(self.button_open, 'iconos/abrir.png')
-        self.button_open.connect(self.button_open,
-                                   QtCore.SIGNAL("clicked()"),
-                                   self.editor.abrir_archivo_con_dialogo)
-        hbox_files_buttons.addWidget(self.button_open)
+        # Boton Ejecutar
+        self.set_icon(self.boton_ejecutar, 'iconos/ejecutar.png')
+        self.boton_ejecutar.connect(self.boton_ejecutar,
+                                    QtCore.SIGNAL('clicked()'),
+                                    self.cuando_pulsa_el_boton_ejecutar)
 
-        # Botón guardar del editor
-        self.button_save = QPushButton(self)
-        self.button_save.setMaximumSize(QSize(20, 20))
-        self.button_save.setCursor(QCursor(Qt.PointingHandCursor))
-        self.button_save.setFlat(True)
-        #self.guardar_button.setObjectName(_fromUtf8("guardar_button"))
-        self.set_icon(self.button_save, 'iconos/guardar.png')
-        self.button_save.connect(self.button_save,
-                                   QtCore.SIGNAL("clicked()"),
-                                   self.editor.guardar_contenido_con_dialogo)
-        hbox_files_buttons.addWidget(self.button_save)
+        # Boton Pausar
+        self.set_icon(self.boton_pausar, 'iconos/pausa.png')
+        self.boton_pausar.connect(self.boton_pausar,
+                                    QtCore.SIGNAL('clicked()'),
+                                    self.cuando_pulsa_el_boton_pausar)
 
-        # Botón ejecutar del editor
-        self.button_execute = QPushButton(self)
-        self.button_execute.setMaximumSize(QSize(20, 20))
-        self.button_execute.setCursor(QCursor(Qt.PointingHandCursor))
-        self.button_execute.setFlat(True)
-        #self.guardar_button.setObjectName(_fromUtf8("guardar_button"))
-        self.set_icon(self.button_execute, 'iconos/ejecutar.png')
-        self.button_execute.connect(self.button_execute,
-                                   QtCore.SIGNAL("clicked()"),
-                                   self.editor.ejecutar)
-        hbox_buttons.addWidget(self.button_execute)
-
-
-        # Layout para el Editor y barra de numeros
-        hbox_editor = QHBoxLayout()
-        hbox_editor.setSpacing(0)
-        hbox_editor.setMargin(0)
-        hbox_editor.addWidget(self.number_bar)
-        hbox_editor.addWidget(self.editor)
-        vbox.addLayout(hbox_editor)
+        # Boton Siguiente
+        self.set_icon(self.boton_siguiente, 'iconos/siguiente.png')
+        self.boton_siguiente.connect(self.boton_siguiente,
+                                    QtCore.SIGNAL('clicked()'),
+                                    self.cuando_pulsa_el_boton_siguiente)
 
         self.editor.installEventFilter(self)
         self.editor.viewport().installEventFilter(self)
@@ -180,7 +157,7 @@ class WidgetEditor(QWidget):
         if obj in (self.editor, self.editor.viewport()):
             self.number_bar.update()
             return False
-        return QFrame.eventFilter(obj, event)
+        return QWidget.eventFilter(obj, event)
 
     def set_icon(self, boton, ruta):
         icon = QIcon()
@@ -195,15 +172,15 @@ class WidgetEditor(QWidget):
 
     def cuando_pulsa_el_boton_pausar(self):
         if self.boton_pausar.isChecked():
-            self.ventana_pilas.pausar()
+            self.editor.interpreterLocals['pilas'].widget.pausar()
         else:
-            self.ventana_pilas.continuar()
+            self.editor.interpreterLocals['pilas'].widget.continuar()
 
     def cuando_pulsa_el_boton_siguiente(self):
         if not self.boton_pausar.isChecked():
             self.boton_pausar.click()
 
-        self.ventana_pilas.avanzar_un_solo_cuadro()
+        self.editor.interpreterLocals['pilas'].widget.avanzar_un_solo_cuadro()
 
 
 class Editor(editor_base.EditorBase):
