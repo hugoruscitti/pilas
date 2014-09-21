@@ -283,8 +283,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def _insertar_editor(self):
         widget_editor = editor.WidgetEditor(self.main, self.scope)
-        self.editor_placeholder.addWidget(widget_editor)
-        self.editor_placeholder.setCurrentWidget(widget_editor)
+        self.editor_layout.addWidget(widget_editor)
         self.editor = widget_editor.editor
 
     def _insertar_consola_interactiva(self):

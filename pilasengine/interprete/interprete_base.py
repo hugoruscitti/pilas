@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'interprete.ui'
 #
-# Created: Tue Sep 16 22:56:57 2014
+# Created: Sun Sep 21 00:37:14 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -170,18 +170,9 @@ class Ui_InterpreteWindow(object):
         self.verticalLayout.addWidget(self.console)
         self.layoutWidget2 = QtGui.QWidget(self.splitter_editor)
         self.layoutWidget2.setObjectName(_fromUtf8("layoutWidget2"))
-        self.verticalLayout_3 = QtGui.QVBoxLayout(self.layoutWidget2)
-        self.verticalLayout_3.setMargin(0)
-        self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
-        self.editor_placeholder = QtGui.QStackedWidget(self.layoutWidget2)
-        self.editor_placeholder.setObjectName(_fromUtf8("editor_placeholder"))
-        self.page_5 = QtGui.QWidget()
-        self.page_5.setObjectName(_fromUtf8("page_5"))
-        self.editor_placeholder.addWidget(self.page_5)
-        self.page_6 = QtGui.QWidget()
-        self.page_6.setObjectName(_fromUtf8("page_6"))
-        self.editor_placeholder.addWidget(self.page_6)
-        self.verticalLayout_3.addWidget(self.editor_placeholder)
+        self.editor_layout = QtGui.QVBoxLayout(self.layoutWidget2)
+        self.editor_layout.setMargin(0)
+        self.editor_layout.setObjectName(_fromUtf8("editor_layout"))
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)
         InterpreteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(InterpreteWindow)
@@ -196,7 +187,6 @@ class Ui_InterpreteWindow(object):
 
         self.retranslateUi(InterpreteWindow)
         self.console.setCurrentIndex(0)
-        self.editor_placeholder.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(InterpreteWindow)
 
     def retranslateUi(self, InterpreteWindow):

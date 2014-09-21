@@ -399,17 +399,7 @@
         </widget>
        </widget>
        <widget class="QWidget" name="layoutWidget">
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QStackedWidget" name="editor_placeholder">
-           <property name="currentIndex">
-            <number>0</number>
-           </property>
-           <widget class="QWidget" name="page_5"/>
-           <widget class="QWidget" name="page_6"/>
-          </widget>
-         </item>
-        </layout>
+        <layout class="QVBoxLayout" name="editor_layout"/>
        </widget>
       </widget>
      </widget>
