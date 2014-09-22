@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import datetime
 import subprocess
+import codecs
 
 
 template = u"""
@@ -17,14 +18,23 @@ lista = subprocess.check_output(['sh', 'extras/listar_mensajes_commits.sh']).spl
 commit = subprocess.check_output(['git', 'log', '-1', '--oneline']).split(' ')[0]
 hoy = datetime.date.today()
 
+changelist = [item.decode('utf-8') for item in lista]
+item = u"["
+
+for x in changelist:
+    item = item + "'" + x.replace("'", "\"") + "', "
+
+item = item + ']'
+changelist = item
+
 template = template.\
   replace('VERSION_STR', '0.90.4').\
   replace('FECHA', hoy.strftime('%d de %b del %Y')).\
-  replace('CHANGELOG_LIST', str(lista)).\
+  replace('CHANGELOG_LIST', changelist).\
   replace('COMMIT', str(commit))
 
-f = open('data/asistente/js/version.js', 'wt')
-f.write(template)
-f.close()
+file = codecs.open('data/asistente/js/version.js', 'wt', 'utf-8')
+file.write(template)
+file.close()
 
 print "Generando el archivo 'data/asistente/js/version.js' con los datos de versión actualizados."
