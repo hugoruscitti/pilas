@@ -8,10 +8,12 @@
 import sys
 import os
 import datetime
-from PyQt4 import QtGui
-from PyQt4 import QtCore
 import traceback
 import random
+
+from PyQt4 import QtGui
+from PyQt4 import QtCore
+import pygame
 
 from pilasengine import escenas
 from pilasengine import imagenes
@@ -66,6 +68,13 @@ class Pilas(object):
 
         if configuracion.AUDIO_HABILITADO:
             self._inicializar_audio()
+
+
+        self._definir_icono_de_ventana()
+
+    def _definir_icono_de_ventana(self):
+        img = pygame.image.load(self.obtener_ruta_al_recurso('icono.ico'))
+        pygame.display.set_icon(img)
 
     def _inicializar_audio(self):
         import pygame
