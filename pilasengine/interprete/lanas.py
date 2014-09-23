@@ -40,7 +40,7 @@ class WidgetLanas(QWidget):
         if not 'inspect' in scope:
             scope['inspect'] = inspect
 
-        self.text_edit = EditorLanas(self, codigo_inicial)
+        self.text_edit = InterpreteLanas(self, codigo_inicial)
         self.text_edit.init(scope)
 
         self.tip_widget = QLabel(self)
@@ -71,7 +71,7 @@ class WidgetLanas(QWidget):
             self.log_widget.hide()
 
 
-class EditorLanas(editor_base.EditorBase):
+class InterpreteLanas(editor_base.EditorBase):
     """Representa el widget del interprete.
 
     Esta instancia tiene como atributo "self.ventana" al
@@ -79,7 +79,7 @@ class EditorLanas(editor_base.EditorBase):
     """
 
     def __init__(self, parent, codigo_inicial=None):
-        super(EditorLanas,  self).__init__()
+        super(InterpreteLanas, self).__init__()
         self.ventana = parent
         #self.ventana_interprete = self.ventana.ventana_interprete
         self.stdout_original = sys.stdout
@@ -90,7 +90,9 @@ class EditorLanas(editor_base.EditorBase):
         self.command = ''
         self.history = []
         self.historyIndex = -1
-        self.interpreterLocals = {}
+        self.interpreterLocals = {'raw_input': self.raw_input,
+                                  'input': self.input,
+                                  'help': self.help}
 
         # setting the color for bg and text
         palette = QPalette()
@@ -146,12 +148,11 @@ class EditorLanas(editor_base.EditorBase):
             self.insertHtml(u"<b style='color: #3583FC'>»</b> ")
 
     def init(self, interpreter_locals):
+        # Mover este metodo dentro de __init__ ?
         if interpreter_locals:
-            self.interpreter = code.InteractiveInterpreter(interpreter_locals)
-            self.interpreter.runsource('raw_input = self.raw_input')
-            self.interpreter.runsource('input = self.input')
-            self.interpreter.runsource('help = self.help')
-            self.interpreterLocals = interpreter_locals
+            self.interpreterLocals.update(interpreter_locals)
+
+        self.interpreter = code.InteractiveInterpreter(self.interpreterLocals)
 
     def updateInterpreterLocals(self, newLocals):
         print "upda interpeter"

@@ -224,20 +224,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
             posiciones=self.pushButton.isChecked(),           # F12
         )
 
-    def raw_input(self, mensaje):
-        text, _ = QInputDialog.getText(self.main, "raw_input", mensaje)
-        return str(text)
-
-    def input(self, mensaje):
-        text, _ = QInputDialog.getText(self.main, "raw_input", mensaje)
-        return eval(str(text))
-
-    def help(self, objeto=None):
-        if objeto:
-            print help(objeto)
-        else:
-            print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
-
     def _iniciar_pilas(self):
         pilas = pilasengine.iniciar(640, 400)
         pilas.definir_iniciado_desde_asistente(True)
