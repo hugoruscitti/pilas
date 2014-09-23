@@ -152,8 +152,6 @@
               <height>240</height>
              </size>
             </property>
-            <widget class="QWidget" name="page"/>
-            <widget class="QWidget" name="page_2"/>
            </widget>
           </item>
           <item>
@@ -389,7 +387,7 @@
           <item>
            <widget class="QStackedWidget" name="console">
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="page_3"/>
             <widget class="QWidget" name="page_4"/>

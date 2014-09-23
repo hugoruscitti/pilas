@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'interprete.ui'
 #
-# Created: Sun Sep 21 00:37:14 2014
+# Created: Sun Sep 21 13:58:22 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -80,12 +80,6 @@ class Ui_InterpreteWindow(object):
         self.canvas = QtGui.QStackedWidget(self.layoutWidget)
         self.canvas.setMinimumSize(QtCore.QSize(320, 240))
         self.canvas.setObjectName(_fromUtf8("canvas"))
-        self.page = QtGui.QWidget()
-        self.page.setObjectName(_fromUtf8("page"))
-        self.canvas.addWidget(self.page)
-        self.page_2 = QtGui.QWidget()
-        self.page_2.setObjectName(_fromUtf8("page_2"))
-        self.canvas.addWidget(self.page_2)
         self.verticalLayout_2.addWidget(self.canvas)
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
@@ -186,7 +180,7 @@ class Ui_InterpreteWindow(object):
         self.actionSalir.setObjectName(_fromUtf8("actionSalir"))
 
         self.retranslateUi(InterpreteWindow)
-        self.console.setCurrentIndex(0)
+        self.console.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(InterpreteWindow)
 
     def retranslateUi(self, InterpreteWindow):

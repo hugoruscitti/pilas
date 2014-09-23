@@ -189,6 +189,9 @@ class Editor(editor_base.EditorBase):
     El editor soporta autocompletado de código y resaltado de sintáxis.
     """
 
+    # Señal es emitida cuando el Editor ejecuta codigo
+    signal_ejecutando = QtCore.pyqtSignal()
+
     def __init__(self, main, interpreterLocals):
         super(Editor, self).__init__()
         self.interpreterLocals = interpreterLocals
@@ -303,6 +306,7 @@ class Editor(editor_base.EditorBase):
             agregar_ruta_personalizada = 'pilas.utils.agregar_ruta_personalizada("%s")' %(ruta_personalizada)
             contenido = contenido.replace('pilas.reiniciar(', agregar_ruta_personalizada+'\n'+'pilas.reiniciar(')
 
+        self.signal_ejecutando.emit()
         exec(contenido, self.interpreterLocals)
 
 

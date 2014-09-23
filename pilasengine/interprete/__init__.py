@@ -11,12 +11,8 @@ import codecs
 import time
 
 from PyQt4 import QtCore
-from PyQt4.QtGui import QShortcut
-from PyQt4.QtGui import QKeySequence
-from PyQt4.QtGui import QIcon
-from PyQt4.QtGui import QInputDialog
-from PyQt4.QtGui import QLabel
-from PyQt4.QtGui import QMainWindow
+from PyQt4.QtGui import (QShortcut, QKeySequence, QIcon, QInputDialog,
+                        QLabel, QMainWindow)
 
 import pilasengine
 from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
@@ -251,7 +247,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
                  'colores': pilasengine.colores,
                  'pilasengine': pilasengine}
 
-        self.canvas.addWidget(pilas.widget)
+        self.canvas.addWidget(scope['pilas'].widget)
 
         return scope
 
@@ -265,7 +261,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.canvas.setCurrentWidget(self.cargando)
 
     def insertar_widget_de_pilas(self):
-        self.ventana_pilas.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.scope['pilas'].widget.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.canvas.setFocus()
 
         # Se asegura de mostrar la ventana de pilas luego de 1/2 segundo.
@@ -279,12 +275,13 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.stimer.start(300)
 
     def _mostrar_widget_de_pilas(self):
-        self.canvas.setCurrentWidget(self.ventana_pilas)
+        self.canvas.setCurrentWidget(self.scope['pilas'].widget)
 
     def _insertar_editor(self):
         widget_editor = editor.WidgetEditor(self.main, self.scope)
         self.editor_layout.addWidget(widget_editor)
         self.editor = widget_editor.editor
+        self.editor.signal_ejecutando.connect(self.actualizar_widget_pilas)
 
     def _insertar_consola_interactiva(self):
         codigo_inicial = u'''import pilasengine
@@ -319,9 +316,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self._reiniciar_y_ejecutar(archivo)
         self._cargar_codigo_del_editor_desde_archivo(archivo)
 
-    def _cargar_codigo_del_editor_desde_archivo(self, archivo):
-        self.editor.cargar_desde_archivo(archivo)
-
     def _reiniciar_y_ejecutar(self, archivo):
         self.watcher.removePath(archivo)
         self.watcher.addPath(archivo)
@@ -343,15 +337,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.ejecutar_codigo_como_string(contenido, current_path)
         f.close()
 
-    def actualizar_scope(self):
-        #self.ventana_pilas = scope_nuevo['pilas'].widget
-        #self.mostrar_mensaje_cargando()
-        #self.insertar_widget_de_pilas()
-
-        # Evita perder los 'ejes' del modo de depuracion 'posicion'
-        #self.scope['pilas'].depurador.definir_modos()
-        #self.pulsa_boton_depuracion()
-        pass
+    def actualizar_widget_pilas(self):
+        self.mostrar_mensaje_cargando()
+        self.insertar_widget_de_pilas()
 
 
 def abrir():
