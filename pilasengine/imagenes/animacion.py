@@ -71,6 +71,6 @@ class Animacion(Grilla):
 
         return ha_avanzado
 
-    def __str__(self):
+    def __repr__(self):
         nombre_imagen = os.path.basename(self.ruta_original)
         return "<Animacion del archivo '%s' (filas: %d, columnas: %d)>" % (nombre_imagen, self.filas, self.columnas)

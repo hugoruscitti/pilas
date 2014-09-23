@@ -74,6 +74,6 @@ class Grilla(Imagen):
                                        self.cuadro_ancho, self.cuadro_alto,
                                        x, y)
 
-    def __str__(self):
+    def __repr__(self):
         nombre_imagen = os.path.basename(self.ruta_original)
         return "<Grilla del archivo '%s' (filas: %d, columnas: %d)>" % (nombre_imagen, self.filas, self.columnas)

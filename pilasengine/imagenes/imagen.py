@@ -67,6 +67,6 @@ class Imagen(object):
         else:
             painter.drawPixmap(0, 0, self._imagen)
 
-    def __str__(self):
+    def __repr__(self):
         nombre_imagen = os.path.basename(self.ruta_original)
         return "<Imagen del archivo '%s'>" % (nombre_imagen)
