@@ -306,7 +306,7 @@ class Editor(editor_base.EditorBase):
             agregar_ruta_personalizada = 'pilas.utils.agregar_ruta_personalizada("%s")' %(ruta_personalizada)
             contenido = contenido.replace('pilas.reiniciar(', agregar_ruta_personalizada+'\n'+'pilas.reiniciar(')
 
-        self.signal_ejecutando.emit()
         exec(contenido, self.interpreterLocals)
+        self.signal_ejecutando.emit()
 
 
