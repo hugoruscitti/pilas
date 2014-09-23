@@ -150,7 +150,8 @@ class InterpreteLanas(editor_base.EditorBase):
     def init(self, interpreter_locals):
         # Mover este metodo dentro de __init__ ?
         if interpreter_locals:
-            self.interpreterLocals.update(interpreter_locals)
+            interpreter_locals.update(self.interpreterLocals)
+            self.interpreterLocals = interpreter_locals
 
         self.interpreter = code.InteractiveInterpreter(self.interpreterLocals)
 
