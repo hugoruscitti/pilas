@@ -12,49 +12,32 @@ import code
 
 os.environ['lanas'] = 'enabled'
 
-from PyQt4.QtGui import QLabel
-from PyQt4.QtGui import QWidget
-from PyQt4.QtGui import QVBoxLayout
-from PyQt4.QtGui import QDesktopWidget
-from PyQt4 import QtGui
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from PyQt4.QtGui import QTextEdit
+from PyQt4.QtGui import (QWidget, QDesktopWidget, QPalette,
+                        QColor, QIcon, QTextCursor, QTextEdit,
+                        QInputDialog)
+from PyQt4 import QtCore
+from PyQt4.QtCore import Qt, QTimer, QSize
+import pilasengine
 
 from editorbase import editor_base
+import lanas_ui
 import io
 
 
-class WidgetLanas(QWidget):
+class WidgetLanas(QWidget, lanas_ui.Ui_Lanas):
     def __init__(self, parent=None, scope=None, codigo_inicial=None):
         super(WidgetLanas, self).__init__(parent)
-        box = QVBoxLayout()
-        box.setMargin(0)
-        box.setSpacing(0)
+        self.setupUi(self)
 
-        self.setLayout(box)
-
-        if not scope:
-            scope = locals()
-
-        if not 'inspect' in scope:
-            scope['inspect'] = inspect
-
-        self.text_edit = InterpreteLanas(self, codigo_inicial)
-        self.text_edit.init(scope)
-
-        self.tip_widget = QLabel(self)
-        self.tip_widget.setText("")
-
-        box.addWidget(self.text_edit)
-        box.addWidget(self.tip_widget)
+        self.lanas = InterpreteLanas(self, codigo_inicial)
+        self.lanas.init(scope)
+        self.widget_interprete.addWidget(self.lanas)
 
         self.resize(650, 300)
         self.center_on_screen()
-        self.raise_()
 
     def obtener_scope(self):
-        return self.text_edit.interpreterLocals
+        return self.lanas.interpreterLocals
 
     def center_on_screen(self):
         resolution = QDesktopWidget().screenGeometry()
@@ -81,7 +64,6 @@ class InterpreteLanas(editor_base.EditorBase):
     def __init__(self, parent, codigo_inicial=None):
         super(InterpreteLanas, self).__init__()
         self.ventana = parent
-        #self.ventana_interprete = self.ventana.ventana_interprete
         self.stdout_original = sys.stdout
         sys.stdout = io.NormalOutput(self)
         sys.stderr = io.ErrorOutput(self)
@@ -90,6 +72,7 @@ class InterpreteLanas(editor_base.EditorBase):
         self.command = ''
         self.history = []
         self.historyIndex = -1
+
         self.interpreterLocals = {'raw_input': self.raw_input,
                                   'input': self.input,
                                   'help': self.help}
@@ -153,18 +136,15 @@ class InterpreteLanas(editor_base.EditorBase):
             interpreter_locals.update(self.interpreterLocals)
             self.interpreterLocals = interpreter_locals
 
+        if 'inspect' not in self.interpreterLocals:
+            self.interpreterLocals['inspect'] = inspect
+
         self.interpreter = code.InteractiveInterpreter(self.interpreterLocals)
 
-    def updateInterpreterLocals(self, newLocals):
-        print "upda interpeter"
-        className = newLocals.__class__.__name__
-        self.interpreterLocals[className] = newLocals
-
     def clearCurrentBlock(self):
-        textCursor = self.textCursor()
-        textCursor.select(QTextCursor.LineUnderCursor)
-        textCursor.removeSelectedText()
-        self.marker()
+        block = self.document().lastBlock().text()[2:]
+        for char in block:
+            self.textCursor().deletePreviousChar()
 
     def recall_history(self):
         self._mover_cursor_al_final()
@@ -246,7 +226,7 @@ class InterpreteLanas(editor_base.EditorBase):
                     textCursor = self._mover_cursor_al_final()
                     return
 
-            return QtGui.QTextEdit.keyPressEvent(self, event)
+            return QTextEdit.keyPressEvent(self, event)
 
         # Ignorando la pulsación de tecla si está en medio de la consola.
         if textCursor.blockNumber() != self.document().blockCount() - 1:
@@ -421,8 +401,7 @@ class InterpreteLanas(editor_base.EditorBase):
         return codigo
 
     def mostrar_consejo(self, linea):
-        pos = self.mapToGlobal(self.cursorRect().bottomRight())
-        self.ventana.tip_widget.setText(linea)
+        self.ventana.consejo.setText(linea)
 
     def guardar_contenido_con_dialogo(self):
         ruta = self.abrir_dialogo_guardar_archivo()

@@ -277,7 +277,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         widgetlanas = lanas.WidgetLanas(self.splitter, self.scope, codigo_inicial)
         self.console.addWidget(widgetlanas)
         self.console.setCurrentWidget(widgetlanas)
-        self.consola = widgetlanas.text_edit
+        self.consola = widgetlanas.lanas
         self.consola.setFocus()
 
     def definir_fuente_desde_configuracion(self):
@@ -286,7 +286,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.consola.definir_fuente(fuente)
 
     def cuando_pulsa_el_boton_guardar_interprete(self):
-        self.consola.text_edit.guardar_contenido_con_dialogo()
+        self.consola.guardar_contenido_con_dialogo()
 
     def cuando_pulsa_el_boton_configuracion(self):
         pilasengine.abrir_configuracion()
