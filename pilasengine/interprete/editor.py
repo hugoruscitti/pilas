@@ -16,6 +16,9 @@ from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QFont
 from PyQt4.QtGui import QTextEdit
 from PyQt4.QtGui import QTextCursor
+from PyQt4.QtGui import QTextFormat
+from PyQt4.QtGui import QColor
+from PyQt4.Qt import QVariant
 
 from pilasengine.lanas import autocomplete
 from pilasengine.lanas import editor_con_deslizador
@@ -296,7 +299,16 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
         self.marcar_error_en_la_linea(2, "Descripcion del error")
 
     def marcar_error_en_la_linea(self, numero, descripcion):
-        pass
+        hi_selection = QTextEdit.ExtraSelection()
+
+        hi_selection.format.setBackground(QColor(255, 220, 220))
+        hi_selection.format.setProperty(QTextFormat.FullWidthSelection, QVariant(True))
+        hi_selection.cursor = self.textCursor()
+        posicion_linea = self.document().findBlockByLineNumber(numero).position()
+        hi_selection.cursor.setPosition(posicion_linea)
+        hi_selection.cursor.clearSelection()
+
+        self.setExtraSelections([hi_selection])
 
     def guardar_con_dialogo(self):
         ruta = QFileDialog.getSaveFileName(self, "Guardar Archivo",
