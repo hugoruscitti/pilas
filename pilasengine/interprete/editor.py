@@ -7,10 +7,12 @@
 # Website - http://www.pilas-engine.com.ar
 import codecs
 import re
+import sys
 
 from PyQt4.Qt import (QFrame, QWidget, QPainter, QSize)
 from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
-                         QIcon, QMessageBox)
+                         QIcon, QMessageBox, QShortcut,
+                         QKeySequence)
 from PyQt4.QtCore import Qt
 from PyQt4 import QtCore
 
@@ -149,6 +151,8 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
                                     QtCore.SIGNAL('clicked()'),
                                     self.cuando_pulsa_el_boton_siguiente)
 
+        self._vincular_atajos_de_teclado()
+
         self.editor.installEventFilter(self)
         self.editor.viewport().installEventFilter(self)
 
@@ -164,6 +168,16 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         icon.addFile(archivo, QSize(), QIcon.Normal, QIcon.Off)
         boton.setIcon(icon)
         boton.setText('')
+
+    def _vincular_atajos_de_teclado(self):
+        QShortcut(QKeySequence("F5"), self,
+                  self.cuando_pulsa_el_boton_ejecutar)
+        QShortcut(QKeySequence("Ctrl+r"), self,
+                  self.cuando_pulsa_el_boton_ejecutar)
+
+        # Solo en MacOS informa que la tecla Command sustituye a CTRL.
+        if sys.platform == 'darwin':
+            self.boton_ejecutar.setToolTip(u"Ejecutar el código actual (F5 o ⌘R)")
 
     def cuando_pulsa_el_boton_ejecutar(self):
         self.editor.ejecutar()
@@ -307,5 +321,3 @@ class Editor(editor_base.EditorBase):
 
         exec(contenido, self.interpreterLocals)
         self.signal_ejecutando.emit()
-
-

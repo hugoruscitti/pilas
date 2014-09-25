@@ -11,9 +11,7 @@ import codecs
 import time
 
 from PyQt4 import QtCore
-from PyQt4.QtGui import (QShortcut, QKeySequence, QIcon, QInputDialog,
-                        QLabel, QMainWindow)
-
+from PyQt4.QtGui import (QKeySequence, QIcon, QLabel, QMainWindow)
 import pilasengine
 from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
 from pilasengine.interprete import editor
@@ -32,21 +30,12 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.editor.ejecutar()
 
     def _vincular_atajos_de_teclado(self):
-        QShortcut(QKeySequence("F5"), self.main,
-                  self.editor.ejecutar)
-        QShortcut(QKeySequence("Ctrl+r"), self.main,
-                  self.editor.ejecutar)
-
         self.pushButton_6.setShortcut(QKeySequence('F7'))
         self.pushButton_5.setShortcut(QKeySequence('F8'))
         self.pushButton_4.setShortcut(QKeySequence('F9'))
         self.pushButton_3.setShortcut(QKeySequence('F10'))
         self.pushButton_2.setShortcut(QKeySequence('F11'))
         self.pushButton.setShortcut(QKeySequence('F12'))
-
-        # Solo en MacOS informa que la tecla Command sustituye a CTRL.
-        if sys.platform == 'darwin':
-            self.boton_ejecutar.setToolTip(u"Ejecutar el código actual (F5 o ⌘R)")
 
     def iniciar_interfaz(self):
         self.scope = self._iniciar_pilas()
