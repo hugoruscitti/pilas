@@ -16,7 +16,7 @@ class Color(object):
         self.b = b
         self.a = a
 
-    def __str__(self):
+    def __repr__(self):
         return "<Color (%d, %d, %d, %d)>" % (self.r, self.g, self.b, self.a)
 
     def obtener_componentes(self):

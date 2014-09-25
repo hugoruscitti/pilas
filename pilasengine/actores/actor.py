@@ -840,7 +840,7 @@ class Actor(Estudiante):
         grupo.agregar(self)
         return grupo
 
-    def __str__(self):
+    def __repr__(self):
         return "<%s en (%d, %d)>" % (self.__class__.__name__, self.x, self.y)
 
     def obtener_escala(self):
