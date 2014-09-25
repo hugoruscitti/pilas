@@ -8,10 +8,9 @@
 import codecs
 import re
 
-from PyQt4.Qt import (QFrame, QWidget, QHBoxLayout,
-                        QVBoxLayout, QPainter, QSize)
+from PyQt4.Qt import (QFrame, QWidget, QPainter, QSize)
 from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
-                         QIcon, QPushButton, QCursor, QMessageBox)
+                         QIcon, QMessageBox)
 from PyQt4.QtCore import Qt
 from PyQt4 import QtCore
 
