@@ -124,13 +124,6 @@ class Eventos(object):
         return self.pilas.escena_actual().cuando_actualiza
 
     @property
-    def log(self):
-        """Indica que se emitió un mensaje para depuración usando la función
-        ``pilas.log``.
-        """
-        return self.pilas.escena_actual().log
-
-    @property
     def Evento(self):
         return evento.Evento
 

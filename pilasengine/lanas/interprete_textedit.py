@@ -45,18 +45,9 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         self.historyIndex = -1
         self.interpreterLocals = {}
 
-        # setting the color for bg and text
         palette = QPalette()
-        #palette.setColor(QPalette.Base, QColor(20, 20, 20))
         palette.setColor(QPalette.Text, QColor(0, 0, 0))
         self.setPalette(palette)
-
-        """
-        if sys.platform == 'darwin':
-            self._set_font_size(15)
-        else:
-            self._set_font_size(14)
-        """
 
         self._highlighter = highlighter.Highlighter(self.document(), 'python', highlighter.COLOR_SCHEME)
 
@@ -67,7 +58,6 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         self.marker()
         self.setUndoRedoEnabled(False)
         self.setContextMenuPolicy(Qt.NoContextMenu)
-
 
         self.timer_cursor = QTimer()
         self.timer_cursor.start(1000)
@@ -87,7 +77,8 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
             prefijo = '.'.join(palabras)
 
             try:
-                items = eval("[(x, callable(getattr(eval('%s'), x))) for x in dir(%s)]" %(prefijo, prefijo), scope)
+                sentencia_para_obtener_autocompletado = "[(x, callable(getattr(eval('%s'), x))) for x in dir(%s)]" %(prefijo, prefijo)
+                items = eval(sentencia_para_obtener_autocompletado, scope)
                 elementos = []
 
                 for (x, invocable) in items:
@@ -465,3 +456,7 @@ class InterpreteTextEdit(autocomplete.CompletionTextEdit, editor_con_deslizador.
         if not line.startswith(u'» ') and not line.startswith(u'‥ '):
             self.insertPlainText("\n")
             self.marker()
+
+    def print_en_consola_de_texto(self, texto):
+        self.stdout_original.write(texto + '\n')
+
