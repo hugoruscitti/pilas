@@ -296,7 +296,7 @@ class WidgetEditor(autocomplete.CompletionTextEdit,
     def ejecutar(self):
         texto = unicode(self.document().toPlainText())
         self.ventana_interprete.ejecutar_codigo_como_string(texto)
-        self.marcar_error_en_la_linea(2, "Descripcion del error")
+        #self.marcar_error_en_la_linea(2, "Descripcion del error")
 
     def marcar_error_en_la_linea(self, numero, descripcion):
         hi_selection = QTextEdit.ExtraSelection()
