@@ -19,12 +19,11 @@ class ErrorOutput(Output):
         self.destino.stdout_original.write(linea)
 
         # Solo muestra el error en consola si es un mensaje util.
-        if linea.startswith('Traceback (most re') or linea.startswith('  File "<input>", line 1, in'):
-            pass
-        else:
-
+        if (not linea.startswith('Traceback (most re') or
+            not linea.startswith('  File "<input>", line 1, in')):
             if linea.startswith('  File "'):
-                linea = linea.replace("File", "Archivo").replace('line', 'linea')
+                linea = linea.replace("File", "Archivo")
+                linea = linea.replace('line', 'linea')
                 linea = linea[:linea.find(', in')] + " ..."
 
             self.destino.insertar_error(linea.decode('utf-8'))
