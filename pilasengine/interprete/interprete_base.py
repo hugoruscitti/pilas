@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Fri Sep 26 14:57:09 2014
+# Created: Fri Sep 26 15:15:21 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,8 +26,8 @@ except AttributeError:
 class Ui_InterpreteWindow(object):
     def setupUi(self, InterpreteWindow):
         InterpreteWindow.setObjectName(_fromUtf8("InterpreteWindow"))
-        InterpreteWindow.resize(794, 605)
-        InterpreteWindow.setMinimumSize(QtCore.QSize(660, 530))
+        InterpreteWindow.resize(883, 612)
+        InterpreteWindow.setMinimumSize(QtCore.QSize(720, 530))
         self.centralwidget = QtGui.QWidget(InterpreteWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -64,7 +64,7 @@ class Ui_InterpreteWindow(object):
         self.splitter_vertical.setObjectName(_fromUtf8("splitter_vertical"))
         self.navegador = QtWebKit.QWebView(self.splitter_vertical)
         self.navegador.setMinimumSize(QtCore.QSize(250, 0))
-        self.navegador.setProperty("url", QtCore.QUrl(_fromUtf8("about:blank")))
+        self.navegador.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.navegador.setObjectName(_fromUtf8("navegador"))
         self.splitter_editor = QtGui.QSplitter(self.splitter_vertical)
         self.splitter_editor.setOrientation(QtCore.Qt.Horizontal)
@@ -170,7 +170,7 @@ class Ui_InterpreteWindow(object):
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)
         InterpreteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(InterpreteWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 794, 27))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 883, 22))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         InterpreteWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(InterpreteWindow)

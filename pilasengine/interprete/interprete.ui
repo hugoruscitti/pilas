@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>794</width>
-    <height>605</height>
+    <width>883</width>
+    <height>612</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>660</width>
+    <width>720</width>
     <height>530</height>
    </size>
   </property>
@@ -121,14 +121,14 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWebView" name="navegador" native="true">
+      <widget class="QWebView" name="navegador">
        <property name="minimumSize">
         <size>
          <width>250</width>
          <height>0</height>
         </size>
        </property>
-       <property name="url" stdset="0">
+       <property name="url">
         <url>
          <string>about:blank</string>
         </url>
@@ -409,8 +409,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>794</width>
-     <height>27</height>
+     <width>883</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
