@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>332</width>
-    <height>347</height>
+    <width>613</width>
+    <height>515</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>306</width>
-     <height>32</height>
+     <width>358</width>
+     <height>68</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="vertical_layout">
@@ -186,7 +186,22 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="hbox_editor"/>
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="margin">
+        <number>1</number>
+       </property>
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="hbox_editor"/>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'editor.ui'
+# Form implementation generated from reading ui file 'pilasengine/interprete/editor.ui'
 #
-# Created: Sun Sep 21 14:14:25 2014
+# Created: Fri Sep 26 14:57:09 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,10 +26,10 @@ except AttributeError:
 class Ui_Editor(object):
     def setupUi(self, Editor):
         Editor.setObjectName(_fromUtf8("Editor"))
-        Editor.resize(332, 347)
+        Editor.resize(613, 515)
         Editor.setStyleSheet(_fromUtf8(""))
         self.layoutWidget = QtGui.QWidget(Editor)
-        self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 306, 32))
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 358, 68))
         self.layoutWidget.setObjectName(_fromUtf8("layoutWidget"))
         self.vertical_layout = QtGui.QVBoxLayout(self.layoutWidget)
         self.vertical_layout.setMargin(0)
@@ -79,9 +79,17 @@ class Ui_Editor(object):
         self.label.setObjectName(_fromUtf8("label"))
         self.hbox_buttons.addWidget(self.label)
         self.vertical_layout.addLayout(self.hbox_buttons)
+        self.frame = QtGui.QFrame(self.layoutWidget)
+        self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.frame.setObjectName(_fromUtf8("frame"))
+        self.gridLayout = QtGui.QGridLayout(self.frame)
+        self.gridLayout.setMargin(1)
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.hbox_editor = QtGui.QHBoxLayout()
         self.hbox_editor.setObjectName(_fromUtf8("hbox_editor"))
-        self.vertical_layout.addLayout(self.hbox_editor)
+        self.gridLayout.addLayout(self.hbox_editor, 0, 0, 1, 1)
+        self.vertical_layout.addWidget(self.frame)
 
         self.retranslateUi(Editor)
         QtCore.QMetaObject.connectSlotsByName(Editor)
@@ -96,4 +104,14 @@ class Ui_Editor(object):
         self.boton_ejecutar.setText(_translate("Editor", "E", None))
         self.boton_pausar.setText(_translate("Editor", "P", None))
         self.boton_siguiente.setText(_translate("Editor", "S", None))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    Editor = QtGui.QWidget()
+    ui = Ui_Editor()
+    ui.setupUi(Editor)
+    Editor.show()
+    sys.exit(app.exec_())
 

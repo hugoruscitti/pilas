@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'lanas.ui'
+# Form implementation generated from reading ui file 'pilasengine/interprete/lanas.ui'
 #
-# Created: Wed Sep 24 09:25:44 2014
+# Created: Fri Sep 26 14:57:09 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -44,4 +44,14 @@ class Ui_Lanas(object):
     def retranslateUi(self, Lanas):
         Lanas.setWindowTitle(_translate("Lanas", "Lanas - Interprete de Python", None))
         Lanas.setToolTip(_translate("Lanas", "Guardar contenido del interprete", None))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    Lanas = QtGui.QWidget()
+    ui = Ui_Lanas()
+    ui.setupUi(Lanas)
+    Lanas.show()
+    sys.exit(app.exec_())
 

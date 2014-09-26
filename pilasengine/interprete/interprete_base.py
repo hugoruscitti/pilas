@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'interprete.ui'
+# Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Sun Sep 21 13:58:22 2014
+# Created: Fri Sep 26 14:57:09 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -210,3 +210,13 @@ class Ui_InterpreteWindow(object):
         self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
 from PyQt4 import QtWebKit
+
+if __name__ == "__main__":
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    InterpreteWindow = QtGui.QMainWindow()
+    ui = Ui_InterpreteWindow()
+    ui.setupUi(InterpreteWindow)
+    InterpreteWindow.show()
+    sys.exit(app.exec_())
+
