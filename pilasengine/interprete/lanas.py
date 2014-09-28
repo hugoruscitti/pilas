@@ -13,11 +13,9 @@ import code
 os.environ['lanas'] = 'enabled'
 
 from PyQt4.QtGui import (QWidget, QDesktopWidget, QPalette,
-                        QColor, QIcon, QTextCursor, QTextEdit,
+                        QColor, QTextCursor, QTextEdit,
                         QInputDialog)
-from PyQt4 import QtCore
-from PyQt4.QtCore import Qt, QTimer, QSize
-import pilasengine
+from PyQt4.QtCore import Qt, QTimer
 
 from editorbase import editor_base
 import lanas_ui
