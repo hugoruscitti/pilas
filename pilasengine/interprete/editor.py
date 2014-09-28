@@ -225,14 +225,10 @@ class Editor(editor_base.EditorBase):
         if event.key() == Qt.Key_Backspace:
             self._eliminar_pares_de_caracteres()
 
-        if event.key() == Qt.Key_Tab:
-            tc = self.textCursor()
-            tc.insertText("    ")
-        else:
-            if self.autocomplete(event):
-                return None
+        if self.autocomplete(event):
+            return None
 
-            return QTextEdit.keyPressEvent(self, event)
+        return QTextEdit.keyPressEvent(self, event)
 
     def tiene_cambios_sin_guardar(self):
         return self._cambios_sin_guardar

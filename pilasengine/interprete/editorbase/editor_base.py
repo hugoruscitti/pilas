@@ -35,6 +35,10 @@ class EditorBase(autocomplete.CompletionTextEdit,
             elif event.key() == Qt.Key_Plus:
                 self.cambiar_tamano_fuente(1)
                 return True
+        if event.key() == Qt.Key_Tab:
+            tc = self.textCursor()
+            tc.insertText("    ")
+            return True
 
     def wheelEvent(self, event):
         if event.modifiers() & Qt.ControlModifier:
