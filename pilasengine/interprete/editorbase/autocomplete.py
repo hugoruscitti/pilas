@@ -141,7 +141,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
         tc.setPosition(tc.position()-1)
         self.setTextCursor(tc)
 
-    def _eliminar_pares_de_caracteres(self, es_consola=True):
+    def _eliminar_pares_de_caracteres(self):
         tc = self.textCursor()
         line = self._get_current_line()
         position = self._get_position_in_block()

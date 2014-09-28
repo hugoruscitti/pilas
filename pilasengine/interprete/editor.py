@@ -223,7 +223,7 @@ class Editor(editor_base.EditorBase):
 
         # Elimina los pares de caracteres especiales si los encuentra
         if event.key() == Qt.Key_Backspace:
-            self._eliminar_pares_de_caracteres(es_consola=False)
+            self._eliminar_pares_de_caracteres()
 
         if event.key() == Qt.Key_Tab:
             tc = self.textCursor()
