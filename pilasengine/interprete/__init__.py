@@ -63,7 +63,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self._conectar_observadores_splitters()
 
     def on_close_event(self, evento):
-        self.editor.quiere_perder_cambios()
+        if not self.editor.salir():
+            evento.ignore()
+            return
 
         evento.accept()
 

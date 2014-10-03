@@ -180,6 +180,13 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         if sys.platform == 'darwin':
             self.boton_ejecutar.setToolTip(u"Ejecutar el código actual (F5 o ⌘R)")
 
+    def closeEvent(self, event):
+        if not self.editor.salir():
+            event.ignore()
+            return
+
+        event.accept()
+
     def cuando_pulsa_el_boton_ejecutar(self):
         self.editor.ejecutar()
         self.boton_pausar.setChecked(False)
@@ -260,7 +267,9 @@ class Editor(editor_base.EditorBase):
                                    options=QFileDialog.DontUseNativeDialog)
 
     def abrir_archivo_con_dialogo(self):
-        self.quiere_perder_cambios()
+        if self.tiene_cambios_sin_guardar():
+            if self.mensaje_guardar_cambios_abrir():
+                self.guardar_contenido_con_dialogo()
 
         ruta = self.abrir_dialogo_cargar_archivo()
 
@@ -268,21 +277,30 @@ class Editor(editor_base.EditorBase):
             self.cargar_contenido_desde_archivo(ruta)
             self.ejecutar()
 
-    def quiere_perder_cambios(self):
-        if self.tiene_cambios_sin_guardar():
-            if self.mensaje_quiere_guardar_cambios():
-                self.guardar_contenido_con_dialogo()
+    def mensaje_guardar_cambios_abrir(self):
+        """Realizar una consulta usando un cuadro de dialogo simple
+        se utiliza cuando hay cambios sin guardar y se desea abrir un archivo.
+        Retorna True si el usuario presiona el boton *Guardar*,
+        Retorna False si el usuario presiona *No*."""
+        titulo = u"¿Deseas guardar el contenido antes de abrir un archivo?"
+        mensaje = u"El contenido se perdera sino los guardas"
 
-    def mensaje_quiere_guardar_cambios(self):
-        """Realizar una consulta usando un cuadro de dialogo simple.
-        Este método retorna True si el usuario presiona el boton 'Guardar'."""
+        mensaje = QMessageBox.question(self, titulo, mensaje, "Guardar", "No")
 
-        titulo = u"Se perderán los cambios sin guardar"
-        mensaje = u"¿Deseas guardar los cambios?"
+        return (not mensaje)
 
-        # False si respuesta es "Guardar", True si la respuesta es "No"
-        respuesta = QMessageBox.question(self, titulo, mensaje,
-                                         "Guardar", "No")
+    def mensaje_guardar_cambios_salir(self):
+        """Realizar una consulta usando un cuadro de dialogo simple
+        se utiliza cuando hay cambios sin guardar y se desa salir del Editor.
+        Retorna 0 si el usuario presiona el boton *Salir sin guardar*,
+        Retorna 1 si el usuario presiona *Guardar*
+        Retorna 2 si presiona *Cancelar*."""
+
+        titulo = u"¿Deseas guardar el contenido antes de salir?"
+        mensaje = u"El contenido se perdera sino los guardas"
+
+        return QMessageBox.question(self, titulo, mensaje,
+                                    "Salir sin guardar", "Guardar", "Cancelar")
 
     def marcar_error_en_la_linea(self, numero, descripcion):
         hi_selection = QTextEdit.ExtraSelection()
@@ -296,8 +314,6 @@ class Editor(editor_base.EditorBase):
 
         self.setExtraSelections([hi_selection])
 
-        return (respuesta == False)
-
     def guardar_contenido_con_dialogo(self):
         ruta = self.abrir_dialogo_guardar_archivo()
 
@@ -306,6 +322,17 @@ class Editor(editor_base.EditorBase):
             self._cambios_sin_guardar = False
             self.nombre_de_archivo_sugerido = ruta
             self.mensaje_contenido_guardado()
+
+    def salir(self):
+        """Retorna True si puede salir y False si no"""
+        if self.tiene_cambios_sin_guardar():
+            mensaje = self.mensaje_guardar_cambios_salir()
+            if mensaje == 1:
+                self.guardar_contenido_con_dialogo()
+            elif mensaje == 2:
+                return False
+
+        return True
 
     def obtener_contenido(self):
         return unicode(self.document().toPlainText())
@@ -330,3 +357,11 @@ class Editor(editor_base.EditorBase):
 
         exec(contenido, self.interpreterLocals)
         self.signal_ejecutando.emit()
+
+
+if __name__ == '__main__':
+    from PyQt4.QtGui import QApplication
+    app = QApplication(sys.argv)
+    weditor = WidgetEditor()
+    weditor.show()
+    app.exec_()
