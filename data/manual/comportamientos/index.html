@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comportamientos - pilas-engine</title>
+
+  
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../css/code.css" type="text/css" />
+  
+
+  <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="../js/theme.js"></script>
+  
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".."><img src='../img/pilas-logo.png'></a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+       <ul class="current">
+
+    <li class="toctree-l1 ">
+        <a class="" href="..">Principal</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../instalacion/">Instalación</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../about/">Acerca de ...</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../empezando/">Empezando y los primeros pasos con pilas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../grupos/">Grupos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../colisiones/">Colisiones</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../fisica/">Fisica</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../controles/">Controles</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../joystick/">Joystick</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../imagen/">Imagen</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../sonidos/">Sonidos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../dibujado_simple_en_pantalla/">Dibujado simple en pantalla</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../dibujado_avanzado_con_superficies/">Dibujado avanzado con Superficies</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../tareas/">Manejo de tiempo con tareas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../interpolacion/">Interpolaciones</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../controlando_la_pantalla/">Controlando la pantalla</a>
+        
+    </li>
+
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Comportamientos</a>
+        
+            <ul>
+            
+                <li class="toctree-l2"><a href="#comportamientos">Comportamientos</a></li>
+                
+            
+                <li class="toctree-l2"><a href="#un-ejemplo-ir-de-un-lado-a-otro">Un ejemplo, ir de un lado a otro</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../escenas/">Escenas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../migrar_al_gestor_de_escenas/">Como migrar mi juego al nuevo Gestor de Escenas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../gestor_de_escenas/">Nuevo Gestor de Escenas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../demos/">Demos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../interfaz/">Interfaz de usuario</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../mapas_y_plataformas/">Mapas y plataformas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../dialogos/">Diálogos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../camara/">Manejo de Cámara</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="">Eventos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../texto/">Textos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../habilidades/">Habilidades</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../depurando/">Depurando</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../como_funciona_pilas_por_dentro/">¿Cómo funciona pilas por dentro?</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
+        
+    </li>
+
+</ul>
+
+
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Comportamientos</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <h2 id="comportamientos">Comportamientos</h2>
+<p>En el desarrollo de videojuegos es conveniente
+tener una forma de indicarle a los actores
+una rutina o tarea para que la realicen.</p>
+<p>En pilas usamos el concepto de comportamiento. Un
+comportamiento es un objeto que le dice a
+un actor qué debe hacer en todo momento.</p>
+<p>La utilidad de usar componentes es que puedes
+asociarlos y intercambiarlos libremente para
+lograr efectos útiles.</p>
+<p>Por ejemplo: un guardia de un juego de acción puede ir de
+un lado a otro en un pasillo:</p>
+<ul>
+<li>caminar hacia la izquierda hasta el fin del pasillo.</li>
+<li>dar una vuelta completa.</li>
+<li>caminar hacia la derecha hasta el fin del pasillo.</li>
+<li>dar una vuelta completa.</li>
+</ul>
+<p>En este caso hay 4 comportamientos, y queda en nuestro
+control si queremos que luego de los 4 comportamientos
+comience nuevamente.</p>
+<h2 id="un-ejemplo-ir-de-un-lado-a-otro">Un ejemplo, ir de un lado a otro</h2>
+<p>Veamos un ejemplo sencillo, vamos a crear un actor Mono
+y decirle que se mueva de izquierda a derecha una
+sola vez:</p>
+<pre class="prettyprint well"><code>import pilas
+
+pilas.iniciar()
+mono = pilas.actores.Mono()
+
+pasos = 200
+
+moverse_a_la_derecha = pilas.comportamientos.Avanzar(pasos)
+mono.hacer_luego(moverse_a_la_derecha)
+
+mono.rotacion = [180] # Dar la vuelta.
+
+moverse_a_la_izquierda = pilas.comportamientos.Avanzar(pasos)
+mono.hacer_luego(moverse_a_la_izquierda)
+
+pilas.ejecutar() # Necesario al ejecutar en scripts.
+</code></pre>
+<p>De hecho, tenemos una variante que puede ser un poco
+mas interesante; decirle al mono que repita estas tareas todo
+el tiempo:</p>
+<pre class="prettyprint well"><code>mono.hacer_luego(moverse_a_la_derecha, True)
+</code></pre>
+<p>Donde el segundo argumento indica si el comportamiento
+se tiene que repetir todo el tiempo o no.</p>
+
+          </div>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../escenas/" class="btn btn-neutral float-right" title="Escenas"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../controlando_la_pantalla/" class="btn btn-neutral" title="Controlando la pantalla"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    </p>
+  </div>
+
+  Esta documentación usa <strong>MkDocs</strong>.
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <span><a href="" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+
+
+
+  <script type="text/javascript" src="../js/custom.js"></script>
+  <script type="text/javascript" src="../js/code.js"></script>
+</body>
+</html>
