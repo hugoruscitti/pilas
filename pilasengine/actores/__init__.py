@@ -312,6 +312,9 @@ class Actores(object):
     def Emisor(self, x=0, y=0):
         return self._crear_actor('emisor', 'Emisor', x=x, y=y)
 
+    def NaveRoja(self, x=0, y=0):
+        return self._crear_actor('nave_roja', 'NaveRoja', x=x, y=y)
+
     def Controlador(self, x=0, y=0):
         return self._crear_actor('controlador', 'Controlador', x=x, y=y)
 
