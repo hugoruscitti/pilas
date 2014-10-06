@@ -45,7 +45,7 @@ version:
 ver_sync:
 	git commit -am 'release ${VERSION}'
 	git tag '${VERSION}'
-	git push --all
+	git push --all --tags
 
 utest:
 	@python -m unittest discover pilasengine/tests '*.py'
