@@ -26,6 +26,7 @@ class DisparoLaser(Actor):
         self.velocidad = velocidad
         self.imagen = imagen
         self._calcular_movimiento_desde_rotacion(velocidad)
+        self.aprender(pilas.habilidades.EliminarseSiSaleDePantalla)
 
     def iniciar(self):
         pass
