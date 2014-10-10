@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created: Fri Sep 26 15:15:21 2014
+# Created: Fri Oct 10 00:35:41 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -111,14 +111,6 @@ class Ui_InterpreteWindow(object):
         self.pushButton_5.setFlat(True)
         self.pushButton_5.setObjectName(_fromUtf8("pushButton_5"))
         self.horizontalLayout_2.addWidget(self.pushButton_5)
-        self.pushButton_4 = QtGui.QPushButton(self.layoutWidget)
-        self.pushButton_4.setEnabled(False)
-        self.pushButton_4.setMaximumSize(QtCore.QSize(20, 20))
-        self.pushButton_4.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton_4.setCheckable(True)
-        self.pushButton_4.setFlat(True)
-        self.pushButton_4.setObjectName(_fromUtf8("pushButton_4"))
-        self.horizontalLayout_2.addWidget(self.pushButton_4)
         self.pushButton_3 = QtGui.QPushButton(self.layoutWidget)
         self.pushButton_3.setMaximumSize(QtCore.QSize(20, 20))
         self.pushButton_3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -199,8 +191,6 @@ class Ui_InterpreteWindow(object):
         self.pushButton_6.setText(_translate("InterpreteWindow", "F7", None))
         self.pushButton_5.setToolTip(_translate("InterpreteWindow", "Mostrar puntos de control", None))
         self.pushButton_5.setText(_translate("InterpreteWindow", "F8", None))
-        self.pushButton_4.setToolTip(_translate("InterpreteWindow", "Mostrar radios de colisión", None))
-        self.pushButton_4.setText(_translate("InterpreteWindow", "F9", None))
         self.pushButton_3.setToolTip(_translate("InterpreteWindow", "Mostrar areas", None))
         self.pushButton_3.setText(_translate("InterpreteWindow", "F10", None))
         self.pushButton_2.setToolTip(_translate("InterpreteWindow", "Mostrar figuras físicas", None))

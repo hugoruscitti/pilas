@@ -32,7 +32,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def _vincular_atajos_de_teclado(self):
         self.pushButton_6.setShortcut(QKeySequence('F7'))
         self.pushButton_5.setShortcut(QKeySequence('F8'))
-        self.pushButton_4.setShortcut(QKeySequence('F9'))
         self.pushButton_3.setShortcut(QKeySequence('F10'))
         self.pushButton_2.setShortcut(QKeySequence('F11'))
         self.pushButton.setShortcut(QKeySequence('F12'))
@@ -112,11 +111,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
                                   QtCore.SIGNAL("clicked()"),
                                   self.pulsa_boton_depuracion)
 
-        # F9 Modo radios de colision
-        self.definir_icono(self.pushButton_4, 'iconos/f09.png')
-        self.pushButton_4.connect(self.pushButton_4,
-                                  QtCore.SIGNAL("clicked()"),
-                                  self.pulsa_boton_depuracion)
 
         # F10 Modo areas de colision
         self.definir_icono(self.pushButton_3, 'iconos/f10.png')
@@ -209,7 +203,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         pilas.depurador.definir_modos(
             info=self.pushButton_6.isChecked(),               # F07
             puntos_de_control=self.pushButton_5.isChecked(),  # F08
-            radios=self.pushButton_4.isChecked(),             # F09
+            radios=False,
             areas=self.pushButton_3.isChecked(),              # F10
             fisica=self.pushButton_2.isChecked(),             # F11
             posiciones=self.pushButton.isChecked(),           # F12

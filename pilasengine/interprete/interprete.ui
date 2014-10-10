@@ -264,34 +264,6 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="toolTip">
-               <string>Mostrar radios de colisión</string>
-              </property>
-              <property name="text">
-               <string>F9</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="flat">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QPushButton" name="pushButton_3">
               <property name="maximumSize">
                <size>
