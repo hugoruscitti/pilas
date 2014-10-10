@@ -1,7 +1,7 @@
 N=[0m
 V=[01;32m
 
-VERSION=0.90.5
+VERSION=0.90.6
 
 all:
 	@echo "Comando disponibles"
