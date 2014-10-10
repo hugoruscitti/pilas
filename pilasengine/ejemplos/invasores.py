@@ -34,4 +34,5 @@ nave.definir_enemigos(enemigos, puntaje.aumentar)
 
 pilas.colisiones.agregar(nave, enemigos, nave.eliminar)
 
+pilas.avisar(u"Pulsá los direccionales del teclado o espacio para disparar.")
 pilas.ejecutar()

@@ -58,16 +58,17 @@ class Actor(Estudiante):
     .. image:: images/actores/actor.png
 
     Un objeto Actor se tiene que crear siempre indicando una imagen. Si no
-    se especifica una imagen, se verá una pila de color gris cómo la que
-    está mas arriba.
+    se especifica una imagen, se verán los signos de interrogación de
+    color rojo.
+
 
     Una forma de crear el actor con una imagen es:
 
-        >>> protagonista = Actor("protagonista_de_frente.png")
+        >>> protagonista = Actor("planeta_azul.png")
 
     incluso, es equivalente hacer lo siguiente:
 
-        >>> imagen = pilas.imagenes.cargar("protagonista_de_frente.png")
+        >>> imagen = pilas.imagenes.cargar("planeta_azul.png")
         >>> protagonista = Actor(imagen)
 
     Luego, una vez que ha sido ejecutada la sentencia aparecerá
