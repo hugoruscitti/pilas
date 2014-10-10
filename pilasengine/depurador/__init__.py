@@ -54,7 +54,16 @@ class Depurador(object):
         if self._modos:
             for m in self._modos:
                 m.cuando_dibuja_actor(actor, painter)
-
+                
+    def cuando_dibuja_actor_sin_transformacion(self, actor, painter):
+        """Similar al método ``cuando_dibuja_actor``, solamente que
+        se hace fuera del contexto de transformación aplicado al
+        actor (excepto la transformación de posición).
+        """
+        if self._modos:
+            for m in self._modos:
+                m.cuando_dibuja_actor_sin_transformacion(actor, painter)
+                
     def obtener_modos_habilitados(self):
         """Retorna una lista con los nombres de los modos habilitados."""
         modos = [x.__class__.__name__ for x in self._modos]

@@ -14,7 +14,7 @@ class ModoPuntosDeControl(ModoDepurador):
     def __init__(self, pilas, depurador):
         ModoDepurador.__init__(self, pilas, depurador)
 
-    def cuando_dibuja_actor(self, actor, painter):
+    def cuando_dibuja_actor_sin_transformacion(self, actor, painter):
         self._definir_trazo_negro(painter)
         painter.drawLine(-3, -3, 3, 3)
         painter.drawLine(-3, 3, 3, -3)

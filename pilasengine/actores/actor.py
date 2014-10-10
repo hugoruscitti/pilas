@@ -253,6 +253,11 @@ class Actor(Estudiante):
         self.pilas.depurador.cuando_dibuja_actor(self, painter)
 
         painter.restore()
+        painter.save()
+        
+        painter.translate(x, -y)
+        self.pilas.depurador.cuando_dibuja_actor_sin_transformacion(self, painter)
+        painter.restore()
 
     ## Métodos internos
     def _obtener_imagen(self):

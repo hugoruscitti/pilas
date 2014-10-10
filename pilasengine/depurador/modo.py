@@ -21,7 +21,10 @@ class ModoDepurador(object):
 
     def cuando_dibuja_actor(self, actor, painter):
         pass
-
+    
+    def cuando_dibuja_actor_sin_transformacion(self, actor, painter):
+        pass
+    
     def sale_del_modo(self):
         pass
 
