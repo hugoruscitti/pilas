@@ -55,6 +55,11 @@ class Habilidades(object):
         return self._referencia_habilidad('puede_explotar', 'PuedeExplotar')
 
     @property
+    def PuedeExplotarConHumo(self):
+        return self._referencia_habilidad('puede_explotar_con_humo', 
+                                          'PuedeExplotarConHumo')
+
+    @property
     def SeMantieneEnPantalla(self):
         return self._referencia_habilidad('se_mantiene_en_pantalla',
                                           'SeMantieneEnPantalla')
@@ -80,6 +85,10 @@ class Habilidades(object):
     def RebotarComoCaja(self):
         return self._referencia_habilidad('rebotar_como_caja',
                                           'RebotarComoCaja')
+    @property
+    def LimitadoABordesDePantalla(self):
+        return self._referencia_habilidad('limitado_a_bordes_de_pantalla',
+                                          'LimitadoABordesDePantalla')
 
     @property
     def RebotarComoPelota(self):
@@ -90,6 +99,11 @@ class Habilidades(object):
     def MoverseComoCoche(self):
         return self._referencia_habilidad('moverse_como_coche',
                                           'MoverseComoCoche')
+        
+    @property
+    def EliminarseSiSaleDePantalla(self):
+        return self._referencia_habilidad('eliminarse_si_sale_de_pantalla',
+                                          'EliminarseSiSaleDePantalla')
 
     def _referencia_habilidad(self, modulo, clase):
         import importlib

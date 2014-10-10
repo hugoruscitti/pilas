@@ -8,7 +8,7 @@
 
 import collections
 
-class Colisiones:
+class Colisiones(object):
     "Administra todas las _colisiones entre actores."
 
     def __init__(self, pilas, escena):
