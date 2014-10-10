@@ -34,6 +34,7 @@ class BaseWidget(object):
         self.definir_titulo(titulo)
         self.iniciar_interface(ancho, alto)
         self.pausa = False
+        self.pantalla_completa = False
 
     def iniciar_interface(self, ancho, alto):
         self.painter = QtGui.QPainter()
@@ -109,7 +110,11 @@ class BaseWidget(object):
 
         if event.key() == QtCore.Qt.Key_Escape:
             self.pilas.eventos.pulsa_tecla_escape.emitir()
-
+        if event.key() == QtCore.Qt.Key_P and event.modifiers() == QtCore.Qt.AltModifier:
+            self.alternar_pausa()
+        if event.key() == QtCore.Qt.Key_F and event.modifiers() == QtCore.Qt.AltModifier:
+            self.alternar_pantalla_completa()
+            
         self.pilas.eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla,
                                               es_repeticion=event.isAutoRepeat(),
                                               texto=event.text())
@@ -118,7 +123,6 @@ class BaseWidget(object):
 
     def keyReleaseEvent(self, event):
         codigo_de_tecla = Controles.obtener_codigo_de_tecla_normalizado(event.key())
-
         self.pilas.eventos.suelta_tecla.emitir(codigo=codigo_de_tecla,
                                                es_repeticion=event.isAutoRepeat(),
                                                texto=event.text())
@@ -198,10 +202,13 @@ class BaseWidget(object):
 
         if self.pausa:
             font = QtGui.QFont(self.painter.font().family(), 30)
-            self.painter.setPen(QtCore.Qt.white)
             self.painter.setFont(font)
             w = self.original_width
             h = self.original_height
+            
+            self.painter.setPen(QtCore.Qt.black) 
+            self.painter.drawText(QtCore.QRect(2, 2, w, h), QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, "en pausa")
+            self.painter.setPen(QtCore.Qt.white) 
             self.painter.drawText(QtCore.QRect(0, 0, w, h), QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, "en pausa")
 
         # Ocultando los bordes de pantalla.
@@ -233,6 +240,20 @@ class BaseWidget(object):
 
     def obtener_titulo(self):
         return self.windowTitle()
+
+    def alternar_pausa(self):
+        if self.esta_en_modo_pausa():
+            self.continuar()
+        else:
+            self.pausar()
+
+    def alternar_pantalla_completa(self):
+        if not self.pantalla_completa:
+            self.pantalla_completa = True
+            self.showFullScreen()
+        else:
+            self.pantalla_completa = False
+            self.showNormal()
 
     def pausar(self):
         "Pasa al modo pausa."
