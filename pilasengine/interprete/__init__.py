@@ -5,18 +5,19 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
+import codecs
 import os
 import sys
-import codecs
 import time
 
 from PyQt4 import QtCore
 from PyQt4.QtGui import (QKeySequence, QIcon, QLabel, QMainWindow)
-import pilasengine
-from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
-from pilasengine.interprete import editor
+
 import lanas
 from pilasengine import utils
+import pilasengine
+from pilasengine.interprete import editor
+from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
 
 
 class VentanaInterprete(Ui_InterpreteWindow):

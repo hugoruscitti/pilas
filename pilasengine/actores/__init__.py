@@ -176,6 +176,7 @@ class Actores(object):
         referencia_a_modulo = importlib.import_module('pilasengine.actores.' + modulo)
         referencia_a_clase = getattr(referencia_a_modulo, clase)
 
+
         try:
             nuevo_actor = referencia_a_clase(self.pilas, *k, **kw)
         except TypeError, error:
@@ -332,6 +333,11 @@ class Actores(object):
                                   imagen=imagen,
                                   vida=vida)
         return actor
+    
+    def DisparoLaser(self, x=0, y=0, rotacion=0, velocidad=10, imagen="disparo_laser.png"):
+        return self._crear_actor('disparo_laser', 'DisparoLaser', 
+                                 x=x, y=y, rotacion=rotacion, 
+                                 velocidad=velocidad, imagen=imagen)
 
     def fabricar(self, clase, cantidad):
         grupo = self.Grupo()
