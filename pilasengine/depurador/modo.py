@@ -28,7 +28,7 @@ class ModoDepurador(object):
     ## MÉTODOS AUXILIARES PARA DIBUJAR
 
     def _texto(self, painter, cadena, x=0, y=0, magnitud=12,
-               fuente=None, color=negro):
+               fuente=None, color=negro, alineado_a_derecha=False):
         "Imprime un texto respespetando el desplazamiento de la camara."
         r, g, b, _ = color.obtener_componentes()
         painter.setPen(QtGui.QColor(r, g, b))
@@ -37,13 +37,22 @@ class ModoDepurador(object):
 
         font = QtGui.QFont(nombre_de_fuente, magnitud)
         painter.setFont(font)
-        painter.drawText(x, y, cadena)
+        
+        if alineado_a_derecha:
+            fm = QtGui.QFontMetrics(font)
+            w = fm.width(cadena) + 1
+            h = fm.height()
+            painter.drawText(x-w, y-h, cadena)
+        else:
+            painter.drawText(x, y, cadena)
 
     def _texto_absoluto(self, painter, cadena, x=0, y=0, magnitud=10,
-                        fuente=None, color=negro):
+                        fuente=None, color=negro,
+                        alineado_a_derecha=False):
         "Imprime un texto sin respetar al camara."
         x, y = self.pilas.obtener_coordenada_de_pantalla_absoluta(x, y)
-        self._texto(painter, cadena, x, y, magnitud, fuente, color)
+        self._texto(painter, cadena, x, y, magnitud, fuente, color, 
+                    alineado_a_derecha)
 
     def _definir_trazo_negro(self, painter):
         "Define las propiedades para pintar en color negro."

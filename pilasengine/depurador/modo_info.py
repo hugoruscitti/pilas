@@ -44,12 +44,12 @@ class ModoInformacionDeSistema(ModoDepurador):
         self.informacion[7] = u"Cantidad de actores: %d" % (self.pilas.escena_actual().obtener_cantidad_de_actores())
 
         for (i, texto) in enumerate(self.informacion[::-1]):
-            posicion_y = abajo + 90 + i * 20
+            posicion_y = abajo + 20 + i * 20
             self._texto_absoluto(painter, texto, izquierda + 10, posicion_y,
                                  color=pilasengine.colores.blanco)
 
-        texto = u"posición del mouse: (%d, %d)" %(self.pilas.obtener_posicion_del_mouse())
-        self._texto_absoluto(painter, texto, (derecha/2) - 30, abajo/2, color=pilasengine.colores.blanco)
+        texto = u"Posición del mouse: (%d, %d)" %(self.pilas.obtener_posicion_del_mouse())
+        self._texto_absoluto(painter, texto, derecha-10, abajo+8, color=pilasengine.colores.blanco, alineado_a_derecha=True)
 
     def dibujar_actor(self, actor, painter):
         pass
