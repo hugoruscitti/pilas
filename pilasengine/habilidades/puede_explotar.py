@@ -18,8 +18,12 @@ class PuedeExplotar(Habilidad):
         receptor.eliminar = self.eliminar_y_explotar
 
     def eliminar_y_explotar(self):
-        explosion = self.pilas.actores.Explosion()
+        explosion = self.crear_explosion()
         explosion.x = self.receptor.x
         explosion.y = self.receptor.y
-        explosion.escala = self.receptor.escala * 2
         Actor.eliminar(self.receptor)
+        
+    def crear_explosion(self):
+        a = self.pilas.actores.Explosion()
+        a.escala = self.receptor.escala * 2
+        return a
