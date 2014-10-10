@@ -128,8 +128,8 @@ class Actores(object):
     def Ejes(self, x=0, y=0):
         return self._crear_actor('ejes', 'Ejes', x=x, y=y)
 
-    def Puntaje(self, x=0, y=0):
-        return self._crear_actor('puntaje', 'Puntaje', x=x, y=y)
+    def Puntaje(self, x=0, y=0, color='negro'):
+        return self._crear_actor('puntaje', 'Puntaje', x=x, y=y, color=color)
 
     def Pingu(self, x=0, y=0):
         return self._crear_actor('pingu', 'Pingu', x=x, y=y)

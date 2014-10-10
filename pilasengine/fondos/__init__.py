@@ -27,6 +27,13 @@ class Fondos(object):
         #             para vincular el actor a la escena.
         return nuevo_fondo
 
+    def Galaxia(self, dx=0, dy=-1):
+        import galaxia
+        nuevo_fondo = galaxia.Galaxia(self.pilas)
+        nuevo_fondo.dx = dx
+        nuevo_fondo.dy = dy
+        return nuevo_fondo
+
     def Tarde(self):
         import tarde
         return tarde.Tarde(self.pilas)

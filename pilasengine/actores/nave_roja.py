@@ -27,6 +27,8 @@ class NaveRoja(Actor):
         self.disparo_doble = True
         self.cuando_elimina_enemigo = False
 
+        self.aprender(self.pilas.habilidades.PuedeExplotar)
+
     def actualizar(self):
         control = self.pilas.control
 
@@ -79,8 +81,9 @@ class NaveRoja(Actor):
             self.disparos.append(disparo1)
             disparo1.z = self.z + 1
             
-    def definir_enemigos(self, grupo):
+    def definir_enemigos(self, grupo, cuando_elimina_enemigo=None):
         """Hace que una nave tenga como enemigos a todos los actores del grupo."""
+        self.cuando_elimina_enemigo = cuando_elimina_enemigo
         self.pilas.colisiones.agregar(self.disparos, grupo, self.hacer_explotar_al_enemigo)
 
     def hacer_explotar_al_enemigo(self, mi_disparo, el_enemigo):
@@ -88,3 +91,6 @@ class NaveRoja(Actor):
         """
         mi_disparo.eliminar()
         el_enemigo.eliminar()
+        
+        if self.cuando_elimina_enemigo:
+            self.cuando_elimina_enemigo()
