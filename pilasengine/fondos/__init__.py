@@ -73,3 +73,11 @@ class Fondos(object):
     def Fondo(self, imagen=None):
         import fondo
         return fondo.Fondo(self.pilas, imagen)
+
+    def FondoMozaico(self, imagen=None):
+        import fondo_mozaico
+        return fondo_mozaico.FondoMozaico(self.pilas, imagen)
+
+    def Cesped(self):
+        import cesped
+        return cesped.Cesped(self.pilas)

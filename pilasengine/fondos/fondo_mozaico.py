@@ -5,23 +5,18 @@
 #
 # Website - http://www.pilas-engine.com.ar
 from pilasengine.fondos.fondo import Fondo
-from pilasengine.fondos.fondo_mozaico import FondoMozaico
 
 
-class Galaxia(FondoMozaico):
-    
-    def iniciar(self):
-        self.imagen = "fondos/galaxia.png"
-        self.dx = 0
-        self.dy = 0
-        self.acumulador_x = 0
-        self.acumulador_y = 0
+class FondoMozaico(Fondo):
+
+    def __init__(self, pilas=None, imagen=None):
+        super(FondoMozaico, self).__init__(pilas, imagen)
 
     def dibujar(self, painter):
         painter.save()
 
-        x = self.pilas.obtener_escena_actual().camara.x + self.acumulador_x
-        y = -self.pilas.obtener_escena_actual().camara.y + self.acumulador_y
+        x = self.pilas.obtener_escena_actual().camara.x
+        y = -self.pilas.obtener_escena_actual().camara.y
 
         ancho, alto = self.pilas.obtener_area()
         painter.drawTiledPixmap(-ancho/2, -alto/2, ancho, alto,
@@ -31,6 +26,3 @@ class Galaxia(FondoMozaico):
 
         painter.restore()
         
-    def actualizar(self):
-        self.acumulador_x += self.dx
-        self.acumulador_y += self.dy
