@@ -17,19 +17,22 @@ class Animacion(Grilla):
         self.animacion_en_curso = None
         self.cuadro_en_la_animacion = 0
         self._ticks_acumulados = 0
+        self.definir_animacion('inicial', [0], 1)
+        self.cargar_animacion('inicial')
 
     def definir_animacion(self, nombre, cuadros, velocidad):
         self.animaciones[nombre] = (cuadros, velocidad)
 
     def cargar_animacion(self, nombre):
-        self._ticks_acumulados = 0
-        self.animacion_en_curso = self.animaciones[nombre]
-        self.cuadro_en_la_animacion = 0
-        self.definir_cuadro(self.animacion_en_curso[0][self.cuadro_en_la_animacion])
+        if self.animacion_en_curso != self.animaciones[nombre]:
+            self._ticks_acumulados = 0
+            self.animacion_en_curso = self.animaciones[nombre]
+            self.cuadro_en_la_animacion = 0
+            self.definir_cuadro(self.animacion_en_curso[0][self.cuadro_en_la_animacion])
 
     def avanzar(self, velocidad=None):
         if velocidad:
-            raise Exception("Tienes que definir la velocida usando 'definir_animacion' no en el metodo actualizar.")
+            raise Exception("Tienes que definir la velocidad usando 'definir_animacion' no llamando al metodo avanzar con un numero.")
 
         if self.animacion_en_curso is None:
             raise Exception("Tienes que definir al menos una animacion inicial.")
