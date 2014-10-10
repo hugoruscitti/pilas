@@ -236,6 +236,9 @@ class Actores(object):
 
     def Explosion(self, x=0, y=0):
         return self._crear_actor('explosion', 'Explosion', x=x, y=y)
+    
+    def ExplosionDeHumo(self, x=0, y=0):
+        return self._crear_actor('explosion_de_humo', 'ExplosionDeHumo', x=x, y=y)
 
     def Estrella(self, x=0, y=0):
         return self._crear_actor('estrella', 'Estrella', x=x, y=y)
