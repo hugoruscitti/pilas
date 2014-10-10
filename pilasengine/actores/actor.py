@@ -700,7 +700,6 @@ class Actor(Estudiante):
     def get_derecha(self):
         return self.izquierda + self.obtener_ancho() * self.escala
 
-    #@interpolable
     def set_derecha(self, x):
         self.set_izquierda(x - (self.ancho * self.escala))
 
@@ -711,7 +710,6 @@ class Actor(Estudiante):
     def get_abajo(self):
         return self.get_arriba() - self.alto * self.escala
 
-    #@interpolable
     def set_abajo(self, y):
         self.set_arriba(y + (self.alto * self.escala))
 
@@ -722,7 +720,6 @@ class Actor(Estudiante):
     def get_arriba(self):
         return self.y + (self.centro[1] * self.escala)
 
-    #@interpolable
     def set_arriba(self, y):
         self.y = y - (self.centro[1] * self.escala)
 
@@ -786,13 +783,6 @@ class Actor(Estudiante):
         """
         return self.pilas.utils.colisionan(self, otro_actor)
 
-    def obtener_rotacion(self):
-        return self._rotacion
-
-    def definir_rotacion(self, r):
-        r = r % 360
-        self._rotacion = r
-
     def definir_color(self, c):
         self._actor.definir_color(c)
 
@@ -842,16 +832,6 @@ class Actor(Estudiante):
 
     def __repr__(self):
         return "<%s en (%d, %d)>" % (self.__class__.__name__, self.x, self.y)
-
-    def obtener_escala(self):
-        return self._escala_x
-
-    def definir_escala(self, escala):
-        self._escala_x = escala
-        self._escala_y = escala
-
-    def definir_transparencia(self, valor):
-        self._transparencia = valor
 
     def imitar(self, otro_actor_o_figura, *args, **kwargs):
         """ Hace que un Actor copie la posición y la rotación de otro Actor o

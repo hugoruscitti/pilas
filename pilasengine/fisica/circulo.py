@@ -73,7 +73,6 @@ class Circulo(Figura):
         for fixture in self._cuerpo:
             fixture.shape.radius = self._radio
 
-    #@pilas.utils.interpolable
     def set_radius(self, radio):
         self._escala = (self._escala * radio) / self.radio
         self._radio = utils.convertir_a_metros(radio)
@@ -81,8 +80,7 @@ class Circulo(Figura):
 
     def get_radius(self):
         return utils.convertir_a_pixels(self._radio)
-
-    #@pilas.utils.interpolable
+ 
     def set_scale(self, escala):
         self._radio = (self._radio * escala) / self._escala
         self._escala = escala

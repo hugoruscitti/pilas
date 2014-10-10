@@ -22,7 +22,7 @@ class ModoPosicion(ModoDepurador):
         y = "{0:0.1f}".format(actor.y)
         texto = "(%s, %s)" % (x, y)
 
-        escala_x, escala_y = actor.escala_x, actor.escala_y
+        escala_x, _ = actor.escala_x, actor.escala_y
 
         if actor._espejado:
             escala_x *= -1

@@ -175,43 +175,6 @@ def instanciar_interpolacion(pilas, valor_o_valores, duracion=1, demora=0,
     return clase(pilas, valor_o_valores, duracion, demora)
 
 
-def interpolable(f):
-    """Decorador que se aplica a un metodo para que permita animaciones de interpolaciones.
-
-    Ejemplo::
-
-        @interpolable
-        def set_x(self, valor_x):
-            [...]
-
-    :param f: Método sobre el que va a trabajar el interpolador.
-    """
-
-    def inner(*args, **kwargs):
-        value = args[1]
-
-        # Si le indican dos argumentos, el primer sera
-        # el valor de la interpolacion y el segundo la
-        # velocidad.
-        if isinstance(value, tuple) and len(value) == 2:
-            duracion = value[1]
-            value = value[0]
-        else:
-            duracion = 1
-
-        if isinstance(value, list):
-            value = interpolar(value, duracion=duracion, tipo='lineal')
-        elif isinstance(value, xrange):
-            value = interpolar(list(value), duracion=duracion, tipo='lineal')
-
-        if es_interpolacion(value):
-            value.apply(args[0], function=f.__name__)
-        else:
-            f(args[0], value, **kwargs)
-
-    return inner
-
-
 def centrar_ventana(ventana):
     """Mueve la ventana al centro del area visible del escritorio."""
     qr = ventana.frameGeometry()
@@ -222,8 +185,8 @@ def centrar_ventana(ventana):
 def realizar_pruebas():
     """Imprime pruebas en pantalla para detectar si pilas tiene todas las dependencias instaladas."""
 
-    n='[0m'
-    v='[01;32m'
+    n = '[0m'
+    v = '[01;32m'
 
     print "Realizando pruebas de dependencias:"
     print ""
@@ -236,7 +199,7 @@ def realizar_pruebas():
         ver = box2d.__version_info__
 
         if ver[0] == 2 and ver[1] >= 1:
-            print v+"OK, versión " + str(box2d.__version__) + n
+            print v + "OK, versión " + str(box2d.__version__) + n
         else:
             print "Error -> la versión está obsoleta, instale una versión de la serie 2.1, 2.2 o 2.3"
     except ImportError:
@@ -246,7 +209,7 @@ def realizar_pruebas():
 
     try:
         from PyQt4 import Qt
-        print v+"OK, versión "+Qt.PYQT_VERSION_STR+n
+        print v + "OK, versión " + Qt.PYQT_VERSION_STR + n
     except ImportError:
         print "Error -> no se encuentra pyqt."
 
@@ -255,7 +218,7 @@ def realizar_pruebas():
     try:
         from PyQt4 import QtOpenGL
         from PyQt4.QtOpenGL import QGLWidget
-        print v+"OK"+n
+        print v + "OK" + n
     except ImportError:
         print "Error -> no se encuentra pyqt4gl."
 
@@ -263,7 +226,7 @@ def realizar_pruebas():
 
     try:
         from PIL import Image
-        print v+"OK"+n
+        print v + "OK" + n
     except ImportError:
         print "Cuidado -> no se encuentra PIL."
 
@@ -271,6 +234,6 @@ def realizar_pruebas():
 
     try:
         import pygame
-        print v+"OK"+n
+        print v + "OK" + n
     except ImportError:
         print "Cuidado -> no se encuentra pygame."
