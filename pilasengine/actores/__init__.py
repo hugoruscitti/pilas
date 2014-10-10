@@ -279,6 +279,9 @@ class Actores(object):
     def Cooperativista(self, x=0, y=0):
         return self._crear_actor('cooperativista', 'Cooperativista', x=x, y=y)
 
+    def Shaolin(self, x=0, y=0):
+        return self._crear_actor('shaolin', 'Shaolin', x=x, y=y)
+
     def Pacman(self, x=0, y=0):
         return self._crear_actor('pacman', 'Pacman', x=x, y=y)
 
