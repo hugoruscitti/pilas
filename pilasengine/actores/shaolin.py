@@ -16,21 +16,17 @@ class Shaolin(Actor):
     puede saltar, golpear y recibir golpes."""
 
     def iniciar(self, x=0, y=0):
-        self._cargar_animaciones()
         self.hacer(Parado)
-
-    def _cargar_animaciones(self):
-        self.animaciones = {
-            "parado": self.pilas.imagenes.cargar_grilla("shaolin/parado.png", 4, 1),
-        }
-
-    def cambiar_animacion(self, nombre):
-        """Cambia la animación del Cooperativista.
-
-        :param nombre: El nombre de la animación que se quiere mostar.
-        """
-        self.imagen = self.animaciones[nombre]
-        self.centro = ("centro", "abajo")
+        self.sombra = self.pilas.actores.Sombra()
+        self.altura_del_salto = 0
+        
+    def actualizar(self):
+        self.sombra.x = self.x
+        
+        # Adapta el tamaño y la distancia a la sombra para simular
+        # que la sombra está siempre 'pegada' al suelo del escenario.
+        self.sombra.y = self.y + 10 - self.altura_del_salto
+        self.sombra.escala = 1 - self.altura_del_salto / 300.0
 
 class Parado(Comportamiento):
 
@@ -40,9 +36,78 @@ class Parado(Comportamiento):
         :param receptor: La referencia al actor.
         """
         self.receptor = receptor
-        self.receptor.cambiar_animacion("parado")
-        self.control = receptor.pilas.escena_actual().control
+        self.control = receptor.pilas.control
+
+        self.receptor.imagen = self.pilas.imagenes.cargar_grilla("shaolin/parado.png", 4, 1)
+        self.receptor.centro = ("centro", "abajo")
 
     def actualizar(self):
         self.receptor.imagen.avanzar(10)
-        pass
+        
+        # Si pulsa a los costados comienza a caminar.
+        if self.control.derecha or self.control.izquierda:
+            self.receptor.hacer(Caminar)
+            
+        # Si pulsa hacia arriba salta.
+        if self.control.arriba:
+            self.receptor.hacer(Saltar)
+
+class Caminar(Comportamiento):
+    
+    def iniciar(self, receptor):
+        self.receptor = receptor
+        self.control = receptor.pilas.control
+
+        self.receptor.imagen = self.pilas.imagenes.cargar_grilla("shaolin/camina.png", 4, 1)
+        self.receptor.centro = ("centro", "abajo")
+        
+    def actualizar(self):
+        self.receptor.imagen.avanzar(10)
+        
+        # Si pulsa a los costados se puede mover.
+        if self.control.derecha:
+            self.receptor.x += 5
+            self.receptor.espejado = False
+        elif self.control.izquierda:
+            self.receptor.x -= 5
+            self.receptor.espejado = True
+            
+        # Si pulsa hacia arriba salta.
+        if self.control.arriba:
+            self.receptor.hacer(Saltar)
+            
+        # Si suelta las teclas regresa al estado inicial.
+        if not self.control.derecha and not self.control.izquierda:
+            self.receptor.hacer(Parado)
+            
+class Saltar(Comportamiento):
+    
+    def iniciar(self, receptor):
+        self.receptor = receptor
+        self.control = receptor.pilas.control
+
+        self.receptor.imagen = self.pilas.imagenes.cargar_grilla("shaolin/salta.png", 3, 1)
+        self.receptor.centro = ("centro", "abajo")
+        self.y_inicial = self.receptor.y
+        self.vy = 15
+        
+    def actualizar(self):
+        self.receptor.y += self.vy
+        self.vy -= 0.7
+
+        distancia_al_suelo = self.receptor.y - self.y_inicial
+        self.receptor.altura_del_salto = distancia_al_suelo
+
+        # Cuando llega al suelo, regresa al estado inicial.
+        if distancia_al_suelo < 0:
+            self.receptor.y = self.y_inicial
+            self.receptor.altura_del_salto = 0
+            self.receptor.hacer(Parado)
+            
+        # Si pulsa a los costados se puede mover.
+        if self.control.derecha:
+            self.receptor.x += 5
+            self.receptor.espejado = False
+        elif self.control.izquierda:
+            self.receptor.x -= 5
+            self.receptor.espejado = True
