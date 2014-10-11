@@ -3,6 +3,9 @@ import subprocess
 import os
 import signal
 
+
+TIEMPO_A_ESPERAR_POR_EJEMPLO = 7
+
 path = os.path.join(os.path.dirname(__file__), "..")
 os.chdir(path)
 
@@ -14,9 +17,7 @@ def esperar(segundos):
 
     for x in range(segundos):
         os.system('sleep 1s')
-        #print ".",
 
-    #print "listo"
 
 def check_pid(pid):
     try:
@@ -33,7 +34,7 @@ def terminar(pid):
 
 def probar_ejemplo(directorio_relativo, nombre):
     pid = subprocess.Popen([sys.executable, directorio_relativo + nombre]).pid
-    esperar(5)
+    esperar(TIEMPO_A_ESPERAR_POR_EJEMPLO)
 
     print nombre,
 
