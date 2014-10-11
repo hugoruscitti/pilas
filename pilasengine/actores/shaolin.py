@@ -22,11 +22,13 @@ class Shaolin(Actor):
         
     def actualizar(self):
         self.sombra.x = self.x
+        self.sombra.z = self.z + 1
+        self.sombra.rotacion = self.rotacion
         
         # Adapta el tamaño y la distancia a la sombra para simular
         # que la sombra está siempre 'pegada' al suelo del escenario.
         self.sombra.y = self.y + 10 - self.altura_del_salto
-        self.sombra.escala = 1 - self.altura_del_salto / 300.0
+        self.sombra.escala = self.escala - self.altura_del_salto / 300.0
 
 class Parado(Comportamiento):
 
