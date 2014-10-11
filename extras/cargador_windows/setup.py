@@ -6,6 +6,7 @@ import pkg_resources
 exe = Executable(
         script="cargador.py",
         base="Win32GUI",
+        #base="Console",
         icon='pilas.ico',
         
         compress = True,

@@ -73,8 +73,11 @@ class Pilas(object):
         self._definir_icono_de_ventana()
 
     def _definir_icono_de_ventana(self):
-        img = pygame.image.load(self.obtener_ruta_al_recurso('icono.ico'))
-        pygame.display.set_icon(img)
+        try:
+	    img = pygame.image.load(self.obtener_ruta_al_recurso('icono.ico'))
+            pygame.display.set_icon(img)
+	except pygame.error:
+	    pass
 
     def _inicializar_audio(self):
         import pygame
