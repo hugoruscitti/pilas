@@ -285,6 +285,9 @@ class Actores(object):
     def Pacman(self, x=0, y=0):
         return self._crear_actor('pacman', 'Pacman', x=x, y=y)
 
+    def Sombra(self, x=0, y=0):
+        return self._crear_actor('sombra', 'Sombra', x=x, y=y)
+
     def Moneda(self, x=0, y=0):
         return self._crear_actor('moneda', 'Moneda', x=x, y=y)
 
