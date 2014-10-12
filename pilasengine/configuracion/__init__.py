@@ -17,7 +17,7 @@ from PyQt4 import QtGui
 
 from pilasengine.configuracion.configuracion_base import Ui_Dialog
 
-AUDIO_HABILITADO = True
+AUDIO_HABILITADO = False
 PAD_HABILITADO = False
 
 class Configuracion(object):
@@ -118,7 +118,7 @@ class DialogoConfiguracion(Ui_Dialog):
 
     def definir_fuente(self, font):
         etiqueta = "%s %d" %(font.rawName(), font.pointSize())
-        self.fuente.setText("Cambiar: " + etiqueta)
+        self.fuente.setText(etiqueta)
 
     def cuando_pulsa_el_boton_guardar(self):
         self.Dialog.close()
