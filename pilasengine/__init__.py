@@ -14,6 +14,7 @@ import random
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
+from pilasengine import configuracion
 from pilasengine import escenas
 from pilasengine import imagenes
 from pilasengine import colores
@@ -28,7 +29,6 @@ from pilasengine import habilidades
 from pilasengine import comportamientos
 from pilasengine import eventos
 from pilasengine import controles
-from pilasengine import configuracion
 from pilasengine import pad
 
 import widget
@@ -51,6 +51,8 @@ class Pilas(object):
                  con_aceleracion=True, capturar_errores=True,
                  habilitar_mensajes_log=False, x=None, y=None):
         """Inicializa el area de juego con una configuración inicial."""
+        
+        self.configuracion = configuracion.Configuracion()
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self._iniciado_desde_asistente = False
         self.texto_avisar_anterior = None
@@ -76,7 +78,7 @@ class Pilas(object):
         self.reiniciar(ancho, alto, titulo, con_aceleracion,
                        habilitar_mensajes_log, x, y, capturar_errores)
 
-        if configuracion.AUDIO_HABILITADO:
+        if self.configuracion.audio_habilitado():
             self.log("El sistema de audio esta habilitado desde la configuración")
             self._inicializar_audio()
         else:
@@ -140,7 +142,7 @@ class Pilas(object):
         self.musica = musica.Musica(self)
         self.sonidos = sonidos.Sonidos(self)
 
-        if configuracion.PAD_HABILITADO:
+        if self.configuracion.pad_habilitado():
             self.pad = pad.Pad(self)
         else:
             self.pad = pad.PadDeshabilitado(self)

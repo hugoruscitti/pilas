@@ -11,6 +11,7 @@ import re
 import codecs
 import time
 import pickle
+import json
 
 from PyQt4 import QtCore
 from PyQt4 import QtGui
@@ -29,9 +30,8 @@ class Configuracion(object):
     def cargar(self):
 
         if os.path.exists(self.obtener_ruta()):
-            archivo = open(self.obtener_ruta(), 'rb')
-            self.valores = pickle.load(archivo)
-            archivo.close()
+            with open(self.obtener_ruta(), 'rt') as archivo:
+                self.valores = json.load(archivo, 'ascii')
         else:
             self.valores = self.obtener_datos_por_omision()
             self.guardar()
@@ -55,12 +55,11 @@ class Configuracion(object):
         return datos
 
     def guardar(self):
-        archivo = open(self.obtener_ruta(), 'wb')
-        pickle.dump(self.valores, archivo)
-        archivo.close()
+        with open(self.obtener_ruta(), 'w') as archivo:
+            json.dump(self.valores, archivo, sort_keys=True, indent=4, ensure_ascii=True)
 
     def obtener_ruta(self):
-        ruta = os.path.join(str(QtCore.QDir.homePath()), '.pilas.cfg')
+        ruta = os.path.join(str(QtCore.QDir.homePath()), '.configuracion_pilas.json')
         return ruta
 
     def cambiar_fuente(self, fuente_nueva):
@@ -69,6 +68,12 @@ class Configuracion(object):
     def obtener_fuente(self):
         fuente_como_tupla = self.valores['fuente'].rsplit(' ', 1)
         return QtGui.QFont(fuente_como_tupla[0], int(fuente_como_tupla[1]))
+
+    def audio_habilitado(self):
+        return self.valores['audio_habilitado']
+    
+    def pad_habilitado(self):
+        return self.valores['pad_habilitado']
 
     def _buscar_fuente_personalizada(self):
         this_dir = os.path.dirname(os.path.realpath('.'))
@@ -98,6 +103,9 @@ class DialogoConfiguracion(Ui_Dialog):
         self._conectar_eventos()
         self.configuracion = Configuracion()
         self.definir_fuente(self.configuracion.obtener_fuente())
+        
+        self.checkBox.setChecked(self.configuracion.audio_habilitado())
+        self.checkBox_2.setChecked(self.configuracion.pad_habilitado())    
 
     def _conectar_eventos(self):
         self.fuente.connect(self.fuente,
