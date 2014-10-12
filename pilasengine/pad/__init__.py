@@ -6,8 +6,22 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-import pygame
 
+
+class Pad(object):
+
+    def __init__(self, pilas):
+        pass
+
+    def actualizar(self):
+        pass
+
+    def hay_pads_conectados(self):
+        return False
+    
+    def listar(self):
+        pass
+    
 class PadDeshabilitado(object):
 
     def __init__(self, pilas):
@@ -19,29 +33,18 @@ class PadDeshabilitado(object):
 
         self.pilas = pilas
         self.joysticks = []
+        self.pilas.log("Cargando el modulo de PAD deshabilitado")
 
-    def listar(self):
+    def actualizar(self):
         pass
 
     def hay_pads_conectados(self):
         pass
 
-    def actualizar(self):
+    def listar(self):
         pass
 
-class Pad(object):
 
-  def __init__(self, pilas):
-    pass
-
-  def actualizar(self):
-    pass
-
-  def hay_pads_conectados(self):
-    return False
-
-  def listar(self):
-    pass
 
 class PadHabilitado:
 
@@ -55,18 +58,21 @@ class PadHabilitado:
         self.pilas = pilas
         self.joysticks = []
 
+        self.pilas.log("Cargando el modulo de PAD deshabilitado")
+        self.pilas.log("Inicializando pygame y el modulo de joystick")
+        
+        import pygame
+        
         pygame.init()
         pygame.joystick.init()
 
         self.joystick = None
-        #print "Obteniendo pads:", pygame.joystick.get_count()
+        self.pilas.log("Obteniendo pads:", pygame.joystick.get_count())
 
         for i in range(0, pygame.joystick.get_count()):
             self.joystick = pygame.joystick.Joystick(i)
             self.joystick.init()
             self.joysticks.append(self.joystick)
-            #print self.joystick.get_name()
-            #print "cantidad controles", self.joystick.get_numaxes()
 
     def listar(self):
         "Retorna una lista de todos los joysticks conectados"
@@ -76,6 +82,7 @@ class PadHabilitado:
         return len(self.joysticks) > 0
 
     def actualizar(self):
+        import pygame
         if not self.hay_pads_conectados():
             return
 

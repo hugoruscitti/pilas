@@ -13,7 +13,6 @@ import random
 
 from PyQt4 import QtGui
 from PyQt4 import QtCore
-import pygame
 
 from pilasengine import escenas
 from pilasengine import imagenes
@@ -52,34 +51,55 @@ class Pilas(object):
                  con_aceleracion=True, capturar_errores=True,
                  habilitar_mensajes_log=False, x=None, y=None):
         """Inicializa el area de juego con una configuración inicial."""
+        self.habilitar_mensajes_log(habilitar_mensajes_log)
         self._iniciado_desde_asistente = False
         self.texto_avisar_anterior = None
 
+        self.log("Iniciando pilas con los parametros", str({"ancho": ancho,
+                                                            "alto": alto,
+                                                            "titulo": titulo,
+                                                            "con_aceleracion": con_aceleracion,
+                                                            "capturar_errores": capturar_errores,
+                                                            "habilitar_mensajes_log": habilitar_mensajes_log,
+                                                            "x": x,
+                                                            "y": y}))
         if QtGui.QApplication.instance():
             self.app = QtGui.QApplication.instance()
             self._necesita_ejecutar_loop = False
+            self.log("Obteniendo instancia a la aplicacion QT (no se re-genero el objeto de aplicacion)")
         else:
             self.app = QtGui.QApplication(sys.argv)
             self._necesita_ejecutar_loop = True
+            self.log("Creando un objeto de aplicacion QT (porque no estaba inicializado)")
 
         self.widget = None
         self.reiniciar(ancho, alto, titulo, con_aceleracion,
                        habilitar_mensajes_log, x, y, capturar_errores)
 
         if configuracion.AUDIO_HABILITADO:
+            self.log("El sistema de audio esta habilitado desde la configuración")
             self._inicializar_audio()
-
+        else:
+            self.log("Evitando inicializar el sistema de audio (deshabilitado desde configuración)")
 
         self._definir_icono_de_ventana()
 
     def _definir_icono_de_ventana(self):
+        self.log("Definiendo el icono de la ventana")
+        
         try:
-	    img = pygame.image.load(self.obtener_ruta_al_recurso('icono.ico'))
-            pygame.display.set_icon(img)
-	except pygame.error:
-	    pass
-
+            import pygame
+            try:
+                img = pygame.image.load(self.obtener_ruta_al_recurso('icono.ico'))
+                pygame.display.set_icon(img)
+            except pygame.error:
+                pass
+        except ImportError:
+            self.log("Imposible cambiar el icono, parece que pygame no esta instalado...")
+            pass
+            
     def _inicializar_audio(self):
+        self.log("Inicializando el sistema de audio con pygame")
         import pygame
         pygame.init()
         pygame.mixer.init()
@@ -91,6 +111,14 @@ class Pilas(object):
 
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
+        self.log("Reiniciando pilas con los parametros", str({"ancho": ancho,
+                                                    "alto": alto,
+                                                    "titulo": titulo,
+                                                    "con_aceleracion": con_aceleracion,
+                                                    "capturar_errores": capturar_errores,
+                                                    "habilitar_mensajes_log": habilitar_mensajes_log,
+                                                    "x": x,
+                                                    "y": y}))
         self.actores = actores.Actores(self)
         self.actores.eliminar_actores_personalizados()
         self.eventos = eventos.Eventos(self)
@@ -120,26 +148,35 @@ class Pilas(object):
         self.habilidades = habilidades.Habilidades()
 
         es_reinicio = self.widget is not None
-
+        
+        if es_reinicio:
+            self.log("Es un reinicio real (ya existia el objeto widget)")
+        else:
+            self.log("El reinicio se hace por primera vez (es una inicializacion en realidad)")
+        
         if self._iniciado_desde_asistente and es_reinicio:
             parent = self._eliminar_el_anterior_widget()
 
         if con_aceleracion:
+            self.log("Creando el widget canvas con aceleracion de video")
             self.widget = widget.WidgetConAceleracion(self, titulo, ancho, alto,
                                                       self._capturar_errores)
         else:
+            self.log("Creando el widget canvas SIN aceleracion de video")
             self.widget = widget.WidgetSinAceleracion(self, titulo, ancho, alto,
                                                       self._capturar_errores)
 
         if self._iniciado_desde_asistente and es_reinicio:
             self._vincular_el_nuevo_widget(parent)
 
-        #if not getattr(self, 'comportamientos', None):
         self.escenas.Normal()
 
         self.comportamientos = comportamientos.Comportamientos()
         self._x = x
         self._y = y
+
+    def cerrar(self):
+        self._eliminar_el_anterior_widget()
 
     def definir_escena(self, escena):
         self.escenas.definir_escena(escena)
@@ -152,12 +189,16 @@ class Pilas(object):
 
         Este método se suele utilizar cuando se cambia de resolución
         de pantalla o se re-inicia pilas completamente."""
+
+        self.log("Eliminando el widget de canvas principal")
         parent = self.widget.parent()
 
         if parent:
             parent.removeWidget(self.widget)
 
         self.widget.setParent(None)
+        self.widget.deleteLater()
+        self.widget = None
         return parent
 
     def _vincular_el_nuevo_widget(self, parent):
@@ -167,8 +208,10 @@ class Pilas(object):
         juego después de haber cambiado de resolución o reiniciado
         pilas."""
         if parent:
+            self.log("Vinculando el widget canvas al layout")
             parent.addWidget(self.widget)
             parent.setCurrentWidget(self.widget)
+            
 
     def usa_aceleracion(self):
         """Informa si está habilitado el modo aceleración de video."""
@@ -388,7 +431,7 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
 
     pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo,
                   capturar_errores=capturar_errores, x=x, y=y,
-                  habilitar_mensajes_log=False,
+                  habilitar_mensajes_log=habilitar_mensajes_log,
                   con_aceleracion=con_aceleracion)
     return pilas
 

@@ -28,8 +28,9 @@ class Grupo(collections.MutableSequence):
 
     def __init__(self, pilas):
         self.__dict__['pilas'] = pilas
-        self.pilas.log("Creando el grupo", self)
         self.__dict__['_actores'] = []
+        self.pilas.log("Creando el grupo", self)
+
 
     def __setattr__(self, atributo, valor):
         """Este metodo es llamado cuando queremos modificar algun atributo de

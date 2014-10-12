@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/configuracion/configuracion.ui'
 #
-# Created: Fri Oct 10 00:35:41 2014
+# Created: Sun Oct 12 00:00:56 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(550, 300)
+        Dialog.resize(691, 300)
         Dialog.setMinimumSize(QtCore.QSize(500, 300))
         self.gridLayout = QtGui.QGridLayout(Dialog)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
