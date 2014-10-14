@@ -106,10 +106,11 @@ class Escena(object):
 
     def arrastrar_actor_mas_cercano(self, evento):
         actores_debajo_de_mouse = self.obtener_actores_en(evento.x, evento.y)
+        
         if actores_debajo_de_mouse:
             actores_debajo_de_mouse.sort()
-            actor_cercano = actores_debajo_de_mouse[-1]
-
-            if actor_cercano.tiene_habilidad(
-                self.pilas.habilidades.Arrastrable):
-                actor_cercano.habilidades.Arrastrable.intentar_arrastrar()
+            
+            for actor_cercano in actores_debajo_de_mouse:
+                if actor_cercano.tiene_habilidad(
+                    self.pilas.habilidades.Arrastrable):
+                    actor_cercano.habilidades.Arrastrable.intentar_arrastrar()

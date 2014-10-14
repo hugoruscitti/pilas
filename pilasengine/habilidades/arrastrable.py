@@ -9,16 +9,17 @@ from pilasengine import habilidades
 
 
 class Arrastrable(habilidades.Habilidad):
+    
     def iniciar(self, receptor):
         super(Arrastrable, self).iniciar(receptor)
 
     def intentar_arrastrar(self):
-            self.pilas.eventos.termina_click.conectar(self.termina_de_arrastrar,
+        self.pilas.eventos.termina_click.conectar(self.termina_de_arrastrar,
                                                       id="termina_de_arrastrar")
 
-            self.pilas.eventos.mueve_mouse.conectar(self.arrastrando,
+        self.pilas.eventos.mueve_mouse.conectar(self.arrastrando,
                                                     id="arrastrando")
-            self.intentar_capturar_figura()
+        self.intentar_capturar_figura()
 
     def intentar_capturar_figura(self):
         if self._el_receptor_tiene_fisica():
