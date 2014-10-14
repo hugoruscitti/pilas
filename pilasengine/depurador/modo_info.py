@@ -45,10 +45,11 @@ class ModoInformacionDeSistema(ModoDepurador):
 
         for (i, texto) in enumerate(self.informacion[::-1]):
             posicion_y = abajo + 20 + i * 20
-            self._texto_absoluto(painter, texto, izquierda + 10, posicion_y,
-                                 color=pilasengine.colores.blanco)
+            self._texto_absoluto(painter, texto, izquierda + 11, posicion_y - 1, color=pilasengine.colores.negro)
+            self._texto_absoluto(painter, texto, izquierda + 10, posicion_y, color=pilasengine.colores.blanco)
 
         texto = u"Posición del mouse: (%d, %d)" %(self.pilas.obtener_posicion_del_mouse())
+        self._texto_absoluto(painter, texto, derecha-9, abajo+7, color=pilasengine.colores.negro, alineado_a_derecha=True)
         self._texto_absoluto(painter, texto, derecha-10, abajo+8, color=pilasengine.colores.blanco, alineado_a_derecha=True)
 
     def dibujar_actor(self, actor, painter):
