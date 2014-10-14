@@ -66,6 +66,14 @@ ui:
 	pyuic4 -xo pilasengine/interprete/editor_ui.py pilasengine/interprete/editor.ui
 	pyuic4 -xo pilasengine/interprete/lanas_ui.py pilasengine/interprete/lanas.ui
 	pyuic4 -xo pilasengine/configuracion/configuracion_base.py pilasengine/configuracion/configuracion.ui
+	@echo "Quitando la marca de fechas."
+	@sed -i '' '/Created:/d' pilasengine/asistente/asistente_base.py
+	@sed -i '' '/Created:/d' pilasengine/manual/manual_base.py
+	@sed -i '' '/Created:/d' pilasengine/interprete/interprete_base.py
+	@sed -i '' '/Created:/d' pilasengine/interprete/editor_ui.py
+	@sed -i '' '/Created:/d' pilasengine/interprete/lanas_ui.py
+	@sed -i '' '/Created:/d' pilasengine/configuracion/configuracion_base.py
+
 
 clean:
 	rm -r -f *.dmg
