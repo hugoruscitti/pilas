@@ -23,6 +23,9 @@ class ModoFisica(ModoDepurador):
         grosor = 1
         cuerpos = self.pilas.fisica.mundo.bodies
 
+        painter.save()
+        self.pilas.camara.aplicar_transformaciones_completas(painter)
+        
         for cuerpo in cuerpos:
 
             for fixture in cuerpo:
@@ -65,8 +68,9 @@ class ModoFisica(ModoDepurador):
                     # TODO: implementar las figuras de tipo "edge" y "loop".
                     raise Exception("No puedo identificar el tipo de figura.")
 
-    def _poligono(self, painter, puntos, color=colores.negro, grosor=1,
-                 cerrado=False):
+        painter.restore()
+
+    def _poligono(self, painter, puntos, color=colores.negro, grosor=1, cerrado=False):
         x, y = puntos[0]
 
         if cerrado:
@@ -84,8 +88,8 @@ class ModoFisica(ModoDepurador):
         painter.drawLine(x0, y0, x1, y1)
 
     def hacer_coordenada_pantalla_absoluta(self, x, y):
-        # TODO: Duplicado del codigo anterior?
-        dx, dy = self.pilas.obtener_centro_fisico()
+        dx = -self.pilas.camara.x
+        dy = self.pilas.camara.y
         return (x + dx, dy - y)
 
     def _angulo(self, painter, x, y, angulo, radio):
