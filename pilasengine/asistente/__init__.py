@@ -33,11 +33,12 @@ class Interlocutor(QtCore.QObject):
 
     @QtCore.pyqtSlot()
     def abrir_interprete(self):
-        if not self.interprete:
-            self.interprete = pilasengine.abrir_interprete()
-        else:
-            self.interprete.show()
-            self.interprete.raise_()
+        #if not self.interprete:
+        #    self.interprete = pilasengine.abrir_interprete()
+        #else:
+        #    self.interprete.show()
+        #    self.interprete.raise_()
+        self.interprete = pilasengine.abrir_interprete()
 
     @QtCore.pyqtSlot(str)
     def abrir_ejemplo(self, juego):

@@ -274,8 +274,11 @@ class BaseWidget(object):
 
 
 class WidgetConAceleracion(BaseWidget, QGLWidget):
-    pass
-
+    
+    def usa_aceleracion_de_video(self):
+        return True
 
 class WidgetSinAceleracion(BaseWidget, QtGui.QWidget):
-    pass
+    
+    def usa_aceleracion_de_video(self):
+        return False

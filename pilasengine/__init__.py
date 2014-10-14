@@ -48,10 +48,10 @@ class Pilas(object):
     """
 
     def __init__(self, ancho=640, alto=480, titulo='pilas-engine',
-                 con_aceleracion=True, capturar_errores=True,
+                 con_aceleracion=None, capturar_errores=True,
                  habilitar_mensajes_log=False, x=None, y=None):
         """Inicializa el area de juego con una configuración inicial."""
-        
+
         self.configuracion = configuracion.Configuracion()
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self._iniciado_desde_asistente = False
@@ -107,9 +107,18 @@ class Pilas(object):
         pygame.mixer.init()
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
-                  con_aceleracion=True, habilitar_mensajes_log=False,
+                  con_aceleracion=None, habilitar_mensajes_log=False,
                   x=None, y=None, capturar_errores=True):
         """Genera nuevamente la ventana del videojuego."""
+
+        # Si no especifica usar aceleracion de video, toma la
+        # preferencia desde el archivo de configuración.        
+        if con_aceleracion == None:
+            con_aceleracion = self.configuracion.aceleracion_habilitada()
+            self.log("No se especificó aceleración de video, así que se adopta la preferencia desde la configuración: con_aceleracion=" + str(con_aceleracion))
+        else:
+            self.log("Se usa el parametro aceleracion=" + str(con_aceleracion))
+
 
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
@@ -201,6 +210,7 @@ class Pilas(object):
         self.widget.setParent(None)
         self.widget.deleteLater()
         self.widget = None
+        
         return parent
 
     def _vincular_el_nuevo_widget(self, parent):
@@ -217,8 +227,8 @@ class Pilas(object):
 
     def usa_aceleracion(self):
         """Informa si está habilitado el modo aceleración de video."""
-        return (self.widget.__class__ == widget.WidgetConAceleracion)
-
+        return self.widget.usa_aceleracion_de_video()
+    
     def obtener_widget(self):
         """Retorna el widget en donde se dibuja el juego completo.
 
@@ -406,7 +416,7 @@ class Pilas(object):
 
 
 def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
-            habilitar_mensajes_log=False, con_aceleracion=True, x=None, y=None):
+            habilitar_mensajes_log=False, con_aceleracion=None, x=None, y=None):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -427,7 +437,7 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
                        ventana de pilas. En caso de poner False los errores
                        se muestran en consola.
     :habilitar_mensajes_log: Muestra cada operación que hace pilas en consola.
-    :con_aceleracion: Indica si se habilita o no la aceleracion de video. Por omisión está habilitada.
+    :con_aceleracion: Indica si se habilita o no la aceleracion de video. Por omisión se trata de obtener la preferencia desde la configuración de pilas.
 
     """
 
