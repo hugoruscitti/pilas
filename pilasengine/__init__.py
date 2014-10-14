@@ -83,8 +83,11 @@ class Pilas(object):
             self._inicializar_audio()
         else:
             self.log("Evitando inicializar el sistema de audio (deshabilitado desde configuración)")
-
-        self._definir_icono_de_ventana()
+        
+        # Solo re-define el icono cuando se usa pygame, porque
+        # sino pygame pone su icono en la ventana.
+        if self.configuracion.audio_habilitado():
+            self._definir_icono_de_ventana()
 
     def _definir_icono_de_ventana(self):
         self.log("Definiendo el icono de la ventana")
