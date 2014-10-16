@@ -83,7 +83,7 @@ class Pilas(object):
             self._inicializar_audio()
         else:
             self.log("Evitando inicializar el sistema de audio (deshabilitado desde configuración)")
-        
+
         # Solo re-define el icono cuando se usa pygame, porque
         # sino pygame pone su icono en la ventana.
         if self.configuracion.audio_habilitado():
@@ -91,23 +91,11 @@ class Pilas(object):
 
     def _definir_icono_de_ventana(self):
         self.log("Definiendo el icono de la ventana")
-        
-        try:
-            import pygame
-            try:
-                img = pygame.image.load(self.obtener_ruta_al_recurso('icono.ico'))
-                pygame.display.set_icon(img)
-            except pygame.error:
-                pass
-        except ImportError:
-            self.log("Imposible cambiar el icono, parece que pygame no esta instalado...")
-            pass
-            
+        return
+
     def _inicializar_audio(self):
         self.log("Inicializando el sistema de audio con pygame")
-        import pygame
-        pygame.init()
-        pygame.mixer.init()
+        return
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
                   con_aceleracion=None, habilitar_mensajes_log=False,
@@ -115,7 +103,7 @@ class Pilas(object):
         """Genera nuevamente la ventana del videojuego."""
 
         # Si no especifica usar aceleracion de video, toma la
-        # preferencia desde el archivo de configuración.        
+        # preferencia desde el archivo de configuración.
         if con_aceleracion == None:
             con_aceleracion = self.configuracion.aceleracion_habilitada()
             self.log("No se especificó aceleración de video, así que se adopta la preferencia desde la configuración: con_aceleracion=" + str(con_aceleracion))
@@ -162,12 +150,12 @@ class Pilas(object):
         self.habilidades = habilidades.Habilidades()
 
         es_reinicio = self.widget is not None
-        
+
         if es_reinicio:
             self.log("Es un reinicio real (ya existia el objeto widget)")
         else:
             self.log("El reinicio se hace por primera vez (es una inicializacion en realidad)")
-        
+
         if self._iniciado_desde_asistente and es_reinicio:
             parent = self._eliminar_el_anterior_widget()
 
@@ -213,7 +201,7 @@ class Pilas(object):
         self.widget.setParent(None)
         self.widget.deleteLater()
         self.widget = None
-        
+
         return parent
 
     def _vincular_el_nuevo_widget(self, parent):
@@ -226,12 +214,12 @@ class Pilas(object):
             self.log("Vinculando el widget canvas al layout")
             parent.addWidget(self.widget)
             parent.setCurrentWidget(self.widget)
-            
+
 
     def usa_aceleracion(self):
         """Informa si está habilitado el modo aceleración de video."""
         return self.widget.usa_aceleracion_de_video()
-    
+
     def obtener_widget(self):
         """Retorna el widget en donde se dibuja el juego completo.
 

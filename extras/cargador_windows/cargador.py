@@ -4,7 +4,6 @@ import Tkinter
 import imp
 import sys
 import os
-import pygame
 
 window = Tkinter.Tk()
 window.wm_withdraw()

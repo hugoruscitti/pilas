@@ -8,7 +8,7 @@ exe = Executable(
         base="Win32GUI",
         #base="Console",
         icon='pilas.ico',
-        
+
         compress = True,
         copyDependentFiles = True,
         appendScriptToExe = False,
@@ -16,7 +16,7 @@ exe = Executable(
 )
 
 extra_options = {
-    "packages": ["pilasengine", "lanas", "json", "pygame", "setuptools", "code", "simplejson"],
+    "packages": ["pilasengine", "lanas", "json", "setuptools", "code", "simplejson"],
     "optimize" : 2,
     "compressed": False,
 }
