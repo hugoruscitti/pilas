@@ -18,7 +18,6 @@ app.directive('errSrc', function() {
   return {
     link: function(scope, element, attrs) {
       element.bind('error', function() {
-        alert("asdasd");
         attrs.$set('src', "imagenes/ejemplos/inexistente.png");
       });
     }
