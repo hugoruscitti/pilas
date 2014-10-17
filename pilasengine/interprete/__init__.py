@@ -42,9 +42,10 @@ def abrir_script_con_livereload(archivo):
 
     utils.centrar_ventana(MainWindow)
     MainWindow.show()
+    ui.colapsar_interprete()
     MainWindow.raise_()
     ui.editor.cargar_contenido_desde_archivo(archivo)
     ui.editor.ejecutar()
 
-    ui.colapsar_interprete()
+
     return MainWindow
