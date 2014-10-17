@@ -93,6 +93,9 @@ class Actor(Estudiante):
     """
 
     def __init__(self, pilas=None, x=0, y=0):
+        # Especifica la composión de dibujado (ver actor particula.py).
+        self.composicion = None
+
         if not pilas:
             mensaje = "Ten cuidado, antes de crear un actor tienes que vincularlo con: 'pilas.actores.vincular(MiActor)'"
             raise Exception(mensaje)
@@ -124,8 +127,6 @@ class Actor(Estudiante):
         # Vincula el actor con la escena actual.
         pilas.actores.agregar_actor(self)
 
-        # Especifica la composión de dibujado (ver actor particula.py).
-        self.composicion = None
 
     def agregar(self, actor):
         self._actores.append(actor)

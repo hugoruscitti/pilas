@@ -43,6 +43,7 @@ class Superficie(Imagen):
     def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None,
               color=colores.negro, ancho=0, vertical=False):
         self.canvas.begin(self._imagen)
+        color = colores.generar_color_desde_texto(color)
         r, g, b, _ = color.obtener_componentes()
         self.canvas.setPen(QtGui.QColor(r, g, b))
         dx = x

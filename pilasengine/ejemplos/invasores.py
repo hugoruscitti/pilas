@@ -17,6 +17,10 @@ class AceitunaEnemiga(pilasengine.actores.Aceituna):
     def actualizar(self):
         self.rotacion += 10
         self.y -= self.velocidad
+        
+        # Elimina el objeto cuando sale de la pantalla.
+        if self.y < -300:
+            self.eliminar()
 
 fondo = pilas.fondos.Galaxia(dy=-5)
 
