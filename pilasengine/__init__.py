@@ -33,7 +33,7 @@ from pilasengine import pad
 
 import widget
 
-VERSION="0.90.4"
+VERSION="0.90.9"
 
 class Pilas(object):
     """Representa el area de juego de pilas, el componente principal.
@@ -102,13 +102,13 @@ class Pilas(object):
             self.log("Imposible cambiar el icono, parece que pygame no esta instalado...")
             pass
 
-        
+
     def _inicializar_audio(self):
         self.log("Inicializando el sistema de audio con pygame")
         import pygame
         pygame.init()
         pygame.mixer.init()
-        
+
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
                   con_aceleracion=None, habilitar_mensajes_log=False,
                   x=None, y=None, capturar_errores=True):
