@@ -276,7 +276,7 @@ class Editor(editor_base.EditorBase):
 
         if ruta:
             self.cargar_contenido_desde_archivo(ruta)
-            self.ejecutar()
+            self.ejecutar(ruta)
 
     def mensaje_guardar_cambios_abrir(self):
         """Realizar una consulta usando un cuadro de dialogo simple

@@ -5,9 +5,6 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-from pilas.colores import negro_transparente, blanco_transparente,\
-    rojo_transparente, verde_transparente, azul_transparente, gris_transparente,\
-    naranja
 
 diccionario_colores = {}
 
