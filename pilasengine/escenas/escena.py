@@ -71,18 +71,27 @@ class Escena(object):
         return len(self._actores.obtener_actores())
 
     def actualizar_actores(self):
+        actores_a_eliminar = []
         self.pilas.pad.actualizar()
+        
         for x in self._actores.obtener_actores():
-            x.pre_actualizar()
-            x.actualizar()
-
+            if x._vivo:
+                x.pre_actualizar()
+                x.actualizar()
+            else:
+                actores_a_eliminar.append(x)
+                
+        for actor in actores_a_eliminar:
+            actor.quitar_de_la_escena_completamente()
+            
     def dibujar_actores(self, painter):
         painter.save()
 
         self.camara.aplicar_transformaciones_completas(painter)
 
         for x in self._actores.obtener_actores(fijos=False, sin_padre=True):
-            x.dibujar(painter)
+            if x._vivo:
+                x.dibujar(painter)
 
         painter.restore()
 
@@ -90,7 +99,8 @@ class Escena(object):
         self.camara.aplicar_translacion(painter)
 
         for x in self._actores.obtener_actores(fijos=True, sin_padre=True):
-            x.dibujar(painter)
+            if x._vivo:
+                x.dibujar(painter)
 
         painter.restore()
 

@@ -492,6 +492,9 @@ class Actor(Estudiante):
 
     def eliminar(self):
         """Elimina el actor de la lista que se imprimen en pantalla."""
+        self._vivo = False
+        
+    def quitar_de_la_escena_completamente(self):
         self._eliminar_anexados()
 
         try:
