@@ -7,7 +7,6 @@
 # Website - http://www.pilas-engine.com.ar
 
 import sonido
-from pilasengine import configuracion
 
 
 class Sonidos(object):
@@ -18,7 +17,7 @@ class Sonidos(object):
     def cargar(self, ruta):
         ruta_al_sonido = self.pilas.obtener_ruta_al_recurso(ruta)
 
-        if configuracion.AUDIO_HABILITADO:
+        if self.pilas.configuracion.audio_habilitado():
             return sonido.Sonido(ruta_al_sonido)
         else:
             return sonido.SonidoDeshabilitado()

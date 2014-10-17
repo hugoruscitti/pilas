@@ -91,12 +91,24 @@ class Pilas(object):
 
     def _definir_icono_de_ventana(self):
         self.log("Definiendo el icono de la ventana")
-        return
+        try:
+            import pygame
+            try:
+                img = pygame.image.load(self.obtener_ruta_al_recurso('icono.ico'))
+                pygame.display.set_icon(img)
+            except pygame.error:
+                pass
+        except ImportError:
+            self.log("Imposible cambiar el icono, parece que pygame no esta instalado...")
+            pass
 
+        
     def _inicializar_audio(self):
         self.log("Inicializando el sistema de audio con pygame")
-        return
-
+        import pygame
+        pygame.init()
+        pygame.mixer.init()
+        
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
                   con_aceleracion=None, habilitar_mensajes_log=False,
                   x=None, y=None, capturar_errores=True):

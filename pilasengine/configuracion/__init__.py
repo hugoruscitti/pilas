@@ -18,9 +18,6 @@ from PyQt4 import QtGui
 
 from pilasengine.configuracion.configuracion_base import Ui_Dialog
 
-AUDIO_HABILITADO = False
-PAD_HABILITADO = False
-
 VERSION = '2'
 
 class Configuracion(object):
