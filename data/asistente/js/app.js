@@ -13,20 +13,17 @@ app.config(['$routeProvider', function($routeProvider) {
           otherwise({redirectTo:'/'});
 }]);
 
-var ModalCodigoCtrl = function($scope, $modalInstance, $http, juego) {
-    $scope.data = {};
-    $scope.data.juego = juego;
-    $scope.data.codigo = window.interlocutor.obtener_codigo_del_ejemplo(juego.nick);
 
-    $scope.cancelar = function () {
-        $modalInstance.dismiss('cancel');
-    };
-
-    $scope.ejecutar = function(juego) {
-        window.interlocutor.abrir_ejemplo(juego);
-    };
-};
-
+app.directive('errSrc', function() {
+  return {
+    link: function(scope, element, attrs) {
+      element.bind('error', function() {
+        alert("asdasd");
+        attrs.$set('src', "imagenes/ejemplos/inexistente.png");
+      });
+    }
+  }
+});
 
 
 app.controller("MainCtrl", function($scope, $location, PanelVersionFactory) {
@@ -40,27 +37,13 @@ app.controller("MainCtrl", function($scope, $location, PanelVersionFactory) {
 app.controller("PrincipalCtrl", function($scope, $location){
 });
 
-app.controller("EjemplosCtrl", function($scope, $location, $modal){
+app.controller("EjemplosCtrl", function($scope, $location){
     $scope.data = {};
 
 
     $scope.abrir_ejemplo = function(nick) {
         window.interlocutor.abrir_ejemplo(nick);
     };
-
-    $scope.mostrar_codigo = function(juego) {
-
-        var modalInstance = $modal.open({
-            templateUrl: 'partials/modal_codigo.html',
-            controller: ModalCodigoCtrl,
-            resolve: {
-                juego: function () {
-                    return juego;
-                }
-            }
-        });
-    };
-
 
 
     var listado_plano = JSON.parse(window.interlocutor.obtener_ejemplos());
