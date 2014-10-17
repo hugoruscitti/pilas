@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '0.90.9',
+  version: '0.90.10',
   fecha: '17 de Oct del 2014',
-  commit: '1b4bc40',
-  changelog: ['Reincorporando pygame.', 'Arreglo menor.', 'Evitando que los actores se eliminen mientras dura el ciclo de actualización (esto producía un crash en windows).', 'creando el nuevo instalador.', 'Quitando pygame para probar el cargador de windows.', ]
+  commit: '40899d0',
+  changelog: ['Arreglo menor.', 'Creando el mini-ejemplo de bloques.', 'Mejorando la pantalla de ejemplos, para que no falle si el ejemplo no tiene captura de pantalla.', 'Reparando rutas cuando se arrastra y sueltan archivos de texto sobre el asistente.', 'Reparando el uso de las rutas relativas en los ejemplos.', ]
 }

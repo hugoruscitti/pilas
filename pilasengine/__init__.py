@@ -33,7 +33,7 @@ from pilasengine import pad
 
 import widget
 
-VERSION="0.90.9"
+VERSION="0.90.10"
 
 class Pilas(object):
     """Representa el area de juego de pilas, el componente principal.
