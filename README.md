@@ -31,4 +31,5 @@ se puede probar a partir de ahora mediante estos comandos:
 
     git clone https://github.com/hugoruscitti/python-pilas-experimental.git
     cd python-pilas-experimental
-    python bin/pilas.py
+    python bin/pilasengine
+
