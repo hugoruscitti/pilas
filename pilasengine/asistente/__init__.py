@@ -101,12 +101,6 @@ class VentanaAsistente(Base):
         self.webView.setAcceptDrops(False)
         self._deshabilitar_barras_de_scroll()
 
-        #self.statusbar.showMessage(u"Versión " + pilas.version())
-        #self.salir_action.connect(self.salir_action, QtCore.SIGNAL("triggered()"), self.salir)
-        #self._consultar_ultima_version_del_servidor()
-        #self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
-        #self.watcher.connect(self.watcher, QtCore.SIGNAL('fileChanged(const QString&)'), self._reiniciar_proceso)
-
         self.webView.history().setMaximumItemCount(0)
         self.webView.setAcceptDrops(True)
 
@@ -141,18 +135,6 @@ class VentanaAsistente(Base):
     def _cargar_pagina_principal(self):
         file_path = pilasengine.utils.obtener_ruta_al_recurso('asistente/index.html')
         self.webView.load(QtCore.QUrl.fromLocalFile(file_path))
-
-    def ejecutar_script(self, nombre_archivo_script, directorio_trabajo):
-        self.nombre_archivo_script = nombre_archivo_script
-        self.directorio_trabajo = directorio_trabajo
-
-        if sys.platform == "darwin":
-            pilas.interprete.cargar_ejemplo(self.main, True, nombre_archivo_script)
-        else:
-            try:
-                self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
-            except Exception, e:
-                QtGui.QMessageBox.critical(self.main, "Error", str(e))
 
     def observar_cambios_de_archivos(self, nombre_archivo_script, directorio_trabajo):
         for f in self.watcher.files():
