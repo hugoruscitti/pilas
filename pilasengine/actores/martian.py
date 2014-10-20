@@ -30,7 +30,8 @@ class Martian(Actor):
         self.imagen = self.pilas.imagenes.cargar_grilla("marcianitos/martian.png", 12)
         self.definir_cuadro(0)
         self.mapa = None
-        self.hacer(Esperando())
+        self.hacer(Esperando)
+
         """
         self.municion = self.pilas.actores.proyectil.Bala
         self.aprender(self.pilas.habilidades.Disparar,
@@ -49,6 +50,10 @@ class Martian(Actor):
         self.colisiona_abajo_derecha = False
 
         self.obtener_colisiones()
+        self.definir_figura_fisica()
+    
+    def definir_figura_fisica(self):
+        self.figura_del_actor = self.pilas.fisica.Rectangulo(0, 0, 20, 50)
 
     def definir_mapa(self, mapa):
         self.mapa = mapa
@@ -63,7 +68,8 @@ class Martian(Actor):
 
     def actualizar(self):
         "Sigue el movimiento de la figura."
-        pass
+        self.x = self.figura_del_actor.x
+        self.y = self.figura_del_actor.y - 25
 
     def puede_saltar(self):
         "Indica si el persona puede saltar."
