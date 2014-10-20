@@ -164,6 +164,12 @@ class Figura(object):
             self.escala_de_gravedad = 0
             self._cuerpo.fixtures[0].userData['dinamica'] = False
             self._cuerpo.fixedRotation = True
+            
+    def obtener_sin_rotacion(self):
+        return self._cuerpo.fixedRotation
+    
+    def definir_sin_rotacion(self, rotacion):
+        self._cuerpo.fixedRotation = rotacion
 
     x = property(get_x, set_x, doc="define la posición horizontal.")
     y = property(get_y, set_y, doc="define la posición vertical.")
@@ -172,4 +178,4 @@ class Figura(object):
     actor_que_representa_como_area_de_colision = property(obtener_colision, definir_colision)
     escala_de_gravedad = property(obtener_escala_de_gravedad, definir_escala_de_gravedad)
     dinamica = property(obtener_dinamica, definir_dinamica)
-
+    sin_rotacion = property(obtener_sin_rotacion, definir_sin_rotacion)

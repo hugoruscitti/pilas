@@ -36,7 +36,6 @@ class Rectangulo(Figura):
         self._escala = 1
 
         self.fisica = fisica
-        self.sin_rotacion = sin_rotacion
 
         if not self.fisica:
             self.fisica = pilas.escena_actual().fisica
@@ -59,7 +58,7 @@ class Rectangulo(Figura):
 
         self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
 
-        self._cuerpo.fixedRotation = self.sin_rotacion
+        self.sin_rotacion = sin_rotacion
         self.sensor = sensor
         self.dinamica = dinamica
 
