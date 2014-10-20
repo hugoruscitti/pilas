@@ -170,6 +170,9 @@ class Figura(object):
     
     def definir_sin_rotacion(self, rotacion):
         self._cuerpo.fixedRotation = rotacion
+        
+    def __repr__(self):
+        return "<Figura %s en (%d, %d)>" % (self.__class__.__name__, self.x, self.y)
 
     x = property(get_x, set_x, doc="define la posición horizontal.")
     y = property(get_y, set_y, doc="define la posición vertical.")
