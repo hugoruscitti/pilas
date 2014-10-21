@@ -32,7 +32,6 @@ class Poligono(Figura):
         self.puntos = puntos
         self.dinamica = dinamica
         self.fisica = fisica
-        self.sin_rotacion = sin_rotacion
 
         if not self.fisica:
             self.fisica = pilas.escena_actual().fisica
@@ -53,7 +52,7 @@ class Poligono(Figura):
         else:
             self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(0, 0), fixtures=fixture)
 
-        self._cuerpo.fixedRotation = self.sin_rotacion
+        self.sin_rotacion = sin_rotacion
         self.sensor = sensor
 
 

@@ -296,7 +296,7 @@ class Fisica(object):
         import gc
         gc.collect()
 
-    def Rectangulo(self, x, y, ancho, alto, dinamica=True, densidad=1.0,
+    def Rectangulo(self, x=0, y=0, ancho=50, alto=20, dinamica=True, densidad=1.0,
                    restitucion=0.56, friccion=10.5, amortiguacion=0.1,
                    sin_rotacion=False, sensor=False):
 
@@ -307,7 +307,7 @@ class Fisica(object):
                                     sin_rotacion=sin_rotacion,
                                     sensor=sensor)
 
-    def Circulo(self, x, y, radio, dinamica=True, densidad=1.0,
+    def Circulo(self, x=0, y=0, radio=20, dinamica=True, densidad=1.0,
                 restitucion=0.56, friccion=10.5, amortiguacion=0.1,
                 sin_rotacion=False, sensor=False):
         return circulo.Circulo(self, self.pilas, x, y, radio,
