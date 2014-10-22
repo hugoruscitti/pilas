@@ -106,6 +106,9 @@ class BaseWidget(object):
         self.update()
 
     def keyPressEvent(self, event):
+        if event.isAutoRepeat():
+            return
+        
         codigo_de_tecla = Controles.obtener_codigo_de_tecla_normalizado(event.key())
 
         if event.key() == QtCore.Qt.Key_Escape:
