@@ -195,6 +195,9 @@ class Pilas(object):
     def definir_escena(self, escena):
         self.escenas.definir_escena(escena)
 
+    def cambiar_escena(self, escena):
+        self.definir_escena(escena)
+
     def definir_iniciado_desde_asistente(self, estado):
         self._iniciado_desde_asistente = estado
 

@@ -31,7 +31,6 @@ class Martian(Actor):
         self.definir_cuadro(0)
         self.mapa = None
         self.hacer(Esperando)
-
         """
         self.municion = self.pilas.actores.proyectil.Bala
         self.aprender(self.pilas.habilidades.Disparar,
@@ -51,7 +50,7 @@ class Martian(Actor):
 
         self.obtener_colisiones()
         self.definir_figura_fisica()
-    
+
     def definir_figura_fisica(self):
         self.figura_del_actor = self.pilas.fisica.Rectangulo(0, 0, 20, 50)
 
@@ -112,21 +111,21 @@ class Esperando(Comportamiento):
 
     def actualizar(self):
         if self.control.izquierda:
-            self.receptor.hacer(Caminando())
+            self.receptor.hacer(Caminando)
         elif self.control.derecha:
-            self.receptor.hacer(Caminando())
+            self.receptor.hacer(Caminando)
 
         if self.control.arriba and self.receptor.puede_saltar():
-            self.receptor.hacer(Saltando(-8))
+            self.receptor.hacer(Saltando, -8)
 
         if self.control.boton:
-            self.receptor.hacer(Disparar(self.receptor))
+            self.receptor.hacer(Disparar)
 
         self.caer_si_no_toca_el_suelo()
 
     def caer_si_no_toca_el_suelo(self):
         if self.receptor.obtener_distancia_al_suelo() > 0:
-            self.receptor.hacer(Saltando(0))
+            self.receptor.hacer(Saltando, 0)
 
 class Caminando(Esperando):
     """Representa al actor caminando hacia la izquierda o derecha."""
@@ -147,7 +146,7 @@ class Caminando(Esperando):
         vx = 0
 
         if self.control.boton:
-            self.receptor.hacer(Disparar(self.receptor))
+            self.receptor.hacer(Disparar)
             return
 
         if self.control.izquierda:
@@ -166,10 +165,10 @@ class Caminando(Esperando):
             if not(self.receptor.colisiona_arriba_derecha or self.receptor.colisiona_abajo_derecha):
                 self.receptor.x += vx
         else:
-            self.receptor.hacer(Esperando())
+            self.receptor.hacer(Esperando)
 
         if self.control.arriba:
-            self.receptor.hacer(Saltando(-8))
+            self.receptor.hacer(Saltando, -8)
 
         self.caer_si_no_toca_el_suelo()
 
@@ -205,7 +204,7 @@ class Saltando(Comportamiento):
         # Si toca el suelo se detiene.
         if self.velocidad_de_salto > distancia:
             self.receptor.y -= distancia
-            self.receptor.hacer(Esperando())
+            self.receptor.hacer(Esperando)
         else:
             self.receptor.y -= self.velocidad_de_salto
 
@@ -240,7 +239,7 @@ class Disparar(Comportamiento):
         termina = self.avanzar_animacion()
 
         if termina:
-            self.receptor.hacer(Esperando())
+            self.receptor.hacer(Esperando)
 
     def avanzar_animacion(self):
         self.paso += 1

@@ -73,17 +73,17 @@ class Escena(object):
     def actualizar_actores(self):
         actores_a_eliminar = []
         self.pilas.pad.actualizar()
-        
+
         for x in self._actores.obtener_actores():
             if x._vivo:
                 x.pre_actualizar()
                 x.actualizar()
             else:
                 actores_a_eliminar.append(x)
-                
+
         for actor in actores_a_eliminar:
             actor.quitar_de_la_escena_completamente()
-            
+
     def dibujar_actores(self, painter):
         painter.save()
 
@@ -116,10 +116,10 @@ class Escena(object):
 
     def arrastrar_actor_mas_cercano(self, evento):
         actores_debajo_de_mouse = self.obtener_actores_en(evento.x, evento.y)
-        
+
         if actores_debajo_de_mouse:
             actores_debajo_de_mouse.sort()
-            
+
             for actor_cercano in actores_debajo_de_mouse:
                 if actor_cercano.tiene_habilidad(
                     self.pilas.habilidades.Arrastrable):
