@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import sys
 import signal
 
@@ -10,7 +11,11 @@ from PyQt4 import QtWebKit
 from PyQt4 import QtOpenGL
 import Box2D
 import pygame
-
+import tkMessageBox
+import Tkinter
+import imp
+import sys
+import os
 import json
 import new
 import uuid
@@ -18,6 +23,24 @@ import code
 
 
 pilasengine = __import__('pilasengine')
+
+if os.path.exists('ejecutar.py'):
+    window = Tkinter.Tk()
+    window.wm_withdraw()
+    
+    try:
+        imp.load_source("__main__", "ejecutar.py")
+    except Exception, e:
+        tkMessageBox.showerror("Error al ejecutar ejecutar.py", e)
+        sys.exit(1)
+        
+    sys.exit(0)
+
+
+window = Tkinter.Tk()
+window.wm_withdraw()
+tkMessageBox.showerror(" ".join(sys.argv), e)
+
 
 
 app = QtGui.QApplication(sys.argv)
