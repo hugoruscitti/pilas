@@ -106,6 +106,9 @@ class BaseWidget(object):
         self.update()
 
     def keyPressEvent(self, event):
+        if event.isAutoRepeat():
+            return
+        
         codigo_de_tecla = Controles.obtener_codigo_de_tecla_normalizado(event.key())
 
         if event.key() == QtCore.Qt.Key_Escape:
@@ -122,6 +125,8 @@ class BaseWidget(object):
         self.pilas.depurador.cuando_pulsa_tecla(codigo_de_tecla)
 
     def keyReleaseEvent(self, event):
+        if event.isAutoRepeat():
+            return
         codigo_de_tecla = Controles.obtener_codigo_de_tecla_normalizado(event.key())
         self.pilas.eventos.suelta_tecla.emitir(codigo=codigo_de_tecla,
                                                es_repeticion=event.isAutoRepeat(),

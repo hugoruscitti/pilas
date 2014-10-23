@@ -236,7 +236,7 @@ class Actores(object):
 
     def Explosion(self, x=0, y=0):
         return self._crear_actor('explosion', 'Explosion', x=x, y=y)
-    
+
     def ExplosionDeHumo(self, x=0, y=0):
         return self._crear_actor('explosion_de_humo', 'ExplosionDeHumo', x=x, y=y)
 
@@ -342,10 +342,10 @@ class Actores(object):
                                   imagen=imagen,
                                   vida=vida)
         return actor
-    
+
     def DisparoLaser(self, x=0, y=0, rotacion=0, velocidad=10, imagen="disparo_laser.png"):
-        return self._crear_actor('disparo_laser', 'DisparoLaser', 
-                                 x=x, y=y, rotacion=rotacion, 
+        return self._crear_actor('disparo_laser', 'DisparoLaser',
+                                 x=x, y=y, rotacion=rotacion,
                                  velocidad=velocidad, imagen=imagen)
 
     def fabricar(self, clase, cantidad):

@@ -1,12 +1,8 @@
 import pilasengine
-from pilas.escena import Normal
-from pilas.escena import Pausa
 
 
-class EscenaDeMenu(pilas.escena.Normal):
 
-    def __init__(self):
-        Normal.__init__(self)
+class EscenaDeMenu(pilasengine.escenas.Normal):
 
     def iniciar(self):
         pilas.fondos.Color(pilas.colores.negro)
@@ -32,10 +28,7 @@ class EscenaDeMenu(pilas.escena.Normal):
         sys.exit(0)
 
 
-class Escena_1(pilas.escena.Normal):
-
-    def __init__(self):
-        Normal.__init__(self)
+class Escena_1(pilasengine.escenas.Normal):
 
     def iniciar(self):
         pilas.actores.Texto("Acabas de cambiar a la Escena 1.\n\
@@ -66,10 +59,7 @@ seguira en la misma posicion donde la dejaste.")
             pilas.escena.pausar()
 
 
-class Escena_2(pilas.escena.Normal):
-
-    def __init__(self):
-        Normal.__init__(self)
+class Escena_2(pilasengine.escenas.Normal):
 
     def iniciar(self):
         pilas.fondos.Tarde()
@@ -85,5 +75,5 @@ class Escena_2(pilas.escena.Normal):
         pilas.recuperar_escena()
 
 pilas = pilasengine.iniciar()
-pilas.cambiar_escena(EscenaDeMenu())
+pilas.cambiar_escena(EscenaDeMenu(pilas))
 pilas.ejecutar()
