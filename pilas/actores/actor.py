@@ -672,7 +672,7 @@ class Actor(object, Estudiante):
         """
         self.aprender(pilas.habilidades.Imitar, otro_actor_o_figura, *args, **kwargs)
 
-    def decir(self, mensaje, autoeliminar=True):
+    def decir(self, mensaje, autoeliminar=True, leer=True):
         """Emite un mensaje usando un globo similar al de los comics.
 
         :param mensaje: Texto a mostrar en el mensaje.
@@ -684,7 +684,8 @@ class Actor(object, Estudiante):
         nuevo_actor.aprender(pilas.habilidades.Imitar, self, False)
         nuevo_actor.z = self.z - 1
         self.anexar(nuevo_actor)
-        pilas.atajos.leer(mensaje)
+        if leer:
+            pilas.atajos.leer(mensaje)
 
     def anexar(self, otro_actor):
         """ Agrega un Actor a la lista de actores anexados al Actor actual.
