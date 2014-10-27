@@ -84,9 +84,9 @@ class Interlocutor(QtCore.QObject):
     def obtener_version_desde_el_servidor(self):
         return self.version_del_servidor
 
-    def definir_version(self, version):
-        self.version_del_servidor = version
-        self.ventana.webView.page().mainFrame().evaluateJavaScript('definir_version("' + version + '");')
+    def definir_version(self, version, version_local):
+        codigo = "definir_version('VR', 'VL')".replace('VR', version).replace('VL', version_local)
+        self.ventana.webView.page().mainFrame().evaluateJavaScript(codigo)
 
 
 class VentanaAsistente(Base):
@@ -137,9 +137,9 @@ class VentanaAsistente(Base):
         try:
             respuesta_como_json = json.loads(str(respuesta_como_texto))
             version_en_el_servidor = respuesta_como_json['nueva_version']
-            self.interlocutor.definir_version(version_en_el_servidor)
+            self.interlocutor.definir_version(version_en_el_servidor, pilasengine.VERSION)
         except ValueError, e:
-            self.interlocutor.definir_version("")
+            self.interlocutor.definir_version("", pilasengine.VERSION)
 
     def _habilitar_inspector_web(self):
         QtWebKit.QWebSettings.globalSettings()
