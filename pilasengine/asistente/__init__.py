@@ -9,6 +9,7 @@
 import sys
 import os
 import webbrowser
+import json
 
 from PyQt4 import QtGui
 from PyQt4 import QtCore
@@ -79,6 +80,15 @@ class Interlocutor(QtCore.QObject):
         juegos = '{"ejemplos": ' + str(juegos).replace("'", '"') + "}"
         return str(juegos)
 
+    @QtCore.pyqtSlot(result=str)
+    def obtener_version_desde_el_servidor(self):
+        return self.version_del_servidor
+
+    def definir_version(self, version):
+        self.version_del_servidor = version
+        self.ventana.webView.page().mainFrame().evaluateJavaScript('definir_version("' + version + '");')
+
+
 class VentanaAsistente(Base):
     """Representa la ventana principal del asistente."""
 
@@ -107,17 +117,29 @@ class VentanaAsistente(Base):
         self.webView.dragEnterEvent = self.dragEnterEvent
         self.webView.dragLeaveEvent = self.dragLeaveEvent
         self.webView.dropEvent = self.dropEvent
+        self._consultar_ultima_version_del_servidor()
 
     def _vincular_con_javascript(self):
         self.webView.page().mainFrame().addToJavaScriptWindowObject("interlocutor", self.interlocutor)
 
     def _consultar_ultima_version_del_servidor(self):
-        direccion = QtCore.QUrl("https://raw.github.com/hugoruscitti/pilas/gh-pages/version.json")
-        self.manager = QtNetwork.QNetworkAccessManager(self.main)
+        direccion = QtCore.QUrl("https://raw.githubusercontent.com/hugoruscitti/pilas/gh-pages/version.json")
+        self.manager = QtNetwork.QNetworkAccessManager(self.MainWindow)
         self.manager.get(QtNetwork.QNetworkRequest(direccion))
 
         self.manager.connect(self.manager, QtCore.SIGNAL("finished(QNetworkReply*)"),
                 self._cuando_termina_de_consultar_version)
+
+    def _cuando_termina_de_consultar_version(self, respuesta):
+        print "Termina el request"
+        respuesta_como_texto = respuesta.readAll().data()
+
+        try:
+            respuesta_como_json = json.loads(str(respuesta_como_texto))
+            version_en_el_servidor = respuesta_como_json['nueva_version']
+            self.interlocutor.definir_version(version_en_el_servidor)
+        except ValueError, e:
+            self.interlocutor.definir_version("")
 
     def _habilitar_inspector_web(self):
         QtWebKit.QWebSettings.globalSettings()
