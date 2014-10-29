@@ -25,7 +25,7 @@ except AttributeError:
 class Ui_AsistenteWindow(object):
     def setupUi(self, AsistenteWindow):
         AsistenteWindow.setObjectName(_fromUtf8("AsistenteWindow"))
-        AsistenteWindow.resize(615, 430)
+        AsistenteWindow.resize(615, 480)
         AsistenteWindow.setMinimumSize(QtCore.QSize(615, 480))
         AsistenteWindow.setAcceptDrops(False)
         icon = QtGui.QIcon()
