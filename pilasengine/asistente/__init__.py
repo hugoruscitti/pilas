@@ -131,7 +131,6 @@ class VentanaAsistente(Base):
                 self._cuando_termina_de_consultar_version)
 
     def _cuando_termina_de_consultar_version(self, respuesta):
-        print "Termina el request"
         respuesta_como_texto = respuesta.readAll().data()
 
         try:

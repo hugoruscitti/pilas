@@ -273,3 +273,27 @@ body.modal-open {
   padding: 0;
   float: none;
 }
+
+.aviso {
+  border: 1px solid #FFE0E0;
+  background-color: #FEE;
+  padding: 9px;
+}
+
+img#avisoImagen {
+  margin-top: -6px;
+  margin-right: 5px;
+
+}
+
+.iconoInline {
+  margin-top: -10px;
+}
+
+#aviso {
+  display: none;
+}
+
+#mensajeAviso {
+  display: none;
+}

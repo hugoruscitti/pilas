@@ -55,6 +55,11 @@
 
     function definir_version(version, version_local) {
       console.log("VERSION!!! " + version + " version local " + version_local);
+      var elementoAviso = document.getElementById('aviso');
+      var elementoMensajeAviso = document.getElementById('mensajeAviso');
+
+      elementoAviso.style.setProperty('display', 'inline');
+      elementoMensajeAviso.style.setProperty('display', 'block');
     }
 
   </script>
@@ -68,7 +73,8 @@
   <div id='header'>
 
     <div class='version'>
-      <a href ng-click='alternar_panel_version()' class='link-version'>versión {{data.version.version}}</a>
+      <span id='aviso'><img id='avisoImagen' src='imagenes/actualizacion.png'></span>
+      <a href id='version' ng-click='alternar_panel_version()' class='link-version'> versión {{data.version.version}}</a>
     </div>
 
 
@@ -76,6 +82,12 @@
       <div class='panel-version'>
           <p>Esta versión ha sido generada el
             <strong>{{data.version.fecha}}</strong> desde el commit <code>{{data.version.commit}}</code>.
+
+          <div id='mensajeAviso' class='aviso'>Este icono <img src='imagenes/actualizacion.png'> indica
+            que hay una actualización de
+            pilas-engine disponible para descargar desde el
+            <a href onclick='abrir_sitio_de_pilas()'>sitio del proyecto</a>.
+          </div>
 
           <h4>Cambios recientes</h4>
           <ul>
