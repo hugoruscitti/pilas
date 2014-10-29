@@ -13,7 +13,7 @@
 
   ;Name and file
   Name "pilas-engine"
-  OutFile "pilasengine-instalador.exe"
+  OutFile "pilas-engine_0.90.11.exe"
 
   ;Default installation folder
   InstallDir "c:\pilas-engine"
