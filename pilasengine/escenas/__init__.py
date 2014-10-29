@@ -28,6 +28,7 @@ class Escenas(object):
         self.pilas = pilas
         self.pila_de_escenas = []
         self.escena_actual = None
+        self.iteraciones = 0
 
     def definir_escena(self, escena):
         if self.escena_actual:
@@ -46,7 +47,19 @@ class Escenas(object):
 
     def realizar_actualizacion_logica(self):
         escena = self.obtener_escena_actual()
-        escena.colisiones.actualizar()
+
+        # Resuelve un bug raro que activaba todos los callbacks de colisiones
+        # cuando se usaba pilas desde un script. Resulta que en el instante
+        # inicial de armar la escena todas las figuras fisicas están en la
+        # coordenada (0, 0), y se necesita iterar al menos dos veces para
+        # asegurarse que la fisica actualice las coordenadas y recién ahí
+        # analizar colisiones.
+        if self.iteraciones < 2:
+            escena.colisiones.limpiar()
+            self.iteraciones += 1
+        else:
+            escena.colisiones.actualizar()
+
         escena.cuando_actualiza.emitir()
         escena.actualizar_fisica()
         escena.actualizar_actores()

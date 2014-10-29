@@ -40,6 +40,12 @@ class Colisiones(object):
                              'actor2': actor_asociado_2}
             self._colisiones_en_curso.append(info_colision)
 
+    def obtener_cantidad_de_colisiones(self):
+        return len(self._colisiones_en_curso)
+
+    def limpiar(self):
+        self._colisiones_en_curso = []
+
     def actualizar(self):
         """Realiza todas las comprobaciones de colisiones.
 
