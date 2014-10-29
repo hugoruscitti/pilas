@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '0.90.10',
-  fecha: '17 de Oct del 2014',
-  commit: '40899d0',
-  changelog: ['Arreglo menor.', 'Creando el mini-ejemplo de bloques.', 'Mejorando la pantalla de ejemplos, para que no falle si el ejemplo no tiene captura de pantalla.', 'Reparando rutas cuando se arrastra y sueltan archivos de texto sobre el asistente.', 'Reparando el uso de las rutas relativas en los ejemplos.', ]
+  version: '0.90.11',
+  fecha: '29 de Oct del 2014',
+  commit: '901c1ea',
+  changelog: ['Agregando un indicador que avisa si la versión está desactualizada.', 'Reparando el bug que lanzaba todos los callbacks de colisiones desde scripts.', 'Arreglo menor en el tamaño de ventana.', 'reparando el bug que no permitia generar el cargador para windows.', 'Agregando una biblioteca para comparar versiones.', ]
 }
