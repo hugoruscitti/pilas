@@ -87,6 +87,7 @@ Section "Dummy Section" SecDummy
   
   ;ADD YOUR OWN FILES HERE...
   File "pilas-engine.exe"
+  File "library.zip"
   File /r "data"
   File /r "pilasengine"
   

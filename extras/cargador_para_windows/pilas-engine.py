@@ -21,26 +21,38 @@ import new
 import uuid
 import code
 
+def ejecutar_archivo(nombre):
+    try:
+        imp.load_source("__main__", nombre)
+    except Exception, e:
+        terminar_con_error("Error al ejecutar " + nombre + ":\n" + str(e))
+
+def terminar_con_error(mensaje):
+    app = QtGui.QApplication(sys.argv)
+    error = QtGui.QMessageBox()
+    error.critical(None, "Uh, algo anda mal...", mensaje)
+    sys.exit(1)
+
 
 pilasengine = __import__('pilasengine')
 
 if os.path.exists('ejecutar.py'):
-    window = Tkinter.Tk()
-    window.wm_withdraw()
-    
-    try:
-        imp.load_source("__main__", "ejecutar.py")
-    except Exception, e:
-        tkMessageBox.showerror("Error al ejecutar ejecutar.py", e)
-        sys.exit(1)
-        
+    #window = Tkinter.Tk()
+    #window.wm_withdraw()
+    ejecutar_archivo('ejecutar.py') 
     sys.exit(0)
 
+if len(sys.argv) > 1:
+    if os.path.exists(sys.argv[-1]):
+        ejecutar_archivo(sys.argv[-1])
+        sys.exit(0)
+    else:
+        if sys.argv[1] == '-u':
+            sys.exit(0)
+	terminar_con_error("No se puede abrir el archivo " + sys.argv[-1] + "\n" + "los argumentos son:" + str(sys.argv))
 
-window = Tkinter.Tk()
-window.wm_withdraw()
-tkMessageBox.showerror(" ".join(sys.argv), e)
-
+#window = Tkinter.Tk()
+#window.wm_withdraw()
 
 
 app = QtGui.QApplication(sys.argv)
