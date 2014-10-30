@@ -30,7 +30,7 @@ def abrir():
     utils.centrar_ventana(MainWindow)
     MainWindow.show()
     MainWindow.raise_()
-
+    pilasengine.utils.destacar_ventanas()
     return MainWindow
 
 

@@ -237,3 +237,10 @@ def realizar_pruebas():
         print v + "OK" + n
     except ImportError:
         print "Cuidado -> no se encuentra pygame."
+
+def destacar_ventanas():
+    if getattr(sys, 'frozen', None):
+        ruta = sys.argv[0].rsplit('.app')[0] + '.app'
+        os.system("open -a " + ruta)
+    else:
+        print "No estoy en py2app"

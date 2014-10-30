@@ -205,5 +205,5 @@ def abrir():
 
     MainWindow.show()
     MainWindow.raise_()
-
+    pilasengine.utils.destacar_ventanas()
     return MainWindow
