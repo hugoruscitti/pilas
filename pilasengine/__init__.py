@@ -10,6 +10,8 @@ import os
 import datetime
 import traceback
 import random
+import codecs
+import imp
 
 from PyQt4 import QtGui
 from PyQt4 import QtCore
@@ -476,3 +478,25 @@ def abrir_script_con_livereload(archivo):
     ruta = os.path.abspath(ruta)
 
     return interprete.abrir_script_con_livereload(archivo)
+
+
+
+
+def abrir_script(archivo):
+
+    def terminar_con_error(mensaje):
+        _ = QtGui.QApplication(sys.argv)
+        error = QtGui.QMessageBox()
+        error.critical(None, "Uh, algo anda mal...", mensaje)
+        sys.exit(1)
+
+    def ejecutar_archivo(nombre):
+        try:
+            imp.load_source("__main__", nombre)
+        except Exception, e:
+            terminar_con_error("Error al ejecutar " + nombre + ":\n" + str(e))
+            
+    ruta_absoluta_al_archivo = os.path.abspath(archivo)
+    ruta = os.path.dirname(ruta_absoluta_al_archivo)
+    os.chdir(ruta)
+    ejecutar_archivo(ruta_absoluta_al_archivo)

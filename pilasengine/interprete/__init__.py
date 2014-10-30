@@ -47,5 +47,4 @@ def abrir_script_con_livereload(archivo):
     ui.editor.cargar_contenido_desde_archivo(archivo)
     ui.editor.ejecutar(archivo)
 
-
     return MainWindow

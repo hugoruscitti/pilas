@@ -353,7 +353,7 @@ class Editor(editor_base.EditorBase):
         # path al directorio que representa el script. Así la función "obtener_ruta_al_recurso"
         # puede evaluar al directorio del script en busca de recursos también.
         if ruta_personalizada:
-	    ruta_personalizada = ruta_personalizada.replace('\\', '/')
+            ruta_personalizada = ruta_personalizada.replace('\\', '/')
             ruta_personalizada = os.path.dirname(ruta_personalizada)
             agregar_ruta_personalizada = 'pilas.utils.agregar_ruta_personalizada("%s")' %(ruta_personalizada)
             contenido = contenido.replace('pilas.reiniciar(', agregar_ruta_personalizada+'\n'+'pilas.reiniciar(')
