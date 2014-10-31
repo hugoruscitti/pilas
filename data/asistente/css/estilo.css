@@ -294,6 +294,14 @@ img#avisoImagen {
   display: none;
 }
 
+#actualizado {
+  display: none;
+}
+
 #mensajeAviso {
+  display: none;
+}
+
+#mensajeActualizado {
   display: none;
 }
