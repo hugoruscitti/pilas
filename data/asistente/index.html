@@ -54,12 +54,25 @@
     }
 
     function definir_version(version, version_local) {
-      console.log("VERSION!!! " + version + " version local " + version_local);
-      var elementoAviso = document.getElementById('aviso');
-      var elementoMensajeAviso = document.getElementById('mensajeAviso');
+    
+      setTimeout(function() {
+        console.log("El servidor informó que la versión mas reciente es la " + version + ", y este equipo usa la versión " + version_local);
 
-      elementoAviso.style.setProperty('display', 'inline');
-      elementoMensajeAviso.style.setProperty('display', 'block');
+        var elementoAviso = document.getElementById('aviso');
+        var elementoMensajeAviso = document.getElementById('mensajeAviso');
+        var elementEsperaImagen = document.getElementById('esperaImagen');
+
+        /* TODO: Si la version del servidor es mas nueva que la actual ... */
+        elementoAviso.style.setProperty('display', 'inline');
+        elementoMensajeAviso.style.setProperty('display', 'block');
+        elementEsperaImagen.style.setProperty('display', 'none');
+        
+        
+        
+        
+      }, 2000);
+      
+
     }
 
   </script>
@@ -74,6 +87,7 @@
 
     <div class='version'>
       <span id='aviso'><img id='avisoImagen' src='imagenes/actualizacion.png'></span>
+      <span id='espera'><img id='esperaImagen' src='imagenes/espera.gif'></span>
       <a href id='version' ng-click='alternar_panel_version()' class='link-version'> versión {{data.version.version}}</a>
     </div>
 
