@@ -690,7 +690,7 @@ class Disparar(Habilidad):
             self._agregar_disparo(objeto_a_disparar)
             objeto_a_disparar.fijo = self.receptor.fijo
         else:
-            raise "No se puede disparar este objeto."
+            raise Exception("No se puede disparar este objeto.")
 
         if self.cuando_dispara:
             self.cuando_dispara()
