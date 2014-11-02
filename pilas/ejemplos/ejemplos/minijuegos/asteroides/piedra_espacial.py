@@ -6,7 +6,7 @@ class PiedraEspacial(pilas.actores.Piedra):
 
     def __init__(self, piedras, x=0, y=0, tamano="grande"):
         # Obtiene una velocidad de movimiento aleatoria.
-        posibles_velocidades = range(-10, -2) + range(2, 10)
+        posibles_velocidades = list(range(-10, -2)) + list(range(2, 10))
 
         dx = random.choice(posibles_velocidades) / 10.0
         dy = random.choice(posibles_velocidades) / 10.0
