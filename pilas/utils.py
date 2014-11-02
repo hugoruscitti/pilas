@@ -79,14 +79,14 @@ def distancia(a, b):
     return abs(b - a)
 
 
-def distancia_entre_dos_puntos((x1, y1), (x2, y2)):
+def distancia_entre_dos_puntos(coords1, coords2):
     """Retorna la distancia entre dos puntos en dos dimensiones.
 
-    :param x1: Coordenada horizontal del primer punto.
-    :param y1: Coordenada vertical del primer punto.
-    :param x2: Coordenada horizontal del segundo punto.
-    :param y2: Coordenada vertical del segundo punto.
+    :param coords1: Tupla de coordenadas (x, y) del primer punto.
+    :param coords2: Tupla de coordenadas (x, y) del segundo punto.
     """
+    (x1, y1) = coords1
+    (x2, y2) = coords2
     return math.sqrt(distancia(x1, x2) ** 2 + distancia(y1, y2) ** 2)
 
 
