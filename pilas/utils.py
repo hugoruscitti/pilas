@@ -5,9 +5,9 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-from __future__ import division
+
 import os
-import interpolaciones
+from . import interpolaciones
 import sys
 import subprocess
 import math
@@ -239,7 +239,7 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
     :param tipo: es el algoritmo de la interpolación, puede ser 'lineal'.
     """
 
-    import interpolaciones
+    from . import interpolaciones
 
     algoritmos = {
         'lineal': interpolaciones.Lineal,
@@ -395,7 +395,7 @@ def descargar_archivo_desde_internet(parent, url, archivo_destino):
     :param url: La URL desde donde se descargará el archivo.
     :param archivo_destino: La ruta en donde se guardará el archivo.
     """
-    import descargar
+    from . import descargar
     ventana = descargar.Descargar(parent, url, archivo_destino)
     ventana.show()
 

@@ -11,7 +11,7 @@ import pilas
 from pilas import pilasversion
 
 try:
-    import widget_log
+    from . import widget_log
 except ImportError, e:
     print e
     pass

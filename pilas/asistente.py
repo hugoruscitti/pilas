@@ -11,9 +11,9 @@ import os
 from PyQt4 import QtCore, QtGui, QtWebKit, QtNetwork
 import json
 
-from asistente_base import Ui_AsistenteWindow
+from .asistente_base import Ui_AsistenteWindow
 import pilas
-import utils
+from . import utils
 
 class VentanaAsistente(Ui_AsistenteWindow):
 

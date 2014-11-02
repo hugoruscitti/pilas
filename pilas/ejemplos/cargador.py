@@ -6,14 +6,14 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-import ui
+from . import ui
 import os
 import sys
 import glob
 
 from PyQt4 import QtGui, QtCore
 
-import syntax
+from . import syntax
 import pilas
 
 

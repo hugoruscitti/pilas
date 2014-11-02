@@ -7,7 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
-from texto import Texto
+from .texto import Texto
 
 
 class TextoInferior(Texto):

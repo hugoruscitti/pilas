@@ -131,7 +131,7 @@ class Juego(pilas.escena.Base):
 
     def cuando_se_presione_escape(self, *k, **kv):
         "Regresa al menu principal"
-        import escena_menu
+        from . import escena_menu
         pilas.cambiar_escena(escena_menu.EscenaMenu())
 
 

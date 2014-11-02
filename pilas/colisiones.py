@@ -6,7 +6,7 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-import utils
+from . import utils
 import pilas
 
 class Colisiones:

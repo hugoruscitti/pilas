@@ -4,14 +4,14 @@ import inspect
 
 try:
     from PyQt4 import QtCore, QtGui
-    from interprete_base import Ui_InterpreteWindow
+    from .interprete_base import Ui_InterpreteWindow
 except:
     print "ERROR: No se encuentra pyqt"
     Ui_InterpreteWindow = object
     pass
 
 import pilas
-import utils
+from . import utils
 
 try:
     sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))

@@ -4,7 +4,7 @@ import sys
 
 try:
     from PyQt4 import QtCore, QtGui
-    from manual_base import Ui_ManualWindow
+    from .manual_base import Ui_ManualWindow
 except:
     print "ERROR: No se encuentra pyqt"
     Ui_ManualWindow = object

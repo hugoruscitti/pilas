@@ -1,1 +1,1 @@
-import ejecutar
+from . import ejecutar
