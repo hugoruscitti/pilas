@@ -144,8 +144,8 @@ class CanvasWidgetAbstracto(object):
                     if not actor.esta_fuera_de_la_pantalla():
                         actor.dibujar(self.painter)
                 except Exception:
-                    print traceback.format_exc()
-                    print sys.exc_info()[0]
+                    print(traceback.format_exc())
+                    print(sys.exc_info()[0])
                     actor.eliminar()
 
                 self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
@@ -158,17 +158,17 @@ class CanvasWidgetAbstracto(object):
             image =  QtGui.QPixmap(self.width(), self.height())
             image = QtGui.QPixmap.grabWidget(self, 0, 0, self.width(), self.height())
             if not image.save(filename, "PNG", -1):
-                print "Imposible guardar la captura de pantalla."
+                print("Imposible guardar la captura de pantalla.")
         except Exception:
-            print traceback.format_exc()
-            print sys.exc_info()[0]
+            print(traceback.format_exc())
+            print(sys.exc_info()[0])
 
     def timerEvent(self, event):
         try:
             self._realizar_actualizacion_logica()
         except Exception:
-            print traceback.format_exc()
-            print sys.exc_info()[0]
+            print(traceback.format_exc())
+            print(sys.exc_info()[0])
 
         self.update()
 
@@ -189,8 +189,8 @@ class CanvasWidgetAbstracto(object):
                 actor.pre_actualizar()
                 actor.actualizar()
         except Exception:
-            print traceback.format_exc()
-            print sys.exc_info()[0]
+            print(traceback.format_exc())
+            print(sys.exc_info()[0])
 
     def mouseMoveEvent(self, e):
         escala = self.escala

@@ -51,4 +51,4 @@ class Opcion(Texto):
         if self.funcion_a_invocar:
             self.funcion_a_invocar(*self.argumentos)
         else:
-            print "Cuidado, la opcion", self, "no tiene funcion asociada."
+            print("Cuidado, la opcion", self, "no tiene funcion asociada.")

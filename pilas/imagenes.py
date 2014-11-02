@@ -31,7 +31,7 @@ def cargar(ruta):
 
     if not pilas.mundo:
         mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` para comenzar."
-        print mensaje
+        print(mensaje)
         raise Exception(mensaje)
 
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)
@@ -60,7 +60,7 @@ def cargar_grilla(ruta, columnas=1, filas=1):
     """
     if not pilas.mundo:
         mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` para comenzar."
-        print mensaje
+        print(mensaje)
         raise Exception(mensaje)
 
     ruta = pilas.utils.obtener_ruta_al_recurso(ruta)

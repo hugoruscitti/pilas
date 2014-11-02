@@ -180,13 +180,13 @@ def listar_actores_en_consola():
     """Imprime una lista de todos los actores en la escena sobre la consola."""
     todos = pilas.escena_actual().actores
 
-    print "Hay %d actores en la escena:" % (len(todos))
-    print ""
+    print("Hay %d actores en la escena:" % (len(todos)))
+    print("")
 
     for s in todos:
-        print "\t", s
+        print("\t", s)
 
-    print ""
+    print("")
 
 
 def obtener_angulo_entre(punto_a, punto_b):
@@ -276,7 +276,7 @@ def detener_interpolacion(objeto, propiedad):
         getattr(objeto, setter)
         pilas.escena_actual().tweener.removeTweeningFromObjectField(objeto, setter)
     except:
-        print "El obejto %s no tiene esa propiedad %s" % (objeto.__class__.__name__, setter)
+        print("El obejto %s no tiene esa propiedad %s" % (objeto.__class__.__name__, setter))
 
 
 def obtener_area():
@@ -300,40 +300,40 @@ def obtener_area_de_texto(texto):
 
 def realizar_pruebas():
     """Imprime pruebas en pantalla para detectar si pilas tiene todas las dependencias instaladas."""
-    print "Realizando pruebas de dependencias:"
-    print ""
+    print("Realizando pruebas de dependencias:")
+    print("")
 
-    print "Box 2D:",
+    print("Box 2D:", end=' ')
     ver = pilas.fisica.obtener_version_en_tupla()
     if ver[0] == 2 and ver[1] >= 1:
-        print "OK, versión", pilas.fisica.obtener_version()
+        print("OK, versión", pilas.fisica.obtener_version())
     else:
-        print "Error -> la versión está obsoleta, instale una versión de la serie 2.1"
+        print("Error -> la versión está obsoleta, instale una versión de la serie 2.1")
 
-    print "pyqt:",
+    print("pyqt:", end=' ')
 
     try:
         from PyQt4 import Qt
-        print "OK, versión", Qt.PYQT_VERSION_STR
+        print("OK, versión", Qt.PYQT_VERSION_STR)
     except ImportError:
-        print "Error -> no se encuentra pyqt."
+        print("Error -> no se encuentra pyqt.")
 
-    print "pyqt con aceleracion:",
+    print("pyqt con aceleracion:", end=' ')
 
     try:
         from PyQt4 import QtOpenGL
         from PyQt4.QtOpenGL import QGLWidget
-        print "OK"
+        print("OK")
     except ImportError:
-        print "Error -> no se encuentra pyqt4gl."
+        print("Error -> no se encuentra pyqt4gl.")
 
-    print "PIL para soporte de jpeg (opcional):",
+    print("PIL para soporte de jpeg (opcional):", end=' ')
 
     try:
         from PIL import Image
-        print "OK"
+        print("OK")
     except ImportError:
-        print "Cuidado -> no se encuentra PIL."
+        print("Cuidado -> no se encuentra PIL.")
 
 
 def ver_codigo(objeto, imprimir, retornar):
@@ -354,7 +354,7 @@ def ver_codigo(objeto, imprimir, retornar):
             codigo = "<< imposible inspeccionar código para mostrar >>"
 
     if imprimir:
-        print codigo
+        print(codigo)
 
     if retornar:
         return codigo
@@ -408,9 +408,9 @@ def imprimir_todos_los_eventos():
         attributo = getattr(pilas.escena_actual(), x)
 
         if isinstance(attributo, pilas.evento.Evento):
-            print "Evento:", attributo.nombre
+            print("Evento:", attributo.nombre)
             attributo.imprimir_funciones_conectadas()
-            print ""
+            print("")
 
 
 def habilitar_depuracion():
@@ -511,7 +511,7 @@ def iniciar_asistente_desde_argumentos():
             pilas.abrir_interprete(do_raise=True, con_aplicacion=True)
         elif opciones.version:
             from pilas import pilasversion
-            print pilasversion.VERSION
+            print(pilasversion.VERSION)
         else:
             import pilas
             pilas.abrir_asistente()

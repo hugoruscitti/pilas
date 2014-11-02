@@ -20,7 +20,7 @@ def detener_interpolacion():
 def cuando_click(evento):
     global seleccion
     if evento.boton == 1:
-        print seleccion
+        print(seleccion)
         actor.y = pilas.interpolar(evento.y,tipo=seleccion)
         actor.x = pilas.interpolar(evento.x,tipo=seleccion)
 

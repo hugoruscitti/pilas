@@ -122,7 +122,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
                 elif accion == "codigo":
                     self._mostrar_codigo(str(categoria), str(ejemplo))
                 else:
-                    print accion, "sobre el ejemplo", ejemplo
+                    print(accion, "sobre el ejemplo", ejemplo)
             else:
                 raise Exception(seccion + "es una opcion desconocida")
 

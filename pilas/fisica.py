@@ -40,13 +40,13 @@ def crear_motor_fisica(area, gravedad):
     """
     if __enabled__:
         if obtener_version().startswith('2.0'):
-            print "Los siento, el soporte para Box2D version 2.0 se ha eliminado."
-            print "Por favor actualice Box2D a la version 2.1 (ver http://www.pilas-engine.com.ar)."
+            print("Los siento, el soporte para Box2D version 2.0 se ha eliminado.")
+            print("Por favor actualice Box2D a la version 2.1 (ver http://www.pilas-engine.com.ar).")
             return FisicaDeshabilitada(area, gravedad)
         else:
             return Fisica(area, gravedad)
     else:
-        print "No se pudo iniciar Box2D, se deshabilita el soporte de Fisica."
+        print("No se pudo iniciar Box2D, se deshabilita el soporte de Fisica.")
         return FisicaDeshabilitada(area, gravedad)
 
 def obtener_version():

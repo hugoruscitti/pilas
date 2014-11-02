@@ -73,7 +73,7 @@ class Actor(object, Estudiante):
         if not pilas.mundo:
             mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` " \
             "para comenzar."
-            print mensaje
+            print(mensaje)
             raise Exception(mensaje)
 
         Estudiante.__init__(self)

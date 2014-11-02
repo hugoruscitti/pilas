@@ -69,10 +69,10 @@ class Evento():
 
     def imprimir_funciones_conectadas(self):
         if not self.esta_conectado():
-            print "\t << sin funciones conectadas >>"
+            print("\t << sin funciones conectadas >>")
         else:
             for x in self.respuestas:
-                print "\t +", x.nombre, " en ", x.receptor
+                print("\t +", x.nombre, " en ", x.receptor)
 
 
 class AttrDict(dict):

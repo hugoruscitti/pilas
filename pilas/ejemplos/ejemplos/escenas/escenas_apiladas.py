@@ -61,7 +61,7 @@ seguira en la misma posicion donde la dejaste.")
         if evento.texto == u'2':
             pilas.almacenar_escena(Escena_2())
         if evento.texto == u'a':
-            print self.actores
+            print(self.actores)
         if evento.texto == u'p':
             pilas.escena.pausar()
 

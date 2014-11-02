@@ -6,7 +6,7 @@ try:
     from PyQt4 import QtCore, QtGui
     from .tutoriales_base import Ui_TutorialesWindow
 except:
-    print "ERROR: No se encuentra pyqt"
+    print("ERROR: No se encuentra pyqt")
     Ui_TutorialesWindow = object
     pass
 

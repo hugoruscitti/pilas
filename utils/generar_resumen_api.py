@@ -52,8 +52,8 @@ for x in os.walk("../pilas"):
 
 
 
-print '\n'.join(content)
-print "Actualizando el archivo 'resumen_api.rst"
+print('\n'.join(content))
+print("Actualizando el archivo 'resumen_api.rst")
 archivo = open("resumen_api.rst", "wt")
 archivo.write("\n".join(content))
 archivo.close()
