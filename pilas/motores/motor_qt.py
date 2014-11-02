@@ -421,10 +421,10 @@ class Imagen(object):
 
     def cargar_jpeg(self, ruta):
         from PIL import Image
-        import StringIO
+        import io
 
         pilImage = Image.open(ruta)
-        stringIO = StringIO.StringIO()
+        stringIO = io.StringIO()
         pilImage.save(stringIO, format="png")
 
         pixmapImage = QtGui.QPixmap()
