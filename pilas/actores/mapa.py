@@ -189,7 +189,7 @@ class Mapa(Actor):
             dy = self.centro[1]
             x = x + dx - self.x
             y = -y + dy + self.y
-        except Exception, e:
+        except Exception as e:
             print(e)
         return x, y
 

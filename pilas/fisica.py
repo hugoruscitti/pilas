@@ -410,7 +410,7 @@ class Figura(object):
         # TODO: convertir los valores dx y dy a metros.
         try:
             self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0))
-        except TypeError, e:
+        except TypeError as e:
             self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0), True)
 
     def obtener_velocidad_lineal(self):

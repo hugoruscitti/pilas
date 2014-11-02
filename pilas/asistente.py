@@ -143,7 +143,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
                 self.process.setProcessChannelMode(QtCore.QProcess.MergedChannels)
                 self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
                 self.process.start(sys.executable, [ruta], QtCore.QIODevice.ReadWrite)
-            except Exception, name:
+            except Exception as name:
                 QtGui.QMessageBox.critical(self.main, "Error", str(name))
 
     def _mostrar_codigo(self, categoria, nombre):
@@ -163,7 +163,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
             contenido = contenido.replace("{codigo}", contenido_codigo)
             base_dir =  QtCore.QUrl.fromLocalFile(file_path)
             self.webView.setHtml(contenido, base_dir)
-        except Exception, name:
+        except Exception as name:
             QtGui.QMessageBox.critical(self.main, "Error", str(name))
 
     def _obtener_ruta_al_ejemplo(self, categoria, nombre):
@@ -199,7 +199,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         else:
             try:
                 self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
-            except Exception, e:
+            except Exception as e:
                 QtGui.QMessageBox.critical(self.main, "Error", str(e))
 
     def _ejecutar_comando(self, comando, argumentos, directorio_trabajo):

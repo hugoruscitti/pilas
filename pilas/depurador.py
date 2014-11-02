@@ -12,7 +12,7 @@ from pilas import pilasversion
 
 try:
     from . import widget_log
-except ImportError, e:
+except ImportError as e:
     print(e)
     pass
 

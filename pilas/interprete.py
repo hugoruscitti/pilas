@@ -15,12 +15,12 @@ from . import utils
 
 try:
     sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))
-except IOError, e:
+except IOError as e:
     pass
 
 try:
     import lanas
-except ImportError, e:
+except ImportError as e:
     print(e)
 
 

@@ -495,7 +495,7 @@ def iniciar_asistente_desde_argumentos():
                     os.chdir(directorio_juego)
 
                 sys.exit(execfile(archivo_a_ejecutar))
-            except Exception, e:
+            except Exception as e:
                 mostrar_mensaje_de_error_y_salir(e.__class__.name + ": " + e.message)
                 return
 
