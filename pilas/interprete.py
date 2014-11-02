@@ -26,7 +26,7 @@ except ImportError as e:
 
 import os
 
-if os.environ.has_key('lanas'):
+if 'lanas' in os.environ:
     del os.environ['lanas']
 
 class VentanaInterprete(Ui_InterpreteWindow):

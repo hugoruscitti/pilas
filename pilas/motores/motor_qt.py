@@ -304,7 +304,7 @@ class CanvasWidgetAbstracto(object):
             QtCore.Qt.Key_Z: simbolos.z,
         }
 
-        if teclas.has_key(tecla_qt):
+        if tecla_qt in teclas:
             return teclas[tecla_qt]
         else:
             return tecla_qt
