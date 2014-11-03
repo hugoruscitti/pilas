@@ -18,9 +18,14 @@ class Boton(elemento.Elemento):
         self.centro = ("centro", "centro")
         self.funcion = None
         self.fijo = True
+        self.contador_demora_click = 0
 
         self.pilas.escena_actual().mueve_mouse.conectar(self.cuando_mueve_el_mouse)
         self.pilas.escena_actual().click_de_mouse.conectar(self.cuando_hace_click)
+
+    def actualizar(self):
+        if self.contador_demora_click > 0:
+            self.contador_demora_click -= 1
 
     def conectar(self, funcion):
         """Asocia la función a ejecutar cuando se haga click sobre el botón.
@@ -45,7 +50,7 @@ class Boton(elemento.Elemento):
 
         :param evento: Evento que representa al click.
         """
-        if self.activo:
+        if self.activo and self.contador_demora_click == 0:
             if self.colisiona_con_un_punto(evento.x, evento.y):
                 self.imagen = self.imagen_click
 
@@ -53,6 +58,7 @@ class Boton(elemento.Elemento):
                     self.funcion()
 
                 self.pilas.escena_actual().tareas.una_vez(0.5, self.restaurar_imagen_luego_de_click)
+                self.contador_demora_click = 60
 
 
     def restaurar_imagen_luego_de_click(self):
