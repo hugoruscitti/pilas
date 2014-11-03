@@ -23,7 +23,7 @@ deslizador_rotacion.conectar(cuando_cambia_rotacion)
 def cuando_cambia_posicion(valor):
     # Obtiene valores entre -200 y 400
     mono.x = -200 + 400 * valor
-    print valor
+    print(valor)
 
 
 deslizador_posicion = pilas.interfaz.Deslizador(y=150)

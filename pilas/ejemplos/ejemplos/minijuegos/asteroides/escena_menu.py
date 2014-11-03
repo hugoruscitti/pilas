@@ -28,11 +28,11 @@ class EscenaMenu(pilas.escena.Base):
         self.menu = pilas.actores.Menu(opciones, y=-50)
 
     def comenzar_a_jugar(self):
-        import escena_juego
+        from . import escena_juego
         pilas.cambiar_escena(escena_juego.Juego())
 
     def mostrar_ayuda_del_juego(self):
-        import escena_ayuda
+        from . import escena_ayuda
         pilas.cambiar_escena(escena_ayuda.Ayuda())
 
     def salir_del_juego(self):
@@ -40,7 +40,7 @@ class EscenaMenu(pilas.escena.Base):
 
     def crear_asteroides(self):
         fuera_de_la_pantalla = [-600, -650, -700, -750, -800]
-        import piedra_espacial
+        from . import piedra_espacial
         for x in range(5):
             x = random.choice(fuera_de_la_pantalla)
             y = random.choice(fuera_de_la_pantalla)

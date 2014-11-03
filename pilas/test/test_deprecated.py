@@ -5,12 +5,12 @@ from pilas import dev
 def accion3(evento):
     dev.deprecated_warning("accion3", se_desactiva_en="0.81", se_elimina_en="0.83",
                 reemplazo="accion3_nueva")
-    print "Accion 3"
+    print("Accion 3")
 
 @dev.deprecated(se_desactiva_en="0.81", se_elimina_en="0.83",
                 reemplazo="accion4_nueva")
 def accion4(evento):
-        print "Accion 4"
+        print("Accion 4")
 
 pilas.iniciar()
 

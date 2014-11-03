@@ -14,7 +14,7 @@ pilas.iniciar(titulo = "Memorice")
 
 
 # ejecuta escena actual.
-import escena_menu
+from . import escena_menu
 pilas.cambiar_escena(escena_menu.EscenaMenu())
 
 

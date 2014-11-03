@@ -119,8 +119,8 @@ class Control(object):
         self.procesar_cambio_de_estado_en_la_tecla(evento.codigo, False)
 
     def procesar_cambio_de_estado_en_la_tecla(self, codigo, estado):
-        if self. mapa_teclado.has_key(codigo):
-            setattr(self, self. mapa_teclado[codigo], estado)
+        if codigo in self.mapa_teclado:
+            setattr(self, self.mapa_teclado[codigo], estado)
 
     def __str__(self):
         return "<Control izquierda: %s derecha: %s arriba: %s abajo: %s boton: %s>" %(

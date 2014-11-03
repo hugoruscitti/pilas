@@ -7,7 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 import pilas
-from actor import Actor
+from .actor import Actor
 
 class Texto(Actor):
     """Representa un texto en pantalla.

@@ -40,13 +40,13 @@ def crear_motor_fisica(area, gravedad):
     """
     if __enabled__:
         if obtener_version().startswith('2.0'):
-            print "Los siento, el soporte para Box2D version 2.0 se ha eliminado."
-            print "Por favor actualice Box2D a la version 2.1 (ver http://www.pilas-engine.com.ar)."
+            print("Los siento, el soporte para Box2D version 2.0 se ha eliminado.")
+            print("Por favor actualice Box2D a la version 2.1 (ver http://www.pilas-engine.com.ar).")
             return FisicaDeshabilitada(area, gravedad)
         else:
             return Fisica(area, gravedad)
     else:
-        print "No se pudo iniciar Box2D, se deshabilita el soporte de Fisica."
+        print("No se pudo iniciar Box2D, se deshabilita el soporte de Fisica.")
         return FisicaDeshabilitada(area, gravedad)
 
 def obtener_version():
@@ -206,31 +206,31 @@ class Fisica(object):
         """
         return self.mundo.CreateBody(definicion_de_cuerpo)
 
-    def crear_suelo(self, (ancho, alto), restitucion=0):
+    def crear_suelo(self, dimensiones, restitucion=0):
         """Genera un suelo sólido para el escenario.
 
-        :param ancho: El ancho del suelo.
-        :param alto: Alto del suelo.
+        :param dimensiones: (ancho, alto), el ancho y alto del suelo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
+        (ancho, alto) = dimensiones
         self.suelo = Rectangulo(0, -alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
-    def crear_techo(self, (ancho, alto), restitucion=0):
+    def crear_techo(self, dimensiones, restitucion=0):
         """Genera un techo sólido para el escenario.
 
-        :param ancho: El ancho del techo.
-        :param alto: Alto del techo.
+        :param dimensiones: (ancho, alto), el ancho y alto del techo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
+        (ancho, alto) = dimensiones
         self.techo = Rectangulo(0, alto/2, ancho, 2, dinamica=False, fisica=self, restitucion=restitucion)
 
-    def crear_paredes(self, (ancho, alto), restitucion=0):
+    def crear_paredes(self, dimensiones, restitucion=0):
         """Genera dos paredes para el escenario.
 
-        :param ancho: El ancho de las paredes.
-        :param alto: El alto de las paredes.
+        :param dimensiones: (ancho, alto), el ancho y alto de las paredes.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
+        (ancho, alto) = dimensiones
         self.pared_izquierda = Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
         self.pared_derecha = Rectangulo(ancho/2, 0, 2, alto, dinamica=False, fisica=self, restitucion=restitucion)
 
@@ -410,7 +410,7 @@ class Figura(object):
         # TODO: convertir los valores dx y dy a metros.
         try:
             self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0))
-        except TypeError, e:
+        except TypeError as e:
             self._cuerpo.ApplyLinearImpulse((dx, dy), (0, 0), True)
 
     def obtener_velocidad_lineal(self):

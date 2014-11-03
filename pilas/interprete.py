@@ -4,29 +4,29 @@ import inspect
 
 try:
     from PyQt4 import QtCore, QtGui
-    from interprete_base import Ui_InterpreteWindow
+    from .interprete_base import Ui_InterpreteWindow
 except:
-    print "ERROR: No se encuentra pyqt"
+    print("ERROR: No se encuentra pyqt")
     Ui_InterpreteWindow = object
     pass
 
 import pilas
-import utils
+from . import utils
 
 try:
     sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))
-except IOError, e:
+except IOError as e:
     pass
 
 try:
     import lanas
-except ImportError, e:
-    print e
+except ImportError as e:
+    print(e)
 
 
 import os
 
-if os.environ.has_key('lanas'):
+if 'lanas' in os.environ:
     del os.environ['lanas']
 
 class VentanaInterprete(Ui_InterpreteWindow):
@@ -150,9 +150,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def help(self, objeto=None):
         if objeto:
-            print help(objeto)
+            print(help(objeto))
         else:
-            print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
+            print("Escribe help(objeto) para obtener ayuda sobre ese objeto.")
 
     def _insertar_ventana_principal_de_pilas(self, ejecutar_codigo_inicial):
 

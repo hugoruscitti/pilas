@@ -8,16 +8,16 @@ from pilas import pilasversion
 
 
 def error(biblioteca, web):
-    print "Lo siento, no se encuentra la biblioteca '%s' (de %s)" %(biblioteca, web)
-    print "Vea las instrucciones de instalación en: https://github.com/hugoruscitti/pilas"
-    print "Se cancela la inicialización."
+    print("Lo siento, no se encuentra la biblioteca '%s' (de %s)" %(biblioteca, web))
+    print("Vea las instrucciones de instalación en: https://github.com/hugoruscitti/pilas")
+    print("Se cancela la inicialización.")
     sys.exit(1)
 
 
 def verificar_submodulos():
     if not os.path.exists('lanas/setup.py'):
-        print "Lo siento, el modulo 'lanas' no existe."
-        print "Puede reparar el problema ejecutando el comando:\n\tgit submodule update --init"
+        print("Lo siento, el modulo 'lanas' no existe.")
+        print("Puede reparar el problema ejecutando el comando:\n\tgit submodule update --init")
         sys.exit(1)
 
 
