@@ -92,7 +92,7 @@ class Actor(Estudiante):
         >>> invisible = pilas.actores.Actor('invisible.png')
     """
 
-    def __init__(self, pilas=None, x=0, y=0):
+    def __init__(self, pilas=None, x=0, y=0, imagen=None):
         # Especifica la composión de dibujado (ver actor particula.py).
         self.composicion = None
 
@@ -116,7 +116,7 @@ class Actor(Estudiante):
         self.padre = None
 
         Estudiante.__init__(self)
-        self._definir_valores_iniciales(pilas, x, y)
+        self._definir_valores_iniciales(pilas, x, y, imagen)
 
         # Listas para definir los callbacks de los eventos
         self._callback_cuando_hace_click = set()
@@ -141,7 +141,7 @@ class Actor(Estudiante):
     def obtener_cantidad_de_grupos_al_que_pertenece(self):
         return len(self._grupos_a_los_que_pertenece)
 
-    def _definir_valores_iniciales(self, pilas, x, y):
+    def _definir_valores_iniciales(self, pilas, x, y, imagen=None):
         self.imagen = "sin_imagen.png"
         self.x = x
         self.y = y
@@ -154,6 +154,9 @@ class Actor(Estudiante):
         self.centro = ('centro', 'centro')
         self.fijo = False
         self._figura_de_colision = None
+        
+        if imagen:
+            self.imagen = imagen
 
         self.id = pilas.utils.obtener_uuid()
 

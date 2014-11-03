@@ -179,6 +179,7 @@ class VentanaAsistente(Base):
         self.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
 
     def dropEvent(self, event):
+        
         if event.mimeData().hasUrls():
             for url in event.mimeData().urls():
                 archivo = url.toLocalFile()
