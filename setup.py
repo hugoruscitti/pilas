@@ -29,7 +29,6 @@ http://www.pilas-engine.com.ar
             ],
         packages=[
             'pilasengine',
-            'pilasengine.lanas',
             'pilasengine.actores',
             'pilasengine.asistente',
             'pilasengine.depurador',

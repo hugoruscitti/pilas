@@ -16,7 +16,7 @@ exe = Executable(
 )
 
 extra_options = {
-    "packages": ["pilasengine", "lanas", "json", "setuptools", "code", "simplejson"],
+    "packages": ["pilasengine", "json", "setuptools", "code", "simplejson"],
     "optimize" : 2,
     "compressed": False,
 }
