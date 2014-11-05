@@ -40,7 +40,7 @@ class Menu(Actor):
                   simbolos.SELECCION: 'boton'}
 
         # Creamos un control personalizado
-        self.control_menu = pilas.control.Control(pilas.escena_actual(), teclas)
+        self.control_menu = pilas.controles.Control(pilas.escena_actual(), teclas)
 
     def activar(self):
         """Se ejecuta para activar el comportamiento del menú."""
