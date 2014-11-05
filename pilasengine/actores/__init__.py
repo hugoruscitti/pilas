@@ -129,6 +129,9 @@ class Actores(object):
         return self._crear_actor('ejes', 'Ejes', x=x, y=y)
 
     def Puntaje(self, x=0, y=0, color='negro'):
+        """
+         @rtype puntaje.Puntaje
+        """
         return self._crear_actor('puntaje', 'Puntaje', x=x, y=y, color=color)
 
     def Pingu(self, x=0, y=0):
@@ -333,7 +336,7 @@ class Actores(object):
                                  'ManejadorPropiedad',
                                  x, y,
                                  actor=actor, propiedad=propiedad,
-                                 min=minimo, max=maximo)
+                                 _min=minimo, _max=maximo)
 
     def Particula(self, emisor, x=0, y=0, dx=0, dy=0, imagen="particula.png", vida=1):
         actor = self._crear_actor('particula', 'Particula', emisor=emisor,

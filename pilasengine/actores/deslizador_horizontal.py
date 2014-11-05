@@ -14,16 +14,16 @@ ALTURA = 15
 
 class DeslizadorHorizontal(Actor):
 
-    def __init__(self, pilas, x, y, min, max, etiqueta, valor_inicial=-21):
-        self.min = min
-        self.max = max
-        self.rango = max - min
+    def __init__(self, pilas, x, y, _min, _max, etiqueta, valor_inicial=-21):
+        self.min = _min
+        self.max = _max
+        self.rango = _max - _min
         self.texto_etiqueta = etiqueta
         Actor.__init__(self, pilas, x=x, y=y)
         self.imagen = pilas.imagenes.cargar_superficie(100, ALTURA)
         self.progreso = valor_inicial
 
-        self.progreso_sobre_100 = ((valor_inicial - min) / float(self.rango))*100
+        self.progreso_sobre_100 = ((valor_inicial - _min) / float(self.rango))*100
         self.actualizar_imagen()
         self.actualizar_texto()
         self.figura_de_colision = None
@@ -50,7 +50,7 @@ class DeslizadorHorizontal(Actor):
 
     def actualizar_imagen(self):
         self.imagen.limpiar()
-        self.imagen.rectangulo(0, 0, self.progreso_sobre_100, self.alto, color=colores.blanco, relleno=True)
+        self.imagen.rectangulo(0, 0, int(self.progreso_sobre_100), self.alto, color=colores.blanco, relleno=True)
         self.imagen.rectangulo(1, 1, self.ancho-2, self.alto-2, color=colores.negro, relleno=False, grosor=2)
 
     def click_del_mouse(self, click):

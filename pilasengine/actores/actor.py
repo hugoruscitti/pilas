@@ -231,7 +231,6 @@ class Actor(Estudiante):
 
         x = self.x - dx
         y = self.y - dy
-
         painter.save()
 
         # Tranformaciones para aplicar al actor
@@ -246,8 +245,8 @@ class Actor(Estudiante):
             painter.setOpacity(1 - self.transparencia/100.0)
 
         # Dibujado de los subactores.
-        for x in self._actores:
-            x.dibujar(painter)
+        for un_actor in self._actores:
+            un_actor.dibujar(painter)
 
         self.imagen.dibujar(painter, self.composicion)
 
@@ -259,7 +258,7 @@ class Actor(Estudiante):
 
         painter.restore()
         painter.save()
-        
+
         painter.translate(x, -y)
         self.pilas.depurador.cuando_dibuja_actor_sin_transformacion(self, painter)
         painter.restore()
