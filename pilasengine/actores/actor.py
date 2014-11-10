@@ -151,7 +151,6 @@ class Actor(Estudiante):
         self.escala_y = 1
         self.transparencia = 0
         self.espejado = False
-        self.centro = ('centro', 'centro')
         self.fijo = False
         self._figura_de_colision = None
 
