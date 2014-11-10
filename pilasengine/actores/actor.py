@@ -142,7 +142,7 @@ class Actor(Estudiante):
         return len(self._grupos_a_los_que_pertenece)
 
     def _definir_valores_iniciales(self, pilas, x, y, imagen=None):
-        self.imagen = "sin_imagen.png"
+        self.imagen = imagen if imagen else "sin_imagen.png"
         self.x = x
         self.y = y
         self.z = 0
@@ -154,9 +154,6 @@ class Actor(Estudiante):
         self.centro = ('centro', 'centro')
         self.fijo = False
         self._figura_de_colision = None
-        
-        if imagen:
-            self.imagen = imagen
 
         self.id = pilas.utils.obtener_uuid()
 
