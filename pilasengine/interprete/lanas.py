@@ -429,7 +429,7 @@ class InterpreteLanas(editor_base.EditorBase):
         if ruta:
             self.guardar_contenido_en_el_archivo(ruta)
             self.nombre_de_archivo_sugerido = ruta
-            self.mensaje_contenido_guardado()
+            #self.mensaje_contenido_guardado()
 
     def _ha_ingresado_solo_espacios(self, linea):
         # TODO: Reemplazar por una expresion regular para

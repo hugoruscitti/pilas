@@ -119,7 +119,7 @@ class Actores(object):
     def Mono(self, x=0, y=0):
         return self._crear_actor('mono', 'Mono', x=x, y=y)
 
-    def Actor(self, x=0, y=0, imagen=None):
+    def Actor(self, x=0, y=0, imagen=None, *k, **kv):
         return self._crear_actor('actor', 'Actor', x=x, y=y, imagen=imagen)
 
     def Palo(self, x=0, y=0):

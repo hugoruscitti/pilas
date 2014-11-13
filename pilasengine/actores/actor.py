@@ -92,7 +92,7 @@ class Actor(Estudiante):
         >>> invisible = pilas.actores.Actor('invisible.png')
     """
 
-    def __init__(self, pilas=None, x=0, y=0, imagen=None):
+    def __init__(self, pilas=None, x=0, y=0, imagen=None, *k, **kv):
         # Especifica la composión de dibujado (ver actor particula.py).
         self.composicion = None
 
@@ -153,6 +153,9 @@ class Actor(Estudiante):
         self.espejado = False
         self.fijo = False
         self._figura_de_colision = None
+
+        if imagen:
+            self.imagen = imagen
 
         self.id = pilas.utils.obtener_uuid()
 
@@ -492,7 +495,7 @@ class Actor(Estudiante):
     def eliminar(self):
         """Elimina el actor de la lista que se imprimen en pantalla."""
         self._vivo = False
-        
+
     def quitar_de_la_escena_completamente(self):
         self._eliminar_anexados()
 
@@ -935,5 +938,3 @@ class Actor(Estudiante):
         self.mover_figura_de_colision()
         self._figura_de_colision_dx = x
         self._figura_de_colision_dy = y
-
-

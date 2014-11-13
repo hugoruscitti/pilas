@@ -322,7 +322,7 @@ class Editor(editor_base.EditorBase):
             self.guardar_contenido_en_el_archivo(ruta)
             self._cambios_sin_guardar = False
             self.nombre_de_archivo_sugerido = ruta
-            self.mensaje_contenido_guardado()
+            #self.mensaje_contenido_guardado()
 
     def salir(self):
         """Retorna True si puede salir y False si no"""
@@ -346,6 +346,7 @@ class Editor(editor_base.EditorBase):
         contenido = re.sub('coding\s*:\s*', '', texto)
         contenido = contenido.replace('import pilasengine', '')
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
+
 
         # Muchos códigos personalizados necesitan cargar imágenes o sonidos
         # desde el directorio que contiene al archivo. Para hacer esto posible,
