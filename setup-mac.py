@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pilas-engine',
-    version="0.90.13",
+    version="0.90.14",
     app=["bin/pilasengine"],
     data_files = [
         ('bin/pilasengine', ['bin/pilasengine']),
