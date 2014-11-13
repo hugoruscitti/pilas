@@ -415,6 +415,10 @@ class Pilas(object):
 
         print codigo
 
+
+    def obtener_actor_por_indice(self, indice):
+        return self.escena._actores.obtener_actores()[indice]
+
     control = property(obtener_control, doc="Obtiene el modulo de control")
     tareas = property(obtener_tareas, doc="Obtiene el modulo de tareas")
     camara = property(obtener_camara, doc="Cámara de la escena actual")
@@ -495,7 +499,7 @@ def abrir_script(archivo):
             imp.load_source("__main__", nombre)
         except Exception, e:
             terminar_con_error("Error al ejecutar " + nombre + ":\n" + str(e))
-            
+
     ruta_absoluta_al_archivo = os.path.abspath(archivo)
     ruta = os.path.dirname(ruta_absoluta_al_archivo)
     os.chdir(ruta)

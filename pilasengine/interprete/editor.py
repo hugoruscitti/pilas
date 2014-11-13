@@ -14,7 +14,7 @@ from PyQt4.Qt import (QFrame, QWidget, QPainter,
                       QSize, QVariant)
 from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
                          QIcon, QMessageBox, QShortcut,
-                         QKeySequence, QTextFormat, QColor)
+                         QKeySequence, QTextFormat, QColor, QStringListModel)
 from PyQt4.QtCore import Qt
 from PyQt4 import QtCore
 
@@ -108,9 +108,13 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         QWidget.__init__(self, *args)
         self.setupUi(self)
         self.setLayout(self.vertical_layout)
+        self.ruta_del_archivo_actual = None
 
         if interpreter_locals is None:
             interpreter_locals = locals()
+
+        self.interpreter_locals = interpreter_locals
+        self.lista_actores_como_strings = []
 
         self.editor = Editor(self, interpreter_locals)
         self.editor.setFrameStyle(QFrame.NoFrame)
@@ -158,6 +162,29 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         self.editor.installEventFilter(self)
         self.editor.viewport().installEventFilter(self)
 
+
+
+        self.timer_id = self.startTimer(1000 / 2.0)
+        self.lista_actores.currentItemChanged.connect(self.cuando_selecciona_item)
+
+    def cuando_selecciona_item(self, actual, anterior):
+        indice = self.lista_actores.indexFromItem(actual).row()
+        if indice > -1:
+            print "# actor = pilas.obtener_actor_por_indice(" + str(indice) + ")"
+
+    def timerEvent(self, event):
+        lista_actores = self.interpreter_locals['pilas'].escena._actores.obtener_actores()
+        nueva_lista_de_actores = [str(x) for x in lista_actores]
+
+        if self.lista_actores_como_strings != nueva_lista_de_actores:
+
+            self.lista_actores.clear()
+            #while self.lista_actores.count() > 0:
+            #    self.lista_actores.takeItem(0)
+
+            self.lista_actores_como_strings = nueva_lista_de_actores
+            self.lista_actores.addItems(self.lista_actores_como_strings)
+
     def eventFilter(self, obj, event):
         if obj in (self.editor, self.editor.viewport()):
             self.number_bar.update()
@@ -189,7 +216,7 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         event.accept()
 
     def cuando_pulsa_el_boton_ejecutar(self):
-        self.editor.ejecutar()
+        self.editor.ejecutar(self.ruta_del_archivo_actual)
         self.boton_pausar.setChecked(False)
 
     def cuando_pulsa_el_boton_pausar(self):
@@ -275,7 +302,9 @@ class Editor(editor_base.EditorBase):
         ruta = self.abrir_dialogo_cargar_archivo()
 
         if ruta:
+            ruta = str(ruta)
             self.cargar_contenido_desde_archivo(ruta)
+            self.ruta_del_archivo_actual = ruta
             self.ejecutar(ruta)
 
     def mensaje_guardar_cambios_abrir(self):
