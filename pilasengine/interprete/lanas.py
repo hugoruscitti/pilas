@@ -315,8 +315,7 @@ class InterpreteLanas(editor_base.EditorBase):
             self.historyIndex = -1
 
             if line == "clear":
-                self.clear()
-                self.marker()
+                self.limpiar()
                 return
 
             try:
@@ -365,6 +364,11 @@ class InterpreteLanas(editor_base.EditorBase):
             return None
 
         return QTextEdit.keyPressEvent(self, event)
+
+    def limpiar(self):
+        self.clear()
+        self.marker()
+        return
 
     def _autocompletar_argumentos_si_corresponde(self):
         """Muestra un mensaje con la documentación de una función ejecutar.

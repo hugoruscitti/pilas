@@ -76,6 +76,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
                                    QtCore.SIGNAL("clicked()"),
                                    self.cuando_pulsa_el_boton_editor)
 
+
         # Botón del manual
         self.definir_icono(self.manual_button, 'iconos/manual.png')
         self.manual_button.connect(self.manual_button,
@@ -99,6 +100,10 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.interprete_button.connect(self.configuracion_button,
                                        QtCore.SIGNAL("clicked()"),
                                        self.cuando_pulsa_el_boton_configuracion)
+
+        self.limpiar_button.connect(self.limpiar_button,
+                                    QtCore.SIGNAL("clicked()"),
+                                    self.cuando_pulsa_el_boton_limpiar)
 
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
@@ -278,6 +283,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         pilasengine.abrir_configuracion()
         self.definir_fuente_desde_configuracion()
 
+    def cuando_pulsa_el_boton_limpiar(self):
+        self.consola.limpiar()
+
     def ejecutar_y_reiniciar_si_cambia(self, archivo):
         self.watcher_ultima_invocacion = time.time() - 500
         self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
@@ -316,4 +324,3 @@ class VentanaInterprete(Ui_InterpreteWindow):
         # Evita perder los ejes del modo de depuracion 'posiciones'
         self.scope['pilas'].depurador.definir_modos()
         self.pulsa_boton_depuracion()
-
