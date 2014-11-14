@@ -1,0 +1,13 @@
+Source: pilas
+Maintainer: Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>
+Section: python
+Priority: optional
+Build-Depends: python-setuptools (>= 0.6b3), python-all (>= 2.6.6-3), debhelper (>= 7.4.3)
+Standards-Version: 3.9.1
+
+Package: pilas
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, python-qt4-gl (>= 4.9.3-4 ), python-qt4-phonon (>= 4.9.3-4 ), python-box2d-23, python-qt4 (>= 4.9.3-4), python-pygame (>= 1.9.1release+dfsg-8), sox
+Description: Pilas Engine
+ Pilas es un motor para realizar videojuegos
+

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Pilas-engine
+Comment=Framework para el desarrollo sencillo de videojuegos
+Exec=pilas
+Terminal=false
+Type=Application
+StartupNotify=true
+Icon=/usr/share/pixmaps/pilas-icono.png
+Categories=Application;Education;
