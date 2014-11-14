@@ -14,7 +14,7 @@ from PyQt4.Qt import (QFrame, QWidget, QPainter,
                       QSize, QVariant)
 from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
                          QIcon, QMessageBox, QShortcut,
-                         QKeySequence, QTextFormat, QColor, QStringListModel)
+                         QKeySequence, QTextFormat, QColor)
 from PyQt4.QtCore import Qt
 from PyQt4 import QtCore
 
