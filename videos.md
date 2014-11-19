@@ -3,6 +3,7 @@ layout: base
 title: Videos
 ---
 
+
 # Videos
 
 En esta sección vas a encontar video-tutoriales y charlas sobre pilas.
