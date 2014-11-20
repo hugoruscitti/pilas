@@ -117,6 +117,10 @@ class VentanaAsistente(Base):
         self.webView.dragEnterEvent = self.dragEnterEvent
         self.webView.dragLeaveEvent = self.dragLeaveEvent
         self.webView.dropEvent = self.dropEvent
+        
+        self.webView.loadFinished.connect(self._iniciar_consulta_de_version)
+        
+    def _iniciar_consulta_de_version(self):
         self._consultar_ultima_version_del_servidor()
 
     def _vincular_con_javascript(self):

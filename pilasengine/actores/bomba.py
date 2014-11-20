@@ -24,12 +24,14 @@ class Bomba(Animacion):
         >>> bomba.explotar()
     """
 
-    def __init__(self, pilas=None, x=0, y=0):
-        grilla = pilas.imagenes.cargar_grilla("bomba.png", 2)
-        Animacion.__init__(self, pilas, grilla, ciclica=True, x=x, y=y,
-                           velocidad=10)
+    def __init__(self, pilas, *k, **kv):
+        Animacion.__init__(self, pilas, *k, **kv)
+
+    def iniciar(self, x=0, y=0):
+        grilla = self.pilas.imagenes.cargar_grilla("bomba.png", 2)
+        Animacion.iniciar(self, grilla, ciclica=True, x=x, y=y, velocidad=10)
         self.radio_de_colision = 25
-        self.aprender(pilas.habilidades.PuedeExplotar)
+        self.aprender(self.pilas.habilidades.PuedeExplotar)
 
     def explotar(self):
         """Hace explotar a la bomba y la elimina de la pantalla."""

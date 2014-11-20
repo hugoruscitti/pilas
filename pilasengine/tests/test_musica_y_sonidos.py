@@ -13,11 +13,10 @@ class TestMusicaYSonidos(unittest.TestCase):
         self.pilas = pilasengine.iniciar()
 
     def testPuedeCargarMusica(self):
-        musica = self.pilas.musica.cargar('audio/musica.mp3')
+        musica = self.pilas.musica.cargar('audio/grito.wav')
         musica.reproducir()
         musica.detener()
-        self.assertTrue('musica' in str(musica),
-                        "El sonido se describe correctamente.")
+        self.assertTrue('grito' in str(musica), "El sonido se describe correctamente.")
 
     def testPuedeCargarSonido(self):
         sonido = self.pilas.sonidos.cargar('audio/grito.wav')

@@ -28,7 +28,7 @@ class Animado(Actor):
     .. image:: images/actores/pingu.png
     """
 
-    def __init__(self, pilas, grilla, x=0, y=0):
+    def __init__(self, pilas, *k, **kv):
         """ Constructor del Actor.
 
         :param grilla: Grilla de imagenes obtenida mediante pilas.imagenes.cargar_grilla()
@@ -38,7 +38,9 @@ class Animado(Actor):
         :param y: Posición vertical del Actor.
         :type y: int
         """
-        Actor.__init__(self, pilas, x, y)
+        Actor.__init__(self, pilas, *k, **kv)
+        
+    def iniciar(self, x=0, y=0, grilla=None):
         self.imagen = copy.copy(grilla)
         self.definir_cuadro(0)
 

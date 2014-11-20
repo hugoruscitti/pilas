@@ -6,6 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import random
+import inspect
 
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.texto import Texto
@@ -15,7 +16,6 @@ from pilasengine.actores import aceituna
 
 
 from pilasengine import colores
-
 
 class Actores(object):
     """Representa la forma de acceso y construcción de actores.
@@ -95,11 +95,82 @@ class Actores(object):
 
             self.pilas.log("Iniciando el actor, llamando a actor.iniciar() \
                            del objeto ", actor)
-            actor.iniciar()
+
+            # Toma los argumentos del actor y los envía directamente
+            # al método iniciar.
+            k = actor.argumentos_adicionales[0]
+            kv = actor.argumentos_adicionales[1]
+
+            self._validar_argumentos(actor.__class__.__name__, actor.iniciar, k, kv)
+
+            actor.iniciar(*k, **kv)
         else:
             raise Exception("Solo puedes agregar actores de esta forma.")
 
         return actor
+
+    def _validar_argumentos(self, nombre_clase, funcion, k, kv):
+        """Se asegura que la función iniciar del actor
+        se pueda ejecutar con los argumentos indicados."""
+
+        argumentos_esperados = inspect.getargspec(funcion)
+        args = argumentos_esperados[0]
+        defaults = argumentos_esperados[3]
+
+        if defaults:
+            cantidad_de_argumentos_opcionales = len(defaults)
+        else:
+            cantidad_de_argumentos_opcionales = 0
+
+        args.remove('self')
+
+        if len(args) == 0:
+            mensaje_argumentos = "El método 'iniciar' no espera ningún argumento."
+        else:
+            mensaje_argumentos = "El método 'iniciar' espera estos %d argumentos: %s" %(len(args), str(args))
+
+        titulo_error = "No se puede llamar al metodo 'iniciar' de la clase '%s'" %(nombre_clase)
+
+        # Lanza un error si se invoca a el constructor con argumentos
+        # posiciones. Es decir, siempre se tiene que llamar al constructor
+        # especificando el nombre de cada argumento.
+        #
+        # Por ejemplo, esto sería correcto:
+        #
+        #        Actor(x=100, y=300, otro='pepe')
+        #
+        # Mientras que esto arrojaría un error si o si:
+        #
+        #        Actor(100, 300, 'pepe')
+        #
+        if k:
+            mensaje = "El método tiene que ser invocado especificando el nombre de cada argumento, no con los valores posicionales directamente como aquí: " + ', '.join([str(x) for x in k])
+            raise TypeError("%s.\n\t%s." %(titulo_error, mensaje))
+        
+        # Busca los argumentos nombrados y los excluye de la lista
+        # de argumentos esperados por la función.
+        # Si encuentra argumentos no esperados, lanza una excepción.
+        #
+        argumentos_esperados = args[:]
+        
+        for (key, _) in kv.items():
+            if key in argumentos_esperados:
+                argumentos_esperados.remove(key)
+            else:
+                raise TypeError("%s.\n\n\tNo se esperaba el argumento '%s'. %s" %(titulo_error, key, mensaje_argumentos))
+
+        # Trata de quitar los argumentos opcionales si existen.
+
+        argumentos_esperados = argumentos_esperados[:-cantidad_de_argumentos_opcionales]
+        cantidad_de_argumentos = len(argumentos_esperados)        
+        
+        if cantidad_de_argumentos > 0:
+            if cantidad_de_argumentos == 1:
+                detalle = "Falta el argumento: " + argumentos_esperados[0]
+            else:
+                detalle = "Faltan %d argumentos: %s" %(cantidad_de_argumentos, ', '.join(argumentos_esperados))
+
+            raise TypeError("%s.\n\t%s.\n\t%s" %(titulo_error, detalle, mensaje_argumentos))
 
     def agregar_grupo(self, grupo):
         if isinstance(grupo, Grupo):
@@ -112,49 +183,51 @@ class Actores(object):
 
         return grupo
 
-    def Aceituna(self, x=0, y=0):
+    def Aceituna(self, *k, **kv):
         ":rtype: aceituna.Aceituna"
-        return self._crear_actor('aceituna', 'Aceituna', x=x, y=y)
+        return self._crear_actor('aceituna', 'Aceituna', *k, **kv)
 
-    def Mono(self, x=0, y=0):
-        return self._crear_actor('mono', 'Mono', x=x, y=y)
+    def Mono(self, *k, **kv):
+        ":rtype: mono.Mono"
+        return self._crear_actor('mono', 'Mono', *k, **kv)
 
-    def Actor(self, x=0, y=0, imagen=None, *k, **kv):
-        return self._crear_actor('actor', 'Actor', x=x, y=y, imagen=imagen)
+    def Actor(self, *k, **kv):
+        ":rtype: actor.Actor"
+        return self._crear_actor('actor', 'Actor', *k, **kv)
 
-    def Palo(self, x=0, y=0):
-        return self._crear_actor('palo', 'Palo', x=x, y=y)
+    def Palo(self, *k, **kv):
+        ":rtype: palo.Palo"
+        return self._crear_actor('palo', 'Palo', *k, **kv)
 
-    def Ejes(self, x=0, y=0):
-        return self._crear_actor('ejes', 'Ejes', x=x, y=y)
+    def Ejes(self, *k, **kv):
+        ":rtype: ejes.Ejes"
+        return self._crear_actor('ejes', 'Ejes', *k, **kv)
 
     def Puntaje(self, x=0, y=0, color='negro'):
-        """
-         @rtype puntaje.Puntaje
-        """
+        ":rtype: puntaje.Puntaje"
         return self._crear_actor('puntaje', 'Puntaje', x=x, y=y, color=color)
 
-    def Pingu(self, x=0, y=0):
-        return self._crear_actor('pingu', 'Pingu', x=x, y=y)
+    def Pingu(self, *k, **kv):
+        return self._crear_actor('pingu', 'Pingu', *k, **kv)
 
     def Pizarra(self, x=0, y=0, ancho=None, alto=None):
         return self._crear_actor('pizarra', 'Pizarra', x=x, y=y,
                                   ancho=ancho, alto=alto)
 
-    def Martian(self, x=0, y=0):
-        return self._crear_actor('martian', 'Martian', x=x, y=y)
+    def Martian(self, *k, **kv):
+        return self._crear_actor('martian', 'Martian', *k, **kv)
 
     def Tortuga(self, x=0, y=0, dibuja=True):
         return self._crear_actor('tortuga', 'Tortuga', x=x, y=y, dibuja=dibuja)
 
-    def CursorMano(self, x=0, y=0):
-        return self._crear_actor('cursor_mano', 'CursorMano', x=x, y=y)
+    def CursorMano(self, *k, **kv):
+        return self._crear_actor('cursor_mano', 'CursorMano', *k, **kv)
 
     def CursorDisparo(self, x=0, y=0, usar_el_mouse=True):
         return self._crear_actor('cursor_disparo', 'CursorDisparo', x=x, y=y, usar_el_mouse=usar_el_mouse)
 
-    def EstrellaNinja(self, x=0, y=0):
-        return self._crear_actor('estrella_ninja', 'EstrellaNinja', x=x, y=y)
+    def EstrellaNinja(self, *k, **kv):
+        return self._crear_actor('estrella_ninja', 'EstrellaNinja', *k, **kv)
 
     def Menu(self, opciones=[], x=0, y=0, fuente=None,
              color_normal=colores.gris, color_resaltado=colores.blanco):
@@ -179,11 +252,10 @@ class Actores(object):
         referencia_a_modulo = importlib.import_module('pilasengine.actores.' + modulo)
         referencia_a_clase = getattr(referencia_a_modulo, clase)
 
-
         try:
             nuevo_actor = referencia_a_clase(self.pilas, *k, **kw)
         except TypeError, error:
-            mensaje_extendido = ", en clase %s con los argumentos: %s %s" %(str(referencia_a_clase), str(k), str(kw))
+            mensaje_extendido = "\n\t(en la clase %s ya que se llamó con los argumentos: %s %s" %(str(referencia_a_clase.__name__), str(k), str(kw))
             raise TypeError(str(error) + mensaje_extendido)
 
         # Importante: cuando se inicializa el actor, el método __init__
@@ -195,9 +267,11 @@ class Actores(object):
         return self._crear_actor('mensaje_error', 'MensajeError', error,
                                  descripcion)
 
-    def Animacion(self, grilla, ciclica=False, x=0, y=0, velocidad=10):
-        return self._crear_actor('animacion', 'Animacion', grilla=grilla,
-                                 ciclica=ciclica, x=x, y=y, velocidad=velocidad)
+    def Animacion(self, *k, **kv):
+        #grilla, ciclica=False, x=0, y=0, velocidad=10):
+        return self._crear_actor('animacion', 'Animacion', *k, **kv)
+                                 # grilla=grilla,
+                                 #ciclica=ciclica, x=x, y=y, velocidad=velocidad)
 
     def Grupo(self):
         import grupo
@@ -225,8 +299,8 @@ class Actores(object):
                                  ruta_press=ruta_press,
                                  ruta_over=ruta_over)
 
-    def Banana(self, x=0, y=0):
-        return self._crear_actor('banana', 'Banana', x=x, y=y)
+    def Banana(self, *k, **kv):
+        return self._crear_actor('banana', 'Banana', *k, **kv)
 
     def Bala(self, x=0, y=0, rotacion=0, velocidad_maxima=9,
              angulo_de_movimiento=90):
@@ -234,8 +308,8 @@ class Actores(object):
                                  velocidad_maxima=velocidad_maxima,
                                  angulo_de_movimiento=angulo_de_movimiento)
 
-    def Bomba(self, x=0, y=0):
-        return self._crear_actor('bomba', 'Bomba', x=x, y=y)
+    def Bomba(self, *k, **kv):
+        return self._crear_actor('bomba', 'Bomba', *k, **kv)
 
     def Explosion(self, x=0, y=0):
         return self._crear_actor('explosion', 'Explosion', x=x, y=y)

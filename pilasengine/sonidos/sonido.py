@@ -53,3 +53,4 @@ class SonidoDeshabilitado(object):
 
     def continuar(self):
         pass
+

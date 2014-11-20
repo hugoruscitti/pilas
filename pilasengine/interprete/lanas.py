@@ -132,6 +132,7 @@ class InterpreteLanas(editor_base.EditorBase):
 
     def insertar_error(self, mensaje):
         self.insertHtml(u" <b style='color: #FF0000'> &nbsp; × %s </b>" %(mensaje))
+        self.insertHtml(u" <a href='#'>detalle</a>")
         self.insertPlainText('\n')
 
     def insertar_mensaje(self, mensaje):

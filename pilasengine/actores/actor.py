@@ -92,10 +92,10 @@ class Actor(Estudiante):
         >>> invisible = pilas.actores.Actor('invisible.png')
     """
 
-    def __init__(self, pilas=None, x=0, y=0, imagen=None, *k, **kv):
+    def __init__(self, pilas=None, *k, **kv):
         # Especifica la composión de dibujado (ver actor particula.py).
         self.composicion = None
-
+        
         if not pilas:
             mensaje = "Ten cuidado, antes de crear un actor tienes que vincularlo con: 'pilas.actores.vincular(MiActor)'"
             raise Exception(mensaje)
@@ -104,19 +104,13 @@ class Actor(Estudiante):
             mensaje = "Tienes que enviar el objeto 'pilas' como argumento al actor, en lugar de eso llego esto: " + str(pilas)
             raise Exception(mensaje)
 
-        if not isinstance(x, (int, long, float)):
-            mensaje = "El parametro x tiene un valor no permitido: " + str(x)
-            raise Exception(mensaje)
-
-        if not isinstance(y, (int, long, float)):
-            mensaje = "El parametro y tiene un valor no permitido: " + str(y)
-            raise Exception(mensaje)
-
         self.pilas = pilas
         self.padre = None
 
         Estudiante.__init__(self)
-        self._definir_valores_iniciales(pilas, x, y, imagen)
+        #self._definir_valores_iniciales(pilas, x, y, imagen)
+        self._definir_valores_iniciales(pilas, 0, 0, None)
+        #x, y, imagen)
 
         # Listas para definir los callbacks de los eventos
         self._callback_cuando_hace_click = set()
@@ -124,9 +118,11 @@ class Actor(Estudiante):
         self._grupos_a_los_que_pertenece = []
         self._actores = []
 
+        # Argumentos adicionales.
+        self.argumentos_adicionales = (k, kv)
+
         # Vincula el actor con la escena actual.
         pilas.actores.agregar_actor(self)
-
 
     def agregar(self, actor):
         self._actores.append(actor)
@@ -172,13 +168,25 @@ class Actor(Estudiante):
         self._dx = self.x
         self._dy = self.y
 
-    def iniciar(self):
+    def iniciar(self, x=0, y=0, imagen="sin_imagen.png"):
         """Ejecuta el código inicial del actor.
 
         Este método se llama automáticamente cuando el actor se
         genera y agrega dentro de una escena.
         """
-        pass
+        if not isinstance(x, (int, long, float)):
+            mensaje = "El parametro x tiene un valor no permitido: " + str(x)
+            raise Exception(mensaje)
+        else:
+            self.x = x
+
+        if not isinstance(y, (int, long, float)):
+            mensaje = "El parametro y tiene un valor no permitido: " + str(y)
+            raise Exception(mensaje)
+        else:
+            self.y = y
+
+        self.imagen = imagen
 
     def obtener_figura_de_colision(self):
         return self._figura_de_colision

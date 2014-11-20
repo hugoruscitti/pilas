@@ -36,7 +36,10 @@ class Animacion(Animado):
         .. image:: images/actores/explosion.png
     """
 
-    def __init__(self, pilas, grilla, ciclica=False, x=0, y=0, velocidad=10):
+    def __init__(self, pilas, *k, **kv):
+        Animado.__init__(self, pilas, *k, **kv)
+        
+    def iniciar(self, grilla=None, ciclica=False, x=0, y=0, velocidad=10):
         """ Constructor de la Animación.
 
         :param grilla: Grilla de imagenes obtenida mediante
@@ -53,8 +56,14 @@ class Animacion(Animado):
         :type velocidad: int
         """
 
-        Animado.__init__(self, pilas, grilla, x=x, y=y)
+        if not grilla:
+            grilla = self.pilas.imagenes.cargar_grilla('sin_imagen.png', 1)
+            
         self.tick = 0
+        self.x = x
+        self.y = y
+        self.imagen = copy.copy(grilla)
+        self.definir_cuadro(0)
         self.ciclica = ciclica
         self.definir_velocidad_de_animacion(velocidad)
 
