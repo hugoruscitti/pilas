@@ -19,6 +19,7 @@ from pilas.actores import Pizarra
 from pilas.actores import Nave
 from pilas.utils import distancia_entre_dos_puntos
 from pilas.utils import distancia_entre_dos_actores 
+from pilas.utils import ping
 from pilas.fondos import *
 from pilas.actores import Ejes
 
@@ -285,16 +286,7 @@ class Robot(object):
 
     def beep(self, freq = 200, seconds=0):
         """ Hace que el robot emita un pitido con frecuencia freq durante seconds segundos."""
-      
-        
-        try:
-            import winsound
-            winsound.Beep(freq, seconds * 1000)
-        except ImportError:
-            import os
-            os.system('play --no-show-progress --null --channels 1 synth %s sine %f' % ( seconds, freq))
-            
-
+        ping(freq, seconds)
 
     def _detenerse(self):
         self.movimiento = False

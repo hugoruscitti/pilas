@@ -532,4 +532,5 @@ def distancia_entre_radios_de_colision_de_dos_actores(a, b):
     """
     return distancia_entre_dos_actores(a, b) - (a.radio_de_colision + b.radio_de_colision)
 
-
+def ping(freq, seconds):
+    pass
