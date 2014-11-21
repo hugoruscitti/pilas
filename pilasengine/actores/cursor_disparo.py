@@ -11,13 +11,14 @@ from pilasengine import actores
 
 class CursorDisparo(actores.Actor):
 
-    def __init__(self, pilas, x=0, y=0, usar_el_mouse=True):
-        actores.Actor.__init__(self, pilas)
+    def __init__(self, pilas, *k, **kv):
+        actores.Actor.__init__(self, pilas, *k, **kv)
+
+    def iniciar(self, x=0, y=0, usar_el_mouse=True):
         if usar_el_mouse:
             self.aprender(self.pilas.habilidades.SeguirAlMouse)
             self.pilas.ocultar_puntero_del_mouse()
-
-    def iniciar(self):
+            
         self.imagen = self.pilas.imagenes.cargar('cursordisparo.png')
         self.rotacion = 0
         self.radio_de_colision = 25

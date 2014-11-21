@@ -10,7 +10,9 @@ from pilasengine.actores.actor import Actor
 
 
 class Fantasma(Actor):
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.grilla = self.pilas.imagenes.cargar_grilla("fantasma.png", 8, 1)
         self.imagen = self.grilla
         self.cuadro = 0

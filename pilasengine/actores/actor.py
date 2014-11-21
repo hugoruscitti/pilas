@@ -106,10 +106,25 @@ class Actor(Estudiante):
 
         self.pilas = pilas
         self.padre = None
+        
+        if 'x' in kv:
+            x = kv['x']
+        else:
+            x = 0
+            
+        if 'y' in kv:
+            y = kv['y']
+        else:
+            y = 0
+            
+        if 'imagen' in kv:
+            imagen = kv['imagen']
+        else:
+            imagen = 'sin_imagen.png'
 
         Estudiante.__init__(self)
-        #self._definir_valores_iniciales(pilas, x, y, imagen)
-        self._definir_valores_iniciales(pilas, 0, 0, None)
+
+        self._definir_valores_iniciales(pilas, x, y, imagen)
         #x, y, imagen)
 
         # Listas para definir los callbacks de los eventos

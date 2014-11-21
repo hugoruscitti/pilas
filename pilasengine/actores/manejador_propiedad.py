@@ -13,14 +13,11 @@ from pilasengine import colores
 
 class ManejadorPropiedad(DeslizadorHorizontal):
 
-    def __init__(self, pilas, x, y, actor, propiedad, _min, _max):
+    def iniciar(self, x, y, actor, propiedad, _min, _max):
         valor_inicial = getattr(actor, propiedad)
-        DeslizadorHorizontal.__init__(self, pilas, x, y, _min, _max, propiedad, valor_inicial=valor_inicial)
+        DeslizadorHorizontal.iniciar(self, x, y, _min, _max, propiedad, valor_inicial=valor_inicial)
         self.actor = actor
         self.propiedad = propiedad
-
-    def iniciar(self):
-        DeslizadorHorizontal.iniciar(self)
         self.conectar(self.cuando_cambia)
 
     def cuando_cambia(self, valor):

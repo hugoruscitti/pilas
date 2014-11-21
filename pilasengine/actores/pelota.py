@@ -15,7 +15,9 @@ class Pelota(Actor):
     física del escenario.
     """
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.imagen = self.pilas.imagenes.cargar('pelota.png')
         self.radio_de_colision = 25
         self.aprender(self.pilas.habilidades.RebotarComoPelota)

@@ -17,7 +17,9 @@ class Ovni(Actor):
 
     """
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.imagen = "ovni.png"
         self.aprender(self.pilas.habilidades.PuedeExplotar)
 

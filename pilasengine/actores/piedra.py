@@ -13,7 +13,9 @@ from pilasengine.actores.actor import Actor
 class Piedra(Actor):
     """Representa una piedra que podría ser usada como meteoríto."""
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.definir_tamano('grande')
         self.velocidad_rotacion = 1
         self.dx = 0

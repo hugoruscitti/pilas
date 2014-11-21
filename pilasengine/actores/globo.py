@@ -81,6 +81,9 @@ class Globo(Actor):
 
         if autoeliminar:
             pilas.escena_actual().tareas.una_vez(3, self.eliminar)
+            
+        self.x = x
+        self.y = y
 
     def colocar_origen_del_globo(self, x, y):
         """ Cambia la posicion del globo para que el punto de donde se emite el

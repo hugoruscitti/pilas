@@ -19,17 +19,16 @@ class DisparoLaser(Actor):
     este actor como munición.
     
     """
-    
-    def __init__(self, pilas, x, y, rotacion, velocidad, imagen):
-        super(DisparoLaser, self).__init__(pilas, x=x, y=y)
+
+    def iniciar(self, x, y, rotacion, velocidad, imagen):
+        self.x = x
+        self.y = y
         self.rotacion = rotacion
         self.velocidad = velocidad
         self.imagen = imagen
         self._calcular_movimiento_desde_rotacion(velocidad)
-        self.aprender(pilas.habilidades.EliminarseSiSaleDePantalla)
+        self.aprender(self.pilas.habilidades.EliminarseSiSaleDePantalla)
 
-    def iniciar(self):
-        pass
     
     def actualizar(self):
         self.x += self.dx

@@ -12,7 +12,9 @@ from pilasengine.actores.actor import Actor
 class Zanahoria(Actor):
     """Representa un actor que parece una Zanahoria."""
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.cuadro_normal = self.pilas.imagenes.cargar("zanahoria_normal.png")
         self.cuadro_reir = self.pilas.imagenes.cargar("zanahoria_sonrie.png")
 

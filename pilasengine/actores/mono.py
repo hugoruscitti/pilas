@@ -11,7 +11,9 @@ from pilasengine.actores.actor import Actor
 
 class Mono(Actor):
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.imagen = "mono.png"
         self.sonido = self.pilas.sonidos.cargar('audio/grito.wav')
         self.imagen_normal = self.pilas.imagenes.cargar("mono.png")

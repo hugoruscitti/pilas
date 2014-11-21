@@ -12,7 +12,9 @@ from pilasengine import actores
 class EstrellaNinja(actores.Actor):
     """ Representa una estrella ninja. """
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.imagen = self.pilas.imagenes.cargar('disparos/estrella.png')
         self.rotacion = 0
         self.escala = 0.5

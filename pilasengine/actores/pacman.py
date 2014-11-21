@@ -22,6 +22,8 @@ class Pacman(Actor):
     """
 
     def iniciar(self, x=0, y=0):
+        self.x = x
+        self.y = y
         self.grilla = self.pilas.imagenes.cargar_grilla("pacman.png", 4, 4)
         self.imagen = self.grilla
         self.cuadro = 0

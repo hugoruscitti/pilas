@@ -11,7 +11,9 @@ from pilasengine.actores.actor import Actor
 
 class Palo(Actor):
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.imagen = "palo.png"
         self.centro = (0, "centro")
 

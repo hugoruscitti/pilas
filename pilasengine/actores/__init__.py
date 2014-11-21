@@ -182,54 +182,66 @@ class Actores(object):
 
         return grupo
 
-    def Aceituna(self, *k, **kv):
+    ## --------------------
+    ## Acceso a los actores
+    ## --------------------
+
+    def Aceituna(self, x=0, y=0):
         ":rtype: aceituna.Aceituna"
-        return self._crear_actor('aceituna', 'Aceituna', *k, **kv)
+        return self._crear_actor('aceituna', 'Aceituna', x=x, y=y)
 
-    def Mono(self, *k, **kv):
+    def Mono(self, x=0, y=0):
         ":rtype: mono.Mono"
-        return self._crear_actor('mono', 'Mono', *k, **kv)
+        return self._crear_actor('mono', 'Mono', x=x, y=y)
 
-    def Actor(self, *k, **kv):
+    def Actor(self, x=0, y=0, imagen='sin_imagen.png'):
         ":rtype: actor.Actor"
-        return self._crear_actor('actor', 'Actor', *k, **kv)
+        return self._crear_actor('actor', 'Actor', x=x, y=y, imagen=imagen)
 
-    def Palo(self, *k, **kv):
+    def Palo(self, x=0, y=0):
         ":rtype: palo.Palo"
-        return self._crear_actor('palo', 'Palo', *k, **kv)
+        return self._crear_actor('palo', 'Palo', x=x, y=y)
 
-    def Ejes(self, *k, **kv):
+    def Ejes(self, x=0, y=0):
         ":rtype: ejes.Ejes"
-        return self._crear_actor('ejes', 'Ejes', *k, **kv)
+        return self._crear_actor('ejes', 'Ejes', x=x, y=y)
 
     def Puntaje(self, x=0, y=0, color='negro'):
         ":rtype: puntaje.Puntaje"
         return self._crear_actor('puntaje', 'Puntaje', x=x, y=y, color=color)
 
-    def Pingu(self, *k, **kv):
-        return self._crear_actor('pingu', 'Pingu', *k, **kv)
+    def Pingu(self, x=0, y=0):
+        ":rtype: pingu.Pingu"
+        return self._crear_actor('pingu', 'Pingu', x=x, y=y)
 
     def Pizarra(self, x=0, y=0, ancho=None, alto=None):
+        ":rtype: pizarra.Pizarra"
         return self._crear_actor('pizarra', 'Pizarra', x=x, y=y,
                                   ancho=ancho, alto=alto)
 
-    def Martian(self, *k, **kv):
-        return self._crear_actor('martian', 'Martian', *k, **kv)
+    def Martian(self, x=0, y=0):
+        ":rtype: martian.Martian"
+        return self._crear_actor('martian', 'Martian', x=x, y=y)
 
     def Tortuga(self, x=0, y=0, dibuja=True):
+        ":rtype: martian.Martian"
         return self._crear_actor('tortuga', 'Tortuga', x=x, y=y, dibuja=dibuja)
 
-    def CursorMano(self, *k, **kv):
-        return self._crear_actor('cursor_mano', 'CursorMano', *k, **kv)
+    def CursorMano(self, x=0, y=0):
+        ":rtype: cursor_mano.CursorMano"
+        return self._crear_actor('cursor_mano', 'CursorMano', x=x, y=y)
 
     def CursorDisparo(self, x=0, y=0, usar_el_mouse=True):
+        ":rtype: cursor_disparo.CursorDisparo"
         return self._crear_actor('cursor_disparo', 'CursorDisparo', x=x, y=y, usar_el_mouse=usar_el_mouse)
 
-    def EstrellaNinja(self, *k, **kv):
-        return self._crear_actor('estrella_ninja', 'EstrellaNinja', *k, **kv)
+    def EstrellaNinja(self, x=0, y=0):
+        ":rtype: estrella_ninja.EstrellaNinja"
+        return self._crear_actor('estrella_ninja', 'EstrellaNinja', x=x, y=y)
 
     def Menu(self, opciones=[], x=0, y=0, fuente=None,
              color_normal=colores.gris, color_resaltado=colores.blanco):
+        ":rtype: menu.Menu"
         return self._crear_actor('menu', 'Menu', x=x, y=y, opciones=opciones,
                                  fuente=fuente, color_normal=color_normal,
                                  color_resaltado=color_resaltado)
@@ -238,12 +250,213 @@ class Actores(object):
                  funcion_a_invocar=None,argumentos=None,fuente=None,
                  color_normal=colores.gris,
                  color_resaltado=colores.blanco):
+        ":rtype: opcion.Opcion"
         return self._crear_actor("opcion", "Opcion", x=x, y=y,
                                  texto=texto,
                                  funcion_a_invocar=funcion_a_invocar,
                                  argumentos=argumentos, fuente=fuente,
                                  color_normal=color_normal,
                                  color_resaltado=color_resaltado)
+
+    def MensajeError(self, error, descripcion):
+        ":rtype: mensaje_error.MensajeError"
+
+        return self._crear_actor('mensaje_error', 'MensajeError', error,
+                                 descripcion)
+
+    def Animacion(self, grilla, ciclica=False, x=0, y=0, velocidad=10):
+        ":rtype: animacion.Animacion"
+        return self._crear_actor('animacion', 'Animacion', grilla=grilla,
+                                 ciclica=ciclica, x=x, y=y, velocidad=velocidad)
+
+    def Grupo(self):
+        ":rtype: grupo.Grupo"
+        import grupo
+        nuevo_grupo = grupo.Grupo(self.pilas)
+        return self.agregar_grupo(nuevo_grupo)
+
+    def Dialogo(self):
+        ":rtype: dialogo.Dialogo"
+        return self._crear_actor('dialogo', 'Dialogo', 0, 0)
+
+    def Energia(self, x=0, y=0, progreso=100, ancho=200, alto=30,
+                color_relleno=colores.amarillo, con_sombra=True,
+                con_brillo=True):
+        ":rtype: energia.Energia"
+        return self._crear_actor('energia', 'Energia', x=x, y=y,
+                                 progreso=progreso, ancho=ancho, alto=alto,
+                                 color_relleno=color_relleno,
+                                 con_sombra=con_sombra,
+                                 con_brillo=con_brillo)
+
+    def Boton(self, x=0, y=0,
+                ruta_normal='boton/boton_normal.png',
+                ruta_press='boton/boton_press.png',
+                ruta_over='boton/boton_over.png'):
+        ":rtype: boton.Boton"
+        return self._crear_actor('boton', 'Boton', x=x, y=y,
+                                 ruta_normal=ruta_normal,
+                                 ruta_press=ruta_press,
+                                 ruta_over=ruta_over)
+
+    def Banana(self,  x=0, y=0):
+        ":rtype: banana.Banana"
+        return self._crear_actor('banana', 'Banana',  x=0, y=0)
+
+    def Bala(self, x=0, y=0, rotacion=0, velocidad_maxima=9,
+             angulo_de_movimiento=90):
+        ":rtype: bala.Bala"
+        return self._crear_actor('bala', 'Bala', x=x, y=y, rotacion=rotacion,
+                                 velocidad_maxima=velocidad_maxima,
+                                 angulo_de_movimiento=angulo_de_movimiento)
+
+    def Bomba(self, x=0, y=0):
+        ":rtype: bomba.Bomba"
+        return self._crear_actor('bomba', 'Bomba',  x=x, y=y)
+
+    def Explosion(self, x=0, y=0):
+        ":rtype: explosion.Explosion"
+        return self._crear_actor('explosion', 'Explosion', x=x, y=y)
+
+    def ExplosionDeHumo(self, x=0, y=0):
+        ":rtype: explosion_de_humo.ExplosionDeHumo"
+        return self._crear_actor('explosion_de_humo', 'ExplosionDeHumo', x=x, y=y)
+
+    def Estrella(self, x=0, y=0):
+        ":rtype: estrella.Estrella"
+        return self._crear_actor('estrella', 'Estrella', x=x, y=y)
+
+    def Fantasma(self, x=0, y=0):
+        ":rtype: fantasma.Fantasma"
+        return self._crear_actor('fantasma', 'Fantasma', x=x, y=y)
+
+    def Humo(self, x=0, y=0):
+        ":rtype: humo.Humo"
+        return self._crear_actor('humo', 'Humo', x=x, y=y)
+
+    def Manzana(self, x=0, y=0):
+        ":rtype: manzana.Manzana"
+        return self._crear_actor('manzana', 'Manzana', x=x, y=y)
+
+    def Ovni(self, x=0, y=0):
+        ":rtype: ovni.Ovni"
+        return self._crear_actor('ovni', 'Ovni', x=x, y=y)
+
+    def Nave(self, x=0, y=0):
+        ":rtype: nave.Nave"
+        return self._crear_actor('nave', 'Nave', x=x, y=y)
+
+    def NaveKids(self, x=0, y=0):
+        ":rtype: nave_kids.NaveKids"
+        return self._crear_actor('nave_kids', 'NaveKids', x=x, y=y)
+
+    def Planeta(self, x=0, y=0):
+        ":rtype: planeta.Planeta"
+        return self._crear_actor('planeta', 'Planeta', x=x, y=y)
+
+    def Piedra(self, x=0, y=0):
+        ":rtype: piedra.Piedra"
+        return self._crear_actor('piedra', 'Piedra', x=x, y=y)
+
+    def Pelota(self, x=0, y=0):
+        ":rtype: pelota.Pelota"
+        return self._crear_actor('pelota', 'Pelota', x=x, y=y)
+
+    def Caja(self, x=0, y=0):
+        ":rtype: caja.Caja"
+        return self._crear_actor('caja', 'Caja', x=x, y=y)
+
+    def Zanahoria(self, x=0, y=0):
+        ":rtype: zanahoria.Zanahoria"
+        return self._crear_actor('zanahoria', 'Zanahoria', x=x, y=y)
+
+    def Cooperativista(self, x=0, y=0):
+        ":rtype: cooperativista.Cooperativista"
+        return self._crear_actor('cooperativista', 'Cooperativista', x=x, y=y)
+
+    def Shaolin(self, x=0, y=0):
+        ":rtype: shaolin.Shaolin"
+        return self._crear_actor('shaolin', 'Shaolin', x=x, y=y)
+
+    def Pacman(self, x=0, y=0):
+        ":rtype: pacman.Pacman"
+        return self._crear_actor('pacman', 'Pacman', x=x, y=y)
+
+    def Sombra(self, x=0, y=0):
+        ":rtype: sombra.Sombra"
+        return self._crear_actor('sombra', 'Sombra', x=x, y=y)
+
+    def Moneda(self, x=0, y=0):
+        ":rtype: moneda.Moneda"
+        return self._crear_actor('moneda', 'Moneda', x=x, y=y)
+
+    def Globo(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True,
+              autoeliminar=False, ancho_globo=0, alto_globo=0):
+        ":rtype: globo.Globo"
+        return self._crear_actor('globo', 'Globo', texto=texto, x=x, y=y,
+                                 dialogo=dialogo,
+                                 avance_con_clicks=avance_con_clicks,
+                                 autoeliminar=autoeliminar,
+                                 ancho_globo=ancho_globo,
+                                 alto_globo=alto_globo)
+
+    def Texto(self, cadena_de_texto="Sin texto", magnitud=20, vertical=False,
+              fuente=None, fijo=True, ancho=0, x=0, y=0):
+        ":rtype: texto.Texto"
+        import texto
+        nuevo_actor = texto.Texto(self.pilas, cadena_de_texto, magnitud,
+                                  vertical, fuente, fijo, ancho, x, y)
+        return nuevo_actor
+
+    def TextoInferior(self, texto="Sin texto", magnitud=20, retraso=5):
+        ":rtype: texto_inferior.TextoInferior"
+        import texto_inferior
+        nuevo_actor = texto_inferior.TextoInferior(self.pilas, texto, magnitud,
+                                                   retraso=retraso)
+        return nuevo_actor
+
+    def DeslizadorHorizontal(self, x=0, y=0, min=0, max=100, etiqueta=''):
+        ":rtype: deslizador_horizontal.DeslizadorHorizontal"
+        return self._crear_actor('deslizador_horizontal',
+                                 'DeslizadorHorizontal',
+                                 x=x, y=y, _min=min, _max=max,
+                                 etiqueta=etiqueta)
+
+    def Emisor(self, x=0, y=0):
+        ":rtype: emisor.Emisor"
+        return self._crear_actor('emisor', 'Emisor', x=x, y=y)
+
+    def NaveRoja(self, x=0, y=0):
+        ":rtype: nave_roja.NaveRoja"
+        return self._crear_actor('nave_roja', 'NaveRoja', x=x, y=y)
+
+    def Controlador(self, x=0, y=0):
+        ":rtype: controlador.Controlador"
+        return self._crear_actor('controlador', 'Controlador', x=x, y=y)
+
+    def ManejadorPropiedad(self, x, y, actor, propiedad, minimo, maximo):
+        ":rtype: manejador_propiedad.ManejadorPropiedad"
+        return self._crear_actor('manejador_propiedad',
+                                 'ManejadorPropiedad',
+                                 x, y,
+                                 actor=actor, propiedad=propiedad,
+                                 _min=minimo, _max=maximo)
+
+    def Particula(self, emisor, x=0, y=0, dx=0, dy=0, imagen="particula.png", vida=1):
+        ":rtype: particula.Particula"
+        actor = self._crear_actor('particula', 'Particula', emisor=emisor,
+                                  x=x, y=y,
+                                  dx=dx, dy=dy,
+                                  imagen=imagen,
+                                  vida=vida)
+        return actor
+
+    def DisparoLaser(self, x=0, y=0, rotacion=0, velocidad=10, imagen="disparo_laser.png"):
+        ":rtype: disparo_laser.DisparoLaser"
+        return self._crear_actor('disparo_laser', 'DisparoLaser',
+                                 x=x, y=y, rotacion=rotacion,
+                                 velocidad=velocidad, imagen=imagen)
+
 
     def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
@@ -261,169 +474,7 @@ class Actores(object):
         #             realiza una llamada a pilas.actores.agregar_actor
         #             para vincular el actor a la escena.
         return nuevo_actor
-
-    def MensajeError(self, error, descripcion):
-        return self._crear_actor('mensaje_error', 'MensajeError', error,
-                                 descripcion)
-
-    def Animacion(self, *k, **kv):
-        #grilla, ciclica=False, x=0, y=0, velocidad=10):
-        return self._crear_actor('animacion', 'Animacion', *k, **kv)
-                                 # grilla=grilla,
-                                 #ciclica=ciclica, x=x, y=y, velocidad=velocidad)
-
-    def Grupo(self):
-        import grupo
-        nuevo_grupo = grupo.Grupo(self.pilas)
-        return self.agregar_grupo(nuevo_grupo)
-
-    def Dialogo(self):
-        return self._crear_actor('dialogo', 'Dialogo', 0, 0)
-
-    def Energia(self, x=0, y=0, progreso=100, ancho=200, alto=30,
-                color_relleno=colores.amarillo, con_sombra=True,
-                con_brillo=True):
-        return self._crear_actor('energia', 'Energia', x=x, y=y,
-                                 progreso=progreso, ancho=ancho, alto=alto,
-                                 color_relleno=color_relleno,
-                                 con_sombra=con_sombra,
-                                 con_brillo=con_brillo)
-
-    def Boton(self, x=0, y=0,
-                ruta_normal='boton/boton_normal.png',
-                ruta_press='boton/boton_press.png',
-                ruta_over='boton/boton_over.png'):
-        return self._crear_actor('boton', 'Boton', x=x, y=y,
-                                 ruta_normal=ruta_normal,
-                                 ruta_press=ruta_press,
-                                 ruta_over=ruta_over)
-
-    def Banana(self, *k, **kv):
-        return self._crear_actor('banana', 'Banana', *k, **kv)
-
-    def Bala(self, x=0, y=0, rotacion=0, velocidad_maxima=9,
-             angulo_de_movimiento=90):
-        return self._crear_actor('bala', 'Bala', x=x, y=y, rotacion=rotacion,
-                                 velocidad_maxima=velocidad_maxima,
-                                 angulo_de_movimiento=angulo_de_movimiento)
-
-    def Bomba(self, *k, **kv):
-        return self._crear_actor('bomba', 'Bomba', *k, **kv)
-
-    def Explosion(self, x=0, y=0):
-        return self._crear_actor('explosion', 'Explosion', x=x, y=y)
-
-    def ExplosionDeHumo(self, x=0, y=0):
-        return self._crear_actor('explosion_de_humo', 'ExplosionDeHumo', x=x, y=y)
-
-    def Estrella(self, x=0, y=0):
-        return self._crear_actor('estrella', 'Estrella', x=x, y=y)
-
-    def Fantasma(self, x=0, y=0):
-        return self._crear_actor('fantasma', 'Fantasma', x=x, y=y)
-
-    def Humo(self, x=0, y=0):
-        return self._crear_actor('humo', 'Humo', x=x, y=y)
-
-    def Manzana(self, x=0, y=0):
-        return self._crear_actor('manzana', 'Manzana', x=x, y=y)
-
-    def Ovni(self, x=0, y=0):
-        return self._crear_actor('ovni', 'Ovni', x=x, y=y)
-
-    def Nave(self, x=0, y=0):
-        return self._crear_actor('nave', 'Nave', x=x, y=y)
-
-    def NaveKids(self, x=0, y=0):
-        return self._crear_actor('nave_kids', 'NaveKids', x=x, y=y)
-
-    def Planeta(self, x=0, y=0):
-        return self._crear_actor('planeta', 'Planeta', x=x, y=y)
-
-    def Piedra(self, x=0, y=0):
-        return self._crear_actor('piedra', 'Piedra', x=x, y=y)
-
-    def Pelota(self, x=0, y=0):
-        return self._crear_actor('pelota', 'Pelota', x=x, y=y)
-
-    def Caja(self, x=0, y=0):
-        return self._crear_actor('caja', 'Caja', x=x, y=y)
-
-    def Zanahoria(self, x=0, y=0):
-        return self._crear_actor('zanahoria', 'Zanahoria', x=x, y=y)
-
-    def Cooperativista(self, x=0, y=0):
-        return self._crear_actor('cooperativista', 'Cooperativista', x=x, y=y)
-
-    def Shaolin(self, x=0, y=0):
-        return self._crear_actor('shaolin', 'Shaolin', x=x, y=y)
-
-    def Pacman(self, x=0, y=0):
-        return self._crear_actor('pacman', 'Pacman', x=x, y=y)
-
-    def Sombra(self, x=0, y=0):
-        return self._crear_actor('sombra', 'Sombra', x=x, y=y)
-
-    def Moneda(self, x=0, y=0):
-        return self._crear_actor('moneda', 'Moneda', x=x, y=y)
-
-    def Globo(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True,
-              autoeliminar=False, ancho_globo=0, alto_globo=0):
-        return self._crear_actor('globo', 'Globo', texto=texto, x=x, y=y,
-                                 dialogo=dialogo,
-                                 avance_con_clicks=avance_con_clicks,
-                                 autoeliminar=autoeliminar,
-                                 ancho_globo=ancho_globo,
-                                 alto_globo=alto_globo)
-
-    def Texto(self, cadena_de_texto="Sin texto", magnitud=20, vertical=False,
-              fuente=None, fijo=True, ancho=0, x=0, y=0):
-        import texto
-        nuevo_actor = texto.Texto(self.pilas, cadena_de_texto, magnitud,
-                                  vertical, fuente, fijo, ancho, x, y)
-        return nuevo_actor
-
-    def TextoInferior(self, texto="Sin texto", magnitud=20, retraso=5):
-        import texto_inferior
-        nuevo_actor = texto_inferior.TextoInferior(self.pilas, texto, magnitud,
-                                                   retraso=retraso)
-        return nuevo_actor
-
-    def DeslizadorHorizontal(self, x=0, y=0, min=0, max=100, etiqueta=''):
-        return self._crear_actor('deslizador_horizontal',
-                                 'DeslizadorHorizontal',
-                                 x=x, y=y, min=min, max=max,
-                                 etiqueta=etiqueta)
-
-    def Emisor(self, x=0, y=0):
-        return self._crear_actor('emisor', 'Emisor', x=x, y=y)
-
-    def NaveRoja(self, x=0, y=0):
-        return self._crear_actor('nave_roja', 'NaveRoja', x=x, y=y)
-
-    def Controlador(self, x=0, y=0):
-        return self._crear_actor('controlador', 'Controlador', x=x, y=y)
-
-    def ManejadorPropiedad(self, x, y, actor, propiedad, minimo, maximo):
-        return self._crear_actor('manejador_propiedad',
-                                 'ManejadorPropiedad',
-                                 x, y,
-                                 actor=actor, propiedad=propiedad,
-                                 _min=minimo, _max=maximo)
-
-    def Particula(self, emisor, x=0, y=0, dx=0, dy=0, imagen="particula.png", vida=1):
-        actor = self._crear_actor('particula', 'Particula', emisor=emisor,
-                                  x=x, y=y,
-                                  dx=dx, dy=dy,
-                                  imagen=imagen,
-                                  vida=vida)
-        return actor
-
-    def DisparoLaser(self, x=0, y=0, rotacion=0, velocidad=10, imagen="disparo_laser.png"):
-        return self._crear_actor('disparo_laser', 'DisparoLaser',
-                                 x=x, y=y, rotacion=rotacion,
-                                 velocidad=velocidad, imagen=imagen)
-
+    
     def fabricar(self, clase, cantidad):
         grupo = self.Grupo()
         ancho_ventana, alto_ventana = self.pilas.widget.obtener_area()
