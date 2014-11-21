@@ -19,14 +19,19 @@ class ErrorOutput(Output):
         self.destino.stdout_original.write(linea)
 
         # Solo muestra el error en consola si es un mensaje util.
-        if (not linea.startswith('Traceback (most re') or
-            not linea.startswith('  File "<input>", line 1, in')):
-            if linea.startswith('  File "'):
-                linea = linea.replace("File", "Archivo")
-                linea = linea.replace('line', 'linea')
-                linea = linea[:linea.find(', in')] + " ..."
-
-            self.destino.insertar_error(linea.decode('utf-8'))
+        if "Traceback (most" in linea or 'File "<input>", line 1' in linea:
+            self.destino.ensureCursorVisible()
+            return
+                
+        if linea.startswith('  File "'):
+            linea = linea.replace("File", "en el archivo")
+            linea = linea.replace('line', 'linea')
+            linea = linea[:linea.find(', in')]
+            
+        if 'NameError' in linea:
+            linea = linea.replace('name', 'el nombre').replace('is not defined', 'no existe')            
+            
+        self.destino.insertar_error(linea.decode('utf-8'))
 
         self.destino.ensureCursorVisible()
 
