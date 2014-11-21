@@ -89,21 +89,20 @@ class Actores(object):
         if isinstance(actor, Actor):
             escena_actual = self.pilas.obtener_escena_actual()
 
-            self.pilas.log("Agregando el actor", actor, "en la escena",
-                           escena_actual)
-            escena_actual.agregar_actor(actor)
-
-            self.pilas.log("Iniciando el actor, llamando a actor.iniciar() \
-                           del objeto ", actor)
+            self.pilas.log("Iniciando el actor, llamando a actor.iniciar() del objeto ", actor)
 
             # Toma los argumentos del actor y los envía directamente
             # al método iniciar.
             k = actor.argumentos_adicionales[0]
             kv = actor.argumentos_adicionales[1]
 
-            self._validar_argumentos(actor.__class__.__name__, actor.iniciar, k, kv)
-
-            actor.iniciar(*k, **kv)
+            try:
+                actor.iniciar(*k, **kv)
+            except TypeError, error:
+                self._validar_argumentos(actor.__class__.__name__, actor.iniciar, k, kv)
+                
+            self.pilas.log("Agregando el actor", actor, "en la escena", escena_actual)
+            escena_actual.agregar_actor(actor)
         else:
             raise Exception("Solo puedes agregar actores de esta forma.")
 

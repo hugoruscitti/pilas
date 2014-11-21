@@ -27,7 +27,6 @@ class EditorBase(autocomplete.CompletionTextEdit,
         self.interpreterLocals = scope
 
     def keyPressEvent(self, event):
-        # cambia el tamano de la tipografia.
         if event.modifiers() & Qt.AltModifier:
             if event.key() == Qt.Key_Minus:
                 self.cambiar_tamano_fuente(-1)
