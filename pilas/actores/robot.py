@@ -17,9 +17,7 @@ from pilas.actores import Actor
 from pilas.fondos import  *
 from pilas.actores import Pizarra
 from pilas.actores import Nave
-from pilas.utils import distancia_entre_dos_puntos
-from pilas.utils import distancia_entre_dos_actores 
-from pilas.utils import ping
+import pilas.utils as utils
 from pilas.fondos import *
 from pilas.actores import Ejes
 
@@ -88,7 +86,7 @@ def _verificarPuntoEnLaCircunferencia(x1, y1, x2, y2, radio):
     float(x2)
     float(y2)
     
-    dis  = distancia_entre_dos_puntos((x1, y1), (x2, y2)) 
+    dis  = utils.distancia_entre_dos_puntos((x1, y1), (x2, y2)) 
   
     return dis <= radio
 
@@ -286,7 +284,7 @@ class Robot(object):
 
     def beep(self, freq = 200, seconds=0):
         """ Hace que el robot emita un pitido con frecuencia freq durante seconds segundos."""
-        ping(freq, seconds)
+        utils.beep(freq, seconds)
 
     def _detenerse(self):
         self.movimiento = False
@@ -355,7 +353,7 @@ class Robot(object):
 
             # las rectas son perpendiculares y el punto en comun está en el area del otroActor
             # Calcular la distancia entre el actor y el punto de interseccion con el actor
-            valorActual = distancia_entre_dos_actores(self.actor, otroActor)
+            valorActual = utils.distancia_entre_dos_actores(self.actor, otroActor)
             if (valorActual < valor):
                 valor = valorActual  
         
