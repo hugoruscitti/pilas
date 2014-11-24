@@ -518,10 +518,6 @@ from pilasengine.actores.humo import Humo
 from pilasengine.actores.manejador_propiedad import ManejadorPropiedad
 from pilasengine.actores.manzana import Manzana
 from pilasengine.actores.martian import Martian
-from pilasengine.actores.martian import Esperando
-from pilasengine.actores.martian import Caminando
-from pilasengine.actores.martian import Saltando
-from pilasengine.actores.martian import Disparar
 from pilasengine.actores.mensaje_error import MensajeError
 from pilasengine.actores.menu import Menu
 from pilasengine.actores.moneda import Moneda
@@ -536,9 +532,6 @@ from pilasengine.actores.particula import Particula
 from pilasengine.actores.pelota import Pelota
 from pilasengine.actores.piedra import Piedra
 from pilasengine.actores.pingu import Pingu
-from pilasengine.actores.pingu import Esperando
-from pilasengine.actores.pingu import Caminando
-from pilasengine.actores.pingu import Saltando
 from pilasengine.actores.pizarra import Pizarra
 from pilasengine.actores.planeta import Planeta
 from pilasengine.actores.puntaje import Puntaje
