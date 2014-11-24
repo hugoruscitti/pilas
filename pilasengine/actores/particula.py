@@ -66,5 +66,7 @@ class Particula(Actor):
         self.rotacion += self._incremento_rotacion
 
         if self.contador > self.vida:
-            self.emisor.se_elimina_particula(self)
+            # Solo si tiene emisor le avisa que se eliminó.
+            if self.emisor:
+                self.emisor.se_elimina_particula(self)
             self.eliminar()

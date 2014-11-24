@@ -264,7 +264,7 @@ class Actores(object):
         return self._crear_actor('mensaje_error', 'MensajeError', error,
                                  descripcion)
 
-    def Animacion(self, grilla, ciclica=False, x=0, y=0, velocidad=10):
+    def Animacion(self, grilla='sin_imagen.png', ciclica=False, x=0, y=0, velocidad=10):
         ":rtype: animacion.Animacion"
         return self._crear_actor('animacion', 'Animacion', grilla=grilla,
                                  ciclica=ciclica, x=x, y=y, velocidad=velocidad)
@@ -277,7 +277,7 @@ class Actores(object):
 
     def Dialogo(self):
         ":rtype: dialogo.Dialogo"
-        return self._crear_actor('dialogo', 'Dialogo', 0, 0)
+        return self._crear_actor('dialogo', 'Dialogo')
 
     def Energia(self, x=0, y=0, progreso=100, ancho=200, alto=30,
                 color_relleno=colores.amarillo, con_sombra=True,
@@ -390,7 +390,7 @@ class Actores(object):
         ":rtype: moneda.Moneda"
         return self._crear_actor('moneda', 'Moneda', x=x, y=y)
 
-    def Globo(self, texto, x=0, y=0, dialogo=None, avance_con_clicks=True,
+    def Globo(self, texto="sin texto", x=0, y=0, dialogo=None, avance_con_clicks=True,
               autoeliminar=False, ancho_globo=0, alto_globo=0):
         ":rtype: globo.Globo"
         return self._crear_actor('globo', 'Globo', texto=texto, x=x, y=y,
@@ -442,7 +442,7 @@ class Actores(object):
                                  actor=actor, propiedad=propiedad,
                                  _min=minimo, _max=maximo)
 
-    def Particula(self, emisor, x=0, y=0, dx=0, dy=0, imagen="particula.png", vida=1):
+    def Particula(self, emisor=None, x=0, y=0, dx=0, dy=0, imagen="particula.png", vida=1):
         ":rtype: particula.Particula"
         actor = self._crear_actor('particula', 'Particula', emisor=emisor,
                                   x=x, y=y,

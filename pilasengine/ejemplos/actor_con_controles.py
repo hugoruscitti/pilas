@@ -3,12 +3,14 @@ import sys
 sys.path.append('.')
 
 import pilasengine
-from pilasengine.actores import mono
 
 pilas = pilasengine.iniciar()
 
+class MonoConControles(pilasengine.actores.mono.Mono):
 
-class MonoConControles(mono.Mono):
+    def iniciar(self):
+        self.imagen = "mono.png"
+
     def actualizar(self):
         if self.pilas.escena_actual().control.arriba:
             self.y += 2
@@ -24,5 +26,5 @@ class MonoConControles(mono.Mono):
             self.saltar()
 
 mono_con_controles = MonoConControles(pilas)
-
+pilas.avisar(u"Usá el teclado para mover al personaje.")
 pilas.ejecutar()
