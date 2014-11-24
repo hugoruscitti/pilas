@@ -20,4 +20,4 @@ class Sonidos(object):
         if self.pilas.configuracion.audio_habilitado():
             return sonido.Sonido(ruta_al_sonido)
         else:
-            return sonido.SonidoDeshabilitado()
+            return sonido.SonidoDeshabilitado(ruta_al_sonido)

@@ -99,7 +99,7 @@ class TestActores(unittest.TestCase):
 
 
     def testPuedeInstanciarTodosLosActoresSinArgumentos(self):
-        nombres = [n for n in dir(self.pilas.actores) if n.istitle()]
+        nombres = [n for n in dir(self.pilas.actores) if n.istitle() and n is not 'Grupo']
         funciones = [getattr(self.pilas.actores, n) for n in nombres]
 
         for x in funciones:

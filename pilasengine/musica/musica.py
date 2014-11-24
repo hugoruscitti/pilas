@@ -49,6 +49,9 @@ class Musica(object):
 
 class MusicaDeshabilitada(object):
 
+    def __init__(self, ruta):
+        self.ruta = ruta
+        
     def reproducir(self, repetir=False):
         pass
 
@@ -60,3 +63,8 @@ class MusicaDeshabilitada(object):
 
     def continuar(self):
         pass
+    
+    def __repr__(self):
+        nombre = os.path.basename(self.ruta)
+        return "<%s del archivo '%s'>" % (self.__class__.__name__, nombre)
+

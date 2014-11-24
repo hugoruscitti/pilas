@@ -16,11 +16,11 @@ class TestMusicaYSonidos(unittest.TestCase):
         musica = self.pilas.musica.cargar('audio/grito.wav')
         musica.reproducir()
         musica.detener()
-        self.assertTrue('grito' in str(musica), "El sonido se describe correctamente.")
+        self.assertTrue('grito' in str(musica), "La musica se describe correctamente así: %s." %(str(musica)))
 
     def testPuedeCargarSonido(self):
         sonido = self.pilas.sonidos.cargar('audio/grito.wav')
         sonido.reproducir()
         sonido.detener()
         self.assertTrue('grito' in str(sonido),
-                        "El sonido se describe correctamente.")
+                        "El sonido se describe correctamente: %s." %(str(sonido)))
