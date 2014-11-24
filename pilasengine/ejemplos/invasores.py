@@ -6,18 +6,18 @@ puntaje = pilas.actores.Puntaje(-280, 200, color=pilas.colores.blanco)
 
 
 class AceitunaEnemiga(pilasengine.actores.Aceituna):
-    
+
     def iniciar(self):
-        pilasengine.actores.Aceituna.iniciar(self)
+        self.imagen = "aceituna.png"
         self.aprender( pilas.habilidades.PuedeExplotarConHumo )
         self.x = pilas.azar(-200, 200)
         self.y = 290
         self.velocidad = pilas.azar(10, 40) / 10.0
-        
+
     def actualizar(self):
         self.rotacion += 10
         self.y -= self.velocidad
-        
+
         # Elimina el objeto cuando sale de la pantalla.
         if self.y < -300:
             self.eliminar()
