@@ -5,7 +5,9 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
+
 import camara
+import pilasengine
 from pilasengine.actores import grupo
 from pilasengine.utils import pitweener
 from pilasengine.tareas import Tareas
@@ -15,6 +17,14 @@ from pilasengine.colisiones import Colisiones
 class Escena(object):
 
     def __init__(self, pilas):
+        if not pilas:
+            mensaje = "Ten cuidado, tienes que enviar 'pilas' como argumento de la escena al crearla."
+            raise Exception(mensaje)
+
+        if not isinstance(pilas, pilasengine.Pilas):
+            mensaje = "Tienes que enviar el objeto 'pilas' como argumento a la escena al crearla, en lugar de eso llego esto: " + str(pilas)
+            raise Exception(mensaje)
+        
         self.pilas = pilas
         pilas.log("Creando una escena: ", self)
         self.camara = camara.Camara(pilas, self)
