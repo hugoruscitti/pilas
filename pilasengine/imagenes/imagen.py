@@ -70,3 +70,9 @@ class Imagen(object):
     def __repr__(self):
         nombre_imagen = os.path.basename(self.ruta_original)
         return "<Imagen del archivo '%s'>" % (nombre_imagen)
+
+    def definir_cuadro(self, cuadro):
+        pass
+
+    def avanzar(self, velocidad=60):
+        pass

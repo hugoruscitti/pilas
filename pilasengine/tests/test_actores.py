@@ -97,5 +97,14 @@ class TestActores(unittest.TestCase):
         self.assertEqual(100.0, aceituna.x, "Luego de 60 ticks (1 segundo) \
                          llegó a x=100")
 
+
+    def testPuedeInstanciarTodosLosActoresSinArgumentos(self):
+        nombres = [n for n in dir(self.pilas.actores) if n.istitle() and n is not 'Grupo']
+        funciones = [getattr(self.pilas.actores, n) for n in nombres]
+
+        for x in funciones:
+            actor = x()
+            self.assertTrue(actor, "Puede crear el actor %s" %(str(x)))
+
 if __name__ == '__main__':
     unittest.main()

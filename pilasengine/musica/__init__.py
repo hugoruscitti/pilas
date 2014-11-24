@@ -16,9 +16,9 @@ class Musica(object):
         self.pilas = pilas
 
     def cargar(self, ruta):
-        ruta_al_sonido = self.pilas.obtener_ruta_al_recurso(ruta)
+        ruta_a_la_musica = self.pilas.obtener_ruta_al_recurso(ruta)
 
-        if configuracion.AUDIO_HABILITADO:
-            return musica.Musica(ruta_al_sonido)
+        if self.pilas.configuracion.audio_habilitado():
+            return musica.Musica(ruta_a_la_musica)
         else:
-            return musica.MusicaDeshabilitada()
+            return musica.MusicaDeshabilitada(ruta_a_la_musica)

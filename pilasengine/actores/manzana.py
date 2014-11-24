@@ -18,6 +18,8 @@ class Manzana(Actor):
     actores.
     """
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.imagen = self.pilas.imagenes.cargar("manzana.png")
         self.radio_de_colision = 50

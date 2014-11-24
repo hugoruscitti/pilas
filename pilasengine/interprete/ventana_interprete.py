@@ -255,9 +255,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.canvas.setCurrentWidget(self.scope['pilas'].widget)
 
     def _insertar_editor(self):
-        widget_editor = editor.WidgetEditor(self.main, self.scope)
-        self.editor_layout.addWidget(widget_editor)
-        self.editor = widget_editor.editor
+        self.widget_editor = editor.WidgetEditor(self.main, self.scope)
+        self.editor_layout.addWidget(self.widget_editor)
+        self.editor = self.widget_editor.editor
         self.editor.signal_ejecutando.connect(self.actualizar_widget_pilas)
 
     def _insertar_consola_interactiva(self):
@@ -274,6 +274,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def definir_fuente_desde_configuracion(self):
         fuente = pilasengine.configuracion.Configuracion().obtener_fuente()
         self.editor.definir_fuente(fuente)
+        self.widget_editor.definir_fuente(fuente)
         self.consola.definir_fuente(fuente)
 
     def cuando_pulsa_el_boton_guardar_interprete(self):

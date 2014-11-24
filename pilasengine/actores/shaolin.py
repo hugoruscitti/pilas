@@ -16,6 +16,8 @@ class Shaolin(Actor):
     puede saltar, golpear y recibir golpes."""
 
     def iniciar(self, x=0, y=0):
+        self.x = x
+        self.y = y
         self.hacer(Parado)
         self.sombra = self.pilas.actores.Sombra()
         self.altura_del_salto = 0

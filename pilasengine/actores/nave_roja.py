@@ -12,7 +12,9 @@ from pilasengine.actores.actor import Actor
 
 class NaveRoja(Actor):
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.ruta_imagen_normal = "nave_roja/nave.png"
         self.ruta_imagen_izquierda = "nave_roja/nave_izquierda.png"
         self.ruta_imagen_derecha = "nave_roja/nave_derecha.png"

@@ -11,7 +11,9 @@ from pilasengine.actores.actor import Actor
 
 class Estrella(Actor):
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.imagen = "estrella.png"
         self.radio_de_colision = 25
 

@@ -51,27 +51,6 @@ class Animacion(Grilla):
             self.definir_cuadro(self.animacion_en_curso[0][self.cuadro_en_la_animacion])
             self.cuadro_en_la_animacion += 1
 
-        """
-            cuadro_actual = self._cuadro + 1
-
-            if cuadro_actual >= self.cantidad_de_cuadros:
-                cuadro_actual = 0
-                ha_avanzado = False
-
-            self.definir_cuadro(cuadro_actual)
-
-
-
-        if self.contador_demora > self.animacion_en_curso[1]:
-            self.cuadro_en_la_animacion += 1
-            self.contador_demora = 0
-
-            if self.cuadro_en_la_animacion >= len(self.animacion_en_curso[0]):
-                self.cuadro_en_la_animacion = 0
-
-            self.definir_cuadro(self.animacion_en_curso[0][self.cuadro_en_la_animacion])
-        """
-
         return ha_avanzado
 
     def __repr__(self):

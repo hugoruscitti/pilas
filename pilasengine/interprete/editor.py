@@ -167,10 +167,15 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         self.timer_id = self.startTimer(1000 / 2.0)
         self.lista_actores.currentItemChanged.connect(self.cuando_selecciona_item)
 
+    def definir_fuente(self, fuente):
+        self.lista_actores.setFont(fuente)
+        #self.font_family = fuente.rawName()
+        #self.font_size = fuente.pointSize()
+        
     def cuando_selecciona_item(self, actual, anterior):
         indice = self.lista_actores.indexFromItem(actual).row()
         if indice > -1:
-            print "# actor = pilas.obtener_actor_por_indice(" + str(indice) + ")"
+            self.editor.cuando_selecciona_actor_por_indice(indice)
 
     def timerEvent(self, event):
         lista_actores = self.interpreter_locals['pilas'].escena._actores.obtener_actores()
@@ -391,7 +396,13 @@ class Editor(editor_base.EditorBase):
         exec(contenido, self.interpreterLocals)
         self.signal_ejecutando.emit()
 
-
+    def cuando_selecciona_actor_por_indice(self, indice):
+        capturar_actor = "actor = pilas.obtener_actor_por_indice(" + str(indice) + ")"
+        resaltar = "actor.transparencia = [50, 0] * 3, 0.1"
+        exec(capturar_actor, self.interpreterLocals)
+        exec(resaltar, self.interpreterLocals)
+        print "# Creando la variable 'actor'"
+        
 if __name__ == '__main__':
     from PyQt4.QtGui import QApplication
     app = QApplication(sys.argv)

@@ -22,7 +22,9 @@ class Pingu(Actor):
         >>> pingu = pilas.actores.Pingu()
     """
 
-    def iniciar(self):
+    def iniciar(self, x, y):
+        self.x = x
+        self.y = y
         self.imagen = self.pilas.imagenes.cargar_grilla("pingu.png", 10)
         self.definir_cuadro(4)
         self.hacer(Esperando)

@@ -27,7 +27,9 @@ class Banana(Actor):
 
     """
 
-    def iniciar(self):
+    def iniciar(self, x=0, y=0):
+        self.x = x
+        self.y = y
         self.imagen = self.pilas.imagenes.cargar_grilla("banana.png", 2)
         self.definir_cuadro(0)
 

@@ -114,6 +114,7 @@ class Vaca(pilasengine.actores.Actor):
 class Enemigo(pilasengine.actores.Bomba):
 
     def iniciar(self):
+        pilasengine.actores.Bomba.iniciar(self)
         self.izquierda = 320
         self.y = random.randint(-210, 210)
 

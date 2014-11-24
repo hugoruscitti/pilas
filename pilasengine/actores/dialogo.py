@@ -25,7 +25,9 @@ class Dialogo(Actor):
 
     """
 
-    def iniciar(self):
+    def iniciar(self, x=0, y=0):
+        self.x = x
+        self.y = y
         if getattr(self, 'dialogo', None):
             raise Exception("Ya se ha iniciado el actor, quisiste escribir 'comenzar' en realidad?")
 

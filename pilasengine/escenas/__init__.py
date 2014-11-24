@@ -6,6 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+
 from pilasengine.escenas.normal import Normal
 from pilasengine.escenas.escena import Escena
 from pilasengine.escenas.error import Error
@@ -24,7 +25,7 @@ class Escenas(object):
     utilizar.
     """
 
-    def __init__(self, pilas):
+    def __init__(self, pilas=None):
         self.pilas = pilas
         self.pila_de_escenas = []
         self.escena_actual = None
