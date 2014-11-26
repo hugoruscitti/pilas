@@ -38,6 +38,7 @@ class TestActores(unittest.TestCase):
         self.assertTrue(actor.x == 100, actor.x)
 
     def testPuedeCrearActorPersonalizado(self):
+
         class MiActor(pilasengine.actores.Actor):
 
             def iniciar(self):
@@ -69,6 +70,39 @@ class TestActores(unittest.TestCase):
             actor_falla = MiActor(123)
 
         self.assertRaises(Exception, crear_actor_argumentos_incorrectos)
+
+        def crear_actor_argumentos_adicionales_no_esperados():
+            actor_falla = MiActor(self.pilas, 123)
+
+        self.assertRaises(TypeError, crear_actor_argumentos_adicionales_no_esperados)
+
+        class MiActorConArgumentos(pilasengine.actores.Actor):
+
+            def iniciar(self, nombre, edad):
+                self.imagen = "aceituna.png"
+                self.nombre = nombre
+                self.edad = edad
+
+
+            def actualizar(self):
+                self.rotacion += 2
+
+        def crear_actor_sin_los_argumentos_esperados():
+            actor_falla = MiActorConArgumentos(self.pilas)
+
+        def crear_actor_con_menos_argumentos_de_los_esperados():
+            actor_falla = MiActorConArgumentos(self.pilas)
+
+        def crear_actor_con_los_argumentos_correctos():
+            actor = MiActorConArgumentos(self.pilas, "pepe", 33)
+
+        def crear_actor_con_los_argumentos_correctos_como_diccionarios():
+            actor = MiActorConArgumentos(self.pilas, edad=20, nombre="juan pepe")
+
+        self.crear_actor_sin_los_argumentos_esperados()
+        self.crear_actor_con_menos_argumentos_de_los_esperados()
+        self.crear_actor_con_los_argumentos_correctos()
+        self.crear_actor_con_los_argumentos_correctos_como_diccionarios()
 
     def testObtieneErrorSiElActorPersonalizadoExiste(self):
         class Actor(pilasengine.actores.Actor):

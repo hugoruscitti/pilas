@@ -53,9 +53,13 @@ class Actores(object):
             raise Exception("Solo se pueden vincular clases que heredan de\
                             pilasengine.actores.Actor")
 
-        def metodo_crear_actor(self):
-            nuevo_actor = clase_del_actor(self.pilas)
-            return nuevo_actor
+        def metodo_crear_actor(self, *k, **kw):
+            try:
+                nuevo_actor = clase_del_actor(self.pilas, *k, **kw)
+                return nuevo_actor
+            except TypeError, error:
+                mensaje_extendido = "\n\t(en la clase %s ya que se llamó con los argumentos: %s %s" %(str(clase_del_actor.__name__), str(k), str(kw))
+                raise TypeError(str(error) + mensaje_extendido)
 
         nombre_del_actor = clase_del_actor.__name__
         existe = getattr(self.__class__, nombre_del_actor, None)
@@ -100,7 +104,7 @@ class Actores(object):
                 actor.iniciar(*k, **kv)
             except TypeError, error:
                 self._validar_argumentos(actor.__class__.__name__, actor.iniciar, k, kv)
-                
+
             self.pilas.log("Agregando el actor", actor, "en la escena", escena_actual)
             escena_actual.agregar_actor(actor)
         else:
@@ -145,13 +149,13 @@ class Actores(object):
         if k:
             mensaje = "El método tiene que ser invocado especificando el nombre de cada argumento, no con los valores posicionales directamente como aquí: " + ', '.join([str(x) for x in k])
             raise TypeError("%s.\n\t%s." %(titulo_error, mensaje))
-        
+
         # Busca los argumentos nombrados y los excluye de la lista
         # de argumentos esperados por la función.
         # Si encuentra argumentos no esperados, lanza una excepción.
         #
         argumentos_esperados = args[:]
-        
+
         for (key, _) in kv.items():
             if key in argumentos_esperados:
                 argumentos_esperados.remove(key)
@@ -161,8 +165,8 @@ class Actores(object):
         # Trata de quitar los argumentos opcionales si existen.
 
         argumentos_esperados = argumentos_esperados[:-cantidad_de_argumentos_opcionales]
-        cantidad_de_argumentos = len(argumentos_esperados)        
-        
+        cantidad_de_argumentos = len(argumentos_esperados)
+
         if cantidad_de_argumentos > 0:
             if cantidad_de_argumentos == 1:
                 detalle = "Falta el argumento: " + argumentos_esperados[0]
@@ -474,7 +478,7 @@ class Actores(object):
         #             realiza una llamada a pilas.actores.agregar_actor
         #             para vincular el actor a la escena.
         return nuevo_actor
-    
+
     def fabricar(self, clase, cantidad):
         grupo = self.Grupo()
         ancho_ventana, alto_ventana = self.pilas.widget.obtener_area()
