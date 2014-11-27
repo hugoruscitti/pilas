@@ -11,7 +11,7 @@ from pilasengine.actores.actor import Actor
 
 class Mono(Actor):
 
-    def iniciar(self, x, y):
+    def iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         self.imagen = "mono.png"

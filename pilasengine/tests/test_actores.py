@@ -151,5 +151,20 @@ class TestActores(unittest.TestCase):
             actor = x()
             self.assertTrue(actor, "Puede crear el actor %s" %(str(x)))
 
+    def testFuncionaHerenciaDeActoresYaExistentes(self):
+        
+        class ActorHeredado(pilasengine.actores.Mono):
+            pass
+        
+        b = ActorHeredado(self.pilas)
+        self.assertTrue(b.imagen, "Hereda correctamente")
+        
+        class ActorAceituna(pilasengine.actores.Aceituna):
+            pass
+        
+        b = ActorAceituna(self.pilas)
+        self.assertTrue(b.imagen, "Hereda correctamente")   
+        
+
 if __name__ == '__main__':
     unittest.main()

@@ -135,7 +135,7 @@ class InterpreteLanas(editor_base.EditorBase):
 
         for m in mensajes:
             m = m.replace('\t', ' &nbsp; &nbsp;')
-            self.insertHtml(u" <b style='color: #F00000'> &nbsp; × %s </b><br>" %(m))
+            self.insertHtml(u" <b style='color: #F00000'> &nbsp; × %s </b><br>" %(m.decode('utf-8')))
 
         #self.insertHtml(u" <a href='#'>detalle</a>")
         #self.insertPlainText('..\n')
