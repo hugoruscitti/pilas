@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>466</width>
-    <height>369</height>
+    <width>638</width>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -196,6 +196,9 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
+      <property name="elideMode">
+       <enum>Qt::ElideNone</enum>
+      </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
         <string>Editor</string>
@@ -207,10 +210,13 @@
         <item row="0" column="0">
          <widget class="QFrame" name="frame">
           <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
+           <enum>QFrame::Box</enum>
           </property>
           <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
+           <enum>QFrame::Sunken</enum>
+          </property>
+          <property name="lineWidth">
+           <number>1</number>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <property name="margin">
@@ -233,10 +239,33 @@
          <number>5</number>
         </property>
         <item row="0" column="0">
-         <widget class="QListWidget" name="lista_actores"/>
+         <widget class="QListWidget" name="lista_actores">
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="consejo">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>0</number>
+      </property>
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
      </widget>
     </item>
    </layout>

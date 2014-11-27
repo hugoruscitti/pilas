@@ -17,6 +17,9 @@
    <string>Guardar contenido del interprete</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetDefaultConstraint</enum>
+   </property>
    <property name="margin">
     <number>0</number>
    </property>
@@ -25,6 +28,18 @@
    </item>
    <item>
     <widget class="QLabel" name="consejo">
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
      <property name="text">
       <string/>
      </property>

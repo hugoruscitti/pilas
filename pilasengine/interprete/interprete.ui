@@ -168,7 +168,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="toolTip">
-               <string>Guardar el contenido del intérprete</string>
+               <string>Guardar el contenido del intérprete.</string>
               </property>
               <property name="text">
                <string>G</string>
@@ -190,7 +190,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="toolTip">
-               <string>Abre el dialogo de configuración</string>
+               <string>Abre el dialogo de configuración.</string>
               </property>
               <property name="text">
                <string>C</string>
@@ -207,6 +207,12 @@
                 <width>20</width>
                 <height>20</height>
                </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="toolTip">
+               <string>Limpia todo el texto del intérprete.</string>
               </property>
               <property name="text">
                <string>L</string>
@@ -241,7 +247,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="toolTip">
-               <string>Mostrar información del sistema</string>
+               <string>Mostrar información del sistema.</string>
               </property>
               <property name="text">
                <string>F7</string>
@@ -266,7 +272,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="toolTip">
-               <string>Mostrar puntos de control</string>
+               <string>Mostrar puntos de control.</string>
               </property>
               <property name="text">
                <string>F8</string>
@@ -291,7 +297,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="toolTip">
-               <string>Mostrar areas</string>
+               <string>Mostrar areas.</string>
               </property>
               <property name="text">
                <string>F10</string>
@@ -319,7 +325,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="toolTip">
-               <string>Mostrar figuras físicas</string>
+               <string>Mostrar figuras físicas.</string>
               </property>
               <property name="text">
                <string>F11</string>
@@ -350,7 +356,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="toolTip">
-               <string extracomment="Modo posición (tecla F12)">Mostrar posiciones</string>
+               <string>Mostrar posiciones.</string>
               </property>
               <property name="text">
                <string extracomment="Modo posición (tecla F12)">F12</string>
