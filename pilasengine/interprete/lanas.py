@@ -146,7 +146,10 @@ class InterpreteLanas(editor_base.EditorBase):
         self._mover_cursor_al_final()
 
     def insertar_mensaje(self, mensaje):
-        self.insertHtml("<p style='color: green'>%s</p><p></p>" %(mensaje))
+        self.insertPlainText('\n')
+        self.insertHtml(u" <b style='color: green'>  &nbsp; %s </b><br>" %(mensaje))
+        self.insertPlainText('\n')
+        self._mover_cursor_al_final()
 
     def insertar_codigo_falso(self, codigo):
         for line in codigo.splitlines():
