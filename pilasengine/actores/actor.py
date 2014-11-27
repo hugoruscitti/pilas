@@ -95,7 +95,7 @@ class Actor(Estudiante):
     def __init__(self, pilas=None, *k, **kv):
         # Especifica la composión de dibujado (ver actor particula.py).
         self.composicion = None
-        
+
         if not pilas:
             mensaje = "Ten cuidado, antes de crear un actor tienes que vincularlo con: 'pilas.actores.vincular(MiActor)'"
             raise Exception(mensaje)
@@ -106,17 +106,17 @@ class Actor(Estudiante):
 
         self.pilas = pilas
         self.padre = None
-        
+
         if 'x' in kv:
             x = kv['x']
         else:
             x = 0
-            
+
         if 'y' in kv:
             y = kv['y']
         else:
             y = 0
-            
+
         if 'imagen' in kv:
             imagen = kv['imagen']
         else:

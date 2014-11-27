@@ -103,8 +103,12 @@ class Actores(object):
             try:
                 actor.iniciar(*k, **kv)
             except TypeError, error:
+                # el siguiente metodo, _validar_argumentos, intentará
+                # dar una descripción mas detallada de los argumentos que
+                # faltan.
                 self._validar_argumentos(actor.__class__.__name__, actor.iniciar, k, kv)
-
+                raise TypeError(error)
+            
             self.pilas.log("Agregando el actor", actor, "en la escena", escena_actual)
             escena_actual.agregar_actor(actor)
         else:
@@ -164,7 +168,9 @@ class Actores(object):
 
         # Trata de quitar los argumentos opcionales si existen.
 
-        argumentos_esperados = argumentos_esperados[:-cantidad_de_argumentos_opcionales]
+        for x in range(cantidad_de_argumentos_opcionales):
+            argumentos_esperados.pop()
+            
         cantidad_de_argumentos = len(argumentos_esperados)
 
         if cantidad_de_argumentos > 0:

@@ -95,14 +95,25 @@ class TestActores(unittest.TestCase):
 
         def crear_actor_con_los_argumentos_correctos():
             actor = MiActorConArgumentos(self.pilas, "pepe", 33)
-
+            return actor
+        
         def crear_actor_con_los_argumentos_correctos_como_diccionarios():
             actor = MiActorConArgumentos(self.pilas, edad=20, nombre="juan pepe")
+            return actor
+        
+        def crear_actor_con_mas_argumentos_de_los_esperados():
+            actor = MiActorConArgumentos(self.pilas, pepe=123, otro=123, mas=222)
+            return actor
 
-        self.crear_actor_sin_los_argumentos_esperados()
-        self.crear_actor_con_menos_argumentos_de_los_esperados()
-        self.crear_actor_con_los_argumentos_correctos()
-        self.crear_actor_con_los_argumentos_correctos_como_diccionarios()
+        # Prueba que falle crear actores con argumentos faltantes.
+        self.assertRaises(TypeError, crear_actor_sin_los_argumentos_esperados)
+        self.assertRaises(TypeError, crear_actor_con_menos_argumentos_de_los_esperados)
+        self.assertRaises(TypeError, crear_actor_con_mas_argumentos_de_los_esperados)
+        
+        
+        # Se asegura de crear los actores correctamente y ver que funcionan.
+        self.assertTrue(isinstance(crear_actor_con_los_argumentos_correctos(), pilasengine.actores.Actor), "Genera correctamente el actor usando argumentos.")      
+        self.assertTrue(isinstance(crear_actor_con_los_argumentos_correctos_como_diccionarios(), pilasengine.actores.Actor), "Genera correctamente el actor usando argumentos como diccionario.")
 
     def testObtieneErrorSiElActorPersonalizadoExiste(self):
         class Actor(pilasengine.actores.Actor):
