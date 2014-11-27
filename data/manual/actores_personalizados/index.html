@@ -83,6 +83,8 @@
                 
                     <li><a class="toctree-l3" href="#parametros-iniciales-para-los-actores">Parametros iniciales para los actores</a></li>
                 
+                    <li><a class="toctree-l3" href="#detectando-errores-y-problemas-al-inicializar">Detectando errores y problemas al inicializar</a></li>
+                
             
             </ul>
         
@@ -427,6 +429,33 @@ energia, podrías escribir:</p>
 
 <p>Y el resultado debería quedarte así:</p>
 <p><img alt="" src="../imagenes/actores_personalizados/personalizado.png" /></p>
+<h2 id="detectando-errores-y-problemas-al-inicializar">Detectando errores y problemas al inicializar</h2>
+<p>Es muy importante que al momento de crear actores a partir
+de clases especifiques los argumentos a utilizar. Hemos incluído
+algo de código especial en <strong>pilas</strong> para detectar errores comunes, como
+argumentos faltantes o incorrectos.</p>
+<p>Pero aún así, ten en cuenta que todo argumento que le envíes
+a un actor al crearlo tiene que estar declarado como argumento
+en el método <code>iniciar</code>.</p>
+<p>Por ejemplo, un mensaje de error habitual que mostrará pilas si olvidamos
+el nombre de los argumentos podría ser:</p>
+<pre class="prettyprint well"><code>× TypeError: No se puede llamar al metodo 'iniciar' de la clase 'Alien'.
+×    Faltan 3 argumentos: energia, nombre, con_sombra.
+×    El método 'iniciar' espera estos 3 argumentos: ['energia', 'nombre', 'con_sombra']
+</code></pre>
+
+<p>Esto significa que hemos querido crear un actor a partir de una clase
+que espera 3 argumentos, pero solo hemos llamado incorrectamente.</p>
+<p>Regresando a nuestro ejemplo anterior, esto produciría un error:</p>
+<pre class="prettyprint well"><code>alien = Alien(pilas)
+</code></pre>
+
+<p>mientras que este otro ejemplo sí funcionará, porque el método
+<code>iniciar</code> de la clase <code>Alien</code> espera los argumentos <code>energia</code>, <code>nombre</code> y
+<code>con_sombra</code>:</p>
+<pre class="prettyprint well"><code>alien = Alien(pilas, energia=100, nombre=&quot;pepe alien&quot;, con_sombra=True))
+</code></pre>
+
 
           </div>
 
