@@ -1,4 +1,34 @@
-pilasengine (0.90.5-3) UNRELEASED; urgency=low
+pilasengine (0.90.15) unstable; urgency=low
+
+  * Actualizando a la version 0.90.15
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Wed, 26 Nov 2014 18:58:22 +0100
+
+pilasengine (0.90.13) unstable; urgency=low
+
+  * Actualizando a la version 0.90.13
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Wed, 05 Nov 2014 16:12:41 +0100
+
+pilasengine (0.90.12) unstable; urgency=low
+
+  * Actualizando a la version 0.90.12
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Fri, 31 Oct 2014 20:19:13 +0100
+
+pilasengine (0.90.10) unstable; urgency=low
+
+  * Actualizando a la version 0.90.10
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Mon, 27 Oct 2014 16:13:43 +0100
+
+pilasengine (0.90.8) unstable; urgency=low
+
+  * Actualizando al tag 0.90.8
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Wed, 15 Oct 2014 15:13:40 +0200
+
+pilasengine (0.90.5-3) unstable; urgency=low
 
   * Actualizando a la version 0.90.3 de pilas.
 
