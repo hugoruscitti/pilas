@@ -31,3 +31,11 @@ class MensajeError(Actor):
 
         titulo.fijo = True
         descripcion.fijo = True
+
+        self.actor_titulo = titulo
+        self.actor_descripcion = descripcion
+
+        borde_izquierdo = -self.pilas.obtener_area()[0]/2 + 10
+        print borde_izquierdo
+        self.actor_titulo.izquierda = borde_izquierdo
+        self.actor_descripcion.izquierda = borde_izquierdo
