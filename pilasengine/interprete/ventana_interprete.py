@@ -40,7 +40,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.crear_mensaje_cargando()
 
         self._insertar_consola_interactiva()
-        self._insertar_editor()
+        self._insertar_editor(self.consola)
 
         self.definir_fuente_desde_configuracion()
 
@@ -200,9 +200,12 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def cuando_pulsa_el_boton_interprete(self):
         if self.interprete_button.isChecked():
-            self.splitter.setSizes([300, 100])
+            self.mostrar_el_interprete()
         else:
             self.splitter.setSizes([300, 0])
+
+    def mostrar_el_interprete(self):
+        self.splitter.setSizes([300, 100])
 
     def pulsa_boton_depuracion(self):
         pilas = self.scope['pilas']
@@ -254,8 +257,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def _mostrar_widget_de_pilas(self):
         self.canvas.setCurrentWidget(self.scope['pilas'].widget)
 
-    def _insertar_editor(self):
-        self.widget_editor = editor.WidgetEditor(self.main, self.scope)
+    def _insertar_editor(self, consola_lanas):
+        self.widget_editor = editor.WidgetEditor(self.main, self.scope, consola_lanas, self)
         self.editor_layout.addWidget(self.widget_editor)
         self.editor = self.widget_editor.editor
         self.editor.signal_ejecutando.connect(self.actualizar_widget_pilas)

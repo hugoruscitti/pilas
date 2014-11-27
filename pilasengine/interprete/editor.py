@@ -98,11 +98,13 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
 
             QWidget.paintEvent(self, event)
 
-    def __init__(self, main=None, interpreter_locals=None, *args):
+    def __init__(self, main=None, interpreter_locals=None, consola_lanas=None, ventana_interprete=None, *args):
         QWidget.__init__(self, *args)
         self.setupUi(self)
         self.setLayout(self.vertical_layout)
         self.ruta_del_archivo_actual = None
+        self.consola_lanas = consola_lanas
+        self.ventana_interprete = ventana_interprete
 
         if interpreter_locals is None:
             interpreter_locals = locals()
@@ -110,7 +112,7 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         self.interpreter_locals = interpreter_locals
         self.lista_actores_como_strings = []
 
-        self.editor = Editor(self, interpreter_locals)
+        self.editor = Editor(self, interpreter_locals, consola_lanas, ventana_interprete)
         self.editor.setFrameStyle(QFrame.NoFrame)
         self.editor.setAcceptRichText(False)
 
@@ -241,8 +243,10 @@ class Editor(editor_base.EditorBase):
     # Señal es emitida cuando el Editor ejecuta codigo
     signal_ejecutando = QtCore.pyqtSignal()
 
-    def __init__(self, main, interpreterLocals):
+    def __init__(self, main, interpreterLocals, consola_lanas, ventana_interprete):
         super(Editor, self).__init__()
+        self.consola_lanas = consola_lanas
+        self.ventana_interprete = ventana_interprete
         self.interpreterLocals = interpreterLocals
         self.insertPlainText(CONTENIDO)
         self.setLineWrapMode(QTextEdit.NoWrap)
@@ -388,7 +392,14 @@ class Editor(editor_base.EditorBase):
             agregar_ruta_personalizada = 'pilas.utils.agregar_ruta_personalizada("%s")' %(ruta_personalizada)
             contenido = contenido.replace('pilas.reiniciar(', agregar_ruta_personalizada+'\n'+'pilas.reiniciar(')
 
-        exec(contenido, self.interpreterLocals)
+        try:
+            exec(contenido, self.interpreterLocals)
+        except Exception, e:
+            self.consola_lanas.insertar_error_desde_exception(e)
+            self.ventana_interprete.mostrar_el_interprete()
+            #self.marcar_error_en_la_linea(10, "pepepe")
+
+
         self.signal_ejecutando.emit()
 
     def cuando_selecciona_actor_por_indice(self, indice):
@@ -397,7 +408,7 @@ class Editor(editor_base.EditorBase):
         exec(capturar_actor, self.interpreterLocals)
         exec(resaltar, self.interpreterLocals)
         print "# Creando la variable 'actor'"
-        
+
 if __name__ == '__main__':
     from PyQt4.QtGui import QApplication
     app = QApplication(sys.argv)

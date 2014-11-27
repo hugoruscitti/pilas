@@ -22,17 +22,16 @@ class ErrorOutput(Output):
         if "Traceback (most" in linea or 'File "<input>", line 1' in linea:
             self.destino.ensureCursorVisible()
             return
-                
+
         if linea.startswith('  File "'):
             linea = linea.replace("File", "en el archivo")
             linea = linea.replace('line', 'linea')
             linea = linea[:linea.find(', in')]
-            
-        if 'NameError' in linea:
-            linea = linea.replace('name', 'el nombre').replace('is not defined', 'no existe')            
-            
-        self.destino.insertar_error(linea.decode('utf-8'))
 
+        if 'NameError' in linea:
+            linea = linea.replace('name', 'el nombre').replace('is not defined', 'no existe')
+
+        self.destino.insertar_error(linea.decode('utf-8'))
         self.destino.ensureCursorVisible()
 
 class NormalOutput(Output):
