@@ -34,9 +34,9 @@ class ActorEliminado(object):
 
     def __getattr__(self, *k, **kw):
         plantilla = "Este actor (ex: %s id: %d) ya ha sido eliminado, no se puede utilizar."
-        mensaje = plantilla %(self.nombre_de_clase, self.identificador)
+        mensaje = plantilla % (self.nombre_de_clase, self.identificador)
         print mensaje
-        #raise ActorEliminadoException(mensaje)
+        # raise ActorEliminadoException(mensaje)
 
     def esta_eliminado(self):
         return True
@@ -125,7 +125,7 @@ class Actor(Estudiante):
         Estudiante.__init__(self)
 
         self._definir_valores_iniciales(pilas, x, y, imagen)
-        #x, y, imagen)
+        # x, y, imagen)
 
         # Listas para definir los callbacks de los eventos
         self._callback_cuando_hace_click = set()
@@ -171,7 +171,7 @@ class Actor(Estudiante):
         self.id = pilas.utils.obtener_uuid()
 
         # Define en que escena se encuentra el actor.
-        #self.escena = None
+        # self.escena = None
         # Define el nivel de lejanía respecto del observador.
 
         self.radio_de_colision = 10
@@ -264,7 +264,7 @@ class Actor(Estudiante):
         painter.translate(-dx, -dy)
 
         if self.transparencia:
-            painter.setOpacity(1 - self.transparencia/100.0)
+            painter.setOpacity(1 - self.transparencia / 100.0)
 
         # Dibujado de los subactores.
         for un_actor in self._actores:
@@ -285,7 +285,7 @@ class Actor(Estudiante):
         self.pilas.depurador.cuando_dibuja_actor_sin_transformacion(self, painter)
         painter.restore()
 
-    ## Métodos internos
+    # # Métodos internos
     def _obtener_imagen(self):
         return self._imagen
 
@@ -476,7 +476,7 @@ class Actor(Estudiante):
 
     def definir_fijo(self, fijo):
         self._fijo = fijo
-        #self.pilas.obtener_escena_actual().cambia_estado_fijo(self)
+        # self.pilas.obtener_escena_actual().cambia_estado_fijo(self)
 
     def obtener_vx(self):
         return self._vx
@@ -546,7 +546,7 @@ class Actor(Estudiante):
     def _inhabilitar_actor_completamente(self):
         self.nombre_de_clase = self.__class__.__name__
         self.identificador = id(self)
-        #self.__class__ = ActorEliminado
+        # self.__class__ = ActorEliminado
 
     def esta_eliminado(self):
         return False
@@ -723,7 +723,7 @@ class Actor(Estudiante):
     def get_izquierda(self):
         return self.x - (self.centro_x * self.escala)
 
-    #@interpolable
+    # @interpolable
     def set_izquierda(self, x):
         self.x = x + (self.centro_x * self.escala)
 

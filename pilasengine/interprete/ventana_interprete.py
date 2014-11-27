@@ -100,7 +100,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.interprete_button.connect(self.configuracion_button,
                                        QtCore.SIGNAL("clicked()"),
                                        self.cuando_pulsa_el_boton_configuracion)
-
+        # Botón para limpiar el intérprete
+        self.definir_icono(self.limpiar_button, 'iconos/limpiar.png') 
         self.limpiar_button.connect(self.limpiar_button,
                                     QtCore.SIGNAL("clicked()"),
                                     self.cuando_pulsa_el_boton_limpiar)
