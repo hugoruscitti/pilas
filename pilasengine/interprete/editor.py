@@ -56,11 +56,6 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
             self.edit = edit
 
         def update(self, *args):
-            '''
-            Updates the number bar to display the current set of numbers.
-            Also, adjusts the width of the number bar if necessary.
-            '''
-            # The + 4 is used to compensate for the current line being bold.
             width = self.fontMetrics().width(str(self.highest_line)) + 4
 
             if self.width() != width:
@@ -77,7 +72,6 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
 
             line_count = 0
 
-            # Iterate over all text blocks in the document.
             block = self.edit.document().begin()
 
             while block.isValid():
@@ -169,9 +163,10 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
 
     def definir_fuente(self, fuente):
         self.lista_actores.setFont(fuente)
+        self.number_bar.setFont(fuente)
         #self.font_family = fuente.rawName()
         #self.font_size = fuente.pointSize()
-        
+
     def cuando_selecciona_item(self, actual, anterior):
         indice = self.lista_actores.indexFromItem(actual).row()
         if indice > -1:
