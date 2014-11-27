@@ -137,9 +137,6 @@ class InterpreteLanas(editor_base.EditorBase):
             m = m.replace('\t', ' &nbsp; &nbsp;')
             self.insertHtml(u" <b style='color: #F00000'> &nbsp; × %s </b><br>" %(m.decode('utf-8')))
 
-        #self.insertHtml(u" <a href='#'>detalle</a>")
-        #self.insertPlainText('..\n')
-
     def insertar_error_desde_exception(self, e):
         self.insertPlainText('\n')
         self.insertar_error("#%s: %s" %(e.__class__.__name__, e.message))

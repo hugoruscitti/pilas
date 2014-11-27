@@ -415,6 +415,12 @@ class Pilas(object):
 
         print codigo
 
+    def definir_pantalla_completa(self, estado):
+        if estado:
+            self.widget.definir_modo_pantalla_completa()
+        else:
+            self.widget.definir_modo_ventana()
+
 
     def obtener_actor_por_indice(self, indice):
         return self.escena._actores.obtener_actores()[indice]

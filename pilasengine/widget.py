@@ -8,6 +8,7 @@
 import sys
 import traceback
 
+from PyQt4 import Qt
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 from PyQt4.QtOpenGL import QGLWidget
@@ -108,16 +109,20 @@ class BaseWidget(object):
     def keyPressEvent(self, event):
         if event.isAutoRepeat():
             return
-        
+
         codigo_de_tecla = Controles.obtener_codigo_de_tecla_normalizado(event.key())
 
         if event.key() == QtCore.Qt.Key_Escape:
             self.pilas.eventos.pulsa_tecla_escape.emitir()
+
+            if self.pantalla_completa:
+                self.definir_modo_ventana()
+
         if event.key() == QtCore.Qt.Key_P and event.modifiers() == QtCore.Qt.AltModifier:
             self.alternar_pausa()
         if event.key() == QtCore.Qt.Key_F and event.modifiers() == QtCore.Qt.AltModifier:
             self.alternar_pantalla_completa()
-            
+
         self.pilas.eventos.pulsa_tecla.emitir(codigo=codigo_de_tecla,
                                               es_repeticion=event.isAutoRepeat(),
                                               texto=event.text())
@@ -210,10 +215,10 @@ class BaseWidget(object):
             self.painter.setFont(font)
             w = self.original_width
             h = self.original_height
-            
-            self.painter.setPen(QtCore.Qt.black) 
+
+            self.painter.setPen(QtCore.Qt.black)
             self.painter.drawText(QtCore.QRect(2, 2, w, h), QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, "en pausa")
-            self.painter.setPen(QtCore.Qt.white) 
+            self.painter.setPen(QtCore.Qt.white)
             self.painter.drawText(QtCore.QRect(0, 0, w, h), QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, "en pausa")
 
         # Ocultando los bordes de pantalla.
@@ -254,11 +259,28 @@ class BaseWidget(object):
 
     def alternar_pantalla_completa(self):
         if not self.pantalla_completa:
-            self.pantalla_completa = True
-            self.showFullScreen()
+            self.definir_modo_pantalla_completa()
         else:
-            self.pantalla_completa = False
-            self.showNormal()
+            self.definir_modo_ventana()
+
+    def definir_modo_pantalla_completa(self):
+        self.pantalla_completa = True
+        self.last_window_flags = self.windowFlags()
+        self.setWindowFlags(QtCore.Qt.Window)
+        self.pilas.avisar("Pulsa ESC para regresar al modo ventana.")
+
+        # Invoca al modo pantalla completa de forma diferida, porque
+        # en OSX no aplicaba el modo pantalla completa si lo llamaba directamente.
+        QtCore.QTimer.singleShot(100, self._show_fullscreen)
+
+    def _show_fullscreen(self):
+        if self.pantalla_completa:
+            self.showFullScreen()
+
+    def definir_modo_ventana(self):
+        self.setWindowFlags(self.last_window_flags)
+        self.pantalla_completa = False
+        self.showNormal()
 
     def pausar(self):
         "Pasa al modo pausa."
@@ -279,11 +301,11 @@ class BaseWidget(object):
 
 
 class WidgetConAceleracion(BaseWidget, QGLWidget):
-    
+
     def usa_aceleracion_de_video(self):
         return True
 
 class WidgetSinAceleracion(BaseWidget, QtGui.QWidget):
-    
+
     def usa_aceleracion_de_video(self):
         return False

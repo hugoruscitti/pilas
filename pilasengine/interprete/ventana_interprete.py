@@ -101,10 +101,16 @@ class VentanaInterprete(Ui_InterpreteWindow):
                                        QtCore.SIGNAL("clicked()"),
                                        self.cuando_pulsa_el_boton_configuracion)
         # Botón para limpiar el intérprete
-        self.definir_icono(self.limpiar_button, 'iconos/limpiar.png') 
+        self.definir_icono(self.limpiar_button, 'iconos/limpiar.png')
         self.limpiar_button.connect(self.limpiar_button,
                                     QtCore.SIGNAL("clicked()"),
                                     self.cuando_pulsa_el_boton_limpiar)
+
+        # Botón para pasar a modo pantalla completa.
+        self.definir_icono(self.pantalla_completa_button, 'iconos/pantalla_completa.png')
+        self.pantalla_completa_button.connect(self.pantalla_completa_button,
+                                    QtCore.SIGNAL("clicked()"),
+                                    self.cuando_pulsa_el_boton_pantalla_completa)
 
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
@@ -198,12 +204,12 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.mostrar_editor()
         else:
             self.ocultar_editor()
-            
-            
+
+
     def mostrar_editor(self):
         self.splitter_editor.setSizes([300, 250])
         self.editor_button.setChecked(True)
-        
+
     def ocultar_editor(self):
         self.splitter_editor.setSizes([500, 0])
         self.editor_button.setChecked(False)
@@ -213,7 +219,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
             self.mostrar_el_interprete()
         else:
             self.ocultar_el_interprete()
-            
+
     def ocultar_el_interprete(self):
         self.colapsar_interprete()
 
@@ -303,6 +309,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def cuando_pulsa_el_boton_limpiar(self):
         self.consola.limpiar()
+
+    def cuando_pulsa_el_boton_pantalla_completa(self):
+        self.scope['pilas'].widget.definir_modo_pantalla_completa()
 
     def ejecutar_y_reiniciar_si_cambia(self, archivo):
         self.watcher_ultima_invocacion = time.time() - 500

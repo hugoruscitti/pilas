@@ -223,6 +223,28 @@
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="pantalla_completa_button">
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="toolTip">
+               <string>Pasa al modo pantalla completa.</string>
+              </property>
+              <property name="text">
+               <string>P</string>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="horizontalSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
