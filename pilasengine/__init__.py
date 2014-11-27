@@ -476,6 +476,10 @@ def abrir_interprete():
     import interprete
     return interprete.abrir()
 
+def abrir_editor():
+    import interprete
+    return interprete.abrir_editor()
+
 def abrir_script_con_livereload(archivo):
     import interprete
     ruta = os.path.dirname(archivo)

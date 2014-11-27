@@ -195,18 +195,31 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def cuando_pulsa_el_boton_editor(self):
         if self.editor_button.isChecked():
-            self.splitter_editor.setSizes([300, 250])
+            self.mostrar_editor()
         else:
-            self.splitter_editor.setSizes([500, 0])
+            self.ocultar_editor()
+            
+            
+    def mostrar_editor(self):
+        self.splitter_editor.setSizes([300, 250])
+        self.editor_button.setChecked(True)
+        
+    def ocultar_editor(self):
+        self.splitter_editor.setSizes([500, 0])
+        self.editor_button.setChecked(False)
 
     def cuando_pulsa_el_boton_interprete(self):
         if self.interprete_button.isChecked():
             self.mostrar_el_interprete()
         else:
-            self.splitter.setSizes([300, 0])
+            self.ocultar_el_interprete()
+            
+    def ocultar_el_interprete(self):
+        self.colapsar_interprete()
 
     def mostrar_el_interprete(self):
         self.splitter.setSizes([300, 100])
+        self.interprete_button.setChecked(True)
 
     def pulsa_boton_depuracion(self):
         pilas = self.scope['pilas']

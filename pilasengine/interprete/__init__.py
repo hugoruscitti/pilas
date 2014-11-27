@@ -33,6 +33,24 @@ def abrir():
     pilasengine.utils.destacar_ventanas()
     return MainWindow
 
+def abrir_editor():
+    MainWindow = QMainWindow()
+
+    ui = VentanaInterprete()
+    ui.setupUi(MainWindow)
+    
+
+
+    utils.centrar_ventana(MainWindow)
+    MainWindow.show()
+    MainWindow.raise_()
+    
+    ui.ocultar_el_interprete()
+    ui.mostrar_editor()
+    
+    pilasengine.utils.destacar_ventanas()
+    return MainWindow
+
 
 def abrir_script_con_livereload(archivo):
     MainWindow = QMainWindow()
