@@ -24,7 +24,7 @@ def verificar_submodulos():
 verificar_submodulos()
 
 try:
-    import Box2D
+    import Box2D_23
 except ImportError:
     error("box2d", "http://code.google.com/p/pybox2d")
 
@@ -50,7 +50,7 @@ http://www.pilas-engine.com.ar
         author_email='hugoruscitti@gmail.com',
         install_requires=[
             'setuptools',
-            'box2d',
+            'box2d_23',
             ],
         packages=['pilas',
                   'pilas.actores',
@@ -84,5 +84,8 @@ http://www.pilas-engine.com.ar
             'Programming Language :: Python',
             'Topic :: Games/Entertainment',
           ],
+     data_files=[('/usr/share/applications', ('debian/pilas.desktop',)),
+		  ('/usr/share/pixmaps', ('debian/pilas-icono.png',))
+         ]
     )
 

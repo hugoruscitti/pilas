@@ -1,0 +1,45 @@
+pilas (0.84.3-4) unstable; urgency=low
+
+  * Arreglos de cálculos sobre el ping
+  * Nuevo ejemplo beep
+  
+ -- Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Thu, 9 Sep 2014 11:32:42 -0300
+ 
+pilas (0.84.3-3) unstable; urgency=low
+
+  * Nueva dependendencia para el beep
+  * Corregidos los errores de backward.
+  * Rehechos los módulos de: getObstacle, ping y beep
+  * Se agregó manejo de eventos con Qt
+  * Se incorporaron test.
+  * Incorporaron nuevos ejemplos en el módulo de ejemplos de Pilas
+  * Property para las x e y; y el lápiz del robot.
+  * Rediseño de la clase Robot. Dejó de heredar de Actor.
+  
+ -- Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Mon, 25 Aug 2014 17:13:47 -0300
+
+pilas (0.84.3-2) unstable; urgency=low
+
+  * Archivo desktop.
+  * Modificaciones en setup.py
+  * Dependencia por Box2D_23 para Lihuen.
+
+ -- Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Tue, 13 May 2014 18:22:38 -0300
+
+pilas (0.84.3) unstable; urgency=low
+
+  * Versión actualizada a upstream.
+
+ -- Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Wed, 30 Apr 2014 15:36:50 -0300
+
+pilas (0.81-2) unstable; urgency=low
+
+  * Simulador del robot Multiplo N6 agregado.
+
+ -- Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Tue, 25 Mar 2014 14:39:30 -0300
+
+pilas (0.81-1) unstable; urgency=low
+
+  * source package automatically created by stdeb 0.6.0+git
+
+ -- Soporte Lihuen <soportelihuen@linti.unlp.edu.ar>  Fri, 14 Jun 2013 17:13:00 -0300

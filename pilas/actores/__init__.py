@@ -86,6 +86,8 @@ from .proyectil import EstrellaNinja
 from .torreta import Torreta
 from .ovni import Ovni
 from .manzana import Manzana
+from .robot import Robot
+from .robot import Board
 
 def listar_actores():
     """Devuelve una lista con todos los actores disponibles para crear en pilas

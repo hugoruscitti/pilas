@@ -134,6 +134,29 @@ class Avanzar(Comportamiento):
         if salir:
             return True
 
+class Retroceder(Avanzar):
+    "Retrocede al actor en la dirección y sentido indicado por una rotación."
+
+    def actualizar(self):
+        salir = False
+
+        if self.pasos > 0:
+            if self.pasos - self.velocidad < 0:
+                avance = self.pasos
+            else:
+                avance = self.velocidad
+            self.pasos -= avance
+            self.receptor.x -= self.dx * avance
+            self.receptor.y -= self.dy * avance
+        else:
+            salir = True
+
+        if salir:
+            return True
+
+
+
+
 
 class Proyectil(Comportamiento):
     "Hace que un actor se comporte como un proyectil."

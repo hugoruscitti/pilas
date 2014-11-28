@@ -97,7 +97,14 @@ def distancia_entre_dos_actores(a, b):
     :param a: El primer actor.
     :param b: El segundo actor.
     """
-    return distancia_entre_dos_puntos((a.x, a.y), (b.x, b.y))
+    
+    dis = distancia_entre_dos_puntos((a.x, a.y), (b.x, b.y)) - a.radio_de_colision - b.radio_de_colision 
+    
+    if (dis < 0):
+        return 0
+    else:
+        return dis
+    
 
 
 def actor_mas_cercano_al_actor(actor):
@@ -516,3 +523,53 @@ def iniciar_asistente_desde_argumentos():
         else:
             import pilas
             pilas.abrir_asistente()
+            
+def distancia_entre_radios_de_colision_de_dos_actores(a, b):
+    """Retorna la distancia entre dos actores tenieno en cuenta su radio de colisión
+    
+    :param a: Un actor.
+    :param b: El segundo actor a verificar.
+    """
+    return distancia_entre_dos_actores(a, b) - (a.radio_de_colision + b.radio_de_colision)
+
+def beep(freq, seconds):
+    import pygame
+    import math
+    import numpy
+
+    size = (1366, 720)
+    bits = 16
+
+        
+    #pyg ame.mixer.pre_init(44100, -bits, 1)#esto hace q se configure en mono, falta ver que el array buf sea unidimensional
+    pygame.mixer.pre_init(44100, -bits, 2)#esto hace q se configure en mono, falta ver que el array buf sea unidimensional
+    pygame.init()
+    #_display_surf = pygame.display.set_mode(size, pygame.HWSURFACE | pygame.DOUBLEBUF)
+
+    #this sounds totally different coming out of a laptop versus coming out of headphones
+
+    sample_rate = 44100   
+    n_samples = int(round(seconds*sample_rate))
+    
+    #setup our numpy array to handle 16 bit ints, which is what we set our mixer to expect with "bits" up above
+    buf = numpy.zeros((n_samples, 2), dtype = numpy.int16)
+    max_sample = 2**(bits - 1) - 1
+    
+    for s in range(n_samples):
+        t = float(s)/sample_rate    # time in seconds
+        
+        #grab the x-coordinate of the sine wave at a given time, while constraining the sample to what our mixer is set to with "bits"
+        buf[s][0] = int(round(max_sample*math.sin(2*math.pi*freq*t)))        # left
+        buf[s][1] = int(round(max_sample*math.sin(2*math.pi*freq*t)))        # left
+
+    sound = pygame.sndarray.make_sound(buf)
+    #play once, then loop forever
+    sound.play()
+    
+    def hacerEvent():
+        for event in pygame.event.get():
+            pass
+ 
+    pilas.escena_actual().tareas.una_vez(0.1, hacerEvent)
+
+                            
