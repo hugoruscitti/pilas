@@ -24,7 +24,7 @@ class NaveRoja(Actor):
         self.velocidad_y = 0
         self.velocidad = 5
         self.disparos = []
-        self._contador_demora = 0
+        self._contador_demora = 6
         self.demora_entre_disparos = 5
         self.disparo_doble = True
         self.cuando_elimina_enemigo = False
@@ -60,6 +60,9 @@ class NaveRoja(Actor):
         self.velocidad_x *= 0.5
         self.velocidad_y *= 0.5
 
+    def disparar(self):
+        self.intenta_disparar()
+        
     def terminar(self):
         pass
     
