@@ -12,6 +12,7 @@ import traceback
 import random
 import codecs
 import imp
+import time
 
 from PyQt4 import QtGui
 from PyQt4 import QtCore
@@ -32,6 +33,7 @@ from pilasengine import comportamientos
 from pilasengine import eventos
 from pilasengine import controles
 from pilasengine import pad
+from pilasengine import watcher
 
 import widget
 
@@ -58,6 +60,12 @@ class Pilas(object):
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self._iniciado_desde_asistente = False
         self.texto_avisar_anterior = None
+
+        # Archivo que se observa para hacer livecoding. Esta
+        # variable toma valor cuando se llama a la función
+        # "pilas.reiniciar_si_cambia(archivo)"
+        self.archivo_a_observar = None
+
 
         self.log("Iniciando pilas con los parametros", str({"ancho": ancho,
                                                             "alto": alto,
@@ -190,6 +198,57 @@ class Pilas(object):
         self.comportamientos = comportamientos.Comportamientos()
         self._x = x
         self._y = y
+
+    def reiniciar_si_cambia(self, archivo):
+        """Regista un archivo para hacer livecoding.
+
+        Livecoding es un modo de pilas que se reinicia automáticamente
+        si el archivo indicado cambia. Esto de termina programar
+        mas rápido y prototipar con mayor fluidez."""
+
+        if not archivo:
+            return
+
+        if self.archivo_a_observar:
+            raise Exception("Ya se estaba observando un archivo, imposible aceptar esta orden.")
+
+        self.archivo_a_observar = archivo
+        self.watcher = watcher.Watcher(archivo, callback=self._reiniciar_pilas_para_livecoding)
+
+    def _reiniciar_pilas_para_livecoding(self):
+        """Calback que se ejecuta cuando se detecta modificación de un archivo observado."""
+        f = open(self.archivo_a_observar, 'rt')
+        contenido = f.read()
+        f.close()
+
+        print "%s - Reiniciando" %(time.strftime("%H:%m:%S"))
+
+        geometry = self.widget.geometry()
+
+        scope = {'pilas': self, '__file__': None}
+        contenido = self._modificar_codigo_para_reiniciar(contenido)
+
+        try:
+            exec(contenido, scope, scope)
+        except Exception, e:
+            self.procesar_error(e)
+
+        self.widget.setGeometry(geometry)
+        self.widget.show()
+
+    def procesar_error(self, e):
+        titulo = repr(e)
+        descripcion = traceback.format_exc(e)
+        escena = self.escenas.Error(titulo, descripcion)
+        return escena
+
+    def _modificar_codigo_para_reiniciar(self, contenido):
+        import re
+        contenido = re.sub('coding\s*:\s*', '', contenido)
+        contenido = contenido.replace('import pilasengine', '')
+        contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
+        contenido = contenido.replace('pilas.ejecutar', '#pilas.ejecutar')
+        return contenido
 
     def cerrar(self):
         self._eliminar_el_anterior_widget()
