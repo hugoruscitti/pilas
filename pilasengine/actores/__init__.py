@@ -108,7 +108,7 @@ class Actores(object):
                 # faltan.
                 self._validar_argumentos(actor.__class__.__name__, actor.iniciar, k, kv)
                 raise TypeError(error)
-            
+
             self.pilas.log("Agregando el actor", actor, "en la escena", escena_actual)
             escena_actual.agregar_actor(actor)
         else:
@@ -170,7 +170,7 @@ class Actores(object):
 
         for x in range(cantidad_de_argumentos_opcionales):
             argumentos_esperados.pop()
-            
+
         cantidad_de_argumentos = len(argumentos_esperados)
 
         if cantidad_de_argumentos > 0:
@@ -492,7 +492,15 @@ class Actores(object):
         for i in xrange(cantidad):
             _x = random.randint(-ancho_ventana/2, ancho_ventana/2)
             _y = random.randint(-alto_ventana/2, alto_ventana/2)
-            grupo.agregar(clase(self.pilas, x=_x, y=_y))
+
+            try:
+                actor = clase(self.pilas)
+                actor.x = _x
+                actor.y = _y
+            except TypeError:
+                actor = clase(self.pilas, x=_x, y=_y)
+
+            grupo.agregar(actor)
 
         return grupo
 

@@ -245,7 +245,7 @@ class Pilas(object):
     def _modificar_codigo_para_reiniciar(self, contenido):
         import re
         contenido = re.sub('coding\s*:\s*', '', contenido)
-        contenido = contenido.replace('import pilasengine', '')
+        #contenido = contenido.replace('import pilasengine', '')
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
         contenido = contenido.replace('pilas.ejecutar', '#pilas.ejecutar')
         return contenido
