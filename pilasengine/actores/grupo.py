@@ -92,9 +92,14 @@ class Grupo(collections.MutableSequence):
                             está en el grupo.")
 
     def agregar(self, actor):
-        if not isinstance(actor, Actor):
-            raise Exception("Solo puede agregar objetos que herenden de \
-                            actor a un Grupo.")
+        if not isinstance(actor, Actor) and not isinstance(actor, Grupo):
+            raise Exception("Solo puede agregar objetos que herenden de la clase Actor o Grupo.")
+
+        if isinstance(actor, Grupo):
+            for x in actor:
+                self.agregar(x)
+                
+            return
 
         if actor not in self._actores:
             self.pilas.log("Agregando el actor", actor, "al grupo", self)
