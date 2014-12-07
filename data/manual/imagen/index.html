@@ -113,6 +113,8 @@
                 
                     <li><a class="toctree-l3" href="#haciendo-actores-con-animacion">Haciendo actores con animación</a></li>
                 
+                    <li><a class="toctree-l3" href="#animaciones">Animaciones</a></li>
+                
             
             </ul>
         
@@ -451,6 +453,65 @@ métodos para intercambiar animaciones:</p>
 queremos cambiar de animación tenemos que cambiar de grilla, y
 cuando queremos avanzar la animación solamente tenemos que
 llamar al método <code>avanzar</code>.</p>
+<h2 id="animaciones">Animaciones</h2>
+<p>Además de las imágenes y las grillas, pilas incluye un recurso llamado animación, que nos permite declarar y utilizar animaciones almacenadas en una grilla.</p>
+<p>Por ejemplo, si tenemos una grilla con varios cuadros de animación como aquí:</p>
+<p><img alt="" src="../imagenes/imagen/alien-simple.png" /></p>
+<p>podemos cargar la grilla completa y definir las dos
+animaciones por separado.</p>
+<p>Enumerando los cuadros de animación nos quedaría así:</p>
+<p><img alt="" src="../imagenes/imagen/alien-simple-enumerado.png" /></p>
+<p>y desde aquí podemos extraer dos animaciones:</p>
+<ul>
+<li>La animación que podemos armar con los cuadros <code>0, 1, 4</code>:</li>
+</ul>
+<p><img alt="" src="../imagenes/imagen/anim2.gif" /></p>
+<ul>
+<li>Y la animación que se puede armar con los cuadros <code>3, 4, 5</code>:</li>
+</ul>
+<p><img alt="" src="../imagenes/imagen/anim1.gif" /></p>
+<p>Luego, para indicarle a <em>pilas</em> como interpretar las animaciones podemos
+cargar la animación y especificar los cuadros:</p>
+<pre class="prettyprint well"><code class="python">animacion = pilas.imagenes.cargar_animacion('alien.png', 5, 1)
+
+animacion.definir_animacion('baja_palanca', [0, 1, 4], 10)
+animacion.definir_animacion('parado', [3, 3, 3, 3, 4, 5, 4], 10)
+</code></pre>
+
+<p>Al llamar al método <code>definir_animacion</code> tenemos que especificar
+en nombre de la animación, los cuadros a mostrar y luego la velocidad (medido
+en cuadros por segundo.)</p>
+<p>El siguiente paso es crear al actor e indicarle que animación mostrar en
+cada momento:</p>
+<pre class="prettyprint well"><code class="python">
+class MiActor(pilasengine.actores.Actor):
+
+    def iniciar(self):
+
+        # Las animaciones que cargamos antes:
+        animacion = pilas.imagenes.cargar_animacion('alien.png', 5, 1)
+
+        animacion.definir_animacion('baja_palanca', [0, 1, 4], 10)
+        animacion.definir_animacion('parado', [3, 3, 3, 3, 4, 5, 4], 10)
+
+        # Vinculamos la animación al actor
+        self.imagen = animacion
+
+        # Le indicamos que muestre la animación 'parado'
+        self.imagen.cargar_animacion('parado')
+
+    def actualizar(self):
+        self.imagen.avanzar()
+
+
+pilas.actores.vincular(MiActor)
+mi_actor = pilas.actores.MiActor()
+</code></pre>
+
+<p>Es decir, con esta nueva clase, podremos representar
+a nuestro actor y seleccionar cualquiera de las dos
+animaciones que declaramos usando el método <code>cargar_animacion</code>, que en este caso usamos para cargar
+la animación <code>parado</code>.</p>
 
           </div>
 

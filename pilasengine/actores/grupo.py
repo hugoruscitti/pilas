@@ -98,7 +98,7 @@ class Grupo(collections.MutableSequence):
         if isinstance(actor, Grupo):
             for x in actor:
                 self.agregar(x)
-                
+                 
             return
 
         if actor not in self._actores:
