@@ -28,7 +28,7 @@ class DisparoLaser(Actor):
         self.imagen = imagen
         self._calcular_movimiento_desde_rotacion(velocidad)
         self.aprender(self.pilas.habilidades.EliminarseSiSaleDePantalla)
-
+        self.cuando_se_elimina = None
     
     def actualizar(self):
         self.x += self.dx
@@ -39,3 +39,8 @@ class DisparoLaser(Actor):
         self.dx = math.cos(rotacion_en_radianes) * velocidad
         self.dy = math.sin(rotacion_en_radianes) * velocidad
 
+    def eliminar(self):
+        if self.cuando_se_elimina:
+            self.cuando_se_elimina(self)
+            
+        Actor.eliminar(self)

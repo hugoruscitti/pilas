@@ -66,7 +66,6 @@ class NaveRoja(Actor):
     def terminar(self):
         pass
     
-
     def intenta_disparar(self):
         if self._contador_demora > self.demora_entre_disparos:
             self._contador_demora = 0
@@ -76,15 +75,21 @@ class NaveRoja(Actor):
         if self.disparo_doble:
             disparo1 = self.pilas.actores.DisparoLaser(x=self.izquierda + 10, y=self.y, rotacion=90)
             self.disparos.append(disparo1)
+            disparo1.cuando_se_elimina = self._cuando_elimina_disparo
 
             disparo2 = self.pilas.actores.DisparoLaser(x=self.derecha - 10, y=self.y, rotacion=90)
             self.disparos.append(disparo2)
+            disparo2.cuando_se_elimina = self._cuando_elimina_disparo
             disparo1.z = self.z + 1
             disparo2.z = self.z + 1
         else:
             disparo1 = self.pilas.actores.DisparoLaser(x=self.x, y=self.y, rotacion=90)
             self.disparos.append(disparo1)
             disparo1.z = self.z + 1
+            disparo1.cuando_se_elimina = self._cuando_elimina_disparo
+            
+    def _cuando_elimina_disparo(self, disparo):
+        self.disparos.remove(disparo)
             
     def definir_enemigos(self, grupo, cuando_elimina_enemigo=None):
         """Hace que una nave tenga como enemigos a todos los actores del grupo."""
