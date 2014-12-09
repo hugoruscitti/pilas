@@ -341,7 +341,12 @@ class InterpreteLanas(editor_base.EditorBase):
             # Cuando pulsa ENTER luego de haber hecho un texto multilinea y borrado todos los caracteres.
             if self.multiline and (not self.haveLine or self._ha_ingresado_solo_espacios(line)): #  multi line done
                 self.append('') # move down one line
-                self.interpreter.runsource(self.command)
+
+                try:
+                    self.interpreter.runsource(self.command)
+                except Exception, e:
+                    self.insertar_error_desde_exception(e)
+
                 self.command = '' # clear command
                 self.multiline = False # back to single line
                 self.marker() # handle marker style
@@ -361,7 +366,12 @@ class InterpreteLanas(editor_base.EditorBase):
             if self.haveLine and not self.multiline: # one line command
                 self.command = line # line is the command
                 self.append('') # move down one line
-                self.interpreter.runsource(self.command)
+
+                try:
+                    self.interpreter.runsource(self.command)
+                except Exception, e:
+                    self.insertar_error_desde_exception(e)
+
                 self.command = '' # clear command
                 self.marker() # handle marker style
                 return None
