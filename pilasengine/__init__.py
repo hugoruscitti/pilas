@@ -17,7 +17,7 @@ import time
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
-from pilasengine import configuracion
+import configuracion
 from pilasengine import escenas
 from pilasengine import imagenes
 from pilasengine import colores

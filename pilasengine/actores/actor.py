@@ -51,6 +51,64 @@ class ActorEliminado(object):
         pass
 
 
+class Etiquetas(object):
+    """Representa una lista de etiquetas que tiene un actor.
+
+    Las etiquetas permiten clasificar a los actores e indentificarlos
+    al momento de detectar una colision.
+
+    Por ejemplo, para acceder a las etiquetas de una actor
+    podemos escribir:
+
+        >>> actor.etiquetas
+        ['Mono']
+        >>> actor.etiquetas.agregar('enemigo')
+        ['Mono', 'enemigo']
+
+    """
+
+    def __init__(self):
+        self.lista = []
+
+    def obtener_como_lista(self):
+        return self.lista
+
+    def agregar(self, etiqueta):
+        if isinstance(etiqueta, str):
+            etiqueta = etiqueta.lower()
+            if not etiqueta in self.lista:
+                self.lista.append(etiqueta)
+        else:
+            raise Exception("Solo se permiten etiquetas que sean cadenas de texto, has enviado: " + str(etiqueta))
+
+        return self
+
+    def __repr__(self):
+        return str(self.lista)
+
+    def contar(self):
+        return len(self.lista)
+
+    def eliminar(self, etiqueta):
+        if isinstance(etiqueta, str):
+            etiqueta = etiqueta.lower()
+
+            if etiqueta in self.lista:
+                self.lista.remove(etiqueta)
+            else:
+                raise Exception("No se encuentra esta etiqueta en el actor")
+        else:
+            raise Exception("La etiqueta tiene que ser una cadena de texto")
+
+        return self
+
+    def interseccion(self, otra_lista):
+        intersectan = []
+        for x in otra_lista:
+            if x in self.lista:
+                intersectan.append(x)
+        return intersectan
+
 class Actor(Estudiante):
     """Representa un objeto visible en pantalla, algo que se ve y tiene
     posicion.
@@ -126,6 +184,8 @@ class Actor(Estudiante):
 
         self._definir_valores_iniciales(pilas, x, y, imagen)
         # x, y, imagen)
+        self.etiquetas = Etiquetas()
+        self.etiquetas.agregar(self.__class__.__name__)
 
         # Listas para definir los callbacks de los eventos
         self._callback_cuando_hace_click = set()

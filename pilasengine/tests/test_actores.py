@@ -96,11 +96,11 @@ class TestActores(unittest.TestCase):
         def crear_actor_con_los_argumentos_correctos():
             actor = MiActorConArgumentos(self.pilas, "pepe", 33)
             return actor
-        
+
         def crear_actor_con_los_argumentos_correctos_como_diccionarios():
             actor = MiActorConArgumentos(self.pilas, edad=20, nombre="juan pepe")
             return actor
-        
+
         def crear_actor_con_mas_argumentos_de_los_esperados():
             actor = MiActorConArgumentos(self.pilas, pepe=123, otro=123, mas=222)
             return actor
@@ -109,10 +109,10 @@ class TestActores(unittest.TestCase):
         self.assertRaises(TypeError, crear_actor_sin_los_argumentos_esperados)
         self.assertRaises(TypeError, crear_actor_con_menos_argumentos_de_los_esperados)
         self.assertRaises(TypeError, crear_actor_con_mas_argumentos_de_los_esperados)
-        
-        
+
+
         # Se asegura de crear los actores correctamente y ver que funcionan.
-        self.assertTrue(isinstance(crear_actor_con_los_argumentos_correctos(), pilasengine.actores.Actor), "Genera correctamente el actor usando argumentos.")      
+        self.assertTrue(isinstance(crear_actor_con_los_argumentos_correctos(), pilasengine.actores.Actor), "Genera correctamente el actor usando argumentos.")
         self.assertTrue(isinstance(crear_actor_con_los_argumentos_correctos_como_diccionarios(), pilasengine.actores.Actor), "Genera correctamente el actor usando argumentos como diccionario.")
 
     def testObtieneErrorSiElActorPersonalizadoExiste(self):
@@ -152,19 +152,40 @@ class TestActores(unittest.TestCase):
             self.assertTrue(actor, "Puede crear el actor %s" %(str(x)))
 
     def testFuncionaHerenciaDeActoresYaExistentes(self):
-        
+
         class ActorHeredado(pilasengine.actores.Mono):
             pass
-        
+
         b = ActorHeredado(self.pilas)
         self.assertTrue(b.imagen, "Hereda correctamente")
-        
+
         class ActorAceituna(pilasengine.actores.Aceituna):
             pass
-        
+
         b = ActorAceituna(self.pilas)
-        self.assertTrue(b.imagen, "Hereda correctamente")   
-        
+        self.assertTrue(b.imagen, "Hereda correctamente")
+
+    def testEtiquetas(self):
+
+        # Se asegura que todos los actores nacen con
+        # una etiqueta que identifica la clase.
+
+        m = self.pilas.actores.Mono()
+        self.assertEquals(str(m.etiquetas), "['mono']")
+
+        a = self.pilas.actores.Aceituna()
+        self.assertEquals(str(a.etiquetas), "['aceituna']")
+
+        # Se asegura que se pueden agregar y eliminar
+        # etiquetas
+
+        a.etiquetas.agregar('enemigo')
+        self.assertEquals(str(a.etiquetas), "['aceituna', 'enemigo']")
+
+        a.etiquetas.eliminar('enemigo')
+        self.assertEquals(str(a.etiquetas), "['aceituna']")
+
+
 
 if __name__ == '__main__':
     unittest.main()

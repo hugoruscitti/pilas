@@ -9,6 +9,7 @@
 import collections
 from pilasengine.actores.actor import Actor
 
+
 class Grupo(collections.MutableSequence):
     """
     Representa un grupo que puede almacenar actores.
@@ -30,7 +31,7 @@ class Grupo(collections.MutableSequence):
         self.__dict__['pilas'] = pilas
         self.__dict__['_actores'] = []
         self.pilas.log("Creando el grupo", self)
-
+        self.__dict__['etiquetas'] = AgrupadorEtiquetas(self)
 
     def __setattr__(self, atributo, valor):
         """Este metodo es llamado cuando queremos modificar algun atributo de
@@ -98,7 +99,7 @@ class Grupo(collections.MutableSequence):
         if isinstance(actor, Grupo):
             for x in actor:
                 self.agregar(x)
-                 
+
             return
 
         if actor not in self._actores:
@@ -275,3 +276,25 @@ class Grupo(collections.MutableSequence):
             detalle = "con %d actores" % (cantidad)
 
         return "<Un grupo %s>" % (detalle)
+
+class AgrupadorEtiquetas(object):
+    """Representa el atributo etiquetas de todos los actores en el grupo."""
+
+    def __init__(self, grupo):
+        self.grupo = grupo
+
+    def agregar(self, etiqueta):
+        for actor in self.grupo.obtener_actores():
+            actor.etiquetas.agregar(etiqueta)
+
+    def __repr__(self):
+        etiquetas = []
+
+        for actor in self.grupo.obtener_actores():
+            etiquetas += list(actor.etiquetas.obtener_como_lista())
+
+        return str(list(set(etiquetas)))
+
+    def eliminar(self, etiqueta):
+        for actor in self.grupo.obtener_actores():
+            actor.etiquetas.eliminar(etiqueta)
