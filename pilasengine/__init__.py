@@ -37,7 +37,7 @@ from pilasengine import watcher
 
 import widget
 
-VERSION="0.90.15"
+VERSION="0.90.16"
 
 class Pilas(object):
     """Representa el area de juego de pilas, el componente principal.

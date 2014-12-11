@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '0.90.15',
-  fecha: '24 de Nov del 2014',
-  commit: '5043813',
-  changelog: ['Merge branch "feature-constructores_de_actores"', 'actualizando manual.', 'Arreglos generales en los ejemplos y algunas clases de actores.', 'Mejorando la creación de escenas y los reportes de errores al inicializarlas.', 'Mejoras en los tests de unidad y reparando las clases de audio.', ]
+  version: '0.90.16',
+  fecha: '10 de Dec del 2014',
+  commit: 'd78df39',
+  changelog: ['Haciendo que los actores puedan aprender habilidades usando strings.', 'Actualizando manual', 'Reparando el bug que generaba un error de encoding al ingresar caracteres raros en la consola.', 'Implementando etiquetas.', 'Eliminando los disparos de nave roja que quedaban en una lista.', ]
 }
