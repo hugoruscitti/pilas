@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demos - pilas-engine</title>
+  <title>Etiquetas - pilas-engine</title>
 
   
 
@@ -77,8 +77,21 @@
         
     </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../etiquetas/">Etiquetas</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Etiquetas</a>
+        
+            <ul>
+            
+                <li class="toctree-l2"><a href="#etiquetas">Etiquetas</a></li>
+                
+                    <li><a class="toctree-l3" href="#conociendo-las-etiquetas">Conociendo las Etiquetas</a></li>
+                
+                    <li><a class="toctree-l3" href="#usando-grupos">Usando grupos</a></li>
+                
+                    <li><a class="toctree-l3" href="#anadiendo-colisiones-mediante-etiquetas">Añadiendo colisiones mediante etiquetas</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -152,17 +165,8 @@
         
     </li>
 
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Demos</a>
-        
-            <ul>
-            
-                <li class="toctree-l2"><a href="#demos">Demos</a></li>
-                
-                    <li><a class="toctree-l3" href="#piezas">Piezas</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../demos/">Demos</a>
         
     </li>
 
@@ -244,7 +248,7 @@
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
-    <li>Demos</li>
+    <li>Etiquetas</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -252,62 +256,78 @@
   <hr/>
 </div>
           <div role="main">
-            <h1 id="demos">Demos</h1>
-<p>Pilas viene con un módulo de ejemplos muy sencillos
-para que puedas investigar y jugar.</p>
-<p>Este módulo de ejemplos es <code>pilas.demos</code> y está
-organizado como un conjunto de clases sencillas.</p>
-<p>Para poner en funcionamiento alguna de las demos
-simplemente tienes que hacer un objeto a partir
-de alguna de las clases que verás en el módulo y ejecutar su método 'iniciar()'.</p>
-<h2 id="piezas">Piezas</h2>
-<p>Hay un pequeño rompecabezas que se puede iniciar con el siguiente código:</p>
-<pre class="prettyprint well"><code>import pilas
+            <h1 id="etiquetas">Etiquetas</h1>
+<p>Las etiquetas nos permite clasificar actores y describir
+a los actores de manera simple.</p>
+<p>Cada etiqueta es solamente una palabra, por ejemplo "enemigo",
+"protagonista", "munición" etc... y podemos vincularla
+con cualquier actor o grupo, para señalar el rol de ese actor
+o grupo.</p>
+<p>La utilidad mas inmediata de las etiquetas es poder
+simplificar la creación de colisiones, que vimos en el
+capítulo anterior.</p>
+<h2 id="conociendo-las-etiquetas">Conociendo las Etiquetas</h2>
+<p>Cada actor que existe en pilas tiene un atributo <code>etiquetas</code>,
+que inicialmente tiene el nombre de la clase que originó
+al actor, por ejemplo:</p>
+<pre class="prettyprint well"><code>&gt;&gt;&gt; mono = pilas.actores.Mono()
+&gt;&gt;&gt; mono.etiquetas
+['mono']
 
-pilas.iniciar()
-piezas = pilas.demos.piezas.Piezas()
-piezas.iniciar()
-
-pilas.ejecutar() # Necesario al ejecutar en scripts.
+&gt;&gt;&gt; aceituna = pilas.actores.Aceituna()
+&gt;&gt;&gt; aceituna.etiquetas
+['aceituna']
 </code></pre>
-<p>inmediatamente despúes de evaluar estas sentencias, aparecerá en
-pantalla un grupo de piezas para que puedas
-empezar a acomodarlas usando el mouse.</p>
-<p><img alt="" src="../imagenes/demos/piezas.jpg" /></p>
-<p>Ten en cuenta que los ejemplos también reciben parámetros, así
-podemos alterar un poco mas el funcionamiento del minijuego.</p>
-<p>Veamos cómo podemos crear un rompecabezas distinto a partir
-del ejemplo <code>Piezas</code>.</p>
-<p>Escribí lo siguiente:</p>
-<pre class="prettyprint well"><code>import pilas
-
-pilas.iniciar()
-piezas = pilas.demos.piezas.Piezas("mono.png", 2, 2)
-piezas.iniciar()
-
-pilas.ejecutar() # Necesario al ejecutar en scripts.
+<p>y estas etiquetas, a su vez, se pueden añadir usando el método <code>agregar</code>:</p>
+<pre class="prettyprint well"><code>&gt;&gt;&gt; mono.etiquetas.agregar('protagonista')
+['mono', 'protagonista']
 </code></pre>
-<p>Si, ahora en pantalla aparece la imagen del mono pero separado
-en 4 piezas. Dado que hemos especificado 2 (filas) y 2 (columnas).</p>
-<p><img alt="" src="../imagenes/demos/piezas_mono.jpg" /></p>
-<p>Puedes usar cualquier imagen que quieras para construir tu
-ejemplo de piezas.</p>
-<p>También se admite una función cómo argumento al
-crear el objeto, que se invocará cuando el usuario
-complete el rompecabezas:</p>
-<pre class="prettyprint well"><code>import pilas
+<h2 id="usando-grupos">Usando grupos</h2>
+<p>Los grupos también nos brindan la posibilidad de consultar o definir las
+etiquetas de varios actores al mismo tiempo:</p>
+<pre class="prettyprint well"><code>naves = pilas.actores.Nave()
+naves.etiquetas.agregar('enemigo')
 
-pilas.iniciar()
+items = pilas.actores.Banana()
+items.etiquetas.agregar('comestible')
 
-def cuando_se_complete():
-    pilas.avisar("Lo has completado!!!")
-
-piezas = pilas.demos.piezas.Piezas("mono.png", 2, 2, cuando_se_complete)
-piezas.iniciar()
-
-pilas.ejecutar() # Necesario al ejecutar en scripts.
+otro_grupo = pilas.actores.Manzana()
+otro_grupo.etiquetas.agregar('comestible')
 </code></pre>
-<p><img alt="" src="../imagenes/demos/piezas_completo.jpg" /></p>
+
+<h2 id="anadiendo-colisiones-mediante-etiquetas">Añadiendo colisiones mediante etiquetas</h2>
+<p>Ahora que podemos añadir etiquetas a los actores, podemos describir las
+colisiones de forma mas sencilla. </p>
+<p>Por ejemplo, si creamos un escenario con monedas y un mono que se pueda
+mover con el teclado así:</p>
+<pre class="prettyprint well"><code>mono = pilas.actores.Mono()
+monedas = pilas.actores.Moneda() * 20
+
+mono.aprender('arrastrable')
+</code></pre>
+
+<p>podemos definir una acción de colisión simplemente indicando la función
+de respuesta y las etiquetas que intervienen:</p>
+<pre class="prettyprint well"><code>def capturar(mono, cosa):
+    cosa.eliminar()
+    mono.sonreir()
+
+pilas.colisiones.agregar('mono', 'moneda', capturar)
+</code></pre>
+
+<p>Ahora, incluso aunque se elimine las monedas de la pantalla, si creamos
+nuevas van a seguir siendo "comestibles" por el mono:</p>
+<pre class="prettyprint well"><code>mas_monedas = pilas.actores.Moneda() * 10
+</code></pre>
+
+<p>Incluso cualquier otra cosa que tenga estas etiquetas va a ser
+capturado por el mono:</p>
+<pre class="prettyprint well"><code>cajas = pilas.actores.Caja() * 10
+cajas.etiquetas.agregar('moneda')
+</code></pre>
+
+<p>Claro, lo ideal en este caso es definir las colisiones usando etiquetas
+genéricas como: 'comestible', 'enemigo', 'vida' etc...</p>
 
           </div>
 
@@ -315,10 +335,10 @@ pilas.ejecutar() # Necesario al ejecutar en scripts.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../interfaz/" class="btn btn-neutral float-right" title="Interfaz de usuario"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../fisica/" class="btn btn-neutral float-right" title="Fisica"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../gestor_de_escenas/" class="btn btn-neutral" title="Nuevo Gestor de Escenas"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+        <a href="../colisiones/" class="btn btn-neutral" title="Colisiones"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
       
     </div>
   

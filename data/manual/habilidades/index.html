@@ -78,6 +78,11 @@
     </li>
 
     <li class="toctree-l1 ">
+        <a class="" href="../etiquetas/">Etiquetas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
         <a class="" href="../fisica/">Fisica</a>
         
     </li>
@@ -202,7 +207,7 @@
                 
                     <li><a class="toctree-l3" href="#mezclar-habilidades">Mezclar habilidades</a></li>
                 
-                    <li><a class="toctree-l3" href="#otras-habilidades-para-investigar">Otras habilidades para investigar</a></li>
+                    <li><a class="toctree-l3" href="#otras-habilidades-para-utilizar">Otras habilidades para utilizar</a></li>
                 
                     <li><a class="toctree-l3" href="#como-funcionan-las-habilidades">¿Cómo funcionan las habilidades?</a></li>
                 
@@ -263,9 +268,8 @@
 <p>Pilas permite añadir funcionalidad a tus objetos
 de manera sencilla, dado que usamos el concepto
 de habilidades, un enfoque similar a la
-programación orientada a componentes [#]<em> y mixins [#]</em>.</p>
-<p>.. [#] http://es.wikipedia.org/wiki/Programación_orientada_a_componentes
-.. [#] http://es.wikipedia.org/wiki/Mixin</p>
+programación orientada a <a href="http://es.wikipedia.org/wiki/Programación_orientada_a_componentes">componentes</a>
+y <a href="http://es.wikipedia.org/wiki/Mixin">mixins</a>.</p>
 <h2 id="un-ejemplo">Un ejemplo</h2>
 <p>Una habilidad es una funcionalidad que está implementada
 en alguna clase, y que si quieres la puedes vincular
@@ -276,10 +280,15 @@ cambiarle el tamaño.</p>
 <p>Puedes usar la habilidad <code>AumentarConRueda</code> y vincularla
 al actor fácilmente.</p>
 <p>El siguiente código hace eso:</p>
-<pre class="prettyprint well"><code>import pilas
+<pre class="prettyprint well"><code>import pilasengine
+
+pilas = pilasengine.iniciar()
 
 mono = pilas.actores.Mono()
 mono.aprender(pilas.habilidades.AumentarConRueda)
+</code></pre>
+<p>o bien:</p>
+<pre class="prettyprint well"><code>mono.aprender('AumentarConRueda')
 </code></pre>
 <p>así, cuando uses la rueda del mouse el tamaño del personaje aumentará
 o disminuirá.</p>
@@ -310,18 +319,16 @@ mono.aprender(pilas.habilidades.SeguirClicks)
 lo mas independientes posibles, porque claramente lo mas
 divertido de este enfoque es poder combinar distintas
 habilidades para lograr comportamientos complejos.</p>
-<p>Así que te invitamos a que pruebes y experimientes
-mezclando habilidades.</p>
-<h2 id="otras-habilidades-para-investigar">Otras habilidades para investigar</h2>
+<p>Así que te invitamos a experimentar y explorar la mezcla
+de habilidades.</p>
+<h2 id="otras-habilidades-para-utilizar">Otras habilidades para utilizar</h2>
 <p>Pilas viene con varias habilidades incluidas, pero
 lamentablemente este manual no las menciona a todas. Así
 que te recomendamos abrir un intérprete de python
 y consultarle directamente a él que habilidades tienes
 disponibles en tu versión de pilas.</p>
-<p>Para esto, abre un terminar de python y escribe lo siguiente:</p>
-<pre class="prettyprint well"><code>import pilas
-pilas.iniciar()
-dir(pilas.habilidades)
+<p>Para esto, abrí el intérprete de pilas y escribí lo siguiente:</p>
+<pre class="prettyprint well"><code>dir(pilas.habilidades)
 </code></pre>
 <p>esto imprimirá en pantalla todas las habilidades como una
 lista de cadenas.</p>
