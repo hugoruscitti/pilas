@@ -36,6 +36,9 @@ class Estudiante(object):
         :param classname: Referencia a la clase que representa la habilidad.
         """
 
+        if isinstance(classname, str):
+            classname = self.pilas.habilidades.buscar_habilidad_por_nombre(classname)
+
         if issubclass(classname, habilidades.Habilidad):
             if self.tiene_habilidad(classname):
                 self.eliminar_habilidad(classname)
@@ -44,6 +47,7 @@ class Estudiante(object):
         else:
             raise Exception('El actor solo puede aprender clases que hereden \
                             de pilasengine.habilidades.Habilidad')
+
 
     def agregar_habilidad(self, classname, *k, **w):
         """Agrega una habilidad a la lista de cosas que puede hacer un actor.

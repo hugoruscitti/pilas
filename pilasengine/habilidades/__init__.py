@@ -7,7 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 from pilasengine.habilidades.habilidad import Habilidad
-
+import difflib
 
 class Habilidades(object):
     """Representa la forma de acceso y construcción de las habilidades.
@@ -23,6 +23,48 @@ class Habilidades(object):
     >>> nave.aprender(pilas.habilidades.Arrastrable)
 
     """
+
+    def __init__(self):
+        self.diccionario_de_habilidades = {
+                "Arrastrable": self.Arrastrable,
+                "SeMantieneEnPantalla": self.SeMantieneEnPantalla,
+                "Habilidad": self.Habilidad,
+                "SiempreEnElCentro": self.SiempreEnElCentro,
+                "Arrastrable": self.Arrastrable,
+                "AumentarConRueda": self.AumentarConRueda,
+                "SeguirClicks": self.SeguirClicks,
+                "SeguirAlMouse": self.SeguirAlMouse,
+                "PuedeExplotar": self.PuedeExplotar,
+                "PuedeExplotarConHumo": self.PuedeExplotarConHumo,
+                "SeMantieneEnPantalla": self.SeMantieneEnPantalla,
+                "RotarConMouse": self.RotarConMouse,
+                "MirarAlActor": self.MirarAlActor,
+                "MoverseConElTeclado": self.MoverseConElTeclado,
+                "Imitar": self.Imitar,
+                "RebotarComoCaja": self.RebotarComoCaja,
+                "LimitadoABordesDePantalla": self.LimitadoABordesDePantalla,
+                "RebotarComoPelota": self.RebotarComoPelota,
+                "MoverseComoCoche": self.MoverseComoCoche,
+                "EliminarseSiSaleDePantalla": self.EliminarseSiSaleDePantalla,
+        }
+
+        for k, v in self.diccionario_de_habilidades.items():
+            self.diccionario_de_habilidades[k.lower()] = v
+
+    def buscar_habilidad_por_nombre(self, nombre):
+        nombre = nombre.lower()
+
+        try:
+            return self.diccionario_de_habilidades[nombre]
+        except KeyError:
+            posibilidades = self.diccionario_de_habilidades.keys()
+            similar = difflib.get_close_matches(nombre, posibilidades)
+
+            if similar:
+                similar = similar[0]
+                raise NameError("lo siento, no existe esa habilidad... quisiste decir '%s' ?" %(similar))
+            else:
+                raise NameError("li siento, no exista una habilidad con ese nombre...")
 
     @property
     def Habilidad(self):
@@ -56,7 +98,7 @@ class Habilidades(object):
 
     @property
     def PuedeExplotarConHumo(self):
-        return self._referencia_habilidad('puede_explotar_con_humo', 
+        return self._referencia_habilidad('puede_explotar_con_humo',
                                           'PuedeExplotarConHumo')
 
     @property
@@ -99,7 +141,7 @@ class Habilidades(object):
     def MoverseComoCoche(self):
         return self._referencia_habilidad('moverse_como_coche',
                                           'MoverseComoCoche')
-        
+
     @property
     def EliminarseSiSaleDePantalla(self):
         return self._referencia_habilidad('eliminarse_si_sale_de_pantalla',
