@@ -10,7 +10,7 @@ import os
 import datetime
 import traceback
 import random
-import codecs
+import signal
 import imp
 import time
 
@@ -38,6 +38,13 @@ from pilasengine import watcher
 import widget
 
 VERSION="0.90.16"
+
+
+def handler(signum, frame):
+    print('Terminando pilas, porque se pulsó ctrl+c.')
+    sys.exit(1)
+
+signal.signal(signal.SIGINT, handler)
 
 class Pilas(object):
     """Representa el area de juego de pilas, el componente principal.
