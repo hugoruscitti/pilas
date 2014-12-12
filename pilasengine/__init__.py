@@ -53,7 +53,8 @@ class Pilas(object):
 
     def __init__(self, ancho=640, alto=480, titulo='pilas-engine',
                  con_aceleracion=None, capturar_errores=True,
-                 habilitar_mensajes_log=False, x=None, y=None):
+                 habilitar_mensajes_log=False, x=None, y=None,
+                 pantalla_completa=False):
         """Inicializa el area de juego con una configuración inicial."""
 
         self.configuracion = configuracion.Configuracion()
@@ -86,7 +87,7 @@ class Pilas(object):
 
         self.widget = None
         self.reiniciar(ancho, alto, titulo, con_aceleracion,
-                       habilitar_mensajes_log, x, y, capturar_errores)
+                       habilitar_mensajes_log, x, y, capturar_errores, pantalla_completa)
 
         if self.configuracion.audio_habilitado():
             self.log("El sistema de audio esta habilitado desde la configuración")
@@ -121,7 +122,8 @@ class Pilas(object):
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
                   con_aceleracion=None, habilitar_mensajes_log=False,
-                  x=None, y=None, capturar_errores=True):
+                  x=None, y=None, capturar_errores=True,
+                  pantalla_completa=False):
         """Genera nuevamente la ventana del videojuego."""
 
         # Si no especifica usar aceleracion de video, toma la
@@ -133,6 +135,7 @@ class Pilas(object):
             self.log("Se usa el parametro aceleracion=" + str(con_aceleracion))
 
 
+        self._esta_en_pantalla_completa = pantalla_completa
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
         self.log("Reiniciando pilas con los parametros", str({"ancho": ancho,
@@ -405,12 +408,16 @@ class Pilas(object):
     def ejecutar(self):
         """Muestra la ventana y mantiene el programa en ejecución."""
         if not self._iniciado_desde_asistente:
-            self.widget.show()
-            self.widget.raise_()
-            self.widget.definir_tamano_real()
+            if self._esta_en_pantalla_completa:
+                self.widget.showFullScreen()
+            else:
+                self.widget.show()
+                self.widget.raise_()
 
-            if self._x and self._y:
-                self.widget.move(self._x, self._y)
+                self.widget.definir_tamano_real()
+
+                if self._x and self._y:
+                    self.widget.move(self._x, self._y)
 
         # Inicializa el bucle de pyqt solo si es necesario.
         if self._necesita_ejecutar_loop:
@@ -479,6 +486,7 @@ class Pilas(object):
         else:
             self.widget.definir_modo_ventana()
 
+        self._esta_en_pantalla_completa = estado
 
     def obtener_actor_por_indice(self, indice):
         return self.escena._actores.obtener_actores()[indice]
@@ -492,7 +500,8 @@ class Pilas(object):
 
 
 def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
-            habilitar_mensajes_log=False, con_aceleracion=None, x=None, y=None):
+            habilitar_mensajes_log=False, con_aceleracion=None, x=None, y=None,
+            pantalla_completa=False):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -520,7 +529,8 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
     pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo,
                   capturar_errores=capturar_errores, x=x, y=y,
                   habilitar_mensajes_log=habilitar_mensajes_log,
-                  con_aceleracion=con_aceleracion)
+                  con_aceleracion=con_aceleracion,
+                  pantalla_completa=pantalla_completa)
     return pilas
 
 
