@@ -9,6 +9,7 @@
 import codecs
 import os
 import time
+import sys
 
 from PyQt4.QtGui import (QKeySequence, QIcon, QLabel)
 from PyQt4 import QtCore
@@ -107,6 +108,13 @@ class VentanaInterprete(Ui_InterpreteWindow):
                                     self.cuando_pulsa_el_boton_limpiar)
 
         # Botón para pasar a modo pantalla completa.
+        if sys.platform == 'darwin':
+            self.pantalla_completa_button.enabled = True
+        else:
+            self.pantalla_completa_button.enabled = False
+            self.pantalla_completa_button.setToolTip("Pasa al modo pantalla completa (deshabilitado en windows / linux por el momento).")
+
+
         self.definir_icono(self.pantalla_completa_button, 'iconos/pantalla_completa.png')
         self.pantalla_completa_button.connect(self.pantalla_completa_button,
                                     QtCore.SIGNAL("clicked()"),
