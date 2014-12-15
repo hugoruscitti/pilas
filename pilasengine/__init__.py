@@ -141,8 +141,6 @@ class Pilas(object):
         else:
             self.log("Se usa el parametro aceleracion=" + str(con_aceleracion))
 
-
-        self._esta_en_pantalla_completa = pantalla_completa
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self.log("Iniciando pilas con una ventana de ", ancho, "x", alto)
         self.log("Reiniciando pilas con los parametros", str({"ancho": ancho,
@@ -202,6 +200,8 @@ class Pilas(object):
 
         if self._iniciado_desde_asistente and es_reinicio:
             self._vincular_el_nuevo_widget(parent)
+
+        self.widget.pantalla_completa = pantalla_completa
 
         self.escenas.Normal()
 
@@ -415,7 +415,7 @@ class Pilas(object):
     def ejecutar(self):
         """Muestra la ventana y mantiene el programa en ejecución."""
         if not self._iniciado_desde_asistente:
-            if self._esta_en_pantalla_completa:
+            if self.widget.pantalla_completa:
                 self.widget.showFullScreen()
             else:
                 self.widget.show()
@@ -492,8 +492,6 @@ class Pilas(object):
             self.widget.definir_modo_pantalla_completa()
         else:
             self.widget.definir_modo_ventana()
-
-        self._esta_en_pantalla_completa = estado
 
     def obtener_actor_por_indice(self, indice):
         return self.escena._actores.obtener_actores()[indice]

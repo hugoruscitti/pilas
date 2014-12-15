@@ -319,6 +319,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.consola.limpiar()
 
     def cuando_pulsa_el_boton_pantalla_completa(self):
+        self.scope['pilas'].widget.desempotrar()
         self.scope['pilas'].widget.definir_modo_pantalla_completa()
 
     def ejecutar_y_reiniciar_si_cambia(self, archivo):

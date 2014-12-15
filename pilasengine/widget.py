@@ -36,6 +36,7 @@ class BaseWidget(object):
         self.iniciar_interface(ancho, alto)
         self.pausa = False
         self.pantalla_completa = False
+        self.save_parent = None
 
     def iniciar_interface(self, ancho, alto):
         self.painter = QtGui.QPainter()
@@ -257,6 +258,12 @@ class BaseWidget(object):
         else:
             self.pausar()
 
+    def desempotrar(self):
+        if self.parent():
+            self.save_parent = self.parent()
+            # Desempotrando del widget(Parent)
+            self.setParent(None)
+
     def alternar_pantalla_completa(self):
         if not self.pantalla_completa:
             self.definir_modo_pantalla_completa()
@@ -264,9 +271,10 @@ class BaseWidget(object):
             self.definir_modo_ventana()
 
     def definir_modo_pantalla_completa(self):
+        if self.pantalla_completa:
+            return
+
         self.pantalla_completa = True
-        self.last_window_flags = self.windowFlags()
-        self.setWindowFlags(QtCore.Qt.Window)
         self.pilas.avisar("Pulsa ESC para regresar al modo ventana.")
 
         # Invoca al modo pantalla completa de forma diferida, porque
@@ -278,9 +286,17 @@ class BaseWidget(object):
             self.showFullScreen()
 
     def definir_modo_ventana(self):
-        self.setWindowFlags(self.last_window_flags)
+        if not self.pantalla_completa:
+            return
+
         self.pantalla_completa = False
         self.showNormal()
+
+        if self.save_parent:
+            # Si fue desempotrado, volver a empotrra
+            self.save_parent.addWidget(self)
+            self.save_parent.setCurrentWidget(self)
+            self.save_parent = None
 
     def pausar(self):
         "Pasa al modo pausa."
