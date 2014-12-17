@@ -36,7 +36,7 @@ class BaseWidget(object):
         self.iniciar_interface(ancho, alto)
         self.pausa = False
         self.pantalla_completa = False
-        self.save_parent = None
+        self.parent_guardado = None
 
     def iniciar_interface(self, ancho, alto):
         self.painter = QtGui.QPainter()
@@ -259,10 +259,25 @@ class BaseWidget(object):
             self.pausar()
 
     def desempotrar(self):
-        if self.parent():
-            self.save_parent = self.parent()
-            # Desempotrando del widget(Parent)
-            self.setParent(None)
+        """ Desempotra el widget de cualquier widget al que esté empotrado.
+
+
+        Es usado cuando en la ventana interprete se define el estado
+        de widget a pantalla completa.
+        """
+        self.parent_guardado = self.parent()
+        # Desempotrando del widget(Parent)
+        self.setParent(None)
+
+    def empotrar(self):
+        """ Empotra el widget al widget que estaba previamente empotrado 
+
+        Es usado cuando en la ventana interprete después de definir el estado
+        del widget a pantalla completa se deseea regresar al tamaño normal.
+        """
+        self.parent_guardado.addWidget(self)
+        self.parent_guardado.setCurrentWidget(self)
+        self.parent_guardado = None
 
     def alternar_pantalla_completa(self):
         if not self.pantalla_completa:
@@ -273,6 +288,9 @@ class BaseWidget(object):
     def definir_modo_pantalla_completa(self):
         if self.pantalla_completa:
             return
+
+        if self.parent():
+            self.desempotrar()
 
         self.pantalla_completa = True
         self.pilas.avisar("Pulsa ESC para regresar al modo ventana.")
@@ -292,11 +310,9 @@ class BaseWidget(object):
         self.pantalla_completa = False
         self.showNormal()
 
-        if self.save_parent:
-            # Si fue desempotrado, volver a empotrra
-            self.save_parent.addWidget(self)
-            self.save_parent.setCurrentWidget(self)
-            self.save_parent = None
+        if self.parent_guardado:
+            # Si fue desempotrado, volver a empotrar
+            self.empotrar()
 
     def pausar(self):
         "Pasa al modo pausa."
