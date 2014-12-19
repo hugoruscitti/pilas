@@ -118,9 +118,9 @@ class InterpreteLanas(editor_base.EditorBase):
                 # TODO: notificar este error de autocompletado en algun lado...
                 return []
 
-            resultados = [a for a in elementos if a.startswith(ultima)]
+            resultados = [a for a in elementos if a.lower().startswith(ultima.lower())]
         else:
-            resultados = [a for a in scope.keys() if a.startswith(texto)]
+            resultados = [a for a in scope.keys() if a.lower().startswith(texto.lower())]
 
         return resultados
 
