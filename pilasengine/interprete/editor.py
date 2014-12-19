@@ -10,11 +10,12 @@ import re
 import sys
 import os
 
+from PyQt4.QtCore import Qt, QTimer
 from PyQt4.Qt import (QFrame, QWidget, QPainter,
                       QSize, QVariant)
 from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
                          QIcon, QMessageBox, QShortcut,
-                         QKeySequence, QTextFormat, QColor)
+                         QKeySequence, QTextFormat, QColor, QKeyEvent)
 from PyQt4.QtCore import Qt
 from PyQt4 import QtCore
 
@@ -252,6 +253,20 @@ class Editor(editor_base.EditorBase):
     def keyPressEvent(self, event):
         "Atiene el evento de pulsación de tecla."
         self._cambios_sin_guardar = True
+
+        # Permite usar tab como seleccionador de la palabra actual
+        # en el popup de autocompletado.
+        if event.key() in [Qt.Key_Tab]:
+            if self.completer and self.completer.popup().isVisible():
+                event.ignore()
+                nuevo_evento = QKeyEvent(QKeyEvent.KeyPress, Qt.Key_Return, Qt.NoModifier)
+                try:
+                    if self.autocomplete(nuevo_evento):
+                        return None
+                except UnicodeEncodeError:
+                    pass
+                return None
+
 
         if editor_base.EditorBase.keyPressEvent(self, event):
             return None

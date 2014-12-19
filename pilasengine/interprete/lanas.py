@@ -14,7 +14,8 @@ os.environ['lanas'] = 'enabled'
 
 from PyQt4.QtGui import (QWidget, QDesktopWidget, QPalette,
                         QColor, QTextCursor, QTextEdit,
-                        QInputDialog)
+                        QInputDialog, QApplication,
+                        QKeyEvent)
 from PyQt4.QtCore import Qt, QTimer
 
 from editorbase import editor_base
@@ -23,6 +24,7 @@ import io
 
 
 class WidgetLanas(QWidget, lanas_ui.Ui_Lanas):
+
     def __init__(self, parent=None, scope=None, codigo_inicial=None):
         super(WidgetLanas, self).__init__(parent)
         self.setupUi(self)
@@ -238,6 +240,20 @@ class InterpreteLanas(editor_base.EditorBase):
             self._autocompletar_argumentos_si_corresponde()
 
     def keyPressEvent(self, event):
+        # Permite usar tab como seleccionador de la palabra actual
+        # en el popup de autocompletado.
+        if event.key() in [Qt.Key_Tab]:
+            if self.completer and self.completer.popup().isVisible():
+                event.ignore()
+                nuevo_evento = QKeyEvent(QKeyEvent.KeyPress, Qt.Key_Return, Qt.NoModifier)
+                try:
+                    if self.autocomplete(nuevo_evento):
+                        return None
+                except UnicodeEncodeError:
+                    pass
+                return None
+
+
         if editor_base.EditorBase.keyPressEvent(self, event):
             return None
 
