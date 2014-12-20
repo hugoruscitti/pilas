@@ -41,3 +41,6 @@ class NormalOutput(Output):
         self.destino.stdout_original.write(linea)
         self.destino.imprimir_linea(linea.decode('utf-8'))
         self.destino.ensureCursorVisible()
+
+        if '<bound method' in linea:
+            print "\n\n ... Hey, tal vez olvidaste poner () al final de la anterior sentencia no?"
