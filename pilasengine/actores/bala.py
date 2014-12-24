@@ -9,6 +9,7 @@
 from pilasengine import actores
 
 
+
 class Bala(actores.Actor):
     """ Representa una bala que va en línea recta. """
 
@@ -35,3 +36,11 @@ class Bala(actores.Actor):
                    aceleracion=1,
                    angulo_de_movimiento=angulo_de_movimiento,
                    gravedad=0)
+        self.aprender(self.pilas.habilidades.EliminarseSiSaleDePantalla)
+        self.cuando_se_elimina = None
+        
+    def eliminar(self):
+        if self.cuando_se_elimina:
+            self.cuando_se_elimina(self)
+            
+        super(Bala, self).eliminar()

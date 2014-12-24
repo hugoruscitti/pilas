@@ -66,6 +66,17 @@ class TestHabilidades(unittest.TestCase):
         actor.aprender('arrastrable')
         self.assertTrue(actor.habilidades.Arrastrable.actualizar, 'Puede acceder a la nueva habilidad')
         
+    def testPuedenAprenderADisparar(self):
+        actor = self.pilas.actores.Aceituna(0, 0)
+        actor.aprender(self.pilas.habilidades.Disparar,
+                      #municion=self.municion,
+                      angulo_salida_disparo=90,
+                      frecuencia_de_disparo=6,
+                      offset_disparo=(0, 0),
+                      escala=1)
+        
+        self.assertTrue(actor.disparar, "Tiene el método disparar")
+        
     def testPuedeAprenderHabilidadPersonalizadaUsandoStrings(self):
         class MiHabilidad(pilasengine.habilidades.Habilidad):
             def actualizar(self):

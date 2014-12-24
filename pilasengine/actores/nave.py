@@ -34,13 +34,13 @@ class Nave(Animacion):
         self.radio_de_colision = 20
         self.aprender(pilas.habilidades.PuedeExplotar)
 
-        #self.municion = pilas.actores.proyectil.Misil
-        #self.aprender(pilas.habilidades.Disparar,
-        #              municion=self.municion,
-        #              angulo_salida_disparo=0,
-        #              frecuencia_de_disparo=6,
-        #              offset_disparo=(29, 29),
-        #              escala=0.7)
+        #self.municion = self.pilas.actores.proyectil.Misil
+        self.aprender(self.pilas.habilidades.Disparar,
+                      #municion=self.municion,
+                      angulo_salida_disparo=90,
+                      frecuencia_de_disparo=6,
+                      offset_disparo=(0, 0),
+                      escala=1)
 
         self.aprender(pilas.habilidades.MoverseConElTeclado,
                       velocidad_maxima=self.velocidad,
@@ -77,7 +77,3 @@ class Nave(Animacion):
         if self.cuando_elimina_enemigo:
             self.cuando_elimina_enemigo()
 
-    def disparar(self):
-        for x in self._habilidades:
-            if x.__class__.__name__ == 'Disparar':
-                x.disparar()

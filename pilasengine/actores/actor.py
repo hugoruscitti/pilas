@@ -1021,3 +1021,10 @@ class Actor(Estudiante):
         self.mover_figura_de_colision()
         self._figura_de_colision_dx = x
         self._figura_de_colision_dy = y
+
+    def disparar(self):
+        """Permite que cualquier actor que tenga una habilidad
+        para disparar pueda hacerlo."""
+        for x in self._habilidades:
+            if x.__class__.__name__ == 'Disparar':
+                x.disparar()

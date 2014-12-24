@@ -150,7 +150,7 @@ class Disparar(habilidades.Habilidad):
             objeto_a_disparar = self.municion(pilas=self.pilas, x=self.receptor.x+offset_origen_actor_x,
                                               y=self.receptor.y+self.offset_origen_actor_y,
                                               rotacion=self.receptor.rotacion - 90,
-                                              angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo))
+                                              angulo_de_movimiento=self.receptor.rotacion + (self.angulo_salida_disparo))
 
             self._agregar_disparo(objeto_a_disparar)
             objeto_a_disparar.fijo = self.receptor.fijo

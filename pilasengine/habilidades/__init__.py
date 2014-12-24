@@ -45,6 +45,7 @@ class Habilidades(object):
                 "LimitadoABordesDePantalla": self.LimitadoABordesDePantalla,
                 "RebotarComoPelota": self.RebotarComoPelota,
                 "MoverseComoCoche": self.MoverseComoCoche,
+                "Disparar": self.Disparar,
                 "EliminarseSiSaleDePantalla": self.EliminarseSiSaleDePantalla,
         }
 
