@@ -147,6 +147,11 @@ class Habilidades(object):
         return self._referencia_habilidad('eliminarse_si_sale_de_pantalla',
                                           'EliminarseSiSaleDePantalla')
 
+    @property
+    def Disparar(self):
+        return self._referencia_habilidad('disparar',
+                                          'Disparar')
+
     def _referencia_habilidad(self, modulo, clase):
         import importlib
         referencia_a_modulo = importlib.import_module('pilasengine.habilidades.'

@@ -72,6 +72,9 @@ class TestHabilidades(unittest.TestCase):
                 pass
 
         actor = self.pilas.actores.Aceituna()
+        
+        self.pilas.habilidades.vincular(MiHabilidad)
+        
         actor.aprender('mihabilidad')
 
         self.assertEquals(1, len(actor._habilidades), 'Pude aprender habilidad personalizada desde string')
