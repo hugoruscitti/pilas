@@ -36,6 +36,7 @@ class Bala(actores.Actor):
                    aceleracion=1,
                    angulo_de_movimiento=angulo_de_movimiento,
                    gravedad=0)
+        
         self.aprender(self.pilas.habilidades.EliminarseSiSaleDePantalla)
         self.cuando_se_elimina = None
         

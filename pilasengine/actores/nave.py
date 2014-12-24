@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-
+import pilasengine
 from pilasengine.actores.animacion import Animacion
 
 
@@ -34,9 +34,9 @@ class Nave(Animacion):
         self.radio_de_colision = 20
         self.aprender(pilas.habilidades.PuedeExplotar)
 
-        #self.municion = self.pilas.actores.proyectil.Misil
+        self.municion = pilasengine.actores.Misil
         self.aprender(self.pilas.habilidades.Disparar,
-                      #municion=self.municion,
+                      municion=self.municion,
                       angulo_salida_disparo=90,
                       frecuencia_de_disparo=6,
                       offset_disparo=(0, 0),

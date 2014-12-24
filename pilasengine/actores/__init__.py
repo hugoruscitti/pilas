@@ -11,6 +11,7 @@ import inspect
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.texto import Texto
 from pilasengine.actores.grupo import Grupo
+from pilasengine.actores.misil import Misil
 
 from pilasengine.actores import aceituna
 
@@ -313,13 +314,6 @@ class Actores(object):
         ":rtype: banana.Banana"
         return self._crear_actor('banana', 'Banana',  x=0, y=0)
 
-    def Bala(self, x=0, y=0, rotacion=0, velocidad_maxima=9,
-             angulo_de_movimiento=90):
-        ":rtype: bala.Bala"
-        return self._crear_actor('bala', 'Bala', x=x, y=y, rotacion=rotacion,
-                                 velocidad_maxima=velocidad_maxima,
-                                 angulo_de_movimiento=angulo_de_movimiento)
-
     def Bomba(self, x=0, y=0):
         ":rtype: bomba.Bomba"
         return self._crear_actor('bomba', 'Bomba',  x=x, y=y)
@@ -467,6 +461,21 @@ class Actores(object):
                                  x=x, y=y, rotacion=rotacion,
                                  velocidad=velocidad, imagen=imagen)
 
+    def Misil(self, x=0, y=0, rotacion=0, velocidad_maxima=8, 
+                angulo_de_movimiento=90):
+        ":rtype: misil.Misil"
+        return self._crear_actor('misil', 'Misil',
+                                 x=x, y=y, rotacion=rotacion,
+                                 velocidad_maxima=velocidad_maxima,
+                                 angulo_de_movimiento=angulo_de_movimiento)
+
+    def Bala(self, x=0, y=0, rotacion=0, velocidad_maxima=9,
+             angulo_de_movimiento=90):
+        ":rtype: bala.Bala"
+        return self._crear_actor('bala', 'Bala', 
+                                 x=x, y=y, rotacion=rotacion,
+                                 velocidad_maxima=velocidad_maxima,
+                                 angulo_de_movimiento=angulo_de_movimiento)
 
     def _crear_actor(self, modulo, clase, *k, **kw):
         import importlib
