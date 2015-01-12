@@ -16,6 +16,9 @@ import uuid
 import pilas
 import mimetypes
 
+if sys.version_info.major == 3:
+    def execfile(f):
+        exec(compile(open(f).read(), f, 'exec'))
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 INTERPRETE_PATH = os.path.dirname(sys.argv[0])
