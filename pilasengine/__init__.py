@@ -34,6 +34,7 @@ from pilasengine import eventos
 from pilasengine import controles
 from pilasengine import pad
 from pilasengine import watcher
+from pilasengine import plugins
 
 import widget
 
@@ -61,14 +62,14 @@ class Pilas(object):
     def __init__(self, ancho=640, alto=480, titulo='pilas-engine',
                  con_aceleracion=None, capturar_errores=True,
                  habilitar_mensajes_log=False, x=None, y=None,
-                 pantalla_completa=False):
+                 pantalla_completa=False, cargar_plugins=False):
         """Inicializa el area de juego con una configuración inicial."""
 
         self.configuracion = configuracion.Configuracion()
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self._iniciado_desde_asistente = False
         self.texto_avisar_anterior = None
-
+            
         # Archivo que se observa para hacer livecoding. Esta
         # variable toma valor cuando se llama a la función
         # "pilas.reiniciar_si_cambia(archivo)"
@@ -106,6 +107,11 @@ class Pilas(object):
         # sino pygame pone su icono en la ventana.
         if self.configuracion.audio_habilitado():
             self._definir_icono_de_ventana()
+            
+        if cargar_plugins:
+            self.complementos = plugins.Complementos(self)
+        else:
+            self.complementos = []
 
     def _definir_icono_de_ventana(self):
         self.log("Definiendo el icono de la ventana")
@@ -506,7 +512,7 @@ class Pilas(object):
 
 def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
             habilitar_mensajes_log=False, con_aceleracion=None, x=None, y=None,
-            pantalla_completa=False):
+            pantalla_completa=False, cargar_plugins=False):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -528,14 +534,16 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
                        se muestran en consola.
     :habilitar_mensajes_log: Muestra cada operación que hace pilas en consola.
     :con_aceleracion: Indica si se habilita o no la aceleracion de video. Por omisión se trata de obtener la preferencia desde la configuración de pilas.
-
+    :cargar_plugins: Parametro de tipo booleano. Si es True, se cargan todos los plugins que se encuentren dentro del directorio
+                     de plugins de pilas.
     """
 
     pilas = Pilas(ancho=ancho, alto=alto, titulo=titulo,
                   capturar_errores=capturar_errores, x=x, y=y,
                   habilitar_mensajes_log=habilitar_mensajes_log,
                   con_aceleracion=con_aceleracion,
-                  pantalla_completa=pantalla_completa)
+                  pantalla_completa=pantalla_completa,
+                  cargar_plugins=cargar_plugins)
     return pilas
 
 

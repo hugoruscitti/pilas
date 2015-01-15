@@ -12,6 +12,7 @@ import math
 
 from pilasengine import colores
 
+from PyQt4 import QtCore
 from PyQt4 import QtGui
 
 PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
@@ -87,6 +88,10 @@ class Utils(object):
 
         if ruta not in rutas_personalizadas:
             rutas_personalizadas.append(ruta)
+            
+    def obtener_directorio_de_configuracion(self):
+        """" Retorna la ruta de configuracion segun la plataforma"""
+        return str(QtCore.QDir.homePath())
 
 
 def obtener_angulo_entre(punto_a, punto_b):
