@@ -31,7 +31,6 @@ class Misil(Actor):
         self.velocidad_maxima = velocidad_maxima
         self.angulo_de_movimiento = angulo_de_movimiento
         self.radio_de_colision = 5
-        self.z = 1
         self.rotacion = rotacion + 180
 
         self.hacer(self.pilas.comportamientos.Proyectil,

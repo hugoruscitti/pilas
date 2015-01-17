@@ -49,6 +49,7 @@ class Nave(Animacion):
                       con_rotacion=True,
                       velocidad_rotacion=1,
                       marcha_atras=False)
+        self.z = -1
 
     def actualizar(self):
         Animacion.actualizar(self)

@@ -58,6 +58,8 @@ manual:
 	mkdir -p data/manual
 	cd ../pilas-manual; make generar; 
 	cp -R -f ../pilas-manual/site/* data/manual/
+	git add data/manual
+	git commit -m "actualizando manual."
 
 ui:
 	pyuic4 -xo pilasengine/asistente/asistente_base.py pilasengine/asistente/asistente.ui
