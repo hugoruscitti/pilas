@@ -4,24 +4,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>conexiones y respuestas - pilas-engine</title>
+  
 
   
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../css/code.css" type="text/css" />
-  
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
 
-  <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
-  <script type="text/javascript" src="../js/theme.js"></script>
-  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
 
   <style>
     body {font-size: 90%;}
     pre, code {font-size: 100%;}
     h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
-  </style>
+  </style> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -31,191 +34,284 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href=".."><img src='../img/pilas-logo.png'></a>
+        <a href=".." class="icon icon-home"> pilas-engine</a>
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-       <ul class="current">
-
-    <li class="toctree-l1 ">
-        <a class="" href="..">Principal</a>
+      <ul class="current">
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../instalacion/">Instalación</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../instalacion">Instalación</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../about/">Acerca de ...</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../empezando/">Empezando y los primeros pasos con pilas</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../about">Acerca de ...</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../actores/">Actores</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../actores_personalizados/">Actores personalizados</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../empezando">Empezando y los primeros pasos con pilas</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../grupos/">Grupos</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../colisiones/">Colisiones</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../actores">Actores</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../etiquetas/">Etiquetas</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../fisica/">Fisica</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../actores_personalizados">Actores personalizados</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../controles/">Controles</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../joystick/">Joystick</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../grupos">Grupos</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../imagen/">Imagen</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../sonidos/">Sonidos</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../colisiones">Colisiones</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../dibujado_simple_en_pantalla/">Dibujado simple en pantalla</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../dibujado_avanzado_con_superficies/">Dibujado avanzado con Superficies</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../etiquetas">Etiquetas</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../tareas/">Manejo de tiempo con tareas</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../interpolacion/">Interpolaciones</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../fisica">Fisica</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../controlando_la_pantalla/">Controlando la pantalla</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../comportamientos/">Comportamientos</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../controles">Controles</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../escenas/">Escenas</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../migrar_al_gestor_de_escenas/">Como migrar mi juego al nuevo Gestor de Escenas</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../joystick">Joystick</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../gestor_de_escenas/">Nuevo Gestor de Escenas</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../demos/">Demos</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../imagen">Imagen</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../interfaz/">Interfaz de usuario</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../sonidos">Sonidos</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../mapas_y_plataformas/">Mapas y plataformas</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../dialogos/">Diálogos</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_simple_en_pantalla">Dibujado simple en pantalla</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../camara/">Manejo de Cámara</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="">Eventos</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_avanzado_con_superficies">Dibujado avanzado con Superficies</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../texto/">Textos</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../habilidades/">Habilidades</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../tareas">Manejo de tiempo con tareas</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../depurando/">Depurando</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../como_funciona_pilas_por_dentro/">¿Cómo funciona pilas por dentro?</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../interpolacion">Interpolaciones</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
+    
         
-    </li>
+            <li class="toctree-l1 ">
+                <a class="" href="../controlando_la_pantalla">Controlando la pantalla</a>
+            </li>
+        
 
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../comportamientos">Comportamientos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../escenas">Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../migrar_al_gestor_de_escenas">Como migrar mi juego al nuevo Gestor de Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../gestor_de_escenas">Nuevo Gestor de Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../demos">Demos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interfaz">Interfaz de usuario</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../menu">Como crear menúes para tu juegos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../mapas_y_plataformas">Mapas y plataformas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dialogos">Diálogos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../camara">Manejo de Cámara</a>
+            </li>
+        
+
+    
+        
+        <span>Eventos</span>
+            
+                <li class="toctree-l1 current">
+                    <a class="current" href=".">conexiones y respuestas</a>
+                    
+                        <ul>
+                        
+                            <li class="toctree-l2"><a href="#eventos-conexiones-y-respuestas">Eventos, conexiones y respuestas</a></li>
+                            
+                                <li><a class="toctree-l3" href="#que-es-un-evento">¿Que es un Evento?</a></li>
+                            
+                                <li><a class="toctree-l3" href="#conectando-la-emision-de-eventos-a-funciones">Conectando la emisión de eventos a funciones</a></li>
+                            
+                                <li><a class="toctree-l3" href="#observando-a-los-eventos-para-conocerlos-mejor">Observando a los eventos para conocerlos mejor</a></li>
+                            
+                                <li><a class="toctree-l3" href="#desconectando-senales">Desconectando señales</a></li>
+                            
+                                <li><a class="toctree-l3" href="#consultado-senales-conectadas">Consultado señales conectadas</a></li>
+                            
+                                <li><a class="toctree-l3" href="#creando-tus-propios-eventos">Creando tus propios eventos</a></li>
+                            
+                                <li><a class="toctree-l3" href="#referencias">Referencias</a></li>
+                            
+                        
+                        </ul>
+                    
+                </li>
+            
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../texto">Textos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../habilidades">Habilidades</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../depurando">Depurando</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../como_funciona_pilas_por_dentro">¿Cómo funciona pilas por dentro?</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../complementos">Complementos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../desarrolladores">Guía para desarrolladores</a>
+            </li>
+        
+
+    
 </ul>
-
-
-
 
       </div>
       &nbsp;
@@ -243,7 +339,8 @@
   <hr/>
 </div>
           <div role="main">
-            <h1 id="eventos-conexiones-y-respuestas">Eventos, conexiones y respuestas</h1>
+            <div class="section">
+              <h1 id="eventos-conexiones-y-respuestas">Eventos, conexiones y respuestas</h1>
 <p>En el desarrollo de videojuegos es muy importante
 poder comunicarse con el usuario. Lograr que los
 personajes del juego puedan interactuar con él y
@@ -281,7 +378,7 @@ conectado.</p>
 en pantalla siguiendo la posición del puntero
 del mouse, tendríamos que escribir algo como
 esto:</p>
-<pre class="prettyprint well"><code>import pilas
+<pre><code>import pilas
 
 mono = pilas.actores.Mono()
 
@@ -314,12 +411,12 @@ vamos a querer saber exactamente qué tecla se pulsó.</p>
 <p>Entonces, una forma fácil y simple de conocer el estado de un
 objeto es imprimir directamente su contenido, por ejemplo, en
 la función de arriba podíamos escribir:</p>
-<pre class="prettyprint well"><code>def mover_mono_a_la_posicion_del_mouse(evento):
+<pre><code>def mover_mono_a_la_posicion_del_mouse(evento):
     print evento
 </code></pre>
 <p>y en la ventana de nuestra computadora tendríamos que ver
 algo así:</p>
-<pre class="prettyprint well"><code>{'y': 2.0, 'x': -57.0, 'dx': 0.0, 'dy': -1.0}
+<pre><code>{'y': 2.0, 'x': -57.0, 'dx': 0.0, 'dy': -1.0}
 </code></pre>
 <p>donde claramente podemos ver todos los datos que vienen asociados
 al evento.</p>
@@ -339,7 +436,7 @@ de estado o algo así...</p>
 al manejador de la señal y luego usa la función <code>desconectar_por_id</code> indicando
 el identificador.</p>
 <p>Por ejemplo, las siguientes sentencias muestran eso:</p>
-<pre class="prettyprint well"><code>pilas.eventos.mueve_mouse.conectar(imprimir_posicion, id='drag')
+<pre><code>pilas.eventos.mueve_mouse.conectar(imprimir_posicion, id='drag')
 pilas.eventos.mueve_mouse.desconectar_por_id('drag')
 </code></pre>
 <p>En la primera sentencia conecté la señal del evento a una función y le di
@@ -360,12 +457,12 @@ de comunicación entre ellos usando eventos.</p>
 <p>Veamos cómo crear un evento:</p>
 <p>Primero tienes que crear un objeto que represente a tu evento
 y darle un nombre:</p>
-<pre class="prettyprint well"><code>evento = pilas.evento.Evento("Nombre")
+<pre><code>evento = pilas.evento.Evento("Nombre")
 </code></pre>
 <p>luego, este nuevo objeto <code>evento</code> podrá ser utilizado como
 canal de comunicación: muchos actores podrán <code>conectarse</code> para
 recibir alertas y otros podrán <code>emitir</code> alertas:</p>
-<pre class="prettyprint well"><code>def ha_ocurrido_un_evento(datos_evento):
+<pre><code>def ha_ocurrido_un_evento(datos_evento):
     print "Hola!!!", datos_evento
 
 evento.conectar(ha_ocurrido_un_evento)
@@ -379,7 +476,7 @@ respuesta en forma de diccionario.</p>
 <p>Por ejemplo, para este caso, cuando llamamos al método <code>evento.emitir</code>,
 el sistema de eventos irá automáticamente a ejecutar la función <code>ha_ocurrido_un_evento</code>
 y ésta imprimirá::</p>
-<pre class="prettyprint well"><code>Hola!!! {argumento1: 123, argumento2: 123}
+<pre><code>Hola!!! {argumento1: 123, argumento2: 123}
 </code></pre>
 <h2 id="referencias">Referencias</h2>
 <p>El concepto que hemos visto en esta sección se utiliza
@@ -402,16 +499,16 @@ eventos te recomendamos los siguientes documentos:</p>
 <li>http://docs.djangoproject.com/en/dev/topics/signals/</li>
 </ul>
 
+            </div>
           </div>
-
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../texto/" class="btn btn-neutral float-right" title="Textos"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../texto" class="btn btn-neutral float-right" title="Textos"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../camara/" class="btn btn-neutral" title="Manejo de Cámara"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+        <a href="../camara" class="btn btn-neutral" title="Manejo de Cámara"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -420,11 +517,13 @@ eventos te recomendamos los siguientes documentos:</p>
 
   <div role="contentinfo">
     <p>
+    <!-- Copyright etc -->
     </p>
   </div>
 
-  Esta documentación usa <strong>MkDocs</strong>.
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
+	  
         </div>
       </div>
 
@@ -434,15 +533,10 @@ eventos te recomendamos los siguientes documentos:</p>
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
-      <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      <span><a href="" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="" style="color: #fcfcfc">Next &raquo;</a></span>
+        
+      <span><a href="../camara" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../texto" style="color: #fcfcfc">Next &raquo;</a></span>
     </span>
 </div>
-
-
-
-  <script type="text/javascript" src="../js/custom.js"></script>
-  <script type="text/javascript" src="../js/code.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Mapas y plataformas - pilas-engine</title>
+  <title>Complementos - pilas-engine</title>
   
 
   
@@ -217,8 +217,8 @@
 
     
         
-            <li class="toctree-l1 current">
-                <a class="current" href=".">Mapas y plataformas</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../mapas_y_plataformas">Mapas y plataformas</a>
             </li>
         
 
@@ -277,8 +277,8 @@
 
     
         
-            <li class="toctree-l1 ">
-                <a class="" href="../complementos">Complementos</a>
+            <li class="toctree-l1 current">
+                <a class="current" href=".">Complementos</a>
             </li>
         
 
@@ -310,7 +310,7 @@
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
-    <li>Mapas y plataformas</li>
+    <li>Complementos</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -319,121 +319,78 @@
 </div>
           <div role="main">
             <div class="section">
-              <h1 id="mapas-y-plataformas">Mapas y plataformas</h1>
-<p>En los años 80 uno de los géneros de videojuegos mas
-celebrados ha sido el genero de plataformas.</p>
-<p>En los juegos de este género el protagonista de la
-aventura estaba en un escenario armado de bloques y
-plataformas en donde podía saltar.</p>
-<p>Uno de los juegos mas populares de esos días era
-Super Mario Bros.</p>
-<p>Pilas incluye un actor llamado <code>Mapa</code> que te permite
-hacer juegos de plataformas fácilmente.</p>
-<h2 id="presentando-el-actor-mapa">Presentando el actor <code>Mapa</code></h2>
-<p>El <code>Mapa</code> representa un escenario compuesto de bloques
-que pueden ser plataformas, muros o simplemente adornos
-del escenario.</p>
-<p>Para crear un <code>Mapa</code> necesitas una grilla de gráficos con los bloques
-que se usarán en el escenario. Luego puedes crear el <code>Mapa</code>:</p>
-<pre><code>grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
-mapa = pilas.actores.Mapa(grilla)
+              <h1 id="complementos-plugins">Complementos (Plugins)</h1>
+<p>Pilas incorpora un sistema de complementos para que se pueda
+personalizar el entorno completo usando código auto-incluido.</p>
+<p>Esta es una funcionalidad avanzada, que se suele utilizar en
+talleres o cursos especializados. La idea general es que pilas
+se puede modificar añadiendo código en un directorio especial y
+sin necesidad de tocar le código fuente de pilas en sí.</p>
+<h2 id="que-son-los-complementos">¿Que son los complementos?</h2>
+<p>Los complementos, o plugins, son simplemente archivos de código
+python que pilas leerá al momento de iniciar.</p>
+<p>Cada código python podrá definir clases que luego se podrán utilizar
+directamente desde el motor.</p>
+<p>Todos los complementos tienen que existir en un directorio
+especial del sistema. Estos son los lugares en donde se buscarán los
+complementos:</p>
+<ul>
+<li>En linux: $USERDIR/.pilas-engine/complementos/</li>
+<li>En OSX: $USERDIR/.pilas-engine/complementos/</li>
+</ul>
+<h2 id="inicializando-los-complementos">Inicializando los complementos</h2>
+<p>Los complementos no se buscarán a menos que se iniciale pilas-engine
+especificando que queremos complementos.</p>
+<p>Para inicializar pilas-engine con soporte para completos tenemos
+que usar el parámetro "cargar_plugins" así:</p>
+<pre><code class="python">import pilasengine
+
+pilas = pilasengine.iniciar(cargar_plugins=True)
 </code></pre>
-<p>Una vez que ejecutas esas sentencias no observarás cambios
-en la ventana, el mapa está, pero no tiene bloques aún.</p>
-<p>Si quieres dibujar bloques solo tienes que indicar un
-índice de bloque y la posición en pantalla a dibujar.</p>
-<p>Por ejemplo, un bloque cerca del centro de la ventana es
-la posición (8, 10):</p>
-<pre><code>mapa.pintar_bloque(8, 10, 1)
+
+<p>Y en la consola tendrá que aparecer un texto indicando la cantidad de
+complementos encontrada.</p>
+<h2 id="creando-un-plugin-de-ejemplo">Creando un plugin de ejemplo</h2>
+<p>Para probar esta funcionalidad, vamos a hacer un complemento muy
+simple que solamente muestre un mensaje cuando pilas se inicializa.</p>
+<p>Primero tenemos que crear el archivo para el complemento, en este
+caso <code>$HOMEDIR/.pilas-engine/plugins/saludar.py</code></p>
+<pre><code class="python">class Saludar(object):
+
+    def __init__(self, pilas):
+      pilas.avisar(&quot;Bienvenido, pilas se inicio correctamente.&quot;)
 </code></pre>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/mapa_un_bloque.jpg" /></p>
-<p>Otro ejemplo: si queremos dibujar en la parte inferior de la
-ventana, podemos llamar muchas veces al método <code>pintar_bloque</code>, una
-vez por cada bloque que necesitamos:</p>
-<pre><code>for columna in range(20):
-    mapa.pintar_bloque(14, columna, 1)
+
+<p>Luego, para iniciarle a pilas que queremos cargar los complementos
+tenemos que iniciar pilas así:</p>
+<pre><code class="python">import pilasengine
+
+pilas = pilasengine.iniciar(cargar_plugins=True)
 </code></pre>
-<p>El primer y segundo argumento del método <code>pintar_bloque</code> indica
-la posición en donde vamos a dibujar el bloque. En este caso la
-fila será 14 y la columna será 0, 1, 2, 3, 4.. etc</p>
-<p>El tercer argumento será el índice de la grilla que indicamos
-anteriormente.</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/mapa_muchos_bloques.jpg" /></p>
-<h2 id="colisiones-con-el-escenario">Colisiones con el escenario</h2>
-<p>En los juegos de plataformas es muy importante que los bloques
-puedan interactuar con los jugadores. Por ejemplo habrá bloques
-que sirvan como plataformas y otros impedirán que avancemos como
-si se trataran de muros.</p>
-<p>Los mapas de pilas te permiten crear esta interacción de manera
-sencilla. El método que usamos antes <code>pintar_bloque</code>, le
-dice al mapa que dibuje el bloque, pero a la vez te permite
-indicar si ese bloque es sólido o no.</p>
-<p>Diremos que un bloque es sólido cuando un personaje no puede
-pasar a través de él. Por ejemplo, una plataforma es un bloque
-sólido.</p>
-<p>Entonces, cada vez que invocas al método <code>pintar_bloque</code> tienes
-la posibilidad de indicar si el bloque es sólido o no:</p>
-<pre><code>mapa.pintar_bloque(14, 10, 1, es_bloque_solido=True)
-mapa.pintar_bloque(14, 10, 1, es_bloque_solido=False)
+
+<p>tendríamos que ver en consola el mensaje <code>Se encontro un plugin</code>. Luego,
+para inicializar el complemento:</p>
+<pre><code class="python">pilas.complementos.Saludar(pilas)
 </code></pre>
-<p>Y ten en cuenta que si no especificas el último parámetro, pilas
-asumirá que el bloque debe ser sólido.</p>
-<p>Por cierto, los bloques "no sólidos" son útiles para representar
-adornos del escenario, como nubes o agua. Incluso en algunos
-juegos se usan para crear pasadizos secretos entre muros o
-plataformas...</p>
-<h2 id="creando-mapas-con-el-programa-tiled">Creando mapas con el programa tiled</h2>
-<p>Crear los mapas directamente desde el código está bien, pero
-si tienes que hacer muchos mapas te llevará un montón de tiempo.</p>
-<p>Una buena alternativa a esto es usar un software de diseño
-de escenarios, crear un archivo con todo el escenario y
-luego cargarlo desde pilas.</p>
-<p>El software que te recomiendo para esta tarea se llama <code>tiled</code>
-(ver http://www.mapeditor.org).</p>
-<p>Veamos como usar tiled para crear un escenario sencillo, primero
-tienes que crear un mapa desde el menú <code>File</code>, se le solicitará
-indicar el tamaño del escenario:</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled2.png" /></p>
-<p>Usa los valores por defecto, al menos por esta vez.</p>
-<p>Luego tienes que ir al menú <code>Map</code> y luego <code>New tileset</code> para
-indicar cual es la grilla de imágenes que usarás en los bloques. Te
-recomiendo usar la imagen <code>batalhao.png</code> (de Silveins Neto), que
-está en la carpeta de ejemplos de pilas:</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled3.png" /></p>
-<p>Ahora, lo mas divertido, comienza a dibujar sobre el escenario
-seleccionando bloques. Observa que el programa tiene varias herramientas
-para hacer que esto sea mucho mas sencillo:</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled4.png" /></p>
-<p>Luego, asegúrate de que el programa guarda todos los datos en formato CSV, esto
-es importante para que se pueda vincular con pilas. Para esto tienes
-que abrir el menú <code>Edit</code> y luego <code>Preferences</code>, la pantalla de opciones
-te tiene que quedar así:</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled5.png" /></p>
-<p>Listo, ahora solamente hay que guardar el mapa en un archivo. Ve al menú
-<code>File</code> y luego selecciona <code>Save as</code>, tienes que darle un nombre
-al archivo <code>.tmx</code>.</p>
-<p>Luego, desde pilas, es muy simple, solamente tienes que crear
-el actor mapa indicando el nombre del archivo <code>.tmx</code> que has
-generado con el programa <strong>tiled</strong>:</p>
-<pre><code>import pilas
-pilas.iniciar()
-mapa_desde_archivo = pilas.actores.MapaTiled("archivo.tmx")
+
+<p>Es decir, en el nombre de cualquier clase definida en nuestros complementos
+estará accesible a través del acceso <code>pilas.complementos...</code></p>
+<h2 id="no-olvides-pasar-el-objeto-pilas">No olvides pasar el objeto "pilas"...</h2>
+<p>Ten en cuenta que a partir de la versión 0.90 de pilas-engine, para
+acceder a la funcionalidad de pilas tenemos que usar la variable "pilas", y
+que esta no el global. Así que te recomendamos hacer complementos
+tal y como lo sugeremos aquí en el ejemplo, declarando "pilas" como un arguemento
+en el inicializador:</p>
+<pre><code class="python">def NombreComplemento(object):
+
+    def __init__(self, pilas):
+      # [etc...]
 </code></pre>
-<h2 id="creando-bloques-solidos-con-tiled">Creando bloques sólidos con tiled</h2>
-<p>Si quieres hacer bloques sólidos desde <strong>tiled</strong> solamente
-tienes que crear mas capas, la capa 0 se utilizará como
-decorado (todos los bloques son no-sólidos) y el resto de las
-capas serán siempre de bloques sólidos.</p>
-<p>Por ejemplo, en el escenario anterior, sería interesante colocar
-los bloques de pasto y la ruta en la capa que he llamado "suelo"
-y el resto de los objetos en otras capas como "obstáculos" y "paredes":</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled6.png" /></p>
-<h2 id="un-ejemplo-completo">Un ejemplo completo</h2>
-<p>Te recomiendo que observes el ejemplo <code>mapa_desde_archivo.py</code> del
-directorio de ejemplos de pilas, podrás observar un escenario
-muy simple con obstáculos y un personaje que se puede mover
-con el teclado:</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled8.png" /></p>
+
+<p>e inicializándolo especificando el objeto pilas:</p>
+<pre><code class="python">pilas.complementos.NombreComplemento(pilas)
+</code></pre>
+
 
             </div>
           </div>
@@ -441,10 +398,10 @@ con el teclado:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../dialogos" class="btn btn-neutral float-right" title="Diálogos"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../desarrolladores" class="btn btn-neutral float-right" title="Guía para desarrolladores"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../menu" class="btn btn-neutral" title="Como crear menúes para tu juegos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../como_funciona_pilas_por_dentro" class="btn btn-neutral" title="¿Cómo funciona pilas por dentro?"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -470,8 +427,8 @@ con el teclado:</p>
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
         
-      <span><a href="../menu" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="../dialogos" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../como_funciona_pilas_por_dentro" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../desarrolladores" style="color: #fcfcfc">Next &raquo;</a></span>
     </span>
 </div>
 </body>
