@@ -38,7 +38,7 @@ from pilasengine import plugins
 
 import widget
 
-VERSION="0.90.16"
+VERSION="0.90.17"
 
 
 def handler(signum, frame):
