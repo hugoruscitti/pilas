@@ -4,27 +4,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <title>¿Cómo funciona pilas por dentro? - pilas-engine</title>
-  
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../css/code.css" type="text/css" />
+  
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script>
+  <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="../js/theme.js"></script>
+  
 
   <style>
     body {font-size: 90%;}
     pre, code {font-size: 100%;}
     h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
-  </style> 
+  </style>
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,263 +31,220 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> pilas-engine</a>
-        
+        <a href=".."><img src='../img/pilas-logo.png'></a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-      <ul class="current">
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../instalacion">Instalación</a>
-            </li>
-        
+       <ul class="current">
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="..">Principal</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../about">Acerca de ...</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../instalacion/">Instalación</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../empezando">Empezando y los primeros pasos con pilas</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../about/">Acerca de ...</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../actores">Actores</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../empezando/">Empezando y los primeros pasos con pilas</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../actores_personalizados">Actores personalizados</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../actores/">Actores</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../grupos">Grupos</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../actores_personalizados/">Actores personalizados</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../colisiones">Colisiones</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../grupos/">Grupos</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../etiquetas">Etiquetas</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../colisiones/">Colisiones</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../fisica">Fisica</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../etiquetas/">Etiquetas</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../controles">Controles</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../fisica/">Fisica</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../joystick">Joystick</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../controles/">Controles</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../imagen">Imagen</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../joystick/">Joystick</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../sonidos">Sonidos</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../imagen/">Imagen</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../dibujado_simple_en_pantalla">Dibujado simple en pantalla</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../sonidos/">Sonidos</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../dibujado_avanzado_con_superficies">Dibujado avanzado con Superficies</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../dibujado_simple_en_pantalla/">Dibujado simple en pantalla</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../tareas">Manejo de tiempo con tareas</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../dibujado_avanzado_con_superficies/">Dibujado avanzado con Superficies</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../interpolacion">Interpolaciones</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../tareas/">Manejo de tiempo con tareas</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../controlando_la_pantalla">Controlando la pantalla</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../interpolacion/">Interpolaciones</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../comportamientos">Comportamientos</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../controlando_la_pantalla/">Controlando la pantalla</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../escenas">Escenas</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../comportamientos/">Comportamientos</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../migrar_al_gestor_de_escenas">Como migrar mi juego al nuevo Gestor de Escenas</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../escenas/">Escenas</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../gestor_de_escenas">Nuevo Gestor de Escenas</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../migrar_al_gestor_de_escenas/">Como migrar mi juego al nuevo Gestor de Escenas</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../demos">Demos</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../gestor_de_escenas/">Nuevo Gestor de Escenas</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../interfaz">Interfaz de usuario</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../demos/">Demos</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../menu">Como crear menúes para tu juegos</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../interfaz/">Interfaz de usuario</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../mapas_y_plataformas">Mapas y plataformas</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../menu/">Como crear menúes para tu juegos</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../dialogos">Diálogos</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../mapas_y_plataformas/">Mapas y plataformas</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../camara">Manejo de Cámara</a>
-            </li>
-        
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../dialogos/">Diálogos</a>
         
-        <span>Eventos</span>
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../camara/">Manejo de Cámara</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="">Eventos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../texto/">Textos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../habilidades/">Habilidades</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../depurando/">Depurando</a>
+        
+    </li>
+
+    <li class="toctree-l1 current">
+        <a class="current" href="./">¿Cómo funciona pilas por dentro?</a>
+        
+            <ul>
             
-                <li class="toctree-l1 ">
-                    <a class="" href="../eventos">conexiones y respuestas</a>
-                    
-                </li>
+                <li class="toctree-l2"><a href="#como-funciona-pilas-por-dentro">¿Cómo funciona pilas por dentro?</a></li>
+                
+                    <li><a class="toctree-l3" href="#filosofia-de-desarrollo">Filosofía de desarrollo</a></li>
+                
+                    <li><a class="toctree-l3" href="#api-en-espanol">API en español</a></li>
+                
+                    <li><a class="toctree-l3" href="#bibliotecas-que-usa-pilas">Bibliotecas que usa pilas</a></li>
+                
+                    <li><a class="toctree-l3" href="#objetos-y-modulos">Objetos y módulos</a></li>
+                
+                    <li><a class="toctree-l3" href="#modo-interactivo">Modo interactivo</a></li>
+                
+                    <li><a class="toctree-l3" href="#motores-multimedia">Motores multimedia</a></li>
+                
+                    <li><a class="toctree-l3" href="#sistema-de-actores">Sistema de actores</a></li>
+                
+                    <li><a class="toctree-l3" href="#modo-depuracion">Modo depuración</a></li>
+                
+                    <li><a class="toctree-l3" href="#sistema-de-eventos">Sistema de eventos</a></li>
+                
+                    <li><a class="toctree-l3" href="#habilidades">Habilidades</a></li>
+                
+                    <li><a class="toctree-l3" href="#documentacion">Documentación</a></li>
+                
             
+            </ul>
         
+    </li>
 
-    
+    <li class="toctree-l1 ">
+        <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../texto">Textos</a>
-            </li>
-        
+    </li>
 
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../habilidades">Habilidades</a>
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../depurando">Depurando</a>
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 current">
-                <a class="current" href=".">¿Cómo funciona pilas por dentro?</a>
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../complementos">Complementos</a>
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../desarrolladores">Guía para desarrolladores</a>
-            </li>
-        
-
-    
 </ul>
+
+
+
 
       </div>
       &nbsp;
@@ -318,8 +272,7 @@
   <hr/>
 </div>
           <div role="main">
-            <div class="section">
-              <h1 id="como-funciona-pilas-por-dentro">¿Cómo funciona pilas por dentro?</h1>
+            <h1 id="como-funciona-pilas-por-dentro">¿Cómo funciona pilas por dentro?</h1>
 <p>Pilas es un proyecto con una arquitectura de objetos
 grande. Tiene mucha funcionalidad, incluye un
 motor de física, muchos personaje pre-diseñados, eventos, escenas
@@ -401,7 +354,7 @@ de profundidad lo que hace cada uno.</p>
 <p>El objeto de la clase Mundo se construye cuando se invoca a la
 función <code>pilas.iniciar</code>. Su implementación está en el
 archivo <code>mundo.py</code>:</p>
-<p><img alt="" src="../../imagenes/comofunciona/mundo.png" /></p>
+<p><img alt="" src="../imagenes/comofunciona/mundo.png" /></p>
 <p>Su responsabilidad es inicializar varios componentes de pilas, como
 el sistema de controles, la ventana, etc.</p>
 <p>Uno de sus métodos mas importantes es <code>ejecutar_bucle_principal</code>. Un
@@ -411,7 +364,7 @@ la sentencia <code>pilas.ejecutar()</code>.</p>
 el motor en funcionamiento.</p>
 <p>Esta es una versión muy simplificada del
 método <code>ejecutar_bucle_principal</code>:</p>
-<pre><code>def ejecutar_bucle_principal(self, ignorar_errores=False):
+<pre class="prettyprint well"><code>def ejecutar_bucle_principal(self, ignorar_errores=False):
 
     while not self.salir:
         pilas.motor.procesar_y_emitir_eventos()
@@ -458,7 +411,7 @@ escuelas, reemplazamos el soporte multimedia con la biblioteca Qt. Que sabe
 acceder a las funciones de aceleración de gráficos (si están disponibles), o
 brinda una capa de compatibilidad con equipos antiguos.</p>
 <p>La función que permite iniciar y seleccionar el motor es <code>pilas.iniciar</code>.</p>
-<pre><code>pilas.iniciar(usar_motor='qt')
+<pre class="prettyprint well"><code>pilas.iniciar(usar_motor='qt')
 </code></pre>
 <p>Ahora bien, ¿cómo funciona?. Dado que pilas está realizado
 usando orientación a objetos, usamos un concepto llamado
@@ -466,7 +419,7 @@ polimorfismo:</p>
 <p>El objeto motor sabe que tiene que delegar el manejo multimedia
 a una instancia (o derivada) de la clase <code>Motor</code> (ver directorio
 <code>pilas/motores/</code>:</p>
-<p><img alt="" src="../../imagenes/comofunciona/motores.png" /></p>
+<p><img alt="" src="../imagenes/comofunciona/motores.png" /></p>
 <p>El motor expone toda la funcionalidad que se necesita para
 hace un juego: sabe crear una ventana, pintar una imagen o
 reproducir sonidos, entre tantas otras cosas.</p>
@@ -484,7 +437,7 @@ el directorio <code>pilas/actores</code>.</p>
 el comportamiento común de todos los actores.</p>
 <p>Por ejemplo, esta sería una versión reducida de la
 jerarquía de clases de los actores Mono, Pingu y Tortuga:</p>
-<p><img alt="" src="../../imagenes/comofunciona/actores.png" /></p>
+<p><img alt="" src="../imagenes/comofunciona/actores.png" /></p>
 <p>Hay dos métodos en los actores que se invocarán en
 todo momento: el método <code>actualizar</code> se invocará
 cuando el bucle de juego del mundo llame al método
@@ -503,7 +456,7 @@ una instancia de objeto <code>Depurador</code> que se encarga de
 hacer estos dibujos.</p>
 <p>Las clases mas importantes a la hora de investigar el depurador
 están en el archivo <code>depurador.py</code>:</p>
-<p><img alt="" src="../../imagenes/comofunciona/depurador.png" /></p>
+<p><img alt="" src="../imagenes/comofunciona/depurador.png" /></p>
 <p>El Depurador tiene dos atributos, tiene una pizarra para dibujar y
 una lista de modos. Los modos pueden ser cualquiera de los que están
 en la jerarquía de ModoDepuracion, por ejemplo, podría tener
@@ -530,7 +483,7 @@ es consultar sobre ese objeto en búsqueda de datos.</p>
 <p>Imagina que quieres crear un actor <code>Bomba</code> cada
 vez que el usuario hace click en la pantalla. El
 código podría ser algo así:</p>
-<pre><code>evento = obtener_evento_actual()
+<pre class="prettyprint well"><code>evento = obtener_evento_actual()
 
 if evento.tipo == 'click_de_mouse':
     crear_bomba(evento.x)
@@ -566,7 +519,7 @@ función cuando sea necesario.</p>
 <p>Veamos el ejemplo anterior pero usando este enfoque, se
 creará una <code>Bomba</code> cada vez que el usuario
 hace <code>click</code> en la pantalla:</p>
-<pre><code>def crear_bomba(evento):
+<pre class="prettyprint well"><code>def crear_bomba(evento):
     pilas.actores.Bomba(x=evento.x, y=evento.y)
     return true
 
@@ -574,7 +527,7 @@ pilas.eventos.click_de_mouse.conectar(crear_bomba)
 </code></pre>
 <p>Si queremos que el mouse deje de crear bombas, podemos
 ejecutar la función <code>desconectar</code>:</p>
-<pre><code>pilas.eventos.click_de_mouse.conectar(crear_bomba)
+<pre class="prettyprint well"><code>pilas.eventos.click_de_mouse.conectar(crear_bomba)
 </code></pre>
 <p>o simplemente retornar <code>False</code> en la función <code>crear_bomba</code>.</p>
 <p>Nuestro código tendrá <em>bajo acoplamiento</em> con los eventos
@@ -607,7 +560,7 @@ hace click con el mouse.</p>
 <p>Los eventos son objetos <code>Signal</code> y se inicializan en el
 archivo <code>eventos.py</code>, cada uno con sus respectivos
 argumentos o detalles:</p>
-<pre><code>click_de_mouse = Evento("click_de_mouse")
+<pre class="prettyprint well"><code>click_de_mouse = Evento("click_de_mouse")
 pulsa_tecla = Evento("pulsa_tecla")
 [ etc...]
 </code></pre>
@@ -617,11 +570,11 @@ y la coordenada del puntero.</p>
 <p>Cuando se quiere notificar a las funciones conectadas a
 un evento simplemente se tiene que invocar al método <code>emitir</code>
 del evento y proveer los argumentos que necesita:</p>
-<pre><code>click_de_mouse.emitir(button=1, x=30, y=50)
+<pre class="prettyprint well"><code>click_de_mouse.emitir(button=1, x=30, y=50)
 </code></pre>
 <p>Eso hará que todas las funciones suscritas al evento <code>click_de_mouse</code>
 se invoquen con el argumento <code>evento</code> representando esos detalles:</p>
-<pre><code>def crear_bomba(evento):
+<pre class="prettyprint well"><code>def crear_bomba(evento):
 
     print evento.x
     # imprimirá 30
@@ -643,7 +596,7 @@ actores pero con distintas habilidades.</p>
 <p>Veamos un ejemplo, un actor sencillo como <code>Mono</code> no
 hace muchas cosas. Pero si escribimos lo siguiente, podremos
 controlarlo con el mouse:</p>
-<pre><code>mono = pilas.actores.Mono()
+<pre class="prettyprint well"><code>mono = pilas.actores.Mono()
 mono.aprender(pilas.habilidades.Arrastrable)
 </code></pre>
 <p>Lo que en realidad estamos haciendo, es vincular dos objetos
@@ -653,7 +606,7 @@ lista de habilidades que puede aumentar usando el método <code>aprender</code>.
 argumento, construye un objeto y lo guarda en su lista de habilidades.</p>
 <p>Este es un modelo de cómo se conocen las clases entre
 sí:</p>
-<p><img alt="" src="../../imagenes/comofunciona/habilidades.png" /></p>
+<p><img alt="" src="../imagenes/comofunciona/habilidades.png" /></p>
 <p>Entonces, una vez que invocamos a la sentencia, nuestro actor
 tendrá un nuevo objeto en su lista de habilidades, listo para
 ejecutarse en cada cuadro de animación.</p>
@@ -665,7 +618,7 @@ y por cada uno llama al método actualizar.</p>
 <p>Bien, las habilidades se mantienen en ejecución desde ahí también. Esta
 es una versión muy simplificada del bucle que encontrarás en el
 archivo ``mundo.py```:</p>
-<pre><code>def ejecutar_bucle_principal(self, ignorar_errores=False):
+<pre class="prettyprint well"><code>def ejecutar_bucle_principal(self, ignorar_errores=False):
 
     while not self.salir:
         self.actualizar_actores()
@@ -687,7 +640,7 @@ muy simple, solamente toma la lista de objetos habilidades y
 los actualiza, al <code>Actor</code> no le preocupa en lo mas mínimo
 "qué" hace cada habilidad, solamente les permite ejecutar código
 (ver código <code>estudiante.py</code>, una superclase de <code>Actor</code>):</p>
-<pre><code>def actualizar_habilidades(self):
+<pre class="prettyprint well"><code>def actualizar_habilidades(self):
     for h in self.habilidades:
         h.actualizar()
 </code></pre>
@@ -702,7 +655,7 @@ desde cualquier parte de pilas puedas tratar a una habilidad
 como a cualquier otra.</p>
 <p>La interfaz que toda habilidad debe tener es la que define
 la clase <code>Habilidad</code> del archivo <code>habilidades.py</code>:</p>
-<pre><code>class Habilidad:
+<pre class="prettyprint well"><code>class Habilidad:
 
     def __init__(self, receptor):
         self.receptor = receptor
@@ -727,7 +680,7 @@ el argumento <code>receptor</code> será una referencia al actor que
 una habilidad muy simple, que gire al personaje todo el
 tiempo, cómo una aguja de reloj. Podrías hacer
 algo así:</p>
-<pre><code>class GirarPorSiempre(pilas.habilidades.Habilidad):
+<pre class="prettyprint well"><code>class GirarPorSiempre(pilas.habilidades.Habilidad):
 
     def __init__(self, receptor):
         self.receptor = receptor
@@ -753,7 +706,7 @@ y asegurarte de que la habilidad los tenga definidos en
 su método <code>__init__</code>.</p>
 <p>Este es un ejemplo de la habilidad pero que permite
 definir la velocidad de giro:</p>
-<pre><code>class GirarPorSiempre(pilas.habilidades.Habilidad):
+<pre class="prettyprint well"><code>class GirarPorSiempre(pilas.habilidades.Habilidad):
 
     def __init__(self, receptor, velocidad=1):
         self.receptor = receptor
@@ -785,16 +738,16 @@ en la documentación.</p>
 dispara todas las acciones que sphinx sabe hacer están
 definidas en el archivo <code>Makefile</code>.</p>
 
-            </div>
           </div>
+
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../complementos" class="btn btn-neutral float-right" title="Complementos"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../desarrolladores/" class="btn btn-neutral float-right" title="Guía para desarrolladores"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../depurando" class="btn btn-neutral" title="Depurando"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../depurando/" class="btn btn-neutral" title="Depurando"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
       
     </div>
   
@@ -803,13 +756,11 @@ definidas en el archivo <code>Makefile</code>.</p>
 
   <div role="contentinfo">
     <p>
-    <!-- Copyright etc -->
     </p>
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Esta documentación usa <strong>MkDocs</strong>.
 </footer>
-	  
         </div>
       </div>
 
@@ -819,10 +770,15 @@ definidas en el archivo <code>Makefile</code>.</p>
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
-        
-      <span><a href="../depurando" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="../complementos" style="color: #fcfcfc">Next &raquo;</a></span>
+      <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <span><a href="" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="" style="color: #fcfcfc">Next &raquo;</a></span>
     </span>
 </div>
+
+
+
+  <script type="text/javascript" src="../js/custom.js"></script>
+  <script type="text/javascript" src="../js/code.js"></script>
 </body>
 </html>
