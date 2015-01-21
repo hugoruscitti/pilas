@@ -1,0 +1,33 @@
+<div id='ejemplos'>
+
+    <div class='barra-superior'>
+        <div class='filtro'>Filtro <input ng-model='data.filtro'></div>
+        <p><a href='#/' class='btn btn-sm btn-info btn-regresar'>← Regresar</a>
+    </div>
+
+    <div class='cuerpo'>
+
+        <ul class='item'>
+
+        <li class="animate" ng-repeat='ejemplo in data.ejemplos | filter:data.filtro'>
+
+            <div class='contenedor_ejemplo'>
+              <a ng-click="abrir_ejemplo(ejemplo.nick)" href=''>
+                <span class='nombre'>
+                    {{ejemplo.titulo}}
+                </span>
+                <img ng-src='imagenes/ejemplos/{{ejemplo.nick}}.png' err-src>
+              </a>
+
+            <br/>
+
+            <span class='progresando'><img src='imagenes/procesando.gif'/></span>
+        </div>
+      </li>
+        </ul>
+
+
+
+    </div>
+
+</div>

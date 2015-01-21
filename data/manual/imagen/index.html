@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imagen - pilas-engine</title>
+
+  
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../css/code.css" type="text/css" />
+  
+
+  <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="../js/theme.js"></script>
+  
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".."><img src='../img/pilas-logo.png'></a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+       <ul class="current">
+
+    <li class="toctree-l1 ">
+        <a class="" href="..">Principal</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../instalacion/">Instalación</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../about/">Acerca de ...</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../empezando/">Empezando y los primeros pasos con pilas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../actores/">Actores</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../actores_personalizados/">Actores personalizados</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../grupos/">Grupos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../colisiones/">Colisiones</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../etiquetas/">Etiquetas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../fisica/">Fisica</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../controles/">Controles</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../joystick/">Joystick</a>
+        
+    </li>
+
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Imagen</a>
+        
+            <ul>
+            
+                <li class="toctree-l2"><a href="#manejo-de-imagenes">Manejo de imágenes</a></li>
+                
+                    <li><a class="toctree-l3" href="#imagenes-de-fondo">Imágenes de fondo</a></li>
+                
+                    <li><a class="toctree-l3" href="#grillas-de-imagenes">Grillas de imágenes</a></li>
+                
+                    <li><a class="toctree-l3" href="#reproduciendo-animaciones">Reproduciendo animaciones</a></li>
+                
+                    <li><a class="toctree-l3" href="#animaciones-controladas-a-mano-con-una-grilla">Animaciones controladas a mano con una grilla</a></li>
+                
+                    <li><a class="toctree-l3" href="#grillas-con-filas-y-columnas">Grillas con filas y columnas</a></li>
+                
+                    <li><a class="toctree-l3" href="#haciendo-animaciones-sencillas">Haciendo animaciones sencillas</a></li>
+                
+                    <li><a class="toctree-l3" href="#haciendo-actores-con-animacion">Haciendo actores con animación</a></li>
+                
+                    <li><a class="toctree-l3" href="#animaciones">Animaciones</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../sonidos/">Sonidos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../dibujado_simple_en_pantalla/">Dibujado simple en pantalla</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../dibujado_avanzado_con_superficies/">Dibujado avanzado con Superficies</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../tareas/">Manejo de tiempo con tareas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../interpolacion/">Interpolaciones</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../controlando_la_pantalla/">Controlando la pantalla</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../comportamientos/">Comportamientos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../escenas/">Escenas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../migrar_al_gestor_de_escenas/">Como migrar mi juego al nuevo Gestor de Escenas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../gestor_de_escenas/">Nuevo Gestor de Escenas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../demos/">Demos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../interfaz/">Interfaz de usuario</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../mapas_y_plataformas/">Mapas y plataformas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../dialogos/">Diálogos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../camara/">Manejo de Cámara</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="">Eventos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../texto/">Textos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../habilidades/">Habilidades</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../depurando/">Depurando</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../como_funciona_pilas_por_dentro/">¿Cómo funciona pilas por dentro?</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
+        
+    </li>
+
+</ul>
+
+
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Imagen</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <h1 id="manejo-de-imagenes">Manejo de imágenes</h1>
+<p>En los videojuegos 2D las imágenes suelen estar en formatos
+gráficos como <strong>png</strong> o <strong>jpg</strong> ya diseñados con anterioridad.</p>
+<p>En <code>pilas</code> se pueden cargar estos recursos usando
+el módulo <code>imagenes</code>. Por ejemplo, si tenemos una
+imagen llamada <code>hola.png</code> podríamos incorporarla a
+nuestro juego así:</p>
+<pre class="prettyprint well"><code>import pilas
+
+hola = pilas.imagenes.cargar('hola.png')
+</code></pre>
+
+<p>Las imágenes no se imprimen directamente en pantalla, en
+su lugar tienes que crear un Actor y asignarle la
+imagen.</p>
+<p>Por ejemplo, el siguiente código muestra la imagen
+en pantalla:</p>
+<pre class="prettyprint well"><code>imagen = pilas.imagenes.cargar("mi_personaje.png")
+actor = pilas.actores.Actor(imagen)
+</code></pre>
+<p>otra opción similar es crear al actor, y luego
+asignarle la imagen:</p>
+<pre class="prettyprint well"><code>imagen = pilas.imagenes.cargar("mi_personaje.png")
+actor = pilas.actores.Actor()
+
+actor.imagen = imagen
+</code></pre>
+<p>Cualquiera de las dos opciones produce el mismo
+resultado, personaje "cambiará" de apariencia
+cuando se le asigne una nueva imagen.</p>
+<h2 id="imagenes-de-fondo">Imágenes de fondo</h2>
+<p>Muchas veces queremos que las imágenes cubran el fondo de pantalla
+completamente, como si se tratara de un fondo o papel tapiz.</p>
+<p>Si la imagen es suficientemente gránde para cubrir la pantalla, podemos
+cargarla como una imagen normal y luego crear un fondo que la represente:</p>
+<pre class="prettyprint well"><code>fondo = pilas.fondos.Fondo()
+fondo.imagen = pilas.imagenes.cargar('mi_fondo.png')
+</code></pre>
+<p>Ahora, si en realidad queremos que el fondo se dibuje como si fuera un
+mozaico (o papel tapiz), tenemos que indicarle a la imagen que se re-dibuje
+muchas veces hasta cubrir el fondo de pantalla. El código es muy similar
+al anterior, solo que ahora usamos las propiedades <code>repetir_horizontal</code> y
+<code>repetir_vertical</code></p>
+<pre class="prettyprint well"><code>fondo = pilas.fondos.Fondo()
+fondo.imagen = pilas.imagenes.cargar('mi_fondo.png')
+
+fondo.imagen.repetir_vertical = True
+fondo.imagen.repetir_horizontal = True
+</code></pre>
+<h2 id="grillas-de-imagenes">Grillas de imágenes</h2>
+<p>Un forma conveniente de almacenar las imágenes de tus
+personajes es usar una grilla.</p>
+<p>La siguiente imagen es una grilla de 10 columnas
+que utilizamos para crear al personaje "pingu":</p>
+<p><img alt="" src="../imagenes/imagen/pingu.png" /></p>
+<p>Internamente la imagen se almacena así, pero a la
+hora de mostrarse en pantalla se puede seleccionar
+el cuadro.</p>
+<p>Este es un ejemplo que carga la grilla de mas arriba
+y genera un actor para mostrar el cuadro 1:</p>
+<pre class="prettyprint well"><code>actor = pilas.actores.Actor()
+grilla = pilas.imagenes.cargar_grilla("pingu.png", 10)
+actor.imagen = grilla
+</code></pre>
+<p>Ten en cuenta que el último argumento de la función <code>pilas.imagenes.cargar_grilla</code> es la cantidad de columnas que
+tiene la grilla. También es posible usar funciones
+que tengan filas y columnas, solo tendrías que indicar un
+argumento mas con el número de filas. Lo veremos mas adelante.</p>
+<p>Puedes ejecutar la siguiente sentencia para ver
+la documentación completa de esta función:</p>
+<pre class="prettyprint well"><code>help(pilas.imagenes.cargar_grilla)
+</code></pre>
+<h2 id="reproduciendo-animaciones">Reproduciendo animaciones</h2>
+<p>Tener una grilla de imagenes es una buena
+forma de comenzar a realizar animaciones.</p>
+<p>Si quieres tomar una grilla y mostrar una
+y otra vez sus cuadros podrías usar el actor Animación.</p>
+<p>El siguiente código genera un actor que mostrará
+uno a uno los cuadros de la grilla:</p>
+<pre class="prettyprint well"><code>grilla = pilas.imagenes.cargar_grilla("explosion.png", 7)
+p = pilas.actores.Animacion(grilla, True)
+</code></pre>
+<p>El actor <code>Animacion</code>, también puede recibir cómo argumento
+la velocidad con la que tiene que reproducir la animación (medida
+en cuadros por segundo).</p>
+<p>El segundo argumento indica que la animación tiene que ser
+cíclica (nunca termina).</p>
+<p>Observa este ejemplo, muestra la misma animación de antes pero
+mostrando un cuadro por segundo y se elimina cuando termina:</p>
+<pre class="prettyprint well"><code>grilla = pilas.imagenes.cargar_grilla("explosion.png", 7)
+p = pilas.actores.Animacion(grilla, False, velocidad=1)
+</code></pre>
+<h2 id="animaciones-controladas-a-mano-con-una-grilla">Animaciones controladas a mano con una grilla</h2>
+<p>Otra forma de hacer animaciones, es asociar una grilla
+directamente a un actor y cambiar el cuadro a mostrar.</p>
+<p>Por ejemplo, la siguiente sentencia avanza al siguiente
+cuadro de animación en la grilla. Recuerda que
+comienza en 1:</p>
+<pre class="prettyprint well"><code>grilla.avanzar()
+actor.imagen = grilla
+</code></pre>
+<p>Ten en cuenta que el método <code>avanzar</code> va a retornar <code>True</code> o <code>False</code>.
+<code>True</code> significa que la grilla ha avanzado y ha mostrado un cuadro nuevo.
+<code>False</code> significa que la grilla volvió a mostrar el primer cuadro.</p>
+<p>Este valor de retorno es muy útil a la hora de
+saber si una animación terminó, y poder tomar
+alguna decisión al respecto.</p>
+<h2 id="grillas-con-filas-y-columnas">Grillas con filas y columnas</h2>
+<p>En el ejemplo anterior mencioné que las grillas pueden
+tener filas y columnas. Esto se logra gracias a que
+python permite tener funciones y métodos con argumentos
+opcionales.</p>
+<p>En este caso, la función <code>cargar_grilla</code> también
+puede recibir la cantidad de filas que tiene una grilla:</p>
+<pre class="prettyprint well"><code>animacion = pilas.imagenes.cargar_grilla("grilla.png", 2, 2)
+</code></pre>
+<p>el primer número <code>2</code> indica que la grilla tiene dos
+columnas y el segudo <code>2</code> indica que la grilla tiene dos
+filas.</p>
+<p>Cuando usas una grilla con pilas y columnas, la función <code>avanzar</code>
+que vimos antes va a recorriendo los cuadros de la misma
+manera en que se lee una historieta (de izquierda
+a derecha y de arriba a abajo).</p>
+<p>Esta es la apariencia de la imágen que usamos antes y
+los números indican el órden con que pilas leerá los cuadros:</p>
+<p><img alt="" src="../imagenes/imagen/grilla_con_columnas.png" /></p>
+<h2 id="haciendo-animaciones-sencillas">Haciendo animaciones sencillas</h2>
+<p>En muchas oportunidades nos interesa hacer animaciones simples
+y que se repitan todo el tiempo sin mucho esfuerzo.</p>
+<p>Con lo que vimos hasta ahora, hacer esas animación
+es cuestión de cargar una grilla y llamar cada
+un determinado tiempo a la función <code>avanzar</code>.</p>
+<p>Pero como esta es una tarea muy común, en <strong>pilas</strong> hay una forma
+mas sencilla de hacer esto.</p>
+<p>Existe un actor llamado <code>Animación</code> que tiene la
+capacidad de mostrar una animación cíclica, es decir,
+que se repita todo el tiempo, comenzando desde el principio
+cuando llega al final.</p>
+<p>Veamos un ejemplo, esta imagen tiene <code>6</code> cuadros de animación
+ordenados en columnas:</p>
+<p><img alt="" src="../imagenes/imagen/grilla_fuego.png" /></p>
+<p>Una forma sencilla de convertir esta animación en un actor
+simple es crear la grilla, construir un actor <code>Animacion</code> e
+indicarle a pilas que será una animación cíclica, es decir, que
+se tendrá que repetir indefinidamente:</p>
+<pre class="prettyprint well"><code>grilla = pilas.imagenes.cargar_grilla("fuego.png", 6)
+actor = pilas.actores.Animacion(grilla, ciclica=True)
+</code></pre>
+<p>El resultado en la ventana será una animación de fuego que
+no terminará nunca. Cuando el actor termine de mostrar el
+cuadro 6 de la animación regresará al primero para comenzar
+nuevamente.</p>
+<p>Otra posibilidad es especificar el argumento <code>ciclica=False</code>. En
+ese caso el actor comenzará a mostrar la animación desde el cuadro
+1 y cuanto termine eliminará al actor de la ventana. Esto es útil
+para hacer efectos especiales, como explosiones o destellos, cosas
+que quieres tener en la ventana un instante de tiempo y nada mas...</p>
+<h2 id="haciendo-actores-con-animacion">Haciendo actores con animación</h2>
+<p>Puede que quieras hacer un actor que tenga múltiples animaciones, y
+que las muestre en determinados momentos. Por ejemplo, si tienes
+una nave con motores, es probable que quieras mostrar una animación
+de motores en funcionamiento cuando la nave avanza y detener la
+animación de motores cuando finaliza el movimiento.</p>
+<p>Una forma de lograr esto de manera sencilla es crear tu propio
+actor, y que este tenga dos atributos, uno para cada animación:</p>
+<pre class="prettyprint well"><code>class MiNave(pilas.actores.Actor):
+
+    def __init__(self, x=0, y=0):
+        Actor.__init__(self, x=x, y=y)
+        self.animacion_detenida = pilas.imagenes.cargar_grilla("nave_detenida.png", 1)
+        self.animacion_movimiento = pilas.imagenes.cargar_grilla("nave_en_movimiento.png", 3)
+</code></pre>
+<p>Luego, en el método <code>actualizar</code> del propio actor podrías
+avanzar la animación actual y permitirle al programador invocar
+métodos para intercambiar animaciones:</p>
+<pre class="prettyprint well"><code>class MiNave(pilas.actores.Actor):
+
+    # [...] codigo anterior
+
+    def poner_en_movimiento(self):
+        self.imagen = self.animacion_movimiento
+
+    def poner_en_reposo(self):
+        self.imagen = self.animacion_detenida
+
+    def actualizar(self):
+        self.imagen.avanzar()
+</code></pre>
+<p>Como puedes ver, el concepto inicial es el mismo, cuando
+queremos cambiar de animación tenemos que cambiar de grilla, y
+cuando queremos avanzar la animación solamente tenemos que
+llamar al método <code>avanzar</code>.</p>
+<h2 id="animaciones">Animaciones</h2>
+<p>Además de las imágenes y las grillas, pilas incluye un recurso llamado animación, que nos permite declarar y utilizar animaciones almacenadas en una grilla.</p>
+<p>Por ejemplo, si tenemos una grilla con varios cuadros de animación como aquí:</p>
+<p><img alt="" src="../imagenes/imagen/alien-simple.png" /></p>
+<p>podemos cargar la grilla completa y definir las dos
+animaciones por separado.</p>
+<p>Enumerando los cuadros de animación nos quedaría así:</p>
+<p><img alt="" src="../imagenes/imagen/alien-simple-enumerado.png" /></p>
+<p>y desde aquí podemos extraer dos animaciones:</p>
+<ul>
+<li>La animación que podemos armar con los cuadros <code>0, 1, 4</code>:</li>
+</ul>
+<p><img alt="" src="../imagenes/imagen/anim2.gif" /></p>
+<ul>
+<li>Y la animación que se puede armar con los cuadros <code>3, 4, 5</code>:</li>
+</ul>
+<p><img alt="" src="../imagenes/imagen/anim1.gif" /></p>
+<p>Luego, para indicarle a <em>pilas</em> como interpretar las animaciones podemos
+cargar la animación y especificar los cuadros:</p>
+<pre class="prettyprint well"><code class="python">animacion = pilas.imagenes.cargar_animacion('alien.png', 5, 1)
+
+animacion.definir_animacion('baja_palanca', [0, 1, 4], 10)
+animacion.definir_animacion('parado', [3, 3, 3, 3, 4, 5, 4], 10)
+</code></pre>
+
+<p>Al llamar al método <code>definir_animacion</code> tenemos que especificar
+en nombre de la animación, los cuadros a mostrar y luego la velocidad (medido
+en cuadros por segundo.)</p>
+<p>El siguiente paso es crear al actor e indicarle que animación mostrar en
+cada momento:</p>
+<pre class="prettyprint well"><code class="python">
+class MiActor(pilasengine.actores.Actor):
+
+    def iniciar(self):
+
+        # Las animaciones que cargamos antes:
+        animacion = pilas.imagenes.cargar_animacion('alien.png', 5, 1)
+
+        animacion.definir_animacion('baja_palanca', [0, 1, 4], 10)
+        animacion.definir_animacion('parado', [3, 3, 3, 3, 4, 5, 4], 10)
+
+        # Vinculamos la animación al actor
+        self.imagen = animacion
+
+        # Le indicamos que muestre la animación 'parado'
+        self.imagen.cargar_animacion('parado')
+
+    def actualizar(self):
+        self.imagen.avanzar()
+
+
+pilas.actores.vincular(MiActor)
+mi_actor = pilas.actores.MiActor()
+</code></pre>
+
+<p>Es decir, con esta nueva clase, podremos representar
+a nuestro actor y seleccionar cualquiera de las dos
+animaciones que declaramos usando el método <code>cargar_animacion</code>, que en este caso usamos para cargar
+la animación <code>parado</code>.</p>
+
+          </div>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sonidos/" class="btn btn-neutral float-right" title="Sonidos"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../joystick/" class="btn btn-neutral" title="Joystick"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    </p>
+  </div>
+
+  Esta documentación usa <strong>MkDocs</strong>.
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <span><a href="" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+
+
+
+  <script type="text/javascript" src="../js/custom.js"></script>
+  <script type="text/javascript" src="../js/code.js"></script>
+</body>
+</html>

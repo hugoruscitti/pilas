@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depurando - pilas-engine</title>
+
+  
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../css/code.css" type="text/css" />
+  
+
+  <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="../js/theme.js"></script>
+  
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".."><img src='../img/pilas-logo.png'></a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+       <ul class="current">
+
+    <li class="toctree-l1 ">
+        <a class="" href="..">Principal</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../instalacion/">Instalación</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../about/">Acerca de ...</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../empezando/">Empezando y los primeros pasos con pilas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../actores/">Actores</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../actores_personalizados/">Actores personalizados</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../grupos/">Grupos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../colisiones/">Colisiones</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../etiquetas/">Etiquetas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../fisica/">Fisica</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../controles/">Controles</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../joystick/">Joystick</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../imagen/">Imagen</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../sonidos/">Sonidos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../dibujado_simple_en_pantalla/">Dibujado simple en pantalla</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../dibujado_avanzado_con_superficies/">Dibujado avanzado con Superficies</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../tareas/">Manejo de tiempo con tareas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../interpolacion/">Interpolaciones</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../controlando_la_pantalla/">Controlando la pantalla</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../comportamientos/">Comportamientos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../escenas/">Escenas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../migrar_al_gestor_de_escenas/">Como migrar mi juego al nuevo Gestor de Escenas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../gestor_de_escenas/">Nuevo Gestor de Escenas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../demos/">Demos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../interfaz/">Interfaz de usuario</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../mapas_y_plataformas/">Mapas y plataformas</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../dialogos/">Diálogos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../camara/">Manejo de Cámara</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="">Eventos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../texto/">Textos</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../habilidades/">Habilidades</a>
+        
+    </li>
+
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Depurando</a>
+        
+            <ul>
+            
+                <li class="toctree-l2"><a href="#depurando-y-buscando-detalles">Depurando y buscando detalles</a></li>
+                
+                    <li><a class="toctree-l3" href="#modo-pausa-y-manejo-de-tiempo">Modo pausa y manejo de tiempo</a></li>
+                
+                    <li><a class="toctree-l3" href="#modos-depuracion">Modos depuración</a></li>
+                
+                    <li><a class="toctree-l3" href="#activar-modos-desde-codigo">Activar modos desde código</a></li>
+                
+                    <li><a class="toctree-l3" href="#activando-los-modos-para-detectar-errores">Activando los modos para detectar errores</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../como_funciona_pilas_por_dentro/">¿Cómo funciona pilas por dentro?</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
+        
+    </li>
+
+</ul>
+
+
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Depurando</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <h1 id="depurando-y-buscando-detalles">Depurando y buscando detalles</h1>
+<p>Pilas incluye varios modos de ejecución que te
+pueden resultar de utilidad para ver en detalle
+el funcionamiento de tu juego.</p>
+<p>La depuración dentro de la progración de juegos permite detectar errores, corregir
+detalles e incluso comprender algunas interacciones complejas.</p>
+<h2 id="modo-pausa-y-manejo-de-tiempo">Modo pausa y manejo de tiempo</h2>
+<p>Si pulsas las teclas <code>ALT + P</code> durante la ejecución de
+pilas, el juego completo se detiene. En ese
+momento puedes pulsar cualquier tecla
+para avanzar un instante de la simulación o
+la tecla <code>flecha derecha</code> para avanzar mas rápidamente.</p>
+<p>Esto es muy útil cuando trabajas con colisiones físicas, porque
+este modo de pausa y manejo de tiempo te permite
+ver en detalle la interacción de los objetos y detectar
+cualquier inconveniente rápidamente.</p>
+<h2 id="modos-depuracion">Modos depuración</h2>
+<p>Las teclas <strong>F6</strong>, <strong>F7</strong>, <strong>F8</strong>, <strong>F9</strong>, <strong>F10</strong>, <strong>F11</strong> y <strong>F12</strong> te permiten
+hacer visibles los modos de depuración.</p>
+<p>Cada modo representa un aspecto interno del juego que podrías ver. Por ejemplo, el
+modo que se activa con la tecla <strong>F12</strong> te permite ver la posición exácta de
+cada actor, mientras que al tecla <strong>F11</strong> te permite ver las figuras físicas.</p>
+<h2 id="activar-modos-desde-codigo">Activar modos desde código</h2>
+<p>Si quieres que el juego inicie alguno de los modos, puedes usar la
+función <code>pilas.atajos.definir_modos</code>. Por ejemplo, para habilitar el
+modo depuración física podrías escribir:</p>
+<pre class="prettyprint well"><code>pilas.atajos.definir_modos(fisica=True)
+</code></pre>
+<p>esta función tiene varios argumentos opcionales, cómo <code>posicion</code>, <code>radios</code> etc. Mira
+la definición de la función para obtener mas detalles.</p>
+<h2 id="activando-los-modos-para-detectar-errores">Activando los modos para detectar errores</h2>
+<p>Ten en cuenta que puedes activar los modos depuración en cualquier momento,
+incluso en medio de una pausa, ir del modo depuración al
+modo pausa y al revés. Los dos modos se pueden
+combinar fácilmente.</p>
+<p>Mi recomendación es que ante la menor duda, pulses <strong>alt + p</strong> para
+ir al modo pausa, y luego comiences a pulsar alguna de las teclas para
+activar los modos depuración y observar en detalle qué está ocurriendo: <strong>F6</strong> , <strong>F7</strong> etc.</p>
+
+          </div>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../como_funciona_pilas_por_dentro/" class="btn btn-neutral float-right" title="¿Cómo funciona pilas por dentro?"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../habilidades/" class="btn btn-neutral" title="Habilidades"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    </p>
+  </div>
+
+  Esta documentación usa <strong>MkDocs</strong>.
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <span><a href="" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+
+
+
+  <script type="text/javascript" src="../js/custom.js"></script>
+  <script type="text/javascript" src="../js/code.js"></script>
+</body>
+</html>
