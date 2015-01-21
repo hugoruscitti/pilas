@@ -24,6 +24,8 @@ Depends: ${misc:Depends}, ${python:Depends},
  python-qt4,
  python-qt4-gl,
  python-qt4-phonon
+Replaces: python-pilas
+Conflicts: python-pilas
 Description: Pilas es un motor para hacer videojuegos de manera sencilla.
  Está dirigido a personas que comienzan a programar videojuegos y quieren lograr
  resultados interesantes y divertidos en poco tiempo.

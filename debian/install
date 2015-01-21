@@ -1,4 +1,5 @@
 pilasengine/* usr/lib/python2.7/dist-packages/pilasengine
+pilas/* usr/lib/python2.7/dist-packages/pilas
 data/* usr/lib/python2.7/dist-packages/data
 bin/pilasengine usr/bin/
 data/pilasengine-icono.png /usr/share/pixmaps

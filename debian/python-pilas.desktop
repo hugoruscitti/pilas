@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Pilas Engine 0.9 (Experimental)
+Name=Pilas Engine
 Comment=Motor de videojuegos
 Exec=/usr/bin/pilasengine
 Terminal=false
