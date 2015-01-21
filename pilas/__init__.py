@@ -78,6 +78,8 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
 
     global mundo
 
+    print("Cuidado, esta version esta en desuso: mira http://www.pilas-engine.com.ar para mas detalles.")
+
     if not esta_inicializada():
         configuracion = obtener_configuracion()
 
