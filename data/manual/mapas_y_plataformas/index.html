@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Mapas y plataformas - pilas-engine</title>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> pilas-engine</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../instalacion">Instalación</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../about">Acerca de ...</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../empezando">Empezando y los primeros pasos con pilas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores">Actores</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores_personalizados">Actores personalizados</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../grupos">Grupos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../colisiones">Colisiones</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../etiquetas">Etiquetas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../fisica">Fisica</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controles">Controles</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../joystick">Joystick</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../imagen">Imagen</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../sonidos">Sonidos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_simple_en_pantalla">Dibujado simple en pantalla</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_avanzado_con_superficies">Dibujado avanzado con Superficies</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../tareas">Manejo de tiempo con tareas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interpolacion">Interpolaciones</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controlando_la_pantalla">Controlando la pantalla</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../comportamientos">Comportamientos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../escenas">Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../migrar_al_gestor_de_escenas">Como migrar mi juego al nuevo Gestor de Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../gestor_de_escenas">Nuevo Gestor de Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../demos">Demos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interfaz">Interfaz de usuario</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../menu">Como crear menúes para tu juegos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 current">
+                <a class="current" href=".">Mapas y plataformas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dialogos">Diálogos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../camara">Manejo de Cámara</a>
+            </li>
+        
+
+    
+        
+        <span>Eventos</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../eventos">conexiones y respuestas</a>
+                    
+                </li>
+            
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../texto">Textos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../habilidades">Habilidades</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../depurando">Depurando</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../como_funciona_pilas_por_dentro">¿Cómo funciona pilas por dentro?</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../complementos">Complementos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../desarrolladores">Guía para desarrolladores</a>
+            </li>
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Mapas y plataformas</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <h1 id="mapas-y-plataformas">Mapas y plataformas</h1>
+<p>En los años 80 uno de los géneros de videojuegos mas
+celebrados ha sido el genero de plataformas.</p>
+<p>En los juegos de este género el protagonista de la
+aventura estaba en un escenario armado de bloques y
+plataformas en donde podía saltar.</p>
+<p>Uno de los juegos mas populares de esos días era
+Super Mario Bros.</p>
+<p>Pilas incluye un actor llamado <code>Mapa</code> que te permite
+hacer juegos de plataformas fácilmente.</p>
+<h2 id="presentando-el-actor-mapa">Presentando el actor <code>Mapa</code></h2>
+<p>El <code>Mapa</code> representa un escenario compuesto de bloques
+que pueden ser plataformas, muros o simplemente adornos
+del escenario.</p>
+<p>Para crear un <code>Mapa</code> necesitas una grilla de gráficos con los bloques
+que se usarán en el escenario. Luego puedes crear el <code>Mapa</code>:</p>
+<pre><code>grilla = pilas.imagenes.cargar_grilla("grillas/plataformas_10_10.png", 10, 10)
+mapa = pilas.actores.Mapa(grilla)
+</code></pre>
+<p>Una vez que ejecutas esas sentencias no observarás cambios
+en la ventana, el mapa está, pero no tiene bloques aún.</p>
+<p>Si quieres dibujar bloques solo tienes que indicar un
+índice de bloque y la posición en pantalla a dibujar.</p>
+<p>Por ejemplo, un bloque cerca del centro de la ventana es
+la posición (8, 10):</p>
+<pre><code>mapa.pintar_bloque(8, 10, 1)
+</code></pre>
+<p><img alt="" src="../../imagenes/mapas_y_plataformas/mapa_un_bloque.jpg" /></p>
+<p>Otro ejemplo: si queremos dibujar en la parte inferior de la
+ventana, podemos llamar muchas veces al método <code>pintar_bloque</code>, una
+vez por cada bloque que necesitamos:</p>
+<pre><code>for columna in range(20):
+    mapa.pintar_bloque(14, columna, 1)
+</code></pre>
+<p>El primer y segundo argumento del método <code>pintar_bloque</code> indica
+la posición en donde vamos a dibujar el bloque. En este caso la
+fila será 14 y la columna será 0, 1, 2, 3, 4.. etc</p>
+<p>El tercer argumento será el índice de la grilla que indicamos
+anteriormente.</p>
+<p><img alt="" src="../../imagenes/mapas_y_plataformas/mapa_muchos_bloques.jpg" /></p>
+<h2 id="colisiones-con-el-escenario">Colisiones con el escenario</h2>
+<p>En los juegos de plataformas es muy importante que los bloques
+puedan interactuar con los jugadores. Por ejemplo habrá bloques
+que sirvan como plataformas y otros impedirán que avancemos como
+si se trataran de muros.</p>
+<p>Los mapas de pilas te permiten crear esta interacción de manera
+sencilla. El método que usamos antes <code>pintar_bloque</code>, le
+dice al mapa que dibuje el bloque, pero a la vez te permite
+indicar si ese bloque es sólido o no.</p>
+<p>Diremos que un bloque es sólido cuando un personaje no puede
+pasar a través de él. Por ejemplo, una plataforma es un bloque
+sólido.</p>
+<p>Entonces, cada vez que invocas al método <code>pintar_bloque</code> tienes
+la posibilidad de indicar si el bloque es sólido o no:</p>
+<pre><code>mapa.pintar_bloque(14, 10, 1, es_bloque_solido=True)
+mapa.pintar_bloque(14, 10, 1, es_bloque_solido=False)
+</code></pre>
+<p>Y ten en cuenta que si no especificas el último parámetro, pilas
+asumirá que el bloque debe ser sólido.</p>
+<p>Por cierto, los bloques "no sólidos" son útiles para representar
+adornos del escenario, como nubes o agua. Incluso en algunos
+juegos se usan para crear pasadizos secretos entre muros o
+plataformas...</p>
+<h2 id="creando-mapas-con-el-programa-tiled">Creando mapas con el programa tiled</h2>
+<p>Crear los mapas directamente desde el código está bien, pero
+si tienes que hacer muchos mapas te llevará un montón de tiempo.</p>
+<p>Una buena alternativa a esto es usar un software de diseño
+de escenarios, crear un archivo con todo el escenario y
+luego cargarlo desde pilas.</p>
+<p>El software que te recomiendo para esta tarea se llama <code>tiled</code>
+(ver http://www.mapeditor.org).</p>
+<p>Veamos como usar tiled para crear un escenario sencillo, primero
+tienes que crear un mapa desde el menú <code>File</code>, se le solicitará
+indicar el tamaño del escenario:</p>
+<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled2.png" /></p>
+<p>Usa los valores por defecto, al menos por esta vez.</p>
+<p>Luego tienes que ir al menú <code>Map</code> y luego <code>New tileset</code> para
+indicar cual es la grilla de imágenes que usarás en los bloques. Te
+recomiendo usar la imagen <code>batalhao.png</code> (de Silveins Neto), que
+está en la carpeta de ejemplos de pilas:</p>
+<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled3.png" /></p>
+<p>Ahora, lo mas divertido, comienza a dibujar sobre el escenario
+seleccionando bloques. Observa que el programa tiene varias herramientas
+para hacer que esto sea mucho mas sencillo:</p>
+<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled4.png" /></p>
+<p>Luego, asegúrate de que el programa guarda todos los datos en formato CSV, esto
+es importante para que se pueda vincular con pilas. Para esto tienes
+que abrir el menú <code>Edit</code> y luego <code>Preferences</code>, la pantalla de opciones
+te tiene que quedar así:</p>
+<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled5.png" /></p>
+<p>Listo, ahora solamente hay que guardar el mapa en un archivo. Ve al menú
+<code>File</code> y luego selecciona <code>Save as</code>, tienes que darle un nombre
+al archivo <code>.tmx</code>.</p>
+<p>Luego, desde pilas, es muy simple, solamente tienes que crear
+el actor mapa indicando el nombre del archivo <code>.tmx</code> que has
+generado con el programa <strong>tiled</strong>:</p>
+<pre><code>import pilas
+pilas.iniciar()
+mapa_desde_archivo = pilas.actores.MapaTiled("archivo.tmx")
+</code></pre>
+<h2 id="creando-bloques-solidos-con-tiled">Creando bloques sólidos con tiled</h2>
+<p>Si quieres hacer bloques sólidos desde <strong>tiled</strong> solamente
+tienes que crear mas capas, la capa 0 se utilizará como
+decorado (todos los bloques son no-sólidos) y el resto de las
+capas serán siempre de bloques sólidos.</p>
+<p>Por ejemplo, en el escenario anterior, sería interesante colocar
+los bloques de pasto y la ruta en la capa que he llamado "suelo"
+y el resto de los objetos en otras capas como "obstáculos" y "paredes":</p>
+<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled6.png" /></p>
+<h2 id="un-ejemplo-completo">Un ejemplo completo</h2>
+<p>Te recomiendo que observes el ejemplo <code>mapa_desde_archivo.py</code> del
+directorio de ejemplos de pilas, podrás observar un escenario
+muy simple con obstáculos y un personaje que se puede mover
+con el teclado:</p>
+<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled8.png" /></p>
+
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../dialogos" class="btn btn-neutral float-right" title="Diálogos"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../menu" class="btn btn-neutral" title="Como crear menúes para tu juegos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        
+      <span><a href="../menu" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../dialogos" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>

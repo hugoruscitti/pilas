@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Grupos - pilas-engine</title>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> pilas-engine</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../instalacion">Instalación</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../about">Acerca de ...</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../empezando">Empezando y los primeros pasos con pilas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores">Actores</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores_personalizados">Actores personalizados</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 current">
+                <a class="current" href=".">Grupos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../colisiones">Colisiones</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../etiquetas">Etiquetas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../fisica">Fisica</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controles">Controles</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../joystick">Joystick</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../imagen">Imagen</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../sonidos">Sonidos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_simple_en_pantalla">Dibujado simple en pantalla</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_avanzado_con_superficies">Dibujado avanzado con Superficies</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../tareas">Manejo de tiempo con tareas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interpolacion">Interpolaciones</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controlando_la_pantalla">Controlando la pantalla</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../comportamientos">Comportamientos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../escenas">Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../migrar_al_gestor_de_escenas">Como migrar mi juego al nuevo Gestor de Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../gestor_de_escenas">Nuevo Gestor de Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../demos">Demos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interfaz">Interfaz de usuario</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../menu">Como crear menúes para tu juegos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../mapas_y_plataformas">Mapas y plataformas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dialogos">Diálogos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../camara">Manejo de Cámara</a>
+            </li>
+        
+
+    
+        
+        <span>Eventos</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../eventos">conexiones y respuestas</a>
+                    
+                </li>
+            
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../texto">Textos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../habilidades">Habilidades</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../depurando">Depurando</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../como_funciona_pilas_por_dentro">¿Cómo funciona pilas por dentro?</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../complementos">Complementos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../desarrolladores">Guía para desarrolladores</a>
+            </li>
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Grupos</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <h1 id="grupos">Grupos</h1>
+<p>Ahora que podemos manejar a los actores de manera individual, vamos a ver como organizarlos en grupos.</p>
+<p>Organizar a los actores en grupos es útil porque generalmente
+buscamos clasificar a los actores por características y
+tratarlos a todos por igual. Por ejemplo, en un juego de naves
+podríamos tener un grupo de naves, un grupo de estrellas y un
+grupo de disparos.</p>
+<h2 id="creando-grupos-de-actores">Creando grupos de actores</h2>
+<p>Para crear varios actores de una misma clase
+podríamos ejecutar algo como lo que sigue:</p>
+<pre><code>bombas = pilas.actores.Bomba() * 5
+</code></pre>
+
+<p>es decir, creamos un actor y luego lo multiplicamos
+para construir un grupo con muchos actores de la misma
+especie.</p>
+<p>Al crear un grupo de esta forma, todos los actores
+se colocarán en posiciones aleatorias.</p>
+<p>Esto es lo que veríamos en la ventana de pilas:</p>
+<p><img alt="" src="../../imagenes/grupos/grupos_bombas.jpg" /></p>
+<p>A partir de ahora, la referencia <code>bombas</code> nos servirá para
+controlar a todas las bombas al mismo tiempo.</p>
+<p>Esta referencia (que llamamos <code>bombas</code>) es parecida a una lista de datos en <code>python</code>. Podríamos realizar operaciones típicas como contar, recorrer o clasificar de la misma forma que se hace en el lenguaje <code>python</code>.</p>
+<p>Por ejemplo, para contar la cantidad de bombas que hemos creado y conocer sus coordenadas podemos ejecutar:</p>
+<pre><code class="python">&gt;&gt;&gt; print &quot;hay&quot;, len(bombas), &quot;bombas&quot;
+hay 5 bombas
+
+&gt;&gt;&gt; for una_bomba in bombas:
+...     print una_bomba.x, una_bomba.y
+</code></pre>
+
+<p>Ahora bien, algo que hace un poquito diferente a los
+grupos de las listas de python, es que los grupos
+te permiten alterar a varios actores al mismo tiempo
+con mas facilidad.</p>
+<p>Por ejemplo, imagina que quieres hacer que todas las
+bombas aparezcan en el centro de la ventana. Podrías
+hacer algo cómo esto:</p>
+<pre><code class="python">bombas.x = 0
+</code></pre>
+
+<p>Y en la ventana obtendremos:</p>
+<p><img alt="" src="../../imagenes/grupos/grupos_bombas_x.jpg" /></p>
+<p>Incluso, les podríamos enseñar a las bombas a reaccionar
+como si fueran pelotas, es decir, que reboten e interactúen
+con la aceleración gravitatoria:</p>
+<pre><code>bombas.aprender(pilas.habilidades.RebotarComoPelota)
+</code></pre>
+
+<p>Ahora tendrás algo mucho mas interesante, un montón de
+actores rebotando entre sí:</p>
+<p><img alt="" src="../../imagenes/grupos/grupos_bombas_como_pelota.jpg" /></p>
+<p>Un consejo, la gravedad del escenario se puede modificar
+usando una sentencia como la que sigue:</p>
+<pre><code>pilas.fisica.gravedad_x = 200
+pilas.fisica.gravedad_y = 0
+</code></pre>
+
+<p>En este caso <code>gravedad_x</code> con un valor de 200 va a empujar los objetos
+hacia la derecha de la pantalla, mientras que los objetos en el eje vertical
+van a flotar.</p>
+<p>Intentá ver esto en funcionamiento, ¡es divertido!</p>
+<h2 id="creando-un-grupo-para-distintos-actores">Creando un grupo para distintos actores</h2>
+<p>Hay ocasiones, donde quieres tener un grupo
+desde cero e ir agregando actores en él.</p>
+<p>Esto se puede hacer fácilmente, e incluso
+abre las puertas a que puedas mezclar actores
+de distintas especies.</p>
+<p>Para crear un grupo vacío tienes que crear
+un objeto de la clase Grupo:</p>
+<pre><code>mi_grupo = pilas.grupo.Grupo()
+</code></pre>
+
+<p>y luego, para añadir actores al grupo puedes usar el
+método <code>agregar</code> e indicar la referencia del actor
+que quieres agregar:</p>
+<pre><code>bomba = pilas.actores.Bomba()
+pelota = pilas.actores.Pelota()
+
+mi_grupo.agregar(bomba)
+mi_grupo.agregar(pelota)
+
+mi_grupo.escala = [2]
+</code></pre>
+
+<p><img alt="" src="../../imagenes/grupos/grupos_personalizado_escala.jpg" /></p>
+<p>Un detalle a tener en cuenta, el método <code>agregar</code> no solo te permite agregar actores, también podrías tomar un grupo y agregarle con algo como <code>grupo.agregar(otro_grupo)</code>.</p>
+
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../colisiones" class="btn btn-neutral float-right" title="Colisiones"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../actores_personalizados" class="btn btn-neutral" title="Actores personalizados"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        
+      <span><a href="../actores_personalizados" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../colisiones" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>

@@ -1,0 +1,305 @@
+Pilas engine - 0.84 (2014-02-13)
+--------------------------------
+
+- Agregando tutoriales interactivos.
+- Creando opción en el interprete para lanzar los tutoriales.
+- agregando el metodo 'disparar' a la nave.
+- actualizando lanas.
+- Añadida la opcion de reducir la puntuacion en el Actor Puntaje
+- Añadidas teclas al Control
+- Añadido el autoeliminar al actor Temporizador
+- Revertidos los cambios de rotacion para crear una rama y modificar todos los ejemplos implicados
+- Añadido el parametro de Control al Diparo para poder tener dos jugadores en el mismo ordenador disparando con distintas teclas
+- agregando el submodulo pilas-docs (en el directorio docs)
+- Merge pull request #233 from irvingprog/develop_
+- Correción en escala de iconos y __setattr__
+- Ahora es posible añadir un icono a cada opción del menú
+- Merge pull request #231 from fsalamero/master
+- Altura de pilas.avisar() fixes #230
+- Merge pull request #229 from DrDub/develop
+- Nueva habilidad: PerseguirAOtroActor
+- Merge pull request #228 from lucianobaraglia/master
+- Gestor de escenas: Se inicia la escena después de reiniciarla
+- Merge pull request #227 from josx/tortuga
+- Tortuga: dibuja solo cuando el lapiz esta bajo
+- Merge pull request #226 from irvingprog/develop
+- Solucionando bug en habilidad MoverseConElTeclado
+- Merge pull request #225 from irvingprog/develop
+- Mejorando la habilidad Imitar
+- Llevando el cambio de ipedrazas sobre rotacion de actores al branch develop refs #224
+- restaurando el cambio de rotación en los actores. Llevando los cambios a develop
+- Merge pull request #224 from ipedrazas/master
+- Merge pull request #223 from irvingprog/develop
+- Al reescalar el receptor también reescalamos el objeto a imitar
+- cambiando la imagen del fondo por omision
+- Merge pull request #216 from DiegoAccorinti/patch-1
+- Update sonidos.html
+- Haciendo que se puedan ejecutar los ejemplos haciendo click sobre la imagen refs #215
+- Modificando el código javascript para mostrar el nombre largo de los ejemplos refs #215
+- Merge pull request #215 from irvingprog/overlay_ejemplos
+- Overlay nombre de los ejemplos
+- Merge pull request #214 from irvingprog/interpolacion_fisica
+- Merge branches 'fisica_circulo' and 'interpolacion_fisica' into interpolacion_fisica
+- Restructurando código del Circulo
+- Merge branches 'fisica_rectangulo' and 'interpolacion_fisica' into interpolacion_fisica
+- Acomodando código de ancho, alto y escala del Rectangulo
+
+Pilas engine - 0.83 (2013-11-11)
+--------------------------------
+
+- Ahora es posible modificar radio del circulo, ancho y alto de Rectangulo
+- Haciendo que el modo depuración se reinicie junto con la llamada a pilas.reiniciar()
+- Añadido parametro para definir area del motor de fisica
+- Agregando un botón para que se pueda guardar desde el intérprete.
+- Haciendo interpolable la propiedad progreso del actor Energia.
+- Agregada clase ConstanteDeMovimientoTipoCuerda
+- Reparando la funcionalidad de arrastrar y soltar en mac.
+- Haciendo que abrir el interprete y los ejemplo sea diferente en mac y linux/windows.
+- Arreglo menor del modo pausa cuando no hay escena activa.
+- Ejemplo de una cuerda utilizando la clase ConstanteDeGiro del motor de físicas
+- arreglo menor de estilo en la barra para arrastrar y soltar archivos del asistente.
+- Añadida clase ContantedeGiro
+- Arreglado el problema de MantenerseEnPantalla con un actor reescalado. close #196
+- Arreglado el issue #195
+- La asignación de los comportamiento se hace igual que el de las habilidades. close #193
+- Refactorizando el orbitar sobre Actor. ref #192
+- Añadido el comportamiento de orbitar sobre otro actor
+- Creado el atajo para PAUSAR el juego. pilas.escena.pausar()
+- Agregando el changelog al asistente.
+- Mejorando la pantalla principal del asistente.
+- Mejorando el ícono de pilas en macos.
+- Modificando el interprete para que sea una ventana y no un dialogo.
+- Agregando icono al botón que permite ver el manual de pilas desde el interprete interactivo.
+- Reparando el atributo "ancho" del actor Texto.
+- Añadida una referencia de los atajos de eventos de los actores en la documentación
+- Creados los accesos directos para conectar un Actor a los eventos de pilas.
+- solucionando el problema de la funcion help en el interprete.
+- Arreglado el problema del backspace en el asistente fix #178
+- mostrando la coordenada de posicion del modo F12 en una posicion fija.
+- reparando el bug de cambio que ocasionaba que los objetos fisicos se queden estaticos incluso si se cambiaba la gravedad.
+- Cambiando el grosor inicial de las lineas de dibujado de los depuradores.
+- Implementando un visor de manual en HTML y agregando todos los archivos generados del manual al repositorio.
+- Agregando instrucciones para instalar pygame en el archivo readme.
+- Haciendo que el motor de audio soporte pygame como backend de sonido.
+- Merge pull request #181 from lucianobaraglia/develop
+- Corregida la colisión con un punto cuando el actor está fijo
+- Reparando el problema de posición de los objetos físicos.
+- eliminando archivos minificados de javascript.
+- Añadida la funcionalidad de capturar la pantalla con F2. Ref #180
+
+
+Pilas engine - 0.82 (2013-07-05)
+--------------------------------
+
+- Arreglos menores de encoding en la documentación.
+
+Pilas engine - 0.81 (2013-06-13)
+--------------------------------
+
+- agregando el ejemplo de la vaca voladora.
+- reparando la funcion interna de fisica que hacia fallar el ejemplo de aceitunas vs bombas
+- mejorando la barra de botones closes #177.
+- Implementando una barra de botones de depuracion en el interprete #177
+- Arreglada la ventana de log. Ref #56
+- Mejorado el metodo para detectar desde donde se llamó a un método decrecated. Ref #173
+- Realizando mejoras en el rendimiento del actor Mapa (branch 'feature_map')
+- Reparando el problema de las rutas relativas fix #174
+- Añadido un nuevo actor llamado Manzana
+- Creando un nuevo actor DesplazamientoHorizontal y sustituyendo el ejemplo desplazamiento para que use este actor.
+- Haciendo clip del mapa
+
+
+Pilas engine - 0.80 (2013-05-31)
+--------------------------------
+
+- actualizando lanas.
+- Corrigiendo el modulo de fisica para notificar errores en caso de que falle la instalación de box2d.
+- Arreglado el desplazamiento de la camara al cambiar de escena. close #169
+- fixes #170 - menus con colores personalizables
+- Reparando la pantalla "acerca de" del juego asteroides.
+- Alineando correctamente los textos del componente IngresoDeTexto y Selector.
+- haciendo que las rutas a los recursos sean aún mas flexibles.
+- Reparando el problema de raw-input en lanas para mac.
+- Mejorando el efecto de arrastrar y soltar archivos sobre el asistente.
+- actualizando docstring para la funcion iniciar de pilas
+- Actualizando las instrucciones de instalacion para linux mint
+- Movido el metodo obtener_area ref #164 #log
+- Movido el metodo definir_gravedad close #167 #log
+- Optimizado el método para fabricar Actores aleatorios dependiendo del tamaño de la ventana
+- Limpiez de motor y cámara
+- Deshabilitando el error de box2d cuando no está correctamente instalado.
+- Eliminado el parametro ignorar_errores que nunca se utiliza
+- Deshabilitando temporalmente el cache de imagenes para reparar el uso de grillas.
+- Mostrando texto en el asistente de ejemplos en lugar de iconos.
+- fixes #162
+- Haciendo que el autocompletado se muestre directamente al pulsar '.' y que solo muestre las clases dentro de 'pilas.actores'  fix #161
+- Reparando los ejemplos de tutorial (aceituna vs bombas) ref  #160
+- Reparando el ejemplo de colisiones #160
+- Reparando el método "aumentar" del puntaje. fix #160
+- convirtiendo pilas.mundo.control en un property
+- Reparando problema de tilde en box2d dentro del paquete ubuntu.
+
+
+Pilas engine - 0.79 (2013-05-01)
+--------------------------------
+
+- Reparando setter de imagenes de los actores.
+- Haciendo que se pueda acceder al control principal nuevamente.
+- Reparando la posicion vertical del texto sobre información de sistema.
+- Tomando el valor ciclico para el fondo desde los argumentos de la clase.
+- Fijando los fondos de desplazamiento infinitos
+- haciendo que pilas funcione de todas formas aunque no este habilitado el motor de fisica.
+- Reparando el problema de las tipografías TTF que no se cargaban. refs #157
+- Mejorando el cálculo de tamaño para textos sobre superficies fix #157
+- Arreglo la posición del modo depuración para que se vea el contador de imagenes en cache.
+- Añadidos atajos para entrar y salir de pantalla completa
+
+
+
+Pilas engine - 0.78 (2013-03-21)
+--------------------------------
+
+- Mostrando errores en los scripts lanzados sobre la ventana principal.
+- Haciendo que los juegos se recarguen automáticamente cuando se cambian.
+- Arreglando la barra inferior del asistente que muestra si pilas está actualizado #log.
+- Haciendo que el fondo no desaparezca cuando sale del area visible de la cámara.
+- Agregando un contador de cuerpos dentro del motor de física.
+- Primera aproximacion a la colision lateral de las plataformas
+
+Pilas engine - 0.77 (2012-02-22)
+--------------------------------
+
+- Cambiando la ruta del manual para Huayra GNU/Linux.
+
+Pilas engine - 0.76 (2013-02-12)
+--------------------------------
+
+- Reparando el asistente en macosx, windows y ubuntu.
+- Modificando el lanzamiento del intérprete.
+- Reparando el arrastrar y soltar sobre el asistente.
+- Arreglos de la camara y los actores fijos. Ref #151
+- Mejorada la documentación de sonidos.
+- Volviendo a habilitar el soporte para opengl.
+- Incorporando documentación de api con epydoc.
+- Mejoras en la documentación.
+- Eliminados los widgets sugar y sugargl.
+- Agregado soporte para reproduccion sonidos con repetición.
+- Agregada escena logos utilizada en el gamejam 2013.
+- Agregando archivo Makefile para automatizar tareas.
+- Agregando métodos para pausar y continuar sonidos y música.
+- Agregando posibilidad de cambiar la fuente del actor Texto.
+
+Pilas engine - 0.75 (2013-01-25)
+--------------------------------
+
+- Documentando la API completa del motor.
+- Diseñando un nuevo asistente.
+- Implementando un nuevo explorador de ejemplos.
+- Mejorando la introducción del manual fix #24
+- Mejorando el asistente para que cargue correctamente los recursos del directorio del juego.
+- Implementando tests automáticos sobre travis-ci.org
+- Actualizando todas las imágenes del manual a la nueva versión.
+- Reparando bugs de sonido e imagenes gif en aplicacion Mac.
+
+
+Pilas engine - 0.73 (2012-11-23)
+--------------------------------
+- Haciendo que el manual se pueda cargar desde /usr/share/doc/pilas
+
+
+Pilas engine - 0.72 (2012-11-18)
+--------------------------------
+- Mejoras en la documentación de API
+- Cambiando la ruta del manual, ahora está en $HOME/.pilas
+
+Pilas engine - 0.71 (2012-11-08)
+--------------------------------
+- Fix #95 Los eventos del raton ahora envian tambien el boton que se pulsó.
+- Creado el actor pacman.
+- Creado fantasma para el juego pacman.
+- Cambiado el sistema de audio (opciones Phonon o GStreamer)
+- #Fix 78 Se elimina el evento conectado al terminar el click
+- Añadida a la habilidad de SeMantieneEnPantalla un parametro para que el actor 
+  no pueda salir de la ventana de juego. Por defecto si sale, aparece por el
+  lado opuesto por donde salió.
+- Añadida la habilidad RotarConMouse.
+- Control personalizado: Añadida la opcion de mover con el teclado un Actor con
+  un control personalizado. Se puede mapear las teclas del Control.
+- Por defecto se ha dejado el boton del Control asociado a la tecla ESPACIO.Así
+  que el menú responde ahora a un control personalizado en la que la tecla de
+  boton es el INTRO.
+- Estableciendo la velocidad como parametro en la habilidad de
+  MoverseConElTeclado
+- Añadida la opcion de eliminar una interpolación mientras está en ejecución.
+- Añadido el cálculo de la velocidad que lleva un Actor. actor.vx y actor.vy
+- Añadida una utilidad para calcular el tiempo que se tardaría en recorrer una
+  distancia en pixeles con una velocidad constante en pixeles.
+- Añadida la habilidad de Disparar
+- Evitado que la escala del actor elimine el radio de colisión.
+- Añadida la opcion de eliminar una habilidad.
+- Añadida la habilidad de MirarAlActor
+- Si se añade una habilidad a un Actor y este ya la tenia, se elimina y se da de
+  alta la nueva.
+- Añadida la posibilidad de acelerar y rotar en la habilidad de
+  MoverseConElTeclado.
+- Añadida la habilidad de SiempreEnElCentro.
+- Añadida la opcion de moverse en 4 u 8 direcciones a la habilidad de
+  MoverseConElTeclado.
+- Añadido el parametro marcha_atras para no poder ir hacia atrás en la habilidad
+  de MoverseConElTeclado.
+- Añadido el parametro de deceleracion a la habilidad de MoverseConElTeclado.
+- Creado un proxy para poder acceder a las habilidades de un actor mediante
+  actor.habilidades.Nombre_De_Habilidad.
+- agregando soporte multilinea para el actor EntradaDeTexto.
+- Creado el actor Humo
+- Agregando opción para seleccionar el backend de sonido.
+- Fixed #105 Los eventos del raton ahora acompañan a la camara.
+- Creadas las interpolaciones ElasticoInicial y ElasticoFinal.
+- Creando una habilidad para disparar haciendo click con el mouse.
+- Permitidoo a `Opcion` recibir argumentos para `funcion_a_invocar`, de manera
+  opcional.
+- `aviso` acepta un parámetro opcional `retraso`.
+- Añadida la utilidad de Obtener Actor más cercano
+  (pilas.utils.actor_mas_cercano_al_actor).
+- Creado el actor Torreta
+- Agregado el proyectil Estrella Ninja
+- Habilitando el inspector web en el asistente (pulsar el boton derecho sobre el
+  asistente y seleccionar inspeccionar)
+- Arreglada las velocidad lineal en los bojetos fisicos.
+- Creando archivos para que se pueda crear una aplicación Mac de pilas.
+- Modificando el deslizador para que se pueda eliminar
+- Creando un minijuego de monos que lanzan bananas tipo el juego gorillas.
+- Añadido el actor NaveKids.
+- fix #103 haciendo que se puedan arrastrar programas al asistente y que puedan
+  cargar imagenes.
+- Creando el comportamiento de Proyectil.
+- La habilidad de Disparar permite disparar Municiones o Actores que tengan
+  el comportamiento de Proyectil.
+- Agregando opción para salir del asistente desde un menú fix #101
+- Reparando bug en el deslizador fix #113
+- Añadido un Ovni como actor.
+- Creado un generador de paquete .deb para pilas.
+- Close #115 ahora se pueden pasar parámetros a la municion.
+- Añadida la opcion de saber si un Actor tiene un comportamiento en concreto.
+
+
+Pilas engine - 0.70 (2012-10-10)
+--------------------------------
+- Creada una nueva Habilidad llamada RotarConMouse.
+- Creada una nueva Habilidad llamada Disparar.
+- La habilidad MoverseConElTeclado ahora permite asignarle un Control
+  personalizado.
+- Creado un nuevo Actor llamado Pacman
+- Cambiado el motor de Sonido. Ahora utiliza la biblioteca pygst y gst 
+  (GStreamer).
+- La Habilidad de SeMantieneEnPantalla ahora permite que el Actor no salga de la
+  misma.
+- Se puede consultar la velocidad horizontal y vertical de un actor mediante los
+  campos actor.vx y actor.vy
+- Añadidas las interpolaciones: AceleracionGradual, DesaceleracionGradual,
+  ReboteInicial, ReboteFinal.
+- Añadida la Habilidad de MirarAlActor.
+- Añadida la posibilidad de eliminar una Habilidad mediante
+  actor.eliminar_habilidad(nombre_de_la_habilidad)
+- Si se añade una habilidad a un Actor que ya la tenia, se elimina y se
+  da de alta la nueva habilidad.

@@ -1,0 +1,58 @@
+#container {
+	margin: 5% auto 0 auto;
+	display: block;
+}
+
+.cleaner {
+	clear: both;
+}
+
+ul {
+	margin: 0;
+	text-align: left;
+}
+
+ul.menu {
+	margin-left: .5em;
+	margin-bottom: 1em;
+}
+
+ul.item li {
+	list-style-type: none;
+	display: block;
+	float: left;
+    text-align: center;
+    font-size: small;
+    margin: 10px;
+}
+
+img.boton:hover {
+    background-color: yellow;
+}
+
+div.superior {
+    margin-bottom: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 2px solid #ccc;
+}
+
+.animate {
+}
+
+.animate.ng-enter, .animate.ng-leave {
+  -webkit-transition:0.2s linear all;
+  transition:0.2s linear all;
+}
+
+.animate.ng-enter {
+  opacity:0;
+}
+
+.animate.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.animate.ng-leave.ng-leave-active {
+  opacity: 0;
+}

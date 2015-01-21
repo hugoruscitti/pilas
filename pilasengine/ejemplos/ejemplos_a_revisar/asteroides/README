@@ -1,0 +1,11 @@
+autor: Hugo Ruscitti
+
+Asteroides es un juego muy
+sencillo, donde tienes que controlar una nave
+que puede disparar y manejarse con el
+teclado.
+
+Asteroides está desarrollado usando el motor
+para videojuegos pilas-engine:
+
+    www.pilas-engine.com.ar
