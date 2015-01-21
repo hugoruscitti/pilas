@@ -88,7 +88,7 @@ class Utils(object):
 
         if ruta not in rutas_personalizadas:
             rutas_personalizadas.append(ruta)
-            
+
     def obtener_directorio_de_configuracion(self):
         """" Retorna la ruta de configuracion segun la plataforma"""
         return str(QtCore.QDir.homePath())
@@ -226,14 +226,6 @@ def realizar_pruebas():
         print v + "OK" + n
     except ImportError:
         print "Error -> no se encuentra pyqt4gl."
-
-    print "PIL para soporte de jpeg (opcional):",
-
-    try:
-        from PIL import Image
-        print v + "OK" + n
-    except ImportError:
-        print "Cuidado -> no se encuentra PIL."
 
     print "pygame:",
 

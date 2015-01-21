@@ -34,7 +34,7 @@ class Volley(Fondo):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."
 
     def __init__(self):
-        Fondo.__init__(self, "fondos/volley.jpg")
+        Fondo.__init__(self, "fondos/volley.png")
 
 class Nubes(Fondo):
     "Muestra un fondo celeste con nubes."
@@ -52,14 +52,14 @@ class Selva(Fondo):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."
 
     def __init__(self):
-        Fondo.__init__(self, "fondos/selva.jpg")
+        Fondo.__init__(self, "fondos/selva.png")
 
 
 class Tarde(Fondo):
     "Representa una escena de fondo casi naranja."
 
     def __init__(self):
-        Fondo.__init__(self, "fondos/tarde.jpg")
+        Fondo.__init__(self, "fondos/tarde.png")
         self.y = 40
 
 
@@ -67,13 +67,13 @@ class Espacio(Fondo):
     "Es un espacio con estrellas."
 
     def __init__(self):
-        Fondo.__init__(self, "fondos/espacio.jpg")
+        Fondo.__init__(self, "fondos/espacio.png")
 
 class Noche(Fondo):
     "Muestra una escena que tiene un fondo de pantalla de paisaje."
 
     def __init__(self):
-        Fondo.__init__(self, "fondos/noche.jpg")
+        Fondo.__init__(self, "fondos/noche.png")
 
 class Color(Fondo):
     "Pinta todo el fondo de un color uniforme."
@@ -184,16 +184,16 @@ class Plano(Fondo):
         Fondo.__init__(self,"plano.png")
         imagen = os.path.abspath(os.path.dirname(__file__)) + "/data/plano.png"
         self.imagenFndo = Image.open(imagen)
-    
+
     def informacion_de_un_pixel(self, x, y):
         # Porque el fondo esde un sólo color. Entonces no mporta el valor del pixel
         return self.imagenFndo.getpixel( (1,1) )
 
     def dimension_fondo(self):
         # No importa el tamaño de la imagen del fondo, porque tiene el mismo color en todos lados.
-        return (0, 0) 
+        return (0, 0)
 
-    
+
     def dibujar(self, painter):
         painter.save()
         x = pilas.mundo.motor.camara_x

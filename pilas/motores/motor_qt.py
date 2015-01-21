@@ -403,10 +403,7 @@ class Imagen(object):
             self._imagen = ruta
         else:
             if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
-                try:
-                    self._imagen = self.cargar_jpeg(ruta)
-                except:
-                    self._imagen = QtGui.QPixmap(ruta)
+                self._imagen = QtGui.QPixmap(ruta)
             else:
                 self._imagen = QtGui.QPixmap(ruta)
 
@@ -418,19 +415,6 @@ class Imagen(object):
         rect = QtCore.QRect(dx, dy, ancho, alto)
         qi = qi.copy(rect)
         return Imagen(QtGui.QPixmap.fromImage(qi))
-
-    def cargar_jpeg(self, ruta):
-        from PIL import Image
-        import io
-
-        pilImage = Image.open(ruta)
-        stringIO = io.StringIO()
-        pilImage.save(stringIO, format="png")
-
-        pixmapImage = QtGui.QPixmap()
-        pixmapImage.loadFromData(stringIO.getvalue())
-
-        return pixmapImage
 
     def ancho(self):
         return self._imagen.size().width()
