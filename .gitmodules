@@ -1,6 +1,0 @@
-[submodule "lanas"]
-	path = lanas
-	url = http://github.com/hugoruscitti/lanas
-[submodule "docs"]
-	path = docs
-	url = git://github.com/hugoruscitti/pilas-docs
