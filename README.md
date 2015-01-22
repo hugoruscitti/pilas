@@ -1,7 +1,8 @@
-python-pilas-experimental
-=========================
+pilas-engine
+============
 
-Un experimento pensando en una API renovada para pilas:
+Un motor de videojuegos orientado a jóvenes y desarrolladores
+independientes:
 
 ![](extras/preview.png)
 
