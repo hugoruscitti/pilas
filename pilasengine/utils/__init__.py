@@ -239,3 +239,42 @@ def destacar_ventanas():
     if getattr(sys, 'frozen', None) and sys.platform == 'darwin':
         ruta = sys.argv[0].rsplit('.app')[0] + '.app'
         os.system("open -a " + ruta)
+
+def iniciar_desde_terminal():
+    import sys
+    import signal
+    from PyQt4 import QtGui
+
+    import pilasengine
+
+    # Permitiendo cerrar pilas usando CTRL+C
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+
+
+    app = QtGui.QApplication(sys.argv)
+    QtGui.QApplication.addLibraryPath(QtGui.QApplication.applicationDirPath() + "/../PlugIns")
+
+    pilasengine.configuracion.Configuracion()
+
+    if '-i' in sys.argv:
+        from pilasengine import interprete
+        _ = interprete.abrir()
+    elif '-t' in sys.argv:
+        from pilasengine import utils
+        utils.realizar_pruebas()
+        sys.exit(1)
+    elif '-u' in sys.argv:
+        print "Evitando iniciar el modo depuracion desde eclipse..."
+        sys.exit(0)
+    else:
+        if len(sys.argv) > 1:
+            pilasengine.abrir_script(sys.argv[1])
+        else:
+            _ = pilasengine.abrir_asistente()
+
+    icono = pilasengine.utils.obtener_ruta_al_recurso('icono.ico')
+    app.setWindowIcon(QtGui.QIcon(icono))
+    #mainwindow.setWindowIcon(QtGui.QIcon(icono))
+
+    sys.exit(app.exec_())
