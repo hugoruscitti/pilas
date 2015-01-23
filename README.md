@@ -1,36 +1,97 @@
 pilas-engine
 ============
 
-Un motor de videojuegos orientado a jóvenes y desarrolladores
-independientes:
+[![Build Status](https://travis-ci.org/hugoruscitti/pilas.png?branch=master)](https://travis-ci.org/hugoruscitti/pilas)
+
+Pilas es un motor para realizar videojuegos de manera rápida y sencilla.
+
+Es una herramienta orientada a programadores casuales o principiantes, es ideal para quienes quieran aprender a realizar sus primeros videojuegos.
+
 
 ![](extras/preview.png)
 
+## ¿Cómo empezar?
+
+Una buena forma de comenzar con pilas es instalar todo el kit de desarrollo siguiendo las intrucciones de nuestra web:
+
+- http://www.pilas-engine.com.ar
+
+Y una vez instalada la biblioteca, se puede invocar al comando ``pilas -e`` para ver una lista completa de ejemplos y minijuegos.
 
 
-¿Por qué?
----------
+## Instalación
 
-Iniciamos este proyecto porque buscamos re-factorizar algunas partes
-importantes de la arquitectura de pilas, como el acceso a las escenas y
-el modelo de clases principal.
+La forma mas sencilla de instalar pilas en mediante los instaladores
+del sitio web:
 
-Por lo tanto vas a encontrar algunos cambios fuertes en la implementación,
-pero que no impactan demasiado en la interfaz o modo de utilización.
+- http://www.pilas-engine.com.ar/descargas.html
 
-Este experimento se convertirá en la versión oficial de pilas bajo el
-número de versión 0.9 y posteriores cuando terminemos de implementarla.
+Los instaladores se generan pediodicamente y se distrubuyen para
+los sistemas mas utilizados.
+
+### Instalación desde repositorios (Ubuntu, Debian y Mint)
+
+En distribuciones como Ubuntu 12.04 o Linux mint, necesitas instalar
+una serie de dependencias:
+
+(en ubuntu 10.04 habilitar la fuente de software "universe" antes)
+
+    sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion python-pygame
+
+Luego, instalar box2d:
+
+    sudo easy_install -U box2d
+
+y por último, obtener e instalar pilas desde el respositorio:
+
+    git clone http://github.com/hugoruscitti/pilas
+
+    cd pilas
+    python setup.py build
+    sudo python setup.py install
+    pilasengine
+
+### Instalación en Open Suse 12.2
+
+En el caso de opensuse, los comandos de instalación son:
+
+    sudo zypper install git gcc python-devel swig python-qt4 python-setuptools gcc-c++ python-pygame
+
+    sudo easy_install -U distribute
+    sudo easy_install -U box2d
+
+    git clone http://github.com/hugoruscitti/pilas.git
+
+    cd pilas
+    git submodule update --init
+
+    python setup.py build
+    sudo python setup.py install
+    pilas
+
+### Instalación desde Pypi
+
+Primero se deben instalar los siguientes paquetes:
+
+    sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion python-pygame
+
+Luego, instalar box2d y pilas usando el comando ``easy_install``:
+
+    sudo easy_install -U box2d
+    sudo easy_install -U pilas
 
 
-¿Cómo instalarla?
------------------
+## Tests
 
-Si bien la versión oficial y actual de pilas se puede instalar desde
-la [web](http://www.pilas-engine.com.ar), esta versión también
-se puede probar a partir de ahora mediante estos comandos:
+Nuestros tests se ejecutan en [travis](https://travis-ci.org/hugoruscitti/pilas), aunque
+si quieres los puedes ejecutar manualmente en tu equipo con el siguiente comando:
 
+    make test
 
-    git clone https://github.com/hugoruscitti/python-pilas-experimental.git
-    cd python-pilas-experimental
-    python bin/pilasengine
+## Licencia
 
+Pilas es software libre, y se distribuye bajo la licencia LGPLv3.
+
+Visita nuestro sitio web para obtener mas detalles:
+
+- http://www.pilas-engine.com.ar
