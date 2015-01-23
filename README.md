@@ -86,7 +86,7 @@ Luego, instalar box2d y pilas usando el comando ``easy_install``:
 Nuestros tests se ejecutan en [travis](https://travis-ci.org/hugoruscitti/pilas), aunque
 si quieres los puedes ejecutar manualmente en tu equipo con el siguiente comando:
 
-    make test
+    make utest
 
 ## Licencia
 
