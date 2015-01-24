@@ -1,2 +1,3 @@
-class QGLWidget:
-	pass
+import mock
+
+QGLWidget = mock.Mock()

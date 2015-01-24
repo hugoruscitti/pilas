@@ -1,5 +1,6 @@
-class QWidget:
-	pass
+import mock
+
+QWidget = mock.Mock()
 
 class QApplication(object):
 	def __init__(self, *k, **kw):
