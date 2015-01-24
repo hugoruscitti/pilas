@@ -62,8 +62,11 @@ class Configuracion(object):
         return datos
 
     def guardar(self):
-        with open(self.obtener_ruta(), 'w') as archivo:
-            json.dump(self.valores, archivo, sort_keys=True, indent=4, ensure_ascii=True)
+        try:
+            with open(self.obtener_ruta(), 'w') as archivo:
+                json.dump(self.valores, archivo, sort_keys=True, indent=4, ensure_ascii=True)
+        except IOError:
+            print("Fallo crear configuracion, estas en la bateria de tests?")
 
     def obtener_ruta(self):
         ruta = os.path.join(str(QtCore.QDir.homePath()), '.configuracion_pilas.json')
