@@ -17,24 +17,24 @@ import time
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
-import configuracion
-import escenas
-import imagenes
-import colores
-import actores
-import utils
-import fondos
-import depurador
-import musica
-import interfaz
-import sonidos
-import habilidades
-import comportamientos
-import eventos
-import controles
-import pad
-import watcher
-import plugins
+from pilasengine import  configuracion
+from pilasengine import  escenas
+from pilasengine import  imagenes
+from pilasengine import  colores
+from pilasengine import  actores
+from pilasengine import  utils
+from pilasengine import  fondos
+from pilasengine import  depurador
+from pilasengine import  musica
+from pilasengine import  interfaz
+from pilasengine import  sonidos
+from pilasengine import  habilidades
+from pilasengine import  comportamientos
+from pilasengine import  eventos
+from pilasengine import  controles
+from pilasengine import  pad
+from pilasengine import  watcher
+from pilasengine import  plugins
 
 import widget
 
@@ -69,7 +69,7 @@ class Pilas(object):
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self._iniciado_desde_asistente = False
         self.texto_avisar_anterior = None
-            
+
         # Archivo que se observa para hacer livecoding. Esta
         # variable toma valor cuando se llama a la función
         # "pilas.reiniciar_si_cambia(archivo)"
@@ -107,7 +107,7 @@ class Pilas(object):
         # sino pygame pone su icono en la ventana.
         if self.configuracion.audio_habilitado():
             self._definir_icono_de_ventana()
-            
+
         if cargar_plugins:
             self.complementos = plugins.Complementos(self)
         else:
