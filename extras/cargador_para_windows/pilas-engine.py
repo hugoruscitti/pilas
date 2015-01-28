@@ -21,6 +21,8 @@ import new
 import uuid
 import code
 
+from xml.dom import minidom
+
 def ejecutar_archivo(nombre):
     try:
         imp.load_source("__main__", nombre)
