@@ -1,18 +1,20 @@
-import pilas
+import pilasengine
 # Permite que este ejemplo funcion incluso si no has instalado pilas.
 import sys
 sys.path.insert(0, "..")
 
-class DistanciaAlSuelo(pilas.actores.Actor):
+class DistanciaAlSuelo(pilasengine.actores.Actor):
 
-    def __init__(self, mapa):
-        pilas.actores.Actor.__init__(self)
+    def iniciar(self, mapa):
         self.pos_x = 0
         self.pos_y = 0
         self.distancia = 100
         self.pizarra = pilas.imagenes.cargar_superficie(640, 480)
         self.imagen = self.pizarra
         pilas.escena_actual().mueve_mouse.conectar(self.cuando_mueve_el_mouse)
+        self.conectar_mapa(mapa)
+        
+    def conectar_mapa(self, mapa):
         self.mapa = mapa
 
     def cuando_mueve_el_mouse(self, evento):
@@ -37,7 +39,7 @@ class DistanciaAlSuelo(pilas.actores.Actor):
 
         self.pizarra.texto(texto, x + 20, y + self.distancia / 2)
 
-pilas.iniciar()
+pilas = pilasengine.iniciar()
 
 mapa = pilas.actores.Mapa(filas=15, columnas=20)
 #mapa.pintar_limite_de_bloques()
@@ -46,7 +48,8 @@ mapa.pintar_bloque(10, 10, 1)
 mapa.pintar_bloque(10, 11, 1)
 mapa.pintar_bloque(10, 12, 1)
 
-distancia_al_suelo = DistanciaAlSuelo(mapa)
+distancia_al_suelo = DistanciaAlSuelo(pilas, mapa)
+
 
 pilas.avisar("Mueva el mouse para detectar distancias al suelo.")
 pilas.ejecutar()

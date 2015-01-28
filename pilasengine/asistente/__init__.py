@@ -74,6 +74,7 @@ class Interlocutor(QtCore.QObject):
     @QtCore.pyqtSlot(result=str)
     def obtener_ejemplos(self):
         directorio_de_ejemplos = os.path.join(os.path.dirname(__file__), '../ejemplos')
+        print directorio_de_ejemplos
         juegos = os.listdir(directorio_de_ejemplos)
         juegos = [j.replace('.py', '') for j in juegos if j.endswith('.py') and not j.startswith('__')]
         juegos = '{"ejemplos": ' + str(juegos).replace("'", '"') + "}"
@@ -116,9 +117,24 @@ class VentanaAsistente(Base):
         self.webView.dragEnterEvent = self.dragEnterEvent
         self.webView.dragLeaveEvent = self.dragLeaveEvent
         self.webView.dropEvent = self.dropEvent
-        
+
         self.webView.loadFinished.connect(self._iniciar_consulta_de_version)
-        
+        self.centrar_ventana(MainWindow)
+
+    def centrar_ventana(self, widget):
+        """Coloca la ventana o widget directamente en el centro del escritorio.
+
+        :param widget: Widget que representa la ventana.
+        """
+        from PyQt4 import QtGui
+        desktop = QtGui.QApplication.desktop()
+        centro = desktop.screen().rect().center()
+
+        if centro.x() > 1000:
+            centro.setX(centro.x() / 2)
+
+        widget.move(centro - widget.rect().center())
+
     def _iniciar_consulta_de_version(self):
         self._consultar_ultima_version_del_servidor()
 
@@ -182,7 +198,7 @@ class VentanaAsistente(Base):
         self.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")
 
     def dropEvent(self, event):
-        
+
         if event.mimeData().hasUrls():
             for url in event.mimeData().urls():
                 archivo = url.toLocalFile()

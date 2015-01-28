@@ -8,7 +8,7 @@
 
 from pilasengine.actores.actor import Actor
 from pilasengine.comportamientos.comportamiento import Comportamiento
-
+import pilasengine
 
 class Martian(Actor):
     """Es un personaje de un marciano que puede caminar, saltar y disparar.
@@ -26,22 +26,22 @@ class Martian(Actor):
 
     """
 
-    def iniciar(self, x, y):
+    def iniciar(self, mapa, x, y):
         self.x = x
         self.y = y
+        self.mapa = mapa
         self.imagen = self.pilas.imagenes.cargar_grilla("marcianitos/martian.png", 12)
         self.definir_cuadro(0)
-        self.mapa = None
         self.hacer(Esperando)
-        """
-        self.municion = self.pilas.actores.proyectil.Bala
+        
+        self.municion = pilasengine.actores.Misil
         self.aprender(self.pilas.habilidades.Disparar,
-                       municion=self.pilas.actores.proyectil.Bala,
-                       angulo_salida_disparo=-90,
-                       frecuencia_de_disparo=8,
-                       offset_disparo=(25,0),
-                       offset_origen_actor=(25,23))
-        """
+                      municion=self.municion,
+                      angulo_salida_disparo=0,
+                      frecuencia_de_disparo=6,
+                      offset_disparo=(0, -35),
+                      rotacion_disparo=0,
+                      escala=1)
 
         self.velocidad = 3
 
@@ -51,13 +51,13 @@ class Martian(Actor):
         self.colisiona_abajo_derecha = False
 
         self.obtener_colisiones()
-        self.definir_figura_fisica()
+        
+        if not mapa:
+            self.definir_figura_fisica()
 
     def definir_figura_fisica(self):
         self.figura_del_actor = self.pilas.fisica.Rectangulo(0, 0, 20, 50)
 
-    def definir_mapa(self, mapa):
-        self.mapa = mapa
 
     def definir_cuadro(self, indice):
         """Define el cuadro de animación a mostrar.
@@ -69,8 +69,11 @@ class Martian(Actor):
 
     def actualizar(self):
         "Sigue el movimiento de la figura."
-        self.x = self.figura_del_actor.x
-        self.y = self.figura_del_actor.y - 25
+        if self.mapa:
+            return
+        else:
+            self.x = self.figura_del_actor.x
+            self.y = self.figura_del_actor.y - 25
 
     def puede_saltar(self):
         "Indica si el persona puede saltar."
@@ -79,6 +82,7 @@ class Martian(Actor):
     def obtener_distancia_al_suelo(self):
         "Retorna la distancia en pixels al suelo."
         if not self.mapa:
+            print "no hay mapa"
             return 0
         else:
             return self.mapa.obtener_distancia_al_suelo(self.x, self.y, 100)
@@ -186,15 +190,12 @@ class Caminando(Esperando):
 class Saltando(Comportamiento):
     """Representa al actor realizando un salto."""
 
-    def __init__(self, velocidad_de_salto):
-        self.velocidad_de_salto = velocidad_de_salto
-        Comportamiento.__init__(self)
-
-    def iniciar(self, receptor):
+    def iniciar(self, receptor, velocidad_de_salto):
         """Inicia el comportamiento y define los valores iniciales.
 
         :param receptor: El actor que será controlado por este comportamiento."
         """
+        self.velocidad_de_salto = velocidad_de_salto
         self.receptor = receptor
         self.receptor.definir_cuadro(3)
         self.control = receptor.pilas.escena_actual().control

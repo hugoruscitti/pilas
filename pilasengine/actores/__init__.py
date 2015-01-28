@@ -230,9 +230,9 @@ class Actores(object):
         return self._crear_actor('pizarra', 'Pizarra', x=x, y=y,
                                   ancho=ancho, alto=alto)
 
-    def Martian(self, x=0, y=0):
+    def Martian(self, mapa=None, x=0, y=0):
         ":rtype: martian.Martian"
-        return self._crear_actor('martian', 'Martian', x=x, y=y)
+        return self._crear_actor('martian', 'Martian', mapa=mapa, x=x, y=y)
 
     def Tortuga(self, x=0, y=0, dibuja=True):
         ":rtype: martian.Martian"
@@ -309,6 +309,18 @@ class Actores(object):
                                  ruta_normal=ruta_normal,
                                  ruta_press=ruta_press,
                                  ruta_over=ruta_over)
+        
+    def Mapa(self, x=0, y=0, grilla=None, filas=20, columnas=20):
+        ":rtype: mapa.Mapa"
+        return self._crear_actor('mapa', 'Mapa', x=x, y=y,
+                                 grilla=grilla,
+                                 filas=filas, columnas=columnas)
+
+    def MapaTiled(self, ruta_mapa, x=0, y=0, restitucion=0.56):
+        ":rtype: mapa.MapaTiled"
+        return self._crear_actor('mapa', 'MapaTiled', x=x, y=y,
+                                 ruta_mapa=ruta_mapa, 
+                                 restitucion=restitucion)
 
     def Banana(self,  x=0, y=0):
         ":rtype: banana.Banana"
@@ -550,7 +562,7 @@ from pilasengine.actores.menu import Menu
 from pilasengine.actores.moneda import Moneda
 from pilasengine.actores.mono import Mono
 from pilasengine.actores.nave import Nave
-from pilasengine.actores.navekids import NaveKids
+from pilasengine.actores.nave_kids import NaveKids
 from pilasengine.actores.opcion import Opcion
 from pilasengine.actores.ovni import Ovni
 from pilasengine.actores.pacman import Pacman

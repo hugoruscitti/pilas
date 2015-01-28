@@ -29,6 +29,7 @@ class Disparar(habilidades.Habilidad):
                  offset_origen_actor=(0,0),
                  cuando_dispara=None,
                  escala=1,
+                 rotacion_disparo=90,
                  control=None):
         """
         Construye la habilidad.
@@ -38,6 +39,7 @@ class Disparar(habilidades.Habilidad):
         :param cuando_elimina_enemigo: Método que será llamado cuando se produzca un impacto con un enemigo.
         :param frecuencia_de_disparo: El número de disparos por segundo que realizará.
         :param angulo_salida_disparo: Especifica el angulo por donde saldrá el disparo efectuado por el Actor.
+        :param rotacion_disparo: Rotacion del actor que representara el disparo.
         :param offset_disparo: Separación en pixeles (x,y) del disparo con respecto al centro del Actor.
         :param offset_origen_actor: Si el Actor no tiene su origen en el centro, con este parametro podremos colocar correctamente el disparo.
         :param cuando_dispara: Metodo que será llamado cuando se produzca un disparo.
@@ -67,9 +69,12 @@ class Disparar(habilidades.Habilidad):
         self.offset_origen_actor_y = offset_origen_actor[1]
 
         self.angulo_salida_disparo = angulo_salida_disparo
+        self.rotacion_disparo = rotacion_disparo
         self.frecuencia_de_disparo = frecuencia_de_disparo
         self.contador_frecuencia_disparo = 0
         self.proyectiles = []
+        
+        print(self.angulo_salida_disparo)
 
         self.grupo_enemigos = grupo_enemigos
 
@@ -136,8 +141,8 @@ class Disparar(habilidades.Habilidad):
 
             objeto_a_disparar.disparar(x=self.receptor.x+offset_origen_actor_x,
                                    y=self.receptor.y+self.offset_origen_actor_y,
-                                   angulo_de_movimiento=self.receptor.rotacion + -(self.angulo_salida_disparo),
-                                   rotacion=self.receptor.rotacion - 90,
+                                   angulo_de_movimiento=self.receptor.rotacion + (self.angulo_salida_disparo),
+                                   rotacion=self.receptor.rotacion + -(self.rotacion_disparo),
                                    offset_disparo_x=self.offset_disparo_x,
                                    offset_disparo_y=self.offset_disparo_y)
 
@@ -149,7 +154,7 @@ class Disparar(habilidades.Habilidad):
 
             objeto_a_disparar = self.municion(pilas=self.pilas, x=self.receptor.x+offset_origen_actor_x,
                                               y=self.receptor.y+self.offset_origen_actor_y,
-                                              rotacion=self.receptor.rotacion - 90,
+                                              rotacion=self.receptor.rotacion + -(self.rotacion_disparo),
                                               angulo_de_movimiento=self.receptor.rotacion + (self.angulo_salida_disparo))
 
             self._agregar_disparo(objeto_a_disparar)
