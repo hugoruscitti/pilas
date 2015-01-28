@@ -81,7 +81,17 @@ clean:
 	rm -r -f *.dmg
 	rm -r -f dist build
 
-distmac: clean
+distmac:
+	rm -r -f pilas-engine.app/Contents/Resources/data
+	rm -r -f pilas-engine.app/Contents/Resources/lib/python2.7/pilasengine
+	cp -r -f data pilas-engine.app/Contents/Resources/
+	cp -r -f pilasengine pilas-engine.app/Contents/Resources/lib/python2.7/
+	cp -r -f pilas pilas-engine.app/Contents/Resources/lib/python2.7/
+	rm -r -f dist/pilas-engine-${VERSION}.dmg
+	hdiutil create dist/pilas-engine-${VERSION}.dmg -srcfolder pilas-engine.app -size 500mb
+	
+
+distmac_anterior: clean
 	python setup-mac.py py2app --no-strip > log_distmac.txt
 	hdiutil create dist/pilas-engine-${VERSION}.dmg -srcfolder ./dist/pilas-engine.app -size 200mb
 	@echo "Los archivos generados están en el directorio dist/"
@@ -95,44 +105,7 @@ ejemplos:
 	python extras/probar_ejemplos.py
 
 distwin:
-	clear
-	git submodule update --init
-	git pull
-
-	@echo ""
-	@echo "$(V)Compilando pilas ...$(N)"
-	@echo ""
-	/C/Python27/python.exe setup.py build > pilas_build.log
-
-	@echo ""
-	@echo "$(V)Instalando...$(N)"
-	@echo ""
-	/C/Python27/python.exe setup.py install -f > pilas_install.lo
-
-	@echo ""
-	@echo "$(V)Generando el cargador$(N)"
-	@echo ""
-	cd extras/cargador_windows/ && \
-	rm -r -f build && \
-	rm -r -f pilasengine && \
-	python setup.py build > pilas_compilacion.log && \
-	mv build/exe.win32-2.7/ pilasengine && \
-	rmdir build
-
-	@echo ""
-	@echo "$(V)Regresa al directorio principal.$(N)"
-	@echo ""
-	
-	@echo ""
-	@echo "$(V)Copia el resto de los archivos para el cargador:$(N)"
-	@echo ""
-
-	cp bin/pilasengine extras/cargador_windows/pilasengine/ejecutar.py
-	cp -R data extras/cargador_windows/pilasengine/
-	cp -R pilasengine extras/cargador_windows/pilasengine/
-	cp extras/cargador_windows/pilas.ico extras/cargador_windows/pilasengine
-
-	explorer.exe "extras\cargador_windows"
+	@echo "TODO"
 
 distdeb:
 	extras/actualizar_changelog.sh
