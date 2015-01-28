@@ -38,7 +38,7 @@ import plugins
 
 import widget
 
-VERSION="0.90.19"
+VERSION="0.90.20"
 
 
 def handler(signum, frame):

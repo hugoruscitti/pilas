@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '0.90.19',
-  fecha: '23 de Jan del 2015',
-  commit: '98b174f',
-  changelog: ['release 0.90.18', 'Modularizando el script inicial de pilas.', 'merge', 'modificando comando para ejecutar test en travis.', 'Update README.md', ]
+  version: '0.90.20',
+  fecha: '28 de Jan del 2015',
+  commit: '54e79be',
+  changelog: ['Agregando el actor mapaTiled.', 'Comenzando a portar el actor Mapa y Mapatiled.', 'Actualizando el proyecto.', 'arreglo menor.', 'arreglo menor.', ]
 }
