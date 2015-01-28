@@ -28,10 +28,10 @@ class MapaTiled(Mapa):
         - Las siguientes capas solo se almacenan, pero no se dibujan. Se pueden acceder con ``mapa.capas``.
     """
 
-    def iniciar(self, ruta_mapa, x=0, y=0, restitucion=0.56):
-        ruta_mapa = self.pilas.utils.obtener_ruta_al_recurso(ruta_mapa)
+    def iniciar(self, ruta_mapa=None, x=0, y=0, restitucion=0.56):
+        ruta_mapa = self.pilas.obtener_ruta_al_recurso(ruta_mapa)
         self._cargar_datos_basicos_del_mapa(ruta_mapa)
-        MapaTiled.iniciar(self, x, y, self.grilla, filas=self.filas, columnas=self.columnas)
+        Mapa.iniciar(self, x, y, self.grilla, filas=self.filas, columnas=self.columnas)
         self._dibujar_mapa(ruta_mapa)
 
     def cuadro_ancho(self):
@@ -70,7 +70,7 @@ class MapaTiled(Mapa):
         self.alto_cuadro = int(nodo_tileset.getAttributeValue('tileheight'))
 
         self._ruta = nodo_tileset.getChild('image').getAttributeValue('source')
-        self._ruta = self.pilas.utils.obtener_ruta_al_recurso(self._ruta)
+        self._ruta = self.pilas.obtener_ruta_al_recurso(self._ruta)
 
         self.grilla = self.pilas.imagenes.cargar_grilla(self._ruta,
                 self.ancho_imagen / self.ancho_cuadro,

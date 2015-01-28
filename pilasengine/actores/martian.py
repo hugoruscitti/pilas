@@ -82,7 +82,6 @@ class Martian(Actor):
     def obtener_distancia_al_suelo(self):
         "Retorna la distancia en pixels al suelo."
         if not self.mapa:
-            print "no hay mapa"
             return 0
         else:
             return self.mapa.obtener_distancia_al_suelo(self.x, self.y, 100)

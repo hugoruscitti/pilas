@@ -168,7 +168,6 @@ class Actores(object):
                 raise TypeError("%s.\n\n\tNo se esperaba el argumento '%s'. %s" %(titulo_error, key, mensaje_argumentos))
 
         # Trata de quitar los argumentos opcionales si existen.
-
         for x in range(cantidad_de_argumentos_opcionales):
             argumentos_esperados.pop()
 
@@ -309,7 +308,7 @@ class Actores(object):
                                  ruta_normal=ruta_normal,
                                  ruta_press=ruta_press,
                                  ruta_over=ruta_over)
-        
+
     def Mapa(self, x=0, y=0, grilla=None, filas=20, columnas=20):
         ":rtype: mapa.Mapa"
         return self._crear_actor('mapa', 'Mapa', x=x, y=y,
@@ -318,8 +317,7 @@ class Actores(object):
 
     def MapaTiled(self, ruta_mapa, x=0, y=0, restitucion=0.56):
         ":rtype: mapa.MapaTiled"
-        return self._crear_actor('mapa', 'MapaTiled', x=x, y=y,
-                                 ruta_mapa=ruta_mapa, 
+        return self._crear_actor('mapa_tiled', 'MapaTiled', ruta_mapa=ruta_mapa, x=x, y=y,
                                  restitucion=restitucion)
 
     def Banana(self,  x=0, y=0):
@@ -473,7 +471,7 @@ class Actores(object):
                                  x=x, y=y, rotacion=rotacion,
                                  velocidad=velocidad, imagen=imagen)
 
-    def Misil(self, x=0, y=0, rotacion=0, velocidad_maxima=8, 
+    def Misil(self, x=0, y=0, rotacion=0, velocidad_maxima=8,
                 angulo_de_movimiento=90):
         ":rtype: misil.Misil"
         return self._crear_actor('misil', 'Misil',
@@ -484,7 +482,7 @@ class Actores(object):
     def Bala(self, x=0, y=0, rotacion=0, velocidad_maxima=9,
              angulo_de_movimiento=90):
         ":rtype: bala.Bala"
-        return self._crear_actor('bala', 'Bala', 
+        return self._crear_actor('bala', 'Bala',
                                  x=x, y=y, rotacion=rotacion,
                                  velocidad_maxima=velocidad_maxima,
                                  angulo_de_movimiento=angulo_de_movimiento)
