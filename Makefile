@@ -18,9 +18,10 @@ all:
 	@echo "  $(V)ver_sync$(N)    Sube la nueva version al servidor."
 	@echo "  $(V)ejemplos$(N)    Prueba los ejemplos uno a uno."
 	@echo ""
-	@echo "  $(V)distmac$(N)     Genera la versión compilada para macos."
-	@echo "  $(V)distwin$(N)     Genera la versión compilada para windows."
-	@echo "  $(V)distdeb$(N)     Genera la versión compilada para debian, ubuntu o huayra."
+	@echo "  $(V)dist$(N)        Genera todos los binarios (excepto .deb)"
+	@echo "   $(V)distmac$(N)     Genera la versión compilada para macos."
+	@echo "   $(V)distwin$(N)     Genera la versión compilada para windows."
+	@echo "   $(V)distdeb$(N)     Genera la versión compilada para debian, ubuntu o huayra."
 	@echo ""
 
 actualizar:
@@ -81,14 +82,37 @@ clean:
 	rm -r -f *.dmg
 	rm -r -f dist build
 
+dist: distmac distwin
+	echo "listo..."
+
 distmac:
-	rm -r -f pilas-engine.app/Contents/Resources/data
-	rm -r -f pilas-engine.app/Contents/Resources/lib/python2.7/pilasengine
-	cp -r -f data pilas-engine.app/Contents/Resources/
-	cp -r -f pilasengine pilas-engine.app/Contents/Resources/lib/python2.7/
-	cp -r -f pilas pilas-engine.app/Contents/Resources/lib/python2.7/
-	rm -r -f dist/pilas-engine-${VERSION}.dmg
-	hdiutil create dist/pilas-engine-${VERSION}.dmg -srcfolder pilas-engine.app -size 500mb
+	@mkdir -p tmp
+	@echo "Limpiando escenario"
+	@rm -r -f __MACOSX
+	@rm -r -f pilas-engine.app
+	@rm -r -f pilas-engine.app.zip
+	@echo "Copiando plantilla de aplicación para osx desde dropbox"
+	@cp /Users/hugoruscitti/Dropbox/pilas-engine-bins/pilas-engine.app.zip ./
+	@echo "Descomprimiendo..."
+	@unzip pilas-engine.app.zip > tmp/log_unzip_pilas-engine.zip.log
+	@echo "Actualizando contenido..."
+	@rm pilas-engine.app.zip
+	@rm -r -f pilas-engine.app/Contents/Resources/data
+	@rm -r -f pilas-engine.app/Contents/Resources/lib/python2.7/pilasengine
+	@rm -r -f pilas-engine.app/Contents/Resources/lib/python2.7/pilas
+	@cp -r -f data pilas-engine.app/Contents/Resources/
+	@cp -r -f pilasengine pilas-engine.app/Contents/Resources/lib/python2.7/
+	@cp -r -f pilas pilas-engine.app/Contents/Resources/lib/python2.7/
+	@rm -r -f dist/pilas-engine-${VERSION}.dmg
+	@echo "Generando imagen .dmg (esto tarda un huevo...)"
+	@hdiutil create dist/pilas-engine-${VERSION}.dmg -srcfolder pilas-engine.app -size 500mb
+	@rm -r -f __MACOSX
+	@rm -r -f pilas-engine.app
+	@rm -r -f pilas-engine.app.zip
+	@echo "Todo OK!"
+	@echo "Los archivos generados están en el directorio dist/"
+	@echo "Se abre una ventana para mostrarlos."
+	@open dist
 	
 
 distmac_anterior: clean
@@ -105,7 +129,27 @@ ejemplos:
 	python extras/probar_ejemplos.py
 
 distwin:
-	@echo "TODO"
+	@mkdir -p tmp
+	@echo "Limpiando escenario"
+	@rm -r -f tmp/pilas-engine
+	@rm -r -f tmp/__MACOSX
+	@echo "Copiando plantilla de aplicación para windows desde dropbox"
+	@cp /Users/hugoruscitti/Dropbox/pilas-engine-bins/pilas-engine-cargador-windows.zip ./tmp
+	@echo "Descomprimiendo..."
+	@unzip tmp/pilas-engine-cargador-windows.zip -d tmp/ > tmp/log_unzip_pilas-engine.zip.log
+	@echo "Actualizando contenido..."
+	@cp -r -f data tmp/pilas-engine/
+	@cp -r -f pilasengine tmp/pilas-engine/
+	@cp -r -f pilas tmp/pilas-engine/
+	@cp extras/instalador.nsi tmp/pilas-engine
+	@echo "Generando el installador para windows..."
+	@makensis tmp/pilas-engine/instalador.nsi > tmp/log_instalador.log
+	@mv tmp/pilas-engine/pilas-engine_${VERSION}.exe dist/
+	@echo "Todo OK!"
+	@echo "Los archivos generados están en el directorio dist/"
+	@echo "Se abre una ventana para mostrarlos."
+	@open dist
+	
 
 distdeb:
 	extras/actualizar_changelog.sh
