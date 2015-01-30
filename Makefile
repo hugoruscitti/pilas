@@ -105,7 +105,7 @@ distmac:
 	@cp -r -f pilas pilas-engine.app/Contents/Resources/lib/python2.7/
 	@rm -r -f dist/pilas-engine-${VERSION}.dmg
 	@echo "Generando imagen .dmg (esto tarda un huevo...)"
-	@hdiutil create dist/pilas-engine-${VERSION}.dmg -srcfolder pilas-engine.app -size 500mb
+	@hdiutil create dist/pilas-engine-${VERSION}.dmg -srcfolder pilas-engine.app -size 500mb > tmp/log_creacion_dmg.log
 	@rm -r -f __MACOSX
 	@rm -r -f pilas-engine.app
 	@rm -r -f pilas-engine.app.zip
