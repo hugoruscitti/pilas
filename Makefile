@@ -82,8 +82,14 @@ clean:
 	rm -r -f *.dmg
 	rm -r -f dist build
 
-dist: distmac distwin
-	echo "listo..."
+
+directorio_dist:
+	@echo "Limpiando el directorio dist."
+	@rm -r -f dist
+	@mkdir -p dist
+
+dist: directorio_dist distmac distwin
+	@echo "listo..."
 
 distmac:
 	@mkdir -p tmp
