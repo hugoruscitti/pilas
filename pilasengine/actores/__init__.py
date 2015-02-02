@@ -12,6 +12,7 @@ from pilasengine.actores.actor import Actor
 from pilasengine.actores.texto import Texto
 from pilasengine.actores.grupo import Grupo
 from pilasengine.actores.misil import Misil
+from pilasengine.actores.temporizador import Temporizador
 
 from pilasengine.actores import aceituna
 
@@ -447,6 +448,10 @@ class Actores(object):
     def Controlador(self, x=0, y=0):
         ":rtype: controlador.Controlador"
         return self._crear_actor('controlador', 'Controlador', x=x, y=y)
+
+    def Temporizador(self, x=0, y=0):
+        ":rtype: temporizador.Temporizador"
+        return self._crear_actor('temporizador', 'Temporizador', x=x, y=y)
 
     def ManejadorPropiedad(self, x, y, actor, propiedad, minimo, maximo):
         ":rtype: manejador_propiedad.ManejadorPropiedad"
