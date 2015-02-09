@@ -4,24 +4,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>Actores - pilas-engine</title>
+  
 
   
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../css/code.css" type="text/css" />
-  
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
 
-  <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
-  <script type="text/javascript" src="../js/theme.js"></script>
-  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
 
   <style>
     body {font-size: 90%;}
     pre, code {font-size: 100%;}
     h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
-  </style>
+  </style> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -31,200 +34,263 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href=".."><img src='../img/pilas-logo.png'></a>
+        <a href=".." class="icon icon-home"> pilas-engine</a>
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-       <ul class="current">
-
-    <li class="toctree-l1 ">
-        <a class="" href="..">Principal</a>
+      <ul class="current">
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../instalacion/">Instalación</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../instalacion">Instalación</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../about/">Acerca de ...</a>
+    
         
-    </li>
+            <li class="toctree-l1 ">
+                <a class="" href="../about">Acerca de ...</a>
+            </li>
+        
 
-    <li class="toctree-l1 ">
-        <a class="" href="../empezando/">Empezando y los primeros pasos con pilas</a>
+    
         
-    </li>
+            <li class="toctree-l1 ">
+                <a class="" href="../empezando">Empezando y los primeros pasos con pilas</a>
+            </li>
+        
 
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Actores</a>
+    
         
-            <ul>
+            <li class="toctree-l1 current">
+                <a class="current" href=".">Actores</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores_personalizados">Actores personalizados</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../grupos">Grupos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../colisiones">Colisiones</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../etiquetas">Etiquetas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../fisica">Fisica</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controles">Controles</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../joystick">Joystick</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../imagen">Imagen</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../sonidos">Sonidos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_simple_en_pantalla">Dibujado simple en pantalla</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_avanzado_con_superficies">Dibujado avanzado con Superficies</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../tareas">Manejo de tiempo con tareas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interpolacion">Interpolaciones</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controlando_la_pantalla">Controlando la pantalla</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../comportamientos">Comportamientos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../escenas">Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../migrar_al_gestor_de_escenas">Como migrar mi juego al nuevo Gestor de Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../gestor_de_escenas">Nuevo Gestor de Escenas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../demos">Demos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interfaz">Interfaz de usuario</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../menu">Como crear menúes para tu juegos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../mapas_y_plataformas">Mapas y plataformas</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dialogos">Diálogos</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../camara">Manejo de Cámara</a>
+            </li>
+        
+
+    
+        
+        <span>Eventos</span>
             
-                <li class="toctree-l2"><a href="#actores">Actores</a></li>
-                
-                    <li><a class="toctree-l3" href="#galeria-de-actores-incluidos">Galería de actores incluídos</a></li>
-                
+                <li class="toctree-l1 ">
+                    <a class="" href="../eventos">conexiones y respuestas</a>
+                    
+                </li>
             
-            </ul>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../actores_personalizados/">Actores personalizados</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../grupos/">Grupos</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../texto">Textos</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../colisiones/">Colisiones</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../etiquetas/">Etiquetas</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../habilidades">Habilidades</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../fisica/">Fisica</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../controles/">Controles</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../depurando">Depurando</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../joystick/">Joystick</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../imagen/">Imagen</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../como_funciona_pilas_por_dentro">¿Cómo funciona pilas por dentro?</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../sonidos/">Sonidos</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../dibujado_simple_en_pantalla/">Dibujado simple en pantalla</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../complementos">Complementos</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../dibujado_avanzado_con_superficies/">Dibujado avanzado con Superficies</a>
+    
         
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../tareas/">Manejo de tiempo con tareas</a>
+            <li class="toctree-l1 ">
+                <a class="" href="../desarrolladores">Guía para desarrolladores</a>
+            </li>
         
-    </li>
 
-    <li class="toctree-l1 ">
-        <a class="" href="../interpolacion/">Interpolaciones</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../controlando_la_pantalla/">Controlando la pantalla</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../comportamientos/">Comportamientos</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../escenas/">Escenas</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../migrar_al_gestor_de_escenas/">Como migrar mi juego al nuevo Gestor de Escenas</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../gestor_de_escenas/">Nuevo Gestor de Escenas</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../demos/">Demos</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../interfaz/">Interfaz de usuario</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../menu/">Como crear menúes para tu juegos</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../mapas_y_plataformas/">Mapas y plataformas</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../dialogos/">Diálogos</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../camara/">Manejo de Cámara</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="">Eventos</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../texto/">Textos</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../habilidades/">Habilidades</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../depurando/">Depurando</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../como_funciona_pilas_por_dentro/">¿Cómo funciona pilas por dentro?</a>
-        
-    </li>
-
-    <li class="toctree-l1 ">
-        <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
-        
-    </li>
-
+    
 </ul>
-
-
-
 
       </div>
       &nbsp;
@@ -252,12 +318,13 @@
   <hr/>
 </div>
           <div role="main">
-            <h1 id="actores">Actores</h1>
+            <div class="section">
+              <h1 id="actores">Actores</h1>
 <p>Los actores son una pieza clave de pilas, nos sirven para representar
 a los personajes dentro de videojuego, con sus propios atributos, apariencia
 y comportamiento.</p>
 <p>Puedes utilizar los actores prediseñados de pilas, o crear tus propios
-actores. Existe una página separada del manual que explica <a href="/actores_personalizados/index.html">como crear tus
+actores. Existe una página separada del manual que explica <a href="..//actores_personalizados/index.html">como crear tus
 propios actores</a>, en lugar de utilizar los incluidos en pilas.</p>
 <h2 id="galeria-de-actores-incluidos">Galería de actores incluídos</h2>
 <p>Hay varios actores pre-diseñados incluidos en pilas, podés usarlos
@@ -274,40 +341,40 @@ tuyos propios:</p>
 <h3 id="actor">Actor</h3>
 <p>Representa un objeto visible en pantalla, algo que se ve y tiene
 la estructura inicial de actor</p>
-<p><img alt="" src="../imagenes/actores/actor.png" /></p>
+<p><img alt="" src="../../imagenes/actores/actor.png" /></p>
 <p>Un objeto Actor se tiene que crear siempre indicando una imagen. Si no
 se especifica una imagen, se verán los signos de interrogación de
 color rojo.</p>
 <p>Una forma de crear el actor con una imagen es:</p>
-<pre class="prettyprint well"><code>protagonista = Actor("planeta_azul.png")
+<pre><code>protagonista = Actor("planeta_azul.png")
 </code></pre>
 <p>incluso, es equivalente hacer lo siguiente:</p>
-<pre class="prettyprint well"><code>imagen = pilas.imagenes.cargar("planeta_azul.png")
+<pre><code>imagen = pilas.imagenes.cargar("planeta_azul.png")
 protagonista = Actor(imagen)
 </code></pre>
 <p>El resultado será:</p>
-<p><img alt="" src="../imagenes/actores/planeta_azul.png" /></p>
+<p><img alt="" src="../../imagenes/actores/planeta_azul.png" /></p>
 <p>Luego, una vez que ha sido ejecutada la sentencia aparecerá
 el nuevo actor para que puedas manipularlo. Por ejemplo
 alterando sus propiedades:</p>
-<pre class="prettyprint well"><code>protagonista.x = 100
+<pre><code>protagonista.x = 100
 protagonista.escala = 2
 protagonista.rotacion = 30
 </code></pre>
 <p>Estas propiedades también se pueden manipular mediante
 interpolaciones. Por ejemplo, para aumentar el tamaño del
 personaje de 1 a 5 en 7 segundos:</p>
-<pre class="prettyprint well"><code>protagonista.escala = 1
+<pre><code>protagonista.escala = 1
 protagonista.escala = [5], 7
 </code></pre>
 <p>Si quieres que el actor sea invisible, un truco es crearlo
 con la imagen <code>invisible.png</code>:</p>
-<pre class="prettyprint well"><code>invisible = pilas.actores.Actor('invisible.png')
+<pre><code>invisible = pilas.actores.Actor('invisible.png')
 </code></pre>
 <h3 id="aceituna">Aceituna</h3>
 <p>El actor aceituna es super simple</p>
-<p><img alt="" src="../imagenes/actores/aceituna.png" /></p>
-<pre class="prettyprint well"><code>aceituna = pilas.actores.Aceituna()
+<p><img alt="" src="../../imagenes/actores/aceituna.png" /></p>
+<pre><code>aceituna = pilas.actores.Aceituna()
 </code></pre>
 <p><em>Métodos:</em></p>
 <ul>
@@ -329,11 +396,11 @@ cantidad de cuadros por segundo que se tienen que mostrar
 en la animación.</li>
 </ul>
 <p>Por ejemplo, para mostrar una explosión infinita podrías escribir:</p>
-<pre class="prettyprint well"><code>grilla = pilas.imagenes.cargar_grilla(&quot;explosion.png&quot;, 7)
+<pre><code>grilla = pilas.imagenes.cargar_grilla(&quot;explosion.png&quot;, 7)
 animacion = pilas.actores.Animacion(grilla, ciclica=True, velocidad=1)
 </code></pre>
 
-<p><img alt="" src="../imagenes/actores/explosion.png" /></p>
+<p><img alt="" src="../../imagenes/actores/explosion.png" /></p>
 <p><em>Métodos:</em></p>
 <ul>
 <li><code>animacion.saludar(grilla=None, ciclica=False, x=0, y=0, velocidad=10)</code></li>
@@ -346,13 +413,13 @@ animacion = pilas.actores.Animacion(grilla, ciclica=True, velocidad=1)
 método 'definir_cuadro', que facilita la animación de personajes.</p>
 <p>Por ejemplo, si tenemos una grilla con un pingüino, podríamos
 mostrarlo usando este código:</p>
-<pre class="prettyprint well"><code>grilla = pilas.imagenes.cargar_grilla(&quot;pingu.png&quot;, 10)
+<pre><code>grilla = pilas.imagenes.cargar_grilla(&quot;pingu.png&quot;, 10)
 actor = Animado(grilla)
 actor.definir_cuadro(2)
 actor.definir_cuadro(5)
 </code></pre>
 
-<p><img alt="" src="../imagenes/actores/pingu.png" /></p>
+<p><img alt="" src="../../imagenes/actores/pingu.png" /></p>
 <p><em>Métodos:</em></p>
 <ul>
 <li><code>actor.definir_cuadro(indice)</code></li>
@@ -360,22 +427,22 @@ actor.definir_cuadro(5)
 <h3 id="bala">Bala</h3>
 <p>Representa un disparo que avanza en linea recta, con un ángulo
 de dirección y un sentido determinado.</p>
-<pre class="prettyprint well"><code>bala = pilas.actores.Bala(rotacion=0, velocidad_maxima=9, angulo_de_movimiento=90)
+<pre><code>bala = pilas.actores.Bala(rotacion=0, velocidad_maxima=9, angulo_de_movimiento=90)
 </code></pre>
 
 <p>y opcionalmente, si queremos que se llame a una función en el momento
 de eliminación del disparo podemos hacer así:</p>
-<pre class="prettyprint well"><code>bala.cuando_se_elimina = funcion_a_invocar
+<pre><code>bala.cuando_se_elimina = funcion_a_invocar
 </code></pre>
 
 <h3 id="banana">Banana</h3>
 <p>Muestra una banana que se combina (temáticamente) con el actor Mono.</p>
-<p><img alt="" src="../images/actores/banana.png" /></p>
+<p><img alt="" src="../../images/actores/banana.png" /></p>
 <p>Este actor se podría usar cómo alimento o bonus para otros
 actores.</p>
 <p>Este actor tiene solo dos cuadros de animación que se pueden
 mostrar con los métodos <code>abrir</code> y <code>cerrar</code>:</p>
-<pre class="prettyprint well"><code>banana = pilas.actores.Banana()
+<pre><code>banana = pilas.actores.Banana()
 banana.abrir()
 banana.cerrar()
 </code></pre>
@@ -386,16 +453,17 @@ banana.cerrar()
 <li><code>banana.cerrar()</code></li>
 </ul>
 
+            </div>
           </div>
-
           <footer>
+
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../actores_personalizados/" class="btn btn-neutral float-right" title="Actores personalizados"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../actores_personalizados" class="btn btn-neutral float-right" title="Actores personalizados"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../empezando/" class="btn btn-neutral" title="Empezando y los primeros pasos con pilas"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+        <a href="../empezando" class="btn btn-neutral" title="Empezando y los primeros pasos con pilas"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
       
     </div>
   
@@ -404,11 +472,26 @@ banana.cerrar()
 
   <div role="contentinfo">
     <p>
+    <!-- Copyright etc -->
     </p>
   </div>
 
-  Esta documentación usa <strong>MkDocs</strong>.
+  Creado con <a href="http://www.mkdocs.org">MkDocs</a>.
+
+  <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+
+  <script>
+  $(document).ready(function() {
+     console.log("comenzando...");
+     $('img').each(function(elemento) {
+        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+     });
+  });
+  </script>
+
+
 </footer>
+	  
         </div>
       </div>
 
@@ -418,15 +501,10 @@ banana.cerrar()
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
-      <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      <span><a href="" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="" style="color: #fcfcfc">Next &raquo;</a></span>
+        
+      <span><a href="../empezando" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../actores_personalizados" style="color: #fcfcfc">Next &raquo;</a></span>
     </span>
 </div>
-
-
-
-  <script type="text/javascript" src="../js/custom.js"></script>
-  <script type="text/javascript" src="../js/code.js"></script>
 </body>
 </html>
