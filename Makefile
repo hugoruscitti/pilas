@@ -90,6 +90,14 @@ directorio_dist:
 
 dist: directorio_dist distmac distwin
 	@echo "listo..."
+	@echo ""
+	@echo "Usa el comando 'make upload' para subir esta version a dropbox."
+	@echo ""
+
+upload:
+	mkdir -rf ~/Dropbox/releases/pilas-engine/${VERSION}
+	cp dist/pilas-engine-${VERSION}.dmg ~/Dropbox/releases/pilas-engine/${VERSION}/
+	cp dist/pilas-engine_${VERSION}.exe ~/Dropbox/releases/pilas-engine/${VERSION}/
 
 distmac:
 	@mkdir -p tmp
