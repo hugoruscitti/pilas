@@ -271,22 +271,6 @@ class Editor(editor_base.EditorBase):
         if editor_base.EditorBase.keyPressEvent(self, event):
             return None
 
-        if event.key() == Qt.Key_Return:
-            cursor = self.textCursor()
-            block = self.document().findBlockByNumber(cursor.blockNumber())
-            whitespace = re.match(r"(\s*)", unicode(block.text())).group(1)
-            
-            linea_anterior = str(block.text()[:])
-            cantidad_espacios = linea_anterior.count(' ') / 4
-            
-            if linea_anterior[-1:] == ':':
-                whitespace = '    ' * (cantidad_espacios + 1)
-            else:
-                whitespace = '    ' * (cantidad_espacios)
-            
-            QTextEdit.keyPressEvent(self, event)
-            return self.insertPlainText(whitespace)
-
 
         # Elimina los pares de caracteres especiales si los encuentra
         if event.key() == Qt.Key_Backspace:
@@ -295,9 +279,28 @@ class Editor(editor_base.EditorBase):
 
         if self.autocomplete(event):
             return None
+            
+
+        if event.key() == Qt.Key_Return:
+            cursor = self.textCursor()
+            block = self.document().findBlockByNumber(cursor.blockNumber())
+            whitespace = re.match(r"(\s*)", unicode(block.text())).group(1)
+
+            linea_anterior = str(block.text()[:])
+            cantidad_espacios = linea_anterior.count(' ') / 4
+
+            if linea_anterior[-1:] == ':':
+                whitespace = '    ' * (cantidad_espacios + 1)
+            else:
+                whitespace = '    ' * (cantidad_espacios)
+
+            QTextEdit.keyPressEvent(self, event)
+            return self.insertPlainText(whitespace)
+
+
 
         return QTextEdit.keyPressEvent(self, event)
-    
+
     def _borrar_un_grupo_de_espacios(self, event):
         cursor = self.textCursor()
         block = self.document().findBlockByNumber(cursor.blockNumber())
