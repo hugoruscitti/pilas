@@ -14,7 +14,7 @@ class CursorDisparo(actores.Actor):
     def __init__(self, pilas, *k, **kv):
         actores.Actor.__init__(self, pilas, *k, **kv)
 
-    def iniciar(self, x=0, y=0, usar_el_mouse=True):
+    def pre_iniciar(self, x=0, y=0, usar_el_mouse=True):
         if usar_el_mouse:
             self.aprender(self.pilas.habilidades.SeguirAlMouse)
             self.pilas.ocultar_puntero_del_mouse()

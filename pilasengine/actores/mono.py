@@ -11,7 +11,7 @@ from pilasengine.actores.actor import Actor
 
 class Mono(Actor):
 
-    def iniciar(self, x=0, y=0):
+    def pre_iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         self.imagen = "mono.png"
@@ -24,6 +24,9 @@ class Mono(Actor):
         self.sonido_reir = self.pilas.sonidos.cargar('audio/smile.wav')
         self.sonido_gritar = self.pilas.sonidos.cargar('audio/grito.wav')
         self.radio_de_colision = 50
+
+    def iniciar(self, *k, **kw):
+        pass
 
     def normal(self):
         """Restaura la expresión del mono.

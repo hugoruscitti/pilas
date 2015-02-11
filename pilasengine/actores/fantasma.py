@@ -10,7 +10,9 @@ from pilasengine.actores.actor import Actor
 
 
 class Fantasma(Actor):
-    def iniciar(self, x, y):
+    """Representa al fantasman del clasico pac-man."""
+    
+    def pre_iniciar(self, x, y):
         self.x = x
         self.y = y
         self.grilla = self.pilas.imagenes.cargar_grilla("fantasma.png", 8, 1)

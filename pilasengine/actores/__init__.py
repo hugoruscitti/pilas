@@ -103,6 +103,7 @@ class Actores(object):
             kv = actor.argumentos_adicionales[1]
 
             try:
+                actor.pre_iniciar(*k, **kv)
                 actor.iniciar(*k, **kv)
             except TypeError, error:
                 # el siguiente metodo, _validar_argumentos, intentará

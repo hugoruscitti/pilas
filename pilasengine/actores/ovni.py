@@ -17,7 +17,7 @@ class Ovni(Actor):
 
     """
 
-    def iniciar(self, x, y):
+    def pre_iniciar(self, x, y):
         self.x = x
         self.y = y
         self.imagen = "ovni.png"

@@ -7,7 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 
 from pilasengine import colores
-
+from pilasengine.fondos.fondo import Fondo
 
 class Fondos(object):
     """Representa la propiedad pilas.fondos

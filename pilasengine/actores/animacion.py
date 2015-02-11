@@ -39,7 +39,7 @@ class Animacion(Animado):
     def __init__(self, pilas, *k, **kv):
         Animado.__init__(self, pilas, *k, **kv)
         
-    def iniciar(self, grilla=None, ciclica=False, x=0, y=0, velocidad=10):
+    def pre_iniciar(self, grilla=None, ciclica=False, x=0, y=0, velocidad=10):
         """ Constructor de la Animación.
 
         :param grilla: Grilla de imagenes obtenida mediante

@@ -13,7 +13,7 @@ class Emisor(Actor):
     """
     """
 
-    def iniciar(self, x, y):
+    def pre_iniciar(self, x, y):
         self.x = x
         self.y = y
         self.imagen = self.pilas.imagenes.cargar_grilla("invisible.png")

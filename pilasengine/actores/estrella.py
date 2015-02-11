@@ -11,7 +11,7 @@ from pilasengine.actores.actor import Actor
 
 class Estrella(Actor):
 
-    def iniciar(self, x, y):
+    def pre_iniciar(self, x, y):
         self.x = x
         self.y = y
         self.imagen = "estrella.png"

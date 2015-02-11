@@ -24,3 +24,6 @@ class Fondo(actor.Actor):
 
         self.z = 1000
         self.radio_de_colision = None
+        
+    def pre_iniciar(self, *k, **kw):
+        pass

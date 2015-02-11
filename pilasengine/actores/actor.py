@@ -69,6 +69,9 @@ class Etiquetas(object):
 
     def __init__(self):
         self.lista = []
+        
+    def pre_iniciar(self, *k, **kw):
+        pass
 
     def obtener_como_lista(self):
         return self.lista
@@ -108,6 +111,7 @@ class Etiquetas(object):
             if x in self.lista:
                 intersectan.append(x)
         return intersectan
+
 
 class Actor(Estudiante):
     """Representa un objeto visible en pantalla, algo que se ve y tiene
@@ -198,6 +202,29 @@ class Actor(Estudiante):
 
         # Vincula el actor con la escena actual.
         pilas.actores.agregar_actor(self)
+        
+    def pre_iniciar(self, x=0, y=0, imagen="sin_imagen.png"):
+        """Ejecuta el código inicial del actor.
+
+        Este método se llama automáticamente cuando el actor se
+        genera y agrega dentro de una escena.
+        """
+        if not isinstance(x, (int, long, float)):
+            mensaje = "El parametro x tiene un valor no permitido: " + str(x)
+            raise Exception(mensaje)
+        else:
+            self.x = x
+
+        if not isinstance(y, (int, long, float)):
+            mensaje = "El parametro y tiene un valor no permitido: " + str(y)
+            raise Exception(mensaje)
+        else:
+            self.y = y
+
+        self.imagen = imagen
+    
+    def iniciar(self, *k, **kw):
+        pass
 
     def agregar(self, actor):
         self._actores.append(actor)
@@ -242,26 +269,6 @@ class Actor(Estudiante):
         self._vy = 0
         self._dx = self.x
         self._dy = self.y
-
-    def iniciar(self, x=0, y=0, imagen="sin_imagen.png"):
-        """Ejecuta el código inicial del actor.
-
-        Este método se llama automáticamente cuando el actor se
-        genera y agrega dentro de una escena.
-        """
-        if not isinstance(x, (int, long, float)):
-            mensaje = "El parametro x tiene un valor no permitido: " + str(x)
-            raise Exception(mensaje)
-        else:
-            self.x = x
-
-        if not isinstance(y, (int, long, float)):
-            mensaje = "El parametro y tiene un valor no permitido: " + str(y)
-            raise Exception(mensaje)
-        else:
-            self.y = y
-
-        self.imagen = imagen
 
     def obtener_figura_de_colision(self):
         return self._figura_de_colision

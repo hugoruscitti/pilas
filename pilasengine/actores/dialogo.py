@@ -25,7 +25,7 @@ class Dialogo(Actor):
 
     """
 
-    def iniciar(self, x=0, y=0):
+    def pre_iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         if getattr(self, 'dialogo', None):

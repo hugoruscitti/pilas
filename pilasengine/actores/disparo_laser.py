@@ -20,7 +20,7 @@ class DisparoLaser(Actor):
     
     """
 
-    def iniciar(self, x, y, rotacion, velocidad, imagen):
+    def pre_iniciar(self, x, y, rotacion, velocidad, imagen):
         self.x = x
         self.y = y
         self.rotacion = rotacion
