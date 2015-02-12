@@ -4,7 +4,8 @@ V=[01;32m
 VERSION=0.90.22
 
 all:
-	@echo "Comando disponibles"
+	@echo ""
+	@echo "Comandos disponibles versión: (${VERSION})"
 	@echo ""
 	@echo "  $(V)actualizar$(N)  Actualiza pilas y los submodulos."
 	@echo "  $(V)ejecutar$(N)    Ejecuta pilas sin instarlo."
