@@ -22,7 +22,7 @@ class Ejes(Actor):
 
     """
 
-    def pre_iniciar(self, x, y):
+    def pre_iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         self.imagen = "ejes.png"

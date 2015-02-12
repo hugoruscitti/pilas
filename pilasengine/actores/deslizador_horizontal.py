@@ -14,7 +14,7 @@ ALTURA = 15
 
 class DeslizadorHorizontal(Actor):
 
-    def pre_iniciar(self,  x, y, _min, _max, etiqueta, valor_inicial=-21):
+    def pre_iniciar(self,  x=0, y=0, _min=0, _max=100, etiqueta="sin titulo", valor_inicial=-21):
         self.min = _min
         self.max = _max
         self.x = x
