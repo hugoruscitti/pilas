@@ -34,6 +34,8 @@ ejecutar:
 test_mac:
 	python bin/pilasengine
 
+ejecutar_mac: test_mac
+
 .PHONY: test ejemplos
 
 version:
