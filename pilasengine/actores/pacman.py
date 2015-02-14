@@ -21,7 +21,7 @@ class Pacman(Actor):
 
     """
 
-    def iniciar(self, x=0, y=0):
+    def pre_iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         self.grilla = self.pilas.imagenes.cargar_grilla("pacman.png", 4, 4)
@@ -31,10 +31,13 @@ class Pacman(Actor):
         self.velocidad = 3
         self.aprender(self.pilas.habilidades.SeMantieneEnPantalla)
         self.radio_de_colision = 5
-        self.posicion = 0  # 0 = para izquierda
-                           # 1 = para la derecha
-                           # 2 = para arriba
-                           # 3 = para abajo
+        
+        self.posicion = 0  
+        # donde self.posicion puede ser:
+        # 0 = para izquierda
+        # 1 = para la derecha
+        # 2 = para arriba
+        # 3 = para abajo
 
     def actualizar(self):
         if self.control.izquierda:

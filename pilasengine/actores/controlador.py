@@ -11,7 +11,7 @@ from pilasengine.actores.actor import Actor
 
 class Controlador(Actor):
 
-    def iniciar(self, x, y):
+    def pre_iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         self.imagen = self.pilas.imagenes.cargar('invisible.png')

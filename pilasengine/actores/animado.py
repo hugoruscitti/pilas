@@ -40,7 +40,7 @@ class Animado(Actor):
         """
         Actor.__init__(self, pilas, *k, **kv)
         
-    def iniciar(self, x=0, y=0, grilla=None):
+    def pre_iniciar(self, x=0, y=0, grilla=None):
         self.imagen = copy.copy(grilla)
         self.definir_cuadro(0)
 

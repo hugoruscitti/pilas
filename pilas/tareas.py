@@ -8,10 +8,10 @@
 
 class Tarea(object):
 
-    def __init__(self, planificador, time_out, dt, funcion, parametros, una_vez):
+    def __init__(self, planificador, tiempo, dt, funcion, parametros, una_vez):
         """Representa una tarea que se puede ejecutar dentro del planificador.
 
-        :param time_out: El tiempo absoluto para ejecutar la tarea.
+        :param tiempo: El tiempo absoluto para ejecutar la tarea.
         :param dt: La frecuencia de ejecución.
         :param funcion: La funcion a invocar.
         :param parametros: Una lista de argumentos para la funcion anterior.
@@ -19,7 +19,7 @@ class Tarea(object):
         """
 
         self.planificador = planificador
-        self.time_out = time_out
+        self.tiempo = tiempo
         self.dt = dt
         self.funcion = funcion
         self.parametros = parametros
@@ -89,20 +89,20 @@ class Tareas(object):
         tareas_a_eliminar = []
 
         for tarea in self.tareas_planificadas:
-            if self.contador_de_tiempo > tarea.time_out:
+            if self.contador_de_tiempo > tarea.tiempo:
                 tarea.ejecutar()
 
                 if tarea.una_vez:
                     tareas_a_eliminar.append(tarea)
                 else:
-                    w = self.contador_de_tiempo - tarea.time_out
+                    w = self.contador_de_tiempo - tarea.tiempo
                     parte_entera = int((w)/float(tarea.dt))
                     resto = w - (parte_entera * tarea.dt)
 
                     for x in range(parte_entera):
                         tarea.ejecutar()
 
-                    tarea.time_out += tarea.dt + (parte_entera * tarea.dt) - resto
+                    tarea.tiempo += tarea.dt + (parte_entera * tarea.dt) - resto
 
         for x in tareas_a_eliminar:
             if x in self.tareas_planificadas:
@@ -115,38 +115,38 @@ class Tareas(object):
         """
         self.tareas_planificadas.append(tarea)
 
-    def una_vez(self, time_out, function, params=[]):
+    def una_vez(self, tiempo, function, params=[]):
         """Genera una tarea que se ejecutará usan sola vez.
 
-        :param time_out: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
+        :param tiempo: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
         :param function: Función a ejecutar para lanzar la tarea.
         :param params: Parámetros que tiene que recibir la función a ejecutar.
         """
-        tarea = Tarea(self, self.contador_de_tiempo + time_out, time_out, function, params, True)
+        tarea = Tarea(self, self.contador_de_tiempo + tiempo, tiempo, function, params, True)
         self._agregar(tarea)
         return tarea
 
-    def siempre(self, time_out, function, params=[]):
+    def siempre(self, tiempo, function, params=[]):
         """Genera una tarea para ejecutar todo el tiempo, sin expiración.
 
-        :param time_out: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
+        :param tiempo: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
         :param function: Función a ejecutar para lanzar la tarea.
         :param params: Parámetros que tiene que recibir la función a ejecutar.
         """
-        tarea = Tarea(self, self.contador_de_tiempo + time_out, time_out, function, params, False)
+        tarea = Tarea(self, self.contador_de_tiempo + tiempo, tiempo, function, params, False)
         self._agregar(tarea)
         return tarea
 
-    def condicional(self, time_out, function, params=[]):
+    def condicional(self, tiempo, function, params=[]):
         """Genera una tarea que se puede ejecutar una vez o mas, pero que tiene una condición.
 
         La tarea se ejecutará hasta que la función a ejecutar revuelva False.
 
-        :param time_out: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
+        :param tiempo: Cantidad se segundos que deben transcurrir para ejecutar la tarea.
         :param function: Función a ejecutar para lanzar la tarea.
         :param params: Parámetros que tiene que recibir la función a ejecutar.
         """
-        tarea = TareaCondicional(self, self.contador_de_tiempo + time_out, time_out, function, params, False)
+        tarea = TareaCondicional(self, self.contador_de_tiempo + tiempo, tiempo, function, params, False)
         self._agregar(tarea)
         return tarea
 

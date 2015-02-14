@@ -15,7 +15,7 @@ VELOCIDAD = 4
 class Cooperativista(Actor):
     """ Representa un Cooperativista que puede caminar y trabajar."""
 
-    def iniciar(self, x=0, y=0):
+    def pre_iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         self._cargar_animaciones()

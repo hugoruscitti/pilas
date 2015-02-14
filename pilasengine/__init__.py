@@ -38,7 +38,7 @@ from pilasengine import  plugins
 
 import widget
 
-VERSION="0.90.21"
+VERSION = "0.90.23"
 
 
 def handler(signum, frame):
@@ -237,7 +237,7 @@ class Pilas(object):
         contenido = f.read()
         f.close()
 
-        print "%s - Reiniciando" %(time.strftime("%H:%m:%S"))
+        print "%s - Reiniciando" % (time.strftime("%H:%m:%S"))
 
         geometry = self.widget.geometry()
 

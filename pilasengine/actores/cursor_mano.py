@@ -11,7 +11,7 @@ from pilasengine import actores
 
 class CursorMano(actores.Actor):
 
-    def iniciar(self, x, y):
+    def pre_iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         self._cargar_imagenes()

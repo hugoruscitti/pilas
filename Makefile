@@ -1,10 +1,11 @@
 N=[0m
 V=[01;32m
 
-VERSION=0.90.21
+VERSION=0.90.23
 
 all:
-	@echo "Comando disponibles"
+	@echo ""
+	@echo "Comandos disponibles versión: (${VERSION})"
 	@echo ""
 	@echo "  $(V)actualizar$(N)  Actualiza pilas y los submodulos."
 	@echo "  $(V)ejecutar$(N)    Ejecuta pilas sin instarlo."
@@ -92,6 +93,14 @@ directorio_dist:
 
 dist: directorio_dist distmac distwin
 	@echo "listo..."
+	@echo ""
+	@echo "$(V)Usa el comando 'make upload' para subir esta version a dropbox.$(N)"
+	@echo ""
+
+upload:
+	mkdir -p ~/Dropbox/releases/pilas-engine/${VERSION}
+	cp dist/pilas-engine-${VERSION}.dmg ~/Dropbox/releases/pilas-engine/${VERSION}/
+	cp dist/pilas-engine_${VERSION}.exe ~/Dropbox/releases/pilas-engine/${VERSION}/
 
 distmac:
 	@mkdir -p tmp

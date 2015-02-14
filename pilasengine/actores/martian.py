@@ -26,7 +26,7 @@ class Martian(Actor):
 
     """
 
-    def iniciar(self, mapa, x, y):
+    def pre_iniciar(self, mapa=None, x=0, y=0):
         self.x = x
         self.y = y
         self.mapa = mapa
