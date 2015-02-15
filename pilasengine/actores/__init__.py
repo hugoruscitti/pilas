@@ -101,15 +101,27 @@ class Actores(object):
             # al método iniciar.
             k = actor.argumentos_adicionales[0]
             kv = actor.argumentos_adicionales[1]
+            
+            falla_pre_iniciar = False
+            mensaje_error_pre_iniciar = ""
 
             try:
                 actor.pre_iniciar(*k, **kv)
+            except TypeError, error:
+                falla_pre_iniciar = True
+                mensaje_error_pre_iniciar = str(error)
+                
+            try:
                 actor.iniciar(*k, **kv)
             except TypeError, error:
+                
+                if falla_pre_iniciar:
+                    print("Tambien ocurrio un error al pre_iniciar" + mensaje_error_pre_iniciar)
+                
                 # el siguiente metodo, _validar_argumentos, intentará
                 # dar una descripción mas detallada de los argumentos que
                 # faltan.
-                self._validar_argumentos(actor.__class__.__name__, actor.iniciar, k, kv)
+                self._validar_argumentos("iniciar", actor.__class__.__name__, actor.iniciar, k, kv)
                 raise TypeError(error)
 
             self.pilas.log("Agregando el actor", actor, "en la escena", escena_actual)
@@ -119,7 +131,7 @@ class Actores(object):
 
         return actor
 
-    def _validar_argumentos(self, nombre_clase, funcion, k, kv):
+    def _validar_argumentos(self, metodo, nombre_clase, funcion, k, kv):
         """Se asegura que la función iniciar del actor
         se pueda ejecutar con los argumentos indicados."""
 
@@ -135,11 +147,11 @@ class Actores(object):
         args.remove('self')
 
         if len(args) == 0:
-            mensaje_argumentos = "El método 'iniciar' no espera ningún argumento."
+            mensaje_argumentos = "El método '%s' no espera ningún argumento." %(metodo)
         else:
-            mensaje_argumentos = "El método 'iniciar' espera estos %d argumentos: %s" %(len(args), str(args))
+            mensaje_argumentos = "El método '%s' espera estos %d argumentos: %s" %(metodo, len(args), str(args))
 
-        titulo_error = "No se puede llamar al metodo 'iniciar' de la clase '%s'" %(nombre_clase)
+        titulo_error = "No se puede llamar al metodo '%s' de la clase '%s'" %(metodo, nombre_clase)
 
         # Lanza un error si se invoca a el constructor con argumentos
         # posiciones. Es decir, siempre se tiene que llamar al constructor
@@ -171,7 +183,8 @@ class Actores(object):
 
         # Trata de quitar los argumentos opcionales si existen.
         for x in range(cantidad_de_argumentos_opcionales):
-            argumentos_esperados.pop()
+            if argumentos_esperados:
+                argumentos_esperados.pop()
 
         cantidad_de_argumentos = len(argumentos_esperados)
 
