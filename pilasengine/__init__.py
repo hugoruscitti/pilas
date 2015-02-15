@@ -17,24 +17,24 @@ import time
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
-from pilasengine import  configuracion
-from pilasengine import  escenas
-from pilasengine import  imagenes
-from pilasengine import  colores
-from pilasengine import  actores
-from pilasengine import  utils
-from pilasengine import  fondos
-from pilasengine import  depurador
-from pilasengine import  musica
-from pilasengine import  interfaz
-from pilasengine import  sonidos
-from pilasengine import  habilidades
-from pilasengine import  comportamientos
-from pilasengine import  eventos
-from pilasengine import  controles
-from pilasengine import  pad
-from pilasengine import  watcher
-from pilasengine import  plugins
+import configuracion
+import  escenas
+import  imagenes
+import  colores
+import  actores
+import  utils
+import  fondos
+import  depurador
+import  musica
+import  interfaz
+import  sonidos
+import  habilidades
+import  comportamientos
+import  eventos
+import  controles
+import  pad
+import  watcher
+import  plugins
 
 import widget
 
