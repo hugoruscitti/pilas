@@ -10,4 +10,4 @@ from pilasengine.fondos import fondo
 class Volley(fondo.Fondo):
 
     def iniciar(self):
-        self.imagen = "fondos/volley.jpg"
+        self.imagen = "fondos/volley.png"

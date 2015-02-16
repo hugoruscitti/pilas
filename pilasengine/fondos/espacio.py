@@ -4,10 +4,10 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-from pilasengine.fondos import fondo
+from pilasengine.fondos import fondo_mozaico
 
 
-class Espacio(fondo.Fondo):
+class Espacio(fondo_mozaico.FondoMozaico):
 
     def iniciar(self):
-        self.imagen = "fondos/espacio.jpg"
+        self.imagen = "fondos/espacio.png"

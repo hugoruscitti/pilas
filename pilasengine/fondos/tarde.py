@@ -10,4 +10,4 @@ from pilasengine.fondos import fondo
 class Tarde(fondo.Fondo):
 
     def iniciar(self):
-        self.imagen = "fondos/tarde.jpg"
+        self.imagen = "fondos/tarde.png"
