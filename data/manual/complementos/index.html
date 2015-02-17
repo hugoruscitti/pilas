@@ -32,10 +32,9 @@
   <div class="wy-grid-for-nav">
 
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <nav data-toggle="wy-nav-shift" id='lateral' class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> pilas-engine</a>
-        
+        <a href=".."> pilas-engine</a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -309,7 +308,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
+    <li><a href=".." onclick='return alternar_menu();'>Docs</a> &raquo;</li>
     <li>Complementos</li>
       <li class="wy-breadcrumbs-aside">
         
@@ -417,7 +416,6 @@ en el inicializador:</p>
 
   Creado con <em>MkDocs</em>.
 
-  <script src='../js/jquery-1.11.1.js'></script>
 
   <script>
   $(document).ready(function() {
@@ -449,7 +447,26 @@ en el inicializador:</p>
   });
   </script>
 
+
+  <script>
+    function alternar_menu() {
+      var left = parseInt($('#lateral').css('left'), 10);
+
+      if (left !== 0) {
+        $('#lateral').css('left', '0px');
+        return false;
+      }
+
+    }
+  </script>
+
   <style>
+    .rst-versions {
+      border: 0 !important;
+    }
+    .wy-nav-side {
+      padding-bottom: 50px;
+    }
     .wy-nav-content-wrap {
       background-color: white !important;
     }
@@ -469,12 +486,5 @@ en el inicializador:</p>
 
   </div>
 
-<div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-        
-      <span><a href="../como_funciona_pilas_por_dentro" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="../desarrolladores" style="color: #fcfcfc">Next &raquo;</a></span>
-    </span>
-</div>
 </body>
 </html>
