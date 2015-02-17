@@ -11,18 +11,18 @@ all:
 	@echo "  $(V)ejecutar$(N)    Ejecuta pilas sin instarlo."
 	@echo "  $(V)utest$(N)       Lanza todos los test de unidad."
 	@echo "  $(V)ui$(N)          Actualiza todas las interfaces de usuario."
-	@echo "  $(V)manual$(N)      Intenta actualizar la documentación y la copia a data/manual."
+	@echo "  $(V)manual$(N)      Actualiza el manual y lo copia a data/manual."
 	@echo "  $(V)rm_pyc$(N)      Borra todos los archivos .pyc del proyecto."
 	@echo ""
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
-	@echo "  $(V)version$(N)     Genera el changelog y la informacion de versión en el asistente."
+	@echo "  $(V)version$(N)     Genera el changelog y la informacion de versión."
 	@echo "  $(V)ver_sync$(N)    Sube la nueva version al servidor."
 	@echo "  $(V)ejemplos$(N)    Prueba los ejemplos uno a uno."
 	@echo ""
 	@echo "  $(V)dist$(N)        Genera todos los binarios (excepto .deb)"
 	@echo "   $(V)distmac$(N)     Genera la versión compilada para macos."
 	@echo "   $(V)distwin$(N)     Genera la versión compilada para windows."
-	@echo "   $(V)distdeb$(N)     Genera la versión compilada para debian, ubuntu o huayra."
+	@echo "   $(V)distdeb$(N)     Genera la versión compilada para debian o huayra."
 	@echo ""
 
 actualizar:
@@ -49,8 +49,8 @@ version:
 ver_sync:
 	git commit -am 'release ${VERSION}'
 	git tag '${VERSION}'
-	git push 
-	git push --all 
+	git push
+	git push --all
 	git push --tags
 
 utest:
@@ -60,7 +60,7 @@ utest:
 
 manual:
 	mkdir -p data/manual
-	cd ../pilas-manual; make generar; 
+	cd ../pilas-manual; make generar;
 	cp -R -f ../pilas-manual/site/* data/manual/
 	git add data/manual
 	git commit -m "actualizando manual."
@@ -130,7 +130,7 @@ distmac:
 	@echo "Los archivos generados están en el directorio dist/"
 	@echo "Se abre una ventana para mostrarlos."
 	@open dist
-	
+
 
 distmac_anterior: clean
 	python setup-mac.py py2app --no-strip > log_distmac.txt
@@ -166,7 +166,7 @@ distwin:
 	@echo "Los archivos generados están en el directorio dist/"
 	@echo "Se abre una ventana para mostrarlos."
 	@open dist
-	
+
 
 distdeb:
 	extras/actualizar_changelog.sh
