@@ -10,6 +10,8 @@ import sys
 
 from PyQt4 import QtCore, QtGui
 from manual_base import Ui_ManualWindow
+from PyQt4 import QtWebKit
+from PyQt4 import QtNetwork
 
 import pilasengine
 
@@ -18,6 +20,7 @@ class VentanaManual(Ui_ManualWindow):
     def setupUi(self, main):
         self.main = main
         Ui_ManualWindow.setupUi(self, main)
+        self._habilitar_inspector_web()
         self.cargar_manual()
 
     def cargar_manual(self):
@@ -28,6 +31,15 @@ class VentanaManual(Ui_ManualWindow):
         self.webView.load(base_dir)
         self.webView.history().setMaximumItemCount(0)
 
+    def _habilitar_inspector_web(self):
+        print "habilitando inspector"
+        QtWebKit.QWebSettings.globalSettings()
+        settings = QtWebKit.QWebSettings.globalSettings()
+        settings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
+        try:
+            settings.setAttribute(QtWebKit.QWebSettings.LocalContentCanAccessFileUrls, True)
+        except AttributeError:
+            pass  # Arreglo para funcionar en ubuntu 10.04
 
 def abrir():
     MainWindow = QtGui.QMainWindow()
