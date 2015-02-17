@@ -346,7 +346,7 @@ en la ventana, el mapa está, pero no tiene bloques aún.</p>
 la posición (8, 10):</p>
 <pre><code>mapa.pintar_bloque(8, 10, 1)
 </code></pre>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/mapa_un_bloque.jpg" /></p>
+<p><img alt="" src="../imagenes/mapas_y_plataformas/mapa_un_bloque.jpg" /></p>
 <p>Otro ejemplo: si queremos dibujar en la parte inferior de la
 ventana, podemos llamar muchas veces al método <code>pintar_bloque</code>, una
 vez por cada bloque que necesitamos:</p>
@@ -358,7 +358,7 @@ la posición en donde vamos a dibujar el bloque. En este caso la
 fila será 14 y la columna será 0, 1, 2, 3, 4.. etc</p>
 <p>El tercer argumento será el índice de la grilla que indicamos
 anteriormente.</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/mapa_muchos_bloques.jpg" /></p>
+<p><img alt="" src="../imagenes/mapas_y_plataformas/mapa_muchos_bloques.jpg" /></p>
 <h2 id="colisiones-con-el-escenario">Colisiones con el escenario</h2>
 <p>En los juegos de plataformas es muy importante que los bloques
 puedan interactuar con los jugadores. Por ejemplo habrá bloques
@@ -393,22 +393,22 @@ luego cargarlo desde pilas.</p>
 <p>Veamos como usar tiled para crear un escenario sencillo, primero
 tienes que crear un mapa desde el menú <code>File</code>, se le solicitará
 indicar el tamaño del escenario:</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled2.png" /></p>
+<p><img alt="" src="../imagenes/mapas_y_plataformas/tiled2.png" /></p>
 <p>Usa los valores por defecto, al menos por esta vez.</p>
 <p>Luego tienes que ir al menú <code>Map</code> y luego <code>New tileset</code> para
 indicar cual es la grilla de imágenes que usarás en los bloques. Te
 recomiendo usar la imagen <code>batalhao.png</code> (de Silveins Neto), que
 está en la carpeta de ejemplos de pilas:</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled3.png" /></p>
+<p><img alt="" src="../imagenes/mapas_y_plataformas/tiled3.png" /></p>
 <p>Ahora, lo mas divertido, comienza a dibujar sobre el escenario
 seleccionando bloques. Observa que el programa tiene varias herramientas
 para hacer que esto sea mucho mas sencillo:</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled4.png" /></p>
+<p><img alt="" src="../imagenes/mapas_y_plataformas/tiled4.png" /></p>
 <p>Luego, asegúrate de que el programa guarda todos los datos en formato CSV, esto
 es importante para que se pueda vincular con pilas. Para esto tienes
 que abrir el menú <code>Edit</code> y luego <code>Preferences</code>, la pantalla de opciones
 te tiene que quedar así:</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled5.png" /></p>
+<p><img alt="" src="../imagenes/mapas_y_plataformas/tiled5.png" /></p>
 <p>Listo, ahora solamente hay que guardar el mapa en un archivo. Ve al menú
 <code>File</code> y luego selecciona <code>Save as</code>, tienes que darle un nombre
 al archivo <code>.tmx</code>.</p>
@@ -427,13 +427,13 @@ capas serán siempre de bloques sólidos.</p>
 <p>Por ejemplo, en el escenario anterior, sería interesante colocar
 los bloques de pasto y la ruta en la capa que he llamado "suelo"
 y el resto de los objetos en otras capas como "obstáculos" y "paredes":</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled6.png" /></p>
+<p><img alt="" src="../imagenes/mapas_y_plataformas/tiled6.png" /></p>
 <h2 id="un-ejemplo-completo">Un ejemplo completo</h2>
 <p>Te recomiendo que observes el ejemplo <code>mapa_desde_archivo.py</code> del
 directorio de ejemplos de pilas, podrás observar un escenario
 muy simple con obstáculos y un personaje que se puede mover
 con el teclado:</p>
-<p><img alt="" src="../../imagenes/mapas_y_plataformas/tiled8.png" /></p>
+<p><img alt="" src="../imagenes/mapas_y_plataformas/tiled8.png" /></p>
 
             </div>
           </div>
@@ -465,7 +465,9 @@ con el teclado:</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

@@ -325,10 +325,10 @@
 <h2 id="iniciando-pilas">Iniciando pilas</h2>
 <p>Para ejecutar el asistente de pilas, abre un terminal y ejecuta el comando pilas.</p>
 <p>En tu pantalla tiene que aparecer una ventana como esta.</p>
-<p><img alt="" src="../../imagenes/empezando/asistente.png" /></p>
+<p><img alt="" src="../imagenes/empezando/asistente.png" /></p>
 <h2 id="interprete-de-pilas">Intérprete de pilas</h2>
 <p>Haz click en Abrir intérprete y aparecerá esta ventana.</p>
-<p><img alt="" src="../../imagenes/empezando/interprete.png" /></p>
+<p><img alt="" src="../imagenes/empezando/interprete.png" /></p>
 <p>La ventana se divide en dos partes. La parte de abajo muestra el editor. Todo lo que escribas en el editor se ejecutará automáticamente. El resultado se muestra en la parte de arriba.</p>
 <h2 id="iniciando-la-biblioteca">Iniciando la biblioteca</h2>
 <p>La parte de arriba es la que utilizaremos para interactuar con el motor. Y mas adelante será la única pantalla que verán los usuarios de nuestros juegos.</p>
@@ -366,14 +366,14 @@ motor, uno de ellos es <code>Mono</code>, un simpático chimpancé.</p>
 </code></pre>
 
 <p>En cualquiera de los dos casos, el personaje cambiará su aspecto y emitirá un sonido.</p>
-<p><img alt="" src="../../imagenes/empezando/smile.png" /></p>
+<p><img alt="" src="../imagenes/empezando/smile.png" /></p>
 <p>Incluso podríamos decirle al personaje que tiene que hablar algo, por ejemplo:</p>
 <pre><code>mono.decir(&quot;Hey, bienvenido a pilas!!!&quot;)
 </code></pre>
 
 <p>y el personaje mostrará exactamente lo que le indicamos que tiene que decir,
 cómo si fuera un personaje de comic:</p>
-<p><img alt="" src="../../imagenes/empezando/decir.png" /></p>
+<p><img alt="" src="../imagenes/empezando/decir.png" /></p>
 <p>A partir de ahora, comenzaremos a escribir algunos ejemplos. Ten en cuenta que no es necesario que escribas todo el código de los ejemplos, el intérprete de pilas te permite autocompletar sentencias mientras escribes.</p>
 <h2 id="cosas-en-comun-para-los-actores">Cosas en común para los actores</h2>
 <p>Internamente, Mono es un actor, así que encontraremos mucha funcionalidad en él que la tendrán el resto de los actores.</p>
@@ -385,7 +385,7 @@ mono.y = 100
 </code></pre>
 
 <p>Ten en cuenta que x e y son las coordenadas de posición en el escenario. Por lo tanto el punto (0, 0) es el centro de la ventana. Y x aumenta hacia la derecha e y hacia arriba.</p>
-<p><img alt="" src="../../imagenes/empezando/normal.png" /></p>
+<p><img alt="" src="../imagenes/empezando/normal.png" /></p>
 <p>Este espacio de referencia se puede observar en detalle si pulsas la tecla F12, ahí observarás que el movimiento del mouse está asociado a una coordenada y cada actor también.</p>
 <p>Nota:</p>
 <blockquote>
@@ -401,13 +401,13 @@ mono.y = 100
 <pre><code>mono.rotacion = 40
 </code></pre>
 
-<p><img alt="" src="../../imagenes/empezando/rotacion40.png" /></p>
+<p><img alt="" src="../imagenes/empezando/rotacion40.png" /></p>
 <p>o bien:</p>
 <pre><code>mono.rotacion = 80
 
 </code></pre>
 
-<p><img alt="" src="../../imagenes/empezando/rotacion80.png" /></p>
+<p><img alt="" src="../imagenes/empezando/rotacion80.png" /></p>
 <p>La rotación siempre se indica en grados, e indica el grado de inclinación hacia la derecha.</p>
 <h2 id="animaciones">Animaciones</h2>
 <p>Cualquiera de todas las propiedes que vimos anteriormente se pueden usar para hacer animaciones, por ejemplo, con el siguiente código podríamos indicarle al actor que dé una vuelta completa:</p>
@@ -455,7 +455,7 @@ b.explotar()
 p = pilas.actores.Pingu()    # se mueve con el teclado.
 </code></pre>
 
-<p><img alt="" src="../../imagenes/empezando/resultado_parte_1.jpg" /></p>
+<p><img alt="" src="../imagenes/empezando/resultado_parte_1.jpg" /></p>
 <p>Es todo por ahora, seguí leyendo o comenzá a explorar por tu cuenta. A divertirse!</p>
 
             </div>
@@ -488,7 +488,9 @@ p = pilas.actores.Pingu()    # se mueve con el teclado.
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

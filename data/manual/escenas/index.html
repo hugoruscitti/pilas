@@ -326,7 +326,7 @@ con el usuario.</p>
 <p>Un juego típico tendrá al menos una escena cómo
 el menú principal, una presentanción y una
 pantalla de juego.</p>
-<p><img alt="" src="../../imagenes/escenas/escenas_juego.png" /></p>
+<p><img alt="" src="../imagenes/escenas/escenas_juego.png" /></p>
 <h2 id="cosas-a-tener-en-cuenta">Cosas a tener en cuenta</h2>
 <p>Hay algunas cosas a tener en cuenta
 a la hora de manejar escenas, porque
@@ -357,11 +357,11 @@ de código:</p>
 <p>Esto le dará a tu escena una vista
 mas agradable, porque carga un fondo de
 pantalla colorido y mas divertido:</p>
-<p><img alt="" src="../../imagenes/escenas/paisaje.jpg" /></p>
+<p><img alt="" src="../imagenes/escenas/paisaje.jpg" /></p>
 <p>o podrías usar un fondo de atardecer:</p>
 <pre><code>pilas.fondos.Tarde()
 </code></pre>
-<p><img alt="" src="../../imagenes/escenas/tarde.jpg" /></p>
+<p><img alt="" src="../imagenes/escenas/tarde.jpg" /></p>
 <h2 id="como-crear-nuevas-escenas">Cómo crear nuevas escenas</h2>
 <p>Imagina que tienes un juego con dos pantallas, una
 que simplemente dice "bienvenido" y  otra con
@@ -386,7 +386,7 @@ simplemente tienes que decirle a pilas que esta escena es la activa:</p>
 </code></pre>
 <p>Esto eliminará las escenas almacenadas y se colocará como la escena
 actual y activa:</p>
-<p><img alt="" src="../../imagenes/escenas/escena_simple.jpg" /></p>
+<p><img alt="" src="../imagenes/escenas/escena_simple.jpg" /></p>
 <p>Ahora, si quieres salir de la escena, simplemente tendrías
 que hacer un objeto de otra clase que represente otra escena y llamar a uno de
 estos tres metodos:</p>
@@ -444,7 +444,9 @@ deberás redefinir el método:</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

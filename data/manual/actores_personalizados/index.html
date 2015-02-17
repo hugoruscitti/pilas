@@ -332,7 +332,7 @@ esperada.</p>
 <p>Comencemos con una imagen sencilla para el
 actor, este archivo se llama <code>alien.png</code> y está
 en el directorio de nuestro código:</p>
-<p><img alt="imagen alien.png" src="../../imagenes/actores_personalizados/alien.png" /></p>
+<p><img alt="imagen alien.png" src="../imagenes/actores_personalizados/alien.png" /></p>
 <p>Luego, es momento de crear el código de la clase para
 agrupar todo lo relacionado a este nuevo actor. Por
 ejemplo con un código así:</p>
@@ -355,7 +355,7 @@ la sentencia:</p>
 
 <p>Ahora con el código completo, tendrías que ver al personaje
 en el centro de la pantalla:</p>
-<p><img alt="imagen alien.png" src="../../imagenes/actores_personalizados/completo.png" /></p>
+<p><img alt="imagen alien.png" src="../imagenes/actores_personalizados/completo.png" /></p>
 <h2 id="comportamiento-heredado">Comportamiento heredado</h2>
 <p>Algo interesante de los nuevos actores es que incorporan
 por herencia lo que saben hacer casi todos los actores
@@ -364,7 +364,7 @@ de clase actor con la linea <code>class Alien(pilasengine.actores.Actor):</code>
 <p>Por ejemplo, podrías escribir algo como:</p>
 <pre><code>alien.decir(u"¡oh, no, humanos!")
 </code></pre>
-<p><img alt="" src="../../imagenes/actores_personalizados/decir.png" /></p>
+<p><img alt="" src="../imagenes/actores_personalizados/decir.png" /></p>
 <h2 id="creando-metodos-nuevos">Creando métodos nuevos</h2>
 <p>Ten en cuenta que ahora con nuestra nueva
 clase podemos crear funcionalidad nueva y específica
@@ -389,11 +389,11 @@ class Alien(pilasengine.actores.Actor):
 <p>Y ahora tenemos dos métodos nuevos para invocar:</p>
 <pre><code>alien.saludar()
 </code></pre>
-<p><img alt="" src="../../imagenes/actores_personalizados/saludar.png" /></p>
+<p><img alt="" src="../imagenes/actores_personalizados/saludar.png" /></p>
 <p>y otro un poquito mas complejo:</p>
 <pre><code>alien.dar_vuelta()
 </code></pre>
-<p><img alt="" src="../../imagenes/actores_personalizados/dar_vuelta.gif" /></p>
+<p><img alt="" src="../imagenes/actores_personalizados/dar_vuelta.gif" /></p>
 <h2 id="el-metodo-especial-actualizar">El método especial "actualizar"</h2>
 <p>Una de las cosas mas importantes de la clase actor
 es que incorpora un método especial llamado <code>actualizar</code>. Este método se llamará automáticamente
@@ -433,7 +433,7 @@ opuesto para el lado
 derecho.</p>
 <p>Así se ve mientras voy pulsando las teclas <code>izquierda</code>
 y <code>derecha</code>:</p>
-<p><img alt="" src="../../imagenes/actores_personalizados/caminando.gif" /></p>
+<p><img alt="" src="../imagenes/actores_personalizados/caminando.gif" /></p>
 <h2 id="leyendo-el-codigo-de-otros-actores">Leyendo el código de otros actores</h2>
 <p>Pilas viene con una función especial llamada
 <code>pilas.ver</code>, que te permite ver el código de
@@ -488,7 +488,7 @@ energia, podrías escribir:</p>
 </code></pre>
 
 <p>Y el resultado debería quedarte así:</p>
-<p><img alt="" src="../../imagenes/actores_personalizados/personalizado.png" /></p>
+<p><img alt="" src="../imagenes/actores_personalizados/personalizado.png" /></p>
 <h2 id="detectando-errores-y-problemas-al-inicializar">Detectando errores y problemas al inicializar</h2>
 <p>Es muy importante que al momento de crear actores a partir
 de clases especifiques los argumentos a utilizar. Hemos incluído
@@ -547,7 +547,9 @@ que espera 3 argumentos, pero solo hemos llamado incorrectamente.</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

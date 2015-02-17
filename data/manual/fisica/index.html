@@ -348,7 +348,7 @@ hacerlas rebotar:</p>
 <p>Como puedes ver, el resultado es un grupo caótico
 de actores chocando entre sí. Mas adelante veremos
 como personalizar y "controlar" un poco el escenario.</p>
-<p><img alt="" src="../../imagenes/fisica/fisica.png" /></p>
+<p><img alt="" src="../imagenes/fisica/fisica.png" /></p>
 <p>Los actores que tienen física son un poco particulares, pero
 aún así se los puede tratar como a otros actores. Por
 ejemplo, si quieres poder arrastrar y soltar figuras con
@@ -366,7 +366,7 @@ son solo cuadrados y circunferencias.</p>
 con aspecto de caja o pelota, y por el otro se nos oculta una
 simulación entre polígonos mucho mas primitiva y simple.</p>
 <p>Observa esta escena:</p>
-<p><img alt="" src="../../imagenes/fisica/fisica_1.jpg" /></p>
+<p><img alt="" src="../imagenes/fisica/fisica_1.jpg" /></p>
 <p>Cada uno de esos actores está asociado a una figura
 geométrica, la física en realidad se da en un nivel muy
 primitivo de figuras. El aspecto de las cosas es
@@ -375,7 +375,7 @@ físico son las figuras geométricas (cuerpos).</p>
 <p>Intenta lo siguiente, pulsa la tecla <strong>F11</strong> y observarás
 varias lineas de color rojo indicando las figuras de
 los cuerpos:</p>
-<p><img alt="" src="../../imagenes/fisica/fisica_2.jpg" /></p>
+<p><img alt="" src="../imagenes/fisica/fisica_2.jpg" /></p>
 <p>Las lineas rojas indican polígonos que el
 motor de física puede controlar, las cajas tienen forma
 rectangular, los actores Pelota tienen figuras circulares, y
@@ -404,7 +404,7 @@ a cualquier actor con facilidad.</p>
 y pulsa la tecla <strong>F11</strong>. Tendrías que ver el texto
 "F11 ModoFisica habilitado."
 en la esquina superior de la ventana:</p>
-<p><img alt="" src="../../imagenes/fisica/fisica_personalizada_1.jpg" /></p>
+<p><img alt="" src="../imagenes/fisica/fisica_personalizada_1.jpg" /></p>
 <p>Ahora genera dos figuras físicas, una circunferencia estática
 y otra dinámica:</p>
 <pre><code>circulo = pilas.fisica.Circulo(0, 0, 50, dinamica=False)
@@ -415,7 +415,7 @@ circulo_dinamico = pilas.fisica.Circulo(10, 200, 50)
 segundo comenzará en la posición <code>(10, 200)</code>, es decir,
 en la parte superior de la ventana y luego caerá
 rebotando. Algo así:</p>
-<p><img alt="" src="../../imagenes/fisica/fisica_personalizada_2.jpg" /></p>
+<p><img alt="" src="../imagenes/fisica/fisica_personalizada_2.jpg" /></p>
 <p>Ahora bien, habrás notado que estas dos circunferencias las
 podemos ver porque está habilitado el módulo de depuración (que
 activamos con <strong>F11</strong>), pero esto no lo va a ver alguien que juegue
@@ -437,7 +437,7 @@ bomba.aprender(pilas.habilidades.Imitar, circulo_dinamico)
 
 <p>Esto es diferente a lo anterior, los objetos físicos ahora
 tienen apariencia:</p>
-<p><img alt="" src="../../imagenes/fisica/fisica_personalizada_3.jpg" /></p>
+<p><img alt="" src="../imagenes/fisica/fisica_personalizada_3.jpg" /></p>
 <p>Ahora podríamos desactivar el modo depuración física (pulsando
 nuevamente <strong>F11</strong>) y jugar un poco impulsando la bomba de un
 lado a otro:</p>
@@ -465,7 +465,7 @@ sino en metros.</p>
 <p>¿Cual es la relación?, pilas convierte pixels a metros para mantener al mundo
 de box2D en coherencia con lo que estamos viendo en pantalla.</p>
 <p>30 pixels son equivalentes a 1 metro:</p>
-<p><img alt="" src="../../imagenes/fisica/escalas.png" /></p>
+<p><img alt="" src="../imagenes/fisica/escalas.png" /></p>
 <h2 id="cambiando-la-gravedad-interactivamente">Cambiando la gravedad interactivamente</h2>
 <p>Por defecto, la gravedad del escenario es de (0, -90), esto
 significa que los objetos "caen" hacia abajo, y lo hacen con
@@ -519,7 +519,9 @@ de la gravedad son <code>0</code> y <code>-90</code>.</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

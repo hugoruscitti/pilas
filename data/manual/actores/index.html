@@ -341,7 +341,7 @@ tuyos propios:</p>
 <h3 id="actor">Actor</h3>
 <p>Representa un objeto visible en pantalla, algo que se ve y tiene
 la estructura inicial de actor</p>
-<p><img alt="" src="../../imagenes/actores/actor.png" /></p>
+<p><img alt="" src="../imagenes/actores/actor.png" /></p>
 <p>Un objeto Actor se tiene que crear siempre indicando una imagen. Si no
 se especifica una imagen, se verán los signos de interrogación de
 color rojo.</p>
@@ -353,7 +353,7 @@ color rojo.</p>
 protagonista = Actor(imagen)
 </code></pre>
 <p>El resultado será:</p>
-<p><img alt="" src="../../imagenes/actores/planeta_azul.png" /></p>
+<p><img alt="" src="../imagenes/actores/planeta_azul.png" /></p>
 <p>Luego, una vez que ha sido ejecutada la sentencia aparecerá
 el nuevo actor para que puedas manipularlo. Por ejemplo
 alterando sus propiedades:</p>
@@ -373,7 +373,7 @@ con la imagen <code>invisible.png</code>:</p>
 </code></pre>
 <h3 id="aceituna">Aceituna</h3>
 <p>El actor aceituna es super simple</p>
-<p><img alt="" src="../../imagenes/actores/aceituna.png" /></p>
+<p><img alt="" src="../imagenes/actores/aceituna.png" /></p>
 <pre><code>aceituna = pilas.actores.Aceituna()
 </code></pre>
 <p><em>Métodos:</em></p>
@@ -400,7 +400,7 @@ en la animación.</li>
 animacion = pilas.actores.Animacion(grilla, ciclica=True, velocidad=1)
 </code></pre>
 
-<p><img alt="" src="../../imagenes/actores/explosion.png" /></p>
+<p><img alt="" src="../imagenes/actores/explosion.png" /></p>
 <p><em>Métodos:</em></p>
 <ul>
 <li><code>animacion.saludar(grilla=None, ciclica=False, x=0, y=0, velocidad=10)</code></li>
@@ -419,7 +419,7 @@ actor.definir_cuadro(2)
 actor.definir_cuadro(5)
 </code></pre>
 
-<p><img alt="" src="../../imagenes/actores/pingu.png" /></p>
+<p><img alt="" src="../imagenes/actores/pingu.png" /></p>
 <p><em>Métodos:</em></p>
 <ul>
 <li><code>actor.definir_cuadro(indice)</code></li>
@@ -483,7 +483,9 @@ banana.cerrar()
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

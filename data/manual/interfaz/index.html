@@ -337,7 +337,7 @@ click sobre él, para eso necesitás una función y conectarla:</p>
 boton.conectar(saludar)
 </code></pre>
 
-<p><img alt="" src="../../imagenes/interfaz/boton_saludando.png" /></p>
+<p><img alt="" src="../imagenes/interfaz/boton_saludando.png" /></p>
 <p>Ten en cuenta que todos los objetos creados siguen siendo actores, así
 que se pueden manipular como vimos antes: escalar, rotar, moverse etc...</p>
 <h4 id="propiedades">Propiedades</h4>
@@ -369,7 +369,7 @@ b.conectar(moverse)
 </code></pre>
 
 <p>El resultado en pantalla será así:</p>
-<p><img alt="" src="../../imagenes/interfaz/boton.gif" /></p>
+<p><img alt="" src="../imagenes/interfaz/boton.gif" /></p>
 <h2 id="clase-deslizador">Clase: Deslizador</h2>
 <p>El deslizador es útil para que el usuario pueda seleccionar
 un valor intermedio entre dos números, por ejemplo entre 0 y 1, 0 y
@@ -381,7 +381,7 @@ deslizadores te permiten regular el grado de volumen.</p>
 en el directorio <code>ejemplos</code>. Tiene tres deslizadores, y
 el usuario puede regular cualquiera de los tres para ver
 los cambios en el actor:</p>
-<p><img alt="" src="../../imagenes/interfaz/deslizador.jpg" /></p>
+<p><img alt="" src="../imagenes/interfaz/deslizador.jpg" /></p>
 <p>Para construir un deslizador y asociarlo a una función
 puedes escribir algo como esto:</p>
 <pre><code>def cuando_cambia(valor):
@@ -451,7 +451,7 @@ selector.conectar(cambiar_el_fondo)
 </code></pre>
 
 <p>El resultado en pantalla será así:</p>
-<p><img alt="" src="../../imagenes/interfaz/selector.gif" /></p>
+<p><img alt="" src="../imagenes/interfaz/selector.gif" /></p>
 <h4 id="propiedades_2">Propiedades</h4>
 <ul>
 <li><code>texto</code> - Etiqueta que mostrará el deslizador</li>
@@ -469,7 +469,7 @@ selector.conectar(cambiar_el_fondo)
 usuario, puedes usar el objeto <code>IngresoDeTexto</code>. Ya que
 muestra una caja y un pequeño cursor para
 ingresar texto:</p>
-<p><img alt="" src="../../imagenes/interfaz/ingreso_de_texto.png" /></p>
+<p><img alt="" src="../imagenes/interfaz/ingreso_de_texto.png" /></p>
 <p>Para usar este componente tienes que crearlo y luego leer o escribir el
 atributo <code>texto</code>, que contiene la cadena de texto de la caja:</p>
 <pre><code>entrada = pilas.interfaz.IngresoDeTexto()
@@ -521,7 +521,7 @@ opciones = pilas.interfaz.ListaSeleccion(['hola', 'opcion', 'tres'], cuando_sele
 </code></pre>
 
 <p>Deberías ver en pantalla lo siguiente:</p>
-<p><img alt="" src="../../imagenes/interfaz/lista_seleccion.gif" /></p>
+<p><img alt="" src="../imagenes/interfaz/lista_seleccion.gif" /></p>
 
             </div>
           </div>
@@ -553,7 +553,9 @@ opciones = pilas.interfaz.ListaSeleccion(['hola', 'opcion', 'tres'], cuando_sele
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

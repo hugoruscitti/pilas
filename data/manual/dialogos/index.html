@@ -333,7 +333,7 @@ actor.decir("Eh!, ahora puedo hablar...")
 </code></pre>
 <p>Esto hará que el personaje muestre un globo similar al
 de las historietas con las frases que has colocado.</p>
-<p><img alt="" src="../../imagenes/dialogos/decir.jpg" /></p>
+<p><img alt="" src="../imagenes/dialogos/decir.jpg" /></p>
 <h2 id="conversaciones">Conversaciones</h2>
 <p>Los mensajes de dialogo se pueden usar para que dos
 o mas actores puedan conversar entre sí. Esto es útil
@@ -378,7 +378,7 @@ decirlo:</p>
 
 dialogo.elegir(mono, "Mi color favorito es el...", ["rojo", "verde", "azul"], cuando_responde_color_favorito)
 </code></pre>
-<p><img alt="" src="../../imagenes/dialogos/pregunta.jpg" /></p>
+<p><img alt="" src="../imagenes/dialogos/pregunta.jpg" /></p>
 
             </div>
           </div>
@@ -410,7 +410,9 @@ dialogo.elegir(mono, "Mi color favorito es el...", ["rojo", "verde", "azul"], cu
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

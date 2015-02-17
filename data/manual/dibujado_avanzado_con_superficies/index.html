@@ -367,7 +367,7 @@ pilas.ejecutar() # Necesario al ejecutar en scripts.
 es un objeto que se comporta cómo una imagen, pero con la diferencia
 que podemos dibujar sobre ella libremente y crear desde el código la
 imagen que queramos:</p>
-<p><img alt="" src="../../imagenes/dibujo_avanzado/carita.png" /></p>
+<p><img alt="" src="../imagenes/dibujo_avanzado/carita.png" /></p>
 <p>Ten en cuenta que también estamos mostrando la superficie gracias a un
 actor, así que si rotamos el actor o cambiamos su escala la superficie
 se observará de forma transformada.</p>
@@ -484,7 +484,9 @@ solicitamos, se imprimirá usando una tipografía por defecto.</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

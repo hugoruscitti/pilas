@@ -401,7 +401,7 @@ de profundidad lo que hace cada uno.</p>
 <p>El objeto de la clase Mundo se construye cuando se invoca a la
 función <code>pilas.iniciar</code>. Su implementación está en el
 archivo <code>mundo.py</code>:</p>
-<p><img alt="" src="../../imagenes/comofunciona/mundo.png" /></p>
+<p><img alt="" src="../imagenes/comofunciona/mundo.png" /></p>
 <p>Su responsabilidad es inicializar varios componentes de pilas, como
 el sistema de controles, la ventana, etc.</p>
 <p>Uno de sus métodos mas importantes es <code>ejecutar_bucle_principal</code>. Un
@@ -466,7 +466,7 @@ polimorfismo:</p>
 <p>El objeto motor sabe que tiene que delegar el manejo multimedia
 a una instancia (o derivada) de la clase <code>Motor</code> (ver directorio
 <code>pilas/motores/</code>:</p>
-<p><img alt="" src="../../imagenes/comofunciona/motores.png" /></p>
+<p><img alt="" src="../imagenes/comofunciona/motores.png" /></p>
 <p>El motor expone toda la funcionalidad que se necesita para
 hace un juego: sabe crear una ventana, pintar una imagen o
 reproducir sonidos, entre tantas otras cosas.</p>
@@ -484,7 +484,7 @@ el directorio <code>pilas/actores</code>.</p>
 el comportamiento común de todos los actores.</p>
 <p>Por ejemplo, esta sería una versión reducida de la
 jerarquía de clases de los actores Mono, Pingu y Tortuga:</p>
-<p><img alt="" src="../../imagenes/comofunciona/actores.png" /></p>
+<p><img alt="" src="../imagenes/comofunciona/actores.png" /></p>
 <p>Hay dos métodos en los actores que se invocarán en
 todo momento: el método <code>actualizar</code> se invocará
 cuando el bucle de juego del mundo llame al método
@@ -503,7 +503,7 @@ una instancia de objeto <code>Depurador</code> que se encarga de
 hacer estos dibujos.</p>
 <p>Las clases mas importantes a la hora de investigar el depurador
 están en el archivo <code>depurador.py</code>:</p>
-<p><img alt="" src="../../imagenes/comofunciona/depurador.png" /></p>
+<p><img alt="" src="../imagenes/comofunciona/depurador.png" /></p>
 <p>El Depurador tiene dos atributos, tiene una pizarra para dibujar y
 una lista de modos. Los modos pueden ser cualquiera de los que están
 en la jerarquía de ModoDepuracion, por ejemplo, podría tener
@@ -653,7 +653,7 @@ lista de habilidades que puede aumentar usando el método <code>aprender</code>.
 argumento, construye un objeto y lo guarda en su lista de habilidades.</p>
 <p>Este es un modelo de cómo se conocen las clases entre
 sí:</p>
-<p><img alt="" src="../../imagenes/comofunciona/habilidades.png" /></p>
+<p><img alt="" src="../imagenes/comofunciona/habilidades.png" /></p>
 <p>Entonces, una vez que invocamos a la sentencia, nuestro actor
 tendrá un nuevo objeto en su lista de habilidades, listo para
 ejecutarse en cada cuadro de animación.</p>
@@ -815,7 +815,9 @@ definidas en el archivo <code>Makefile</code>.</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

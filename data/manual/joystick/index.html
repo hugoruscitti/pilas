@@ -322,7 +322,7 @@
               <h1 id="joystick">Joystick</h1>
 <p>El soporte para joysticks nos permite controlar actores usando varios
 modelos de mandos usb, por ejemplos los de <strong>xbox</strong> o similares:</p>
-<p><img alt="" src="../../imagenes/joystick/xbox.jpg" /></p>
+<p><img alt="" src="../imagenes/joystick/xbox.jpg" /></p>
 <h2 id="obtener-dispositivos-conectados">Obtener dispositivos conectados</h2>
 <p>El primer paso para obtener acceso a los joysticks es listar
 los dispositivos conectados con la función <code>listar</code>. Por ejemplo
@@ -384,7 +384,9 @@ informe el estado del control de forma mas directa.</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

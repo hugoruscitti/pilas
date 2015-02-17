@@ -338,7 +338,7 @@ especie.</p>
 <p>Al crear un grupo de esta forma, todos los actores
 se colocarán en posiciones aleatorias.</p>
 <p>Esto es lo que veríamos en la ventana de pilas:</p>
-<p><img alt="" src="../../imagenes/grupos/grupos_bombas.jpg" /></p>
+<p><img alt="" src="../imagenes/grupos/grupos_bombas.jpg" /></p>
 <p>A partir de ahora, la referencia <code>bombas</code> nos servirá para
 controlar a todas las bombas al mismo tiempo.</p>
 <p>Esta referencia (que llamamos <code>bombas</code>) es parecida a una lista de datos en <code>python</code>. Podríamos realizar operaciones típicas como contar, recorrer o clasificar de la misma forma que se hace en el lenguaje <code>python</code>.</p>
@@ -361,7 +361,7 @@ hacer algo cómo esto:</p>
 </code></pre>
 
 <p>Y en la ventana obtendremos:</p>
-<p><img alt="" src="../../imagenes/grupos/grupos_bombas_x.jpg" /></p>
+<p><img alt="" src="../imagenes/grupos/grupos_bombas_x.jpg" /></p>
 <p>Incluso, les podríamos enseñar a las bombas a reaccionar
 como si fueran pelotas, es decir, que reboten e interactúen
 con la aceleración gravitatoria:</p>
@@ -370,7 +370,7 @@ con la aceleración gravitatoria:</p>
 
 <p>Ahora tendrás algo mucho mas interesante, un montón de
 actores rebotando entre sí:</p>
-<p><img alt="" src="../../imagenes/grupos/grupos_bombas_como_pelota.jpg" /></p>
+<p><img alt="" src="../imagenes/grupos/grupos_bombas_como_pelota.jpg" /></p>
 <p>Un consejo, la gravedad del escenario se puede modificar
 usando una sentencia como la que sigue:</p>
 <pre><code>pilas.fisica.gravedad_x = 200
@@ -404,7 +404,7 @@ mi_grupo.agregar(pelota)
 mi_grupo.escala = [2]
 </code></pre>
 
-<p><img alt="" src="../../imagenes/grupos/grupos_personalizado_escala.jpg" /></p>
+<p><img alt="" src="../imagenes/grupos/grupos_personalizado_escala.jpg" /></p>
 <p>Un detalle a tener en cuenta, el método <code>agregar</code> no solo te permite agregar actores, también podrías tomar un grupo y agregarle con algo como <code>grupo.agregar(otro_grupo)</code>.</p>
 
             </div>
@@ -437,7 +437,9 @@ mi_grupo.escala = [2]
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

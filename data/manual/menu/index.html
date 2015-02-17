@@ -352,7 +352,7 @@ opciones, que se pueden seleccionar usando el
 teclado.</p>
 <p>Esta es una imagen de cómo se vé el menú del
 ejemplo de mas arriba:</p>
-<p><img alt="" src="../../imagenes/menu/menu.jpg" /></p>
+<p><img alt="" src="../imagenes/menu/menu.jpg" /></p>
 <p>Cada vez que selecciones una opción aparecerá un
 mensaje en la consola de python.</p>
 <h2 id="creando-funciones-de-respuesta">Creando funciones de respuesta</h2>
@@ -439,7 +439,9 @@ cambio de rotación vas a ver a qué me refiero...</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

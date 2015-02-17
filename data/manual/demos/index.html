@@ -340,7 +340,7 @@ pilas.ejecutar() # Necesario al ejecutar en scripts.
 <p>inmediatamente despúes de evaluar estas sentencias, aparecerá en
 pantalla un grupo de piezas para que puedas
 empezar a acomodarlas usando el mouse.</p>
-<p><img alt="" src="../../imagenes/demos/piezas.jpg" /></p>
+<p><img alt="" src="../imagenes/demos/piezas.jpg" /></p>
 <p>Ten en cuenta que los ejemplos también reciben parámetros, así
 podemos alterar un poco mas el funcionamiento del minijuego.</p>
 <p>Veamos cómo podemos crear un rompecabezas distinto a partir
@@ -356,7 +356,7 @@ pilas.ejecutar() # Necesario al ejecutar en scripts.
 </code></pre>
 <p>Si, ahora en pantalla aparece la imagen del mono pero separado
 en 4 piezas. Dado que hemos especificado 2 (filas) y 2 (columnas).</p>
-<p><img alt="" src="../../imagenes/demos/piezas_mono.jpg" /></p>
+<p><img alt="" src="../imagenes/demos/piezas_mono.jpg" /></p>
 <p>Puedes usar cualquier imagen que quieras para construir tu
 ejemplo de piezas.</p>
 <p>También se admite una función cómo argumento al
@@ -374,7 +374,7 @@ piezas.iniciar()
 
 pilas.ejecutar() # Necesario al ejecutar en scripts.
 </code></pre>
-<p><img alt="" src="../../imagenes/demos/piezas_completo.jpg" /></p>
+<p><img alt="" src="../imagenes/demos/piezas_completo.jpg" /></p>
 
             </div>
           </div>
@@ -406,7 +406,9 @@ pilas.ejecutar() # Necesario al ejecutar en scripts.
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

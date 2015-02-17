@@ -344,7 +344,7 @@ movimiento debe realizar.</p>
 <p>La siguiente imagen muestra lo que podría
 dibujar la tortuga con algunas sentencias de
 movimientos:</p>
-<p><img alt="" src="../../imagenes/dibujado_simple_en_pantalla/tortuga_dibuja_triangulo.jpg" /></p>
+<p><img alt="" src="../imagenes/dibujado_simple_en_pantalla/tortuga_dibuja_triangulo.jpg" /></p>
 <p>La imagen no alcanza a mostrar por completo el
 concepto, pero en pocas palabras se puede sintetizar
 lo que realmente hace.</p>
@@ -450,7 +450,7 @@ pizarra.dibujar_punto(0, 0)
 si prefieres otro color, o trazar una linea:</p>
 <pre><code>pizarra.linea(0, 0, 200, 200, pilas.colores.verdeoscuro, grosor=5)
 </code></pre>
-<p><img alt="" src="../../imagenes/dibujado_simple_en_pantalla/linea.jpg" /></p>
+<p><img alt="" src="../imagenes/dibujado_simple_en_pantalla/linea.jpg" /></p>
 <h2 id="pintando-imagenes">Pintando imágenes</h2>
 <p>Las pizarras también pueden dibujar imágenes sobre la superficie,
 y esto es útil cuando quieras crear pinceles especiales sobre
@@ -462,7 +462,7 @@ indicarla a la pizarra que la dibuje en una posicion determinada.</p>
 pizarra.pintar_imagen(imagen, 0, 0)
 </code></pre>
 <p>Así se verá:</p>
-<p><img alt="" src="../../imagenes/dibujado_simple_en_pantalla/pizarra_imagen.jpg" /></p>
+<p><img alt="" src="../imagenes/dibujado_simple_en_pantalla/pizarra_imagen.jpg" /></p>
 <p>Ten en cuenta que en estos casos, cuando estamos dibujando
 una imagen sobre otra, el punto destino (x, y) siempre indica
 la esquina superior izquierda de la imagen, no el centro u
@@ -484,7 +484,7 @@ que pinte el cuadro actual de la grilla:</p>
 pizarra.pintar_grilla(grilla, 0, 0)
 </code></pre>
 <p>Así se verá:</p>
-<p><img alt="" src="../../imagenes/dibujado_simple_en_pantalla/pizarra_grilla.jpg" /></p>
+<p><img alt="" src="../imagenes/dibujado_simple_en_pantalla/pizarra_grilla.jpg" /></p>
 <p>Esto es útil cuando se quieren pintar bloques de un escenario
 completo, por ejemplo podríamos tener una grilla con distintos
 tipos de suelos (pasto, piedra, tierra) y luego ir
@@ -523,7 +523,9 @@ habilidades, cambiar su posición, rotación o lo que quieras.</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

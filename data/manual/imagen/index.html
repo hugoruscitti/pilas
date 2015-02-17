@@ -373,7 +373,7 @@ fondo.imagen.repetir_horizontal = True
 personajes es usar una grilla.</p>
 <p>La siguiente imagen es una grilla de 10 columnas
 que utilizamos para crear al personaje "pingu":</p>
-<p><img alt="" src="../../imagenes/imagen/pingu.png" /></p>
+<p><img alt="" src="../imagenes/imagen/pingu.png" /></p>
 <p>Internamente la imagen se almacena así, pero a la
 hora de mostrarse en pantalla se puede seleccionar
 el cuadro.</p>
@@ -444,7 +444,7 @@ manera en que se lee una historieta (de izquierda
 a derecha y de arriba a abajo).</p>
 <p>Esta es la apariencia de la imágen que usamos antes y
 los números indican el órden con que pilas leerá los cuadros:</p>
-<p><img alt="" src="../../imagenes/imagen/grilla_con_columnas.png" /></p>
+<p><img alt="" src="../imagenes/imagen/grilla_con_columnas.png" /></p>
 <h2 id="haciendo-animaciones-sencillas">Haciendo animaciones sencillas</h2>
 <p>En muchas oportunidades nos interesa hacer animaciones simples
 y que se repitan todo el tiempo sin mucho esfuerzo.</p>
@@ -459,7 +459,7 @@ que se repita todo el tiempo, comenzando desde el principio
 cuando llega al final.</p>
 <p>Veamos un ejemplo, esta imagen tiene <code>6</code> cuadros de animación
 ordenados en columnas:</p>
-<p><img alt="" src="../../imagenes/imagen/grilla_fuego.png" /></p>
+<p><img alt="" src="../imagenes/imagen/grilla_fuego.png" /></p>
 <p>Una forma sencilla de convertir esta animación en un actor
 simple es crear la grilla, construir un actor <code>Animacion</code> e
 indicarle a pilas que será una animación cíclica, es decir, que
@@ -514,20 +514,20 @@ llamar al método <code>avanzar</code>.</p>
 <h2 id="animaciones">Animaciones</h2>
 <p>Además de las imágenes y las grillas, pilas incluye un recurso llamado animación, que nos permite declarar y utilizar animaciones almacenadas en una grilla.</p>
 <p>Por ejemplo, si tenemos una grilla con varios cuadros de animación como aquí:</p>
-<p><img alt="" src="../../imagenes/imagen/alien-simple.png" /></p>
+<p><img alt="" src="../imagenes/imagen/alien-simple.png" /></p>
 <p>podemos cargar la grilla completa y definir las dos
 animaciones por separado.</p>
 <p>Enumerando los cuadros de animación nos quedaría así:</p>
-<p><img alt="" src="../../imagenes/imagen/alien-simple-enumerado.png" /></p>
+<p><img alt="" src="../imagenes/imagen/alien-simple-enumerado.png" /></p>
 <p>y desde aquí podemos extraer dos animaciones:</p>
 <ul>
 <li>La animación que podemos armar con los cuadros <code>0, 1, 4</code>:</li>
 </ul>
-<p><img alt="" src="../../imagenes/imagen/anim2.gif" /></p>
+<p><img alt="" src="../imagenes/imagen/anim2.gif" /></p>
 <ul>
 <li>Y la animación que se puede armar con los cuadros <code>3, 4, 5</code>:</li>
 </ul>
-<p><img alt="" src="../../imagenes/imagen/anim1.gif" /></p>
+<p><img alt="" src="../imagenes/imagen/anim1.gif" /></p>
 <p>Luego, para indicarle a <em>pilas</em> como interpretar las animaciones podemos
 cargar la animación y especificar los cuadros:</p>
 <pre><code class="python">animacion = pilas.imagenes.cargar_animacion('alien.png', 5, 1)
@@ -601,7 +601,9 @@ la animación <code>parado</code>.</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

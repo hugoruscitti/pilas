@@ -329,7 +329,7 @@ colisiones físicas y colisiones programadas.</p>
 <p>Las <strong>colisiones físicas</strong> son aquellas que generan una reacción que se puede
 visualizar como una respuesta física, por ejemplo si creamos 5 cajas y las
 hacemos rebotar entre sí, estas serían colisiones físicas:</p>
-<p><img alt="" src="../../imagenes/colisiones/cajas.png" /></p>
+<p><img alt="" src="../imagenes/colisiones/cajas.png" /></p>
 <pre><code>cajas = pilas.actores.Caja() * 5
 </code></pre>
 
@@ -340,7 +340,7 @@ por código, y generalmente tienen que ver con la lógica del juego (perder, gan
 puntos, pasar de nivel etc..)</p>
 <p>Por ejemplo, una colisión programada sencilla se puede visualizar si creamos
 un personaje que se pueda mover con el mouse y se alimente comiendo bananas:</p>
-<p><img alt="" src="../../imagenes/colisiones/mono.png" /></p>
+<p><img alt="" src="../imagenes/colisiones/mono.png" /></p>
 <pre><code>mono = pilas.actores.Mono()
 mono.aprender(pilas.habilidades.Arrastrable)
 bananas = pilas.actores.Banana() * 10
@@ -356,10 +356,10 @@ pilas.colisiones.agregar(mono, bananas, cuando_colisiona)
 <p>El modo depuración física nos permite observar las figuras físicas de
 cada uno de los actores. Para activar este modo, podés pulsar la tecla <strong>F12</strong>
 o simplemente hacer click sobre el ícono "mostrar figuras físicas":</p>
-<p><img alt="" src="../../imagenes/colisiones/depurador.png" /></p>
+<p><img alt="" src="../imagenes/colisiones/depurador.png" /></p>
 <p>Con este modo habilitado, vas a poder observar la figura de colisión
 que lo representa:</p>
-<p><img alt="" src="../../imagenes/colisiones/ejemplo.png" /></p>
+<p><img alt="" src="../imagenes/colisiones/ejemplo.png" /></p>
 <p>En color blanco aparecen las figuras físicas, que al rebotar con otras
 producirán una reacción de choque y rebote. Y de color verde van a aparecer
 los sensores.</p>
@@ -389,7 +389,7 @@ la figura de colisión por otra.</p>
 <p>La forma mas sencilla de cambiar una figura por otra, es crear la figura
 física primero y luego asignarla a la propiedad <code>figura_de_colision</code> del
 actor:</p>
-<p><img alt="" src="../../imagenes/colisiones/figuras.png" /></p>
+<p><img alt="" src="../imagenes/colisiones/figuras.png" /></p>
 <p>Para construir este ejemplo construímos dos actores, al primero lo dejamos
 tal cual, pero al segundo le cambiamos la figura de colisión por un rectángulo:</p>
 <pre><code>zanahoria_normal = pilas.actores.Zanahoria(x=-100)
@@ -434,7 +434,9 @@ página de este manual.</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>

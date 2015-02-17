@@ -332,7 +332,7 @@ está dentro del modulo <code>actores</code>.</p>
 </code></pre>
 <p>y tu cadena de texto aparecerá en pantalla en color
 negro y con un tamaño predeterminado:</p>
-<p><img alt="" src="../../imagenes/texto/texto.jpg" /></p>
+<p><img alt="" src="../imagenes/texto/texto.jpg" /></p>
 <p>Si quieres puedes escribir texto de varias lineas usando el caracter
 <code>\n</code> para indicar el salto de linea.</p>
 <p>Por ejemplo, el siguiente código escribe el mismo mensaje de
@@ -407,7 +407,9 @@ pequeños como demostraciones o ejemplos.</p>
   <script>
   $(document).ready(function() {
      $('img').each(function(elemento) {
-        this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
      });
   });
   </script>
