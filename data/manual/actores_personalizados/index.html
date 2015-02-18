@@ -12,6 +12,7 @@
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
 
@@ -561,7 +562,7 @@ que espera 3 argumentos, pero solo hemos llamado incorrectamente.</p>
     $('a').each(function(){
       var x=this.href;
 
-      if (!this.href.endsWith('html')) {
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
         if (this.href.endsWith('/')) {
           this.href = this.href + "index.html";
         } else {
