@@ -18,23 +18,24 @@ from PyQt4 import QtGui
 from PyQt4 import QtCore
 
 import configuracion
-import  escenas
-import  imagenes
-import  colores
-import  actores
-import  utils
-import  fondos
-import  depurador
-import  musica
-import  interfaz
-import  sonidos
-import  habilidades
-import  comportamientos
-import  eventos
-import  controles
-import  pad
-import  watcher
-import  plugins
+import escenas
+import imagenes
+import colores
+import actores
+import utils
+import fondos
+import depurador
+import musica
+import interfaz
+import sonidos
+import habilidades
+import comportamientos
+import eventos
+import controles
+import pad
+import watcher
+import plugins
+import simbolos
 
 import widget
 
@@ -160,7 +161,9 @@ class Pilas(object):
         self.actores = actores.Actores(self)
         self.actores.eliminar_actores_personalizados()
         self.eventos = eventos.Eventos(self)
+
         self.controles = controles.Controles(self)
+        self.simbolos = simbolos.Simbolos(self)
 
         if not getattr(self, 'escenas', None):
             self.escenas = escenas.Escenas(self)

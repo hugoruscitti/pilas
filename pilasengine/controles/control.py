@@ -108,6 +108,11 @@ class Control(object):
             self.mapa_teclado = mapa_teclado
 
         self.limpiar()
+        self.escena = escena
+        self.Control = self.constructor_control
+
+    def constructor_control(self, mapa_teclado):
+        return Control(self.escena, mapa_teclado)
 
     def cuando_pulsa_una_tecla(self, evento):
         self.procesar_cambio_de_estado_en_la_tecla(evento.codigo, True)

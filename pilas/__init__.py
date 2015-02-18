@@ -283,4 +283,3 @@ def obtener_configuracion():
 # de los eventos en una referencia al evento dentro de la escena actual.
 from .evento import ProxyEventos
 eventos = ProxyEventos()
-
