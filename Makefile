@@ -98,7 +98,7 @@ dist: directorio_dist distmac distwin
 	@echo ""
 
 upload:
-	mkdir -p ~/Dropbox/releases/pilas-engine/${VERSION}
+	mkdir -p ~/Dropbox/Public/releases/pilas-engine/${VERSION}
 	cp dist/pilas-engine-${VERSION}.dmg ~/Dropbox/Public/releases/pilas-engine/${VERSION}/
 	cp dist/pilas-engine_${VERSION}.exe ~/Dropbox/Public/releases/pilas-engine/${VERSION}/
 
