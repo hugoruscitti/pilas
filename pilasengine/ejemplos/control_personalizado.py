@@ -20,7 +20,7 @@ mi_control = pilas.control.Control(teclas)
 aceituna.aprender(pilas.habilidades.MoverseConElTeclado, control=mi_control)
 
 # El mono se mueve con los direccionales.
-mono.aprender(pilas.habilidades.MoverseConElTeclado, control=mi_control)
+mono.aprender(pilas.habilidades.MoverseConElTeclado)
 
 
 pilas.avisar("Para mover la aceituna pulsa las teclas W, A, S o D.")

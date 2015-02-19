@@ -98,14 +98,17 @@ class Control(object):
         escena.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
         escena.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
 
-        if not mapa_teclado:
-            self.mapa_teclado = {simbolos.IZQUIERDA: 'izquierda',
-                                 simbolos.DERECHA: 'derecha',
-                                 simbolos.ARRIBA: 'arriba',
-                                 simbolos.ABAJO: 'abajo',
-                                 simbolos.ESPACIO: 'boton'}
-        else:
-            self.mapa_teclado = mapa_teclado
+        self.mapa_teclado = {simbolos.IZQUIERDA: 'izquierda',
+                             simbolos.DERECHA: 'derecha',
+                             simbolos.ARRIBA: 'arriba',
+                             simbolos.ABAJO: 'abajo',
+                             simbolos.ESPACIO: 'boton'}
+
+        # Si define el mapa_teclado sobre-escribe los controles
+        # estándar.
+        if mapa_teclado:
+            for key, value in mapa_teclado.items():
+                self.mapa_teclado[key] = value
 
         self.limpiar()
         self.escena = escena
