@@ -104,15 +104,25 @@ class Control(object):
                              simbolos.ABAJO: 'abajo',
                              simbolos.ESPACIO: 'boton'}
 
-        # Si define el mapa_teclado sobre-escribe los controles
-        # estándar.
+        # Si define el mapa_teclado sobre-escribe los controles estándar.
         if mapa_teclado:
-            for key, value in mapa_teclado.items():
-                self.mapa_teclado[key] = value
+            self._mezclar_mapas_de_teclas(self.mapa_teclado, mapa_teclado)
 
         self.limpiar()
         self.escena = escena
         self.Control = self.constructor_control
+
+    def _mezclar_mapas_de_teclas(self, mapa_por_omision, mapa_teclado):
+        for k, v in mapa_teclado.items():
+            # Busca eliminar las entradas del diccionario default siempre
+            # y cuando coincidan
+            if v in mapa_por_omision.values():
+                index = mapa_por_omision.values().index(v)
+                del mapa_por_omision[mapa_por_omision.keys()[index]]
+
+        for k, v in mapa_teclado.items():
+            mapa_por_omision[k] = v
+
 
     def constructor_control(self, mapa_teclado):
         return Control(self.escena, mapa_teclado)
