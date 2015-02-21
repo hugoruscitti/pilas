@@ -97,6 +97,12 @@ class Control(object):
 
         escena.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
         escena.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
+        
+        self.izquierda = False
+        self.derecha = False
+        self.arriba = False
+        self.abajo = False
+        self.boton = False
 
         self.mapa_teclado = {simbolos.IZQUIERDA: 'izquierda',
                              simbolos.DERECHA: 'derecha',
@@ -106,23 +112,11 @@ class Control(object):
 
         # Si define el mapa_teclado sobre-escribe los controles estándar.
         if mapa_teclado:
-            self._mezclar_mapas_de_teclas(self.mapa_teclado, mapa_teclado)
+            self.mapa_teclado = mapa_teclado
 
         self.limpiar()
         self.escena = escena
         self.Control = self.constructor_control
-
-    def _mezclar_mapas_de_teclas(self, mapa_por_omision, mapa_teclado):
-        for k, v in mapa_teclado.items():
-            # Busca eliminar las entradas del diccionario default siempre
-            # y cuando coincidan
-            if v in mapa_por_omision.values():
-                index = mapa_por_omision.values().index(v)
-                del mapa_por_omision[mapa_por_omision.keys()[index]]
-
-        for k, v in mapa_teclado.items():
-            mapa_por_omision[k] = v
-
 
     def constructor_control(self, mapa_teclado):
         return Control(self.escena, mapa_teclado)
