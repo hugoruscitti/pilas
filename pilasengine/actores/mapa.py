@@ -26,7 +26,7 @@ class Mapa(Actor):
         self.y = y
         self.imagen = "invisible.png"
         self.radio_de_colision = 15
-        
+
         self.filas = filas
         self.columnas = columnas
 
@@ -48,8 +48,8 @@ class Mapa(Actor):
 
     def terminar(self):
         pass
-    
-    
+
+
     def _generar_matriz_de_bloques(self, filas, columnas):
         cols = copy.copy([False] * columnas)
         matriz_de_bloques = []
@@ -79,6 +79,15 @@ class Mapa(Actor):
 
         x = columna * ancho
         y = fila * alto
+
+        if es_bloque_solido:
+            dx = self.ancho / 2
+            dy = self.alto / 2
+            nuevo_x = self.x + x - dx
+            nuevo_y = self.y - y + dy
+            actor = self.pilas.actores.Actor(nuevo_x, nuevo_y)
+            actor.imagen = "invisible.png"
+            actor.figura = self.pilas.fisica.Rectangulo(nuevo_x, nuevo_y, ancho, alto, dinamica=False)
 
         #(dx, dy) = pilas.mundo.motor.centro_fisico()
         #actor = pilas.actores.Actor(x=x-dx+(ancho/2), y=dy-y-(alto/2))

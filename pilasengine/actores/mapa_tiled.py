@@ -8,6 +8,7 @@
 
 from pilasengine.actores.mapa import Mapa
 from xml.dom import minidom
+import pilasengine
 
 class MapaTiled(Mapa):
     """Representa mapas creados a partir de imagenes mas pequeñas.
@@ -28,11 +29,20 @@ class MapaTiled(Mapa):
         - Las siguientes capas solo se almacenan, pero no se dibujan. Se pueden acceder con ``mapa.capas``.
     """
 
-    def iniciar(self, ruta_mapa=None, x=0, y=0, restitucion=0.56):
+    def iniciar(self, ruta_mapa=None, x=0, y=0, restitucion=0.56, reiniciar_si_cambia=True):
         ruta_mapa = self.pilas.obtener_ruta_al_recurso(ruta_mapa)
-        self._cargar_datos_basicos_del_mapa(ruta_mapa)
-        Mapa.iniciar(self, x, y, self.grilla, filas=self.filas, columnas=self.columnas)
-        self._dibujar_mapa(ruta_mapa)
+        self.ruta_mapa = ruta_mapa
+        self.x = x
+        self.y = y
+        self._redibujar()
+
+        if reiniciar_si_cambia:
+            self.watcher = pilasengine.watcher.Watcher(ruta_mapa, self._redibujar)
+
+    def _redibujar(self):
+        self._cargar_datos_basicos_del_mapa(self.ruta_mapa)
+        Mapa.iniciar(self, self.x, self.y, self.grilla, filas=self.filas, columnas=self.columnas)
+        self._dibujar_mapa(self.ruta_mapa)
 
     def cuadro_ancho(self):
         """Retorna el ancho de un bloque del mapa"""
@@ -86,18 +96,12 @@ class MapaTiled(Mapa):
         self.capas = {}
 
         # La capa 0 (inferior) define los bloques no-solidos.
-        bloques = self._pintar_bloques(layers[0], solidos=False)
-        self.capas[0] = bloques
 
-        # La capa 1 define bloques solidos.
-        if len(layers) > 1:
-            bloques = self._pintar_bloques(layers[1], solidos=True)
-            self.capas[1] = bloques
+        for (index, layer) in enumerate(layers):
+            es_solido = layer.getAttributeValue('name').lower().startswith('solido')
 
-        # El resto de las capas solo definen matrices para acceder mediante
-        # el atributo 'capas', no se imprimen automaticamente.
-        for (indice, layer) in enumerate(layers[2:]):
-            self.capas[indice + 2] = self._convertir_capa_en_bloques_enteros(layer)
+            bloques = self._pintar_bloques(layer, solidos=es_solido)
+            self.capas[index] = bloques
 
     def _pintar_bloques(self, capa, solidos):
         """Genera actores que representan los bloques del escenario.
