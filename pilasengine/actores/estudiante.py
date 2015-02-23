@@ -86,6 +86,9 @@ class Estudiante(object):
         """
         su_habilidad = None
 
+        if isinstance(classname, str):
+            classname = self.pilas.habilidades.buscar_habilidad_por_nombre(classname)
+
         for h in self._habilidades:
             if h.__class__ == classname:
                 su_habilidad = h
