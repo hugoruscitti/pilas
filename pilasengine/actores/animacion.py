@@ -38,7 +38,7 @@ class Animacion(Animado):
 
     def __init__(self, pilas, *k, **kv):
         Animado.__init__(self, pilas, *k, **kv)
-        
+
     def pre_iniciar(self, grilla=None, ciclica=False, x=0, y=0, velocidad=10):
         """ Constructor de la Animación.
 
@@ -58,7 +58,7 @@ class Animacion(Animado):
 
         if not grilla:
             grilla = self.pilas.imagenes.cargar_grilla('sin_imagen.png', 1)
-            
+
         self.tick = 0
         self.x = x
         self.y = y

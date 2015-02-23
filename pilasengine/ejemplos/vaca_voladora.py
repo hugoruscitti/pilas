@@ -64,11 +64,13 @@ class Perdiendo(Estado):
     def iniciar(self):
         self.vaca.definir_animacion([0])
         self.vaca.centro = ('centro', 'centro')
+        self.velocidad = -2
 
     def actualizar(self):
         self.vaca.rotacion += 7
         self.vaca.escala += 0.01
-        self.vaca.x += 1
+        self.vaca.x -= self.velocidad
+        self.velocidad += 0.2
         self.vaca.y -= 1
 
 
