@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 import random
 import inspect
+import traceback
 
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.texto import Texto
@@ -60,6 +61,7 @@ class Actores(object):
                 nuevo_actor = clase_del_actor(self.pilas, *k, **kw)
                 return nuevo_actor
             except TypeError, error:
+                print traceback.format_exc()
                 mensaje_extendido = "\n\t(en la clase %s ya que se llamó con los argumentos: %s %s" %(str(clase_del_actor.__name__), str(k), str(kw))
                 raise TypeError(str(error) + mensaje_extendido)
 
@@ -101,23 +103,25 @@ class Actores(object):
             # al método iniciar.
             k = actor.argumentos_adicionales[0]
             kv = actor.argumentos_adicionales[1]
-            
+
             falla_pre_iniciar = False
             mensaje_error_pre_iniciar = ""
 
             try:
                 actor.pre_iniciar(*k, **kv)
             except TypeError, error:
+                print traceback.format_exc()
                 falla_pre_iniciar = True
                 mensaje_error_pre_iniciar = str(error)
-                
+
             try:
                 actor.iniciar(*k, **kv)
             except TypeError, error:
-                
+                print traceback.format_exc()
+
                 if falla_pre_iniciar:
                     print("Tambien ocurrio un error al pre_iniciar" + mensaje_error_pre_iniciar)
-                
+
                 # el siguiente metodo, _validar_argumentos, intentará
                 # dar una descripción mas detallada de los argumentos que
                 # faltan.

@@ -9,7 +9,8 @@
 
 class Comportamiento(object):
     "Representa un comportamiento (estrategia) que se puede anexar a un actor."
-    def __init__(self, pilas):
+
+    def __init__(self, pilas=None):
         self.pilas = pilas
 
     def iniciar(self, receptor):
@@ -17,6 +18,9 @@ class Comportamiento(object):
 
         :param receptor: El actor que comenzará a ejecutar este comportamiento.
         """
+        if not self.pilas:
+            self.pilas = receptor.pilas
+            
         self.receptor = receptor
 
     def actualizar(self):
