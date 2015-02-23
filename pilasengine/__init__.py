@@ -266,6 +266,12 @@ class Pilas(object):
         contenido = re.sub('coding\s*:\s*', '', contenido)
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
         contenido = contenido.replace('pilas.ejecutar', '#pilas.ejecutar')
+
+        for x in contenido.split('\n'):
+            if 'import ' in x and not 'import pilasengine' in x and not 'from ' in x:
+                modulo = x.split(' ')[1]
+                contenido = contenido.replace(x, x + '\n' + 'reload(' + modulo + ')\n')
+
         return contenido
 
     def cerrar(self):
