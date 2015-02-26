@@ -168,6 +168,7 @@ class Pilas(object):
         if not getattr(self, 'escenas', None):
             self.escenas = escenas.Escenas(self)
 
+        self.escenas.eliminar_escenas_personalizadas()
         self.imagenes = imagenes.Imagenes(self)
         self.utils = utils.Utils(self)
         self.fondos = fondos.Fondos(self)

@@ -6,6 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import traceback
+import inspect
 
 from pilasengine.escenas.normal import Normal
 from pilasengine.escenas.escena import Escena
@@ -25,6 +27,8 @@ class Escenas(object):
     utilizar.
     """
 
+    _lista_escenas_personalizadas = []
+
     def __init__(self, pilas=None):
         self.pilas = pilas
         self.pila_de_escenas = []
@@ -32,16 +36,8 @@ class Escenas(object):
         self.iteraciones = 0
 
     def definir_escena(self, escena):
-        if self.escena_actual:
-            self.escena_actual.eliminar_el_motor_de_fisica()
-            del self.escena_actual
-            import gc
-            gc.collect()
-
-        self.pilas.log("Definiendo como activa la escena", escena)
-        self.escena_actual = escena
-        escena.iniciar()
-        return escena
+        mensaje = "El método definir_escena está en desuso..."
+        raise Error(mensaje)
 
     def obtener_escena_actual(self):
         return self.escena_actual
@@ -91,9 +87,94 @@ class Escenas(object):
     def Normal(self):
         import normal
         nueva_escena = normal.Normal(self.pilas)
-        return self.definir_escena(nueva_escena)
+        return nueva_escena
 
     def Error(self, titulo, descripcion):
         import error
         nueva_escena = error.Error(self.pilas, titulo, descripcion)
-        return self.definir_escena(nueva_escena)
+        return nueva_escena
+
+
+    def vincular(self, clase_de_la_escena):
+        """Permite vincular una escena personalizada a las escenas de pilas.
+
+        Esto permite de después la escena se pueda crear directamente
+        desde el módulo "pilas.escenas".
+
+        Por ejemplo, si tengo una clase ``MiEscena`` la puedo
+        vincular son las siguientes sentencias:
+
+            >>> pilas.escenas.vincular(MiEscena)
+            >>> mi_escena = pilas.escenas.MiEscena()
+
+        y si necesito especificar opciones de inicio, tengo que definirlas
+        en el método iniciar de la clase y luego invocarlas al crear la
+        escena:
+
+            >>> mi_escena_con_argumentos = pilas.escenas.MiEscena(ejemplo=123)
+
+        """
+
+        # Se asegura de que la clase sea una escena.
+        if not issubclass(clase_de_la_escena, Escena):
+            mensaje = "Solo se pueden vincular clases que heredan de pilasengine.escenas.Escena"
+            raise Exception(mensaje)
+
+        def metodo_crear_escena(self, *k, **kw):
+            try:
+                nueva_escena = clase_de_la_escena(self.pilas)
+            except TypeError, error:
+                print traceback.format_exc()
+                mensaje_extendido = "\n\t(en la clase %s solo se deberia esperar el argumento pilas" %(str(clase_del_actor.__name__))
+                raise TypeError(str(error) + mensaje_extendido)
+
+            self.sustituir_escena_actual(nueva_escena)
+
+            try:
+                nueva_escena.iniciar(*k, **kw)
+            except TypeError, error:
+                print traceback.format_exc()
+                nombre = clase_de_la_escena.__name__
+                argumentos_esperados = str(inspect.getargspec(clase_de_la_escena.iniciar))
+                argumentos = str(k) + " " + str(kw)
+                mensaje_extendido = "\nLa clase %s arrojó un error al ser inicializada, asegurá que el método %s.iniciar (que solo admite los argumetos: %s) en realidad fue invocada con los argumentos: %s" %(nombre, nombre, argumentos_esperados, argumentos)
+                raise TypeError(str(error) + mensaje_extendido)
+
+
+            return nueva_escena
+
+
+        # Se asegura de que la escena no fue vinculada anteriormente.
+        nombre = clase_de_la_escena.__name__
+        existe = getattr(self.__class__, nombre, None)
+
+        if existe:
+            mensaje = "Lo siento, ya exista una escena vinculada con el nombre: " + nombre
+            raise Exception(mensaje)
+
+        # Vincula la clase anexando el metodo constructor.
+        setattr(self.__class__, nombre, metodo_crear_escena)
+        Escenas._lista_escenas_personalizadas.append(nombre)
+
+    def obtener_escenas_personalizadas(self):
+        "Retorna una lista con todos los nombres de actores personalizados."
+        return Actores._lista_actores_personalizados
+
+    def eliminar_escenas_personalizadas(self):
+        "Recorre todos los actores personalizados y los elimina."
+        for x in Escenas._lista_escenas_personalizadas:
+            delattr(self.__class__, x)
+
+        Escenas._lista_escenas_personalizadas = []
+
+    def sustituir_escena_actual(self, escena):
+        print escena, self.escena_actual
+        if self.escena_actual:
+            self.escena_actual.eliminar_el_motor_de_fisica()
+            del self.escena_actual
+            import gc
+            gc.collect()
+
+        self.pilas.log("Definiendo como activa la escena", escena)
+        self.escena_actual = escena
+        return escena

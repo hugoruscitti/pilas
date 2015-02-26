@@ -24,7 +24,7 @@ class Escena(object):
         if not isinstance(pilas, pilasengine.Pilas):
             mensaje = "Tienes que enviar el objeto 'pilas' como argumento a la escena al crearla, en lugar de eso llego esto: " + str(pilas)
             raise Exception(mensaje)
-        
+
         self.pilas = pilas
         pilas.log("Creando una escena: ", self)
         self.camara = camara.Camara(pilas, self)
@@ -57,7 +57,7 @@ class Escena(object):
         self.fisica.eliminar_para_liberar_memoria()
 
     def iniciar(self):
-        pass
+        print "Iniciando escena Normal..."
 
     def actualizar(self):
         pass

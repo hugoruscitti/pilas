@@ -69,7 +69,7 @@ class Etiquetas(object):
 
     def __init__(self):
         self.lista = []
-        
+
     def pre_iniciar(self, *k, **kw):
         pass
 
@@ -202,7 +202,7 @@ class Actor(Estudiante):
 
         # Vincula el actor con la escena actual.
         pilas.actores.agregar_actor(self)
-        
+
     def pre_iniciar(self, x=0, y=0, imagen="sin_imagen.png"):
         """Ejecuta el código inicial del actor.
 
@@ -222,7 +222,7 @@ class Actor(Estudiante):
             self.y = y
 
         self.imagen = imagen
-    
+
     def iniciar(self, *k, **kw):
         pass
 
