@@ -84,17 +84,6 @@ class Escenas(object):
         escena = self.obtener_escena_actual()
         escena.dibujar_actores(painter)
 
-    def Normal(self):
-        import normal
-        nueva_escena = normal.Normal(self.pilas)
-        return nueva_escena
-
-    def Error(self, titulo, descripcion):
-        import error
-        nueva_escena = error.Error(self.pilas, titulo, descripcion)
-        return nueva_escena
-
-
     def vincular(self, clase_de_la_escena):
         """Permite vincular una escena personalizada a las escenas de pilas.
 
@@ -158,7 +147,7 @@ class Escenas(object):
 
     def obtener_escenas_personalizadas(self):
         "Retorna una lista con todos los nombres de actores personalizados."
-        return Actores._lista_actores_personalizados
+        return Actores._lista_escenas_personalizadas
 
     def eliminar_escenas_personalizadas(self):
         "Recorre todos los actores personalizados y los elimina."
@@ -166,9 +155,10 @@ class Escenas(object):
             delattr(self.__class__, x)
 
         Escenas._lista_escenas_personalizadas = []
+        self.vincular(Normal)
+        self.vincular(Error)
 
     def sustituir_escena_actual(self, escena):
-        print escena, self.escena_actual
         if self.escena_actual:
             self.escena_actual.eliminar_el_motor_de_fisica()
             del self.escena_actual
@@ -178,3 +168,6 @@ class Escenas(object):
         self.pilas.log("Definiendo como activa la escena", escena)
         self.escena_actual = escena
         return escena
+
+    def es_escena_vinculada(self, nombre_de_la_escena):
+        return nombre_de_la_escena in self._lista_escenas_personalizadas

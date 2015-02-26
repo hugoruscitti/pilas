@@ -16,12 +16,9 @@ class Error(Escena):
     el error.
     """
 
-    def __init__(self, pilas, titulo, descripcion):
-        Escena.__init__(self, pilas)
+    def iniciar(self, titulo, descripcion):
         self.titulo = titulo
         self.descripcion = descripcion
-
-    def iniciar(self):
         self.fondo = self.pilas.fondos.Plano()
         self.actor_error = self.pilas.actores.MensajeError(self.titulo,
                                                            self.descripcion)
