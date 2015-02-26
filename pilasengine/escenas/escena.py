@@ -26,6 +26,12 @@ class Escena(object):
             raise Exception(mensaje)
 
         self.pilas = pilas
+
+        nombre_de_la_escena = self.__class__.__name__
+
+        if not self.pilas.escenas.es_escena_vinculada(nombre_de_la_escena):
+            raise Exception("La escena %s no ha sido vinculada. Ejecuta con pilas.escenas.vincular(%s) antes." %(nombre_de_la_escena, nombre_de_la_escena))
+
         pilas.log("Creando una escena: ", self)
         self.camara = camara.Camara(pilas, self)
         self.tweener = pitweener.Tweener()
