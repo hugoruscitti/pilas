@@ -9,3 +9,8 @@ pre {
 .hljs {
   font-size: 15px;
 }
+
+td {
+  padding: 15px;
+  text-align: center;
+}
