@@ -9,6 +9,7 @@
 
 class Habilidad(object):
     """Representa una habilidad que los actores pueden aprender """
+    
     def __init__(self, pilas):
         self.pilas = pilas
 

@@ -8,6 +8,7 @@
 
 from pilasengine.habilidades.habilidad import Habilidad
 import difflib
+import inspect
 
 class Habilidades(object):
     """Representa la forma de acceso y construcción de las habilidades.
@@ -24,7 +25,9 @@ class Habilidades(object):
 
     """
 
+
     def __init__(self):
+        self._lista_habilidades_personalizadas = []
         self.diccionario_de_habilidades = {
                 "Arrastrable": self.Arrastrable,
                 "SeMantieneEnPantalla": self.SeMantieneEnPantalla,
@@ -65,7 +68,7 @@ class Habilidades(object):
                 similar = similar[0]
                 raise NameError("lo siento, no existe esa habilidad... quisiste decir '%s' ?" %(similar))
             else:
-                raise NameError("li siento, no exista una habilidad con ese nombre...")
+                raise NameError("lo siento, no existe una habilidad con el nombre '%s'..." %(nombre))
 
     @property
     def Habilidad(self):
@@ -159,6 +162,59 @@ class Habilidades(object):
                                                       + modulo)
         referencia_a_clase = getattr(referencia_a_modulo, clase)
         return referencia_a_clase
+
+
+    def vincular(self, clase_de_la_habilidad):
+        # Se asegura de que la clase sea una habilidad.
+        if not issubclass(clase_de_la_habilidad, Habilidad):
+            mensaje = "Solo se pueden vincular clases que heredan de pilasengine.habilidades.Habilidad"
+            raise Exception(mensaje)
+
+        """
+        def metodo_crear_habilidad(self, *k, **kw):
+            try:
+                habilidad_nueva = clase_de_la_habilidad(self.pilas)
+            except TypeError, error:
+                print traceback.format_exc()
+                mensaje_extendido = "\n\t(en la clase %s solo se deberia esperar el argumento pilas" %(str(clase_del_actor.__name__))
+                raise TypeError(str(error) + mensaje_extendido)
+
+            try:
+                habilidad_nueva.iniciar(*k, **kw)
+            except TypeError, error:
+                print traceback.format_exc()
+                nombre = clase_de_la_habilidad.__name__
+                argumentos_esperados = str(inspect.getargspec(clase_de_la_habilidad.iniciar))
+                argumentos = str(k) + " " + str(kw)
+                mensaje_extendido = "\nLa clase %s arrojó un error al ser inicializada, asegurá que el método %s.iniciar (que solo admite los argumetos: %s) en realidad fue invocada con los argumentos: %s" %(nombre, nombre, argumentos_esperados, argumentos)
+                raise TypeError(str(error) + mensaje_extendido)
+
+            return habilidad_nueva
+        """
+
+
+        # Se asegura de que la escena no fue vinculada anteriormente.
+        nombre = clase_de_la_habilidad.__name__
+        existe = nombre in self._lista_habilidades_personalizadas or nombre in self.diccionario_de_habilidades.keys()
+
+        if existe:
+            mensaje = "Lo siento, ya existe una habilidad vinculada con el nombre: " + nombre
+            raise Exception(mensaje)
+
+
+        metodo_iniciar = getattr(clase_de_la_habilidad, 'iniciar')
+        argumentos = inspect.getargspec(metodo_iniciar)
+
+        if not 'receptor' in argumentos.args:
+            mensaje = "El metodo %s.iniciar tiene que poder recibir el argumento 'receptor' como primer argumento." %(nombre)
+            raise Exception(mensaje)
+
+        # Vincula la clase anexando el metodo constructor.
+        setattr(self.__class__, nombre, clase_de_la_habilidad)
+        self._lista_habilidades_personalizadas.append(nombre)
+
+        #self.diccionario_de_habilidades[nombre.lower()] = clase_de_la_habilidad
+        self.diccionario_de_habilidades[nombre.lower()] = getattr(self.__class__, nombre)
 
 
 class ProxyHabilidades(object):
