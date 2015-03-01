@@ -106,6 +106,9 @@ class Fisica(object):
             self._procesar_figuras_a_eliminar()
             self.mundo.ClearForces()
 
+    def iterar(self):
+        self.actualizar()
+
     def pausar_mundo(self):
         """Detiene la simulación física."""
         if self.mundo:

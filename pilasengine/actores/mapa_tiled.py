@@ -24,22 +24,36 @@ class MapaTiled(Mapa):
     Tiled trabaja con capas, así que cuando pilas carga las capas las interpreta
     de la siguiente manera:
 
-        - La capa 0 define los bloques no sólidos, generalmente fondos o decoración.
-        - La capa 1 define bloques sólidos, útiles para hacer suelos o paredes.
-        - Las siguientes capas solo se almacenan, pero no se dibujan. Se pueden acceder con ``mapa.capas``.
+        - Tos las capas se van a dibujar.
+        - Toda capa que comienza con la palabra "solido" armará bloques con física y colisión.
     """
 
-    def iniciar(self, ruta_mapa=None, x=0, y=0, restitucion=0.56, reiniciar_si_cambia=True):
+    def pre_iniciar(self, ruta_mapa=None, x=0, y=0, densidad=0, restitucion=0,
+                          friccion=10.5, amortiguacion=0.1):
+        pass
+
+    def iniciar(self, ruta_mapa=None, x=0, y=0,
+                densidad=0, restitucion=0, friccion=10.5, amortiguacion=0.1,
+                reiniciar_si_cambia=True):
+        self.actores_con_figuras_solidas = []
         ruta_mapa = self.pilas.obtener_ruta_al_recurso(ruta_mapa)
         self.ruta_mapa = ruta_mapa
         self.x = x
         self.y = y
+
+        self.densidad = densidad
+        self.restitucion = restitucion
+        self.friccion = friccion
+        self.amortiguacion = amortiguacion
+
         self._redibujar()
+        self.radio = 0
 
         if reiniciar_si_cambia:
             self.watcher = pilasengine.watcher.Watcher(ruta_mapa, self._redibujar)
 
     def _redibujar(self):
+        self._eliminar_todos_los_actores_con_figuras()
         self._cargar_datos_basicos_del_mapa(self.ruta_mapa)
         Mapa.iniciar(self, self.x, self.y, self.grilla, filas=self.filas, columnas=self.columnas)
         self._dibujar_mapa(self.ruta_mapa)

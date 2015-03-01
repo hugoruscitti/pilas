@@ -118,6 +118,22 @@ class Figura(object):
         # TODO: convertir a metros???
         self.definir_velocidad_lineal(dx, dy)
 
+    def get_velocidad_x(self):
+        dx, _ = self.obtener_velocidad_lineal()
+        return dx
+
+    def set_velocidad_x(self, dx):
+        dy = self.velocidad_y
+        self.definir_velocidad_lineal(dx, dy)
+
+    def get_velocidad_y(self):
+        _, dy = self.obtener_velocidad_lineal()
+        return dy
+
+    def set_velocidad_y(self, dy):
+        dx = self.velocidad_x
+        self.definir_velocidad_lineal(dx, dy)
+
     def eliminar(self):
         """Quita una figura de la simulación."""
         self.fisica.eliminar_figura(self._cuerpo)
@@ -164,13 +180,13 @@ class Figura(object):
             self.escala_de_gravedad = 0
             self._cuerpo.fixtures[0].userData['dinamica'] = False
             self._cuerpo.fixedRotation = True
-            
+
     def obtener_sin_rotacion(self):
         return self._cuerpo.fixedRotation
-    
+
     def definir_sin_rotacion(self, rotacion):
         self._cuerpo.fixedRotation = rotacion
-        
+
     def __repr__(self):
         return "<Figura %s en (%d, %d)>" % (self.__class__.__name__, self.x, self.y)
 
@@ -182,3 +198,6 @@ class Figura(object):
     escala_de_gravedad = property(obtener_escala_de_gravedad, definir_escala_de_gravedad)
     dinamica = property(obtener_dinamica, definir_dinamica)
     sin_rotacion = property(obtener_sin_rotacion, definir_sin_rotacion)
+
+    velocidad_x = property(get_velocidad_x, set_velocidad_x, doc="define la velocidad horizontal.")
+    velocidad_y = property(get_velocidad_y, set_velocidad_y, doc="define la velocidad vertical.")

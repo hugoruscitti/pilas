@@ -13,7 +13,9 @@ from pilasengine.actores.actor import Actor
 
 class Mapa(Actor):
 
-    def iniciar(self, x=0, y=0, grilla=None, filas=20, columnas=20):
+    def iniciar(self, x=0, y=0, grilla=None, filas=20, columnas=20,
+                densidad=1.0, restitucion=0.56, friccion=10.5,
+                amortiguacion=0.1):
         """Inicializa el mapa.
 
         :param grilla: La imagen a utilizar cómo grilla con los bloques del escenario.
@@ -21,11 +23,20 @@ class Mapa(Actor):
         :param y: Posición vertical del mapa.
         :param filas: Cantidad de filas que tendrá el mapa.
         :param columnas: Cantidad de columnas que tendrá el mapa.
+        :param densidad: La densidad de la física de los bloques solidos.
+        :param restitucion: La restitucion de la física de los bloques solidos.
+        :param friccion: La friccion de la física de los bloques solidos.
+        :param amortiguacion: La amortiguacion de la física de los bloques solidos.
         """
         self.x = x
         self.y = y
         self.imagen = "invisible.png"
         self.radio_de_colision = 15
+
+        self.densidad = densidad
+        self.restitucion = restitucion
+        self.friccion = friccion
+        self.amortiguacion = amortiguacion
 
         self.filas = filas
         self.columnas = columnas
@@ -42,13 +53,16 @@ class Mapa(Actor):
         self.centro_mapa_x, self.centro_mapa_y = self.superficie.centro()
 
         self.fijo = False
+        self.actores_con_figuras_solidas = []
+
+    def definir_figura_de_colision(self, figura):
+        pass
 
     def actualizar(self):
         pass
 
     def terminar(self):
         pass
-
 
     def _generar_matriz_de_bloques(self, filas, columnas):
         cols = copy.copy([False] * columnas)
@@ -83,11 +97,19 @@ class Mapa(Actor):
         if es_bloque_solido:
             dx = self.ancho / 2
             dy = self.alto / 2
-            nuevo_x = self.x + x - dx
-            nuevo_y = self.y - y + dy
+            nuevo_x = self.x + x - dx + alto/2
+            nuevo_y = self.y - y + dy - ancho/2
             actor = self.pilas.actores.Actor(nuevo_x, nuevo_y)
             actor.imagen = "invisible.png"
-            actor.figura = self.pilas.fisica.Rectangulo(nuevo_x, nuevo_y, ancho, alto, dinamica=False)
+            Rectangulo = self.pilas.fisica.Rectangulo
+            actor.figura_de_colision = Rectangulo(nuevo_x, nuevo_y,
+                                        ancho, alto, dinamica=False,
+                                        densidad=self.densidad,
+                                        restitucion=self.restitucion,
+                                        friccion=self.friccion,
+                                        amortiguacion=self.amortiguacion)
+
+            self.actores_con_figuras_solidas.append(actor)
 
         #(dx, dy) = pilas.mundo.motor.centro_fisico()
         #actor = pilas.actores.Actor(x=x-dx+(ancho/2), y=dy-y-(alto/2))
@@ -232,3 +254,17 @@ class Mapa(Actor):
 
     def _convertir_en_int(self, valor):
         return int(math.floor(valor))
+
+    def _eliminar_todos_los_actores_con_figuras(self):
+        """Elimina todos los actores que tienen física asociada.
+
+        Este método se invoca automáticamente cuando se reinicia
+        el mapa, por ejemplo cuando se edita desde tiled y se vulve
+        a grabar.
+        """
+
+        for x in list(self.actores_con_figuras_solidas):
+            x.eliminar()
+
+        self.actores_con_figuras_solidas = []
+        self.pilas.fisica.iterar()

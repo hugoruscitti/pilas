@@ -110,6 +110,7 @@ class Actores(object):
             try:
                 actor.pre_iniciar(*k, **kv)
             except TypeError, error:
+                print "ERROR en " + actor.__class__.__name__ + ":"
                 print traceback.format_exc()
                 falla_pre_iniciar = True
                 mensaje_error_pre_iniciar = str(error)
@@ -328,16 +329,23 @@ class Actores(object):
                                  ruta_press=ruta_press,
                                  ruta_over=ruta_over)
 
-    def Mapa(self, x=0, y=0, grilla=None, filas=20, columnas=20):
+    def Mapa(self, x=0, y=0, grilla=None, filas=20, columnas=20,
+             densidad=0, restitucion=0, friccion=10.5, amortiguacion=0.1):
         ":rtype: mapa.Mapa"
         return self._crear_actor('mapa', 'Mapa', x=x, y=y,
                                  grilla=grilla,
-                                 filas=filas, columnas=columnas)
+                                 filas=filas, columnas=columnas,
+                                 densidad=densidad, restitucion=restitucion,
+                                 friccion=friccion,
+                                 amortiguacion=amortiguacion)
 
-    def MapaTiled(self, ruta_mapa, x=0, y=0, restitucion=0.56):
+    def MapaTiled(self, ruta_mapa, x=0, y=0,
+                  densidad=0, restitucion=0, friccion=10.5, amortiguacion=0.1):
         ":rtype: mapa.MapaTiled"
         return self._crear_actor('mapa_tiled', 'MapaTiled', ruta_mapa=ruta_mapa, x=x, y=y,
-                                 restitucion=restitucion)
+                                 densidad=densidad, restitucion=restitucion,
+                                 friccion=friccion,
+                                 amortiguacion=amortiguacion)
 
     def Banana(self,  x=0, y=0):
         ":rtype: banana.Banana"
