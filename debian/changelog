@@ -1,3 +1,9 @@
+pilasengine (0.90.27-2) unstable; urgency=low
+
+  * cambiando el nombre del paquete.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Mon, 02 Mar 2015 21:13:42 +0100
+
 pilasengine (0.90.27-1) unstable; urgency=low
 
   * Arreglo menor.
