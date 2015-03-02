@@ -407,12 +407,13 @@ mapa_desde_archivo = pilas.actores.MapaTiled("archivo.tmx")
 </code></pre>
 <h2 id="creando-bloques-solidos-con-tiled">Creando bloques sólidos con tiled</h2>
 <p>Si quieres hacer bloques sólidos desde <strong>tiled</strong> solamente
-tienes que crear mas capas, la capa 0 se utilizará como
-decorado (todos los bloques son no-sólidos) y el resto de las
-capas serán siempre de bloques sólidos.</p>
+tienes que crear una capa especial. Si una de las capas comienza
+con el nombre "solido" entonces pilas hará que cada uno
+de los bloques sea interpretado como un bloque sólido.</p>
 <p>Por ejemplo, en el escenario anterior, sería interesante colocar
 los bloques de pasto y la ruta en la capa que he llamado "suelo"
-y el resto de los objetos en otras capas como "obstáculos" y "paredes":</p>
+y el resto de los objetos en otras capas que serán sólidas,
+en este caso "solido obstáculos" y "solido paredes":</p>
 <p><img alt="" src="../imagenes/mapas_y_plataformas/tiled6.png" /></p>
 <h2 id="un-ejemplo-completo">Un ejemplo completo</h2>
 <p>Te recomiendo que observes el ejemplo <code>mapa_desde_archivo.py</code> del
@@ -420,6 +421,8 @@ directorio de ejemplos de pilas, podrás observar un escenario
 muy simple con obstáculos y un personaje que se puede mover
 con el teclado:</p>
 <p><img alt="" src="../imagenes/mapas_y_plataformas/tiled8.png" /></p>
+<p>O bien, el ejemplo <code>plataformas</code>:</p>
+<p><img alt="" src="../imagenes/mapas_y_plataformas/plataformas.png" /></p>
 
             </div>
           </div>
