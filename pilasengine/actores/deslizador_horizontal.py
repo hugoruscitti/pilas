@@ -14,7 +14,10 @@ ALTURA = 15
 
 class DeslizadorHorizontal(Actor):
 
-    def pre_iniciar(self,  x=0, y=0, _min=0, _max=100, etiqueta="sin titulo", valor_inicial=-21):
+    def pre_iniciar(self, x=0, y=0, actor='actor', propiedad='x', _min=0, _max=100):
+        pass
+        
+    def iniciar(self,  x=0, y=0, _min=0, _max=100, etiqueta="sin titulo", valor_inicial=-21):
         self.min = _min
         self.max = _max
         self.x = x
@@ -46,9 +49,9 @@ class DeslizadorHorizontal(Actor):
         self.pilas.escena.click_de_mouse.conectar(self.click_del_mouse)
         self.pilas.escena.mueve_mouse.conectar(self.movimiento_del_mouse)
         self.pilas.escena.termina_click.conectar(self.termino_del_click)
-        
+
         self.actualizar_texto()
-        
+
     def actualizar_imagen(self):
         self.imagen.limpiar()
         self.imagen.rectangulo(0, 0, int(self.progreso_sobre_100), self.alto, color=colores.blanco, relleno=True)

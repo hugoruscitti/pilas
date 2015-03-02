@@ -6,6 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import os
 from pilasengine.actores.mapa import Mapa
 from xml.dom import minidom
 import pilasengine
@@ -47,7 +48,7 @@ class MapaTiled(Mapa):
         self.amortiguacion = amortiguacion
 
         self._redibujar()
-        self.radio = 0
+        self.radio_de_colision = 0
 
         if reiniciar_si_cambia:
             self.watcher = pilasengine.watcher.Watcher(ruta_mapa, self._redibujar)
@@ -93,7 +94,11 @@ class MapaTiled(Mapa):
         self.ancho_cuadro = int(nodo_tileset.getAttributeValue('tilewidth'))
         self.alto_cuadro = int(nodo_tileset.getAttributeValue('tileheight'))
 
-        self._ruta = nodo_tileset.getChild('image').getAttributeValue('source')
+        ruta_a_imagen = nodo_tileset.getChild('image').getAttributeValue('source')
+
+        # Convierte la ruta de la imagen a una ruta absoluta.
+        ruta_actual = os.path.dirname(os.path.abspath(archivo))
+        self._ruta = os.path.join(ruta_actual, ruta_a_imagen)
         self._ruta = self.pilas.obtener_ruta_al_recurso(self._ruta)
 
         self.grilla = self.pilas.imagenes.cargar_grilla(self._ruta,

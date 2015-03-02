@@ -14,6 +14,9 @@ from pilasengine import colores
 class ManejadorPropiedad(DeslizadorHorizontal):
 
     def pre_iniciar(self, x=0, y=0, actor='actor', propiedad='x', _min=0, _max=100):
+        pass
+
+    def iniciar(self, x=0, y=0, actor='actor', propiedad='x', _min=0, _max=100):
         valor_inicial = getattr(actor, propiedad)
         DeslizadorHorizontal.iniciar(self, x, y, _min, _max, propiedad, valor_inicial=valor_inicial)
         self.actor = actor

@@ -13,6 +13,11 @@ from pilasengine.actores.actor import Actor
 
 class Mapa(Actor):
 
+    def pre_iniciar(self, x=0, y=0, grilla=None, filas=20, columnas=20,
+                densidad=1.0, restitucion=0.56, friccion=10.5,
+                amortiguacion=0.1):
+        pass
+
     def iniciar(self, x=0, y=0, grilla=None, filas=20, columnas=20,
                 densidad=1.0, restitucion=0.56, friccion=10.5,
                 amortiguacion=0.1):

@@ -1,6 +1,7 @@
 # Permite que este ejemplo funcion incluso si no has instalado pilas.
 import sys
-sys.path.insert(0, "..")
+sys.path.append("..")
+sys.path.append(".")
 import pilasengine
 
 pilas = pilasengine.iniciar()

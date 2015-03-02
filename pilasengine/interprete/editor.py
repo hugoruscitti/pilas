@@ -279,7 +279,7 @@ class Editor(editor_base.EditorBase):
 
         if self.autocomplete(event):
             return None
-            
+
 
         if event.key() == Qt.Key_Return:
             cursor = self.textCursor()
@@ -422,6 +422,9 @@ class Editor(editor_base.EditorBase):
         contenido = contenido.replace('import pilasengine', '')
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
 
+        for x in contenido.split('\n'):
+            if "__file__" in x:
+                contenido = contenido.replace(x, "# livecoding: " + x + "\n")
 
         # Muchos códigos personalizados necesitan cargar imágenes o sonidos
         # desde el directorio que contiene al archivo. Para hacer esto posible,

@@ -273,6 +273,9 @@ class Pilas(object):
                 modulo = x.split(' ')[1]
                 contenido = contenido.replace(x, x + '\n' + 'reload(' + modulo + ')\n')
 
+            if "__file__" in x:
+                contenido = contenido.replace(x, "# livecoding: " + x + "\n")
+
         return contenido
 
     def cerrar(self):
