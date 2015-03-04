@@ -1,4 +1,4 @@
-Source: pilasengine
+Source: python-pilas
 Section: utils
 Priority: extra
 Maintainer: Hugo Ruscitti <hugoruscitti@gmail.com>
