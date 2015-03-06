@@ -1,3 +1,9 @@
+python-pilas (0.90.27-4) unstable; urgency=low
+
+  * Agrega archivo desktop faltante para los menu.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Wed, 04 Mar 2015 21:34:45 +0100
+
 python-pilas (0.90.27-3) unstable; urgency=low
 
   * Cambiando el nombre del archivo source.
