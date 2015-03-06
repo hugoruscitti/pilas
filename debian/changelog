@@ -1,3 +1,9 @@
+python-pilas (0.90.27-6) unstable; urgency=low
+
+  * Arregla iconos del menú. 
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Fri, 06 Mar 2015 15:38:13 +0100
+
 python-pilas (0.90.27-5) unstable; urgency=low
 
   * Actualizando iconos del menú. 
