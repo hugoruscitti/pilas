@@ -1,3 +1,9 @@
+python-pilas (0.90.27-5) unstable; urgency=low
+
+  * Actualizando iconos del menú. 
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Fri, 06 Mar 2015 14:58:13 +0100
+
 python-pilas (0.90.27-4) unstable; urgency=low
 
   * Agrega archivo desktop faltante para los menu.
