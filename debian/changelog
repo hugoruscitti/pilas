@@ -1,3 +1,9 @@
+python-pilas (0.90.28-1) unstable; urgency=low
+
+  * Agrego listar_actores() a pilasengine
+
+ -- Mauro <mauro@sdf.org>  Mon, 09 Mar 2015 15:49:10 -0300
+
 python-pilas (0.90.27-6) unstable; urgency=low
 
   * Arregla iconos del menú. 
