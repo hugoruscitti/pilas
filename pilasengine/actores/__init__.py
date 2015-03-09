@@ -216,6 +216,9 @@ class Actores(object):
     ## Acceso a los actores
     ## --------------------
 
+    def listar_actores(self):
+        return list(self.pilas.obtener_escena_actual()._actores)
+
     def Aceituna(self, x=0, y=0):
         ":rtype: aceituna.Aceituna"
         return self._crear_actor('aceituna', 'Aceituna', x=x, y=y)
