@@ -39,7 +39,7 @@ import simbolos
 
 import widget
 
-VERSION = "0.90.27"
+VERSION = "0.90.28"
 
 
 def handler(signum, frame):
