@@ -20,7 +20,7 @@ class Globo(Actor):
 
     def __init__(self, pilas, texto="", x=0, y=0, dialogo=None,
                  avance_con_clicks=True, autoeliminar=False, ancho_globo=0,
-                 alto_globo=0):
+                 alto_globo=0, objetivo=None):
         """ Constructor del Globo
 
         :param texto: Texto a mostrar en el globo.
@@ -45,6 +45,7 @@ class Globo(Actor):
         self.dialogo = dialogo
         Actor.__init__(self, pilas, x=x, y=y)
         self.imagen = 'invisible.png'
+        self.objetivo = objetivo
 
         ancho, alto = pilas.utils.obtener_area_de_texto(texto)
 
@@ -149,3 +150,8 @@ class Globo(Actor):
                                            int(ancho) - 12,
                                            0 + int(alto) + 12 + 12)
 
+
+    def actualizar(self):
+        if self.objetivo:
+            self.x = self.objetivo.x
+            self.y = self.objetivo.y
