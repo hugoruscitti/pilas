@@ -110,8 +110,8 @@ class Actores(object):
             try:
                 actor.pre_iniciar(*k, **kv)
             except TypeError, error:
-                print "ERROR en " + actor.__class__.__name__ + ":"
-                print traceback.format_exc()
+                #print "ERROR en " + actor.__class__.__name__ + ":"
+                #print traceback.format_exc()
                 falla_pre_iniciar = True
                 mensaje_error_pre_iniciar = str(error)
 
