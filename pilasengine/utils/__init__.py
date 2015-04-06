@@ -138,7 +138,6 @@ def obtener_ruta_al_recurso(ruta):
 
     for x in dirs + rutas_personalizadas:
         full_path = os.path.join(x, prefijo, ruta)
-        print full_path
 
         if os.path.exists(full_path):
             return full_path
