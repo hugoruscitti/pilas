@@ -120,6 +120,7 @@ def convertir_a_pixels(valor):
 
 def obtener_ruta_al_recurso(ruta):
     global rutas_personalizadas
+
     dirs = ['./', '/../data',
             PATH,
             INTERPRETE_PATH,
@@ -132,8 +133,12 @@ def obtener_ruta_al_recurso(ruta):
             INTERPRETE_PATH + '/../data'
         ]
 
+    prefijo = os.path.dirname(ruta)
+    ruta = os.path.basename(ruta)
+
     for x in dirs + rutas_personalizadas:
-        full_path = os.path.join(x, ruta)
+        full_path = os.path.join(x, prefijo, ruta)
+        print full_path
 
         if os.path.exists(full_path):
             return full_path
