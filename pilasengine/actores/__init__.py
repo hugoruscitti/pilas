@@ -110,8 +110,8 @@ class Actores(object):
             try:
                 actor.pre_iniciar(*k, **kv)
             except TypeError, error:
-                print "ERROR en " + actor.__class__.__name__ + ":"
-                print traceback.format_exc()
+                #print "ERROR en " + actor.__class__.__name__ + ":"
+                #print traceback.format_exc()
                 falla_pre_iniciar = True
                 mensaje_error_pre_iniciar = str(error)
 
@@ -435,14 +435,15 @@ class Actores(object):
         return self._crear_actor('moneda', 'Moneda', x=x, y=y)
 
     def Globo(self, texto="sin texto", x=0, y=0, dialogo=None, avance_con_clicks=True,
-              autoeliminar=False, ancho_globo=0, alto_globo=0):
+              autoeliminar=False, ancho_globo=0, alto_globo=0, objetivo=None):
         ":rtype: globo.Globo"
         return self._crear_actor('globo', 'Globo', texto=texto, x=x, y=y,
                                  dialogo=dialogo,
                                  avance_con_clicks=avance_con_clicks,
                                  autoeliminar=autoeliminar,
                                  ancho_globo=ancho_globo,
-                                 alto_globo=alto_globo)
+                                 alto_globo=alto_globo,
+                                 objetivo=objetivo)
 
     def Texto(self, cadena_de_texto="Sin texto", magnitud=20, vertical=False,
               fuente=None, fijo=True, ancho=0, x=0, y=0):

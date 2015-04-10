@@ -970,7 +970,8 @@ class Actor(Estudiante):
         :type autoeliminar: boolean
         """
         nuevo_actor = self.pilas.actores.Globo(mensaje, self.x, self.y,
-                                               autoeliminar=autoeliminar)
+                                               autoeliminar=autoeliminar,
+                                               objetivo=self)
         nuevo_actor.z = self.z - 1
 
     def anexar(self, otro_actor):
