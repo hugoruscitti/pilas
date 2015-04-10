@@ -274,6 +274,10 @@ class Actor(Estudiante):
         return self._figura_de_colision
 
     def definir_figura_de_colision(self, figura):
+        # Elimina la habilidad de imitar si la figura de colision es el objetivo.
+        if self.esta_imitando_su_figura():
+            self.eliminar_habilidad(self.pilas.habilidades.Imitar)
+
         if self._figura_de_colision:
             self._figura_de_colision.actor_que_representa_como_area_de_colision = None
             self._figura_de_colision.eliminar()
@@ -282,11 +286,18 @@ class Actor(Estudiante):
         self._figura_de_colision_dx = 0
         self._figura_de_colision_dy = 0
 
+
         if figura:
             figura.actor_que_representa_como_area_de_colision = self
 
     figura_de_colision = property(obtener_figura_de_colision, definir_figura_de_colision)
 
+    def esta_imitando_su_figura(self):
+        if self.tiene_habilidad(self.pilas.habilidades.Imitar):
+            if self.habilidades.Imitar.objeto_a_imitar == self.figura_de_colision:
+                return True
+
+        return False
 
     def actualizar(self):
         """Método de actualización lógico del actor.
