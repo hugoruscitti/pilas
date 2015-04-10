@@ -18,7 +18,7 @@ class Disparar(habilidades.Habilidad):
     """Establece la habilidad de poder disparar un Actor o un objeto de tipo
     pilas.municion.Municion."""
 
-    def iniciar(self, receptor, 
+    def iniciar(self, receptor,
                  municion = Bala,
                  parametros_municion = {},
                  grupo_enemigos=[],
@@ -73,8 +73,7 @@ class Disparar(habilidades.Habilidad):
         self.frecuencia_de_disparo = frecuencia_de_disparo
         self.contador_frecuencia_disparo = 0
         self.proyectiles = []
-        
-        print(self.angulo_salida_disparo)
+
 
         self.grupo_enemigos = grupo_enemigos
 
@@ -170,4 +169,4 @@ class Disparar(habilidades.Habilidad):
         pass
 
     def pulsa_disparar(self):
-        return self.control.boton if self.control else self.pilas.control.boton                
+        return self.control.boton if self.control else self.pilas.control.boton

@@ -74,7 +74,6 @@ class Interlocutor(QtCore.QObject):
     @QtCore.pyqtSlot(result=str)
     def obtener_ejemplos(self):
         directorio_de_ejemplos = os.path.join(os.path.dirname(__file__), '../ejemplos')
-        print directorio_de_ejemplos
         juegos = os.listdir(directorio_de_ejemplos)
         juegos = [j.replace('.py', '') for j in juegos if j.endswith('.py') and not j.startswith('__')]
         juegos = '{"ejemplos": ' + str(juegos).replace("'", '"') + "}"
