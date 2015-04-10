@@ -80,6 +80,21 @@ Luego, instalar box2d y pilas usando el comando ``easy_install``:
     sudo easy_install -U box2d
     sudo easy_install -U pilas
 
+### Instalación en OSX
+
+Antes de continuar necesitas tener instalado homebrew, y luego
+instalar las dependencias así:
+
+    brew install pyqt box2d swig
+    sudo easy_install -U box2d
+
+y luego si, vas a poder clonar y utilizar pilas directamente
+desde el repositorio:
+
+    git clone http://github.com/hugoruscitti/pilas.git
+    cd pilas
+    python bin/pilasengine
+
 
 ## Tests
 
