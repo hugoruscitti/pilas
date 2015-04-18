@@ -11,13 +11,12 @@ from pilasengine.comportamientos.comportamiento import Comportamiento
 import pilasengine
 
 class Martian(Actor):
-    """Es un personaje de un marciano que puede caminar, saltar y disparar.
+    """Es un personaje de un marciano que puede caminar y saltar.
 
         .. image:: images/actores/martian.png
 
     Este actor se puede mover con el teclado, pulsando las teclas ``izquierda``,
-    ``arriba``, ``abajo`` y ``derecha`` ademas de disparar con la
-    ``barra espaciadora``.
+    ``arriba``, ``abajo`` y ``derecha``.
 
     El marciano necesita un mapa para no caer al vacio y desaparecer de la
     pantalla.
@@ -33,15 +32,6 @@ class Martian(Actor):
         self.imagen = self.pilas.imagenes.cargar_grilla("marcianitos/martian.png", 12)
         self.definir_cuadro(0)
         self.hacer(Esperando)
-        
-        self.municion = pilasengine.actores.Misil
-        self.aprender(self.pilas.habilidades.Disparar,
-                      municion=self.municion,
-                      angulo_salida_disparo=0,
-                      frecuencia_de_disparo=6,
-                      offset_disparo=(0, -35),
-                      rotacion_disparo=0,
-                      escala=1)
 
         self.velocidad = 3
 
@@ -51,13 +41,13 @@ class Martian(Actor):
         self.colisiona_abajo_derecha = False
 
         self.obtener_colisiones()
-        
+
         if not mapa:
             self.definir_figura_fisica()
 
     def definir_figura_fisica(self):
         self.figura_del_actor = self.pilas.fisica.Rectangulo(0, 0, 20, 50)
-
+        self.figura_del_actor.sin_rotacion = True
 
     def definir_cuadro(self, indice):
         """Define el cuadro de animación a mostrar.
@@ -98,6 +88,25 @@ class Martian(Actor):
             self.colisiona_abajo_izquierda = False
             self.colisiona_abajo_derecha = False
 
+    def mover(self, vx):
+        if vx > 0:
+            self.espejado = False
+            self.obtener_colisiones()
+
+            if not(self.colisiona_arriba_derecha or self.colisiona_abajo_derecha):
+                self.x += vx
+        elif vx < 0:
+            self.espejado = True
+            self.obtener_colisiones()
+
+            if not(self.colisiona_arriba_izquierda or self.colisiona_abajo_izquierda):
+                self.x += vx
+
+        if not self.mapa:
+            self.figura_del_actor.velocidad_x = vx
+
+
+
 class Esperando(Comportamiento):
     """Representa al actor en posicion normal.
 
@@ -123,9 +132,6 @@ class Esperando(Comportamiento):
         if self.control.arriba and self.receptor.puede_saltar():
             self.receptor.hacer(Saltando, -8)
 
-        if self.control.boton:
-            self.receptor.hacer(Disparar)
-
         self.caer_si_no_toca_el_suelo()
 
     def caer_si_no_toca_el_suelo(self):
@@ -150,25 +156,13 @@ class Caminando(Esperando):
 
         vx = 0
 
-        if self.control.boton:
-            self.receptor.hacer(Disparar)
-            return
-
         if self.control.izquierda:
             vx = -(self.receptor.velocidad)
-            self.receptor.espejado = True
-            #self.receptor.habilidades.Disparar.angulo_salida_disparo = 90
-            self.receptor.obtener_colisiones()
-            if not(self.receptor.colisiona_arriba_izquierda or self.receptor.colisiona_abajo_izquierda):
-                self.receptor.x += vx
+            self.receptor.mover(vx)
 
         elif self.control.derecha:
             vx = self.receptor.velocidad
-            self.receptor.espejado = False
-            #self.receptor.habilidades.Disparar.angulo_salida_disparo = -90
-            self.receptor.obtener_colisiones()
-            if not(self.receptor.colisiona_arriba_derecha or self.receptor.colisiona_abajo_derecha):
-                self.receptor.x += vx
+            self.receptor.mover(vx)
         else:
             self.receptor.hacer(Esperando)
 
@@ -203,6 +197,9 @@ class Saltando(Comportamiento):
         self.velocidad_de_salto += 0.25
         distancia = self.receptor.obtener_distancia_al_suelo()
 
+        if not self.receptor.mapa:
+            self.receptor.figura_del_actor.velocidad_y = -self.velocidad_de_salto
+
         # Si toca el suelo se detiene.
         if self.velocidad_de_salto > distancia:
             self.receptor.y -= distancia
@@ -216,38 +213,8 @@ class Saltando(Comportamiento):
 
         if self.control.izquierda:
             vx = -(self.receptor.velocidad)
-            self.receptor.espejado = True
-            #self.receptor.habilidades.Disparar.angulo_salida_disparo = 90
-            self.receptor.obtener_colisiones()
-            if not(self.receptor.colisiona_arriba_izquierda or self.receptor.colisiona_abajo_izquierda):
-                self.receptor.x += vx
+            self.receptor.mover(vx)
 
         elif self.control.derecha:
             vx = self.receptor.velocidad
-            self.receptor.espejado = False
-            #self.receptor.habilidades.Disparar.angulo_salida_disparo = -90
-            self.receptor.obtener_colisiones()
-            if not(self.receptor.colisiona_arriba_derecha or self.receptor.colisiona_abajo_derecha):
-                self.receptor.x += vx
-
-class Disparar(Comportamiento):
-    """Representa al actor disparando un proyectil."""
-
-    def __init__(self, receptor):
-        self.cuadros = [6, 6, 7, 7, 8, 8]
-        self.paso = 0
-
-    def actualizar(self):
-        termina = self.avanzar_animacion()
-
-        if termina:
-            self.receptor.hacer(Esperando)
-
-    def avanzar_animacion(self):
-        self.paso += 1
-
-        if self.paso >= len(self.cuadros):
-            self.paso = 0
-            return True
-
-        self.receptor.definir_cuadro(self.cuadros[self.paso])
+            self.receptor.mover(vx)

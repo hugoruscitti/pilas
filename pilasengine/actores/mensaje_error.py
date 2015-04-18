@@ -25,9 +25,13 @@ class MensajeError(Actor):
         mensaje_descripcion = self.descripcion_error
 
         titulo = self.pilas.actores.Texto("ERROR: " + mensaje_titulo,
-                                          y=150, ancho=700)
-        descripcion = self.pilas.actores.Texto(mensaje_descripcion, magnitud=11,
+                                          y=200, ancho=700, magnitud=15)
+        descripcion = self.pilas.actores.Texto(mensaje_descripcion, magnitud=9,
                                                y=-80, ancho=700)
+        descripcion.centro_y = "arriba"
+        descripcion.y = 150
+
+        print "ERROR " + mensaje_titulo
 
         titulo.fijo = True
         descripcion.fijo = True

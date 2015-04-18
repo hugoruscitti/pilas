@@ -18,9 +18,9 @@ class Comportamiento(object):
 
         :param receptor: El actor que comenzará a ejecutar este comportamiento.
         """
-        if not self.pilas:
+        if getattr(self, 'pilas', None) is None:
             self.pilas = receptor.pilas
-            
+
         self.receptor = receptor
 
     def actualizar(self):
