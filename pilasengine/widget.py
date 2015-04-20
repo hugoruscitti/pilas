@@ -85,6 +85,8 @@ class BaseWidget(object):
         titulo = repr(e)
         descripcion = traceback.format_exc(e)
         escena = self.pilas.escenas.Error(titulo, descripcion)
+        print titulo
+        print descripcion
         return escena
 
     def timerEvent(self, event):
@@ -270,7 +272,7 @@ class BaseWidget(object):
         self.setParent(None)
 
     def empotrar(self):
-        """ Empotra el widget al widget que estaba previamente empotrado 
+        """ Empotra el widget al widget que estaba previamente empotrado
 
         Es usado cuando en la ventana interprete después de definir el estado
         del widget a pantalla completa se deseea regresar al tamaño normal.
