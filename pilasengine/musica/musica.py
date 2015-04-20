@@ -11,41 +11,47 @@ class Musica(object):
     deshabilitado = False
 
     def __init__(self, ruta):
-        import pygame
-
         self.ruta = ruta
-        self.musica = pygame.mixer.music.load(ruta)
+
+        if not Musica.deshabilitado:
+            import pygame
+            pygame.mixer.init()
+            self.musica = pygame.mixer.music.load(ruta)
 
     def reproducir(self, repetir=False):
-        import pygame
+        if not Musica.deshabilitado:
+            import pygame
 
-        if repetir:
-            pygame.mixer.music.play(-1)
-        else:
-            pygame.mixer.music.play()
+            if repetir:
+                pygame.mixer.music.play(-1)
+            else:
+                pygame.mixer.music.play()
 
     def detener(self):
         "Detiene el audio."
-        import pygame
-
-        pygame.mixer.music.stop()
+        if not Musica.deshabilitado:
+            import pygame
+            pygame.mixer.music.stop()
 
     def pausar(self):
         "Hace una pausa del audio."
-        import pygame
-
-        pygame.mixer.music.stop()
+        if not Musica.deshabilitado:
+            import pygame
+            pygame.mixer.music.stop()
 
     def continuar(self):
         "Continúa reproduciendo el audio."
-        import pygame
-
-        pygame.mixer.music.play()
+        if not Musica.deshabilitado:
+            import pygame
+            pygame.mixer.music.play()
 
     def __repr__(self):
         nombre = os.path.basename(self.ruta)
-        return "<%s del archivo '%s'>" % (self.__class__.__name__, nombre)
 
+        if Musica.deshabilitado:
+            return "<%s Deshabilita, del archivo '%s'>" % (self.__class__.__name__, nombre)
+        else:
+            return "<%s del archivo '%s'>" % (self.__class__.__name__, nombre)
 
 class MusicaDeshabilitada(object):
 

@@ -22,3 +22,9 @@ class Musica(object):
             return musica.Musica(ruta_a_la_musica)
         else:
             return musica.MusicaDeshabilitada(ruta_a_la_musica)
+
+    def habilitar(self):
+        musica.Musica.deshabilitado = False
+        
+    def deshabilitar(self):
+        musica.Musica.deshabilitado = True

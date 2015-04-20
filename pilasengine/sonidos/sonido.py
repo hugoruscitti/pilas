@@ -15,29 +15,38 @@ class Sonido(object):
         import pygame
 
         self.ruta = ruta
-        self.sonido = pygame.mixer.Sound(ruta)
+        if not Sonido.deshabilitado:
+            self.sonido = pygame.mixer.Sound(ruta)
 
     def reproducir(self, repetir=False):
-        if repetir:
-            self.sonido.play(-1)
-        else:
-            self.sonido.play()
+        if not Sonido.deshabilitado:
+            if repetir:
+                self.sonido.play(-1)
+            else:
+                self.sonido.play()
 
     def detener(self):
         "Detiene el audio."
-        self.sonido.stop()
+        if not Sonido.deshabilitado:
+            self.sonido.stop()
 
     def pausar(self):
         "Hace una pausa del audio."
-        self.sonido.stop()
+        if not Sonido.deshabilitado:
+            self.sonido.stop()
 
     def continuar(self):
         "Continúa reproduciendo el audio."
-        self.sonido.play()
+        if not Sonido.deshabilitado:
+            self.sonido.play()
 
     def __repr__(self):
         nombre = os.path.basename(self.ruta)
-        return "<%s del archivo '%s'>" % (self.__class__.__name__, nombre)
+
+        if Sonido.deshabilitado:
+            return "<%s Deshabilitado, del archivo '%s'>" % (self.__class__.__name__, nombre)
+        else:
+            return "<%s del archivo '%s'>" % (self.__class__.__name__, nombre)
 
 
 class SonidoDeshabilitado(object):

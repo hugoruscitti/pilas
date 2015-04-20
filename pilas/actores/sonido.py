@@ -25,7 +25,7 @@ class Sonido(Boton):
         self.conectar_presionado(self.deshabilitar_sonido)
 
         # Colocamos el boton en la esquina inferior derecha de la pantalla.
-        self._ancho_mundo, self._alto_mundo = pilas.mundo.obtener_area()
+        self._ancho_mundo, self._alto_mundo = self.pilas.widget.obtener_area()
         self.x = (self._ancho_mundo / 2) - self.ancho
         self.y = -1 * (self._alto_mundo / 2) + self.alto
 
@@ -34,14 +34,14 @@ class Sonido(Boton):
     def deshabilitar_sonido(self):
         """Alterna entre sonido habilitado o deshabilitado."""
         if self.activado:
-            pilas.mundo.deshabilitar_musica()
-            pilas.mundo.deshabilitar_sonido()
+            self.pilas.mundo.deshabilitar_musica()
+            self.pilas.mundo.deshabilitar_sonido()
             self.pintar_presionado()
             pilas.avisar("Sonido deshabilitado")
             self.activado = False
         else:
-            pilas.mundo.deshabilitar_musica(estado=False)
-            pilas.mundo.deshabilitar_sonido(estado=False)
+            self.pilas.mundo.deshabilitar_musica(estado=False)
+            self.pilas.mundo.deshabilitar_sonido(estado=False)
             self.pintar_normal()
             pilas.avisar("Sonido habilitado")
             self.activado = True

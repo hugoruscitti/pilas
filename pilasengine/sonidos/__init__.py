@@ -21,3 +21,9 @@ class Sonidos(object):
             return sonido.Sonido(ruta_al_sonido)
         else:
             return sonido.SonidoDeshabilitado(ruta_al_sonido)
+        
+    def habilitar(self):
+        sonido.Sonido.deshabilitado = False
+        
+    def deshabilitar(self):
+        sonido.Sonido.deshabilitado = True

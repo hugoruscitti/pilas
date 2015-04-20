@@ -37,6 +37,7 @@ import watcher
 import plugins
 import simbolos
 
+
 import widget
 
 VERSION = "0.90.28"
@@ -179,6 +180,9 @@ class Pilas(object):
         if not getattr(self, 'depurador', None):
             self.depurador = depurador.Depurador(self)
 
+        #if not self.configuracion.audio_habilitado():
+        #    print "Nota: Iniciando con el sistema de audio deshabitado."       
+            
         self.musica = musica.Musica(self)
         self.sonidos = sonidos.Sonidos(self)
 
@@ -514,6 +518,19 @@ class Pilas(object):
 
     def obtener_actor_por_indice(self, indice):
         return self.escena._actores.obtener_actores()[indice]
+
+    def deshabilitar_musica(self, estado=True):
+        if estado:
+            self.musica.deshabilitar()
+        else:
+            self.musica.habilitar()
+    
+    def deshabilitar_sonido(self, estado=True):
+        if estado:
+            self.sonidos.deshabilitar()
+        else:
+            self.sonidos.habilitar()
+
 
     control = property(obtener_control, doc="Obtiene el modulo de control")
     tareas = property(obtener_tareas, doc="Obtiene el modulo de tareas")

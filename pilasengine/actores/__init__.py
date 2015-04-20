@@ -271,6 +271,9 @@ class Actores(object):
     def EstrellaNinja(self, x=0, y=0):
         ":rtype: estrella_ninja.EstrellaNinja"
         return self._crear_actor('estrella_ninja', 'EstrellaNinja', x=x, y=y)
+    
+    def Sonido(self, x=0, y=0):
+        return self._crear_actor('sonido', 'Sonido', x=x, y=y)
 
     def Menu(self, opciones=[], x=0, y=0, fuente=None,
              color_normal=colores.gris, color_resaltado=colores.blanco):
