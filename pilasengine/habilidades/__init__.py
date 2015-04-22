@@ -164,37 +164,15 @@ class Habilidades(object):
         return referencia_a_clase
 
 
-    def vincular(self, clase_de_la_habilidad):
+    def vincular(self, clase_del_comportamiento):
         # Se asegura de que la clase sea una habilidad.
-        if not issubclass(clase_de_la_habilidad, Habilidad):
+        if not issubclass(clase_del_comportamiento, Habilidad):
             mensaje = "Solo se pueden vincular clases que heredan de pilasengine.habilidades.Habilidad"
             raise Exception(mensaje)
 
-        """
-        def metodo_crear_habilidad(self, *k, **kw):
-            try:
-                habilidad_nueva = clase_de_la_habilidad(self.pilas)
-            except TypeError, error:
-                print traceback.format_exc()
-                mensaje_extendido = "\n\t(en la clase %s solo se deberia esperar el argumento pilas" %(str(clase_del_actor.__name__))
-                raise TypeError(str(error) + mensaje_extendido)
-
-            try:
-                habilidad_nueva.iniciar(*k, **kw)
-            except TypeError, error:
-                print traceback.format_exc()
-                nombre = clase_de_la_habilidad.__name__
-                argumentos_esperados = str(inspect.getargspec(clase_de_la_habilidad.iniciar))
-                argumentos = str(k) + " " + str(kw)
-                mensaje_extendido = "\nLa clase %s arrojó un error al ser inicializada, asegurá que el método %s.iniciar (que solo admite los argumetos: %s) en realidad fue invocada con los argumentos: %s" %(nombre, nombre, argumentos_esperados, argumentos)
-                raise TypeError(str(error) + mensaje_extendido)
-
-            return habilidad_nueva
-        """
-
 
         # Se asegura de que la escena no fue vinculada anteriormente.
-        nombre = clase_de_la_habilidad.__name__
+        nombre = clase_del_comportamiento.__name__
         existe = nombre in self._lista_habilidades_personalizadas or nombre in self.diccionario_de_habilidades.keys()
 
         if existe:
@@ -202,7 +180,7 @@ class Habilidades(object):
             raise Exception(mensaje)
 
 
-        metodo_iniciar = getattr(clase_de_la_habilidad, 'iniciar')
+        metodo_iniciar = getattr(clase_del_comportamiento, 'iniciar')
         argumentos = inspect.getargspec(metodo_iniciar)
 
         if not 'receptor' in argumentos.args:
@@ -210,10 +188,10 @@ class Habilidades(object):
             raise Exception(mensaje)
 
         # Vincula la clase anexando el metodo constructor.
-        setattr(self.__class__, nombre, clase_de_la_habilidad)
+        setattr(self.__class__, nombre, clase_del_comportamiento)
         self._lista_habilidades_personalizadas.append(nombre)
 
-        #self.diccionario_de_habilidades[nombre.lower()] = clase_de_la_habilidad
+        #self.diccionario_de_habilidades[nombre.lower()] = clase_del_comportamiento
         self.diccionario_de_habilidades[nombre.lower()] = getattr(self.__class__, nombre)
 
 

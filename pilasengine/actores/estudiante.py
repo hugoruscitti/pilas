@@ -126,24 +126,17 @@ class Estudiante(object):
         :param repetir_por_siempre: Si el comportamiento se volverá a ejecutar
                                     luego de terminar.
         """
-        if issubclass(classname, comportamientos.Comportamiento):
-            self._hacer_luego(classname, repetir_por_siempre, *args, **kwargs)
-        else:
-            raise Exception('''El actor solo puede "hacer" clases que hereden
-                            de pilasengine.comportamientos.Comportamiento''')
-
-    def _hacer_luego(self, classname, repetir_por_siempre, *args, **kwargs):
-        comportamiento = estructura_comportamiento(
-                            classname(self.pilas), args, kwargs)
-
-        self.comportamientos.append(comportamiento)
-        self.repetir_comportamientos_por_siempre = repetir_por_siempre
+        print "Este metodo entra en desuso, utilice el metodo 'hacer' en su lugar ..."
+        return self.hacer(classname, *args, **kwargs)
 
     def hacer(self, classname, *args, **kwargs):
         """Define el comportamiento para el actor de manera inmediata.
 
         :param classname: Referencia al comportamiento a realizar.
         """
+
+        if isinstance(classname, str):
+            classname = self.pilas.comportamientos.buscar_comportamiento_por_nombre(classname)
 
         if issubclass(classname, comportamientos.Comportamiento):
             self._hacer(classname, *args, **kwargs)
@@ -155,13 +148,12 @@ class Estudiante(object):
         comportamiento = estructura_comportamiento(
                             classname(self.pilas), args, kwargs)
 
-        self.comportamientos.insert(0, comportamiento)
-        self._adoptar_el_siguiente_comportamiento()
+        self.comportamientos.append(comportamiento)
 
     def eliminar_comportamientos(self):
         "Elimina todos los comportamientos que tiene que hacer el actor."
 
-        for c in self.comportamientos:
+        for c in list(self.comportamientos):
             self.comportamientos.remove(c)
 
     def actualizar_comportamientos(self):
