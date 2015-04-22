@@ -157,3 +157,6 @@ class Superficie(Imagen):
             fuente_id = Superficie.CACHE_FUENTES[fuente_como_ruta]
 
         return str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
+
+    def __repr__(self):
+        return "<Superficie>"
