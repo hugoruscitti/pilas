@@ -183,13 +183,6 @@
     
         
             <li class="toctree-l1 ">
-                <a class="" href="../demos">Demos</a>
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
                 <a class="" href="../interfaz">Interfaz de usuario</a>
             </li>
         
@@ -224,13 +217,9 @@
 
     
         
-        <span>Eventos</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../eventos">conexiones y respuestas</a>
-                    
-                </li>
-            
+            <li class="toctree-l1 ">
+                <a class="" href="../eventos">Eventos conexiones y respuestas</a>
+            </li>
         
 
     
@@ -313,16 +302,16 @@ representar opciones y que le puedas asociar
 nombres de funciones para invocar.</p>
 <p>Un menú sencillo podría tener dos opciones, una
 para iniciar el juego y otra para salir:</p>
-<pre><code>import pilas
+<pre><code class="python">import pilasengine
 
-pilas.iniciar()
+pilas = pilasengine.iniciar()
 pilas.fondos.Selva()
 
 def iniciar_juego():
-    print "Tengo que iniciar el juego"
+    print &quot;Tengo que iniciar el juego&quot;
 
 def salir_del_juego():
-    print "Tengo que salir..."
+    print &quot;Tengo que salir...&quot;
 
 pilas.actores.Menu(
         [
@@ -332,6 +321,7 @@ pilas.actores.Menu(
 
 pilas.ejecutar()
 </code></pre>
+
 <p>Si escribes este texto en un programa, funciona, aunque no
 es muy útil: solamente creará una ventana con dos
 opciones, que se pueden seleccionar usando el
@@ -346,19 +336,21 @@ mensaje en la consola de python.</p>
 dos partes que son muy importantes.</p>
 <p>Primero declaramos funciones que hacen algo, como por
 ejemplo:</p>
-<pre><code>def iniciar_juego():
-    print "Tengo que iniciar el juego"
+<pre><code class="python">def iniciar_juego():
+    print &quot;Tengo que iniciar el juego&quot;
 </code></pre>
+
 <p>Y luego, cuando creamos el menú, armamos una lista
 de tuplas, donde el primer elemento es la cadena
 de texto que queremos mostrar, y el segundo elemento
 es la función a invocar:</p>
-<pre><code>pilas.actores.Menu(
+<pre><code class="python">pilas.actores.Menu(
         [
             ('iniciar juego', iniciar_juego),
             ('salir', salir_del_juego),
         ])
 </code></pre>
+
 <p>Es importante que el argumento se construya usando
 una lista como la anterior.</p>
 <p>Puedes crear tantas
@@ -373,20 +365,22 @@ parezca un recurso muy simple, funciona bastante bien
 en casi todos los casos. Por ejemplo, nuestro código
 anterior se podría poner mas interesante si mejoramos
 la función <code>iniciar_juego</code> y la función <code>salir_del_juego</code>:</p>
-<pre><code>def iniciar_juego():
+<pre><code class="python">def iniciar_juego():
     pilas.ejemplos.Piezas()
 
 def salir_del_juego():
     pilas.terminar()
 </code></pre>
+
 <h2 id="los-menues-son-actores">Los menúes son actores</h2>
 <p>Ten en cuenta que el menú también es un actor, así
 que podrás posicionarlo en la ventana, o cambiar
 su tamaño como si se tratara de cualquier otro
 personaje del juego:</p>
-<pre><code>mi_menu.escala = 2
+<pre><code class="python">mi_menu.escala = 2
 mi_menu.x = [300, 0]
 </code></pre>
+
 <p>Muchos juegos hace uso de esta característica, por
 ejemplo, para que el menú aparezca por debajo de la pantalla
 o que se mueva constantemente como si estuviera flotando.</p>

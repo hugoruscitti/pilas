@@ -183,13 +183,6 @@
     
         
             <li class="toctree-l1 ">
-                <a class="" href="../demos">Demos</a>
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
                 <a class="" href="../interfaz">Interfaz de usuario</a>
             </li>
         
@@ -224,13 +217,9 @@
 
     
         
-        <span>Eventos</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../eventos">conexiones y respuestas</a>
-                    
-                </li>
-            
+            <li class="toctree-l1 ">
+                <a class="" href="../eventos">Eventos conexiones y respuestas</a>
+            </li>
         
 
     
@@ -328,9 +317,9 @@ queremos hacer un actor muy feo, de color "verde"
 y con dos ojitos. Lo primero que tenemos que hacer
 es crear una superficie, dibujar sobre ella, y luego
 crear un actor con esa apariencia:</p>
-<pre><code>import pilas
+<pre><code class="python">import pilasengine
 
-pilas.iniciar()
+pilas = pilasengine.iniciar()
 
 superficie = pilas.imagenes.cargar_superficie(100, 100)
 
@@ -349,6 +338,7 @@ pilas.actores.Actor(superficie)
 
 pilas.ejecutar() # Necesario al ejecutar en scripts.
 </code></pre>
+
 <p>Es decir, una vez que creamos la superficie, en realidad lo que obtenemos
 es un objeto que se comporta cómo una imagen, pero con la diferencia
 que podemos dibujar sobre ella libremente y crear desde el código la

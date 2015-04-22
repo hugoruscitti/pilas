@@ -183,13 +183,6 @@
     
         
             <li class="toctree-l1 ">
-                <a class="" href="../demos">Demos</a>
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
                 <a class="" href="../interfaz">Interfaz de usuario</a>
             </li>
         
@@ -224,13 +217,9 @@
 
     
         
-        <span>Eventos</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../eventos">conexiones y respuestas</a>
-                    
-                </li>
-            
+            <li class="toctree-l1 ">
+                <a class="" href="../eventos">Eventos conexiones y respuestas</a>
+            </li>
         
 
     
@@ -312,9 +301,7 @@ gráficos como <strong>png</strong> o <strong>jpg</strong> ya diseñados con ant
 el módulo <code>imagenes</code>. Por ejemplo, si tenemos una
 imagen llamada <code>hola.png</code> podríamos incorporarla a
 nuestro juego así:</p>
-<pre><code>import pilas
-
-hola = pilas.imagenes.cargar('hola.png')
+<pre><code class="python">hola = pilas.imagenes.cargar('hola.png')
 </code></pre>
 
 <p>Las imágenes no se imprimen directamente en pantalla, en
@@ -470,17 +457,17 @@ de motores en funcionamiento cuando la nave avanza y detener la
 animación de motores cuando finaliza el movimiento.</p>
 <p>Una forma de lograr esto de manera sencilla es crear tu propio
 actor, y que este tenga dos atributos, uno para cada animación:</p>
-<pre><code>class MiNave(pilas.actores.Actor):
+<pre><code class="python">class MiNave(pilasengine.actores.Actor):
 
-    def __init__(self, x=0, y=0):
-        Actor.__init__(self, x=x, y=y)
-        self.animacion_detenida = pilas.imagenes.cargar_grilla("nave_detenida.png", 1)
-        self.animacion_movimiento = pilas.imagenes.cargar_grilla("nave_en_movimiento.png", 3)
+    def iniciar(self, x=0, y=0):
+        self.animacion_detenida = pilas.imagenes.cargar_grilla(&quot;nave_detenida.png&quot;, 1)
+        self.animacion_movimiento = pilas.imagenes.cargar_grilla(&quot;nave_en_movimiento.png&quot;, 3)
 </code></pre>
+
 <p>Luego, en el método <code>actualizar</code> del propio actor podrías
 avanzar la animación actual y permitirle al programador invocar
 métodos para intercambiar animaciones:</p>
-<pre><code>class MiNave(pilas.actores.Actor):
+<pre><code class="python">class MiNave(pilasengine.actores.Actor):
 
     # [...] codigo anterior
 
@@ -493,6 +480,7 @@ métodos para intercambiar animaciones:</p>
     def actualizar(self):
         self.imagen.avanzar()
 </code></pre>
+
 <p>Como puedes ver, el concepto inicial es el mismo, cuando
 queremos cambiar de animación tenemos que cambiar de grilla, y
 cuando queremos avanzar la animación solamente tenemos que
