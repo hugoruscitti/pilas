@@ -14,7 +14,6 @@ from pilasengine.actores.texto import Texto
 from pilasengine.actores.grupo import Grupo
 from pilasengine.actores.misil import Misil
 from pilasengine.actores.temporizador import Temporizador
-
 from pilasengine.actores import aceituna
 
 
@@ -218,6 +217,9 @@ class Actores(object):
 
     def listar_actores(self):
         return list(self.pilas.obtener_escena_actual()._actores)
+
+    def Torreta(self,  municion_bala_simple=None, enemigos=[], cuando_elimina_enemigo=None, x=0, y=0, frecuencia_de_disparo=10):
+        return self._crear_actor('torreta', 'Torreta', municion_bala_simple, enemigos, cuando_elimina_enemigo, x=0, y=0, frecuencia_de_disparo=10)
 
     def Aceituna(self, x=0, y=0):
         ":rtype: aceituna.Aceituna"
@@ -619,3 +621,5 @@ from pilasengine.actores.texto import Texto
 from pilasengine.actores.texto_inferior import TextoInferior
 from pilasengine.actores.tortuga import Tortuga
 from pilasengine.actores.zanahoria import Zanahoria
+
+from pilasengine.actores.estudiante import Estudiante

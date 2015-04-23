@@ -7,11 +7,10 @@
 # Website - http://www.pilas-engine.com.ar
 
 import math
-
+from pilasengine import habilidades
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.municion import Municion
 from pilasengine.actores.bala import Bala
-from pilasengine import habilidades
 
 
 class Disparar(habilidades.Habilidad):
@@ -19,7 +18,7 @@ class Disparar(habilidades.Habilidad):
     pilas.municion.Municion."""
 
     def iniciar(self, receptor,
-                 municion = Bala,
+                 municion = 'Bala',
                  parametros_municion = {},
                  grupo_enemigos=[],
                  cuando_elimina_enemigo=None,
@@ -58,6 +57,9 @@ class Disparar(habilidades.Habilidad):
         """
 
         super(Disparar, self).iniciar(receptor)
+        
+        if municion == "Bala":
+            municion = Bala
 
         self._municion = municion
         self.parametros_municion = parametros_municion
@@ -170,3 +172,42 @@ class Disparar(habilidades.Habilidad):
 
     def pulsa_disparar(self):
         return self.control.boton if self.control else self.pilas.control.boton
+    
+    
+    
+class DispararConClick(Disparar):
+    """Establece la habilidad de poder disparar un Actor o un objeto de tipo
+    pilas.municion.Municion."""
+
+
+    """Establece la habilidad de poder disparar un Actor o un objeto de tipo
+    pilas.municion.Municion pulsando el boton izquierdo del ratón."""
+
+    def iniciar(self, municion=municion,
+                 parametros_municion = parametros_municion,
+                 grupo_enemigos=grupo_enemigos,
+                 cuando_elimina_enemigo=cuando_elimina_enemigo,
+                 frecuencia_de_disparo=frecuencia_de_disparo,
+                 angulo_salida_disparo=angulo_salida_disparo,
+                 offset_disparo=offset_disparo,
+                 offset_origen_actor=offset_origen_actor,
+                 cuando_dispara=cuando_dispara,
+                 escala=escala,
+                 rotacion_disparo=rotacion_disparo,
+                 control=control):
+        
+        Disparar.iniciar(self)
+        self.boton_pulsado = False
+        self.pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
+        self.pilas.eventos.termina_click.conectar(self.cuando_termina_click)
+
+    def cuando_hace_click(self, evento):
+        if evento.boton == 1:
+            self.boton_pulsado = True
+
+    def cuando_termina_click(self, evento):
+        if evento.boton == 1:
+            self.boton_pulsado = False
+
+    def pulsa_disparar(self):
+        return self.boton_pulsado

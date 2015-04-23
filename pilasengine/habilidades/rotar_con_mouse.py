@@ -33,7 +33,7 @@ class RotarConMouse(habilidades.Habilidad):
                                      'DERECHA': "0"}
         self.pilas.eventos.mueve_mouse.conectar(self.se_movio_el_mouse)
         self.pilas.eventos.actualizar.conectar(self.rotar)
-        self.lado_seguimiento = int(self.lados_de_seguimiento[lado_seguimiento])
+        self.lado_seguimiento = int(self.lados_de_seguimiento[lado_seguimiento.upper()])
         self.raton_x = receptor.x
         self.raton_y = receptor.y
 

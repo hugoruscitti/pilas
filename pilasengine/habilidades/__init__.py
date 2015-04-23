@@ -50,6 +50,7 @@ class Habilidades(object):
                 "MoverseComoCoche": self.MoverseComoCoche,
                 "Disparar": self.Disparar,
                 "EliminarseSiSaleDePantalla": self.EliminarseSiSaleDePantalla,
+                "DispararConClick": self.DispararConClick,
         }
 
         for k, v in self.diccionario_de_habilidades.items():
@@ -156,6 +157,11 @@ class Habilidades(object):
         return self._referencia_habilidad('disparar',
                                           'Disparar')
 
+    @property
+    def DispararConClick(self):
+        return self._referencia_habilidad('disparar',
+                                          'DispararConClick')
+
     def _referencia_habilidad(self, modulo, clase):
         import importlib
         referencia_a_modulo = importlib.import_module('pilasengine.habilidades.'
@@ -214,3 +220,5 @@ class ProxyHabilidades(object):
     def __repr__(self):
         return '<Éste actor tiene {0} habilidades: {1}>'.format(
             str(len(self.habilidades)), str(self.habilidades))
+        
+        
