@@ -12,12 +12,31 @@ import pilasengine
 
 pilas = pilasengine.iniciar()
 
-sonido = pilas.musica.cargar("rayman.ogg")
+try:
+    sonido_wav = pilas.musica.cargar("rayman.wav")
+except:
+    print("Imposible leer el archivo .wav")
 
-def reproducir_sonido_cuando_hace_click(evento):
-    sonido.reproducir()
+try:
+    sonido_ogg = pilas.musica.cargar("rayman.ogg")
+except:
+    print("Imposible leer el archivo .ogg")
 
-pilas.escena_actual().click_de_mouse.conectar(reproducir_sonido_cuando_hace_click)
 
-pilas.avisar("Pulse sobre la pantalla para emitir un sonido de explosion.")
+boton_wav = pilas.interfaz.Boton("Reproducir .wav")
+boton_wav.x = -100
+
+boton_ogg = pilas.interfaz.Boton("Reproducir .ogg")
+boton_ogg.x = 100
+
+def reproducir_wav():
+    sonido_wav.reproducir()
+
+def reproducir_ogg():
+    sonido_ogg.reproducir()
+
+boton_wav.conectar(reproducir_wav)
+boton_ogg.conectar(reproducir_ogg)
+
+
 pilas.ejecutar()
