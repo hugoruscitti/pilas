@@ -293,12 +293,17 @@ class Actores(object):
                                  argumentos=argumentos, fuente=fuente,
                                  color_normal=color_normal,
                                  color_resaltado=color_resaltado)
-
+        
     def MensajeError(self, error, descripcion):
         ":rtype: mensaje_error.MensajeError"
 
         return self._crear_actor('mensaje_error', 'MensajeError', error,
                                  descripcion)
+
+    def Dinamita(self, x=0,y=0,rotacion=0,velocidad_maxima=4, angulo_de_movimiento=90):
+        ":rtype: dinamita.Dinamita"
+
+        return self._crear_actor('dinamita', 'Dinamita', x=0,y=0,rotacion=0,velocidad_maxima=4, angulo_de_movimiento=90);
 
     def Animacion(self, grilla='sin_imagen.png', ciclica=False, x=0, y=0, velocidad=10):
         ":rtype: animacion.Animacion"
