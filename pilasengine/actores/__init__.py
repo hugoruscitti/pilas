@@ -241,9 +241,9 @@ class Actores(object):
         ":rtype: ejes.Ejes"
         return self._crear_actor('ejes', 'Ejes', x=x, y=y)
 
-    def Puntaje(self, x=0, y=0, color='negro'):
+    def Puntaje(self, x=0, y=0, color='negro', texto='0'):
         ":rtype: puntaje.Puntaje"
-        return self._crear_actor('puntaje', 'Puntaje', x=x, y=y, color=color)
+        return self._crear_actor('puntaje', 'Puntaje', texto=texto, x=x, y=y, color=color)
 
     def Pingu(self, x=0, y=0):
         ":rtype: pingu.Pingu"
