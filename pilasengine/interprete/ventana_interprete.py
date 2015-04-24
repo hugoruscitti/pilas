@@ -264,6 +264,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.cargando.setAlignment(QtCore.Qt.AlignHCenter |
                                    QtCore.Qt.AlignVCenter)
         self.canvas.addWidget(self.cargando)
+        self.cargando.setStyleSheet("background-color: 'black'")
 
     def mostrar_mensaje_cargando(self):
         self.canvas.setCurrentWidget(self.cargando)
