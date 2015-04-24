@@ -11,6 +11,7 @@
 
   <script src="js/jquery-1.8.3.js"></script>
   <script src="js/bootstrap.js"></script>
+  <script src="js/spin.js"></script>
 
   <script src="js/angular.js"></script>
   <script src="js/angular-route.js"></script>
@@ -58,6 +59,8 @@
       $("#footer .tip").css('background-color', color);
     }
 
+
+
     function definir_version(version, version_local) {
     
       setTimeout(function() {
@@ -72,6 +75,11 @@
         var elementoMensajeActualizado = document.getElementById('mensajeActualizado');
 
         var elementEsperaImagen = document.getElementById('esperaImagen');
+
+
+
+
+
         
         /* Ocultando la animacion de actividad */
         elementEsperaImagen.style.setProperty('display', 'none');
@@ -103,7 +111,9 @@
 
     <div class='version'>
       <span id='aviso'><img id='avisoImagen' src='imagenes/actualizacion.png'></span>
-      <span id='espera'><img id='esperaImagen' src='imagenes/espera.gif'></span>
+      <div id='span2'>
+        <div id='esperaImagen'></div>
+      </div>
       <span id='actualizado'><img id='actualizadoImagen' src='imagenes/actualizado.png'></span>
       <a href id='version' ng-click='alternar_panel_version()' class='link-version'> versión {{data.version.version}}</a>
     </div>
@@ -141,6 +151,29 @@
   <ng-view class='view-animate'></ng-view>
 
 </div>
+
+<script>
+  var elementEsperaImagen = document.getElementById('esperaImagen');
+  var opts = {
+    lines: 9, 
+    length: 3, 
+    width: 2, 
+    radius: 4, 
+    corners: 1, 
+    rotate: 0, 
+    direction: 1, 
+    color: '#000', 
+    speed: 1.1, 
+    trail: 35, 
+    shadow: false, 
+    hwaccel: false, 
+    className: 'spinner', 
+    zIndex: 2e9, 
+position: 'relative',
+  };
+  var spinner = new Spinner(opts).spin(elementEsperaImagen);
+</script>
+
 
 </body>
 </html>

@@ -108,3 +108,16 @@ div.panel-fondo {
   left: 0;
   right: 0;
 }
+
+
+
+
+.item{
+  display: inline-block;
+}
+
+#span2 {
+  display: inline-block;
+  width: 20px;
+  height: 3px;
+}
