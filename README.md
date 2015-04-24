@@ -18,6 +18,10 @@ Una buena forma de comenzar con pilas es instalar todo el kit de desarrollo sigu
 
 Y una vez instalada la biblioteca, se puede invocar al comando ``pilas -e`` para ver una lista completa de ejemplos y minijuegos.
 
+## ¡Convocamos a colaboradores!
+
+Tenemos una página [en nuestro wiki](https://github.com/hugoruscitti/pilas/wiki/participar) con
+todos los consejos para volverse colaborar del proyecto y participar en el desarrollo.
 
 ## Instalación
 
@@ -29,71 +33,8 @@ del sitio web:
 Los instaladores se generan pediodicamente y se distrubuyen para
 los sistemas mas utilizados.
 
-### Instalación desde repositorios (Ubuntu, Debian y Mint)
-
-En distribuciones como Ubuntu 12.04 o Linux mint, necesitas instalar
-una serie de dependencias:
-
-(en ubuntu 10.04 habilitar la fuente de software "universe" antes)
-
-    sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion python-pygame
-
-Luego, instalar box2d:
-
-    sudo easy_install -U box2d
-
-y por último, obtener e instalar pilas desde el respositorio:
-
-    git clone http://github.com/hugoruscitti/pilas
-
-    cd pilas
-    python setup.py build
-    sudo python setup.py install
-    pilasengine
-
-### Instalación en Open Suse 12.2
-
-En el caso de opensuse, los comandos de instalación son:
-
-    sudo zypper install git gcc python-devel swig python-qt4 python-setuptools gcc-c++ python-pygame
-
-    sudo easy_install -U distribute
-    sudo easy_install -U box2d
-
-    git clone http://github.com/hugoruscitti/pilas.git
-
-    cd pilas
-    git submodule update --init
-
-    python setup.py build
-    sudo python setup.py install
-    pilas
-
-### Instalación desde Pypi
-
-Primero se deben instalar los siguientes paquetes:
-
-    sudo apt-get install python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion python-pygame
-
-Luego, instalar box2d y pilas usando el comando ``easy_install``:
-
-    sudo easy_install -U box2d
-    sudo easy_install -U pilas
-
-### Instalación en OSX
-
-Antes de continuar necesitas tener instalado homebrew, y luego
-instalar las dependencias así:
-
-    brew install pyqt box2d swig
-    sudo easy_install -U box2d
-
-y luego si, vas a poder clonar y utilizar pilas directamente
-desde el repositorio:
-
-    git clone http://github.com/hugoruscitti/pilas.git
-    cd pilas
-    python bin/pilasengine
+Si quieres instalar pilas-engine desde el código fuente, [visitá
+la página del wiki que explica todo el proceso](https://github.com/hugoruscitti/pilas/wiki/instalacion)
 
 
 ## Tests
