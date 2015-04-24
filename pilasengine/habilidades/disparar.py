@@ -168,12 +168,35 @@ class DispararConClick(Disparar):
     """Establece la habilidad de poder disparar un Actor o un objeto de tipo
     pilas.municion.Municion pulsando el boton izquierdo del ratón."""
 
-    def iniciar(self, municio, parametros_municion, grupo_enemigos,
-                 cuando_elimina_enemigo, frecuencia_de_disparo,
-                 angulo_salida_disparo, offset_disparo, offset_origen_actor,
-                 cuando_dispara, escala, rotacion_disparo, control):
+    def iniciar(self, receptor,
+                 municion = 'Bala',
+                 parametros_municion = {},
+                 grupo_enemigos=[],
+                 cuando_elimina_enemigo=None,
+                 frecuencia_de_disparo=10,
+                 angulo_salida_disparo=0,
+                 distancia=0,
+                 offset_origen_actor=(0,0),
+                 cuando_dispara=None,
+                 escala=1,
+                 rotacion_disparo=90,
+                 control=None):
         
-        Disparar.iniciar(self)
+        Disparar.iniciar(self,
+                         receptor=receptor,
+                         municion=municion,
+                         parametros_municion=parametros_municion,
+                         grupo_enemigos=grupo_enemigos,
+                         cuando_elimina_enemigo=cuando_elimina_enemigo,
+                         frecuencia_de_disparo=frecuencia_de_disparo,
+                         angulo_salida_disparo=angulo_salida_disparo,
+                         distancia=distancia,
+                         offset_origen_actor=offset_origen_actor,
+                         cuando_dispara=cuando_dispara,
+                         escala=escala,
+                         rotacion_disparo=rotacion_disparo,
+                         control=control)
+                                     
         self.boton_pulsado = False
         self.pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
         self.pilas.eventos.termina_click.conectar(self.cuando_termina_click)

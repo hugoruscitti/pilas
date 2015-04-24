@@ -36,7 +36,7 @@ class Torreta(Actor):
                       cuando_elimina_enemigo=cuando_elimina_enemigo,
                       frecuencia_de_disparo=frecuencia_de_disparo,
                       angulo_salida_disparo=90,
-                      offset_disparo=(27,27))
+                      distancia=27)
         
     def get_municion(self):                                                      
         """Retorna la munción que está utilizando la torreta."""                 
