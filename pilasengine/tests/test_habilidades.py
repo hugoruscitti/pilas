@@ -72,7 +72,7 @@ class TestHabilidades(unittest.TestCase):
                       #municion=self.municion,
                       angulo_salida_disparo=90,
                       frecuencia_de_disparo=6,
-                      offset_disparo=(0, 0),
+                      distancia=5,
                       escala=1)
         
         self.assertTrue(actor.disparar, "Tiene el método disparar")

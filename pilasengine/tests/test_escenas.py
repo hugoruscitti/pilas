@@ -16,10 +16,10 @@ class TestEscenas(unittest.TestCase):
         class EscenaNueva(pilasengine.escenas.Escena):
             pass
             
-        escena = EscenaNueva(self.pilas)
-        self.pilas.definir_escena(escena)
-        self.assertTrue(escena, "A creado la escena correctamente.")
+        self.pilas.escenas.vincular(EscenaNueva)
+        escena = self.pilas.escenas.EscenaNueva()
 
+        self.assertTrue(escena, "A creado la escena correctamente.")
         self.assertEqual(escena, self.pilas.escena_actual(), "Ha vinculado la escena correctamente.")
         
     def testInformaConUnaExcepcionSiFaltaArgumentoPilas(self):

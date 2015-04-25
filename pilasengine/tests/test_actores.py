@@ -94,7 +94,7 @@ class TestActores(unittest.TestCase):
             actor_falla = MiActorConArgumentos(self.pilas)
 
         def crear_actor_con_los_argumentos_correctos():
-            actor = MiActorConArgumentos(self.pilas, "pepe", 33)
+            actor = MiActorConArgumentos(self.pilas, nombre="pepe", edad=33)
             return actor
 
         def crear_actor_con_los_argumentos_correctos_como_diccionarios():

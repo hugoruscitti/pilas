@@ -39,7 +39,7 @@ class Nave(Animacion):
                       municion=self.municion,
                       angulo_salida_disparo=90,
                       frecuencia_de_disparo=6,
-                      offset_disparo=(0, 0),
+                      distancia=4,
                       escala=1)
 
         self.aprender(pilas.habilidades.MoverseConElTeclado,

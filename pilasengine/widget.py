@@ -333,6 +333,9 @@ class WidgetConAceleracion(QGLWidget):
     def continuar(self):
         "Quita el modo pausa."
         self.pausa = False
+        
+    def usa_aceleracion_de_video(self):
+        return True
 
 class WidgetSinAceleracion(QtGui.QWidget):
 
@@ -649,3 +652,6 @@ class WidgetSinAceleracion(QtGui.QWidget):
     def continuar(self):
         "Quita el modo pausa."
         self.pausa = False
+        
+    def usa_aceleracion_de_video(self):
+        return False
