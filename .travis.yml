@@ -5,7 +5,7 @@ before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 install:
-  - install_pyqt.sh
+  - sh install_pyqt.sh
   - pip install mock
 script:
   - python -m unittest discover pilasengine/tests '*.py'
