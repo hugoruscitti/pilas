@@ -54,9 +54,9 @@ ver_sync:
 	git push --tags
 
 utest:
-	@python -m unittest discover pilasengine/tests '*.py'
+	#@python -m unittest discover pilasengine/tests '*.py'
 	# O una version mas linda si se instala nose y nosecolor con pip
-	#@nosetests --color pilasengine/tests/*
+	@nosetests --color pilasengine/tests/*
 
 manual:
 	mkdir -p data/manual
@@ -109,7 +109,7 @@ distmac:
 	@rm -r -f pilas-engine.app
 	@rm -r -f pilas-engine.app.zip
 	@echo "Copiando plantilla de aplicación para osx desde dropbox"
-	@cp /Users/hugoruscitti/Dropbox/pilas-engine-bins/pilas-engine.app.zip ./
+	@cp /Users/hugo/Dropbox/pilas-engine-bins/pilas-engine.app.zip ./
 	@echo "Descomprimiendo..."
 	@unzip pilas-engine.app.zip > tmp/log_unzip_pilas-engine.zip.log
 	@echo "Actualizando contenido..."
