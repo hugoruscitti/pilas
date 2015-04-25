@@ -1,4 +1,5 @@
 #!/bin/sh
+apt-cache search pyqt
 wget http://thomasmansencal.com/Sharing/ThirdParty/Riverbank/sip-4.13.3/sip-4.13.3.tar.gz
 tar -xvf sip-4.13.3.tar.gz
 cd sip-4.13.3
