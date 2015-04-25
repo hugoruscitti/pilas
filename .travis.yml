@@ -3,9 +3,10 @@ python:
   - "2.7"
 before_install:
   - "export DISPLAY=:99.0"
+  - sudo apt-get update -qq
+  - sudo apt-get install -y python-qt4
   - "sh -e /etc/init.d/xvfb start"
 install:
-  - sh install_pyqt.sh
   - pip install mock
 script:
   - python -m unittest discover pilasengine/tests '*.py'
