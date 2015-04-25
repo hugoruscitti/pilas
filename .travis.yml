@@ -5,10 +5,8 @@ before_install:
   - "export DISPLAY=:99.0"
   - sudo apt-get update -qq
   - sudo apt-get install -y python-qt4
-  - sudo apt-cache search box2d
+  - sudo apt-get install -y python-box2d
   - "sh -e /etc/init.d/xvfb start"
-install:
-  - pip install mock
 script:
   - python -m unittest discover pilasengine/tests '*.py'
 virtualenv:
