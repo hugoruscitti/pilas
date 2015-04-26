@@ -42,13 +42,17 @@ class Fisica(object):
         self.mundo = box2d.b2World(gravedad, True)
         self.objetosContactListener = ObjetosContactListener(pilas)
         self.mundo.contactListener = self.objetosContactListener
-        self.mundo.continuousPhysics = True
         self.figuras_a_eliminar = []
         self.constante_mouse = None
 
         self.velocidad = 1.0
         self.timeStep = self.velocidad/60.0
-        self.mundo.SetAllowSleeping(False)
+        self.optimizar_figuras_estaticas(False)
+
+    def optimizar_figuras_estaticas(self, estado=True):
+        """Le indica al motor de fisica que no calcule colisiones en figuras que están en reposo."""
+        self.mundo.SetAllowSleeping(estado)
+        self.mundo.continuousPhysics = (not estado)
 
     def iniciar(self):
         self.area = self.pilas.obtener_widget().obtener_area()
@@ -80,8 +84,7 @@ class Fisica(object):
         if self.constante_mouse:
             self.cuando_suelta_el_mouse()
 
-        self.constante_mouse = \
-            constante_de_movimiento.ConstanteDeMovimiento(self.pilas, figura)
+        self.constante_mouse = constante_de_movimiento.ConstanteDeMovimiento(self.pilas, figura)
 
     def cuando_mueve_el_mouse(self, x, y):
         """Gestiona el evento de movimiento del mouse.
@@ -116,8 +119,9 @@ class Fisica(object):
 
     def reanudar_mundo(self):
         """Restaura la simulación física."""
+
         if self.mundo:
-            self.timeStep = self.velocidad/120.0
+            self.timeStep = self.velocidad/60.0
 
     def _procesar_figuras_a_eliminar(self):
         "Elimina las figuras que han sido marcadas para quitar."
@@ -302,6 +306,7 @@ class Fisica(object):
     def Rectangulo(self, x=0, y=0, ancho=50, alto=20, dinamica=True, densidad=1.0,
                    restitucion=0.56, friccion=10.5, amortiguacion=0.1,
                    sin_rotacion=False, sensor=False):
+        ":rtype: rectangulo.Rectangulo"
 
         return rectangulo.Rectangulo(self, self.pilas, x, y, ancho, alto,
                                     dinamica=dinamica, densidad=densidad,

@@ -241,6 +241,10 @@ class Actores(object):
         ":rtype: ejes.Ejes"
         return self._crear_actor('ejes', 'Ejes', x=x, y=y)
 
+    def Maton(self, x=0, y=0):
+        ":rtype: maton.Maton"
+        return self._crear_actor('maton', 'Maton', x=x, y=y)
+
     def Puntaje(self, x=0, y=0, color='negro', texto='0'):
         ":rtype: puntaje.Puntaje"
         return self._crear_actor('puntaje', 'Puntaje', texto=texto, x=x, y=y, color=color)
