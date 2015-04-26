@@ -27,7 +27,7 @@ class Pingu(Actor):
         self.y = y
         self.imagen = self.pilas.imagenes.cargar_grilla("pingu.png", 10)
         self.definir_cuadro(4)
-        self.hacer(Esperando)
+        self.hacer_inmediatamente(Esperando)
         self.radio_de_colision = 30
         self.centro = ("centro", "abajo")
         self.velocidad = 4
@@ -52,12 +52,12 @@ class Esperando(Comportamiento):
 
     def actualizar(self):
         if self.control.izquierda:
-            self.receptor.hacer(Caminando)
+            self.receptor.hacer_inmediatamente(Caminando)
         elif self.control.derecha:
-            self.receptor.hacer(Caminando)
+            self.receptor.hacer_inmediatamente(Caminando)
 
         if self.control.arriba:
-            self.receptor.hacer(Saltando)
+            self.receptor.hacer_inmediatamente(Saltando)
 
 
 class Caminando(Comportamiento):
@@ -77,10 +77,10 @@ class Caminando(Comportamiento):
         elif self.control.derecha:
             self.receptor.x += self.receptor.velocidad
         else:
-            self.receptor.hacer(Esperando)
+            self.receptor.hacer_inmediatamente(Esperando)
 
         if self.control.arriba:
-            self.receptor.hacer(Saltando)
+            self.receptor.hacer_inmediatamente(Saltando)
 
     def avanzar_animacion(self):
         self.paso += 1
@@ -107,7 +107,7 @@ class Saltando(Comportamiento):
 
         if self.receptor.y < self.origen:
             self.receptor.y = self.origen
-            self.receptor.hacer(Esperando)
+            self.receptor.hacer_inmediatamente(Esperando)
 
         if self.control.izquierda:
             self.receptor.x -= self.receptor.velocidad
