@@ -109,11 +109,13 @@ class Mapa(Actor):
             Rectangulo = self.pilas.fisica.Rectangulo
             #actor.figura_de_colision = Rectangulo(nuevo_x, nuevo_y,
             figura_de_colision = Rectangulo(nuevo_x, nuevo_y,
-                                        ancho, alto, dinamica=False,
+                                        ancho, alto, 
                                         densidad=self.densidad,
                                         restitucion=self.restitucion,
                                         friccion=self.friccion,
-                                        amortiguacion=self.amortiguacion)
+                                        amortiguacion=self.amortiguacion,
+                                        plataforma=True  # Optimizacion
+                                        )
 
             self.actores_con_figuras_solidas.append(figura_de_colision)
 

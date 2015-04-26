@@ -305,7 +305,7 @@ class Fisica(object):
 
     def Rectangulo(self, x=0, y=0, ancho=50, alto=20, dinamica=True, densidad=1.0,
                    restitucion=0.56, friccion=10.5, amortiguacion=0.1,
-                   sin_rotacion=False, sensor=False):
+                   sin_rotacion=False, sensor=False, plataforma=False):
         ":rtype: rectangulo.Rectangulo"
 
         return rectangulo.Rectangulo(self, self.pilas, x, y, ancho, alto,
@@ -313,7 +313,8 @@ class Fisica(object):
                                     restitucion=restitucion, friccion=friccion,
                                     amortiguacion=amortiguacion,
                                     sin_rotacion=sin_rotacion,
-                                    sensor=sensor)
+                                    sensor=sensor,
+                                    plataforma=plataforma)
 
     def Circulo(self, x=0, y=0, radio=20, dinamica=True, densidad=1.0,
                 restitucion=0.56, friccion=10.5, amortiguacion=0.1,

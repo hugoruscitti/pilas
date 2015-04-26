@@ -24,7 +24,8 @@ class Rectangulo(Figura):
 
     def __init__(self, fisica, pilas, x, y, ancho, alto, dinamica=True,
                  densidad=1.0, restitucion=0.56, friccion=10.5,
-                 amortiguacion=0.1, sin_rotacion=False, sensor=False):
+                 amortiguacion=0.1, sin_rotacion=False, sensor=False,
+                 plataforma=False):
 
         Figura.__init__(self, fisica, pilas)
 
@@ -56,11 +57,15 @@ class Rectangulo(Figura):
         self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
-        self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
+        if plataforma:
+            self._cuerpo = self.fisica.mundo.CreateStaticBody(position=(x, y), fixtures=fixture)
+            self.dinamica = False
+        else:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
+            self.dinamica = dinamica
 
         self.sin_rotacion = sin_rotacion
         self.sensor = sensor
-        self.dinamica = dinamica
 
         if not dinamica:
             self._cuerpo.mass = 1000000
