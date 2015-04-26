@@ -146,7 +146,7 @@ class Fisica(object):
         :param alto: Alto del suelo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.suelo = self.Rectangulo(0, -alto/2, ancho, 2, dinamica=False, restitucion=restitucion)
+        self.suelo = self.Rectangulo(0, -alto/2, ancho, 2, dinamica=False, plataforma=True, restitucion=restitucion)
 
     def crear_techo(self, (ancho, alto), restitucion=0):
         """Genera un techo sólido para el escenario.

@@ -5,7 +5,7 @@ sys.path.insert(0, "..")
 
 pilas = pilasengine.iniciar()
 
-pilas.fondos.Volley()
+fondo = pilas.fondos.Volley()
 
 pilas.avisar("Un paisaje de ejemplo.")
 pilas.ejecutar()

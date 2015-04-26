@@ -801,7 +801,6 @@ class Actor(Estudiante):
     def get_izquierda(self):
         return self.x - (self.centro_x * self.escala)
 
-    # @interpolable
     def set_izquierda(self, x):
         self.x = x + (self.centro_x * self.escala)
 
@@ -917,7 +916,7 @@ class Actor(Estudiante):
 
         :return: `Actor`.
         """
-        duplicado = self.__class__()
+        duplicado = self.__class__(self.pilas)
 
         for clave in kv:
             setattr(duplicado, clave, kv[clave])

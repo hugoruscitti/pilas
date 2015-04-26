@@ -46,8 +46,10 @@ class Utils(object):
     def obtener_ruta_al_recurso(self, ruta):
         return self.pilas.obtener_ruta_al_recurso(ruta)
 
-    def interpolar(self, actor, atributo, valor):
-        duracion = 0.5
+    def interpolar(self, actor, atributo, valor, duracion=0.5):
+
+        if isinstance(valor, float) or isinstance(valor, int):
+            valor = [valor]
 
         if isinstance(valor, tuple):
             duracion = valor[1]

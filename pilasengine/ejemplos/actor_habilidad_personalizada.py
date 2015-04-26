@@ -14,6 +14,7 @@ class MiHabilidad(pilasengine.habilidades.Habilidad):
 pilas = pilasengine.iniciar()
 
 aceituna = pilas.actores.Aceituna()
-aceituna.aprender(MiHabilidad)
+pilas.habilidades.vincular(MiHabilidad)
+aceituna.aprender('MiHabilidad')
 
 pilas.ejecutar()

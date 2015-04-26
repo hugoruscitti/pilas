@@ -11,10 +11,10 @@ class Patito(pilasengine.actores.Actor):
         self.imagen = "patito.png"
 
     def actualizar(self):
-        if pilas.escena_actual().control.izquierda:
+        if pilas.control.izquierda:
             self.x -= 5
             self.espejado = True
-        elif pilas.escena_actual().control.derecha:
+        elif pilas.control.derecha:
             self.x += 5
             self.espejado = False
 

@@ -128,6 +128,11 @@ class Estudiante(object):
         """
         print "Este metodo entra en desuso, utilice el metodo 'hacer' en su lugar ..."
         return self.hacer(classname, *args, **kwargs)
+    
+    def hacer_inmediatamente(self, classname, *args, **kwargs):
+        self.eliminar_comportamientos()
+        self._adoptar_el_siguiente_comportamiento()
+        self.hacer(classname, *args, **kwargs)
 
     def hacer(self, classname, *args, **kwargs):
         """Define el comportamiento para el actor de manera inmediata.

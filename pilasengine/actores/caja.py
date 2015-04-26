@@ -16,7 +16,7 @@ class Caja(Actor):
 
     """
 
-    def pre_iniciar(self, x=0, y=0):
+    def iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         self.imagen = self.pilas.imagenes.cargar('caja.png')

@@ -18,7 +18,7 @@ class Shaolin(Actor):
     def iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
-        self.hacer(Parado)
+        self.hacer_inmediatamente(Parado)
         self.sombra = self.pilas.actores.Sombra()
         self.altura_del_salto = 0
         
@@ -50,11 +50,11 @@ class Parado(Comportamiento):
         
         # Si pulsa a los costados comienza a caminar.
         if self.control.derecha or self.control.izquierda:
-            self.receptor.hacer(Caminar)
+            self.receptor.hacer_inmediatamente(Caminar)
             
         # Si pulsa hacia arriba salta.
         if self.control.arriba:
-            self.receptor.hacer(Saltar)
+            self.receptor.hacer_inmediatamente(Saltar)
 
 class Caminar(Comportamiento):
     
@@ -78,11 +78,11 @@ class Caminar(Comportamiento):
             
         # Si pulsa hacia arriba salta.
         if self.control.arriba:
-            self.receptor.hacer(Saltar)
+            self.receptor.hacer_inmediatamente(Saltar)
             
         # Si suelta las teclas regresa al estado inicial.
         if not self.control.derecha and not self.control.izquierda:
-            self.receptor.hacer(Parado)
+            self.receptor.hacer_inmediatamente(Parado)
             
 class Saltar(Comportamiento):
     
@@ -106,7 +106,7 @@ class Saltar(Comportamiento):
         if distancia_al_suelo < 0:
             self.receptor.y = self.y_inicial
             self.receptor.altura_del_salto = 0
-            self.receptor.hacer(Parado)
+            self.receptor.hacer_inmediatamente(Parado)
             
         # Si pulsa a los costados se puede mover.
         if self.control.derecha:

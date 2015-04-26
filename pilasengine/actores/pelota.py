@@ -15,7 +15,7 @@ class Pelota(Actor):
     física del escenario.
     """
 
-    def iniciar(self, x, y):
+    def iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         self.imagen = self.pilas.imagenes.cargar('pelota.png')
