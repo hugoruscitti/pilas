@@ -1,8 +1,8 @@
 import pilasengine
 
-class GirarPorSiempre(pilas.habilidades.Habilidad):
+class GirarPorSiempre(pilasengine.habilidades.Habilidad):
 
-    def __init__(self, receptor, velocidad=1):
+    def iniciar(self, receptor, velocidad=1):
         self.receptor = receptor
         self.velocidad = velocidad
 
@@ -12,6 +12,7 @@ class GirarPorSiempre(pilas.habilidades.Habilidad):
 pilas = pilasengine.iniciar()
 
 a = pilas.actores.Mono()
-a.aprender(GirarPorSiempre, 20)
+pilas.habilidades.vincular(GirarPorSiempre)
+a.aprender('GirarPorSiempre', 2)
 pilas.avisar("Girando por siempre...")
 pilas.ejecutar()

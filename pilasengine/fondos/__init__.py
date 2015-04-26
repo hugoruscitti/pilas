@@ -81,3 +81,7 @@ class Fondos(object):
     def Cesped(self):
         import cesped
         return cesped.Cesped(self.pilas)
+
+    def DesplazamientoHorizontal(self):
+        import desplazamiento_horizontal
+        return desplazamiento_horizontal.DesplazamientoHorizontal(self.pilas)
