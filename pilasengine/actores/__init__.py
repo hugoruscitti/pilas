@@ -10,6 +10,7 @@ import inspect
 import traceback
 
 from pilasengine.actores.actor import Actor
+from pilasengine.actores.actor_invisible import ActorInvisible
 from pilasengine.actores.texto import Texto
 from pilasengine.actores.grupo import Grupo
 from pilasengine.actores.misil import Misil
@@ -232,6 +233,10 @@ class Actores(object):
     def Actor(self, x=0, y=0, imagen='sin_imagen.png'):
         ":rtype: actor.Actor"
         return self._crear_actor('actor', 'Actor', x=x, y=y, imagen=imagen)
+
+    def ActorInvisible(self, x=0, y=0, imagen='sin_imagen.png'):
+        ":rtype: actor_invisible.ActorInvisible"
+        return self._crear_actor('actor_invisible', 'ActorInvisible', x=x, y=y, imagen=imagen)
 
     def Palo(self, x=0, y=0):
         ":rtype: palo.Palo"
