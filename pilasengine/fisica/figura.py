@@ -21,6 +21,7 @@ class Figura(object):
         self.pilas = pilas
         self.id = pilas.utils.obtener_uuid()
         self._dinamica = True
+        self.figuras_en_contacto = []
 
     def obtener_x(self):
         "Retorna la posición horizontal del cuerpo."

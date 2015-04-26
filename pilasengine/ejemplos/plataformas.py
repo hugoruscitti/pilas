@@ -1,7 +1,7 @@
 import pilasengine
 
 pilas = pilasengine.iniciar()
-pilas.depurador.definir_modos(fisica=True)
+#pilas.depurador.definir_modos(fisica=True)
 
 pilas.reiniciar_si_cambia(__file__)
 
@@ -15,7 +15,7 @@ class Protagonista(pilasengine.actores.Actor):
         self.figura.sin_rotacion = True
         self.figura.escala_de_gravedad = 2
 
-        self.sensor_pies = pilas.fisica.Rectangulo(self.x, self.y, 10, 20, sensor=True, dinamica=False)
+        self.sensor_pies = pilas.fisica.Rectangulo(self.x, self.y, 20, 5, sensor=True, dinamica=False)
 
     def actualizar(self):
         velocidad = 10
@@ -32,12 +32,21 @@ class Protagonista(pilasengine.actores.Actor):
         else:
             self.figura.velocidad_x = 0
 
-
-        if self.pilas.control.arriba and self.figura.velocidad_y < 0:
-            self.figura.impulsar(0, salto)
+        if self.esta_pisando_el_suelo():
+            if self.pilas.control.arriba and int(self.figura.velocidad_y) <= 0:
+                self.figura.impulsar(0, salto)
 
         self.sensor_pies.x = self.x
         self.sensor_pies.y = self.y - 20
+        
+        if self.esta_pisando_el_suelo():
+            self.imagen = "aceituna.png"
+        else:
+            self.imagen = "aceituna_risa.png"
+
+        
+    def esta_pisando_el_suelo(self):
+        return len(self.sensor_pies.figuras_en_contacto) > 0
 
 
 mapa = pilas.actores.MapaTiled('plataformas.tmx', densidad=0,

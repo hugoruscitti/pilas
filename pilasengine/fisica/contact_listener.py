@@ -22,9 +22,50 @@ class ObjetosContactListener(box2d.b2ContactListener):
         self.detener_figuras_estaticas(args[0])
         self.pilas.colisiones.notificar_colision(fixture_1, fixture_2)
 
+        self.agregar_colision(fixture_1, fixture_2)
+        
+    def agregar_colision(self, fixture_1, fixture_2):
+        actor_asociado_1 = fixture_1.userData.get('actor', None)
+        actor_asociado_2 = fixture_2.userData.get('actor', None)
+
+        figura_1 = fixture_1.userData.get('figura', None)
+        figura_2 = fixture_2.userData.get('figura', None)
+        
+        if figura_1 and figura_2 and figura_1 != figura_2:
+            figura_1.figuras_en_contacto.append(figura_2)
+            figura_2.figuras_en_contacto.append(figura_1)
+
+        #if actor_asociado_1 and actor_asociado_2:
+        #    info_colision = {'actor1': actor_asociado_1,
+        #                     'actor2': actor_asociado_2}
+        #    self._colisiones_en_curso.append(info_colision)
+
+    def eliminar_colision(self, fixture_1, fixture_2):
+        actor_asociado_1 = fixture_1.userData.get('actor', None)
+        actor_asociado_2 = fixture_2.userData.get('actor', None)
+
+        figura_1 = fixture_1.userData.get('figura', None)
+        figura_2 = fixture_2.userData.get('figura', None)
+        
+        if figura_1 and figura_2 and figura_1 != figura_2:
+            if figura_2 in figura_1.figuras_en_contacto:
+                figura_1.figuras_en_contacto.remove(figura_2)
+
+            if figura_1 in figura_2.figuras_en_contacto:
+                figura_2.figuras_en_contacto.remove(figura_1)
+
+        #if actor_asociado_1 and actor_asociado_2:
+        #    info_colision = {'actor1': actor_asociado_1,
+        #                     'actor2': actor_asociado_2}
+        #    self._colisiones_en_curso.append(info_colision)
+
     def EndContact(self, *args, **kwargs):
         # TODO: informar el fin de la colisión.
+        fixture_1 = args[0].fixtureA
+        fixture_2 = args[0].fixtureB
         self.detener_figuras_estaticas(args[0])
+        self.eliminar_colision(fixture_1, fixture_2)
+
 
     def PreSolve(self, contact, old):
         fixture_1 = contact.fixtureA
