@@ -57,3 +57,7 @@ var/
 tmp
 pilas-engine.app
 pilas-engine.app.zip
+
+pilasengine/actores/.actor.py.swp
+
+*.swp
