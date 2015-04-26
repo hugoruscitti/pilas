@@ -245,6 +245,10 @@ class Actores(object):
         ":rtype: maton.Maton"
         return self._crear_actor('maton', 'Maton', x=x, y=y)
 
+    def Calvo(self, x=0, y=0):
+        ":rtype: calvo.Calvo"
+        return self._crear_actor('calvo', 'Calvo', x=x, y=y)
+
     def Puntaje(self, x=0, y=0, color='negro', texto='0'):
         ":rtype: puntaje.Puntaje"
         return self._crear_actor('puntaje', 'Puntaje', texto=texto, x=x, y=y, color=color)

@@ -21,7 +21,7 @@ OESTE = 3
 class Maton(Actor):
     """Representa un personaje de juego tipo RPG."""
 
-    def iniciar(self, x=0, y=0):
+    def pre_iniciar(self, x=0, y=0):
         self.x = x
         self.y = y
         self.imagen = self.pilas.imagenes.cargar_grilla("rpg/maton.png", 3, 4)

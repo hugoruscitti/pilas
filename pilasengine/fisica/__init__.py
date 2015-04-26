@@ -155,7 +155,7 @@ class Fisica(object):
         :param alto: Alto del techo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.techo = self.Rectangulo(0, alto/2, ancho, 2, dinamica=False, restitucion=restitucion)
+        self.techo = self.Rectangulo(0, alto/2, ancho, 2, dinamica=False, plataforma=True, restitucion=restitucion)
 
     def crear_paredes(self, (ancho, alto), restitucion=0):
         """Genera dos paredes para el escenario.
@@ -164,8 +164,8 @@ class Fisica(object):
         :param alto: El alto de las paredes.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
-        self.pared_izquierda = self.Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, restitucion=restitucion)
-        self.pared_derecha = self.Rectangulo(ancho/2, 0, 2, alto, dinamica=False, restitucion=restitucion)
+        self.pared_izquierda = self.Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, plataforma=True, restitucion=restitucion)
+        self.pared_derecha = self.Rectangulo(ancho/2, 0, 2, alto, dinamica=False, plataforma=True, restitucion=restitucion)
 
     def eliminar_suelo(self):
         "Elimina el suelo del escenario."
