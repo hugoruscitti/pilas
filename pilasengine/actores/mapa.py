@@ -104,17 +104,18 @@ class Mapa(Actor):
             dy = self.alto / 2
             nuevo_x = self.x + x - dx + alto/2
             nuevo_y = self.y - y + dy - ancho/2
-            actor = self.pilas.actores.Actor(nuevo_x, nuevo_y)
-            actor.imagen = "invisible.png"
+            #actor = self.pilas.actores.Actor(nuevo_x, nuevo_y)
+            #actor.imagen = "invisible.png"
             Rectangulo = self.pilas.fisica.Rectangulo
-            actor.figura_de_colision = Rectangulo(nuevo_x, nuevo_y,
+            #actor.figura_de_colision = Rectangulo(nuevo_x, nuevo_y,
+            figura_de_colision = Rectangulo(nuevo_x, nuevo_y,
                                         ancho, alto, dinamica=False,
                                         densidad=self.densidad,
                                         restitucion=self.restitucion,
                                         friccion=self.friccion,
                                         amortiguacion=self.amortiguacion)
 
-            self.actores_con_figuras_solidas.append(actor)
+            self.actores_con_figuras_solidas.append(figura_de_colision)
 
         #(dx, dy) = pilas.mundo.motor.centro_fisico()
         #actor = pilas.actores.Actor(x=x-dx+(ancho/2), y=dy-y-(alto/2))
