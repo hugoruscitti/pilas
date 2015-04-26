@@ -162,6 +162,7 @@ class Pilas(object):
         self.actores = actores.Actores(self)
         self.actores.eliminar_actores_personalizados()
         self.eventos = eventos.Eventos(self)
+        self.evento = self.eventos
 
         self.controles = controles.Controles(self)
         self.simbolos = simbolos.Simbolos(self)
