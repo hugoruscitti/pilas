@@ -24,6 +24,8 @@ all:
 	@echo "   $(V)distwin$(N)     Genera la versión compilada para windows."
 	@echo "   $(V)distdeb$(N)     Genera la versión compilada para debian o huayra."
 	@echo ""
+	@echo "  $(V)upload$(N)       Intenta subir los binarios de windows y mac a dropbox."
+	@echo ""
 
 actualizar:
 	git pull
@@ -121,8 +123,9 @@ distmac:
 	@cp -r -f pilasengine pilas-engine.app/Contents/Resources/lib/python2.7/
 	@cp -r -f pilas pilas-engine.app/Contents/Resources/lib/python2.7/
 	@rm -r -f dist/pilas-engine-${VERSION}.dmg
-	@echo "Generando imagen .dmg (esto tarda un huevo...)"
-	@hdiutil create dist/pilas-engine-${VERSION}.dmg -srcfolder pilas-engine.app -size 500mb > tmp/log_creacion_dmg.log
+	@echo "Generando imagen dist/pilas-engine-${VERSION}.dmg (esto tarda un huevo...)"
+	@mkdir -p dist
+	@hdiutil create -srcfolder pilas-engine.app dist/pilas-engine-${VERSION}.dmg > tmp/log_creacion_dmg.log
 	@rm -r -f __MACOSX
 	@rm -r -f pilas-engine.app
 	@rm -r -f pilas-engine.app.zip
@@ -151,7 +154,7 @@ distwin:
 	@rm -r -f tmp/pilas-engine
 	@rm -r -f tmp/__MACOSX
 	@echo "Copiando plantilla de aplicación para windows desde dropbox"
-	@cp /Users/hugoruscitti/Dropbox/pilas-engine-bins/pilas-engine-cargador-windows.zip ./tmp
+	@cp /Users/hugo/Dropbox/pilas-engine-bins/pilas-engine-cargador-windows.zip ./tmp
 	@echo "Descomprimiendo..."
 	@unzip tmp/pilas-engine-cargador-windows.zip -d tmp/ > tmp/log_unzip_pilas-engine.zip.log
 	@echo "Actualizando contenido..."
