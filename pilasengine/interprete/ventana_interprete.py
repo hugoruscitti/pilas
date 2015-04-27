@@ -271,7 +271,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def insertar_widget_de_pilas(self):
         self.scope['pilas'].widget.setFocusPolicy(QtCore.Qt.ClickFocus)
-        self.canvas.setFocus()
 
         # Se asegura de mostrar la ventana de pilas luego de 1/2 segundo.
         if getattr(self, 'stimer', None):
@@ -285,6 +284,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def _mostrar_widget_de_pilas(self):
         self.canvas.setCurrentWidget(self.scope['pilas'].widget)
+	self.scope['pilas'].widget.setFocus(QtCore.Qt.ActiveWindowFocusReason)
+
 
     def _insertar_editor(self, consola_lanas):
         self.widget_editor = editor.WidgetEditor(self.main, self.scope, consola_lanas, self)
@@ -301,7 +302,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.console.addWidget(widgetlanas)
         self.console.setCurrentWidget(widgetlanas)
         self.consola = widgetlanas.lanas
-        self.consola.setFocus()
 
     def definir_fuente_desde_configuracion(self):
         fuente = pilasengine.configuracion.Configuracion().obtener_fuente()
