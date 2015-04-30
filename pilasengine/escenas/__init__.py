@@ -114,7 +114,7 @@ class Escenas(object):
                 nueva_escena = clase_de_la_escena(self.pilas)
             except TypeError, error:
                 print traceback.format_exc()
-                mensaje_extendido = "\n\t(en la clase %s solo se deberia esperar el argumento pilas" %(str(clase_del_actor.__name__))
+                mensaje_extendido = "\n\t(en la clase %s solo se deberia esperar el argumento pilas" %(str(clase_de_la_escena.__name__))
                 raise TypeError(str(error) + mensaje_extendido)
 
             self.sustituir_escena_actual(nueva_escena)
