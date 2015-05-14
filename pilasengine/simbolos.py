@@ -45,6 +45,7 @@ class Simbolos(object):
         self.d='d'
         self.e='e'
         self.f='f'
+        self.g='g'
         self.h='h'
         self.i='i'
         self.j='j'
