@@ -56,7 +56,9 @@ class MapaTiled(Mapa):
     def _redibujar(self):
         self._eliminar_todos_los_actores_con_figuras()
         self._cargar_datos_basicos_del_mapa(self.ruta_mapa)
-        Mapa.iniciar(self, self.x, self.y, self.grilla, filas=self.filas, columnas=self.columnas)
+        Mapa.iniciar(self, self.x, self.y, self.grilla, filas=self.filas, columnas=self.columnas,
+                        densidad=self.densidad, restitucion=self.restitucion,
+                        friccion=self.friccion, amortiguacion=self.amortiguacion)
         self._dibujar_mapa(self.ruta_mapa)
 
     def cuadro_ancho(self):
