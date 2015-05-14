@@ -18,18 +18,19 @@ class EliminarseSiSaleDePantalla(habilidades.Habilidad):
         """
         super(EliminarseSiSaleDePantalla, self).iniciar(receptor)
         self.ancho, self.alto = self.pilas.obtener_area()
+        self.camara = self.pilas.escena_actual().camara
 
     def actualizar(self):
         # Se asegura de regresar por izquierda y derecha.
-        if self.receptor.derecha < -(self.ancho/2):
+        if self.receptor.derecha < -(self.ancho/2) + self.camara.x:
             self.eliminar_actor()
-        elif self.receptor.izquierda > (self.ancho/2):
+        elif self.receptor.izquierda > (self.ancho/2) + self.camara.x:
             self.eliminar_actor()
 
         # Se asegura de regresar por arriba y abajo.
-        if self.receptor.abajo > (self.alto/2):
+        if self.receptor.abajo > (self.alto/2) + self.camara.y:
             self.eliminar_actor()
-        elif self.receptor.arriba < -(self.alto/2):
+        elif self.receptor.arriba < -(self.alto/2) + self.camara.y:
             self.eliminar_actor()
             
     def eliminar_actor(self):
