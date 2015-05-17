@@ -261,6 +261,18 @@ class WidgetConAceleracion(QGLWidget):
         else:
             self.pausar()
 
+    def centrar(self):
+        """Coloca la ventana en el centro del escritorio."""
+        from PyQt4 import QtGui
+        desktop = QtGui.QApplication.desktop()
+        centro = desktop.screen().rect().center()
+
+        if centro.x() > 1000:
+            centro.setX(centro.x() / 2)
+
+        self.move(centro - self.rect().center())
+
+
     def desempotrar(self):
         """ Desempotra el widget de cualquier widget al que esté empotrado.
 
@@ -333,7 +345,7 @@ class WidgetConAceleracion(QGLWidget):
     def continuar(self):
         "Quita el modo pausa."
         self.pausa = False
-        
+
     def usa_aceleracion_de_video(self):
         return True
 
@@ -652,6 +664,6 @@ class WidgetSinAceleracion(QtGui.QWidget):
     def continuar(self):
         "Quita el modo pausa."
         self.pausa = False
-        
+
     def usa_aceleracion_de_video(self):
         return False

@@ -182,8 +182,8 @@ class Pilas(object):
             self.depurador = depurador.Depurador(self)
 
         #if not self.configuracion.audio_habilitado():
-        #    print "Nota: Iniciando con el sistema de audio deshabitado."       
-            
+        #    print "Nota: Iniciando con el sistema de audio deshabitado."
+
         self.musica = musica.Musica(self)
         self.sonidos = sonidos.Sonidos(self)
 
@@ -449,6 +449,8 @@ class Pilas(object):
 
                 if self._x and self._y:
                     self.widget.move(self._x, self._y)
+                else:
+                    self.widget.centrar()
 
         # Inicializa el bucle de pyqt solo si es necesario.
         if self._necesita_ejecutar_loop:
@@ -525,7 +527,7 @@ class Pilas(object):
             self.musica.deshabilitar()
         else:
             self.musica.habilitar()
-    
+
     def deshabilitar_sonido(self, estado=True):
         if estado:
             self.sonidos.deshabilitar()
