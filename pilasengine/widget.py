@@ -119,7 +119,7 @@ class WidgetConAceleracion(QGLWidget):
         if event.key() == QtCore.Qt.Key_Escape:
             self.pilas.eventos.pulsa_tecla_escape.emitir()
 
-            if self.pantalla_completa:
+            if self.pantalla_completa and self.pilas.debe_alternar_pantalla_completa_con_esc():
                 self.definir_modo_ventana()
 
         if event.key() == QtCore.Qt.Key_P and event.modifiers() == QtCore.Qt.AltModifier:
@@ -308,7 +308,9 @@ class WidgetConAceleracion(QGLWidget):
             self.desempotrar()
 
         self.pantalla_completa = True
-        self.pilas.avisar("Pulsa ESC para regresar al modo ventana.")
+
+        if self.pilas.debe_alternar_pantalla_completa_con_esc():
+            self.pilas.avisar("Pulsa ESC para regresar al modo ventana.")
 
         # Invoca al modo pantalla completa de forma diferida, porque
         # en OSX no aplicaba el modo pantalla completa si lo llamaba directamente.
@@ -450,7 +452,7 @@ class WidgetSinAceleracion(QtGui.QWidget):
         if event.key() == QtCore.Qt.Key_Escape:
             self.pilas.eventos.pulsa_tecla_escape.emitir()
 
-            if self.pantalla_completa:
+            if self.pantalla_completa and self.pilas.debe_alternar_pantalla_completa_con_esc():
                 self.definir_modo_ventana()
 
         if event.key() == QtCore.Qt.Key_P and event.modifiers() == QtCore.Qt.AltModifier:
@@ -638,7 +640,9 @@ class WidgetSinAceleracion(QtGui.QWidget):
             self.desempotrar()
 
         self.pantalla_completa = True
-        self.pilas.avisar("Pulsa ESC para regresar al modo ventana.")
+
+        if self.pilas.debe_alternar_pantalla_completa_con_esc():
+            self.pilas.avisar("Pulsa ESC para regresar al modo ventana.")
 
         # Invoca al modo pantalla completa de forma diferida, porque
         # en OSX no aplicaba el modo pantalla completa si lo llamaba directamente.

@@ -115,6 +115,14 @@ class Pilas(object):
         else:
             self.complementos = []
 
+        self._usar_esc_para_alternar_pantalla_completa = True
+
+    def debe_alternar_pantalla_completa_con_esc(self):
+        return self._usar_esc_para_alternar_pantalla_completa
+
+    def deshabilitar_alternado_de_pantalla_completa_con_esc(self, deshabilitar):
+        self._usar_esc_para_alternar_pantalla_completa = not deshabilitar
+
     def _definir_icono_de_ventana(self):
         self.log("Definiendo el icono de la ventana")
         try:
