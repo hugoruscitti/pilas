@@ -6,11 +6,11 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from pilasengine import actores
+from pilasengine.actores.actor import Actor
 
 
 
-class Bala(actores.Actor):
+class Bala(Actor):
     """ Representa una bala que va en línea recta. """
 
     def __init__(self, pilas, x=0, y=0, rotacion=0, velocidad_maxima=9,
@@ -36,12 +36,12 @@ class Bala(actores.Actor):
                    aceleracion=1,
                    angulo_de_movimiento=angulo_de_movimiento,
                    gravedad=0)
-        
+
         self.aprender(self.pilas.habilidades.EliminarseSiSaleDePantalla)
         self.cuando_se_elimina = None
-        
+
     def eliminar(self):
         if self.cuando_se_elimina:
             self.cuando_se_elimina(self)
-            
+
         super(Bala, self).eliminar()

@@ -6,10 +6,10 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from pilasengine import actores
+from pilasengine.actores.actor import Actor
 
 
-class Boton(actores.Actor):
+class Boton(Actor):
     """Representa un boton que reacciona al ser presionado.
 
     .. image:: images/actores/boton_normal.png

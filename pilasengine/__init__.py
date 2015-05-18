@@ -13,6 +13,7 @@ import random
 import signal
 import imp
 import time
+import colores
 
 from PyQt4 import QtGui
 from PyQt4 import QtCore
@@ -20,7 +21,6 @@ from PyQt4 import QtCore
 import configuracion
 import escenas
 import imagenes
-import colores
 import actores
 import utils
 import fondos

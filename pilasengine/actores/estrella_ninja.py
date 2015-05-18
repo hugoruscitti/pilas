@@ -6,10 +6,10 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from pilasengine import actores
+from pilasengine.actores.actor import Actor
 
 
-class EstrellaNinja(actores.Actor):
+class EstrellaNinja(Actor):
     """ Representa una estrella ninja. """
 
     def pre_iniciar(self, x=0, y=0):

@@ -13,7 +13,7 @@ from pilasengine.actores.actor import Actor
 from pilasengine.actores.aceituna import Aceituna
 from pilasengine.actores.actor_invisible import ActorInvisible
 from pilasengine.actores.animacion import Animacion
-
+import pilasengine
 
 
 
@@ -23,7 +23,6 @@ from pilasengine.actores.misil import Misil
 #from pilasengine.actores.temporizador import Temporizador
 
 
-from pilasengine import colores
 
 class Actores(object):
     """Representa la forma de acceso y construcción de actores.
@@ -296,7 +295,7 @@ class Actores(object):
         return self._crear_actor('sonido', 'Sonido', x=x, y=y)
 
     def Menu(self, opciones=[], x=0, y=0, fuente=None,
-             color_normal=colores.gris, color_resaltado=colores.blanco):
+             color_normal=pilasengine.colores.gris, color_resaltado=pilasengine.colores.blanco):
         ":rtype: menu.Menu"
         return self._crear_actor('menu', 'Menu', x=x, y=y, opciones=opciones,
                                  fuente=fuente, color_normal=color_normal,
@@ -304,8 +303,8 @@ class Actores(object):
 
     def Opcion(self, texto="", x=0, y=0,
                  funcion_a_invocar=None,argumentos=None,fuente=None,
-                 color_normal=colores.gris,
-                 color_resaltado=colores.blanco):
+                 color_normal=pilasengine.colores.gris,
+                 color_resaltado=pilasengine.colores.blanco):
         ":rtype: opcion.Opcion"
         return self._crear_actor("opcion", "Opcion", x=x, y=y,
                                  texto=texto,
@@ -341,7 +340,7 @@ class Actores(object):
         return self._crear_actor('dialogo', 'Dialogo')
 
     def Energia(self, x=0, y=0, progreso=100, ancho=200, alto=30,
-                color_relleno=colores.amarillo, con_sombra=True,
+                color_relleno=pilasengine.colores.amarillo, con_sombra=True,
                 con_brillo=True):
         ":rtype: energia.Energia"
         return self._crear_actor('energia', 'Energia', x=x, y=y,
@@ -587,8 +586,6 @@ class Actores(object):
         return grupo
 
 
-
-from pilasengine.actores.bomba import Bomba
 from pilasengine.actores.aceituna import Aceituna
 from pilasengine.actores.actor import ActorEliminadoException
 from pilasengine.actores.actor import ActorEliminado
@@ -596,8 +593,12 @@ from pilasengine.actores.actor import Actor
 from pilasengine.actores.animacion import Animacion
 from pilasengine.actores.animado import Animado
 from pilasengine.actores.banana import Banana
+from pilasengine.actores.bala import Bala
+from pilasengine.actores.banana import Banana
 from pilasengine.actores.bomba import Bomba
+from pilasengine.actores.boton import Boton
 from pilasengine.actores.caja import Caja
+from pilasengine.actores.calvo import Calvo
 from pilasengine.actores.controlador import Controlador
 from pilasengine.actores.cooperativista import Cooperativista
 from pilasengine.actores.cooperativista import Esperando
@@ -605,25 +606,36 @@ from pilasengine.actores.cooperativista import Caminando
 from pilasengine.actores.cooperativista import DecirOk
 from pilasengine.actores.deslizador_horizontal import DeslizadorHorizontal
 from pilasengine.actores.dialogo import Dialogo
+from pilasengine.actores.dinamita import Dinamita
+from pilasengine.actores.disparo_laser import DisparoLaser
 from pilasengine.actores.ejes import Ejes
 from pilasengine.actores.emisor import Emisor
 from pilasengine.actores.energia import Energia
 from pilasengine.actores.estrella import Estrella
+from pilasengine.actores.estrella_ninja import EstrellaNinja
 from pilasengine.actores.estudiante import Estudiante
 from pilasengine.actores.explosion import Explosion
+from pilasengine.actores.explosion_de_humo import ExplosionDeHumo
 from pilasengine.actores.fantasma import Fantasma
 from pilasengine.actores.globo import Globo
 from pilasengine.actores.grupo import Grupo
 from pilasengine.actores.humo import Humo
 from pilasengine.actores.manejador_propiedad import ManejadorPropiedad
 from pilasengine.actores.manzana import Manzana
+from pilasengine.actores.mapa import Mapa
+from pilasengine.actores.mapa_tiled import MapaTiled
 from pilasengine.actores.martian import Martian
+from pilasengine.actores.maton import Maton
 from pilasengine.actores.mensaje_error import MensajeError
 from pilasengine.actores.menu import Menu
+from pilasengine.actores.menu import Menu
+from pilasengine.actores.misil import Misil
 from pilasengine.actores.moneda import Moneda
 from pilasengine.actores.mono import Mono
+from pilasengine.actores.municion import Municion
 from pilasengine.actores.nave import Nave
 from pilasengine.actores.nave_kids import NaveKids
+from pilasengine.actores.nave_roja import NaveRoja
 from pilasengine.actores.opcion import Opcion
 from pilasengine.actores.ovni import Ovni
 from pilasengine.actores.pacman import Pacman
@@ -635,9 +647,11 @@ from pilasengine.actores.pingu import Pingu
 from pilasengine.actores.pizarra import Pizarra
 from pilasengine.actores.planeta import Planeta
 from pilasengine.actores.puntaje import Puntaje
+from pilasengine.actores.shaolin import Shaolin
+from pilasengine.actores.sombra import Sombra
+from pilasengine.actores.sonido import Sonido
+from pilasengine.actores.temporizador import Temporizador
 from pilasengine.actores.texto import Texto
 from pilasengine.actores.texto_inferior import TextoInferior
 from pilasengine.actores.tortuga import Tortuga
 from pilasengine.actores.zanahoria import Zanahoria
-
-from pilasengine.actores.estudiante import Estudiante
