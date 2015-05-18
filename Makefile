@@ -110,7 +110,7 @@ distmac:
 	@rm -r -f pilas-engine.app
 	@rm -r -f pilas-engine.app.zip
 	@echo "Copiando plantilla de aplicación para osx desde dropbox"
-	@cp /Users/hugo/Dropbox/pilas-engine-bins/pilas-engine.app.zip ./
+	@cp ~/Dropbox/pilas-engine-bins/pilas-engine.app.zip ./
 	@echo "Descomprimiendo..."
 	@unzip pilas-engine.app.zip > tmp/log_unzip_pilas-engine.zip.log
 	@echo "Actualizando contenido..."
@@ -153,7 +153,7 @@ distwin:
 	@rm -r -f tmp/pilas-engine
 	@rm -r -f tmp/__MACOSX
 	@echo "Copiando plantilla de aplicación para windows desde dropbox"
-	@cp /Users/hugo/Dropbox/pilas-engine-bins/pilas-engine-cargador-windows.zip ./tmp
+	@cp ~/Dropbox/pilas-engine-bins/pilas-engine-cargador-windows.zip ./tmp
 	@echo "Descomprimiendo..."
 	@unzip tmp/pilas-engine-cargador-windows.zip -d tmp/ > tmp/log_unzip_pilas-engine.zip.log
 	@echo "Actualizando contenido..."
