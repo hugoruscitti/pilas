@@ -1,0 +1,6 @@
+{
+    "content": "<h1 id=\"instalacion\">Instalaci\u00f3n</h1>\n<p>Existen 2 formas de instalar la biblioteca, as\u00ed que veremos cada una por separado.</p>\n<h2 id=\"opcion-1-instalacion-facil-para-cada-sistema-operativo\">Opci\u00f3n 1 - Instalaci\u00f3n f\u00e1cil, para cada sistema operativo</h2>\n<p>La forma mas sencilla de instalar pilas es descargando alguna de las versiones empaquetadas desde nuestro sitio web:</p>\n<ul>\n<li><a href=\"http://www.pilas-engine.com.ar/descargas.html\">http://www.pilas-engine.com.ar/descargas.html</a></li>\n</ul>\n<h2 id=\"opcion-2-avanzada-desde-repositorios\">Opci\u00f3n 2 - Avanzada, desde repositorios</h2>\n<p>Otra opci\u00f3n es descargar pilas e instalarlo directamente desde nuestro respositio git.</p>\n<p>Hay mas informaci\u00f3n sobre esta forma de instalaci\u00f3n en nuestra secci\u00f3n <a href=\"../desarrolladores\">Gu\u00eda para desarrolladores</a>.</p>\n", 
+    "url": "/instalacion/", 
+    "language": "en", 
+    "title": "Instalaci\u00f3n"
+}
