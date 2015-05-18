@@ -22,7 +22,6 @@ all:
 	@echo "  $(V)dist$(N)        Genera todos los binarios (excepto .deb)"
 	@echo "   $(V)distmac$(N)     Genera la versión compilada para macos."
 	@echo "   $(V)distwin$(N)     Genera la versión compilada para windows."
-	@echo "   $(V)distdeb$(N)     Genera la versión compilada para debian o huayra."
 	@echo ""
 	@echo "  $(V)upload$(N)       Intenta subir los binarios de windows y mac a dropbox."
 	@echo ""
@@ -169,8 +168,3 @@ distwin:
 	@echo "Los archivos generados están en el directorio dist/"
 	@echo "Se abre una ventana para mostrarlos."
 	@open dist
-
-
-distdeb:
-	extras/actualizar_changelog.sh
-	pdebuild
