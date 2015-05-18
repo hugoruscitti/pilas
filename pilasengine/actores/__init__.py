@@ -10,12 +10,17 @@ import inspect
 import traceback
 
 from pilasengine.actores.actor import Actor
+from pilasengine.actores.aceituna import Aceituna
 from pilasengine.actores.actor_invisible import ActorInvisible
-from pilasengine.actores.texto import Texto
-from pilasengine.actores.grupo import Grupo
+from pilasengine.actores.animacion import Animacion
+
+
+
+
+#from pilasengine.actores.texto import Texto
+#from pilasengine.actores.grupo import Grupo
 from pilasengine.actores.misil import Misil
-from pilasengine.actores.temporizador import Temporizador
-from pilasengine.actores import aceituna
+#from pilasengine.actores.temporizador import Temporizador
 
 
 from pilasengine import colores
@@ -286,7 +291,7 @@ class Actores(object):
     def EstrellaNinja(self, x=0, y=0):
         ":rtype: estrella_ninja.EstrellaNinja"
         return self._crear_actor('estrella_ninja', 'EstrellaNinja', x=x, y=y)
-    
+
     def Sonido(self, x=0, y=0):
         return self._crear_actor('sonido', 'Sonido', x=x, y=y)
 
@@ -308,7 +313,7 @@ class Actores(object):
                                  argumentos=argumentos, fuente=fuente,
                                  color_normal=color_normal,
                                  color_resaltado=color_resaltado)
-        
+
     def MensajeError(self, error, descripcion):
         ":rtype: mensaje_error.MensajeError"
 
