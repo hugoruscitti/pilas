@@ -1,0 +1,38 @@
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+!tests/fixtures/**/node_modules
+/bower_components
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+*.tgz
+
+# other ember-cli dirs
+/addon
+/app
+/config
+/tests
+/vendor
+
+# other ember-cli files
+/Brocfile.js
+/testem.json
+/bower.json
+
+# other ember-cli dotfiles
+/.bowerrc
+/.editorconfig
+/.ember-cli
+/.jshintrc
+/.travis.yml
+
+
