@@ -124,7 +124,8 @@ distmac:
 	@rm -r -f dist/pilas-engine-${VERSION}.dmg
 	@echo "Generando imagen dist/pilas-engine-${VERSION}.dmg (esto tarda un huevo...)"
 	@mkdir -p dist
-	@hdiutil create -srcfolder pilas-engine.app dist/pilas-engine-${VERSION}.dmg > tmp/log_creacion_dmg.log
+	#@hdiutil create -srcfolder pilas-engine.app dist/pilas-engine-${VERSION}.dmg > tmp/log_creacion_dmg.log
+	@hdiutil create -srcfolder pilas-engine.app dist/pilas-engine-${VERSION}.dmg -size 400mb > tmp/log_creacion_dmg.log
 	@rm -r -f __MACOSX
 	@rm -r -f pilas-engine.app
 	@rm -r -f pilas-engine.app.zip
