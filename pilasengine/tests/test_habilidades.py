@@ -52,14 +52,15 @@ class TestHabilidades(unittest.TestCase):
         self.assertEquals(1, len(actor._habilidades),
                           'Pude aprender habilidad personalizada')
 
-        def crear_habilidad_incorrectamente():
-            class MiHabilidad():
-                def actualizar(self):
-                    pass
+    def testFallaConHabilidadInvalida(self):
 
-            actor = self.pilas.actores.Aceituna()
-            actor.aprender(MiHabilidad)
-        self.assertRaises(Exception, crear_habilidad_incorrectamente)
+        class MiHabilidadInvalida():
+            def actualizar(self):
+                pass
+
+        actor = self.pilas.actores.Aceituna()
+        with self.assertRaises(Exception):
+            actor.aprender(MiHabilidadInvalida)
 
     def testPuedeAprenderHabilidadesUsandoStrings(self):
         actor = self.pilas.actores.Aceituna()
