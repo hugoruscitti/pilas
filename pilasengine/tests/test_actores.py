@@ -133,14 +133,15 @@ class TestActoresPersonalizados(unittest.TestCase):
         self.pilas = pilasengine.iniciar()
         self.pilas.actores.vincular(TestActoresPersonalizados.MiActor)
 
-    def testPuedeCrearActorPersonalizado(self):
-
+    def testPuedeCrearActor(self):
         actor = self.pilas.actores.MiActor()
         self.assertTrue(actor, "Ha podido crear el objeto actor.")
 
+    def testPuedeCrearActorConMetodoAlternativo(self):
         otro_actor = TestActoresPersonalizados.MiActor(self.pilas)
         self.assertTrue(otro_actor, "También funciona el método alternativo")
 
+    def testPuedeVincularActorLuegoDeReiniciar(self):
         self.pilas.reiniciar()
 
         self.pilas.actores.vincular(TestActoresPersonalizados.MiActor)
@@ -148,20 +149,25 @@ class TestActoresPersonalizados(unittest.TestCase):
         self.assertTrue(otro_actor, "Puede volver a vincular un actor luego de \
                         reiniciar.")
 
+    def testFallaCreacionActorSinArgumentos(self):
         def crear_actor_sin_argumentos():
             actor_falla = TestActoresPersonalizados.MiActor()
 
         self.assertRaises(Exception, crear_actor_sin_argumentos)
 
+    def testFallaCreacionActorConArgumentosIncorrectos(self):
         def crear_actor_argumentos_incorrectos():
             actor_falla = TestActoresPersonalizados.MiActor(123)
 
         self.assertRaises(Exception, crear_actor_argumentos_incorrectos)
 
+    def testFallaCreacionActorConArgumentosAdicionalesNoEsperados(self):
         def crear_actor_argumentos_adicionales_no_esperados():
             actor_falla = TestActoresPersonalizados.MiActor(self.pilas, 123)
 
         self.assertRaises(TypeError, crear_actor_argumentos_adicionales_no_esperados)
+
+    def testPuedeCrearActorPersonalizado(self):
 
         def crear_actor_sin_los_argumentos_esperados():
             actor_falla = TestActoresPersonalizados.MiActorConArgumentos(self.pilas)
