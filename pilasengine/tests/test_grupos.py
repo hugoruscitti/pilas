@@ -43,17 +43,12 @@ class Test(unittest.TestCase):
     def testRechazaAgregarNoActores(self):
         grupo = self.pilas.actores.Grupo()
 
-        def intentar_agregar_una_clase():
+        with self.assertRaises(Exception, msg="No debe permitir agregar clases"):
             # lo rechaza porque no es objeto, es una clase.
             grupo.agregar(self.pilas.actores.Aceituna)
 
-        def intentar_agregar_un_objeto_cualquiera():
+        with self.assertRaises(Exception, msg="No debe permitir agregar cosas que no sean actores"):
             grupo.agregar("hola?")
-
-        self.assertRaises(Exception, intentar_agregar_una_clase,
-                          "No debe permitir agregar clases")
-        self.assertRaises(Exception, intentar_agregar_un_objeto_cualquiera,
-                          "No debe permitir agregar cosas que no sean actores")
 
     def testLosGruposSonBidireccionales(self):
         actor = self.pilas.actores.Aceituna()
