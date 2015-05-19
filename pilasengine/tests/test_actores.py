@@ -47,10 +47,8 @@ class TestActores(unittest.TestCase):
             def actualizar(self):
                 self.rotacion += 2
 
-        def crear_actor_que_existe():
+        with self.assertRaises(Exception):
             self.pilas.actores.vincular(Actor)
-
-        self.assertRaises(Exception, crear_actor_que_existe)
 
     def testRealizaMovimientoConInterpolacion(self):
         aceituna = self.pilas.actores.Aceituna()
