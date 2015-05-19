@@ -111,76 +111,76 @@ class TestActores(unittest.TestCase):
 class TestActoresPersonalizados(unittest.TestCase):
     app = QtGui.QApplication(sys.argv)
 
+    class MiActor(pilasengine.actores.Actor):
+
+        def iniciar(self):
+            self.imagen = "aceituna.png"
+
+        def actualizar(self):
+            self.rotacion += 2
+
+    class MiActorConArgumentos(pilasengine.actores.Actor):
+
+        def iniciar(self, nombre, edad):
+            self.imagen = "aceituna.png"
+            self.nombre = nombre
+            self.edad = edad
+
+
+        def actualizar(self):
+            self.rotacion += 2
+
     def setUp(self):
         import pilasengine
         self.pilas = pilasengine.iniciar()
+        self.pilas.actores.vincular(TestActoresPersonalizados.MiActor)
 
     def testPuedeCrearActorPersonalizado(self):
 
-        class MiActor(pilasengine.actores.Actor):
-
-            def iniciar(self):
-                self.imagen = "aceituna.png"
-
-            def actualizar(self):
-                self.rotacion += 2
-
-        self.pilas.actores.vincular(MiActor)
         actor = self.pilas.actores.MiActor()
         self.assertTrue(actor, "Ha podido crear el objeto actor.")
 
-        otro_actor = MiActor(self.pilas)
+        otro_actor = TestActoresPersonalizados.MiActor(self.pilas)
         self.assertTrue(otro_actor, "También funciona el método alternativo")
 
         self.pilas.reiniciar()
 
-        self.pilas.actores.vincular(MiActor)
-        otro_actor = MiActor(self.pilas)
+        self.pilas.actores.vincular(TestActoresPersonalizados.MiActor)
+        otro_actor = TestActoresPersonalizados.MiActor(self.pilas)
         self.assertTrue(otro_actor, "Puede volver a vincular un actor luego de \
                         reiniciar.")
 
         def crear_actor_sin_argumentos():
-            actor_falla = MiActor()
+            actor_falla = TestActoresPersonalizados.MiActor()
 
         self.assertRaises(Exception, crear_actor_sin_argumentos)
 
         def crear_actor_argumentos_incorrectos():
-            actor_falla = MiActor(123)
+            actor_falla = TestActoresPersonalizados.MiActor(123)
 
         self.assertRaises(Exception, crear_actor_argumentos_incorrectos)
 
         def crear_actor_argumentos_adicionales_no_esperados():
-            actor_falla = MiActor(self.pilas, 123)
+            actor_falla = TestActoresPersonalizados.MiActor(self.pilas, 123)
 
         self.assertRaises(TypeError, crear_actor_argumentos_adicionales_no_esperados)
 
-        class MiActorConArgumentos(pilasengine.actores.Actor):
-
-            def iniciar(self, nombre, edad):
-                self.imagen = "aceituna.png"
-                self.nombre = nombre
-                self.edad = edad
-
-
-            def actualizar(self):
-                self.rotacion += 2
-
         def crear_actor_sin_los_argumentos_esperados():
-            actor_falla = MiActorConArgumentos(self.pilas)
+            actor_falla = TestActoresPersonalizados.MiActorConArgumentos(self.pilas)
 
         def crear_actor_con_menos_argumentos_de_los_esperados():
-            actor_falla = MiActorConArgumentos(self.pilas)
+            actor_falla = TestActoresPersonalizados.MiActorConArgumentos(self.pilas)
 
         def crear_actor_con_los_argumentos_correctos():
-            actor = MiActorConArgumentos(self.pilas, nombre="pepe", edad=33)
+            actor = TestActoresPersonalizados.MiActorConArgumentos(self.pilas, nombre="pepe", edad=33)
             return actor
 
         def crear_actor_con_los_argumentos_correctos_como_diccionarios():
-            actor = MiActorConArgumentos(self.pilas, edad=20, nombre="juan pepe")
+            actor = TestActoresPersonalizados.MiActorConArgumentos(self.pilas, edad=20, nombre="juan pepe")
             return actor
 
         def crear_actor_con_mas_argumentos_de_los_esperados():
-            actor = MiActorConArgumentos(self.pilas, pepe=123, otro=123, mas=222)
+            actor = TestActoresPersonalizados.MiActorConArgumentos(self.pilas, pepe=123, otro=123, mas=222)
             return actor
 
         # Prueba que falle crear actores con argumentos faltantes.
