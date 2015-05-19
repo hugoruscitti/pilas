@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
 import sys
 import unittest
+
 from PyQt4 import QtGui
+
 import pilasengine
 
 
@@ -9,7 +11,6 @@ class TestActores(unittest.TestCase):
     app = QtGui.QApplication(sys.argv)
 
     def setUp(self):
-        import pilasengine
         self.pilas = pilasengine.iniciar()
 
     def testPuedeCrearActores(self):
@@ -188,7 +189,6 @@ class TestActoresPersonalizados(unittest.TestCase):
     def test_crear_actor_con_mas_argumentos_de_los_esperados(self):
         with self.assertRaises(TypeError):
             actor = TestActoresPersonalizados.MiActorConArgumentos(self.pilas, pepe=123, otro=123, mas=222)
-            return actor
 
 
 if __name__ == '__main__':
