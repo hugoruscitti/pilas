@@ -37,6 +37,84 @@ class TestActores(unittest.TestCase):
         escena.actualizar_interpolaciones()
         self.assertTrue(actor.x == 100, actor.x)
 
+    def testObtieneErrorSiElActorPersonalizadoExiste(self):
+        class Actor(pilasengine.actores.Actor):
+
+            def iniciar(self):
+                self.imagen = "aceituna.png"
+
+            def actualizar(self):
+                self.rotacion += 2
+
+        def crear_actor_que_existe():
+            self.pilas.actores.vincular(Actor)
+
+        self.assertRaises(Exception, crear_actor_que_existe)
+
+    def testRealizaMovimientoConInterpolacion(self):
+        aceituna = self.pilas.actores.Aceituna()
+
+        self.assertEqual(0, aceituna.x, "Comienza en el punto (0, 0)")
+        aceituna.x = [100], 1
+
+        # Simula que pasaron 60 ticks (osea 1 segundo).
+        for x in range(60):
+            self.pilas.simular_actualizacion_logica()
+
+        self.assertEqual(100.0, aceituna.x, "Luego de 60 ticks (1 segundo) \
+                         llegó a x=100")
+
+
+    def testPuedeInstanciarTodosLosActoresSinArgumentos(self):
+        nombres = [n for n in dir(self.pilas.actores) if n.istitle() and n is not 'Grupo']
+        funciones = [getattr(self.pilas.actores, n) for n in nombres]
+
+        for x in funciones:
+            actor = x()
+            self.assertTrue(actor, "Puede crear el actor %s" %(str(x)))
+
+    def testFuncionaHerenciaDeActoresYaExistentes(self):
+
+        class ActorHeredado(pilasengine.actores.Mono):
+            pass
+
+        b = ActorHeredado(self.pilas)
+        self.assertTrue(b.imagen, "Hereda correctamente")
+
+        class ActorAceituna(pilasengine.actores.Aceituna):
+            pass
+
+        b = ActorAceituna(self.pilas)
+        self.assertTrue(b.imagen, "Hereda correctamente")
+
+    def testEtiquetas(self):
+
+        # Se asegura que todos los actores nacen con
+        # una etiqueta que identifica la clase.
+
+        m = self.pilas.actores.Mono()
+        self.assertEquals(str(m.etiquetas), "['mono']")
+
+        a = self.pilas.actores.Aceituna()
+        self.assertEquals(str(a.etiquetas), "['aceituna']")
+
+        # Se asegura que se pueden agregar y eliminar
+        # etiquetas
+
+        a.etiquetas.agregar('enemigo')
+        self.assertEquals(str(a.etiquetas), "['aceituna', 'enemigo']")
+
+        a.etiquetas.eliminar('enemigo')
+        self.assertEquals(str(a.etiquetas), "['aceituna']")
+
+
+class TestActoresPersonalizados(unittest.TestCase):
+    app = QtGui.QApplication(sys.argv)
+
+    def setUp(self):
+        import pilasengine
+        self.pilas = pilasengine.iniciar()
+
     def testPuedeCrearActorPersonalizado(self):
 
         class MiActor(pilasengine.actores.Actor):
@@ -114,77 +192,6 @@ class TestActores(unittest.TestCase):
         # Se asegura de crear los actores correctamente y ver que funcionan.
         self.assertTrue(isinstance(crear_actor_con_los_argumentos_correctos(), pilasengine.actores.Actor), "Genera correctamente el actor usando argumentos.")
         self.assertTrue(isinstance(crear_actor_con_los_argumentos_correctos_como_diccionarios(), pilasengine.actores.Actor), "Genera correctamente el actor usando argumentos como diccionario.")
-
-    def testObtieneErrorSiElActorPersonalizadoExiste(self):
-        class Actor(pilasengine.actores.Actor):
-
-            def iniciar(self):
-                self.imagen = "aceituna.png"
-
-            def actualizar(self):
-                self.rotacion += 2
-
-        def crear_actor_que_existe():
-            self.pilas.actores.vincular(Actor)
-
-        self.assertRaises(Exception, crear_actor_que_existe)
-
-    def testRealizaMovimientoConInterpolacion(self):
-        aceituna = self.pilas.actores.Aceituna()
-
-        self.assertEqual(0, aceituna.x, "Comienza en el punto (0, 0)")
-        aceituna.x = [100], 1
-
-        # Simula que pasaron 60 ticks (osea 1 segundo).
-        for x in range(60):
-            self.pilas.simular_actualizacion_logica()
-
-        self.assertEqual(100.0, aceituna.x, "Luego de 60 ticks (1 segundo) \
-                         llegó a x=100")
-
-
-    def testPuedeInstanciarTodosLosActoresSinArgumentos(self):
-        nombres = [n for n in dir(self.pilas.actores) if n.istitle() and n is not 'Grupo']
-        funciones = [getattr(self.pilas.actores, n) for n in nombres]
-
-        for x in funciones:
-            actor = x()
-            self.assertTrue(actor, "Puede crear el actor %s" %(str(x)))
-
-    def testFuncionaHerenciaDeActoresYaExistentes(self):
-
-        class ActorHeredado(pilasengine.actores.Mono):
-            pass
-
-        b = ActorHeredado(self.pilas)
-        self.assertTrue(b.imagen, "Hereda correctamente")
-
-        class ActorAceituna(pilasengine.actores.Aceituna):
-            pass
-
-        b = ActorAceituna(self.pilas)
-        self.assertTrue(b.imagen, "Hereda correctamente")
-
-    def testEtiquetas(self):
-
-        # Se asegura que todos los actores nacen con
-        # una etiqueta que identifica la clase.
-
-        m = self.pilas.actores.Mono()
-        self.assertEquals(str(m.etiquetas), "['mono']")
-
-        a = self.pilas.actores.Aceituna()
-        self.assertEquals(str(a.etiquetas), "['aceituna']")
-
-        # Se asegura que se pueden agregar y eliminar
-        # etiquetas
-
-        a.etiquetas.agregar('enemigo')
-        self.assertEquals(str(a.etiquetas), "['aceituna', 'enemigo']")
-
-        a.etiquetas.eliminar('enemigo')
-        self.assertEquals(str(a.etiquetas), "['aceituna']")
-
 
 
 if __name__ == '__main__':
