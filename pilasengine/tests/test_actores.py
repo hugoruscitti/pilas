@@ -78,14 +78,14 @@ class TestActores(unittest.TestCase):
         class ActorHeredado(pilasengine.actores.Mono):
             pass
 
-        b = ActorHeredado(self.pilas)
-        self.assertTrue(b.imagen, "Hereda correctamente")
+        heredado_de_mono = ActorHeredado(self.pilas)
+        self.assertTrue(heredado_de_mono.imagen, "Hereda correctamente")
 
         class ActorAceituna(pilasengine.actores.Aceituna):
             pass
 
-        b = ActorAceituna(self.pilas)
-        self.assertTrue(b.imagen, "Hereda correctamente")
+        heredado_de_aceituna = ActorAceituna(self.pilas)
+        self.assertTrue(heredado_de_aceituna.imagen, "Hereda correctamente")
 
     def testEtiquetas(self):
 
