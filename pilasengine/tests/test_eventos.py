@@ -3,12 +3,13 @@ import sys
 import unittest
 from PyQt4 import QtGui
 
+import pilasengine
+
 
 class TestEventos(unittest.TestCase):
     app = QtGui.QApplication(sys.argv)
 
     def setUp(self):
-        import pilasengine
         self.pilas = pilasengine.iniciar()
 
     def testPuedeCrearEvento(self):

@@ -1,6 +1,9 @@
 # -*- encoding: utf-8 -*-
+
+import collections
 import sys
 import unittest
+
 from PyQt4 import QtGui
 
 import pilasengine
@@ -13,7 +16,6 @@ class Test(unittest.TestCase):
         self.pilas = pilasengine.iniciar()
 
     def testPuedeCrearGrupos(self):
-        import collections
         grupo = self.pilas.actores.Grupo()
         self.assertIsInstance(grupo, collections.MutableSequence,
                               "Se pueden crear grupos")
