@@ -52,14 +52,15 @@ class TestHabilidades(unittest.TestCase):
         self.assertEquals(1, len(actor._habilidades),
                           'Pude aprender habilidad personalizada')
 
-        def crear_habilidad_incorrectamente():
-            class MiHabilidad():
-                def actualizar(self):
-                    pass
+    def testFallaConHabilidadInvalida(self):
 
-            actor = self.pilas.actores.Aceituna()
-            actor.aprender(MiHabilidad)
-        self.assertRaises(Exception, crear_habilidad_incorrectamente)
+        class MiHabilidadInvalida():
+            def actualizar(self):
+                pass
+
+        actor = self.pilas.actores.Aceituna()
+        with self.assertRaises(Exception):
+            actor.aprender(MiHabilidadInvalida)
 
     def testPuedeAprenderHabilidadesUsandoStrings(self):
         actor = self.pilas.actores.Aceituna()
@@ -93,14 +94,11 @@ class TestHabilidades(unittest.TestCase):
     def testPuedeReportarErroresAlAprenderHabilidadesIncorrectamente(self):
         actor = self.pilas.actores.Aceituna()
         
-        def asociar_habilidad_incorrectamente_1():
+        with self.assertRaises(NameError):
             actor.aprender('arrastrablen12')
         
-        def asociar_habilidad_incorrectamente_2():
+        with self.assertRaises(NameError):
             actor.aprender('')
-        
-        self.assertRaises(NameError, asociar_habilidad_incorrectamente_1)
-        self.assertRaises(NameError, asociar_habilidad_incorrectamente_2)
 
 
 if __name__ == '__main__':
