@@ -29,16 +29,16 @@ class TestEventos(unittest.TestCase):
     def testPuedeEmitirEvento(self):
         params = {'color': 'rojo', 'yei': ':p', 'pilas': 'pilas engine'}
 
-        def funcion(evento):
-            self.assertEquals(evento, params, 'Puede emitir evento')
+        def funcion(ev):
+            self.assertEquals(ev, params, 'Puede emitir evento')
 
-            evento = self.pilas.eventos.Evento('mi_evento')
-            evento.conectar(funcion)
+        evento = self.pilas.eventos.Evento('mi_evento')
+        evento.conectar(funcion)
 
-            evento.emitir(pilas='pilas engine', color='rojo', yei=':p')
+        evento.emitir(pilas='pilas engine', color='rojo', yei=':p')
 
     def testPuedeDesconectarRespuesta(self):
-        def funcion(evento):
+        def funcion(ev):
             pass
 
         evento = self.pilas.eventos.Evento('mi_evento')
