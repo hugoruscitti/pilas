@@ -94,14 +94,11 @@ class TestHabilidades(unittest.TestCase):
     def testPuedeReportarErroresAlAprenderHabilidadesIncorrectamente(self):
         actor = self.pilas.actores.Aceituna()
         
-        def asociar_habilidad_incorrectamente_1():
+        with self.assertRaises(NameError):
             actor.aprender('arrastrablen12')
         
-        def asociar_habilidad_incorrectamente_2():
+        with self.assertRaises(NameError):
             actor.aprender('')
-        
-        self.assertRaises(NameError, asociar_habilidad_incorrectamente_1)
-        self.assertRaises(NameError, asociar_habilidad_incorrectamente_2)
 
 
 if __name__ == '__main__':
