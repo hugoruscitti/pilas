@@ -52,7 +52,7 @@ class Test(unittest.TestCase):
 
         self.assertRaises(Exception, intentar_agregar_una_clase,
                           "No debe permitir agregar clases")
-        self.assertRaises(Exception, intentar_agregar_una_clase,
+        self.assertRaises(Exception, intentar_agregar_un_objeto_cualquiera,
                           "No debe permitir agregar cosas que no sean actores")
 
     def testLosGruposSonBidireccionales(self):
