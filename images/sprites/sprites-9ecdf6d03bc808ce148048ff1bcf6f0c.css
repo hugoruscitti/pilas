@@ -1,0 +1,35 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:7ba09c0fd636d93e5158acad94397131:c34f1b40cc7898a460809c0af74ac197:61e53af8b0b91020742bc548d44c899f$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(sprites-5e0ecf7620c43d3e2a27502d6c1aabd2.png);}
+
+.acercade-preview {width:1214px; height:658px; background-position: -646px -466px}
+.actores-incluidos {width:300px; height:230px; background-position: -606px -234px}
+.asistente {width:926px; height:59px; background-position: -278px -2px}
+.background {width:67px; height:100px; background-position: -1487px -2px}
+.completamente-castellano {width:300px; height:230px; background-position: -908px -234px}
+.favicon {width:16px; height:16px; background-position: -2px -2px}
+.fedora {width:16px; height:16px; background-position: -20px -2px}
+.huayra {width:16px; height:16px; background-position: -74px -2px}
+.ico-ubuntu {width:16px; height:16px; background-position: -56px -2px}
+.imagen-readme {width:642px; height:576px; background-position: -2px -466px}
+.interactiva {width:300px; height:230px; background-position: -304px -234px}
+.libre-gratuita {width:300px; height:230px; background-position: -1210px -234px}
+.logo-pilas-engine {width:279px; height:74px; background-position: -1206px -2px}
+.logo-pilas-footer {width:119px; height:21px; background-position: -128px -2px}
+.menu_pack {width:16px; height:16px; background-position: -38px -2px}
+.multiplataforma {width:300px; height:230px; background-position: -1556px -2px}
+.octo {width:27px; height:26px; background-position: -249px -2px}
+.pilas_foot {width:119px; height:21px; background-position: -128px -2px}
+.platform_mac {width:16px; height:16px; background-position: -92px -2px}
+.primeros-pasos {width:300px; height:230px; background-position: -2px -234px}
+.windows {width:16px; height:16px; background-position: -110px -2px}
