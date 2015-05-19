@@ -126,12 +126,10 @@ class TestActoresPersonalizados(unittest.TestCase):
             self.nombre = nombre
             self.edad = edad
 
-
         def actualizar(self):
             self.rotacion += 2
 
     def setUp(self):
-        import pilasengine
         self.pilas = pilasengine.iniciar()
         self.pilas.actores.vincular(TestActoresPersonalizados.MiActor)
 
