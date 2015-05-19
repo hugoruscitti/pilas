@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import sys
+import time
 import unittest
 
 from PyQt4 import QtGui
@@ -32,7 +33,6 @@ class TestActores(unittest.TestCase):
         self.assertTrue(actor.x > 0, "El actor se mueve un poco a la derecha")
 
         # Simula el paso de un segundo
-        import time
         time.sleep(0.5)
 
         escena.actualizar_interpolaciones()
