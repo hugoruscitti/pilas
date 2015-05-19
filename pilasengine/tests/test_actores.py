@@ -167,35 +167,28 @@ class TestActoresPersonalizados(unittest.TestCase):
 
         self.assertRaises(TypeError, crear_actor_argumentos_adicionales_no_esperados)
 
-    def testPuedeCrearActorPersonalizado(self):
-
-        def crear_actor_sin_los_argumentos_esperados():
+    def test_crear_actor_sin_los_argumentos_esperados(self):
+        with self.assertRaises(TypeError):
             actor_falla = TestActoresPersonalizados.MiActorConArgumentos(self.pilas)
 
-        def crear_actor_con_menos_argumentos_de_los_esperados():
+    def test_crear_actor_con_menos_argumentos_de_los_esperados(self):
+        with self.assertRaises(TypeError):
             actor_falla = TestActoresPersonalizados.MiActorConArgumentos(self.pilas)
 
-        def crear_actor_con_los_argumentos_correctos():
-            actor = TestActoresPersonalizados.MiActorConArgumentos(self.pilas, nombre="pepe", edad=33)
-            return actor
+    def test_crear_actor_con_los_argumentos_correctos(self):
+        actor = TestActoresPersonalizados.MiActorConArgumentos(self.pilas, nombre="pepe", edad=33)
+        self.assertTrue(isinstance(actor, pilasengine.actores.Actor),
+                        "Genera correctamente el actor usando argumentos.")
 
-        def crear_actor_con_los_argumentos_correctos_como_diccionarios():
-            actor = TestActoresPersonalizados.MiActorConArgumentos(self.pilas, edad=20, nombre="juan pepe")
-            return actor
+    def test_crear_actor_con_los_argumentos_correctos_como_diccionarios(self):
+        actor = TestActoresPersonalizados.MiActorConArgumentos(self.pilas, edad=20, nombre="juan pepe")
+        self.assertTrue(isinstance(actor, pilasengine.actores.Actor),
+                        "Genera correctamente el actor usando argumentos como diccionario.")
 
-        def crear_actor_con_mas_argumentos_de_los_esperados():
+    def test_crear_actor_con_mas_argumentos_de_los_esperados(self):
+        with self.assertRaises(TypeError):
             actor = TestActoresPersonalizados.MiActorConArgumentos(self.pilas, pepe=123, otro=123, mas=222)
             return actor
-
-        # Prueba que falle crear actores con argumentos faltantes.
-        self.assertRaises(TypeError, crear_actor_sin_los_argumentos_esperados)
-        self.assertRaises(TypeError, crear_actor_con_menos_argumentos_de_los_esperados)
-        self.assertRaises(TypeError, crear_actor_con_mas_argumentos_de_los_esperados)
-
-
-        # Se asegura de crear los actores correctamente y ver que funcionan.
-        self.assertTrue(isinstance(crear_actor_con_los_argumentos_correctos(), pilasengine.actores.Actor), "Genera correctamente el actor usando argumentos.")
-        self.assertTrue(isinstance(crear_actor_con_los_argumentos_correctos_como_diccionarios(), pilasengine.actores.Actor), "Genera correctamente el actor usando argumentos como diccionario.")
 
 
 if __name__ == '__main__':
