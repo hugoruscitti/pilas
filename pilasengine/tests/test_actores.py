@@ -12,7 +12,7 @@ class TestActores(unittest.TestCase):
     app = QtGui.QApplication(sys.argv)
 
     def setUp(self):
-        self.pilas = pilasengine.iniciar()
+        self.pilas = pilasengine.iniciar(modo_test=True)
 
     def testPuedeCrearActores(self):
         actor = self.pilas.actores.Aceituna()
@@ -130,7 +130,7 @@ class TestActoresPersonalizados(unittest.TestCase):
             self.rotacion += 2
 
     def setUp(self):
-        self.pilas = pilasengine.iniciar()
+        self.pilas = pilasengine.iniciar(modo_test=True)
         self.pilas.actores.vincular(TestActoresPersonalizados.MiActor)
 
     def testPuedeCrearActor(self):

@@ -64,6 +64,7 @@ class Pilas(object):
     def __init__(self, ancho=640, alto=480, titulo='pilas-engine',
                  con_aceleracion=None, capturar_errores=True,
                  habilitar_mensajes_log=False, x=None, y=None,
+                 modo_test=False,
                  pantalla_completa=False, cargar_plugins=False):
         """Inicializa el area de juego con una configuración inicial."""
 
@@ -71,6 +72,7 @@ class Pilas(object):
         self.habilitar_mensajes_log(habilitar_mensajes_log)
         self._iniciado_desde_asistente = False
         self.texto_avisar_anterior = None
+        self.modo_test = modo_test
 
         # Archivo que se observa para hacer livecoding. Esta
         # variable toma valor cuando se llama a la función
@@ -553,6 +555,7 @@ class Pilas(object):
 
 def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
             habilitar_mensajes_log=False, con_aceleracion=None, x=None, y=None,
+            modo_test=False,
             pantalla_completa=False, cargar_plugins=False):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
@@ -570,6 +573,7 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
     :ancho: el tamaño en pixels para la ventana.
     :alto: el tamaño en pixels para la ventana.
     :titulo: el titulo a mostrar en la ventana.
+    :modo_test: subrimer todo mensaje de error por consola, pensado para el lanzador de test automático.
     :capturar_errores: True indica que los errores se tienen que mostrar en la
                        ventana de pilas. En caso de poner False los errores
                        se muestran en consola.
@@ -584,6 +588,7 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
                   habilitar_mensajes_log=habilitar_mensajes_log,
                   con_aceleracion=con_aceleracion,
                   pantalla_completa=pantalla_completa,
+                  modo_test=modo_test,
                   cargar_plugins=cargar_plugins)
     return pilas
 
