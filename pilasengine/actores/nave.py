@@ -35,6 +35,7 @@ class Nave(Animacion):
         self.aprender(pilas.habilidades.PuedeExplotar)
 
         self.municion = pilasengine.actores.Misil
+
         self.aprender(self.pilas.habilidades.Disparar,
                       municion=self.municion,
                       angulo_salida_disparo=90,

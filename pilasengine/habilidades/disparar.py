@@ -7,6 +7,8 @@
 # Website - http://www.pilas-engine.com.ar
 
 import math
+import inspect
+
 from pilasengine import habilidades
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.municion import Municion
@@ -60,6 +62,12 @@ class Disparar(habilidades.Habilidad):
 
         if municion == "Bala":
             municion = Bala
+        elif isinstance(municion, str):
+            municion = self.pilas.actores.obtener_clase_por_nombre(municion)
+        elif not inspect.isclass(municion):
+            raise TypeError("La muncion tiene que ser un nombre o una clase.")
+        elif not issubclass(municion, Actor):
+            raise TypeError("La muncion " + str(municion) + " tiene que heredar de una clase Actor.")
 
         self._municion = municion
         self.parametros_municion = parametros_municion
@@ -75,15 +83,10 @@ class Disparar(habilidades.Habilidad):
         self.contador_frecuencia_disparo = 0
         self.proyectiles = []
 
-
         self.grupo_enemigos = grupo_enemigos
-
         self.definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
-
         self.cuando_dispara = cuando_dispara
-
         self.escala = escala
-
         self.control = control
 
     def set_frecuencia_de_disparo(self, valor):
