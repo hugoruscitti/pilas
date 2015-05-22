@@ -55,9 +55,9 @@ ver_sync:
 	git push --tags
 
 utest:
-	#@python -m unittest discover pilasengine/tests '*.py'
+	@python -m unittest discover pilasengine/tests '*.py'
 	# O una version mas linda si se instala nose y nosecolor con pip
-	@nosetests --color pilasengine/tests/*
+	#@nosetests --color pilasengine/tests/*
 
 manual:
 	mkdir -p data/manual
