@@ -8,6 +8,7 @@
 import random
 import inspect
 import traceback
+import importlib
 
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.aceituna import Aceituna
@@ -41,6 +42,26 @@ class Actores(object):
 
     def __init__(self, pilas):
         self.pilas = pilas
+        self._diccionario_de_actores = {}
+        self._vincular_todos_los_actores_estandar()
+
+    def obtener_clases(self):
+        return self._diccionario_de_actores
+
+    def obtener_clase_por_nombre(self, nombre_de_la_clase):
+        for k, v in self._diccionario_de_actores.items():
+            if nombre_de_la_clase.lower() in [k, k.lower()]:
+                return v
+        else:
+            raise NameError("La muncion " + nombre_de_la_clase + " no coincide con ninguna clase de actor conocida.")
+
+    def vincular_actor_estandar(self, modulo, clase):
+        referencia_a_modulo = importlib.import_module('pilasengine.actores.' + modulo)
+        referencia_a_clase = getattr(referencia_a_modulo, clase)
+        self._diccionario_de_actores[clase] = referencia_a_clase
+
+    def vincular_actor_personalizado(self, nombre_de_clase, referencia_a_clase):
+        self._diccionario_de_actores[nombre_de_clase] = referencia_a_clase
 
     def vincular(self, clase_del_actor):
         """Permite vincular una clase de actor con pilas.
@@ -65,7 +86,8 @@ class Actores(object):
                 nuevo_actor = clase_del_actor(self.pilas, *k, **kw)
                 return nuevo_actor
             except TypeError, error:
-                print traceback.format_exc()
+                if not self.pilas.modo_test:
+                    print traceback.format_exc()
                 mensaje_extendido = "\n\t(en la clase %s ya que se llamó con los argumentos: %s %s" %(str(clase_del_actor.__name__), str(k), str(kw))
                 raise TypeError(str(error) + mensaje_extendido)
 
@@ -78,6 +100,7 @@ class Actores(object):
 
         setattr(self.__class__, nombre_del_actor, metodo_crear_actor)
         Actores._lista_actores_personalizados.append(nombre_del_actor)
+        self.vincular_actor_personalizado(nombre_del_actor, clase_del_actor)
 
     def obtener_actores_personalizados(self):
         "Retorna una lista con todos los nombres de actores personalizados."
@@ -122,10 +145,11 @@ class Actores(object):
             try:
                 actor.iniciar(*k, **kv)
             except TypeError, error:
-                print traceback.format_exc()
+                if not self.pilas.modo_test:
+                    print traceback.format_exc()
 
-                if falla_pre_iniciar:
-                    print("Tambien ocurrio un error al pre_iniciar" + mensaje_error_pre_iniciar)
+                    if falla_pre_iniciar:
+                        print("Tambien ocurrio un error al pre_iniciar" + mensaje_error_pre_iniciar)
 
                 # el siguiente metodo, _validar_argumentos, intentará
                 # dar una descripción mas detallada de los argumentos que
@@ -219,6 +243,7 @@ class Actores(object):
     ## --------------------
     ## Acceso a los actores
     ## --------------------
+
 
     def listar_actores(self):
         return list(self.pilas.obtener_escena_actual()._actores)
@@ -550,7 +575,6 @@ class Actores(object):
                                  angulo_de_movimiento=angulo_de_movimiento)
 
     def _crear_actor(self, modulo, clase, *k, **kw):
-        import importlib
 
         referencia_a_modulo = importlib.import_module('pilasengine.actores.' + modulo)
         referencia_a_clase = getattr(referencia_a_modulo, clase)
@@ -584,6 +608,70 @@ class Actores(object):
             grupo.agregar(actor)
 
         return grupo
+
+    def _vincular_todos_los_actores_estandar(self):
+        self.vincular_actor_estandar('misil', 'Misil')
+        self.vincular_actor_estandar('actor', 'Actor')
+        self.vincular_actor_estandar('texto', 'Texto')
+        self.vincular_actor_estandar('texto_inferior', 'TextoInferior')
+        self.vincular_actor_estandar('aceituna', 'Aceituna')
+        self.vincular_actor_estandar('mono', 'Mono')
+        self.vincular_actor_estandar('actor', 'Actor')
+        self.vincular_actor_estandar('actor_invisible', 'ActorInvisible')
+        self.vincular_actor_estandar('palo', 'Palo')
+        self.vincular_actor_estandar('ejes', 'Ejes')
+        self.vincular_actor_estandar('maton', 'Maton')
+        self.vincular_actor_estandar('calvo', 'Calvo')
+        self.vincular_actor_estandar('puntaje', 'Puntaje')
+        self.vincular_actor_estandar('pingu', 'Pingu')
+        self.vincular_actor_estandar('pizarra', 'Pizarra')
+        self.vincular_actor_estandar('martian', 'Martian')
+        self.vincular_actor_estandar('tortuga', 'Tortuga')
+        self.vincular_actor_estandar('cursor_mano', 'CursorMano')
+        self.vincular_actor_estandar('cursor_disparo', 'CursorDisparo')
+        self.vincular_actor_estandar('estrella_ninja', 'EstrellaNinja')
+        self.vincular_actor_estandar('sonido', 'Sonido')
+        self.vincular_actor_estandar('menu', 'Menu')
+        self.vincular_actor_estandar("opcion", "Opcion")
+        self.vincular_actor_estandar('mensaje_error', 'MensajeError')
+        self.vincular_actor_estandar('dinamita', 'Dinamita')
+        self.vincular_actor_estandar('animacion', 'Animacion')
+        self.vincular_actor_estandar('dialogo', 'Dialogo')
+        self.vincular_actor_estandar('energia', 'Energia')
+        self.vincular_actor_estandar('boton', 'Boton')
+        self.vincular_actor_estandar('mapa', 'Mapa')
+        self.vincular_actor_estandar('mapa_tiled', 'MapaTiled')
+        self.vincular_actor_estandar('banana', 'Banana')
+        self.vincular_actor_estandar('bomba', 'Bomba')
+        self.vincular_actor_estandar('explosion', 'Explosion')
+        self.vincular_actor_estandar('explosion_de_humo', 'ExplosionDeHumo')
+        self.vincular_actor_estandar('estrella', 'Estrella')
+        self.vincular_actor_estandar('fantasma', 'Fantasma')
+        self.vincular_actor_estandar('humo', 'Humo')
+        self.vincular_actor_estandar('manzana', 'Manzana')
+        self.vincular_actor_estandar('ovni', 'Ovni')
+        self.vincular_actor_estandar('nave', 'Nave')
+        self.vincular_actor_estandar('nave_kids', 'NaveKids')
+        self.vincular_actor_estandar('planeta', 'Planeta')
+        self.vincular_actor_estandar('piedra', 'Piedra')
+        self.vincular_actor_estandar('pelota', 'Pelota')
+        self.vincular_actor_estandar('caja', 'Caja')
+        self.vincular_actor_estandar('zanahoria', 'Zanahoria')
+        self.vincular_actor_estandar('cooperativista', 'Cooperativista')
+        self.vincular_actor_estandar('shaolin', 'Shaolin')
+        self.vincular_actor_estandar('pacman', 'Pacman')
+        self.vincular_actor_estandar('sombra', 'Sombra')
+        self.vincular_actor_estandar('moneda', 'Moneda')
+        self.vincular_actor_estandar('globo', 'Globo')
+        self.vincular_actor_estandar('deslizador_horizontal', 'DeslizadorHorizontal')
+        self.vincular_actor_estandar('emisor', 'Emisor')
+        self.vincular_actor_estandar('nave_roja', 'NaveRoja')
+        self.vincular_actor_estandar('controlador', 'Controlador')
+        self.vincular_actor_estandar('temporizador', 'Temporizador')
+        self.vincular_actor_estandar('manejador_propiedad', 'ManejadorPropiedad')
+        self.vincular_actor_estandar('disparo_laser', 'DisparoLaser')
+        self.vincular_actor_estandar('misil', 'Misil')
+        self.vincular_actor_estandar('bala', 'Bala')
 
 
 from pilasengine.actores.aceituna import Aceituna

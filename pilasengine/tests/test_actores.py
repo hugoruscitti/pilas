@@ -189,6 +189,12 @@ class TestActoresPersonalizados(unittest.TestCase):
         with self.assertRaises(TypeError):
             actor = TestActoresPersonalizados.MiActorConArgumentos(self.pilas, pepe=123, otro=123, mas=222)
 
+    def test_listar_clases_de_actores(self):
+        clases = self.pilas.actores.obtener_clases()
+
+        self.assertTrue('Misil' in clases, "Existe la clase Misil")
+        self.assertTrue('Actor' in clases, "Existe la clase Actor")
+        self.assertTrue('Aceituna' in clases, "Existe la clase Aceituna")
 
 if __name__ == '__main__':
     unittest.main()

@@ -66,7 +66,7 @@ class TestHabilidades(unittest.TestCase):
         actor = self.pilas.actores.Aceituna()
         actor.aprender('arrastrable')
         self.assertTrue(actor.habilidades.Arrastrable.actualizar, 'Puede acceder a la nueva habilidad')
-        
+
     def testPuedenAprenderADisparar(self):
         actor = self.pilas.actores.Aceituna(0, 0)
         actor.aprender(self.pilas.habilidades.Disparar,
@@ -75,30 +75,49 @@ class TestHabilidades(unittest.TestCase):
                       frecuencia_de_disparo=6,
                       distancia=5,
                       escala=1)
-        
+
         self.assertTrue(actor.disparar, "Tiene el método disparar")
-        
+
     def testPuedeAprenderHabilidadPersonalizadaUsandoStrings(self):
         class MiHabilidad(pilasengine.habilidades.Habilidad):
             def actualizar(self):
                 pass
 
         actor = self.pilas.actores.Aceituna()
-        
+
         self.pilas.habilidades.vincular(MiHabilidad)
-        
+
         actor.aprender('mihabilidad')
 
         self.assertEquals(1, len(actor._habilidades), 'Pude aprender habilidad personalizada desde string')
-        
+
     def testPuedeReportarErroresAlAprenderHabilidadesIncorrectamente(self):
         actor = self.pilas.actores.Aceituna()
-        
+
         with self.assertRaises(NameError):
             actor.aprender('arrastrablen12')
-        
+
         with self.assertRaises(NameError):
             actor.aprender('')
+
+    def testPuedeReportarErrorerAlAprenderADispararIncorrectamente(self):
+        actor = self.pilas.actores.Aceituna()
+
+        with self.assertRaises(NameError):
+            actor.aprender('disparar', municion="unActorQueNoExiste")
+
+        with self.assertRaises(TypeError):
+            actor.aprender('disparar', municion=self)
+
+        with self.assertRaises(TypeError):
+            actor.aprender('disparar', municion=12313)
+
+    def testPuedeAprenderADispararUnActor(self):
+        actor = self.pilas.actores.Aceituna()
+
+        actor.aprender('disparar', municion="Aceituna")
+        actor.aprender('disparar', municion="Mono")
+        actor.aprender('disparar', municion="Caja")
 
 
 if __name__ == '__main__':
