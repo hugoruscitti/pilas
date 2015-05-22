@@ -272,13 +272,11 @@
                         
                             <li><a class="toctree-l4" href="#un-ejemplo">Un ejemplo</a></li>
                         
-                            <li><a class="toctree-l4" href="#un-ejemplo-mas-hacer-que-un-actor-se-pueda-mover-con-el-mouse">Un ejemplo mas: hacer que un actor se pueda mover con el mouse</a></li>
+                            <li><a class="toctree-l4" href="#un-ejemplo-mas-hacer-que-un-actor-se-pueda-mover-con-el-mouse">Un ejemplo más: hacer que un actor se pueda mover con el mouse</a></li>
                         
-                            <li><a class="toctree-l4" href="#otro-ejemplo-un-actor-que-cambia-de-posicion">Otro ejemplo: un actor que cambia de posición</a></li>
+                            <li><a class="toctree-l4" href="#una-habilidad-mas-compleja-disparar">Una habilidad más compleja: Disparar</a></li>
                         
-                            <li><a class="toctree-l4" href="#mezclar-habilidades">Mezclar habilidades</a></li>
-                        
-                            <li><a class="toctree-l4" href="#otras-habilidades-para-utilizar">Otras habilidades para utilizar</a></li>
+                            <li><a class="toctree-l4" href="#listado-de-habilidades-existentes">Listado de habilidades existentes</a></li>
                         
                             <li><a class="toctree-l4" href="#crear-habilidades-personalizadas">Crear habilidades personalizadas</a></li>
                         
@@ -382,7 +380,7 @@ o disminuirá.</p>
 <p>Nota que aquí usamos la metáfora de "aprender habilidades", porque
 las habilidades son algo que duran para toda la vida
 del actor.</p>
-<h2 id="un-ejemplo-mas-hacer-que-un-actor-se-pueda-mover-con-el-mouse">Un ejemplo mas: hacer que un actor se pueda mover con el mouse</h2>
+<h2 id="un-ejemplo-mas-hacer-que-un-actor-se-pueda-mover-con-el-mouse">Un ejemplo más: hacer que un actor se pueda mover con el mouse</h2>
 <p>Algo muy común en los juegos es que puedas
 tomar piezas con el mouse y moverlas por la pantalla.</p>
 <p>Esta habilidad llamada <code>Arrastrable</code> representa eso, puedes vincularlo
@@ -392,39 +390,115 @@ a cualquier actor y simplemente funciona:</p>
 pilas = pilasengine.iniciar()
 
 mono = pilas.actores.Mono()
-mono.aprender(pilas.habilidades.Arrastrable)
+mono.aprender(&quot;arrastrable&quot;)
 </code></pre>
 
-<h2 id="otro-ejemplo-un-actor-que-cambia-de-posicion">Otro ejemplo: un actor que cambia de posición</h2>
-<p>Veamos otro ejemplo sencillo, si queremos que un actor
-se coloque en la posición del mouse cada vez que hacemos
-click, podemos usar la habilidad: <code>SeguirClicks</code>.</p>
+<h2 id="una-habilidad-mas-compleja-disparar">Una habilidad más compleja: Disparar</h2>
+<p>Una habilidad que tiene más complejidad que las anteriores
+es disparar, una habilidad que te permite hacer que un
+personaje pueda crear "disparos" sean de la clase que sea.</p>
+<p>Por ejemplo, lo mas sencillo es indicarle a un actor
+que puede disparar, usando una munición por omisión:</p>
 <pre><code class="python">import pilasengine
 
 pilas = pilasengine.iniciar()
+
 mono = pilas.actores.Mono()
-mono.aprender(pilas.habilidades.SeguirClicks)
+mono.aprender(&quot;moverseComoCoche&quot;)
+mono.aprender(&quot;disparar&quot;)
 </code></pre>
 
-<h2 id="mezclar-habilidades">Mezclar habilidades</h2>
-<p>En pilas se ha intentado hacer que las habilidades sean
-lo mas independientes posibles, porque claramente lo mas
-divertido de este enfoque es poder combinar distintas
-habilidades para lograr comportamientos complejos.</p>
-<p>Así que te invitamos a experimentar y explorar la mezcla
-de habilidades.</p>
-<h2 id="otras-habilidades-para-utilizar">Otras habilidades para utilizar</h2>
-<p>Pilas viene con varias habilidades incluidas, pero
-lamentablemente este manual no las menciona a todas. Así
-que te recomendamos abrir un intérprete de python
-y consultarle directamente a él que habilidades tienes
-disponibles en tu versión de pilas.</p>
-<p>Para esto, abrí el intérprete de pilas y escribí lo siguiente:</p>
-<pre><code class="python">dir(pilas.habilidades)
+<p>Y como resultado vamos a conseguir que nuestro
+actor se pueda mover con el teclado y disparar con la tecla
+espacio.</p>
+<p>Y si queremos cambiar la munición de la habilidad
+disparar, podemos especificarlo con el parámetro <code>municion</code>:</p>
+<pre><code class="python">mono.aprender(&quot;disparar&quot;, municion=&quot;aceituna&quot;)
 </code></pre>
 
-<p>esto imprimirá en pantalla todas las habilidades como una
-lista de cadenas.</p>
+<h2 id="listado-de-habilidades-existentes">Listado de habilidades existentes</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Habilidad</strong></th>
+<th><strong>Parámetros</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arrastrable</td>
+<td></td>
+</tr>
+<tr>
+<td>AumentarConRueda</td>
+<td></td>
+</tr>
+<tr>
+<td>Disparar</td>
+<td>municion, grupo_enemigos, cuando_elimina_enemigo, frecuencia_de_disparo, angulo_salida_disparo ...</td>
+</tr>
+<tr>
+<td>EliminarseSiSaleDePantalla</td>
+<td></td>
+</tr>
+<tr>
+<td>Imitar</td>
+<td>objeto_a_imitar, con_escala, con_rotacion</td>
+</tr>
+<tr>
+<td>LimitadoABordesDePantalla</td>
+<td></td>
+</tr>
+<tr>
+<td>MirarAlActor</td>
+<td>actor_a_seguir, lado_seguimiento="ARRIBA"</td>
+</tr>
+<tr>
+<td>MoverseComoCoche</td>
+<td>control, velocidad_maxima, aceleracion, deceleracion, rozamiento, velocidad_rotacion</td>
+</tr>
+<tr>
+<td>MoverseConElTeclado</td>
+<td>control, direcciones, velocidad_maxima, aceleracion, con_rotacion, velocidad_rotacion, marcha_atras</td>
+</tr>
+<tr>
+<td>PuedeExplotar</td>
+<td></td>
+</tr>
+<tr>
+<td>PuedeExplotarConHumo</td>
+<td></td>
+</tr>
+<tr>
+<td>RebotarComoCaja</td>
+<td></td>
+</tr>
+<tr>
+<td>RebotarComoPelota</td>
+<td></td>
+</tr>
+<tr>
+<td>RotarConMouse</td>
+<td></td>
+</tr>
+<tr>
+<td>SeMantieneEnPantalla</td>
+<td>permitir_salida</td>
+</tr>
+<tr>
+<td>SeguirAlMouse</td>
+<td></td>
+</tr>
+<tr>
+<td>SeguirClicks</td>
+<td></td>
+</tr>
+<tr>
+<td>SiempreEnElCentro</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="crear-habilidades-personalizadas">Crear habilidades personalizadas</h2>
 <p>Para crear una habilidad nueva, tienes que crear una clase
 y vincularla al módulo de habilidades.</p>

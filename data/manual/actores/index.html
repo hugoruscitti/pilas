@@ -358,6 +358,66 @@ tuyos propios:</p>
 <li><a href="#animado">Animado</a></li>
 <li><a href="#bala">Bala</a></li>
 <li><a href="#banana">Banana</a></li>
+<li><a href="#actor">ActorEliminadoException</a></li>
+<li><a href="#actor">ActorEliminado</a></li>
+<li><a href="#banana">Banana</a></li>
+<li><a href="#bomba">Bomba</a></li>
+<li><a href="#boton">Boton</a></li>
+<li><a href="#caja">Caja</a></li>
+<li><a href="#calvo">Calvo</a></li>
+<li><a href="#controlador">Controlador</a></li>
+<li><a href="#cooperativista">Cooperativista</a></li>
+<li><a href="#deslizador_horizontal">DeslizadorHorizontal</a></li>
+<li><a href="#dialogo">Dialogo</a></li>
+<li><a href="#dinamita">Dinamita</a></li>
+<li><a href="#disparo_laser">DisparoLaser</a></li>
+<li><a href="#ejes">Ejes</a></li>
+<li><a href="#emisor">Emisor</a></li>
+<li><a href="#energia">Energia</a></li>
+<li><a href="#estrella">Estrella</a></li>
+<li><a href="#estrella_ninja">EstrellaNinja</a></li>
+<li><a href="#estudiante">Estudiante</a></li>
+<li><a href="#explosion">Explosion</a></li>
+<li><a href="#explosion_de_humo">ExplosionDeHumo</a></li>
+<li><a href="#fantasma">Fantasma</a></li>
+<li><a href="#globo">Globo</a></li>
+<li><a href="#grupo">Grupo</a></li>
+<li><a href="#humo">Humo</a></li>
+<li><a href="#manejador_propiedad">ManejadorPropiedad</a></li>
+<li><a href="#manzana">Manzana</a></li>
+<li><a href="#mapa">Mapa</a></li>
+<li><a href="#mapa_tiled">MapaTiled</a></li>
+<li><a href="#martian">Martian</a></li>
+<li><a href="#maton">Maton</a></li>
+<li><a href="#mensaje_error">MensajeError</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#misil">Misil</a></li>
+<li><a href="#moneda">Moneda</a></li>
+<li><a href="#mono">Mono</a></li>
+<li><a href="#municion">Municion</a></li>
+<li><a href="#nave">Nave</a></li>
+<li><a href="#nave_kids">NaveKids</a></li>
+<li><a href="#nave_roja">NaveRoja</a></li>
+<li><a href="#opcion">Opcion</a></li>
+<li><a href="#ovni">Ovni</a></li>
+<li><a href="#pacman">Pacman</a></li>
+<li><a href="#palo">Palo</a></li>
+<li><a href="#particula">Particula</a></li>
+<li><a href="#pelota">Pelota</a></li>
+<li><a href="#piedra">Piedra</a></li>
+<li><a href="#pingu">Pingu</a></li>
+<li><a href="#pizarra">Pizarra</a></li>
+<li><a href="#planeta">Planeta</a></li>
+<li><a href="#puntaje">Puntaje</a></li>
+<li><a href="#shaolin">Shaolin</a></li>
+<li><a href="#sombra">Sombra</a></li>
+<li><a href="#sonido">Sonido</a></li>
+<li><a href="#temporizador">Temporizador</a></li>
+<li><a href="#texto">Texto</a></li>
+<li><a href="#texto_inferior">TextoInferior</a></li>
+<li><a href="#tortuga">Tortuga</a></li>
+<li><a href="#zanahoria">Zanahoria</a></li>
 </ul>
 <h3 id="actor">Actor</h3>
 <p>Representa un objeto visible en pantalla, algo que se ve y tiene
@@ -471,6 +531,416 @@ banana.cerrar()
 <ul>
 <li><code>banana.abrir()</code></li>
 <li><code>banana.cerrar()</code></li>
+</ul>
+<h3 id="bomba">Bomba</h3>
+<p>Representa una bomba que puede explotar...</p>
+<p>La bomba adquiere la habilidad explotar al momento de crearse, así
+que puedes invocar a su método "explotar" y la bomba hará un
+explosión en pantalla con sonido.</p>
+<p><img alt="" src="../imagenes/actores/bomba.png" /></p>
+<pre><code>bomba = pilas.actores.Bomba()
+bomba.explotar()
+</code></pre>
+
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>bomba.explotar()</code></li>
+</ul>
+<h3 id="boton">Boton</h3>
+<p>Representa un boton que reacciona al ser presionado</p>
+<p><img alt="" src="../imagenes/actores/boton.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>boton.conectar_normal(funcion, argumentos...)</code></li>
+<li><code>boton.conectar_presionado(funcion, argumentos...)</code></li>
+<li><code>boton.activar()</code></li>
+<li><code>boton.desactivar()</code></li>
+<li><code>boton.desconectar_normal(function)</code></li>
+<li><code>boton.desconectar_presionado(function)</code></li>
+</ul>
+<h3 id="caja">Caja</h3>
+<p>Representa una caja que posee fisica.</p>
+<p><img alt="" src="../imagenes/actores/caja.png" /></p>
+<h3 id="calvo">Calvo</h3>
+<p>Representa un personaje de juego tipo RPG.</p>
+<p><img alt="" src="../imagenes/actores/calvo.png" /></p>
+<h3 id="cooperativista">Cooperativista</h3>
+<p>Representa un Cooperativista que puede caminar y trabajar.</p>
+<p><img alt="" src="../imagenes/actores/cooperativista.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>cooperativista.cambiar_animacion(nombre)</code></li>
+</ul>
+<h3 id="deslizadorhorizontal">DeslizadorHorizontal</h3>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>deslizador.conectar(function)</code></li>
+<li><code>deslizador.desconectar(function)</code></li>
+</ul>
+<h3 id="dialogo">Dialogo</h3>
+<p>Representa una secuencia de mensajes entre varios actores.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>mono = pilas.actores.Mono()
+mono2 = pilas.actores.Mono()
+dialogo = pilas.actores.Dialogo()
+dialogo.decir(mono, "Hola Mundo")
+dialogo.decir(mono2, "Estoy diciendo algo")
+dialogo.comenzar()</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><img alt="" src="../imagenes/actores/mono_dice.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>dialogo.decir(actor, mensaje)</code></li>
+<li><code>dialogo.comenzar()</code></li>
+</ul>
+<h3 id="dinamita">Dinamita</h3>
+<p>Una dinamita que puede explotar.</p>
+<p><img alt="" src="../imagenes/actores/dinamita.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>dinamita.explotar()</code></li>
+</ul>
+<h3 id="disparolaser">DisparoLaser</h3>
+<p>Muestra un disparo que avanza por la pantalla.</p>
+<pre><code>.. image:: images/actores/disparo_laser.png
+
+Este actor se podría usar como arma para juegos de naves
+generalmente. Por ejemplo, el actor NaveRoja dispara usando
+este actor como munición.
+</code></pre>
+<p><img alt="" src="../imagenes/actores/disparo_laser.png" /></p>
+<h3 id="ejes">Ejes</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/ejes.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="emisor">Emisor</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/emisor.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="energia">Energia</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/energia.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="estrella">Estrella</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/estrella.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="estrellaninja">EstrellaNinja</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/estrella_ninja.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="estudiante">Estudiante</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/estudiante.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="explosion">Explosion</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/explosion.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="explosiondehumo">ExplosionDeHumo</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/explosion_de_humo.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="fantasma">Fantasma</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/fantasma.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="globo">Globo</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/globo.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="grupo">Grupo</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/grupo.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="humo">Humo</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/humo.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="manejadorpropiedad">ManejadorPropiedad</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/manejador_propiedad.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="manzana">Manzana</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/manzana.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="mapa">Mapa</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/mapa.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="mapatiled">MapaTiled</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/mapa_tiled.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="martian">Martian</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/martian.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="maton">Maton</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/maton.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="mensajeerror">MensajeError</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/mensaje_error.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="menu">Menu</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/menu.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="menu_1">Menu</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/menu.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="misil">Misil</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/misil.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="moneda">Moneda</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/moneda.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="mono">Mono</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/mono.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="municion">Municion</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/municion.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="nave">Nave</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/nave.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="navekids">NaveKids</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/nave_kids.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="naveroja">NaveRoja</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/nave_roja.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="opcion">Opcion</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/opcion.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="ovni">Ovni</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/ovni.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="pacman">Pacman</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/pacman.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="palo">Palo</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/palo.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="particula">Particula</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/particula.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="pelota">Pelota</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/pelota.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="piedra">Piedra</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/piedra.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="pingu">Pingu</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/pingu.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="pizarra">Pizarra</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/pizarra.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="planeta">Planeta</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/planeta.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="puntaje">Puntaje</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/puntaje.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="shaolin">Shaolin</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/shaolin.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="sombra">Sombra</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/sombra.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="sonido">Sonido</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/sonido.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="temporizador">Temporizador</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/temporizador.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="texto">Texto</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/texto.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="textoinferior">TextoInferior</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/texto_inferior.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="tortuga">Tortuga</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/tortuga.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
+</ul>
+<h3 id="zanahoria">Zanahoria</h3>
+<p>...</p>
+<p><img alt="" src="../imagenes/actores/zanahoria.png" /></p>
+<p><em>Comportamientos:</em></p>
+<ul>
+<li><code>..</code></li>
 </ul>
             </div>
           </div>
