@@ -60,6 +60,8 @@ class Utils(object):
 
         for (i, x) in enumerate(valor):
             demora_inicial = i * duracion
+            if x == 0:
+                x = 0.000000001
             parametro = {atributo: x}
             tweener.add_tween(actor, tween_time=duracion,
                               tween_type=tweener.IN_OUT_QUAD,
