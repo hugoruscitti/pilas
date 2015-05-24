@@ -4,10 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Textos - pilas-engine</title>
+  
+  <title>Textos</title>
+  
 
   
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
@@ -208,6 +211,14 @@
     
         
             <li class="toctree-l1 ">
+                <a class="" href="../demos/">Demos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
                 <a class="" href="../interfaz/">Interfaz de usuario</a>
                 
             </li>
@@ -247,10 +258,13 @@
 
     
         
-            <li class="toctree-l1 ">
-                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
-                
-            </li>
+            <span>Eventos</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../eventos/">conexiones y respuestas</a>
+                    
+                </li>
+            
         
 
     
@@ -355,9 +369,8 @@ de texto.</p>
 <p>El objeto que representa texto se llama <code>Texto</code> y
 está dentro del modulo <code>actores</code>.</p>
 <p>Para crear un mensaje tienes que escribir:</p>
-<pre><code class="python">texto = pilas.actores.Texto(&quot;Hola, este es mi primer texto.&quot;)
+<pre><code>texto = pilas.actores.Texto("Hola, este es mi primer texto.")
 </code></pre>
-
 <p>y tu cadena de texto aparecerá en pantalla en color
 negro y con un tamaño predeterminado:</p>
 <p><img alt="" src="../imagenes/texto/texto.jpg" /></p>
@@ -365,9 +378,8 @@ negro y con un tamaño predeterminado:</p>
 <code>\n</code> para indicar el salto de linea.</p>
 <p>Por ejemplo, el siguiente código escribe el mismo mensaje de
 arriba pero en dos lineas:</p>
-<pre><code class="python">texto = pilas.actores.Texto(&quot;Hola (en la primer linea)\n este es mi primer texto.&quot;)
+<pre><code>texto = pilas.actores.Texto("Hola (en la primer linea)\n este es mi primer texto.")
 </code></pre>
-
 <h2 id="los-textos-son-actores">Los textos son actores</h2>
 <p>Al principio comenté que los textos también son actores, esto
 significa que casi todo lo que puedes hacer con un actor
@@ -389,12 +401,11 @@ apariencia de los textos.</p>
 </ul>
 <p>Por ejemplo, para alterar el texto, color y tamaño de un
 texto podría escribir algo así:</p>
-<pre><code class="python">texto.magnitud = 50
+<pre><code>texto.magnitud = 50
 texto.color = (0, 0, 0)   # Color negro
 texto.color = (255, 0, 0, 128)   # Color rojo, semi transparente.
-texto.texto = &quot;Hola, este texto \n tiene 2 lineas separadas&quot;
+texto.texto = "Hola, este texto \n tiene 2 lineas separadas"
 </code></pre>
-
 <h2 id="mostrando-mensajes-en-pantalla">Mostrando mensajes en pantalla</h2>
 <p>Si bien podemos crear actores <code>Texto</code> y manipularlos como
 quedarmos, hay una forma aún mas sencilla de imprimir mensajes
@@ -402,9 +413,8 @@ para los usuarios.</p>
 <p>Existe una función llamada <code>avisar</code> que nos permite mostrar
 en pantalla un texto pequeño en la esquina izquierda inferior
 de la pantalla.</p>
-<pre><code class="python">pilas.avisar(&quot;Hola, esto es un mensaje.&quot;)
+<pre><code>pilas.avisar("Hola, esto es un mensaje.")
 </code></pre>
-
 <p>Esto te facilitará mucho el código en los programas
 pequeños como demostraciones o ejemplos.</p>
             </div>
@@ -417,7 +427,7 @@ pequeños como demostraciones o ejemplos.</p>
         <a href="../habilidades/" class="btn btn-neutral float-right" title="Habilidades"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../eventos/" class="btn btn-neutral" title="Eventos conexiones y respuestas"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+        <a href="../eventos/" class="btn btn-neutral" title="conexiones y respuestas"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
       
     </div>
   

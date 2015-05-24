@@ -4,10 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Colisiones - pilas-engine</title>
+  
+  <title>Colisiones</title>
+  
 
   
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
@@ -225,6 +228,14 @@
     
         
             <li class="toctree-l1 ">
+                <a class="" href="../demos/">Demos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
                 <a class="" href="../interfaz/">Interfaz de usuario</a>
                 
             </li>
@@ -264,10 +275,13 @@
 
     
         
-            <li class="toctree-l1 ">
-                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
-                
-            </li>
+            <span>Eventos</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../eventos/">conexiones y respuestas</a>
+                    
+                </li>
+            
         
 
     
@@ -359,7 +373,7 @@ colisiones físicas y colisiones programadas.</p>
 visualizar como una respuesta física, por ejemplo si creamos 5 cajas y las
 hacemos rebotar entre sí, estas serían colisiones físicas:</p>
 <p><img alt="" src="../imagenes/colisiones/cajas.png" /></p>
-<pre><code class="python">cajas = pilas.actores.Caja() * 5
+<pre><code>cajas = pilas.actores.Caja() * 5
 </code></pre>
 
 <p>Podríamos decir que las colisiones físicas son casi automáticas, las genera
@@ -370,8 +384,8 @@ puntos, pasar de nivel etc..)</p>
 <p>Por ejemplo, una colisión programada sencilla se puede visualizar si creamos
 un personaje que se pueda mover con el mouse y se alimente comiendo bananas:</p>
 <p><img alt="" src="../imagenes/colisiones/mono.png" /></p>
-<pre><code class="python">mono = pilas.actores.Mono()
-mono.aprender(&quot;Arrastrable&quot;)
+<pre><code>mono = pilas.actores.Mono()
+mono.aprender(pilas.habilidades.Arrastrable)
 bananas = pilas.actores.Banana() * 10
 
 def cuando_colisiona(mono, banana):
@@ -401,7 +415,7 @@ de colisión. Lo mas común es cambiar el tamaño de las figuras (para ajustarla
 <p>Para acceder a las figuras de colisión tienes que usar el atributo
 <code>figura_de_colisión</code> del actor, o bien cambiar su tamaño directamente
 cambiando el atributo <code>radio_de_colisión</code> por ejemplo:</p>
-<pre><code class="python">mono = pilas.actores.Mono()
+<pre><code>mono = pilas.actores.Mono()
 mono.radio_de_colision = 30
 mono.radio_de_colision = 80
 mono.radio_de_colision = 10
@@ -421,10 +435,10 @@ actor:</p>
 <p><img alt="" src="../imagenes/colisiones/figuras.png" /></p>
 <p>Para construir este ejemplo construímos dos actores, al primero lo dejamos
 tal cual, pero al segundo le cambiamos la figura de colisión por un rectángulo:</p>
-<pre><code class="python">zanahoria_normal = pilas.actores.Zanahoria(x=-100)
+<pre><code>zanahoria_normal = pilas.actores.Zanahoria(x=-100)
 
 zanahoria = pilas.actores.Zanahoria(x=100)
-rectangulo = pilas.fisica.Rectangulo(0, 0, 40, 100, sensor=True, dinamica=False)
+rectangulo = pilas.fisica.Rectangulo(0, 0, 40, 100, sensor=True)
 zanahoria.figura_de_colision = rectangulo
 </code></pre>
 

@@ -4,10 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Dibujado simple en pantalla - pilas-engine</title>
+  
+  <title>Dibujado simple en pantalla</title>
+  
 
   
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
@@ -229,6 +232,14 @@
     
         
             <li class="toctree-l1 ">
+                <a class="" href="../demos/">Demos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
                 <a class="" href="../interfaz/">Interfaz de usuario</a>
                 
             </li>
@@ -268,10 +279,13 @@
 
     
         
-            <li class="toctree-l1 ">
-                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
-                
-            </li>
+            <span>Eventos</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../eventos/">conexiones y respuestas</a>
+                    
+                </li>
+            
         
 
     
@@ -385,16 +399,14 @@ lo que realmente hace.</p>
 va dibujando la tortuga a partir de su movimiento.</p>
 <p>El siguiente código es el que se utilizó para
 dibujar esa linea de dos colores:</p>
-<pre><code class="python">import pilasengine
+<pre><code>import pilas
 
-pilas = pilasengine.iniciar()
-
+pilas.iniciar()
 tortuga = pilas.actores.Tortuga()
 tortuga.avanzar(30)
 tortuga.color = pilas.colores.azul
 tortuga.avanzar(200)
 </code></pre>
-
 <p>Algo muy valioso en términos didácticos, es que
 uno podría animarse a realizar dibujos simples cómo
 una casa, un hexágono o cualquier otra figura diseñando una estrategia
@@ -478,15 +490,13 @@ animaciones y algo lento.</p>
 dibujar un punto en el centro de la
 pantalla se puede usar el siguiente
 código:</p>
-<pre><code class="python">pizarra = pilas.actores.Pizarra()
+<pre><code>pizarra = pilas.actores.Pizarra()
 pizarra.dibujar_punto(0, 0)
 </code></pre>
-
 <p>incluso podrías usar el argumento opcional <code>color</code>
 si prefieres otro color, o trazar una linea:</p>
-<pre><code class="python">pizarra.linea(0, 0, 200, 200, pilas.colores.verdeoscuro, grosor=5)
+<pre><code>pizarra.linea(0, 0, 200, 200, pilas.colores.verdeoscuro, grosor=5)
 </code></pre>
-
 <p><img alt="" src="../imagenes/dibujado_simple_en_pantalla/linea.jpg" /></p>
 <h2 id="pintando-imagenes">Pintando imágenes</h2>
 <p>Las pizarras también pueden dibujar imágenes sobre la superficie,
