@@ -44,6 +44,7 @@ def obtener_ruta_al_recurso(ruta):
 
     dirs = ['./', INTERPRETE_PATH, INTERPRETE_PATH + '/../data', '../data', PATH, PATH + '/../data']
 
+
     for x in dirs:
         full_path = os.path.join(x, ruta)
 
