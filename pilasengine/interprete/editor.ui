@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>638</width>
-    <height>573</height>
+    <width>561</width>
+    <height>459</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,7 +68,32 @@
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="toolTip">
-         <string>Guardar código en un archivo</string>
+         <string>Guardar</string>
+        </property>
+        <property name="text">
+         <string>G</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="boton_guardar_como">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Guardar como ...</string>
         </property>
         <property name="text">
          <string>G</string>
@@ -207,7 +232,7 @@
         <property name="margin">
          <number>5</number>
         </property>
-        <item row="0" column="0">
+        <item row="3" column="0">
          <widget class="QFrame" name="frame">
           <property name="frameShape">
            <enum>QFrame::Box</enum>
@@ -227,6 +252,32 @@
            </item>
           </layout>
          </widget>
+        </item>
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QComboBox" name="selector_archivos"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="boton_actualizar">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="contextMenuPolicy">
+             <enum>Qt::PreventContextMenu</enum>
+            </property>
+            <property name="text">
+             <string>R</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
