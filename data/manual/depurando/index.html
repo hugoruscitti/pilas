@@ -4,10 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Depurando - pilas-engine</title>
+  
+  <title>Depurando</title>
+  
 
   
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
@@ -208,6 +211,14 @@
     
         
             <li class="toctree-l1 ">
+                <a class="" href="../demos/">Demos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
                 <a class="" href="../interfaz/">Interfaz de usuario</a>
                 
             </li>
@@ -247,10 +258,13 @@
 
     
         
-            <li class="toctree-l1 ">
-                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
-                
-            </li>
+            <span>Eventos</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../eventos/">conexiones y respuestas</a>
+                    
+                </li>
+            
         
 
     
@@ -372,9 +386,8 @@ cada actor, mientras que al tecla <strong>F11</strong> te permite ver las figura
 <p>Si quieres que el juego inicie alguno de los modos, puedes usar la
 función <code>pilas.atajos.definir_modos</code>. Por ejemplo, para habilitar el
 modo depuración física podrías escribir:</p>
-<pre><code>    pilas.depurador.definir_modos(fisica=True)
+<pre><code>pilas.atajos.definir_modos(fisica=True)
 </code></pre>
-
 <p>esta función tiene varios argumentos opcionales, cómo <code>posicion</code>, <code>radios</code> etc. Mira
 la definición de la función para obtener mas detalles.</p>
 <h2 id="activando-los-modos-para-detectar-errores">Activando los modos para detectar errores</h2>

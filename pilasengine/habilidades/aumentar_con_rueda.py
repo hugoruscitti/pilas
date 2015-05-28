@@ -9,6 +9,7 @@ from pilasengine import habilidades
 
 
 class AumentarConRueda(habilidades.Habilidad):
+    
     def iniciar(self, receptor):
         super(AumentarConRueda, self).iniciar(receptor)
         self.pilas.eventos.mueve_rueda.conectar(self.cambiar_de_escala)

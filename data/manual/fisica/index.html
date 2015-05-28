@@ -4,10 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Fisica - pilas-engine</title>
+  
+  <title>Fisica</title>
+  
 
   
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
@@ -118,7 +121,7 @@
                     
                         <li class="toctree-l3"><a href="#fisica">Física</a></li>
                         
-                            <li><a class="toctree-l4" href="#el-motor-box2d">El motor: Box2D</a></li>
+                            <li><a class="toctree-l4" href="#el-protagonista-es-box2d">El protagonista es Box2D</a></li>
                         
                             <li><a class="toctree-l4" href="#unos-ejemplos">Unos ejemplos</a></li>
                         
@@ -227,6 +230,14 @@
     
         
             <li class="toctree-l1 ">
+                <a class="" href="../demos/">Demos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
                 <a class="" href="../interfaz/">Interfaz de usuario</a>
                 
             </li>
@@ -266,10 +277,13 @@
 
     
         
-            <li class="toctree-l1 ">
-                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
-                
-            </li>
+            <span>Eventos</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../eventos/">conexiones y respuestas</a>
+                    
+                </li>
+            
         
 
     
@@ -354,7 +368,7 @@
 <p>Pilas incluye integración con un sistema de física
 para realizar simulaciones y dotar a tus juegos
 de mas realismo y diversión.</p>
-<h2 id="el-motor-box2d">El motor: Box2D</h2>
+<h2 id="el-protagonista-es-box2d">El protagonista es Box2D</h2>
 <p>El motor de física seleccionado para pilas se llama Box2D, el mismo
 motor de física utilizado en el juego Angry Birds.</p>
 <p>Así, Box2D y PyBox2D son las bibliotecas protagonistas
@@ -384,8 +398,8 @@ como personalizar y "controlar" un poco el escenario.</p>
 aún así se los puede tratar como a otros actores. Por
 ejemplo, si quieres poder arrastrar y soltar figuras con
 el mouse, puedes enseñarles una habilidad:</p>
-<pre><code>pelotas.aprender(&quot;arrastrable&quot;)
-cajas.aprender(&quot;arrastrable&quot;)
+<pre><code>pelotas.aprender(pilas.habilidades.Arrastrable)
+cajas.aprender(pilas.habilidades.Arrastrable)
 </code></pre>
 
 <h2 id="modo-depuracion-de-fisica">Modo depuración de física</h2>
@@ -403,22 +417,22 @@ geométrica, la física en realidad se da en un nivel muy
 primitivo de figuras. El aspecto de las cosas es
 solo eso, un aspecto. Lo que "manda" en el comportamiento
 físico son las figuras geométricas (cuerpos).</p>
-<p>Intenta lo siguiente, pulsa la tecla <strong>F11</strong> o pulsá el
-botón "mostrar figuras físicas" que aparece abajo a la
-derecha:</p>
+<p>Intenta lo siguiente, pulsa la tecla <strong>F11</strong> y observarás
+varias lineas de color rojo indicando las figuras de
+los cuerpos:</p>
 <p><img alt="" src="../imagenes/fisica/fisica_2.jpg" /></p>
-<p>Las lineas blancas indican polígonos que el
+<p>Las lineas rojas indican polígonos que el
 motor de física puede controlar, las cajas tienen forma
 rectangular, los actores Pelota tienen figuras circulares, y
 el suelo y las paredes también están en el sistema de física.</p>
 <p>Si por algún motivo quieres que los objetos no estén contenidos
 en la pantalla, y sean un poco mas libres, podrías eliminar
 las paredes:</p>
-<pre><code>pilas.fisica.eliminar_paredes()
+<pre><code>pilas.escena_actual().fisica.eliminar_paredes()
 </code></pre>
 
 <p>o incluso podrías eliminar el suelo:</p>
-<pre><code>pilas.fisica.eliminar_suelo()
+<pre><code>pilas.escena_actual().fisica.eliminar_suelo()
 </code></pre>
 
 <p>Pero recuerda que los objetos que no se ven en la pantalla
@@ -432,10 +446,11 @@ propios actores de ese comportamiento?.</p>
 y son invisibles (al principio), pero luego se pueden vincular
 a cualquier actor con facilidad.</p>
 <p>Intenta lo siguiente, ingresa en el modo interactivo de pilas
-y pulsa la tecla <strong>F11</strong> o pulsá el botón "mostrar figuras físicas" que
-aparece abajo a la derecha:</p>
+y pulsa la tecla <strong>F11</strong>. Tendrías que ver el texto
+"F11 ModoFisica habilitado."
+en la esquina superior de la ventana:</p>
 <p><img alt="" src="../imagenes/fisica/fisica_personalizada_1.jpg" /></p>
-<p>Ahora creá dos figuras físicas, una circunferencia estática
+<p>Ahora genera dos figuras físicas, una circunferencia estática
 y otra dinámica:</p>
 <pre><code>circulo = pilas.fisica.Circulo(0, 0, 50, dinamica=False)
 circulo_dinamico = pilas.fisica.Circulo(10, 200, 50)
@@ -459,7 +474,7 @@ cómo figuras geométricas.</p>
 que el primer circulo (el del centro) sea un mono, y el otro
 círculo que sea una bomba:</p>
 <pre><code>mono = pilas.actores.Mono()
-mono.aprender(pilas.habilidades.Imitar, circulo)
+mono.aprender(pilas.habilidades.Imitar(circulo))
 
 bomba = pilas.actores.Bomba()
 bomba.aprender(pilas.habilidades.Imitar, circulo_dinamico)
@@ -507,18 +522,17 @@ para que los objetos puedan "flotar", ¿no?.</p>
 <p>Entonces, hay dos formas de cambiar la gravedad del escenario. Podrías
 cambiar la gravedad en cualquier momento invocando a la función
 <code>definir_gravedad</code> indicando la nueva gravedad, por ejemplo:</p>
-<pre><code>pilas.fisica.definir_gravedad(-2, 0)
+<pre><code>pilas.atajos.definir_gravedad(200, 0)
 </code></pre>
 
-<p>o directamente especificar la gravedad usando las variables <code>x</code> e
-<code>y</code>:</p>
-<pre><code>pilas.fisica.gravedad_x = 9
-pilas.fisica.gravedad_y = 9
+<p>o directamente especificar la gravedad cuando inicias pilas, por
+ejemplo:</p>
+<pre><code>pilas.fisica.definir_gravedad(90, 90)
 </code></pre>
 
 <p>Ten en cuenta que el primer argumento es la aceleración horizontal y
 la segunda componente es la aceleración vertical. Los valores originales
-de la gravedad son <code>0</code> y <code>-9</code>.</p>
+de la gravedad son <code>0</code> y <code>-90</code>.</p>
             </div>
           </div>
           <footer>

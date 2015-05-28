@@ -4,10 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Empezando y los primeros pasos con pilas - pilas-engine</title>
+  
+  <title>Empezando y los primeros pasos con pilas</title>
+  
 
   
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
@@ -239,6 +242,14 @@
     
         
             <li class="toctree-l1 ">
+                <a class="" href="../demos/">Demos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
                 <a class="" href="../interfaz/">Interfaz de usuario</a>
                 
             </li>
@@ -278,10 +289,13 @@
 
     
         
-            <li class="toctree-l1 ">
-                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
-                
-            </li>
+            <span>Eventos</span>
+            
+                <li class="toctree-l2 ">
+                    <a class="" href="../eventos/">conexiones y respuestas</a>
+                    
+                </li>
+            
         
 
     
@@ -366,7 +380,7 @@
 <p>Si ya tienes instalada la biblioteca podemos comenzar a realizar nuestros primeros pasos con la biblioteca.</p>
 <p>pilas incluye un intérprete interactivo que te permite escribir código de python y autocompletar el nombre de las funciones. Aunque si quieres, puedes usar el intérprete estándar de python, abriendo un terminal de texto y ejecutando el comando python.</p>
 <h2 id="iniciando-pilas">Iniciando pilas</h2>
-<p>Para ejecutar el asistente de pilas, abre un terminal y ejecuta el comando <code>pilasengine</code>.</p>
+<p>Para ejecutar el asistente de pilas, abre un terminal y ejecuta el comando pilas.</p>
 <p>En tu pantalla tiene que aparecer una ventana como esta.</p>
 <p><img alt="" src="../imagenes/empezando/asistente.png" /></p>
 <h2 id="interprete-de-pilas">Intérprete de pilas</h2>
@@ -376,9 +390,9 @@
 <h2 id="iniciando-la-biblioteca">Iniciando la biblioteca</h2>
 <p>La parte de arriba es la que utilizaremos para interactuar con el motor. Y mas adelante será la única pantalla que verán los usuarios de nuestros juegos.</p>
 <p>Puedes ver que el intérprete viene con algunas líneas de ejemplo.</p>
-<pre><code>import pilasengine
+<pre><code>import pilas
 
-pilas = pilasengine.iniciar()
+pilas.iniciar()
 mono = pilas.actores.Mono()
 </code></pre>
 
@@ -422,15 +436,15 @@ cómo si fuera un personaje de comic:</p>
 <p>Internamente, Mono es un actor, así que encontraremos mucha funcionalidad en él que la tendrán el resto de los actores.</p>
 <p>Veamos algunas de estas características:</p>
 <h2 id="posicion">Posición</h2>
-<p>Podemos cambiar la posición de un actor mediante las propiedades <code>x</code> e <code>y</code>:</p>
+<p>Podemos cambiar la posición de un actor mediante las propiedades x e y:</p>
 <pre><code>mono.x = 100
 mono.y = 100
 </code></pre>
 
-<p>Ten en cuenta que<code>x</code> e <code>y</code> son las coordenadas de posición en el escenario. Por lo tanto el punto (0, 0) es el centro de la ventana. Y x aumenta hacia la derecha e y hacia arriba.</p>
+<p>Ten en cuenta que x e y son las coordenadas de posición en el escenario. Por lo tanto el punto (0, 0) es el centro de la ventana. Y x aumenta hacia la derecha e y hacia arriba.</p>
 <p><img alt="" src="../imagenes/empezando/normal.png" /></p>
 <p>Este espacio de referencia se puede observar en detalle si pulsas la tecla F12, ahí observarás que el movimiento del mouse está asociado a una coordenada y cada actor también.</p>
-<p><strong>Nota</strong>:</p>
+<p>Nota:</p>
 <blockquote>
 <p>Para que tenga efecto, debes tener seleccionada la ventana de resultado (parte de arriba). Haz click sobre ella antes de pulsar F12.</p>
 </blockquote>
@@ -451,13 +465,13 @@ mono.y = 100
 </code></pre>
 
 <p><img alt="" src="../imagenes/empezando/rotacion80.png" /></p>
-<p>La rotación siempre se indica en grados, e indica el grado de inclinación hacia la izquierda.</p>
+<p>La rotación siempre se indica en grados, e indica el grado de inclinación hacia la derecha.</p>
 <h2 id="animaciones">Animaciones</h2>
 <p>Cualquiera de todas las propiedes que vimos anteriormente se pueden usar para hacer animaciones, por ejemplo, con el siguiente código podríamos indicarle al actor que dé una vuelta completa:</p>
 <pre><code>mono.rotacion = [360]
 </code></pre>
 
-<p>¿por qué?, porque los caracteres [ y ] representan una lista de valores, y cuando pilas ve esta lista asignada a un atributo de un <code>actor</code>, intenta hacer una animación.</p>
+<p>¿por qué?, porque los caracteres [ y ] representan una lista de valores, y cuando pilas ve esta lista asignada a un atributo de pilas, intenta hacer una animación.</p>
 <p>Veamos otro ejemplo, si queremos que un personaje como el mono se mueva horizontalmente con una animación podemos escribir esto:</p>
 <pre><code>mono.x = [-200, 200]
 </code></pre>
@@ -465,7 +479,7 @@ mono.y = 100
 <p>Estas animaciones las veremos mas adelante, pero de todas formas es interesante observar que son listas comunes y corrientes.</p>
 <p>Python permite multiplicar listas, así que podríamos multiplicarlas para repetir la animación.</p>
 <pre><code># Sólo en python.
-mono.x = [-200, 200] * 5 # ir de un lado a otro 5 veces.
+mono.x = [-200, 200] * 5 # ir de una lado a otro 5 veces.
 </code></pre>
 
 <p>o incluso podríamos alterarles la velocidad, digamos que el ir y regresar se tiene que hacer muy lento, en unos 10 segundos:</p>

@@ -7,6 +7,8 @@
 # Website - http://www.pilas-engine.com.ar
 
 import math
+import inspect
+
 from pilasengine import habilidades
 from pilasengine.actores.actor import Actor
 from pilasengine.actores.municion import Municion
@@ -57,13 +59,19 @@ class Disparar(habilidades.Habilidad):
         """
 
         super(Disparar, self).iniciar(receptor)
-        
+
         if municion == "Bala":
             municion = Bala
+        elif isinstance(municion, str):
+            municion = self.pilas.actores.obtener_clase_por_nombre(municion)
+        elif not inspect.isclass(municion):
+            raise TypeError("La muncion tiene que ser un nombre o una clase.")
+        elif not issubclass(municion, Actor):
+            raise TypeError("La muncion " + str(municion) + " tiene que heredar de una clase Actor.")
 
         self._municion = municion
         self.parametros_municion = parametros_municion
-        
+
         self.distancia = distancia
 
         self.offset_origen_actor_x = offset_origen_actor[0]
@@ -75,15 +83,10 @@ class Disparar(habilidades.Habilidad):
         self.contador_frecuencia_disparo = 0
         self.proyectiles = []
 
-
         self.grupo_enemigos = grupo_enemigos
-
         self.definir_colision(self.grupo_enemigos, cuando_elimina_enemigo)
-
         self.cuando_dispara = cuando_dispara
-
         self.escala = escala
-
         self.control = control
 
     def set_frecuencia_de_disparo(self, valor):
@@ -136,12 +139,27 @@ class Disparar(habilidades.Habilidad):
             offset_origen_actor_x = self.offset_origen_actor_x
 
         if issubclass(self.municion, Actor):
-            objeto_a_disparar = self.municion(pilas=self.pilas,
-                                              x=self.receptor.x + offset_origen_actor_x,
-                                              y=self.receptor.y + self.offset_origen_actor_y,
-                                              rotacion=self.receptor.rotacion + -(self.rotacion_disparo),
-                                              angulo_de_movimiento=self.receptor.rotacion + (self.angulo_salida_disparo))
+            if self.municion.__name__ in ['Bala', 'Misil']:
+                objeto_a_disparar = self.municion(pilas=self.pilas,
+                                                  x=self.receptor.x + offset_origen_actor_x,
+                                                  y=self.receptor.y + self.offset_origen_actor_y,
+                                                  rotacion=self.receptor.rotacion + -(self.rotacion_disparo),
+                                                  angulo_de_movimiento=self.receptor.rotacion + (self.angulo_salida_disparo))
+            else:
+                objeto_a_disparar = self.municion(pilas=self.pilas)
+                objeto_a_disparar.x = self.receptor.x + offset_origen_actor_x
+                objeto_a_disparar.y = self.receptor.y + self.offset_origen_actor_y
 
+                objeto_a_disparar.rotacion = self.receptor.rotacion + -(self.rotacion_disparo)
+                angulo_de_movimiento = self.receptor.rotacion + (self.angulo_salida_disparo)
+
+                objeto_a_disparar.hacer(self.pilas.comportamientos.Proyectil,
+                                   velocidad_maxima=9,
+                                   aceleracion=1,
+                                   angulo_de_movimiento=angulo_de_movimiento,
+                                   gravedad=0)
+
+                objeto_a_disparar.aprender(self.pilas.habilidades.EliminarseSiSaleDePantalla)
 
             self._agregar_disparo(objeto_a_disparar)
             objeto_a_disparar.fijo = self.receptor.fijo
@@ -157,9 +175,9 @@ class Disparar(habilidades.Habilidad):
 
     def pulsa_disparar(self):
         return self.control.boton if self.control else self.pilas.control.boton
-    
-    
-    
+
+
+
 class DispararConClick(Disparar):
     """Establece la habilidad de poder disparar un Actor o un objeto de tipo
     pilas.municion.Municion."""
@@ -181,7 +199,7 @@ class DispararConClick(Disparar):
                  escala=1,
                  rotacion_disparo=90,
                  control=None):
-        
+
         Disparar.iniciar(self,
                          receptor=receptor,
                          municion=municion,
@@ -196,7 +214,7 @@ class DispararConClick(Disparar):
                          escala=escala,
                          rotacion_disparo=rotacion_disparo,
                          control=control)
-                                     
+
         self.boton_pulsado = False
         self.pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
         self.pilas.eventos.termina_click.conectar(self.cuando_termina_click)

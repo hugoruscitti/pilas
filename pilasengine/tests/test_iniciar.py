@@ -36,22 +36,19 @@ class TestIniciar(unittest.TestCase):
         self.assertEqual((320, 240), centro,
                          "El centro es la mitad de 640x480")
 
-    def testPuedeDetenerBucle(self):
+    def testDetenerBucleDosVecesFalla(self):
         self.pilas.widget.detener_bucle_principal()
 
-        def intentar_detener_de_nuevo():
+        with self.assertRaises(Exception, msg="No se permite detener el bucle dos veces"):
             self.pilas.widget.detener_bucle_principal()
 
-        self.assertRaises(Exception, intentar_detener_de_nuevo,
-                          "No se permite detener el bucle dos veces")
-
+    def testReiniciarBucleDosVecesFalla(self):
+        self.pilas.widget.detener_bucle_principal()
         self.pilas.widget.reiniciar_bucle_principal()
 
-        def intentar_reiniciar_de_nuevo():
+        with self.assertRaises(Exception, msg="No se permite reiniciar al bucle dos veces"):
             self.pilas.widget.reiniciar_bucle_principal()
 
-        self.assertRaises(Exception, intentar_reiniciar_de_nuevo,
-                          "No se permite reiniciar al bucle dos veces")
 
 if __name__ == "__main__":
     unittest.main()
