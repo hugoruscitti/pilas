@@ -452,6 +452,11 @@ class Editor(editor_base.EditorBase):
     def guardar_contenido_con_dialogo(self):
         ruta = self.abrir_dialogo_guardar_archivo()
 
+        ruta = str(ruta)
+
+        if not ruta.endswith('.py'):
+            ruta += '.py'
+
         if ruta:
             self.guardar_contenido_en_el_archivo(ruta)
             self._cambios_sin_guardar = False
