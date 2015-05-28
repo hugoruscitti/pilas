@@ -4,13 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Diálogos</title>
-  
+
+  <title>Diálogos - pilas-engine</title>
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
@@ -211,14 +208,6 @@
     
         
             <li class="toctree-l1 ">
-                <a class="" href="../demos/">Demos</a>
-                
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
                 <a class="" href="../interfaz/">Interfaz de usuario</a>
                 
             </li>
@@ -271,13 +260,10 @@
 
     
         
-            <span>Eventos</span>
-            
-                <li class="toctree-l2 ">
-                    <a class="" href="../eventos/">conexiones y respuestas</a>
-                    
-                </li>
-            
+            <li class="toctree-l1 ">
+                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+                
+            </li>
         
 
     
@@ -367,9 +353,10 @@ llamado aventuras gráficas.</p>
 <h2 id="mensajes-de-dialogo">Mensajes de dialogo</h2>
 <p>Para hacer que un personaje emita un mensaje sencillo
 puedes usar el método <code>decir</code>:</p>
-<pre><code>actor = pilas.actores.Mono()
-actor.decir("Eh!, ahora puedo hablar...")
+<pre><code class="python">actor = pilas.actores.Mono()
+actor.decir(&quot;Eh!, ahora puedo hablar...&quot;)
 </code></pre>
+
 <p>Esto hará que el personaje muestre un globo similar al
 de las historietas con las frases que has colocado.</p>
 <p><img alt="" src="../imagenes/dialogos/decir.jpg" /></p>
@@ -383,14 +370,15 @@ sí.</p>
 crear un objeto de la clase <code>Dialogo</code>, luego
 indicarle la secuencia de conversación y por último
 iniciar el dialogo:</p>
-<pre><code>dialogo = pilas.actores.Dialogo()
+<pre><code class="python">dialogo = pilas.actores.Dialogo()
 
-dialogo.decir(mono, "Hola, como estas?")
-dialogo.decir(otro_mono, "Perfecto!!, gracias...")
-dialogo.decir(mono, "genial...")
+dialogo.decir(mono, &quot;Hola, como estas?&quot;)
+dialogo.decir(otro_mono, &quot;Perfecto!!, gracias...&quot;)
+dialogo.decir(mono, &quot;genial...&quot;)
 
-dialogo.iniciar()
+dialogo.comenzar()
 </code></pre>
+
 <p>Ahora cuando ejecutes este programa, solamente aparecerá
 el primer mensaje <code>"Hola, cómo estas?"</code> y solo cuando el
 usuario haga click con el mouse avanzará.</p>
@@ -412,11 +400,12 @@ de texto.</p>
 <p>Aquí tienes una ejemplo de una pregunta con 3 respuestas. Cuando
 el usuario elija una repuesta el personaje volverá a
 decirlo:</p>
-<pre><code>def cuando_responde_color_favorito(respuesta):
-    dialogo.decir(mono, "he dicho: " + respuesta)
+<pre><code class="python">def cuando_responde_color_favorito(respuesta):
+    dialogo.decir(mono, &quot;he dicho: &quot; + respuesta)
 
-dialogo.elegir(mono, "Mi color favorito es el...", ["rojo", "verde", "azul"], cuando_responde_color_favorito)
+dialogo.elegir(mono, &quot;Mi color favorito es el...&quot;, [&quot;rojo&quot;, &quot;verde&quot;, &quot;azul&quot;], cuando_responde_color_favorito)
 </code></pre>
+
 <p><img alt="" src="../imagenes/dialogos/pregunta.jpg" /></p>
             </div>
           </div>

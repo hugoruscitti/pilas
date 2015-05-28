@@ -4,13 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Escenas</title>
-  
+
+  <title>Escenas - pilas-engine</title>
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
@@ -228,14 +225,6 @@
     
         
             <li class="toctree-l1 ">
-                <a class="" href="../demos/">Demos</a>
-                
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
                 <a class="" href="../interfaz/">Interfaz de usuario</a>
                 
             </li>
@@ -275,13 +264,10 @@
 
     
         
-            <span>Eventos</span>
-            
-                <li class="toctree-l2 ">
-                    <a class="" href="../eventos/">conexiones y respuestas</a>
-                    
-                </li>
-            
+            <li class="toctree-l1 ">
+                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+                
+            </li>
         
 
     
@@ -408,13 +394,16 @@ nuestro juego creando la escena principal.</p>
 <p>La primer escena tendríamos que representarla
 con una clase, que herede de la escena Normal
 así:</p>
-<pre><code>class PantallaBienvenida(pilas.escena.Normal):
-
+<pre><code class="python">class PantallaBienvenida(pilasengine.escenas.Escena):
 
     def iniciar(self):
-        pilas.fondos.Pasto()
-        texto = pilas.actores.Texto("Bienvenido a pilas!!!")
+        self.fondo = self.pilas.fondos.Volley()
+        pass
+
+    def ejecutar(self):
+        pass
 </code></pre>
+
 <p>Ahora, para poner en funcionamiento esta escena
 simplemente tienes que decirle a pilas que esta escena es la activa:</p>
 <pre><code>pilas.escenas.vincular(PantallaBienvenida)
@@ -435,7 +424,7 @@ pilas.escenas.PantallaBienvenida("Mi mensaje personalizado")
 </code></pre>
 <p>Lo que necesitas hacer es especificar ese nuevo argumento en el método
 <code>iniciar</code> así:</p>
-<pre><code>class PantallaBienvenida(pilas.escena.Normal):
+<pre><code class="python">class PantallaBienvenida(pilasengine.escenas.Escena):
 
     def iniciar(self, mensaje):
         pilas.fondos.Pasto()
@@ -444,6 +433,7 @@ pilas.escenas.PantallaBienvenida("Mi mensaje personalizado")
     def actualizar(self):
         self.texto.rotacion += 1
 </code></pre>
+
 <p>pilas, en este caso, va a tomar el argumento <code>"Mi mensaje personalizado"</code> y lo
 va a enviar al método <code>iniciar</code> con el nombre <code>mensaje</code>.</p>
             </div>
@@ -453,7 +443,7 @@ va a enviar al método <code>iniciar</code> con el nombre <code>mensaje</code>.<
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../demos/" class="btn btn-neutral float-right" title="Demos"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../interfaz/" class="btn btn-neutral float-right" title="Interfaz de usuario"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../comportamientos/" class="btn btn-neutral" title="Comportamientos"><span class="icon icon-circle-arrow-left"></span> Anterior</a>

@@ -4,13 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>conexiones y respuestas</title>
-  
+
+  <title>Eventos conexiones y respuestas - pilas-engine</title>
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
@@ -211,14 +208,6 @@
     
         
             <li class="toctree-l1 ">
-                <a class="" href="../demos/">Demos</a>
-                
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
                 <a class="" href="../interfaz/">Interfaz de usuario</a>
                 
             </li>
@@ -258,34 +247,33 @@
 
     
         
-            <span>Eventos</span>
-            
-                <li class="toctree-l2 current">
-                    <a class="current" href="./">conexiones y respuestas</a>
+            <li class="toctree-l1 current">
+                <a class="current" href="./">Eventos conexiones y respuestas</a>
+                
+                    <ul>
                     
-                        <ul>
+                        <li class="toctree-l3"><a href="#eventos-conexiones-y-respuestas">Eventos, conexiones y respuestas</a></li>
                         
-                            <li class="toctree-l3"><a href="#eventos-conexiones-y-respuestas">Eventos, conexiones y respuestas</a></li>
-                            
-                                <li><a class="toctree-l4" href="#que-es-un-evento">¿Que es un Evento?</a></li>
-                            
-                                <li><a class="toctree-l4" href="#conectando-la-emision-de-eventos-a-funciones">Conectando la emisión de eventos a funciones</a></li>
-                            
-                                <li><a class="toctree-l4" href="#observando-a-los-eventos-para-conocerlos-mejor">Observando a los eventos para conocerlos mejor</a></li>
-                            
-                                <li><a class="toctree-l4" href="#desconectando-senales">Desconectando señales</a></li>
-                            
-                                <li><a class="toctree-l4" href="#consultado-senales-conectadas">Consultado señales conectadas</a></li>
-                            
-                                <li><a class="toctree-l4" href="#creando-tus-propios-eventos">Creando tus propios eventos</a></li>
-                            
-                                <li><a class="toctree-l4" href="#referencias">Referencias</a></li>
-                            
+                            <li><a class="toctree-l4" href="#que-es-un-evento">¿Que es un Evento?</a></li>
                         
-                        </ul>
+                            <li><a class="toctree-l4" href="#conectando-la-emision-de-eventos-a-funciones">Conectando la emisión de eventos a funciones</a></li>
+                        
+                            <li><a class="toctree-l4" href="#observando-a-los-eventos-para-conocerlos-mejor">Observando a los eventos para conocerlos mejor</a></li>
+                        
+                            <li><a class="toctree-l4" href="#desconectando-senales">Desconectando señales</a></li>
+                        
+                            <li><a class="toctree-l4" href="#listado-de-todos-los-eventos-existentes">Listado de todos los eventos existentes</a></li>
+                        
+                            <li><a class="toctree-l4" href="#consultado-senales-conectadas">Consultado señales conectadas</a></li>
+                        
+                            <li><a class="toctree-l4" href="#creando-tus-propios-eventos">Creando tus propios eventos</a></li>
+                        
+                            <li><a class="toctree-l4" href="#referencias">Referencias</a></li>
+                        
                     
-                </li>
-            
+                    </ul>
+                
+            </li>
         
 
     
@@ -357,7 +345,7 @@
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." onclick='return alternar_menu();'>Docs</a> &raquo;</li>
-    <li>conexiones y respuestas</li>
+    <li>Eventos conexiones y respuestas</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -404,7 +392,9 @@ conectado.</p>
 en pantalla siguiendo la posición del puntero
 del mouse, tendríamos que escribir algo como
 esto:</p>
-<pre><code>import pilas
+<pre><code class="python">import pilasengine
+
+pilas = pilasengine.iniciar()
 
 mono = pilas.actores.Mono()
 
@@ -416,7 +406,10 @@ pilas.eventos.mueve_mouse.conectar(mover_mono_a_la_posicion_del_mouse)
 
 # O puedes utilizar el método abreviado del actor.
 mono.mueve_mouse(mover_mono_a_la_posicion_del_mouse)
+
+pilas.ejecutar()
 </code></pre>
+
 <p>Es decir, la señal de evento que nos interesa es <code>mueve_mouse</code> (que se emite
 cada vez que el usuario mueve el mouse). Y a esta señal le conectamos
 la función que buscamos ejecutar cada vez que se mueva el mouse.</p>
@@ -469,6 +462,61 @@ pilas.eventos.mueve_mouse.desconectar_por_id('drag')
 un valor al argumento <code>id</code>. Este valor será el identificador
 de ese enlace. Y en la siguiente linea se utilizó el identificador
 para desconectarla.</p>
+<h2 id="listado-de-todos-los-eventos-existentes">Listado de todos los eventos existentes</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Evento</strong></th>
+<th><strong>Parametros</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mueve_camara</td>
+<td>x, y, dx, dy</td>
+</tr>
+<tr>
+<td>mueve_mouse</td>
+<td>x, y, dx, dy</td>
+</tr>
+<tr>
+<td>click_de_mouse</td>
+<td>boton, x, y</td>
+</tr>
+<tr>
+<td>termina_click</td>
+<td>boton, x, y</td>
+</tr>
+<tr>
+<td>mueve_rueda</td>
+<td>delta</td>
+</tr>
+<tr>
+<td>pulsa_tecla</td>
+<td>codigo, texto</td>
+</tr>
+<tr>
+<td>suelta_tecla</td>
+<td>codigo, texto</td>
+</tr>
+<tr>
+<td>pulsa_tecla_escape</td>
+<td></td>
+</tr>
+<tr>
+<td>cuando_actualiza</td>
+<td></td>
+</tr>
+<tr>
+<td>pulsa_boton</td>
+<td>numero</td>
+</tr>
+<tr>
+<td>mueve_pad</td>
+<td>x, y, x1, y1</td>
+</tr>
+</tbody>
+</table>
 <h2 id="consultado-senales-conectadas">Consultado señales conectadas</h2>
 <p>Durante el desarrollo es útil poder observar qué
 eventos se han conectado a funciones.</p>
@@ -488,14 +536,15 @@ y darle un nombre:</p>
 <p>luego, este nuevo objeto <code>evento</code> podrá ser utilizado como
 canal de comunicación: muchos actores podrán <code>conectarse</code> para
 recibir alertas y otros podrán <code>emitir</code> alertas:</p>
-<pre><code>def ha_ocurrido_un_evento(datos_evento):
-    print "Hola!!!", datos_evento
+<pre><code class="python">def ha_ocurrido_un_evento(datos_evento):
+    print &quot;Hola!!!&quot;, datos_evento
 
 evento.conectar(ha_ocurrido_un_evento)
 
 # En otra parte...
 evento.emitir(argumento1=123, argumento2=123)
 </code></pre>
+
 <p>Cuando se emite un evento se pueden pasar muchos argumentos, tantos
 como se quiera. Todos estos argumentos llegarán a la función de
 respuesta en forma de diccionario.</p>

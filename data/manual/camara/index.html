@@ -4,13 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Manejo de Cámara</title>
-  
+
+  <title>Manejo de Cámara - pilas-engine</title>
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
@@ -211,14 +208,6 @@
     
         
             <li class="toctree-l1 ">
-                <a class="" href="../demos/">Demos</a>
-                
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
                 <a class="" href="../interfaz/">Interfaz de usuario</a>
                 
             </li>
@@ -269,13 +258,10 @@
 
     
         
-            <span>Eventos</span>
-            
-                <li class="toctree-l2 ">
-                    <a class="" href="../eventos/">conexiones y respuestas</a>
-                    
-                </li>
-            
+            <li class="toctree-l1 ">
+                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+                
+            </li>
         
 
     
@@ -373,9 +359,10 @@ indiquemos qué parte del escenario tenemos que observar.</p>
 del escenario, el punto central de la ventana.</p>
 <p>Si queremos que muestre otra parte del escenario
 podemos ejecutar una sentencia como la que sigue:</p>
-<pre><code>pilas.escena_actual().camara.x = [200]
-pilas.escena_actual().camara.y = [200]
+<pre><code class="python">pilas.camara.x = [200]
+pilas.camara.y = [200]
 </code></pre>
+
 <p>Con esto le estaríamos diciendo a la cámara que nos
 muestre el punto <code>(200, 200)</code> del escenario. Así
 observaríamos que podemos explorar la parte superior
@@ -390,8 +377,9 @@ de lugar.</p>
 que vé un usuario o cualquier marcador auxiliar.</p>
 <p>Para que un actor no se vea afectado por la cámara, tienes
 que guardar el valor <code>True</code> dentro del atributo <code>fijo</code>:</p>
-<pre><code>actor.fijo = True
+<pre><code class="python">actor.fijo = True
 </code></pre>
+
 <p>Por lo general, todos los actores tienen este atributo a <code>False</code>, porque
 viven en el escenario de juego y no se quedan fijos a la pantalla. Excepto
 los textos que siempre permanecen en la parte superior de la ventana.</p>
@@ -402,7 +390,7 @@ los textos que siempre permanecen en la parte superior de la ventana.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../eventos/" class="btn btn-neutral float-right" title="conexiones y respuestas"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../eventos/" class="btn btn-neutral float-right" title="Eventos conexiones y respuestas"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../dialogos/" class="btn btn-neutral" title="Diálogos"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
