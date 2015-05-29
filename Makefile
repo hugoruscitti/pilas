@@ -103,6 +103,7 @@ upload:
 	mkdir -p ~/Dropbox/Public/releases/pilas-engine/${VERSION}
 	cp dist/pilas-engine-${VERSION}.dmg ~/Dropbox/Public/releases/pilas-engine/${VERSION}/
 	cp dist/pilas-engine_${VERSION}.exe ~/Dropbox/Public/releases/pilas-engine/${VERSION}/
+	@echo "$(V)Recordá que luego de subir a dropbox deberías actualizar la web.$(N)"
 
 distmac:
 	@mkdir -p tmp

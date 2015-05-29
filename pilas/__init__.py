@@ -192,6 +192,9 @@ def reiniciar():
     mundo.reiniciar()
 
 
+def reiniciar_si_cambia(archivo):
+    print("La funcion 'reiniciar_si_cambia' solo esta disponible desde la version 0.90.0 de pilas-engine")
+
 def avisar(mensaje, retraso=5):
     """Emite un mensaje en la ventana principal.
 

@@ -182,12 +182,6 @@ class Plano(Fondo):
 
     def __init__(self):
         Fondo.__init__(self,"plano.png")
-        imagen = os.path.abspath(os.path.dirname(__file__)) + "/data/plano.png"
-        self.imagenFndo = Image.open(imagen)
-
-    def informacion_de_un_pixel(self, x, y):
-        # Porque el fondo esde un sólo color. Entonces no mporta el valor del pixel
-        return self.imagenFndo.getpixel( (1,1) )
 
     def dimension_fondo(self):
         # No importa el tamaño de la imagen del fondo, porque tiene el mismo color en todos lados.
