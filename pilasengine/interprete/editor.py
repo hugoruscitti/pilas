@@ -9,6 +9,7 @@ import codecs
 import re
 import sys
 import os
+import inspect
 
 from PyQt4.QtCore import Qt, QTimer
 from PyQt4.Qt import (QFrame, QWidget, QPainter,
@@ -18,6 +19,7 @@ from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
                          QKeySequence, QTextFormat, QColor, QKeyEvent)
 from PyQt4.QtCore import Qt
 from PyQt4 import QtCore
+
 
 from editorbase import editor_base
 import editor_ui
@@ -137,7 +139,7 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
                                     self.editor.guardar_contenido_directamente)
 
         # Boton Guardar Como ...
-        self.set_icon(self.boton_guardar_como, 'iconos/guardar.png')
+        self.set_icon(self.boton_guardar_como, 'iconos/guardar_como.png')
         self.boton_guardar_como.connect(self.boton_guardar_como,
                                     QtCore.SIGNAL('clicked()'),
                                     self.editor.guardar_contenido_con_dialogo)
@@ -282,12 +284,14 @@ class Editor(editor_base.EditorBase):
         super(Editor, self).__init__()
         self.consola_lanas = consola_lanas
         self.ventana_interprete = ventana_interprete
+        self.ruta_del_archivo_actual = None
         self.interpreterLocals = interpreterLocals
         self.insertPlainText(CONTENIDO)
         self.setLineWrapMode(QTextEdit.NoWrap)
         self._cambios_sin_guardar = False
         self.main = main
         self.nombre_de_archivo_sugerido = ""
+        self.watcher = pilasengine.watcher.Watcher(None, self.cuando_cambia_archivo_de_forma_externa)
 
     def es_archivo_iniciar_sin_guardar(self):
         return self.nombre_de_archivo_sugerido == ""
@@ -391,10 +395,16 @@ class Editor(editor_base.EditorBase):
         if self.tiene_cambios_sin_guardar():
             if self.mensaje_guardar_cambios_abrir():
                 self.guardar_contenido_con_dialogo()
-        base_path = os.path.dirname(self.ruta_del_archivo_actual)
-        ruta = os.path.join(base_path, str(nombre_de_archivo))
+        
+        if self.ruta_del_archivo_actual:       
+            base_path = os.path.dirname(self.ruta_del_archivo_actual)
+            ruta = os.path.join(base_path, str(nombre_de_archivo))
+        else:
+            ruta = str(nombre_de_archivo)
+            
         self.cargar_contenido_desde_archivo(ruta)
         self.ruta_del_archivo_actual = ruta
+        self.watcher.cambiar_archivo_a_observar(ruta)
         self.ejecutar(ruta)
         self.main.actualizar_el_listado_de_archivos()
 
@@ -409,8 +419,17 @@ class Editor(editor_base.EditorBase):
             ruta = str(ruta)
             self.cargar_contenido_desde_archivo(ruta)
             self.ruta_del_archivo_actual = ruta
+            self.watcher.cambiar_archivo_a_observar(ruta)
             self.ejecutar(ruta)
             self.main.actualizar_el_listado_de_archivos()
+            
+    def cuando_cambia_archivo_de_forma_externa(self):
+        self.recargar_archivo_actual()
+        
+    def recargar_archivo_actual(self):
+        if self.ruta_del_archivo_actual:
+            self.cargar_contenido_desde_archivo(self.ruta_del_archivo_actual)
+            self.ejecutar(self.ruta_del_archivo_actual)
 
     def mensaje_guardar_cambios_abrir(self):
         """Realizar una consulta usando un cuadro de dialogo simple
@@ -461,6 +480,7 @@ class Editor(editor_base.EditorBase):
             self.guardar_contenido_en_el_archivo(ruta)
             self._cambios_sin_guardar = False
             self.nombre_de_archivo_sugerido = str(ruta)
+            self.watcher.cambiar_archivo_a_observar(str(ruta))
             self.main.actualizar_el_listado_de_archivos()
 
     def guardar_contenido_directamente(self):
@@ -468,8 +488,12 @@ class Editor(editor_base.EditorBase):
             self.guardar_contenido_en_el_archivo(self.nombre_de_archivo_sugerido)
             self._cambios_sin_guardar = False
             self.main.actualizar_el_listado_de_archivos()
+            self.prevenir_live_reload()
         else:
             self.guardar_contenido_con_dialogo()
+            
+    def prevenir_live_reload(self):
+        self.watcher.prevenir_reinicio()
 
     def salir(self):
         """Retorna True si puede salir y False si no"""
@@ -508,6 +532,15 @@ class Editor(editor_base.EditorBase):
             ruta_personalizada = os.path.dirname(ruta_personalizada)
             agregar_ruta_personalizada = 'pilas.utils.agregar_ruta_personalizada("%s")' %(ruta_personalizada)
             contenido = contenido.replace('pilas.reiniciar(', agregar_ruta_personalizada+'\n'+'pilas.reiniciar(')
+
+
+        modulos_a_recargar = [x for x in self.interpreterLocals.values() 
+                                    if inspect.ismodule(x) 
+                                    and x.__name__ not in ['pilasengine', 'inspect'] 
+                                    and 'pilasengine.' not in x.__name__]
+        
+        for m in modulos_a_recargar:
+            reload(m)
 
         try:
             exec(contenido, self.interpreterLocals)
