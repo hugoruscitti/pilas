@@ -1,7 +1,7 @@
 N=[0m
 V=[01;32m
 
-VERSION=0.90.31
+VERSION=0.90.34
 
 all:
 	@echo ""
@@ -13,8 +13,9 @@ all:
 	@echo "  $(V)ui$(N)          Actualiza todas las interfaces de usuario."
 	@echo "  $(V)manual$(N)      Actualiza el manual y lo copia a data/manual."
 	@echo "  $(V)rm_pyc$(N)      Borra todos los archivos .pyc del proyecto."
-	@echo ""
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
+	@echo ""
+	@echo "  $(V)log$(N)         Muestra los ultimos commits respecto del tag anterior."
 	@echo "  $(V)version$(N)     Genera el changelog y la informacion de versión."
 	@echo "  $(V)ver_sync$(N)    Sube la nueva version al servidor."
 	@echo "  $(V)ejemplos$(N)    Prueba los ejemplos uno a uno."
@@ -102,6 +103,7 @@ upload:
 	mkdir -p ~/Dropbox/Public/releases/pilas-engine/${VERSION}
 	cp dist/pilas-engine-${VERSION}.dmg ~/Dropbox/Public/releases/pilas-engine/${VERSION}/
 	cp dist/pilas-engine_${VERSION}.exe ~/Dropbox/Public/releases/pilas-engine/${VERSION}/
+	@echo "$(V)Recordá que luego de subir a dropbox deberías actualizar la web.$(N)"
 
 distmac:
 	@mkdir -p tmp
@@ -169,3 +171,6 @@ distwin:
 	@echo "Los archivos generados están en el directorio dist/"
 	@echo "Se abre una ventana para mostrarlos."
 	@open dist
+
+log:
+	git log ${VERSION}...HEAD --graph --oneline --decorate

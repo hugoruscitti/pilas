@@ -11,19 +11,31 @@ from PyQt4 import QtCore
 
 class Watcher(QtCore.QObject):
 
-    def __init__(self, aFile, callback=None, checkEvery=2):
+    def __init__(self, aFile=None, callback=None, checkEvery=2):
         super(Watcher, self).__init__()
 
-        self.file = aFile
+        self.cambiar_archivo_a_observar(aFile)
         self.callback = callback
-        self.ultima_modificacion = os.path.getmtime(self.file)
 
         self._timer = QtCore.QTimer(self)
         self._timer.setInterval(checkEvery*1000)
         self._timer.timeout.connect(self._checkFile)
         self._timer.start()
+        
+    def cambiar_archivo_a_observar(self, aFile):
+        self.file = aFile
+        
+        if aFile:
+            self.ultima_modificacion = os.path.getmtime(self.file)
+
+    def prevenir_reinicio(self):
+        if self.file:
+            self.ultima_modificacion = os.path.getmtime(self.file)
 
     def _checkFile(self):
+        if not self.file:
+            return
+        
         modificacion = os.path.getmtime(self.file)
 
         if modificacion != self.ultima_modificacion:

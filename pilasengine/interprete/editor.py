@@ -9,6 +9,7 @@ import codecs
 import re
 import sys
 import os
+import inspect
 
 from PyQt4.QtCore import Qt, QTimer
 from PyQt4.Qt import (QFrame, QWidget, QPainter,
@@ -18,6 +19,7 @@ from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
                          QKeySequence, QTextFormat, QColor, QKeyEvent)
 from PyQt4.QtCore import Qt
 from PyQt4 import QtCore
+
 
 from editorbase import editor_base
 import editor_ui
@@ -134,7 +136,19 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         self.set_icon(self.boton_guardar, 'iconos/guardar.png')
         self.boton_guardar.connect(self.boton_guardar,
                                     QtCore.SIGNAL('clicked()'),
+                                    self.editor.guardar_contenido_directamente)
+
+        # Boton Guardar Como ...
+        self.set_icon(self.boton_guardar_como, 'iconos/guardar_como.png')
+        self.boton_guardar_como.connect(self.boton_guardar_como,
+                                    QtCore.SIGNAL('clicked()'),
                                     self.editor.guardar_contenido_con_dialogo)
+
+        # Boton actualizar
+        self.set_icon(self.boton_actualizar, 'iconos/actualizar.png')
+        self.boton_actualizar.connect(self.boton_actualizar,
+                                    QtCore.SIGNAL('clicked()'),
+                                    self.actualizar_el_listado_de_archivos)
 
         # Boton Ejecutar
         self.set_icon(self.boton_ejecutar, 'iconos/ejecutar.png')
@@ -161,6 +175,9 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
 
         self.timer_id = self.startTimer(1000 / 2.0)
         self.lista_actores.currentItemChanged.connect(self.cuando_selecciona_item)
+
+        self.selector_archivos.activated[str].connect(self.cuando_cambia_archivo_seleccionado)
+        self.actualizar_el_listado_de_archivos()
 
     def definir_fuente(self, fuente):
         self.lista_actores.setFont(fuente)
@@ -190,22 +207,21 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
             return False
         return QWidget.eventFilter(obj, event)
 
-    def set_icon(self, boton, ruta):
+    def set_icon(self, boton, ruta, text=''):
         icon = QIcon()
         archivo = pilasengine.utils.obtener_ruta_al_recurso(ruta)
         icon.addFile(archivo, QSize(), QIcon.Normal, QIcon.Off)
         boton.setIcon(icon)
-        boton.setText('')
+        boton.setText(text)
 
     def _vincular_atajos_de_teclado(self):
-        QShortcut(QKeySequence("F5"), self,
-                  self.cuando_pulsa_el_boton_ejecutar)
-        QShortcut(QKeySequence("Ctrl+r"), self,
-                  self.cuando_pulsa_el_boton_ejecutar)
+        QShortcut(QKeySequence("F5"), self, self.cuando_pulsa_el_boton_ejecutar)
+        QShortcut(QKeySequence("Ctrl+r"), self, self.cuando_pulsa_el_boton_ejecutar)
+        QShortcut(QKeySequence("Ctrl+s"), self, self.guardar_y_ejecutar)
 
         # Solo en MacOS informa que la tecla Command sustituye a CTRL.
         if sys.platform == 'darwin':
-            self.boton_ejecutar.setToolTip(u"Ejecutar el código actual (F5 o ⌘R)")
+            self.boton_ejecutar.setToolTip(u"Ejecutar el código actual (F5, ⌘R, ⌘S)")
 
     def closeEvent(self, event):
         if not self.editor.salir():
@@ -213,6 +229,10 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
             return
 
         event.accept()
+
+    def guardar_y_ejecutar(self):
+        self.cuando_pulsa_el_boton_ejecutar()
+        self.editor.guardar_contenido_directamente()
 
     def cuando_pulsa_el_boton_ejecutar(self):
         self.editor.ejecutar(self.ruta_del_archivo_actual)
@@ -230,6 +250,26 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
 
         self.editor.interpreterLocals['pilas'].widget.avanzar_un_solo_cuadro()
 
+    def actualizar_el_listado_de_archivos(self):
+        self.selector_archivos.clear()
+
+        if self.editor.es_archivo_iniciar_sin_guardar():
+            self.selector_archivos.addItem(u"archivo sin título ...")
+        else:
+            archivos = self.editor.obtener_archivos_del_proyecto()
+
+            for archivo in archivos:
+                self.selector_archivos.addItem(archivo)
+
+            index = self.selector_archivos.findText(os.path.basename(self.editor.nombre_de_archivo_sugerido))
+
+            if index != -1:
+                self.selector_archivos.setCurrentIndex(index)
+
+    def cuando_cambia_archivo_seleccionado(self, text):
+        if not self.editor.es_archivo_iniciar_sin_guardar():
+            self.editor.abrir_archivo_del_proyecto(str(text))
+
 
 class Editor(editor_base.EditorBase):
     """Representa el editor de texto que aparece en el panel derecho.
@@ -244,11 +284,23 @@ class Editor(editor_base.EditorBase):
         super(Editor, self).__init__()
         self.consola_lanas = consola_lanas
         self.ventana_interprete = ventana_interprete
+        self.ruta_del_archivo_actual = None
         self.interpreterLocals = interpreterLocals
         self.insertPlainText(CONTENIDO)
         self.setLineWrapMode(QTextEdit.NoWrap)
         self._cambios_sin_guardar = False
         self.main = main
+        self.nombre_de_archivo_sugerido = ""
+        self.watcher = pilasengine.watcher.Watcher(None, self.cuando_cambia_archivo_de_forma_externa)
+
+    def es_archivo_iniciar_sin_guardar(self):
+        return self.nombre_de_archivo_sugerido == ""
+
+    def obtener_archivos_del_proyecto(self):
+        base_path = os.path.dirname(self.nombre_de_archivo_sugerido)
+        listado = os.listdir(base_path)
+
+        return [x for x in listado if x.endswith('.py')]
 
     def keyPressEvent(self, event):
         "Atiene el evento de pulsación de tecla."
@@ -270,7 +322,6 @@ class Editor(editor_base.EditorBase):
 
         if editor_base.EditorBase.keyPressEvent(self, event):
             return None
-
 
         # Elimina los pares de caracteres especiales si los encuentra
         if event.key() == Qt.Key_Backspace:
@@ -340,6 +391,23 @@ class Editor(editor_base.EditorBase):
                                    "Archivos python (*.py)",
                                    options=QFileDialog.DontUseNativeDialog)
 
+    def abrir_archivo_del_proyecto(self, nombre_de_archivo):
+        if self.tiene_cambios_sin_guardar():
+            if self.mensaje_guardar_cambios_abrir():
+                self.guardar_contenido_con_dialogo()
+        
+        if self.ruta_del_archivo_actual:       
+            base_path = os.path.dirname(self.ruta_del_archivo_actual)
+            ruta = os.path.join(base_path, str(nombre_de_archivo))
+        else:
+            ruta = str(nombre_de_archivo)
+            
+        self.cargar_contenido_desde_archivo(ruta)
+        self.ruta_del_archivo_actual = ruta
+        self.watcher.cambiar_archivo_a_observar(ruta)
+        self.ejecutar(ruta)
+        self.main.actualizar_el_listado_de_archivos()
+
     def abrir_archivo_con_dialogo(self):
         if self.tiene_cambios_sin_guardar():
             if self.mensaje_guardar_cambios_abrir():
@@ -351,7 +419,17 @@ class Editor(editor_base.EditorBase):
             ruta = str(ruta)
             self.cargar_contenido_desde_archivo(ruta)
             self.ruta_del_archivo_actual = ruta
+            self.watcher.cambiar_archivo_a_observar(ruta)
             self.ejecutar(ruta)
+            self.main.actualizar_el_listado_de_archivos()
+            
+    def cuando_cambia_archivo_de_forma_externa(self):
+        self.recargar_archivo_actual()
+        
+    def recargar_archivo_actual(self):
+        if self.ruta_del_archivo_actual:
+            self.cargar_contenido_desde_archivo(self.ruta_del_archivo_actual)
+            self.ejecutar(self.ruta_del_archivo_actual)
 
     def mensaje_guardar_cambios_abrir(self):
         """Realizar una consulta usando un cuadro de dialogo simple
@@ -393,11 +471,29 @@ class Editor(editor_base.EditorBase):
     def guardar_contenido_con_dialogo(self):
         ruta = self.abrir_dialogo_guardar_archivo()
 
+        ruta = str(ruta)
+
+        if not ruta.endswith('.py'):
+            ruta += '.py'
+
         if ruta:
             self.guardar_contenido_en_el_archivo(ruta)
             self._cambios_sin_guardar = False
-            self.nombre_de_archivo_sugerido = ruta
-            #self.mensaje_contenido_guardado()
+            self.nombre_de_archivo_sugerido = str(ruta)
+            self.watcher.cambiar_archivo_a_observar(str(ruta))
+            self.main.actualizar_el_listado_de_archivos()
+
+    def guardar_contenido_directamente(self):
+        if self.nombre_de_archivo_sugerido:
+            self.guardar_contenido_en_el_archivo(self.nombre_de_archivo_sugerido)
+            self._cambios_sin_guardar = False
+            self.main.actualizar_el_listado_de_archivos()
+            self.prevenir_live_reload()
+        else:
+            self.guardar_contenido_con_dialogo()
+            
+    def prevenir_live_reload(self):
+        self.watcher.prevenir_reinicio()
 
     def salir(self):
         """Retorna True si puede salir y False si no"""
@@ -437,6 +533,15 @@ class Editor(editor_base.EditorBase):
             agregar_ruta_personalizada = 'pilas.utils.agregar_ruta_personalizada("%s")' %(ruta_personalizada)
             contenido = contenido.replace('pilas.reiniciar(', agregar_ruta_personalizada+'\n'+'pilas.reiniciar(')
 
+
+        modulos_a_recargar = [x for x in self.interpreterLocals.values() 
+                                    if inspect.ismodule(x) 
+                                    and x.__name__ not in ['pilasengine', 'inspect'] 
+                                    and 'pilasengine.' not in x.__name__]
+        
+        for m in modulos_a_recargar:
+            reload(m)
+
         try:
             exec(contenido, self.interpreterLocals)
         except Exception, e:
@@ -452,6 +557,7 @@ class Editor(editor_base.EditorBase):
         exec(capturar_actor, self.interpreterLocals)
         exec(resaltar, self.interpreterLocals)
         self.consola_lanas.insertar_mensaje("# Creando la referencia 'actor': ")
+
 
 if __name__ == '__main__':
     from PyQt4.QtGui import QApplication
