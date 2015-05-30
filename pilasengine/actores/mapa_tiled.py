@@ -102,6 +102,7 @@ class MapaTiled(Mapa):
         ruta_actual = os.path.dirname(os.path.abspath(archivo))
         self._ruta = os.path.join(ruta_actual, ruta_a_imagen)
         self._ruta = self.pilas.obtener_ruta_al_recurso(self._ruta)
+        self._ruta = unicode(self._ruta, encoding='utf-8')
 
         self.grilla = self.pilas.imagenes.cargar_grilla(self._ruta,
                 self.ancho_imagen / self.ancho_cuadro,
