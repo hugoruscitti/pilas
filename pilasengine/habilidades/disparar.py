@@ -31,7 +31,7 @@ class Disparar(habilidades.Habilidad):
                  cuando_dispara=None,
                  escala=1,
                  rotacion_disparo=90,
-                 control=None):
+                 control='control.boton'):
         """
         Construye la habilidad.
 
@@ -174,8 +174,11 @@ class Disparar(habilidades.Habilidad):
         pass
 
     def pulsa_disparar(self):
-        return self.control.boton if self.control else self.pilas.control.boton
+        if self.control == "control.boton":
+            return self.pilas.control.boton
 
+        if self.control:
+            return self.control.boton
 
 
 class DispararConClick(Disparar):
