@@ -267,8 +267,10 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
                 self.selector_archivos.setCurrentIndex(index)
 
     def cuando_cambia_archivo_seleccionado(self, text):
+        text = unicode(text)
+
         if not self.editor.es_archivo_iniciar_sin_guardar():
-            self.editor.abrir_archivo_del_proyecto(str(text))
+            self.editor.abrir_archivo_del_proyecto(text)
 
 
 class Editor(editor_base.EditorBase):
@@ -395,13 +397,13 @@ class Editor(editor_base.EditorBase):
         if self.tiene_cambios_sin_guardar():
             if self.mensaje_guardar_cambios_abrir():
                 self.guardar_contenido_con_dialogo()
-        
-        if self.ruta_del_archivo_actual:       
+
+        if self.ruta_del_archivo_actual:
             base_path = os.path.dirname(self.ruta_del_archivo_actual)
-            ruta = os.path.join(base_path, str(nombre_de_archivo))
+            ruta = os.path.join(base_path, unicode(nombre_de_archivo))
         else:
-            ruta = str(nombre_de_archivo)
-            
+            ruta = unicode(nombre_de_archivo)
+
         self.cargar_contenido_desde_archivo(ruta)
         self.ruta_del_archivo_actual = ruta
         self.watcher.cambiar_archivo_a_observar(ruta)
@@ -416,16 +418,16 @@ class Editor(editor_base.EditorBase):
         ruta = self.abrir_dialogo_cargar_archivo()
 
         if ruta:
-            ruta = str(ruta)
+            ruta = unicode(ruta)
             self.cargar_contenido_desde_archivo(ruta)
             self.ruta_del_archivo_actual = ruta
             self.watcher.cambiar_archivo_a_observar(ruta)
             self.ejecutar(ruta)
             self.main.actualizar_el_listado_de_archivos()
-            
+
     def cuando_cambia_archivo_de_forma_externa(self):
         self.recargar_archivo_actual()
-        
+
     def recargar_archivo_actual(self):
         if self.ruta_del_archivo_actual:
             self.cargar_contenido_desde_archivo(self.ruta_del_archivo_actual)
@@ -471,7 +473,7 @@ class Editor(editor_base.EditorBase):
     def guardar_contenido_con_dialogo(self):
         ruta = self.abrir_dialogo_guardar_archivo()
 
-        ruta = str(ruta)
+        ruta = unicode(ruta)
 
         if not ruta.endswith('.py'):
             ruta += '.py'
@@ -479,8 +481,11 @@ class Editor(editor_base.EditorBase):
         if ruta:
             self.guardar_contenido_en_el_archivo(ruta)
             self._cambios_sin_guardar = False
-            self.nombre_de_archivo_sugerido = str(ruta)
-            self.watcher.cambiar_archivo_a_observar(str(ruta))
+            self.ruta_del_archivo_actual = ruta
+            self.nombre_de_archivo_sugerido = ruta
+            self.watcher.cambiar_archivo_a_observar(ruta)
+            self.cargar_contenido_desde_archivo(ruta)
+            self.ejecutar(ruta)
             self.main.actualizar_el_listado_de_archivos()
 
     def guardar_contenido_directamente(self):
@@ -491,7 +496,7 @@ class Editor(editor_base.EditorBase):
             self.prevenir_live_reload()
         else:
             self.guardar_contenido_con_dialogo()
-            
+
     def prevenir_live_reload(self):
         self.watcher.prevenir_reinicio()
 
@@ -534,11 +539,11 @@ class Editor(editor_base.EditorBase):
             contenido = contenido.replace('pilas.reiniciar(', agregar_ruta_personalizada+'\n'+'pilas.reiniciar(')
 
 
-        modulos_a_recargar = [x for x in self.interpreterLocals.values() 
-                                    if inspect.ismodule(x) 
-                                    and x.__name__ not in ['pilasengine', 'inspect'] 
+        modulos_a_recargar = [x for x in self.interpreterLocals.values()
+                                    if inspect.ismodule(x)
+                                    and x.__name__ not in ['pilasengine', 'inspect']
                                     and 'pilasengine.' not in x.__name__]
-        
+
         for m in modulos_a_recargar:
             reload(m)
 
