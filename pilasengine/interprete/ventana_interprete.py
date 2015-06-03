@@ -27,7 +27,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
         main.closeEvent = self.on_close_event
         self.iniciar_interfaz()
         self._vincular_atajos_de_teclado()
-        self.editor.ejecutar()
+        self.editor.crear_archivo_inicial()
+        #self.editor.ejecutar()
 
     def _vincular_atajos_de_teclado(self):
         self.pushButton_6.setShortcut(QKeySequence('F7'))
@@ -321,16 +322,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def cuando_pulsa_el_boton_pantalla_completa(self):
         self.scope['pilas'].widget.definir_modo_pantalla_completa()
-
-    def ejecutar_y_reiniciar_si_cambia(self, archivo):
-        self.watcher_ultima_invocacion = time.time() - 500
-        self.watcher = QtCore.QFileSystemWatcher(parent=self.main)
-        self.watcher.connect(self.watcher,
-                             QtCore.SIGNAL('fileChanged(const QString&)'),
-                             self._reiniciar_y_ejecutar)
-        self.watcher.addPath(archivo)
-        self._reiniciar_y_ejecutar(archivo)
-        self._cargar_codigo_del_editor_desde_archivo(archivo)
 
     def _reiniciar_y_ejecutar(self, archivo):
         self.watcher.removePath(archivo)

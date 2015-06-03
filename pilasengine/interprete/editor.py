@@ -10,6 +10,8 @@ import re
 import sys
 import os
 import inspect
+import tempfile
+import shutil
 
 from PyQt4.QtCore import Qt, QTimer
 from PyQt4.Qt import (QFrame, QWidget, QPainter,
@@ -25,7 +27,9 @@ from editorbase import editor_base
 import editor_ui
 import pilasengine
 
-CONTENIDO = u"""import pilasengine
+
+CODIGO_INICIAL = u"""# coding: utf-8
+import pilasengine
 
 pilas = pilasengine.iniciar()
 
@@ -235,7 +239,7 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         self.editor.guardar_contenido_directamente()
 
     def cuando_pulsa_el_boton_ejecutar(self):
-        self.editor.ejecutar(self.ruta_del_archivo_actual)
+        self.editor.ejecutar()
         self.boton_pausar.setChecked(False)
 
     def cuando_pulsa_el_boton_pausar(self):
@@ -288,12 +292,20 @@ class Editor(editor_base.EditorBase):
         self.ventana_interprete = ventana_interprete
         self.ruta_del_archivo_actual = None
         self.interpreterLocals = interpreterLocals
-        self.insertPlainText(CONTENIDO)
         self.setLineWrapMode(QTextEdit.NoWrap)
         self._cambios_sin_guardar = False
         self.main = main
         self.nombre_de_archivo_sugerido = ""
         self.watcher = pilasengine.watcher.Watcher(None, self.cuando_cambia_archivo_de_forma_externa)
+
+    def crear_archivo_inicial(self):
+        dirpath = tempfile.mkdtemp()
+        archivo_temporal = os.path.join(dirpath, "mi_juego.py")
+        archivo = codecs.open(archivo_temporal, "wt", 'utf-8')
+        archivo.write(CODIGO_INICIAL)
+        archivo.close()
+        #print("Creando el archivo " + str(archivo_temporal))
+        self.abrir_archivo_del_proyecto(archivo_temporal)
 
     def es_archivo_iniciar_sin_guardar(self):
         return self.nombre_de_archivo_sugerido == ""
@@ -396,7 +408,10 @@ class Editor(editor_base.EditorBase):
     def abrir_archivo_del_proyecto(self, nombre_de_archivo):
         if self.tiene_cambios_sin_guardar():
             if self.mensaje_guardar_cambios_abrir():
-                self.guardar_contenido_con_dialogo()
+                if not self.guardar_contenido_con_dialogo():
+                    return
+            else:
+                return
 
         if self.ruta_del_archivo_actual:
             base_path = os.path.dirname(self.ruta_del_archivo_actual)
@@ -407,13 +422,16 @@ class Editor(editor_base.EditorBase):
         self.cargar_contenido_desde_archivo(ruta)
         self.ruta_del_archivo_actual = ruta
         self.watcher.cambiar_archivo_a_observar(ruta)
-        self.ejecutar(ruta)
+        self.ejecutar()
         self.main.actualizar_el_listado_de_archivos()
 
     def abrir_archivo_con_dialogo(self):
         if self.tiene_cambios_sin_guardar():
             if self.mensaje_guardar_cambios_abrir():
-                self.guardar_contenido_con_dialogo()
+                if not self.guardar_contenido_con_dialogo():
+                    return
+            else:
+                return
 
         ruta = self.abrir_dialogo_cargar_archivo()
 
@@ -422,7 +440,7 @@ class Editor(editor_base.EditorBase):
             self.cargar_contenido_desde_archivo(ruta)
             self.ruta_del_archivo_actual = ruta
             self.watcher.cambiar_archivo_a_observar(ruta)
-            self.ejecutar(ruta)
+            self.ejecutar()
             self.main.actualizar_el_listado_de_archivos()
 
     def cuando_cambia_archivo_de_forma_externa(self):
@@ -431,7 +449,7 @@ class Editor(editor_base.EditorBase):
     def recargar_archivo_actual(self):
         if self.ruta_del_archivo_actual:
             self.cargar_contenido_desde_archivo(self.ruta_del_archivo_actual)
-            self.ejecutar(self.ruta_del_archivo_actual)
+            self.ejecutar()
 
     def mensaje_guardar_cambios_abrir(self):
         """Realizar una consulta usando un cuadro de dialogo simple
@@ -473,6 +491,9 @@ class Editor(editor_base.EditorBase):
     def guardar_contenido_con_dialogo(self):
         ruta = self.abrir_dialogo_guardar_archivo()
 
+        if not ruta:
+            return False
+
         ruta = unicode(ruta)
 
         if not ruta.endswith('.py'):
@@ -485,10 +506,12 @@ class Editor(editor_base.EditorBase):
             self.nombre_de_archivo_sugerido = ruta
             self.watcher.cambiar_archivo_a_observar(ruta)
             self.cargar_contenido_desde_archivo(ruta)
-            self.ejecutar(ruta)
+            self.ejecutar()
             self.main.actualizar_el_listado_de_archivos()
+            return True
 
     def guardar_contenido_directamente(self):
+        print 'Guardando...'
         if self.nombre_de_archivo_sugerido:
             self.guardar_contenido_en_el_archivo(self.nombre_de_archivo_sugerido)
             self._cambios_sin_guardar = False
@@ -514,7 +537,8 @@ class Editor(editor_base.EditorBase):
     def obtener_contenido(self):
         return unicode(self.document().toPlainText())
 
-    def ejecutar(self, ruta_personalizada=None):
+    def ejecutar(self):
+        ruta_personalizada = os.path.dirname(self.ruta_del_archivo_actual)
         #print "ejecutando texto desde widget editor"
         texto = self.obtener_contenido()
         #texto = self.editor.obtener_texto_sanitizado(self)
@@ -547,6 +571,9 @@ class Editor(editor_base.EditorBase):
         for m in modulos_a_recargar:
             reload(m)
 
+        path_actual = os.path.abspath(os.curdir)
+        os.chdir(ruta_personalizada)
+
         try:
             exec(contenido, self.interpreterLocals)
         except Exception, e:
@@ -554,6 +581,8 @@ class Editor(editor_base.EditorBase):
             self.ventana_interprete.mostrar_el_interprete()
             #self.marcar_error_en_la_linea(10, "pepepe")
 
+
+        os.chdir(path_actual)
         self.signal_ejecutando.emit()
 
     def cuando_selecciona_actor_por_indice(self, indice):

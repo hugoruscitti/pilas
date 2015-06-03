@@ -38,16 +38,14 @@ def abrir_editor():
 
     ui = VentanaInterprete()
     ui.setupUi(MainWindow)
-    
-
 
     utils.centrar_ventana(MainWindow)
     MainWindow.show()
     MainWindow.raise_()
-    
+
     ui.ocultar_el_interprete()
     ui.mostrar_editor()
-    
+
     pilasengine.utils.destacar_ventanas()
     return MainWindow
 
@@ -62,7 +60,7 @@ def abrir_script_con_livereload(archivo):
     MainWindow.show()
     ui.colapsar_interprete()
     MainWindow.raise_()
-    ui.editor.cargar_contenido_desde_archivo(archivo)
-    ui.editor.ejecutar(archivo)
+    ui.editor.abrir_archivo_del_proyecto(archivo)
+    ui.editor.ejecutar()
 
     return MainWindow
