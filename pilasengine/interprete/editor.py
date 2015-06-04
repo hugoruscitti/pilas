@@ -511,7 +511,6 @@ class Editor(editor_base.EditorBase):
             return True
 
     def guardar_contenido_directamente(self):
-        print 'Guardando...'
         if self.nombre_de_archivo_sugerido:
             self.guardar_contenido_en_el_archivo(self.nombre_de_archivo_sugerido)
             self._cambios_sin_guardar = False
@@ -551,6 +550,9 @@ class Editor(editor_base.EditorBase):
             if "__file__" in x:
                 contenido = contenido.replace(x, "# livecoding: " + x + "\n")
 
+        sys.path.append(ruta_personalizada)
+        self.interpreterLocals['sys'] = sys
+
         # Muchos códigos personalizados necesitan cargar imágenes o sonidos
         # desde el directorio que contiene al archivo. Para hacer esto posible,
         # se llama a la función "pilas.utils.agregar_ruta_personalizada" con el
@@ -571,9 +573,6 @@ class Editor(editor_base.EditorBase):
         for m in modulos_a_recargar:
             reload(m)
 
-        path_actual = os.path.abspath(os.curdir)
-        os.chdir(ruta_personalizada)
-
         try:
             exec(contenido, self.interpreterLocals)
         except Exception, e:
@@ -581,8 +580,6 @@ class Editor(editor_base.EditorBase):
             self.ventana_interprete.mostrar_el_interprete()
             #self.marcar_error_en_la_linea(10, "pepepe")
 
-
-        os.chdir(path_actual)
         self.signal_ejecutando.emit()
 
     def cuando_selecciona_actor_por_indice(self, indice):
