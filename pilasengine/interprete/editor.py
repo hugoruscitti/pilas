@@ -274,6 +274,7 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         text = unicode(text)
 
         if not self.editor.es_archivo_iniciar_sin_guardar():
+            self.editor.guardar_contenido_directamente()
             self.editor.abrir_archivo_del_proyecto(text)
 
 

@@ -44,6 +44,7 @@ class Interlocutor(QtCore.QObject):
     def abrir_ejemplo(self, juego):
         juego = str(juego)
         ruta_al_ejemplo = os.path.join(os.path.dirname(__file__), '..', 'ejemplos/' + juego + '.py')
+        ruta_al_ejemplo = os.path.abspath(ruta_al_ejemplo)
         self.ventana.abrir_ejemplo(ruta_al_ejemplo)
 
     @QtCore.pyqtSlot()
