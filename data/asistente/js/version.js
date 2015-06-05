@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '0.90.35',
+  version: '0.90.36',
   fecha: '05 de Jun del 2015',
-  commit: 'cbd205a',
-  changelog: ['Reparando el cargado de los ejemplos.', 'implementando posibilidad de modularizar proyecto.', 'haciendo pruebas sobre el path al ejecutar archivos.', 'Reparando rutas cuando se guarda un archivo.', 'Haciendo que la habilidad disparar permita deshabilitar el control de disparo con teclado', ]
+  commit: 'fe81a79',
+  changelog: ['Reparando las rutas personalizadas de los ejemplos.', 'release 0.90.35', 'Reparando el cargado de los ejemplos.', 'implementando posibilidad de modularizar proyecto.', 'haciendo pruebas sobre el path al ejecutar archivos.', ]
 }
