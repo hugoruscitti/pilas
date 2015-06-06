@@ -204,6 +204,7 @@ class VentanaAsistente(Base):
                 archivo = url.toLocalFile()
 
                 if not unicode(archivo).endswith('.py'):
+                    print(u"ERROR, se envió el archivo " + unicode(archivo))
                     QtGui.QMessageBox.critical(self.MainWindow, "Error", "Solo se aceptan archivos terminados con .py")
                 else:
                     self._ejecutar_programa_con_livereload(unicode(archivo))
