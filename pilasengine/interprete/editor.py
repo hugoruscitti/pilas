@@ -302,7 +302,7 @@ class Editor(editor_base.EditorBase):
     def crear_archivo_inicial(self):
         dirpath = tempfile.mkdtemp()
         archivo_temporal = os.path.join(dirpath, "mi_juego.py")
-        archivo = codecs.open(archivo_temporal, "wt", 'utf-8')
+        archivo = codecs.open(archivo_temporal, "w", 'utf-8')
         archivo.write(CODIGO_INICIAL)
         archivo.close()
         #print("Creando el archivo " + str(archivo_temporal))
