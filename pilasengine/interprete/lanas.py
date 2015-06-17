@@ -20,7 +20,32 @@ from PyQt4.QtCore import Qt, QTimer
 
 from editorbase import editor_base
 import lanas_ui
-import io
+
+import io_lanas
+
+class PythonInterpreter(code.InteractiveInterpreter):
+
+    def __init__(self, localVars, interprete_lanas):
+        self.runResult = ''
+        code.InteractiveInterpreter.__init__(self, localVars)
+        self.interprete_lanas = interprete_lanas
+        self.error_io = io_lanas.ErrorOutput(interprete_lanas)
+        self.normal_io = io_lanas.NormalOutput(interprete_lanas)
+
+    def runcode(self, cd):
+        # redirecting stdout to our method write before calling code cd
+        sys.stdout = self.normal_io
+        sys.stderr = self.error_io
+        code.InteractiveInterpreter.runcode(self,cd)
+        # redirecting back to normal stdout
+        sys.stdout = sys.__stdout__
+        sys.stderr = sys.__stderr__
+
+    def showsyntaxerror(self, filename=None):
+        self.error_io.write("Error de sintaxis en la linea anterior.")
+
+    def write(self, data):
+        self.error_io.write(data)
 
 
 class WidgetLanas(QWidget, lanas_ui.Ui_Lanas):
@@ -64,9 +89,7 @@ class InterpreteLanas(editor_base.EditorBase):
     def __init__(self, parent, codigo_inicial=None):
         super(InterpreteLanas, self).__init__()
         self.ventana = parent
-        self.stdout_original = sys.stdout
-        sys.stdout = io.NormalOutput(self)
-        sys.stderr = io.ErrorOutput(self)
+
         self.refreshMarker = False
         self.multiline = False
         self.command = ''
@@ -75,6 +98,7 @@ class InterpreteLanas(editor_base.EditorBase):
 
         self.interpreterLocals = {'raw_input': self.raw_input,
                                   'input': self.input,
+                                  'sys': sys,
                                   'help': self.help}
 
         palette = QPalette()
@@ -172,7 +196,7 @@ class InterpreteLanas(editor_base.EditorBase):
         if 'inspect' not in self.interpreterLocals:
             self.interpreterLocals['inspect'] = inspect
 
-        self.interpreter = code.InteractiveInterpreter(self.interpreterLocals)
+        self.interpreter = PythonInterpreter(self.interpreterLocals, self)
 
     def clearCurrentBlock(self):
         block = self.document().lastBlock().text()[2:]
@@ -492,7 +516,8 @@ class InterpreteLanas(editor_base.EditorBase):
             self._mover_cursor_al_final()
 
     def print_en_consola_de_texto(self, texto):
-        self.stdout_original.write(texto + '\n')
+        #self.stdout_original.write(texto + '\n')
+        pass
 
     def raw_input(self, mensaje):
         text, state = QInputDialog.getText(self, "raw_input", mensaje)
