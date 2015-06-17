@@ -33,6 +33,12 @@ class Circulo(Figura):
 
         Figura.__init__(self, fisica, pilas)
 
+        if x is None:
+            x = pilas.azar(10000, 10000 + 100000)
+
+        if y is None:
+            y = pilas.azar(10000, 10000 + 100000)
+
         x = utils.convertir_a_metros(x)
         y = utils.convertir_a_metros(y)
 
@@ -59,6 +65,7 @@ class Circulo(Figura):
         self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
+
         self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
 
         self.sin_rotacion = sin_rotacion
@@ -79,7 +86,7 @@ class Circulo(Figura):
 
     def get_radius(self):
         return utils.convertir_a_pixels(self._radio)
- 
+
     def set_scale(self, escala):
         self._radio = (self._radio * escala) / self._escala
         self._escala = escala

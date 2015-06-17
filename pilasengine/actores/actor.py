@@ -640,6 +640,8 @@ class Actor(Estudiante):
         self.actualizar_comportamientos()
         self.actualizar_habilidades()
         self.__actualizar_velocidad()
+
+    def pos_actualizar(self):
         self.mover_figura_de_colision()
 
     def mover_figura_de_colision(self):
@@ -1027,18 +1029,18 @@ class Actor(Estudiante):
     area_de_colision = property(obtener_area_colision, definir_area_colision)
 
     def crear_figura_de_colision_circular(self, radio, x=0, y=0):
-        self.ff = self.pilas.fisica.Circulo(0, 0, radio, dinamica=False, sensor=True)
+        self.ff = self.pilas.fisica.Circulo(None, None, radio, dinamica=False, sensor=True)
         self.figura_de_colision = self.ff
-        self.mover_figura_de_colision()
         self._figura_de_colision_dx = x
         self._figura_de_colision_dy = y
+        #self.mover_figura_de_colision()
 
     def crear_figura_de_colision_rectangular(self, x, y, ancho, alto):
         self.ff = self.pilas.fisica.Rectangulo(0, 0, ancho, alto, dinamica=False, sensor=True)
         self.figura_de_colision = self.ff
-        self.mover_figura_de_colision()
         self._figura_de_colision_dx = x
         self._figura_de_colision_dy = y
+        #self.mover_figura_de_colision()
 
     def disparar(self):
         """Permite que cualquier actor que tenga una habilidad

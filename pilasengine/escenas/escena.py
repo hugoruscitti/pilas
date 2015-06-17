@@ -94,6 +94,7 @@ class Escena(object):
             if x._vivo:
                 x.pre_actualizar()
                 x.actualizar()
+                x.pos_actualizar()
             else:
                 actores_a_eliminar.append(x)
 
