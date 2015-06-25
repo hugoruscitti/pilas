@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Interfaz de usuario - pilas-engine</title>
+
+  
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" id='lateral' class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".."> pilas-engine</a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="..">Principal</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../que_juegos/">Tipos de juegos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../instalacion/">Instalación</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../about/">Acerca de ...</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../empezando/">Empezando y los primeros pasos con pilas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores/">Actores</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores_personalizados/">Actores personalizados</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../grupos/">Grupos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../colisiones/">Colisiones</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../etiquetas/">Etiquetas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../fisica/">Fisica</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controles/">Controles</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../joystick/">Joystick</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../imagen/">Imagen</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../sonidos/">Sonidos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_simple_en_pantalla/">Dibujado simple en pantalla</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_avanzado_con_superficies/">Dibujado avanzado con Superficies</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../tareas/">Manejo de tiempo con tareas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interpolacion/">Interpolaciones</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controlando_la_pantalla/">Controlando la pantalla</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../comportamientos/">Comportamientos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../escenas/">Escenas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 current">
+                <a class="current" href="./">Interfaz de usuario</a>
+                
+                    <ul>
+                    
+                        <li class="toctree-l3"><a href="#interfaz-de-usuario">Interfaz de usuario</a></li>
+                        
+                            <li><a class="toctree-l4" href="#clase-boton">Clase: Boton</a></li>
+                        
+                            <li><a class="toctree-l4" href="#clase-deslizador">Clase: Deslizador</a></li>
+                        
+                            <li><a class="toctree-l4" href="#clase-selector">Clase: Selector</a></li>
+                        
+                            <li><a class="toctree-l4" href="#clase-ingresodetexto">Clase: IngresoDeTexto</a></li>
+                        
+                            <li><a class="toctree-l4" href="#clase-listaseleccion">Clase: ListaSeleccion</a></li>
+                        
+                    
+                    </ul>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../mapas_y_plataformas/">Mapas y plataformas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dialogos/">Diálogos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../camara/">Manejo de Cámara</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../texto/">Textos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../habilidades/">Habilidades</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../depurando/">Depurando</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../como_funciona_pilas_por_dentro/">¿Cómo funciona pilas por dentro?</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../complementos/">Complementos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
+                
+            </li>
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." onclick='return alternar_menu();'>Docs</a> &raquo;</li>
+    <li>Interfaz de usuario</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <h1 id="interfaz-de-usuario">Interfaz de usuario</h1>
+<p>Los componentes del módulo <code>pilas.interfaz</code> permiten crear botones, listas,
+deslizadores y otros tipos de componentes visuales, todos orientados
+a construir interfaces de usuario traducionales.</p>
+<h2 id="clase-boton">Clase: Boton</h2>
+<p>Para crear un botón podemos instalar la clase <code>Boton</code> especificando
+un texto.</p>
+<pre><code>boton = pilas.interfaz.Boton(&quot;Saludar&quot;)
+</code></pre>
+
+<p>y casi siempre vas a querer asignarle alguna acción cuando se hace
+click sobre él, para eso necesitás una función y conectarla:</p>
+<pre><code>def saludar():
+  boton.decir(&quot;Hola !!!&quot;)
+
+boton.conectar(saludar)
+</code></pre>
+
+<p><img alt="" src="../imagenes/interfaz/boton_saludando.png" /></p>
+<p>Ten en cuenta que todos los objetos creados siguen siendo actores, así
+que se pueden manipular como vimos antes: escalar, rotar, moverse etc...</p>
+<h4 id="propiedades">Propiedades</h4>
+<ul>
+<li><code>texto</code></li>
+<li><code>icono</code></li>
+</ul>
+<h4 id="metodos">Métodos</h4>
+<ul>
+<li><code>conectar(funcion)</code> - Conecta una función para responder al click de mouse.</li>
+<li><code>ocultar()</code></li>
+<li><code>mostrar()</code></li>
+<li><code>deshabilitar()</code></li>
+<li><code>habilitar()</code></li>
+</ul>
+<h4 id="ejemplo-de-integracion">Ejemplo de integración</h4>
+<p>Y para añadir una acción o respuesta al componente, podemos crear una
+función y luego vincularla con el evento <code>click</code>. Este ejemplo construye
+un botón y realiza un movimiento cada vez que se hace click sobre él:</p>
+<pre><code>b = pilas.interfaz.Boton(u&quot;Realizar animación&quot;)
+
+def moverse():
+    b.escala_x = [  2, 0.8, 1], 0.15
+    b.escala_y = [0.8, 2,   1], 0.1
+    d = pilas.azar(-50, 50)
+    b.rotacion = [d, 1], 0.1
+
+b.conectar(moverse)
+</code></pre>
+
+<p>El resultado en pantalla será así:</p>
+<p><img alt="" src="../imagenes/interfaz/boton.gif" /></p>
+<h2 id="clase-deslizador">Clase: Deslizador</h2>
+<p>El deslizador es útil para que el usuario pueda seleccionar
+un valor intermedio entre dos números, por ejemplo entre 0 y 1, 0 y
+100 etc.</p>
+<p>Un ejemplo típico de este componente puedes encontrarlo
+en las preferencias de audio de algún programa de sonido, los
+deslizadores te permiten regular el grado de volumen.</p>
+<p>Esta es una imagen del ejemplo <code>deslizador.py</code> que está
+en el directorio <code>ejemplos</code>. Tiene tres deslizadores, y
+el usuario puede regular cualquiera de los tres para ver
+los cambios en el actor:</p>
+<p><img alt="" src="../imagenes/interfaz/deslizador.jpg" /></p>
+<p>Para construir un deslizador y asociarlo a una función
+puedes escribir algo como esto:</p>
+<pre><code>def cuando_cambia(valor):
+    print &quot;El deslizador tiene grado:&quot;, valor
+
+deslizador = pilas.interfaz.Deslizador()
+deslizador.conectar(cuando_cambia)
+</code></pre>
+
+<p>Entonces, a medida que muevas el deslizador se imprimirán
+en pantalla valores del 0 al 1, por ejemplo 0.25, 0.52777 etc...</p>
+<p>Si quieres cambiar los valores iniciales y finales de la
+escala de valores, lo mas sencillo es multiplicar el argumento
+<code>valor</code> de la función. Por ejemplo, si quieres valores entre
+0 y 100:</p>
+<pre><code>def cuando_cambia(valor):
+    valor_entre_cero_y_cien = valor * 100
+</code></pre>
+
+<h4 id="propiedades_1">Propiedades</h4>
+<ul>
+<li><code>progreso</code> - Almacen un valor entre 0 y 100</li>
+</ul>
+<h4 id="metodos_1">Métodos</h4>
+<ul>
+<li><code>conectar(funcion)</code> - Conecta una función que se llamará cada vez que muevas el deslizador.</li>
+</ul>
+<h2 id="clase-selector">Clase: Selector</h2>
+<p>El selector te permite seleccionar una opción con
+dos valores: habilitado, deshabilitado.</p>
+<p>Se puede usar para opciones cómo habilitar o deshabilitar
+el modo pantalla completa o algo así.</p>
+<p>Para usarlo, se tiene que crear un objeto de la
+clase <code>Selector</code> y un texto a mostrar:</p>
+<pre><code>selector = pilas.interfaz.Selector(&quot;Habilitar pantalla completa.&quot;)
+</code></pre>
+
+<p>Y luego, se puede consultar el valor del selector mediante el
+atributo <code>seleccionado</code>:</p>
+<pre><code>if selector.seleccionado:
+    print &quot;El selector esta seleccionado.&quot;
+else:
+    print &quot;El selector no esta seleccionado.&quot;
+</code></pre>
+
+<p>aunque en lugar de consultar la variable, es mucho mejor asociarle
+una función para que el selector la llame solamente cuando el
+selector cambia de estado (seleccionado/deseleccionado):</p>
+<pre><code>def cuando_el_selector_cambia(estado):
+    print &quot;El selector ahora esta en estado:&quot;, estado
+
+selector.definir_accion(cuando_el_selector_cambia)
+</code></pre>
+
+<h4 id="ejemplo-de-integracion_1">Ejemplo de integración</h4>
+<p>Para mostrar el componente en funcionamiento tenemos un pequeño ejemplo: un
+selector que nos permite alternar el fondo de la escena:</p>
+<pre><code>selector = pilas.interfaz.Selector(&quot;Definir fondo naranja&quot;)
+
+def cambiar_el_fondo(ha_seleccionado):
+    if ha_seleccionado:
+        pilas.fondos.Tarde()
+    else:
+        pilas.fondos.Blanco()
+
+selector.conectar(cambiar_el_fondo)
+</code></pre>
+
+<p>El resultado en pantalla será así:</p>
+<p><img alt="" src="../imagenes/interfaz/selector.gif" /></p>
+<h4 id="propiedades_2">Propiedades</h4>
+<ul>
+<li><code>texto</code> - Etiqueta que mostrará el deslizador</li>
+<li><code>seleccionado</code> - Almacena True o False, indicando el estado de selección.</li>
+</ul>
+<h4 id="metodos_2">Métodos</h4>
+<ul>
+<li><code>conectar(funcion)</code> - Conecta una función que se llamará cada vez que muevas el deslizador.</li>
+<li><code>alternar_seleccion()</code></li>
+<li><code>seleccionar()</code></li>
+<li><code>deseleccionar()</code></li>
+</ul>
+<h2 id="clase-ingresodetexto">Clase: IngresoDeTexto</h2>
+<p>Si quieres solicitar datos, como el nombre del
+usuario, puedes usar el objeto <code>IngresoDeTexto</code>. Ya que
+muestra una caja y un pequeño cursor para
+ingresar texto:</p>
+<p><img alt="" src="../imagenes/interfaz/ingreso_de_texto.png" /></p>
+<p>Para usar este componente tienes que crearlo y luego leer o escribir el
+atributo <code>texto</code>, que contiene la cadena de texto de la caja:</p>
+<pre><code>entrada = pilas.interfaz.IngresoDeTexto()
+entrada.texto = &quot;Texto inicial&quot;
+</code></pre>
+
+<p>Inicialmente, el objeto IngresoDeTexto toma un tamaño y apariencia predeterminado. Pero esto se puede cambiar fácilmente usando argumentos al momento de crear el componente.</p>
+<p>Por ejemplo, podríamos enviarle cómo argumento un tamaño mas pequeño y un ícono de búsqueda:</p>
+<p>entrada = pilas.interfaz.IngresoDeTexto(ancho=100, icono='iconos/lupa.png')
+u otro ícono:</p>
+<p>entrada = pilas.interfaz.IngresoDeTexto(ancho=100, icono='iconos/ok.png')
+La caja también tiene otros métodos para permitir o prohibir el ingreso de datos.</p>
+<p>Por ejemplo, podríamos decirle a la caja que solo permita el ingreso de números,
+letras, o poner un límite de cantidad de caracteres. Los métodos
+que te permite limitar el ingreso son <code>solo_numeros()</code> y <code>solo_letras()</code>, y el
+límite de caracteres está en el atributo <code>limite_de_caracteres</code>:</p>
+<h4 id="propiedades_3">Propiedades</h4>
+<ul>
+<li><code>texto</code></li>
+<li><code>icono</code></li>
+<li><code>limite_de_caracteres</code></li>
+</ul>
+<h4 id="metodos_3">Métodos</h4>
+<ul>
+<li><code>cualquier_caracter()</code></li>
+<li><code>solo_numeros()</code></li>
+<li><code>solo_letras()</code></li>
+</ul>
+<h2 id="clase-listaseleccion">Clase: ListaSeleccion</h2>
+<p>La lista de selección se utiliza para mostrar al usuario una lista de cadenas, y permitirle seleccionarlas con el mouse.</p>
+<p>Para crear un lista de selección, se tiene que crear una lista de cadenas y declarar una función para que sea llamada cuando se termina de seleccionar.</p>
+<p>Por ejemplo, el siguiente código muestra una lista e imprime por consola cuando el usuario selecciona con el click del mouse:</p>
+<pre><code>def cuando_selecciona(opcion):
+    print &quot;Ha seleccionado la opcion:&quot;, opcion
+
+consulta = pilas.interfaz.ListaSeleccion(['Uno', 'Dos', 'Tres'], cuando_selecciona)
+</code></pre>
+
+<h4 id="ejemplo-de-integracion_2">Ejemplo de integración</h4>
+<p>Para mostrar el componente en funcionamiento, hacemos un lista de
+tres opciones, y le conectamos una función para avisar la opción
+que selecciona el usuario:</p>
+<pre><code>pilas.fondos.Pasto()
+
+def cuando_selecciona(opcion_seleccionada):
+    pilas.avisar(&quot;Ha seleccionado la opcion: &quot; + opcion_seleccionada)
+
+opciones = pilas.interfaz.ListaSeleccion(['hola', 'opcion', 'tres'], cuando_selecciona)
+</code></pre>
+
+<p>Deberías ver en pantalla lo siguiente:</p>
+<p><img alt="" src="../imagenes/interfaz/lista_seleccion.gif" /></p>
+            </div>
+          </div>
+          <footer>
+
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../menu/" class="btn btn-neutral float-right" title="Como crear menúes para tu juegos"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../escenas/" class="btn btn-neutral" title="Escenas"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Creado con <em>MkDocs</em>.
+
+
+  <script>
+  $(document).ready(function() {
+     $('img').each(function(elemento) {
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
+     });
+  });
+  </script>
+
+  <script>
+  $(document).ready(function() {
+    String.prototype.endsWith = function(suffix){
+      return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
+
+    $('a').each(function(){
+      var x=this.href;
+
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+        if (this.href.endsWith('/')) {
+          this.href = this.href + "index.html";
+        } else {
+          this.href = this.href + "/index.html";
+        }
+      }
+    });
+  });
+  </script>
+
+
+  <script>
+    function alternar_menu() {
+      var left = parseInt($('#lateral').css('left'), 10);
+
+      if (left !== 0) {
+        $('#lateral').css('left', '0px');
+        return false;
+      }
+
+    }
+  </script>
+
+  <style>
+    .rst-versions {
+      border: 0 !important;
+    }
+    .wy-nav-side {
+      padding-bottom: 50px;
+    }
+    .wy-nav-content-wrap {
+      background-color: white !important;
+    }
+
+    .wy-nav-content {
+      background-color: white !important;
+    }
+  </style>
+
+
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

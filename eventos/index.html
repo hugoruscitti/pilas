@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Eventos conexiones y respuestas - pilas-engine</title>
+
+  
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" id='lateral' class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".."> pilas-engine</a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="..">Principal</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../que_juegos/">Tipos de juegos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../instalacion/">Instalación</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../about/">Acerca de ...</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../empezando/">Empezando y los primeros pasos con pilas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores/">Actores</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores_personalizados/">Actores personalizados</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../grupos/">Grupos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../colisiones/">Colisiones</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../etiquetas/">Etiquetas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../fisica/">Fisica</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controles/">Controles</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../joystick/">Joystick</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../imagen/">Imagen</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../sonidos/">Sonidos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_simple_en_pantalla/">Dibujado simple en pantalla</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_avanzado_con_superficies/">Dibujado avanzado con Superficies</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../tareas/">Manejo de tiempo con tareas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interpolacion/">Interpolaciones</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controlando_la_pantalla/">Controlando la pantalla</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../comportamientos/">Comportamientos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../escenas/">Escenas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interfaz/">Interfaz de usuario</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../mapas_y_plataformas/">Mapas y plataformas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dialogos/">Diálogos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../camara/">Manejo de Cámara</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 current">
+                <a class="current" href="./">Eventos conexiones y respuestas</a>
+                
+                    <ul>
+                    
+                        <li class="toctree-l3"><a href="#eventos-conexiones-y-respuestas">Eventos, conexiones y respuestas</a></li>
+                        
+                            <li><a class="toctree-l4" href="#que-es-un-evento">¿Que es un Evento?</a></li>
+                        
+                            <li><a class="toctree-l4" href="#conectando-la-emision-de-eventos-a-funciones">Conectando la emisión de eventos a funciones</a></li>
+                        
+                            <li><a class="toctree-l4" href="#observando-a-los-eventos-para-conocerlos-mejor">Observando a los eventos para conocerlos mejor</a></li>
+                        
+                            <li><a class="toctree-l4" href="#desconectando-senales">Desconectando señales</a></li>
+                        
+                            <li><a class="toctree-l4" href="#listado-de-todos-los-eventos-existentes">Listado de todos los eventos existentes</a></li>
+                        
+                            <li><a class="toctree-l4" href="#consultado-senales-conectadas">Consultado señales conectadas</a></li>
+                        
+                            <li><a class="toctree-l4" href="#creando-tus-propios-eventos">Creando tus propios eventos</a></li>
+                        
+                            <li><a class="toctree-l4" href="#referencias">Referencias</a></li>
+                        
+                    
+                    </ul>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../texto/">Textos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../habilidades/">Habilidades</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../depurando/">Depurando</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../como_funciona_pilas_por_dentro/">¿Cómo funciona pilas por dentro?</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../complementos/">Complementos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
+                
+            </li>
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." onclick='return alternar_menu();'>Docs</a> &raquo;</li>
+    <li>Eventos conexiones y respuestas</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <h1 id="eventos-conexiones-y-respuestas">Eventos, conexiones y respuestas</h1>
+<p>En el desarrollo de videojuegos es muy importante
+poder comunicarse con el usuario. Lograr que los
+personajes del juego puedan interactuar con él y
+exista una fuerte interacción.</p>
+<p>En pilas usamos una estrategia llamada <code>eventos, conexiones
+y respuestas</code>, no solo porque es muy sencilla de usar, sino
+también porque es una solución conocida y muy utilizada
+en otros lugares como en la web.</p>
+<h2 id="que-es-un-evento">¿Que es un Evento?</h2>
+<p>Los eventos representan algo que esperamos que ocurra
+dentro de un juego, por ejemplo un <code>click</code> del mouse, la
+<code>pulsación</code> de una tecla, el <code>cierre</code> de la
+ventana o la <code>colisión</code> entre un enemigo y nuestro
+protagonista.</p>
+<p>Lo interesante de los eventos, es que pueden ocurrir en
+cualquier momento, y generalmente no lo controlamos, solamente
+los escuchamos y tomamos alguna respuesta predefinida.</p>
+<p>Pilas representa a los eventos como objetos, y nos brinda
+funciones para ser avisados cuando un evento ocurre e incluso
+emitir y generar eventos nuevos.</p>
+<p>Veamos algunos ejemplos:</p>
+<h2 id="conectando-la-emision-de-eventos-a-funciones">Conectando la emisión de eventos a funciones</h2>
+<p>Los <code>eventos</code> no disparan ninguna acción automática, nosotros
+los programadores somos los que tenemos que elegir los
+eventos importantes y elegir que hacer al respecto.</p>
+<p>Para utilizar estas señales, tenemos que vincularlas a funciones, de
+forma que al emitirse la señal podamos ejecutar código.</p>
+<h3 id="la-funcion-conectar">La función <code>conectar</code></h3>
+<p>La función <code>conectar</code> nos permite conectar una señal de
+evento a un método o una función.</p>
+<p>De esta forma, cada vez que se emita una determinada
+señal, se avisará a todos los objectos que hallamos
+conectado.</p>
+<p>Por ejemplo, si queremos que un personaje se mueva
+en pantalla siguiendo la posición del puntero
+del mouse, tendríamos que escribir algo como
+esto:</p>
+<pre><code class="python">import pilasengine
+
+pilas = pilasengine.iniciar()
+
+mono = pilas.actores.Mono()
+
+def mover_mono_a_la_posicion_del_mouse(evento):
+    mono.x = evento.x
+    mono.y = evento.y
+
+pilas.eventos.mueve_mouse.conectar(mover_mono_a_la_posicion_del_mouse)
+
+# O puedes utilizar el método abreviado del actor.
+mono.mueve_mouse(mover_mono_a_la_posicion_del_mouse)
+
+pilas.ejecutar()
+</code></pre>
+
+<p>Es decir, la señal de evento que nos interesa es <code>mueve_mouse</code> (que se emite
+cada vez que el usuario mueve el mouse). Y a esta señal le conectamos
+la función que buscamos ejecutar cada vez que se mueva el mouse.</p>
+<p>Ten en cuenta que pueden existir tantas funciones conectadas a una señal como
+quieras.</p>
+<p>Las coordenadas que reporta el mouse son relativas al escenario y no
+de la ventana. Por lo tanto puedes asignar directamente el valor
+de las coordenadas del mouse a los actores sin efectos colaterales
+con respecto a la cámara.</p>
+<h2 id="observando-a-los-eventos-para-conocerlos-mejor">Observando a los eventos para conocerlos mejor</h2>
+<p>Como puedes ver en la función <code>mover_mono_a_la_posicion_del_mouse</code>, hemos
+definido un parámetro llamado <code>evento</code> y accedimos a sus valores
+<code>x</code> e <code>y</code>.</p>
+<p>Cada evento tiene dentro un conjunto de valores que nos resultará
+de utilidad conocer. En el caso del movimiento de mouse usamos
+<code>x</code> e <code>y</code>, pero si el evento es la pulsación de una tecla, seguramente
+vamos a querer saber exactamente qué tecla se pulsó.</p>
+<p>Entonces, una forma fácil y simple de conocer el estado de un
+objeto es imprimir directamente su contenido, por ejemplo, en
+la función de arriba podíamos escribir:</p>
+<pre><code>def mover_mono_a_la_posicion_del_mouse(evento):
+    print evento
+</code></pre>
+<p>y en la ventana de nuestra computadora tendríamos que ver
+algo así:</p>
+<pre><code>{'y': 2.0, 'x': -57.0, 'dx': 0.0, 'dy': -1.0}
+</code></pre>
+<p>donde claramente podemos ver todos los datos que vienen asociados
+al evento.</p>
+<p>Por último, ten en cuenta que este argumento <code>evento</code>, en realidad,
+es un diccionario de python como cualquier otro, solo
+que puedes acceder a sus valores usando sentencias cómo
+<code>diccionario.clave</code> en lugar de <code>diccionario['clave']</code>.</p>
+<h2 id="desconectando-senales">Desconectando señales</h2>
+<p>Las señales se desconectan por cuenta propia cuando dejan de existir
+los objetos que le conectamos. En la mayoría de los casos podemos
+conectar señales y olvidarnos de desconectarlas, no habrá problemas,
+se deconectarán solas.</p>
+<p>De todas formas, puede que quieras conectar una señal, y por
+algún motivo desconectarla. Por ejemplo si el juego cambia
+de estado o algo así...</p>
+<p>Si ese es tu caso, simplemente asígnale un identificador único
+al manejador de la señal y luego usa la función <code>desconectar_por_id</code> indicando
+el identificador.</p>
+<p>Por ejemplo, las siguientes sentencias muestran eso:</p>
+<pre><code>pilas.eventos.mueve_mouse.conectar(imprimir_posicion, id='drag')
+pilas.eventos.mueve_mouse.desconectar_por_id('drag')
+</code></pre>
+<p>En la primera sentencia conecté la señal del evento a una función y le di
+un valor al argumento <code>id</code>. Este valor será el identificador
+de ese enlace. Y en la siguiente linea se utilizó el identificador
+para desconectarla.</p>
+<h2 id="listado-de-todos-los-eventos-existentes">Listado de todos los eventos existentes</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Evento</strong></th>
+<th><strong>Parametros</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mueve_camara</td>
+<td>x, y, dx, dy</td>
+</tr>
+<tr>
+<td>mueve_mouse</td>
+<td>x, y, dx, dy</td>
+</tr>
+<tr>
+<td>click_de_mouse</td>
+<td>boton, x, y</td>
+</tr>
+<tr>
+<td>termina_click</td>
+<td>boton, x, y</td>
+</tr>
+<tr>
+<td>mueve_rueda</td>
+<td>delta</td>
+</tr>
+<tr>
+<td>pulsa_tecla</td>
+<td>codigo, texto</td>
+</tr>
+<tr>
+<td>suelta_tecla</td>
+<td>codigo, texto</td>
+</tr>
+<tr>
+<td>pulsa_tecla_escape</td>
+<td></td>
+</tr>
+<tr>
+<td>cuando_actualiza</td>
+<td></td>
+</tr>
+<tr>
+<td>pulsa_boton</td>
+<td>numero</td>
+</tr>
+<tr>
+<td>mueve_pad</td>
+<td>x, y, x1, y1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="consultado-senales-conectadas">Consultado señales conectadas</h2>
+<p>Durante el desarrollo es útil poder observar qué
+eventos se han conectado a funciones.</p>
+<p>Una forma de observar la conexión de los eventos
+es pulsar la tecla <code>F6</code>. Eso imprimirá sobre
+consola los nombres de las señales conectadas
+junto a las funciones.</p>
+<h2 id="creando-tus-propios-eventos">Creando tus propios eventos</h2>
+<p>Si tu juego se vuelve mas complejo y hay interacciones entre
+varios actores, puede ser una buena idea hacer que exista algo
+de comunicación entre ellos usando eventos.</p>
+<p>Veamos cómo crear un evento:</p>
+<p>Primero tienes que crear un objeto que represente a tu evento
+y darle un nombre:</p>
+<pre><code>evento = pilas.evento.Evento("Nombre")
+</code></pre>
+<p>luego, este nuevo objeto <code>evento</code> podrá ser utilizado como
+canal de comunicación: muchos actores podrán <code>conectarse</code> para
+recibir alertas y otros podrán <code>emitir</code> alertas:</p>
+<pre><code class="python">def ha_ocurrido_un_evento(datos_evento):
+    print &quot;Hola!!!&quot;, datos_evento
+
+evento.conectar(ha_ocurrido_un_evento)
+
+# En otra parte...
+evento.emitir(argumento1=123, argumento2=123)
+</code></pre>
+
+<p>Cuando se emite un evento se pueden pasar muchos argumentos, tantos
+como se quiera. Todos estos argumentos llegarán a la función de
+respuesta en forma de diccionario.</p>
+<p>Por ejemplo, para este caso, cuando llamamos al método <code>evento.emitir</code>,
+el sistema de eventos irá automáticamente a ejecutar la función <code>ha_ocurrido_un_evento</code>
+y ésta imprimirá::</p>
+<pre><code>Hola!!! {argumento1: 123, argumento2: 123}
+</code></pre>
+<h2 id="referencias">Referencias</h2>
+<p>El concepto que hemos visto en esta sección se utiliza
+en muchos sistemas. Tal vez el mas conocido de estos es
+la biblioteca <code>GTK</code>, que se utiliza actualmente para construir
+el escritorio <code>GNOME</code> y <code>Gimp</code> entre otras aplicaciones.</p>
+<p>El sistema de señales que se utiliza en pilas es una
+adaptación del siguiente sistema de eventos:</p>
+<p>http://stackoverflow.com/questions/1092531/event-system-in-python</p>
+<p>Anteriormente usábamos parte del código del sistema <code>django</code>, pero
+luego de varios meses lo reescribimos para que sea mas sencillo
+de utilizar y no tenga efectos colaterales con los métodos y
+el módulo <code>weakref</code>.</p>
+<p>Si quieres obtener mas información sobre otros sistemas de
+eventos te recomendamos los siguientes documentos:</p>
+<ul>
+<li>http://pydispatcher.sourceforge.net/</li>
+<li>http://www.mercurytide.co.uk/news/article/django-signals/</li>
+<li>http://www.boduch.ca/2009/06/sending-django-dispatch-signals.html</li>
+<li>http://docs.djangoproject.com/en/dev/topics/signals/</li>
+</ul>
+            </div>
+          </div>
+          <footer>
+
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../texto/" class="btn btn-neutral float-right" title="Textos"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../camara/" class="btn btn-neutral" title="Manejo de Cámara"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Creado con <em>MkDocs</em>.
+
+
+  <script>
+  $(document).ready(function() {
+     $('img').each(function(elemento) {
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
+     });
+  });
+  </script>
+
+  <script>
+  $(document).ready(function() {
+    String.prototype.endsWith = function(suffix){
+      return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
+
+    $('a').each(function(){
+      var x=this.href;
+
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+        if (this.href.endsWith('/')) {
+          this.href = this.href + "index.html";
+        } else {
+          this.href = this.href + "/index.html";
+        }
+      }
+    });
+  });
+  </script>
+
+
+  <script>
+    function alternar_menu() {
+      var left = parseInt($('#lateral').css('left'), 10);
+
+      if (left !== 0) {
+        $('#lateral').css('left', '0px');
+        return false;
+      }
+
+    }
+  </script>
+
+  <style>
+    .rst-versions {
+      border: 0 !important;
+    }
+    .wy-nav-side {
+      padding-bottom: 50px;
+    }
+    .wy-nav-content-wrap {
+      background-color: white !important;
+    }
+
+    .wy-nav-content {
+      background-color: white !important;
+    }
+  </style>
+
+
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

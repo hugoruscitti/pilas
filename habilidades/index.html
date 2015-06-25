@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Habilidades - pilas-engine</title>
+
+  
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" id='lateral' class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".."> pilas-engine</a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="..">Principal</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../que_juegos/">Tipos de juegos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../instalacion/">Instalación</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../about/">Acerca de ...</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../empezando/">Empezando y los primeros pasos con pilas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores/">Actores</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores_personalizados/">Actores personalizados</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../grupos/">Grupos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../colisiones/">Colisiones</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../etiquetas/">Etiquetas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../fisica/">Fisica</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controles/">Controles</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../joystick/">Joystick</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../imagen/">Imagen</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../sonidos/">Sonidos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_simple_en_pantalla/">Dibujado simple en pantalla</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_avanzado_con_superficies/">Dibujado avanzado con Superficies</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../tareas/">Manejo de tiempo con tareas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interpolacion/">Interpolaciones</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controlando_la_pantalla/">Controlando la pantalla</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../comportamientos/">Comportamientos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../escenas/">Escenas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interfaz/">Interfaz de usuario</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../mapas_y_plataformas/">Mapas y plataformas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dialogos/">Diálogos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../camara/">Manejo de Cámara</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../texto/">Textos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 current">
+                <a class="current" href="./">Habilidades</a>
+                
+                    <ul>
+                    
+                        <li class="toctree-l3"><a href="#habilidades">Habilidades</a></li>
+                        
+                            <li><a class="toctree-l4" href="#un-ejemplo">Un ejemplo</a></li>
+                        
+                            <li><a class="toctree-l4" href="#un-ejemplo-mas-hacer-que-un-actor-se-pueda-mover-con-el-mouse">Un ejemplo más: hacer que un actor se pueda mover con el mouse</a></li>
+                        
+                            <li><a class="toctree-l4" href="#una-habilidad-mas-compleja-disparar">Una habilidad más compleja: Disparar</a></li>
+                        
+                            <li><a class="toctree-l4" href="#listado-de-habilidades-existentes">Listado de habilidades existentes</a></li>
+                        
+                            <li><a class="toctree-l4" href="#crear-habilidades-personalizadas">Crear habilidades personalizadas</a></li>
+                        
+                    
+                    </ul>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../depurando/">Depurando</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../como_funciona_pilas_por_dentro/">¿Cómo funciona pilas por dentro?</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../complementos/">Complementos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
+                
+            </li>
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." onclick='return alternar_menu();'>Docs</a> &raquo;</li>
+    <li>Habilidades</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <h1 id="habilidades">Habilidades</h1>
+<p>Pilas permite añadir funcionalidad a tus objetos
+de manera sencilla, dado que usamos el concepto
+de habilidades, un enfoque similar a la
+programación orientada a <a href="http://es.wikipedia.org/wiki/Programación_orientada_a_componentes">componentes</a>
+y <a href="http://es.wikipedia.org/wiki/Mixin">mixins</a>.</p>
+<h2 id="un-ejemplo">Un ejemplo</h2>
+<p>Una habilidad es una funcionalidad que está implementada
+en alguna clase, y que si quieres la puedes vincular
+a un actor cualquiera.</p>
+<p>Veamos un ejemplo, imagina que tienes un actor en
+tu escena y quieres que la rueda del mouse te permita
+cambiarle el tamaño.</p>
+<p>Puedes usar la habilidad <code>AumentarConRueda</code> y vincularla
+al actor fácilmente.</p>
+<p>El siguiente código hace eso:</p>
+<pre><code class="python">import pilasengine
+
+pilas = pilasengine.iniciar()
+
+mono = pilas.actores.Mono()
+mono.aprender(pilas.habilidades.AumentarConRueda)
+</code></pre>
+
+<p>o bien:</p>
+<pre><code>mono.aprender('AumentarConRueda')
+</code></pre>
+<p>así, cuando uses la rueda del mouse el tamaño del personaje aumentará
+o disminuirá.</p>
+<p>Nota que aquí usamos la metáfora de "aprender habilidades", porque
+las habilidades son algo que duran para toda la vida
+del actor.</p>
+<h2 id="un-ejemplo-mas-hacer-que-un-actor-se-pueda-mover-con-el-mouse">Un ejemplo más: hacer que un actor se pueda mover con el mouse</h2>
+<p>Algo muy común en los juegos es que puedas
+tomar piezas con el mouse y moverlas por la pantalla.</p>
+<p>Esta habilidad llamada <code>Arrastrable</code> representa eso, puedes vincularlo
+a cualquier actor y simplemente funciona:</p>
+<pre><code class="python">import pilasengine
+
+pilas = pilasengine.iniciar()
+
+mono = pilas.actores.Mono()
+mono.aprender(&quot;arrastrable&quot;)
+</code></pre>
+
+<h2 id="una-habilidad-mas-compleja-disparar">Una habilidad más compleja: Disparar</h2>
+<p>Una habilidad que tiene más complejidad que las anteriores
+es disparar, una habilidad que te permite hacer que un
+personaje pueda crear "disparos" sean de la clase que sea.</p>
+<p>Por ejemplo, lo mas sencillo es indicarle a un actor
+que puede disparar, usando una munición por omisión:</p>
+<pre><code class="python">import pilasengine
+
+pilas = pilasengine.iniciar()
+
+mono = pilas.actores.Mono()
+mono.aprender(&quot;moverseComoCoche&quot;)
+mono.aprender(&quot;disparar&quot;)
+</code></pre>
+
+<p>Y como resultado vamos a conseguir que nuestro
+actor se pueda mover con el teclado y disparar con la tecla
+espacio.</p>
+<p>Y si queremos cambiar la munición de la habilidad
+disparar, podemos especificarlo con el parámetro <code>municion</code>:</p>
+<pre><code class="python">mono.aprender(&quot;disparar&quot;, municion=&quot;aceituna&quot;)
+</code></pre>
+
+<p>Esta habilidad también es útil para hacer un enemigo que dispare
+automáticamente cada determinado tiempo, por ejemplo 1 segundo:</p>
+<pre><code class="python">mono = pilas.actores.Mono()
+mono.aprender(&quot;Disparar&quot;, control=None)
+
+def dispara():
+     mono.disparar()
+     return True
+
+pilas.tareas.agregar(1, dispara)
+</code></pre>
+
+<h2 id="listado-de-habilidades-existentes">Listado de habilidades existentes</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Habilidad</strong></th>
+<th><strong>Parámetros</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arrastrable</td>
+<td></td>
+</tr>
+<tr>
+<td>AumentarConRueda</td>
+<td></td>
+</tr>
+<tr>
+<td>Disparar</td>
+<td>municion, grupo_enemigos, cuando_elimina_enemigo, frecuencia_de_disparo, angulo_salida_disparo ...</td>
+</tr>
+<tr>
+<td>EliminarseSiSaleDePantalla</td>
+<td></td>
+</tr>
+<tr>
+<td>Imitar</td>
+<td>objeto_a_imitar, con_escala, con_rotacion</td>
+</tr>
+<tr>
+<td>LimitadoABordesDePantalla</td>
+<td></td>
+</tr>
+<tr>
+<td>MirarAlActor</td>
+<td>actor_a_seguir, lado_seguimiento="ARRIBA"</td>
+</tr>
+<tr>
+<td>MoverseComoCoche</td>
+<td>control, velocidad_maxima, aceleracion, deceleracion, rozamiento, velocidad_rotacion</td>
+</tr>
+<tr>
+<td>MoverseConElTeclado</td>
+<td>control, direcciones, velocidad_maxima, aceleracion, con_rotacion, velocidad_rotacion, marcha_atras</td>
+</tr>
+<tr>
+<td>PuedeExplotar</td>
+<td></td>
+</tr>
+<tr>
+<td>PuedeExplotarConHumo</td>
+<td></td>
+</tr>
+<tr>
+<td>RebotarComoCaja</td>
+<td></td>
+</tr>
+<tr>
+<td>RebotarComoPelota</td>
+<td></td>
+</tr>
+<tr>
+<td>RotarConMouse</td>
+<td></td>
+</tr>
+<tr>
+<td>SeMantieneEnPantalla</td>
+<td>permitir_salida</td>
+</tr>
+<tr>
+<td>SeguirAlMouse</td>
+<td></td>
+</tr>
+<tr>
+<td>SeguirClicks</td>
+<td></td>
+</tr>
+<tr>
+<td>SiempreEnElCentro</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="crear-habilidades-personalizadas">Crear habilidades personalizadas</h2>
+<p>Para crear una habilidad nueva, tienes que crear una clase
+y vincularla al módulo de habilidades.</p>
+<p>La clase tiene que heredar de <code>pilasengine.habilidades.Habilidad</code> y
+puede tener un método <code>actualizar</code>, en donde generalmente se
+coloca la acción a realizar:</p>
+<pre><code class="python">class GirarPorSiempre(pilasengine.habilidades.Habilidad):
+
+    def actualizar(self):
+        self.receptor.rotacion += 1
+
+pilas.habilidades.vincular(GirarPorSiempre)
+
+actor = pilas.actores.Actor()
+actor.aprender('GirarPorSiempre')
+</code></pre>
+
+<p>El método <code>actualizar</code> de la habilidad se ejecutará 60 veces por segundo, y
+en este caso harán que cualquier actor que aprenda la habilidad <code>GirarPorSiempre</code>
+de vueltas constantemente.</p>
+<p>Notá que dentro de los métodos de la habilidad, la variable <code>self.receptor</code> apunta
+al actor que conoce a esa habilidad.</p>
+<p>Por último, en este ejemplo, vinculamos la nueva habilidad al módulo de
+habilidades usando el método <code>pilas.habilidades.vincular</code>.</p>
+<h3 id="argumentos-iniciales-para-las-habilidades">Argumentos iniciales para las habilidades</h3>
+<p>Hay casos en donde queremos que las habilidades pueda recibir argumentos
+iniciales, para esos casos necesitamos crear el método <code>iniciar</code> y configurarlo
+correctamente.</p>
+<p>Siguiendo con nuestro ejemplo, imaginá que ahora queremos que esta habilidad
+nos permita hacer girar a los actores pero a diferentes velocidades: en algunos
+casos queremos enseñar a una actor a girar rápido y a otro mas lento. ¿Cómo
+sería en pilas?.</p>
+<p>Lo primero es crear la clase, muy parecida a la anterior, solamente que
+ahora creamos el método iniciar con dos argumentos, el primer es <code>receptor</code>, que
+es obligatorio y el segundo es nuestro argumento de velocidad:</p>
+<pre><code class="python">class GirarPorSiemprePersonalizado(pilasengine.habilidades.Habilidad):
+
+    def iniciar(self, receptor, velocidad):
+        self.receptor = receptor
+        self.velocidad = velocidad
+
+    def actualizar(self):
+        self.receptor.rotacion += self.velocidad
+
+pilas.habilidades.vincular(GirarPorSiemprePersonalizado)
+</code></pre>
+
+<p>Ahora, la nueva habilidad necesita que le especifiquemos la velocidad
+al iniciar, así que tenemos que usar algo así:</p>
+<pre><code class="python">actor_lento = pilas.actores.Actor()
+actor_lento.aprender('GirarPorSiemprePersonalizado', 1)
+
+actor_rapido = pilas.actores.Actor(y=100)
+actor_rapido.aprender('GirarPorSiemprePersonalizado', 5)
+</code></pre>
+            </div>
+          </div>
+          <footer>
+
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../depurando/" class="btn btn-neutral float-right" title="Depurando"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../texto/" class="btn btn-neutral" title="Textos"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Creado con <em>MkDocs</em>.
+
+
+  <script>
+  $(document).ready(function() {
+     $('img').each(function(elemento) {
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
+     });
+  });
+  </script>
+
+  <script>
+  $(document).ready(function() {
+    String.prototype.endsWith = function(suffix){
+      return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
+
+    $('a').each(function(){
+      var x=this.href;
+
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+        if (this.href.endsWith('/')) {
+          this.href = this.href + "index.html";
+        } else {
+          this.href = this.href + "/index.html";
+        }
+      }
+    });
+  });
+  </script>
+
+
+  <script>
+    function alternar_menu() {
+      var left = parseInt($('#lateral').css('left'), 10);
+
+      if (left !== 0) {
+        $('#lateral').css('left', '0px');
+        return false;
+      }
+
+    }
+  </script>
+
+  <style>
+    .rst-versions {
+      border: 0 !important;
+    }
+    .wy-nav-side {
+      padding-bottom: 50px;
+    }
+    .wy-nav-content-wrap {
+      background-color: white !important;
+    }
+
+    .wy-nav-content {
+      background-color: white !important;
+    }
+  </style>
+
+
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

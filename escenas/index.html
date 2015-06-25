@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Escenas - pilas-engine</title>
+
+  
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" id='lateral' class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".."> pilas-engine</a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="..">Principal</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../que_juegos/">Tipos de juegos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../instalacion/">Instalación</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../about/">Acerca de ...</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../empezando/">Empezando y los primeros pasos con pilas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores/">Actores</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../actores_personalizados/">Actores personalizados</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../grupos/">Grupos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../colisiones/">Colisiones</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../etiquetas/">Etiquetas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../fisica/">Fisica</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controles/">Controles</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../joystick/">Joystick</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../imagen/">Imagen</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../sonidos/">Sonidos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_simple_en_pantalla/">Dibujado simple en pantalla</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dibujado_avanzado_con_superficies/">Dibujado avanzado con Superficies</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../tareas/">Manejo de tiempo con tareas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interpolacion/">Interpolaciones</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../controlando_la_pantalla/">Controlando la pantalla</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../comportamientos/">Comportamientos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 current">
+                <a class="current" href="./">Escenas</a>
+                
+                    <ul>
+                    
+                        <li class="toctree-l3"><a href="#escenas">Escenas</a></li>
+                        
+                            <li><a class="toctree-l4" href="#cosas-a-tener-en-cuenta">Cosas a tener en cuenta</a></li>
+                        
+                            <li><a class="toctree-l4" href="#la-escena-normal">La escena Normal</a></li>
+                        
+                            <li><a class="toctree-l4" href="#cambiando-el-fondo-de-las-escenas">Cambiando el fondo de las escenas</a></li>
+                        
+                            <li><a class="toctree-l4" href="#como-crear-nuevas-escenas">Cómo crear nuevas escenas</a></li>
+                        
+                            <li><a class="toctree-l4" href="#escenas-con-argumentos">Escenas con argumentos</a></li>
+                        
+                    
+                    </ul>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../interfaz/">Interfaz de usuario</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../mapas_y_plataformas/">Mapas y plataformas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../dialogos/">Diálogos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../camara/">Manejo de Cámara</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../texto/">Textos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../habilidades/">Habilidades</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../depurando/">Depurando</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../como_funciona_pilas_por_dentro/">¿Cómo funciona pilas por dentro?</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../complementos/">Complementos</a>
+                
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../desarrolladores/">Guía para desarrolladores</a>
+                
+            </li>
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." onclick='return alternar_menu();'>Docs</a> &raquo;</li>
+    <li>Escenas</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <h1 id="escenas">Escenas</h1>
+<p>Las escenas te permiten dividir el juego en partes
+reconocibles y que interactúan de manera diferente
+con el usuario.</p>
+<p>Un juego típico tendrá al menos una escena como
+el menú principal, una presentanción y una
+pantalla de juego.</p>
+<p><img alt="" src="../imagenes/escenas/escenas_juego.png" /></p>
+<h2 id="cosas-a-tener-en-cuenta">Cosas a tener en cuenta</h2>
+<p>Hay algunas cosas a tener en cuenta
+a la hora de manejar escenas, porque
+simplifican mucho el trabajo posterior:</p>
+<ul>
+<li>La escena actual siempre está señalada por el atributo <code>pilas.escena_actual()</code>.</li>
+<li>Solo puede existir una escena activa a la vez.</li>
+</ul>
+<h2 id="la-escena-normal">La escena Normal</h2>
+<p>Cuando iniciamos pilas por primera vez se creará
+una escena llamada <code>Normal</code>. Esta escena no
+tiene un comportamiento muy elaborado, simplemente
+imprime toda la pantalla de azul para que
+podamos colocar actores sobre ella y veamos una
+escena limpia.</p>
+<h2 id="cambiando-el-fondo-de-las-escenas">Cambiando el fondo de las escenas</h2>
+<p>Para hacer una pequeña prueba sobre una
+escena, podrías ejecutar la siguiente sentencia
+de código:</p>
+<pre><code>pilas.fondos.Volley()
+</code></pre>
+<p>Esto le dará a tu escena una vista
+mas agradable, porque carga un fondo de
+pantalla colorido y mas divertido:</p>
+<p><img alt="" src="../imagenes/escenas/paisaje.jpg" /></p>
+<p>o podrías usar un fondo de atardecer:</p>
+<pre><code>pilas.fondos.Tarde()
+</code></pre>
+<p><img alt="" src="../imagenes/escenas/tarde.jpg" /></p>
+<h2 id="como-crear-nuevas-escenas">Cómo crear nuevas escenas</h2>
+<p>Imagina que tienes un juego con dos pantallas, una
+que simplemente dice "bienvenido" y  otra con
+un personaje para mover.</p>
+<p>Claramente tendríamos que hacer dos escenas, e iniciar
+nuestro juego creando la escena principal.</p>
+<p>La primer escena tendríamos que representarla
+con una clase, que herede de la escena Normal
+así:</p>
+<pre><code class="python">class PantallaBienvenida(pilasengine.escenas.Escena):
+
+    def iniciar(self):
+        self.fondo = self.pilas.fondos.Volley()
+        pass
+
+    def ejecutar(self):
+        pass
+</code></pre>
+
+<p>Ahora, para poner en funcionamiento esta escena
+simplemente tienes que decirle a pilas que esta escena es la activa:</p>
+<pre><code>pilas.escenas.vincular(PantallaBienvenida)
+pilas.escenas.PantallaBienvenida()
+</code></pre>
+<p>Esto eliminará las escenas almacenadas y se colocará como la escena
+actual y activa:</p>
+<p><img alt="" src="../imagenes/escenas/escena_simple.jpg" /></p>
+<p>Ahora, si quieres salir de la escena, simplemente tendrías
+que cargar una escena nueva, por ejemplo:</p>
+<pre><code>pilas.escenas.Normal()
+</code></pre>
+<p>Es decir, en el momento que creamos la escena aparecerá automáticamente.</p>
+<h2 id="escenas-con-argumentos">Escenas con argumentos</h2>
+<p>Si quieres crear una escena pasándole un argumento de esta forma:</p>
+<pre><code>pilas.escenas.vincular(PantallaBienvenida)
+pilas.escenas.PantallaBienvenida("Mi mensaje personalizado")
+</code></pre>
+<p>Lo que necesitas hacer es especificar ese nuevo argumento en el método
+<code>iniciar</code> así:</p>
+<pre><code class="python">class PantallaBienvenida(pilasengine.escenas.Escena):
+
+    def iniciar(self, mensaje):
+        pilas.fondos.Pasto()
+        self.texto = pilas.actores.Texto(mensaje)
+
+    def actualizar(self):
+        self.texto.rotacion += 1
+</code></pre>
+
+<p>pilas, en este caso, va a tomar el argumento <code>"Mi mensaje personalizado"</code> y lo
+va a enviar al método <code>iniciar</code> con el nombre <code>mensaje</code>.</p>
+            </div>
+          </div>
+          <footer>
+
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../interfaz/" class="btn btn-neutral float-right" title="Interfaz de usuario"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../comportamientos/" class="btn btn-neutral" title="Comportamientos"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Creado con <em>MkDocs</em>.
+
+
+  <script>
+  $(document).ready(function() {
+     $('img').each(function(elemento) {
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
+     });
+  });
+  </script>
+
+  <script>
+  $(document).ready(function() {
+    String.prototype.endsWith = function(suffix){
+      return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
+
+    $('a').each(function(){
+      var x=this.href;
+
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+        if (this.href.endsWith('/')) {
+          this.href = this.href + "index.html";
+        } else {
+          this.href = this.href + "/index.html";
+        }
+      }
+    });
+  });
+  </script>
+
+
+  <script>
+    function alternar_menu() {
+      var left = parseInt($('#lateral').css('left'), 10);
+
+      if (left !== 0) {
+        $('#lateral').css('left', '0px');
+        return false;
+      }
+
+    }
+  </script>
+
+  <style>
+    .rst-versions {
+      border: 0 !important;
+    }
+    .wy-nav-side {
+      padding-bottom: 50px;
+    }
+    .wy-nav-content-wrap {
+      background-color: white !important;
+    }
+
+    .wy-nav-content {
+      background-color: white !important;
+    }
+  </style>
+
+
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+</body>
+</html>
