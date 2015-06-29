@@ -18,6 +18,7 @@ from PyQt4.Qt import (QFrame, QWidget, QPainter,
                       QSize, QVariant)
 from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
                          QIcon, QMessageBox, QShortcut,
+                         QInputDialog, QLineEdit, QErrorMessage,
                          QKeySequence, QTextFormat, QColor, QKeyEvent)
 from PyQt4.QtCore import Qt
 from PyQt4 import QtCore
@@ -154,6 +155,12 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
                                     QtCore.SIGNAL('clicked()'),
                                     self.actualizar_el_listado_de_archivos)
 
+        # Boton actualizar
+        self.set_icon(self.boton_nuevo, 'iconos/nuevo.png')
+        self.boton_nuevo.connect(self.boton_nuevo,
+                                    QtCore.SIGNAL('clicked()'),
+                                    self.pulsa_boton_crear_archivo_nuevo)
+
         # Boton Ejecutar
         self.set_icon(self.boton_ejecutar, 'iconos/ejecutar.png')
         self.boton_ejecutar.connect(self.boton_ejecutar,
@@ -186,6 +193,12 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
     def definir_fuente(self, fuente):
         self.lista_actores.setFont(fuente)
         self.number_bar.setFont(fuente)
+
+    def pulsa_boton_crear_archivo_nuevo(self):
+        text, ok = QInputDialog.getText(self, 'Crear un archivo nuevo', 'Nombre del archivo:', QLineEdit.Normal, "nuevo")
+
+        if ok and text:
+            self.editor.crear_y_seleccionar_archivo(text)
 
     def cuando_selecciona_item(self, actual, anterior):
         indice = self.lista_actores.indexFromItem(actual).row()
@@ -310,6 +323,35 @@ class Editor(editor_base.EditorBase):
 
     def es_archivo_iniciar_sin_guardar(self):
         return self.nombre_de_archivo_sugerido == ""
+
+    def crear_y_seleccionar_archivo(self, nombre):
+        # Quita la extension si llega a tenerla.
+        nombre = nombre.replace('.py', '')
+        nombre += ".py"
+        nombre_de_archivo = nombre
+
+        if self.ruta_del_archivo_actual:
+            base_path = os.path.abspath(os.path.dirname(self.ruta_del_archivo_actual))
+            ruta = os.path.join(base_path, unicode(nombre_de_archivo))
+        else:
+            ruta = unicode(nombre_de_archivo)
+
+        if os.path.exists(ruta):
+            self._tmp_dialog = QErrorMessage(self)
+            self._tmp_dialog.showMessage("Ya existe un archivo con ese nombre")
+        else:
+            self._crear_archivo_nuevo_en(ruta)
+
+            self.cargar_contenido_desde_archivo(ruta)
+            self.ruta_del_archivo_actual = ruta
+            self.watcher.cambiar_archivo_a_observar(ruta)
+            self.ejecutar()
+            self.main.actualizar_el_listado_de_archivos()
+
+    def _crear_archivo_nuevo_en(self, ruta):
+        fo = open(ruta, "wb")
+        fo.write("# contenido")
+        fo.close()
 
     def obtener_archivos_del_proyecto(self):
         base_path = os.path.dirname(self.nombre_de_archivo_sugerido)

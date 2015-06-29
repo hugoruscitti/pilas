@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>561</width>
-    <height>459</height>
+    <width>529</width>
+    <height>452</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -255,6 +255,25 @@
         </item>
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="boton_nuevo">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="contextMenuPolicy">
+             <enum>Qt::PreventContextMenu</enum>
+            </property>
+            <property name="text">
+             <string>N</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QComboBox" name="selector_archivos"/>
           </item>
