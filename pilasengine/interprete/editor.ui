@@ -146,6 +146,12 @@
           <height>20</height>
          </size>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Pausar</string>
+        </property>
         <property name="text">
          <string>P</string>
         </property>
@@ -164,6 +170,12 @@
           <width>20</width>
           <height>20</height>
          </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Avanzar un cuadro de animación</string>
         </property>
         <property name="text">
          <string>S</string>
@@ -263,8 +275,14 @@
               <height>20</height>
              </size>
             </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="contextMenuPolicy">
              <enum>Qt::PreventContextMenu</enum>
+            </property>
+            <property name="toolTip">
+             <string>Crear un nuevo archivo</string>
             </property>
             <property name="text">
              <string>N</string>
@@ -285,8 +303,14 @@
               <height>20</height>
              </size>
             </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="contextMenuPolicy">
              <enum>Qt::PreventContextMenu</enum>
+            </property>
+            <property name="toolTip">
+             <string>Actualizar el listado de archivos</string>
             </property>
             <property name="text">
              <string>R</string>
