@@ -161,6 +161,8 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
                                     QtCore.SIGNAL('clicked()'),
                                     self.pulsa_boton_crear_archivo_nuevo)
 
+        self.deshabilitar_boton_nuevo()
+
         # Boton Ejecutar
         self.set_icon(self.boton_ejecutar, 'iconos/ejecutar.png')
         self.boton_ejecutar.connect(self.boton_ejecutar,
@@ -190,6 +192,14 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         self.selector_archivos.activated[str].connect(self.cuando_cambia_archivo_seleccionado)
         self.actualizar_el_listado_de_archivos()
 
+    def deshabilitar_boton_nuevo(self):
+        self.boton_nuevo.setEnabled(False)
+        self.boton_nuevo.setToolTip("Crear un nuevo archivo (deshabilitado porque no has guardado aún)")
+
+    def habilitar_boton_nuevo(self):
+        self.boton_nuevo.setEnabled(True)
+        self.boton_nuevo.setToolTip("Crear un nuevo archivo")
+
     def definir_fuente(self, fuente):
         self.lista_actores.setFont(fuente)
         self.number_bar.setFont(fuente)
@@ -210,11 +220,7 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
         nueva_lista_de_actores = [str(x) for x in lista_actores]
 
         if self.lista_actores_como_strings != nueva_lista_de_actores:
-
             self.lista_actores.clear()
-            #while self.lista_actores.count() > 0:
-            #    self.lista_actores.takeItem(0)
-
             self.lista_actores_como_strings = nueva_lista_de_actores
             self.lista_actores.addItems(self.lista_actores_como_strings)
 
@@ -551,6 +557,7 @@ class Editor(editor_base.EditorBase):
             self.cargar_contenido_desde_archivo(ruta)
             self.ejecutar()
             self.main.actualizar_el_listado_de_archivos()
+            self.main.habilitar_boton_nuevo()
             return True
 
     def guardar_contenido_directamente(self):

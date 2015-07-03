@@ -214,7 +214,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         else:
             self.ocultar_editor()
 
-
     def mostrar_editor(self):
         self.splitter_editor.setSizes([300, 250])
         self.editor_button.setChecked(True)
@@ -241,7 +240,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         pilas.depurador.definir_modos(
             info=self.pushButton_6.isChecked(),               # F07
             puntos_de_control=self.pushButton_5.isChecked(),  # F08
-            radios=False,
+            radios=False,                                     # F09
             areas=self.pushButton_3.isChecked(),              # F10
             fisica=self.pushButton_2.isChecked(),             # F11
             posiciones=self.pushButton.isChecked(),           # F12
