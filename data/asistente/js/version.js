@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '0.90.38',
-  fecha: '16 de Jun del 2015',
-  commit: 'e9aa59e',
-  changelog: ['Reparando la impresión en pantalla y la función pilas.ver', 'Reparando el bug que ocasionaba de los sensores aparezcan en el centro de la pantalla.', 'release 0.90.37', 'Agregando arreglo sugerido por @jesuscirino en el foro de pilas al bug que impedia iniciar pilas.', 'mostrando el nombre del archivo arrastrado si falla.', ]
+  version: '0.90.39',
+  fecha: '04 de Jul del 2015',
+  commit: 'f729a0d',
+  changelog: ['haciendo que solo se puedan crear archivos luego de guardar una vez', 'Arreglo menor en el estilo de los botones del editor.', 'Agregando un botón para crear un archivo nuevo desde el editor.', 'release 0.90.38', 'Reparando la impresión en pantalla y la función pilas.ver', ]
 }
