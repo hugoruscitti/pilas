@@ -803,8 +803,23 @@ class Actor(Estudiante):
     def get_izquierda(self):
         return self.x - (self.centro_x * self.escala)
 
-    def set_izquierda(self, x):
-        self.x = x + (self.centro_x * self.escala)
+    def set_izquierda(self, valor):
+        def adaptar_valor(x):
+            return x + (self.centro_x * self.escala)
+
+        self._aplicar_interpolacion('x', adaptar_valor, valor)
+
+
+    def _aplicar_interpolacion(self, atributo, adaptar_valor, valor):
+        if isinstance(valor, tuple):
+            duracion = valor[1]
+            valor = [adaptar_valor(x) for x in valor[0]]
+            setattr(self, atributo, (valor, duracion))
+        elif isinstance(valor, list):
+            valor = [adaptar_valor(x) for x in valor]
+            setattr(self, atributo, valor)
+        elif isinstance(valor, float) or isinstance(valor, int):
+            setattr(self, atributo, adaptar_valor(valor))
 
     izquierda = property(get_izquierda, set_izquierda, doc="Establece el " \
                          "espacio entre la izquierda del actor y el centro " \
@@ -813,8 +828,11 @@ class Actor(Estudiante):
     def get_derecha(self):
         return self.izquierda + self.obtener_ancho() * self.escala
 
-    def set_derecha(self, x):
-        self.set_izquierda(x - (self.ancho * self.escala))
+    def set_derecha(self, valor):
+        def adaptar_valor(x):
+            return x - (self.centro_x * self.escala)
+
+        self._aplicar_interpolacion('x', adaptar_valor, valor)
 
     derecha = property(get_derecha, set_derecha, doc="Establece el " \
                          "espacio entre la derecha del actor y el centro " \
@@ -823,8 +841,11 @@ class Actor(Estudiante):
     def get_abajo(self):
         return self.get_arriba() - self.alto * self.escala
 
-    def set_abajo(self, y):
-        self.set_arriba(y + (self.alto * self.escala))
+    def set_abajo(self, valor):
+        def adaptar_valor(y):
+            return y + (self.centro[1] * self.escala)
+
+        self._aplicar_interpolacion('y', adaptar_valor, valor)
 
     abajo = property(get_abajo, set_abajo, doc="Establece el " \
                          "espacio entre la parte inferior del actor y el " \
@@ -833,8 +854,11 @@ class Actor(Estudiante):
     def get_arriba(self):
         return self.y + (self.centro[1] * self.escala)
 
-    def set_arriba(self, y):
-        self.y = y - (self.centro[1] * self.escala)
+    def set_arriba(self, valor):
+        def adaptar_valor(y):
+            return y - (self.centro[1] * self.escala)
+
+        self._aplicar_interpolacion('y', adaptar_valor, valor)
 
     arriba = property(get_arriba, set_arriba, doc="Establece el " \
                          "espacio entre la parte superior del actor y el " \

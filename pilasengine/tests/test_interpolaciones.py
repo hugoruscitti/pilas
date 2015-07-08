@@ -18,5 +18,27 @@ class TestInterpolaciones(unittest.TestCase):
 
         self.assertEqual(0, un_actor.x, "La posicion inicial x es 0")
 
+    def testPuedeInterpolarPosicionesDeBordes(self):
+        un_actor = self.pilas.actores.Aceituna()
+        un_actor.izquierda = [100]
+        un_actor.izquierda = [100], 10
+
+        self.assertEqual(0, un_actor.x, "La posicion inicial x es 0")
+
+        un_actor.derecha = [100]
+        un_actor.derecha = [100], 10
+
+        self.assertEqual(0, un_actor.x, "La posicion inicial x es 0")
+
+        un_actor.arriba = [100]
+        un_actor.arriba = [100], 10
+
+        self.assertEqual(0, un_actor.y, "La posicion inicial y es 0")
+
+        un_actor.abajo = [100]
+        un_actor.abajo = [100], 10
+
+        self.assertEqual(0, un_actor.y, "La posicion inicial y es 0")
+
 if __name__ == "__main__":
     unittest.main()
