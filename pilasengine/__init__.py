@@ -36,6 +36,7 @@ import pad
 import watcher
 import plugins
 import simbolos
+import datos
 
 
 import widget
@@ -173,6 +174,7 @@ class Pilas(object):
         self.actores.eliminar_actores_personalizados()
         self.eventos = eventos.Eventos(self)
         self.evento = self.eventos
+        self.datos = datos.Datos(self)
 
         self.controles = controles.Controles(self)
         self.simbolos = simbolos.Simbolos(self)
