@@ -236,6 +236,16 @@ class Pilas(object):
         self._x = x
         self._y = y
 
+    def esta_en_pantalla_completa(self):
+        return self.widget.pantalla_completa
+
+    def ancho(self):
+        return self.widget.width()
+
+    def alto(self):
+        return self.widget.height()
+
+
     def reiniciar_si_cambia(self, archivo):
         """Regista un archivo para hacer livecoding.
 
