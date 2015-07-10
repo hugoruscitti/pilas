@@ -9,7 +9,7 @@ from pilasengine import habilidades
 
 
 class Arrastrable(habilidades.Habilidad):
-    
+
     def iniciar(self, receptor):
         super(Arrastrable, self).iniciar(receptor)
 
