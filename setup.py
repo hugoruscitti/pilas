@@ -34,6 +34,7 @@ http://www.pilas-engine.com.ar
             'pilasengine.colisiones',
             'pilasengine.comportamientos',
             'pilasengine.fisica',
+            'pilasengine.datos',
             'pilasengine.fisica.constantes',
             'pilasengine.interprete',
             'pilasengine.interprete.editorbase',
