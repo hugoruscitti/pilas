@@ -41,7 +41,7 @@ import datos
 
 import widget
 
-VERSION = "0.90.39"
+VERSION = "0.90.40"
 
 
 def handler(signum, frame):
@@ -235,6 +235,16 @@ class Pilas(object):
         self.comportamientos = comportamientos.Comportamientos()
         self._x = x
         self._y = y
+
+    def esta_en_pantalla_completa(self):
+        return self.widget.pantalla_completa
+
+    def ancho(self):
+        return self.widget.width()
+
+    def alto(self):
+        return self.widget.height()
+
 
     def reiniciar_si_cambia(self, archivo):
         """Regista un archivo para hacer livecoding.

@@ -7,7 +7,7 @@ from setuptools import setup
 setup(
         name='pilas',
         zip_safe=False,
-        version="0.90.39",
+        version="0.90.40",
         description="""============
 Pilas Engine
 ============
@@ -34,6 +34,7 @@ http://www.pilas-engine.com.ar
             'pilasengine.colisiones',
             'pilasengine.comportamientos',
             'pilasengine.fisica',
+            'pilasengine.datos',
             'pilasengine.fisica.constantes',
             'pilasengine.interprete',
             'pilasengine.interprete.editorbase',
