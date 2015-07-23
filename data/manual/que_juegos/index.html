@@ -345,13 +345,14 @@ en el juego <strong>shaolin's blind fury</strong>:</p>
             </div>
           </div>
           <footer>
+
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../instalacion/" class="btn btn-neutral float-right" title="Instalación"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../instalacion/" class="btn btn-neutral float-right" title="Instalación"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Principal"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Principal"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
       
     </div>
   
@@ -359,11 +360,74 @@ en el juego <strong>shaolin's blind fury</strong>:</p>
   <hr/>
 
   <div role="contentinfo">
+    <p>
     <!-- Copyright etc -->
-    
+    </p>
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Creado con <em>MkDocs</em>.
+
+
+  <script>
+  $(document).ready(function() {
+     $('img').each(function(elemento) {
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
+     });
+  });
+  </script>
+
+  <script>
+  $(document).ready(function() {
+    String.prototype.endsWith = function(suffix){
+      return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
+
+    $('a').each(function(){
+      var x=this.href;
+
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+        if (this.href.endsWith('/')) {
+          this.href = this.href + "index.html";
+        } else {
+          this.href = this.href + "/index.html";
+        }
+      }
+    });
+  });
+  </script>
+
+
+  <script>
+    function alternar_menu() {
+      var left = parseInt($('#lateral').css('left'), 10);
+
+      if (left !== 0) {
+        $('#lateral').css('left', '0px');
+        return false;
+      }
+
+    }
+  </script>
+
+  <style>
+    .rst-versions {
+      border: 0 !important;
+    }
+    .wy-nav-side {
+      padding-bottom: 50px;
+    }
+    .wy-nav-content-wrap {
+      background-color: white !important;
+    }
+
+    .wy-nav-content {
+      background-color: white !important;
+    }
+  </style>
+
+
 </footer>
 	  
         </div>
