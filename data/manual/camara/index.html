@@ -243,6 +243,8 @@
                 
                     <li><a class="toctree-l4" href="#objetos-sensibles-a-la-camara">Objetos sensibles a la cámara</a></li>
                 
+                    <li><a class="toctree-l4" href="#movimientos-de-camara">Movimientos de cámara</a></li>
+                
             
             </ul>
         
@@ -371,6 +373,14 @@ que guardar el valor <code>True</code> dentro del atributo <code>fijo</code>:</p
 <p>Por lo general, todos los actores tienen este atributo a <code>False</code>, porque
 viven en el escenario de juego y no se quedan fijos a la pantalla. Excepto
 los textos que siempre permanecen en la parte superior de la ventana.</p>
+<h2 id="movimientos-de-camara">Movimientos de cámara</h2>
+<p>Para darle acción a los juegos se puede aplicar un movimiento de cámara, o vibración. Por ejemplo al momento de perder una vida o cuando ocurre una explosión.</p>
+<p>El método para realizar un movimiento es <code>camara.vibrar</code> y admite dos
+argumentos, uno de intensidad y otro de duración o tiempo.</p>
+<p>Aquí hay dos ejemplos de invocación:</p>
+<pre><code>pilas.camara.vibrar()
+pilas.camara.vibrar(intensidad=2, tiempo=3)
+</code></pre>
               
             </div>
           </div>
@@ -417,7 +427,7 @@ los textos que siempre permanecen en la parte superior de la ventana.</p>
     $('a').each(function(){
       var x=this.href;
 
-      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0 && this.href.indexOf('http://') === -1 && this.href.indexOf('https://') === -1) {
         if (this.href.endsWith('/')) {
           this.href = this.href + "index.html";
         } else {
@@ -477,6 +487,50 @@ los textos que siempre permanecen en la parte superior de la ventana.</p>
     font-size: 15px !important;
   }
 </style>
+
+<style>
+
+img {
+  width: auto !important;
+}
+
+pre {
+  padding: 0px !important;
+}
+
+.hljs {
+  font-size: 15px;
+}
+
+td {
+  padding: 15px;
+  text-align: center;
+}
+
+.wy-menu-vertical li.current {
+  background: #0B0B0B;
+}
+
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+  color: #FFFFFF;
+  padding: 0.4045em 1.618em;
+  font-weight: bold;
+  position: relative;
+  background: #6C6C6C;
+  border: none;
+  border-bottom: none;
+  border-top: none;
+  padding-left: 1.618em -4px;
+}
+
+.wy-menu-vertical li.current a {
+  color: rgb(186, 186, 186);
+}
+
+.wy-menu-vertical li.current a:hover {
+  background: #444444;
+}
+</pre>
 	  
         </div>
       </div>

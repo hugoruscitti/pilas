@@ -384,8 +384,8 @@ objeto que aparece en pantalla, tiene una posición determinada y se puede manip
 motor, uno de ellos es <code>Mono</code>, un simpático chimpancé.</p>
 <p>Nota:</p>
 <blockquote>
-<p>Puedes ver todos los actores disponibles en pilas ejecutando
-<code>pilas.actores.listar_actores()</code>.</p>
+<p>Puedes ver todos los en la escena actual ejecutando
+<code>pilas.actores.listar_actores()</code> o abriendo el panel lateral de actores.</p>
 </blockquote>
 <p>Tenemos al actor <code>mono</code>. Para indicarle acciones solo tenemos que utilizar su nombre y sentencias simples.</p>
 <p>Por ejemplo, para que el personaje cambie su expresión, podemos usar sentencias cómo:</p>
@@ -461,7 +461,7 @@ mono.x = [-200, 200] * 5 # ir de un lado a otro 5 veces.
 </code></pre>
 
 <h2 id="pidiendo-ayuda">Pidiendo ayuda</h2>
-<p>Recuerda que cada componente de pilas está documentado como un módulo de python. Por lo tanto, puedes ejecutar una sentencia cómo:</p>
+<p>Recuerda que cada componente de pilas está documentado y codificado como un módulo o clase del lenguaje de programación python. Por lo tanto, puedes ejecutar una sentencia cómo:</p>
 <pre><code>help(mono)
 </code></pre>
 
@@ -472,13 +472,14 @@ ejecutando la sentencia:</p>
 <pre><code>pilas.ver(mono)
 </code></pre>
 
+<p>Y claro, ten en cuenta que si escribes <code>mono.</code> el intérprete comenzará a autocompletar todos los métodos y propiedades.</p>
 <h2 id="eliminando-a-un-actor">Eliminando a un actor</h2>
 <p>Para eliminar un actor de la escena tienes que llamar al método eliminar:</p>
 <pre><code>mono.eliminar()
 </code></pre>
 
 <h2 id="conclusion">Conclusión</h2>
-<p>Hemos visto los pasos principales para gestionar actores. Ten en cuenta que el módulo pilas.actores es donde se guardarán todos los actores.</p>
+<p>Hemos visto los pasos principales para gestionar actores. Ten en cuenta que el módulo <code>pilas.actores</code> es donde se guardarán todos los actores.</p>
 <p>Un buen ejercicio es ponerse a investigar el módulo actores. Hay muchos actores, estos son algunos ejemplos de código para probar:</p>
 <pre><code>b = pilas.actores.Bomba()
 b.explotar()
@@ -534,7 +535,7 @@ p = pilas.actores.Pingu()    # se mueve con el teclado.
     $('a').each(function(){
       var x=this.href;
 
-      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0 && this.href.indexOf('http://') === -1 && this.href.indexOf('https://') === -1) {
         if (this.href.endsWith('/')) {
           this.href = this.href + "index.html";
         } else {
@@ -594,6 +595,50 @@ p = pilas.actores.Pingu()    # se mueve con el teclado.
     font-size: 15px !important;
   }
 </style>
+
+<style>
+
+img {
+  width: auto !important;
+}
+
+pre {
+  padding: 0px !important;
+}
+
+.hljs {
+  font-size: 15px;
+}
+
+td {
+  padding: 15px;
+  text-align: center;
+}
+
+.wy-menu-vertical li.current {
+  background: #0B0B0B;
+}
+
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+  color: #FFFFFF;
+  padding: 0.4045em 1.618em;
+  font-weight: bold;
+  position: relative;
+  background: #6C6C6C;
+  border: none;
+  border-bottom: none;
+  border-top: none;
+  padding-left: 1.618em -4px;
+}
+
+.wy-menu-vertical li.current a {
+  color: rgb(186, 186, 186);
+}
+
+.wy-menu-vertical li.current a:hover {
+  background: #444444;
+}
+</pre>
 	  
         </div>
       </div>

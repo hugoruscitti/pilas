@@ -349,7 +349,7 @@ especie.</p>
 <p>Al crear un grupo de esta forma, todos los actores
 se colocarán en posiciones aleatorias.</p>
 <p>Esto es lo que veríamos en la ventana de pilas:</p>
-<p><img alt="" src="../imagenes/grupos/grupos_bombas.jpg" /></p>
+<p><img alt="" src="../imagenes/grupos/grupos_bombas.png" /></p>
 <p>A partir de ahora, la referencia <code>bombas</code> nos servirá para
 controlar a todas las bombas al mismo tiempo.</p>
 <p>Esta referencia (que llamamos <code>bombas</code>) es parecida a una lista de datos en <code>python</code>. Podríamos realizar operaciones típicas como contar, recorrer o clasificar de la misma forma que se hace en el lenguaje <code>python</code>.</p>
@@ -463,7 +463,7 @@ mi_grupo.escala = [2]
     $('a').each(function(){
       var x=this.href;
 
-      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0 && this.href.indexOf('http://') === -1 && this.href.indexOf('https://') === -1) {
         if (this.href.endsWith('/')) {
           this.href = this.href + "index.html";
         } else {
@@ -523,6 +523,50 @@ mi_grupo.escala = [2]
     font-size: 15px !important;
   }
 </style>
+
+<style>
+
+img {
+  width: auto !important;
+}
+
+pre {
+  padding: 0px !important;
+}
+
+.hljs {
+  font-size: 15px;
+}
+
+td {
+  padding: 15px;
+  text-align: center;
+}
+
+.wy-menu-vertical li.current {
+  background: #0B0B0B;
+}
+
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+  color: #FFFFFF;
+  padding: 0.4045em 1.618em;
+  font-weight: bold;
+  position: relative;
+  background: #6C6C6C;
+  border: none;
+  border-bottom: none;
+  border-top: none;
+  padding-left: 1.618em -4px;
+}
+
+.wy-menu-vertical li.current a {
+  color: rgb(186, 186, 186);
+}
+
+.wy-menu-vertical li.current a:hover {
+  background: #444444;
+}
+</pre>
 	  
         </div>
       </div>

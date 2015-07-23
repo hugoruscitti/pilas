@@ -335,7 +335,7 @@
 <h2 id="opcion-1-instalacion-facil-para-cada-sistema-operativo">Opción 1 - Instalación fácil, para cada sistema operativo</h2>
 <p>La forma mas sencilla de instalar pilas es descargando alguna de las versiones empaquetadas desde nuestro sitio web:</p>
 <ul>
-<li><a href="http://www.pilas-engine.com.ar/descargas.html">http://www.pilas-engine.com.ar/descargas.html</a></li>
+<li><a href="http://www.pilas-engine.com.ar">http://www.pilas-engine.com.ar</a></li>
 </ul>
 <h2 id="opcion-2-avanzada-desde-repositorios">Opción 2 - Avanzada, desde repositorios</h2>
 <p>Otra opción es descargar pilas e instalarlo directamente desde nuestro respositio git.</p>
@@ -386,7 +386,7 @@
     $('a').each(function(){
       var x=this.href;
 
-      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0 && this.href.indexOf('http://') === -1 && this.href.indexOf('https://') === -1) {
         if (this.href.endsWith('/')) {
           this.href = this.href + "index.html";
         } else {
@@ -446,6 +446,50 @@
     font-size: 15px !important;
   }
 </style>
+
+<style>
+
+img {
+  width: auto !important;
+}
+
+pre {
+  padding: 0px !important;
+}
+
+.hljs {
+  font-size: 15px;
+}
+
+td {
+  padding: 15px;
+  text-align: center;
+}
+
+.wy-menu-vertical li.current {
+  background: #0B0B0B;
+}
+
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+  color: #FFFFFF;
+  padding: 0.4045em 1.618em;
+  font-weight: bold;
+  position: relative;
+  background: #6C6C6C;
+  border: none;
+  border-bottom: none;
+  border-top: none;
+  padding-left: 1.618em -4px;
+}
+
+.wy-menu-vertical li.current a {
+  color: rgb(186, 186, 186);
+}
+
+.wy-menu-vertical li.current a:hover {
+  background: #444444;
+}
+</pre>
 	  
         </div>
       </div>

@@ -359,30 +359,26 @@ segundos puedes hacer algo como:</p>
 <p>de hecho, puede que te resulte mas conveniente
 tener mas control sobre la interpolación, así
 que puedes usar esta forma:</p>
-<pre><code>actor.x = pilas.interpolar(100)
+<pre><code>pilas.utils.interpolar(actor, 'x', 100)
 </code></pre>
 <p>donde el valor inicial será la posición x del actor y el valor
 final será <code>100</code>.</p>
 <p>La función <code>interpolar</code>, como mencioné antes, te da mas
 control sobre la interpolación, porque admite otros parámetros
 de ajuste como los siguientes:</p>
-<ul>
-<li><code>duracion</code>: los segundos que durara la interpolacion.</li>
-<li><code>demora</code>: los segundos que tiene que esperar antes de iniciar la interpolacion.</li>
-<li><code>tipo</code>: tipo de interpolaciones, que generalmente es 'lineal'.</li>
-</ul>
+<p><img alt="" src="../imagenes/interpolacion/parametros.png" /></p>
 <p>Por ejemplo, si queremos que un personaje dé un giro
 completo de 360 grados en 10 segundos podemos
 hacer algo así:</p>
 <pre><code>actor.rotacion = 0
-actor.rotacion = pilas.interpolar(360, duracion=10)
+pilas.utils.interpolar(actor, 'rotacion', 360, duracion=10)
 </code></pre>
 <h2 id="girando-un-actor">Girando un actor</h2>
 <p>Esta herramienta se puede aplicar a muchas situaciones distintas, por
 ejemplo si queremos hacer girar un personaje
 podemos hacer algo como:</p>
 <pre><code>actor.rotacion = 0
-actor.rotacion = pilas.interpolar(360, duracion=5)
+pilas.utils.interpolar(actor, 'rotacion', 360, duracion=5)
 </code></pre>
 <p>con lo que estaríamos diciendo al personaje que dé un
 giro completo (de <code>0</code> a <code>360</code> grados) en <code>5</code> segundos.</p>
@@ -392,7 +388,7 @@ inicio de la interpolación.</p>
 <p>De manera similar a lo que hicimos anteriormente, podemos
 aplicarla a la propiedad <code>escala</code> una nueva
 interpolación:</p>
-<pre><code>actor.escala = pilas.interpolar(2, duracion=5)
+<pre><code>pilas.utils.interpolar(actor, 'escala', 2, duracion=5)
 </code></pre>
 <p>esto duplicará el tamaño del actor en <code>5</code> segundos.</p>
 <p>¿Y mas simple?, bueno, como hicimos antes:</p>
@@ -401,13 +397,12 @@ interpolación:</p>
 <h2 id="interpolaciones-en-cadena">Interpolaciones en cadena</h2>
 <p>Si queremos que una interpolación pase por distintos
 valores podemos hacer algo como esto:</p>
-<pre><code>actor.x = pilas.interpolar([300, 0, 300], duracion=3)
+<pre><code>actor.x = [300, 0, 300], 3
 </code></pre>
-<p>lo que llevará al actor de su posición <code>x</code> actual, a 300
-en un segundo, y luego a <code>0</code> en un segundo y por último
-de nuevo a <code>300</code> en un segundo.</p>
-<p>En total, ha consumido 3 segundos en pasar por todos los
-valores que le indicamos.</p>
+<p>lo que llevará al actor de su posición <code>x</code> actual, a <code>300</code>,
+luego a <code>0</code> y por último de nuevo a <code>300</code> en un segundo.</p>
+<p>En total, ha consumido 3 segundos por cada movimiento, es decir 9 segundos
+en total.</p>
               
             </div>
           </div>
@@ -454,7 +449,7 @@ valores que le indicamos.</p>
     $('a').each(function(){
       var x=this.href;
 
-      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0 && this.href.indexOf('http://') === -1 && this.href.indexOf('https://') === -1) {
         if (this.href.endsWith('/')) {
           this.href = this.href + "index.html";
         } else {
@@ -514,6 +509,50 @@ valores que le indicamos.</p>
     font-size: 15px !important;
   }
 </style>
+
+<style>
+
+img {
+  width: auto !important;
+}
+
+pre {
+  padding: 0px !important;
+}
+
+.hljs {
+  font-size: 15px;
+}
+
+td {
+  padding: 15px;
+  text-align: center;
+}
+
+.wy-menu-vertical li.current {
+  background: #0B0B0B;
+}
+
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+  color: #FFFFFF;
+  padding: 0.4045em 1.618em;
+  font-weight: bold;
+  position: relative;
+  background: #6C6C6C;
+  border: none;
+  border-bottom: none;
+  border-top: none;
+  padding-left: 1.618em -4px;
+}
+
+.wy-menu-vertical li.current a {
+  color: rgb(186, 186, 186);
+}
+
+.wy-menu-vertical li.current a:hover {
+  background: #444444;
+}
+</pre>
 	  
         </div>
       </div>

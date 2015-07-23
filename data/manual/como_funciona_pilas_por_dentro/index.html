@@ -349,6 +349,10 @@
             <div class="section">
               
                 <h1 id="como-funciona-pilas-por-dentro">¿Cómo funciona pilas por dentro?</h1>
+<p><strong>NOTA: Esta sección describe el funcionamiento interno de la
+versión 0.83 de pilas-engine, que si bien no es la versión más
+reciente, muchas instrucciones son útiles para entender el funcionamiento
+interno de la aplicación.</strong></p>
 <p>Pilas es un proyecto con una arquitectura de objetos
 grande. Tiene mucha funcionalidad, incluye un
 motor de física, muchos personaje pre-diseñados, eventos, escenas
@@ -389,8 +393,6 @@ actualmente no es una prioridad.</p>
 <li>Box2D</li>
 <li>Qt4</li>
 </ul>
-<p>.. image:: images/logos/box2d.png</p>
-<p>.. image:: images/logos/qt-logo.jpg</p>
 <p>Box2D se utiliza cómo motor de física, mientras que Qt es un
 motor multimedia utilizado para dibujar, reproducir sonidos y
 manejar eventos.</p>
@@ -859,7 +861,7 @@ definidas en el archivo <code>Makefile</code>.</p>
     $('a').each(function(){
       var x=this.href;
 
-      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0) {
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0 && this.href.indexOf('http://') === -1 && this.href.indexOf('https://') === -1) {
         if (this.href.endsWith('/')) {
           this.href = this.href + "index.html";
         } else {
@@ -919,6 +921,50 @@ definidas en el archivo <code>Makefile</code>.</p>
     font-size: 15px !important;
   }
 </style>
+
+<style>
+
+img {
+  width: auto !important;
+}
+
+pre {
+  padding: 0px !important;
+}
+
+.hljs {
+  font-size: 15px;
+}
+
+td {
+  padding: 15px;
+  text-align: center;
+}
+
+.wy-menu-vertical li.current {
+  background: #0B0B0B;
+}
+
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+  color: #FFFFFF;
+  padding: 0.4045em 1.618em;
+  font-weight: bold;
+  position: relative;
+  background: #6C6C6C;
+  border: none;
+  border-bottom: none;
+  border-top: none;
+  padding-left: 1.618em -4px;
+}
+
+.wy-menu-vertical li.current a {
+  color: rgb(186, 186, 186);
+}
+
+.wy-menu-vertical li.current a:hover {
+  background: #444444;
+}
+</pre>
 	  
         </div>
       </div>
