@@ -422,11 +422,13 @@ y profesionales especialistas en desarrollo de Software.</p>
 
 
 <script type="text/javascript">
-  alert(document.location.href);
+  var dentro_de_pilas_engine = (document.location.href.indexOf('file://') === 0);
 
   // Ocultando la barra de búsqueda
-  var b = document.getElementsByName('q');
-  b[0].style.display = "none"
+  if (dentro_de_pilas_engine) {
+    var b = document.getElementsByName('q');
+    b[0].style.display = "none"
+  }
 </script>
 
 
@@ -458,5 +460,5 @@ y profesionales especialistas en desarrollo de Software.</p>
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2015-07-23 14:15:04.106524
+Build Date UTC : 2015-07-23 14:17:35.369379
 -->

@@ -462,11 +462,13 @@ los textos que siempre permanecen en la parte superior de la ventana.</p>
 
 
 <script type="text/javascript">
-  alert(document.location.href);
+  var dentro_de_pilas_engine = (document.location.href.indexOf('file://') === 0);
 
   // Ocultando la barra de búsqueda
-  var b = document.getElementsByName('q');
-  b[0].style.display = "none"
+  if (dentro_de_pilas_engine) {
+    var b = document.getElementsByName('q');
+    b[0].style.display = "none"
+  }
 </script>
 
 
