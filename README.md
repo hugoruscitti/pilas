@@ -28,7 +28,7 @@ todos los consejos para volverse colaborar del proyecto y participar en el desar
 La forma mas sencilla de instalar pilas en mediante los instaladores
 del sitio web:
 
-- http://www.pilas-engine.com.ar/descargas.html
+- http://pilas-engine.com.ar/#/descargas
 
 Los instaladores se generan pediodicamente y se distrubuyen para
 los sistemas mas utilizados.
