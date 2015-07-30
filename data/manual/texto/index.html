@@ -455,14 +455,35 @@ pequeños como demostraciones o ejemplos.</p>
 
   <script>
     function alternar_menu() {
-      var left = parseInt($('#lateral').css('left'), 10);
+      var sidebar = document.querySelectorAll(".wy-nav-side")[0];
+      var left = sidebar.style.left;
 
-      if (left !== 0) {
-        $('#lateral').css('left', '0px');
-        return false;
+      if (left === "-300px") {
+        sidebar.style.left = "0px";
+      } else {
+        if (left === "0px") {
+          sidebar.style.left = "-300px";
+        } else {
+          sidebar.style.left = "0px";
+        }
       }
 
     }
+
+    $(document).ready(function() {
+
+      document.querySelector('ul.wy-breadcrumbs>li>a').onclick = function() {
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+        if (w < 768) {
+          alternar_menu();
+          return false;
+        } else {
+          return true;
+        }
+
+      }
+    });
   </script>
 
   <style>
