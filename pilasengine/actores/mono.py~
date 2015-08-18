@@ -17,7 +17,7 @@ class Mono(Actor):
         self.imagen = "mono.png"
         self.sonido = self.pilas.sonidos.cargar('audio/grito.wav')
         self.imagen_normal = self.pilas.imagenes.cargar("mono.png")
-        self.imagen_reir = self.pilas.imagenes.cargar("mono_reir.png")
+        self.imagen_reir = self.pilas.imagenes.cargar("mono_sonreir.png")
         self.imagen_gritar = self.pilas.imagenes.cargar("mono_gritar.png")
 
         self.imagen = self.imagen_normal

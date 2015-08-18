@@ -415,11 +415,12 @@ la estructura inicial de actor</p>
 se especifica una imagen, se verán los signos de interrogación de
 color rojo.</p>
 <p>Una forma de crear el actor con una imagen es:</p>
-<pre><code>protagonista = Actor("planeta_azul.png")
+
+<pre><code>protagonista = pilas.actores.Actor(x,y,"planeta_azul.png")
 </code></pre>
 <p>incluso, es equivalente hacer lo siguiente:</p>
 <pre><code>imagen = pilas.imagenes.cargar("planeta_azul.png")
-protagonista = Actor(imagen)
+protagonista = pilas.actores.Actor(x,y,imagen)
 </code></pre>
 <p>El resultado será:</p>
 <p><img alt="" src="../imagenes/actores/planeta_azul.png" /></p>
@@ -438,7 +439,7 @@ protagonista.escala = [5], 7
 </code></pre>
 <p>Si quieres que el actor sea invisible, un truco es crearlo
 con la imagen <code>invisible.png</code>:</p>
-<pre><code>invisible = pilas.actores.Actor('invisible.png')
+<pre><code>invisible = pilas.actores.Actor(x,y,'invisible.png')
 </code></pre>
 <h3 id="aceituna">Aceituna</h3>
 <p>El actor aceituna es super simple</p>
@@ -447,8 +448,9 @@ con la imagen <code>invisible.png</code>:</p>
 </code></pre>
 <p><em>Comportamientos:</em></p>
 <ul>
-<li><code>aceituna.saludar(mensaje)</code></li>
-<li><code>aceituna.saltar()</code></li>
+<li><code>aceituna.decir(mensaje)</code></li>
+
+<li><code>aceituna.saltar() # Parece que no funciona</code></li>
 </ul>
 <h3 id="animacion">Animacion</h3>
 <p>Representa una animación de una grilla de imágenes.</p>
