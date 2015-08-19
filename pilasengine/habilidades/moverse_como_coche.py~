@@ -23,7 +23,7 @@ class MoverseComoCoche(moverse_con_el_teclado.MoverseConElTeclado):
                                               velocidad_rotacion=
                                               velocidad_rotacion,
                                               con_rotacion=True,
-					      marcha_atras=marcha_atras)
+					      marcha_atras=True)
 
         self._rozamiento = rozamiento
         self._velocidad_maxima_aux = self.velocidad_maxima
