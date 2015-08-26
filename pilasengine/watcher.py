@@ -21,12 +21,13 @@ class Watcher(QtCore.QObject):
         self._timer.setInterval(checkEvery*1000)
         self._timer.timeout.connect(self._checkFile)
         self._timer.start()
-        
+
     def cambiar_archivo_a_observar(self, aFile):
-        self.file = aFile
-        
         if aFile:
+            self.file = os.path.dirname(aFile)
             self.ultima_modificacion = os.path.getmtime(self.file)
+        else:
+            self.file = None
 
     def prevenir_reinicio(self):
         if self.file:
@@ -35,7 +36,7 @@ class Watcher(QtCore.QObject):
     def _checkFile(self):
         if not self.file:
             return
-        
+
         modificacion = os.path.getmtime(self.file)
 
         if modificacion != self.ultima_modificacion:
