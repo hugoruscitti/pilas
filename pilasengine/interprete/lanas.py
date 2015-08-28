@@ -9,6 +9,7 @@ import sys
 import inspect
 import os
 import code
+import traceback
 
 os.environ['lanas'] = 'enabled'
 
@@ -160,12 +161,31 @@ class InterpreteLanas(editor_base.EditorBase):
         mensajes = mensaje.split('\n')
 
         for m in mensajes:
+            print [m]
+
+            m = m.replace('Traceback (most recent call last)', 'Traza del error (las llamadas mas recientes al final)')
+            m = m.replace('File "<string>"', 'Archivo actual')
+            m = m.replace('File ', 'Archivo ')
+            m = m.replace(' line ', 'linea ')
+            m = m.replace('in ', 'en ')
             m = m.replace('\t', ' &nbsp; &nbsp;')
-            self.insertHtml(u" <b style='color: #F00000'> &nbsp; × %s </b><br>" %(m.decode('utf-8')))
+            
+            for x in range(10):
+                m = m.replace('  ', '&nbsp;&nbsp;')
+
+            self.insertHtml(u" <b style='color: #F00000'> &nbsp; ×</b> # %s <br>" %(m.decode('utf-8')))
+
 
     def insertar_error_desde_exception(self, e):
         self.insertPlainText('\n')
-        self.insertar_error("#%s: %s" %(e.__class__.__name__, e.message))
+        self.insertar_error("%s: %s" %(e.__class__.__name__, e.message))
+
+        tb = traceback.format_exc()
+
+        if tb:
+            self.insertar_error(" ")
+            self.insertar_error(tb)
+
         self._mover_cursor_al_final()
 
     def insertar_mensaje(self, mensaje):
