@@ -58,12 +58,14 @@ http://www.pilas-engine.com.ar
             'pilasengine.eventos',
             'pilasengine.interfaz',
             'pilasengine.sonidos',
+            'data',
         ],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
+
         package_data = {
-            'images': ['data/*'],
-            },
+            'images': [ 'data/*' ]
+        },
 
         scripts=['bin/pilasengine'],
 
@@ -77,4 +79,3 @@ http://www.pilas-engine.com.ar
             'Topic :: Games/Entertainment',
         ],
 )
-
