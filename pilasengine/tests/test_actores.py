@@ -107,6 +107,22 @@ class TestActores(unittest.TestCase):
         a.etiquetas.eliminar('enemigo')
         self.assertEquals(str(a.etiquetas), "['aceituna']")
 
+    def test_el_actor_esta_visible(self):
+        actor = self.pilas.actores.Aceituna()
+        self.assertFalse(actor.esta_fuera_de_la_pantalla(), "El actor inicialmente esta dentro de la pantalla")
+
+        actor.x = 600
+        self.assertTrue(actor.esta_fuera_de_la_pantalla(), "Luego de moverse 600 pixeles ya no se ve")
+
+        self.pilas.camara.x = 600
+        self.assertFalse(actor.esta_fuera_de_la_pantalla(), "Si la camara lo apunta lo vemos de nuevo")
+
+        self.pilas.camara.x = 0
+        self.pilas.camara.escala = 0.5
+        self.assertFalse(actor.esta_fuera_de_la_pantalla(), "Si la camara regresa a 0, pero tiene poco zoom tambien se ve.")
+
+
+        self.assertTrue(actor.esta_dentro_de_la_pantalla(), "y el metodo esta_dentro_de_la_pantalla retorna lo contrario")
 
 class TestActoresPersonalizados(unittest.TestCase):
     app = QtGui.QApplication(sys.argv)
@@ -195,6 +211,8 @@ class TestActoresPersonalizados(unittest.TestCase):
         self.assertTrue('Misil' in clases, "Existe la clase Misil")
         self.assertTrue('Actor' in clases, "Existe la clase Actor")
         self.assertTrue('Aceituna' in clases, "Existe la clase Aceituna")
+
+
 
 if __name__ == '__main__':
     unittest.main()

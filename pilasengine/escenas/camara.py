@@ -73,6 +73,18 @@ class Camara(object):
     def obtener_y(self):
         return self._y
 
+    def obtener_area_visible(self):
+        ancho, alto = self.pilas.widget.obtener_area()
+        dx = int((ancho/2.0) / self.escala)
+        dy = int((alto/2.0) / self.escala)
+
+        izquierda = self.x - dx
+        derecha = self.x + dx
+        arriba = self.y + dy
+        abajo = self.y - dy
+
+        return (izquierda, derecha, arriba, abajo)
+
     def definir_y(self, valor):
         anterior_y = self.y
         self.pilas.utils.interpretar_propiedad_numerica(self, 'y', valor)

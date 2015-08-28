@@ -1019,9 +1019,12 @@ class Actor(Estudiante):
         if self.fijo:
             return False
 
-        izquierda, derecha, arriba, abajo = self.escena.camara.obtener_area_visible()
+        (izquierda, derecha, arriba, abajo) = self.pilas.camara.obtener_area_visible()
         return (self.derecha < izquierda or self.izquierda > derecha or
                 self.abajo > arriba or self.arriba < abajo)
+
+    def esta_dentro_de_la_pantalla(self):
+        return not self.esta_fuera_de_la_pantalla()
 
     def es_fondo(self):
         """Comprueba si el actor es un fondo del juego."""
