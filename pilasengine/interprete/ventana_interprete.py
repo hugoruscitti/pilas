@@ -28,7 +28,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.iniciar_interfaz()
         self._vincular_atajos_de_teclado()
         self.editor.crear_archivo_inicial()
-        #self.editor.ejecutar()
 
     def _vincular_atajos_de_teclado(self):
         self.pushButton_6.setShortcut(QKeySequence('F7'))

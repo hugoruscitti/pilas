@@ -296,6 +296,8 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
             self.editor.guardar_contenido_directamente()
             self.editor.abrir_archivo_del_proyecto(text)
 
+    def limpiar_interprete(self):
+        self.consola_lanas.limpiar()
 
 class Editor(editor_base.EditorBase):
     """Representa el editor de texto que aparece en el panel derecho.
@@ -308,6 +310,7 @@ class Editor(editor_base.EditorBase):
 
     def __init__(self, main, interpreterLocals, consola_lanas, ventana_interprete):
         super(Editor, self).__init__()
+        self.cantidad_ejecuciones = 0
         self.consola_lanas = consola_lanas
         self.ventana_interprete = ventana_interprete
         self.ruta_del_archivo_actual = None
@@ -620,6 +623,12 @@ class Editor(editor_base.EditorBase):
 
         for m in modulos_a_recargar:
             reload(m)
+
+        self.cantidad_ejecuciones += 1
+
+        # Limpia la consola a partir de la primer ejecucion luego de iniciar.
+        if self.cantidad_ejecuciones > 1:
+            self.main.limpiar_interprete()
 
         try:
             exec(contenido, self.interpreterLocals)
