@@ -27,7 +27,6 @@ import io_lanas
 class PythonInterpreter(code.InteractiveInterpreter):
 
     def __init__(self, localVars, interprete_lanas):
-        self.runResult = ''
         code.InteractiveInterpreter.__init__(self, localVars)
         self.interprete_lanas = interprete_lanas
         self.error_io = io_lanas.ErrorOutput(interprete_lanas)
@@ -37,17 +36,27 @@ class PythonInterpreter(code.InteractiveInterpreter):
         # redirecting stdout to our method write before calling code cd
         sys.stdout = self.normal_io
         sys.stderr = self.error_io
-        code.InteractiveInterpreter.runcode(self,cd)
+        code.InteractiveInterpreter.runcode(self, cd)
         # redirecting back to normal stdout
         sys.stdout = sys.__stdout__
         sys.stderr = sys.__stderr__
 
     def showsyntaxerror(self, filename=None):
-        self.error_io.write("Error de sintaxis en la linea anterior.")
+        self.error_io.write("Error de sintaxis en el codigo anterior.")
 
     def write(self, data):
         self.error_io.write(data)
 
+    def es_metodo(self, linea):
+        codigo = "type(%s).__name__" %(linea)
+
+        try:
+            tipo_de_dato = eval(codigo, self.locals)
+        except Exception, e:
+            return None
+
+        comparacion = tipo_de_dato == "instancemethod"
+        return comparacion
 
 class WidgetLanas(QWidget, lanas_ui.Ui_Lanas):
 
@@ -161,15 +170,13 @@ class InterpreteLanas(editor_base.EditorBase):
         mensajes = mensaje.split('\n')
 
         for m in mensajes:
-            print [m]
-
             m = m.replace('Traceback (most recent call last)', 'Traza del error (las llamadas mas recientes al final)')
             m = m.replace('File "<string>"', 'Archivo actual')
             m = m.replace('File ', 'Archivo ')
             m = m.replace(' line ', 'linea ')
             m = m.replace('in ', 'en ')
             m = m.replace('\t', ' &nbsp; &nbsp;')
-            
+
             for x in range(10):
                 m = m.replace('  ', '&nbsp;&nbsp;')
 
@@ -426,6 +433,19 @@ class InterpreteLanas(editor_base.EditorBase):
             if self.haveLine and not self.multiline: # one line command
                 self.command = line # line is the command
                 self.append('') # move down one line
+
+                if '=' in line:
+                    primer_parte = line.split('=')[0]
+
+                    if self.interpreter.es_metodo(primer_parte):
+                        print "ES METOPDO"
+                        self.insertar_error("No puedes sobre-escribir un metodo, lo siento.")
+                        self.command = '' # clear command
+                        self.marker() # handle marker style
+                        return None
+
+
+
 
                 try:
                     self.interpreter.runsource(self.command)
