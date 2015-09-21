@@ -19,7 +19,7 @@ from PyQt4 import QtGui
 
 from pilasengine.configuracion.configuracion_base import Ui_Dialog
 
-VERSION = '2'
+VERSION = '3'
 
 class Configuracion(object):
 
@@ -28,13 +28,12 @@ class Configuracion(object):
         self.cargar()
 
     def cargar(self):
-
         if os.path.exists(self.obtener_ruta()):
             with open(self.obtener_ruta(), 'rt') as archivo:
                 self.valores = json.load(archivo, 'ascii')
         else:
             self.cargar_configuracion_por_omision()
-            
+
         if self.valores['version'] != VERSION:
             self.cargar_configuracion_por_omision()
 
@@ -56,6 +55,7 @@ class Configuracion(object):
                 'audio_habilitado': False,
                 'pad_habilitado': False,
                 'aceleracion_habilitada': True,
+                'autocompletado': True,
                 'version': VERSION, # Versión del formato de configuración.
                 }
 
@@ -81,7 +81,7 @@ class Configuracion(object):
 
     def audio_habilitado(self):
         return self.valores['audio_habilitado']
-    
+
     def pad_habilitado(self):
         return self.valores['pad_habilitado']
 
@@ -90,12 +90,18 @@ class Configuracion(object):
 
     def definir_audio_habilitado(self, valor):
         self.valores['audio_habilitado'] = valor
-    
+
     def definir_pad_habilitado(self, valor):
         self.valores['pad_habilitado'] = valor
 
     def definir_aceleracion_habilitada(self, valor):
         self.valores['aceleracion_habilitada'] = valor
+
+    def autocompletado_habilitado(self):
+        return self.valores['autocompletado']
+
+    def definir_autocompletado(self, valor):
+        self.valores['autocompletado'] = valor
 
     def _buscar_fuente_personalizada(self):
         this_dir = os.path.dirname(os.path.realpath('.'))
@@ -117,6 +123,7 @@ class Configuracion(object):
 
         return None
 
+
 class DialogoConfiguracion(Ui_Dialog):
 
     def setupUi(self, Dialog):
@@ -125,16 +132,26 @@ class DialogoConfiguracion(Ui_Dialog):
         self._conectar_eventos()
         self.configuracion = Configuracion()
         self.definir_fuente(self.configuracion.obtener_fuente())
-        
+
         self.checkBox.setChecked(self.configuracion.audio_habilitado())
-        self.checkBox_2.setChecked(self.configuracion.pad_habilitado())    
+        self.checkBox_2.setChecked(self.configuracion.pad_habilitado())
         self.checkbox_aceleracion.setChecked(self.configuracion.aceleracion_habilitada())
-        
+        self.checkbox_autocompletar.setChecked(self.configuracion.autocompletado_habilitado())
+        self.mensaje.setVisible(False)
+
     def _conectar_eventos(self):
         self.fuente.connect(self.fuente, QtCore.SIGNAL("clicked()"),
                             self.cuando_pulsa_el_boton_fuente)
         self.guardar.connect(self.guardar, QtCore.SIGNAL("clicked()"),
                             self.cuando_pulsa_el_boton_guardar)
+
+        self.checkBox.connect(self.checkBox, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
+        self.checkBox_2.connect(self.checkBox_2, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
+        self.checkbox_aceleracion.connect(self.checkbox_aceleracion, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
+        self.checkbox_autocompletar.connect(self.checkbox_autocompletar, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
+
+    def _mostrar_mensaje(self):
+        self.mensaje.setVisible(True)
 
     def cuando_pulsa_el_boton_fuente(self):
         font, ok = QtGui.QFontDialog.getFont(self.configuracion.obtener_fuente())
@@ -153,15 +170,17 @@ class DialogoConfiguracion(Ui_Dialog):
         self.configuracion.definir_audio_habilitado(self.checkBox.isChecked())
         self.configuracion.definir_pad_habilitado(self.checkBox_2.isChecked())
         self.configuracion.definir_aceleracion_habilitada(self.checkbox_aceleracion.isChecked())
+        self.configuracion.definir_autocompletado(self.checkbox_autocompletar.isChecked())
+
         self.configuracion.guardar()
         self.Dialog.close()
-        
+
+
 def abrir(parent=None):
     MainDialog = QtGui.QDialog(parent)
 
     d = DialogoConfiguracion()
     d.setupUi(MainDialog)
     MainDialog.exec_()
-    #MainDialog.raise_()
 
     return d

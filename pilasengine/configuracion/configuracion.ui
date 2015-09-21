@@ -44,10 +44,10 @@
      </item>
     </layout>
    </item>
-   <item row="4" column="0">
+   <item row="6" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_4"/>
    </item>
-   <item row="5" column="0">
+   <item row="7" column="0">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -60,7 +60,7 @@
      </property>
     </spacer>
    </item>
-   <item row="6" column="0">
+   <item row="8" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer name="horizontalSpacer">
@@ -96,7 +96,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Soporte para joysticks</string>
+      <string>Soporte para joysticks.</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -115,7 +115,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Habilitar Audio</string>
+      <string>Habilitar Audio.</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -125,10 +125,30 @@
    <item row="3" column="0">
     <widget class="QCheckBox" name="checkbox_aceleracion">
      <property name="text">
-      <string>Usar aceleración de video por hardware (OpenGL)</string>
+      <string>Usar aceleración de video por hardware (OpenGL).</string>
      </property>
      <property name="checked">
       <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QCheckBox" name="checkbox_autocompletar">
+     <property name="text">
+      <string>Sugerir código usando un menú contextual mientras escribe.</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="mensaje">
+     <property name="styleSheet">
+      <string notr="true">color: red</string>
+     </property>
+     <property name="text">
+      <string notr="true">Estos cambios requiren que reinicies el intérprete.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>

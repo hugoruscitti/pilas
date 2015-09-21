@@ -66,6 +66,8 @@ class CompletionTextEdit(QtGui.QTextEdit):
         QtGui.QTextEdit.focusInEvent(self, event)
 
     def autocomplete(self, event):
+        if not self.interpreterLocals['pilas'].configuracion.autocompletado_habilitado():
+            return
 
         # Completar comillas y braces
         if event.key() in [Qt.Key_QuoteDbl, Qt.Key_Apostrophe]:
