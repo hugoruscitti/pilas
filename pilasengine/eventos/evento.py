@@ -25,8 +25,9 @@ class Evento():
         for respuesta in set(self.respuestas):
             try:
                 respuesta(**evento)
-            except ReferenceError:
+            except Exception, e:
                 a_eliminar.append(respuesta)
+                raise Exception(e)
 
         if a_eliminar:
             for x in a_eliminar:

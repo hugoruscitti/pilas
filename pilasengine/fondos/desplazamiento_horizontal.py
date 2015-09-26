@@ -57,8 +57,9 @@ class DesplazamientoHorizontal(fondo.Fondo):
 
         painter.restore()
 
-    def agregar(self, imagen, x=0, y=0, velocidad=0):
+    def agregar(self, imagen, x=0, y=0, velocidad=1):
         nueva_capa = Capa(self.pilas, imagen, x, y, velocidad)
+        nueva_capa.z = self.z
         self.capas.append(nueva_capa)
 
     def cuando_mueve_camara(self, evento):
@@ -67,6 +68,11 @@ class DesplazamientoHorizontal(fondo.Fondo):
 
     def esta_fuera_de_la_pantalla(self):
         return False
+
+    def desplazar(self, dx):
+        for capa in self.capas:
+            capa.mover_horizontal(dx)
+
 
 
 class Capa(object):
@@ -87,4 +93,3 @@ class Capa(object):
 
     def mover_horizontal(self, dx):
         self.x += dx * self.velocidad
-

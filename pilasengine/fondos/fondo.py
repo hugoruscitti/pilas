@@ -24,6 +24,16 @@ class Fondo(actor.Actor):
 
         self.z = 1000
         self.radio_de_colision = None
-        
+
     def pre_iniciar(self, *k, **kw):
         pass
+        
+    def obtener_z(self):
+        return self._z
+
+    def definir_z(self, z):
+        self._z = z
+        self.pilas.escena_actual()._actores.sort()
+
+    z = property(obtener_z, definir_z,
+                 doc="Define lejania respecto del observador.")

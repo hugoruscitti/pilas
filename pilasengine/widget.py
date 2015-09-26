@@ -17,6 +17,19 @@ import fps
 
 from pilasengine.controles import Controles
 
+def capturar_errores_decorator(func):
+    def _decorator(self, *args, **kwargs):
+        # access a from TestSample
+        if self.capturar_errores:
+            try:
+                func(self, *args, **kwargs)
+            except Exception, e:
+                self.procesar_error(e)
+        else:
+            func(self, *args, **kwargs)
+
+    return _decorator
+
 
 class WidgetConAceleracion(QGLWidget):
 
@@ -110,6 +123,7 @@ class WidgetConAceleracion(QGLWidget):
         # Pide redibujar el widget (Qt llamará a paintEvent después).
         self.update()
 
+    @capturar_errores_decorator
     def keyPressEvent(self, event):
         if event.isAutoRepeat():
             return
@@ -133,29 +147,36 @@ class WidgetConAceleracion(QGLWidget):
 
         self.pilas.depurador.cuando_pulsa_tecla(codigo_de_tecla)
 
+    @capturar_errores_decorator
     def keyReleaseEvent(self, event):
         if event.isAutoRepeat():
             return
+
         codigo_de_tecla = Controles.obtener_codigo_de_tecla_normalizado(event.key())
+
         self.pilas.eventos.suelta_tecla.emitir(codigo=codigo_de_tecla,
                                                es_repeticion=event.isAutoRepeat(),
                                                texto=event.text())
 
+    @capturar_errores_decorator
     def mousePressEvent(self, event):
         x, y = self.pilas.obtener_coordenada_de_pantalla_relativa((event.pos().x() - self.window_dx) / self.escala,
                                                                   (event.pos().y() - self.window_dy) / self.escala)
 
         self.pilas.eventos.click_de_mouse.emitir(boton=event.button(), x=x, y=y)
 
+    @capturar_errores_decorator
     def mouseReleaseEvent(self, event):
         x, y = self.pilas.obtener_coordenada_de_pantalla_relativa((event.pos().x() - self.window_dx) / self.escala,
                                                                   (event.pos().y() - self.window_dy) / self.escala)
 
         self.pilas.eventos.termina_click.emitir(boton=event.button(), x=x, y=y)
 
+    @capturar_errores_decorator
     def wheelEvent(self, event):
         self.pilas.escena_actual().mueve_rueda.emitir(delta=event.delta() / 120)
 
+    @capturar_errores_decorator
     def mouseMoveEvent(self, event):
         x, y = self.pilas.obtener_coordenada_de_pantalla_relativa((event.pos().x() - self.window_dx) / self.escala,
                                                                   (event.pos().y() - self.window_dy) / self.escala)
@@ -443,6 +464,7 @@ class WidgetSinAceleracion(QtGui.QWidget):
         # Pide redibujar el widget (Qt llamará a paintEvent después).
         self.update()
 
+    @capturar_errores_decorator
     def keyPressEvent(self, event):
         if event.isAutoRepeat():
             return
@@ -466,6 +488,7 @@ class WidgetSinAceleracion(QtGui.QWidget):
 
         self.pilas.depurador.cuando_pulsa_tecla(codigo_de_tecla)
 
+    @capturar_errores_decorator
     def keyReleaseEvent(self, event):
         if event.isAutoRepeat():
             return
@@ -474,21 +497,25 @@ class WidgetSinAceleracion(QtGui.QWidget):
                                                es_repeticion=event.isAutoRepeat(),
                                                texto=event.text())
 
+    @capturar_errores_decorator
     def mousePressEvent(self, event):
         x, y = self.pilas.obtener_coordenada_de_pantalla_relativa((event.pos().x() - self.window_dx) / self.escala,
                                                                   (event.pos().y() - self.window_dy) / self.escala)
 
         self.pilas.eventos.click_de_mouse.emitir(boton=event.button(), x=x, y=y)
 
+    @capturar_errores_decorator
     def mouseReleaseEvent(self, event):
         x, y = self.pilas.obtener_coordenada_de_pantalla_relativa((event.pos().x() - self.window_dx) / self.escala,
                                                                   (event.pos().y() - self.window_dy) / self.escala)
 
         self.pilas.eventos.termina_click.emitir(boton=event.button(), x=x, y=y)
 
+    @capturar_errores_decorator
     def wheelEvent(self, event):
         self.pilas.escena_actual().mueve_rueda.emitir(delta=event.delta() / 120)
 
+    @capturar_errores_decorator
     def mouseMoveEvent(self, event):
         x, y = self.pilas.obtener_coordenada_de_pantalla_relativa((event.pos().x() - self.window_dx) / self.escala,
                                                                   (event.pos().y() - self.window_dy) / self.escala)
