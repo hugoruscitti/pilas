@@ -7,7 +7,7 @@ from setuptools import setup
 setup(
         name='pilas',
         zip_safe=False,
-        version="1.1.0",
+        version="1.2.0",
         description="""============
 Pilas Engine
 ============

@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '1.1.0',
-  fecha: '28 de Aug del 2015',
-  commit: 'a79a794',
-  changelog: ['cambio menor.', 'Limpiando errores del intérprete luego de ejecutar desde el editor.', 'Informando como error cuando se quiere sobre-escribir un método desde el intérprete.', 'Merge pull request #279 from arkhan/master', 'mostrando mensajes de error.', ]
+  version: '1.2.0',
+  fecha: '26 de Sep del 2015',
+  commit: 'a1b165e',
+  changelog: ['arreglos generales en el sistema de errores y agreagando un nuevo ejemplo de escenas.', 'Implementando un parámetro para habilitar o deshabitar el autocompletado.', 'Merge pull request #280 from arkhan/master', 'Corrigiendo MANIFEST.in para que incluya todo el contenido multimedia de pilas', 'release 1.1.0', ]
 }
