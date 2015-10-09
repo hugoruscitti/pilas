@@ -109,7 +109,8 @@ class InterpreteLanas(editor_base.EditorBase):
         self.interpreterLocals = {'raw_input': self.raw_input,
                                   'input': self.input,
                                   'sys': sys,
-                                  'help': self.help}
+                                  'help': help,
+                                  'ayuda': self.help}
 
         palette = QPalette()
         palette.setColor(QPalette.Text, QColor(0, 0, 0))
