@@ -46,7 +46,7 @@ class Utils(object):
     def obtener_ruta_al_recurso(self, ruta):
         return self.pilas.obtener_ruta_al_recurso(ruta)
 
-    def interpolar(self, actor, atributo, valor, duracion=0.5):
+    def interpolar(self, actor, atributo, valor, duracion=0.5, tipo='desaceleracion_gradual'):
 
         if isinstance(valor, float) or isinstance(valor, int):
             valor = [valor]
@@ -63,8 +63,22 @@ class Utils(object):
             if x == 0:
                 x = 0.000000001
             parametro = {atributo: x}
+
+            algoritmos = {
+                'lineal': tweener.LINEAR,
+                'aceleracion_gradual': tweener.IN_QUAD,
+                'desaceleracion_gradual': tweener.OUT_QUAD,
+                'gradual': tweener.IN_OUT_QUAD,
+                'elastico': tweener.OUT_ELASTIC,
+            }
+
+            if tipo in algoritmos:
+                tween_type = algoritmos[tipo]
+            else:
+                raise ValueError("El tipo de interpolacion %s es invalido" % (tipo))
+
             tweener.add_tween(actor, tween_time=duracion,
-                              tween_type=tweener.IN_OUT_QUAD,
+                              tween_type=tween_type,
                               tween_delay=demora_inicial,
                               inicial=anterior,
                               **parametro)
