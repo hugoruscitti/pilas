@@ -21,8 +21,6 @@ los símbolos y objetos de la biblioteca `pilas-engine`_.
    pilasengine.habilidades
    pilasengine.imagenes
    pilasengine.interfaz
-   pilasengine.interprete
-   pilasengine.manual
    pilasengine.musica
    pilasengine.pad
    pilasengine.sonidos
