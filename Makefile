@@ -12,6 +12,7 @@ all:
 	@echo "  $(V)utest$(N)       Lanza todos los test de unidad."
 	@echo "  $(V)ui$(N)          Actualiza todas las interfaces de usuario."
 	@echo "  $(V)manual$(N)      Actualiza el manual y lo copia a data/manual."
+	@echo "  $(V)api$(N)         Actualiza la API y la copia a data/api."
 	@echo "  $(V)rm_pyc$(N)      Borra todos los archivos .pyc del proyecto."
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
 	@echo ""
@@ -67,6 +68,13 @@ manual:
 	cp -R -f ../pilas-manual/site/* data/manual/
 	git add data/manual
 	git commit -m "actualizando manual."
+
+api:
+	mkdir -p data/api
+	cd ../pilas-api; make compilar;
+	cp -R -f ../pilas-api/build/html/* data/api/
+	git add data/api
+	git commit -m "actualizando api."
 
 ui:
 	pyuic4 -xo pilasengine/asistente/asistente_base.py pilasengine/asistente/asistente.ui
