@@ -145,6 +145,17 @@ class Disparar(habilidades.Habilidad):
                                                   y=self.receptor.y + self.offset_origen_actor_y,
                                                   rotacion=self.receptor.rotacion + -(self.rotacion_disparo),
                                                   angulo_de_movimiento=self.receptor.rotacion + (self.angulo_salida_disparo))
+                self._agregar_disparo(objeto_a_disparar)
+                objeto_a_disparar.fijo = self.receptor.fijo
+            elif self.municion.__name__ in ['BalasDoblesDesviadas']:
+                municiones = self.municion.instanciar(pilas=self.pilas,
+                                                  x=self.receptor.x + offset_origen_actor_x,
+                                                  y=self.receptor.y + self.offset_origen_actor_y,
+                                                  rotacion=self.receptor.rotacion + -(self.rotacion_disparo),
+                                                  angulo_de_movimiento=self.receptor.rotacion + (self.angulo_salida_disparo))
+                for objeto_a_disparar in municiones:
+                    self._agregar_disparo(objeto_a_disparar)
+                    objeto_a_disparar.fijo = self.receptor.fijo
             else:
                 objeto_a_disparar = self.municion(pilas=self.pilas)
                 objeto_a_disparar.x = self.receptor.x + offset_origen_actor_x
@@ -161,8 +172,8 @@ class Disparar(habilidades.Habilidad):
 
                 objeto_a_disparar.aprender(self.pilas.habilidades.EliminarseSiSaleDePantalla)
 
-            self._agregar_disparo(objeto_a_disparar)
-            objeto_a_disparar.fijo = self.receptor.fijo
+                self._agregar_disparo(objeto_a_disparar)
+                objeto_a_disparar.fijo = self.receptor.fijo
         else:
             raise "No se puede disparar este objeto."
 

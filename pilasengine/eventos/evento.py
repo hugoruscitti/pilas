@@ -148,7 +148,9 @@ class ProxyMetodo(object):
 
     def __call__(self, **evento):
         if self.inst is not None and self.inst() is None:
-            raise ReferenceError("El metodo ha dejado de existir")
+            ## WARN TODO: informar que el metodo ha dejado de existir
+            #raise ReferenceError("El metodo ha dejado de existir")
+            return
         elif self.inst is not None:
             mtd = types.MethodType(self.func, self.inst())
         else:

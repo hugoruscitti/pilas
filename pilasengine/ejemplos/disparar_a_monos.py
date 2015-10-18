@@ -3,7 +3,7 @@ import pilasengine
 import os
 import random
 
-from pilas.actores.actor import Actor
+from pilasengine.actores.actor import Actor
 
 pilas = pilasengine.iniciar()
 
@@ -13,7 +13,7 @@ def asignar_arma_simple():
 def asignar_arma_doble(estrella, disparo):
     torreta.municion = municion_doble_bala
     estrella.eliminar()
-    pilas.mundo.agregar_tarea(10, asignar_arma_simple)
+    pilas.tareas.siempre(10, asignar_arma_simple)
     pilas.avisar("ARMA MEJORADA")
 
 
@@ -29,9 +29,9 @@ def crear_enemigo():
 
     # Hace que la aceituna aparezca gradualmente, aumentando de tamaño.
     enemigo.escala = 0
-    enemigo.escala = pilas.interpolar(0.5, duracion=0.5, tipo='elastico_final')
+    pilas.utils.interpolar(enemigo, 'escala', 0.5, duracion=0.5, tipo='elastico')
 
-    enemigo.aprender(pilas.habilidades.PuedeExplotar)
+    enemigo.aprender("PuedeExplotar")
 
     if x >= 0 and x <= 100:
         x = 180
@@ -48,26 +48,27 @@ def crear_enemigo():
 
     enemigos.append(enemigo)
 
-    tipo_interpolacion = ['lineal',
-                          'aceleracion_gradual',
-                          'desaceleracion_gradual',
-                          'rebote_inicial',
-                          'rebote_final']
+    tipo_interpolacion = ["lineal",
+                          "aceleracion_gradual",
+                          "desaceleracion_gradual",
+                          "gradual"]
 
-    enemigo.x = pilas.interpolar(0, tiempo, tipo=random.choice(tipo_interpolacion))
-    enemigo.y = pilas.interpolar(0, tiempo, tipo=random.choice(tipo_interpolacion))
+    interpolacion = random.choice(tipo_interpolacion)
+
+    pilas.utils.interpolar(enemigo, 'x', 0, duracion=tiempo, tipo=interpolacion)
+    pilas.utils.interpolar(enemigo, 'y', 0, duracion=tiempo, tipo=interpolacion)
 
     if random.randrange(0, 20) > 15:
         if issubclass(torreta.habilidades.DispararConClick.municion, municion_bala_simple):
 
             estrella = pilas.actores.Estrella(x,y)
-            estrella.escala = pilas.interpolar(0.5, duracion=0.5, tipo='elastico_final')
+            pilas.utils.interpolar(estrella, 'escala', 0.5, duracion=0.5, tipo='elastico')
 
-            pilas.escena_actual().colisiones.agregar(estrella,
-                                                     torreta.habilidades.DispararConClick.proyectiles,
-                                                     asignar_arma_doble)
+            pilas.colisiones.agregar(estrella,
+                                     torreta.habilidades.DispararConClick.proyectiles,
+                                     asignar_arma_doble)
 
-            pilas.mundo.agregar_tarea(3, eliminar_estrella, estrella)
+            pilas.tareas.siempre(3, eliminar_estrella, estrella)
 
     if fin_de_juego:
         return False
@@ -88,7 +89,7 @@ def reducir_tiempo():
 def enemigo_destruido(disparo, enemigo):
     enemigo.eliminar()
     puntos.escala = 0
-    puntos.escala = pilas.interpolar(1, duracion=0.5, tipo='rebote_final')
+    pilas.utils.interpolar(puntos, 'escala', 1, duracion=0.5, tipo='elastico')
     puntos.aumentar(1)
 
 
@@ -116,18 +117,18 @@ fin_de_juego = False
 pilas.actores.Sonido()
 
 
-municion_bala_simple = pilas.actores.Bala
-municion_doble_bala = pilas.municion.BalasDoblesDesviadas
+municion_bala_simple = pilasengine.actores.Bala
+municion_doble_bala = pilasengine.actores.BalasDoblesDesviadas
 
 torreta = pilas.actores.Torreta(municion_bala_simple=municion_bala_simple,
                                 enemigos=enemigos,
                                 cuando_elimina_enemigo=enemigo_destruido)
 
-pilas.mundo.agregar_tarea(1, crear_enemigo)
+pilas.tareas.siempre(1, crear_enemigo)
 
-pilas.mundo.agregar_tarea(20, reducir_tiempo)
+pilas.tareas.siempre(20, reducir_tiempo)
 
-pilas.escena_actual().colisiones.agregar(torreta, enemigos, perder)
+pilas.colisiones.agregar(torreta, enemigos, perder)
 
 pilas.avisar("Pulsa pulsa y mueve el raton para destruirlos.")
 pilas.ejecutar()

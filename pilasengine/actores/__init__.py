@@ -682,6 +682,7 @@ from pilasengine.actores.animacion import Animacion
 from pilasengine.actores.animado import Animado
 from pilasengine.actores.banana import Banana
 from pilasengine.actores.bala import Bala
+from pilasengine.actores.balas_dobles_desviadas import BalasDoblesDesviadas
 from pilasengine.actores.banana import Banana
 from pilasengine.actores.bomba import Bomba
 from pilasengine.actores.boton import Boton
