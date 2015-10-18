@@ -28,7 +28,7 @@ item = item + ']'
 changelist = item
 
 template = template.\
-  replace('VERSION_STR', '1.2.0').\
+  replace('VERSION_STR', '1.3.0').\
   replace('FECHA', hoy.strftime('%d de %b del %Y')).\
   replace('CHANGELOG_LIST', changelist).\
   replace('COMMIT', str(commit))
