@@ -33,7 +33,7 @@ class Animacion(Animado):
         >>> animacion = pilas.actores.Animacion(grilla, ciclica=True,
                                                 velocidad=1)
 
-        .. image:: images/actores/explosion.png
+        .. image:: ../../pilas/data/manual/imagenes/actores/explosion.png
     """
 
     def __init__(self, pilas, *k, **kv):

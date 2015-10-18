@@ -11,13 +11,13 @@ import math
 
 class DisparoLaser(Actor):
     """Muestra un disparo que avanza por la pantalla.
-    
-    .. image:: images/actores/disparo_laser.png
+
+    .. image:: ../../pilas/data/manual/imagenes/actores/disparo_laser.png
 
     Este actor se podría usar como arma para juegos de naves
     generalmente. Por ejemplo, el actor NaveRoja dispara usando
     este actor como munición.
-    
+
     """
 
     def pre_iniciar(self, x=0, y=0, rotacion=0, velocidad=10, imagen="sin_imagen.png"):
@@ -29,11 +29,11 @@ class DisparoLaser(Actor):
         self._calcular_movimiento_desde_rotacion(velocidad)
         self.aprender(self.pilas.habilidades.EliminarseSiSaleDePantalla)
         self.cuando_se_elimina = None
-    
+
     def actualizar(self):
         self.x += self.dx
         self.y += self.dy
-        
+
     def _calcular_movimiento_desde_rotacion(self, velocidad):
         rotacion_en_radianes = math.radians(self.rotacion)
         self.dx = math.cos(rotacion_en_radianes) * velocidad
@@ -42,5 +42,5 @@ class DisparoLaser(Actor):
     def eliminar(self):
         if self.cuando_se_elimina:
             self.cuando_se_elimina(self)
-            
+
         Actor.eliminar(self)

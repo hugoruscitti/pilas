@@ -12,7 +12,7 @@ from pilasengine.actores.animacion import Animacion
 class Moneda(Animacion):
     """Representa una moneda con animación.
 
-    .. image:: images/actores/moneda.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/moneda.png
 
     Ejemplo:
 

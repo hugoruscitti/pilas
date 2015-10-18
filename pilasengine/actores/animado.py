@@ -25,7 +25,7 @@ class Animado(Actor):
         >>> actor.definir_cuadro(5)
 
 
-    .. image:: images/actores/pingu.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/pingu.png
     """
 
     def __init__(self, pilas, *k, **kv):
@@ -39,7 +39,7 @@ class Animado(Actor):
         :type y: int
         """
         Actor.__init__(self, pilas, *k, **kv)
-        
+
     def pre_iniciar(self, x=0, y=0, grilla=None):
         self.imagen = copy.copy(grilla)
         self.definir_cuadro(0)

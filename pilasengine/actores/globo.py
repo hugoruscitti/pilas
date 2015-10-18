@@ -15,7 +15,7 @@ class Globo(Actor):
 
         >>> globo = pilas.actores.Globo("Hola mundo")
 
-    .. image:: images/actores/globo.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/globo.png
     """
 
     def __init__(self, pilas, texto="", x=0, y=0, dialogo=None,
@@ -82,7 +82,7 @@ class Globo(Actor):
 
         if autoeliminar:
             pilas.escena_actual().tareas.una_vez(3, self.eliminar)
-            
+
         self.x = x
         self.y = y
 

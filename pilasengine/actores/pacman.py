@@ -12,7 +12,7 @@ from pilasengine.actores.actor import Actor
 class Pacman(Actor):
     """Muestra un personaje similar al juego Pac-Man
 
-    .. image:: images/actores/pacman.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/pacman.png
 
     Este actor se puede mover con el teclado, pulsando las teclas ``izquierda``,
     ``arriba``, ``abajo`` y ``derecha``.
@@ -31,8 +31,8 @@ class Pacman(Actor):
         self.velocidad = 3
         self.aprender(self.pilas.habilidades.SeMantieneEnPantalla)
         self.radio_de_colision = 5
-        
-        self.posicion = 0  
+
+        self.posicion = 0
         # donde self.posicion puede ser:
         # 0 = para izquierda
         # 1 = para la derecha

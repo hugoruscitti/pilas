@@ -31,6 +31,7 @@ class Interlocutor(QtCore.QObject):
         self.interprete = None
         self.ventana = ventana
         self.configuracion = None
+        self.api = None
 
     @QtCore.pyqtSlot()
     def abrir_interprete(self):
@@ -54,6 +55,14 @@ class Interlocutor(QtCore.QObject):
         else:
             self.manual.show()
             self.manual.raise_()
+
+    @QtCore.pyqtSlot()
+    def abrir_api(self):
+        if not self.api:
+            self.api = pilasengine.abrir_api()
+        else:
+            self.api.show()
+            self.api.raise_()
 
     @QtCore.pyqtSlot()
     def abrir_configuracion(self):

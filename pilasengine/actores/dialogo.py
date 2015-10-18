@@ -20,7 +20,7 @@ class Dialogo(Actor):
         >>> dialogo.decir(mono2, "Estoy diciendo algo")
         >>> dialogo.comenzar()
 
-        .. image:: images/actores/mono_dice.png
+        .. image:: ../../pilas/data/manual/imagenes/actores/mono_dice.png
 
 
     """

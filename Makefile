@@ -79,6 +79,7 @@ api:
 ui:
 	pyuic4 -xo pilasengine/asistente/asistente_base.py pilasengine/asistente/asistente.ui
 	pyuic4 -xo pilasengine/manual/manual_base.py pilasengine/manual/manual.ui
+	pyuic4 -xo pilasengine/api/api_base.py pilasengine/api/api.ui
 	pyuic4 -xo pilasengine/interprete/interprete_base.py pilasengine/interprete/interprete.ui
 	pyuic4 -xo pilasengine/interprete/editor_ui.py pilasengine/interprete/editor.ui
 	pyuic4 -xo pilasengine/interprete/lanas_ui.py pilasengine/interprete/lanas.ui

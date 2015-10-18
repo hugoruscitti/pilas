@@ -12,7 +12,7 @@ from pilasengine.actores.animacion import Animacion
 class Bomba(Animacion):
     """Representa una bomba que puede explotar...
 
-    .. image:: images/actores/bomba.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/bomba.png
 
     La bomba adquiere la habilidad explotar al momento de crearse, así
     que puedes invocar a su método "explotar" y la bomba hará un

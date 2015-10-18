@@ -12,7 +12,7 @@ from pilasengine.actores.actor import Actor
 class Banana(Actor):
     """Muestra una banana que se combina (temáticamente) con el actor Mono.
 
-    .. image:: images/actores/banana.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/banana.png
 
 
     Este actor se podría usar cómo alimento o bonus para otros

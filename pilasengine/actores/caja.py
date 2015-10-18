@@ -12,7 +12,7 @@ from pilasengine.actores.actor import Actor
 class Caja(Actor):
     """Representa una caja que posee fisica.
 
-    .. image:: images/actores/caja.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/caja.png
 
     """
 

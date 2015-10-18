@@ -12,7 +12,7 @@ from pilasengine.actores.actor import Actor
 class Manzana(Actor):
     """Muestra una manzana.
 
-    .. image:: images/actores/manzana.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/manzana.png
 
     Este actor se podría usar cómo alimento o bonus para otros
     actores.

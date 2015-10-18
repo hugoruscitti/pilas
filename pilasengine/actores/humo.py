@@ -12,7 +12,7 @@ from pilasengine.actores.animacion import Animacion
 class Humo(Animacion):
     """Muestra una animación de una nube de humo.
 
-    .. image:: images/actores/humo.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/humo.png
 
     La animación se ejecuta una vez y desaparece.
 

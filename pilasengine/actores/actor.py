@@ -116,8 +116,8 @@ class Etiquetas(object):
 class Actor(Estudiante):
     """Representa un objeto visible en pantalla, algo que se ve y tiene
     posicion.
-
-    .. image:: images/actores/actor.png
+    
+    .. image:: ../../pilas/data/manual/imagenes/actores/actor.png
 
     Un objeto Actor se tiene que crear siempre indicando una imagen. Si no
     se especifica una imagen, se verán los signos de interrogación de

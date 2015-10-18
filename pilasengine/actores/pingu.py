@@ -13,7 +13,7 @@ from pilasengine.comportamientos.comportamiento import Comportamiento
 class Pingu(Actor):
     """Muestra a un pingüino que sabe caminar con el teclado.
 
-    .. image:: images/actores/pingu.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/pingu.png
 
     Este actor responde al teclado, así que podremos
     usar los direccionales del teclado ``izquierda``, ``arriba``

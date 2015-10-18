@@ -16,7 +16,7 @@ class Explosion(Animacion):
 
         >>> actor = pilas.actores.Bomba()
 
-    .. image:: images/actores/explosion.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/explosion.png
 
     y una vez que termina se elimina a sí mismo.
 
@@ -36,4 +36,3 @@ class Explosion(Animacion):
                            velocidad=10)
         self.sonido_explosion = pilas.sonidos.cargar("audio/explosion.wav")
         self.sonido_explosion.reproducir()
-

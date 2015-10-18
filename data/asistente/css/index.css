@@ -63,6 +63,10 @@ a.button span {
   background: transparent url(../imagenes/manual.png) 12px 50% no-repeat;
 }
 
+#api span {
+  background: transparent url(../imagenes/api.png) 12px 50% no-repeat;
+}
+
 
 #configuracion span {
   background: transparent url(../imagenes/configuracion.png) 12px 50% no-repeat;
@@ -110,8 +114,6 @@ div.panel-fondo {
 }
 
 
-
-
 .item{
   display: inline-block;
 }
@@ -120,4 +122,22 @@ div.panel-fondo {
   display: inline-block;
   width: 20px;
   height: 3px;
+}
+
+
+.link-web {
+  position: absolute;
+  top: 25px;
+  right: 10px;
+}
+
+.link-web span {
+  display:block;
+  height: 19px;
+  width: 128px;
+  padding-left: 35px;
+}
+
+.link-web a span {
+  color: gray !important;
 }

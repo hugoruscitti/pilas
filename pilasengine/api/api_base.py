@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'pilasengine/manual/manual.ui'
+# Form implementation generated from reading ui file 'pilasengine/api/api.ui'
 #
+# Created: Sun Oct 18 13:01:36 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!

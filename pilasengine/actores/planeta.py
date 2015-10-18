@@ -13,7 +13,7 @@ from pilasengine.actores.actor import Actor
 class Planeta(Actor):
     """Representa un planeta para utilizar con el ovni.
 
-        .. image:: images/actores/planeta_azul.png
+        .. image:: ../../pilas/data/manual/imagenes/actores/planeta_azul.png
 
     """
 

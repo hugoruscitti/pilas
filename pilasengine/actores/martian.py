@@ -13,7 +13,7 @@ import pilasengine
 class Martian(Actor):
     """Es un personaje de un marciano que puede caminar y saltar.
 
-        .. image:: images/actores/martian.png
+        .. image:: ../../pilas/data/manual/imagenes/actores/martian.png
 
     Este actor se puede mover con el teclado, pulsando las teclas ``izquierda``,
     ``arriba``, ``abajo`` y ``derecha``.

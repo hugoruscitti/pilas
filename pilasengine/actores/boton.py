@@ -12,7 +12,7 @@ from pilasengine.actores.actor import Actor
 class Boton(Actor):
     """Representa un boton que reacciona al ser presionado.
 
-    .. image:: images/actores/boton_normal.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/boton_normal.png
 
     """
 

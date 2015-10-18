@@ -13,7 +13,7 @@ from pilasengine.actores.animacion import Animacion
 class Nave(Animacion):
     """Representa una nave que puede disparar.
 
-    .. image:: images/actores/nave.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/nave.png
 
     """
 
@@ -78,4 +78,3 @@ class Nave(Animacion):
 
         if self.cuando_elimina_enemigo:
             self.cuando_elimina_enemigo()
-

@@ -576,7 +576,7 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
 
         >>> pilas.iniciar(ancho=320, alto=240)
 
-    .. image:: images/iniciar_320_240.png
+    .. image:: ../../pilas/data/manual/imagenes/iniciar_320_240.png
 
     :rtype: Pilas
 
@@ -612,6 +612,10 @@ def abrir_asistente():
 def abrir_manual():
     import manual
     return manual.abrir()
+
+def abrir_api():
+    import api
+    return api.abrir()
 
 def abrir_configuracion(parent=None):
     import configuracion

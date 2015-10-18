@@ -14,7 +14,7 @@ import pilasengine
 class NaveKids(Animacion):
     """Representa una nave de aspecto infantil que puede disparar.
 
-    .. image:: images/actores/spacekids.png
+    .. image:: ../../pilas/data/manual/imagenes/actores/spacekids.png
 
     """
 

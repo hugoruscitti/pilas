@@ -90,14 +90,14 @@ class Control(object):
                     self.x += 5
                     self.espejado = False
 
-    .. image:: ../../pilas/data/patito.png
+    .. image:: ../../pilas/data/manual/imagenes/patito.png
     """
 
     def __init__(self, escena, mapa_teclado=None):
 
         escena.pulsa_tecla.conectar(self.cuando_pulsa_una_tecla)
         escena.suelta_tecla.conectar(self.cuando_suelta_una_tecla)
-        
+
         self.izquierda = False
         self.derecha = False
         self.arriba = False

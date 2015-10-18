@@ -30,14 +30,17 @@
     function abrir_interprete() {
         interlocutor.abrir_interprete();
     }
-    
+
     function abrir_editor() {
         interlocutor.abrir_editor();
     }
 
-
     function abrir_manual() {
         interlocutor.abrir_manual();
+    }
+
+    function abrir_api() {
+        interlocutor.abrir_api();
     }
 
     function abrir_configuracion() {
@@ -62,10 +65,10 @@
 
 
     function definir_version(version, version_local) {
-    
+
       setTimeout(function() {
         console.log("El servidor informó que la versión mas reciente es la " + version + ", y este equipo usa la versión " + version_local);
-        
+
         /* Elementos */
 
         var elementoAviso = document.getElementById('aviso');
@@ -80,22 +83,22 @@
 
 
 
-        
+
         /* Ocultando la animacion de actividad */
         elementEsperaImagen.style.setProperty('display', 'none');
 
         if (versionCompare(version_local, version) < 0) {
             // Si la version del servidor es mas nueva que la actual ...
-            
+
             elementoAviso.style.setProperty('display', 'inline');
             elementoMensajeAviso.style.setProperty('display', 'block');
         } else {
             // Si la version está actualizada ...
-            
+
             elementoActualizado.style.setProperty('display', 'inline');
-            elementoMensajeActualizado.style.setProperty('display', 'block');       
+            elementoMensajeActualizado.style.setProperty('display', 'block');
         }
-        
+
       }, 4000);
     }
 
@@ -129,7 +132,7 @@
             pilas-engine disponible para descargar desde el
             <a href onclick='abrir_sitio_de_pilas()'>sitio del proyecto</a>.
           </div>
-          
+
            <div id='mensajeActualizado' class='aviso'>Este icono <img src='imagenes/actualizado.png'> indica
             que tenés la versión mas reciente de <a href onclick='abrir_sitio_de_pilas()'>pilas-engine</a>.
            </div>
@@ -155,20 +158,20 @@
 <script>
   var elementEsperaImagen = document.getElementById('esperaImagen');
   var opts = {
-    lines: 9, 
-    length: 3, 
-    width: 2, 
-    radius: 4, 
-    corners: 1, 
-    rotate: 0, 
-    direction: 1, 
-    color: '#000', 
-    speed: 1.1, 
-    trail: 35, 
-    shadow: false, 
-    hwaccel: false, 
-    className: 'spinner', 
-    zIndex: 2e9, 
+    lines: 9,
+    length: 3,
+    width: 2,
+    radius: 4,
+    corners: 1,
+    rotate: 0,
+    direction: 1,
+    color: '#000',
+    speed: 1.1,
+    trail: 35,
+    shadow: false,
+    hwaccel: false,
+    className: 'spinner',
+    zIndex: 2e9,
 position: 'relative',
   };
   var spinner = new Spinner(opts).spin(elementEsperaImagen);
