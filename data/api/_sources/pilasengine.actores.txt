@@ -528,12 +528,3 @@ pilasengine.actores.zanahoria
     :members:
     :undoc-members:
     :show-inheritance:
-
-
-Contenido del módulo
----------------
-
-.. automodule:: pilasengine.actores
-    :members:
-    :undoc-members:
-    :show-inheritance:
