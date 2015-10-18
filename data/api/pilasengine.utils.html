@@ -1,0 +1,638 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.utils &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="prev" title="pilasengine.tareas" href="pilasengine.tareas.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.manual.html">pilasengine.manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pilasengine-utils-interpolaciones">pilasengine.utils.interpolaciones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.utils.pitweener">pilasengine.utils.pitweener</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.utils</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-utils">
+<h1>pilasengine.utils<a class="headerlink" href="#pilasengine-utils" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="pilasengine-utils-interpolaciones">
+<h2>pilasengine.utils.interpolaciones<a class="headerlink" href="#pilasengine-utils-interpolaciones" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-pilasengine.utils.pitweener">
+<span id="pilasengine-utils-pitweener"></span><h2>pilasengine.utils.pitweener<a class="headerlink" href="#module-pilasengine.utils.pitweener" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.utils.pitweener.Tween">
+<em class="property">class </em><code class="descclassname">pilasengine.utils.pitweener.</code><code class="descname">Tween</code><span class="sig-paren">(</span><em>obj</em>, <em>tduration</em>, <em>tween_type</em>, <em>complete_function</em>, <em>update_function</em>, <em>delay</em>, <em>inicial</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tween" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tween.Remove">
+<code class="descname">Remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tween.Remove" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Disables and removes this tween without calling the complete function</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tween.decode_arguments">
+<code class="descname">decode_arguments</code><span class="sig-paren">(</span><em>inicial</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tween.decode_arguments" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Internal setup procedure to create tweenables and work out how to
+deal with each</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tween.get_tweenable">
+<code class="descname">get_tweenable</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tween.get_tweenable" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Return the tweenable values corresponding to the name of the original
+tweening function or property.</p>
+<p>Allows the parameters of tweens to be changed at runtime. The parameters
+can even be tweened themselves!</p>
+<p>Eg:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># the rocket needs to escape!! -- we&#39;re already moving, but must go</span>
+<span class="c"># faster!</span>
+<span class="n">twn</span> <span class="o">=</span> <span class="n">tweener</span><span class="o">.</span><span class="n">get_tweens_affecting_object</span><span class="p">(</span><span class="n">my_rocket</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">tweenable</span> <span class="o">=</span> <span class="n">twn</span><span class="o">.</span><span class="n">get_tweenable</span><span class="p">(</span><span class="s">&quot;thruster_power&quot;</span><span class="p">)</span>
+<span class="n">tweener</span><span class="o">.</span><span class="n">addTween</span><span class="p">(</span><span class="n">tweenable</span><span class="p">,</span> <span class="n">change</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span> <span class="n">tween_time</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+                 <span class="n">tween_type</span><span class="o">=</span><span class="n">tweener</span><span class="o">.</span><span class="n">IN_QUAD</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tween.pause">
+<code class="descname">pause</code><span class="sig-paren">(</span><em>seconds=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tween.pause" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pause this tween</p>
+<p>Do <code class="docutils literal"><span class="pre">tween.pause(2)</span></code> to pause for a specific time, or
+<code class="docutils literal"><span class="pre">tween.pause()</span></code> which pauses indefinitely.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tween.resume">
+<code class="descname">resume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tween.resume" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Resume from pause</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tween.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>ptime=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tween.update" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Update this tween with the time since the last frame. If there is an
+update function, it is always called whether the tween is running or
+paused. ptime is the change in time in seconds.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.utils.pitweener.TweenTestObject">
+<em class="property">class </em><code class="descclassname">pilasengine.utils.pitweener.</code><code class="descname">TweenTestObject</code><a class="headerlink" href="#pilasengine.utils.pitweener.TweenTestObject" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenTestObject.complete">
+<code class="descname">complete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenTestObject.complete" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenTestObject.get_rotation">
+<code class="descname">get_rotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenTestObject.get_rotation" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenTestObject.set_rotation">
+<code class="descname">set_rotation</code><span class="sig-paren">(</span><em>rot</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenTestObject.set_rotation" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenTestObject.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenTestObject.update" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.utils.pitweener.Tweenable">
+<em class="property">class </em><code class="descclassname">pilasengine.utils.pitweener.</code><code class="descname">Tweenable</code><span class="sig-paren">(</span><em>start</em>, <em>change</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tweenable" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.utils.pitweener.Tweener">
+<em class="property">class </em><code class="descclassname">pilasengine.utils.pitweener.</code><code class="descname">Tweener</code><a class="headerlink" href="#pilasengine.utils.pitweener.Tweener" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.utils.pitweener.TweenerEquations" title="pilasengine.utils.pitweener.TweenerEquations"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.utils.pitweener.TweenerEquations</span></code></a></p>
+<p>This class manages all active tweens, and provides a factory for
+creating and spawning tween motions.</p>
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tweener.add_tween">
+<code class="descname">add_tween</code><span class="sig-paren">(</span><em>obj</em>, <em>inicial=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tweener.add_tween" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns Tween object or False</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">tweener</span><span class="o">.</span><span class="n">add_tween</span><span class="p">(</span><span class="n">my_rocket</span><span class="p">,</span> <span class="n">throttle</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">set_thrust</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+                  <span class="n">tween_time</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">tween_type</span><span class="o">=</span><span class="n">tweener</span><span class="o">.</span><span class="n">OUT_QUAD</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You must first specify an object, and at least one property or
+function with a corresponding change value. The tween will throw an
+error if you specify an attribute the object does not possess. Also
+the data types of the change and the initial value of the tweened
+item must match. If you specify a &#8216;set&#8217; -type function, the tweener
+will attempt to get the starting value by call the corresponding
+&#8216;get&#8217; function on the object. If you specify a property, the tweener
+will read the current state as the starting value. You add both
+functions and property changes to the same tween.</p>
+<p>in addition to any properties you specify on the object, these
+keywords do additional setup of the tween.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">tween_time</span></code>: the duration of the motion</li>
+<li><code class="docutils literal"><span class="pre">tween_type</span></code>: a predefined tweening equation or your own function</li>
+<li><code class="docutils literal"><span class="pre">on_complete_function</span></code>: called on completion of the tween</li>
+<li><code class="docutils literal"><span class="pre">on_update_function</span></code>: called every time the tween updates</li>
+<li><code class="docutils literal"><span class="pre">tween_delay</span></code>: a delay before starting.</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tweener.force_update_one_frame">
+<code class="descname">force_update_one_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tweener.force_update_one_frame" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tweener.get_tweens_affecting_object">
+<code class="descname">get_tweens_affecting_object</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tweener.get_tweens_affecting_object" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Get a list of all tweens acting on the specified object. Useful for
+manipulating tweens on the fly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tweener.has_tweens">
+<code class="descname">has_tweens</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tweener.has_tweens" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">True</span></code> if there are any tweens (paused or unpaused),
+<code class="docutils literal"><span class="pre">False</span></code> otherwise. This function can be useful to determine if a
+redraw should be done or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tweener.remove_all_tweens">
+<code class="descname">remove_all_tweens</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tweener.remove_all_tweens" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Stops and removes every tween associated with this Tweener object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tweener.remove_tween">
+<code class="descname">remove_tween</code><span class="sig-paren">(</span><em>tween_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tweener.remove_tween" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Stops and removes the Tween instance passed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tweener.remove_tweening_from">
+<code class="descname">remove_tweening_from</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tweener.remove_tweening_from" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Stop tweening an object, without completing the motion or firing the
+complete_function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tweener.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>time_since_last_frame=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tweener.update" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Update every tween with the time since the last frame. If there is an
+update function, it is always called whether the tween is running or
+paused.</p>
+<p><code class="docutils literal"><span class="pre">time_since_last_frame</span></code> is the change in time in seconds. If no
+value is passed, the change in time is measured with time.time() from
+the previous call of this function. If it is the first time calling
+this function, timing is measured from the construction of the
+Tweener engine.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.Tweener.update_time_without_motion">
+<code class="descname">update_time_without_motion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.Tweener.update_time_without_motion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.utils.pitweener.TweenerEquations">
+<em class="property">class </em><code class="descclassname">pilasengine.utils.pitweener.</code><code class="descname">TweenerEquations</code><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A set of predefined interpolation (tweening) equations. They are ported
+from the work of Robert Penner. Each equation takes 4 arguments, the
+current time from start, the start value, the desired final change from
+the start value, and the total duration of the tween. As is the nature of
+interpolation, no equation has units.</p>
+<p><strong>Note:</strong> When using the Tweener class, you should use the Tweener class&#8217;
+instance copies of the equations (Tweener extends TweenerEquations)</p>
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.IN_CUBIC">
+<code class="descname">IN_CUBIC</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.IN_CUBIC" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.IN_OUT_CUBIC">
+<code class="descname">IN_OUT_CUBIC</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.IN_OUT_CUBIC" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.IN_OUT_QUAD">
+<code class="descname">IN_OUT_QUAD</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.IN_OUT_QUAD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.IN_OUT_QUART">
+<code class="descname">IN_OUT_QUART</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.IN_OUT_QUART" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.IN_QUAD">
+<code class="descname">IN_QUAD</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.IN_QUAD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.IN_QUART">
+<code class="descname">IN_QUART</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.IN_QUART" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.LINEAR">
+<code class="descname">LINEAR</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.LINEAR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.OUT_CUBIC">
+<code class="descname">OUT_CUBIC</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.OUT_CUBIC" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.OUT_ELASTIC">
+<code class="descname">OUT_ELASTIC</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.OUT_ELASTIC" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.OUT_EXPO">
+<code class="descname">OUT_EXPO</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.OUT_EXPO" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.OUT_IN_CUBIC">
+<code class="descname">OUT_IN_CUBIC</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.OUT_IN_CUBIC" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.OUT_IN_QUAD">
+<code class="descname">OUT_IN_QUAD</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.OUT_IN_QUAD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.OUT_QUAD">
+<code class="descname">OUT_QUAD</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.OUT_QUAD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.pitweener.TweenerEquations.OUT_QUART">
+<code class="descname">OUT_QUART</code><span class="sig-paren">(</span><em>t</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.pitweener.TweenerEquations.OUT_QUART" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.utils"></span><dl class="class">
+<dt id="pilasengine.utils.Utils">
+<em class="property">class </em><code class="descclassname">pilasengine.utils.</code><code class="descname">Utils</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.Utils" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.utils.Utils.agregar_ruta_personalizada">
+<code class="descname">agregar_ruta_personalizada</code><span class="sig-paren">(</span><em>ruta</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.Utils.agregar_ruta_personalizada" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.Utils.es_interpolacion">
+<code class="descname">es_interpolacion</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.Utils.es_interpolacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.Utils.interpolar">
+<code class="descname">interpolar</code><span class="sig-paren">(</span><em>actor</em>, <em>atributo</em>, <em>valor</em>, <em>duracion=0.5</em>, <em>tipo='desaceleracion_gradual'</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.Utils.interpolar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.Utils.interpretar_propiedad_numerica">
+<code class="descname">interpretar_propiedad_numerica</code><span class="sig-paren">(</span><em>objeto</em>, <em>propiedad</em>, <em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.Utils.interpretar_propiedad_numerica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Procesa una propiedad y permite que sea numero o interpolación.</p>
+<p>Este método se invoca en la mayoría de propiedades y atributos
+de actores en pilas-engine. Por ejemplo cuando se invoca a
+esta sentencia para mover al personaje:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">actor</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>o bien, para duplicar su tamaño en 10 segundos:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">actor</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.Utils.obtener_area_de_texto">
+<code class="descname">obtener_area_de_texto</code><span class="sig-paren">(</span><em>cadena</em>, <em>magnitud=10</em>, <em>vertical=False</em>, <em>fuente=None</em>, <em>ancho=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.Utils.obtener_area_de_texto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.Utils.obtener_directorio_de_configuracion">
+<code class="descname">obtener_directorio_de_configuracion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.Utils.obtener_directorio_de_configuracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>&#8221; Retorna la ruta de configuracion segun la plataforma</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.Utils.obtener_ruta_al_recurso">
+<code class="descname">obtener_ruta_al_recurso</code><span class="sig-paren">(</span><em>ruta</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.Utils.obtener_ruta_al_recurso" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.utils.Utils.obtener_uuid">
+<code class="descname">obtener_uuid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.Utils.obtener_uuid" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera un identificador único.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.utils.centrar_ventana">
+<code class="descclassname">pilasengine.utils.</code><code class="descname">centrar_ventana</code><span class="sig-paren">(</span><em>ventana</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.centrar_ventana" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mueve la ventana al centro del area visible del escritorio.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.utils.convertir_a_metros">
+<code class="descclassname">pilasengine.utils.</code><code class="descname">convertir_a_metros</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.convertir_a_metros" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convierte una magnitid de pixels a metros.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.utils.convertir_a_pixels">
+<code class="descclassname">pilasengine.utils.</code><code class="descname">convertir_a_pixels</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.convertir_a_pixels" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convierte una magnitud de metros a pixels.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.utils.destacar_ventanas">
+<code class="descclassname">pilasengine.utils.</code><code class="descname">destacar_ventanas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.destacar_ventanas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.utils.iniciar_desde_terminal">
+<code class="descclassname">pilasengine.utils.</code><code class="descname">iniciar_desde_terminal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.iniciar_desde_terminal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.utils.instanciar_interpolacion">
+<code class="descclassname">pilasengine.utils.</code><code class="descname">instanciar_interpolacion</code><span class="sig-paren">(</span><em>pilas</em>, <em>valor_o_valores</em>, <em>duracion=1</em>, <em>demora=0</em>, <em>tipo='lineal'</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.instanciar_interpolacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna un objeto que representa cambios de atributos progresivos.</p>
+<p>El resultado de esta función se puede aplicar a varios atributos
+de los actores, por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">bomba</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Bomba</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bomba</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">interpolar</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Esta función también admite otros parámetros cómo:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>duracion</strong> &#8211; es la cantidad de segundos que demorará toda la interpolación.</li>
+<li><strong>demora</strong> &#8211; cuantos segundos se deben esperar antes de iniciar.</li>
+<li><strong>tipo</strong> &#8211; es el algoritmo de la interpolación, puede ser &#8216;lineal&#8217;.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.utils.obtener_angulo_entre">
+<code class="descclassname">pilasengine.utils.</code><code class="descname">obtener_angulo_entre</code><span class="sig-paren">(</span><em>punto_a</em>, <em>punto_b</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.obtener_angulo_entre" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna el ángulo entro dos puntos de la pantalla.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>punto_a</strong> &#8211; Una tupla con la coordenada del primer punto.</li>
+<li><strong>punto_b</strong> &#8211; Una tupla con la coordenada del segundo punto.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.utils.obtener_ruta_al_recurso">
+<code class="descclassname">pilasengine.utils.</code><code class="descname">obtener_ruta_al_recurso</code><span class="sig-paren">(</span><em>ruta</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.obtener_ruta_al_recurso" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.utils.realizar_pruebas">
+<code class="descclassname">pilasengine.utils.</code><code class="descname">realizar_pruebas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.utils.realizar_pruebas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Imprime pruebas en pantalla para detectar si pilas tiene todas las dependencias instaladas.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="pilasengine.tareas.html" class="btn btn-neutral" title="pilasengine.tareas" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

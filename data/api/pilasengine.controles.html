@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.controles &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.depurador" href="pilasengine.depurador.html"/>
+        <link rel="prev" title="pilasengine.comportamientos" href="pilasengine.comportamientos.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.controles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.controles.control">pilasengine.controles.control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modulo-pilas-control">Módulo pilas.control</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.controles.simbolos">pilasengine.controles.simbolos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.manual.html">pilasengine.manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.controles</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-controles">
+<h1>pilasengine.controles<a class="headerlink" href="#pilasengine-controles" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="module-pilasengine.controles.control">
+<span id="pilasengine-controles-control"></span><h2>pilasengine.controles.control<a class="headerlink" href="#module-pilasengine.controles.control" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="modulo-pilas-control">
+<h3>Módulo pilas.control<a class="headerlink" href="#modulo-pilas-control" title="Enlazar permanentemente con este título">¶</a></h3>
+<dl class="class">
+<dt id="pilasengine.controles.control.Control">
+<em class="property">class </em><code class="descclassname">pilasengine.controles.control.</code><code class="descname">Control</code><span class="sig-paren">(</span><em>escena</em>, <em>mapa_teclado=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.controles.control.Control" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa un control de teclado sencillo.</p>
+<p>Este objeto permite acceder al estado del teclado usando
+atributos.</p>
+<p>Por ejemplo, con este objeto, para saber si el usuario
+está pulsando el direccional hacia la izquierda de
+puedes ejecutar:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">izquierda</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;Ha pulsado hacia la izquierda&#39;</span>
+</pre></div>
+</div>
+<p>Es decir, si bien Control es una clase, no hace falta
+instanciarla. Ya existe un objeto que se puede consultar
+bajo el nombre <code class="docutils literal"><span class="pre">pilas.escena_actual().control</span></code>.</p>
+<p>Entonces, una vez que tienes la referencia para consultar, los
+atributos que tiene este objeto control son:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">izquierda</span>
+<span class="n">derecha</span>
+<span class="n">arriba</span>
+<span class="n">abajo</span>
+<span class="n">boton</span>
+</pre></div>
+</div>
+<p>Cada uno de estos atributos te pueden devolver True, o False, indicando
+si el control está pulsado o no.</p>
+<p>Ten en cuenta que este objeto también se puede imprimir usando
+la sentencia <code class="docutils literal"><span class="pre">print</span></code>. Esto es útil para ver el estado completo
+del control de una sola vez:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">pilas</span><span class="o">.</span><span class="n">mundo</span><span class="o">.</span><span class="n">control</span>
+<span class="go">&lt;Control izquierda: False derecha: False arriba: False abajo: False boton: False&gt;</span>
+</pre></div>
+</div>
+<p>También tienes la posibilidad de crearte un control estableciendo las teclas
+personalizadas.
+Para ello debes crearte un diccionario con las claves izquierda, derecha,
+arriba, abajo y boton.
+Con las constantes de pilas.simbolos, puedes asignar una tecla a cada una
+de las entradas del diccionario.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>   <span class="n">teclas</span> <span class="o">=</span> <span class="p">{</span><span class="n">pilas</span><span class="o">.</span><span class="n">simbolos</span><span class="o">.</span><span class="n">a</span><span class="p">:</span> <span class="s">&#39;izquierda&#39;</span><span class="p">,</span>
+<span class="go">                          pilas.simbolos.d: &#39;derecha&#39;,</span>
+<span class="go">                          pilas.simbolos.w: &#39;arriba&#39;,</span>
+<span class="go">                          pilas.simbolos.s: &#39;abajo&#39;,</span>
+<span class="go">                          pilas.simbolos.ESPACIO: &#39;boton&#39;}</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>   <span class="n">mi_control</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">Control</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">(),</span> <span class="n">teclas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Consultando controles desde un actor:</p>
+<p>Una forma habitual de usar los controles, es consultarlos
+directamente desde el codigo de un actor.</p>
+<p>Para consultar los controles para cambiar la posicion horizontal de
+un actor podrías implementar el método <code class="docutils literal"><span class="pre">actualizar</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Patito</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Actor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imagen</span> <span class="o">=</span> <span class="s">&quot;patito.png&quot;</span>
+
+    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">izquierda</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-=</span> <span class="mi">5</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">espejado</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escena_actual</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">derecha</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mi">5</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">espejado</span> <span class="o">=</span> <span class="bp">False</span>
+</pre></div>
+</div>
+<img alt="_images/patito.png" src="_images/patito.png" />
+<dl class="method">
+<dt id="pilasengine.controles.control.Control.constructor_control">
+<code class="descname">constructor_control</code><span class="sig-paren">(</span><em>mapa_teclado</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.controles.control.Control.constructor_control" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.controles.control.Control.cuando_pulsa_una_tecla">
+<code class="descname">cuando_pulsa_una_tecla</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.controles.control.Control.cuando_pulsa_una_tecla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.controles.control.Control.cuando_suelta_una_tecla">
+<code class="descname">cuando_suelta_una_tecla</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.controles.control.Control.cuando_suelta_una_tecla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.controles.control.Control.limpiar">
+<code class="descname">limpiar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.controles.control.Control.limpiar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.controles.control.Control.procesar_cambio_de_estado_en_la_tecla">
+<code class="descname">procesar_cambio_de_estado_en_la_tecla</code><span class="sig-paren">(</span><em>codigo</em>, <em>estado</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.controles.control.Control.procesar_cambio_de_estado_en_la_tecla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-pilasengine.controles.simbolos">
+<span id="pilasengine-controles-simbolos"></span><h2>pilasengine.controles.simbolos<a class="headerlink" href="#module-pilasengine.controles.simbolos" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.controles"></span><dl class="class">
+<dt id="pilasengine.controles.Controles">
+<em class="property">class </em><code class="descclassname">pilasengine.controles.</code><code class="descname">Controles</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.controles.Controles" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.controles.Controles.Control">
+<code class="descname">Control</code><span class="sig-paren">(</span><em>escena</em>, <em>mapa_teclado=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.controles.Controles.Control" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="pilasengine.controles.Controles.obtener_codigo_de_tecla_normalizado">
+<em class="property">static </em><code class="descname">obtener_codigo_de_tecla_normalizado</code><span class="sig-paren">(</span><em>tecla_qt</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.controles.Controles.obtener_codigo_de_tecla_normalizado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.depurador.html" class="btn btn-neutral float-right" title="pilasengine.depurador" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.comportamientos.html" class="btn btn-neutral" title="pilasengine.comportamientos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

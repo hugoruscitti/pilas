@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.comportamientos &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.controles" href="pilasengine.controles.html"/>
+        <link rel="prev" title="pilasengine.colisiones" href="pilasengine.colisiones.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.comportamientos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.comportamientos.avanzar">pilasengine.comportamientos.avanzar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.comportamientos.comportamiento">pilasengine.comportamientos.comportamiento</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.comportamientos.girar">pilasengine.comportamientos.girar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.comportamientos.orbitar">pilasengine.comportamientos.orbitar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.comportamientos.proyectil">pilasengine.comportamientos.proyectil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.comportamientos.saltar">pilasengine.comportamientos.saltar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.manual.html">pilasengine.manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.comportamientos</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-comportamientos">
+<h1>pilasengine.comportamientos<a class="headerlink" href="#pilasengine-comportamientos" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="module-pilasengine.comportamientos.avanzar">
+<span id="pilasengine-comportamientos-avanzar"></span><h2>pilasengine.comportamientos.avanzar<a class="headerlink" href="#module-pilasengine.comportamientos.avanzar" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.comportamientos.avanzar.Avanzar">
+<em class="property">class </em><code class="descclassname">pilasengine.comportamientos.avanzar.</code><code class="descname">Avanzar</code><span class="sig-paren">(</span><em>pilas=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.avanzar.Avanzar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.comportamientos.comportamiento.Comportamiento" title="pilasengine.comportamientos.comportamiento.Comportamiento"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.comportamientos.comportamiento.Comportamiento</span></code></a></p>
+<p>Desplaza al actor en la dirección y sentido indicado por una rotación.</p>
+<dl class="method">
+<dt id="pilasengine.comportamientos.avanzar.Avanzar.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.avanzar.Avanzar.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.avanzar.Avanzar.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>pasos=0</em>, <em>velocidad=5</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.avanzar.Avanzar.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Se invoca cuando se anexa el comportamiento a un actor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>receptor</strong> &#8211; El actor que comenzará a ejecutar este comportamiento.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.comportamientos.comportamiento">
+<span id="pilasengine-comportamientos-comportamiento"></span><h2>pilasengine.comportamientos.comportamiento<a class="headerlink" href="#module-pilasengine.comportamientos.comportamiento" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.comportamientos.comportamiento.Comportamiento">
+<em class="property">class </em><code class="descclassname">pilasengine.comportamientos.comportamiento.</code><code class="descname">Comportamiento</code><span class="sig-paren">(</span><em>pilas=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.comportamiento.Comportamiento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa un comportamiento (estrategia) que se puede anexar a un actor.</p>
+<dl class="method">
+<dt id="pilasengine.comportamientos.comportamiento.Comportamiento.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.comportamiento.Comportamiento.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Actualiza el comportamiento en un instante dado.</p>
+<p>Si este metodo retorna True entonces el actor dejará
+de ejecutar este comportamiento.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.comportamiento.Comportamiento.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.comportamiento.Comportamiento.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Se invoca cuando se anexa el comportamiento a un actor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>receptor</strong> &#8211; El actor que comenzará a ejecutar este comportamiento.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.comportamiento.Comportamiento.terminar">
+<code class="descname">terminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.comportamiento.Comportamiento.terminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.comportamientos.girar">
+<span id="pilasengine-comportamientos-girar"></span><h2>pilasengine.comportamientos.girar<a class="headerlink" href="#module-pilasengine.comportamientos.girar" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.comportamientos.girar.Girar">
+<em class="property">class </em><code class="descclassname">pilasengine.comportamientos.girar.</code><code class="descname">Girar</code><span class="sig-paren">(</span><em>pilas=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.girar.Girar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.comportamientos.comportamiento.Comportamiento" title="pilasengine.comportamientos.comportamiento.Comportamiento"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.comportamientos.comportamiento.Comportamiento</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.comportamientos.girar.Girar.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.girar.Girar.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.girar.Girar.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>delta=360</em>, <em>velocidad=5</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.girar.Girar.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.comportamientos.orbitar">
+<span id="pilasengine-comportamientos-orbitar"></span><h2>pilasengine.comportamientos.orbitar<a class="headerlink" href="#module-pilasengine.comportamientos.orbitar" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.comportamientos.orbitar.Orbitar">
+<em class="property">class </em><code class="descclassname">pilasengine.comportamientos.orbitar.</code><code class="descname">Orbitar</code><span class="sig-paren">(</span><em>pilas=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.orbitar.Orbitar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.comportamientos.comportamiento.Comportamiento" title="pilasengine.comportamientos.comportamiento.Comportamiento"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.comportamientos.comportamiento.Comportamiento</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.comportamientos.orbitar.Orbitar.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.orbitar.Orbitar.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.orbitar.Orbitar.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>x=0</em>, <em>y=0</em>, <em>radio=50</em>, <em>velocidad=5</em>, <em>direccion='derecha'</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.orbitar.Orbitar.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.orbitar.Orbitar.mover_astro">
+<code class="descname">mover_astro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.orbitar.Orbitar.mover_astro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.comportamientos.orbitar.OrbitarSobreActor">
+<em class="property">class </em><code class="descclassname">pilasengine.comportamientos.orbitar.</code><code class="descname">OrbitarSobreActor</code><span class="sig-paren">(</span><em>pilas=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.orbitar.OrbitarSobreActor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.comportamientos.orbitar.Orbitar" title="pilasengine.comportamientos.orbitar.Orbitar"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.comportamientos.orbitar.Orbitar</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.comportamientos.orbitar.OrbitarSobreActor.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>actor</em>, <em>radio=50</em>, <em>velocidad=5</em>, <em>direccion='derecha'</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.orbitar.OrbitarSobreActor.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.orbitar.OrbitarSobreActor.mover_astro">
+<code class="descname">mover_astro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.orbitar.OrbitarSobreActor.mover_astro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.comportamientos.proyectil">
+<span id="pilasengine-comportamientos-proyectil"></span><h2>pilasengine.comportamientos.proyectil<a class="headerlink" href="#module-pilasengine.comportamientos.proyectil" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.comportamientos.proyectil.Proyectil">
+<em class="property">class </em><code class="descclassname">pilasengine.comportamientos.proyectil.</code><code class="descname">Proyectil</code><span class="sig-paren">(</span><em>pilas=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.proyectil.Proyectil" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.comportamientos.comportamiento.Comportamiento" title="pilasengine.comportamientos.comportamiento.Comportamiento"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.comportamientos.comportamiento.Comportamiento</span></code></a></p>
+<p>Hace que un actor se comporte como un proyectil.</p>
+<dl class="method">
+<dt id="pilasengine.comportamientos.proyectil.Proyectil.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.proyectil.Proyectil.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.proyectil.Proyectil.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>velocidad_maxima=5</em>, <em>aceleracion=1</em>, <em>angulo_de_movimiento=90</em>, <em>gravedad=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.proyectil.Proyectil.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Construye el comportamiento.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>receptor</strong> &#8211; El actor que comenzará a ejecutar este comportamiento.</li>
+<li><strong>velocidad_maxima</strong> &#8211; Velocidad máxima que alcanzará el proyectil.</li>
+<li><strong>aceleracion</strong> &#8211; Valor entre 0 y 1 para indicar lo rápido que
+acelerará el actor.</li>
+<li><strong>angulo_de_movimiento</strong> &#8211; Angulo en que se moverá el Actor.</li>
+<li><strong>gravedad</strong> &#8211; La velocidad vertical con la que caerá el actor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.proyectil.Proyectil.mover_respecto_angulo_movimiento">
+<code class="descname">mover_respecto_angulo_movimiento</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.proyectil.Proyectil.mover_respecto_angulo_movimiento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mueve el actor hacia adelante respecto a su angulo de movimiento.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.comportamientos.saltar">
+<span id="pilasengine-comportamientos-saltar"></span><h2>pilasengine.comportamientos.saltar<a class="headerlink" href="#module-pilasengine.comportamientos.saltar" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.comportamientos.saltar.Saltar">
+<em class="property">class </em><code class="descclassname">pilasengine.comportamientos.saltar.</code><code class="descname">Saltar</code><span class="sig-paren">(</span><em>pilas=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.saltar.Saltar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.comportamientos.comportamiento.Comportamiento" title="pilasengine.comportamientos.comportamiento.Comportamiento"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.comportamientos.comportamiento.Comportamiento</span></code></a></p>
+<p>Realiza un salto, cambiando los atributos &#8216;y&#8217;.</p>
+<dl class="method">
+<dt id="pilasengine.comportamientos.saltar.Saltar.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.saltar.Saltar.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.saltar.Saltar.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>velocidad_inicial=10</em>, <em>cuando_termina=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.saltar.Saltar.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Se invoca cuando se anexa el comportamiento a un actor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>receptor</strong> &#8211; El actor que comenzará a ejecutar este comportamiento.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.comportamientos"></span><dl class="class">
+<dt id="pilasengine.comportamientos.Comportamientos">
+<em class="property">class </em><code class="descclassname">pilasengine.comportamientos.</code><code class="descname">Comportamientos</code><a class="headerlink" href="#pilasengine.comportamientos.Comportamientos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa la forma de acceso y construcción de los Comportamientos.</p>
+<p>Esta clase representa el objeto creado por pilas que
+se puede acceder escribiendo <code class="docutils literal"><span class="pre">pilas.comportamientos</span></code>. Desde aquí
+se puede acceder a los comportamientos pre-diseñados de y anexarlos
+a los actores para que los ejecuten.</p>
+<p>Por ejemplo, para &#8216;hacer&#8217; un comportamiento:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mono</span><span class="o">.</span><span class="n">hacer</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">comportamientos</span><span class="o">.</span><span class="n">Saltar</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="pilasengine.comportamientos.Comportamientos.Avanzar">
+<code class="descname">Avanzar</code><a class="headerlink" href="#pilasengine.comportamientos.Comportamientos.Avanzar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.comportamientos.Comportamientos.Comportamiento">
+<code class="descname">Comportamiento</code><a class="headerlink" href="#pilasengine.comportamientos.Comportamientos.Comportamiento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.comportamientos.Comportamientos.Girar">
+<code class="descname">Girar</code><a class="headerlink" href="#pilasengine.comportamientos.Comportamientos.Girar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.comportamientos.Comportamientos.Orbitar">
+<code class="descname">Orbitar</code><a class="headerlink" href="#pilasengine.comportamientos.Comportamientos.Orbitar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.comportamientos.Comportamientos.OrbitarSobreActor">
+<code class="descname">OrbitarSobreActor</code><a class="headerlink" href="#pilasengine.comportamientos.Comportamientos.OrbitarSobreActor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.comportamientos.Comportamientos.Proyectil">
+<code class="descname">Proyectil</code><a class="headerlink" href="#pilasengine.comportamientos.Comportamientos.Proyectil" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.comportamientos.Comportamientos.Saltar">
+<code class="descname">Saltar</code><a class="headerlink" href="#pilasengine.comportamientos.Comportamientos.Saltar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.Comportamientos.buscar_comportamiento_por_nombre">
+<code class="descname">buscar_comportamiento_por_nombre</code><span class="sig-paren">(</span><em>nombre</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.Comportamientos.buscar_comportamiento_por_nombre" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.comportamientos.Comportamientos.vincular">
+<code class="descname">vincular</code><span class="sig-paren">(</span><em>clase_del_comportamiento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.comportamientos.Comportamientos.vincular" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.controles.html" class="btn btn-neutral float-right" title="pilasengine.controles" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.colisiones.html" class="btn btn-neutral" title="pilasengine.colisiones" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,497 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.imagenes &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.interfaz" href="pilasengine.interfaz.html"/>
+        <link rel="prev" title="pilasengine.habilidades" href="pilasengine.habilidades.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.imagenes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodulos">Submódulos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.imagenes.animacion">pilasengine.imagenes.animacion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.imagenes.grilla">pilasengine.imagenes.grilla</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.imagenes.imagen">pilasengine.imagenes.imagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.imagenes.superficie">pilasengine.imagenes.superficie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.imagenes.texto">pilasengine.imagenes.texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.manual.html">pilasengine.manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.imagenes</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-imagenes">
+<h1>pilasengine.imagenes<a class="headerlink" href="#pilasengine-imagenes" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="submodulos">
+<h2>Submódulos<a class="headerlink" href="#submodulos" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-pilasengine.imagenes.animacion">
+<span id="pilasengine-imagenes-animacion"></span><h2>pilasengine.imagenes.animacion<a class="headerlink" href="#module-pilasengine.imagenes.animacion" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.imagenes.animacion.Animacion">
+<em class="property">class </em><code class="descclassname">pilasengine.imagenes.animacion.</code><code class="descname">Animacion</code><span class="sig-paren">(</span><em>pilas</em>, <em>ruta</em>, <em>columnas=1</em>, <em>filas=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.animacion.Animacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.imagenes.grilla.Grilla" title="pilasengine.imagenes.grilla.Grilla"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.imagenes.grilla.Grilla</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.imagenes.animacion.Animacion.avanzar">
+<code class="descname">avanzar</code><span class="sig-paren">(</span><em>velocidad=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.animacion.Animacion.avanzar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.animacion.Animacion.cargar_animacion">
+<code class="descname">cargar_animacion</code><span class="sig-paren">(</span><em>nombre</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.animacion.Animacion.cargar_animacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.animacion.Animacion.definir_animacion">
+<code class="descname">definir_animacion</code><span class="sig-paren">(</span><em>nombre</em>, <em>cuadros</em>, <em>velocidad</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.animacion.Animacion.definir_animacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.imagenes.grilla">
+<span id="pilasengine-imagenes-grilla"></span><h2>pilasengine.imagenes.grilla<a class="headerlink" href="#module-pilasengine.imagenes.grilla" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.imagenes.grilla.Grilla">
+<em class="property">class </em><code class="descclassname">pilasengine.imagenes.grilla.</code><code class="descname">Grilla</code><span class="sig-paren">(</span><em>pilas</em>, <em>ruta</em>, <em>columnas=1</em>, <em>filas=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.grilla.Grilla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.imagenes.imagen.Imagen" title="pilasengine.imagenes.imagen.Imagen"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.imagenes.imagen.Imagen</span></code></a></p>
+<p>Representa una grilla regular, que se utiliza en animaciones.</p>
+<p>La grilla regular se tiene que crear indicando la cantidad
+de filas y columnas. Una vez definida se puede usar como
+una imagen normal, solo que tiene dos metodos adicionales
+para <code class="docutils literal"><span class="pre">definir_cuadro</span></code> y <code class="docutils literal"><span class="pre">avanzar</span></code> el cuadro actual.</p>
+<dl class="method">
+<dt id="pilasengine.imagenes.grilla.Grilla.alto">
+<code class="descname">alto</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.grilla.Grilla.alto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.grilla.Grilla.ancho">
+<code class="descname">ancho</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.grilla.Grilla.ancho" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.grilla.Grilla.avanzar">
+<code class="descname">avanzar</code><span class="sig-paren">(</span><em>velocidad=60</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.grilla.Grilla.avanzar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.grilla.Grilla.definir_cuadro">
+<code class="descname">definir_cuadro</code><span class="sig-paren">(</span><em>cuadro</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.grilla.Grilla.definir_cuadro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.grilla.Grilla.dibujarse_sobre_una_pizarra">
+<code class="descname">dibujarse_sobre_una_pizarra</code><span class="sig-paren">(</span><em>pizarra</em>, <em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.grilla.Grilla.dibujarse_sobre_una_pizarra" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.grilla.Grilla.obtener_cuadro">
+<code class="descname">obtener_cuadro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.grilla.Grilla.obtener_cuadro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.imagenes.imagen">
+<span id="pilasengine-imagenes-imagen"></span><h2>pilasengine.imagenes.imagen<a class="headerlink" href="#module-pilasengine.imagenes.imagen" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.imagenes.imagen.Imagen">
+<em class="property">class </em><code class="descclassname">pilasengine.imagenes.imagen.</code><code class="descname">Imagen</code><span class="sig-paren">(</span><em>pilas</em>, <em>ruta</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.imagen.Imagen" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.imagenes.imagen.Imagen.alto">
+<code class="descname">alto</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.imagen.Imagen.alto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.imagen.Imagen.ancho">
+<code class="descname">ancho</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.imagen.Imagen.ancho" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.imagen.Imagen.avanzar">
+<code class="descname">avanzar</code><span class="sig-paren">(</span><em>velocidad=60</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.imagen.Imagen.avanzar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.imagen.Imagen.centro">
+<code class="descname">centro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.imagen.Imagen.centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna una tupla con la coordenada del punto medio del la imagen.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.imagen.Imagen.definir_cuadro">
+<code class="descname">definir_cuadro</code><span class="sig-paren">(</span><em>cuadro</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.imagen.Imagen.definir_cuadro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.imagen.Imagen.dibujar">
+<code class="descname">dibujar</code><span class="sig-paren">(</span><em>painter</em>, <em>composicion</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.imagen.Imagen.dibujar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dibuja la imagen sobre la ventana que muestra el motor.</p>
+<p>x, y: indican la posicion dentro del mundo.
+dx, dy: es el punto centro de la imagen (importante para rotaciones).
+escala_x, escala_yindican cambio de tamano (1 significa normal).
+rotacion: angulo de inclinacion en sentido de las agujas del reloj.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.imagenes.superficie">
+<span id="pilasengine-imagenes-superficie"></span><h2>pilasengine.imagenes.superficie<a class="headerlink" href="#module-pilasengine.imagenes.superficie" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.imagenes.superficie.Superficie">
+<em class="property">class </em><code class="descclassname">pilasengine.imagenes.superficie.</code><code class="descname">Superficie</code><span class="sig-paren">(</span><em>pilas</em>, <em>ancho</em>, <em>alto</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.imagenes.imagen.Imagen" title="pilasengine.imagenes.imagen.Imagen"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.imagenes.imagen.Imagen</span></code></a></p>
+<dl class="attribute">
+<dt id="pilasengine.imagenes.superficie.Superficie.CACHE_FUENTES">
+<code class="descname">CACHE_FUENTES</code><em class="property"> = {}</em><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.CACHE_FUENTES" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.cargar_fuente">
+<code class="descname">cargar_fuente</code><span class="sig-paren">(</span><em>fuente_como_ruta</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.cargar_fuente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Carga o convierte una fuente para ser utilizada dentro del motor.</p>
+<p>Permite a los usuarios referirse a las fuentes como ruta a archivos, sin
+tener que preocuparse por el font-family.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>fuente_como_ruta</strong> &#8211; Ruta al archivo TTF que se quiere utilizar.</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Texto</span><span class="o">.</span><span class="n">cargar_fuente</span><span class="p">(</span><span class="s">&#39;myttffile.ttf&#39;</span><span class="p">)</span>
+<span class="go">&#39;Visitor TTF1&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.circulo">
+<code class="descname">circulo</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>radio</em>, <em>color=&lt;Color (0</em>, <em>0</em>, <em>0</em>, <em>255)&gt;</em>, <em>relleno=False</em>, <em>grosor=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.circulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.dibujar_punto">
+<code class="descname">dibujar_punto</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>color=&lt;Color (0</em>, <em>0</em>, <em>0</em>, <em>255)&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.dibujar_punto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.limpiar">
+<code class="descname">limpiar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.limpiar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.linea">
+<code class="descname">linea</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>x2</em>, <em>y2</em>, <em>color=&lt;Color (0</em>, <em>0</em>, <em>0</em>, <em>255)&gt;</em>, <em>grosor=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.pintar">
+<code class="descname">pintar</code><span class="sig-paren">(</span><em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.pintar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.pintar_imagen">
+<code class="descname">pintar_imagen</code><span class="sig-paren">(</span><em>imagen</em>, <em>x=0</em>, <em>y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.pintar_imagen" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.pintar_parte_de_imagen">
+<code class="descname">pintar_parte_de_imagen</code><span class="sig-paren">(</span><em>imagen</em>, <em>origen_x</em>, <em>origen_y</em>, <em>ancho</em>, <em>alto</em>, <em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.pintar_parte_de_imagen" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.poligono">
+<code class="descname">poligono</code><span class="sig-paren">(</span><em>puntos</em>, <em>color</em>, <em>grosor</em>, <em>cerrado=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.poligono" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.rectangulo">
+<code class="descname">rectangulo</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>ancho</em>, <em>alto</em>, <em>color=&lt;Color (0</em>, <em>0</em>, <em>0</em>, <em>255)&gt;</em>, <em>relleno=False</em>, <em>grosor=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.rectangulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.superficie.Superficie.texto">
+<code class="descname">texto</code><span class="sig-paren">(</span><em>cadena</em>, <em>x=0</em>, <em>y=0</em>, <em>magnitud=10</em>, <em>fuente=None</em>, <em>color=&lt;Color (0</em>, <em>0</em>, <em>0</em>, <em>255)&gt;</em>, <em>ancho=0</em>, <em>vertical=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.superficie.Superficie.texto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.imagenes.texto">
+<span id="pilasengine-imagenes-texto"></span><h2>pilasengine.imagenes.texto<a class="headerlink" href="#module-pilasengine.imagenes.texto" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.imagenes.texto.Texto">
+<em class="property">class </em><code class="descclassname">pilasengine.imagenes.texto.</code><code class="descname">Texto</code><span class="sig-paren">(</span><em>pilas</em>, <em>texto</em>, <em>magnitud</em>, <em>vertical</em>, <em>fuente</em>, <em>color</em>, <em>ancho</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.texto.Texto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.imagenes.superficie.Superficie" title="pilasengine.imagenes.superficie.Superficie"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.imagenes.superficie.Superficie</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.imagenes.texto.Texto.obtener_area_de_texto">
+<code class="descname">obtener_area_de_texto</code><span class="sig-paren">(</span><em>cadena</em>, <em>magnitud=10</em>, <em>vertical=False</em>, <em>fuente=None</em>, <em>ancho=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.texto.Texto.obtener_area_de_texto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.imagenes"></span><dl class="class">
+<dt id="pilasengine.imagenes.Imagenes">
+<em class="property">class </em><code class="descclassname">pilasengine.imagenes.</code><code class="descname">Imagenes</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.Imagenes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.imagenes.Imagenes.cargar">
+<code class="descname">cargar</code><span class="sig-paren">(</span><em>ruta_a_imagen</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.Imagenes.cargar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.Imagenes.cargar_animacion">
+<code class="descname">cargar_animacion</code><span class="sig-paren">(</span><em>ruta</em>, <em>columnas=1</em>, <em>filas=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.Imagenes.cargar_animacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.Imagenes.cargar_grilla">
+<code class="descname">cargar_grilla</code><span class="sig-paren">(</span><em>ruta</em>, <em>columnas=1</em>, <em>filas=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.Imagenes.cargar_grilla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Representa una grilla de imagenes con varios cuadros de animación.</p>
+<p>Una grilla es un objeto que se tiene que inicializar con la ruta
+a una imagen, la cantidad de columnas y filas.</p>
+<p>Por ejemplo, si tenemos una grilla con 2 columnas y 3 filas
+podemos asociarla a un actor de la siguiente manera:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">grilla</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">cargar_grilla</span><span class="p">(</span><span class="s">&quot;animacion.png&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">grilla</span><span class="o">.</span><span class="n">asignar</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Entonces, a partir de ahora nuestro actor muestra solamente un
+cuadro de toda la grilla.</p>
+<p>Si quieres avanzar la animacion tienes que modificar el objeto
+grilla y asignarlo nuevamente al actor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">grilla</span><span class="o">.</span><span class="n">avanzar</span><span class="p">()</span>
+<span class="n">grilla</span><span class="o">.</span><span class="n">asignar</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.Imagenes.cargar_superficie">
+<code class="descname">cargar_superficie</code><span class="sig-paren">(</span><em>ancho</em>, <em>alto</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.Imagenes.cargar_superficie" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.Imagenes.crear_superficie">
+<code class="descname">crear_superficie</code><span class="sig-paren">(</span><em>ancho</em>, <em>alto</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.Imagenes.crear_superficie" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.imagenes.Imagenes.crear_texto">
+<code class="descname">crear_texto</code><span class="sig-paren">(</span><em>cadena_de_texto</em>, <em>magnitud</em>, <em>vertical</em>, <em>fuente</em>, <em>color</em>, <em>ancho</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.imagenes.Imagenes.crear_texto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.interfaz.html" class="btn btn-neutral float-right" title="pilasengine.interfaz" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.habilidades.html" class="btn btn-neutral" title="pilasengine.habilidades" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

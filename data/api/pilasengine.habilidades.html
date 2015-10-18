@@ -1,0 +1,1144 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.habilidades &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.imagenes" href="pilasengine.imagenes.html"/>
+        <link rel="prev" title="pilasengine.fondos" href="pilasengine.fondos.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.habilidades</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodulos">Submódulos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.arrastrable">pilasengine.habilidades.arrastrable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.aumentar_con_rueda">pilasengine.habilidades.aumentar_con_rueda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.disparar">pilasengine.habilidades.disparar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.eliminarse_si_sale_de_pantalla">pilasengine.habilidades.eliminarse_si_sale_de_pantalla</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.habilidad">pilasengine.habilidades.habilidad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.imitar">pilasengine.habilidades.imitar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.limitado_a_bordes_de_pantalla">pilasengine.habilidades.limitado_a_bordes_de_pantalla</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.mirar_al_actor">pilasengine.habilidades.mirar_al_actor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.moverse_como_coche">pilasengine.habilidades.moverse_como_coche</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.moverse_con_el_teclado">pilasengine.habilidades.moverse_con_el_teclado</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.puede_explotar">pilasengine.habilidades.puede_explotar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.puede_explotar_con_humo">pilasengine.habilidades.puede_explotar_con_humo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.rebotar_como_caja">pilasengine.habilidades.rebotar_como_caja</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.rebotar_como_pelota">pilasengine.habilidades.rebotar_como_pelota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.rotar_con_mouse">pilasengine.habilidades.rotar_con_mouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.se_mantiene_en_pantalla">pilasengine.habilidades.se_mantiene_en_pantalla</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.seguir_al_mouse">pilasengine.habilidades.seguir_al_mouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.seguir_clicks">pilasengine.habilidades.seguir_clicks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.habilidades.siempre_en_el_centro">pilasengine.habilidades.siempre_en_el_centro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.manual.html">pilasengine.manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.habilidades</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-habilidades">
+<h1>pilasengine.habilidades<a class="headerlink" href="#pilasengine-habilidades" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="submodulos">
+<h2>Submódulos<a class="headerlink" href="#submodulos" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-pilasengine.habilidades.arrastrable">
+<span id="pilasengine-habilidades-arrastrable"></span><h2>pilasengine.habilidades.arrastrable<a class="headerlink" href="#module-pilasengine.habilidades.arrastrable" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.arrastrable.Arrastrable">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.arrastrable.</code><code class="descname">Arrastrable</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.arrastrable.Arrastrable" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.habilidades.arrastrable.Arrastrable.arrastrando">
+<code class="descname">arrastrando</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.arrastrable.Arrastrable.arrastrando" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.arrastrable.Arrastrable.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.arrastrable.Arrastrable.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.arrastrable.Arrastrable.intentar_arrastrar">
+<code class="descname">intentar_arrastrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.arrastrable.Arrastrable.intentar_arrastrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.arrastrable.Arrastrable.intentar_capturar_figura">
+<code class="descname">intentar_capturar_figura</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.arrastrable.Arrastrable.intentar_capturar_figura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.arrastrable.Arrastrable.termina_de_arrastrar">
+<code class="descname">termina_de_arrastrar</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.arrastrable.Arrastrable.termina_de_arrastrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.aumentar_con_rueda">
+<span id="pilasengine-habilidades-aumentar-con-rueda"></span><h2>pilasengine.habilidades.aumentar_con_rueda<a class="headerlink" href="#module-pilasengine.habilidades.aumentar_con_rueda" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.aumentar_con_rueda.AumentarConRueda">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.aumentar_con_rueda.</code><code class="descname">AumentarConRueda</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.aumentar_con_rueda.AumentarConRueda" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.habilidades.aumentar_con_rueda.AumentarConRueda.cambiar_de_escala">
+<code class="descname">cambiar_de_escala</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.aumentar_con_rueda.AumentarConRueda.cambiar_de_escala" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.aumentar_con_rueda.AumentarConRueda.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.aumentar_con_rueda.AumentarConRueda.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.disparar">
+<span id="pilasengine-habilidades-disparar"></span><h2>pilasengine.habilidades.disparar<a class="headerlink" href="#module-pilasengine.habilidades.disparar" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.disparar.Disparar">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.disparar.</code><code class="descname">Disparar</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>Establece la habilidad de poder disparar un Actor o un objeto de tipo
+pilas.municion.Municion.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.Disparar.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.Disparar.definir_colision">
+<code class="descname">definir_colision</code><span class="sig-paren">(</span><em>grupo_enemigos</em>, <em>cuando_elimina_enemigo</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.definir_colision" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.Disparar.disparar">
+<code class="descname">disparar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.disparar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.Disparar.eliminar">
+<code class="descname">eliminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.eliminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.disparar.Disparar.frecuencia_de_disparo">
+<code class="descname">frecuencia_de_disparo</code><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.frecuencia_de_disparo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Número de disparos por segundo.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.Disparar.get_frecuencia_de_disparo">
+<code class="descname">get_frecuencia_de_disparo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.get_frecuencia_de_disparo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.Disparar.get_municion">
+<code class="descname">get_municion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.get_municion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.Disparar.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>municion='Bala'</em>, <em>parametros_municion={}</em>, <em>grupo_enemigos=[]</em>, <em>cuando_elimina_enemigo=None</em>, <em>frecuencia_de_disparo=10</em>, <em>angulo_salida_disparo=0</em>, <em>distancia=0</em>, <em>offset_origen_actor=(0</em>, <em>0)</em>, <em>cuando_dispara=None</em>, <em>escala=1</em>, <em>rotacion_disparo=90</em>, <em>control='control.boton'</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Construye la habilidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>municion</strong> &#8211; Municion o Actor que se disparará.</li>
+<li><strong>grupo_enemigos</strong> &#8211; Actores que son considerados enemigos y con los que colisionará la munición disparada.</li>
+<li><strong>cuando_elimina_enemigo</strong> &#8211; Método que será llamado cuando se produzca un impacto con un enemigo.</li>
+<li><strong>frecuencia_de_disparo</strong> &#8211; El número de disparos por segundo que realizará.</li>
+<li><strong>angulo_salida_disparo</strong> &#8211; Especifica el angulo por donde saldrá el disparo efectuado por el Actor.</li>
+<li><strong>rotacion_disparo</strong> &#8211; Rotacion del actor que representara el disparo.</li>
+<li><strong>distancia</strong> &#8211; Distancia que deben tener los disparos con respecto al actor.</li>
+<li><strong>offset_origen_actor</strong> &#8211; Si el Actor no tiene su origen en el centro, con este parametro podremos colocar correctamente el disparo.</li>
+<li><strong>cuando_dispara</strong> &#8211; Metodo que será llamado cuando se produzca un disparo.</li>
+<li><strong>escala</strong> &#8211; Escala de los actores que serán disparados.</li>
+<li><strong>control</strong> &#8211; Indica los controles que utiliza el actor para saber cuando pulsa el botón de disparar.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mono</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Disparar</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>              <span class="n">municion</span><span class="o">=</span><span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">proyectil</span><span class="o">.</span><span class="n">Bala</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>              <span class="n">grupo_enemigos</span><span class="o">=</span><span class="n">enemigos</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>              <span class="n">cuando_elimina_enemigo</span><span class="o">=</span><span class="n">eliminar_enemigo</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.disparar.Disparar.municion">
+<code class="descname">municion</code><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.municion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Establece el tipo de municion que dispara.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.Disparar.pulsa_disparar">
+<code class="descname">pulsa_disparar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.pulsa_disparar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.Disparar.set_frecuencia_de_disparo">
+<code class="descname">set_frecuencia_de_disparo</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.set_frecuencia_de_disparo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.Disparar.set_municion">
+<code class="descname">set_municion</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.Disparar.set_municion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.habilidades.disparar.DispararConClick">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.disparar.</code><code class="descname">DispararConClick</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.DispararConClick" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.disparar.Disparar" title="pilasengine.habilidades.disparar.Disparar"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.disparar.Disparar</span></code></a></p>
+<p>Establece la habilidad de poder disparar un Actor o un objeto de tipo
+pilas.municion.Municion.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.DispararConClick.cuando_hace_click">
+<code class="descname">cuando_hace_click</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.DispararConClick.cuando_hace_click" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.DispararConClick.cuando_termina_click">
+<code class="descname">cuando_termina_click</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.DispararConClick.cuando_termina_click" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.DispararConClick.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>municion='Bala'</em>, <em>parametros_municion={}</em>, <em>grupo_enemigos=[]</em>, <em>cuando_elimina_enemigo=None</em>, <em>frecuencia_de_disparo=10</em>, <em>angulo_salida_disparo=0</em>, <em>distancia=0</em>, <em>offset_origen_actor=(0</em>, <em>0)</em>, <em>cuando_dispara=None</em>, <em>escala=1</em>, <em>rotacion_disparo=90</em>, <em>control=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.DispararConClick.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.disparar.DispararConClick.pulsa_disparar">
+<code class="descname">pulsa_disparar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.disparar.DispararConClick.pulsa_disparar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.eliminarse_si_sale_de_pantalla">
+<span id="pilasengine-habilidades-eliminarse-si-sale-de-pantalla"></span><h2>pilasengine.habilidades.eliminarse_si_sale_de_pantalla<a class="headerlink" href="#module-pilasengine.habilidades.eliminarse_si_sale_de_pantalla" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.eliminarse_si_sale_de_pantalla.EliminarseSiSaleDePantalla">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.eliminarse_si_sale_de_pantalla.</code><code class="descname">EliminarseSiSaleDePantalla</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.eliminarse_si_sale_de_pantalla.EliminarseSiSaleDePantalla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>Se asegura de que el actor sea eliminado si sale de los
+bordes de la pantalla.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.eliminarse_si_sale_de_pantalla.EliminarseSiSaleDePantalla.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.eliminarse_si_sale_de_pantalla.EliminarseSiSaleDePantalla.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.eliminarse_si_sale_de_pantalla.EliminarseSiSaleDePantalla.eliminar_actor">
+<code class="descname">eliminar_actor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.eliminarse_si_sale_de_pantalla.EliminarseSiSaleDePantalla.eliminar_actor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.eliminarse_si_sale_de_pantalla.EliminarseSiSaleDePantalla.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.eliminarse_si_sale_de_pantalla.EliminarseSiSaleDePantalla.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>receptor</strong> &#8211; El actor que aprenderá la habilidad.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.habilidad">
+<span id="pilasengine-habilidades-habilidad"></span><h2>pilasengine.habilidades.habilidad<a class="headerlink" href="#module-pilasengine.habilidades.habilidad" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.habilidad.Habilidad">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.habilidad.</code><code class="descname">Habilidad</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.habilidad.Habilidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa una habilidad que los actores pueden aprender</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.habilidad.Habilidad.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.habilidad.Habilidad.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.habilidad.Habilidad.eliminar">
+<code class="descname">eliminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.habilidad.Habilidad.eliminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.habilidad.Habilidad.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.habilidad.Habilidad.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.imitar">
+<span id="pilasengine-habilidades-imitar"></span><h2>pilasengine.habilidades.imitar<a class="headerlink" href="#module-pilasengine.habilidades.imitar" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.imitar.Imitar">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.imitar.</code><code class="descname">Imitar</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.imitar.Imitar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>Logra que el actor imite las propiedades de otro.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.imitar.Imitar.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.imitar.Imitar.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.imitar.Imitar.eliminar">
+<code class="descname">eliminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.imitar.Imitar.eliminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.imitar.Imitar.imitar">
+<code class="descname">imitar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.imitar.Imitar.imitar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.imitar.Imitar.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>objeto_a_imitar</em>, <em>con_escala=True</em>, <em>con_rotacion=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.imitar.Imitar.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicializa la habilidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>receptor</strong> &#8211; Referencia al actor.</li>
+<li><strong>objeto_a_imitar</strong> &#8211; Cualquier objeto con atributos rotacion,
+x e y (por ejemplo otro actor).</li>
+<li><strong>con_rotacion</strong> &#8211; Si debe imitar o no la rotación.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.limitado_a_bordes_de_pantalla">
+<span id="pilasengine-habilidades-limitado-a-bordes-de-pantalla"></span><h2>pilasengine.habilidades.limitado_a_bordes_de_pantalla<a class="headerlink" href="#module-pilasengine.habilidades.limitado_a_bordes_de_pantalla" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.limitado_a_bordes_de_pantalla.LimitadoABordesDePantalla">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.limitado_a_bordes_de_pantalla.</code><code class="descname">LimitadoABordesDePantalla</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.limitado_a_bordes_de_pantalla.LimitadoABordesDePantalla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.se_mantiene_en_pantalla.SeMantieneEnPantalla" title="pilasengine.habilidades.se_mantiene_en_pantalla.SeMantieneEnPantalla"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.se_mantiene_en_pantalla.SeMantieneEnPantalla</span></code></a></p>
+<p>Se asegura de que el actor no pueda salir por los bordes
+de la pantalla.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.limitado_a_bordes_de_pantalla.LimitadoABordesDePantalla.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.limitado_a_bordes_de_pantalla.LimitadoABordesDePantalla.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>receptor</strong> &#8211; El actor que aprenderá la habilidad.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.mirar_al_actor">
+<span id="pilasengine-habilidades-mirar-al-actor"></span><h2>pilasengine.habilidades.mirar_al_actor<a class="headerlink" href="#module-pilasengine.habilidades.mirar_al_actor" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.mirar_al_actor.MirarAlActor">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.mirar_al_actor.</code><code class="descname">MirarAlActor</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.mirar_al_actor.MirarAlActor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>&#8220;Hace que un actor rote para mirar hacia otro actor.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.mirar_al_actor.MirarAlActor.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>actor_a_seguir</em>, <em>lado_seguimiento='ARRIBA'</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.mirar_al_actor.MirarAlActor.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicializa la habilidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>receptor</strong> &#8211; Actor que aprenderá la habilidad.</td>
+</tr>
+</tbody>
+</table>
+<p>:param actor_a_seguir : Actor al que se desea seguir con la mirada.
+:param lado_seguimiento: Establece el lado del actor que rotará para</p>
+<blockquote>
+<div>estar encarado hacia el actor que desea vigilar.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.mirar_al_actor.MirarAlActor.rotar">
+<code class="descname">rotar</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.mirar_al_actor.MirarAlActor.rotar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.moverse_como_coche">
+<span id="pilasengine-habilidades-moverse-como-coche"></span><h2>pilasengine.habilidades.moverse_como_coche<a class="headerlink" href="#module-pilasengine.habilidades.moverse_como_coche" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.moverse_como_coche.MoverseComoCoche">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.moverse_como_coche.</code><code class="descname">MoverseComoCoche</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_como_coche.MoverseComoCoche" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado" title="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado</span></code></a></p>
+<p>Hace que un actor se mueva como un coche.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.get_rozamiento">
+<code class="descname">get_rozamiento</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.get_rozamiento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.get_velocidad_maxima">
+<code class="descname">get_velocidad_maxima</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.get_velocidad_maxima" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>control=None</em>, <em>velocidad_maxima=4</em>, <em>aceleracion=0.06</em>, <em>deceleracion=0.1</em>, <em>rozamiento=0</em>, <em>velocidad_rotacion=1</em>, <em>marcha_atras=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.rozamiento">
+<code class="descname">rozamiento</code><a class="headerlink" href="#pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.rozamiento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define el                           rozamiento del coche con la superficie por                           donde circula.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.set_rozamiento">
+<code class="descname">set_rozamiento</code><span class="sig-paren">(</span><em>nivel_rozamiento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.set_rozamiento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.set_velocidad_maxima">
+<code class="descname">set_velocidad_maxima</code><span class="sig-paren">(</span><em>velocidad</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_como_coche.MoverseComoCoche.set_velocidad_maxima" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.moverse_con_el_teclado">
+<span id="pilasengine-habilidades-moverse-con-el-teclado"></span><h2>pilasengine.habilidades.moverse_con_el_teclado<a class="headerlink" href="#module-pilasengine.habilidades.moverse_con_el_teclado" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.moverse_con_el_teclado.</code><code class="descname">MoverseConElTeclado</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>Hace que un actor cambie de posición con pulsar el teclado.</p>
+<dl class="attribute">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.aceleracion">
+<code class="descname">aceleracion</code><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.aceleracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define la acelaracion.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.avanzar">
+<code class="descname">avanzar</code><span class="sig-paren">(</span><em>delta</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.avanzar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.decelerar">
+<code class="descname">decelerar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.decelerar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.get_aceleracion">
+<code class="descname">get_aceleracion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.get_aceleracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.get_velocidad_maxima">
+<code class="descname">get_velocidad_maxima</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.get_velocidad_maxima" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>control=None</em>, <em>direcciones=8</em>, <em>velocidad_maxima=4</em>, <em>aceleracion=1</em>, <em>deceleracion=0.1</em>, <em>con_rotacion=False</em>, <em>velocidad_rotacion=1</em>, <em>marcha_atras=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicializa la habilidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>receptor</strong> &#8211; Referencia al actor que aprenderá la habilidad.</li>
+<li><strong>control</strong> &#8211; Control al que va a responder para mover el Actor.</li>
+<li><strong>direcciones</strong> &#8211; Establece si puede mover en cualquier direccion o
+unicamente en 4 direcciones arriba, abajo,
+izquierda y derecha. El parametro con_rotacion
+establece las direcciones a 8 direcciones siempre.</li>
+<li><strong>velocidad_maxima</strong> &#8211; Velocidad maxima en pixeles a la que se moverá
+el Actor.</li>
+<li><strong>aceleracion</strong> &#8211; Indica lo rapido que acelera el actor hasta su
+velocidad máxima.</li>
+<li><strong>deceleracion</strong> &#8211; Indica lo rapido que decelera el actor hasta parar.</li>
+<li><strong>con_rotacion</strong> &#8211; Si deseas que el actor rote pulsando las teclas
+de izquierda y derecha.</li>
+<li><strong>velocidad_rotacion</strong> &#8211; Indica lo rapido que rota un actor sobre
+si mismo.</li>
+<li><strong>marcha_atras</strong> &#8211; Posibilidad de ir hacia atrás. (True o False)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.mover">
+<code class="descname">mover</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.mover" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.mover_con_rotacion">
+<code class="descname">mover_con_rotacion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.mover_con_rotacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.set_aceleracion">
+<code class="descname">set_aceleracion</code><span class="sig-paren">(</span><em>aceleracion</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.set_aceleracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.set_velocidad_maxima">
+<code class="descname">set_velocidad_maxima</code><span class="sig-paren">(</span><em>velocidad</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.set_velocidad_maxima" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.velocidad_maxima">
+<code class="descname">velocidad_maxima</code><a class="headerlink" href="#pilasengine.habilidades.moverse_con_el_teclado.MoverseConElTeclado.velocidad_maxima" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define la velocidad maxima.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.puede_explotar">
+<span id="pilasengine-habilidades-puede-explotar"></span><h2>pilasengine.habilidades.puede_explotar<a class="headerlink" href="#module-pilasengine.habilidades.puede_explotar" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.puede_explotar.PuedeExplotar">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.puede_explotar.</code><code class="descname">PuedeExplotar</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.puede_explotar.PuedeExplotar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>Hace que un actor se pueda hacer explotar invocando al metodo eliminar.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.puede_explotar.PuedeExplotar.crear_explosion">
+<code class="descname">crear_explosion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.puede_explotar.PuedeExplotar.crear_explosion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.puede_explotar.PuedeExplotar.eliminar_y_explotar">
+<code class="descname">eliminar_y_explotar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.puede_explotar.PuedeExplotar.eliminar_y_explotar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.puede_explotar.PuedeExplotar.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.puede_explotar.PuedeExplotar.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.puede_explotar_con_humo">
+<span id="pilasengine-habilidades-puede-explotar-con-humo"></span><h2>pilasengine.habilidades.puede_explotar_con_humo<a class="headerlink" href="#module-pilasengine.habilidades.puede_explotar_con_humo" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.puede_explotar_con_humo.PuedeExplotarConHumo">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.puede_explotar_con_humo.</code><code class="descname">PuedeExplotarConHumo</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.puede_explotar_con_humo.PuedeExplotarConHumo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.puede_explotar.PuedeExplotar" title="pilasengine.habilidades.puede_explotar.PuedeExplotar"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.puede_explotar.PuedeExplotar</span></code></a></p>
+<p>Hace que un actor se pueda hacer explotar invocando al metodo eliminar.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.puede_explotar_con_humo.PuedeExplotarConHumo.crear_explosion">
+<code class="descname">crear_explosion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.puede_explotar_con_humo.PuedeExplotarConHumo.crear_explosion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.rebotar_como_caja">
+<span id="pilasengine-habilidades-rebotar-como-caja"></span><h2>pilasengine.habilidades.rebotar_como_caja<a class="headerlink" href="#module-pilasengine.habilidades.rebotar_como_caja" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.rebotar_como_caja.RebotarComoCaja">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.rebotar_como_caja.</code><code class="descname">RebotarComoCaja</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rebotar_como_caja.RebotarComoCaja" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>Le indica al actor que rebote y colisiones como una caja cuadrada.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">un_actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Aceituna</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">un_actor</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">RebotarComoPelota</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pilasengine.habilidades.rebotar_como_caja.RebotarComoCaja.eliminar">
+<code class="descname">eliminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rebotar_como_caja.RebotarComoCaja.eliminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.rebotar_como_caja.RebotarComoCaja.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rebotar_como_caja.RebotarComoCaja.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.rebotar_como_pelota">
+<span id="pilasengine-habilidades-rebotar-como-pelota"></span><h2>pilasengine.habilidades.rebotar_como_pelota<a class="headerlink" href="#module-pilasengine.habilidades.rebotar_como_pelota" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.rebotar_como_pelota.RebotarComoPelota">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.rebotar_como_pelota.</code><code class="descname">RebotarComoPelota</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rebotar_como_pelota.RebotarComoPelota" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>Le indica al actor que rebote y colisiones como una pelota.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">un_actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Aceituna</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">un_actor</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">RebotarComoPelota</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pilasengine.habilidades.rebotar_como_pelota.RebotarComoPelota.eliminar">
+<code class="descname">eliminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rebotar_como_pelota.RebotarComoPelota.eliminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.rebotar_como_pelota.RebotarComoPelota.empujar">
+<code class="descname">empujar</code><span class="sig-paren">(</span><em>dx</em>, <em>dy</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rebotar_como_pelota.RebotarComoPelota.empujar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.rebotar_como_pelota.RebotarComoPelota.impulsar">
+<code class="descname">impulsar</code><span class="sig-paren">(</span><em>dx</em>, <em>dy</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rebotar_como_pelota.RebotarComoPelota.impulsar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.rebotar_como_pelota.RebotarComoPelota.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rebotar_como_pelota.RebotarComoPelota.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.rotar_con_mouse">
+<span id="pilasengine-habilidades-rotar-con-mouse"></span><h2>pilasengine.habilidades.rotar_con_mouse<a class="headerlink" href="#module-pilasengine.habilidades.rotar_con_mouse" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.rotar_con_mouse.RotarConMouse">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.rotar_con_mouse.</code><code class="descname">RotarConMouse</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rotar_con_mouse.RotarConMouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>&#8220;Hace que un actor rote con respecto a la posicion del mouse.</p>
+<p>Ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">actor</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">RotarConMouse</span><span class="p">,</span>
+<span class="go">                   lado_seguimiento=&#39;ABAJO&#39;)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pilasengine.habilidades.rotar_con_mouse.RotarConMouse.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>lado_seguimiento='ARRIBA'</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rotar_con_mouse.RotarConMouse.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicializa la Habilidad</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>receptor</strong> &#8211; La referencia al actor.</li>
+<li><strong>lado_seguimiento</strong> &#8211; Establece el lado del actor que rotará para
+estar encarado hacia el puntero del mouse.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.rotar_con_mouse.RotarConMouse.rotar">
+<code class="descname">rotar</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rotar_con_mouse.RotarConMouse.rotar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.rotar_con_mouse.RotarConMouse.se_movio_el_mouse">
+<code class="descname">se_movio_el_mouse</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.rotar_con_mouse.RotarConMouse.se_movio_el_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.se_mantiene_en_pantalla">
+<span id="pilasengine-habilidades-se-mantiene-en-pantalla"></span><h2>pilasengine.habilidades.se_mantiene_en_pantalla<a class="headerlink" href="#module-pilasengine.habilidades.se_mantiene_en_pantalla" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.se_mantiene_en_pantalla.SeMantieneEnPantalla">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.se_mantiene_en_pantalla.</code><code class="descname">SeMantieneEnPantalla</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.se_mantiene_en_pantalla.SeMantieneEnPantalla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>Se asegura de que el actor regrese a la pantalla si sale o que no
+salga en nigún momento de la pantalla.</p>
+<p>Si el actor sale por la derecha de la pantalla, entonces regresa
+por la izquiera. Si sale por arriba regresa por abajo y asi...</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.se_mantiene_en_pantalla.SeMantieneEnPantalla.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.se_mantiene_en_pantalla.SeMantieneEnPantalla.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.se_mantiene_en_pantalla.SeMantieneEnPantalla.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>permitir_salida=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.se_mantiene_en_pantalla.SeMantieneEnPantalla.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>receptor</strong> &#8211; El actor que aprenderá la habilidad.</li>
+<li><strong>permitir_salida</strong> &#8211; Valor booleano que establece si el actor
+puede salir por los lados de la ventana y
+regresar por el lado opuesto. Si se establece a
+False, el actor no puede salir de la ventana en
+ningún momento.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.seguir_al_mouse">
+<span id="pilasengine-habilidades-seguir-al-mouse"></span><h2>pilasengine.habilidades.seguir_al_mouse<a class="headerlink" href="#module-pilasengine.habilidades.seguir_al_mouse" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.seguir_al_mouse.SeguirAlMouse">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.seguir_al_mouse.</code><code class="descname">SeguirAlMouse</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.seguir_al_mouse.SeguirAlMouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>Hace que un actor siga la posición del mouse en todo momento.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.seguir_al_mouse.SeguirAlMouse.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.seguir_al_mouse.SeguirAlMouse.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.seguir_al_mouse.SeguirAlMouse.mover">
+<code class="descname">mover</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.seguir_al_mouse.SeguirAlMouse.mover" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.seguir_clicks">
+<span id="pilasengine-habilidades-seguir-clicks"></span><h2>pilasengine.habilidades.seguir_clicks<a class="headerlink" href="#module-pilasengine.habilidades.seguir_clicks" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.seguir_clicks.SeguirClicks">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.seguir_clicks.</code><code class="descname">SeguirClicks</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.seguir_clicks.SeguirClicks" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.habilidades.seguir_clicks.SeguirClicks.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.seguir_clicks.SeguirClicks.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.seguir_clicks.SeguirClicks.moverse_a_este_punto">
+<code class="descname">moverse_a_este_punto</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.seguir_clicks.SeguirClicks.moverse_a_este_punto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.habilidades.siempre_en_el_centro">
+<span id="pilasengine-habilidades-siempre-en-el-centro"></span><h2>pilasengine.habilidades.siempre_en_el_centro<a class="headerlink" href="#module-pilasengine.habilidades.siempre_en_el_centro" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.habilidades.siempre_en_el_centro.SiempreEnElCentro">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.siempre_en_el_centro.</code><code class="descname">SiempreEnElCentro</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.siempre_en_el_centro.SiempreEnElCentro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<p>Hace que un actor siempre esté en el centro de la camara y la desplace
+cuando el actor se desplaza.</p>
+<dl class="method">
+<dt id="pilasengine.habilidades.siempre_en_el_centro.SiempreEnElCentro.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.siempre_en_el_centro.SiempreEnElCentro.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.habilidades"></span><dl class="class">
+<dt id="pilasengine.habilidades.Habilidades">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.</code><code class="descname">Habilidades</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa la forma de acceso y construcción de las habilidades.</p>
+<p>Esta clase representa el objeto creado por pilas que
+se puede acceder escribiendo <code class="docutils literal"><span class="pre">pilas.habilidades</span></code>. Desde aquí
+se puede acceder a las habilidades pre-diseñadas de pilas y
+&#8216;enseñarselas&#8217; a los actores.</p>
+<p>Por ejemplo, para &#8216;enseñar&#8217; una habilidad:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">nave</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Nave</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nave</span><span class="o">.</span><span class="n">aprender</span><span class="p">(</span><span class="n">pilas</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">Arrastrable</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="pilasengine.habilidades.Habilidades.AlternarTamano">
+<em class="property">class </em><code class="descname">AlternarTamano</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.Habilidades.AlternarTamano" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.habilidades.Habilidades.AlternarTamano.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.Habilidades.AlternarTamano.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.Habilidades.AlternarTamano.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>escala_inicial</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.Habilidades.AlternarTamano.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.Arrastrable">
+<code class="descclassname">Habilidades.</code><code class="descname">Arrastrable</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.Arrastrable" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.AumentarConRueda">
+<code class="descclassname">Habilidades.</code><code class="descname">AumentarConRueda</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.AumentarConRueda" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.habilidades.Habilidades.AvanzaAIzquierda">
+<em class="property">class </em><code class="descclassname">Habilidades.</code><code class="descname">AvanzaAIzquierda</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.Habilidades.AvanzaAIzquierda" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.habilidades.Habilidades.AvanzaAIzquierda.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.Habilidades.AvanzaAIzquierda.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.Habilidades.AvanzaAIzquierda.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>receptor</em>, <em>velocidad</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.Habilidades.AvanzaAIzquierda.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.Disparar">
+<code class="descclassname">Habilidades.</code><code class="descname">Disparar</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.Disparar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.DispararConClick">
+<code class="descclassname">Habilidades.</code><code class="descname">DispararConClick</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.DispararConClick" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.EliminarseSiSaleDePantalla">
+<code class="descclassname">Habilidades.</code><code class="descname">EliminarseSiSaleDePantalla</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.EliminarseSiSaleDePantalla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.Habilidad">
+<code class="descclassname">Habilidades.</code><code class="descname">Habilidad</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.Habilidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.Imitar">
+<code class="descclassname">Habilidades.</code><code class="descname">Imitar</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.Imitar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.LimitadoABordesDePantalla">
+<code class="descclassname">Habilidades.</code><code class="descname">LimitadoABordesDePantalla</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.LimitadoABordesDePantalla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.MirarAlActor">
+<code class="descclassname">Habilidades.</code><code class="descname">MirarAlActor</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.MirarAlActor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.MoverseComoCoche">
+<code class="descclassname">Habilidades.</code><code class="descname">MoverseComoCoche</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.MoverseComoCoche" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.MoverseConElTeclado">
+<code class="descclassname">Habilidades.</code><code class="descname">MoverseConElTeclado</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.MoverseConElTeclado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.PuedeExplotar">
+<code class="descclassname">Habilidades.</code><code class="descname">PuedeExplotar</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.PuedeExplotar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.PuedeExplotarConHumo">
+<code class="descclassname">Habilidades.</code><code class="descname">PuedeExplotarConHumo</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.PuedeExplotarConHumo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.RebotarComoCaja">
+<code class="descclassname">Habilidades.</code><code class="descname">RebotarComoCaja</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.RebotarComoCaja" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.RebotarComoPelota">
+<code class="descclassname">Habilidades.</code><code class="descname">RebotarComoPelota</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.RebotarComoPelota" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.RotarConMouse">
+<code class="descclassname">Habilidades.</code><code class="descname">RotarConMouse</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.RotarConMouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.habilidades.Habilidades.RotarPorSiempre">
+<em class="property">class </em><code class="descclassname">Habilidades.</code><code class="descname">RotarPorSiempre</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.Habilidades.RotarPorSiempre" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.habilidades.habilidad.Habilidad" title="pilasengine.habilidades.habilidad.Habilidad"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.habilidades.habilidad.Habilidad</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.habilidades.Habilidades.RotarPorSiempre.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.Habilidades.RotarPorSiempre.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.SeMantieneEnPantalla">
+<code class="descclassname">Habilidades.</code><code class="descname">SeMantieneEnPantalla</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.SeMantieneEnPantalla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.SeguirAlMouse">
+<code class="descclassname">Habilidades.</code><code class="descname">SeguirAlMouse</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.SeguirAlMouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.SeguirClicks">
+<code class="descclassname">Habilidades.</code><code class="descname">SeguirClicks</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.SeguirClicks" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.habilidades.Habilidades.SiempreEnElCentro">
+<code class="descclassname">Habilidades.</code><code class="descname">SiempreEnElCentro</code><a class="headerlink" href="#pilasengine.habilidades.Habilidades.SiempreEnElCentro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.Habilidades.buscar_habilidad_por_nombre">
+<code class="descclassname">Habilidades.</code><code class="descname">buscar_habilidad_por_nombre</code><span class="sig-paren">(</span><em>nombre</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.Habilidades.buscar_habilidad_por_nombre" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.habilidades.Habilidades.vincular">
+<code class="descclassname">Habilidades.</code><code class="descname">vincular</code><span class="sig-paren">(</span><em>clase_del_comportamiento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.Habilidades.vincular" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.habilidades.ProxyHabilidades">
+<em class="property">class </em><code class="descclassname">pilasengine.habilidades.</code><code class="descname">ProxyHabilidades</code><span class="sig-paren">(</span><em>habilidades</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.habilidades.ProxyHabilidades" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Implementa un intermediario con todas las habilidades del Actor.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.imagenes.html" class="btn btn-neutral float-right" title="pilasengine.imagenes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.fondos.html" class="btn btn-neutral" title="pilasengine.fondos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

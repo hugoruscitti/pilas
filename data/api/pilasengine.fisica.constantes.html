@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.fisica.constantes &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="up" title="pilasengine.fisica" href="pilasengine.fisica.html"/>
+        <link rel="next" title="pilasengine.fondos" href="pilasengine.fondos.html"/>
+        <link rel="prev" title="pilasengine.fisica" href="pilasengine.fisica.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">pilasengine.fisica.constantes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-pilasengine.fisica.constantes.constante_de_movimiento">pilasengine.fisica.constantes.constante_de_movimiento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pilasengine.fisica.html#module-pilasengine.fisica.circulo">pilasengine.fisica.circulo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pilasengine.fisica.html#module-pilasengine.fisica.contact_listener">pilasengine.fisica.contact_listener</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pilasengine.fisica.html#module-pilasengine.fisica.figura">pilasengine.fisica.figura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pilasengine.fisica.html#pilasengine-fisica-poligono">pilasengine.fisica.poligono</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pilasengine.fisica.html#module-pilasengine.fisica.rectangulo">pilasengine.fisica.rectangulo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pilasengine.fisica.html#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.manual.html">pilasengine.manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="pilasengine.fisica.html">pilasengine.fisica</a> &raquo;</li>
+      
+    <li>pilasengine.fisica.constantes</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-fisica-constantes">
+<h1>pilasengine.fisica.constantes<a class="headerlink" href="#pilasengine-fisica-constantes" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="module-pilasengine.fisica.constantes.constante_de_movimiento">
+<span id="pilasengine-fisica-constantes-constante-de-movimiento"></span><h2>pilasengine.fisica.constantes.constante_de_movimiento<a class="headerlink" href="#module-pilasengine.fisica.constantes.constante_de_movimiento" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fisica.constantes.constante_de_movimiento.ConstanteDeMovimiento">
+<em class="property">class </em><code class="descclassname">pilasengine.fisica.constantes.constante_de_movimiento.</code><code class="descname">ConstanteDeMovimiento</code><span class="sig-paren">(</span><em>pilas</em>, <em>figura</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.constantes.constante_de_movimiento.ConstanteDeMovimiento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Representa una constante de movimiento para el mouse.</p>
+<dl class="method">
+<dt id="pilasengine.fisica.constantes.constante_de_movimiento.ConstanteDeMovimiento.eliminar">
+<code class="descname">eliminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.constantes.constante_de_movimiento.ConstanteDeMovimiento.eliminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.constantes.constante_de_movimiento.ConstanteDeMovimiento.mover">
+<code class="descname">mover</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.constantes.constante_de_movimiento.ConstanteDeMovimiento.mover" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Realiza un movimiento de la figura.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; Posición horizontal.</li>
+<li><strong>y</strong> &#8211; Posición vertical.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.fisica.constantes"></span></div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.fondos.html" class="btn btn-neutral float-right" title="pilasengine.fondos" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.fisica.html" class="btn btn-neutral" title="pilasengine.fisica" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
