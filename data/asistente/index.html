@@ -139,7 +139,7 @@
 
           <h4>Cambios recientes</h4>
           <ul>
-              <li ng-repeat='c in data.version.changelog'>{{c}}</li>
+              <li ng-repeat='c in data.version.changelog track by $index'>{{c}}</li>
               <li><a href onclick='abrir_sitio_de_pilas()'>ver mas...</a></li>
           </ul>
 
