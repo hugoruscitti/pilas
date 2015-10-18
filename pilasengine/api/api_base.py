@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/api/api.ui'
 #
-# Created: Sun Oct 18 13:01:36 2015
+# Created: Sun Oct 18 14:51:42 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -53,7 +53,7 @@ class Ui_ManualWindow(object):
         QtCore.QMetaObject.connectSlotsByName(ManualWindow)
 
     def retranslateUi(self, ManualWindow):
-        ManualWindow.setWindowTitle(_translate("ManualWindow", "manual de pilas-engine", None))
+        ManualWindow.setWindowTitle(_translate("ManualWindow", "API de pilas-engine", None))
 
 from PyQt4 import QtWebKit
 

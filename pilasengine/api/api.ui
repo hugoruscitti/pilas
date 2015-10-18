@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>manual de pilas-engine</string>
+   <string>API de pilas-engine</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
