@@ -44,7 +44,7 @@ ejecutar_mac: test_mac
 
 version:
 	#@bumpversion: mayor | minor | patch 
-	@bumpversion --current-version ${VERSION} minor setup.py setup-mac.py pilasengine/__init__.py ./extras/actualizar_version.py ./extras/instalador.nsi Makefile --list
+	@bumpversion --current-version ${VERSION} patch setup.py setup-mac.py pilasengine/__init__.py ./extras/actualizar_version.py ./extras/instalador.nsi Makefile --list
 	@python extras/actualizar_version.py
 	@echo "Es recomendable escribir el comando que genera los tags y sube todo a github:"
 	@echo ""
