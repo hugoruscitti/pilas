@@ -593,10 +593,15 @@ class Editor(editor_base.EditorBase):
         ruta_personalizada = os.path.dirname(self.ruta_del_archivo_actual)
         #print "ejecutando texto desde widget editor"
         texto = self.obtener_contenido()
+        texto = "from __future__ import print_function\n" + texto
+
         #texto = self.editor.obtener_texto_sanitizado(self)
+
         # elimina cabecera de encoding.
         contenido = re.sub('coding\s*:\s*', '', texto)
-        contenido = contenido.replace('import pilasengine', '')
+        contenido = contenido.replace('import pilasengine', '# PRINT HOOK')
+
+        #contenido = contenido.replace("# PRINT HOOK", 'from __future__ import print_function')
         contenido = contenido.replace('pilas = pilasengine.iniciar', 'pilas.reiniciar')
 
         for x in contenido.split('\n'):
@@ -605,6 +610,7 @@ class Editor(editor_base.EditorBase):
 
         sys.path.append(ruta_personalizada)
         self.interpreterLocals['sys'] = sys
+        self.interpreterLocals['print'] = self.consola_lanas.interpreter.imprimir_en_pantalla
 
         # Muchos códigos personalizados necesitan cargar imágenes o sonidos
         # desde el directorio que contiene al archivo. Para hacer esto posible,

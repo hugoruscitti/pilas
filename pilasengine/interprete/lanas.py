@@ -33,11 +33,22 @@ class PythonInterpreter(code.InteractiveInterpreter):
         self.normal_io = io_lanas.NormalOutput(interprete_lanas)
 
     def runcode(self, cd):
+        self.sobreescribir_salida_por_consola(sys)
         # redirecting stdout to our method write before calling code cd
-        sys.stdout = self.normal_io
-        sys.stderr = self.error_io
         code.InteractiveInterpreter.runcode(self, cd)
         # redirecting back to normal stdout
+        self.restaurar_salida_por_consola(sys)
+
+    def imprimir_en_pantalla(self, *arg):
+        self.sobreescribir_salida_por_consola(sys)
+        print ' '.join([str(x) for x in arg])
+        self.restaurar_salida_por_consola(sys)
+
+    def sobreescribir_salida_por_consola(self, sys):
+        sys.stdout = self.normal_io
+        sys.stderr = self.error_io
+
+    def restaurar_salida_por_consola(self, sys):
         sys.stdout = sys.__stdout__
         sys.stderr = sys.__stderr__
 
@@ -109,7 +120,7 @@ class InterpreteLanas(editor_base.EditorBase):
         self.interpreterLocals = {'raw_input': self.raw_input,
                                   'input': self.input,
                                   'sys': sys,
-                                  'help': help,
+                                  'help': self.help,
                                   'ayuda': self.help}
 
         palette = QPalette()
@@ -234,7 +245,7 @@ class InterpreteLanas(editor_base.EditorBase):
     def recall_history(self):
         self._mover_cursor_al_final()
         self.clearCurrentBlock()
-        if self.historyIndex <> -1:
+        if self.historyIndex != -1:
             self.insertPlainText(self.history[self.historyIndex])
 
     def _get_entered_line(self):
@@ -429,7 +440,7 @@ class InterpreteLanas(editor_base.EditorBase):
             # Permite escribir lineas terminas con '?' para consultar la documentacion
             # de manera similar a como lo hace ipython.
             if line.endswith('?'):
-                line = 'print ' + line[:-1] + '.__doc__'
+                line = 'pilas.ver(' + line[:-1] + ')'
 
             if self.haveLine and not self.multiline: # one line command
                 self.command = line # line is the command
@@ -570,6 +581,6 @@ class InterpreteLanas(editor_base.EditorBase):
 
     def help(self, objeto=None):
         if objeto:
-            print help(objeto)
+            self.interpreterLocals['pilas'].ver(objeto)
         else:
             print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
