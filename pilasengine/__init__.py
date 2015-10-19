@@ -41,7 +41,7 @@ import datos
 
 import widget
 
-VERSION = "1.3.1"
+VERSION = "1.3.2"
 
 
 def handler(signum, frame):
