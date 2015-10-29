@@ -148,8 +148,8 @@ class CompletionTextEdit(QtGui.QTextEdit):
         line = self._get_current_line()
         position = self._get_position_in_block()
         if position < len(line) - 1:
-            char = str(line[position])
-            nextchar = str(line[position+1])
+            char = unicode(line[position])
+            nextchar = unicode(line[position+1])
             if char in CHARACTERS and nextchar in CHARACTERS.values():
                 tc.deleteChar()
 
