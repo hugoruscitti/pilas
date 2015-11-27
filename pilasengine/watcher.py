@@ -29,7 +29,7 @@ class Watcher(QtCore.QObject):
 
     def cambiar_archivo_a_observar(self, aFile):
         if aFile:
-            self.file = os.path.dirname(aFile)
+            self.file = os.path.dirname(os.path.realpath(aFile))
             self._actualizar_contadores_de_archivos()
             self.ultima_modificacion = os.path.getmtime(self.file)
         else:
