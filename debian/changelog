@@ -1,0 +1,120 @@
+python-pilas (0.90.28-1) unstable; urgency=low
+
+  * Agrego listar_actores() a pilasengine
+
+ -- Mauro <mauro@sdf.org>  Mon, 09 Mar 2015 15:49:10 -0300
+
+python-pilas (0.90.27-6) unstable; urgency=low
+
+  * Arregla iconos del menú. 
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Fri, 06 Mar 2015 15:38:13 +0100
+
+python-pilas (0.90.27-5) unstable; urgency=low
+
+  * Actualizando iconos del menú. 
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Fri, 06 Mar 2015 14:58:13 +0100
+
+python-pilas (0.90.27-4) unstable; urgency=low
+
+  * Agrega archivo desktop faltante para los menu.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Wed, 04 Mar 2015 21:34:45 +0100
+
+python-pilas (0.90.27-3) unstable; urgency=low
+
+  * Cambiando el nombre del archivo source.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Wed, 04 Mar 2015 21:34:45 +0100
+
+pilasengine (0.90.27-2) unstable; urgency=low
+
+  * cambiando el nombre del paquete.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Mon, 02 Mar 2015 21:13:42 +0100
+
+pilasengine (0.90.27-1) unstable; urgency=low
+
+  * Arreglo menor.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Mon, 02 Mar 2015 20:39:44 +0100
+
+pilasengine (0.90.27) unstable; urgency=low
+
+  * Actualizando paquete.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Mon, 02 Mar 2015 19:40:08 +0100
+
+pilasengine (0.90.25) unstable; urgency=low
+
+  * Actualizando paquete.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Wed, 18 Feb 2015 16:50:21 +0100
+
+pilasengine (0.90.15) unstable; urgency=low
+
+  * Actualizando a la version 0.90.15
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Wed, 26 Nov 2014 18:58:22 +0100
+
+pilasengine (0.90.13) unstable; urgency=low
+
+  * Actualizando a la version 0.90.13
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Wed, 05 Nov 2014 16:12:41 +0100
+
+pilasengine (0.90.12) unstable; urgency=low
+
+  * Actualizando a la version 0.90.12
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Fri, 31 Oct 2014 20:19:13 +0100
+
+pilasengine (0.90.10) unstable; urgency=low
+
+  * Actualizando a la version 0.90.10
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Mon, 27 Oct 2014 16:13:43 +0100
+
+pilasengine (0.90.8) unstable; urgency=low
+
+  * Actualizando al tag 0.90.8
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Wed, 15 Oct 2014 15:13:40 +0200
+
+pilasengine (0.90.5-3) unstable; urgency=low
+
+  * Actualizando a la version 0.90.3 de pilas.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Mon, 01 Sep 2014 19:01:29 +0200
+
+pilasengine (0.90.5) unstable; urgency=low
+
+  * Actualizando paquete .deb
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Thu, 21 Aug 2014 20:09:09 +0200
+
+pilasengine (0.90.4) unstable; urgency=low
+
+  * Agregando mejoras del editor. 
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Fri, 01 Aug 2014 17:18:29 +0200
+
+pilasengine (0.90.3) unstable; urgency=low
+
+  * Copiando archivos data.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Thu, 26 Jun 2014 21:19:34 +0200
+
+pilasengine (0.90.2) unstable; urgency=low
+
+  * Cambiando la ruta de instalación.
+  * Arreglo menor en el nombre del archivo de ícono.
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Thu, 26 Jun 2014 17:12:44 +0200
+
+pilasengine (0.90.0) unstable; urgency=low
+
+  * empaquetado inicial. 
+
+ -- Hugo Ruscitti <hugoruscitti@gmail.com>  Thu, 26 Jun 2014 16:48:01 +0200

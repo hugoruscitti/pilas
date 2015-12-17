@@ -8,12 +8,12 @@ Módulo pilas.escena
 """
 import pilas
 
-from gestor import Gestor
-from escena_base import Base
-from escena_normal import Normal
-from escena_pausa import Pausa
-from escena_normal import Aviso
-from escena_logos import Logos
+from .gestor import Gestor
+from .escena_base import Base
+from .escena_normal import Normal
+from .escena_pausa import Pausa
+from .escena_normal import Aviso
+from .escena_logos import Logos
 
 def pausar():
     """Hace que la ejecución del juego se PAUSE y pulsando la tecla ESC 

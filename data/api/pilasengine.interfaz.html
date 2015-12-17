@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.interfaz &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.musica" href="pilasengine.musica.html"/>
+        <link rel="prev" title="pilasengine.imagenes" href="pilasengine.imagenes.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.interfaz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodulos">Submódulos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.interfaz.boton">pilasengine.interfaz.boton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.interfaz.deslizador">pilasengine.interfaz.deslizador</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.interfaz.elemento">pilasengine.interfaz.elemento</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.interfaz.ingreso_de_texto">pilasengine.interfaz.ingreso_de_texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.interfaz.lista_seleccion">pilasengine.interfaz.lista_seleccion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.interfaz.selector">pilasengine.interfaz.selector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.interfaz</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-interfaz">
+<h1>pilasengine.interfaz<a class="headerlink" href="#pilasengine-interfaz" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="submodulos">
+<h2>Submódulos<a class="headerlink" href="#submodulos" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-pilasengine.interfaz.boton">
+<span id="pilasengine-interfaz-boton"></span><h2>pilasengine.interfaz.boton<a class="headerlink" href="#module-pilasengine.interfaz.boton" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.interfaz.boton.Boton">
+<em class="property">class </em><code class="descclassname">pilasengine.interfaz.boton.</code><code class="descname">Boton</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>texto='Sin Texto'</em>, <em>x=0</em>, <em>y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.boton.Boton" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.interfaz.elemento.Elemento" title="pilasengine.interfaz.elemento.Elemento"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.interfaz.elemento.Elemento</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.interfaz.boton.Boton.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.boton.Boton.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.boton.Boton.conectar">
+<code class="descname">conectar</code><span class="sig-paren">(</span><em>funcion</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.boton.Boton.conectar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asocia la función a ejecutar cuando se haga click sobre el botón.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>funcion</strong> &#8211; Referencia a la función que se desea vincular.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.boton.Boton.cuando_hace_click">
+<code class="descname">cuando_hace_click</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.boton.Boton.cuando_hace_click" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Gestiona los clicks sobre el botón.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>evento</strong> &#8211; Evento que representa al click.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.boton.Boton.cuando_mueve_el_mouse">
+<code class="descname">cuando_mueve_el_mouse</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.boton.Boton.cuando_mueve_el_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Detecta el movimiento del mouse.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>evento</strong> &#8211; El objeto que representa el movimiento del mouse.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.boton.Boton.restaurar_imagen_luego_de_click">
+<code class="descname">restaurar_imagen_luego_de_click</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.boton.Boton.restaurar_imagen_luego_de_click" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.interfaz.deslizador">
+<span id="pilasengine-interfaz-deslizador"></span><h2>pilasengine.interfaz.deslizador<a class="headerlink" href="#module-pilasengine.interfaz.deslizador" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.interfaz.deslizador.Deslizador">
+<em class="property">class </em><code class="descclassname">pilasengine.interfaz.deslizador.</code><code class="descname">Deslizador</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>x=0</em>, <em>y=0</em>, <em>ruta_barra='interfaz/barra.png'</em>, <em>ruta_deslizador='interfaz/deslizador.png'</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.interfaz.elemento.Elemento" title="pilasengine.interfaz.elemento.Elemento"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.interfaz.elemento.Elemento</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.click_del_mouse">
+<code class="descname">click_del_mouse</code><span class="sig-paren">(</span><em>click</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.click_del_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.conectar">
+<code class="descname">conectar</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.conectar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.definir_posicion">
+<code class="descname">definir_posicion</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.definir_posicion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cambia la posición.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; Nueva posición horizontal.</li>
+<li><strong>y</strong> &#8211; Nueva posición vertical.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.desconectar">
+<code class="descname">desconectar</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.desconectar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.ejecutar_funciones">
+<code class="descname">ejecutar_funciones</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.ejecutar_funciones" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.eliminar">
+<code class="descname">eliminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.eliminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.mostrar">
+<code class="descname">mostrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.mostrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.movimiento_del_mouse">
+<code class="descname">movimiento_del_mouse</code><span class="sig-paren">(</span><em>movimiento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.movimiento_del_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.ocultar">
+<code class="descname">ocultar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.ocultar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.set_transparencia">
+<code class="descname">set_transparencia</code><span class="sig-paren">(</span><em>nuevo_valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.set_transparencia" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define la transparecia del actor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.deslizador.Deslizador.termino_del_click">
+<code class="descname">termino_del_click</code><span class="sig-paren">(</span><em>noclick</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.deslizador.Deslizador.termino_del_click" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.interfaz.elemento">
+<span id="pilasengine-interfaz-elemento"></span><h2>pilasengine.interfaz.elemento<a class="headerlink" href="#module-pilasengine.interfaz.elemento" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.interfaz.elemento.Elemento">
+<em class="property">class </em><code class="descclassname">pilasengine.interfaz.elemento.</code><code class="descname">Elemento</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>x=0</em>, <em>y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.elemento.Elemento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="pilasengine.actores.html#pilasengine.actores.actor.Actor" title="pilasengine.actores.actor.Actor"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.actores.actor.Actor</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.interfaz.elemento.Elemento.activar">
+<code class="descname">activar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.elemento.Elemento.activar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.elemento.Elemento.cuando_hace_click">
+<code class="descname">cuando_hace_click</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.elemento.Elemento.cuando_hace_click" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Se encarga de atender el evento click y conseguir foco.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.elemento.Elemento.desactivar">
+<code class="descname">desactivar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.elemento.Elemento.desactivar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.elemento.Elemento.mostrar">
+<code class="descname">mostrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.elemento.Elemento.mostrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Muestra el elemento.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.elemento.Elemento.obtener_foco">
+<code class="descname">obtener_foco</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.elemento.Elemento.obtener_foco" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna True si el actor tiene foco.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.elemento.Elemento.ocultar">
+<code class="descname">ocultar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.elemento.Elemento.ocultar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Oculta el elemento de la interfaz.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.elemento.Elemento.perder_foco">
+<code class="descname">perder_foco</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.elemento.Elemento.perder_foco" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Quita el foco sobre el elemento.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.interfaz.ingreso_de_texto">
+<span id="pilasengine-interfaz-ingreso-de-texto"></span><h2>pilasengine.interfaz.ingreso_de_texto<a class="headerlink" href="#module-pilasengine.interfaz.ingreso_de_texto" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.interfaz.ingreso_de_texto.IngresoDeTexto">
+<em class="property">class </em><code class="descclassname">pilasengine.interfaz.ingreso_de_texto.</code><code class="descname">IngresoDeTexto</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>texto_inicial=''</em>, <em>x=0</em>, <em>y=0</em>, <em>ancho=300</em>, <em>limite_de_caracteres=20</em>, <em>icono=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.ingreso_de_texto.IngresoDeTexto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.interfaz.elemento.Elemento" title="pilasengine.interfaz.elemento.Elemento"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.interfaz.elemento.Elemento</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.interfaz.ingreso_de_texto.IngresoDeTexto.cualquier_caracter">
+<code class="descname">cualquier_caracter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.ingreso_de_texto.IngresoDeTexto.cualquier_caracter" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.ingreso_de_texto.IngresoDeTexto.cuando_pulsa_una_tecla">
+<code class="descname">cuando_pulsa_una_tecla</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.ingreso_de_texto.IngresoDeTexto.cuando_pulsa_una_tecla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.ingreso_de_texto.IngresoDeTexto.solo_letras">
+<code class="descname">solo_letras</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.ingreso_de_texto.IngresoDeTexto.solo_letras" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.ingreso_de_texto.IngresoDeTexto.solo_numeros">
+<code class="descname">solo_numeros</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.ingreso_de_texto.IngresoDeTexto.solo_numeros" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.interfaz.lista_seleccion">
+<span id="pilasengine-interfaz-lista-seleccion"></span><h2>pilasengine.interfaz.lista_seleccion<a class="headerlink" href="#module-pilasengine.interfaz.lista_seleccion" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.interfaz.lista_seleccion.ListaSeleccion">
+<em class="property">class </em><code class="descclassname">pilasengine.interfaz.lista_seleccion.</code><code class="descname">ListaSeleccion</code><span class="sig-paren">(</span><em>pilas=None, opciones=['primer opcion'], funcion_a_ejecutar=None, x=0, y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.lista_seleccion.ListaSeleccion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.interfaz.elemento.Elemento" title="pilasengine.interfaz.elemento.Elemento"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.interfaz.elemento.Elemento</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.interfaz.lista_seleccion.ListaSeleccion.cuando_hace_click_con_el_mouse">
+<code class="descname">cuando_hace_click_con_el_mouse</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.lista_seleccion.ListaSeleccion.cuando_hace_click_con_el_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.lista_seleccion.ListaSeleccion.cuando_mueve_el_mouse">
+<code class="descname">cuando_mueve_el_mouse</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.lista_seleccion.ListaSeleccion.cuando_mueve_el_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.interfaz.selector">
+<span id="pilasengine-interfaz-selector"></span><h2>pilasengine.interfaz.selector<a class="headerlink" href="#module-pilasengine.interfaz.selector" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.interfaz.selector.Selector">
+<em class="property">class </em><code class="descclassname">pilasengine.interfaz.selector.</code><code class="descname">Selector</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>texto='Sin Texto'</em>, <em>x=0</em>, <em>y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.selector.Selector" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.interfaz.elemento.Elemento" title="pilasengine.interfaz.elemento.Elemento"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.interfaz.elemento.Elemento</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.interfaz.selector.Selector.alternar_seleccion">
+<code class="descname">alternar_seleccion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.selector.Selector.alternar_seleccion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Alterna la selección del selector.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.selector.Selector.conectar">
+<code class="descname">conectar</code><span class="sig-paren">(</span><em>funcion</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.selector.Selector.conectar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.selector.Selector.definir_accion">
+<code class="descname">definir_accion</code><span class="sig-paren">(</span><em>funcion</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.selector.Selector.definir_accion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define cual será la función a ejecutar en la selección.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>funcion</strong> &#8211; La función a ejecutar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.selector.Selector.deseleccionar">
+<code class="descname">deseleccionar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.selector.Selector.deseleccionar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Destilda el selector.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.selector.Selector.detection_click_mouse">
+<code class="descname">detection_click_mouse</code><span class="sig-paren">(</span><em>click</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.selector.Selector.detection_click_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Detecta el click de mouse y alterna la selección.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>click</strong> &#8211; representa el evento de click.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.selector.Selector.pintar_texto">
+<code class="descname">pintar_texto</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.selector.Selector.pintar_texto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dibuja el texto sobre el selector.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.selector.Selector.seleccionar">
+<code class="descname">seleccionar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.selector.Selector.seleccionar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Tilda el selector.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.interfaz"></span><dl class="class">
+<dt id="pilasengine.interfaz.Interfaz">
+<em class="property">class </em><code class="descclassname">pilasengine.interfaz.</code><code class="descname">Interfaz</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.Interfaz" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa la propiedad pilas.fondos</p>
+<p>Este objeto se encarga de hacer accesible
+la creación de fondos para las escenas.</p>
+<dl class="method">
+<dt id="pilasengine.interfaz.Interfaz.Boton">
+<code class="descname">Boton</code><span class="sig-paren">(</span><em>texto='Sin texto'</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.Interfaz.Boton" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.Interfaz.Deslizador">
+<code class="descname">Deslizador</code><span class="sig-paren">(</span><em>x=0</em>, <em>y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.Interfaz.Deslizador" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.Interfaz.IngresoDeTexto">
+<code class="descname">IngresoDeTexto</code><span class="sig-paren">(</span><em>texto='Sin texto'</em>, <em>x=0</em>, <em>y=0</em>, <em>ancho=300</em>, <em>limite_de_caracteres=20</em>, <em>icono=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.Interfaz.IngresoDeTexto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.Interfaz.ListaSeleccion">
+<code class="descname">ListaSeleccion</code><span class="sig-paren">(</span><em>opciones=['primer opcion'], funcion_a_ejecutar=None, x=0, y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.Interfaz.ListaSeleccion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.interfaz.Interfaz.Selector">
+<code class="descname">Selector</code><span class="sig-paren">(</span><em>texto='Sin texto'</em>, <em>x=0</em>, <em>y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.interfaz.Interfaz.Selector" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.musica.html" class="btn btn-neutral float-right" title="pilasengine.musica" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.imagenes.html" class="btn btn-neutral" title="pilasengine.imagenes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

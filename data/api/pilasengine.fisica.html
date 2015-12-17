@@ -1,0 +1,1013 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.fisica &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.fisica.constantes" href="pilasengine.fisica.constantes.html"/>
+        <link rel="prev" title="pilasengine.eventos" href="pilasengine.eventos.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.fisica</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pilasengine.fisica.constantes.html">pilasengine.fisica.constantes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fisica.circulo">pilasengine.fisica.circulo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fisica.contact_listener">pilasengine.fisica.contact_listener</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fisica.figura">pilasengine.fisica.figura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pilasengine-fisica-poligono">pilasengine.fisica.poligono</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fisica.rectangulo">pilasengine.fisica.rectangulo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.fisica</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-fisica">
+<h1>pilasengine.fisica<a class="headerlink" href="#pilasengine-fisica" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.constantes.html">pilasengine.fisica.constantes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pilasengine.fisica.constantes.html#module-pilasengine.fisica.constantes.constante_de_movimiento">pilasengine.fisica.constantes.constante_de_movimiento</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pilasengine.fisica.constantes.html#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="module-pilasengine.fisica.circulo">
+<span id="pilasengine-fisica-circulo"></span><h2>pilasengine.fisica.circulo<a class="headerlink" href="#module-pilasengine.fisica.circulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fisica.circulo.Circulo">
+<em class="property">class </em><code class="descclassname">pilasengine.fisica.circulo.</code><code class="descname">Circulo</code><span class="sig-paren">(</span><em>fisica</em>, <em>pilas</em>, <em>x</em>, <em>y</em>, <em>radio</em>, <em>dinamica=True</em>, <em>densidad=1.0</em>, <em>restitucion=0.56</em>, <em>friccion=10.5</em>, <em>amortiguacion=0.1</em>, <em>sin_rotacion=False</em>, <em>sensor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.circulo.Circulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fisica.figura.Figura" title="pilasengine.fisica.figura.Figura"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fisica.figura.Figura</span></code></a></p>
+<p>Representa un cuerpo de circulo.</p>
+<p>Generalmente estas figuras se pueden construir independientes de un
+actor, y luego asociar.</p>
+<p>Por ejemplo, podríamos crear un círculo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">circulo_dinamico</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">Circulo</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>y luego tomar un actor cualquiera, y decirle que se comporte
+cómo el circulo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mono</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Mono</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mono</span><span class="o">.</span><span class="n">imitar</span><span class="p">(</span><span class="n">circulo_dinamico</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pilasengine.fisica.circulo.Circulo.definir_radio">
+<code class="descname">definir_radio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.circulo.Circulo.definir_radio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.circulo.Circulo.escala">
+<code class="descname">escala</code><a class="headerlink" href="#pilasengine.fisica.circulo.Circulo.escala" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>definir escala del circulo</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.circulo.Circulo.get_radius">
+<code class="descname">get_radius</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.circulo.Circulo.get_radius" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.circulo.Circulo.get_scale">
+<code class="descname">get_scale</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.circulo.Circulo.get_scale" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.circulo.Circulo.radio">
+<code class="descname">radio</code><a class="headerlink" href="#pilasengine.fisica.circulo.Circulo.radio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>definir radio del circulo</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.circulo.Circulo.set_radius">
+<code class="descname">set_radius</code><span class="sig-paren">(</span><em>radio</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.circulo.Circulo.set_radius" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.circulo.Circulo.set_scale">
+<code class="descname">set_scale</code><span class="sig-paren">(</span><em>escala</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.circulo.Circulo.set_scale" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fisica.contact_listener">
+<span id="pilasengine-fisica-contact-listener"></span><h2>pilasengine.fisica.contact_listener<a class="headerlink" href="#module-pilasengine.fisica.contact_listener" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fisica.contact_listener.ObjetosContactListener">
+<em class="property">class </em><code class="descclassname">pilasengine.fisica.contact_listener.</code><code class="descname">ObjetosContactListener</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.contact_listener.ObjetosContactListener" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">Box2D.Box2D.b2ContactListener</span></code></p>
+<p>Gestiona las colisiones de los objetos para ejecutar funcionés.</p>
+<dl class="method">
+<dt id="pilasengine.fisica.contact_listener.ObjetosContactListener.BeginContact">
+<code class="descname">BeginContact</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.contact_listener.ObjetosContactListener.BeginContact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.contact_listener.ObjetosContactListener.EndContact">
+<code class="descname">EndContact</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.contact_listener.ObjetosContactListener.EndContact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.contact_listener.ObjetosContactListener.PostSolve">
+<code class="descname">PostSolve</code><span class="sig-paren">(</span><em>contact</em>, <em>old</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.contact_listener.ObjetosContactListener.PostSolve" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.contact_listener.ObjetosContactListener.PreSolve">
+<code class="descname">PreSolve</code><span class="sig-paren">(</span><em>contact</em>, <em>old</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.contact_listener.ObjetosContactListener.PreSolve" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.contact_listener.ObjetosContactListener.agregar_colision">
+<code class="descname">agregar_colision</code><span class="sig-paren">(</span><em>fixture_1</em>, <em>fixture_2</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.contact_listener.ObjetosContactListener.agregar_colision" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.contact_listener.ObjetosContactListener.detener_figuras_estaticas">
+<code class="descname">detener_figuras_estaticas</code><span class="sig-paren">(</span><em>contact</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.contact_listener.ObjetosContactListener.detener_figuras_estaticas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.contact_listener.ObjetosContactListener.eliminar_colision">
+<code class="descname">eliminar_colision</code><span class="sig-paren">(</span><em>fixture_1</em>, <em>fixture_2</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.contact_listener.ObjetosContactListener.eliminar_colision" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fisica.figura">
+<span id="pilasengine-fisica-figura"></span><h2>pilasengine.fisica.figura<a class="headerlink" href="#module-pilasengine.fisica.figura" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fisica.figura.Figura">
+<em class="property">class </em><code class="descclassname">pilasengine.fisica.figura.</code><code class="descname">Figura</code><span class="sig-paren">(</span><em>fisica</em>, <em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa un figura que simula un cuerpo fisico.</p>
+<p>Esta figura es abstracta, no está pensada para crear
+objetos a partir de ella. Se usa como base para el resto
+de las figuras cómo el Circulo o el Rectangulo simplemente.</p>
+<dl class="attribute">
+<dt id="pilasengine.fisica.figura.Figura.actor_que_representa_como_area_de_colision">
+<code class="descname">actor_que_representa_como_area_de_colision</code><a class="headerlink" href="#pilasengine.fisica.figura.Figura.actor_que_representa_como_area_de_colision" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.definir_colision">
+<code class="descname">definir_colision</code><span class="sig-paren">(</span><em>actor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.definir_colision" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.definir_dinamica">
+<code class="descname">definir_dinamica</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.definir_dinamica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.definir_escala_de_gravedad">
+<code class="descname">definir_escala_de_gravedad</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.definir_escala_de_gravedad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.definir_posicion">
+<code class="descname">definir_posicion</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.definir_posicion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define la posición para el cuerpo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; Posición horizontal que se asignará al cuerpo.</li>
+<li><strong>y</strong> &#8211; Posición vertical que se asignará al cuerpo.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.definir_rotacion">
+<code class="descname">definir_rotacion</code><span class="sig-paren">(</span><em>angulo</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.definir_rotacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.definir_sensor">
+<code class="descname">definir_sensor</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.definir_sensor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.definir_sin_rotacion">
+<code class="descname">definir_sin_rotacion</code><span class="sig-paren">(</span><em>rotacion</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.definir_sin_rotacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.definir_velocidad_lineal">
+<code class="descname">definir_velocidad_lineal</code><span class="sig-paren">(</span><em>dx=None</em>, <em>dy=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.definir_velocidad_lineal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.definir_x">
+<code class="descname">definir_x</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.definir_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define la posición horizontal del cuerpo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>x</strong> &#8211; El valor horizontal a definir.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.definir_y">
+<code class="descname">definir_y</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.definir_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define la posición vertical del cuerpo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>y</strong> &#8211; El valor vertical a definir.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.detener">
+<code class="descname">detener</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.detener" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace que la figura regrese al reposo.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.figura.Figura.dinamica">
+<code class="descname">dinamica</code><a class="headerlink" href="#pilasengine.fisica.figura.Figura.dinamica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.eliminar">
+<code class="descname">eliminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.eliminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Quita una figura de la simulación.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.empujar">
+<code class="descname">empujar</code><span class="sig-paren">(</span><em>dx=None</em>, <em>dy=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.empujar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.figura.Figura.escala_de_gravedad">
+<code class="descname">escala_de_gravedad</code><a class="headerlink" href="#pilasengine.fisica.figura.Figura.escala_de_gravedad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.get_rotation">
+<code class="descname">get_rotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.get_rotation" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.get_velocidad_x">
+<code class="descname">get_velocidad_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.get_velocidad_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.get_velocidad_y">
+<code class="descname">get_velocidad_y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.get_velocidad_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.get_x">
+<code class="descname">get_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.get_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.get_y">
+<code class="descname">get_y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.get_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.impulsar">
+<code class="descname">impulsar</code><span class="sig-paren">(</span><em>dx</em>, <em>dy</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.impulsar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.obtener_colision">
+<code class="descname">obtener_colision</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.obtener_colision" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.obtener_dinamica">
+<code class="descname">obtener_dinamica</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.obtener_dinamica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.obtener_escala_de_gravedad">
+<code class="descname">obtener_escala_de_gravedad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.obtener_escala_de_gravedad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.obtener_rotacion">
+<code class="descname">obtener_rotacion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.obtener_rotacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.obtener_sensor">
+<code class="descname">obtener_sensor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.obtener_sensor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.obtener_sin_rotacion">
+<code class="descname">obtener_sin_rotacion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.obtener_sin_rotacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.obtener_velocidad_lineal">
+<code class="descname">obtener_velocidad_lineal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.obtener_velocidad_lineal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.obtener_x">
+<code class="descname">obtener_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.obtener_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna la posición horizontal del cuerpo.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.obtener_y">
+<code class="descname">obtener_y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.obtener_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna la posición vertical del cuerpo.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.figura.Figura.rotacion">
+<code class="descname">rotacion</code><a class="headerlink" href="#pilasengine.fisica.figura.Figura.rotacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>define la rotacion.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.figura.Figura.sensor">
+<code class="descname">sensor</code><a class="headerlink" href="#pilasengine.fisica.figura.Figura.sensor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.set_rotation">
+<code class="descname">set_rotation</code><span class="sig-paren">(</span><em>angulo</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.set_rotation" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.set_velocidad_x">
+<code class="descname">set_velocidad_x</code><span class="sig-paren">(</span><em>dx</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.set_velocidad_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.set_velocidad_y">
+<code class="descname">set_velocidad_y</code><span class="sig-paren">(</span><em>dy</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.set_velocidad_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.set_x">
+<code class="descname">set_x</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.set_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.figura.Figura.set_y">
+<code class="descname">set_y</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.figura.Figura.set_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.figura.Figura.sin_rotacion">
+<code class="descname">sin_rotacion</code><a class="headerlink" href="#pilasengine.fisica.figura.Figura.sin_rotacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.figura.Figura.velocidad_x">
+<code class="descname">velocidad_x</code><a class="headerlink" href="#pilasengine.fisica.figura.Figura.velocidad_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>define la velocidad horizontal.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.figura.Figura.velocidad_y">
+<code class="descname">velocidad_y</code><a class="headerlink" href="#pilasengine.fisica.figura.Figura.velocidad_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>define la velocidad vertical.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.figura.Figura.x">
+<code class="descname">x</code><a class="headerlink" href="#pilasengine.fisica.figura.Figura.x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>define la posición horizontal.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.figura.Figura.y">
+<code class="descname">y</code><a class="headerlink" href="#pilasengine.fisica.figura.Figura.y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>define la posición vertical.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pilasengine-fisica-poligono">
+<h2>pilasengine.fisica.poligono<a class="headerlink" href="#pilasengine-fisica-poligono" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-pilasengine.fisica.rectangulo">
+<span id="pilasengine-fisica-rectangulo"></span><h2>pilasengine.fisica.rectangulo<a class="headerlink" href="#module-pilasengine.fisica.rectangulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo">
+<em class="property">class </em><code class="descclassname">pilasengine.fisica.rectangulo.</code><code class="descname">Rectangulo</code><span class="sig-paren">(</span><em>fisica</em>, <em>pilas</em>, <em>x</em>, <em>y</em>, <em>ancho</em>, <em>alto</em>, <em>dinamica=True</em>, <em>densidad=1.0</em>, <em>restitucion=0.56</em>, <em>friccion=10.5</em>, <em>amortiguacion=0.1</em>, <em>sin_rotacion=False</em>, <em>sensor=False</em>, <em>plataforma=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fisica.figura.Figura" title="pilasengine.fisica.figura.Figura"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fisica.figura.Figura</span></code></a></p>
+<p>Representa un rectángulo que puede colisionar con otras figuras.</p>
+<p>Se puede crear un rectángulo independiente y luego asociarlo
+a un actor de la siguiente forma:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rect</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">fisica</span><span class="o">.</span><span class="n">Rectangulo</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">actor</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">actores</span><span class="o">.</span><span class="n">Pingu</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">actor</span><span class="o">.</span><span class="n">imitar</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.alto">
+<code class="descname">alto</code><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.alto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>definir alto del rectangulo</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.ancho">
+<code class="descname">ancho</code><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.ancho" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>definir ancho del rectangulo</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.definir_escala">
+<code class="descname">definir_escala</code><span class="sig-paren">(</span><em>escala</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.definir_escala" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.definir_vertices">
+<code class="descname">definir_vertices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.definir_vertices" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.escala">
+<code class="descname">escala</code><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.escala" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>definir escala del rectangulo</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.get_height">
+<code class="descname">get_height</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.get_height" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.get_scale">
+<code class="descname">get_scale</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.get_scale" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.get_width">
+<code class="descname">get_width</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.get_width" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.set_height">
+<code class="descname">set_height</code><span class="sig-paren">(</span><em>alto</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.set_height" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.set_scale">
+<code class="descname">set_scale</code><span class="sig-paren">(</span><em>escala</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.set_scale" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.rectangulo.Rectangulo.set_width">
+<code class="descname">set_width</code><span class="sig-paren">(</span><em>ancho</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.rectangulo.Rectangulo.set_width" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.fisica"></span><dl class="class">
+<dt id="pilasengine.fisica.Fisica">
+<em class="property">class </em><code class="descclassname">pilasengine.fisica.</code><code class="descname">Fisica</code><span class="sig-paren">(</span><em>escena</em>, <em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa un simulador de mundo fisico, usando la biblioteca Box2D (version 2.1).</p>
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.Circulo">
+<code class="descname">Circulo</code><span class="sig-paren">(</span><em>x=0</em>, <em>y=0</em>, <em>radio=20</em>, <em>dinamica=True</em>, <em>densidad=1.0</em>, <em>restitucion=0.56</em>, <em>friccion=10.5</em>, <em>amortiguacion=0.1</em>, <em>sin_rotacion=False</em>, <em>sensor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.Circulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.Rectangulo">
+<code class="descname">Rectangulo</code><span class="sig-paren">(</span><em>x=0</em>, <em>y=0</em>, <em>ancho=50</em>, <em>alto=20</em>, <em>dinamica=True</em>, <em>densidad=1.0</em>, <em>restitucion=0.56</em>, <em>friccion=10.5</em>, <em>amortiguacion=0.1</em>, <em>sin_rotacion=False</em>, <em>sensor=False</em>, <em>plataforma=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.Rectangulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><a class="reference internal" href="#pilasengine.fisica.rectangulo.Rectangulo" title="pilasengine.fisica.rectangulo.Rectangulo">rectangulo.Rectangulo</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Realiza la actualización lógica del escenario.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.cantidad_de_cuerpos">
+<code class="descname">cantidad_de_cuerpos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.cantidad_de_cuerpos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.capturar_figura_con_el_mouse">
+<code class="descname">capturar_figura_con_el_mouse</code><span class="sig-paren">(</span><em>figura</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.capturar_figura_con_el_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Comienza a capturar una figura con el mouse.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>figura</strong> &#8211; La figura a controlar con el mouse.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.crear_bordes_del_escenario">
+<code class="descname">crear_bordes_del_escenario</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.crear_bordes_del_escenario" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera las paredes, el techo y el suelo.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.crear_cuerpo">
+<code class="descname">crear_cuerpo</code><span class="sig-paren">(</span><em>definicion_de_cuerpo</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.crear_cuerpo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera un Body de box2d.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>definicion_de_cuerpo</strong> &#8211; Los parámetros de configuración de un cuerpo para Box2d.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.crear_paredes">
+<code class="descname">crear_paredes</code><span class="sig-paren">(</span><em>(ancho</em>, <em>alto)</em>, <em>restitucion=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.crear_paredes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera dos paredes para el escenario.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ancho</strong> &#8211; El ancho de las paredes.</li>
+<li><strong>alto</strong> &#8211; El alto de las paredes.</li>
+<li><strong>restitucion</strong> &#8211; El grado de conservación de energía ante una colisión.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.crear_suelo">
+<code class="descname">crear_suelo</code><span class="sig-paren">(</span><em>(ancho</em>, <em>alto)</em>, <em>restitucion=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.crear_suelo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera un suelo sólido para el escenario.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ancho</strong> &#8211; El ancho del suelo.</li>
+<li><strong>alto</strong> &#8211; Alto del suelo.</li>
+<li><strong>restitucion</strong> &#8211; El grado de conservación de energía ante una colisión.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.crear_techo">
+<code class="descname">crear_techo</code><span class="sig-paren">(</span><em>(ancho</em>, <em>alto)</em>, <em>restitucion=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.crear_techo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera un techo sólido para el escenario.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ancho</strong> &#8211; El ancho del techo.</li>
+<li><strong>alto</strong> &#8211; Alto del techo.</li>
+<li><strong>restitucion</strong> &#8211; El grado de conservación de energía ante una colisión.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.cuando_mueve_el_mouse">
+<code class="descname">cuando_mueve_el_mouse</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.cuando_mueve_el_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Gestiona el evento de movimiento del mouse.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; Coordenada horizontal del mouse.</li>
+<li><strong>y</strong> &#8211; Coordenada vertical del mouse.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.cuando_suelta_el_mouse">
+<code class="descname">cuando_suelta_el_mouse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.cuando_suelta_el_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Se ejecuta cuando se suelta el botón de mouse.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.definir_gravedad">
+<code class="descname">definir_gravedad</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.definir_gravedad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define la gravedad del motor de física.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; Aceleración horizontal.</li>
+<li><strong>y</strong> &#8211; Aceleración vertical.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.definir_gravedad_x">
+<code class="descname">definir_gravedad_x</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.definir_gravedad_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.definir_gravedad_y">
+<code class="descname">definir_gravedad_y</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.definir_gravedad_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.despertar_a_todos">
+<code class="descname">despertar_a_todos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.despertar_a_todos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.eliminar_figura">
+<code class="descname">eliminar_figura</code><span class="sig-paren">(</span><em>figura</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.eliminar_figura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Elimina una figura del escenario.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>figura</strong> &#8211; Figura a eliminar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.eliminar_para_liberar_memoria">
+<code class="descname">eliminar_para_liberar_memoria</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.eliminar_para_liberar_memoria" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.eliminar_paredes">
+<code class="descname">eliminar_paredes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.eliminar_paredes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Elimina las dos paredes del escenario.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.eliminar_suelo">
+<code class="descname">eliminar_suelo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.eliminar_suelo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Elimina el suelo del escenario.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.eliminar_techo">
+<code class="descname">eliminar_techo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.eliminar_techo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Elimina el techo del escenario.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.Fisica.gravedad_x">
+<code class="descname">gravedad_x</code><a class="headerlink" href="#pilasengine.fisica.Fisica.gravedad_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fisica.Fisica.gravedad_y">
+<code class="descname">gravedad_y</code><a class="headerlink" href="#pilasengine.fisica.Fisica.gravedad_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.iterar">
+<code class="descname">iterar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.iterar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.obtener_cuerpos_en">
+<code class="descname">obtener_cuerpos_en</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.obtener_cuerpos_en" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna una lista de cuerpos que se encuentran en la posicion (x, y) o retorna una lista vacia [].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; posición horizontal del punto a analizar.</li>
+<li><strong>y</strong> &#8211; posición vertical del punto a analizar.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.obtener_distancia_al_suelo">
+<code class="descname">obtener_distancia_al_suelo</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>dy</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.obtener_distancia_al_suelo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtiene la distancia hacia abajo desde el punto (x,y).</p>
+<p>El valor de &#8216;dy&#8217; tiene que ser positivo.</p>
+<p>Si la funcion no encuentra obstaculos retornara
+dy, pero en paso contrario retornara un valor menor
+a dy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; posición horizontal del punto a analizar.</li>
+<li><strong>y</strong> &#8211; posición vertical del punto a analizar.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.obtener_gravedad_x">
+<code class="descname">obtener_gravedad_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.obtener_gravedad_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.obtener_gravedad_y">
+<code class="descname">obtener_gravedad_y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.obtener_gravedad_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.optimizar_figuras_estaticas">
+<code class="descname">optimizar_figuras_estaticas</code><span class="sig-paren">(</span><em>estado=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.optimizar_figuras_estaticas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Le indica al motor de fisica que no calcule colisiones en figuras que están en reposo.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.pausar_mundo">
+<code class="descname">pausar_mundo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.pausar_mundo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Detiene la simulación física.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.reanudar_mundo">
+<code class="descname">reanudar_mundo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.reanudar_mundo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Restaura la simulación física.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.reiniciar">
+<code class="descname">reiniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.reiniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Elimina todos los objetos físicos y vuelve a crear el entorno.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.set_gravedad_x">
+<code class="descname">set_gravedad_x</code><span class="sig-paren">(</span><em>nuevo_x</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.set_gravedad_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fisica.Fisica.set_gravedad_y">
+<code class="descname">set_gravedad_y</code><span class="sig-paren">(</span><em>nuevo_y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fisica.Fisica.set_gravedad_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.fisica.constantes.html" class="btn btn-neutral float-right" title="pilasengine.fisica.constantes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.eventos.html" class="btn btn-neutral" title="pilasengine.eventos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -4,29 +4,29 @@ import inspect
 
 try:
     from PyQt4 import QtCore, QtGui
-    from interprete_base import Ui_InterpreteWindow
+    from .interprete_base import Ui_InterpreteWindow
 except:
-    print "ERROR: No se encuentra pyqt"
+    print("ERROR: No se encuentra pyqt")
     Ui_InterpreteWindow = object
     pass
 
 import pilas
-import utils
+from . import utils
 
 try:
     sys.path.append(utils.obtener_ruta_al_recurso('../lanas'))
-except IOError, e:
+except IOError as e:
     pass
 
 try:
     import lanas
-except ImportError, e:
-    print e
+except ImportError as e:
+    print(e)
 
 
 import os
 
-if os.environ.has_key('lanas'):
+if 'lanas' in os.environ:
     del os.environ['lanas']
 
 class VentanaInterprete(Ui_InterpreteWindow):
@@ -150,9 +150,9 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def help(self, objeto=None):
         if objeto:
-            print help(objeto)
+            print(help(objeto))
         else:
-            print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
+            print("Escribe help(objeto) para obtener ayuda sobre ese objeto.")
 
     def _insertar_ventana_principal_de_pilas(self, ejecutar_codigo_inicial):
 
@@ -162,8 +162,10 @@ class VentanaInterprete(Ui_InterpreteWindow):
         pilas.iniciar(usar_motor='qtsugargl', ancho=640, alto=400)
 
         if ejecutar_codigo_inicial:
-            mono = pilas.actores.Mono()
-            scope = {'pilas': pilas, 'mono': mono, 'self': self, 'inspect': inspect}
+            from pilas.actores.robot import wait
+            b = pilas.actores.Board("/dev/tty/USB0")
+            r = pilas.actores.Robot(b, 1)
+            scope = {'pilas': pilas, 'b': b, 'r': r, 'wait' : wait , 'self': self}
         else:
             scope = {'pilas': pilas, 'self': self}
 
@@ -181,13 +183,20 @@ class VentanaInterprete(Ui_InterpreteWindow):
             codigo_inicial = [
                 'import pilas',
                 '',
+                'from pilas.actores.robot import wait',
                 'pilas.iniciar()',
-                'mono = pilas.actores.Mono()',
+		'b = pilas.actores.Board("/dev/tty/USB0")',
+		'r = pilas.actores.Robot(b, 1)',
                 ]
         else:
             codigo_inicial = []
-
-        consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
+        
+        try:
+            consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
+        except:
+            from lanas import lanas
+            consola = lanas.interprete.Ventana(self.splitter, scope, "\n".join(codigo_inicial))
+        
         self.console.addWidget(consola)
         self.console.setCurrentWidget(consola)
         self.consola = consola

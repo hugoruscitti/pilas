@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.escenas &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.eventos" href="pilasengine.eventos.html"/>
+        <link rel="prev" title="pilasengine.depurador" href="pilasengine.depurador.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.escenas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.escenas.camara">pilasengine.escenas.camara</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.escenas.error">pilasengine.escenas.error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.escenas.escena">pilasengine.escenas.escena</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.escenas.normal">pilasengine.escenas.normal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.escenas</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-escenas">
+<h1>pilasengine.escenas<a class="headerlink" href="#pilasengine-escenas" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="module-pilasengine.escenas.camara">
+<span id="pilasengine-escenas-camara"></span><h2>pilasengine.escenas.camara<a class="headerlink" href="#module-pilasengine.escenas.camara" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.escenas.camara.Camara">
+<em class="property">class </em><code class="descclassname">pilasengine.escenas.camara.</code><code class="descname">Camara</code><span class="sig-paren">(</span><em>pilas</em>, <em>escena</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa la cámara principal de la escena.</p>
+<p>El objeto cámara permite desplazarse, hacer movimientos
+de automento, alejamiento e incluso rotaciones.</p>
+<p>Este objeto se puede acceder usando el atributos pilas.carama, por
+ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pilas</span><span class="o">.</span><span class="n">camara</span><span class="o">.</span><span class="n">escala</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pilas</span><span class="o">.</span><span class="n">camara</span><span class="o">.</span><span class="n">rotacion</span> <span class="o">=</span> <span class="p">[</span><span class="mi">45</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.aplicar_transformaciones_completas">
+<code class="descname">aplicar_transformaciones_completas</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.aplicar_transformaciones_completas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.aplicar_translacion">
+<code class="descname">aplicar_translacion</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.aplicar_translacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.definir_escala">
+<code class="descname">definir_escala</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.definir_escala" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.definir_rotacion">
+<code class="descname">definir_rotacion</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.definir_rotacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.definir_x">
+<code class="descname">definir_x</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.definir_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.definir_y">
+<code class="descname">definir_y</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.definir_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.escenas.camara.Camara.escala">
+<code class="descname">escala</code><a class="headerlink" href="#pilasengine.escenas.camara.Camara.escala" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cambia el escala o cercanía de la cámara.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.obtener_area_visible">
+<code class="descname">obtener_area_visible</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.obtener_area_visible" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.obtener_escala">
+<code class="descname">obtener_escala</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.obtener_escala" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.obtener_rotacion">
+<code class="descname">obtener_rotacion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.obtener_rotacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.obtener_x">
+<code class="descname">obtener_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.obtener_x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.obtener_y">
+<code class="descname">obtener_y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.obtener_y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.escenas.camara.Camara.rotacion">
+<code class="descname">rotacion</code><a class="headerlink" href="#pilasengine.escenas.camara.Camara.rotacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cambia la rotacion de la pantalla.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.camara.Camara.vibrar">
+<code class="descname">vibrar</code><span class="sig-paren">(</span><em>intensidad=1</em>, <em>tiempo=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.camara.Camara.vibrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.escenas.camara.Camara.x">
+<code class="descname">x</code><a class="headerlink" href="#pilasengine.escenas.camara.Camara.x" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cambia la posición x de la pantalla.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.escenas.camara.Camara.y">
+<code class="descname">y</code><a class="headerlink" href="#pilasengine.escenas.camara.Camara.y" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cambia la posición y de la pantalla.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.escenas.error">
+<span id="pilasengine-escenas-error"></span><h2>pilasengine.escenas.error<a class="headerlink" href="#module-pilasengine.escenas.error" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.escenas.error.Error">
+<em class="property">class </em><code class="descclassname">pilasengine.escenas.error.</code><code class="descname">Error</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.error.Error" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.escenas.escena.Escena" title="pilasengine.escenas.escena.Escena"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.escenas.escena.Escena</span></code></a></p>
+<p>Representa la escena de errores de pilas.</p>
+<p>Esta escena muestra el tipo de error en la pantalla,
+junto con una descripción y el archivo que ocasionó
+el error.</p>
+<dl class="method">
+<dt id="pilasengine.escenas.error.Error.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.error.Error.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.error.Error.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><em>titulo</em>, <em>descripcion</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.error.Error.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.error.Error.terminar">
+<code class="descname">terminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.error.Error.terminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.escenas.escena">
+<span id="pilasengine-escenas-escena"></span><h2>pilasengine.escenas.escena<a class="headerlink" href="#module-pilasengine.escenas.escena" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.escenas.escena.Escena">
+<em class="property">class </em><code class="descclassname">pilasengine.escenas.escena.</code><code class="descname">Escena</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.actualizar_actores">
+<code class="descname">actualizar_actores</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.actualizar_actores" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.actualizar_fisica">
+<code class="descname">actualizar_fisica</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.actualizar_fisica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.actualizar_interpolaciones">
+<code class="descname">actualizar_interpolaciones</code><span class="sig-paren">(</span><em>tiempo_desde_ultima_actualizacion=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.actualizar_interpolaciones" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.actualizar_interpolaciones_en_modo_pause">
+<code class="descname">actualizar_interpolaciones_en_modo_pause</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.actualizar_interpolaciones_en_modo_pause" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.agregar_actor">
+<code class="descname">agregar_actor</code><span class="sig-paren">(</span><em>actor</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.agregar_actor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.agregar_grupo">
+<code class="descname">agregar_grupo</code><span class="sig-paren">(</span><em>grupo</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.agregar_grupo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.arrastrar_actor_mas_cercano">
+<code class="descname">arrastrar_actor_mas_cercano</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.arrastrar_actor_mas_cercano" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.dibujar_actores">
+<code class="descname">dibujar_actores</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.dibujar_actores" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.eliminar_el_motor_de_fisica">
+<code class="descname">eliminar_el_motor_de_fisica</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.eliminar_el_motor_de_fisica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método especial que se invoca cuando se reinicia pilas, y se tiene que eliminar la escena actual.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.forzar_actualizacion_de_interpolaciones">
+<code class="descname">forzar_actualizacion_de_interpolaciones</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.forzar_actualizacion_de_interpolaciones" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.obtener_actores_en">
+<code class="descname">obtener_actores_en</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.obtener_actores_en" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.obtener_cantidad_de_actores">
+<code class="descname">obtener_cantidad_de_actores</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.obtener_cantidad_de_actores" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.escena.Escena.terminar">
+<code class="descname">terminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.escena.Escena.terminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.escenas.normal">
+<span id="pilasengine-escenas-normal"></span><h2>pilasengine.escenas.normal<a class="headerlink" href="#module-pilasengine.escenas.normal" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.escenas.normal.Normal">
+<em class="property">class </em><code class="descclassname">pilasengine.escenas.normal.</code><code class="descname">Normal</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.normal.Normal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.escenas.escena.Escena" title="pilasengine.escenas.escena.Escena"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.escenas.escena.Escena</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.escenas.normal.Normal.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.normal.Normal.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.normal.Normal.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.normal.Normal.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.normal.Normal.terminar">
+<code class="descname">terminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.normal.Normal.terminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.escenas"></span><dl class="class">
+<dt id="pilasengine.escenas.Escenas">
+<em class="property">class </em><code class="descclassname">pilasengine.escenas.</code><code class="descname">Escenas</code><span class="sig-paren">(</span><em>pilas=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa la propiedad pilas.escenas</p>
+<p>Este objeto se encarga de hacer accesibles
+todas las escenas que incluye pilas.</p>
+<p>Por ejemplo, cuando un programador escribe
+&#8220;pilas.escenas.Normal()&#8221;, en realidad está
+llamando a un método llamado Normal() que
+retorna un objeto escena listo para
+utilizar.</p>
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.definir_escena">
+<code class="descname">definir_escena</code><span class="sig-paren">(</span><em>escena</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.definir_escena" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.eliminar_escenas_personalizadas">
+<code class="descname">eliminar_escenas_personalizadas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.eliminar_escenas_personalizadas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Recorre todos los actores personalizados y los elimina.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.es_escena_vinculada">
+<code class="descname">es_escena_vinculada</code><span class="sig-paren">(</span><em>nombre_de_la_escena</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.es_escena_vinculada" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.forzar_actualizacion_de_interpolaciones">
+<code class="descname">forzar_actualizacion_de_interpolaciones</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.forzar_actualizacion_de_interpolaciones" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.obtener_escena_actual">
+<code class="descname">obtener_escena_actual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.obtener_escena_actual" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.obtener_escenas_personalizadas">
+<code class="descname">obtener_escenas_personalizadas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.obtener_escenas_personalizadas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna una lista con todos los nombres de actores personalizados.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.realizar_actualizacion_logica">
+<code class="descname">realizar_actualizacion_logica</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.realizar_actualizacion_logica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.realizar_actualizacion_logica_en_modo_pausa">
+<code class="descname">realizar_actualizacion_logica_en_modo_pausa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.realizar_actualizacion_logica_en_modo_pausa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.realizar_dibujado">
+<code class="descname">realizar_dibujado</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.realizar_dibujado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.simular_actualizacion_logica">
+<code class="descname">simular_actualizacion_logica</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.simular_actualizacion_logica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.sustituir_escena_actual">
+<code class="descname">sustituir_escena_actual</code><span class="sig-paren">(</span><em>escena</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.sustituir_escena_actual" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.escenas.Escenas.vincular">
+<code class="descname">vincular</code><span class="sig-paren">(</span><em>clase_de_la_escena</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.escenas.Escenas.vincular" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Permite vincular una escena personalizada a las escenas de pilas.</p>
+<p>Esto permite de después la escena se pueda crear directamente
+desde el módulo &#8220;pilas.escenas&#8221;.</p>
+<p>Por ejemplo, si tengo una clase <code class="docutils literal"><span class="pre">MiEscena</span></code> la puedo
+vincular son las siguientes sentencias:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pilas</span><span class="o">.</span><span class="n">escenas</span><span class="o">.</span><span class="n">vincular</span><span class="p">(</span><span class="n">MiEscena</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mi_escena</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escenas</span><span class="o">.</span><span class="n">MiEscena</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>y si necesito especificar opciones de inicio, tengo que definirlas
+en el método iniciar de la clase y luego invocarlas al crear la
+escena:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mi_escena_con_argumentos</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">escenas</span><span class="o">.</span><span class="n">MiEscena</span><span class="p">(</span><span class="n">ejemplo</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.eventos.html" class="btn btn-neutral float-right" title="pilasengine.eventos" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.depurador.html" class="btn btn-neutral" title="pilasengine.depurador" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

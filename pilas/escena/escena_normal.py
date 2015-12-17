@@ -27,7 +27,12 @@ class Normal(Base):
     def iniciar(self):
         self.fondo = pilas.fondos.Plano()
 
-
+    def set_fondo(self, unFondo):
+		self.fondo = unFondo
+    
+    def get_fondo(self):
+		return self.fondo
+		
 class Aviso(Base):
     """ Escena básica de pilas.
     Si no se define ninguna escena, cuando se ejecuta:

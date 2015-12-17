@@ -5,9 +5,10 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-from __future__ import division
+
+from __future__ import print_function
 import os
-import interpolaciones
+from . import interpolaciones
 import sys
 import subprocess
 import math
@@ -15,6 +16,9 @@ import uuid
 import pilas
 import mimetypes
 
+if sys.version_info.major == 3:
+    def execfile(f):
+        exec(compile(open(f).read(), f, 'exec'))
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 INTERPRETE_PATH = os.path.dirname(sys.argv[0])
@@ -38,7 +42,8 @@ def obtener_ruta_al_recurso(ruta):
     :param ruta: Ruta al archivo (recurso) a inspeccionar.
     """
 
-    dirs = ['./', INTERPRETE_PATH, INTERPRETE_PATH + '/data', 'data', PATH, PATH + '/data']
+    dirs = ['./', INTERPRETE_PATH, INTERPRETE_PATH + '/../data', '../data', PATH, PATH + '/../data']
+
 
     for x in dirs:
         full_path = os.path.join(x, ruta)
@@ -79,14 +84,14 @@ def distancia(a, b):
     return abs(b - a)
 
 
-def distancia_entre_dos_puntos((x1, y1), (x2, y2)):
+def distancia_entre_dos_puntos(coords1, coords2):
     """Retorna la distancia entre dos puntos en dos dimensiones.
 
-    :param x1: Coordenada horizontal del primer punto.
-    :param y1: Coordenada vertical del primer punto.
-    :param x2: Coordenada horizontal del segundo punto.
-    :param y2: Coordenada vertical del segundo punto.
+    :param coords1: Tupla de coordenadas (x, y) del primer punto.
+    :param coords2: Tupla de coordenadas (x, y) del segundo punto.
     """
+    (x1, y1) = coords1
+    (x2, y2) = coords2
     return math.sqrt(distancia(x1, x2) ** 2 + distancia(y1, y2) ** 2)
 
 
@@ -96,7 +101,14 @@ def distancia_entre_dos_actores(a, b):
     :param a: El primer actor.
     :param b: El segundo actor.
     """
-    return distancia_entre_dos_puntos((a.x, a.y), (b.x, b.y))
+
+    dis = distancia_entre_dos_puntos((a.x, a.y), (b.x, b.y)) - a.radio_de_colision - b.radio_de_colision
+
+    if (dis < 0):
+        return 0
+    else:
+        return dis
+
 
 
 def actor_mas_cercano_al_actor(actor):
@@ -180,13 +192,13 @@ def listar_actores_en_consola():
     """Imprime una lista de todos los actores en la escena sobre la consola."""
     todos = pilas.escena_actual().actores
 
-    print "Hay %d actores en la escena:" % (len(todos))
-    print ""
+    print("Hay %d actores en la escena:" % (len(todos)))
+    print("")
 
     for s in todos:
-        print "\t", s
+        print("\t", s)
 
-    print ""
+    print("")
 
 
 def obtener_angulo_entre(punto_a, punto_b):
@@ -239,7 +251,7 @@ def interpolar(valor_o_valores, duracion=1, demora=0, tipo='lineal'):
     :param tipo: es el algoritmo de la interpolación, puede ser 'lineal'.
     """
 
-    import interpolaciones
+    from . import interpolaciones
 
     algoritmos = {
         'lineal': interpolaciones.Lineal,
@@ -276,7 +288,7 @@ def detener_interpolacion(objeto, propiedad):
         getattr(objeto, setter)
         pilas.escena_actual().tweener.removeTweeningFromObjectField(objeto, setter)
     except:
-        print "El obejto %s no tiene esa propiedad %s" % (objeto.__class__.__name__, setter)
+        print("El obejto %s no tiene esa propiedad %s" % (objeto.__class__.__name__, setter))
 
 
 def obtener_area():
@@ -300,40 +312,40 @@ def obtener_area_de_texto(texto):
 
 def realizar_pruebas():
     """Imprime pruebas en pantalla para detectar si pilas tiene todas las dependencias instaladas."""
-    print "Realizando pruebas de dependencias:"
-    print ""
+    print("Realizando pruebas de dependencias:")
+    print("")
 
-    print "Box 2D:",
+    print("Box 2D:", end=' ')
     ver = pilas.fisica.obtener_version_en_tupla()
     if ver[0] == 2 and ver[1] >= 1:
-        print "OK, versión", pilas.fisica.obtener_version()
+        print("OK, versión", pilas.fisica.obtener_version())
     else:
-        print "Error -> la versión está obsoleta, instale una versión de la serie 2.1"
+        print("Error -> la versión está obsoleta, instale una versión de la serie 2.1")
 
-    print "pyqt:",
+    print("pyqt:", end=' ')
 
     try:
         from PyQt4 import Qt
-        print "OK, versión", Qt.PYQT_VERSION_STR
+        print("OK, versión", Qt.PYQT_VERSION_STR)
     except ImportError:
-        print "Error -> no se encuentra pyqt."
+        print("Error -> no se encuentra pyqt.")
 
-    print "pyqt con aceleracion:",
+    print("pyqt con aceleracion:", end=' ')
 
     try:
         from PyQt4 import QtOpenGL
         from PyQt4.QtOpenGL import QGLWidget
-        print "OK"
+        print("OK")
     except ImportError:
-        print "Error -> no se encuentra pyqt4gl."
+        print("Error -> no se encuentra pyqt4gl.")
 
-    print "PIL para soporte de jpeg (opcional):",
+    print("PIL para soporte de jpeg (opcional):", end=' ')
 
     try:
         from PIL import Image
-        print "OK"
+        print("OK")
     except ImportError:
-        print "Cuidado -> no se encuentra PIL."
+        print("Cuidado -> no se encuentra PIL.")
 
 
 def ver_codigo(objeto, imprimir, retornar):
@@ -354,7 +366,7 @@ def ver_codigo(objeto, imprimir, retornar):
             codigo = "<< imposible inspeccionar código para mostrar >>"
 
     if imprimir:
-        print codigo
+        print(codigo)
 
     if retornar:
         return codigo
@@ -395,7 +407,7 @@ def descargar_archivo_desde_internet(parent, url, archivo_destino):
     :param url: La URL desde donde se descargará el archivo.
     :param archivo_destino: La ruta en donde se guardará el archivo.
     """
-    import descargar
+    from . import descargar
     ventana = descargar.Descargar(parent, url, archivo_destino)
     ventana.show()
 
@@ -408,9 +420,9 @@ def imprimir_todos_los_eventos():
         attributo = getattr(pilas.escena_actual(), x)
 
         if isinstance(attributo, pilas.evento.Evento):
-            print "Evento:", attributo.nombre
+            print("Evento:", attributo.nombre)
             attributo.imprimir_funciones_conectadas()
-            print ""
+            print("")
 
 
 def habilitar_depuracion():
@@ -495,7 +507,7 @@ def iniciar_asistente_desde_argumentos():
                     os.chdir(directorio_juego)
 
                 sys.exit(execfile(archivo_a_ejecutar))
-            except Exception, e:
+            except Exception as e:
                 mostrar_mensaje_de_error_y_salir(e.__class__.name + ": " + e.message)
                 return
 
@@ -511,20 +523,57 @@ def iniciar_asistente_desde_argumentos():
             pilas.abrir_interprete(do_raise=True, con_aplicacion=True)
         elif opciones.version:
             from pilas import pilasversion
-            print pilasversion.VERSION
+            print(pilasversion.VERSION)
         else:
             import pilas
             pilas.abrir_asistente()
 
+def distancia_entre_radios_de_colision_de_dos_actores(a, b):
+    """Retorna la distancia entre dos actores tenieno en cuenta su radio de colisión
 
-def obtener_directorio_de_configuracion():
-    """" Retorna la ruta de configuracion segun la plataforma"""
-    if sys.platform == 'win32':
-        # won't find this in linux; pylint: disable=F0401
-        from win32com.shell import shell, shellcon
-        CONFIG_DIR = shell.SHGetFolderPath(0, shellcon.CSIDL_PROFILE, None, 0)
-    else:
-        from os.path import expanduser
-        CONFIG_DIR = expanduser("~")
+    :param a: Un actor.
+    :param b: El segundo actor a verificar.
+    """
+    return distancia_entre_dos_actores(a, b) - (a.radio_de_colision + b.radio_de_colision)
 
-    return CONFIG_DIR
+def beep(freq, seconds):
+    import pygame
+    import math
+    import numpy
+
+    size = (1366, 720)
+    bits = 16
+
+
+    #pyg ame.mixer.pre_init(44100, -bits, 1)#esto hace q se configure en mono, falta ver que el array buf sea unidimensional
+    pygame.mixer.pre_init(44100, -bits, 2)#esto hace q se configure en mono, falta ver que el array buf sea unidimensional
+    pygame.init()
+    #_display_surf = pygame.display.set_mode(size, pygame.HWSURFACE | pygame.DOUBLEBUF)
+
+    #this sounds totally different coming out of a laptop versus coming out of headphones
+
+    sample_rate = 44100
+    n_samples = int(round(seconds*sample_rate))
+
+    #setup our numpy array to handle 16 bit ints, which is what we set our mixer to expect with "bits" up above
+    buf = numpy.zeros((n_samples, 2), dtype = numpy.int16)
+    max_sample = 2**(bits - 1) - 1
+
+    for s in range(n_samples):
+        t = float(s)/sample_rate    # time in seconds
+
+        #grab the x-coordinate of the sine wave at a given time, while constraining the sample to what our mixer is set to with "bits"
+        buf[s][0] = int(round(max_sample*math.sin(2*math.pi*freq*t)))        # left
+        buf[s][1] = int(round(max_sample*math.sin(2*math.pi*freq*t)))        # left
+
+    sound = pygame.sndarray.make_sound(buf)
+    #play once, then loop forever
+    sound.play()
+
+    def hacerEvent():
+        for event in pygame.event.get():
+            pass
+
+    pilas.escena_actual().tareas.una_vez(0.1, hacerEvent)
+
+

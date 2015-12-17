@@ -1,5 +1,5 @@
 import pilas
-import piedra_espacial
+from . import piedra_espacial
 import random
 
 class Estado:
@@ -111,12 +111,12 @@ class Juego(pilas.escena.Base):
         self.puntaje.aumentar(1)
 
     def crear_contador_de_vidas(self):
-        import contador_de_vidas
+        from . import contador_de_vidas
         self.contador_de_vidas = contador_de_vidas.ContadorDeVidas(3)
 
     def cuando_pulsa_tecla_escape(self, *k, **kv):
         "Regresa al menu principal."
-        import escena_menu
+        from . import escena_menu
         pilas.cambiar_escena(escena_menu.EscenaMenu())
 
     def explotar_y_terminar(self, nave, piedra):

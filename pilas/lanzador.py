@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from PyQt4 import QtCore, QtGui
 import sys
-from lanzador_base import Ui_Dialog
-import utils
+from .lanzador_base import Ui_Dialog
+from . import utils
 
 class Ventana(Ui_Dialog):
 

@@ -73,7 +73,7 @@ class Actor(object, Estudiante):
         if not pilas.mundo:
             mensaje = "Tiene que invocar a la funcion ``pilas.iniciar()`` " \
             "para comenzar."
-            print mensaje
+            print(mensaje)
             raise Exception(mensaje)
 
         Estudiante.__init__(self)
@@ -108,7 +108,7 @@ class Actor(object, Estudiante):
         self._callback_cuando_hace_click = set()
         self._callback_cuando_mueve_mouse = set()
 
-    def definir_centro(self, (x, y)):
+    def definir_centro(self, coords):
         """ Define en que posición estará el centro del Actor.
 
         Se puede definir la posición mediante unas coordenadas numéricas o
@@ -122,11 +122,10 @@ class Actor(object, Estudiante):
 
         >>> mi_actor.definir_centro(('centro','derecha'))
 
-        :param x: Coordenadas horizontal en la que se establecerá el centro del Actor.
-        :type x: int
-        :param y: Coordenadas vertical en la que se establecerá el centro del Actor.
-        :type y: int
+        :param coords: Tupla de coordenadas horizontal y vertical (x, y) en las
+                       que se establecerá el centro del Actor.
         """
+        (x, y) = coords
         if type(x) == str:
             if x not in IZQUIERDA + CENTRO + DERECHA:
                 raise Exception("No puedes definir '%s' como eje horizontal." %(x))

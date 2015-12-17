@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.depurador &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.escenas" href="pilasengine.escenas.html"/>
+        <link rel="prev" title="pilasengine.controles" href="pilasengine.controles.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.depurador</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.depurador.modo">pilasengine.depurador.modo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.depurador.modo_area">pilasengine.depurador.modo_area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.depurador.modo_fisica">pilasengine.depurador.modo_fisica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.depurador.modo_info">pilasengine.depurador.modo_info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.depurador.modo_posicion">pilasengine.depurador.modo_posicion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.depurador.modo_puntos_de_control">pilasengine.depurador.modo_puntos_de_control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.depurador.modo_radios_de_colision">pilasengine.depurador.modo_radios_de_colision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.depurador</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-depurador">
+<h1>pilasengine.depurador<a class="headerlink" href="#pilasengine-depurador" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="module-pilasengine.depurador.modo">
+<span id="pilasengine-depurador-modo"></span><h2>pilasengine.depurador.modo<a class="headerlink" href="#module-pilasengine.depurador.modo" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.depurador.modo.ModoDepurador">
+<em class="property">class </em><code class="descclassname">pilasengine.depurador.modo.</code><code class="descname">ModoDepurador</code><span class="sig-paren">(</span><em>pilas</em>, <em>depurador</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo.ModoDepurador" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.depurador.modo.ModoDepurador.cuando_dibuja_actor">
+<code class="descname">cuando_dibuja_actor</code><span class="sig-paren">(</span><em>actor</em>, <em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo.ModoDepurador.cuando_dibuja_actor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.modo.ModoDepurador.cuando_dibuja_actor_sin_transformacion">
+<code class="descname">cuando_dibuja_actor_sin_transformacion</code><span class="sig-paren">(</span><em>actor</em>, <em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo.ModoDepurador.cuando_dibuja_actor_sin_transformacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.modo.ModoDepurador.realizar_dibujado">
+<code class="descname">realizar_dibujado</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo.ModoDepurador.realizar_dibujado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.modo.ModoDepurador.sale_del_modo">
+<code class="descname">sale_del_modo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo.ModoDepurador.sale_del_modo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.depurador.modo_area">
+<span id="pilasengine-depurador-modo-area"></span><h2>pilasengine.depurador.modo_area<a class="headerlink" href="#module-pilasengine.depurador.modo_area" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.depurador.modo_area.ModoArea">
+<em class="property">class </em><code class="descclassname">pilasengine.depurador.modo_area.</code><code class="descname">ModoArea</code><span class="sig-paren">(</span><em>pilas</em>, <em>depurador</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_area.ModoArea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.depurador.modo.ModoDepurador" title="pilasengine.depurador.modo.ModoDepurador"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.depurador.modo.ModoDepurador</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.depurador.modo_area.ModoArea.cuando_dibuja_actor">
+<code class="descname">cuando_dibuja_actor</code><span class="sig-paren">(</span><em>actor</em>, <em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_area.ModoArea.cuando_dibuja_actor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.depurador.modo_fisica">
+<span id="pilasengine-depurador-modo-fisica"></span><h2>pilasengine.depurador.modo_fisica<a class="headerlink" href="#module-pilasengine.depurador.modo_fisica" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.depurador.modo_fisica.ModoFisica">
+<em class="property">class </em><code class="descclassname">pilasengine.depurador.modo_fisica.</code><code class="descname">ModoFisica</code><span class="sig-paren">(</span><em>pilas</em>, <em>depurador</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_fisica.ModoFisica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.depurador.modo.ModoDepurador" title="pilasengine.depurador.modo.ModoDepurador"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.depurador.modo.ModoDepurador</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.depurador.modo_fisica.ModoFisica.hacer_coordenada_pantalla_absoluta">
+<code class="descname">hacer_coordenada_pantalla_absoluta</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_fisica.ModoFisica.hacer_coordenada_pantalla_absoluta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.modo_fisica.ModoFisica.realizar_dibujado">
+<code class="descname">realizar_dibujado</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_fisica.ModoFisica.realizar_dibujado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.depurador.modo_info">
+<span id="pilasengine-depurador-modo-info"></span><h2>pilasengine.depurador.modo_info<a class="headerlink" href="#module-pilasengine.depurador.modo_info" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.depurador.modo_info.ModoInformacionDeSistema">
+<em class="property">class </em><code class="descclassname">pilasengine.depurador.modo_info.</code><code class="descname">ModoInformacionDeSistema</code><span class="sig-paren">(</span><em>pilas</em>, <em>depurador</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_info.ModoInformacionDeSistema" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.depurador.modo.ModoDepurador" title="pilasengine.depurador.modo.ModoDepurador"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.depurador.modo.ModoDepurador</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.depurador.modo_info.ModoInformacionDeSistema.dibujar_actor">
+<code class="descname">dibujar_actor</code><span class="sig-paren">(</span><em>actor</em>, <em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_info.ModoInformacionDeSistema.dibujar_actor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.modo_info.ModoInformacionDeSistema.realizar_dibujado">
+<code class="descname">realizar_dibujado</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_info.ModoInformacionDeSistema.realizar_dibujado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.depurador.modo_info.ModoInformacionDeSistema.tecla">
+<code class="descname">tecla</code><em class="property"> = 'F7'</em><a class="headerlink" href="#pilasengine.depurador.modo_info.ModoInformacionDeSistema.tecla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.depurador.modo_posicion">
+<span id="pilasengine-depurador-modo-posicion"></span><h2>pilasengine.depurador.modo_posicion<a class="headerlink" href="#module-pilasengine.depurador.modo_posicion" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.depurador.modo_posicion.ModoPosicion">
+<em class="property">class </em><code class="descclassname">pilasengine.depurador.modo_posicion.</code><code class="descname">ModoPosicion</code><span class="sig-paren">(</span><em>pilas</em>, <em>depurador</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_posicion.ModoPosicion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.depurador.modo.ModoDepurador" title="pilasengine.depurador.modo.ModoDepurador"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.depurador.modo.ModoDepurador</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.depurador.modo_posicion.ModoPosicion.cuando_dibuja_actor_sin_transformacion">
+<code class="descname">cuando_dibuja_actor_sin_transformacion</code><span class="sig-paren">(</span><em>actor</em>, <em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_posicion.ModoPosicion.cuando_dibuja_actor_sin_transformacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.modo_posicion.ModoPosicion.sale_del_modo">
+<code class="descname">sale_del_modo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_posicion.ModoPosicion.sale_del_modo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.depurador.modo_puntos_de_control">
+<span id="pilasengine-depurador-modo-puntos-de-control"></span><h2>pilasengine.depurador.modo_puntos_de_control<a class="headerlink" href="#module-pilasengine.depurador.modo_puntos_de_control" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.depurador.modo_puntos_de_control.ModoPuntosDeControl">
+<em class="property">class </em><code class="descclassname">pilasengine.depurador.modo_puntos_de_control.</code><code class="descname">ModoPuntosDeControl</code><span class="sig-paren">(</span><em>pilas</em>, <em>depurador</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_puntos_de_control.ModoPuntosDeControl" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.depurador.modo.ModoDepurador" title="pilasengine.depurador.modo.ModoDepurador"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.depurador.modo.ModoDepurador</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.depurador.modo_puntos_de_control.ModoPuntosDeControl.cuando_dibuja_actor_sin_transformacion">
+<code class="descname">cuando_dibuja_actor_sin_transformacion</code><span class="sig-paren">(</span><em>actor</em>, <em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_puntos_de_control.ModoPuntosDeControl.cuando_dibuja_actor_sin_transformacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.depurador.modo_radios_de_colision">
+<span id="pilasengine-depurador-modo-radios-de-colision"></span><h2>pilasengine.depurador.modo_radios_de_colision<a class="headerlink" href="#module-pilasengine.depurador.modo_radios_de_colision" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.depurador.modo_radios_de_colision.ModoRadiosDeColision">
+<em class="property">class </em><code class="descclassname">pilasengine.depurador.modo_radios_de_colision.</code><code class="descname">ModoRadiosDeColision</code><span class="sig-paren">(</span><em>pilas</em>, <em>depurador</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_radios_de_colision.ModoRadiosDeColision" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.depurador.modo.ModoDepurador" title="pilasengine.depurador.modo.ModoDepurador"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.depurador.modo.ModoDepurador</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.depurador.modo_radios_de_colision.ModoRadiosDeColision.cuando_dibuja_actor">
+<code class="descname">cuando_dibuja_actor</code><span class="sig-paren">(</span><em>actor</em>, <em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.modo_radios_de_colision.ModoRadiosDeColision.cuando_dibuja_actor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.depurador"></span><dl class="class">
+<dt id="pilasengine.depurador.Depurador">
+<em class="property">class </em><code class="descclassname">pilasengine.depurador.</code><code class="descname">Depurador</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.Depurador" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.depurador.Depurador.cuando_dibuja_actor">
+<code class="descname">cuando_dibuja_actor</code><span class="sig-paren">(</span><em>actor</em>, <em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.Depurador.cuando_dibuja_actor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Este método se llama cada vez que se dibujar un actor en pantalla.</p>
+<p>Es importante notar que el objeto &#8216;painter&#8217; que viene como
+argumento es en realidad un objeto que tiene estado: cualquier
+cosa que se dibuje va a &#8216;heredar&#8217; las mismas transformaciones
+que tiene el actor.</p>
+<p>Por ejemplo, si el actor esta escalado a 2x lo que dibujes
+aquí va a salir 2 veces mas grande que su tamaño original.</p>
+<p>Para revertir o evitar estas transformaciones se pueden usar
+las propiedades x, y, escala, centro o rotacion del actor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.Depurador.cuando_dibuja_actor_sin_transformacion">
+<code class="descname">cuando_dibuja_actor_sin_transformacion</code><span class="sig-paren">(</span><em>actor</em>, <em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.Depurador.cuando_dibuja_actor_sin_transformacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Similar al método <code class="docutils literal"><span class="pre">cuando_dibuja_actor</span></code>, solamente que
+se hace fuera del contexto de transformación aplicado al
+actor (excepto la transformación de posición).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.Depurador.cuando_pulsa_tecla">
+<code class="descname">cuando_pulsa_tecla</code><span class="sig-paren">(</span><em>tecla</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.Depurador.cuando_pulsa_tecla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.Depurador.definir_modos">
+<code class="descname">definir_modos</code><span class="sig-paren">(</span><em>info=False</em>, <em>radios=False</em>, <em>posiciones=False</em>, <em>puntos_de_control=False</em>, <em>areas=False</em>, <em>fisica=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.Depurador.definir_modos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Permite habilitar o deshabilitar los modos depuración.</p>
+<p>Cada uno de los argumentos representa un modo depuración, el valor True
+habilita el modo, False lo deshabilita.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.Depurador.desactivar_todos_los_modos">
+<code class="descname">desactivar_todos_los_modos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.Depurador.desactivar_todos_los_modos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.Depurador.obtener_modos_habilitados">
+<code class="descname">obtener_modos_habilitados</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.Depurador.obtener_modos_habilitados" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna una lista con los nombres de los modos habilitados.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.depurador.Depurador.realizar_dibujado">
+<code class="descname">realizar_dibujado</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.depurador.Depurador.realizar_dibujado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Realiza un dibujado de los modos depuración habilitados.</p>
+<p>Este método se llama automáticamente desde el método
+&#8216;_dibujar_widget&#8217; que está definido en widget.py, es decir, se
+llama cada vez que se tiene que dibujar la pantalla (unas 60
+veces por segundo).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.escenas.html" class="btn btn-neutral float-right" title="pilasengine.escenas" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.controles.html" class="btn btn-neutral" title="pilasengine.controles" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

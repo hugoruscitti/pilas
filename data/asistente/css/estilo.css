@@ -1,0 +1,307 @@
+div.footer {
+    font-size: small;
+    color: gray;
+}
+
+body {
+    margin-left: 1em;
+    background: url('../imagenes/fondo.png');
+    background-repeat: repeat;
+}
+
+
+div.span3 img {
+    border-right: 10px;
+}
+
+div.row {
+    margin-bottom: 10px;
+}
+
+div.consulta_version {
+    font-size: x-small;
+    color: gray;
+}
+
+div.version {
+    font-size: small;
+    color: gray;
+}
+
+div.tip {
+    font-size: small;
+    color: #3e424d;
+    border: 2px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 18px;
+}
+
+
+div.frame {
+    display:none;
+}
+
+div.footer {
+    font-size: small;
+    color: gray;
+}
+
+body {
+    margin-left: 1em;
+}
+
+
+div.span3 img {
+    border-right: 10px;
+}
+
+
+div.consulta_version {
+    font-size: x-small;
+    color: gray;
+}
+
+div.version {
+    font-size: small;
+    color: gray;
+}
+
+div.tip {
+    font-size: small;
+    color: gray;
+}
+
+div.frame {
+    display:none;
+}
+
+
+div.contenedor_ejemplo {
+    position: relative;
+}
+
+div.contenedor_ejemplo a {
+    text-decoration: none;
+}
+
+div.contenedor_ejemplo a:hover {
+    color: black;
+}
+
+span.nombre {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 2px solid black;
+    height: 96px;
+    padding: 30px 5px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    width: 128px;
+    display: block;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+}
+
+span.nombre:hover {
+    display: block;
+    opacity: 1;
+}
+
+span.progresando {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 128px;
+    height: 35px;
+    padding-top: 15px;
+    display: none;
+}
+
+.un_container {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+div.fila {
+    display: block;
+    max-width: 450px;
+    clear: both;
+    margin: auto;
+}
+
+
+
+
+
+
+html, body {height: 100%; padding-left: 1em; padding-right: 1em}
+
+#wrap {min-height: 100%;}
+
+#main {overflow:auto;
+    padding-bottom: 130;}  /* must be same height as the footer */
+
+#footer {position: relative;
+    position: absolute;
+    bottom: 25px;
+    margin: auto;
+    left: 10%;
+    right: 10%;
+}
+
+
+#principal {
+    min-width: 500px;
+    color: red;
+    margin-top: 75px;
+}
+
+#ejemplos {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.barra-superior {
+    margin-top: 15px;
+    margin-left: 40px;
+    margin-right: 50px;
+}
+
+.filtro {
+    float: right;
+
+}
+
+#header {
+    min-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #9baab2;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12),inset 0 -4px 4px -4px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12),inset 0 -4px 4px -4px rgba(0,0,0,0.3);
+    height: 49px;
+    background-image: url("../imagenes/pilas-logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+
+.version {
+    float: right;
+    padding-top: 16px;
+    padding-right: 16px;
+    color: #bbb !important;
+}
+
+
+.invisible {
+    display: none;
+}
+
+.popover-content {
+    overflow-y: scroll;
+    height: 300px;
+}
+
+.popover ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.popover ul li {
+    margin-bottom: 10px;
+}
+
+body.modal-open {
+    margin-right: 0 !important;
+}
+
+.centrado {
+    text-align: center;
+}
+
+.view-animate {
+  position:absolute;
+  top:50px;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.view-animate.ng-enter, .view-animate.ng-leave {
+  -webkit-transition:0.2s linear all;
+  transition:0.2s linear all;
+}
+
+.view-animate.ng-enter {
+  opacity:0;
+}
+.view-animate.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.view-animate.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+
+.view-animate {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+
+.cuerpo {
+  background-color: white;
+  position: absolute;
+  left: 50px;
+  right: 50px;
+  bottom: 10px;
+  top: 60px;
+  overflow-y: scroll;
+  border: 1px solid #C8C8C8;
+}
+
+.cuerpo ul.item {
+  padding: 0;
+  float: none;
+}
+
+.aviso {
+  border: 1px solid #FFE0E0;
+  background-color: #FEE;
+  padding: 9px;
+}
+
+img#avisoImagen {
+  margin-top: -6px;
+  margin-right: 5px;
+
+}
+
+.iconoInline {
+  margin-top: -10px;
+}
+
+#aviso {
+  display: none;
+}
+
+#actualizado {
+  display: none;
+}
+
+#mensajeAviso {
+  display: none;
+}
+
+#mensajeActualizado {
+  display: none;
+}

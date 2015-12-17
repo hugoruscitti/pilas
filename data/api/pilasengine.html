@@ -1,0 +1,1131 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.actores" href="pilasengine.actores.html"/>
+        <link rel="prev" title="pilas-engine - API" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.colores">pilasengine.colores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fps">pilasengine.fps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.plugins">pilasengine.plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pilasengine-prueba-habilidades">pilasengine.prueba_habilidades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.simbolos">pilasengine.simbolos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.watcher">pilasengine.watcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.widget">pilasengine.widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine">
+<h1>pilasengine<a class="headerlink" href="#pilasengine" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="module-pilasengine.colores">
+<span id="pilasengine-colores"></span><h2>pilasengine.colores<a class="headerlink" href="#module-pilasengine.colores" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.colores.Color">
+<em class="property">class </em><code class="descclassname">pilasengine.colores.</code><code class="descname">Color</code><span class="sig-paren">(</span><em>r</em>, <em>g</em>, <em>b</em>, <em>a=255</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.colores.Color" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa un color en base a 4 componentes.</p>
+<dl class="method">
+<dt id="pilasengine.colores.Color.obtener_componentes">
+<code class="descname">obtener_componentes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.colores.Color.obtener_componentes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.colores.generar_color_desde_texto">
+<code class="descclassname">pilasengine.colores.</code><code class="descname">generar_color_desde_texto</code><span class="sig-paren">(</span><em>texto_del_color</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.colores.generar_color_desde_texto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fps">
+<span id="pilasengine-fps"></span><h2>pilasengine.fps<a class="headerlink" href="#module-pilasengine.fps" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fps.FPS">
+<em class="property">class </em><code class="descclassname">pilasengine.fps.</code><code class="descname">FPS</code><span class="sig-paren">(</span><em>fps</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fps.FPS" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa un controlador de tiempo para el mainloop de pilas.</p>
+<dl class="method">
+<dt id="pilasengine.fps.FPS.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fps.FPS.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fps.FPS.obtener_cuadros_por_segundo">
+<code class="descname">obtener_cuadros_por_segundo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fps.FPS.obtener_cuadros_por_segundo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna la cantidad de cuadros por segundo.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.plugins">
+<span id="pilasengine-plugins"></span><h2>pilasengine.plugins<a class="headerlink" href="#module-pilasengine.plugins" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.plugins.Complementos">
+<em class="property">class </em><code class="descclassname">pilasengine.plugins.</code><code class="descname">Complementos</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.plugins.Complementos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="pilasengine-prueba-habilidades">
+<h2>pilasengine.prueba_habilidades<a class="headerlink" href="#pilasengine-prueba-habilidades" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-pilasengine.simbolos">
+<span id="pilasengine-simbolos"></span><h2>pilasengine.simbolos<a class="headerlink" href="#module-pilasengine.simbolos" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.simbolos.Simbolos">
+<em class="property">class </em><code class="descclassname">pilasengine.simbolos.</code><code class="descname">Simbolos</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.simbolos.Simbolos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.watcher">
+<span id="pilasengine-watcher"></span><h2>pilasengine.watcher<a class="headerlink" href="#module-pilasengine.watcher" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.watcher.Watcher">
+<em class="property">class </em><code class="descclassname">pilasengine.watcher.</code><code class="descname">Watcher</code><span class="sig-paren">(</span><em>aFile=None</em>, <em>callback=None</em>, <em>checkEvery=2</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.watcher.Watcher" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">PyQt4.QtCore.QObject</span></code></p>
+<dl class="method">
+<dt id="pilasengine.watcher.Watcher.cambiar_archivo_a_observar">
+<code class="descname">cambiar_archivo_a_observar</code><span class="sig-paren">(</span><em>aFile</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.watcher.Watcher.cambiar_archivo_a_observar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.watcher.Watcher.prevenir_reinicio">
+<code class="descname">prevenir_reinicio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.watcher.Watcher.prevenir_reinicio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.widget">
+<span id="pilasengine-widget"></span><h2>pilasengine.widget<a class="headerlink" href="#module-pilasengine.widget" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.widget.WidgetConAceleracion">
+<em class="property">class </em><code class="descclassname">pilasengine.widget.</code><code class="descname">WidgetConAceleracion</code><span class="sig-paren">(</span><em>pilas</em>, <em>titulo</em>, <em>ancho</em>, <em>alto</em>, <em>capturar_errores=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">PyQt4.QtOpenGL.QGLWidget</span></code></p>
+<p>Representa el componente que contiene toda la escena de pilas.</p>
+<p>Este widget puede contenerse dentro de una ventana de PyQt, o
+dentro de un maquetado mas complejo, como la ventana del intérprete
+o un editor.</p>
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.activar_borrosidad">
+<code class="descname">activar_borrosidad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.activar_borrosidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Habilita transformaciones de buena calidad, como zoom y rotaciones.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.alternar_pantalla_completa">
+<code class="descname">alternar_pantalla_completa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.alternar_pantalla_completa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.alternar_pausa">
+<code class="descname">alternar_pausa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.alternar_pausa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.avanzar_un_solo_cuadro">
+<code class="descname">avanzar_un_solo_cuadro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.avanzar_un_solo_cuadro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Avanza un solo cuadro de animación estando en modo pausa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.centrar">
+<code class="descname">centrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.centrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Coloca la ventana en el centro del escritorio.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.continuar">
+<code class="descname">continuar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.continuar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Quita el modo pausa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.definir_modo_pantalla_completa">
+<code class="descname">definir_modo_pantalla_completa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.definir_modo_pantalla_completa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.definir_modo_ventana">
+<code class="descname">definir_modo_ventana</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.definir_modo_ventana" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.definir_tamano_real">
+<code class="descname">definir_tamano_real</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.definir_tamano_real" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.definir_titulo">
+<code class="descname">definir_titulo</code><span class="sig-paren">(</span><em>titulo</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.definir_titulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.desactivar_borrosidad">
+<code class="descname">desactivar_borrosidad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.desactivar_borrosidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Deshabilita las transformaciones de buena calidad.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.desempotrar">
+<code class="descname">desempotrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.desempotrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Desempotra el widget de cualquier widget al que esté empotrado.</p>
+<p>Es usado cuando en la ventana interprete se define el estado
+de widget a pantalla completa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.detener_bucle_principal">
+<code class="descname">detener_bucle_principal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.detener_bucle_principal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.empotrar">
+<code class="descname">empotrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.empotrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Empotra el widget al widget que estaba previamente empotrado</p>
+<p>Es usado cuando en la ventana interprete después de definir el estado
+del widget a pantalla completa se deseea regresar al tamaño normal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.esta_en_modo_pausa">
+<code class="descname">esta_en_modo_pausa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.esta_en_modo_pausa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Informa si el widget está o no en modo pausa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.iniciar_interface">
+<code class="descname">iniciar_interface</code><span class="sig-paren">(</span><em>ancho</em>, <em>alto</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.iniciar_interface" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.keyPressEvent">
+<code class="descname">keyPressEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.keyPressEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.keyReleaseEvent">
+<code class="descname">keyReleaseEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.keyReleaseEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.mouseMoveEvent">
+<code class="descname">mouseMoveEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.mouseMoveEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.mousePressEvent">
+<code class="descname">mousePressEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.mousePressEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.mouseReleaseEvent">
+<code class="descname">mouseReleaseEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.mouseReleaseEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.obtener_area">
+<code class="descname">obtener_area</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.obtener_area" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna el tamaño real de la ventana.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.obtener_bordes">
+<code class="descname">obtener_bordes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.obtener_bordes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna los bordes de la pantalla en forma de tupla.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.obtener_centro_fisico">
+<code class="descname">obtener_centro_fisico</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.obtener_centro_fisico" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna el centro de la ventana en pixels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.obtener_titulo">
+<code class="descname">obtener_titulo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.obtener_titulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.paintEvent">
+<code class="descname">paintEvent</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.paintEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.pausar">
+<code class="descname">pausar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.pausar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pasa al modo pausa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.procesar_error">
+<code class="descname">procesar_error</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.procesar_error" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.reiniciar_bucle_principal">
+<code class="descname">reiniciar_bucle_principal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.reiniciar_bucle_principal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.resizeEvent">
+<code class="descname">resizeEvent</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.resizeEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.timerEvent">
+<code class="descname">timerEvent</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.timerEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Actualiza la simulación completa.</p>
+<p>Este método se llama automáticamente 100 veces por segundo, ya
+que se hace una llamada a &#8216;startTimer&#8217; indicando esa frecuencia.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.usa_aceleracion_de_video">
+<code class="descname">usa_aceleracion_de_video</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.usa_aceleracion_de_video" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetConAceleracion.wheelEvent">
+<code class="descname">wheelEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetConAceleracion.wheelEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.widget.WidgetSinAceleracion">
+<em class="property">class </em><code class="descclassname">pilasengine.widget.</code><code class="descname">WidgetSinAceleracion</code><span class="sig-paren">(</span><em>pilas</em>, <em>titulo</em>, <em>ancho</em>, <em>alto</em>, <em>capturar_errores=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">PyQt4.QtGui.QWidget</span></code></p>
+<p>Representa el componente que contiene toda la escena de pilas.</p>
+<p>Este widget puede contenerse dentro de una ventana de PyQt, o
+dentro de un maquetado mas complejo, como la ventana del intérprete
+o un editor.</p>
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.activar_borrosidad">
+<code class="descname">activar_borrosidad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.activar_borrosidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Habilita transformaciones de buena calidad, como zoom y rotaciones.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.alternar_pantalla_completa">
+<code class="descname">alternar_pantalla_completa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.alternar_pantalla_completa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.alternar_pausa">
+<code class="descname">alternar_pausa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.alternar_pausa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.avanzar_un_solo_cuadro">
+<code class="descname">avanzar_un_solo_cuadro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.avanzar_un_solo_cuadro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Avanza un solo cuadro de animación estando en modo pausa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.centrar">
+<code class="descname">centrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.centrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Coloca la ventana en el centro del escritorio.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.continuar">
+<code class="descname">continuar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.continuar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Quita el modo pausa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.definir_modo_pantalla_completa">
+<code class="descname">definir_modo_pantalla_completa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.definir_modo_pantalla_completa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.definir_modo_ventana">
+<code class="descname">definir_modo_ventana</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.definir_modo_ventana" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.definir_tamano_real">
+<code class="descname">definir_tamano_real</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.definir_tamano_real" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.definir_titulo">
+<code class="descname">definir_titulo</code><span class="sig-paren">(</span><em>titulo</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.definir_titulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.desactivar_borrosidad">
+<code class="descname">desactivar_borrosidad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.desactivar_borrosidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Deshabilita las transformaciones de buena calidad.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.desempotrar">
+<code class="descname">desempotrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.desempotrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Desempotra el widget de cualquier widget al que esté empotrado.</p>
+<p>Es usado cuando en la ventana interprete se define el estado
+de widget a pantalla completa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.detener_bucle_principal">
+<code class="descname">detener_bucle_principal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.detener_bucle_principal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.empotrar">
+<code class="descname">empotrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.empotrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Empotra el widget al widget que estaba previamente empotrado</p>
+<p>Es usado cuando en la ventana interprete después de definir el estado
+del widget a pantalla completa se deseea regresar al tamaño normal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.esta_en_modo_pausa">
+<code class="descname">esta_en_modo_pausa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.esta_en_modo_pausa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Informa si el widget está o no en modo pausa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.iniciar_interface">
+<code class="descname">iniciar_interface</code><span class="sig-paren">(</span><em>ancho</em>, <em>alto</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.iniciar_interface" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.keyPressEvent">
+<code class="descname">keyPressEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.keyPressEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.keyReleaseEvent">
+<code class="descname">keyReleaseEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.keyReleaseEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.mouseMoveEvent">
+<code class="descname">mouseMoveEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.mouseMoveEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.mousePressEvent">
+<code class="descname">mousePressEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.mousePressEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.mouseReleaseEvent">
+<code class="descname">mouseReleaseEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.mouseReleaseEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.obtener_area">
+<code class="descname">obtener_area</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.obtener_area" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna el tamaño real de la ventana.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.obtener_bordes">
+<code class="descname">obtener_bordes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.obtener_bordes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna los bordes de la pantalla en forma de tupla.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.obtener_centro_fisico">
+<code class="descname">obtener_centro_fisico</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.obtener_centro_fisico" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna el centro de la ventana en pixels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.obtener_titulo">
+<code class="descname">obtener_titulo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.obtener_titulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.paintEvent">
+<code class="descname">paintEvent</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.paintEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.pausar">
+<code class="descname">pausar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.pausar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pasa al modo pausa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.procesar_error">
+<code class="descname">procesar_error</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.procesar_error" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.reiniciar_bucle_principal">
+<code class="descname">reiniciar_bucle_principal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.reiniciar_bucle_principal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.resizeEvent">
+<code class="descname">resizeEvent</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.resizeEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.timerEvent">
+<code class="descname">timerEvent</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.timerEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Actualiza la simulación completa.</p>
+<p>Este método se llama automáticamente 100 veces por segundo, ya
+que se hace una llamada a &#8216;startTimer&#8217; indicando esa frecuencia.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.usa_aceleracion_de_video">
+<code class="descname">usa_aceleracion_de_video</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.usa_aceleracion_de_video" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.widget.WidgetSinAceleracion.wheelEvent">
+<code class="descname">wheelEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.WidgetSinAceleracion.wheelEvent" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.widget.capturar_errores_decorator">
+<code class="descclassname">pilasengine.widget.</code><code class="descname">capturar_errores_decorator</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.widget.capturar_errores_decorator" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine"></span><dl class="class">
+<dt id="pilasengine.Pilas">
+<em class="property">class </em><code class="descclassname">pilasengine.</code><code class="descname">Pilas</code><span class="sig-paren">(</span><em>ancho=640</em>, <em>alto=480</em>, <em>titulo='pilas-engine'</em>, <em>con_aceleracion=None</em>, <em>capturar_errores=True</em>, <em>habilitar_mensajes_log=False</em>, <em>x=None</em>, <em>y=None</em>, <em>modo_test=False</em>, <em>pantalla_completa=False</em>, <em>cargar_plugins=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa el area de juego de pilas, el componente principal.</p>
+<p>El objeto pilas se inicializa cuando llamamos a la función
+<code class="docutils literal"><span class="pre">pilasengine.iniciar()</span></code>. El objeto que se retorna es un
+objeto de esta clase.</p>
+<p>Internamente, este objeto será el que representa la ventana
+principal. Es es contenedor de la escena, el punto de contrucción
+de los actores y quien mantiene con &#8220;vida&#8221; el juego completo.</p>
+<dl class="method">
+<dt id="pilasengine.Pilas.alto">
+<code class="descname">alto</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.alto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.ancho">
+<code class="descname">ancho</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.ancho" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.avisar">
+<code class="descname">avisar</code><span class="sig-paren">(</span><em>texto</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.avisar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.azar">
+<code class="descname">azar</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.azar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna un número al azar entre <cite>a</cite> y <cite>b</cite></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.Pilas.camara">
+<code class="descname">camara</code><a class="headerlink" href="#pilasengine.Pilas.camara" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cámara de la escena actual</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.cambiar_escena">
+<code class="descname">cambiar_escena</code><span class="sig-paren">(</span><em>escena</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.cambiar_escena" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.cerrar">
+<code class="descname">cerrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.cerrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.Pilas.colisiones">
+<code class="descname">colisiones</code><a class="headerlink" href="#pilasengine.Pilas.colisiones" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna las colisiones de la escena</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.Pilas.control">
+<code class="descname">control</code><a class="headerlink" href="#pilasengine.Pilas.control" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtiene el modulo de control</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.debe_alternar_pantalla_completa_con_esc">
+<code class="descname">debe_alternar_pantalla_completa_con_esc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.debe_alternar_pantalla_completa_con_esc" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.definir_escena">
+<code class="descname">definir_escena</code><span class="sig-paren">(</span><em>escena</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.definir_escena" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.definir_iniciado_desde_asistente">
+<code class="descname">definir_iniciado_desde_asistente</code><span class="sig-paren">(</span><em>estado</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.definir_iniciado_desde_asistente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.definir_pantalla_completa">
+<code class="descname">definir_pantalla_completa</code><span class="sig-paren">(</span><em>estado</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.definir_pantalla_completa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.deshabilitar_alternado_de_pantalla_completa_con_esc">
+<code class="descname">deshabilitar_alternado_de_pantalla_completa_con_esc</code><span class="sig-paren">(</span><em>deshabilitar</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.deshabilitar_alternado_de_pantalla_completa_con_esc" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.deshabilitar_musica">
+<code class="descname">deshabilitar_musica</code><span class="sig-paren">(</span><em>estado=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.deshabilitar_musica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.deshabilitar_sonido">
+<code class="descname">deshabilitar_sonido</code><span class="sig-paren">(</span><em>estado=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.deshabilitar_sonido" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.ejecutar">
+<code class="descname">ejecutar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.ejecutar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Muestra la ventana y mantiene el programa en ejecución.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.Pilas.escena">
+<code class="descname">escena</code><a class="headerlink" href="#pilasengine.Pilas.escena" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Escena actual</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.escena_actual">
+<code class="descname">escena_actual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.escena_actual" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna la escena actual.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.esta_en_pantalla_completa">
+<code class="descname">esta_en_pantalla_completa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.esta_en_pantalla_completa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.Pilas.fisica">
+<code class="descname">fisica</code><a class="headerlink" href="#pilasengine.Pilas.fisica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna el componente fisica</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.forzar_actualizacion_de_interpolaciones">
+<code class="descname">forzar_actualizacion_de_interpolaciones</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.forzar_actualizacion_de_interpolaciones" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.habilitar_mensajes_log">
+<code class="descname">habilitar_mensajes_log</code><span class="sig-paren">(</span><em>estado</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.habilitar_mensajes_log" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>*mensaje</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.log" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Muestra un mensaje de prueba sobre la consola.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.mostrar_puntero_del_mouse">
+<code class="descname">mostrar_puntero_del_mouse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.mostrar_puntero_del_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_actor_por_indice">
+<code class="descname">obtener_actor_por_indice</code><span class="sig-paren">(</span><em>indice</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_actor_por_indice" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_actores_en">
+<code class="descname">obtener_actores_en</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_actores_en" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_area">
+<code class="descname">obtener_area</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_area" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna el tamaño real de la ventana.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_camara">
+<code class="descname">obtener_camara</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_camara" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_centro_fisico">
+<code class="descname">obtener_centro_fisico</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_centro_fisico" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna el centro de la ventana en pixels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_colisiones">
+<code class="descname">obtener_colisiones</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_colisiones" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_control">
+<code class="descname">obtener_control</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_control" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_coordenada_de_pantalla_absoluta">
+<code class="descname">obtener_coordenada_de_pantalla_absoluta</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_coordenada_de_pantalla_absoluta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convierte una coordenada común en una coordenada de pantalla.</p>
+<p>Las coordenadas comunes son las que utilizamos en pilas, donde
+el centro de pantalla es el punto (0, 0). Las coordenadas
+de pantalla, en cambio, son las que tienen como punto (0, 0)
+la esquina superir izquierda de la pantalla.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_coordenada_de_pantalla_relativa">
+<code class="descname">obtener_coordenada_de_pantalla_relativa</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_coordenada_de_pantalla_relativa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convierte una coordenada pantalla en una coordenada de común.</p>
+<p>Las coordenadas comunes son las que utilizamos en pilas, donde
+el centro de pantalla es el punto (0, 0). Las coordenadas
+de pantalla, en cambio, son las que tienen como punto (0, 0)
+la esquina superir izquierda de la pantalla.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_escena_actual">
+<code class="descname">obtener_escena_actual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_escena_actual" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna la escena actual.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_fisica">
+<code class="descname">obtener_fisica</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_fisica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_posicion_del_mouse">
+<code class="descname">obtener_posicion_del_mouse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_posicion_del_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_ruta_al_recurso">
+<code class="descname">obtener_ruta_al_recurso</code><span class="sig-paren">(</span><em>ruta</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_ruta_al_recurso" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Busca la ruta a un archivo de recursos.</p>
+<p>Los archivos de recursos (como las imagenes) se buscan en varios
+directorios (ver docstring de image.load), así que esta
+función intentará dar con el archivo en cuestión.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>ruta</strong> &#8211; Ruta al archivo (recurso) a inspeccionar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_tareas">
+<code class="descname">obtener_tareas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_tareas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.obtener_widget">
+<code class="descname">obtener_widget</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.obtener_widget" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retorna el widget en donde se dibuja el juego completo.</p>
+<p>El &#8216;widget&#8217; es un componente de la interfaz de usuario, que
+en nuestro caso contiene toda el area de juego.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.ocultar_puntero_del_mouse">
+<code class="descname">ocultar_puntero_del_mouse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.ocultar_puntero_del_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.procesar_error">
+<code class="descname">procesar_error</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.procesar_error" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.realizar_actualizacion_logica">
+<code class="descname">realizar_actualizacion_logica</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.realizar_actualizacion_logica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Realiza la etapa de actualización lógica.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.realizar_actualizacion_logica_en_modo_pausa">
+<code class="descname">realizar_actualizacion_logica_en_modo_pausa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.realizar_actualizacion_logica_en_modo_pausa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.realizar_dibujado">
+<code class="descname">realizar_dibujado</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.realizar_dibujado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Realiza la etapa de actualización gráfica.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.reiniciar">
+<code class="descname">reiniciar</code><span class="sig-paren">(</span><em>ancho=640</em>, <em>alto=480</em>, <em>titulo='pilas-engine'</em>, <em>con_aceleracion=None</em>, <em>habilitar_mensajes_log=False</em>, <em>x=None</em>, <em>y=None</em>, <em>capturar_errores=True</em>, <em>pantalla_completa=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.reiniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera nuevamente la ventana del videojuego.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.reiniciar_si_cambia">
+<code class="descname">reiniciar_si_cambia</code><span class="sig-paren">(</span><em>archivo</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.reiniciar_si_cambia" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Regista un archivo para hacer livecoding.</p>
+<p>Livecoding es un modo de pilas que se reinicia automáticamente
+si el archivo indicado cambia. Esto de termina programar
+mas rápido y prototipar con mayor fluidez.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.simular_actualizacion_logica">
+<code class="descname">simular_actualizacion_logica</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.simular_actualizacion_logica" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Realiza un TICK o actualización forzada de lógica.</p>
+<p>Este método es casi interno, se llama desde la batería de tests,
+donde no podemos ejecutar pilas de manera tradicional, con una
+ventana o una llamada a pilas.ejecutar.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.Pilas.tareas">
+<code class="descname">tareas</code><a class="headerlink" href="#pilasengine.Pilas.tareas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtiene el modulo de tareas</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.terminar">
+<code class="descname">terminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.terminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.usa_aceleracion">
+<code class="descname">usa_aceleracion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.usa_aceleracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Informa si está habilitado el modo aceleración de video.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.Pilas.ver">
+<code class="descname">ver</code><span class="sig-paren">(</span><em>objeto</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.Pilas.ver" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Imprime en pantalla el codigo fuente asociado a un objeto.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>objeto</strong> &#8211; El objeto que se quiere inspeccionar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.abrir_api">
+<code class="descclassname">pilasengine.</code><code class="descname">abrir_api</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.abrir_api" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.abrir_asistente">
+<code class="descclassname">pilasengine.</code><code class="descname">abrir_asistente</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.abrir_asistente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.abrir_configuracion">
+<code class="descclassname">pilasengine.</code><code class="descname">abrir_configuracion</code><span class="sig-paren">(</span><em>parent=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.abrir_configuracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.abrir_editor">
+<code class="descclassname">pilasengine.</code><code class="descname">abrir_editor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.abrir_editor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.abrir_interprete">
+<code class="descclassname">pilasengine.</code><code class="descname">abrir_interprete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.abrir_interprete" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.abrir_manual">
+<code class="descclassname">pilasengine.</code><code class="descname">abrir_manual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.abrir_manual" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.abrir_script">
+<code class="descclassname">pilasengine.</code><code class="descname">abrir_script</code><span class="sig-paren">(</span><em>archivo</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.abrir_script" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.abrir_script_con_livereload">
+<code class="descclassname">pilasengine.</code><code class="descname">abrir_script_con_livereload</code><span class="sig-paren">(</span><em>archivo</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.abrir_script_con_livereload" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.handler">
+<code class="descclassname">pilasengine.</code><code class="descname">handler</code><span class="sig-paren">(</span><em>signum</em>, <em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.handler" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pilasengine.iniciar">
+<code class="descclassname">pilasengine.</code><code class="descname">iniciar</code><span class="sig-paren">(</span><em>ancho=640</em>, <em>alto=480</em>, <em>titulo='pilas-engine'</em>, <em>capturar_errores=True</em>, <em>habilitar_mensajes_log=False</em>, <em>con_aceleracion=None</em>, <em>x=None</em>, <em>y=None</em>, <em>modo_test=False</em>, <em>pantalla_completa=False</em>, <em>cargar_plugins=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicia la ventana principal del juego con algunos detalles de funcionamiento.</p>
+<p>Ejemplo de invocación:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pilas</span><span class="o">.</span><span class="n">iniciar</span><span class="p">(</span><span class="n">ancho</span><span class="o">=</span><span class="mi">320</span><span class="p">,</span> <span class="n">alto</span><span class="o">=</span><span class="mi">240</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/iniciar_320_240.png" src="_images/iniciar_320_240.png" />
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><a class="reference internal" href="#pilasengine.Pilas" title="pilasengine.Pilas">Pilas</a></td>
+</tr>
+</tbody>
+</table>
+<p>Parámetros:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Ancho:</th><td class="field-body">el tamaño en pixels para la ventana.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Alto:</th><td class="field-body">el tamaño en pixels para la ventana.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Titulo:</th><td class="field-body">el titulo a mostrar en la ventana.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Modo_test:</th><td class="field-body">subrimer todo mensaje de error por consola, pensado para el lanzador de test automático.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Capturar_errores:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">True indica que los errores se tienen que mostrar en la
+ventana de pilas. En caso de poner False los errores
+se muestran en consola.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Habilitar_mensajes_log:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">Muestra cada operación que hace pilas en consola.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Con_aceleracion:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Indica si se habilita o no la aceleracion de video. Por omisión se trata de obtener la preferencia desde la configuración de pilas.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Cargar_plugins:</th><td class="field-body">Parametro de tipo booleano. Si es True, se cargan todos los plugins que se encuentren dentro del directorio
+de plugins de pilas.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.actores.html" class="btn btn-neutral float-right" title="pilasengine.actores" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="pilas-engine - API" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

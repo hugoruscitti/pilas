@@ -1,9 +1,13 @@
 language: python
 python:
   - "2.7"
-install:
-  - pip install nose
-before_install: utils/instalar_dependencias_travis.sh
-script: utils/ejecutar_tests_en_travis.sh
+before_install:
+  - "export DISPLAY=:99.0"
+  - sudo apt-get update -qq
+  - sudo apt-get install -y python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev swig subversion python-pygame
+  - sudo easy_install -U box2d
+  - "sh -e /etc/init.d/xvfb start"
+script:
+  - python -m unittest discover pilasengine/tests '*.py'
 virtualenv:
   system_site_packages: true

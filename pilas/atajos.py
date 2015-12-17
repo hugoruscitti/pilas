@@ -15,7 +15,7 @@ fabricar = pilas.actores.utils.fabricar
 
 def crear_grupo(*k):
     """Genera un grupo."""
-    return pilas.grupos.Grupo(k)
+    return pilas.grupo.Grupo(k)
 
 
 @dev.deprecated(se_desactiva_en="0.80", se_elimina_en="0.81",

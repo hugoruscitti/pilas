@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="9" height="7" tilewidth="70" tileheight="70">
+ <tileset firstgid="1" name="plataformas" tilewidth="70" tileheight="70">
+  <image source="plataformas.png" width="490" height="210"/>
+ </tileset>
+ <layer name="solidos plataformas" width="9" height="7">
+  <data encoding="csv">
+0,0,0,0,4,0,0,0,0,
+0,0,0,0,0,0,16,17,18,
+0,0,16,18,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,16,17,18,0,
+0,0,0,0,0,0,0,0,0,
+17,17,17,17,17,17,17,17,17
+</data>
+ </layer>
+</map>

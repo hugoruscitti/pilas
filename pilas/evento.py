@@ -69,10 +69,10 @@ class Evento():
 
     def imprimir_funciones_conectadas(self):
         if not self.esta_conectado():
-            print "\t << sin funciones conectadas >>"
+            print("\t << sin funciones conectadas >>")
         else:
             for x in self.respuestas:
-                print "\t +", x.nombre, " en ", x.receptor
+                print("\t +", x.nombre, " en ", x.receptor)
 
 
 class AttrDict(dict):
@@ -134,15 +134,15 @@ class ProxyMetodo(object):
     def __init__(self, cb, id):
         try:
             try:
-                self.inst = weakref.ref(cb.im_self)
+                self.inst = weakref.ref(cb.__self__)
             except TypeError:
                 self.inst = None
-            self.func = cb.im_func
-            self.klass = cb.im_class
+            self.func = cb.__func__
+            self.klass = cb.__self__.__class__
         except AttributeError:
             self.inst = None
             try:
-                self.func = cb.im_func
+                self.func = cb.__func__
             except AttributeError:
                 self.func = cb
 

@@ -1,1 +1,1 @@
-import piezas
+from . import piezas

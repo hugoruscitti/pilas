@@ -184,9 +184,13 @@ class Mapa(Actor):
         :param x: Coordenada horizontal de pantalla.
         :param y: Coordenada vertical de pantalla.
         """
-        dx, dy = pilas.mundo.motor.centro_fisico()#self.centro
-        x = x + dx - self.x
-        y = -y + dy + self.y
+        try:
+            dx = self.centro[0]
+            dy = self.centro[1]
+            x = x + dx - self.x
+            y = -y + dy + self.y
+        except Exception as e:
+            print(e)
         return x, y
 
     def es_punto_solido_coordenada_mapa(self, x, y):

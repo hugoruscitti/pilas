@@ -9,33 +9,31 @@
 mundo = None
 bg = None
 
-import os
 import sys
-import utils
-import yaml
-from mundo import Mundo
-import actores
-import grupo
-import escena
-import fondos
-import habilidades
-import sonidos
-import musica
-import colores
-import demos
-import atajos
-import interfaz
-import interprete
-import manual
-import tutoriales
-import municion
-import dev
-import plugins
+from . import utils
+from .mundo import Mundo
+from . import actores
+from . import grupo
+from . import escena
+from . import fondos
+from . import habilidades
+from . import sonidos
+from . import musica
+from . import colores
+from . import demos
+from . import atajos
+from . import interfaz
+from . import interprete
+from . import manual
+from . import tutoriales
+from . import municion
+from . import dev
 from pilas.escena import Normal
 
 # Permite cerrar el programa usando CTRL+C
 import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
+
 
 __doc__ = """
 Módulo pilas
@@ -52,7 +50,7 @@ para iniciar y ejecutar la biblioteca.
 
 def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
             rendimiento=60, modo=None, area_fisica=None, gravedad=(0, -90), pantalla_completa=False,
-            permitir_depuracion=True, audio=None, centrado=True, cargar_plugins=False):
+            permitir_depuracion=True, audio=None, centrado=True):
     """
     Inicia la ventana principal del juego con algunos detalles de funcionamiento.
 
@@ -76,18 +74,14 @@ def iniciar(ancho=640, alto=480, titulo='Pilas', usar_motor='qtgl',
     :permitir_depuracion: si se desea tener habilidatas las funciones de depuracion de las teclas F5 a F12
     :audio: selecciona el motor de sonido a utilizar, los valores permitidos son 'deshabilitado', 'pygame', 'phonon' o 'gst'.
     :centrado: Indica si se desea centrar la ventana de pilas.
-    :cargar_plugins: Parametro de tipo booleano. Si es True, se cargan todos los plugins que se encuentren dentro del directorio
-                     de plugins de pilas.
     """
 
     global mundo
+
+    print("Cuidado, esta version esta en desuso: mira http://www.pilas-engine.com.ar para mas detalles.")
+
     if not esta_inicializada():
-
         configuracion = obtener_configuracion()
-
-        if cargar_plugins:
-            global complementos
-            complementos = plugins.Complementos()
 
         if not usar_motor:
             usar_motor = configuracion['usar_motor']
@@ -123,7 +117,7 @@ def iniciar_con_lanzador(ancho=640, alto=480, titulo='Pilas', rendimiento=60,
     Esta función es útil cuando se quiere distribuir un juego y no se conoce
     exáctamente el equipo del usuario.
     """
-    import lanzador
+    from . import lanzador
 
     usar_motor, pantalla_completa, audio = lanzador.ejecutar(imagen, titulo)
     iniciar(ancho, alto, titulo, usar_motor, rendimiento, modo, area_fisica, gravedad, pantalla_completa, permitir_depuracion, audio)
@@ -138,7 +132,7 @@ def abrir_asistente():
     Esta ventana se ha diseñado para mostrarse a los nuevos usuarios
     de pilas, por ejemplo cuando eligen abrir pilas desde el icono principal.
     """
-    import asistente
+    from . import asistente
     asistente.ejecutar()
 
 
@@ -162,7 +156,7 @@ def ver(objeto, imprimir=True, retornar=False):
 
 def version():
     """Retorna el número de version de pilas."""
-    import pilasversion
+    from . import pilasversion
     return pilasversion.VERSION
 
 
@@ -173,15 +167,15 @@ def _crear_motor(usar_motor, permitir_depuracion, audio):
     excepto por el mismo motor pilas."""
 
     if usar_motor in ['qt', 'qtgl', 'qtwidget', 'qtsugar', 'qtsugargl']:
-        from motores import motor_qt
+        from .motores import motor_qt
 
         if _usa_interprete_lanas():
             usar_motor = 'qtsugar'
 
         motor = motor_qt.Motor(usar_motor, permitir_depuracion, audio)
     else:
-        print "El motor multimedia seleccionado (%s) no esta disponible" % (usar_motor)
-        print "Las opciones de motores que puedes probar son 'qt', 'qtgl', 'qtwidget', 'qtsugar' y 'qtsugargl'."
+        print("El motor multimedia seleccionado (%s) no esta disponible" % (usar_motor))
+        print("Las opciones de motores que puedes probar son 'qt', 'qtgl', 'qtwidget', 'qtsugar' y 'qtsugargl'.")
         motor = None
 
     return motor
@@ -197,6 +191,9 @@ def reiniciar():
     """Elimina todos los actores y vuelve al estado inicial."""
     mundo.reiniciar()
 
+
+def reiniciar_si_cambia(archivo):
+    print("La funcion 'reiniciar_si_cambia' solo esta disponible desde la version 0.90.0 de pilas-engine")
 
 def avisar(mensaje, retraso=5):
     """Emite un mensaje en la ventana principal.
@@ -222,11 +219,11 @@ def abrir_cargador():
     """
 
     try:
-        import ejemplos
+        from . import ejemplos
         ejemplos.ejecutar()
     except ImportError:
-        print "Lo siento, no tienes instalada la extesion de ejemplos."
-        print "Instale el paquete 'pilas-examples' para continuar."
+        print("Lo siento, no tienes instalada la extesion de ejemplos.")
+        print("Instale el paquete 'pilas-examples' para continuar.")
 
     return []
 
@@ -280,39 +277,12 @@ def obtener_configuracion():
     sin argumentos, los valores de 'motor' o 'sistema de sonido' a utilizar
     se cargarán desde esa configuración.
     """
-    CONFIG_DIR  = utils.obtener_directorio_de_configuracion()
-
-    pilas_home = os.path.join(CONFIG_DIR, 'pilas-engine')
-    pilas_cfg = os.path.join(pilas_home, 'pilas.yaml')
-
-    # Si no existe el directorio de pilas, lo creamos.
-    if not os.path.isdir(pilas_home):
-        os.makedirs(pilas_home)
-
-    # Si no existe un archivo de configuracion por defecto,
-    # lo creamos.
-    if not os.path.isfile(pilas_cfg):
-        opciones = {}
-        opciones['usar_motor'] = 'qtgl'
-        opciones['audio'] = 'pygame'
-        with open(pilas_cfg, 'w') as outfile:
-            outfile.write( yaml.dump(opciones, default_flow_style=True))
-
-    # Cargamos la configuracion por defecto para pilas
-    with open(pilas_cfg, 'r') as fp:
-        opciones = yaml.load(fp)
-
+    opciones = {}
+    opciones['usar_motor'] = 'qtgl'
+    opciones['audio'] = 'pygame'
     return opciones
 
 # Representa el viejo acceso al modulo eventos, pero convierte cada uno
 # de los eventos en una referencia al evento dentro de la escena actual.
-from evento import ProxyEventos
+from .evento import ProxyEventos
 eventos = ProxyEventos()
-
-def reiniciar_si_cambia(archivo):
-    """Regista un archivo para hacer livecoding.
-
-    Livecoding es un modo de pilas que se reinicia automáticamente
-    si el archivo indicado cambia. Esto de termina programar
-    mas rápido y prototipar con mayor fluidez."""
-    mundo.motor.reiniciar_si_cambia(archivo)

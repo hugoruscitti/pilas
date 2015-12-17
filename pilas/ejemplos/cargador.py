@@ -6,14 +6,14 @@
 #
 # website - http://www.pilas-engine.com.ar
 
-import ui
+from . import ui
 import os
 import sys
 import glob
 
 from PyQt4 import QtGui, QtCore
 
-import syntax
+from . import syntax
 import pilas
 
 
@@ -100,7 +100,7 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
 
     def cuando_pulsa_boton_guardar(self):
         nombre = self._obtener_item_actual()
-        path = unicode(QtGui.QFileDialog.getSaveFileName(self.main, 'Guardar ejemplo', nombre, "py (*.py)"))
+        path = str(QtGui.QFileDialog.getSaveFileName(self.main, 'Guardar ejemplo', nombre, "py (*.py)"))
         if path:
             contenido = self._obtener_codigo_del_ejemplo(nombre)
 

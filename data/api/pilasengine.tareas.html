@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.tareas &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.utils" href="pilasengine.utils.html"/>
+        <link rel="prev" title="pilasengine.sonidos" href="pilasengine.sonidos.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.tareas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.tareas.tarea">pilasengine.tareas.tarea</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.tareas.tarea_condicional">pilasengine.tareas.tarea_condicional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.tareas</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-tareas">
+<h1>pilasengine.tareas<a class="headerlink" href="#pilasengine-tareas" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="module-pilasengine.tareas.tarea">
+<span id="pilasengine-tareas-tarea"></span><h2>pilasengine.tareas.tarea<a class="headerlink" href="#module-pilasengine.tareas.tarea" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.tareas.tarea.Tarea">
+<em class="property">class </em><code class="descclassname">pilasengine.tareas.tarea.</code><code class="descname">Tarea</code><span class="sig-paren">(</span><em>planificador</em>, <em>pilas</em>, <em>una_vez</em>, <em>time_out</em>, <em>dt</em>, <em>funcion</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.tarea.Tarea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.tareas.tarea.Tarea.ejecutar">
+<code class="descname">ejecutar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.tarea.Tarea.ejecutar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Ejecuta la tarea.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.tareas.tarea.Tarea.eliminar">
+<code class="descname">eliminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.tarea.Tarea.eliminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Quita la tarea del planificador para que no se vuelva a ejecutar.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.tareas.tarea.Tarea.terminar">
+<code class="descname">terminar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.tarea.Tarea.terminar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Termina la tarea (alias de eliminar).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.tareas.tarea_condicional">
+<span id="pilasengine-tareas-tarea-condicional"></span><h2>pilasengine.tareas.tarea_condicional<a class="headerlink" href="#module-pilasengine.tareas.tarea_condicional" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.tareas.tarea_condicional.TareaCondicional">
+<em class="property">class </em><code class="descclassname">pilasengine.tareas.tarea_condicional.</code><code class="descname">TareaCondicional</code><span class="sig-paren">(</span><em>planificador</em>, <em>pilas</em>, <em>una_vez</em>, <em>time_out</em>, <em>dt</em>, <em>funcion</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.tarea_condicional.TareaCondicional" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.tareas.tarea.Tarea" title="pilasengine.tareas.tarea.Tarea"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.tareas.tarea.Tarea</span></code></a></p>
+<p>Representa una tarea similar a Tarea, pero que solo se ejecuta si El
+retorno de la función a ejecutar devuelve True.</p>
+<dl class="method">
+<dt id="pilasengine.tareas.tarea_condicional.TareaCondicional.ejecutar">
+<code class="descname">ejecutar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.tarea_condicional.TareaCondicional.ejecutar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Ejecuta la tarea, y se detiene si no revuelve True.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.tareas"></span><dl class="class">
+<dt id="pilasengine.tareas.Tareas">
+<em class="property">class </em><code class="descclassname">pilasengine.tareas.</code><code class="descname">Tareas</code><span class="sig-paren">(</span><em>escena</em>, <em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.Tareas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Contenedor de tareas a ejecutar por tiempo.</p>
+<p>El Tareas es un planificador de tareas, permite que
+podamos ejecutar funciones y métodos luego de transcurrido
+el tiempo que queramos.</p>
+<p>Por ejemplo, si se quiere que el planificardor ejecute
+una función dentro de dos segundos podemos escribir:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pilas</span><span class="o">.</span><span class="n">tareas</span><span class="o">.</span><span class="n">agregar_tarea</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">hola</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>o bien, especificando argumentos para esa función:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pilas</span><span class="o">.</span><span class="n">tareas</span><span class="o">.</span><span class="n">agregar_tarea</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">hola</span><span class="p">,</span> <span class="s">&#39;persona&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La función que se especifique como segundo argumento
+tiene que retornar True o False. Si retorna True será
+colocada nuevamente en la cola de tareas una vez que se
+ejecute (esto es útil para crear bucles).</p>
+<dl class="method">
+<dt id="pilasengine.tareas.Tareas.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.Tareas.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Actualiza los contadores de tiempo y ejecuta las tareas pendientes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>dt</strong> &#8211; Tiempo transcurrido desde la anterior llamada.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.tareas.Tareas.agregar">
+<code class="descname">agregar</code><span class="sig-paren">(</span><em>*k</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.Tareas.agregar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.tareas.Tareas.condicional">
+<code class="descname">condicional</code><span class="sig-paren">(</span><em>time_out</em>, <em>function</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.Tareas.condicional" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una tarea que se puede ejecutar una vez o mas, pero que tiene una condición.</p>
+<p>La tarea se ejecutará hasta que la función a ejecutar devuelva False.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time_out</strong> &#8211; Cantidad se segundos que deben transcurrir para ejecutar la tarea.</li>
+<li><strong>function</strong> &#8211; Función a ejecutar para lanzar la tarea.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.tareas.Tareas.eliminar_tarea">
+<code class="descname">eliminar_tarea</code><span class="sig-paren">(</span><em>tarea</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.Tareas.eliminar_tarea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Elimina una tarea de la lista de tareas planificadas.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>tarea</strong> &#8211; Referencia a la tarea que se tiene que eliminar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.tareas.Tareas.eliminar_todas">
+<code class="descname">eliminar_todas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.Tareas.eliminar_todas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Elimina todas las tareas de la lista de planificadas.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.tareas.Tareas.obtener_cantidad_de_tareas_planificadas">
+<code class="descname">obtener_cantidad_de_tareas_planificadas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.Tareas.obtener_cantidad_de_tareas_planificadas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retora la cantidad de tareas planificadas.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.tareas.Tareas.siempre">
+<code class="descname">siempre</code><span class="sig-paren">(</span><em>time_out</em>, <em>function</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.Tareas.siempre" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una tarea para ejecutar todo el tiempo, sin expiración.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time_out</strong> &#8211; Cantidad se segundos que deben transcurrir para ejecutar la tarea.</li>
+<li><strong>function</strong> &#8211; Función a ejecutar para lanzar la tarea.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.tareas.Tareas.una_vez">
+<code class="descname">una_vez</code><span class="sig-paren">(</span><em>time_out</em>, <em>function</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.tareas.Tareas.una_vez" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una tarea que se ejecutará usan sola vez.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time_out</strong> &#8211; Cantidad se segundos que deben transcurrir para ejecutar la tarea.</li>
+<li><strong>function</strong> &#8211; Función a ejecutar para lanzar la tarea.</li>
+<li><strong>params</strong> &#8211; Parámetros que tiene que recibir la función a ejecutar.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.utils.html" class="btn btn-neutral float-right" title="pilasengine.utils" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.sonidos.html" class="btn btn-neutral" title="pilasengine.sonidos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,621 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.fondos &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.habilidades" href="pilasengine.habilidades.html"/>
+        <link rel="prev" title="pilasengine.fisica.constantes" href="pilasengine.fisica.constantes.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.eventos.html">pilasengine.eventos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.fondos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodulos">Submódulos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.blanco">pilasengine.fondos.blanco</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.cesped">pilasengine.fondos.cesped</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.color">pilasengine.fondos.color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.desplazamiento_horizontal">pilasengine.fondos.desplazamiento_horizontal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.espacio">pilasengine.fondos.espacio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.fondo">pilasengine.fondos.fondo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.fondo_mozaico">pilasengine.fondos.fondo_mozaico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.galaxia">pilasengine.fondos.galaxia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.noche">pilasengine.fondos.noche</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.nubes">pilasengine.fondos.nubes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.pasto">pilasengine.fondos.pasto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.plano">pilasengine.fondos.plano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.selva">pilasengine.fondos.selva</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.tarde">pilasengine.fondos.tarde</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.fondos.volley">pilasengine.fondos.volley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.fondos</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-fondos">
+<h1>pilasengine.fondos<a class="headerlink" href="#pilasengine-fondos" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="submodulos">
+<h2>Submódulos<a class="headerlink" href="#submodulos" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="module-pilasengine.fondos.blanco">
+<span id="pilasengine-fondos-blanco"></span><h2>pilasengine.fondos.blanco<a class="headerlink" href="#module-pilasengine.fondos.blanco" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.blanco.Blanco">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.blanco.</code><code class="descname">Blanco</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.blanco.Blanco" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.color.Color" title="pilasengine.fondos.color.Color"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.color.Color</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.cesped">
+<span id="pilasengine-fondos-cesped"></span><h2>pilasengine.fondos.cesped<a class="headerlink" href="#module-pilasengine.fondos.cesped" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.cesped.Cesped">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.cesped.</code><code class="descname">Cesped</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.cesped.Cesped" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo_mozaico.FondoMozaico" title="pilasengine.fondos.fondo_mozaico.FondoMozaico"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo_mozaico.FondoMozaico</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.cesped.Cesped.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.cesped.Cesped.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.color">
+<span id="pilasengine-fondos-color"></span><h2>pilasengine.fondos.color<a class="headerlink" href="#module-pilasengine.fondos.color" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.color.Color">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.color.</code><code class="descname">Color</code><span class="sig-paren">(</span><em>pilas</em>, <em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.color.Color" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo.Fondo" title="pilasengine.fondos.fondo.Fondo"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo.Fondo</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.desplazamiento_horizontal">
+<span id="pilasengine-fondos-desplazamiento-horizontal"></span><h2>pilasengine.fondos.desplazamiento_horizontal<a class="headerlink" href="#module-pilasengine.fondos.desplazamiento_horizontal" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.desplazamiento_horizontal.Capa">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.desplazamiento_horizontal.</code><code class="descname">Capa</code><span class="sig-paren">(</span><em>pilas</em>, <em>imagen</em>, <em>x</em>, <em>y</em>, <em>velocidad</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.desplazamiento_horizontal.Capa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pilasengine.fondos.desplazamiento_horizontal.Capa.dibujar_tiled_horizontal">
+<code class="descname">dibujar_tiled_horizontal</code><span class="sig-paren">(</span><em>painter</em>, <em>ancho</em>, <em>alto</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.desplazamiento_horizontal.Capa.dibujar_tiled_horizontal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.desplazamiento_horizontal.Capa.mover_horizontal">
+<code class="descname">mover_horizontal</code><span class="sig-paren">(</span><em>dx</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.desplazamiento_horizontal.Capa.mover_horizontal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.desplazamiento_horizontal.</code><code class="descname">DesplazamientoHorizontal</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo.Fondo" title="pilasengine.fondos.fondo.Fondo"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo.Fondo</span></code></a></p>
+<p>Representa un fondo con desplazamiento horizontal y repetido.</p>
+<p>Este tipo de fondo es ideal para animaciones y juegos donde
+el fondo se puede repetir una y otra vez. Por ejemplo en un juego
+de carreras horizontal o de naves.</p>
+<p>El fondo inicialmente no tiene apariencia, pero se pueden agregar
+capas, cada una con su propia velocidad y posición.</p>
+<p>Por ejemplo, si queremos simular un fondo con 3 capas, una lejana
+con estrellas, y luego dos capas mas cercanas con arboles y arbustos
+podemos escribir:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fondo</span> <span class="o">=</span> <span class="n">pilas</span><span class="o">.</span><span class="n">fondos</span><span class="o">.</span><span class="n">DesplazamientoHorizontal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fondo</span><span class="o">.</span><span class="n">agregar</span><span class="p">(</span><span class="s">&quot;estrellas.png&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fondo</span><span class="o">.</span><span class="n">agregar</span><span class="p">(</span><span class="s">&quot;arboles_lejanos.png&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fondo</span><span class="o">.</span><span class="n">agregar</span><span class="p">(</span><span class="s">&quot;arbustos_cercanos.png&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El primer argumento del método agregar es la imagen que se tiene
+que repetir horizontalmente. Luego viene la posición &#8216;x&#8217; e &#8216;y&#8217;. Por
+último el valor numérico es la velocidad de movimiento que tendría
+esa capa.</p>
+<p>Un valor grande de velocidad significa que la capa se moverá
+mas rápido que otras ante un cambio de posición en la cámara. Por
+ejemplo, la capa que tiene velocidad 2 significa que se moverá 2 pixels
+hacia la izquierda cada vez que la cámara mire 2 pixel hacia la derecha.</p>
+<p>Si la capa tiene velocidad 0 significa que permanecerá inamovible al movimiento
+de la cámara.</p>
+<dl class="method">
+<dt id="pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.agregar">
+<code class="descname">agregar</code><span class="sig-paren">(</span><em>imagen</em>, <em>x=0</em>, <em>y=0</em>, <em>velocidad=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.agregar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.cuando_mueve_camara">
+<code class="descname">cuando_mueve_camara</code><span class="sig-paren">(</span><em>evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.cuando_mueve_camara" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.desplazar">
+<code class="descname">desplazar</code><span class="sig-paren">(</span><em>dx</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.desplazar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.dibujar">
+<code class="descname">dibujar</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.dibujar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.esta_fuera_de_la_pantalla">
+<code class="descname">esta_fuera_de_la_pantalla</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.esta_fuera_de_la_pantalla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.desplazamiento_horizontal.DesplazamientoHorizontal.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.espacio">
+<span id="pilasengine-fondos-espacio"></span><h2>pilasengine.fondos.espacio<a class="headerlink" href="#module-pilasengine.fondos.espacio" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.espacio.Espacio">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.espacio.</code><code class="descname">Espacio</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.espacio.Espacio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo_mozaico.FondoMozaico" title="pilasengine.fondos.fondo_mozaico.FondoMozaico"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo_mozaico.FondoMozaico</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.espacio.Espacio.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.espacio.Espacio.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.fondo">
+<span id="pilasengine-fondos-fondo"></span><h2>pilasengine.fondos.fondo<a class="headerlink" href="#module-pilasengine.fondos.fondo" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.fondo.Fondo">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.fondo.</code><code class="descname">Fondo</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.fondo.Fondo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="pilasengine.actores.html#pilasengine.actores.actor.Actor" title="pilasengine.actores.actor.Actor"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.actores.actor.Actor</span></code></a></p>
+<p>Representa un fondo de pantalla.</p>
+<p>Los fondos en pilas son actores normales, solo
+que generalmente están por detrás de toda la
+escena y ocupan toda el area de la ventana.</p>
+<dl class="method">
+<dt id="pilasengine.fondos.fondo.Fondo.definir_z">
+<code class="descname">definir_z</code><span class="sig-paren">(</span><em>z</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.fondo.Fondo.definir_z" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.fondo.Fondo.obtener_z">
+<code class="descname">obtener_z</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.fondo.Fondo.obtener_z" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.fondo.Fondo.pre_iniciar">
+<code class="descname">pre_iniciar</code><span class="sig-paren">(</span><em>*k</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.fondo.Fondo.pre_iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.fondos.fondo.Fondo.z">
+<code class="descname">z</code><a class="headerlink" href="#pilasengine.fondos.fondo.Fondo.z" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define lejania respecto del observador.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.fondo_mozaico">
+<span id="pilasengine-fondos-fondo-mozaico"></span><h2>pilasengine.fondos.fondo_mozaico<a class="headerlink" href="#module-pilasengine.fondos.fondo_mozaico" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.fondo_mozaico.FondoMozaico">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.fondo_mozaico.</code><code class="descname">FondoMozaico</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.fondo_mozaico.FondoMozaico" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo.Fondo" title="pilasengine.fondos.fondo.Fondo"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo.Fondo</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.fondo_mozaico.FondoMozaico.dibujar">
+<code class="descname">dibujar</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.fondo_mozaico.FondoMozaico.dibujar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.galaxia">
+<span id="pilasengine-fondos-galaxia"></span><h2>pilasengine.fondos.galaxia<a class="headerlink" href="#module-pilasengine.fondos.galaxia" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.galaxia.Galaxia">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.galaxia.</code><code class="descname">Galaxia</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.galaxia.Galaxia" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo_mozaico.FondoMozaico" title="pilasengine.fondos.fondo_mozaico.FondoMozaico"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo_mozaico.FondoMozaico</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.galaxia.Galaxia.actualizar">
+<code class="descname">actualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.galaxia.Galaxia.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.galaxia.Galaxia.dibujar">
+<code class="descname">dibujar</code><span class="sig-paren">(</span><em>painter</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.galaxia.Galaxia.dibujar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.galaxia.Galaxia.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.galaxia.Galaxia.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.noche">
+<span id="pilasengine-fondos-noche"></span><h2>pilasengine.fondos.noche<a class="headerlink" href="#module-pilasengine.fondos.noche" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.noche.Noche">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.noche.</code><code class="descname">Noche</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.noche.Noche" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo.Fondo" title="pilasengine.fondos.fondo.Fondo"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo.Fondo</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.noche.Noche.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.noche.Noche.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.nubes">
+<span id="pilasengine-fondos-nubes"></span><h2>pilasengine.fondos.nubes<a class="headerlink" href="#module-pilasengine.fondos.nubes" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.nubes.Nubes">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.nubes.</code><code class="descname">Nubes</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.nubes.Nubes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo.Fondo" title="pilasengine.fondos.fondo.Fondo"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo.Fondo</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.nubes.Nubes.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.nubes.Nubes.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.pasto">
+<span id="pilasengine-fondos-pasto"></span><h2>pilasengine.fondos.pasto<a class="headerlink" href="#module-pilasengine.fondos.pasto" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.pasto.Pasto">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.pasto.</code><code class="descname">Pasto</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.pasto.Pasto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo.Fondo" title="pilasengine.fondos.fondo.Fondo"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo.Fondo</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.pasto.Pasto.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.pasto.Pasto.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.plano">
+<span id="pilasengine-fondos-plano"></span><h2>pilasengine.fondos.plano<a class="headerlink" href="#module-pilasengine.fondos.plano" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.plano.Plano">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.plano.</code><code class="descname">Plano</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.plano.Plano" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo_mozaico.FondoMozaico" title="pilasengine.fondos.fondo_mozaico.FondoMozaico"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo_mozaico.FondoMozaico</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.plano.Plano.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.plano.Plano.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.selva">
+<span id="pilasengine-fondos-selva"></span><h2>pilasengine.fondos.selva<a class="headerlink" href="#module-pilasengine.fondos.selva" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.selva.Selva">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.selva.</code><code class="descname">Selva</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.selva.Selva" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo.Fondo" title="pilasengine.fondos.fondo.Fondo"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo.Fondo</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.selva.Selva.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.selva.Selva.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.tarde">
+<span id="pilasengine-fondos-tarde"></span><h2>pilasengine.fondos.tarde<a class="headerlink" href="#module-pilasengine.fondos.tarde" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.tarde.Tarde">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.tarde.</code><code class="descname">Tarde</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.tarde.Tarde" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo.Fondo" title="pilasengine.fondos.fondo.Fondo"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo.Fondo</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.tarde.Tarde.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.tarde.Tarde.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pilasengine.fondos.volley">
+<span id="pilasengine-fondos-volley"></span><h2>pilasengine.fondos.volley<a class="headerlink" href="#module-pilasengine.fondos.volley" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.fondos.volley.Volley">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.volley.</code><code class="descname">Volley</code><span class="sig-paren">(</span><em>pilas=None</em>, <em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.volley.Volley" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <a class="reference internal" href="#pilasengine.fondos.fondo.Fondo" title="pilasengine.fondos.fondo.Fondo"><code class="xref py py-class docutils literal"><span class="pre">pilasengine.fondos.fondo.Fondo</span></code></a></p>
+<dl class="method">
+<dt id="pilasengine.fondos.volley.Volley.iniciar">
+<code class="descname">iniciar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.volley.Volley.iniciar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.fondos"></span><dl class="class">
+<dt id="pilasengine.fondos.Fondos">
+<em class="property">class </em><code class="descclassname">pilasengine.fondos.</code><code class="descname">Fondos</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa la propiedad pilas.fondos</p>
+<p>Este objeto se encarga de hacer accesible
+la creación de fondos para las escenas.</p>
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Blanco">
+<code class="descname">Blanco</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Blanco" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Cesped">
+<code class="descname">Cesped</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Cesped" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Color">
+<code class="descname">Color</code><span class="sig-paren">(</span><em>_color=&lt;Color (255</em>, <em>255</em>, <em>255</em>, <em>255)&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Color" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.DesplazamientoHorizontal">
+<code class="descname">DesplazamientoHorizontal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.DesplazamientoHorizontal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Espacio">
+<code class="descname">Espacio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Espacio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Fondo">
+<code class="descname">Fondo</code><span class="sig-paren">(</span><em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Fondo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.FondoMozaico">
+<code class="descname">FondoMozaico</code><span class="sig-paren">(</span><em>imagen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.FondoMozaico" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Galaxia">
+<code class="descname">Galaxia</code><span class="sig-paren">(</span><em>dx=0</em>, <em>dy=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Galaxia" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Noche">
+<code class="descname">Noche</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Noche" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Nubes">
+<code class="descname">Nubes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Nubes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Pasto">
+<code class="descname">Pasto</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Pasto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Plano">
+<code class="descname">Plano</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Plano" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Selva">
+<code class="descname">Selva</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Selva" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Tarde">
+<code class="descname">Tarde</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Tarde" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.fondos.Fondos.Volley">
+<code class="descname">Volley</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.fondos.Fondos.Volley" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.habilidades.html" class="btn btn-neutral float-right" title="pilasengine.habilidades" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.fisica.constantes.html" class="btn btn-neutral" title="pilasengine.fisica.constantes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

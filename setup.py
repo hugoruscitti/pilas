@@ -4,35 +4,10 @@ import os
 import sys
 from setuptools import setup
 
-from pilas import pilasversion
-
-
-def error(biblioteca, web):
-    print "Lo siento, no se encuentra la biblioteca '%s' (de %s)" %(biblioteca, web)
-    print "Vea las instrucciones de instalación en: https://github.com/hugoruscitti/pilas"
-    print "Se cancela la inicialización."
-    sys.exit(1)
-
-
-def verificar_submodulos():
-    if not os.path.exists('lanas/setup.py'):
-        print "Lo siento, el modulo 'lanas' no existe."
-        print "Puede reparar el problema ejecutando el comando:\n\tgit submodule update --init"
-        sys.exit(1)
-
-
-verificar_submodulos()
-
-try:
-    import Box2D
-except ImportError:
-    error("box2d", "http://code.google.com/p/pybox2d")
-
-
 setup(
         name='pilas',
-	zip_safe=False,
-        version=pilasversion.VERSION,
+        zip_safe=False,
+        version="1.3.2",
         description="""============
 Pilas Engine
 ============
@@ -52,28 +27,47 @@ http://www.pilas-engine.com.ar
             'setuptools',
             'box2d',
             ],
-        packages=['pilas',
-                  'pilas.actores',
-                  'pilas.motores',
-                  'pilas.demos',
-                  'pilas.escena',
-                  'pilas.ejemplos',
-                  'pilas.interfaz',
-	              'pilas.video',
-                  'lanas',
-                  ],
+        packages=[
+            'pilasengine',
+            'pilasengine.actores',
+            'pilasengine.asistente',
+            'pilasengine.colisiones',
+            'pilasengine.comportamientos',
+            'pilasengine.fisica',
+            'pilasengine.datos',
+            'pilasengine.fisica.constantes',
+            'pilasengine.interprete',
+            'pilasengine.interprete.editorbase',
+            'pilasengine.tareas',
+            'pilasengine.configuracion',
+            'pilasengine.fondos',
+            'pilasengine.manual',
+            'pilasengine.tests',
+            'pilasengine.actores',
+            'pilasengine.controles',
+            'pilasengine.musica',
+            'pilasengine.utils',
+            'pilasengine.asistente',
+            'pilasengine.depurador',
+            'pilasengine.pad',
+            'pilasengine.colisiones',
+            'pilasengine.ejemplos',
+            'pilasengine.habilidades',
+            'pilasengine.escenas',
+            'pilasengine.imagenes',
+            'pilasengine.eventos',
+            'pilasengine.interfaz',
+            'pilasengine.sonidos',
+            'data',
+        ],
         url='http://www.pilas-engine.com.ar',
         include_package_data = True,
-        package_data = {
-            'images': ['pilas/data/*', 'pilas/ejemplos/data/*',
-                       'pilas/data/fondos/*', 'pilas/data/juegobase/*',
-                       'pilas/data/juegobase/data/*',
-                       'pilas/ejemplos/data',
-                       'pilas/ejemplos/ejemplos',
-                       ],
-            },
 
-        scripts=['bin/pilas'],
+        package_data = {
+            'images': [ 'data/*' ]
+        },
+
+        scripts=['bin/pilasengine'],
 
         classifiers = [
             'Intended Audience :: Developers',
@@ -83,6 +77,5 @@ http://www.pilas-engine.com.ar
             'Operating System :: OS Independent',
             'Programming Language :: Python',
             'Topic :: Games/Entertainment',
-          ],
-    )
-
+        ],
+)

@@ -1,0 +1,483 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pilasengine.eventos &mdash; documentación de pilas-engine - 1.2.0</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentación de pilas-engine - 1.2.0" href="index.html"/>
+        <link rel="next" title="pilasengine.fisica" href="pilasengine.fisica.html"/>
+        <link rel="prev" title="pilasengine.escenas" href="pilasengine.escenas.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pilas-engine
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.html">pilasengine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.actores.html">pilasengine.actores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.colisiones.html">pilasengine.colisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.comportamientos.html">pilasengine.comportamientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.controles.html">pilasengine.controles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.depurador.html">pilasengine.depurador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.escenas.html">pilasengine.escenas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">pilasengine.eventos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pilasengine.eventos.evento">pilasengine.eventos.evento</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido-del-modulo">Contenido del módulo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fisica.html">pilasengine.fisica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.fondos.html">pilasengine.fondos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.habilidades.html">pilasengine.habilidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.imagenes.html">pilasengine.imagenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.interfaz.html">pilasengine.interfaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.musica.html">pilasengine.musica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.pad.html">pilasengine.pad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.sonidos.html">pilasengine.sonidos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.tareas.html">pilasengine.tareas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilasengine.utils.html">pilasengine.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pilas-engine</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>pilasengine.eventos</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilasengine-eventos">
+<h1>pilasengine.eventos<a class="headerlink" href="#pilasengine-eventos" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="module-pilasengine.eventos.evento">
+<span id="pilasengine-eventos-evento"></span><h2>pilasengine.eventos.evento<a class="headerlink" href="#module-pilasengine.eventos.evento" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="class">
+<dt id="pilasengine.eventos.evento.AttrDict">
+<em class="property">class </em><code class="descclassname">pilasengine.eventos.evento.</code><code class="descname">AttrDict</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.evento.AttrDict" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">dict</span></code></p>
+<p>Envoltorio para que el diccionario de eventos
+se pueda acceder usando como si tuviera attributos
+de objeto.</p>
+<p>Por ejemplo, con esta clase es posible que un diccionario
+se pueda usar así:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">({</span><span class="s">&#39;x&#39;</span><span class="p">:</span> <span class="mi">123</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">x</span>
+<span class="go">123</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="s">&#39;x&#39;</span><span class="p">]</span>
+<span class="go">123</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.eventos.evento.Evento">
+<em class="property">class </em><code class="descclassname">pilasengine.eventos.evento.</code><code class="descname">Evento</code><span class="sig-paren">(</span><em>nombre</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.evento.Evento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Representa un evento, el cual puede conectar,desconectar
+y emitir funciones o métodos</p>
+<dl class="method">
+<dt id="pilasengine.eventos.evento.Evento.conectar">
+<code class="descname">conectar</code><span class="sig-paren">(</span><em>respuesta</em>, <em>id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.evento.Evento.conectar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.eventos.evento.Evento.desconectar">
+<code class="descname">desconectar</code><span class="sig-paren">(</span><em>respuesta</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.evento.Evento.desconectar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.eventos.evento.Evento.desconectar_por_id">
+<code class="descname">desconectar_por_id</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.evento.Evento.desconectar_por_id" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.eventos.evento.Evento.emitir">
+<code class="descname">emitir</code><span class="sig-paren">(</span><em>**evento</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.evento.Evento.emitir" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.eventos.evento.Evento.esta_conectado">
+<code class="descname">esta_conectado</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.evento.Evento.esta_conectado" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pilasengine.eventos.evento.Evento.imprimir_funciones_conectadas">
+<code class="descname">imprimir_funciones_conectadas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.evento.Evento.imprimir_funciones_conectadas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.eventos.evento.ProxyFuncion">
+<em class="property">class </em><code class="descclassname">pilasengine.eventos.evento.</code><code class="descname">ProxyFuncion</code><span class="sig-paren">(</span><em>cb</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.evento.ProxyFuncion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa a una función de repuesta pero usando
+una referencia débil.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pilasengine.eventos.evento.ProxyMetodo">
+<em class="property">class </em><code class="descclassname">pilasengine.eventos.evento.</code><code class="descname">ProxyMetodo</code><span class="sig-paren">(</span><em>cb</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.evento.ProxyMetodo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Permite asociar funciones pero con referencias débiles, que no
+incrementan el contador de referencias.</p>
+<p>Este proxy funciona tanto con funciones como con métodos enlazados
+a un objeto.</p>
+<p>&#64;organization: IBM Corporation
+&#64;copyright: Copyright (c) 2005, 2006 IBM Corporation
+&#64;license: The BSD License</p>
+</dd></dl>
+
+</div>
+<div class="section" id="contenido-del-modulo">
+<h2>Contenido del módulo<a class="headerlink" href="#contenido-del-modulo" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-pilasengine.eventos"></span><dl class="class">
+<dt id="pilasengine.eventos.Eventos">
+<em class="property">class </em><code class="descclassname">pilasengine.eventos.</code><code class="descname">Eventos</code><span class="sig-paren">(</span><em>pilas</em><span class="sig-paren">)</span><a class="headerlink" href="#pilasengine.eventos.Eventos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clases base: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Representa el objeto pilas.eventos, que internamente delega
+todos los metodos conectados a la escena actual.</p>
+<p>Para acceder a este objeto, usar una sentencia como la siguiente:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">click_de_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">una_funcion</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La función enviada como parámetro será invocada cuando el evento
+ocurra. Y se enviará como argumento los datos del evento, por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">cuando_hace_click</span><span class="p">(</span><span class="n">evento</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span> <span class="n">evento</span><span class="o">.</span><span class="n">x</span>
+<span class="gp">... </span>    <span class="k">print</span> <span class="n">evento</span><span class="o">.</span><span class="n">y</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pilas</span><span class="o">.</span><span class="n">eventos</span><span class="o">.</span><span class="n">click_de_mouse</span><span class="o">.</span><span class="n">conectar</span><span class="p">(</span><span class="n">cuando_hace_click</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="pilasengine.eventos.Eventos.Evento">
+<code class="descname">Evento</code><a class="headerlink" href="#pilasengine.eventos.Eventos.Evento" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.eventos.Eventos.actualizar">
+<code class="descname">actualizar</code><a class="headerlink" href="#pilasengine.eventos.Eventos.actualizar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Se invoca regularmente, 60 veces por segundo.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.eventos.Eventos.click_de_mouse">
+<code class="descname">click_de_mouse</code><a class="headerlink" href="#pilasengine.eventos.Eventos.click_de_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Informa ante la pulsación del mouse.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; Posición horizontal del mouse.</li>
+<li><strong>y</strong> &#8211; Posición vertical del mouse.</li>
+<li><strong>dx</strong> &#8211; Posición horizontal relativa del mouse.</li>
+<li><strong>dy</strong> &#8211; Posición vertical relativa del mouse.</li>
+<li><strong>boton</strong> &#8211; Botón del mouse que se pulsó (1 - Izquierdo, 2 -
+Derecho, 4 - Central)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.eventos.Eventos.mueve_camara">
+<code class="descname">mueve_camara</code><a class="headerlink" href="#pilasengine.eventos.Eventos.mueve_camara" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Informa que ha cambiado la posición de la cámara.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; Posición horizontal de la cámara.</li>
+<li><strong>y</strong> &#8211; Posición vertical de la cámara.</li>
+<li><strong>dx</strong> &#8211; Movimiento relativo horizontal que sufrió la cámara.</li>
+<li><strong>dy</strong> &#8211; Movimiento relativo vertical que sufrió la cámara.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.eventos.Eventos.mueve_mouse">
+<code class="descname">mueve_mouse</code><a class="headerlink" href="#pilasengine.eventos.Eventos.mueve_mouse" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Informa que la posición del mouse ha cambiado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; Posición horizontal del mouse.</li>
+<li><strong>y</strong> &#8211; Posición vertical del mouse.</li>
+<li><strong>dx</strong> &#8211; Posición horizontal relativa del mouse.</li>
+<li><strong>dy</strong> &#8211; Posición vertical relativa del mouse.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.eventos.Eventos.mueve_rueda">
+<code class="descname">mueve_rueda</code><a class="headerlink" href="#pilasengine.eventos.Eventos.mueve_rueda" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indica que cambió la rueda del mouse que se utiliza
+para desplazamiento o scroll.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>delta</strong> &#8211; indica el grado de rotación de la rueda del mouse.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.eventos.Eventos.pulsa_tecla">
+<code class="descname">pulsa_tecla</code><a class="headerlink" href="#pilasengine.eventos.Eventos.pulsa_tecla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Informa que se ha pulsado una tecla del teclado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>codigo</strong> &#8211; Codigo de la tecla normalizado,
+por ejemplo <code class="docutils literal"><span class="pre">simbolos.m</span></code>.</li>
+<li><strong>es_repeticion</strong> &#8211; Indica si el evento surgió por repetición de
+teclado. False indica que es la primer pulsación.</li>
+<li><strong>texto</strong> &#8211; Cadena de texto que indica la tecla pulsada,
+por ejemplo <code class="docutils literal"><span class="pre">&quot;m&quot;</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.eventos.Eventos.pulsa_tecla_escape">
+<code class="descname">pulsa_tecla_escape</code><a class="headerlink" href="#pilasengine.eventos.Eventos.pulsa_tecla_escape" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indica que se ha pulsado la tecla <code class="docutils literal"><span class="pre">scape</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.eventos.Eventos.suelta_tecla">
+<code class="descname">suelta_tecla</code><a class="headerlink" href="#pilasengine.eventos.Eventos.suelta_tecla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Informa que se ha soltado una tecla del teclado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>codigo</strong> &#8211; Codigo de la tecla normalizado,
+por ejemplo <code class="docutils literal"><span class="pre">simbolos.m</span></code>.</li>
+<li><strong>es_repeticion</strong> &#8211; Indica si el evento surgió por repetición de
+teclado. False indica que es la primer pulsación.</li>
+<li><strong>texto</strong> &#8211; Cadena de texto que indica la tecla pulsada,
+por ejemplo <code class="docutils literal"><span class="pre">&quot;m&quot;</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pilasengine.eventos.Eventos.termina_click">
+<code class="descname">termina_click</code><a class="headerlink" href="#pilasengine.eventos.Eventos.termina_click" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Informa cuando la pulsación del mouse termina.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; Posición horizontal del mouse.</li>
+<li><strong>y</strong> &#8211; Posición vertical del mouse.</li>
+<li><strong>dx</strong> &#8211; Posición horizontal relativa del mouse.</li>
+<li><strong>dy</strong> &#8211; Posición vertical relativa del mouse.</li>
+<li><strong>boton</strong> &#8211; Botón del mouse que se pulsó (1 - Izquierdo, 2 -
+Derecho, 4 - Central)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pilasengine.fisica.html" class="btn btn-neutral float-right" title="pilasengine.fisica" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pilasengine.escenas.html" class="btn btn-neutral" title="pilasengine.escenas" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

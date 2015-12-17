@@ -27,5 +27,5 @@ class Ayuda(pilas.escena.Base):
         pilas.avisar("Pulsa ESC para regresar")
 
     def cuando_pulsa_tecla(self, *k, **kv):
-        import escena_menu
+        from . import escena_menu
         pilas.cambiar_escena(escena_menu.EscenaMenu())

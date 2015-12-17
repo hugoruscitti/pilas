@@ -11,9 +11,9 @@ import pilas
 from pilas import pilasversion
 
 try:
-    import widget_log
-except ImportError, e:
-    print e
+    from . import widget_log
+except ImportError as e:
+    print(e)
     pass
 
 class DepuradorDeshabilitado(object):

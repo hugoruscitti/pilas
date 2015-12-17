@@ -145,8 +145,8 @@ class CanvasWidgetAbstracto(object):
                     if not actor.esta_fuera_de_la_pantalla():
                         actor.dibujar(self.painter)
                 except Exception:
-                    print traceback.format_exc()
-                    print sys.exc_info()[0]
+                    print(traceback.format_exc())
+                    print(sys.exc_info()[0])
                     actor.eliminar()
 
                 self.depurador.dibuja_al_actor(self.motor, self.painter, actor)
@@ -159,17 +159,17 @@ class CanvasWidgetAbstracto(object):
             image =  QtGui.QPixmap(self.width(), self.height())
             image = QtGui.QPixmap.grabWidget(self, 0, 0, self.width(), self.height())
             if not image.save(filename, "PNG", -1):
-                print "Imposible guardar la captura de pantalla."
+                print("Imposible guardar la captura de pantalla.")
         except Exception:
-            print traceback.format_exc()
-            print sys.exc_info()[0]
+            print(traceback.format_exc())
+            print(sys.exc_info()[0])
 
     def timerEvent(self, event):
         try:
             self._realizar_actualizacion_logica()
         except Exception:
-            print traceback.format_exc()
-            print sys.exc_info()[0]
+            print(traceback.format_exc())
+            print(sys.exc_info()[0])
 
         self.update()
 
@@ -190,8 +190,8 @@ class CanvasWidgetAbstracto(object):
                 actor.pre_actualizar()
                 actor.actualizar()
         except Exception:
-            print traceback.format_exc()
-            print sys.exc_info()[0]
+            print(traceback.format_exc())
+            print(sys.exc_info()[0])
 
     def mouseMoveEvent(self, e):
         escala = self.escala
@@ -305,7 +305,7 @@ class CanvasWidgetAbstracto(object):
             QtCore.Qt.Key_Z: simbolos.z,
         }
 
-        if teclas.has_key(tecla_qt):
+        if tecla_qt in teclas:
             return teclas[tecla_qt]
         else:
             return tecla_qt
@@ -404,10 +404,7 @@ class Imagen(object):
             self._imagen = ruta
         else:
             if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
-                try:
-                    self._imagen = self.cargar_jpeg(ruta)
-                except:
-                    self._imagen = QtGui.QPixmap(ruta)
+                self._imagen = QtGui.QPixmap(ruta)
             else:
                 self._imagen = QtGui.QPixmap(ruta)
 
@@ -419,19 +416,6 @@ class Imagen(object):
         rect = QtCore.QRect(dx, dy, ancho, alto)
         qi = qi.copy(rect)
         return Imagen(QtGui.QPixmap.fromImage(qi))
-
-    def cargar_jpeg(self, ruta):
-        from PIL import Image
-        import StringIO
-
-        pilImage = Image.open(ruta)
-        stringIO = StringIO.StringIO()
-        pilImage.save(stringIO, format="png")
-
-        pixmapImage = QtGui.QPixmap()
-        pixmapImage.loadFromData(stringIO.getvalue())
-
-        return pixmapImage
 
     def ancho(self):
         return self._imagen.size().width()

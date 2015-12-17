@@ -183,7 +183,7 @@ class Tween(object):
  
         if len(self.tweenables) == 0:
             # nothing to do 
-            print "TWEEN ERROR: No Tweenable properties or functions defined"
+            print("TWEEN ERROR: No Tweenable properties or functions defined")
             self.complete = True
             return
 
@@ -196,7 +196,7 @@ class Tween(object):
  
         # check that its compatible
             if not hasattr( self.target, k):
-                print "TWEEN ERROR: " + str(self.target) + " has no function " + k
+                print("TWEEN ERROR: " + str(self.target) + " has no function " + k)
                 self.complete = True
                 break
  
@@ -217,7 +217,7 @@ class Tween(object):
                 try:
                     getFunc = getattr(self.target, funcName.replace("set", "get") )
                     startVal = getFunc()
-                    print getfunc
+                    print(getfunc)
                 except:
                     # no start value, assume its 0
                     # but make sure the start and change
@@ -718,7 +718,7 @@ class TweenTestObject:
         self.rot = 50
  
     def update(self):
-        print self.pos, self.rot
+        print(self.pos, self.rot)
  
     def setRotation(self, rot):
         self.rot = rot
@@ -727,7 +727,7 @@ class TweenTestObject:
         return self.rot
  
     def complete(self):
-        print "I'm done tweening now mommy!"
+        print("I'm done tweening now mommy!")
  
  
 if __name__=="__main__":
@@ -752,6 +752,6 @@ if __name__=="__main__":
             T.addTween( mt, duration=-0.2, tweenTime=0.2 )
             changed = True
         #print mt.duration,
-        print tst.getRotation(), tst.pos
+        print(tst.getRotation(), tst.pos)
         time.sleep(0.06)
-    print tst.getRotation(), tst.pos
+    print(tst.getRotation(), tst.pos)
