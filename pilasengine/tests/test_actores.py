@@ -87,26 +87,6 @@ class TestActores(unittest.TestCase):
         heredado_de_aceituna = ActorAceituna(self.pilas)
         self.assertTrue(heredado_de_aceituna.imagen, "Hereda correctamente")
 
-    def testEtiquetas(self):
-
-        # Se asegura que todos los actores nacen con
-        # una etiqueta que identifica la clase.
-
-        m = self.pilas.actores.Mono()
-        self.assertEquals(str(m.etiquetas), "['mono']")
-
-        a = self.pilas.actores.Aceituna()
-        self.assertEquals(str(a.etiquetas), "['aceituna']")
-
-        # Se asegura que se pueden agregar y eliminar
-        # etiquetas
-
-        a.etiquetas.agregar('enemigo')
-        self.assertEquals(str(a.etiquetas), "['aceituna', 'enemigo']")
-
-        a.etiquetas.eliminar('enemigo')
-        self.assertEquals(str(a.etiquetas), "['aceituna']")
-
     def test_el_actor_esta_visible(self):
         actor = self.pilas.actores.Aceituna()
         self.assertFalse(actor.esta_fuera_de_la_pantalla(), "El actor inicialmente esta dentro de la pantalla")

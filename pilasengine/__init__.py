@@ -19,6 +19,7 @@ from PyQt4 import QtGui
 from PyQt4 import QtCore
 
 import configuracion
+import etiquetas
 import escenas
 import imagenes
 import actores
@@ -37,6 +38,7 @@ import watcher
 import plugins
 import simbolos
 import datos
+import fisica
 
 
 import widget

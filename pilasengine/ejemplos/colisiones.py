@@ -4,6 +4,7 @@ import pilasengine
 import sys
 sys.path.insert(0, "..")
 
+
 pilas = pilasengine.iniciar(capturar_errores=False)
 pilas.depurador.definir_modos(True, posiciones=True, puntos_de_control=True,  fisica=True)
 pilas.avisar("Usa el mouse para mover al mono y ayudarlo a comer.")
