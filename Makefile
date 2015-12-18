@@ -111,8 +111,13 @@ upload:
 	mkdir -p ~/Dropbox/Public/releases/pilas-engine/${VERSION}
 	cp dist/pilas-engine-${VERSION}.dmg ~/Dropbox/Public/releases/pilas-engine/${VERSION}/
 	cp dist/pilas-engine_${VERSION}.exe ~/Dropbox/Public/releases/pilas-engine/${VERSION}/
-	@echo "$(V)Recordá que luego de subir a dropbox deberías actualizar la web.$(N)"
+	@echo ""
+	@echo "$(V)Se están subiendo los archivos a dropbox y static.pilas-engine.com.ar$(N)"
+	@echo ""
+	@echo "$(V)Recordá que luego de subir estos archivos deberías actualizar la web.$(N)"
 	@echo "$(V) (con el comando: make release, make deploy)$(N)"
+	@echo ""
+	scp ~/Dropbox/Public/releases/pilas-engine/${VERSION} hugoruscitti@digitalocean:/home/hugoruscitti/static.pilas-engine.com.ar/pilas-engine/
 
 distmac:
 	@mkdir -p tmp
