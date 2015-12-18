@@ -56,3 +56,13 @@ div.superior {
 .animate.ng-leave.ng-leave-active {
   opacity: 0;
 }
+
+.titulo-juego {
+  width: 128px;
+  height: 40px;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.titulo-juego:hover {
+}

@@ -95,6 +95,7 @@ span.nombre {
     border: 2px solid black;
     height: 96px;
     padding: 30px 5px;
+    padding-top: 35px;
     position: absolute;
     text-align: center;
     text-decoration: none;
