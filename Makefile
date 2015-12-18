@@ -138,7 +138,7 @@ distmac:
 	@cp -r -f pilasengine pilas-engine.app/Contents/Resources/lib/python2.7/
 	@cp -r -f pilas pilas-engine.app/Contents/Resources/lib/python2.7/
 	@rm -r -f dist/pilas-engine-${VERSION}.dmg
-	@echo "Generando imagen dist/pilas-engine-${VERSION}.dmg (esto tarda un huevo...)"
+	@echo "Generando imagen dist/pilas-engine-${VERSION}.dmg (esto tarda un huevo, paciencia ...)"
 	@mkdir -p dist
 	#@hdiutil create -srcfolder pilas-engine.app dist/pilas-engine-${VERSION}.dmg > tmp/log_creacion_dmg.log
 	@hdiutil create -srcfolder pilas-engine.app dist/pilas-engine-${VERSION}.dmg -size 400mb > tmp/log_creacion_dmg.log
@@ -178,7 +178,7 @@ distwin:
 	@cp -r -f pilasengine tmp/pilas-engine/
 	@cp -r -f pilas tmp/pilas-engine/
 	@cp extras/instalador.nsi tmp/pilas-engine
-	@echo "Generando el installador para windows..."
+	@echo "Generando el instalador para windows..."
 	@makensis tmp/pilas-engine/instalador.nsi > tmp/log_instalador.log
 	@mv tmp/pilas-engine/pilas-engine_${VERSION}.exe dist/
 	@echo "Todo OK!"
