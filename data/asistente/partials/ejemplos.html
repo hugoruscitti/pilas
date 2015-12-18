@@ -14,14 +14,13 @@
             <div class='contenedor_ejemplo'>
               <a ng-click="abrir_ejemplo(ejemplo.nick)" href=''>
                 <span class='nombre'>
-                    {{ejemplo.titulo}}
+                  Ejecutar
                 </span>
                 <img ng-src='imagenes/ejemplos/{{ejemplo.nick}}.png' err-src>
               </a>
-
-            <br/>
-
-            <span class='progresando'><img src='imagenes/procesando.gif'/></span>
+            <div ng-click="abrir_ejemplo(ejemplo.nick)" class='titulo-juego'>
+              {{ejemplo.titulo}}
+            </div>
         </div>
       </li>
         </ul>
