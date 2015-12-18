@@ -9,6 +9,8 @@
 import collections
 import pilasengine
 
+import inspect
+
 class Colisiones(object):
     "Administra todas las _colisiones entre actores."
 
@@ -37,10 +39,16 @@ class Colisiones(object):
         actor_asociado_1 = fixture_1.userData.get('actor', None)
         actor_asociado_2 = fixture_2.userData.get('actor', None)
 
-        if actor_asociado_1 and actor_asociado_2:
-            info_colision = {'actor1': actor_asociado_1,
-                             'actor2': actor_asociado_2}
-            self._colisiones_en_curso.append(info_colision)
+        figura_1 = fixture_1.userData.get('figura', None)
+        figura_2 = fixture_2.userData.get('figura', None)
+
+        info_colision = {'actor1': actor_asociado_1,
+                         'actor2': actor_asociado_2,
+                         'figura1': figura_1,
+                         'figura2': figura_2,
+                         'fixture1': fixture_1,
+                         'fixture2': fixture_2}
+        self._colisiones_en_curso.append(info_colision)
 
     def obtener_cantidad_de_colisiones(self):
         return len(self._colisiones_en_curso)
@@ -56,8 +64,15 @@ class Colisiones(object):
         """
 
         for info_colision in self._colisiones_en_curso:
-            actor_1 = info_colision['actor1']
-            actor_2 = info_colision['actor2']
+            if info_colision['actor1']:
+                actor_1 = info_colision['actor1']
+            else:
+                actor_1 = info_colision['figura1']
+
+            if info_colision['actor2']:
+                actor_2 = info_colision['actor2']
+            else:
+                actor_2 = info_colision['figura2']
 
             self._ejecutar_colision_programada_si_existe(actor_1, actor_2)
             self._ejecutar_colisiones_entre_etiquetas_si_existe(actor_1, actor_2)
@@ -82,10 +97,16 @@ class Colisiones(object):
                 self.invocar_funcion(funcion_a_llamar, actor_2, actor_1)
 
     def invocar_funcion(self, funcion, actor1, actor2):
-        try:
-            funcion(actor1, actor2)
-        except TypeError:
-            funcion()
+        if inspect.ismethod(funcion):
+            if funcion.func_code.co_argcount == 3:
+                funcion(actor1, actor2)
+            else:
+                funcion()
+        else:
+            if funcion.func_code.co_argcount == 2:
+                funcion(actor1, actor2)
+            else:
+                funcion()
 
     def agregar(self, grupo_a, grupo_b, funcion_a_llamar):
         "Agrega dos listas de actores para analizar _colisiones."
@@ -104,7 +125,10 @@ class Colisiones(object):
         # sin mezclar.
         todos = list(grupo_a) + list(grupo_b)
         cantidad_total = len(todos)
-        cantidad_actores, cantidad_etiquetas = self._contar_tipos_de_datos(todos)
+        cantidad_actores, cantidad_etiquetas, cantidad_figuras = self._contar_tipos_de_datos(todos)
+
+        if funcion_a_llamar and not callable(funcion_a_llamar):
+            raise Exception(u"El tercer parámetro debe ser una función.")
 
         if cantidad_total == cantidad_actores:
             self._colisiones_programadas_con_respuesta.append((grupo_a, grupo_b, funcion_a_llamar))
@@ -112,13 +136,17 @@ class Colisiones(object):
             grupo_a = self._convertir_en_lista_de_cadenas(grupo_a)
             grupo_b = self._convertir_en_lista_de_cadenas(grupo_b)
             self._colisiones_programadas_entre_etiquetas_con_respuesta.append((grupo_a, grupo_b, funcion_a_llamar))
+        elif cantidad_total == cantidad_figuras:
+            self._colisiones_programadas_con_respuesta.append((grupo_a, grupo_b, funcion_a_llamar))
         else:
             raise Exception("Las colisiones solo se permiten entre actores o entre etiquetas, pero sin mezclar.")
 
     def _convertir_en_lista_de_cadenas(self, grupo):
         lista = []
+
         for x in grupo:
             lista.append(x.lower())
+
         return lista
 
     def _contar_tipos_de_datos(self, colecciones):
@@ -126,11 +154,14 @@ class Colisiones(object):
 
         cantidad_actores = 0
         cantidad_etiquetas = 0
+        cantidad_figuras = 0
 
         for x in colecciones:
             if isinstance(x, str):
                 cantidad_etiquetas += 1
             elif isinstance(x, pilasengine.actores.Actor):
                 cantidad_actores += 1
+            elif isinstance(x, pilasengine.fisica.figura.Figura):
+                cantidad_figuras += 1
 
-        return cantidad_actores, cantidad_etiquetas
+        return cantidad_actores, cantidad_etiquetas, cantidad_figuras

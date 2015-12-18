@@ -8,6 +8,7 @@
 
 import math
 from pilasengine import utils
+from pilasengine import etiquetas
 
 class Figura(object):
     """Representa un figura que simula un cuerpo fisico.
@@ -22,6 +23,9 @@ class Figura(object):
         self.id = pilas.utils.obtener_uuid()
         self._dinamica = True
         self.figuras_en_contacto = []
+        self.etiquetas = etiquetas.Etiquetas()
+        self.etiquetas.agregar(self.__class__.__name__)
+        self._vivo = True
 
     def obtener_x(self):
         "Retorna la posición horizontal del cuerpo."
@@ -137,7 +141,12 @@ class Figura(object):
 
     def eliminar(self):
         """Quita una figura de la simulación."""
-        self.fisica.eliminar_figura(self._cuerpo)
+        if self._vivo:
+            self.fisica.eliminar_figura(self._cuerpo)
+            self._vivo = False
+
+    def esta_eliminado(self):
+        return not self._vivo
 
     def obtener_sensor(self):
         return self._sensor

@@ -26,7 +26,6 @@ class DatosPersistentes(object):
         self.datos = {}
 
     def guardar(self, titulo, valor):
-        print self.dirs.site_data_dir
         self.datos[titulo] = valor
 
     def obtener(self, titulo):

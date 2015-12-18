@@ -63,7 +63,7 @@ class Escena(object):
         self.fisica.eliminar_para_liberar_memoria()
 
     def iniciar(self):
-        print "Iniciando escena Normal..."
+        pass
 
     def actualizar(self):
         pass

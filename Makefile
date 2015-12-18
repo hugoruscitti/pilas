@@ -59,8 +59,6 @@ ver_sync:
 
 utest:
 	@python -m unittest discover pilasengine/tests '*.py'
-	# O una version mas linda si se instala nose y nosecolor con pip
-	#@nosetests --color pilasengine/tests/*
 
 manual:
 	mkdir -p data/manual

@@ -10,6 +10,7 @@ from pilasengine.fisica.contact_listener import ObjetosContactListener
 from pilasengine.fisica import rectangulo
 from pilasengine.fisica import circulo
 from pilasengine.fisica.constantes import constante_de_movimiento
+import figura
 
 PPM = 30
 
