@@ -251,7 +251,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+        <a class="" href="../eventos/">Eventos</a>
         
     </li>
 <li>
@@ -354,11 +354,11 @@ se colocarán en posiciones aleatorias.</p>
 controlar a todas las bombas al mismo tiempo.</p>
 <p>Esta referencia (que llamamos <code>bombas</code>) es parecida a una lista de datos en <code>python</code>. Podríamos realizar operaciones típicas como contar, recorrer o clasificar de la misma forma que se hace en el lenguaje <code>python</code>.</p>
 <p>Por ejemplo, para contar la cantidad de bombas que hemos creado y conocer sus coordenadas podemos ejecutar:</p>
-<pre><code class="python">&gt;&gt;&gt; print &quot;hay&quot;, len(bombas), &quot;bombas&quot;
+<pre><code class="python">&gt;&gt;&gt; print(&quot;hay&quot;, len(bombas), &quot;bombas&quot;)
 hay 5 bombas
 
 &gt;&gt;&gt; for una_bomba in bombas:
-...     print una_bomba.x, una_bomba.y
+...     print(una_bomba.x, una_bomba.y)
 </code></pre>
 
 <p>Ahora bien, algo que hace un poquito diferente a los
@@ -521,6 +521,15 @@ mi_grupo.escala = [2]
 
     .wy-nav-content {
       background-color: white !important;
+    }
+
+    .star {
+        display: inline-block !important;
+        width: 14px !important;
+        height: 14px !important;
+        background-image: url('/imagenes/star.png');
+        margin-bottom: -2px;
+        margin-left: 4px;
     }
   </style>
 

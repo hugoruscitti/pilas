@@ -255,7 +255,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+        <a class="" href="../eventos/">Eventos</a>
         
     </li>
 <li>
@@ -374,7 +374,7 @@ superficie.circulo(32, 35, 5, color=pilas.colores.negro, relleno=True)
 superficie.circulo(67, 35, 10, color=pilas.colores.blanco, relleno=True)
 superficie.circulo(64, 35, 5, color=pilas.colores.negro, relleno=True)
 
-pilas.actores.Actor(superficie)
+pilas.actores.Actor(imagen=superficie)
 
 pilas.ejecutar() # Necesario al ejecutar en scripts.
 </code></pre>
@@ -573,6 +573,15 @@ solicitamos, se imprimirá usando una tipografía por defecto.</p>
 
     .wy-nav-content {
       background-color: white !important;
+    }
+
+    .star {
+        display: inline-block !important;
+        width: 14px !important;
+        height: 14px !important;
+        background-image: url('/imagenes/star.png');
+        margin-bottom: -2px;
+        margin-left: 4px;
     }
   </style>
 

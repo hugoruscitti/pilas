@@ -240,7 +240,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+        <a class="" href="../eventos/">Eventos</a>
         
     </li>
 <li>
@@ -378,8 +378,8 @@ apariencia de los textos.</p>
 <p>Por ejemplo, para alterar el texto, color y tamaño de un
 texto podría escribir algo así:</p>
 <pre><code class="python">texto.magnitud = 50
-texto.color = (0, 0, 0)   # Color negro
-texto.color = (255, 0, 0, 128)   # Color rojo, semi transparente.
+texto.color = pilas.colores.Color(0, 0, 0)   # Color negro
+texto.color = pilas.colores.Color(255, 0, 0, 128)   # Color rojo, semi transparente.
 texto.texto = &quot;Hola, este texto \n tiene 2 lineas separadas&quot;
 </code></pre>
 
@@ -406,7 +406,7 @@ pequeños como demostraciones o ejemplos.</p>
         <a href="../habilidades/" class="btn btn-neutral float-right" title="Habilidades"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../eventos/" class="btn btn-neutral" title="Eventos conexiones y respuestas"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+        <a href="../eventos/" class="btn btn-neutral" title="Eventos"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
       
     </div>
   
@@ -499,6 +499,15 @@ pequeños como demostraciones o ejemplos.</p>
 
     .wy-nav-content {
       background-color: white !important;
+    }
+
+    .star {
+        display: inline-block !important;
+        width: 14px !important;
+        height: 14px !important;
+        background-image: url('/imagenes/star.png');
+        margin-bottom: -2px;
+        margin-left: 4px;
     }
   </style>
 

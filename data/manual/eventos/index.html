@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Eventos conexiones y respuestas - pilas-engine</title>
+  <title>Eventos - pilas-engine</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -20,7 +20,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Eventos conexiones y respuestas";
+    var mkdocs_page_name = "Eventos";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -240,7 +240,7 @@
           
             <li>
     <li class="toctree-l1 current">
-        <a class="current" href="./">Eventos conexiones y respuestas</a>
+        <a class="current" href="./">Eventos</a>
         
             <ul>
             
@@ -332,7 +332,7 @@
     
       
     
-    <li>Eventos conexiones y respuestas</li>
+    <li>Eventos</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -419,7 +419,7 @@ vamos a querer saber exactamente qué tecla se pulsó.</p>
 objeto es imprimir directamente su contenido, por ejemplo, en
 la función de arriba podíamos escribir:</p>
 <pre><code>def mover_mono_a_la_posicion_del_mouse(evento):
-    print evento
+    print(evento)
 </code></pre>
 <p>y en la ventana de nuestra computadora tendríamos que ver
 algo así:</p>
@@ -525,7 +525,7 @@ y darle un nombre:</p>
 canal de comunicación: muchos actores podrán <code>conectarse</code> para
 recibir alertas y otros podrán <code>emitir</code> alertas:</p>
 <pre><code class="python">def ha_ocurrido_un_evento(datos_evento):
-    print &quot;Hola!!!&quot;, datos_evento
+    print(&quot;Hola!!!&quot;, datos_evento)
 
 evento.conectar(ha_ocurrido_un_evento)
 
@@ -665,6 +665,15 @@ eventos te recomendamos los siguientes documentos:</p>
 
     .wy-nav-content {
       background-color: white !important;
+    }
+
+    .star {
+        display: inline-block !important;
+        width: 14px !important;
+        height: 14px !important;
+        background-image: url('/imagenes/star.png');
+        margin-bottom: -2px;
+        margin-left: 4px;
     }
   </style>
 

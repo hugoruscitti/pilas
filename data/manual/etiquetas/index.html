@@ -126,6 +126,8 @@
                 
                     <li><a class="toctree-l4" href="#anadiendo-colisiones-mediante-etiquetas">Añadiendo colisiones mediante etiquetas</a></li>
                 
+                    <li><a class="toctree-l4" href="#las-etiquetas-tambien-sirven-con-figuras">Las etiquetas también sirven con figuras</a></li>
+                
             
             </ul>
         
@@ -253,7 +255,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+        <a class="" href="../eventos/">Eventos</a>
         
     </li>
 <li>
@@ -339,8 +341,8 @@ a los actores de manera simple.</p>
 "protagonista", "munición" etc... y podemos vincularla
 con cualquier actor o grupo, para señalar el rol de ese actor
 o grupo.</p>
-<p>La utilidad mas inmediata de las etiquetas es poder
-simplificar la creación de colisiones, que vimos en el
+<p>Las etiquetas se utilizan principalmente para simplificar
+la creación de colisiones, que vimos en el
 capítulo anterior.</p>
 <h2 id="conociendo-las-etiquetas">Conociendo las Etiquetas</h2>
 <p>Cada actor que existe en pilas tiene un atributo <code>etiquetas</code>,
@@ -358,22 +360,28 @@ al actor, por ejemplo:</p>
 <pre><code>&gt;&gt;&gt; mono.etiquetas.agregar('protagonista')
 ['mono', 'protagonista']
 </code></pre>
+<p>o incluso consultar si un actor tiene o no una determinada etiqueta:</p>
+<pre><code>&gt;&gt;&gt; mono.tiene_etiqueta("enemigo")
+False
+&gt;&gt;&gt; mono.tiene_etiqueta("mono")
+True
+</code></pre>
 <h2 id="usando-grupos">Usando grupos</h2>
 <p>Los grupos también nos brindan la posibilidad de consultar o definir las
 etiquetas de varios actores al mismo tiempo:</p>
-<pre><code>naves = pilas.actores.Nave()
+<pre><code>naves = pilas.actores.Nave() * 10
 naves.etiquetas.agregar('enemigo')
 
-items = pilas.actores.Banana()
+items = pilas.actores.Banana() * 5
 items.etiquetas.agregar('comestible')
 
-otro_grupo = pilas.actores.Manzana()
+otro_grupo = pilas.actores.Manzana() * 2
 otro_grupo.etiquetas.agregar('comestible')
 </code></pre>
 
 <h2 id="anadiendo-colisiones-mediante-etiquetas">Añadiendo colisiones mediante etiquetas</h2>
 <p>Ahora que podemos añadir etiquetas a los actores, podemos describir las
-colisiones de forma mas sencilla. </p>
+colisiones de forma mas sencilla.</p>
 <p>Por ejemplo, si creamos un escenario con monedas y un mono que se pueda
 mover con el teclado así:</p>
 <pre><code>mono = pilas.actores.Mono()
@@ -404,6 +412,22 @@ cajas.etiquetas.agregar('moneda')
 
 <p>Claro, lo ideal en este caso es definir las colisiones usando etiquetas
 genéricas como: 'comestible', 'enemigo', 'vida' etc...</p>
+<h2 id="las-etiquetas-tambien-sirven-con-figuras">Las etiquetas también sirven con figuras</h2>
+<p>Ten en cuenta que las figuras físicas también pueden contener etiquetas de la misma forma de los actores.</p>
+<p>Esto es super útil cuando queremos crear colisiones mas genéricas o invisibles.</p>
+<p>Por ejemplo, podríamos tener una circunferencia que al momento de tocar
+cualquier rectángulo desaparezca:</p>
+<pre><code>circulo = pilas.fisica.Circulo()
+circulo.etiquetas.agregar(&quot;colisionable&quot;)
+
+def destruir(circulo_que_colisiona, un_rectangulo):
+    circulo_que_colisiona.eliminar()
+
+pilas.colisiones.agregar(&quot;colisionable&quot;, &quot;rectangulo&quot;, destruir)
+</code></pre>
+
+<p>Eso sí, tenemos que tener en cuenta que la función "destruir" va a recibir las dos figuras en contacto y no dos actores como vimos en los otros
+ejemplos de colisión entre actores.</p>
               
             </div>
           </div>
@@ -508,6 +532,15 @@ genéricas como: 'comestible', 'enemigo', 'vida' etc...</p>
 
     .wy-nav-content {
       background-color: white !important;
+    }
+
+    .star {
+        display: inline-block !important;
+        width: 14px !important;
+        height: 14px !important;
+        background-image: url('/imagenes/star.png');
+        margin-bottom: -2px;
+        margin-left: 4px;
     }
   </style>
 

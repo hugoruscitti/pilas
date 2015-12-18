@@ -257,7 +257,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+        <a class="" href="../eventos/">Eventos</a>
         
     </li>
 <li>
@@ -402,7 +402,7 @@ los cambios en el actor:</p>
 <p>Para construir un deslizador y asociarlo a una función
 puedes escribir algo como esto:</p>
 <pre><code>def cuando_cambia(valor):
-    print &quot;El deslizador tiene grado:&quot;, valor
+    print(&quot;El deslizador tiene grado:&quot;, valor)
 
 deslizador = pilas.interfaz.Deslizador()
 deslizador.conectar(cuando_cambia)
@@ -439,16 +439,16 @@ clase <code>Selector</code> y un texto a mostrar:</p>
 <p>Y luego, se puede consultar el valor del selector mediante el
 atributo <code>seleccionado</code>:</p>
 <pre><code>if selector.seleccionado:
-    print &quot;El selector esta seleccionado.&quot;
+    print(&quot;El selector esta seleccionado.&quot;)
 else:
-    print &quot;El selector no esta seleccionado.&quot;
+    print(&quot;El selector no esta seleccionado.&quot;)
 </code></pre>
 
 <p>aunque en lugar de consultar la variable, es mucho mejor asociarle
 una función para que el selector la llame solamente cuando el
 selector cambia de estado (seleccionado/deseleccionado):</p>
 <pre><code>def cuando_el_selector_cambia(estado):
-    print &quot;El selector ahora esta en estado:&quot;, estado
+    print(&quot;El selector ahora esta en estado:&quot;, estado)
 
 selector.definir_accion(cuando_el_selector_cambia)
 </code></pre>
@@ -520,7 +520,7 @@ límite de caracteres está en el atributo <code>limite_de_caracteres</code>:</p
 <p>Para crear un lista de selección, se tiene que crear una lista de cadenas y declarar una función para que sea llamada cuando se termina de seleccionar.</p>
 <p>Por ejemplo, el siguiente código muestra una lista e imprime por consola cuando el usuario selecciona con el click del mouse:</p>
 <pre><code>def cuando_selecciona(opcion):
-    print &quot;Ha seleccionado la opcion:&quot;, opcion
+    print(&quot;Ha seleccionado la opcion:&quot;, opcion)
 
 consulta = pilas.interfaz.ListaSeleccion(['Uno', 'Dos', 'Tres'], cuando_selecciona)
 </code></pre>
@@ -643,6 +643,15 @@ opciones = pilas.interfaz.ListaSeleccion(['hola', 'opcion', 'tres'], cuando_sele
 
     .wy-nav-content {
       background-color: white !important;
+    }
+
+    .star {
+        display: inline-block !important;
+        width: 14px !important;
+        height: 14px !important;
+        background-image: url('/imagenes/star.png');
+        margin-bottom: -2px;
+        margin-left: 4px;
     }
   </style>
 

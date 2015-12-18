@@ -251,7 +251,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+        <a class="" href="../eventos/">Eventos</a>
         
     </li>
 <li>
@@ -344,10 +344,10 @@ pilas = pilasengine.iniciar()
 pilas.fondos.Selva()
 
 def iniciar_juego():
-    print &quot;Tengo que iniciar el juego&quot;
+    print(&quot;Tengo que iniciar el juego&quot;)
 
 def salir_del_juego():
-    print &quot;Tengo que salir...&quot;
+    print(&quot;Tengo que salir...&quot;)
 
 pilas.actores.Menu(
         [
@@ -373,7 +373,7 @@ dos partes que son muy importantes.</p>
 <p>Primero declaramos funciones que hacen algo, como por
 ejemplo:</p>
 <pre><code class="python">def iniciar_juego():
-    print &quot;Tengo que iniciar el juego&quot;
+    print(&quot;Tengo que iniciar el juego&quot;)
 </code></pre>
 
 <p>Y luego, cuando creamos el menú, armamos una lista
@@ -402,7 +402,9 @@ en casi todos los casos. Por ejemplo, nuestro código
 anterior se podría poner mas interesante si mejoramos
 la función <code>iniciar_juego</code> y la función <code>salir_del_juego</code>:</p>
 <pre><code class="python">def iniciar_juego():
-    pilas.ejemplos.Piezas()
+    pilas.escenas.Normal()
+    actor = pilas.actores.Aceituna()
+    actor.decir(&quot;Bienvenido al juego&quot;)
 
 def salir_del_juego():
     pilas.terminar()
@@ -528,6 +530,15 @@ cambio de rotación vas a ver a qué me refiero...</p>
 
     .wy-nav-content {
       background-color: white !important;
+    }
+
+    .star {
+        display: inline-block !important;
+        width: 14px !important;
+        height: 14px !important;
+        background-image: url('/imagenes/star.png');
+        margin-bottom: -2px;
+        margin-left: 4px;
     }
   </style>
 

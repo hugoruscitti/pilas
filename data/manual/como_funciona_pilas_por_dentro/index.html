@@ -240,7 +240,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../eventos/">Eventos conexiones y respuestas</a>
+        <a class="" href="../eventos/">Eventos</a>
         
     </li>
 <li>
@@ -654,10 +654,10 @@ del evento y proveer los argumentos que necesita:</p>
 se invoquen con el argumento <code>evento</code> representando esos detalles:</p>
 <pre><code>def crear_bomba(evento):
 
-    print evento.x
+    print(evento.x)
     # imprimirá 30
 
-    print evento.y
+    print(evento.y)
     # imprimirá 50
 
     [ etc...]
@@ -919,6 +919,15 @@ definidas en el archivo <code>Makefile</code>.</p>
 
     .wy-nav-content {
       background-color: white !important;
+    }
+
+    .star {
+        display: inline-block !important;
+        width: 14px !important;
+        height: 14px !important;
+        background-image: url('/imagenes/star.png');
+        margin-bottom: -2px;
+        margin-left: 4px;
     }
   </style>
 
