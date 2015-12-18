@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '1.3.2',
-  fecha: '19 de Oct del 2015',
-  commit: '586435d',
-  changelog: ['release 1.3.1', 'configurando para patch.', 'reparando la funcion print en el editor.', 'borrando script de prueba.', 'borrando archivo temporal.', ]
+  version: '1.4.0',
+  fecha: '18 de Dec del 2015',
+  commit: '57a969c',
+  changelog: ['Actualizando comando para hacer el deploy a static.pilas-engine.com.ar', 'actualizando manual.', 'actualizando api.', 'Merge branch "feature/tags-en-figuras" into develop', 'Modificando donde aparecen los titulos de los ejemplos.', ]
 }
