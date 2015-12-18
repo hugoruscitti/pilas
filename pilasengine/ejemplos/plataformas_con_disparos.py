@@ -88,21 +88,26 @@ class Protagonista(pilasengine.actores.Actor):
         disparo_nuevo = pilas.actores.DisparoPersonalizado(x=self.x + dx, y=self.y)
         disparo_nuevo.figura.empujar(40 * 2 * self.direccion, 0)
 
-mapa = pilas.actores.MapaTiled('plataformas.tmx', densidad=0,
-            restitucion=0, friccion=0, amortiguacion=0)
+
+
+class EscenaPrincipal(pilasengine.escenas.Escena):
+
+    def iniciar(self):
+        mapa = self.pilas.actores.MapaTiled('plataformas.tmx', densidad=0,
+                    restitucion=0, friccion=0, amortiguacion=0)
+
+        p = self.pilas.actores.Protagonista()
+        caja = self.pilas.actores.Caja()
+        caja.aprender('arrastrable')
+
+        self.pilas.fondos.Tarde()
+        self.pilas.avisar("Pulsa la tecla Espacio para disparar")
+
 
 pilas.actores.vincular(Protagonista)
 pilas.actores.vincular(DisparoPersonalizado)
 
-p = pilas.actores.Protagonista()
-caja= pilas.actores.Caja()
-caja.aprender('arrastrable')
-
-pilas.fondos.Tarde()
-
-#cajas = pilas.actores.Caja() * 3
-#cajas.y = 100
-#cajas.aprender('arrastrable')
-#cajas[0].eliminar()
+pilas.escenas.vincular(EscenaPrincipal)
+pilas.escenas.EscenaPrincipal()
 
 pilas.ejecutar()
