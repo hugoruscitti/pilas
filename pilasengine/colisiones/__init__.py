@@ -39,8 +39,13 @@ class Colisiones(object):
         actor_asociado_1 = fixture_1.userData.get('actor', None)
         actor_asociado_2 = fixture_2.userData.get('actor', None)
 
+        figura_1 = fixture_1.userData.get('figura', None)
+        figura_2 = fixture_2.userData.get('figura', None)
+
         info_colision = {'actor1': actor_asociado_1,
                          'actor2': actor_asociado_2,
+                         'figura1': figura_1,
+                         'figura2': figura_2,
                          'fixture1': fixture_1,
                          'fixture2': fixture_2}
         self._colisiones_en_curso.append(info_colision)
@@ -62,12 +67,12 @@ class Colisiones(object):
             if info_colision['actor1']:
                 actor_1 = info_colision['actor1']
             else:
-                actor_1 = info_colision['fixture1']
+                actor_1 = info_colision['figura1']
 
             if info_colision['actor2']:
                 actor_2 = info_colision['actor2']
             else:
-                actor_2 = info_colision['fixture2']
+                actor_2 = info_colision['figura2']
 
             self._ejecutar_colision_programada_si_existe(actor_1, actor_2)
             self._ejecutar_colisiones_entre_etiquetas_si_existe(actor_1, actor_2)
