@@ -26,6 +26,7 @@ class Figura(object):
         self.etiquetas = etiquetas.Etiquetas()
         self.etiquetas.agregar(self.__class__.__name__)
         self._vivo = True
+        self.z = 0
 
     def obtener_x(self):
         "Retorna la posición horizontal del cuerpo."
