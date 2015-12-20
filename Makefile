@@ -116,7 +116,8 @@ directorio_dist:
 dist: directorio_dist distmac distwin
 	@echo "listo..."
 	@echo ""
-	@echo "$(V)Usa el comando 'make upload' para subir esta version a dropbox.$(N)"
+	@echo "$(V)Usa el comando 'make upload' para subir esta version a dropbox $(N)"
+	@echo "$(V)y por ssh a static.pilas-engine.com.ar.$(N)"
 	@echo ""
 
 upload:
@@ -129,7 +130,7 @@ upload:
 	@echo "$(V)Recordá que luego de subir estos archivos deberías actualizar la web.$(N)"
 	@echo "$(V) (con el comando: make release, make deploy)$(N)"
 	@echo ""
-	scp ~/Dropbox/Public/releases/pilas-engine/${VERSION} hugoruscitti@digitalocean:/home/hugoruscitti/static.pilas-engine.com.ar/pilas-engine/
+	scp -r ~/Dropbox/Public/releases/pilas-engine/${VERSION} hugoruscitti@digitalocean:/home/hugoruscitti/static.pilas-engine.com.ar/pilas-engine/
 
 distmac:
 	@mkdir -p tmp
