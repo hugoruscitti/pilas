@@ -54,7 +54,7 @@ class Configuracion(object):
                 'fuente': fuente + ' 15',
                 'audio_habilitado': False,
                 'pad_habilitado': False,
-                'aceleracion_habilitada': True,
+                'aceleracion_habilitada': False,
                 'autocompletado': True,
                 'version': VERSION, # Versión del formato de configuración.
                 }
