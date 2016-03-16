@@ -98,6 +98,10 @@ class Habilidades(object):
         return self._referencia_habilidad('seguir_al_mouse', 'SeguirAlMouse')
 
     @property
+    def SeguirAOtroActor(self):
+        return self._referencia_habilidad('seguir_a_otro_actor', 'SeguirAOtroActor')
+
+    @property
     def PuedeExplotar(self):
         return self._referencia_habilidad('puede_explotar', 'PuedeExplotar')
 

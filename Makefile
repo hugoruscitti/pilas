@@ -1,7 +1,7 @@
 N=[0m
 V=[01;32m
 
-VERSION=1.4.0
+VERSION=1.4.1
 
 all:
 	@echo ""
@@ -17,7 +17,9 @@ all:
 	@echo "  $(V)clean$(N)       Limpia los archivos temporales."
 	@echo ""
 	@echo "  $(V)log$(N)         Muestra los ultimos commits respecto del tag anterior."
-	@echo "  $(V)version$(N)     Genera el changelog y la informacion de versión."
+	@echo "  $(V)version_p$(N)   (patch) Genera el changelog y la informacion de versión."
+	@echo "  $(V)version_m$(N)   (minor) Genera el changelog y la informacion de versión."
+	@echo "  $(V)version_M$(N)   (mayor) Genera el changelog y la informacion de versión."
 	@echo "  $(V)ver_sync$(N)    Sube la nueva version al servidor."
 	@echo "  $(V)ejemplos$(N)    Prueba los ejemplos uno a uno."
 	@echo ""
@@ -42,9 +44,19 @@ ejecutar_mac: test_mac
 
 .PHONY: test ejemplos
 
-version:
-	#@bumpversion: mayor | minor | patch 
+version_p:
+	@bumpversion --current-version ${VERSION} patch setup.py setup-mac.py pilasengine/__init__.py ./extras/actualizar_version.py ./extras/instalador.nsi Makefile --list
+	make post_version
+
+version_m:
 	@bumpversion --current-version ${VERSION} minor setup.py setup-mac.py pilasengine/__init__.py ./extras/actualizar_version.py ./extras/instalador.nsi Makefile --list
+	make post_version
+
+version_M:
+	@bumpversion --current-version ${VERSION} major setup.py setup-mac.py pilasengine/__init__.py ./extras/actualizar_version.py ./extras/instalador.nsi Makefile --list
+	make post_version
+
+post_version:
 	@python extras/actualizar_version.py
 	@echo "Es recomendable escribir el comando que genera los tags y sube todo a github:"
 	@echo ""
@@ -104,7 +116,8 @@ directorio_dist:
 dist: directorio_dist distmac distwin
 	@echo "listo..."
 	@echo ""
-	@echo "$(V)Usa el comando 'make upload' para subir esta version a dropbox.$(N)"
+	@echo "$(V)Usa el comando 'make upload' para subir esta version a dropbox $(N)"
+	@echo "$(V)y por ssh a static.pilas-engine.com.ar.$(N)"
 	@echo ""
 
 upload:
@@ -117,7 +130,7 @@ upload:
 	@echo "$(V)Recordá que luego de subir estos archivos deberías actualizar la web.$(N)"
 	@echo "$(V) (con el comando: make release, make deploy)$(N)"
 	@echo ""
-	scp ~/Dropbox/Public/releases/pilas-engine/${VERSION} hugoruscitti@digitalocean:/home/hugoruscitti/static.pilas-engine.com.ar/pilas-engine/
+	scp -r ~/Dropbox/Public/releases/pilas-engine/${VERSION} hugoruscitti@digitalocean:/home/hugoruscitti/static.pilas-engine.com.ar/pilas-engine/
 
 distmac:
 	@mkdir -p tmp

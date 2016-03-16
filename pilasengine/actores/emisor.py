@@ -61,6 +61,7 @@ class Emisor(Actor):
 
         self.aceleracion_y_min = 0
         self.aceleracion_y_max = 0
+        self.z = 0
 
     def definir_composicion(self, valor):
         if valor in [0, 'normal', None]:
