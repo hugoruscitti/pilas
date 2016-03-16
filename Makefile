@@ -1,7 +1,7 @@
 N=[0m
 V=[01;32m
 
-VERSION=1.4.1
+VERSION=1.4.2
 
 all:
 	@echo ""

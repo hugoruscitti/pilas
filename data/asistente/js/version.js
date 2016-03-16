@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '1.4.1',
-  fecha: '19 de Dec del 2015',
-  commit: 'df3d33e',
-  changelog: ['eliminando archivo .gitmodules.', 'Mejorando makefile.', 'Reparando el bug de colisiones.', 'Arreglo menor.', 'release 1.4.0', ]
+  version: '1.4.2',
+  fecha: '16 de Mar del 2016',
+  commit: '4054620',
+  changelog: ['Merge branch "develop"', 'Haciendo que se pueda cambiar la posición z de los emisores de partículas.', 'Merge pull request #284 from DrDub/develop', 'Archivo con la habilidad', 'Revirtiendo archivo que no hacia falta chequear', ]
 }
