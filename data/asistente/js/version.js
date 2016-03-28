@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '1.4.3',
-  fecha: '16 de Mar del 2016',
-  commit: '6bb77cb',
-  changelog: ['arreglo menor', 'release 1.4.2', 'Merge branch "develop"', 'Haciendo que se pueda cambiar la posición z de los emisores de partículas.', 'Merge pull request #284 from DrDub/develop', ]
+  version: '1.4.4',
+  fecha: '28 de Mar del 2016',
+  commit: '507b85d',
+  changelog: ['Reparando cambio de api de box2d a 2.3.1', 'release 1.4.3', 'arreglo menor', 'release 1.4.2', 'Merge branch "develop"', ]
 }
