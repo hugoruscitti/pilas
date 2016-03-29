@@ -53,13 +53,13 @@ class Circulo(Figura):
         if not dinamica:
             densidad = 0
 
-        if box2d.__version_info__ == (2, 3, 1):
+        try:
             fixture = box2d.b2FixtureDef(
                                      shape=box2d.b2CircleShape(radius=self._radio),
                                      density=densidad,
                                      friction=friccion,
                                      restitution=restitucion)
-        else:
+        except TypeError:
             fixture = box2d.b2FixtureDef(
                                      shape=box2d.b2CircleShape(radius=self._radio),
                                      density=densidad,
