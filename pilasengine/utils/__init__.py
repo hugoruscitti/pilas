@@ -114,16 +114,39 @@ class Utils(object):
         """" Retorna la ruta de configuracion segun la plataforma"""
         return str(QtCore.QDir.homePath())
 
+    def obtener_angulo_entre(self, punto_a, punto_b):
+        """Retorna el ángulo entro dos puntos de la pantalla.
 
-def obtener_angulo_entre(punto_a, punto_b):
-    """Retorna el ángulo entro dos puntos de la pantalla.
+        :param punto_a: Una tupla con la coordenada del primer punto.
+        :param punto_b: Una tupla con la coordenada del segundo punto.
+        """
+        (x, y) = punto_a
+        (x1, y1) = punto_b
+        return math.degrees(math.atan2(y1 - y, x1 - x))
 
-    :param punto_a: Una tupla con la coordenada del primer punto.
-    :param punto_b: Una tupla con la coordenada del segundo punto.
-    """
-    (x, y) = punto_a
-    (x1, y1) = punto_b
-    return math.degrees(math.atan2(y1 - y, x1 - x))
+    def distancia_entre_dos_puntos(self, coords1, coords2):
+        """Retorna la distancia entre dos puntos en dos dimensiones.
+
+        :param coords1: Tupla de coordenadas (x, y) del primer punto.
+        :param coords2: Tupla de coordenadas (x, y) del segundo punto.
+        """
+        (x1, y1) = coords1
+        (x2, y2) = coords2
+        return math.sqrt(abs(x1 - x2) ** 2 + abs(y1 - y2) ** 2)
+
+    def distancia_entre_dos_actores(self, a, b):
+        """Retorna la distancia en pixels entre dos actores.
+
+        :param a: El primer actor.
+        :param b: El segundo actor.
+        """
+
+        dis = self.distancia_entre_dos_puntos((a.x, a.y), (b.x, b.y)) - a.radio_de_colision - b.radio_de_colision
+
+        if (dis < 0):
+            return 0
+        else:
+            return dis
 
 
 def convertir_a_metros(valor):
