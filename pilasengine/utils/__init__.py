@@ -46,6 +46,9 @@ class Utils(object):
     def obtener_ruta_al_recurso(self, ruta):
         return self.pilas.obtener_ruta_al_recurso(ruta)
 
+    def obtener_cantidad_de_interpolaciones(self):
+        return self.pilas.obtener_escena_actual().tweener.count_tweens()
+
     def interpolar(self, actor, atributo, valor, duracion=0.5, tipo='desaceleracion_gradual'):
 
         if isinstance(valor, float) or isinstance(valor, int):
