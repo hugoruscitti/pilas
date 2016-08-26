@@ -76,6 +76,7 @@ class Pilas(object):
         self._iniciado_desde_asistente = False
         self.texto_avisar_anterior = None
         self.modo_test = modo_test
+        self._audio_inicializado = False
 
         # Archivo que se observa para hacer livecoding. Esta
         # variable toma valor cuando se llama a la función
@@ -143,10 +144,18 @@ class Pilas(object):
 
 
     def _inicializar_audio(self):
+        self._audio_inicializado = True
         self.log("Inicializando el sistema de audio con pygame")
         import pygame
         pygame.init()
         pygame.mixer.init()
+
+    def forzar_habilitacion_de_audio(self):
+        if self._audio_inicializado:
+            print("Error, el audio ya ha sido inicializado")
+        else:
+            self._inicializar_audio()
+            self.configuracion.definir_audio_habilitado(True)
 
     def reiniciar(self, ancho=640, alto=480, titulo='pilas-engine',
                   con_aceleracion=None, habilitar_mensajes_log=False,
