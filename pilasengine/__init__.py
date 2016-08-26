@@ -43,7 +43,7 @@ import fisica
 
 import widget
 
-VERSION = "1.4.7"
+VERSION = "1.4.8"
 
 
 def handler(signum, frame):
