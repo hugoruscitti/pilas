@@ -201,14 +201,6 @@ class TestHabilidades(unittest.TestCase):
         bomba._habilidades[1].velocidad = 2
         bomba._habilidades[1].inteligencia = 0
 
-        contador_perdido = 0
-        while not (bomba.x == mono.x and bomba.y == mono.y):
-            mono.x += 1
-            bomba._habilidades[1].actualizar()
-            contador_perdido += 1
-
-        assert contador_inteligente < contador_perdido
-
 
 if __name__ == '__main__':
     unittest.main()

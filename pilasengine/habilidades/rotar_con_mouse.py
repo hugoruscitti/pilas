@@ -44,5 +44,5 @@ class RotarConMouse(habilidades.Habilidad):
     def rotar(self, evento):
         receptor = (self.receptor.x, self.receptor.y)
         raton = (self.raton_x, self.raton_y)
-        angulo = utils.obtener_angulo_entre(receptor, raton)
+        angulo = self.pilas.utils.obtener_angulo_entre(receptor, raton)
         self.receptor.rotacion = (angulo) - self.lado_seguimiento

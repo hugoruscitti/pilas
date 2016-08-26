@@ -25,6 +25,7 @@ class ModoInformacionDeSistema(ModoDepurador):
             "Sistema: " + sys.platform,
             "Version de pilas: " + pilasengine.VERSION,
             "Version de python: " + sys.subversion[0] + " " + sys.subversion[1],
+            "", # Interpolaciones en curso
             "", # Area de juego
             "", # Posición de la cámara
             "", # Rendimiento
@@ -36,12 +37,14 @@ class ModoInformacionDeSistema(ModoDepurador):
 
     def realizar_dibujado(self, painter):
         izquierda, derecha, _, abajo = self.pilas.widget.obtener_bordes()
+        interpolaciones = self.pilas.utils.obtener_cantidad_de_interpolaciones()
 
         ancho, alto = self.pilas.obtener_area()
-        self.informacion[4] = "Area de juego: (%d, %d)" % (ancho, alto)
-        self.informacion[5] = u"Posición de la cámara: (%d, %d)" % (self.pilas.camara.x, self.pilas.camara.y)
-        self.informacion[6] = u"Rendimiento: %s cuadros por segundo" % (self.pilas.widget.fps.obtener_cuadros_por_segundo())
-        self.informacion[7] = u"Cantidad de actores: %d" % (self.pilas.escena_actual().obtener_cantidad_de_actores())
+        self.informacion[4] = "Interpolaciones en curso: %d" %(interpolaciones)
+        self.informacion[5] = "Area de juego: (%d, %d)" % (ancho, alto)
+        self.informacion[6] = u"Posición de la cámara: (%d, %d)" % (self.pilas.camara.x, self.pilas.camara.y)
+        self.informacion[7] = u"Rendimiento: %s cuadros por segundo" % (self.pilas.widget.fps.obtener_cuadros_por_segundo())
+        self.informacion[8] = u"Cantidad de actores: %d" % (self.pilas.escena_actual().obtener_cantidad_de_actores())
 
         for (i, texto) in enumerate(self.informacion[::-1]):
             posicion_y = abajo + 20 + i * 20

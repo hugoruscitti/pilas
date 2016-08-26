@@ -46,12 +46,21 @@ class Rectangulo(Figura):
 
         shape = box2d.b2PolygonShape(box=(self._ancho/2, self._alto/2))
         shape.SetAsBox(self._ancho/2.0, self._alto/2.0)
-        fixture = box2d.b2FixtureDef(shape=shape,
+
+        try:
+            fixture = box2d.b2FixtureDef(
+                                     shape=shape,
+                                     density=densidad,
+                                     friction=friccion,
+                                     restitution=restitucion)
+        except TypeError:
+            fixture = box2d.b2FixtureDef(
+                                     shape=shape,
                                      density=densidad,
                                      linearDamping=amortiguacion,
                                      friction=friccion,
                                      restitution=restitucion)
-
+            
         # Agregamos un identificador para controlarlo posteriormente en
         # las colisiones.
         self.userData = {'id': self.id, 'figura': self}
