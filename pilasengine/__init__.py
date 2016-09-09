@@ -152,7 +152,7 @@ class Pilas(object):
 
     def forzar_habilitacion_de_audio(self):
         if self._audio_inicializado:
-            print("Error, el audio ya ha sido inicializado")
+            print("El audio ya ha sido inicializado")
         else:
             self._inicializar_audio()
             self.configuracion.definir_audio_habilitado(True)
