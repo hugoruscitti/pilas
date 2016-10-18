@@ -2,8 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/api/api.ui'
 #
-# Created: Sun Oct 18 14:51:42 2015
-#      by: PyQt4 UI code generator 4.11.3
+# Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -34,7 +33,7 @@ class Ui_ManualWindow(object):
         self.gridLayout.setMargin(0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.webView = QtWebKit.QWebView(self.centralwidget)
-        self.webView.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.webView.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.webView.setStatusTip(_fromUtf8(""))
         self.webView.setAccessibleDescription(_fromUtf8(""))
         self.webView.setProperty("url", QtCore.QUrl(_fromUtf8("about:blank")))

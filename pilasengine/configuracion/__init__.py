@@ -19,7 +19,7 @@ from PyQt4 import QtGui
 
 from pilasengine.configuracion.configuracion_base import Ui_Dialog
 
-VERSION = '3'
+VERSION = '4'
 
 class Configuracion(object):
 
@@ -56,6 +56,7 @@ class Configuracion(object):
                 'pad_habilitado': False,
                 'aceleracion_habilitada': True,
                 'autocompletado': True,
+                'atajos_de_teclado': True,
                 'version': VERSION, # Versión del formato de configuración.
                 }
 
@@ -103,6 +104,12 @@ class Configuracion(object):
     def definir_autocompletado(self, valor):
         self.valores['autocompletado'] = valor
 
+    def atajos_de_teclado_habilitado(self):
+        return self.valores['atajos_de_teclado']
+
+    def definir_atajos_de_teclado(self, valor):
+        self.valores['atajos_de_teclado'] = valor
+
     def _buscar_fuente_personalizada(self):
         this_dir = os.path.dirname(os.path.realpath('.'))
         font_path = os.path.join(this_dir, 'SourceCodePro-Regular.ttf')
@@ -137,6 +144,7 @@ class DialogoConfiguracion(Ui_Dialog):
         self.checkBox_2.setChecked(self.configuracion.pad_habilitado())
         self.checkbox_aceleracion.setChecked(self.configuracion.aceleracion_habilitada())
         self.checkbox_autocompletar.setChecked(self.configuracion.autocompletado_habilitado())
+        self.checkbox_atajos.setChecked(self.configuracion.atajos_de_teclado_habilitado())
         self.mensaje.setVisible(False)
 
     def _conectar_eventos(self):
@@ -149,6 +157,7 @@ class DialogoConfiguracion(Ui_Dialog):
         self.checkBox_2.connect(self.checkBox_2, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
         self.checkbox_aceleracion.connect(self.checkbox_aceleracion, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
         self.checkbox_autocompletar.connect(self.checkbox_autocompletar, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
+        self.checkbox_atajos.connect(self.checkbox_atajos, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
 
     def _mostrar_mensaje(self):
         self.mensaje.setVisible(True)
@@ -171,6 +180,7 @@ class DialogoConfiguracion(Ui_Dialog):
         self.configuracion.definir_pad_habilitado(self.checkBox_2.isChecked())
         self.configuracion.definir_aceleracion_habilitada(self.checkbox_aceleracion.isChecked())
         self.configuracion.definir_autocompletado(self.checkbox_autocompletar.isChecked())
+        self.configuracion.definir_atajos_de_teclado(self.checkbox_atajos.isChecked())
 
         self.configuracion.guardar()
         self.Dialog.close()

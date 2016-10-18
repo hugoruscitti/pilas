@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-#      by: PyQt4 UI code generator 4.11.3
+# Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -74,7 +74,6 @@ class Ui_InterpreteWindow(object):
         self.layoutWidget = QtGui.QWidget(self.splitter)
         self.layoutWidget.setObjectName(_fromUtf8("layoutWidget"))
         self.verticalLayout_2 = QtGui.QVBoxLayout(self.layoutWidget)
-        self.verticalLayout_2.setMargin(0)
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.canvas = QtGui.QStackedWidget(self.layoutWidget)
         self.canvas.setMinimumSize(QtCore.QSize(320, 240))
@@ -154,7 +153,6 @@ class Ui_InterpreteWindow(object):
         self.layoutWidget1 = QtGui.QWidget(self.splitter)
         self.layoutWidget1.setObjectName(_fromUtf8("layoutWidget1"))
         self.verticalLayout = QtGui.QVBoxLayout(self.layoutWidget1)
-        self.verticalLayout.setMargin(0)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.console = QtGui.QStackedWidget(self.layoutWidget1)
         self.console.setObjectName(_fromUtf8("console"))
@@ -168,7 +166,6 @@ class Ui_InterpreteWindow(object):
         self.layoutWidget2 = QtGui.QWidget(self.splitter_editor)
         self.layoutWidget2.setObjectName(_fromUtf8("layoutWidget2"))
         self.editor_layout = QtGui.QVBoxLayout(self.layoutWidget2)
-        self.editor_layout.setMargin(0)
         self.editor_layout.setObjectName(_fromUtf8("editor_layout"))
         self.gridLayout.addWidget(self.splitter_vertical, 1, 0, 1, 1)
         InterpreteWindow.setCentralWidget(self.centralwidget)
