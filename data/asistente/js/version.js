@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '1.4.8',
-  fecha: '26 de Aug del 2016',
-  commit: '08af1a1',
-  changelog: ['Merge branch "develop"', 'Creando la función pilas.forzar_habilitacion_de_audio() closes #291', 'Merge branch "master" into develop', 'Arreglos menores en el ejemplo de músicas ref #290', 'Creando la función detener_gradualmente en los sonidos y músicas #290', ]
+  version: '1.4.9',
+  fecha: '18 de Oct del 2016',
+  commit: '6c65b1f',
+  changelog: ['Agregando opción para habilitar y deshabilitar atajos de teclado para modificar tamaño de fuentes.', 'Merge branch "develop"', 'Merge pull request #292 from DiegoAccorinti/develop', 'Corrección del mensaje de activación forzada del audio.', 'release 1.4.8', ]
 }
