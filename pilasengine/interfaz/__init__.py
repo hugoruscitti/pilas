@@ -18,9 +18,9 @@ class Interfaz(object):
     def __init__(self, pilas):
         self.pilas = pilas
 
-    def Boton(self, texto='Sin texto'):
+    def Boton(self, texto='Sin texto', x=0, y=0):
         import boton
-        return boton.Boton(self.pilas, texto)
+        return boton.Boton(self.pilas, texto, x=x, y=y)
 
     def Deslizador(self, x=0, y=0):
         import deslizador
