@@ -17,6 +17,7 @@ before_install:
   - cd pybox2d
   - python setup.py build
   - sudo python setup.py install
+  - cd ..
   #- pip install -U box2d
   - "sh -e /etc/init.d/xvfb start"
 script:
