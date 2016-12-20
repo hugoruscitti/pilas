@@ -61,4 +61,28 @@ def test_perseguir():
     assert bomba.x == 5
     assert bomba.y == 5
 
+    # se asegura que cuando es menos inteligente tarda mas en atrapar
+
+    bomba.x = 0
+    bomba.y = 0
     
+    bomba.habilidades.habilidades[1].velocidad = 1
+
+    contador_inteligente = 0
+    while bomba.x != mono.x and bomba.y != mono.y:
+        bomba.habilidades.habilidades[1].actualizar()
+        contador_inteligente += 1
+
+    bomba.x = 0
+    bomba.y = 0
+    
+    bomba.habilidades.habilidades[1].velocidad = 1
+    bomba.habilidades.habilidades[1].inteligencia = 0
+
+    contador_perdido = 0
+    while bomba.x != mono.x and bomba.y != mono.y:
+        bomba.habilidades.habilidades[1].actualizar()
+        contador_perdido += 1
+    
+    assert contador_inteligente > contador_perdido
+
