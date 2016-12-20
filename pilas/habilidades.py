@@ -729,15 +729,31 @@ class PerseguirAOtroActor(Habilidad):
        No navega alrededor de obstaculos.
     """
 
-    def __init__(self, receptor, objetivo, velocidad=5):
+    def __init__(self, receptor, objetivo, velocidad=5, inteligencia=1):
         Habilidad.__init__(self, receptor)
         self.objetivo = objetivo
         self.velocidad = velocidad
+        self.perdido = None
 
     def actualizar(self):
 
         def limitar(valor):
             return min(max(valor, -self.velocidad), self.velocidad)
 
-        self.receptor.x += limitar(self.objetivo.x - self.receptor.x)
-        self.receptor.y += limitar(self.objetivo.y - self.receptor.y)
+        objectivo_x = self.objetivo.x
+        objectivo_y = self.objetivo.y
+
+        if inteligencia == 0:
+
+            if random.randint(0, 10) > 7:
+                # se pierde
+                self.perdido = ( self.objetivo.x, self.objetivo.y )
+            else:
+                self.perdido = None
+
+            if self.perdido:
+                ( objectivo_x, objetivo_y ) = perdido
+                
+
+        self.receptor.x += limitar(objetivo_x - self.receptor.x)
+        self.receptor.y += limitar(objetivo_y - self.receptor.y)
