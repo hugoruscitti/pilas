@@ -7,9 +7,10 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y python-setuptools python-qt4 python-qt4-gl git-core python-qt4-phonon build-essential python-dev subversion python-pygame swig
   # Install SWIG >= 3 for box2d-py (See #83).
-  #- echo deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse | sudo tee /etc/apt/sources.list.d/box2d-py-swig.list
-  #- sudo apt-get -y install -t trusty-backports swig3.0
-  #- sudo ln -s /usr/bin/swig3.0 /usr/bin/swig
+  - echo deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse | sudo tee /etc/apt/sources.list.d/box2d-py-swig.list
+  - sudo apt-get -y install -t trusty-backports swig3.0
+  - apt-get remove swig swig2.0
+  - sudo ln -s /usr/bin/swig3.0 /usr/bin/swig
   - swig -version
   - sudo easy_install -U box2d-py
   - "sh -e /etc/init.d/xvfb start"
