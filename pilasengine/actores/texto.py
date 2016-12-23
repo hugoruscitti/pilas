@@ -27,11 +27,11 @@ class Texto(Actor):
                       se mostrara en varias lineas si no cabe en este límite.
         """
         self._ancho = ancho
-        Actor.__init__(self, pilas)
         self.__magnitud = magnitud
         self.__vertical = vertical
         self.__fuente = fuente
         self.__color = blanco
+        Actor.__init__(self, pilas)
         self.x = x
         self.y = y
         self.centro = ("centro", "centro")
