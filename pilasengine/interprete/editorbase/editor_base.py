@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import codecs
+import pilasengine
 
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
@@ -19,6 +20,7 @@ class EditorBase(autocomplete.CompletionTextEdit,
         autocomplete.CompletionTextEdit.__init__(self, None)
         self._cargar_resaltador_de_sintaxis()
         self.nombre_de_archivo_sugerido = "juego.py"
+        self.configuracion = pilasengine.configuracion.Configuracion()
 
     def insertFromMimeData(self, source):
         self.insertPlainText(source.text())
@@ -27,13 +29,15 @@ class EditorBase(autocomplete.CompletionTextEdit,
         self.interpreterLocals = scope
 
     def keyPressEvent(self, event):
-        if event.modifiers() & Qt.AltModifier:
-            if event.key() == Qt.Key_Minus:
-                self.cambiar_tamano_fuente(-1)
-                return True
-            elif event.key() == Qt.Key_Plus:
-                self.cambiar_tamano_fuente(1)
-                return True
+        if self.configuracion.atajos_de_teclado_habilitado():
+            if event.modifiers() & Qt.AltModifier:
+                if event.key() == Qt.Key_Minus:
+                    self.cambiar_tamano_fuente(-1)
+                    return True
+                elif event.key() == Qt.Key_Plus:
+                    self.cambiar_tamano_fuente(1)
+                    return True
+
         if event.key() == Qt.Key_Tab:
             tc = self.textCursor()
             tc.insertText("    ")
