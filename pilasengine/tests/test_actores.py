@@ -33,6 +33,8 @@ class TestActores(unittest.TestCase):
     def testPuedeConsultarEtiquetas(self):
         actor = self.pilas.actores.Aceituna()
         self.assertTrue(actor.tiene_etiqueta('Aceituna'), "Tiene la etiqueta del actor")
+        self.assertTrue(actor.tiene_etiqueta('aceituna'), "También se puede consultar etiqueta usando minúsculas")
+        self.assertTrue(actor.tiene_etiqueta('acEitunA'), "También se puede consultar mezclando minúsculas y mayúsculas")
 
     def testFuncionanInterpolacionesSimples(self):
         actor = self.pilas.actores.Aceituna()

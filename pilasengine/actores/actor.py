@@ -1013,3 +1013,9 @@ class Actor(Estudiante):
         for x in self._habilidades:
             if x.__class__.__name__ == 'Disparar':
                 x.disparar()
+
+    def tiene_etiqueta(self, etiqueta):
+        if isinstance(etiqueta, str):
+            return self.etiquetas.tiene_etiqueta(etiqueta)
+        else:
+            raise Exception("Solo se permite consultar por etiquetas como cadenas de texto, has enviado: " + str(etiqueta))
