@@ -178,6 +178,10 @@ class Actor(Estudiante):
         return len(self._grupos_a_los_que_pertenece)
 
     def _definir_valores_iniciales(self, pilas, x, y, imagen=None):
+
+        if type(x) is str:
+            raise Exception("Cuidado, hay un parametro incorrecto. Intenta con imagen='%s'" %(x))
+
         self.imagen = imagen if imagen else "sin_imagen.png"
         self.x = x
         self.y = y
