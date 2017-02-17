@@ -1,0 +1,177 @@
+<footer>
+
+  {% if next_page or previous_page %}
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      {% if next_page %}
+        <a href="{{ next_page.url }}" class="btn btn-neutral float-right" title="{{ next_page.title }}"/>Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+      {% endif %}
+      {% if previous_page %}
+        <a href="{{ previous_page.url }}" class="btn btn-neutral" title="{{ previous_page.title }}"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Creado con <em>MkDocs</em>.
+
+
+  <script>
+  $(document).ready(function() {
+     $('img').each(function(elemento) {
+        if (this.src.indexOf('github.io') > 0) {
+          this.src = this.src.replace('github.io/imagenes', 'github.io/pilas-manual/imagenes');
+        }
+     });
+  });
+  </script>
+
+  <script>
+  $(document).ready(function() {
+    String.prototype.endsWith = function(suffix){
+      return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
+
+    $('a').each(function(){
+      var x=this.href;
+
+      if (!this.href.endsWith('html') && this.href.indexOf('#') < 0 && this.href.indexOf('http://') === -1 && this.href.indexOf('https://') === -1) {
+        if (this.href.endsWith('/')) {
+          this.href = this.href + "index.html";
+        } else {
+          this.href = this.href + "/index.html";
+        }
+      }
+    });
+  });
+  </script>
+
+
+  <script>
+    function alternar_menu() {
+      var sidebar = document.querySelectorAll(".wy-nav-side")[0];
+      var left = sidebar.style.left;
+
+      if (left === "-300px") {
+        sidebar.style.left = "0px";
+      } else {
+        if (left === "0px") {
+          sidebar.style.left = "-300px";
+        } else {
+          sidebar.style.left = "0px";
+        }
+      }
+
+    }
+
+    $(document).ready(function() {
+
+      document.querySelector('ul.wy-breadcrumbs>li>a').onclick = function() {
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+        if (w < 768) {
+          alternar_menu();
+          return false;
+        } else {
+          return true;
+        }
+
+      }
+    });
+  </script>
+
+  <style>
+    .rst-versions {
+      border: 0 !important;
+    }
+    .wy-nav-side {
+      padding-bottom: 50px;
+    }
+    .wy-nav-content-wrap {
+      background-color: white !important;
+    }
+
+    .wy-nav-content {
+      background-color: white !important;
+    }
+
+    .star {
+        display: inline-block !important;
+        width: 14px !important;
+        height: 14px !important;
+        background-image: url('/imagenes/star.png');
+        margin-bottom: -2px;
+        margin-left: 4px;
+    }
+  </style>
+
+
+</footer>
+
+
+<script type="text/javascript">
+  var dentro_de_pilas_engine = (document.location.href.indexOf('file://') === 0);
+
+  // Ocultando la barra de búsqueda
+  if (dentro_de_pilas_engine) {
+    var b = document.getElementsByName('q');
+    b[0].style.display = "none"
+  }
+</script>
+
+
+<style media="screen">
+  code {
+    font-size: 15px !important;
+  }
+</style>
+
+<style>
+
+img {
+  width: auto !important;
+}
+
+pre {
+  padding: 0px !important;
+}
+
+.hljs {
+  font-size: 15px;
+}
+
+td {
+  padding: 15px;
+  text-align: center;
+}
+
+.wy-menu-vertical li.current {
+  background: #0B0B0B;
+}
+
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+  color: #FFFFFF;
+  padding: 0.4045em 1.618em;
+  font-weight: bold;
+  position: relative;
+  background: #6C6C6C;
+  border: none;
+  border-bottom: none;
+  border-top: none;
+  padding-left: 1.618em -4px;
+}
+
+.wy-menu-vertical li.current a {
+  color: rgb(186, 186, 186);
+}
+
+.wy-menu-vertical li.current a:hover {
+  background: #444444;
+}
+</pre>

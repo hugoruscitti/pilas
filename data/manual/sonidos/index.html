@@ -3,9 +3,12 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sonidos - pilas-engine</title>
+  
+  
+  <title>Audio: Sonidos y Música - pilas-engine</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -20,7 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Sonidos";
+    var mkdocs_page_name = "Audio: Sonidos y Música";
+    var mkdocs_page_input_path = "sonidos.md";
+    var mkdocs_page_url = "/sonidos/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -149,13 +154,17 @@
           
             <li>
     <li class="toctree-l1 current">
-        <a class="current" href="./">Sonidos</a>
+        <a class="current" href="./">Audio: Sonidos y Música</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#cargar-sonidos-y-musica">Cargar sonidos y música</a></li>
+                <li class="toctree-l3"><a href="#audio-sonidos-y-musica">Audio: Sonidos y Música</a></li>
                 
-                    <li><a class="toctree-l4" href="#reproducir">Reproducir</a></li>
+                    <li><a class="toctree-l4" href="#reproducir-sonidos">Reproducir sonidos</a></li>
+                
+                    <li><a class="toctree-l4" href="#reproducir-canciones-largas-y-musica-de-fondo">Reproducir canciones largas y música de fondo</a></li>
+                
+                    <li><a class="toctree-l4" href="#audio-deshabilitado-o-habilitado">¿Audio deshabilitado o habilitado?</a></li>
                 
             
             </ul>
@@ -221,7 +230,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+        <a class="" href="../menu/">Cómo crear menúes para tu juegos</a>
         
     </li>
 <li>
@@ -318,7 +327,7 @@
     
       
     
-    <li>Sonidos</li>
+    <li>Audio: Sonidos y Música</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -328,9 +337,10 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="cargar-sonidos-y-musica">Cargar sonidos y música</h1>
-<p>Si bien a continuación ejemplificamos todo con el modulo <code>pilas.sonidos</code>
-todos los ejemplos funcionan para el modulo <code>pilas.musica</code></p>
+                <h1 id="audio-sonidos-y-musica">Audio: Sonidos y Música</h1>
+<p><em>Nota:</em> Ten en cuenta que el módulo de audio puede estar
+deshabilidado desde las preferencias de pilas-engine. Mirá
+el final de esta sección si te da problemas reproducir audio.</p>
 <p>Los sonidos se pueden cargar usando el módulo
 <code>sonidos</code> de la siguiente manera:</p>
 <pre><code>sonido_de_explosion = pilas.sonidos.cargar('explosion.wav')
@@ -342,7 +352,7 @@ cargar imágenes o grillas. El archivo se buscará en
 el directorio principal de nuestro juego, luego en el
 directorio <code>data</code> y por último en la biblioteca de
 sonidos que trae pilas.</p>
-<h2 id="reproducir">Reproducir</h2>
+<h2 id="reproducir-sonidos">Reproducir sonidos</h2>
 <p>La función <code>sonidos.cargar</code> nos retorna un objeto de tipo
 <code>Sonido</code> que tiene un método para reproducirse llamado
 <code>reproducir()</code>.</p>
@@ -354,9 +364,50 @@ que llamar al método <code>reproducir</code>:</p>
 <em>repetir=True</em>. Por ejemplo:</p>
 <pre><code>sonido_de_explosion.reproducir(repetir=True)
 </code></pre>
-<p>Para detener la música o un efecto de sonido, existe
+<p>Para detener el efecto de sonido, existe
 el método <em>detener</em>. Por ejemplo:</p>
 <pre><code>sonido_de_explosion.detener()
+</code></pre>
+<p>Y a partir de la versión 1.4.8 de pilas-engine también se puede detener
+el audio reduciendo el volúmen gradualmente (también conocido como fadeout):</p>
+<pre><code>sonido_de_explosion.detener_gradualmente(segundos=4)
+</code></pre>
+<h2 id="reproducir-canciones-largas-y-musica-de-fondo">Reproducir canciones largas y música de fondo</h2>
+<p>Como indicamos al principio de esta página, utilizar músicas o sonidos
+en pilas es muy similar, solamente tenemos que utilizar <code>pilas.musica</code>
+en lugar de <code>pilas.sonidos</code>.</p>
+<p>Lo interesante de distinguir entre músicas y sonidos es que los sonidos
+se cargan en memoria inmediatamente, porque queremos que suenen rápido, mientras
+que la música se va cargando en memoria a medida que se va reproduciendo
+(también conocido como streaming) porque generalmente son archivos grandes y de
+larga duración.</p>
+<p>Entonces, para cargar y poner a sonar una canción podríamos usar algo así:</p>
+<pre><code>cancion_de_fondo = pilas.musica.cargar('musica_de_presentacion.mp3')
+cancion_de_fondo.reproducir()
+</code></pre>
+<p>Luego, para detenerla, podemos llamar directamente a <code>cancion.detener()</code>,
+o usar un efecto de volúmen gradual para detenerla así:</p>
+<pre><code>cancion_de_fondo.detener_gradualmente(3)
+</code></pre>
+<p>Donde el argumento <code>3</code> es la cantidad de segundos que utilizará pilas para
+bajar el volúmen gradualmente.</p>
+<h2 id="audio-deshabilitado-o-habilitado">¿Audio deshabilitado o habilitado?</h2>
+<p>A partir de la versión <code>1.4.8</code> el sistema de audio está
+habilitado casi siempre, y no debería dar problemas de
+ningún tipo.</p>
+<p>Pero en versiones anteriores a la <code>1.4.8</code> el audio venía
+deshabilitado por omisión, y tenía que ser habilitado por el
+usuario. Para corroborar que el audio está habilitado en
+tu sistema tendrías que ingresar en la sección preferencias
+y luego tildar la siguiente opción:</p>
+<p><img alt="" src="" /></p>
+<p>De hecho, si estás realizando un juego y querés asegurarte de
+que el audio esté habilitado siempre, podrías incluir estas lineas
+justo después de la llamada a <code>pilas = pilasengine.iniciar()</code>:</p>
+<pre><code>try:
+  pilas.forzar_habilitacion_de_audio()
+except AttributeError:
+  print &quot;Omitiendo forzar la inicializacion, version anterior a 1.4.8&quot;
 </code></pre>
               
             </div>

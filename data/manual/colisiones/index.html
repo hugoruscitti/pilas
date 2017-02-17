@@ -3,7 +3,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
   
   <title>Colisiones - pilas-engine</title>
   
@@ -21,6 +24,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Colisiones";
+    var mkdocs_page_input_path = "colisiones.md";
+    var mkdocs_page_url = "/colisiones/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -121,6 +126,8 @@
                 
                     <li><a class="toctree-l4" href="#cambiando-las-figuras-de-colision">Cambiando las figuras de colisión</a></li>
                 
+                    <li><a class="toctree-l4" href="#deteccion-constante-de-colisiones">Detección constante de colisiones</a></li>
+                
                     <li><a class="toctree-l4" href="#colisiones-con-etiquetas">Colisiones con etiquetas</a></li>
                 
             
@@ -166,7 +173,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../sonidos/">Sonidos</a>
+        <a class="" href="../sonidos/">Audio: Sonidos y Música</a>
         
     </li>
 <li>
@@ -229,7 +236,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+        <a class="" href="../menu/">Cómo crear menúes para tu juegos</a>
         
     </li>
 <li>
@@ -337,12 +344,12 @@
             <div class="section">
               
                 <h1 id="colisiones-fisicas">Colisiones Físicas</h1>
-<p>Las colisiones te permite disparar acciones cuando dos o mas actores
+<p>El sistema de colisiones te permite disparar acciones cuando dos o más actores
 entran en contacto. Esto nos permite hacer que los personajes puedan
-chocar con enemigos o capturar objetos.</p>
+chocar con enemigos, capturar objetos y mucho más.</p>
 <h2 id="dos-tipos-de-colisiones">Dos tipos de colisiones</h2>
-<p>En pilas-engine tenemos dos tipos de colisiones, hay
-colisiones físicas y colisiones programadas.</p>
+<p>En pilas-engine tenemos dos tipos de colisiones: colisiones
+físicas y colisiones programadas.</p>
 <p>Las <strong>colisiones físicas</strong> son aquellas que generan una reacción que se puede
 visualizar como una respuesta física, por ejemplo si creamos 5 cajas y las
 hacemos rebotar entre sí, estas serían colisiones físicas:</p>
@@ -414,6 +421,103 @@ tal cual, pero al segundo le cambiamos la figura de colisión por un rectángulo
 zanahoria = pilas.actores.Zanahoria(x=100)
 rectangulo = pilas.fisica.Rectangulo(0, 0, 40, 100, sensor=True, dinamica=False)
 zanahoria.figura_de_colision = rectangulo
+</code></pre>
+
+<h2 id="deteccion-constante-de-colisiones">Detección constante de colisiones</h2>
+<p>Pilas también incluye un forma constante de detectar colisiones, algo que
+puede ser mucho más sencillo de implementar en juegos de acción.</p>
+<p>Cada figura física tiene una propiedad llamada <code>figuras_en_contacto</code> con
+una lista de todas las figuras con las que colisiona.</p>
+<p>Por ejemplo, tomemos de ejemplo un actor "Pelota". Si queremos consultar
+si el actor Pelota está colisionando con alguna figura podemos ejecutar:</p>
+<pre><code>&gt;&gt; pelota = pilas.actores.Pelota()
+&gt;&gt; print(pelota.figura_de_colision.figuras_en_contacto)
+</code></pre>
+
+<p>Si el actor no colisiona con nada, se nos retornará una lista vacía:</p>
+<pre><code>[]
+</code></pre>
+
+<p>En cambio, si el actor está en colisión con alguna figura, la lista
+que se retornará contendrá al menos un elemento:</p>
+<pre><code>[&lt;Figura Rectangulo en (0, -240)&gt;]
+</code></pre>
+
+<p>Este tipo de colisiones constantes son super útiles cuando creamos
+actores personalizados (como se indica en el apartado
+<a href="../actores_personalizados/">Actores personalizados</a>), ya que desde el método
+actualizar vamos a poder comprobar colisiones constantemente.</p>
+<p>Por ejemplo, para emitir un mensaje cada vez que se produce una colisión
+podríamos escribir un código como el siguiente:</p>
+<pre><code>indicador_de_colision = pilas.actores.Texto(&quot;HAY COLISION!&quot;, y=100)
+indicador_de_colision.transparencia = 100
+
+class PelotaTransparente(pilasengine.actores.Pelota):
+
+    def iniciar(self):
+        pilasengine.actores.Pelota.iniciar(self)
+        self.aprender('arrastrable')
+
+    def actualizar(self):
+
+        if self.figura_de_colision.figuras_en_contacto:
+            self.transparencia = 0
+            indicador_de_colision.transparencia = 0
+        else:
+            self.transparencia = 50
+            indicador_de_colision.transparencia = 100
+
+pilas.actores.vincular(PelotaTransparente)
+pilas.actores.PelotaTransparente()
+
+pilas.actores.Aceituna()
+</code></pre>
+
+<p><img alt="" src="../imagenes/colisiones/colision_constante.gif" /></p>
+<p>Eso sí, ten en cuenta que la lista de <code>figuras_en_contacto</code> no es una
+referencia a los actores, sino la lista de figuras. Si lo que quieres es
+obtener información de los actores tendrías que usar el atributo
+<code>actor_que_representa_como_area_de_colision</code> de la figura.</p>
+<p>Por ejemplo, podemos cambiar el código que maneja la colisión para
+que indique si el actor que colisiona es aceituna o no:</p>
+<p><img alt="" src="../imagenes/colisiones/colisiones_constantes_con_etiquetas.gif" /></p>
+<pre><code>indicador_de_colision = pilas.actores.Texto(&quot;HAY COLISION!&quot;, y=100)
+indicador_de_colision.transparencia = 100
+
+def es_aceituna(actor):
+    return 'aceituna' in actor.etiquetas.lista
+
+class PelotaTransparente(pilasengine.actores.Pelota):
+
+    def iniciar(self):
+        pilasengine.actores.Pelota.iniciar(self)
+        self.aprender('arrastrable')
+
+    def actualizar(self):
+        figura = self.figura_de_colision.figuras_en_contacto
+
+        if figura:
+            indicador_de_colision.transparencia = 0
+            self.cambiar_texto(figura[0])
+        else:
+            indicador_de_colision.transparencia = 100
+
+    def cambiar_texto(self, figura):
+        actor = getattr(figura, &quot;actor_que_representa_como_area_de_colision&quot;, None)
+
+        if actor:
+            # Ha colisionado con una figura que tiene un actor enlazado.
+            if es_aceituna(actor):
+                indicador_de_colision.texto = &quot;Colisiona con actor aceituna.&quot;
+            else:
+                indicador_de_colision.texto = &quot;Colisiona con Actor, no es Aceituna!!!&quot;
+
+
+pilas.actores.vincular(PelotaTransparente)
+pilas.actores.PelotaTransparente()
+
+pilas.actores.Aceituna()
+pilas.actores.Zanahoria(x=150)
 </code></pre>
 
 <h2 id="colisiones-con-etiquetas">Colisiones con etiquetas</h2>
