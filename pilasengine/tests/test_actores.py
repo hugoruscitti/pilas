@@ -30,6 +30,10 @@ class TestActores(unittest.TestCase):
         self.assertTrue(actor, "Puede crear un actor sub-texto.")
         self.assertTrue(actor.texto, "hola")
 
+    def testPuedeConsultarEtiquetas(self):
+        actor = self.pilas.actores.Aceituna()
+        self.assertTrue(actor.tiene_etiqueta('Aceituna'), "Tiene la etiqueta del actor")
+
     def testFuncionanInterpolacionesSimples(self):
         actor = self.pilas.actores.Aceituna()
         self.assertEquals(0, actor.x, "Está en la posición inicial")
