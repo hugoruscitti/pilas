@@ -249,6 +249,15 @@ class Actor(Estudiante):
         """
         pass
 
+    def luego_de_actualizar(self):
+        """Permite realizar una actualización lógica luego de procesar física.
+
+        Este método es muy similar a `actualizar`, la única diferencia es
+        que pilas lo llamará automáticamente luego de haber procesado todos
+        los cálculos de física.
+        """
+        pass
+
     def terminar(self):
         """Se ejecuta justo antes de eliminar el actor de la escena."""
         pass
