@@ -75,6 +75,11 @@ class Escena(object):
     def actualizar_fisica(self):
         self.fisica.actualizar()
 
+    def luego_de_actualizar_fisica(self):
+        for x in self._actores.obtener_actores():
+            if x._vivo:
+                x.luego_de_actualizar()
+
     def actualizar_interpolaciones(self, tiempo_desde_ultima_actualizacion=None):
         self.tweener.update(tiempo_desde_ultima_actualizacion)
 

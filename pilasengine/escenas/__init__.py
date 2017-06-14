@@ -63,6 +63,8 @@ class Escenas(object):
         escena.actualizar_interpolaciones()
         escena.tareas.actualizar(1/60.0)
         escena.actualizar()
+        escena.luego_de_actualizar.emitir()
+        escena.luego_de_actualizar_fisica()
 
     def realizar_actualizacion_logica_en_modo_pausa(self):
         escena = self.obtener_escena_actual()
@@ -79,7 +81,6 @@ class Escenas(object):
         escena.tareas.actualizar(1/60.0)
         escena.actualizar_interpolaciones(1/60.0)
         escena.actualizar()
-        escena.luego_de_actualizar()
 
     def realizar_dibujado(self, painter):
         escena = self.obtener_escena_actual()
