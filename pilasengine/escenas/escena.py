@@ -38,6 +38,7 @@ class Escena(object):
         self._actores = grupo.Grupo(pilas)
         self.grupos = []
 
+        self.luego_de_actualizar = self.pilas.eventos.Evento('luego_de_actualizar')
         self.mueve_camara = self.pilas.eventos.Evento('mueve_camara')       # ['x', 'y', 'dx', 'dy']
         self.mueve_mouse = self.pilas.eventos.Evento('mueve_mouse')         # ['x', 'y', 'dx', 'dy']
         self.click_de_mouse = self.pilas.eventos.Evento('click_de_mouse')   # ['boton', 'x', 'y']

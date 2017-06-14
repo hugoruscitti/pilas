@@ -79,6 +79,7 @@ class Escenas(object):
         escena.tareas.actualizar(1/60.0)
         escena.actualizar_interpolaciones(1/60.0)
         escena.actualizar()
+        escena.luego_de_actualizar()
 
     def realizar_dibujado(self, painter):
         escena = self.obtener_escena_actual()
