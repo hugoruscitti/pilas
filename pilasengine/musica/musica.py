@@ -53,15 +53,23 @@ class Musica(object):
         else:
             return "<%s del archivo '%s'>" % (self.__class__.__name__, nombre)
 
+    def detener_gradualmente(self, segundos=2):
+        if not Musica.deshabilitado:
+            import pygame
+            pygame.mixer.music.fadeout(segundos * 1000)
+
 class MusicaDeshabilitada(object):
 
     def __init__(self, ruta):
         self.ruta = ruta
-        
+
     def reproducir(self, repetir=False):
         pass
 
     def detener(self):
+        pass
+
+    def detener_gradualmente(self, segundos=2):
         pass
 
     def pausar(self):
@@ -69,8 +77,7 @@ class MusicaDeshabilitada(object):
 
     def continuar(self):
         pass
-    
+
     def __repr__(self):
         nombre = os.path.basename(self.ruta)
-        return "<%s del archivo '%s'>" % (self.__class__.__name__, nombre)
-
+        return "<%s deshabilitada del archivo '%s'>" % (self.__class__.__name__, nombre)

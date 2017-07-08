@@ -7,6 +7,10 @@ from PyQt4 import QtGui
 
 import pilasengine
 
+class SubTexto(pilasengine.actores.Texto):
+    def iniciar(self):
+        self.texto = "hola"
+
 
 class TestActores(unittest.TestCase):
     app = QtGui.QApplication(sys.argv)
@@ -20,6 +24,17 @@ class TestActores(unittest.TestCase):
 
         actor = self.pilas.actores.Texto()
         self.assertTrue(actor, "Puede crear un actor texto.")
+        self.assertTrue(actor.texto, "Sin texto")
+
+        actor = SubTexto(self.pilas)
+        self.assertTrue(actor, "Puede crear un actor sub-texto.")
+        self.assertTrue(actor.texto, "hola")
+
+    def testPuedeConsultarEtiquetas(self):
+        actor = self.pilas.actores.Aceituna()
+        self.assertTrue(actor.tiene_etiqueta('Aceituna'), "Tiene la etiqueta del actor")
+        self.assertTrue(actor.tiene_etiqueta('aceituna'), "También se puede consultar etiqueta usando minúsculas")
+        self.assertTrue(actor.tiene_etiqueta('acEitunA'), "También se puede consultar mezclando minúsculas y mayúsculas")
 
     def testFuncionanInterpolacionesSimples(self):
         actor = self.pilas.actores.Aceituna()

@@ -3,7 +3,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
   
   <title>Actores - pilas-engine</title>
   
@@ -21,6 +24,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Actores";
+    var mkdocs_page_input_path = "actores.md";
+    var mkdocs_page_url = "/actores/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -158,7 +163,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../sonidos/">Sonidos</a>
+        <a class="" href="../sonidos/">Audio: Sonidos y Música</a>
         
     </li>
 <li>
@@ -221,7 +226,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+        <a class="" href="../menu/">Cómo crear menúes para tu juegos</a>
         
     </li>
 <li>
@@ -415,11 +420,11 @@ la estructura inicial de actor</p>
 se especifica una imagen, se verán los signos de interrogación de
 color rojo.</p>
 <p>Una forma de crear el actor con una imagen es:</p>
-<pre><code>protagonista = Actor("planeta_azul.png")
+<pre><code>protagonista = pilas.actores.Actor(imagen="planeta_azul.png")
 </code></pre>
 <p>incluso, es equivalente hacer lo siguiente:</p>
 <pre><code>imagen = pilas.imagenes.cargar("planeta_azul.png")
-protagonista = Actor(imagen)
+protagonista = pilas.actores.Actor(imagen=imagen)
 </code></pre>
 <p>El resultado será:</p>
 <p><img alt="" src="../imagenes/actores/planeta_azul.png" /></p>
@@ -438,7 +443,7 @@ protagonista.escala = [5], 7
 </code></pre>
 <p>Si quieres que el actor sea invisible, un truco es crearlo
 con la imagen <code>invisible.png</code>:</p>
-<pre><code>invisible = pilas.actores.Actor('invisible.png')
+<pre><code>invisible = pilas.actores.Actor(imagen='invisible.png')
 </code></pre>
 <h3 id="aceituna">Aceituna</h3>
 <p>El actor aceituna es super simple</p>
@@ -447,8 +452,7 @@ con la imagen <code>invisible.png</code>:</p>
 </code></pre>
 <p><em>Comportamientos:</em></p>
 <ul>
-<li><code>aceituna.saludar(mensaje)</code></li>
-<li><code>aceituna.saltar()</code></li>
+<li><code>aceituna.decir(mensaje)</code></li>
 </ul>
 <h3 id="animacion">Animacion</h3>
 <p>Representa una animación de una grilla de imágenes.</p>
@@ -757,7 +761,6 @@ este actor como munición.</p>
 </ul>
 <h3 id="pizarra">Pizarra</h3>
 <p>...</p>
-<p><img alt="" src="../imagenes/actores/pizarra.png" /></p>
 <p><em>Comportamientos:</em></p>
 <ul>
 <li><code>..</code></li>
@@ -771,7 +774,6 @@ este actor como munición.</p>
 </ul>
 <h3 id="puntaje">Puntaje</h3>
 <p>...</p>
-<p><img alt="" src="../imagenes/actores/puntaje.png" /></p>
 <p><em>Comportamientos:</em></p>
 <ul>
 <li><code>..</code></li>
@@ -792,7 +794,6 @@ este actor como munición.</p>
 </ul>
 <h3 id="texto">Texto</h3>
 <p>...</p>
-<p><img alt="" src="../imagenes/actores/texto.png" /></p>
 <p><em>Comportamientos:</em></p>
 <ul>
 <li><code>..</code></li>

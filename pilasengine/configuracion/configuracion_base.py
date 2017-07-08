@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/configuracion/configuracion.ui'
 #
-#      by: PyQt4 UI code generator 4.11.3
+# Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -45,9 +45,9 @@ class Ui_Dialog(object):
         self.gridLayout.addLayout(self.horizontalLayout_2, 0, 0, 1, 1)
         self.horizontalLayout_4 = QtGui.QHBoxLayout()
         self.horizontalLayout_4.setObjectName(_fromUtf8("horizontalLayout_4"))
-        self.gridLayout.addLayout(self.horizontalLayout_4, 6, 0, 1, 1)
+        self.gridLayout.addLayout(self.horizontalLayout_4, 7, 0, 1, 1)
         spacerItem = QtGui.QSpacerItem(20, 76, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 7, 0, 1, 1)
+        self.gridLayout.addItem(spacerItem, 8, 0, 1, 1)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
@@ -55,7 +55,7 @@ class Ui_Dialog(object):
         self.guardar = QtGui.QPushButton(Dialog)
         self.guardar.setObjectName(_fromUtf8("guardar"))
         self.horizontalLayout.addWidget(self.guardar)
-        self.gridLayout.addLayout(self.horizontalLayout, 8, 0, 1, 1)
+        self.gridLayout.addLayout(self.horizontalLayout, 9, 0, 1, 1)
         self.checkBox_2 = QtGui.QCheckBox(Dialog)
         self.checkBox_2.setEnabled(True)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
@@ -88,7 +88,10 @@ class Ui_Dialog(object):
         self.mensaje.setText(_fromUtf8("Estos cambios requiren que reinicies el intérprete."))
         self.mensaje.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.mensaje.setObjectName(_fromUtf8("mensaje"))
-        self.gridLayout.addWidget(self.mensaje, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.mensaje, 6, 0, 1, 1)
+        self.checkbox_atajos = QtGui.QCheckBox(Dialog)
+        self.checkbox_atajos.setObjectName(_fromUtf8("checkbox_atajos"))
+        self.gridLayout.addWidget(self.checkbox_atajos, 5, 0, 1, 1)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -102,6 +105,7 @@ class Ui_Dialog(object):
         self.checkBox.setText(_translate("Dialog", "Habilitar Audio.", None))
         self.checkbox_aceleracion.setText(_translate("Dialog", "Usar aceleración de video por hardware (OpenGL).", None))
         self.checkbox_autocompletar.setText(_translate("Dialog", "Sugerir código usando un menú contextual mientras escribe.", None))
+        self.checkbox_atajos.setText(_translate("Dialog", "Activar atajos de teclado para cambiar fuentes (alt + y alt -)", None))
 
 
 if __name__ == "__main__":

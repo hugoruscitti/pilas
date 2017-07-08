@@ -3,7 +3,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
   
   <title>¿Cómo funciona pilas por dentro? - pilas-engine</title>
   
@@ -21,6 +24,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "¿Cómo funciona pilas por dentro?";
+    var mkdocs_page_input_path = "como_funciona_pilas_por_dentro.md";
+    var mkdocs_page_url = "/como_funciona_pilas_por_dentro/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -149,7 +154,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../sonidos/">Sonidos</a>
+        <a class="" href="../sonidos/">Audio: Sonidos y Música</a>
         
     </li>
 <li>
@@ -212,7 +217,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../menu/">Como crear menúes para tu juegos</a>
+        <a class="" href="../menu/">Cómo crear menúes para tu juegos</a>
         
     </li>
 <li>
@@ -431,8 +436,7 @@ de profundidad lo que hace cada uno.</p>
 <h3 id="inspeccionando-mundo">Inspeccionando: Mundo</h3>
 <p>El objeto de la clase Mundo se construye cuando se invoca a la
 función <code>pilas.iniciar</code>. Su implementación está en el
-archivo <code>mundo.py</code>:</p>
-<p><img alt="" src="../imagenes/comofunciona/mundo.png" /></p>
+archivo <code>mundo.py</code>.</p>
 <p>Su responsabilidad es inicializar varios componentes de pilas, como
 el sistema de controles, la ventana, etc.</p>
 <p>Uno de sus métodos mas importantes es <code>ejecutar_bucle_principal</code>. Un
@@ -496,8 +500,7 @@ usando orientación a objetos, usamos un concepto llamado
 polimorfismo:</p>
 <p>El objeto motor sabe que tiene que delegar el manejo multimedia
 a una instancia (o derivada) de la clase <code>Motor</code> (ver directorio
-<code>pilas/motores/</code>:</p>
-<p><img alt="" src="../imagenes/comofunciona/motores.png" /></p>
+<code>pilas/motores/</code>.</p>
 <p>El motor expone toda la funcionalidad que se necesita para
 hace un juego: sabe crear una ventana, pintar una imagen o
 reproducir sonidos, entre tantas otras cosas.</p>
@@ -514,8 +517,7 @@ el directorio <code>pilas/actores</code>.</p>
 <p>Todos los actores heredan de la clase <code>Actor</code>, que define
 el comportamiento común de todos los actores.</p>
 <p>Por ejemplo, esta sería una versión reducida de la
-jerarquía de clases de los actores Mono, Pingu y Tortuga:</p>
-<p><img alt="" src="../imagenes/comofunciona/actores.png" /></p>
+jerarquía de clases de los actores Mono, Pingu y Tortuga.</p>
 <p>Hay dos métodos en los actores que se invocarán en
 todo momento: el método <code>actualizar</code> se invocará
 cuando el bucle de juego del mundo llame al método
@@ -533,8 +535,7 @@ ayuda mucho a la hora de encontrar errores o ajustar detalles.</p>
 una instancia de objeto <code>Depurador</code> que se encarga de
 hacer estos dibujos.</p>
 <p>Las clases mas importantes a la hora de investigar el depurador
-están en el archivo <code>depurador.py</code>:</p>
-<p><img alt="" src="../imagenes/comofunciona/depurador.png" /></p>
+están en el archivo <code>depurador.py</code>.</p>
 <p>El Depurador tiene dos atributos, tiene una pizarra para dibujar y
 una lista de modos. Los modos pueden ser cualquiera de los que están
 en la jerarquía de ModoDepuracion, por ejemplo, podría tener
@@ -684,7 +685,6 @@ lista de habilidades que puede aumentar usando el método <code>aprender</code>.
 argumento, construye un objeto y lo guarda en su lista de habilidades.</p>
 <p>Este es un modelo de cómo se conocen las clases entre
 sí:</p>
-<p><img alt="" src="../imagenes/comofunciona/habilidades.png" /></p>
 <p>Entonces, una vez que invocamos a la sentencia, nuestro actor
 tendrá un nuevo objeto en su lista de habilidades, listo para
 ejecutarse en cada cuadro de animación.</p>

@@ -136,6 +136,9 @@ class Tweener(TweenerEquations):
         self.default_duration = 1.0
         self.prev_time = time.time()
 
+    def count_tweens(self):
+        return len(self.current_tweens)
+
     def has_tweens(self):
         """Returns ``True`` if there are any tweens (paused or unpaused),
            ``False`` otherwise. This function can be useful to determine if a

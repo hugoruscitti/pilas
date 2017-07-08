@@ -67,3 +67,6 @@ class Etiquetas(object):
             if x in self.lista:
                 intersectan.append(x)
         return intersectan
+
+    def tiene_etiqueta(self, etiqueta):
+        return etiqueta.lower() in self.lista

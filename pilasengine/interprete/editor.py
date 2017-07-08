@@ -310,6 +310,7 @@ class Editor(editor_base.EditorBase):
 
     def __init__(self, main, interpreterLocals, consola_lanas, ventana_interprete):
         super(Editor, self).__init__()
+        self._archivo_temporal = None
         self.cantidad_ejecuciones = 0
         self.consola_lanas = consola_lanas
         self.ventana_interprete = ventana_interprete
@@ -327,8 +328,12 @@ class Editor(editor_base.EditorBase):
         archivo = codecs.open(archivo_temporal, "w", 'utf-8')
         archivo.write(CODIGO_INICIAL)
         archivo.close()
-        #print("Creando el archivo " + str(archivo_temporal))
         self.abrir_archivo_del_proyecto(archivo_temporal)
+        self._archivo_temporal = str(archivo_temporal)
+
+    def eliminar_archivo_temporal(self):
+        if self._archivo_temporal:
+            os.remove(self._archivo_temporal)
 
     def es_archivo_iniciar_sin_guardar(self):
         return self.nombre_de_archivo_sugerido == ""
@@ -499,7 +504,7 @@ class Editor(editor_base.EditorBase):
         self.recargar_archivo_actual()
 
     def recargar_archivo_actual(self):
-        if self.ruta_del_archivo_actual:
+        if self.ruta_del_archivo_actual and os.path.exists(self.ruta_del_archivo_actual):
             self.cargar_contenido_desde_archivo(self.ruta_del_archivo_actual)
             self.ejecutar()
 
@@ -584,6 +589,7 @@ class Editor(editor_base.EditorBase):
             elif mensaje == 2:
                 return False
 
+        self.eliminar_archivo_temporal()
         return True
 
     def obtener_contenido(self):

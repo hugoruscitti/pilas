@@ -1,7 +1,7 @@
 
 window.DESCRIPCION_VERSION = {
-  version: '1.4.5',
-  fecha: '29 de Mar del 2016',
-  commit: '384fe05',
-  changelog: ['Cambiando hack para soportar compatibilidad con box2d 2.3.1 y anteriores.', 'release 1.4.4', 'Reparando cambio de api de box2d a 2.3.1', 'release 1.4.3', 'arreglo menor', ]
+  version: '1.4.11',
+  fecha: '14 de Jun del 2017',
+  commit: '8c1bb38',
+  changelog: ['Merge branch "develop"', 'actualizando manual.', 'Implementando el método luego_de_actualizar en los actores.', 'actualizando manual.', 'Merge branch "develop" of github.com:hugoruscitti/pilas into develop', ]
 }

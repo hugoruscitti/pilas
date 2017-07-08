@@ -10,6 +10,9 @@ sys.path.insert(0, ".")
 
 import pilasengine
 
+sonido_wav = None
+sonido_ogg = None
+
 pilas = pilasengine.iniciar()
 
 try:
@@ -30,13 +33,19 @@ boton_ogg = pilas.interfaz.Boton("Reproducir .ogg")
 boton_ogg.x = 100
 
 def reproducir_wav():
-    sonido_wav.reproducir()
+    if not sonido_wav:
+        boton_wav.decir("No se pudo cargar el archivo ogg")
+    else:
+        sonido_wav.reproducir()
 
 def reproducir_ogg():
-    sonido_ogg.reproducir()
+    if not sonido_ogg:
+        boton_ogg.decir("No se pudo cargar el archivo ogg")
+    else:
+        sonido_ogg.reproducir()
 
 boton_wav.conectar(reproducir_wav)
 boton_ogg.conectar(reproducir_ogg)
-
+pilas.actores.Sonido()
 
 pilas.ejecutar()

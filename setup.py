@@ -7,13 +7,8 @@ from setuptools import setup
 setup(
         name='pilas',
         zip_safe=False,
-        version="1.4.5",
-        description="""============
-Pilas Engine
-============
-
-Pilas es un motor para realizar videojuegos de manera
-rápida y sencilla.
+        version="1.4.11",
+        description="""Pilas Engine - un motor para realizar videojuegos de manera rápida y sencilla.
 
 Es una herramienta orientada a programadores casuales
 o principiantes, que quiera comenzar a realizar sus
@@ -68,14 +63,4 @@ http://www.pilas-engine.com.ar
         },
 
         scripts=['bin/pilasengine'],
-
-        classifiers = [
-            'Intended Audience :: Developers',
-            'Intended Audience :: Education',
-            'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
-            'Natural Language :: Spanish',
-            'Operating System :: OS Independent',
-            'Programming Language :: Python',
-            'Topic :: Games/Entertainment',
-        ],
 )

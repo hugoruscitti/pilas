@@ -30,6 +30,10 @@ class Sonido(object):
         if not Sonido.deshabilitado:
             self.sonido.stop()
 
+    def detener_gradualmente(self, segundos=2):
+        if not Sonido.deshabilitado:
+            self.sonido.fadeout(segundos * 1000)
+
     def pausar(self):
         "Hace una pausa del audio."
         if not Sonido.deshabilitado:
@@ -65,8 +69,10 @@ class SonidoDeshabilitado(object):
 
     def continuar(self):
         pass
-    
+
     def __repr__(self):
         nombre = os.path.basename(self.ruta)
-        return "<%s del archivo '%s'>" % (self.__class__.__name__, nombre)
+        return "<%s deshabilitado del archivo '%s'>" % (self.__class__.__name__, nombre)
 
+    def detener_gradualmente(self, segundos=2):
+        pass

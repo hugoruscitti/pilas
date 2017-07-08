@@ -178,6 +178,10 @@ class Actor(Estudiante):
         return len(self._grupos_a_los_que_pertenece)
 
     def _definir_valores_iniciales(self, pilas, x, y, imagen=None):
+
+        if type(x) is str:
+            raise Exception("Cuidado, hay un parametro incorrecto. Intenta con imagen='%s'" %(x))
+
         self.imagen = imagen if imagen else "sin_imagen.png"
         self.x = x
         self.y = y
@@ -242,6 +246,15 @@ class Actor(Estudiante):
 
         Este método se llama automáticamente 60 veces por segundo, es
         donde se puede colocar lógica de actualización y temporizadores.
+        """
+        pass
+
+    def luego_de_actualizar(self):
+        """Permite realizar una actualización lógica luego de procesar física.
+
+        Este método es muy similar a `actualizar`, la única diferencia es
+        que pilas lo llamará automáticamente luego de haber procesado todos
+        los cálculos de física.
         """
         pass
 
@@ -1013,3 +1026,9 @@ class Actor(Estudiante):
         for x in self._habilidades:
             if x.__class__.__name__ == 'Disparar':
                 x.disparar()
+
+    def tiene_etiqueta(self, etiqueta):
+        if isinstance(etiqueta, str):
+            return self.etiquetas.tiene_etiqueta(etiqueta)
+        else:
+            raise Exception("Solo se permite consultar por etiquetas como cadenas de texto, has enviado: " + str(etiqueta))

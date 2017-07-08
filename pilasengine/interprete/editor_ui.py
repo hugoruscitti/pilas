@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/editor.ui'
 #
-#      by: PyQt4 UI code generator 4.11.3
+# Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -31,7 +31,6 @@ class Ui_Editor(object):
         self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 358, 289))
         self.layoutWidget.setObjectName(_fromUtf8("layoutWidget"))
         self.vertical_layout = QtGui.QVBoxLayout(self.layoutWidget)
-        self.vertical_layout.setMargin(0)
         self.vertical_layout.setObjectName(_fromUtf8("vertical_layout"))
         self.hbox_buttons = QtGui.QHBoxLayout()
         self.hbox_buttons.setObjectName(_fromUtf8("hbox_buttons"))
