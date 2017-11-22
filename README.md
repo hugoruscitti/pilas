@@ -36,6 +36,12 @@ los sistemas mas utilizados.
 Si quieres instalar pilas-engine desde el código fuente, [visitá
 la página del wiki que explica todo el proceso](https://github.com/hugoruscitti/pilas/wiki/instalacion)
 
+En particular, sobre OSX vas a necesitar pyqt4, que se puede instalar con
+este comando:
+
+	brew install cartr/qt4/pyqt
+
+(ver https://robonobodojo.wordpress.com/2017/02/08/installing-pyqt4-on-mac-osx/)
 
 ## Tests
 
