@@ -4,6 +4,10 @@ def test_posicion_de_los_actores():
     pilas.iniciar()
     mono = pilas.actores.Mono()
 
+
+    assert pilas.obtener_cantidad_de_actores() == 1
+    assert len(pilas.obtener_actores()) == 1
+
     # el actor comienza en el centro de la ventana
     assert mono.x == 0
     assert mono.y == 0
