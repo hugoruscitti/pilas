@@ -1,7 +1,8 @@
 N=[0m
 V=[01;32m
 
-VERSION=1.4.10
+VERSION=1.4.11
+VPS_HOST=162.243.50.192
 
 all:
 	@echo ""
@@ -130,7 +131,10 @@ upload:
 	@echo "$(V)Recordá que luego de subir estos archivos deberías actualizar la web.$(N)"
 	@echo "$(V) (con el comando: make release, make deploy)$(N)"
 	@echo ""
-	scp -r ~/Dropbox/Public/releases/pilas-engine/${VERSION} hugoruscitti@digitalocean:/home/hugoruscitti/static.pilas-engine.com.ar/pilas-engine/
+	make upload_to_vps
+
+upload_to_vps:
+	scp -r ~/Dropbox/Public/releases/pilas-engine/${VERSION} ${VPS_HOST}:/home/hugoruscitti/static.pilas-engine.com.ar/pilas-engine/
 
 distmac:
 	@mkdir -p tmp
