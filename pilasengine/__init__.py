@@ -525,6 +525,9 @@ class Pilas(object):
     def obtener_actores_en(self, x, y):
         return self.escena_actual().obtener_actores_en(x, y)
 
+    def obtener_actores(self):
+        return self.escena_actual().obtener_actores()
+
     def azar(self, a, b):
         """Retorna un número al azar entre `a` y `b`"""
         return random.randint(a, b)

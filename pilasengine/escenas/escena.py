@@ -90,7 +90,10 @@ class Escena(object):
         self.tweener.force_update_one_frame()
 
     def obtener_cantidad_de_actores(self):
-        return len(self._actores.obtener_actores())
+        return len(self.obtener_actores())
+
+    def obtener_actores(self):
+        return self._actores
 
     def actualizar_actores(self):
         actores_a_eliminar = []
