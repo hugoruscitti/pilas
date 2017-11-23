@@ -7,7 +7,7 @@ from setuptools import setup
 setup(
         name='pilas',
         zip_safe=False,
-        version="1.4.11",
+        version="1.4.12",
         description="""Pilas Engine - un motor para realizar videojuegos de manera rápida y sencilla.
 
 Es una herramienta orientada a programadores casuales
