@@ -25,7 +25,7 @@ class ModoFisica(ModoDepurador):
 
         painter.save()
         self.pilas.camara.aplicar_transformaciones_completas(painter)
-        
+
         for cuerpo in cuerpos:
 
             for fixture in cuerpo:
@@ -49,28 +49,34 @@ class ModoFisica(ModoDepurador):
 
                 if isinstance(shape, box2d.b2PolygonShape):
                     vertices = [cuerpo.transform * v * PPM for v in shape.vertices]
-                    #vertices = [pilas.escena_actual().camara.desplazar(v) for v in vertices]
-                    #self._poligono(vertices, color=colores.negro, grosor=grosor+2, cerrado=True)
-                    self._poligono(painter, vertices, color=colores.blanco, grosor=grosor, cerrado=True)
+
+                    actor = fixture.userData.get('actor', None)
+
+                    if actor and actor.fijo:
+                        dx = self.pilas.camara.x
+                        dy = self.pilas.camara.y
+                    else:
+                        dx = 0
+                        dy = 0
+
+                    self._poligono(painter, vertices, dx=dx, dy=dy, color=colores.blanco, grosor=grosor, cerrado=True)
                 elif isinstance(shape, box2d.b2CircleShape):
                     (x, y) = cuerpo.transform * shape.pos * PPM
-                    #(x, y) = pilas.escena_actual().camara.desplazar(cuerpo.transform * shape.pos * PPM)
 
-                    # Dibuja el angulo de la circunferencia.
+                    actor = fixture.userData.get('actor', None)
+
+                    if actor and actor.fijo:
+                        x += self.pilas.camara.x
+                        y += self.pilas.camara.y
+
                     self._angulo(painter, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM)
-                    #lienzo.angulo(motor, x, y, - math.degrees(fixture.body.angle), shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
-
-                    # Dibuja el borde de la circunferencia.
                     self._circulo(painter, x, y, shape.radius * PPM)
-                    #lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.negro, grosor=grosor+2)
-                    #lienzo.circulo(motor, x, y, shape.radius * PPM, pilas.colores.blanco, grosor=grosor)
                 else:
-                    # TODO: implementar las figuras de tipo "edge" y "loop".
                     raise Exception("No puedo identificar el tipo de figura.")
 
         painter.restore()
 
-    def _poligono(self, painter, puntos, color=colores.negro, grosor=1, cerrado=False):
+    def _poligono(self, painter, puntos, dx=0, dy=0, color=colores.negro, grosor=1, cerrado=False):
         x, y = puntos[0]
 
         if cerrado:
@@ -78,7 +84,8 @@ class ModoFisica(ModoDepurador):
 
         for p in puntos[1:]:
             nuevo_x, nuevo_y = p
-            self._linea(painter, x, y, nuevo_x, nuevo_y)
+
+            self._linea(painter, x+dx, y+dy, nuevo_x+dx, nuevo_y+dy)
             x, y = nuevo_x, nuevo_y
 
     def _linea(self, painter, x0, y0, x1, y1):

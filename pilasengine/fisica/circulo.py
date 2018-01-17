@@ -42,6 +42,7 @@ class Circulo(Figura):
         x = utils.convertir_a_metros(x)
         y = utils.convertir_a_metros(y)
 
+        self._radio_sin_convertir = radio
         self._radio = utils.convertir_a_metros(radio)
         self._escala = 1
 
@@ -90,6 +91,7 @@ class Circulo(Figura):
     def set_radius(self, radio):
         self._escala = (self._escala * radio) / self.radio
         self._radio = utils.convertir_a_metros(radio)
+        self._radio_sin_convertir = radio
         self.definir_radio()
 
     def get_radius(self):
@@ -97,6 +99,7 @@ class Circulo(Figura):
 
     def set_scale(self, escala):
         self._radio = (self._radio * escala) / self._escala
+        self._radio_sin_convertir = (self._radio_sin_convertir * escala) / self._escala
         self._escala = escala
         self.definir_radio()
 
@@ -105,3 +108,6 @@ class Circulo(Figura):
 
     radio = property(get_radius, set_radius,doc='definir radio del circulo')
     escala = property(get_scale, set_scale, doc='definir escala del circulo')
+
+    def __repr__(self):
+        return "<Figura %s en (%d, %d) con radio %d>" % (self.__class__.__name__, self.x, self.y, self._radio_sin_convertir)

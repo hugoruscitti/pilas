@@ -154,7 +154,6 @@ class Figura(object):
 
     def definir_sensor(self, s):
         self._sensor = s
-        #self._cuerpo.fixtures[0].sensor = s
 
         if s:
             self._cuerpo.gravityScale = 0
