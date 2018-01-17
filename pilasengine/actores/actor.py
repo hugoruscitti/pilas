@@ -228,7 +228,6 @@ class Actor(Estudiante):
         self._figura_de_colision_dx = 0
         self._figura_de_colision_dy = 0
 
-
         if figura:
             figura.actor_que_representa_como_area_de_colision = self
 
@@ -828,11 +827,12 @@ class Actor(Estudiante):
         :param y: Posición vertical del punto.
         :type y: int
         """
-        if self.fijo:
-            x = x - self.pilas.escena_actual().camara.x
-            y = y - self.pilas.escena_actual().camara.y
-        return (self.izquierda <= x <= self.derecha and
-                self.abajo <= y <= self.arriba)
+
+        if not self.fijo:
+            x = x + self.pilas.escena_actual().camara.x
+            y = y + self.pilas.escena_actual().camara.y
+
+        return (self.izquierda <= x <= self.derecha and self.abajo <= y <= self.arriba)
 
     def distancia_con(self, otro_actor):
         """Determina la distancia con el ``otro_actor``
@@ -1011,14 +1011,12 @@ class Actor(Estudiante):
         self.figura_de_colision = self.ff
         self._figura_de_colision_dx = x
         self._figura_de_colision_dy = y
-        #self.mover_figura_de_colision()
 
     def crear_figura_de_colision_rectangular(self, x, y, ancho, alto):
         self.ff = self.pilas.fisica.Rectangulo(0, 0, ancho, alto, dinamica=False, sensor=True)
         self.figura_de_colision = self.ff
         self._figura_de_colision_dx = x
         self._figura_de_colision_dy = y
-        #self.mover_figura_de_colision()
 
     def disparar(self):
         """Permite que cualquier actor que tenga una habilidad
