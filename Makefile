@@ -1,7 +1,7 @@
 N=[0m
 V=[01;32m
 
-VERSION=1.4.11
+VERSION=1.4.12
 VPS_HOST=162.243.50.192
 
 all:
