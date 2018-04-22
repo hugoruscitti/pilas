@@ -1030,3 +1030,11 @@ class Actor(Estudiante):
             return self.etiquetas.tiene_etiqueta(etiqueta)
         else:
             raise Exception("Solo se permite consultar por etiquetas como cadenas de texto, has enviado: " + str(etiqueta))
+
+    def hacer_invisible(self):
+        """ Hace invisible al actor. """
+        self.definir_transparencia(100)
+
+    def hacer_visible(self):
+        """ Hace visible al actor. """
+        self.definir_transparencia(0)
