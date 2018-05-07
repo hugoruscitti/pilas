@@ -191,6 +191,7 @@ class Actor(Estudiante):
         self.escala_y = 1
         self.transparencia = 0
         self.espejado = False
+        self.espejado_vertical = False
         self.fijo = False
         self._figura_de_colision = None
 
@@ -272,6 +273,9 @@ class Actor(Estudiante):
         if self._espejado:
             escala_x *= -1
 
+        if self._espejado_vertical:
+            escala_y *= -1
+            
         if not self.fijo:
             dx = self.pilas.obtener_escena_actual().camara.x
             dy = self.pilas.obtener_escena_actual().camara.y
@@ -492,6 +496,12 @@ class Actor(Estudiante):
     def definir_espejado(self, espejado):
         self._espejado = espejado
 
+    def obtener_espejado_vertical(self):
+        return self._espejado_vertical
+
+    def definir_espejado_vertical(self, espejado_vertical):
+        self._espejado_vertical = espejado_vertical
+        
     def definir_transparencia(self, transparencia):
         self.pilas.utils.interpretar_propiedad_numerica(self, 'transparencia',
                                                         transparencia)
@@ -514,6 +524,9 @@ class Actor(Estudiante):
 
     espejado = property(obtener_espejado, definir_espejado,
                         doc="Indica si se tiene que invertir horizontalmente \
+                        la imagen del actor.")
+    espejado_vertical = property(obtener_espejado_vertical, definir_espejado_vertical,
+                        doc="Indica si se tiene que invertir verticalmente \
                         la imagen del actor.")
     z = property(obtener_z, definir_z,
                  doc="Define lejania respecto del observador.")
