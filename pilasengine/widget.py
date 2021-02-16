@@ -41,6 +41,9 @@ class WidgetConAceleracion(QGLWidget):
     """
 
     def __init__(self, pilas, titulo, ancho, alto, capturar_errores=True):
+        # Workaround para este bug
+        # https://riverbankcomputing.com/pipermail/pyqt/2014-January/033681.html
+        from OpenGL import GL
         self.pilas = pilas
         super(WidgetConAceleracion, self).__init__()
         self.setMinimumSize(200, 200)
