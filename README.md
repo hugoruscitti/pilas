@@ -1,6 +1,12 @@
 pilas-engine
 ============
 
+# IMPORTANTE
+
+(!) Esta es la versión clásica de pilas, te recomendamos usar la versión
+nueva del motor que está en www.pilas-engine.com.ar y el repositorio 
+https://github.com/pilas-engine/pilas-engine
+
 [![Build Status](https://travis-ci.org/hugoruscitti/pilas.png?branch=master)](https://travis-ci.org/hugoruscitti/pilas) [![Code Climate](https://codeclimate.com/github/hugoruscitti/pilas/badges/gpa.svg)](https://codeclimate.com/github/hugoruscitti/pilas)
 
 Pilas es un motor para realizar videojuegos de manera rápida y sencilla.
